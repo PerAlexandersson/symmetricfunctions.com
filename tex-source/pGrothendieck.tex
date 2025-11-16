@@ -1,0 +1,50 @@
+
+
+
+\section[pGrothendieck]{P-Grothendieck polynomials}
+
+\begin{polydata}{pGrothendieck}
+  Name   & P-Grothendieck polynomials \\
+  Space  & Sym \\
+  Basis  & True \\
+  Rating & 1 \\
+  Bib    & Hawkes2020 \\
+  Year   & 2020 \\
+  Category & Schur \\
+\end{polydata}
+
+\todo{Expand definition.}
+
+The $P$-Grothendieck polynomials are symmetric, non-homogeneous symmetric functions,
+defined via shifted, set-valued tableaux.
+In \cite{Hawkes2020} the author introduce the weak $P$-Grothendieck polynomials,
+which plays the role of \hyperref[grothendieckDualStable]{dual stable Grothendieck polynomials}.
+The author show that these are \hyperref[schurP]{Schur-P} positive.
+This is analogous to the dual stable Grothendieck polynomials being Schur-positive.
+
+
+Suppose $\mu$ is a strict partition with $m$ parts.
+The \defin{weak symmetric $P$-Grothendieck polynomial} $\grothendieckPDual_\mu(\xvec)$
+in $n \geq m$ variables is defined as
+\[
+\grothendieckPDual_\mu(\xvec) =
+\prod_{i\lt j} (x_i-x_j)^{-1}
+\sum_{\sigma \in \symS_n / \symS_{n-m}}
+\sign(\sigma)
+\left(
+\prod_i
+\left(
+\frac{x_{\sigma_i}}{1-x_{\sigma_i}}
+\right)^{\mu_i}
+\right)
+\left(
+\prod_{i \lt j, i \leq m}
+x_{\sigma_i} + x_{\sigma_j}
+\right)
+\left(
+\prod_{m \lt i \lt j}
+x_{\sigma_i} - x_{\sigma_j}
+\right).
+\]
+Here, $\symS_n / \symS_{n-m}$ is the set of permutations in $\symS_n$
+with no descent after position $m$.

@@ -1,0 +1,604 @@
+\section[LLT]{LLT polynomials}
+
+
+\begin{polydata}{LLT}
+  Name   & LLT polynomials \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 5 \\
+  Bib      & Lascoux97ribbontableaux\\
+  Year     & 1997\\
+  Symbol   & $\LLT_\nuvec(\xvec;q)$ \\
+  Keywords & fillings, schur-positive, murnaghan-nakayama \\
+  Category & Schur \\
+\end{polydata}
+
+\todo{ Nice intro:  https://www.aimath.org/WWN/kostka/lam.pdf }
+
+\todo{
+Write result about LLTs with Joakim
+}
+
+\todo{
+https://math.berkeley.edu/~mhaiman/ftp/llt-positivity/new-version.pdf
+http://math.stanford.edu/~vakil/crm07/haiman.pdf 
+http://www-igm.univ-mlv.fr/~fpsac/FPSAC04/ARTICLES/Lam.pdf
+}
+
+\todo{
+Lam's stuff:
+https://arxiv.org/pdf/math/0507341.pdf
+https://arxiv.org/pdf/math/0310250.pdf
+}
+
+\todo{
+Connection with Kazhdan-Lusztig polys:
+https://www.ams.org/journals/ert/2019-23-05/S1088-4165-2019-00524-4/
+}
+
+\todo{Type B: https://arxiv.org/pdf/1701.07497.pdf}
+
+
+LLT polynomials were originally introduced by Lascoux, Leclerc and Thibon in \cite{Lascoux97ribbontableaux}.
+It is a large family of symmetric functions, and can be seen as a $q$-deformations of products of skew Schur functions.
+This family contains the usual Schur polynomials, the skew Schur functions
+and contain the family of \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials}.
+The original motivation for LLT polynomials was to study certain \hyperref[plethysm]{plethysm} coefficients,
+and a relationship with the \emph{Fock space} representation of the quantum affine algebra $U_q(\widehat{sl_n})$.
+There are generalizations to other types, see C. Lecouvey \cite{Lecouvey2009}, and also (a different generalization)
+by Grojnowski and Haiman \cite{GrojnowskiHaiman2006}.
+
+The original definition expresses the LLT polynomials (called spin LLT polynomials)
+as a sum over so called \hyperref[borderStripTableauxDefinition]{ribbon tableaux}, weighted with a \emph{spin} statistic.
+The authors originally named them \defin{ribbon Schur functions}, but they are now referred to as LLT polynomials.
+A supersymmetric version of LLT polynomials, (akin to \hyperref[hookSchur]{supersymmetric Schur functions}) has 
+also been considered, see e.g \cite{CurranFrechetteYostWolffZhangZhang2021x} for a \hyperref[latticeModel]{lattice model} generating 
+such \defin{supersymmetric LLT polynomials}.
+
+In \cite{LeclercThibon2000} it is proved that the coefficients in the Schur basis of spin LLT polynomials 
+are \emph{parabolic Kazhdan--Lusztig polynomials}.
+For the connection with Kazhdan--Luztig polynomials and the more representation-theoretical
+connection, see \cite{LaniniRam2019}.
+
+LLT polynomials have a prominent role in the study of \hyperref[diagonalHarmonics]{diagonal harmonics}.
+See \cite{BlasiakHaimanMorsePunSeelinger2021x} for recent results in this area.
+
+
+
+\subsection[lltDefinitionRibbons]{Definition (ribbons)}
+
+The original definition is given in \cite{LeclercThibon2000}.
+A modern reference is \cite{Iijima2013}.
+
+Let $\SSYT^{(k)}(\lambda/\mu)$ be the set of $k$-ribbon tableaux of shape $\lambda/\mu$.
+Then the \defin{spin LLT polynomial} is defined as
+\[
+\LLTG^{(k)}_{\lambda/\mu}(\xvec;q) \coloneqq \sum_{T \in \SSYT^{(k)}(\lambda/\mu)} \xvec_T q^{spin(T)}.
+\]
+
+
+\subsection[lltDefinitionTuples]{Definition (tuples)}
+
+M. Bylund and M. Haiman discovered an alternative way to model LLT polynomials.
+These are indexed by $k$-tuples $\nuvec$ of skew Young diagrams. When $k=1$,
+we recover a single skew Schur function.
+The Bylund--Haimain model is described in \cite{HaglundHaimanLoehr2005} where it is proved that 
+the two models are equivalent. The proof uses using a version of the \hyperref[littlewoodMap]{Littlewood map},
+which sends ribbon tableaux to tuples of semi-standard Young tableaux.
+
+
+Given a $k$-tuple of skew-shapes $\nuvec$, let 
+\[
+\SSYT(\nuvec) = \SSYT(\nuvec^1) \times \SSYT(\nuvec^2)\times \dotsm \times \SSYT(\nuvec^k)
+\]
+where $\SSYT(\lambda)$ is the set of skew semi-standard Young tableaux of shape $\lambda$.
+For $T = (T^1,T^2,\dotsc,T^k) \in \SSYT(\nuvec)$,
+let $\xvec^T$ denote the product $\xvec_{T^1}\dotsm \xvec_{T^k}$ where $\xvec_{T^i}$
+is the usual weight of the semi-standard Young tableau $T^i$.
+Given a cell $u = (r,c)$ (row, column) in a skew diagram, the \defin{content} of $u$ is defined as $c(u)\coloneqq c-r$. 
+
+Entries $T^i(u) \gt T^j(v)$ in a tuple form an \defin{inversion} if
+either 
+\begin{itemize}
+\item $i\lt j$  and $c(u) = c(v)$, or 
+\item $i \gt j$ and $c(u) = c(v)-1$. 
+\end{itemize}
+Finally, we can define the \defin{LLT polynomial}
+\[
+\LLT_\nuvec(\xvec;q) = \sum_{T \in \SSYT(\nuvec)}  q^{\inv(T)} \xvec_T 
+\]
+where $\inv(T)$ is the total number of inversions appearing in $T$. 
+When all shapes in $\nuvec$ consist of single boxes, 
+we get the family of \hyperref[unicellularLLT]{unicellular LLT polyomials}.
+Note that $\LLT_\nuvec(\xvec;1) = \prod_{i} \schurS_{\nuvec^i}(\xvec)$, a product of skew Schur polynomials.
+
+
+\begin{example}
+
+Tuples $\nuvec$ are traditionally illustrated 
+in the \hyperref[prelimPartitions]{French notation} when dealing with LLT polynomials.
+Below, the $3$-tuple $32/1$, $31$, $33/21$ of skew shapes is illustrated.
+Note that boxes with same content are placed on the same diagonal (oriented up-right).
+The numbers indicate the \defin{reading order} which has a certain significance.
+
+If $F$ is a filling of the diagram, we have for example inversions if $F(1)\lt F(2)$ or $F(2)\lt F(3)$.
+
+\begin{figure}
+\begin{ytableau}
+  &  &  &  &  &  &\square &5 &8 \\
+  &  &  &  &  &  &\square  &\square  &11\\
+  &  &  &  &  &  &  &  &  \\
+  &  &  &2 &  &  &  &  &  \\
+  &  &  &4 &7 &10&  &  &  \\
+  &  &  &  &  &  &  &  &  \\
+1 &3 &  &  &  &  &  &  &  \\
+\square  &6 &9 &  &  &  &  &  &  
+\end{ytableau}
+\end{figure}
+The skew boxes have been marked with $\square$.
+
+\end{example}
+
+
+The original spin LLT polynomials and the modern LLT polynomials are related as follows.
+If $\nuvec$ is the $k$-tuple obtained as the $k$-quotient of $\lambda/\mu$, then 
+there is some $e$, depending only on $\lambda/\mu$, such that
+\[
+q^e \LLT_\nuvec(\xvec;q^{-2}) =  \LLTG^{(k)}_{\lambda/\mu}(\xvec;q).
+\]
+See \cite[Prop. 6.17]{GrojnowskiHaiman2006}.
+
+
+\subsection[lltVertexModel]{Vertex-model}
+
+It has recently been shown that LLT polynomials can be realized as the partition functions of
+certain colored fermionic vertex models, see \cite{CorteelGitlinKeatingMeza2020x} and \cite{AggarwalBorodinWheeler2021x}.
+For connection with fermionic vertex models, see \cite{BrubakerBuciumasBumpGustafsson2020}.
+
+
+
+\section[lltProperties]{Properties}
+
+\subsection[lltMurnaghanNakayama]{Murnaghan--Nakayama rule}
+
+\subsection[lltPieri]{Pieri rule}
+
+\subsection[lltCauchy]{Cauchy Identity}
+
+A Cauchy identity for the spin LLT polynomials was first given in \cite{Lam2005},
+and a combinatorial proof is given in \cite{Leeuwen2005}.
+
+In \cite{CorteelGitlinKeatingMeza2020x}, the authors describe a
+Yang--Baxter integrable vertex model for LLT polynomials, and prove a Cauchy-identity.
+Here, the sum is taken over $k$-tuples of integer partitions,
+\[
+  \sum_{\nuvec} \LLT_\nuvec(x_1,\dotsc,x_n;q) \LLT_{\nuvec^\textrm{rot}}(y_1,\dotsc,y_n;q) = 
+  \prod_{i=1}^n \prod_{j=1}^n \prod_{m=0}^{k-1} \frac{1}{1-x_iy_j t^m }
+\]
+where $\nuvec^\textrm{rot}$ rotates each partition 180 degrees, and reverses the order of the tuple.
+
+
+\subsection[lltFundamentalExpansion]{Fundamental quasisymmetric expansion}
+
+It is fairly straightforward from the tuples definition to recover the 
+expansion in the \hyperref[gessel]{fundamental quasisymmetric basis}. 
+This is done in \cite{HaglundHaimanLoehr2005} and we have that
+\[
+\LLT_\nuvec(\xvec;q) = \sum_{T \in \SYT(\nuvec)} q^{\inv(T)} \gessel_{D(T)}(\xvec).
+\]
+The set $\SYT(\nuvec)$ consists of all fillings of $\nuvec$ using entries $1,2,\dotsc,$
+so that each shape has increasing rows and columns. The descent set $D(T)$
+is computed with respect to the reading word. That is, $i$ is a descent if $i+1$ 
+appear before $i$ when reading the boxes of $\nuvec$ in the reading order.
+
+
+\subsection[lltSchurPositivity]{Schur positity}
+
+It is proved in \cite{LeclercThibon2000} that $\LLT_\nuvec(\xvec;q)$ is Schur-positive 
+whenever $\nuvec$ is a $k$-tuple of straight shapes. 
+The proof uses the Fock space representation of $U_q(\widehat{sl}_n)$, see 
+\cite{Iijima2013} for some background. 
+
+I. Grojnowski and M. Haiman proves in an unpublished preprint, \cite{GrojnowskiHaiman2006},
+that all LLT polynomials $\LLT_\nuvec(\xvec;q)$ for arbitrary tuples of skew shapes, are Schur positive.
+They use Hecke algebras and deep representation theory --- their proof does not give a 
+combinatorial formula for the Schur coefficients.
+
+Some partial progress on a combinatorial 
+proof of Schur positity is given in \cite{Roberts2013}.
+
+
+The case when the tuple consists of $k\leq 3$ ribbons is considered by J. Blasiak \cite{Blasiak2016},
+and and explicit Schur expansion is given. Note that the ribbons need not be connected.
+This result is used to show that Macdonald polynomials indexed with shapes that have at most three columns,
+are Schur positive.
+
+
+In \cite{Tom2020x}, F. Tom gives a combinatorial formula for the Schur expansion 
+of certain vertical-strip LLT polynomials, whenever the underlying unit-interval
+graph is triangle-free (see the section on unicellular LLT polynomials). He uses a generalization of cocharge.
+This generalizes an earlier result by Alexandersson and Uhlin, \cite{AlexanderssonUhlin2020}.
+
+\todo{Expand this section a bit.}
+
+
+
+\section[unicellularLLT]{Unicellular LLT polynomials}
+
+\begin{polydata}{unicellularLLT}
+  Name   & Unicellular LLT polynomials \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 4 \\
+  Bib      & HaglundHaimanLoehr2005\\
+  Year     & 2005\\
+  Symbol   & $\LLT_\nuvec(\xvec;q)$ \\
+  Keywords & fillings, schur-positive, murnaghan-nakayama \\
+  Category & Schur \\
+\end{polydata}
+
+
+
+The unicellular LLT polynomials is a subset of LLT polynomials indexed 
+by tuples of skew shapes, such that each shape is a single box.
+In \cite{CarlssonMellit2017} and \cite{AlexanderssonPanova2018} it is observed 
+that there is a more convenient way to describe unicellular LLT polynomials,
+by using \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graphs}.
+
+
+\subsection[unicellularLLTDefinition]{Definition}
+
+The \defin{unicellular LLT polynomials} indexed by an area sequence $\avec$ of length $n$
+is defined as
+\[
+\LLT_\avec(\xvec;q) \coloneqq  \sum_{\kappa : [n]\to \setP } x_{\kappa(1)}\dotsm x_{\kappa(n)} q^{\asc(\kappa)}.
+\]
+Here we use the same notation as for 
+the \hyperref[chromaticQuasisymmetricDefinition]{chromatic quasisymmetric functions}
+and we recommend the reader to first consult this text.
+
+
+\begin{example*}[Bijection between tuples and Dyck diagrams]
+The 3-tuple of skew shapes $3211/211$, $4221/321$, $421/31$ is a unicellular LLT polynomial.
+The boxes have been labeled in reading order.
+The corresponding boxes are labeled in the Dyck diagram which has area sequence $011101012$.
+See \cite{AlexanderssonPanova2018} for the explicit bijection.
+\begin{figure}
+\begin{ytableau}
+&  &  &  &  &   &  &  & *(lightblue) 3 &   &   &  \\
+&  &  &  &  &   &  &  & *(lightblue) & *(lightblue) 5 &   &  \\
+&  &  &  &  &   &  &  & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) 9\\
+&  &  &  & *(lightblue) 1 &   &  &  &  &  &  & \\
+&  &  &  & *(lightblue) & *(lightblue) 4 &  &  &  &  &  & \\
+&  &  &  & *(lightblue) & *(lightblue)  &  &  &  &  &  & \\
+&  &  &  & *(lightblue) & *(lightblue)  &*(lightblue)  & *(lightblue) 8 &  &  &  & \\
+*(lightblue)2&  &  &  &  &  &  &  &  &  &  & \\
+*(lightblue) &  &  &  &  &  &  &  &  &  &  & \\
+*(lightblue) & *(lightblue) 6 &  &  &  &  &  &  &  &  &  & \\
+*(lightblue) & *(lightblue) & *(lightblue) 7 &  &  &  &  &  &  &  &  &
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & & & *(yellow) 9 \\
+*(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) &  & *(yellow) 8 \\
+*(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(yellow) 7 \\
+*(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & & *(yellow) 6 \\
+*(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(yellow) 5 \\
+*(lightgray) & *(lightgray) &  & *(yellow) 4 \\
+*(lightgray) &  & *(yellow) 3 \\
+ & *(yellow) 2 \\
+*(yellow) 1
+\end{ytableau}
+\end{figure}
+In general, if the $k$-tuple consists of (disconnected) ribbons, 
+then the entries in the area sequence are less than $k$.
+\end{example*}
+
+
+\subsection[unicellularLLTProperties]{Properties}
+
+The complete graphs on $n$ vertices are unit-interval graphs.
+We have that 
+\[
+\LLT_{K_n}(\xvec;q) = \macdonaldH_{(n)}(\xvec;q,t) = \sum_{T \in \SYT(n)} q^{\cocharge(T)}\schurS_{\lambda(T)}(\xvec).
+\]
+Note thata $\macdonaldH_{(n)}(\xvec;q,t)$ is a \hyperref[macdonaldH]{modified Macdonald polynomial} 
+and the last sum is a \hyperref[hallLittlewoodH]{modified Hall--Littlewood polynomial}.
+
+In \cite{AlexanderssonPanova2018}, it is proved that for any area sequence $\avec$ of length $n$,
+\[
+\omega \LLT_{\avec}(\xvec;q) = q^{(a_1+a+2+\dotsb+a_n)} \LLT_{\avec^T}(\xvec;1/q)
+\]
+where $\avec^T$ denotes the transpose of the Dyck diagram.
+From the definition, it is clear that 
+\[
+\LLT_{\avec^T}(x_1,x_2,\dotsc,x_n;q) = \LLT_{\avec}(x_n,x_{n-1},\dotsc,x_1;q)
+\]
+and since the polynomials are symmetric 
+it follows that $\LLT_{\avec^T}(\xvec;q) = \LLT_{\avec}(\xvec;q)$.
+
+\subsection[unicellularAndChromatic]{Relation with chromatic quasisymmetric functions}
+
+See \hyperref[chromaticQuasisymmetricLLT]{the page on chromatic quasisymmetric functions}.
+
+
+We have that $\LLT_{\avec}(\xvec;q)$ is the graded \hyperref[frobeniusCharacteristic]{Frobenius characteristic} of 
+an $n!$-dimensional space, see \cite{GuayPaquet2016x}.
+In particular, the Hilbert series is given by
+\[
+ \langle \LLT_{\avec}(\xvec;q), \completeH_{1^n} \rangle = \sum_{\sigma \in \symS_n} q^{\asc(\sigma)}.
+\]
+
+The unicellular LLT polynomials are also evaluations of certain traces of Hecke algebras,
+see \cite{MoralesSkanderaWang2024}. There is a close connection qith Kazhdan--Lusztig polynomials.
+
+
+
+\subsection[unicellularLLTRecursions]{Recursions}
+
+There are a few recursions and linear relations related to unicellular LLT polynomials.
+For example, Lee's three term recursion in \cite{Lee2020}.
+We provide short bijective proofs of Lee's recursions in \cite{Alexandersson2019llt}.
+
+Lee's recursions are generalized further by C. Miller, see \cite[Eq. (2.2)]{Miller2019}.
+For more generalizations and results on linear relations between LLT polynomials,
+see \cite{Tom2020x} and \cite{Keating2021x}.
+
+
+\subsection[unicellularLLTSchurExpansion]{Schur expansion}
+
+It is a major open problem to find a combinatorial rule 
+for the Schur expansion of $\LLT_\avec(\xvec;q)$.
+For so called melting lollipop graphs, a combinatorial 
+formula for the Schur expansion is given in \cite{HuhNamYoo2020}.
+
+
+\begin{example}
+
+We have the following Schur expansions for area sequences of length $3$: 
+\begin{align*}
+\LLT_{000}(\xvec;q)&=\schurS_{3}+2\schurS_{21}+\schurS_{111} \\
+\LLT_{001}(\xvec;q)&=\schurS_{3}+(1+q)\schurS_{21}+q \schurS_{111} \\
+\LLT_{011}(\xvec;q)&=\schurS_{3}+2q \schurS_{21}+q^2 \schurS_{111} \\
+\LLT_{012}(\xvec;q)&=\schurS_{3}+(q+q^2)\schurS_{21}+q^3 \schurS_{111}
+\end{align*}
+
+\end{example}
+
+Since LLT polynomials are $q$-deformations of Littlewood--Richardson coefficients, see \cite{LeclercThibon2000},
+it is straightforward to see that in the special case of unicellular LLT polynomials 
+(a $q$-deformation of a product of $n$ single-box skew Schur functions) we have the following.
+
+\begin{conjecture}[See \cite{LeclercThibon2000}]
+
+There is a statistic $c_\avec(T)$ on standard Young tableaux depending on $\avec$, such that
+\[
+\LLT_{\avec}(\xvec;q) = \sum_{T \in \SYT(n)} q^{c_\avec(T)} \schurS_{\lambda(T)}.
+\]
+By comparing the coefficients of $x_1 x_2\dotsm x_m$ on both sides, 
+it follows that we must have the following relationship
+\[
+\sum_{\kappa \in \symS_n } q^{\asc_\avec(\kappa)} = 
+\sum_{\lambda \vdash n} f^\lambda \sum_{T \in \SYT(\lambda)} q^{c_\avec(T)}
+\]
+where in the left hand side we sum over all vertex-colorings of $\Gamma_\avec$
+using the $n$ different colors $1,\dotsc,n$ and $f^\lambda$ is the number of
+standard Young tableaux of shape $\lambda$.
+\end{conjecture}
+
+
+\begin{theorem}[See J. Blasiak \cite{Blasiak2016}]
+
+Whenever $\nuvec = (\nu^1,\nu^2,\nu^3)$ is a $3$-tuple of (possibly disconnected) skew shapes,
+$\LLT_{(\nu^1,\nu^2,\nu^3)}(\xvec;q)$ is Schur-positive with an explicit combinatorial formula.
+
+In the unicellular case, this corresponds to the case $\max_i a_i \leq 2$ for the area sequence
+indexing $\LLT_{\avec}(\xvec;q)$.
+\end{theorem}
+
+
+In his PhD thesis \cite{Miller2019}, C. Miller 
+shows that LLT-polyomials with bandwidth at most $3$ is \hyperref[kSchur]{$3$-Schur positive},
+which is stronger than Schur positivity.
+The bandwith of size at most two was done earlier by Lee, \cite{Lee2020}.
+
+
+In \cite{ChoHuh2019}, a combinatorial formula for the hook coefficients, that is, coefficients of $\schurS_{\lambda}$
+where $\lambda$ is a hook.
+
+
+\subsection[unicellularLLTPExpansion]{Power-sum expansion}
+
+
+From the \hyperref[powerSum]{power-sum} expansion of the chromatic quasisymmetric functions,
+it is fairly easy to derive a formula for $\LLT_\avec(\xvec;q)$ in the power-sum basis.
+Alternatively, one can use the general machinery in \cite{AlexanderssonSulzgruber2019},
+to get the power-sum expansion, 
+see the related result on \hyperref[pPartitionPsiExp]{P-partitions}.
+
+
+Given a poset $P$ on $n$ elements, let $\opsurj(P)$ be the set of order-preserving 
+surjections $f: P\to [k]$ for some $k$.
+The \defin{type} of a surjection $f$ is defined as
+\[
+ \alpha(f) \coloneqq (|f^{-1}(1)|,|f^{-1}(2)|,\dotsc,|f^{-1}(k)|).
+\]
+Let $\opsurj_\alpha(P) \subseteq \opsurj(P)$ be the set of surjections of type $\alpha$
+and let $\opsurj^\ast_\alpha(P) \subseteq \opsurj_\alpha(P)$
+be the set of surjections $f \in \opsurj_\alpha(P)$ such that for each $j \in [k]$,
+$f^{-1}(j)$ is an induced subposet of $P$ with a unique minimal element.
+
+
+In \cite{AlexanderssonSulzgruber2019}, we prove the following.
+\begin{theorem}[Alexandersson--Sulzgruber (2019)]
+Let $O(\avec)$ denote the set of orientations of the unit interval graph given by $\avec$.
+Then
+ \begin{equation*}
+ \omega \LLT_{\avec}(\xvec;q+1) = \sum_{\theta \in O(\avec)} q^{\asc(\theta)} 
+ \sum_{\lambda \vdash n} \frac{\powerSum_\lambda(\xvec)}{z_\lambda} |\opsurj^\ast_\lambda(P(\theta))|
+\end{equation*}
+where $P(\theta)$ is the poset on $[n]$ given by the 
+transitive closure of the ascending edges in $\theta$.
+\end{theorem}
+
+\begin{example*}[Powersum expansion for $\avec=0121$ with orientations]
+
+The area sequence $\avec = (0,1,2,1)$ gives the power-sum expansion 
+\begin{align*}
+\omega \LLT_{0121}(\xvec;q+1) = &(2 q^3 + q^4) \frac{\powerSum_{4}}{z_4} + (4 q^2 + 4 q^3 + q^4) \frac{\powerSum_{31}}{z_{31}} + \\
+&(2 q^2 + 2 q^3 + q^4) \frac{\powerSum_{22}}{z_{22}} + (8 q + 12 q^2 + 6 q^3 + q^4) \frac{\powerSum_{211}}{z_{211}} + \\
+&(24 + 48 q + 34 q^2 + 10 q^3 + q^4) \frac{\powerSum_{1111}}{z_{1111}}.
+\end{align*}
+
+The following two orientations $\theta_1$, $\theta_2$ contribute to $2 q^3 \powerSum_{22}/z_{22}$.
+By convention, only the ascending edges are shown --- illustrated as arrows.
+\begin{figure}
+\begin{ytableau}
+*(lightgray) & *(lightgray) & \to & *(yellow) 4 \\
+ & \to & *(yellow) 3 \\
+\to & *(yellow) 2 \\
+*(yellow) 1
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) & *(lightgray) & \to & *(yellow) 4 \\
+\to &  & *(yellow) 3 \\
+\to & *(yellow) 2 \\
+*(yellow) 1
+\end{ytableau}
+\end{figure}
+For each orientation, the order-preserving surjection $f$ defined by $f(1)=f(2)=1$, $f(3)=f(4)=2$
+is the only one that fulfills all requirements of being in $\opsurj^\ast_{22}(P(\theta))$.
+Here, the minimal elements of $f^{-1}(1)$ and $f^{-1}(2)$ are $1$ and $3$, respectively.
+
+Note that for $\theta_2$, $g(1)=g(3)=1$, $g(2)=g(4)=2$ is also an order-preserving surjection of type $(2,2)$,
+but the induced subposet $g^{-1}(2)\subset P(\theta_2)$ has both elements as minimal elements.
+The surjection $g$ therefore not an element in $\opsurj^\ast_{22}(P(\theta_2))$.
+
+\end{example*}
+
+
+A similar-looking formula for the \hyperref[chromaticQuasisymmetricPowerSumExpansion]{chromatic symmetric functions}
+is provided in \cite[Prop. 5.2]{BernardiNadeau2020}.
+
+
+
+\subsection[unicellularLLTEExpansion]{Elementary symmetric expansion}
+
+Together with G. Panova, we conjecture that for any unit-interval graph $\avec$,
+the polynomial $\LLT_\avec(\xvec;q+1)$ is positive in the elementary symmetric function basis,
+see \cite{AlexanderssonPanova2018}.
+In spring 2017, I managed to find a precise formula for the $\elementaryE$-expansion,
+and it was made publicly available on arxiv in March 2019, \cite{Alexandersson2019llt}.
+In June 2019, Michele D'Adderio \cite{DAdderio2019x} posted a 
+proof of $\elementaryE$-positivity for vertical-strip LLT polynomials on arxiv.
+The proof uses the machinery developed in \cite{CarlssonMellit2017}. 
+Together with R. Sulzgruber, we proved the combinatorial formula below.
+
+
+We need some more notation first in order to state the combinatorial formula.
+Let $\theta \in O(\avec)$ and for each $i \in [n]$, let 
+the \defin{highest reachable vertex} be defined as
+\[
+\mathrm{hrv}(i) \coloneqq \max\; \{ j \in [n] : i \leq_{P(\theta)} j \}.
+\]
+Note that $\mathrm{hrv}(i) \geq i$ for all $i \in [n]$.
+Finally let $\pi(\theta) = (|\mathrm{hrv}^{-1}(1)|,\dotsc,|\mathrm{hrv}^{-1}(n)|)$.
+Thus, $\pi(\theta)$ is an integer composition of $n$.
+
+
+In \cite{AlexanderssonSulzgruber2020x} we prove the following:
+\begin{theorem}[Alexandersson--Sulzgruber, 2020]
+For any unit-interval graph $\avec$ with $n$ vertices
+we have the expansion
+\[
+\LLT_\avec(\xvec;q+1) = \sum_{\theta \in O(\avec)} q^{\asc(\theta)}\elementaryE_{\pi(\theta)}(\xvec).
+\]
+\end{theorem}
+Notice that this result is an analog of 
+the \hyperref[chromaticQuasisymmetricElementaryExpansion]{Stanley--Stembridge conjecture}
+for the \hyperref[chromaticQuasisymmetricDefinition]{chromatic quasisymmetric functions}.
+
+In fact, we prove a similar formula for the vertical-strip LLT polynomials.
+
+The path graph case was proved already in \cite{AlexanderssonPanova2018},
+and the complete graph case can be proved by using a certain recursion.
+For the class of melting lollipop graphs, a 
+similar-looking $\elementaryE$-expansion formula is proved in \cite{Alexandersson2019llt}.
+
+
+\begin{example}
+In the following diagram with $\avec=012223$, we illustrate an orientation $\theta$  in $O(\avec)$
+by marking the ascending edges with $\to$.
+\begin{figure}
+\begin{ytableau}
+*(lightgray)   & *(lightgray)   &    &      & \to   & *(yellow) 6 \\
+*(lightgray)   & *(lightgray)   &     &     & *(yellow) 5\\
+*(lightgray)  &    &  \to   & *(yellow) 4\\
+  \to  &     & *(yellow) 3\\
+  \to  & *(yellow) 2\\
+*(yellow) 1
+\end{ytableau}
+\end{figure}
+The highest reachable vertex for $1,2,\dotsc,6$ are $4,2,4,4,6,6$, respectively.
+This is computed by simply following the marked edges as high as possible.
+Hence $\pi(\theta) = (0,0,1,0,3,0,2)$ and this orientation
+contributes with $q^5 \elementaryE_{321}(\xvec)$ to $\LLT_{012223}(\xvec;q+1)$.
+
+The full expansion is in this case
+\begin{align*}
+\LLT_{012223}(\xvec;q+1) &=(24 q^5+60 q^6+62 q^7+33 q^8+9 q^9+q^10) \elementaryE_6 + \\
+&(8 q^4+12 q^5+6 q^6+q^7) \elementaryE_{33} + \\
+&(20 q^4+36 q^5+25 q^6+8 q^7+q^8) \elementaryE_{42} + \\
+&(40 q^4+96 q^5+94 q^6+46 q^7+11 q^8+q^9) \elementaryE_{51} + \\
+&(4 q^3+4 q^4+q^5)\elementaryE_{222} + \\
+&(36 q^3+50 q^4+24 q^5+4 q^6) \elementaryE_{321} + \\
+&(34 q^3+69 q^4+56 q^5+21 q^6+3 q^7) \elementaryE_{411} + \\
+&(19 q^2+17 q^3+4 q^4) \elementaryE_{2211} + \\
+&(20 q^2+28 q^3+15 q^4+3 q^5) \elementaryE_{3111} + \\
+&(10 q+6 q^2+q^3) \elementaryE_{21111} + \\
+&\elementaryE_{111111}
+\end{align*}
+
+\end{example}
+
+
+A recent paper, \cite{Kowalski2020x},
+refines this result to the case of so-called LLT cumulants,
+where certain connectivity requirements are imposed.
+See also \cite{DolegaKowalski2021x} where further results are proved.
+
+
+Another refinement is given by A. Abreau and A. Nigro in \cite{AbreuNigro2021},
+where they consider symmetric functions given as sum over \emph{increasing forests}.
+The unicellular LLT polynomials can then be expressed as a sum over these.
+
+
+\section[unicellularLLTNonCom]{Non-commutative unicellular LLT polynomials}
+
+\begin{polydata}{unicellularLLTNonCom}
+  Name   & Non-commutative unicellular LLT polynomials \\
+  Space    & WQSym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & NovelliThibon2019 \\
+  Year     & 2019\\
+  Symbol   & $\LLTnc_\nuvec(\xvec;q)$ \\
+  Keywords & gessel-nc-positive, murnaghan-nakayama \\
+  Category & Other \\
+\end{polydata}
+
+
+J.-C. Novelli and J.-Y. Thibon \cite[Thm. 6.2]{NovelliThibon2019} 
+introduce a non-commutative lift of the unicellular LLT polynomials.
+They show that these are positive in a non-commutative analogue of the \hyperref[gessel]{Gessel quasisymmetric basis},
+as well as a (non-commutative) \hyperref[plethysm]{plethystic} 
+relation that with \hyperref[chromaticQuasisymmetricLLT]{chromatic quasisymmetric functions}.
+
+
+
+\section[lltSuperSym]{Supersymmetric LLT polynomials}
+
+There is a notion of supersymmetric LLT polynomials introduced by T. Lam.
+See also \cite{BrubakerBuciumasBumpGustafsson2020} where \defin{metaplectic symmetric functions} are introduced.
+
+See \cite{AggarwalBorodinWheeler2021x} for the definition of \defin{factorial LLT polynomials}.
+

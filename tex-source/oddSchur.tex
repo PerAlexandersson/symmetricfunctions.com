@@ -1,0 +1,36 @@
+\metatitle{Odd Schur functions}
+\metadescription{Definition of the odd Schur functions and related concepts.}
+
+
+\section[oddSchur]{Odd Schur functions}
+
+
+\begin{polydata}{oddSchur}
+  Name   & Odd Schur functions \\
+  Space    & OSym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & EllisKhovanov2012 \\
+  Year     & 2012 \\
+  Symbol   & $\oddSchur_\lambda$ \\
+  Category & Schur \\
+\end{polydata}
+
+The odd Schur functions are introduced in \cite{EllisKhovanovLauda2012,EllisKhovanov2012}.
+They constitute a basis for the space of \defin{odd symmetric functions}.
+
+\todo{define odd symmetric functions}
+
+
+There are several definitions of the \defin{odd Schur functions},  $\{\oddSchur_\lambda\}$,
+using divided difference operators or plactic relations. In \cite{Ellis2012},
+it was shown that all the previous definitions coincide, and that we have the following tableau formula.
+\[
+ \oddCompleteH_\mu = \sum_{T \in \SSYT(\lambda,\mu)} \sign(T_\lambda) \sign(T) \oddSchur_\lambda.
+\]
+Here, $\sign(T)$ is the sign of the shortest permutation that sorts
+the reading word of $T$ in an increasing fashion, and $T_\lambda$ is the unique SSYT in 
+$\SSYT(\lambda,\lambda)$.
+
+
+In \cite{Ellis2012}, a Littlewood--Richardson rule is proved for the odd Schur functions.

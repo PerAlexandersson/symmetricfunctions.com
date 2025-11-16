@@ -1,0 +1,265 @@
+\section[gessel]{Gessel quasisymmetric functions}
+
+\begin{polydata}{gessel}
+  Name   & Gessel quasisymmetric functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 4 \\
+  Bib      & Gessel1984 \\
+  Year     & 1984 \\
+  Symbol   & $\gessel_\alpha(x)$ \\
+  Category & QuasiElementary \\
+\end{polydata}
+
+
+The \defin{Gessel quasisymmetric functions} $\gessel_\alpha(x)$, 
+also called  the \defin{fundamental quasisymmetric functions},
+were introduced by I. Gessel in \cite{Gessel1984}.
+They are indexed by integer compositions and constitute 
+a basis for the space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}. 
+
+
+\subsection[gesselDefinitionCompositions]{Definition (compositions)}
+
+For $\alpha \vDash n$, we define 
+\begin{equation*}
+ \gessel_\alpha(\xvec) = \sum_{\beta \leq \alpha} M_\beta(\xvec) =
+ \sum_{\beta \leq \alpha} \sum_{i_1 \lt \dotsb \lt i_n } x_{i_1}^{\beta_1} \dotsm x_{i_n}^{\beta_n}
+\end{equation*}
+where $\leq$ is refinement partial order.
+There is a second way to index the Gessel quasisymmetric functions, by using subsets.
+
+\subsection[gesselDefinitionSubsets]{Definition (subsets)}
+
+Let $S \subseteq [n-1]$. Then we define $\gessel_{n,S}(\xvec)$ as
+\begin{equation*}
+ \gessel_{n,S}(\xvec) = \sum_{\substack{1 \leq b_1 \leq \dotsb \leq b_n \\  i \in S \Rightarrow b_i \lt b_{i+1} }}
+ x_{b_1} \dotsm x_{b_n}
+\end{equation*}
+
+To translate between the two definitions, note that $\gessel_\alpha(\xvec) = \gessel_{n,S_\alpha}(\xvec)$
+where $S_\alpha = \{\alpha_1, \alpha_1+\alpha_2,\dotsc, \alpha_1+\dotsb + \alpha_{n-1}\}$.
+Conversely, $\gessel_{n,S}(\xvec) = \gessel_{comp(S)}$, where
+$comp(S) = (s_1,s_2-s_1,s_3-s_2,\dotsc,s_{\ell} - s_{\ell-1},n-s_{\ell})$.
+
+In terms of the \hyperref[qmonom]{monomial quasisymmetric functions},
+we have $\gessel_{\alpha}(\xvec) = \sum_{\beta \preceq \alpha} \qmonom_\beta(\xvec)$,
+where $\preceq$ denotes \emph{composition refinement}.
+
+\section[gesselProperties]{Properties}
+
+See \hyperref[standardQuasiInvolution]{the page on quasisymmetric functions} on how 
+the \hyperref[standardInvolution]{standard involution on symmetric functions} 
+that sends $\schurS_\lambda$ to $\schurS_{\lambda'}$ 
+can be extended to quasisymmetric functions.
+
+
+\subsection[gesselProduct]{Product rule}
+
+The product $\gessel_{m,S} \gessel_{n,T}$ has a positive rule as follows.
+ Choose $\sigma \in \symS_m$ and $\tau \in \symS_n$ 
+such that the descent sets of the permutations satisfy
+$S = \DES(\sigma)$ and $T = \DES(\tau)$.
+A \defin{shuffle} of $\sigma$ and $\tau$ is a permutation in $\symS_{m+n}$
+such that entries $1,\dotsc,m$ appear in the same relative order as in $\sigma$,
+and the entries $m+1,\dotsc,m+n$ appear in the same relative order as in $\tau$, when $m$ is subtracted from these entries.
+For example, the shuffles of the permutations $21$ and $12$ are given by
+\[
+2134, 2314, 3214, 2341, 3241, 3421.
+\]
+There are of course $\binom{m+n}{m}$ shuffles in total.
+We then have that
+\[
+\gessel_{m,S}(\xvec) \gessel_{n,T}(\xvec) = 
+\sum_{\pi \text{ shuffle of } \sigma,\tau } F_{m+n,\DES(\pi)}(\xvec).
+\]
+
+
+\subsection[gesselSpecializations]{Specializations}
+
+We have that for $\length(S)\lt m$,
+\begin{equation*}
+ \gessel_{n,S}(1^m) = \binom{n+m-\length(S)-1}{n}
+\end{equation*}
+and for $\length(S)\lt m$,
+\begin{equation*}
+ \gessel_{n,S}(1,q,q^2,\dotsc,q^m) = q^{m \length(S)+m-|S|-1}\qbinom{n+m-1-\length(S)}{m}_q
+\end{equation*}
+where $|S|$ denotes the sum of the elements.
+
+
+\subsection[gesselSlinkyRule]{Egge--Loehr--Warrington and the slinky rule}
+
+In \cite{EggeLoehrWarrington2010}, the following lifting of 
+the fundamental quasisymmetric functions to the Schur functions was given.
+An alternative interpretation of this rule is proved in \cite{GarsiaRemmel2018}.
+A short proof by Ira Gessel is given in \cite{Gessel2018OnTheSchurFunction}.
+
+Suppose $X(\xvec)$ is a symmetric function, with fundamental quasisymmetric expansion
+\[
+ X(\xvec) = \sum_\alpha c_\alpha \gessel_\alpha(\xvec)
+\]
+Then
+\[
+ X(\xvec) = \sum_\alpha c_\alpha \schurS_\alpha(\xvec).
+\]
+The composition indices in $\schurS_\alpha(\xvec)$ should be 
+computed via the \hyperref[schurJacobiTrudi]{Jacobi--Trudi identity}
+using the complete homogeneous symmetric functions.
+By using determinant formulas, the compositions can be "straighened" into partitions, 
+which can be done using the \defin{slinky rule} as it can be described 
+pictorially as the parts of the compositions falling down
+when $\alpha$ is illustrated in French notation, see \cite{EggeLoehrWarrington2010}.
+
+\begin{example*}[The slinky rule]
+
+We use the slinky rule on the composition $(4,3,8)$.
+
+\begin{figure}
+\begin{ytableau}
+*(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) \\
+*(gray) & *(gray) & *(gray) \\
+*(lightgreen) & *(lightgreen) & *(lightgreen) & *(lightgreen)
+\end{ytableau}
+
+\begin{ytableau}
+*(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) \\
+*(gray) & *(gray) & *(gray) & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) \\
+*(lightgreen) & *(lightgreen) & *(lightgreen) & *(lightgreen)
+\end{ytableau}
+
+\begin{ytableau}
+*(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) \\
+*(gray) & *(gray) & *(gray) & *(lightblue) & *(lightblue)  \\
+*(lightgreen) & *(lightgreen) & *(lightgreen) & *(lightgreen) & *(lightblue) & *(lightblue) 
+\end{ytableau}
+\end{figure}
+
+The resulting shape is $(6,5,4)$ and the sign is $(-1)^2$ as the height 
+of the ribbon of size $8$ ends two levels below its starting row.
+That is, the height of a ribbon is computed in the same 
+manner as in the \hyperref[schurMurnaghanNakaygama]{Murnaghan--Nakayama rule}.
+Hence, $\schurS_{438}=\schurS_{654}$.
+
+
+As a second example, $\schurS_{25115} = -\schurS_{43322}$ according to the slinky rule.
+
+\begin{figure}
+\begin{ytableau}
+*(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) \\
+\; \\
+\; \\
+*(gray) & *(gray) & *(gray) & *(gray) & *(gray) \\
+*(lightgreen) & *(lightgreen)
+\end{ytableau}
+
+\begin{ytableau}
+*(lightblue) & *(lightblue) \\
+\; & *(lightblue)  \\
+\; & *(lightblue)  & *(lightblue) \\
+*(gray) & *(gray) & *(gray) \\
+*(lightgreen) & *(lightgreen)  & *(gray) & *(gray)
+\end{ytableau}
+\end{figure}
+
+Note that the sign is $(-1)^{2}(-1)^{1} = -1$.
+
+Finally, $\schurS_{12} = 0$, since there are not enough boxes to perform a slinky move.
+Similarly, $\schurS_{2115} = 0$, since the slinky rule does not give a partition.
+\begin{figure}
+\begin{ytableau}
+*(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) \\
+\; & \none \\
+\; & \none \\
+*(lightgreen) & *(lightgreen) 
+\end{ytableau}
+\begin{ytableau}
+*(lightblue) & *(lightblue) \\
+\; & *(lightblue)  \\
+\; & *(lightblue) & *(lightblue)  \\
+*(lightgreen) & *(lightgreen) 
+\end{ytableau}
+\end{figure}
+
+\end{example*}
+
+
+\subsection[gesselPowerSum]{Relationship with the powersum basis}
+
+
+Athanasiadis \cite{Athanasiadis2015}, (also implicitly in \cite{AdinRoichman2015}) 
+prove the following: Suppose $X(x)$ is a symmetric function, such that
+\begin{equation*}
+X(\xvec) = \sum_{S \subseteq [n-1]} a_S \gessel_{n,S}(\xvec).
+\end{equation*}
+Then
+\begin{equation*}
+X(\xvec) = \sum_{\lambda \vdash n} z_{\lambda}^{-1} \powerSum_{\lambda}(\xvec) \sum_{S\in U_\lambda} (-1)^{|S\setminus S_\lambda|} a_S,
+\end{equation*}
+where $U_\lambda$ is the set of $\lambda$-unimodal subsets of $[n-1]$
+and $S_\lambda \coloneqq \{ s_1,s_2,\dotsc,s_{\ell-1} \}$.
+
+Here, $s_i$ is defined as $\lambda_1+\dotsb + \lambda_{i}$
+and a set $A \subseteq [n-1]$ is $\lambda$-unimodal if for $0\leq i \lt \ell$
+the intersection of $A$ with the intervals $\{s_i+1,s_i+2,\dotsc,s_{i+1}-1\}$
+is a prefix of the latter.
+
+
+\subsection[gesselQuasiPowerSum]{Relationship with a quasisymmetric powersum basis}
+
+In \cite{BallantineDaughertyHicksMason2020}, two versions of quasisymmetric powersum bases are given.
+They give the fundamental quasisymmetric expansion of these two quasisymmetric powersum bases.
+
+In \cite{AlexanderssonSulzgruber2019}, we provide the \hyperref[qPsi]{quasisymmetric powersum} expansion of $\gessel_\alpha(\xvec)$.
+We have
+\begin{equation*}
+\gessel_{n,S}(\xvec) = \sum_{\alpha} \frac{\qPsi_\alpha(\xvec)}{z_\alpha} (-1)^{|S\setminus S_\alpha|}
+\end{equation*}
+where the sum is taken over all compositions $\alpha$ such that the set $S$ is $\alpha$-unimodal.
+This formula implies Athanasiadis formula above.
+
+
+\todo{
+Lifting F-positivity to Schur-positivity via equivalence classes
+https://arxiv.org/pdf/1508.07052.pdf
+}
+
+
+\todo{
+See Haglund and http://users.wfu.edu/masonsk/hook.pdf
+where a super-version of Gessels are used.
+}
+
+
+\section[zeroHeckeAlgebra]{The 0-Hecke algebra}
+
+\todo{Write more about 0-Hecke algebra}
+
+The \defin{0-Hecke algebra} $H_n(0)$ in type $A$ is the $\setC$-algebra generated by $T_i$, $i=1,\dotsc,n-1$,
+subject to the relations 
+\[
+T_i^2 = T_i \qquad T_iT_{i+1}T_i = T_{i+1}T_iT_{i+1}\quad 
+T_{j}T_i = T_{i}T_j \text{ whenever } |i-j|\geq 2.
+\]
+Note that $T_{s_1}\dotsc T_{s_{\ell}}$ is independent for 
+any choice of reduced word $w = s_1\dotsm s_{\ell}$
+with $w \in \symS_n$. It follows that the dimension of $H_n(0)$ is $n!$.
+
+As an example of such operators, the divided difference operators 
+generating the \hyperref[keyDefinitionOperators]{key polynomials} are such operators.
+This also highlights the connection with the \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}.
+
+Similar to how $\symS_n$-modules decompose into irreducible modules indexed by partitions,
+we can completely characterize indecomposable $H(0)$-modules, see \cite{KrobThibon1997}.
+There are $2^{n-1}$ irreducible representations $F^\alpha$, indexed by integer compositions of $n$.
+
+The map $\frobChar$ on a $H_n(0)$-module $M$, sending $F^\alpha \to \gessel_\alpha$ 
+is the \defin{quasisymmetric characteristic} of $M$. 
+This is an analogue of the \hyperref[frobeniusCharacteristic]{Frobenius characteristic}.
+
+For example, in \cite{TewariWilligenburg2015}, the authors show that
+the quasisymmetric Schur functions are given as the quasisymmetric characteristic of certain
+$H_n(0)$-modules. 
+\todo{ add https://arxiv.org/pdf/2003.11225.pdf }
+
+See also \cite{Huang2013} for some examples of graded vector spaces.

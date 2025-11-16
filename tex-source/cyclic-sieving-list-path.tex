@@ -1,0 +1,60 @@
+\metatitle{Lattice path cyclic sieving}
+\metadescription{A list of instances of the cyclic sieving phenomenon on path objects}
+
+See the \hyperref[cyclicSieving]{cyclic sieving phenomenon} 
+page for the definition and related theorems.
+
+
+
+\section[cspListPaths]{Lattice paths}
+
+
+\subsection[cspAreaSequences]{Circular Dyck paths}
+
+In \cite{AlexanderssonLinussonPotka2019}, we consider the family $\CDP(n,w)$ of \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{circular Dyck paths}
+(area sequences of circular unit interval digraphs) with bounded width. 
+These are all vectors of integers $\avec=(a_1,\dotsc,a_n)$ which satisfy
+\begin{itemize}
+\item  $0 \leq a_i \leq w-1 $ for $1 \leq i \leq n$, 
+\item $a_{i+1} \leq a_{i} + 1$ for $1 \leq i \leq n$, (index mod $n$).
+\end{itemize}
+
+We consider the following $q$-analog of $|\CDP(n,w)|$:
+\begin{align}
+|\CDP(n,w)|_q =
+\sum_{s \in \setZ}
+\sum_{j=1}^w
+q^{s^2\delta + s(j+1)}
+\left(
+\qbinom{2n-1}{n-1-\delta s}_q
+-
+\qbinom{2n-1}{n+j+\delta s}_q
+\right),
+\end{align}
+where $\delta = w+2$.
+
+Let $\alpha$ act on circular Dyck paths via cyclic shift of the area sequence.
+We show that 
+\[
+\left\{ \left( \CDP(n,w), \langle \alpha \rangle, |\CDP(n,w)|_q \right) \right\}_{n=1}^{\infty}
+\]
+is an instance of a \hyperref[lyndonCSP]{Lyndon-like CSP family}.
+
+
+
+\subsection[cspLatticeWalks]{Lattice walks in the plane}
+
+
+In \cite{MashkevichOuvryPolychronakos2015}, the authors consider a $q$-analog of lattice walks in the plane,
+parametrized by the total number of steps right, left, up and down $(r,l,u,d)$.
+Suppose we use non-commuting variables with the relation $xy = qyx$,
+and define $Z_{r,l,u,d}(q)$ via the relation
+\[
+(x+y+x^{-1}+y^{-1})^n = \sum_{\substack{r,l,u,d \\ u+d+l+r = n}} Z_{r,l,u,d}(q) y^{-u} y^{d} x^{r} x^{-l}.
+\]
+In particular, $Z_{r,0,u,0}(q) = \qbinom{r+u}{u}_q$.
+Evaluating $Z_{r,l,u,d}(q)$ at roots of unity is interesting, since these values are related to the Hofstadter hamiltonian.
+
+The authors evaluate special cases of $Z_{r,l,u,d}(q)$ when $r-l$ and $u-d$ are multiples of $n$,
+and this seem to suggest a cyclic sieving under $\grpc_n$.
+

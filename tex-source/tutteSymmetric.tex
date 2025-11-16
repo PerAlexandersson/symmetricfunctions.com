@@ -1,0 +1,69 @@
+\metatitle{Tutte symmetric functions}
+\metadescription{Background on Tutte symmetric functions.}
+
+
+
+\section[tutteSymmetric]{Tutte symmetric functions}
+
+
+\begin{polydata}{tutteSymmetric}
+  Name   & Tutte symmetric functions \\
+  Space  & Sym \\
+  Basis  & False \\
+  Rating & 1 \\
+  Bib    & Stanley1998 \\
+  Year   & 1998 \\
+\end{polydata}
+
+\todo{Find earliest reference}
+
+\todo{add arXiv:2007.11042 }
+
+The \defin{Tutte symmetric functions} were introduced by R. Stanley \cite[Def. 3.1]{Stanley1998},
+and generalize the chromatic symmetric functions.
+
+The Tutte symmetric functions are indexed by graphs, and defined as
+\begin{equation}
+ \tutte_G(\xvec;t) \coloneqq \sum_{\pi \vdash V(G)} (1+t)^{a(\pi)} \tilde{\monomial}_{\lambda(\pi)}
+\end{equation}
+where the $\tilde{\monomial}$ denote augmented monomial symmetric functions,
+and the sum is taken over all set-partitions of the vertex set of $G$.
+Here, $a(\pi)$ denote the number of \defin{attacking edges} --- edges where both endpoints are in the 
+same block of $\pi$.
+
+Alternatively, for a graph on $n$ vertices, we have
+\begin{equation}
+ \tutte_G(\xvec;t) \coloneqq \sum_{\kappa : V(G) \to \setN} (1+t)^{m(\kappa)} x_{\kappa(1)} \dotsm 
+ x_{\kappa(n)}
+\end{equation}
+where the sum is over all vertex colorings of $G$, and $m(\kappa)$ counts
+the number of monochromatic edges in the coloring.
+
+Note that $\tutte_G(\xvec; -1) = \chrom_G(\xvec)$, that is, we recover the
+\hyperref[chromaticQuasisymmetric]{chromatic symmetric function} at $t=-1$.
+
+
+A quasisymmetric version of the Tutte symmetric functions 
+were introduced in \cite{AwanBernardi2016}.
+In \cite[Thm. 7.15]{AlexanderssonSulzgruber2019},
+we give the expansion of these polynomials in the quasisymmetric powersum basis.
+
+
+See \cite{CrewSpirkl2020x} for more results on the Tutte symmetric functions.
+
+
+\subsection[pExpansionTutte]{Powersum expansion}
+
+We have that (see \cite{Stanley1998})
+\[
+ \tutte_G(\xvec;t) = \sum_{S \subseteq E(G)} t^{|S|} \powerSum_{\lambda(S)}(\xvec)
+\]
+where $\lambda(S)$ denotes the sizes of the connected components induced by $S$.
+
+
+\subsection[tutteSpanningTrees]{Spanning tree expansion}
+
+Formula for computing $\tutte_G(\xvec;t)$ using spanning trees and spanning forests is given in \cite{McDonaldMoffatt2012}.
+This generalizes the classical formula for computing Tutte polynomials using spanning trees.
+A vertex-weighted version is stated in \cite[Eq. (15)]{AlistePrietoCrewSpirklZamora2020x}.
+

@@ -1,0 +1,251 @@
+\metatitle{Permuted basement Macdonald E polynomials}
+\metadescription{Permuted basement Macdonald E polynomials and related symmetric functions.}
+
+
+\section[macdonaldEperm]{Permuted basement Macdonald E polynomials}
+
+\begin{polydata}{macdonaldEperm}
+  Name     & Permuted basement Macdonald E polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & Ferreira2011\\
+  Year     & 2011 \\
+  Symbol   & $\macdonaldE^{\sigma}_\mu(\xvec;q,t)$ \\
+  Keywords & fillings \\
+  Category & Schur \\
+\end{polydata}
+
+
+
+The \defin{permuted-basement Macdonald polynomials} 
+(also called \emph{relative Macdonald polynomials}, \cite{GuoRam2021x}) generalize the 
+non-symmetric Macdonald polynomials, by introducing an additional parameter $\sigma \in \symS_n$,
+the \emph{basement}.
+They were introduced in \cite{Ferreira2011} by J. Ferreira, as eigenpolynomials of certain operators.
+Later in \cite{Alexandersson2015gbMacdonald}, a combinatorial model was introduced. 
+For some properties of these formulas, see \cite{AlexanderssonSawhney2017,AlexanderssonSawhney2019}.
+
+A good overview and introduction to this topic, is \cite{GuoRam2021x,GuoRam2021xSupp}.
+
+\todo{
+Multiline queue relation (Olya)
+http://de.arxiv.org/pdf/1811.01024.pdf
+}
+
+
+
+\subsection[macdonaldEpermDefinition]{Definitions}
+
+
+The following section is mainly from \cite{Alexandersson2015gbMacdonald}.
+
+Let $\sigma = (\sigma_1,\dots,\sigma_n)$ be a list of $n$ different positive integers 
+and let $\alpha=(\alpha_1,\dots,\alpha_n)$ be a weak integer composition.
+An \defin{augmented filling} of shape $\alpha$ and \defin{basement} $\sigma$
+is a filling of a Young diagram of shape $(\alpha_1,\dotsc,\alpha_n)$ with positive integers,
+augmented with a zeroth column filled from top to bottom with $\sigma_1,\dotsc,\sigma_n$.
+
+Note that we use \emph{English notation} rather than the 
+skyline fillings used in \cite{HaglundHaimanLoehr2008,Mason2009}.
+For example, the following figure illustrates the difference,
+where the English notation is used in the left diagram, while the skyline convention is 
+used in the right diagram.
+\begin{figure}
+\ytableaushort{655,5,4,3342,22,116}
+\ytableaushort{{\none}{\none}2,6{\none}4{\none}{\none}5,123{\none}{\none}5,123456}
+\end{figure}
+In the skyline convention, the basement appears in the bottom of the diagram,
+thus explaining the peculiar choice of terminology.
+
+
+\begin{definition}
+Let $F$ be an augmented filling. Two boxes $a$, $b$, are \defin{attacking}
+if $F(a)=F(b)$ and the boxes are either in the same column,
+or they are in adjacent columns, with the rightmost box in a row strictly below the other box.
+
+\begin{figure}
+\begin{ytableau}
+a  \\
+\none\vdots \\
+b  \\
+\end{ytableau}
+or
+\begin{ytableau}
+ a & \none \\
+ \none\vdots \\
+  & b \\
+\end{ytableau}
+\end{figure}
+
+\end{definition}
+
+A filling is \defin{non-attacking} if there are no attacking pairs of boxes. 
+
+
+\begin{definition}
+A \defin{triple of type $A$} is an arrangement of boxes, $a$, $b$, $c$,
+located such that $a$ is immediately to the left of $b$, and $c$ is somewhere below $b$,
+and the row containing $a$ and $b$ is at least as long as the row containing $c$.
+Similarly, a \defin{triple of type $B$} is an arrangement of boxes, $a$, $b$, $c$,
+located such that $a$ is immediately to the left of $b$, and $c$ is somewhere above $a$,
+and the row containing $a$ and $b$ is \emph{strictly} longer than the row containing $c$.
+
+A type $A$ triple is an \defin{inversion triple} if the entries ordered increasingly
+form a \emph{counter-clockwise} orientation. Similarly, a type $B$ triple is an inversion triple
+if the entries ordered increasingly form a \emph{clockwise} orientation.
+If two entries are equal, the one with largest subscript in the figures below
+is considered largest.
+
+\begin{figure}
+Type $A$:
+\begin{ytableau}
+ a_3 & b_1 \\
+ \none  & \none\vdots \\
+\none & c_2 \\
+\end{ytableau}
+
+Type $B$:
+\begin{ytableau}
+c_2 & \none \\
+\none\vdots  & \none \\
+a_3 & b_1 \\
+\end{ytableau}
+\end{figure}
+
+\end{definition}
+
+
+If $u = (i,j)$ let $d(u)$ denote $(i,j-1)$.
+A \defin{descent} in $F$ is a non-basement box $u$ such that $F(d(u)) \lt F(u)$.
+The set of descents in $F$ is denoted $\Des(F)$.
+
+
+
+\begin{example}
+Here is a non-attacking filling of shape $(4,1,3,0,1)$ and basement $(4,5,3,2,1)$.
+The bold entries are descents and the underlined entries form a type $A$ inversion triple.
+There are in total $7$ inversion triples (of type $A$ and $B$).
+\begin{figure}
+\begin{ytableau}
+\underline{4} & \underline{2} & 1 & \textbf{2} & 4\\
+5 & 5\\
+3 & 3 & \textbf{4} & 3\\
+2\\
+1 & \underline{1} \\
+\end{ytableau}
+\end{figure}
+\end{example}
+
+
+The \defin{leg}, $\leg(u)$, of a box $u$ in a diagram is the number of boxes
+to the right of $u$ in the diagram.
+The \defin{arm}, denoted $\arm(u)$, of a box $u = (r,c)$ in 
+a diagram $\alpha$ is defined as the cardinality of
+the sets
+\begin{align*}
+\{ (r', c) \in \alpha : r < r' \text{ and } \alpha_{r'} \leq \alpha_r \} \text{ and } \\
+\{ (r', c-1) \in \alpha : r' < r \text{ and } \alpha_{r'} < \alpha_r \}.
+\end{align*}
+
+The \defin{major index} of an augmented filling $F$ is defined as
+\begin{align*}
+\maj(F) = \sum_{ u \in \Des(F) } \leg(u)+1.
+\end{align*}
+The \defin{number of inversions}, $\inv(F)$ of a filling is the number of inversion triples of either type.
+The number of \defin{coinversions}, $\coinv(F)$, is the number of type $A$ and type $B$ triples which are \emph{not}
+inversion triples.
+
+
+Let $\mathrm{NAF}_\sigma(\alpha)$ denote all non-attacking fillings of 
+shape $\alpha$, augmented with the basement $\sigma \in \symS_n$,
+and all entries in the fillings are from $[n]$.
+
+
+\begin{definition}
+Let $\sigma \in \symS_n$ and let $\alpha$ be a weak composition with $n$ parts.
+The \defin{non-symmetric permuted basement Macdonald polynomial} 
+$\macdonaldE^\sigma_\alpha(\xvec;q,t)$ is defined as
+
+\begin{equation}
+\macdonaldE^\sigma_\alpha(\xvec; q,t) = \sum_{ F \in \mathrm{NAF}_\sigma(\alpha)} 
+\xvec^F q^{\maj(F)} t^{\coinv(F)} 
+\prod_{ \substack{ u \in F \\ u \text{ is in the basement or} \\ F(d(u))\neq F(u) }}  \frac{1-t}{1-q^{1+\leg(u)} t^{1+\arm(u)}}.
+\end{equation}
+The product is over all boxes $u$ in $F$ 
+such that either $u$ is in the basement or $F(d(u))\neq F(u)$.
+\end{definition}
+
+When $\sigma = \omega_0$, we recover
+the \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}
+defined in \cite{HaglundHaimanLoehr2008}, $\macdonaldE_\alpha(\xvec;q,t)$.
+\emph{There is a slight difference in notation, the index $\alpha$ is reversed compared to \cite{HaglundHaimanLoehr2008}.}
+
+
+A formula for the $\macdonaldE^\sigma_\alpha$ using 
+set-valued tableaux can be found in \cite[Thm. 2.2]{DaughertyRam2022x}.
+The proof relies on a bijection with alcove walks.
+
+
+\subsection[macdonaldEpermProperties]{Properties}
+
+
+
+
+\begin{proposition}[See \cite{CorteelMandelshtamWilliams2018}]
+Let $\mu$ be a partition, of length at most $n$
+and let $\macdonaldP_\mu(\xvec;q,t)$ denote the \hyperref[macdonaldP]{Macdonald P polynomials}.
+Then
+\[
+ \macdonaldP_\mu(\xvec;q,t) = \sum_{\sigma \in \symS_n(\mu)} \macdonaldE^{\rev(\sigma)}_{inc(\mu)}(\xvec;q,t),
+\]
+where $inc(\mu)$ are the entries of $\mu$ sorted in increasing order.
+\end{proposition}
+
+
+\begin{conjecture}[Olya Mandelshtam, 2019 personal communication]
+For any fixed \emph{composition} $\mu$, we can find
+coefficients $R_{\mu}(q,t) \in \setQ(q,t)$ and some subset $M \subseteq \symS_n$ such that
+\[
+R_{\mu}(q,t) \macdonaldP_{\lambda(\mu)}(\xvec;q,t) = \sum_{\sigma \in M} \macdonaldE^{\sigma}_{\mu}(\xvec;q,t).
+\]
+\end{conjecture}
+Combining \cite[Prop 1.1]{GuoRam2021xSupp} with \cite[Eq 1.10]{GuoRam2021xSupp}, 
+one can more or less find the expansion 
+\[
+\macdonaldP_{\lambda{\mu}}(\xvec;q,t) = \sum_{\sigma \in \symS_n} R'_{\mu,\alpha}(q,t) \macdonaldE^{\sigma}_\mu(\xvec;q,t),
+\]
+see also \cite[Eq. 5.7.8]{Macdonald1996}.
+
+
+
+\section[macdonaldEQuasi]{Quasisymmetric Macdonald E polynomials}
+
+
+\begin{polydata}{macdonaldEQuasi}
+  Name     & Quasisymmetric Macdonald E polynomials \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & CorteelMandelshtamMasonWilliams2019\\
+  Year     & 2019 \\
+  Symbol   & $\macdonaldEQuasi_\alpha(\xvec;q,t)$ \\
+  Keywords & fillings \\
+  Category & Schur \\
+\end{polydata}
+
+A quasisymmetric version of the non-symmetric Macdonald 
+polynomials were introduced in \cite{CorteelMandelshtamMasonWilliams2019x}.
+
+They specialize to the quasisymmetric Schur polynomials at $q=t=0$.
+
+
+
+\begin{conjecture}[Alexandersson 2020]
+Let $\alpha$ be a composition. Then the coefficients $K_{\alpha\gamma}(q)$ in the expansion
+\[
+\macdonaldEQuasi_\alpha(\xvec;q,0) = \sum_{\gamma} K_{\alpha\gamma}(q) \schurQS_\gamma(\xvec) 
+\]
+are in $\setN[q]$. Note that this resemblence the 
+fact that $\macdonaldE_\alpha(\xvec;q,0)$ are key-positive, with versions of \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials} as coefficients.
+\end{conjecture}

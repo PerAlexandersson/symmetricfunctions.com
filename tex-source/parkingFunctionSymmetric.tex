@@ -1,0 +1,43 @@
+\metatitle{Parking function symmetric functions}
+\metadescription{Definition of the parking function symmetric functions and related concepts.}
+
+
+\section[parking]{Parking function symmetric functions}
+
+\begin{polydata}{parking}
+  Name   & Parking function symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 2 \\
+  Bib      & Haiman1994  \\
+  Year     & 1994  \\
+  Symbol   & $\parking_n$ \\
+  Keywords & monomial-positive, schur-positive, h-positive \\
+  Category & Other \\
+\end{polydata}
+
+
+A \defin{parking function} of size $n$ is a list of positive integers
+$(a_1,a_2,\dotsc,a_n)$ with the property that if arranged in increasing order,
+then the $i$:th entry does not exceed $i$.
+We therefore have a natural action of $\symS_n$ on the set of size $n$ parking functions.
+See \cite{Yan2015} for a background on parking functions.
+
+Parking function symmetric functions first appeared in the study of \hyperref[diagonalHarmonics]{diagonal invariants}, see \cite{Haiman1994}.
+The \defin{Parking function symmetric function} $\parking_n(\xvec)$ is defined as the \hyperref[frobeniusCharacteristic]{Frobenius characteristic} of the above group action.
+This means that (see \cite[Ex. 7.48 (f)]{StanleyEC2}) that
+\begin{align*}
+\parking_n(\xvec) &= \sum_{\lambda \vdash n} (n+1)^{\ell(\lambda)-1} \frac{\powerSum_\lambda}{z_\lambda} \\
+&=\sum_{\lambda \vdash n} \frac{1}{n+1} \schurS_\lambda(1^{n+1}) \schurS_\lambda \\
+&=\sum_{\lambda \vdash n} \frac{n(n-1)\dotsm (n-\ell(\lambda)+2)}{m_1(\lambda)!\dotsm m_n(\lambda)!} \completeH_\lambda.
+\end{align*}
+For the generalization to $(r,k)$-parking functions, see \cite{StanleyWang2018}.
+
+
+In \cite{Stanley2024x}, Richard Stanley introduces a shifted analog of $\parking_n(\xvec)$.
+These can be obtained from $\parking_n(\xvec)$ by applying the maps
+$\powerSum_{2i+1} \mapsto 2 \powerSum_{2i+1}$ and $\powerSum_{2i}\mapsto 0$,
+when expressed in the power-sum basis.
+
+A representation-theoretical model for the shifted parking functions is obtained in \cite{HamakerKim2025x}.
+

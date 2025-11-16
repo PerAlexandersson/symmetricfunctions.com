@@ -1,0 +1,55 @@
+
+\section[schurZeta]{Schur multiple zeta functions}
+
+
+\begin{polydata}{schurZeta}
+  Name   & Schur multiple zeta functions \\
+  Space    &  NA   \\
+  Basis    &  False \\
+  Rating   &  1     \\
+  Bib      &  NakasujiPhuksuwanYamasaki2018 \\
+  Year     &  2018 \\
+  Keywords & jacobi-trudi, giambelli, cauchy-identity\\
+  Symbol   & $\zeta_{\lambda}(\svec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+The \defin{Schur multiple zeta functions} where introduced in \cite{NakasujiPhuksuwanYamasaki2018}
+in order to interpolate between previous generalizations of the Riemann zeta function.
+We have that $\zeta_\lambda(\svec)$ is defined as
+\[
+ \zeta_\lambda(\svec) \coloneqq \sum_{T \in \SSYT(\lambda)} \prod_{(i,j) \in \lambda} T_{ij}^{s_{ij}}.
+\]
+The product is taken over all boxes in the diagram of $\lambda$.
+Note that this is not a symmetric function and not a polynomial in $\svec$.
+In fact, when $\lambda = (1)$, $\zeta_\lambda(\svec)$ coincides 
+with the classical Riemann zeta function.
+
+When $\lambda$ is a single row or a single column, we recover the functions previously introduced
+by Hoffman \cite{Hoffman1992} and Zaiger \cite{Zagier1994}. 
+
+If we set all variables equal, then 
+\[
+\zeta_\lambda(s,s,s,\dotsc,s) = \schurS_\lambda(1^{-s},2^{-s},3^{-s},\dotsc).
+\]
+
+Jacobi--Trudi identities and Giambelli formulas are proved in \cite{NakasujiPhuksuwanYamasaki2018}.
+More general determinant formulas of the same type 
+as Lascoux--Pragacz and \hyperref[schurStripDecompFormula]{Hamel--Goulden}
+are proved in \cite{BachmannCharlton2020}.
+
+Sum formulas, see \cite{BachmannKadotaSuzukiYamamotoYamasaki2023x}.
+
+Pieri formulas and a Littlewood--Richardson type rule is proved in \cite{Nakaoka2023x}.
+For connection with quasisymmetric functions, see \cite{Hoffman2008}.
+For connections with Chern numbers and hyper-Kähler and Calabi-Yau manifolds, see \cite{Li2021x}.
+
+\subsection[schurZetaP]{Schur multiple zeta P and Q}
+
+In \cite{NakasujiTakeda2022x} the authors introduce the multiple zeta 
+analogs of \hyperref[schurP]{Schur P} and \hyperref[schurQ]{Schur Q} functions.
+
+They also define multiple zeta functions analogous to the 
+\hyperref[schurOrthogonal]{Orthogonal Schur polynomials} and the 
+\hyperref[schurSymplectic]{Symplectic Schur polynomials}.

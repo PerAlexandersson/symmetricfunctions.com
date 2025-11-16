@@ -1,0 +1,380 @@
+\section[borderStripTableaux]{Border strip tableaux and the Littlewood map}
+
+\todo{Add this nice reformulation of mn-rule: https://arxiv.org/pdf/1908.03741.pdf}
+
+\todo{https://arxiv.org/pdf/2006.00035.pdf }
+
+\todo{Add this extremely efficient recursion for character values.
+https://arxiv.org/pdf/1712.08023.pdf
+}
+
+The notion of border-strip tableaux, also known as rim-hook tableaux,
+show up in several areas, most notably
+the \hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama rule} 
+and the original definition of \hyperref[LLT]{LLT polynomials}.
+
+
+\subsection[borderStripTableauxDefinition]{Border strip tableaux}
+
+A \defin{border strip tableau} (also known as \defin{ribbon tableaux} or \defin{rim-hook tableax})
+of shape $\lambda$ and weight $\mu$
+is a filling of the diagram $\lambda$ such that exactly $\mu_i$ boxes are labeled $i$,
+and rows and columns are weakly increasing.
+Moreover, for each $i$, the boxes labeled $i$ must form a \hyperref[skewShapes]{border strip}.
+We let \defin{$\BST(\lambda,\mu)$} denote this set of border strip tableaux.
+
+\begin{example*}[Border-strip tableaux for $\lambda=44321$, $\mu=5333$.]
+Here are the 9 tableaux in $\BST(44321, 5333)$.
+\begin{figure}
+\begin{ytableau}
+1 & 2 & 2 & 2\\
+1 & 3 & 4 & 4\\
+1 & 3 & 4\\
+1 & 3\\
+1\\
+\end{ytableau}
+\begin{ytableau}
+1 & 1 & 1 & 1\\
+1 & 3 & 4 & 4\\
+2 & 3 & 4\\
+2 & 3\\
+2\\
+\end{ytableau}
+\begin{ytableau}
+1 & 1 & 1 & 1\\
+1 & 2 & 4 & 4\\
+2 & 2 & 4\\
+3 & 3\\
+3\\
+\end{ytableau}
+\begin{ytableau}
+1 & 2 & 2 & 3\\
+1 & 2 & 3 & 3\\
+1 & 4 & 4\\
+1 & 4\\
+1\\
+\end{ytableau}
+\begin{ytableau}
+1 & 2 & 2 & 2\\
+1 & 3 & 3 & 3\\
+1 & 4 & 4\\
+1 & 4\\
+1\\
+\end{ytableau}
+\begin{ytableau}
+1 & 1 & 1 & 1\\
+1 & 3 & 3 & 3\\
+2 & 4 & 4\\
+2 & 4\\
+2\\
+\end{ytableau}
+\begin{ytableau}
+1 & 1 & 1 & 1\\
+1 & 2 & 2 & 2\\
+3 & 4 & 4\\
+3 & 4\\
+3\\
+\end{ytableau}
+\begin{ytableau}
+1 & 1 & 1 & 1\\
+1 & 2 & 3 & 3\\
+2 & 2 & 3\\
+4 & 4\\
+4\\
+\end{ytableau}
+\begin{ytableau}
+1 & 1 & 1 & 1\\
+1 & 2 & 2 & 2\\
+3 & 3 & 3\\
+4 & 4\\
+4\\
+\end{ytableau}
+\end{figure}
+\end{example*}
+The \defin{height} of such a tableau is the sum of the heights of the border strips,
+where the height of a border strip is the number of rows it touches, minus one.
+We let $\mathrm{ht}(B)$ denote the height of $B$.
+
+When all strips have the same size, several additional properties hold,
+and we let \defin{$\BST(\lambda,d)$} denote the set of 
+border-strip tableaux of shape $\lambda$ and all strips have size $d$.
+
+
+
+\subsection[kRibbonTableaux]{$k$-ribbon tableaux}
+
+There is a semi-standard version of border strip tableaux,
+called \defin{$k$-ribbon tableaux}. Let $k \geq 1$ be an integer.
+A \defin{$k$-horizontal strip} is a skew shape formed by a 
+disjoint union of $k$-ribbons such that all their heads are in different columns.
+A \defin{$k$-ribbon tableau} of shape $\lambda/\mu$ and weight $\nu$, 
+is a sequence of shapes 
+\[
+\mu = \mu^0 \subseteq \mu^1 \subseteq \dotsb \subseteq \mu^{\ell} = \lambda
+\]
+such that each $\mu^{i+1}/\mu^{i}$ is a horizontal $k$-ribbon
+consisting of $\nu_i$ ribbons labeled $i$.
+This definition is from \cite{Ougz2020}; see \cite{Descouens2008} for an alternative 
+way to phrase this.
+
+We let $\SSYT^{(k)}(\lambda/\mu,\nu)$ denote the set of $k$-ribbon tableaux of shape $\lambda/\mu$
+and weight $\nu$. Moreover, we let $K^{(k)}_{\lambda/\mu,\nu}$ be the cardinality of this set.
+Note that for $k=1$ we recover the set of semi-standard Young tableaux, and the Kostka coefficients.
+
+\begin{example*}[k-ribbon tableaux]
+The following figure shows the elements in 
+$\SSYT^{(3)}(4422,1111)$ where we have put the label of each $3$-ribbon on its head.
+\begin{figure}
+<img src="./svg-images/k-ribbon2211-1111.svg" alt="The 6 3-ribbon tableaux with shape 4422 and weight 1111." style="width:80%; margin:5px;"/>
+\end{figure}
+
+The following figure shows the elements in $\SSYT^{(3)}(4422,211)$.
+\begin{figure}
+<img src="./svg-images/k-ribbon2211-211.svg" alt="The 3 3-ribbon tableaux with shape 4422 and weight 211." style="width:40%; margin:5px;"/>
+\end{figure}
+\end{example*}
+
+
+The notion of $k$-ribbon tableaux appear frequently when studying plethysm coefficients,
+evaluations at roots of unity, and in the study of LLT polynomials.
+
+We have \cite[p. 29]{DesarmenienLeclercThibon1994} that
+\[
+ \schurS_\nu[ \powerSum_k \circ \completeH_\mu ] = \sum_{\lambda}
+ \epsilon_k(\lambda/\mu) K^{(k)}_{\lambda/\nu,\mu} \schurS_\lambda.
+\]
+
+
+\begin{theorem}[See \cite[p.29]{DesarmenienLeclercThibon1994}]
+Let $\lambda/\mu$ be a skew shape and $\nu$ a weak composition.
+Let $\xi$ be a primitive $j^\thsup$ root of unity.
+Then
+ \[
+  K^{(j)}_{\lambda/\mu,\nu} =  (-1)^{|\nu|(j-1)}\varepsilon_k(\lambda/\mu) K_{\lambda/\mu,\nu^j}(\xi),
+ \]
+where $K_{\lambda/\mu,\nu^j}(q)$ is a \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomial}.
+\end{theorem}
+For example, $K_{4422,2^31^31^3}(q)$ is given by
+\begin{align*}
+ &q^{25}+q^{24}+4 q^{23}+5 q^{22}+10 q^{21}+13 q^{20}+21 q^{19}+ \\
+ &24 q^{18}+33 q^{17}+34 q^{16}+39 q^{15}+36 q^{14}+36 q^{13}+ \\
+ &27 q^{12}+23 q^{11}+14 q^{10}+9 q^9+4 q^8+2 q^7
+\end{align*}
+and it evaluates to $-3$ at $q=e^{2\pi i/3}$, so $K^{(3)}(4422,211)=3$.
+
+
+
+\subsection[partitionQuotient]{Partition quotients}
+
+Background on this subsection can be found in \cite[p.12]{Macdonald1995},
+and also \cite[Chapter 2.7]{JamesKerber1984}.
+See also the \href{https://ghseeli.github.io/grad-school-writings/class-notes/algebraic-combinatorics.pdf}{lecture notes by G. Seelinger (taught by J. Morse)}.
+
+Let $\ell \geq 2$ be a fixed integer. The \defin{$\ell$-core} of 
+a partition $\lambda$, denoted $\widetilde{\lambda}$,
+is the shape which remains after removing all possible $\ell$-ribbons from $\lambda$.
+One can show that the $\ell$-core is independent of the choice of ribbons.
+A partition is an $\ell$-core if and only if no 
+box in $\ell$ has \hyperref[partitionCores]{hook-length} divisible by $\ell$.
+
+
+The \defin{$\ell$-quotient} of a partition $\lambda$
+is an $\ell$-tuple $(\lambda^0,\lambda^1,\dotsc,\lambda^{\ell-1})$
+with several nice properties: 
+\begin{itemize}
+\item The $\ell$-quotient map
+\[
+\lambda \to \left( \widetilde{\lambda}; \; \lambda^0,\lambda^1,\dotsc,\lambda^{\ell-1} \right)
+\]
+is injective, and $|\lambda|  = |\widetilde{\lambda}| + \ell |\lambda^0| + \dotsb  + \ell |\lambda^{\ell-1}|$.
+This explains the usage of the word \emph{quotient}.
+\item 
+Conjugating $\lambda$ conjugates the core and all partitions in the quotient.
+\end{itemize}
+
+\emph{Warning!} 
+Other definitions of the quotient might give another cyclic rotation of the entries in the $\ell$-tuple.
+See the discussion in Macdonald's book. 
+
+There are several ways to compute the quotient, see \cite[p.12]{Macdonald1995}.
+The following example shows one possible method.
+
+\begin{example}[Computing the quotient]
+Let $\lambda = 8766641$ and $\ell=3$. We label the path outlining the partition
+as follows. Each east step is labeled with the content (row-index minus column-index) 
+of the box above it, while north steps are labeled with the content of the box to its right. 
+We only consider the remainder of the content mod $\ell$, which gives the labeling as in the figure.
+
+To find $\lambda^j$, simply consider all boxes in $\lambda$, such that the label of the horizontal step in the same row,
+and the vertical step in the same column both are labeled $j$.
+After removing empty columns and rows, these boxes form the shape $\lambda^j$.
+\begin{figure}
+<img src="./svg-images/partition-quotient.svg" alt="A partition and the 3-quotient" style="width:40%; margin:5px;"/>
+\ytableaushort{{\;}{\;}{\;},{\;}{\;}{\;}}
+\ytableaushort{{\;}{\;}}
+\ytableaushort{{\;}{\;},{\;},{\;}}
+\end{figure}
+The $3$-quotient of $\lambda$ is therefore $(33,\;2,\; 211)$ in this case.
+For example, $\lambda^0$ has shape $33$ as the boxes marked $\blacksquare$ form this shape.
+
+The partition $\lambda$ defines a binary word, by considering the outline,
+starting from the first column. A vertical step is represented by a 0, and a horizontal one by a $1$.
+In this case, we have the word $\dotsc0010111011000101011\dotsc$.
+Taking every third entry in this word gives the outline associated to one of the $\lambda^j$ ---
+this can easily be seen from the above definition of quotient.
+\end{example}
+
+
+The quotient map extends to the so-called \hyperref[littlewoodMap]{Littlewood quotient map} described below.
+The name \emph{Littlewood map} appears in \cite[p.92]{qtCatalanBook} so I stick with that.
+
+See also the article \cite{BrunatNath2019}, which explores the quotient map from 
+a \hyperref[prelimPartitions]{Frobenius coordinate} perspecive.
+
+
+
+\subsection[littlewoodMap]{Littlewood's quotient map}
+
+The \defin{Littlewood quotient map} sends an element in $\BST(\lambda,\ell)$
+to an $\ell$-tuple $(T_0,\dotsc,T_{\ell-1})$ of standard Young tableax,
+but where the entries $1,2\dotsc,$ are distributed among the the tableaux.
+The shape of $T_j$ is $\lambda^j$, the $j^\thsup$ element in the $\ell$-quotient of $\lambda$.
+
+It is easiest to explain the map with an example.
+
+\begin{example}
+Let $\lambda = 8766641$ and $\ell=3$. The $3$-core of $\lambda$ is $(2)$,
+and the $3$-quotient is $(33,\;2,\; 211)$.
+
+\begin{figure}
+<img src="./svg-images/border-strip-example.svg" alt="A border-strip tableau with stips of size 3" style="width:30%; margin:5px;"/>
+\ytableaushort{138,2{11}{12}}
+\ytableaushort{67}
+\ytableaushort{49,5,{10}}
+\end{figure}
+
+The figure shows a border-strip tableau $B$, where the label has been written in each strip.
+Recall that the content of a box $(r,c)$ is given by $c-r$.
+In each strip, there is a unique box with minimal content --- this is where the label has been written.
+Each label has a content whose remainder is in $\{0,1,\dotsc,\ell-1\}$, mod $\ell$.
+Labels whose content-remainder is $j$, are in correspondence with boxes in $T_j$.
+Furthermore, labels with the same content in $B$, also have the same content in $T_j$.
+
+For example, the strips with labels in $\{1,2,3,8,11,12\}$ have content-remainder $0$,
+and are therefore the labels in $T_0$.
+\end{example}
+
+
+\begin{lstlisting}
+(* This code follows the description in [Macdonald1995] *)
+PartitionCore[lam_List, d_Integer] := 
+  Module[{m = Length@lam, xi, xis, mr, xiTildes},
+   xi = PadRight[lam, m] + Range[m - 1, 0, -1];
+   xiTildes = Sort[
+     Join @@ Table[
+       xis = Select[xi, Mod[# - r, d] == 0 &];
+       mr = Length[xis];
+       Table[d s + r, {s, 0, mr - 1}]
+       , {r, 0, d - 1}], Greater];
+   DeleteCases[MapIndexed[#1 - m + #2[[1]] &, xiTildes], 0]
+   ];
+PartitionQuotient[lam_List, d_Integer] := 
+  Module[{m = Length@lam, xi, xis, mr},
+   xi = PadRight[lam, m] + Range[m - 1, 0, -1];
+   Table[
+    xis = Select[xi, Mod[# - r, d] == 0 &];
+    mr = Length[xis];
+    MapIndexed[
+     #1 - mr + #2[[1]] &,
+     Sort[(xis - r)/d, Greater]
+     ], {r, 0, d - 1}]
+   ];
+(* Skew shapes are given by skewing the quotients. *)
+PartitionQuotient[{lam_List, mu_List}, d_Integer] :=
+  MapThread[Join, {
+    List /@ PartitionQuotient[lam, d],
+    List /@ PartitionQuotient[mu, d]}, 1];
+(* Example, from J.Haglund's qt-Catalan book *)
+PartitionQuotient[{5, 5, 5, 5, 5, 5}, 3] == {{2, 2}, {2, 2}, {1, 1}}
+\end{lstlisting}
+
+\begin{example}
+The following examples appear in the literature,
+in \cite[p.13]{Lascoux97ribbontableaux}, \cite[p.94]{qtCatalanBook} and  \cite[Fig. 2.6]{Pak2000Ribbon},
+respectively.
+
+\begin{tabular}{rrl}
+\toprule
+ $\lambda$ & $\textbf{3-core}$ & $\textbf{3-quotient}$  \\
+\midrule
+$87^241^5$ & $211$ & $21,\; 22,\; 2$ \\
+$5^6$ & $\emptyset$ & $22,\; 22,\; 11$   \\
+$987^34$ & $\emptyset$ &  $33,\; 21,\; 32$  \\
+\bottomrule
+\end{tabular}
+Note that I. Pak has a different labeling convention, so one 
+needs to cyclically rotate the entries in the quotient for the calculations to agree.
+\end{example}
+
+It is straightforward to generalize this map to skew shapes,
+sending elements in $\BST(\lambda/\mu,\ell)$ to $\ell$-tuples of skew tableaux,
+see \cite{Wildon2018}. This is possible as long as $\lambda$ and $\mu$ have the same $\ell$-core,
+otherwise $\BST(\lambda/\mu,\ell)$ is empty.
+The Littlewood quotient map can be extended to 
+semistandard $k$-ribbon tableaux.
+This shows why the original definition 
+of \hyperref[lltDefinitionRibbons]{LLT polynomials (using ribbon tableaux)} agree 
+with the \hyperref[lltDefinitionTuples]{Bylund--Haiman combinatorial model} for LLT polynomials.
+
+
+By using the Littlewood map, one can give an alternative proof of Thurston's theorem \cite{Thurston1990},
+which shows that the flip graph of domino tilings of rectangles is connected.
+
+
+\subsection[borderStripAbacus]{The abacus model}
+
+Partition quotients and border-strip tableaux can also be described using abaci,
+see \cite{Wildon2018}.
+
+
+\subsection[borderStripHookFormulas]{Hook formulas for border strip tableaux}
+
+Using Littlewood's \hyperref[littlewoodMap]{quotient map} the following result follows.
+
+\begin{theorem}[Hook formula for border-strip tableaux, see \cite{JamesKerber1984,FominLulov1997}]
+Let $\mu \vdash d\ell$. Then 
+\[
+|\BST(\mu,\ell)| = \binom{\ell}{|\mu^0|,|\mu^1|,\dotsc,|\mu^d|} f^{\mu^0} f^{\mu^1}\dotsm f^{\mu^{d-1}},
+\]
+where the $\mu^j$ are the partitions in the \hyperref[partitionQuotient]{$d$-quotient} of $\mu$.
+\end{theorem}
+There are analogs of this formula for shifted shapes as well as for trees.
+
+
+The above formula can also be phrased as follows.
+\begin{theorem}[The modular hook formula, see \cite{FominLulov1997}]
+Let $\mu \vdash d\ell$. Then 
+\[
+|\BST(\mu,\ell)| = \frac{d!}{\prod_{\substack{s \in \mu \\ \ell | h(s) } } h(s)/\ell }
+\]
+where the product is over all boxes in $\mu$ such that the hook value is divisible by $\ell$.
+\end{theorem}
+A $q$-analog of this formula is given in \cite{MendesLindbloomAirey2019}.
+
+
+
+\begin{theorem}[See \cite[Corollary 9]{White1983} and \cite[Thm. 2.7.27]{JamesKerber1984}]
+Let $\lambda \vdash d\ell$. Then 
+$|\BST(\lambda,d)| = |\chi^{\lambda}(d^\ell)|$.
+In other words, the \hyperref[schurMurnaghanNakaygama]{Murnaghan--Nakayama rule} is cancellation-free.
+
+In fact, \cite[Thm. 2.7.27]{JamesKerber1984} is the following statement.
+Let $\lambda \vdash d\ell + m$ where the $d$-core $\widetilde{\lambda}$ has size $m$.
+Suppose $\sigma \in \symS_n$ such that the type of $\sigma$ is $d^\ell,\mu$ where $\mu \vdash m$.
+Then
+\[
+\chi^{\lambda}(\sigma) = \sign(\sigma) |\BST(\lambda/\tilde{\lambda},d)| \chi^{\tilde{\lambda}}(\mu) .
+\]
+\end{theorem}
+
+

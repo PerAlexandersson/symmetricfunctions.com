@@ -1,0 +1,219 @@
+\metatitle{Plethysm}
+\metadescription{Definition of plethysm and some properties.}
+
+
+\section[plethysm]{Plethysm}
+
+
+See \cite{qtCatalanBook} and \cite{LoehrRemmel2010} for an introduction to calculations with plethysm.
+Another good reference is 
+\href{http://garsia.math.yorku.ca/ghana03/chapters/mainfile3.pdf}{Mike Zabrocki's introduction to symmetric functions, Chapter III}.
+
+
+
+\subsection[plethysmGLn]{Representation-theoretic interpretation}
+
+Plethysm can easily be described using \hyperref[representation-Gln]{representation theory} of $\GL_n$.
+
+Let $U,V,W$ be vector spaces over $\setC$, and consider
+polynomial representations $\phi : \GL(U) \to \GL(V)$ and $\psi : \GL(V) \to \GL(W)$.
+Let $f$ and $g$ be the corresponding characters (symmetric functions).
+The composition $\psi\circ \phi : \GL(U) \to \GL(W)$ is then also a polynomial representation,
+and $g[f]$ is the \defin{plethysm} of $g$ and $f$.
+
+This can be made more concrete, and extended to any symmetric function, see below.
+
+\subsection[plethysmDefinition]{Definition}
+
+Plethysm is closely related to to the \hyperref[powerSum]{power-sum symmetric functions}.
+The following properties uniquely define \defin{pletysm} where $f$, $g$ and $h$ denote symmetric functions
+with \emph{integer} coefficients. 
+Brackets are commonly used to denote plethystic substitutions.
+\begin{itemize}
+\item $\powerSum_k[\powerSum_m] = \powerSum_{km}$. 
+\item $\powerSum_k[f\pm g] = \powerSum_k[f] \pm \powerSum_k[g]$.
+\item $\powerSum_k[f\cdot g] = \powerSum_k[f] \cdot \powerSum_k[g]$.
+\item $(f\pm g)[h] = f[h] \pm g[h]$.
+\item $(f\cdot g)[h] = f[h] \cdot g[h]$.
+\end{itemize}
+Since every symmetric function can be expressed as a sum of products of $\powerSum_k(\xvec)$,
+these properties uniquely determine the expression $f[g]$.
+
+The operator sending $f(\xvec)$ to $f(\xvec^2) = f[\powerSum_k(\xvec)]$,
+is called the $k$-th \defin{Adams operator}.
+The adjoint to the Adams operator is the \defin{Verschiebung operator} $V_k$,
+which is defined as $V_k(\completeH_r) = \completeH_{r/k}$, if $k \mid r$,
+and $0$ otherwise.
+
+
+\begin{example}
+Let us compute $\powerSum_{22}[\powerSum_{43}]$. We have that 
+\begin{align*}
+\powerSum_{22}[\powerSum_{43}] &= (\powerSum_{2}[\powerSum_{43}])^2 \\
+&= (\powerSum_{2}[\powerSum_{4}] \cdot \powerSum_{2}[\powerSum_{3}])^2 \\
+&= (\powerSum_{8} \cdot \powerSum_{6})^2 \\
+&= \powerSum_{8866}.
+\end{align*}
+
+Similarly, $\powerSum_{32}[3\powerSum_{4}]$ can be computed as
+\begin{align*}
+\powerSum_{32}[3\powerSum_{4}] &= (\powerSum_{3}[\powerSum_{4}+\powerSum_{4}+\powerSum_{4}])(\powerSum_{2}[\powerSum_{4}+\powerSum_{4}+\powerSum_{4}]) \\
+&= (3\powerSum_{3}[\powerSum_{4}])(3\powerSum_{2}[\powerSum_{4}]) \\
+&= 9\powerSum_{12} \cdot \powerSum_{8}.
+\end{align*}
+\end{example}
+
+
+Warning! The situation is a bit more involved if the coefficients of $f$ and $g$
+in the pletysm $f[g]$ are formal power series in say $\setC(\qvec)$.
+
+We first define the plethysm $\powerSum_k[g(\xvec)]$. If $g(\xvec) = \sum_{\mu} d_\mu(\qvec) \powerSum_\mu(\xvec)$ then
+\[
+\powerSum_k[g(\xvec)] \coloneqq \sum_{\mu}   d_\mu(q_1^k,q_2^k,\dotsc) \; \powerSum_{k\mu}(\xvec) .
+\]
+Let now $f(\xvec) = \sum_{\lambda} c_\lambda(\qvec) \powerSum_\lambda(\xvec)$.
+Then
+\[
+f[g(\xvec)] \coloneqq \sum_{\lambda} c_\lambda(\qvec) \prod_{j=1}^{\length(\lambda)} \powerSum_{\lambda_j}[g(\xvec)].
+\]
+This definition agrees with the previous one in the case $f$ and $g$ are symmetric 
+functions with integer coefficients, not depending on formal parameters.
+
+
+\begin{example}
+We have that 
+\[
+\powerSum_{k}[5q \cdot \powerSum_{m}] = 5 q^k \powerSum_{km}.
+\]
+\end{example}
+
+Capital letters are sometimes used to denote the sum of the variables in that alphabet. 
+For example, $X = x_1+x_2+\dotsb = \elementaryE_1(\xvec)$.
+
+
+\subsection[plethysmIdentities]{Identities}
+
+We have the following identities:
+\begin{itemize}
+\item $\powerSum_{k}[qX] = q^k\powerSum_{k}[X]$
+\item $\powerSum_{k}[-X] = -\powerSum_{k}[X]$
+\item $\powerSum_{k}[\epsilon X] = \epsilon^k \powerSum_{k}[X]$ when $\epsilon=-1$.
+\item $\powerSum_{k}[X(1-q)] = (1-q^k)\powerSum_{k}[X]$ 
+\item $\powerSum_{k}[X/(1-q)] = \powerSum_{k}[X]/(1-q^k)$ 
+\item $\powerSum_{\lambda}[X+Y] = \powerSum_{\lambda}[X]+\powerSum_{\lambda}[Y]$
+\item $\powerSum_{\lambda}[XY] = \powerSum_{\lambda}[X]\powerSum_{\lambda}[Y]$ 
+\item $\schurS_{\lambda}[X+Y] = \sum_{\mu \subseteq \lambda} \schurS_{\mu}[X]\schurS_{\lambda/\mu}[Y]$ 
+\item
+$\schurS_\nu[XY] = \sum_{\lambda,\mu} g^{\nu}_{\lambda\mu} \schurS_\lambda(\xvec) \schurS_\mu(\yvec)$
+where $g^{\nu}_{\lambda\mu}$ are the \hyperref[schurKroneckerCoefficients]{Kronecker coefficients}.
+\end{itemize}
+The last identity generalizes as follows:
+\[
+\schurS_\nu[f\cdot g] = \sum_{\lambda,\mu} g^{\nu}_{\lambda\mu} \schurS_\lambda[f] \schurS_\mu[g].
+\]
+
+
+I have not found a reference for the following useful relation
+but it is easy to prove. It is used in \cite{AlexanderssonUhlin2020}.
+\begin{proposition}[Alexandersson, 2019]
+Let $f$ be a homogeneous symmetric function of degree $n$.
+Then
+\[
+\powerSum_k[ \omega f ] = (-1)^{n(k+1)}\omega(\powerSum_k[ f ]).
+\]
+\end{proposition}
+
+
+\subsection[plethysm-other]{Other identities}
+
+\begin{proposition}
+We have that
+\[
+\completeH_k[\completeH_2] = \sum_{\mu : \text{ even }} \schurS_{\mu}
+\]
+where the sum ranges over all partitions of $2k$ into even parts. 
+This identity is due to Littlewood.
+\end{proposition}
+
+
+The SXP rule (see \cite{Wildon2018} for a generalization), gives a formula for the plethysm,
+\[
+\schurS_\lambda[\powerSum_r] = \sum_{\nuvec} \sign_r(\nuvec^\ast) c^{\lambda}_{\nuvec} \schurS_{\nuvec^\ast}.
+\]
+See also the \hyperref[plethysticMNRule]{plethystic Murnaghan--Nakayama rule}.
+
+
+
+\begin{proposition}[See \cite[Appendix B]{BentoNovaes2021}]
+We have that for an indeterminate $c$,
+\[
+\schurS_\lambda\left[ \frac{\xvec}{1- c \xvec} \right] = \sum_{\rho} c^{|\rho|-|\lambda|} 
+\det\left[  \binom{ \rho_j-j }{\mu_i-i}   \right] \cdot \schurS_\rho(\xvec).
+\]
+The determinant of binomial coefficients have a combinatorial interpretation, see \cite{GesselViennot1985}.
+\end{proposition}
+Moreover, it is shown in \cite{Yeliussizov2017} that the plethysm is 
+in fact a specialization of the \hyperref[grothendieckCanonical]{canonical stable Grothenieck polynomial}:
+\[
+   \grothendieckStable^{(c,-c)}_\lambda(\xvec) 
+   = \schurS_\lambda\left[ \frac{\xvec}{1- c \xvec} \right].
+\]
+
+
+\section[plethysmComputation]{The s-perp trick}
+
+In \cite{ColmenarejoOrellanaSaliolaSchillingZabrocki2022x}, the authors
+describe in detail how to use the so-called \defin{s-perp trick}
+in order to compute certain plethysm coefficients.
+This trick can also be used in many other settings.
+
+First, define the following operator on a symmetric function $f$:
+\[
+ \schurS_\lambda^{\perp} f \coloneqq \sum_{\mu} \langle f , \schurS_\lambda \schurS_\mu \rangle \schurS_\mu.
+\]
+
+\begin{proposition}
+Let $f$ and $g$ be two homogeneous symmetric functions of degree $d$.
+Then
+\[
+ \schurS_r^{\perp} f = \schurS_r^{\perp} g \text{ for all $1\leq r \leq d$}
+\]
+implies that $f=g$. Same holds if we replace $\schurS_r = \completeH_r$ with $\schurS_{1^r} = \elementaryE_r$.
+\end{proposition}
+
+
+\section[plethysmProblems]{Open problems}
+
+\subsection[plethysmWithSchur]{Schur plethysm}
+
+\begin{problem}[See \cite{LoehrRemmel2010} for more info]
+Let $\lambda \vdash n$ and $\mu \vdash m$. Find  a formula for the Schur plethysm coefficients in 
+\[
+\schurS_\lambda[\schurS_\mu] = \sum_{\nu \vdash mn} p^{\nu}_{\lambda \mu} \schurS_{\nu}.
+\]
+This is a major open problem in the theory of symmetric functions and representation theory of classical groups.
+\end{problem}
+
+\begin{example}
+We have that
+\[
+\schurS_{211}[\schurS_{11}] = 
+\schurS_{3 3 2} + \schurS_{3 2 2 1} + \schurS_{4 2 1 1} + 
+ \schurS_{2 2 2 1 1} + \schurS_{3 2 1 1 1} + \schurS_{3 1 1 1 1 1}.
+\]
+\end{example}
+
+
+The Schur plethysm coefficients \emph{stabilizes} under some operations.
+In \cite{PagetWildon2025} Paget and Wildon prove a general theorem,
+which specializes to all known stability results regarding plethysm coefficients.
+For example, the main stability result of \cite{LawOkitani2023} is proved.
+
+\subsection[plethysmFoulkesConjecture]{Foulkes conjecture}
+
+Foulkes conjecture \cite{Foulkes1950} states that $\completeH_b[\completeH_a]-\completeH_a[\completeH_b]$
+is Schur-positive whenever $a \leq b$. 
+See the \hyperref[cycleIndexPolynomial]{cycle index polynomial} page for more information.
+
+
+

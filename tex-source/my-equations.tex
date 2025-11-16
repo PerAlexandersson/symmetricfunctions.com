@@ -1,0 +1,94 @@
+\metatitle{Equations from my research}
+
+\metadescription{Equations which I proved, or was part of proving}
+
+The term equation is not really accurate, as these are really \emph{identities}.
+However, the general public seem to use the term equation to
+mean \emph{a bunch of math symbols with an equality sign somewhere}.
+
+I take no responsibility for regrets if you decide 
+to get a tattoo of any of these --- but if you get one, send me a picture!
+
+
+\section[my-equations-catalan]{$q$-Catalan refinement}
+
+We have the identity
+\begin{equation*}
+\catalan(n-2;q) = 
+\sum_{k \geq 0}
+q^{k(k-2)} \frac{[n]_q}{[k]_q} \qbinom{n-4}{2k-4}_q\catalan(k-2;q)
+\left( \sum_{j=0}^{n-2k} q^{j(n-2)}\qbinom{n-2k}{j}_q\right).
+\end{equation*}
+
+This is a refinement of the \hyperref[prelimQanalogsCatalan]{$q$-Catalan numbers}.
+
+
+\section[my-equations-llt-e]{Unicellular LLT $e$-expansion}
+
+I conjectured, and a few years later together with R. Sulzgruber
+\cite{AlexanderssonSulzgruber2020x}, proved the following 
+\hyperref[unicellularLLTEExpansion]{formula for unicellular LLT polynomials}
+in the elementary symmetric functions basis.
+
+For any unit-interval graph $\avec$ with $n$ vertices
+we have the expansion
+\begin{equation*}
+\LLT_\avec(\xvec;q+1) =
+\sum_{\theta \in O(\avec)} q^{\asc(\theta)}\elementaryE_{\pi(\theta)}(\xvec).
+\end{equation*}
+
+\section[my-equations-BSD]{Border-strip decompositions of a rectangle}
+
+Let $a(n)$ be the number of ways to tile a $2n \times n$ rectangle with 
+border-strips of size $n$. Then with $a(0)=1$, we have 
+\[
+ a(n) = 
+ \frac{1}{2} \sum_{i=1}^n \frac{ i(n - i + 1)}{ (n + 2)} \binom{n - 1}{i - 1} 
+\binom{n + 3}{i + 1} a(i - 1) a(n - i).
+\]
+This is proved in \cite{AlexanderssonJordan2018}. See also \oeis{A115047}.
+
+
+\section[my-equations-CircularDyck]{Circular Dyck diagrams}
+
+In \cite{AlexanderssonLinussonPotka2019}, we
+find the major-index generating function for \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{circular Dyck diagrams}
+of size $n$ and width at most $w$.
+\begin{equation*}
+|\CDP(n,w)|_q =
+\sum_{s \in \setZ}
+\sum_{j=1}^w
+q^{s^2\delta + s(j+1)}
+\left(
+\qbinom{2n-1}{n-1-\delta s}_q
+-
+\qbinom{2n-1}{n+j+\delta s}_q
+\right),
+\end{equation*}
+where $\delta = w+2$.
+
+See also \oeis{A194460}.
+
+
+\section[my-equations-JackKostka]{Normalized Jack--Koskta coefficients}
+
+This is from \cite[Thm. 5.12]{AlexanderssonFeray2017}.
+For $\lambda \vdash n$, let
+\[
+\mathfrak{K}_{(k)}^{(\alpha)}(\lambda) \coloneqq 
+\frac{1}{(n-k)!} [\monomial_{k,1^{n-k}}] \jackJ_\lambda(\xvec;\alpha).
+\]
+which is a normalized hook coefficient in the monomial basis of 
+\hyperref[jackJ]{the Jack J symmetric function}.
+
+Then
+\[
+\mathfrak{K}_{(k)}^{(\alpha)}(\lambda) =  
+\sum_{\substack{ A \subseteq \lambda, \ |A|=k \\ \text{column-distinct}}}
+\prod_{\substack{R \text{ row} \\ \text{of }\lambda}} P_{|R \cap A|}(\alpha)
+,
+\]
+where  $P_i(\alpha) \coloneqq \prod_{j=0}^{i-1} (1 + j \, \alpha)$.
+
+This equation allow us to see that $\mathfrak{K}_{(k)}^{(\alpha)}(\mathbf{r}^{\mathbf{p}})$
+is non-negative in the falling factorial basis (where we use multi-rectangular coordinates).

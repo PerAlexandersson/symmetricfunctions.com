@@ -1,0 +1,69 @@
+
+\metatitle{Polytopes}
+\metadescription{Introduction to polytopes}
+
+
+
+\section[polytopes]{Polytopes}
+
+
+
+
+\section[polytope-families]{Families of polytopes}
+
+
+
+\subsection[orderPolytopes]{Order polytopes}
+
+
+\todo{Marked order polytopes and GT-polytopes}
+
+
+\subsection[flowPolytopes]{Flow polytopes}
+
+
+
+\subsection[permutohedron]{The permutohedron}
+
+
+
+
+\section[ehrhart]{The Ehrhart polynomial and $h^*$-vector}
+
+Let $P$ be a lattice polytope. The number of lattice points in the dilation $nP$ is a polynomial in $n$.
+The \defin{Ehrhart polynomial of $P$} is the polynomial $E_P(t) \coloneqq |n P|$.
+The \defin{Ehrhart series} is 
+\[
+	\sum_{n \geq 0} |n P| t^n = \frac{H(t)}{(1-t)^{d+1}
+\]
+where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the \defin{$h^*$-polynomial} of $P$.
+The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the \defin{$h^*$-vector} and one can show that all entries of this are non-negative integers.
+
+For a $d$-dimensional polytope, we have the following relation between entries in the $h^*$-vector and the Ehrhart polynomial:
+\[
+ E_P(t) = \sum_{j=0}^d \binom{t+d-j}{d} h^*_j.
+\]
+There is a similar relation to express $H_P(t)$ in terms of the Ehrhart polynomial coefficients involving the Eulerian polynomials.
+
+
+\section[polytopeIDP]{The integer decomposition property}
+
+
+
+
+\section[polytopes-papers]{Further reading}
+
+
+Here we mainly discuss polytopes that arises in the area of algebraic combinatorics.
+
+\begin{itemize}
+
+\item \url{https://arxiv.org/pdf/2511.10373} Ehrhart theory over Abelian groups.
+
+\item \url{https://arxiv.org/pdf/2406.15803} Root polytopes, flow polytopes
+
+\item \url{https://arxiv.org/pdf/2404.02136.pdf} Symmetric Edge polytopes, and Ehrhart roots interlacing on the canonical line:
+
+\item \url{https://arxiv.org/pdf/2504.07505} Birkhoff polytope, and some unimodular equivalence with another.
+
+\end{itemize}

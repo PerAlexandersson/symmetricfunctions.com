@@ -1,0 +1,509 @@
+\metatitle{Q-analogs, q-Lucas theorem and q-Catalan numbers}
+\metadescription{Q-analogs, q-hook formula, q-Lucas theorem, q-Catalan numbers and q-Narayana numbers}
+
+
+\section[q-analogs]{$q$-analogs}
+
+We have the following definitions:
+\[
+[n]_q \coloneqq \frac{1-q^n}{1-q}, \quad 
+[n]_q! \coloneqq [n]_q [n-1]_q \dotsm [2]_q [1]_q, \quad 
+\qbinom{n}{k}_q \coloneqq \frac{[n]_q!}{[k]_q! [n-k]_q!}.
+\]
+Furthermore, for a composition $\alpha \vDash n$, we let
+\[
+\qbinom{n}{\alpha}_q \coloneqq \frac{[n]_q!}{[\alpha_1]_q! [\alpha_2]_q! \dotsm [\alpha_\ell]_q!}
+\]
+
+We have that
+\[
+\sum_{\pi \in \symS_n} q^{\maj(\pi)} = \sum_{\pi \in \symS_n} q^{\inv(\pi)} = [n]_q!.
+\]
+These identities are true for charge and cocharge as well. Combinatorial statistics on permutations 
+with this distribution are called \defin{Mahonian}.
+
+
+Note that 
+\[
+\qbinom{n}{k}_q = \sum_{w \in BW(n,k)} q^{\maj(w)} = \sum_{w \in BW(n,k)} q^{\inv(w)}
+\]
+where $BW(n,k)$ is the set of binary words of length $n$ with exactly $k$ ones.
+This generalize as follows. Let $W(n,\alpha)$ denote the set of words of length $n$,
+with weight $\alpha$. Then we have the following identity 
+for the $q$-multinomial coefficients:
+\[
+\qbinom{n}{\alpha}_q = \sum_{w \in W(n,\alpha)} q^{\maj(w)} = \sum_{w \in W(n,\alpha)} q^{\inv(w)}.
+\]
+For proofs, see \href{http://irma.math.unistra.fr/~guoniu/papers/p56lectnotes2.pdf}{these lecture notes by D. Foata and G.-N. Han}.
+
+We define the \defin{Pochhammer symbol} as $(a)_n \coloneqq a(a+1)\dotsm (a+n-1)$ and
+the \defin{$q$-Pochhammer symbol} as
+\[
+(a;q)_n \coloneqq \prod_{j=0}^{n-1}(1-a q^j).
+\]
+
+
+
+
+\subsection[prelimQanalogsQLucas]{$q$-Lucas theorem}
+
+
+The $q$-Lucas theorem first appeared in \cite[Eq. (1.2.4)]{Olive1965}
+and later in \cite[Prop. 2.2]{Desarmenien1982}.
+It was perhaps known by Gauß already. 
+A combinatorial proof was first given by V. Strehl \cite{Strehl1981}.
+
+Let $n=n_1 d + n_0$ and $k=k_1 d + k_0$, where $0\leq n_0, k_0 < d$.
+We have that
+\[
+\qbinom{n}{k}_q \equiv 
+\binom{n_1}{k_1}
+\qbinom{n_0}{k_0}_q  \mod \Phi_d
+\]
+where $\Phi_d$ is the $d^\thsup$ cyclotomic polynomial. In particular
+\[
+\qbinom{n}{k}_q =
+\binom{n_1}{k_1}
+\qbinom{n_0}{k_0}_q \text{ whenever } q=e^{2\pi i \frac{c}{d}}
+\]
+and $\gcd(c,d)=1$. 
+A nice proof using cyclic sieving is given in \cite{Sagan1992}.
+
+
+
+\subsection[prelimQidentities]{Various $q$-identities}
+
+Cauchy's $q$-binomial theorem states that
+\[
+\prod_{j=1}^n (1+yq^j) = \sum_{j=0}^n y^j q^{j(j+1)/2} \qbinom{n}{j}_q
+\]
+
+\begin{problem}[See background in I. Pak's survey \emph{Combinatorial inequalities}, 2019]
+Find a combinatorial proof that the coefficient of $q^\ell$, $1\leq \ell \leq 1 + n k/2$
+in $(1-q)\qbinom{n+k}{k}_q$ is non-negative.
+\end{problem}
+
+The following is a very useful identity.
+\begin{theorem}[$q$-Vandermonde]
+We have that
+\[
+\qbinom{a+b}{c}_q  =  \sum_{j} q^{j(a-c+j)} \qbinom{a}{c-j}_q \qbinom{b}{j}_q.
+\]
+\end{theorem}
+
+
+\begin{theorem}[See \cite{PanSun2019x}]
+Let $Cyc(n) \subseteq \symS_n$ be the set of permutations consisting of a long cycle.
+Then
+\[
+\sum_{\sigma \in Cyc(n+1)} q^{\maj(\sigma)} \equiv \mu(n) \qquad \mod \Phi_n(q)
+\]
+where $\mu$ is the number-theoretical Möbius function.
+\end{theorem}
+
+
+
+
+
+
+\section[prelimQanalogsCatalan]{Catalan numbers and Fuß--Catalan numbers}
+
+The \defin{MacMahon $q$-analog of the Catalan numbers} is the following:
+\begin{align*}
+\catalan(n;q) &= \frac{1}{[n+1]_q}\qbinom{2n}{n}_q \\
+			  &= \frac{[2n]_q!}{[n+1]_q![n]_q! } \\
+              &= q^{-n} \qbinom{2n}{n}_q - \qbinom{2n}{n+1}_q \\
+              &= \qbinom{2n}{n}_q - q \qbinom{2n}{n-1}_q
+\end{align*}
+Note that 
+\[
+\catalan(n;q) = \sum_{w \in DP(n)} q^{\maj(w)}
+\]
+where $DP(n)$ is the set of binary words of length $2n$, with $n$ ones, such that the number of 
+ones in any initial segment never exceeds the number of zeros in the same segment.
+
+
+The $q$-analog of \defin{Fuß--Catalan} numbers can be expressed as
+\begin{align*}
+\catalan(n,m;q) &\coloneqq \frac{1}{[n]_q} \qbinom{(m+1)n}{n-1}_q \\
+&=  \frac{1}{[(m+1)n+1]_q}\qbinom{(m+1)n+1}{n}_q \\
+&= \qbinom{(m+1)n}{n}_q - q \frac{[mn]_q}{[n]_q} \qbinom{(m+1)n}{n-1}_q.
+\end{align*}
+
+
+The \defin{rational Catalan numbers} $\catalan(a/b;q)$ are defined as
+\[
+\catalan(a/b;q)= \frac{1}{[a+b]_q} \qbinom{a+b}{a}_q.
+\]
+This is a $q$-analog of the number of paths from $(0,0)$ to $(b,a)$
+staying weakly above the line $y=\frac{a}{b}x$.
+These objects admit a \hyperref[cspRationalCatalan]{cyclic sieving phenomena}.
+
+
+
+\subsection[qNarayana]{q-Narayana numbers}
+
+The \defin{$q$-Narayana} numbers are defined as
+
+\begin{align*}
+N(n,k;q) &\coloneqq \frac{q^{k(k-1)}}{[n]_q} \qbinom{n}{k}_q \qbinom{n}{k-1}_q \\
+&= \frac{1}{[k]_q} \qbinom{n-1}{k-1}_q \qbinom{n}{k-1}_q \\
+&= q^{k(k - 1)- n} \left(\qbinom{n - 1}{k - 1}_q \qbinom{n + 1}{k}_q 
+- \qbinom{n}{k - 1}_q\qbinom{n}{k}_q \right).  
+\end{align*}
+Note that $\catalan(n;q) = \sum_{k=1}^n N(n,k;q)$ and that
+\[
+ \sum_{w \in DP(n)} q^{\maj(w)} t^{\text{peaks}(w)} = \sum_{k=1}^n t^k N(n,k;q).
+\]
+where we sum over all Dyck paths.
+
+\begin{example*}[Table of $N(n,k;q)$]
+\begin{array}{lllll}
+\toprule
+ \; & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} \\
+\midrule
+ \textbf{1} & 1 \\
+ \textbf{2} & 1 & q^2 \\
+ \textbf{3} & 1 & q^2+q^3+q^4 & q^6 \\
+ \textbf{4} & 1 & q^2+q^3+2q^4+q^5+q^6 & q^6+q^7+2q^8+q^9+q^{10} & q^{12} \\
+ \bottomrule
+\end{array}
+\end{example*}
+
+In \cite[Thm. 6]{Branden2004Narayana}, it is proved that
+\[
+N(n,k+1;q) = \schurS_{2^k}(q,q^2,\dotsc,q^{n-1}).
+\]
+
+\begin{lemma}
+Let $\xi$ be a primitive $d^\thsup$ root of unity where $d \mid n$ and $d>1$.
+Then
+\[
+N(n,k;\xi) =
+\begin{cases}
+\binom{n/d}{k/d}\binom{n/d-1}{k/d-1} &\text{ if $k \equiv_d 0$} \\
+\binom{n/d}{(k-1)/d}\binom{n/d-1}{(k-1)/d} &\text{ if $k \equiv_d 1$} \\
+0 &\text{ otherwise.}
+\end{cases}
+\]
+\end{lemma}
+\begin{proof*}
+We have that $N(n,k;q)$ is equal to
+ \begin{align*}
+  N(n,k;q) &=
+  q^{k(k - 1)- n} \left(\qbinom{n + 1}{k} \qbinom{n - 1}{k - 1}  - \qbinom{n}{k}\qbinom{n}{k - 1} \right).
+\end{align*}
+As $q=\xi$, $q$-Lucas tells us that at least one of the two factors in the last term vanish.
+Hence,
+\[
+ N(n,k;\xi) = \xi^{k(k - 1)} \qbinom{n + 1}{k}_{\xi} \qbinom{n - 1}{k - 1}_{\xi}.
+\]
+Using $q$-Lucas on the first factor shows that $d\mid k$ or $d \mid (k-1)$ or the entire thing vanish.
+Analyzing these two cases immediately gives the formula above.
+\end{proof*}
+
+
+
+\section[prelimQKostka]{$q$-identities and symmetric functions}
+
+\subsection[prelimQHook]{$q$-hook formula and Schur polynomials}
+
+\begin{theorem}[See \cite{StanleyEC2,Macdonald1995}]
+
+If $\lambda \vdash n$, then
+\begin{align*}
+f^\lambda(q) \coloneqq \sum_{T \in \SYT(\lambda)} q^{\maj(T)} &=\sum_{T \in \SYT(\lambda)} q^{\cocharge(T)} \\
+&=q^{n(\lambda)} \frac{[n]_q!}{\prod_{\square \in \lambda} [h(\square)]_q}
+&=q^{n(\lambda)} \frac{\prod_{i=1}^n (1-q^i)}{\prod_{\square \in \lambda} (1-q^{h(\square)})}.
+\end{align*}
+The identity involving cocharge can be found in \cite[p.199]{Bergeron2009}. 
+Note that the formula on p. 44 is not correct.
+
+A $q$-analog in the skew case can be found in \cite[Prop. 3.3]{MoralesPakPanova2018}.
+\end{theorem}
+
+We have the following symmetry under conjugation:
+\[
+f^{\lambda}(q) = q^{\binom{n}{2}} f^{\lambda'}(1/q).
+\]
+
+
+
+\begin{theorem}[From \cite{Macdonald1995}]
+Let $\lambda$ be a partition of $n$. Then
+\[
+\schurS_\lambda(1,q,\dotsc,q^{m-1})= 
+q^{n(\lambda)} \prod_{(i,j) \in \lambda} \frac{[m+c(i,j)]_q}{ [h(i,j)]_q} = 
+q^{n(\lambda)} \prod_{1 \leq i < j \leq m } \frac{1-q^{\lambda_i-\lambda_j +j-i}}{1-q^{j-i}} 
+\]
+and
+\begin{align*}
+\schurS_\lambda(1,q,q^2,\dotsc) &= \frac{q^{n(\lambda)}}{ \prod_{\square \in \lambda} [h(\square)]_q } \\
+ &= \frac{f^\lambda(q)}{(1-q)(1-q^2) \dotsm (1-q^{n})}
+ &= \frac{f^\lambda(q)}{(1-q)^n [n]_q!}
+\end{align*}
+\end{theorem}
+For a short proof, see \cite{BandlowDAdderio2009}.
+
+
+
+\begin{theorem}[From \cite[p. 363]{StanleyEC2}]
+Let $\lambda/\mu$ be skew shape with $n$ boxes. Then
+\begin{align*}
+\schurS_{\lambda/\mu}(1,q,q^2,\dotsc)  &= 
+\frac{ \sum_{T \in \SYT(\lambda/\mu)} q^{\maj(T)} }{(1-q)(1-q^2) \dotsm (1-q^{n})}.
+\end{align*}
+\end{theorem}
+
+
+
+By using \hyperref[rsk]{RSK}, one can show that
+\begin{equation}
+  \sum_{\sigma \in \symS_n} t^{\maj(\pi)} q^{\maj(\pi^{-1})}
+  =
+  \sum_{\lambda \vdash n} \sum_{P,Q \in \SYT(\lambda)} t^{\maj(P)} q^{\maj(Q)}.
+\end{equation}
+
+The \hyperref[schurCauchyFormula]{Cauchy identity} then gives that
+\begin{equation}
+ \sum_{n \geq 0} \frac{z^n}{(q)_n (t)_n} \sum_{\pi \in \symS_n} t^{\maj(\pi)} q^{\maj(\pi^{-1})} 
+ =
+ \prod_{i,j \geq 0} \frac{1}{1-z q^i t^j}.
+\end{equation}
+Here, $(q)_n = (1-q)(1-q^2)\dotsb (1-q^n)$.
+This identity appears in \cite[Eq. (7.117)]{StanleyEC2}. 
+Note that Stanley uses a different definition for $[n]_q!$.
+
+
+
+\begin{theorem}[K. Killpatrick, \cite{Killpatrick2005}]
+
+Let $W_\lambda \subset \symS_n$ be the set of permutations of type $\lambda$.
+Then
+\[
+\sum_{\pi \in W_\lambda} q^{\inv(\pi)}= 
+\sum_{\pi \in W_\lambda} q^{\charge(\pi)}.
+\]
+\end{theorem}
+
+
+
+\subsection[prelimFixedDescentSet]{Distribution with fixed number of descents}
+
+In \cite{Keith2018}, some results regarding two-row Young tableaux
+refined by descents are given. 
+Let
+\[
+f^{\lambda/\mu}_d(q) \coloneqq  \sum_{\substack{ T \in \SYT(\lambda/\mu) \\ |\DES(T)|=d} } q^{\maj(T)}.
+\]
+\begin{theorem}[W. Keith, 2018]
+We have that for $j\leq m\geq k\geq 0$, that
+\begin{align}
+f^{(m,k)/(j)}_d(q) = 
+  q^{d^2} \left(
+ \qbinom{m-j}{d}
+ \qbinom{k}{d}
+ -
+ \qbinom{m+1}{d}
+ \qbinom{k-j-1}{d}
+ \right).
+\end{align}
+\end{theorem}
+In the same paper, it is shown that for $\lambda \vdash n$, and $m \geq \lambda_1$,
+we have that
+\begin{equation*}
+f^{(m,\lambda)}_{n}(q) = q^{\binom{n+1}{2}}\schurS_{\lambda}(1,q,q^2,\dotsc,q^{m-1}).
+\end{equation*}
+
+
+
+In \cite{Chen2020}, the author studies the major index distribution of 
+so called \hyperref[cspIncreasingTableau]{increasing tableaux}, introduced by O. Pechenik \cite{Pechenik2014}.
+In particular, X. Chen provides nice $q$-binomial formulas in the case of two-row skew shapes.
+
+
+
+\begin{theorem}[See \cite[Cor. 4.9(ii)]{Huang2013} ]
+Let $D \subseteq [n-1]$, and let $\alpha = comp(D)$ 
+be the \hyperref[gesselDefinitionSubsets]{composition defined by $D$}.
+Furthermore, let $\SYT(\alpha)$ be the set of \emph{ribbon standard Young tableaux}
+such that row $i$ from the bottom has length $\alpha_i$.
+We let $D= \{s_1,\dotsc,s_\ell\}$ and $s_0 \coloneqq 0$ and note that $s_j = \alpha_1+ \dotsb + \alpha_j$.
+
+Then we have the following equalities.
+\begin{align}
+ \sum_{T \in \SYT(\alpha)} q^{\maj(T)} &= \sum_{ \substack{ \sigma \in \symS_n \\ \DES(\sigma) = D }} q^{\cocharge(\sigma)} =
+ \sum_{ \substack{ \sigma \in \symS_n \\ \DES(\sigma) = D }} q^{\inv(\sigma)} = \\
+  \sum_{\mu \vdash n} \sum_{\substack{ T \in \SYT(\mu) \\ \DES(T) = D}} f^\mu(q) &=  
+  [n]_q! \det\left[ \frac{1}{ [s_j-s_{i-1}]_q! } \right]_{1 \leq i,j \leq \ell} 
+\end{align}
+We also have a connection with the $q$-multinomials:
+\[
+\sum_{ \substack{ \sigma \in \symS_n \\ \DES(\sigma) \subseteq  D }} q^{\inv(\sigma)} = \qbinom{n}{\alpha}_q.
+\]
+\end{theorem}
+
+
+
+Using properties of the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}
+or \hyperref[jeu-de-taquin]{Jeu-de-taquin}, one can show that for any $D\subseteq [n-1]$,
+\begin{equation*}
+ \sum_{\substack{T \in \SYT(\lambda/\mu) \\ \DES(T) = D}} q^{\maj(T)} = 
+  \sum_{\nu \vdash n} \sum_{\substack{T \in \SYT(\nu)\\ \DES(T) = D}} c^{\lambda}_{\mu\nu} q^{\maj(T)}.
+\end{equation*}
+and
+\begin{equation*}
+ \sum_{\substack{T \in \SYT(\lambda/\mu) \\ \DES(T) = D}}  q^{\cocharge(T)} = 
+  \sum_{\nu \vdash n} \sum_{\substack{T \in \SYT(\nu)\\ \DES(T) = D}} c^{\lambda}_{\mu\nu} q^{\cocharge(T)}.
+\end{equation*}
+
+See also S. Pfannerer--Mittas \href{https://www.mat.univie.ac.at/~slc/wpapers/s85vortrag/Pfannerer.pdf}{slides}
+on evaluating similar polynomials at certain roots of unity.
+
+
+\begin{definition}[See \cite{Huang2020}]
+ A \defin{cyclic descent map} for $\lambda/\mu$  is a pair $(\cDES, \phi)$
+ such that $\cDES$ sends elements in $\SYT(\lambda/\mu)$ to subsets of $[n]$,
+ and $\phi : \SYT(\lambda/\mu) \to \SYT(\lambda/\mu)$ is a bijection, and
+ \begin{itemize}
+  \item $\cDES(T) \cap [n-1]  = \DES(T)$,
+  \item $\cDES(\phi T) = \cDES(T) + 1$,
+  \item $\emptyset \subsetneq \cDES(\phi T) \subsetneq [n]$.
+ \end{itemize}
+\end{definition}
+
+\begin{lemma}[See \cite{AdinReinerRoichman2017,Huang2020}]
+Let $\lambda/\mu$ be a shape which is not a connected ribbon.
+Then $\lambda/\mu$ admits a  cyclic descent map.
+\end{lemma}
+
+
+
+
+
+\subsection[prelimEvalAtRootsOfUnity]{Evalutations at roots of unity}
+
+
+
+
+
+\begin{theorem}[See \cite{Rhoades2010}]
+B. Rhoades observed that \cite[Prop. 4.5]{Springer1974} implies the following.
+Let $\lambda \vdash n$ and define $f^\lambda(q)$ as above. Let $\xi = \exp(2\pi i/n)$, and $d\geq 0$.
+Then
+\[
+f^\lambda(\xi^d) = \chi^{\lambda}( c_n^d )
+\]
+where $\chi^{\lambda}$ is the irreducible $\symS_n$-character 
+associated with $\lambda$, and $c_n$ is the long cycle $(1,2,\dotsc,n)$.
+Recall that $\chi^{\lambda}$ can be computed using the \hyperref[schurMurnaghanNakaygama]{Murnaghan--Nakayama rule},
+and in this particular case, 
+there is a simple \hyperref[borderStripTableaux]{hook-formula for border-strip tableaux}.
+\end{theorem}
+
+
+The following proposition generalizes the above identity.
+It is easy to prove using the identities for the principal specialization of Schur polynomials above.
+\begin{proposition}[See \cite{SaganShareshianWachs2011}]
+ Let $F(\xvec)$ be a homogeneous symmetric function of degree $n = md$, such that
+ \[
+  F(\xvec) = \sum_{\lambda \vdash n} \chi^F_\lambda \frac{\powerSum_\lambda(\xvec)}{z_\lambda}
+  \text{ and define }
+  f(q) \coloneqq \prod_{j=1}^n (1-q^j) F(1,q,q^2,\dotsc).
+ \]
+Let $\xi$ be a primitive $n^\thsup$ root of unity. Then $f(\xi^d) = \chi^F_{m^d}$.
+\end{proposition}
+
+
+
+
+\begin{theorem}[From \cite[Thm. 9.14 ]{DesarmenienLeclercThibon1994}]
+Let $\lambda \vdash nm$. Then
+\[
+(-1)^{(m-1)n} \schurS_\lambda(1,q,q^2,\dotsc,q^{m-1}) \equiv K_{\lambda,n^m}(q) \text{ mod } \Phi_m(q).
+\]
+\end{theorem}
+The paper \cite{DesarmenienLeclercThibon1994} has several evaluations of the 
+transformed Hall--Littlewood polynomials at roots of unity. 
+In particular, $K_{\lambda/\nu,\mu^k}(\xi)$ is up to some sign
+equal to $K^{(k)}_{\lambda/\nu,\mu}$, the number $k$-ribbon tableaux of shape $\lambda/\nu$
+and weight $\mu$. 
+
+See also \cite{AyyerKumari2022,Albion2022x}, where Lie group characters of type $A$, $B$, $C$ and $D$
+are evaluated at roots of unity.
+
+\begin{theorem}[Lee--Oh 2022]
+Lee and Oh proves in \cite[Thm. 16]{LeeOh2022} the following.
+Let $d \mid n$, and let $\xi$ be a primitive $d^\thsup$ root of unity.
+Then $\schurS_{\lambda/\mu}(1,\xi,\xi^2,\dotsc,\xi^{n-1})$ is 0, unless 
+the $d$-quotient of $\lambda/\mu$ exists, in which case
+\[
+\schurS_{\lambda/\mu}(1,\xi,\xi^2,\dotsc,\xi^{n-1}) = \sign(\chi^{\lambda/\mu}((d^m))) \prod_{j=0}^{d-1}
+\schurS_{\lambda^{(j)}/\mu^{(j)}}(\underbrace{1,1,\dotsc,1}_{N/d}),
+\]
+where $|\lambda/\mu| = dm$, and the \hyperref[partitionQuotient]{$d$-quotient} of $\lambda/\mu$
+is given by $\left( \lambda^{(0)}/\mu^{(0)}, \dotsc,  \lambda^{(d-1)}/\mu^{(d-1)} \right)$.
+
+The non-skew version of the above statement 
+was first given in \cite[Thm. 16]{ReinerStantonWhite2004}.
+\end{theorem}
+See also \cite{Kumari2022x} and \cite[Chapter I, §5, Example 24]{Macdonald1995}.
+A generalization of this identity for \hyperref[schurFlagged]{flagged Schur polynomials} is given in \cite{Kumar2023x}.
+
+
+In \cite{Albion2022x}, one notes that the algebra homomorphism $\phi_r$ that sends $\completeH_j$ to $\completeH_{j/r}$
+if $r \mid j$, and $0$ otherwise, corresponds to evaluating the symmetric function at 
+$(x_i^{1/r}, \xi x_i^{1/r}, \xi^2 x_i^{1/r}, \dotsc, \xi^{r-1} x_i^{1/r})$ for each variable $i$.
+The above theorem by Lee--Oh can then be lifted to the symmetric functions level, see \cite[Thm. 3.1]{Albion2022x}.
+
+
+
+\section[basicHypergeometric]{$q$-Pochhammer and basic hypergeometric series}
+
+\todo{Nice identities here : https://arxiv.org/pdf/1802.02684.pdf}
+
+When working with $q$-analogs, it is convenient to introduce some additional notation.
+
+We let the \defin{$q$-Pochhammer symbol} be defined as
+\[
+(a;q)_n \coloneqq (1-a)(1-aq)\dotsm (1-aq^{n-1}), \qquad (a;q)_0 \coloneqq 1.
+\]
+This is also known as the \defin{$q$-shifted factorial}.
+From the definition, we have the relation
+\[
+(q^a;q)_{n+r} = (q^a;q)_{r} (q^{a+r};q)_n.
+\]
+By convention, $(a;q)_\infty \coloneqq \prod_{j \geq 0}(1-aq^j)$,
+so that
+\[
+(a;q)_n = \frac{(a;q)_\infty}{(aq^{n};q)_\infty}.
+\]
+This allows us to set
+\[
+(a;q)_{-n} \coloneqq \frac{1}{ (aq^{-n};q)_n } = 
+\frac{ (-q/a)^n q^{\binom{n}{2}} }{ (q/a;q)_n }.
+\]
+One can then prove that
+\begin{equation*}
+(a q^{-n};q)_{n} = q^{-\binom{n}{2}} \left( -\frac{a}{q} \right)^n (q/a;q)_{n}.
+\end{equation*}
+
+We have the following identities:
+\begin{align*}
+[m]_q &= \frac{ (q;q)_m}{(1-q)(q;q)_{m-1}} =  \frac{(q^{m};q)_\infty}{(1-q)(q^{m+1};q)_\infty} \\
+[m]_q! &= \frac{ (q;q)_m}{(1-q)^n} \\
+\qbinom{m}{r}_q &= \frac{(q^{m-r+1};q)_r}{(q;q)_r} 
+ = \frac{(q^{r+1};q)_\infty (q^{m-r+1};q)_\infty }{  (q^{m+1};q)_\infty (q;q)_\infty }.
+\end{align*}
+
+See the appendix of \cite{GasperRahman2004} for many more identities.
+The first edition is available online \href{http://www.fuchs-braun.com/media/e4ef05831b027c9cffff8033ffffffef.pdf}{here}.
+
+
+\subsection[qbinomial]{$q$-binomial theorem}
+
+The $q$-binomial theorem can be reformulated using $q$-hypergeometric series.
+We have the identity
+\[
+\sum_{n=0}^\infty \frac{(a;q)_n}{(q;q)_n}z^n = \frac{(az;q)_\infty}{(z;q)_\infty}.
+\]

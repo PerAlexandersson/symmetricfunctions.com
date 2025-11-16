@@ -1,0 +1,162 @@
+
+\section[jackShifted]{Shifted Jack polynomials}
+
+
+\begin{polydata}{jackShifted}
+  Name   & Shifted Jack polynomials \\
+  Space    & ShiftedSym \\
+  Basis    & True \\
+  Rating   & 3 \\
+  Bib      & Sahi1994 \\
+  Year     & 1994 \\
+  Symbol   & $\jackShifted_\lambda(\xvec)$ \\
+  Keywords & inner-product\\
+  Category & Schur \\
+\end{polydata}
+
+The shifted Jack polynomials generalize the \hyperref[jackP]{Jack polynomials},
+as well as the \hyperref[schurShifted]{shifted Schur polynomials}.
+The shifted Jack polynomials constitute a basis for the ring of \defin{shifted symmetric functions} $\Lambda^{a}$.
+This is the ring of polyomials symmetric in variables $x_i - i/a$.
+Note that these functions are not homogeneous.
+
+They are given as a limit of \hyperref[macdonaldPi]{interpolation Macdonald P polynomials}.
+
+\subsection[jackShiftedDef]{Definition}
+
+Define two $a$-deformations of the hook products, $H_\lambda$ and $H'_\lambda$, as
+\[
+H_\lambda = \prod_{s \in \lambda} (a \cdot \arm_\lambda(s) + \leg_\lambda(s) + 1), \quad
+H'_\lambda = \prod_{s \in \lambda} (a \cdot  \arm_\lambda(s) + \leg_\lambda(s) + a).
+\]
+These are denoted $c_\lambda(a)$ and $c'_\lambda(a)$ in \cite[(10.22)]{Macdonald1995}.
+
+
+The polynomials $\jackShifted_\mu$ lie in $\Lambda^{a}(x_1,\dotsc,x_n)$ and it 
+was shown by F. Knop and S. Sahi in \cite{KnopSahi1996} that $\jackShifted_\mu$ 
+is the unique polynomial in $\Lambda^{a}$ of degree at most $|\mu|$ such that
+\begin{equation*}
+\jackShifted_\mu(\lambda) = 
+\begin{cases}
+a^{-|\mu|} H'_\mu,   &\lambda = \mu \\
+0, \quad &|\mu| \geq |\lambda|, \; \mu \neq \lambda.
+\end{cases}
+\end{equation*}
+(Note that the inquality is in the wrong direction in 
+\cite[p.70]{OkounkovOlshanski1997}.)
+
+We also define the shifted version of $\jackJ_\mu(\xvec;a)$ as $\jackShiftedJ_\mu(\xvec,a) \coloneqq H_\mu \jackShifted_\mu(\lambda)$.
+
+
+
+\begin{example*}[Expression for $\jackShifted_{(2,1)}(\xvec,a)$]
+The polynomials get rather complicated.
+\[
+(a^2 x_1 x_2^2+a^2 x_1 x_3^2+a^2 x_2 x_3^2+a^2 x_1^2
+   x_2-2 a^2 x_1 x_2+a^2 x_1^2 x_3+a^2 x_2^2 x_3-2
+   a^2 x_1 x_3-2 a^2 x_2 x_3+2 a x_1 x_2^2+a x_2^2+2
+   a x_1 x_3^2+2 a x_2 x_3^2+2 a x_3^2+2 a x_1^2
+   x_2-3 a x_1 x_2-2 a x_2+2 a x_1^2 x_3+2 a x_2^2
+   x_3-5 a x_1 x_3+6 a x_1 x_2 x_3-7 a x_2 x_3-4 a
+   x_3+2 x_2^2+4 x_3^2+2 x_1 x_2-4 x_2+4 x_1 x_3+6
+   x_2 x_3-14 x_3)/(a(a+2))
+\]
+
+\end{example*}
+
+\subsection[jackShiftedRSSYTDef]{RSSYT definition}
+
+Similar to how the Jack polynomials can be \hyperref[jackTableauFormula]{defined} as a sum over reverse semistandard Young tableaux,
+there is an analogous formula for the shifted Jack polynomials, see \cite{OkounkovOlshanski1997}.
+\begin{equation*}
+\jackShifted_\mu(\xvec;a) = \sum_{T \in \mathrm{RSSYT}(\mu)} \psi_T(a) \prod_{s \in \mu} (x_{T(s)} -  \arm'(s) + \leg'(s)/a),
+\end{equation*}
+where $\arm'(s) = j-1$ and $\leg'(s) = i-1$ for the box $s=(i,j)$.
+Comparing this with the \hyperref[jackTableauFormula]{similar-looking formula} for the Jack P polynomials,
+we see that the top degree component of $\jackShifted_\mu(\xvec;a)$ is given by the ordinary Jack function $\jackP_\mu(\xvec;a)$.
+
+See also the corresponding formula for 
+the \hyperref[macdonaldPiRSSYTFormula]{interpolation Macdonald P polynomials}.
+
+
+\section[jackShiftedLittlewoodRichardson]{Littlewood--Richardson coefficients}
+
+Define the Littlewood--Richardson type structure constants, $c^{\lambda}_{\mu\nu}$, 
+which are rational functions in $a$, by the relation
+\[
+\jackShifted_\mu \jackShifted_\nu = \sum_\lambda c^{\lambda}_{\mu\nu}(a) \jackShifted_\lambda.
+\]
+If $|\lambda|=|\mu|+|\nu|$, then $c^{\lambda}_{\mu\nu}(a) = \langle \jackP_\mu \jackP_\nu, \jackP_\lambda \rangle_a$,
+the \hyperref[jackLittlewoodRichardsonConjecture]{ordinary Jack structure constants}.
+For $a = 1$, $c^{\lambda}_{\mu\nu}(1)$ coincide with the usual Littlewood--Richardson coefficients.
+
+From the vanishing result by F. Knop and S. Sahi \cite{KnopSahi1996} and a simple contradiction argument
+(see \cite[top of page 4434]{MolevSagan1999} for the case $\alpha=1$), it follows that
+$c^{\lambda}_{\mu\nu}(a)$ is identically zero unless $\lambda \supseteq \mu$ and $\lambda \supseteq \nu$. 
+
+
+
+\subsection[jackShiftedLittlewoodRichardsonConjecture]{Generalization of Stanley's conjecture}
+
+The following section contains information from \cite{AlexanderssonFeray2019}.
+
+Let $g^{\lambda}_{\mu \nu}(a) \coloneqq  H'_\lambda H_\mu H_\nu c^{\lambda}_{\mu\nu}(a)$.
+
+\begin{conjecture}[Alexandersson, Féray (2014)]
+The expression $a^{|\lambda|-|\mu|-|\nu|-2} g^{\lambda}_{\mu\nu}(a)$ is a polynomial in $\setN[a]$.
+\end{conjecture}
+Note that whenever $|\lambda|=|\mu|+|\nu|$, this conjecture 
+implies \hyperref[jackLittlewoodRichardsonConjecture]{Stanley's conjecture}
+\cite{Stanley1989} regarding structure constants for Jack polynomials.
+
+
+\begin{proposition}[P. Alexandersson, V. Féray (2019)]
+The expression $a^{|\mu|+|\nu|-|\lambda|-2} g^{\lambda}_{\mu\nu}$ is a polynomial in $a$.
+\end{proposition}
+
+\subsection[jackShiftedLittlewoodRichardsonFormula]{Recursion for the $c^{\lambda}_{\mu\nu}(a)$}
+
+One can prove that $c^{\lambda}_{\mu\lambda}(a) = \jackShifted_\mu(\lambda,a)$.
+
+
+Define $\psi'_T(\alpha)$, which is similar to $\psi_T(\alpha)$ and calculated as
+\begin{equation*}
+\psi'_T(\alpha) \coloneqq \prod_{i=1}^n \psi'_{\rho^i/\rho^{i-1}}(\alpha)
+\end{equation*}
+and where $\psi'_{\lambda/\mu}(\alpha) \coloneqq \psi_{\lambda'/\mu'}(1/\alpha)$.
+
+The following proposition can be proved by applying the same technique as in \cite{MolevSagan1999}.
+\begin{proposition}[See \cite{Sahi2011}]
+Let $\mu, \nu \subseteq \lambda$. Then
+\begin{equation*}
+c^{\lambda}_{\mu\nu} = 
+\frac{1}{|\lambda|-|\nu|}\left( 
+ \sum_{\nu \to \nu^+} \psi'_{\nu^+ / \nu} c^{\lambda}_{\mu \nu^+} -
+ \sum_{\lambda^- \to \lambda } \psi'_{\lambda / \lambda^-} c^{\lambda^-}_{\mu \nu}
+\right)
+\end{equation*}
+where the first sum is taken over all possible ways to add one box to the diagram $\nu$,
+and the second sum is over all ways to remove one box from $\lambda$.
+\end{proposition}
+This together with the identity $c^{\lambda}_{\mu \lambda} = \jackShifted_\mu(\lambda)$
+gives a recursive method to compute the $c^{\lambda}_{\mu\nu}$.
+
+\subsection[jackShiftedLittlewoodRichardsonData]{Data for structure constants}
+
+Let
+\[
+\mathtt{JackStructureConstant}_{\mu,\nu,\lambda}(a) \coloneqq  H'_\lambda H_\mu H_\nu c^{\lambda}_{\mu\nu}(a)
+\]
+be the structure constants $g^{\lambda}_{\mu \nu}(a)$ appearing 
+in \hyperref[jackShiftedLittlewoodRichardsonConjecture]{the generalized Stanley conjecture}.
+We have computed these for all $\mu,\nu$ with size at most $6$, 
+and <a href="jackStructureConstants6.m" class="dataFile">the data is available for download here (1.4Mb)</a>.
+
+For example, in the data you can find 
+that $\mathtt{JackStructureConstant}_{311,222,42211}(a)$ is equal to 
+\begin{align}
+& 192a^4(1 + a)^2(3 + a)(4 + a)(1 + 2a)(2 + 3a) \cdot \\
+& (45 + 276a + 547a^2 + 426a^3 + 134a^4 + 12a^5).
+\end{align}
+Note that some of these constants are Laurent polynomials in $a$.
+

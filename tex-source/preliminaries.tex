@@ -1,0 +1,453 @@
+\metatitle{Partitions, permutations and tableaux}
+\metadescription{Partitions, permutations, combinatorial statistics and tableaux.}
+
+
+\section[preliminaries]{Preliminaries}
+
+We use standard notation, $\setN$ is the set of natural numbers $\{0,1,2,\dotsc,\}$
+and $[n]\coloneqq \{1,2,\dotsc,n\}$.
+
+
+\section[prelimPartitions]{Partitions}
+
+A \defin{partition} is a weakly decreasing sequence of positive integers, referred to as \emph{parts}.
+A partition $\lambda$ can be described as $1^{m_1},2^{m_2},\dotsc,k^{m_k}$
+where $m_i$ is the number of parts of $\lambda$ equal to $i$.
+The \defin{type} of $\lambda$ is the vector $(m_1,\dotsc,m_k)$.
+For example, the partition $444332111111$ can in a more compact form be described as $1^6,2^1,3^2,4^3$,
+and it has type $(6,1,2,3)$.
+
+Partitions may be illustrated as \defin{Young diagrams}. 
+\begin{example}
+Consider $\lambda=(7,5,5,4,3)$. There are two common ways to draw $\lambda$ as Young diagram,
+the \defin{English} way --- which is what is mainly used here, and the \defin{French way}. 
+The English way uses matrix coordinates while the French uses Cartesian coordinates in the first quadrant.
+The lengths of the rows are determined by the parts of $\lambda$.
+
+\begin{figure}
+\begin{ytableau}
+ \circ & & & & & & \\
+ & \circ & & & \\
+ & & \circ & & \\
+ & & & \circ \\
+ & &
+\end{ytableau}
+\begin{ytableau}
+ & & \\
+ & & & \\
+ & & & & \\
+ & & & & \\
+ & & & & & &
+\end{ytableau}
+\end{figure}
+
+There is a third way to describe a partition, using \defin{Frobenius coordinates}.
+Let $d$ be the number of boxes on the main diagonal in the Young diagram of $\lambda$. 
+This is the \defin{Durfee size} of $\lambda$.
+The \defin{Frobenius coordinates} of $\lambda$ is given by $(a_1,a_2,\dotsc,a_d|b_1,b_2,\dotsc,b_d)$
+where $a_i = \lambda_i-i$ is the number of boxes to the right of the diagonal in row $i$,
+and $b_i = \lambda'_i-i$ is the number of boxes below the diagonal in column $i$.
+In the figure above, $d=4$ and $\lambda=(6,3,2,0|4,3,2,0)$.
+\end{example}
+
+
+The \defin{conjugate} of a partition $\lambda$ is denoted $\lambda'$, 
+and correspond to transposing the (English) Young diagram.
+Thus, the conjugate of $(7,5,5,4,3)$ is $(5,5,5,4,3,1,1)$, which is simply the sizes of the columns.
+
+\subsection[compositions]{Compositions}
+
+A \defin{composition} of $n$ is a vector with positive integer entries summing to $n$.
+Hence, every partition is a composition. These are also sometimes called \emph{strong compositions}.
+It is a classical exercise to show that there are $2^{n-1}$ compositions of $n$.
+
+A \defin{weak composition} of $n$ is a vector with non-negative integer entries summing to $n$.
+
+
+\subsection[partialOrderingsOnPartitions]{Partial orderings on partitions}
+
+We write $\lambda \supseteq \mu$ if $\lambda_i \geq \mu_i$ for all $i$.
+The \defin{dominance order} is defined as
+\[
+\lambda \trianglerighteq \mu \text{ whenever }
+\lambda_1+\dotsb + \lambda_i \geq \mu_1 + \dotsb + \mu_i \text{ for all $i$}.
+\]
+Dominance order is defined in the same manner for compositions and weak compositions.
+
+\subsection[skewShapes]{Skew shapes and ribbons}
+
+If $\lambda \supseteq \mu$, we let $\lambda/\mu$ denote the set of boxes 
+in the Young diagram of $\lambda$ which do not appear in $\mu$.
+We say that $\lambda/\mu$ is a \defin{skew shape}.
+
+A skew shape is a \defin{ribbon} if it is connected and does not 
+contain a $2\times 2$-arrangement of boxes.
+The following figure illustrates a $12$-ribbon, as it has $12$ boxes.
+\begin{figure}
+\begin{ytableau}
+\none & \none & & & & & & h\\
+\none & \none & \\
+\none & \none & \\
+\none &  & \\
+\none &  \\
+t &  \\
+\end{ytableau}
+\end{figure}
+Ribbons are sometimes called \defin{border strips} or \defin{rim-hooks}.
+Ribbons play a special role in the definition of \hyperref[borderStripTableaux]{border-strip tableaux}.
+The \defin{head} of a ribbon is the rightmost box in the first row of the ribbon,
+while the \defin{tail} is the leftmost box in the last row of the ribbon.
+
+
+
+
+
+\subsection[prelimPartitionStatistics]{Statistics on partitions}
+
+Define $\partitionN(\lambda) \coloneqq \sum_i (i-1) \lambda_i = \sum_{i \geq 2} \binom{\lambda'_i}{2}$ and 
+let $z_\lambda \coloneqq \prod_j \left( m_j! j^{m_j} \right)$
+where $m_i$ is the number of parts of $\lambda$ of size $i$.
+
+Note that $z_\lambda$ is the number of elements in $\symS_n$, which fixes $g_\lambda$
+under conjugation, where $g_\lambda$ is some fixed permutation of type $\lambda$.
+That is,
+\[
+z_\lambda = |\{ \sigma \in \symS_n : \sigma g_\lambda \sigma^{-1} = g_\lambda \}|.
+\]
+The $z_\lambda$ often shows up as a normalizing factor when dealing with power-sum symmetric functions,
+and in particular, in the \hyperref[hallInnerProduct]{Hall inner product}.
+
+
+\subsection[partitionCores]{Hook lengths and cores}
+
+Given a box $(i,j)$ in the Ferrers diagram of $\lambda$, 
+the \defin{hook-length} of the box is given by $1 + (\lambda_i-i) + (\lambda'_j-j)$.
+For example, the hook-length in the diagram below has been written in each box.
+\begin{figure}
+\begin{ytableau}
+ 11& 10& 9 & 7 & 5 & 2 & 1 \\
+ 8 & 7 & 6 & 4 & 2 \\
+ 7 & 6 & 5 & 3 & 1 \\
+ 5 & 4 & 3 & 1 \\
+ 3 & 2 & 1
+\end{ytableau}
+\end{figure}
+
+The \defin{content} of a box $(i,j)$ is $j-i$, where $j$ is the column index, and $i$ is the row index.
+
+A \defin{$p$-core} is a partition where none of the hook-lengths are divisible by $p$.
+A closely related concept is the notion of \hyperref[partitionQuotient]{partition quotients}.
+
+
+The \defin{hook formula} states that 
+\[
+ |\SYT(\lambda)| = \frac{n!}{\prod_{\square \in \lambda} h(\square)},
+\]
+where $h(\square)$ denotes the hook length of the box. 
+There is a \hyperref[prelimQHook]{$q$-analog} of this identity.
+
+There is a more complicated formula for skew diagrams, due to H. Naruse \cite{Naruse2014slides}.
+For a proof, see Morales--Pak--Panova \cite{MoralesPakPanova2018}.
+An extension to cylindric diagrams is conjectured in \cite{SuzukiToyosawa2021x}.
+
+
+\section[weakCompositions]{Compositions and weak compositions}
+
+Similar to partitions, a composition of $n$ is an integer vector of positive 
+integers summing to $n$. For example, 
+\begin{example*}[Compositions of 4]
+There are $2^{n-1}$ compositions of $n$. For example,
+\[
+(4), 
+(3,1), 
+(1,3), 
+(2,2), 
+(2,1,1),
+(1,2,1),
+(1,1,2),
+(1,1,1,1)
+\]
+are the compositions of $4$.
+\end{example*}
+
+A \defin{weak composition} allows for parts to be equal to $0$.
+
+
+\section[notationPermutations]{Permutations and words}
+
+The set of permutations of $n$ elements is denoted $\symS_n$.
+Let $\pi \in \symS_n$, or more generally, a word of length $n$.
+The \defin{descent set} $\DES(\pi)\subseteq [n-1]$
+is defined as 
+\[
+\DES(\pi) \coloneqq \{i \in [n-1] : \pi_i \gt \pi_{i+1} \}.
+\]
+The set of \defin{inversions} is the set of pairs,
+\[
+\INV(\pi) \coloneqq \{(i,j) \in [n]\times [n] : \pi_i \gt \pi_{j} \}.
+\]
+We define the \defin{major index} on permutations and words:
+\[
+\inv(\pi) \coloneqq |\INV(\pi)| \text{ and } \maj(\pi) \coloneqq \sum_{i \in \DES(\pi)} i.
+\]
+For permutations, we also define \defin{charge} as
+\[
+\charge(\pi) \coloneqq \maj(\rev(\pi^{-1})) \text{ and } \cocharge(\pi) \coloneqq \binom{n}{2} - \charge(\pi).
+\]
+
+\begin{lemma}
+We have that 
+\[
+\charge(\pi) = \inv \circ \mathrm{foata} \circ \rev \circ (\cdot)^{-1} \circ \pi,
+\]
+where $\mathrm{foata}$ denotes the map sending major index to inversions.
+\end{lemma}
+
+
+
+The \defin{weight} or \defin{type} of a word $w$ is the composition $\alpha$
+such that $\alpha_i$ is the number of entries in $w$ equal to $i$.
+
+A word $w_1,\dotsc,w_n$ is called \defin{Yamanouchi} if the number of occurrences of $i$ is at least as many 
+as the number of occurrences of $i+1$ in every prefix $w_1,\dotsc,w_k$.
+Such words are also known as \defin{Ballot words}, see \oeis{A000085}.
+
+
+\subsection[bruhatOrder]{Bruhat order and weak order}
+
+The \defin{Bruhat order} (or \defin{strong order}) on 
+permutations is a partial order $\leq$ on $\symS_n$.
+We have that $\sigma \leq \tau$ if 
+$\tau$ can obtained from $\sigma$ via a sequence of transpositions, 
+which increase the number of inversions in each step.
+Alternatively, we have that $\sigma \leq \tau$ if and only if 
+there are reduced words $w_\sigma$, $w_\tau$ for $\sigma$ and $\tau$ 
+such that $w_\sigma$ is a subword of $w_\tau$.
+
+The Bruhat order is a ranked poset, with rank given by the number of inversions.
+
+The (right) \defin{weak order} is a subposet of the Bruhat order,
+where only \emph{simple transpositions} are allowed, when multiplying on the right.
+This corresponds to swapping adjacent entries.
+Let us write $\leq_R$ for this relation.
+Alternatively, we have that $\sigma \leq_R \tau$ if and only if 
+there are reduced words $w_\sigma$, $w_\tau$ for $\sigma$ and $\tau$ 
+such that $w_\sigma$ is a \emph{prefix} of $w_\tau$.
+
+
+\begin{figure}
+<img src="./svg-images/bruhatGraph.svg" alt="Bruhat poset for n=4" style="width:80%; margin:5px;"/>
+\end{figure}
+
+In this figure, we show the Hasse diagram of the Bruhat order for $\symS_4$.
+The solid edges indicate covering relations in the (right) weak order.
+See \cite[Ch. 10.5]{Fulton1997}, \cite[Ex. 183, 185]{StanleyEC1} 
+and \cite[Ch.2-Ch.3]{Bjorner2005} for more properties
+and alternative definitions.
+
+
+\subsection[notationAffinePermutations]{Affine permutations}
+
+The set of \defin{affine permutations} $\symAff_n$ is the set of bijections $\pi: \setZ \to \setZ$
+satisfying $\pi(i+n)=\pi(i)+n$ for all $i\in \setZ$ and $\pi(1)+\pi(2)+\dotsb+\pi(n)=1+2+\dotsb+n$.
+
+
+\section[prelimTableaux]{Tableaux}
+
+A tableau is a filling of the boxes determined by a partition, or sometimes a more general configuration of boxes.
+
+The \defin{reading word} of a tableau is the word obtained by concatenating the rows,
+starting from the bottom row in English notation.
+
+The set of \defin{standard Young tableaux} of shape $\lambda$, denoted $\SYT(\lambda)$, 
+is the set of bijective fillings $\lambda \to [n]$, such that rows and columns are increasing with row and column index.
+The set of \defin{semistandard Young tableaux}, $\SSYT(\lambda)$,
+is defined as the set of fillings with entries in $\setP$, with weakly increasing rows and strictly increasing columns.
+We let $\SSYT(\lambda,\mu)$ denote the (finite) set of semi-standard Young tableaux with shape $\lambda$
+and type $\mu$, that is, there are $\mu_i$ entries equal to $i$ in each such tableau.
+
+
+\begin{example}
+Consider the following tableau $T$.
+\begin{figure}
+\begin{ytableau}
+1 & 2 & 5 & 7 \\
+3 & 4 \\
+6
+\end{ytableau}
+\end{figure}
+
+The reading word of $T$ is $6341257$, denoted $\rw(T)$.
+Note that if $T$ is a standard or semistandard Young tableau, then $T$
+is uniquely determined by its reading word.
+
+Whenever $T \in \SYT(\lambda)$, we define $\charge(T)$ and $\cocharge(T)$ as 
+the charge and cocharge, respectively, of their reading words.
+\end{example}
+
+Given $T \in \SYT(\lambda)$ let 
+\[
+\DES(T) \coloneqq \{i \in [n-1] : i+1 \text{ appears in a lower row than } i \}.
+\]
+We then let $\maj(T)  \coloneqq \sum_{i \in \DES(T)} i$.
+Thus, $\maj(T) = \maj(\rw(T)^{-1})$.
+
+
+
+
+
+\subsection[prelimTableauxSmartMap]{SYT as Yamanouchi words}
+
+
+The set $\SYT(\lambda)$ is in bijection with Yamanouchi words with weight $\lambda$.
+The bijection $f(T)=w$ is given by $w_i = j$ if $i$ occur in row $j$ of $T$.
+This map can be quite useful at times, and is usually called the \hyperref[companionMap]{companion map}.
+Note that $\maj(T) = \binom{n}{2}-\maj(w)$.
+
+There are 10 Yamanouchi words of length $4$, and these are in 
+bijection with the 10 standard Young tableaux with $4$ boxes.
+\begin{example}
+We have the following $10$ Yamanouchi words:
+\[
+\mathtt{1111},\,
+\mathtt{1112},\,
+\mathtt{1121},\,
+\mathtt{1211},\,
+\mathtt{1122},\,
+\mathtt{1212},\,
+\mathtt{1123},\,
+\mathtt{1213},\,
+\mathtt{1231},\,
+\mathtt{1234}.
+\]
+The standard Young tableaux are
+\begin{figure}
+\ytableaushort{1234}
+\ytableaushort{123,4}
+\ytableaushort{124,3}
+\ytableaushort{134,2}
+\ytableaushort{12,34}
+\ytableaushort{13,24}
+\ytableaushort{12,3,4}
+\ytableaushort{13,2,4}
+\ytableaushort{14,2,3}
+\ytableaushort{1,2,3,4}
+\end{figure}
+\end{example}
+
+
+
+
+\subsection[prelimTableauxAsLattice]{SSYT as lattice paths}
+
+Semistandard Young tableaux can be put in correspondence with sets of non-intersecting lattice paths,
+and this allows us to prove the two \hyperref[schurJacobiTrudi]{Jacobi--Trudi identities},
+by using the Lindström--Gessel--Viennot lemma \cite{Lindstrom1973,GesselViennot1989}.
+
+Let $T \in \SSYT(\lambda/\mu)$ where the entries are bounded by $m$.
+
+\emph{Row bijection}: 
+Each row $i$ of $T$ is mapped to a lattice path $P_i$, with steps in the set $\{ (0,1), (1,0)\}$.
+The starting vertex of $P_i$ is $(-i + \mu_i,1)$,
+the ending vertex is $(-i + \lambda_i, m)$,
+and its number of horizontal steps on $y$-coordinate $j$ is given by the number of entries in
+row $i$ equal to $j$. The length of path $P_i$ is $m-1 + \lambda_i-\mu_i$.
+This bijection can be used to prove the first \hyperref[skewJacobiTrudi]{Jacobi--Trudi identity}.
+
+
+\emph{Column bijection}: 
+Each column of $T$ is mapped to a path $P'_i$,
+with steps in the set $\{ (-1,1), (1,1)\}$.
+The starting vertex of $P'_i$ is given by $(2i - 2\mu'_i, 0)$,
+the ending vertex is $(2i - 2\lambda'_i + m, m)$
+and the $j$th step of $P'_i$ is $(-1,1)$ if $j$ is present in column $i$,
+otherwise it is $(1,1)$. Each path has length $m$.
+This bijection can be used to prove the second Jacobi--Trudi identity.
+
+
+\begin{example}[Bijection to lattice paths]
+
+Consider the following skew semistandad Young tableau $T$.
+\begin{figure}
+\ytableaushort{{\none}{\none}{\none}1122346,{\none}{\none}1223455,{\none}{\none}2344566,113556,2346,456,6}
+\end{figure}
+
+The rows give rise to the following set of non-intersecting lattice paths,
+where the topmost row in $T$ corresponds to the rightmost path.
+\begin{figure}
+<img src="./svg-images/ssytRowLatticePaths.svg" 
+alt="SSYT rows as lattice paths" style="width:95%; margin:5px;"/>
+\end{figure}
+
+The columns in $T$ give rise to the following set of non-intersecting lattice paths,
+where the leftmost column corresponds to the leftmost path.
+
+\begin{figure}
+<img src="./svg-images/ssytColumnLatticePaths.svg" 
+alt="SSYT rows as lattice paths" style="width:95%; margin:5px;"/>
+\end{figure}
+\end{example}
+
+
+
+The following appears in \url{https://arxiv.org/pdf/2003.04957.pdf},
+and is proved using lattice paths.
+\begin{theorem}
+Let $A,B$ be subsets of $\{0,1,\dotsc,n\}$ of equal size and let $A^c$, $B^c$ be their complements.
+Then
+\[
+\det \left[ \completeH_{b-a}( x_1,x_2,\dotsc,x_{a+1} ) \right]_{a \in A, b \in B} =
+\det \left[ \elementaryE_{a'-b'}( x_1,x_2,\dotsc,x_{a'} ) \right]_{a' \in A^c, b' \in B^c}.
+\]
+Moreover, this is related to C. A. Aitken's identity;
+\[
+\det \left[ \completeH_{b-a}(\xvec ) \right]_{a \in A, b \in B} =
+\det \left[ \elementaryE_{a'-b'}( \xvec ) \right]_{a' \in A^c, b' \in B^c}.
+\]
+\end{theorem}
+
+
+
+See also \cite{Stembridge1990} for background on counting lattice paths with pfaffians.
+
+One can also prove the Weyl alternant formula by LGV, see \cite{Xiong2020x}.
+
+See \href{https://www.youtube.com/watch?v=H1wEiEIznaA}{this GOCC talk from 2023} on a generalization of the LGV lemma.
+
+
+
+
+\subsection[prelimPPAsLattice]{Plane partitions as lattice paths}
+
+
+See \cite[Thm. 10.7.1]{Krattenthaler2015} and \cite[Eq. (6)]{StanleyPitman2002} for the following
+application of the Lindström--Gessel--Viennot lemma.
+
+\begin{theorem}
+Let $\lambda$ and $\mu$ be partitions with at most $\ell$ parts such that 
+$\lambda/\mu$ defines a skew shape.
+Then the number of lattice paths contained in $\lambda / \mu$ equals
+\[
+    \det \left[ \binom{\lambda_i - \mu_j+1}{i-j+1} \right]_{1\leq i,j \leq \ell.}
+\]
+\end{theorem}
+For non-skew shapes, we can also interpret such partitions $\nu$ as lattice
+points in Stanley--Pitman polytopes \cite{StanleyPitman2002}.
+This is also the number of plane partitions of skew shape $\lambda/\mu$, with binary entries,
+or the number of non-nesting rook placements on the Ferrers board of shape $\lambda / \mu$.
+There is also an interpretation of these quantities using certain linear extensions, see \cite{AlexanderssonJal2024x}.
+
+
+
+\subsection[prelimTableauxAsPolytope]{SSYT as lattice points in a polytope}
+
+Semistandard Young tableaux are in bijection with \hyperref[gtpatternsAsSSYT]{Geltand--Tsetlin patterns},
+which are lattice points in Gelfand--Tsetlin polytopes.
+
+
+
+\subsection[companionMap]{The companion map}
+
+In \cite[Def. 15]{KaliszewskiMorse2019}, the authors describes a \defin{companion map},
+which interchanges the role of shape and weight of fillings.
+

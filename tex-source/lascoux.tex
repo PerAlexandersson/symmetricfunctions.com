@@ -1,0 +1,100 @@
+\section[lascoux]{Lascoux polynomials}
+
+\begin{polydata}{lascoux}
+  Name   & Lascoux polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & Lascoux2004  \\
+  Year     &  2004 \\
+  Symbol   & $\lascoux^{(\beta)}_{\alpha}(z)$ \\
+  Keywords & divided-difference, fillings, k-theoretic \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{Lascoux polynomials}, is a family of non-symmetric, 
+non-homogeneous polynomials, first introduced by A. Lascoux in \cite{Lascoux2004}.
+The set $\{ \lascoux_\alpha(x_1,\dotsc,x_n) \}_\alpha$ where $\alpha$
+ranges over all compositions of length $n$, is a basis for $\setC[x_1,\dotsc,x_n]$.
+
+The Lascoux polynomials are the K-theoretical analog of the \hyperref[key]{key polynomials},
+and they generalize the \hyperref[grothendieckGrassman]{Grothendieck polynomials}.
+Similarly, there are Lascoux-atom polynomials, which are K-theoretical 
+analogs of the Demazure atom polynomials.
+
+\emph{Note:} There seem to be other types of polynomials referred to as Lascoux polynomials,
+e.g. \cite{BorziChenMotwaniVenturelloVodicka2021}.
+
+\subsection[lascouxDefinition]{Definition}
+
+We use the same notation as in the operator definition of \hyperref[key]{key polynomials}.
+We introduce the $\beta$-versions of the divided 
+difference operator $\partial_i$, and $\pi_i$:
+\[
+\partial_i^{(\beta)}(f) \coloneqq 
+\partial_i(f + \beta x_{i+1} f)
+\qquad 
+\pi_i^{(\beta)}(f) \coloneqq \partial_i^{(\beta)}(x_i f).
+\]
+We then define the \defin{Lascoux polynomial}
+as
+\[
+\lascoux^{(\beta)}_{\alpha}(\xvec) \coloneqq 
+\begin{cases}
+\xvec^{\alpha} & \text{ if $\alpha$ is a partition} \\
+\pi_i^{(\beta)} 
+\lascoux^{(\beta)}_{s_i \alpha}(\xvec)
+& \text{ if $\alpha_i \lt a_{i+1}$}.
+\end{cases}
+\]
+Note that $\key_{\alpha}(\xvec) = \lascoux^{(0)}_{\alpha}(\xvec)$,
+that is, at $\beta=0$ we recover a key polynomial.
+
+The first combinatorial model for Lascoux polynomials is given in \cite[Thm. 4.1]{BuciumasScrimshawWeber2020},
+where the Lascoux polynomials are presented as a sum 
+over set-valued tableaux. They also give a combinatorial formula involving 
+set-valued \emph{skyline fillings} (terminology from non-symmetric Macdonald polynomials).
+Another set-valued tableau formula is proved in \cite[Thm. 1.1]{ReinerYong2021}.
+
+A set-valued tableau formula is also given in \cite[Thm. 3.17]{Yu2021}.
+Here, the tableaux have composition shape, and the author argues that his formula 
+is simpler, as it does not use the Lusztig involution.
+
+In \cite{MonicalPechenikScrimshaw2018}, the question is raised if there is some type of K-theoretical
+crystal structure for Lascoux polynomials. This seems to be answered in \cite{Yu2021}.
+
+
+
+\subsection[lascouxProperties]{Properties of Lascoux polynomials}
+
+
+The \hyperref[schubert]{Schubert polynomials} expand positively into key polynomials.
+In the same manner, in \cite{ShimozonoYu2021}, M. Shimozono and T. Yu give a formula
+for the expansion of Grothendieck polynomials into Lascoux polynomials,
+thus proving an earlier conjecture by V. Reiner and A. Yong \cite{ReinerYong2021}.
+
+
+
+
+\section[lascouxAtom]{Lascoux atom}
+
+\begin{polydata}{lascouxAtom}
+  Name   & Lascoux atom \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & Lascoux2004  \\
+  Year     & 2004 \\
+  Symbol   & $\lascouxAtom^{(\beta)}_{\alpha}(z)$ \\
+  Keywords & divided-difference, fillings, k-theoretic \\
+  Category & Schur \\
+\end{polydata}
+
+
+\subsection[lascouxAtomVertexModel]{A vertex model for Lascoux atoms}
+
+In \cite{BuciumasScrimshawWeber2020}, the authors construct a 5-vertex model 
+whose partition function is the Lascoux-atoms. 
+This is the first combinatorial model for the Lascoux-atoms.
+
+

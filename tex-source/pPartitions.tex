@@ -1,0 +1,151 @@
+\section[pPartition]{P-partitions}
+
+\begin{polydata}{pPartition}
+  Name   & P-partitions \\
+  Space    & QSym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Gessel1984 \\
+  Year     & 1984 \\
+  Symbol   & $\pPartition_P(x)$ \\
+  Category & QuasiElementary \\
+\end{polydata}
+
+
+\todo{ https://arxiv.org/pdf/2006.10087.pdf McNamara -- when are differences F-positive?}
+
+
+The elements in the family of $P$-partitions --- or rather 
+generating functions of $P$-partitions --- are indexed by labeled posets.
+These functions, $\pPartition_{(P,w)}(\xvec)$, 
+are \hyperref[quasiSymmetricFunctions]{quasisymmetric}
+and positive in the \hyperref[gessel]{fundamental quasisymmetric basis}.
+It is a rich family, and includes the skew Schur functions,
+the elementary and complete homogeneous symmetric functions 
+as well as the fundamental quasisymmetric functions.
+
+For a historical overview of the 
+theory of $P$-partitions, see Ira Gessel's survey, \cite{Gessel2016}.
+
+
+\subsection[pPartitionDefinition]{Definition}
+
+Let $P$ be a poset and $w$ a labeling of $P$. 
+A \defin{$(P,w)$-partition} is a map $f:P \to \setP$ such that 
+\[
+x \lt_P y \implies f(x) \leq f(y)
+\]
+and 
+\[
+x \lt_P y \text{ and } w(x)\gt w(y) \implies f(x) \lt f(y).
+\]
+
+The $(P,w)$-partition generating function $\pPartition_{(P,w)}(\xvec)$ is then defined as
+\[
+\pPartition_{(P,w)}(\xvec) = \sum_{f\in \text{$(P,w)$-partition }} \prod_{y \in P} x_{f(y)}.
+\]
+When the labeling $w$ is \emph{order-preserving}, 
+we simply write $\pPartition_{P}(\xvec)$, as this function is then independent of the choice of labeling.
+
+See also \hyperref[enrichedPPartitions]{enriched P-partitions}, where peaks are used instead of descents.
+The analog of \hyperref[gessel]{fundamental quasisymmetric functions} are the 
+\hyperref[peakQSym]{peak quasisymmetric functions}.
+
+
+\begin{conjecture}[Stanley, \cite{Stanley1972}]
+The function $\pPartition_{(P,w)}(\xvec)$ is symmetric if and only if $(P,w)$
+describes the weak and strict inequalities in a skew Young diagram,
+required for generating skew semi-standard Young tableaux.
+
+In other words, every symmetric $\pPartition_{(P,w)}(\xvec)$ is a \hyperref[schurSkew]{skew Schur function}.
+\end{conjecture}
+See \cite[Statement 3.11]{McNamara2006} for possible generalizations of this conjecture.
+
+
+\subsection[pPartitionInGessel]{Fundamental quasisymmetric expansion}
+
+Let $(P,w)$ be a labeled poset on $n$ elements. The \defin{Jordan--Hölder set} 
+of a labeled poset is defined as
+\begin{equation*}
+\mathcal{L}(P,w)
+\coloneqq\{\sigma\in\symS_n:\sigma^{-1}\circ w\text{ is order-preserving}\}.
+\end{equation*}
+
+The expansion of $\pPartition_{(P,w)}(\xvec)$ in the \hyperref[gessel]{fundamental quasisymmetric basis} is given by
+\[
+\pPartition_{(P,w)}(\xvec) = \sum_{\pi \in \mathcal{L}(P,w)} \gessel_{n,\DES(\pi)}(\xvec),
+\]
+where $\DES(\pi)$ is the \hyperref[notationPermutations]{descent set} of $\pi$.
+For a reference of this result, see \cite[Eq. (7.95)]{StanleyEC2}.
+
+
+
+\subsection[pPartitionPsiExp]{Quasisymmetric powersum expansion}
+
+
+Alexandersson and Sulzgruber \cite{AlexanderssonSulzgruber2019} 
+show that $\pPartition_P(x)$ is positive 
+in the \hyperref[qPsi]{quasisymmetric powersum basis}. 
+
+\begin{theorem}[Alexandersson and Sulzgruber (2019), \cite{AlexanderssonSulzgruber2019}]
+
+Let $P$ be a poset on $n$ elements.
+A surjection $f:P \to [k]$ has type $\alpha \vDash n$
+if the cardinality of $f^{-1}(j)$ is $\alpha_j$, for $j=1,\dotsc,k$.
+Let $\mathcal{O}_{\alpha}^{\ast}(P)$ be the set of 
+order-preserving surjections $P \to [k]$
+of type $\alpha$, such that each subposet $f^{-1}(j) \subseteq P$
+has a unique minimal element.
+Then
+\[
+\pPartition_P(\xvec)
+=
+% \sum_{\alpha\vDash n}
+% \frac{\qPsi_{\alpha}(\xvec)}{z_{\alpha}}\left| \mathcal{L}_{\alpha}^{\ast}(P,w) \right|
+% =
+\sum_{\alpha\vDash n}
+\frac{\qPsi_{\alpha}(\xvec)}{z_{\alpha}}\left| \opsurj_{\alpha}^{\ast}(P) \right|.
+\]
+\end{theorem}
+
+As a consequence, whenever the symmetric function $f$ can be expressed as 
+a non-negative linear combination of $\pPartition_P(x)$,
+it is necessarily positive in the \hyperref[powerSum]{powersum basis}.
+In hindsight, it is rather remarkable that this property was not discovered earlier.
+
+\todo{Link families.}
+
+
+\subsection[pPartitionMNrule]{Murnaghan--Nakayama rule}
+
+The result by Alexandersson and Sulzgruber is 
+later generalized to all $(P,w)$-partition 
+by R. Liu and M. Weselcouch \cite[Thm. 6.9]{LiuWeselcouch2020}, 
+where a signed rule is proved. 
+This rule coincides with the 
+\hyperref[skewSchurMurnaghanNakaygama]{classical Murnaghan--Nakayama rule} 
+for (skew) Schur functions whenever $(P,w)$ is a skew diagram.
+
+
+
+\begin{question}[See \cite{LiuWeselcouch2020}]
+Suppose $P_1$ and $P_2$ are posets such that $\pPartition_{(P_1,w_1)}(x) = \pPartition_{(P_2,w_1)}(x)$,
+and $P_1$ is series-parallel. 
+Does it follow that $P_2$ is series-parallel?
+\end{question}
+
+
+\subsection[pPartitionLorentzian]{Not Lorentzian}
+
+The $P$-partition generating functions $\pPartition_{(P,w)}(\xvec)$
+are in general is not \hyperref[lorentzianPolynomial]{Lorentzian (or normalized Lorentzian)},
+not even for naturally labeled $P$.
+For example, the poset on three vertices with relations $2\leq 1 \geq 3$ (forming a $V$),
+is not normalized Lorentzian.
+
+
+\section[pPartitionsFlagged]{Flagged $(P,w)$-partitions}
+
+S. Assaf and N. Bergeron \cite{AssafBergeron2019} consider a flagged version of $(P,w)$-partitions.
+They show that these are positive in the fundamental slide basis.
+\todo{Add ref to fund. slide basis.}

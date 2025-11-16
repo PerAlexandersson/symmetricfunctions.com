@@ -1,0 +1,313 @@
+
+\todo{In AssafSearles2018 there is also the quasi-Schur functions}
+
+\section[qSchur]{Quasisymmetric Schur functions}
+
+\begin{polydata}{qSchur}
+  Name     & Quasisymmetric Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & HaglundLuotoMasonWilligenburg2011 \\
+  Year     & 2011 \\
+  Symbol   & $\qSchur_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{quasisymmetric Schur functions}, $\{\qSchur_\alpha \}$, were introduced 
+by J. Haglund, K. Luoto, S. Mason and S. van Willigenburg \cite{HaglundLuotoMasonWilligenburg2011}.
+These refine the classical \hyperref[schurS]{Schur functions} in the sense that
+\[
+ \schurS_\lambda(\xvec) = \sum_{\alpha \sim \lambda} \qSchur_\alpha(\xvec),
+\]
+where the sum is taken over all compositions $\alpha$ whose parts rearrange to the parts of $\lambda$.
+The $\{\qSchur_\alpha \}$ constitute a basis for the 
+space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
+
+A skew version is introduced in \cite{BessenrodtLuotoWilligenburg2011},
+and they show that the \defin{skew quasisymmetric Schur functions} 
+expand positively into quasisymmetric Schur functions.
+
+The quasisymmetric Schur functions can be described 
+as certain characters of the 0-Hecke algebra, see \cite{TewariWilligenburg2015}.
+
+
+The original definition of the quasisymmetric Schur 
+functions is in terms of \hyperref[atom]{Demazure atoms}:
+\begin{definition}
+Let $\alpha$ be a composition. Then 
+\[
+\qSchur_\alpha(\xvec) \coloneqq \sum_{\gamma : \mathrm{comp}(\gamma) = \alpha} \atom_{\gamma}(\xvec)
+\]
+where the sum ranges over all \emph{weak compositions} $\gamma$ which can be obtained by 
+inserting $0$s between parts of $\alpha$.
+\end{definition}
+
+
+
+We can compute the expansion of $\qSchur_\alpha$ in terms of \hyperref[gessel]{fundamental quasisymmetric functions}
+by using standard reverse composition tableaux.
+A \defin{semistandard reverse composition tableaux}, (SSRCT), of shape $\alpha \vDash n$ 
+is a filling of the diagram $\alpha$ \hyperref[prelimPartitions]{(English notation)}
+with positive integers such that 
+\begin{enumerate}
+\item rows are weakly decreasing;
+\item the first column is strictly increasing with the row index;
+\item for every triple $a$, $b$ $c$ arranged as 
+
+\begin{ytableau}
+b & c \\
+\none  &\none  \vdots \\
+\none  &  a
+\end{ytableau}
+
+we have that $a \leq b$ implies that the box $c$ is present and $a\lt c$.
+\end{enumerate}
+\todo{Fix above figure}
+
+A \defin{standard reverse composition tableaux} (SRCT) uses each integer $1,2,\dotsc,n$
+exactly once in the filling.
+The \defin{descent set} $\des(T)$ of a SRCT is defined as 
+\[
+ \des(T) := \{ i : i+1 \text{ appears weakly to the right of } i \}.
+\]
+
+\begin{example*}[Example of a SRCT and its descent set]
+(From \cite{TewariWilligenburg2015})
+The tableau below is an element in $SRCT(3,4,3,2)$ and has descent set 
+$\{1,2,5,8,9,11\}$.
+\begin{figure}
+\begin{ytableau}
+5&4&2 \\
+8&7&6&3\\
+11 & 10 & 1 \\
+12 & 9 
+\end{ytableau}
+\end{figure}
+\end{example*}
+
+\begin{theorem}
+We have that the fundamental quasisymmetric expansion of $\qSchur_\alpha$ is given by
+\[
+\qSchur_\alpha(\xvec) = \sum_{T \in \mathrm{SRTC}(\alpha)} \gessel_{\DES(T)}(\xvec).
+\]
+\end{theorem}
+
+Skew quasisymmetric Schur functions have a similar expansion.
+
+
+\begin{example*}[Fundamental expansion of $\qSchur_{(2,1,3)}$]
+(From \cite[Ex. 2.7]{TewariWilligenburg2015})
+We have that $\qSchur_{(2,1,3)} = \gessel_{(2,1,3)} + \gessel_{(2,2,2)}+\gessel_{(1,2,1,2)}$,
+corresponding to the three SRTCs
+\begin{figure}
+\begin{ytableau}
+\mathbf{2}&1 \\
+\mathbf{3}\\
+6& 5 & 4 \\
+\end{ytableau}
+
+\begin{ytableau}
+\mathbf{2}&1 \\
+\mathbf{4}\\
+6& 5 & 3 \\
+\end{ytableau}
+
+\begin{ytableau}
+\mathbf{3}&\mathbf{1} \\
+\mathbf{4}\\
+6& 5 & 2 \\
+\end{ytableau}
+\end{figure}
+where the descents are the bold entries.
+\end{example*}
+
+
+
+\section[yqSchur]{Young quasisymmetric Schur functions}
+
+
+\begin{polydata}{yqSchur}
+  Name     & Young quasisymmetric Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & LuotoMykytiukWilligenburg2013 \\
+  Year     & 2013 \\
+  Symbol   & $\yqSchur_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+The \defin{Young quasisymmetric Schur functions}, introduced in \cite{LuotoMykytiukWilligenburg2013},
+are obtained from the quasisymmetric Schur functions via the relation
+$\yqSchur_\alpha = \rho(\qSchur_{\rev(\alpha)})$
+where $\rho$ is a certain \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}.
+
+
+
+\section[rsqSchur]{Row-strict quasisymmetric Schur functions}
+
+
+\begin{polydata}{rsqSchur}
+  Name     & Row-strict quasisymmetric Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & MasonRemmel2013 \\
+  Year     & 2013 \\
+  Symbol   & $\rsqSchur_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{row-strict quasisymmetric Schur functions} were first 
+studied by S. Mason and J. Remmel \cite{MasonRemmel2013} in 2013.
+These quasisymmetric functions are indexed by compositions, and refine the Schur functions 
+as $\schurS_\lambda(\xvec) = \sum_{\alpha \sim \lambda'} \rsqSchur_\alpha(\xvec)$.
+
+The relation with the quasisymmetric Schur functions is straightforward;
+we have that $qSchur_\alpha = \omega(\rsqSchur_\alpha)$, where $\omega$
+is a certain \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}.
+
+
+
+A product rule for multiplying a row-strict quasisymmetric Schur function with a 
+regular Schur function, and expanding into row-strict Schur functions,
+is given in \cite[Thm 13]{Ferreira2011b}. 
+See also \cite[Thm. 10, Thm. 11]{MasonNiese2015}.
+
+
+
+
+
+\section[rsyqSchur]{Row-strict Young quasisymmetric Schur functions}
+
+
+\begin{polydata}{rsyqSchur}
+  Name     & Row-strict Young quasisymmetric Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & MasonNiese2015 \\
+  Year     & 2013 \\
+  Symbol   & $\rsyqSchur_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+\defin{Row-strict Young quasisymmetric Schur functions} and their skew versions 
+are introduced in \cite{MasonNiese2015}.
+They can be defined via the relation with Young quasisymmetric Schur functions:
+$\rsyqSchur_\alpha = \omega(\yqSchur_\alpha)$, see \cite[Thm. 12]{MasonNiese2015}.
+
+A 0-Hecke algebra module whose charateristic is given by $\rsyqSchur_\alpha$
+is provided in \url{https://arxiv.org/pdf/2012.12568.pdf}.
+\todo{Fix proper bib}
+
+
+\section[diSchur]{Dual immaculate Schur functions}
+
+\begin{polydata}{diSchur}
+  Name     & Dual immaculate Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & BergBergeronSaliolaSerranoZabrocki2014 \\
+  Year     & 2014 \\
+  Symbol   & $\diSchur_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{dual immaculate Schur functions} (and their skew version), 
+$\{\diSchur_\alpha\}$, were introduced in \cite{BergBergeronSaliolaSerranoZabrocki2014}.
+They constitute a basis for the space of quasisymmetric functions.
+The original definition is that they are dual to the \emph{immaculate Schur functions},
+which are non-commutative.
+
+The definition is as follows:
+\[
+ \diSchur_\alpha = \sum_{T \in IT(\alpha)} \xvec^T
+\]
+where we sum over all \emph{immaculate tableaux} of shape $\alpha$.
+Fillings of the diagram $\alpha$, such that the rows are weakly increasing,
+and the first column is \emph{strictly increasing} with respect to the row indexing.
+The weight $\xvec^T$ is computed in the same manner as for semistandard Young tableaux.
+
+
+We have \cite[Prop. 3.37]{BergBergeronSaliolaSerranoZabrocki2014} that
+\[
+ \diSchur_\alpha = \sum_{\beta \leq_\ell \alpha} L_{\alpha,\beta} \gessel_\beta
+\]
+where $L_{\alpha,\beta}$ are certain non-negative coefficients, and $\leq_\ell$
+denotes lexicographic ordering.
+
+\emph{Note:} The Schur functions are not positive in the dual immaculate basis!
+
+
+\begin{theorem}
+From \cite{BergBergeronSaliolaSerranoZabrocki2014}.
+The number of standard immaculate tableaux of shape $\alpha = (\alpha_1,\dotsc,\alpha_\ell)$,
+with $|\alpha|=n$, is equal to
+\[
+  \frac{ (n-1)! }{ \prod_{k=1}^{\ell-1}(n-\alpha_1-\alpha_2-\dotsb - \alpha_k) \prod_{k=1}^\ell (\alpha_k - 1)! }.
+\]
+\end{theorem}
+Alexandersson 2022: Can one find a q-analog of this and some nice instance of cyclic sieving?
+
+\todo{Product rule?}
+
+
+\section[rsdiSchur]{Row-strict dual immaculate Schur functions}
+
+
+\begin{polydata}{rsdiSchur}
+  Name     & Row-strict dual immaculate Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & NieseSundaramWilligenburgVegaWang2022x \\
+  Year     & 2022 \\
+  Symbol   & $\rsdiSchur_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{row-strict dual immaculate Schur functions}
+$\{\rsdiSchur_\alpha\}$, were introduced in \cite{NieseSundaramWilligenburgVegaWang2022x},
+and are defined in a very similar manner to the \hyperref[diSchur]{dual immaculate Schur functions}.
+They constitute a basis for the space of quasisymmetric functions.
+For an introduction, see \href{https://www.youtube.com/watch?v=6O-AuCLZUlE}{Sheila Sundaram's AlCoVE 2022 video}.
+
+
+The definition is as follows:
+\[
+ \rsdiSchur_\alpha = \sum_{T \in IT(\alpha)} \xvec^T
+\]
+where we sum over all \emph{row-strict immaculate tableaux} of shape $\alpha$.
+These are fillings of the diagram $\alpha$, such that the rows are strictly increasing,
+and the first column is \emph{weakly increasing} with respect to the row indexing.
+
+One can show that the $\rsdiSchur_\alpha$
+are positive in the \hyperref[gessel]{fundamental quasisymmetric basis}.
+
+
+\section[extSchur]{Extended Schur functions}
+
+
+\begin{polydata}{extSchur}
+  Name     & Extended Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & AssafSearles2019 \\
+  Year     & 2019 \\
+  Symbol   & $\extSchur_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{extended Schur functions} were introduced by S. Assaf and D. Searles in \cite{AssafSearles2019}.
+They are obtained by taking the stable limit of \hyperref[lock]{lock polynomials}.
+Alternatively, the extended Schur functions are dual 
+to the \emph{shin polynomials} (see \cite{CampbellFeldmanLightShuldinerXu2014}) 
+which constitute a basis for the ring of non-commutative symmetric functions.
+
+For a connection with 0-Hecke algebra, see \cite{Searles2020}, where these are shown to be characters of 
+certain 0-Hecke modules.

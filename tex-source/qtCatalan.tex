@@ -1,0 +1,37 @@
+
+\metatitle{qt-Catalan numbers}
+
+\metadescription{Definitions and background qt-Catalan numbers, qt-Kostka numbers and related qt-symmetries.}
+
+
+\section[qtCatalan]{Introduction}
+
+For an introduction to the topic of $qt$-Catalan numbers and $qt$-Kostka numbers,
+see J. Haglund's book, \cite{qtCatalanBook} and F. Bergeron \cite{Bergeron2009}.
+
+
+
+Let $DP(n)$ be the set of Dyck paths of size $n$. 
+Then the $qt$-Catalan numbers can then be defined as
+\[
+\catalan_n(q,t) \coloneqq \sum_{P \in DP(n)} q^{\area(P)} t^{\bounce(P)}.
+\]
+These are symmetric in $(q,t)$, but a combinatorial proof of this fact is not known.
+
+There are various other ways to define these polynomials, for example
+\[
+\catalan_n(q,t) = \sum_{P \in DP(n)} q^{\dinv(P)} t^{\area(P)},
+\]
+or via \hyperref[diagonalHarmonics]{diagonal harmonics} as $\langle DH_n(q,t), \elementaryE_{n} \rangle$,
+see \cite[Thm. I.2]{GarsiaHaglund2000}.
+
+
+
+\subsection[qtCatalanGeneralizations]{Generalizations}
+
+In \cite{QuZhang2025x}, a $qt$-Catalan symmetry is proved involving 
+the two statistics $(area,depth)$ as well as $(dinv,ddinv)$.
+They also provide proofs in the $\vec{k}$-Dyck path setting.
+
+
+

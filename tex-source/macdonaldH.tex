@@ -1,0 +1,269 @@
+\metatitle{Modified Macdonald polynomials}
+\metadescription{Modified Macdonald polynomials and related symmetric functions.}
+
+
+\section[macdonaldH]{Modified Macdonald polynomials}
+
+\begin{polydata}{macdonaldH}
+  Name     & Modified Macdonald polynomials \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 5 \\
+  Bib      & Macdonald1987 \\
+  Year     & 1987 \\
+  Symbol   & $\macdonaldH_\lambda(\xvec;q,t)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+\todo{
+http://www.sciencedirect.com/science/article/pii/0012365X94001345
+}
+
+\todo{
+This paper defines an interpolation between J and H, and also a "better" formula for the monomial expansion.
+https://arxiv.org/pdf/1810.12905.pdf
+}
+
+
+
+The modified (or transformed) Macdonald polynomials $\macdonaldH_{\lambda}(\xvec;q,t)$ appear as a combinatorial 
+version of the \hyperref[macdonaldP]{Macdonald $P$ polynomials}.
+The family is indexed by partitions $\lambda$ and they are symmetric in $\xvec$.
+It was proved by M. Haiman in \cite{Haiman2001} that the modified Macdonald polynomials 
+are \hyperref[frobeniusCharacteristic]{bigraded Frobenius characteristics} of certain $\symS_n$-modules
+that appear in diagonal harmonics.
+For details on this story, see \href{https://www.jpswanson.org/notes/n_factorial.pdf}{J. Swanson's notes from the n! conjecture seminar}.
+
+A combinatorial formula for the modified Macdonald polynomials was proved in \cite{HaglundHaimanLoehr2005},
+where a close connection with \hyperref[LLT]{LLT polynomials} is made apparent.
+The canonical reference on modified Macdonald polynomials is the book by Jim Haglund, \cite{qtCatalanBook}.
+It is a major open problem in algebraic combinatorics to give a combinatorial 
+proof (\hyperref[schurPositivity]{by using RSK, dual equivalence or crystals})
+that the $\macdonaldH_{\lambda}(\xvec;q,t)$ are Schur-positive.
+
+
+\subsection[macdonaldHDefinitionViaMacdonaldJ]{Definition}
+
+The \defin{modified Macdonald polynomials} were originally defined via \hyperref[macdonaldJ]{the Macdonald J polynomials},
+as
+\[
+\macdonaldH_{\mu}(\xvec;q,t) = t^{n(\mu)} \macdonaldJ[ X/(1-t^{-1}) ;q,1/t].
+\]
+Note that we use \hyperref[plethysm]{plethystic notation} here.
+
+
+\subsection[macdonaldHUniqueDefinition]{Inner product characterization}
+
+The modified Macdonald polynomials $\{\macdonaldH_{\mu} \}_{\mu \vdash n}$
+is the unique family of symmetric functions with coefficients in $\setQ(q,t)$,
+such that
+\begin{itemize}
+\item $ \macdonaldH_{\mu}[X(1-q);q,t] \in \setQ(q,t)\{ \schurS_\lambda : \lambda \trianglerighteq \mu \} $  
+\item $ \macdonaldH_{\mu}[X(1-t);q,t] \in \setQ(q,t)\{ \schurS_\lambda : \lambda \trianglerighteq \mu' \} $ 
+\item $\langle \macdonaldH_{\mu} , \schurS_\mu \rangle = 1$. 
+\end{itemize}
+
+Alternatively, they are the the unique family of polynomials that fulfills
+\begin{itemize}
+\item $ \langle \macdonaldH_{\mu}[X;q,t], \schurS_\lambda[X/(t-1)] \rangle =0 $ whenever $\lambda \triangleright \mu $,
+\item $ \langle \macdonaldH_{\mu}[X;q,t], \schurS_\lambda[X/(1-q)] \rangle =0 $ whenever $\lambda \triangleleft \mu $,
+\item $\langle \macdonaldH_{\mu} , \schurS_{(n)} \rangle = 1$.
+\end{itemize}
+
+
+
+\subsection[macdonaldHCombinatorialFormula]{Haglund's combinatorial formula}
+
+A combinatorial formula for the modified Macdonald 
+polynomials was obtained in \cite{HaglundHaimanLoehr2005}. 
+It is given by
+\[
+\macdonaldH_{\lambda}(\xvec;q,t) = \sum_{T:\lambda \to \setN} q^{\inv_\lambda(T)} t^{\maj_\lambda(T)} \xvec^T,
+\]
+where $\inv_\lambda(T)$ and $\maj_\lambda(T)$ are certain combinatorial statistics.
+
+I highly recommend reading \href{https://www.emis.de/journals/SLC/wpapers/s54Ahaglund.pdf}{The genesis of the Macdonald polynomial statistic} by Jim Haglund.
+
+\todo{Describe the macdonald statistics.}
+
+
+\begin{example*}[Macdonald polynomials for $|\lambda|=4$.]
+
+The modified Macdonald polynomial $\macdonaldH_{\lambda}(\xvec;q,t)$ 
+have the following Schur expansions:
+
+\begin{array}{llll}
+\toprule
+ \; & \textbf{4} & \textbf{31} & \textbf{22} & \textbf{211} & \textbf{1111} \\
+\midrule
+ \textbf{4} & 1 & t^3+t^2+t & t^4+t^2 & t^5+t^4+t^3 & t^6 \\
+ \textbf{31} & 1 & q+t^2+t & q t+t^2 & q t^2+q t+t^3 & q t^3 \\
+ \textbf{22} & 1 & q t+q+t & q^2+t^2 & q^2 t+q t^2+q t & q^2 t^2 \\
+ \textbf{211} & 1 & q^2+q+t & q^2+q t & q^3+q^2 t+q t & q^3 t \\
+ \textbf{1111} & 1 & q^3+q^2+q & q^4+q^2 & q^5+q^4+q^3 & q^6 \\
+ \bottomrule
+ \end{array}
+ 
+ For example, $\macdonaldH_{31}(\xvec;q,t)$ is given by
+ \[
+ \schurS_{4}(\xvec) + (q+t+t^2) \schurS_{31}(\xvec)+(q t+t^2) \schurS_{22}(\xvec)
+ +(q t+q t^2+t^3) \schurS_{211}(\xvec)+ q t^3 \schurS_{1111}(\xvec)
+ \]
+\end{example*}
+
+% Table[
+%    Coefficient[
+%     ToSchurBasis[MacdonaldHSymmetric[lam, q, t], ss], ss[mu]]
+%    , {lam, IntegerPartitions[4]}, {mu, IntegerPartitions[4]}] // TableForm // TeXForm
+
+
+
+
+\subsection[macdonaldHCombinatorialFormula2]{Alternative combinatorial formulas}
+
+A second combinatorial formula is given by R. Kaliszewski and J. Morse in \cite{KaliszewskiMorse2019}.
+We have
+\[
+\macdonaldH_{\lambda}(\xvec;q,t) = \sum_{T} q^{betrayal(T)} t^{\cocharge(T)} \xvec^T,
+\]
+where the sum is over all tabloids with content $\mu$.
+
+
+A more recent formula is given in \cite{CorteelMandelshtamMasonWilliams2022},
+where certain terms are grouped together:
+\[
+\macdonaldH_{\lambda'}(\xvec;q,t) = \sum_{\sigma \in \mathrm{ST}(\lambda)}
+\xvec^\sigma t^{\inv_\lambda(\sigma)} q^{\maj_\lambda(\sigma)} \mathrm{perm}_t(\sigma,\lambda)
+\]
+where $\mathrm{perm}_t(\sigma,\lambda)$ is a certain $t$-multinomial coefficient,
+and $\mathrm{ST}(\lambda)$ is the set of \emph{sorted tableaux} of shape $\lambda$.
+In some sense, certain monomial terms in the original formula have been
+grouped together in order to produce multinomial coefficients.
+
+
+\subsection[macdonaldHProperties]{Properties}
+
+We have the following specializations:
+\[
+\macdonaldH_{\lambda}(\xvec;0,0) = \completeH_{n}(\xvec), \qquad
+\macdonaldH_{\lambda}(\xvec;1,0) = \prod_i \completeH_{\lambda_i}(\xvec), \qquad
+\macdonaldH_{\lambda}(\xvec;1,1) = (\elementaryE_1(\xvec))^{|\lambda|}, \qquad
+\]
+
+We have the following symmetries:
+\[
+\macdonaldH_{\lambda}(\xvec;q,t) = \macdonaldH_{\lambda'}(\xvec;t,q) 
+= q^{n(\lambda)} t^{n(\lambda')}\omega \macdonaldH_{\lambda}(\xvec;q^{-1},t^{-1})
+\]
+where $n(\lambda) = \sum_i (n-i)\lambda(i)$ when $\lambda$ has size $n$.
+The first identity follows immediately from the fact that the 
+modified Macdonald polynomials is a bigraded Frobenius series with this symmetry.
+However, a bijective proof is not known. 
+Some partial results have been found by M. Gillespie, \cite{Gillespie2016}.
+
+The modified Macdonald polynomials specialize to the \hyperref[hallLittlewoodH]{modified Hall--Littlewood polynomials}
+at $q=0$, and these are in turn closely related to the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials}.
+
+
+
+\subsection[macdonaldHSchurPositivity]{Schur expansion}
+
+M. Haiman defines a family of bigraded $\symS_n$-modules, 
+which has the property that the \hyperref[frobeniusCharacteristic]{Frobenius image}
+of this family gives the modified Macdonald polynomials, see \cite{Haiman2001}.
+It follows that the modified Macdonald polynomials are Schur positive, although no combinatorial formula is known.
+
+
+\begin{problem}[Macdonald, \cite{Macdonald1995}]
+Find pairs of statistics $\maj_\mu(\cdot)$ and $\inv_\mu(\cdot)$ 
+on standard Young tableaux, such that
+\[
+\macdonaldH_{\mu}(\xvec;q,t) = \sum_{T \in \SYT(n)} q^{\inv_\mu(T)} t^{\maj_\mu(T)} \schurS_{sh(T)}(\xvec).
+\]
+
+This would give a combinatorial proof that the \defin{modified Macdonald--Kostka} polynomials $\tilde{K}_{\lambda\mu}(q,t)$ ---
+also called \defin{$qt$-Kostka polynomials} --- are elements in $\setN[q,t]$. 
+These polynomials are defined via the relation
+\[
+\macdonaldH_{\mu}(\xvec;q,t) = \sum_{\lambda} \tilde{K}_{\lambda\mu}(q,t) \schurS_{\lambda}(\xvec).
+\]
+Note that $\tilde{K}_{\lambda\mu}(1,1) = f^\lambda$, the number of standard Young tableaux.
+\end{problem}
+
+
+\subsection[macdonaldHqtKostka]{$qt$-Kostka polynomials}
+
+The following properties can be found in \cite[p.32]{qtCatalanBook}.
+
+We have that the \defin{modified Kostka polynomials} are 
+$\tilde{K}_{\lambda\mu}(q,t) = t^{n(\mu)}K_{\lambda \mu}(q,1/t)$,
+where the $K_{\lambda \mu}$ are the \hyperref[macdonaldJqtKostka]{$qt$-Kostka polynomials}.
+
+Recall that the $qt$-Kostka polynomials $K_{\lambda \mu}(q,t)$ have the following properties:
+\[
+K_{\lambda \mu}(0,t) = K_{\lambda \mu}(t) = \sum_{T \in \SSYT(\lambda,\mu)} t^{\charge(T)}.
+\]
+and thus $K_{\lambda \mu}(0,1) = K_{\lambda \mu}$.
+We also define the \hyperref[kostkaFoulkes]{cocharge} polynomial, 
+\[
+\tilde{K}_{\lambda \mu}(t) = t^{n(\mu)}K_{\lambda \mu}(1/t) \sum_{T \in \SSYT(\lambda,\mu)} t^{\cocharge(T)}.
+\]
+Also, $\tilde{K}_{\lambda\mu}(1,1) = K_{\lambda\mu}(1,1) = f^{\lambda}$, the number of
+standard Young tableaux of shape $\lambda$.
+
+Then there are the following symmetries:
+\begin{align}
+K_{\lambda,\mu}(q,t) &=  t^{n(\mu)} q^{n(\mu')}  K_{\lambda',\mu}(1/q,1/t) \\
+K_{\lambda,\mu}(q,t) &=   K_{\lambda',\mu'}(t,q)\\
+%
+\tilde{K}_{\lambda',\mu}(q,t) &=  t^{n(\mu)} q^{n(\mu')}  \tilde{K}_{\lambda',\mu}(1/q,1/t) \\
+\tilde{K}_{\lambda,\mu}(q,t) &=   \tilde{K}_{\lambda,\mu'}(t,q)\\
+\end{align}
+
+
+
+\subsection[macdonaldHstretching]{Stretching symmetry property}
+
+The following property is stated as a conjecture in \cite{LeeOhRhoades2022x},
+but it was later revealed that this is a known property, following from
+a result by Garsia--Tesler\cite[Thm I.1]{GarsiaTesler1996}.
+
+%
+% To be precise, they showed that the (q,t)-Kostka polynomial
+% K_{lambda,mu}(q,t) can be realized as a certain symmetric
+% function f_lambda(X;q,t) specialized at B_mu(q,t), where B_mu(q,t)
+% is the sum of monomials q^(i-1) t^(j-1) for (i,j)  a box in the diagram mu.
+% Their theorem implies that if we have B_mu(q^a,q^b)=B_lambda(q^a,q^b), then we have H_mu(X;q^a,q^b)=H_lambda(X;q^a,q^b), where H_mu(X;q,t) is the modified Macdonald polynomials.
+
+
+\begin{proposition}
+Let $k$ be a positive integer. Then
+\[
+\macdonaldH_{k \mu}(\xvec;q,q^k) = \macdonaldH_{k \mu'}(\xvec;q,q^k).
+\]
+That is, we have a type of symmetry under conjugation and stretching.
+\end{proposition}
+
+
+
+\subsection[macdonaldHSkew]{General diagrams}
+
+In \cite{Bandlow2007}, J. Bandlow studies more general shapes, in particular skew shapes.
+
+
+\subsection[macdonaldHCumulants]{Macdonald cumulants}
+
+A generalization of the $qt$-Kostka coefficients are defined in \cite{Dolega2019},
+which are related to a certain Schur-positivity problem, 
+generalizing the Schur positivity of the modified Macdonald polynomials.
+
+
+\subsection[macdonaldHNonCommutative]{Non-commutative Macdonald polynomials}
+
+In \cite{BergeronZabrocki2005}, the authors introduce a non-commutative family of symmetric functions
+with properties similar to those of the modified Macdonald polynomials.
+
+\todo{cite preprint properly.}
+There is also an analog in defined in \href{https://www.newton.ac.uk/files/preprints/ni01035.pdf}{this preprint}.
+

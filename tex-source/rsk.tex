@@ -1,0 +1,682 @@
+\metatitle{RSK, the Robinson--Schensted--Knuth correspondence}
+
+\metadescription{Background and properties of the Robinson--Schensted--Knuth correspondence.}
+
+
+
+\section[rsk]{The Robinson--Schensted--Knuth correspondence}
+
+The \defin{Robinson--Schensted--Knuth correspondence} (RSK),
+is a bijection between matrices with non-negative integer entries and pairs of
+semi-standard Young tableaux of the same shape.
+Let $M(\mu,\nu)$ denote the set of matrices with entries in $\setN$,
+row sums are determined by $\mu$ and column sums determined by $\nu$.
+The RSK correspondence provides the following bijections,
+where $\lambda$, $\mu$ are integer partitions of $n$:
+
+\begin{align}
+M(\mu,\nu) & \qquad \rskArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda,\nu) \times \SSYT(\lambda,\mu) \\
+[d]^n & \qquad \rskArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda,d) \times \SYT(\lambda)  \\
+\symS_n  & \qquad\rskArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda) \times \SYT(\lambda) \\
+\{\sigma \in \symS_n : \sigma^2 = e \}  & \qquad \rskArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda).
+\end{align}
+
+In particular, the first bijection proves \hyperref[schurCauchyFormula]{the first Cauchy identity}
+for Schur functions. The second variant of RSK proves the second Cauchy identity.
+
+
+For an excellent overview on the different variants of RSK, see C. Krattenthaler's survey \cite{Krattenthaler2006}.
+We shall cover the same four variants of RSK as in his paper and keep the same numbering.
+See also \cite[App. A.4.3]{Fulton1997} and \cite{Sagan2001} for more resources on RSK.
+
+See the \hyperref[evacuation]{evacuation} section on how RSK interacts with evacuation.
+
+\todo{Add the symmetries in Fulton1997! }
+
+
+
+\subsection[rowInsertion]{Row insertion}
+
+In order to describe RSK, we need the notion of row insertion.
+Given a SSYT $T$ and $k \in \setN$, the \emph{insertion} $T \leftarrow k$ recursively as follows,
+where $T_1$ is the first row of $T$ and $T_{2\sim}$ denotes the SSYT with the first row of $T$
+removed.
+\begin{enumerate}
+\item If $T = \emptyset$, then $T \leftarrow k$ is just the tableau \ytableaushort{k}.
+\item If $k$ is not smaller than the largest entry in $T_1$, 
+then $T  \leftarrow k$ is given by appending $k$ at the end of the first row of $T$.
+\item Otherwise, find the leftmost entry in $T_1$ larger than $k$, and let this be $k'$.
+The insertion $T \leftarrow k$ is then given as the tableau with first row $T_1$,
+except that $k'$ has been replaced by $k$, and the remaining rows are given by
+the insertion $T_{2\sim}  \leftarrow k'$.
+\end{enumerate}
+Given a word $w$, inserting the letters one by one gives the \defin{insertion tableau}, $\ins(w)$.
+This is sometimes denoted $P(w)$.
+
+\begin{example}
+Inserting the entries $w = 34112312$ from left to right 
+gives the following sequence of tableaux, where $\ins(w)$ is the last.
+
+\begin{figure}
+\ytableaushort{3}
+\ytableaushort{34}
+\ytableaushort{14,3}
+\ytableaushort{11,34}
+\ytableaushort{112,34}
+\ytableaushort{1123,34}
+\ytableaushort{1113,24,3}
+\ytableaushort{1112,23,34}
+\end{figure}
+
+\end{example}
+
+\begin{theorem}[Greene's theorem, \cite{Greene1974,Sagan2001}]
+Let $\pi$ be a permutation and let $I_k(\pi)$
+denote the length of the longest sub-word of $\pi$ that can be 
+expressed as a disjoint union of $k$ increasing subsequences of $\pi$.
+Similarly, let $D_k(\pi)$ be the length of the 
+longest subword of $\pi$ that can be expressed as a disjoint union of $k$ 
+decreasing subsequences of $\pi$.
+
+Let $\lambda$ be the shape of $P(\pi)$. Then 
+\[
+I_k(\pi) = \lambda_1+\dotsb + \lambda_k \qquad
+D_k(\pi) = \lambda'_1+\dotsb + \lambda'_k.
+\]
+\end{theorem}
+
+
+\begin{example*}[An application:  Erdős--Szekeres theorem]
+
+The \defin{Erdős--Szekeres theorem}\cite{ErdosSzckeres2009} 
+states that any sequence of distinct real numbers of length $(r-1)(s-1)+1$
+contains a monotonically increasing subsequence of length $r$, 
+or a monotonically decreasing subsequence of length $s$.
+
+Suppose we have a sequence $w$ of such numbers. We apply row insertion on this sequence,
+and obtain a tableau $P$ (with real numbers).
+Note that this tableau cannot be contained in an $(r-1)\times (s-1)$-rectangle,
+so either the first row is longer than $r$, or the first column is longer than $s$.
+
+Application of Greene's theorem finishes the proof.
+\end{example*}
+
+
+
+\subsection[rskOne]{RSK (variant I)}
+
+The RSK correspondence is done in two steps.
+A matrix $A \in M(\lambda,\mu)$ is first turned into a \defin{biword} $W$ of length $n$ as follows. 
+For each entry $A_{ij}$, we have $A_{ij}$ columns in $W$ equal to $\binom{i}{j}$.
+Furthermore, the columns are ordered lexicographically, with respect to the top-most value first.
+
+Given a pair $(P,Q)$ of SSYT of the same shape,
+the insertion $(P,Q) \leftarrow \binom{i}{j} $ is defines as the pair $(P',Q')$,
+where $P' =  P \leftarrow j$ and $Q'$ is obtained from $Q$ by putting $i$
+in the box where the last insertion took place to get $P'$.
+
+Finally, the pair $(P,Q)$ in the correspondence $W \rskArrow (P,Q)$
+is obtained by inserting each column $\binom{i}{j}$ from left to right in $W$.
+One can prove that $(P,Q)$ is indeed a pair of semi-standard Young tableaux,
+provided that $W$ correspond to some matrix $A$.
+We refer to $P = \ins(W)$ as the \defin{insertion tableau} 
+and $Q=\rec(W)$ as the \defin{recording tableau}.
+
+\begin{example}
+The word
+\begin{equation*}
+W=
+\begin{pmatrix}
+1& 1& 1& 2& 2& 3& 3& 4 \\
+1& 3& 4& 1& 2& 1& 3& 2
+\end{pmatrix}
+\end{equation*}
+% BiwordRSK[{1, 1, 1, 2, 2, 3, 3, 4}, {1, 3, 4, 1, 2, 1, 3, 2}] 
+is mapped to the pair $(P,Q)$
+
+\begin{figure}
+\ytableaushort{1112,23,34}\ytableaushort{1113,22,34}
+\end{figure}
+
+\end{example}
+
+
+\begin{theorem}[Greene's theorem for words, \cite{Greene1974,Sagan2001}]
+Let $W$ be a biword with lexicographically sorted columns.
+We use $I_k(W)$ and $D_k(W)$ to denote $k$-weakly increasing
+and $k$-strictly decreasing subwords of the bottom row of $W$.
+
+Let $\lambda$ be the shape of $\ins(W)$. Then 
+\[
+I_k(W) = \lambda_1+\dotsb + \lambda_k \qquad
+D_k(W) = \lambda'_1+\dotsb + \lambda'_k.
+\]
+\end{theorem}
+
+
+\subsection[rskDual]{Dual RSK (variant II)}
+
+
+There is a dual notion of row insertion, called \defin{column insertion}, 
+traditionally indicated with a right-pointing arrow.
+We now insert into dual SSYT. 
+A \defin{dual SSYT} is a filling that is the transpose of an SSYT.
+
+Given a \emph{dual SSYT} $T$ and $k \in \setN$, the \emph{dual insertion} $k \to T $ 
+is defined recursively as follows where $T_1$ is the first 
+row of $T$ and $T_{2\sim}$ denotes the dual SSYT with the first row of $T$
+removed.
+\begin{enumerate}
+\item If $T = \emptyset$, then $k \to T$ is just the tableau \ytableaushort{k}.
+\item If $k$ is \emph{greater} than the largest entry in $T_1$, 
+then $k \to T$ is given by appending $k$ at the end of the first row of $T$.
+\item Otherwise, find the leftmost entry in $T_1$ \emph{larger than or equal to} $k$, 
+and let this be $k'$.
+The insertion $k \to T$ is then given as the tableau with first row $T_1$,
+except that $k'$ has been replaced by $k$, and the remaining rows are given by
+the insertion $k' \to T_{2\sim}$.
+\end{enumerate}
+This series of operations correspond to inserting boxes in the \emph{columns} of $T^t$,
+hence the name.
+
+\todo{Should we do it right to left instead?}
+
+\begin{example}
+Dual-inserting the entries $w=34112312$ from left to right 
+gives the following sequence of tableaux, where $P$ is the last.
+
+\begin{figure}
+\ytableaushort{3}
+\ytableaushort{34}
+\ytableaushort{14,3}
+\ytableaushort{14,1,3}
+\ytableaushort{12,14,3}
+\ytableaushort{123,14,4}
+\ytableaushort{123,14,1,3}
+\ytableaushort{123,12,14,3}
+\end{figure}
+
+\end{example}
+
+Dual RSK is defined on biwords such that there are no duplicate columns.
+We denote the dual RSK map as $W \rskDualArrow (P,Q)$,
+and we obtain a pair of tableaux such that $P$ is dual semistandard and $Q$ is semistandard.
+Let $B(\mu,\nu)$ denote the set of \emph{binary} matrices with given row- and column-sums.
+Dual RSK provides the following bijections:
+
+\begin{align}
+B(\mu,\nu) & \qquad \rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda',\nu) \times \SSYT(\lambda,\mu) \\
+[d]^n & \qquad \rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda',d) \times \SYT(\lambda) \\ 
+\symS_n  & \qquad\rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda') \times \SYT(\lambda) \\
+\{\sigma \in \symS_n : \sigma^2 = e \}  & \qquad \rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda).
+\end{align}
+
+\begin{example*}[Dual RSK biword insertion]
+The matrix and corresponding word
+\begin{equation*}
+A = \begin{pmatrix}
+1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 0 \\
+1 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0
+\end{pmatrix}
+\qquad
+W=
+\begin{pmatrix}
+1& 1& 1& 2& 2& 3& 3& 4 \\
+1& 3& 4& 1& 2& 1& 3& 2
+\end{pmatrix}
+\end{equation*}
+% BiwordRSKDual[{1, 1, 1, 2, 2, 3, 3, 4}, {1, 3, 4, 1, 2, 1, 3, 2}] 
+is mapped to the pair $(P,Q)$
+
+\begin{figure}
+\ytableaushort{123,124,13}\ytableaushort{111,223,34}
+\end{figure}
+\end{example*}
+
+
+\begin{proposition}[RSK vs. dual RSK]
+Let $\pi \in \symS_n$.
+Then \cite[Thm. 4.1.1]{Leeuwen1996} states that the following are equivalent:
+\begin{itemize}
+\item $\pi \rskArrow (P,Q)$
+\item $n+1-\pi \rskDualArrow (\evac(P^t),Q^t)$
+\item $\rev(\pi) \rskDualArrow (P^t,\evac(Q^t))$
+\item $\revCompl(\pi) \rskArrow (\evac(P^t),\evac(Q^t))$
+\item $\revCompl(\pi) \rskDualArrow (\evac(P),\evac(Q))$
+\end{itemize}
+
+The following extension is proved in \cite[Prop. 2.3.14]{Butler1994}.
+Let $w \in [d]^n$ be a word. We have that
+\[
+w \rskArrow P \iff \rev(w) \rskDualArrow P^t.
+\]
+\end{proposition}
+This property generalizes to biwords, see \hyperref[RSKvsDualRSK]{this section}.
+
+
+
+\subsection[rskBurge]{RSK (variant III)}
+
+
+\todo{See also 
+\href{https://www.combinatorics.org/ojs/index.php/eljc/article/view/v12i1r10/pdf}{Spin-preserving Knuth correspondences for ribbon tableaux}
+\href{https://core.ac.uk/download/pdf/82527725.pdf}{RSK vs Burge correspondence}
+}
+
+In the usual RSK we require that the biword $W$ is sorted in a 
+lexicographical fashion. Suppose instead the columns $\binom{i}{j}$ are sorted first 
+on $i$ and in case of equality, sort \emph{decreasingly} with respect to $j$.
+Furthermore, we impose the same condition as in dual RSK that two columns may not be identical.
+We call such biwords \defin{Burge words} as this ordering was studied in Burge insertion.
+
+Each binary matrix $B$ give rise to a Burge word by recording the row and column coordinates of the ones.
+That is, if  $B_{ij}=1$ then $\binom{i}{j}$ appear as a column in the corresponding biword.
+For example,
+\[
+\begin{pmatrix}
+1 & 0 & 0 & 1 \\
+1 & 1 & 1 & 0 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
+\qquad 
+\longleftrightarrow
+\qquad 
+\begin{pmatrix}
+1 & 1 & 2 & 2 & 2 & 3 \\
+4 & 1 & 3 & 2 & 1 & 3
+\end{pmatrix}
+\]
+
+In this setting, we write $W \rskbArrow (P,Q)$ if the biword $W$ is first sorted in the Burge 
+fashion and the entries are inserted using row insertion.
+
+For this map, we have that $W \rskbArrow (P,Q)$ where $P$ and $Q^T$ 
+are semistandard tableaux of the same shape
+and we get a second set of bijections. 
+We let $B(\mu,\nu)$ denote the 
+set of binary matrices with row sums $\mu$ and column sums $\nu$.
+
+\begin{align}
+B(\mu,\nu) & \qquad \rskbArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda,\nu) \times \SSYT(\lambda',\mu) \\
+[n]^n & \qquad \rskbArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda) \times \SSYT(\lambda') \\
+\symS_n  & \qquad \rskbArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda) \times \SYT(\lambda') 
+\end{align}
+
+
+\begin{example*}[Burge biword insertion]
+The matrix and corresponding word
+\begin{equation*}
+A = \begin{pmatrix}
+1 & 0 & 1 & 1 \\
+1 & 0 & 1 & 0 \\
+1 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0
+\end{pmatrix}
+\qquad
+W=
+\begin{pmatrix}
+1& 1& 1& 2& 2& 3& 3& 4 \\
+4& 3& 1& 3& 1& 2& 1& 2
+\end{pmatrix}
+\end{equation*}
+is mapped to the pair $(P,Q)$ below.
+
+\begin{figure}
+\ytableaushort{1112,23,3,4}\ytableaushort{1234,12,1,3}
+\end{figure}
+\end{example*}
+
+
+\begin{proposition}[See \cite{Krattenthaler2006} and \cite[p. 200]{Fulton1997}]
+Let $B$ be a binary matrix.
+Then 
+\[
+B \rskbArrow (P,Q) \iff B^T \rskDualArrow (Q,P).
+\]
+Using biwords, this can be phrased as
+\[
+\binom{w_1}{w_2} \rskbArrow (P,Q) \iff \binom{w_2}{w_1} \rskDualArrow (Q,P).
+\]
+\end{proposition}
+
+
+
+\subsection[knuthRelations]{Knuth relations}
+
+Let $A$ be an alphabet. The \defin{plactic monoid} is the quotient $A^*/\equiv$,
+where $\equiv$ is the equivalence class generated by the \defin{Knuth relations}
+
+\begin{align*}
+ xzy \equiv zxy &\quad (x\leq y \lt z) \\
+ yxz \equiv yzx &\quad (x\lt y \leq z).
+\end{align*}
+
+Two words $w$ and $w'$ are \defin{Knuth-equivalent}
+if and only if they have the same insertion tableau, $T$.
+Moreover, the reading word of $T$ is also Knuth-equivalent to $w$,
+and it is the unique word in the equivalence class which is the 
+reading word of a semistandard tableau,
+see \cite[p.22]{Fulton1997} or \cite[Cor. 2.3.21]{Butler1994}.
+
+
+\subsection[knuthRelationsDual]{Dual Knuth relations}
+
+
+Two words $w$ and $w'$ are \defin{dual Knuth-equivalent}
+if and only if they have the same \defin{recording tableau}.
+
+An \defin{elementary dual Knuth transformation} on a permutation
+on a permutation $\sigma_1,\dotsc,\sigma_n$
+interchanges $\sigma_i =k$ and $\sigma_j =k+1$
+if and only if $k-1$ or $k+2$ occur somewhere between.
+
+For example, $\underline{5}34\underline{6}7182$ and $\underline{6}34\underline{5}7182$
+are equivalent, since $4$ appear between them.
+
+Two words are dual Knuth equivalent if and only if one can be transformed to the other 
+via elementary dual Knuth transformations, see \cite[p.200]{Fulton1997}.
+
+
+
+\section[rsk-properties]{Properties of RSK}
+
+Here is an overview of the properties of RSK.
+Note that RSK is closely connected to \hyperref[chargeProperties]{charge}.
+
+\begin{itemize}
+
+\item For $A \in M(\mu,\nu)$,
+\[
+A \quad \rskArrow \quad (P,Q) \qquad  \iff  \qquad A^{T} \quad \rskArrow \quad (Q,P).
+\]
+
+\item 
+For a permutation $\pi \in \symS_n$, the following statements are equivalent, see 
+\cite[A.1.2.11]{StanleyEC2}.
+
+\begin{align}
+\pi \quad &\rskArrow \quad (P,Q) \\
+\pi^{-1} \quad &\rskArrow \quad (Q,P) \\
+\rev(\pi) \quad &\rskArrow \quad (P^t, \evac(Q)^t)
+\end{align}
+
+For dual RSK, we have the same properties:
+\begin{align}
+\pi \quad &\rskDualArrow \quad (P,Q) \\
+\pi^{-1} \quad &\rskDualArrow \quad (Q,P) \\
+\rev(\pi) \quad &\rskDualArrow \quad (P^t, \evac(Q)^t)
+\end{align}
+
+
+\item For words, $w \equiv w'$ if and only if $\ins(w)=\ins(w')$.
+
+\item If $w \equiv w'$, then $\charge(w)=\charge(w')$.
+
+\item We have that
+\[
+\sum_{\sigma \in \symS_n} t^{\des(\sigma)} = \sum_{\lambda}
+f^{\lambda} \sum_{Q\in\SYT(\lambda)} t^{\des(T)},
+\]
+since RSK maps descents on permutations to descents in tableaux.
+
+
+\item 
+
+If $\pi \rskArrow (P,Q)$ then $\sign(\pi) = \sign(P)\sign(Q)(-1)^e$,
+where $\sign(T)$ is defined as $(-1)^{\inv(\rw(T))}$ and $e$ is the total length
+of the even-indexed rows in $P$, see \cite{Reifegerste2004}.
+\end{itemize}
+
+
+
+\subsection[rsk-standardization]{RSK and standardization}
+
+RSK commutes with standardization, so if $W\rskArrow (P,Q)$
+then $W'=\std(W)$ is mapped to $(\std(P),\std(Q))$.
+
+\begin{example*}
+We have that
+\[
+W=\begin{pmatrix}
+1& 1& 1& 2& 2& 3 \\
+1& 2& 2& 1& 1& 2
+\end{pmatrix}
+\]
+is mapped to the pair
+\begin{figure}
+\begin{ytableau}
+1 & 1 & 1 & 2 \\
+2 & 2
+\end{ytableau}
+\begin{ytableau}
+1 & 1 & 1 & 3 \\
+2 & 2
+\end{ytableau}
+\end{figure}
+
+and the standardization of the word 
+\[
+W'=\begin{pmatrix}
+1& 2& 3& 4& 5& 6 \\
+1& 4& 5& 2& 3& 6
+\end{pmatrix}
+\]
+is mapped to the following pair of standard Young tableaux.
+\begin{figure}
+\begin{ytableau}
+1 & 2 & 3 & 6 \\
+4 & 5
+\end{ytableau}
+\begin{ytableau}
+1 & 2 & 3 & 6 \\
+4 & 5
+\end{ytableau}
+\end{figure}
+
+\end{example*}
+
+\begin{lemma}
+We have that for $w \in [d]^n$,
+\[
+\rev(w) \rskDualArrow P \implies \std(w) \rskArrow \std(P^t),
+\]
+and 
+\[
+(\rev \circ w) \rskDualArrow P
+\implies
+(\rev \circ \std \circ w) \rskDualArrow \std(P^t)^t.
+\]
+\end{lemma}
+\begin{proof*}
+From \cite[Prop. 2.3.14]{Butler1994} we have that 
+\[
+w \rskArrow P \iff \rev(w) \rskDualArrow P^t.
+\]
+This together with the fact that usual RSK commutes 
+with standardization gives the first statement.
+It is then easy to derive the second statement as well.
+\end{proof*}
+
+
+\section[skewRSK]{Skew RSK}
+
+B. Sagan and R. Stanley consider a skew extension of RSK 
+\url{http://www-math.mit.edu/~rstan/pubs/pubfiles/76.pdf}.
+
+Also, I recommend the FPSAC2020 talk, \url{https://www.youtube.com/watch?v=SeFLyM3zDV0}
+on injections (seen as generalizations of permutations).
+
+
+
+\section[RSKstatistics]{Statistical properties of RSK}
+
+See \url{https://arxiv.org/pdf/2005.03147.pdf}
+and \url{https://arxiv.org/pdf/2005.14397.pdf}
+
+
+\section[patternsAndRSK]{RSK and pattern avoidance}
+
+See this preprint, \url{https://arxiv.org/pdf/1907.09451.pdf}
+on how RSK can be applied to solve problems regarding pattern avoidance in permutations.
+
+\section[rimHookRSK]{Rimhook RSK}
+
+In \cite[Thm. 3]{StantonWhite1985}, the authors define a bijection,
+\[
+\begin{pmatrix}
+H(1)& H(2)& \dotsc & H(\ell) \\
+H_1& H_2& \dotsc & H_\ell \\
+\end{pmatrix}
+\rskArrow_{d}
+(P,Q)
+\]
+where $H(1), H(2),\dotsc, H(\ell)$ is a sequence of hook shapes of size $d$,
+filled with $1,2,\dotsc,\ell$ and $H_1, H_2, \dotsc, H_\ell$
+is the same sequence of hook shapes, but the values are permuted.
+The output is a pair $(P,Q)$ of $d$-rim-hook tableaux of the same shape.
+The map $\rskArrow_{d}$ can be decomposed into a $d$-tuple of usual RSK-maps.
+
+
+As a corollary, they have that $d$-hook tableaux of shape $\lambda$ are in 
+bijection with $d$-tuples of standard Young tableaux 
+(with different entries!) whose shapes are given by the $d$-quotient of $\lambda$.
+
+
+\section[hillmanGrassl]{Hillman--Grassl correspondence}
+
+A $\lambda$-array is a filling of the Young diagram of shape $\lambda$
+with non-negative integers. There are no other conditions.
+A reverse plane partition of shape $\lambda$ is a $\lambda$-array
+with weakly increasing rows and columns.
+
+The \defin{Hillman--Grassl correspondence} is a bijection from the set of $\lambda$-arrays
+to the set of reverse plane partitions of shape $\lambda$.
+
+See 
+\url{http://sporadic.stanford.edu/reference/combinat/sage/combinat/tableau.html#sage.combinat.tableau.Tableau.hillman_grassl}
+for definition.
+
+
+\subsection[sulzgruberInsertion]{The Pak--Sulzgruber correspondence}
+
+A different bijection is defined by I. Pak \cite{Pak2001}, from reverse plane partitions to $\lambda$-arrays.
+The inverse of this map is called the Sulzgruber correspondence.
+
+
+\todo{ Add also Sulzgruber insertion https://www.combinatorics.org/ojs/index.php/eljc/article/view/v26i3p25/7885
+https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2017/65%20Sulzgruber.pdf
+}
+
+
+
+
+
+\section[signedPermutationsRSK]{Signed permutations and RSK}
+
+\todo{Insertion of type B signed permutations: https://arxiv.org/pdf/math/0308265.pdf}
+
+See \url{https://arxiv.org/pdf/math/0308265.pdf}
+
+
+\section[bereleRSK]{Berele insertion for the symplectic case}
+
+
+In \cite{Berele1986}, a version of Schensted insertion is described, which proves the identity
+\[
+(a_1+ a_1^{-1} + \dotsb + a_n + a^{-1}_{n})^m = \sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n) 
+\]
+where $\schurSp_\lambda(a_1,\dotsc,a_n)$ is a \hyperref[schurSymplectic]{symplectic Schur function}
+and $Q^\lambda_m(n)$ is the number of oscillating sequences 
+of diagrams $\emptyset = \lambda^0,\lambda^1,\dotsc,\lambda^n = \lambda$ with length at most $n$.
+
+
+\url{https://arxiv.org/pdf/1705.05454.pdf}
+
+
+See also \url{http://fpsac2019.fmf.uni-lj.si/resources/Proceedings/67.pdf}
+for $SO(2n+1)$.
+
+
+\section[mulitSetRSK]{Multiset RSK}
+
+
+See  \url{https://arxiv.org/pdf/1905.02071.pdf},
+\url{https://arxiv.org/abs/math/0601514},
+\url{https://arxiv.org/pdf/0705.2915.pdf},
+and \url{https://www.macalester.edu/~halverson/papers/rsk-partition.pdf}
+
+\todo{Add info on Multiset RSK}
+
+\todo{Type B RSK? Terada, JOURNAL OF COMBINATORIAL THEORY, Series A 63, 90-109 (1993)}
+
+\todo{RSK on set partitions: https://www.macalester.edu/~halverson/papers/rsk-partition.pdf
+See  also \url{https://arxiv.org/pdf/1905.02071.pdf}
+}
+
+\todo{Add https://math.mit.edu/research/undergraduate/urop-plus/documents/Rowan.pdf
+}
+
+\todo{K-theoretic JDT:
+\url{https://arxiv.org/pdf/0705.2915.pdf}
+Hecke insertion (This paper is good!) \url{https://arxiv.org/abs/math/0601514}
+}
+
+\todo{Super Multiset RSK: https://arxiv.org/pdf/2308.07238.pdf}
+
+
+\section[probabilisticRSK]{Probabilistic RSK}
+
+Frieden and Schreier-Aigner \cite{FriedenSchreierAigner2021} introduced a $qt$-deformation of the Robinson--Schensted correspondence.
+The output consists of several tableaux (with some probabilities), and this proves a (squarefree)
+version of the Cauchy identity for \hyperref[macdonaldP]{Macdonald polynomials}.
+In a more recent paper, they define a $qt$-version of RSK from where one can prove the dual Cauchy identity for 
+\hyperref[macdonaldP]{Macdonald polynomials}, see \cite{FriedenSchreierAigner2024x}.
+
+
+\section[geometricRSK]{Geometric RSK}
+
+There is a geometric lift of RSK, where the classical RSK is given by the tropicalization of this lift.
+The Whittaker functions then take the place of Schur functions.
+See \url{https://maths.ucd.ie/~noconnell/pubs/cosz.pdf}
+
+
+For a different geometrical aspect, see \cite{GillespieReimerBerg2023}
+where Schubert-geometric type questions (points on a curve) are considered.
+
+
+\section[nonsymmetricRSK]{Key polynomials and RSK}
+
+
+\todo{Nonsymmetric: (keys and atoms) http://www.mat.uc.pt/~oazenhas/final--azemami_ejc_november_17_2014.pdf}
+
+
+\todo{Supersymmetric Schur polynomials and RSK https://arxiv.org/pdf/1910.13710.pdf}
+
+\todo{More RSK here: https://arxiv.org/pdf/1410.7683.pdf}
+
+
+
+\section[otherRSK]{Other types of RSK}
+
+\begin{itemize}
+\item 
+Strictly increasing and decreasing sequences in subintervals of words and a conjecture of Guo and Poznanović, \cite{BloomSaracino2022x}.
+
+\item There is a type of RSK involving vacillating tableaux,
+\[
+  B(2k) = \sum_{\lambda} m^{\lambda}_k \cdot m^{\lambda}_k
+\]
+where $m^{\lambda}_k$ is the number of vacillating tableaux of shape $\lambda$, of length $k$ and $B(2k)$
+is a Bell number (number of set partitions of $[2k]$), see \cite{HalversonLewandowski2005}.
+For a generalization of this, see \cite{BerikkyzyHarrisPunYanZhao2022x}.
+
+One can ask if this can be interpreted for run-sorted permutations,
+see \cite{AlexanderssonNabawanda2021}. The number of run-sorted permutations of size $2k+1$ is given by $B(2k)$---
+can one do some type of RSK on such permutations to obtain a pair of vacillating tableaux?
+
+
+RSK has a close connection with promotion and the shadow construction by Viennot, see \cite{PfannererSwanson2025x}.
+
+\end{itemize}

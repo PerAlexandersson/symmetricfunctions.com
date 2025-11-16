@@ -1,0 +1,116 @@
+\metatitle{Research stories}
+\metadescription{Research stories}
+
+
+\section[research-story-table]{Big table of data}
+
+Boris Shapiro sent me an email with the following table of data --- it was actually a few lines longer.
+He of course wanted a formula for the entries.
+I first went to the \href{https://oeis.org/}{OEIS} but no luck there. 
+Boris had already tried this resource as well but one shall always do a double check.
+
+\begin{array}{cccccc}
+ 1 & 1 \\
+ 1 & 3 \\
+ 1 & 4 & 3  \\
+ 1 & 5 & 10  \\
+ 1 & 6 & 16 & 9  \\
+ 1 & 7 & 23 & 33  \\
+ 1 & 8 & 31 & 61 & 27 \\
+ 1 & 9 & 40 & 98 & 108 \\
+ 1 & 10 & 50 & 145 & 225 \\
+ 1 & 11 & 61 & 203 & 397 & 351
+\end{array}
+
+So the rows add up to powers of two, and Boris suggested 
+that this is might be related to the celebrated Pascals triangle.
+I tried to subtract various versions of Pascals triangle from the entries, but not much luck.
+
+Boris had already noted that the columns seemed to be (eventually) polynomial in the row-index,
+so I started to write these polynomials in different polynomial bases.
+There is a notion of binomial transforms of sequences, so I tried this on the columns.
+This did not lead anywhere either and I decided to give up.
+
+
+About three weeks later, I met with Boris and we discussed different research topics.
+I got some more context on the table above --- 
+there is a more general story, and every family of graphs give rise to a table as above.
+It is natural to then think of the rows as a refinement of graph orientations,
+so I went through my favorite list of statistics 
+on graph orientations (which at the moment is very short).
+
+No luck, but I did the next natural thing and encoded the rows as $q$-analogs (of say binary words),
+and then check for statistics in FindStat. No hit there either.
+
+\begin{array}{l}
+ q+1 \\
+ 3 q+1 \\
+ 3 q^2+4 q+1 \\
+ 10 q^2+5 q+1 \\
+ 9 q^3+16 q^2+6 q+1 \\
+ 33 q^3+23 q^2+7 q+1 \\
+ 27 q^4+61 q^3+31 q^2+8 q+1 \\
+ 108 q^4+98 q^3+40 q^2+9 q+1 \\
+ 81 q^5+225 q^4+145 q^3+50 q^2+10 q+1 \\
+ 351 q^5+397 q^4+203 q^3+61 q^2+11 q+1 \\
+\end{array}
+
+Boris and I had for some reason talked about orthogonal polynomials and linear recursions,
+while discussing a different project. I figured I give this test a shot.
+
+\subsection[research-story-linrec]{Method}
+
+Given a sequence $p_n(q)$ as above, 
+there is a quick way to see if it is likely to satisfy a linear recursion.
+We simply compute a Toeplitz determinant. 
+I first computed the following simple $3\times 3$-determinant
+\[
+\begin{vmatrix}
+p_k(q) & p_{k+1}(q) & p_{k+2}(q) \\
+p_{k-1}(q) & p_{k}(q) & p_{k+1}(q) \\
+p_{k-2}(q) & p_{k-1}(q) & p_{k}(q)
+\end{vmatrix}
+\]
+for $k=3,4,\dotsc,11$ and some surprisingly simple expressions. 
+Increasing the dimension,
+\[
+\begin{vmatrix}
+p_k(q) & p_{k+1}(q) & p_{k+2}(q) & p_{k+3}(q) \\
+p_{k-1}(q) & p_{k}(q) & p_{k+1}(q) & p_{k+2}(q)\\
+p_{k-2}(q) & p_{k-1}(q) & p_{k}(q) & p_{k+1}(q) \\
+p_{k-3}(q) & p_{k-2}(q) & p_{k-1}(q) & p_{k}(q)
+\end{vmatrix}
+\]
+gave $0$ for every value of $k$. Bingo! 
+
+This means that the sequence of polynomials $\{p_k(q)\}_{k=1}^{\infty}$
+should satisfy a linear recursion involving $4$ terms (so they do not form an orthogonal family).
+In Mathematica, it looked something like this:
+
+\begin{lstlisting}
+eqns = Table[
+    pp[n] - (AA pp[n - 1] + BB pp[n - 2] + CC pp[n - 3]) == 0
+    , {n, 4, 12}] /. pp -> p;
+Solve[And @@ eqns, {AA, BB, CC}]
+
+{{AA -> 1, BB -> 3 q, CC -> -2 q}}
+\end{lstlisting}
+
+
+Hence, the initial conditions $p_0(q) = 1+q$, $p_1(q) = 1+3q$, $p_2(q) = 1 + 4 q + 3 q^2$
+together with the recursion
+\[
+p_n(q) = p_{n-1} + 3q \cdot  p_{n-1} - 2q \cdot p_{n-2}
+\]
+should give the sequence of polynomials. This checks out!
+
+Finally, standard generating function trickery gives that
+\[
+\sum_{k=0}^\infty p_{k}(q) t^k = 
+\frac{(1 + q) + 2 q t + (-2 q) t^2}{
+ 1 - t - 3 q t^2 + 2 q t^3}.
+\]
+
+From this, we can (with computer), see that the roots of $p_{k}(q)=0$ as $k \to \infty$
+accumulate on a curve between the two points $\frac{1}{24}(-1,\pm 5 \sqrt{5/3})$.
+

@@ -1,0 +1,85 @@
+\documentclass[tikz, border=10pt]{standalone}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,latexsym,mathtools,mathdots,tikz}
+\usetikzlibrary{arrows,matrix,decorations.pathmorphing,decorations.markings}
+
+
+\newcommand{\LLT}{\mathrm{G}}
+
+\newcommand{\macdonaldH}{\tilde{H}}
+\newcommand{\macdonaldE}{E}
+\newcommand{\macdonaldP}{P}
+\newcommand{\macdonaldJ}{J}
+
+
+\newcommand{\xvec}{\mathbf{x}}
+\newcommand{\yvec}{\mathbf{y}}
+\newcommand{\nuvec}{{\boldsymbol\nu}}
+
+\begin{document}
+
+
+\begin{tikzpicture}[xscale=6,yscale=2.3]
+\tikzset{
+    vertex/.style = {
+        draw,
+	align=left,
+	fill            = blue!50!white!30,
+        outer sep = 2pt,
+        inner sep = 3pt,
+	minimum height = 1cm
+    },
+    spaceSym/.style={fill= red!50!yellow!40},
+    spaceNSym/.style={fill= red!20!yellow!20},
+    spaceQSym/.style={fill= yellow!30},
+    spaceLSym/.style={fill= red!30!blue!30},
+    spaceShiftedSym/.style={fill= red!50!yellow!30},
+    spaceAll/.style={fill= blue!50!white!20},
+    pluses/.style={
+	dashed, decoration={markings,
+	mark=between positions 1.5pt and 1 step 6pt with {
+	\draw[-] (0,1.5pt) -- (0,-1.5pt);
+       }
+    },
+    postaction=decorate,
+  }
+  ,
+   ExpandsPositiveIn/.style = {thick,->,black},
+   ExpandsSignedIn/.style = {dashed,->,black},
+   SpecializesTo/.style = {thick,-{>},black},
+   SupersetOf/.style = {double equal sign distance,-implies},
+   StableLimit/.style = {thick,-{>},gray,dotted},
+%  Misc/.style = {thick,-{>},blue,dotted},
+   KAnalogueOf/.style = {dashed,<-{<}, black},
+   Misc/.style =  {<-{>},line join=round,decorate, decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt},thick}
+}
+
+
+ \input{../tikzdataPositivity.txt}
+% \input{../tikzdataRelations.txt}
+
+
+% \coordinate (Aspec) at (-1,8);
+% \coordinate (Bspec) at (0,8);
+% \draw[SpecializesTo] (Aspec) to node[above] {\text{specializes to}} (Bspec);
+% 
+% 
+% \coordinate (Apos) at (-1,7.5);
+% \coordinate (Bpos) at (0,7.5);
+% \draw[ExpandsPositiveIn] (Apos) to node[above] {\text{expands positively}} (Bpos);
+% 
+% \coordinate (Asup) at (-1,7);
+% \coordinate (Bsup) at (0,7);
+% \draw[SupersetOf] (Asup) to node[above] {\text{superset of}} (Bsup);
+% 
+% \coordinate (Asubst) at (-1,6.5);
+% \coordinate (Bsubst) at (0,6.5);
+% \draw[Misc] (Asubst) to node[above] {$\substack{\text{Misc} /\\ \text{plethysm}}$} (Bsubst);
+% 
+% \coordinate (Ak) at (-1,6);
+% \coordinate (Bk) at (0,6);
+% \draw[KAnalogueOf] (Ak) to node[above] {\text{$k$-theoretical analogue}} (Bk);
+
+
+
+\end{tikzpicture}
+\end{document}

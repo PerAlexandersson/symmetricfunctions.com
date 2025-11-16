@@ -1,0 +1,85 @@
+\section[schurSymplecticQ]{Symplectic $Q$ functions}
+
+
+\begin{polydata}{schurSymplecticQ}
+  Name   & Symplectic $Q$ functions \\
+  Space    &  Other   \\
+  Basis    &  False   \\
+  Rating   &  1      \\
+  Bib      &  Okada2020x\\
+  Year     &  2020 \\
+  Keywords & symplectic \\
+  Symbol   & $\schurSpQ_{\lambda/\mu}(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+The \defin{symplectic $Q$ functions} are the type $C$ version of the
+\hyperref[schurQ]{Schur's Q} functions. 
+
+The symplectic $Q$ functions $\schurSpQ_{\lambda}(\xvec)$ are indexed by strict partitions,
+and may be defined as the $t=-1$ specialization of the symplectic Hall--Littlewood polynomial,
+multiplied by a power of 2.
+
+Let $W_n$ be the $\symS_n \ltimes (\setZ/2\setZ)^n$,
+acting on variables by permuting indices and inverting.
+Let $\lambda$ be a partition of length $\leq n$.
+The \defin{symplectic Hall--Littlewood polynomial} is defined as
+\begin{equation*}
+\hallLittlewoodPsp_\lambda(\xvec;t) \coloneqq 
+\frac{1}{v_\lambda^{(n)}(t)} \sum_{w \in W_n} w\left(
+\prod_{i=1}^n x_i^{\lambda_i} 
+\prod_{i=1^n} \frac{1-tx_i^{-2}}{1-x_i^{-2}}
+\prod_{1 \leq i\lt j \leq n}
+\frac{1-tx_i^{-1}x_j}{1-x_i^{-1}x_j}
+\frac{1-tx_i^{-1}x^{-1}_j}{1-x_i^{-1}x^{-1}_j}
+\right).
+\end{equation*}
+The normalizing constant $v_\lambda^{(n)}(t)$ is defined as
+\[
+v_\lambda^{(n)}(t) \coloneqq 
+\prod_{j=1}^{m_0} 
+\frac{1-t^{2j}}{1-t} 
+\cdot 
+\prod_{k \geq 1} \prod_{j=1}^m 
+\frac{1-t^{j}}{1-t} 
+\]
+where $m_k \coloneqq |\{i \in [n] : \lambda_i = k \}|$.
+
+Finally, we set
+$\schurSpQ_{\lambda}(\xvec) \coloneqq 2^{\length(\lambda)}\hallLittlewoodPsp_\lambda(\xvec;-1)$.
+
+
+Several properties for symplectic $Q$ functions are proved in \cite{Okada2020x}.
+Moreover, the author also introduces the \defin{skew factorial universal symplectic $Q$ functions}.
+
+
+\subsection[schurSymplecticQTab]{Tableau formula}
+
+In \cite{Okada2020x}, S. Okada proves a conjecture by King--Hamel \cite[Conj. 3.1]{KingHamel2007},
+which presents $\schurSpQ_{\lambda}(\xvec)$ as a sum over shifted tableaux.
+
+
+\subsection[schurSymplecticQPieri]{Pieri rule}
+
+A Pieri rule for computing the coefficients in the expansion
+\[
+\schurSpQ_{\mu}(\xvec) \schurSpQ_{(r)}(\xvec) = 
+\sum_{\mu}  f^{\lambda}_{\mu,(r)} \schurSpQ_{\lambda}(\xvec)
+\]
+is also given in \cite{Okada2020x} (with a combinatorial formula).
+
+\begin{conjecture}[See \cite[Conj. 6.1]{Okada2020x}]
+The multiplicative structure constants $f^{\lambda}_{\mu,\nu}$
+(indexed by strict partitions) defined via 
+\[
+\schurSpQ_{\mu}(\xvec) \schurSpQ_{\nu}(\xvec) = 
+\sum_{\mu}  f^{\lambda}_{\mu,\nu} \schurSpQ_{\lambda}(\xvec)
+\]
+are non-negative integers.
+
+\end{conjecture}
+
+
+
+

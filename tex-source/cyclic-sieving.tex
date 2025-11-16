@@ -1,0 +1,365 @@
+\metatitle{The Cyclic sieving phenomenon}
+\metadescription{Index over topics concerning the cyclic sieving phenomenon.}
+
+
+
+\todo{
+Mention \cite[Sec. 2.5]{BessisReiner2011}, where a \emph{non-faithful action} is described
+}
+
+\section[cyclicSieving]{The cyclic sieving phenomenon}
+
+See below for the \hyperref[cspDefinition]{definition of the cyclic sieving phenomenon}, (CSP).
+There are many instances of the CSP, which I have put into different categories
+based roughly on the type of combinatorial object it concerns.
+
+<div class="csp-icon-container">
+<a href="cyclic-sieving-list-word.htm">
+<img src="./svg-images/csp-icon-word.svg" 
+alt="CSP Icon Word" 
+class="cspIcon" />
+<span>Words &amp; permutations</span>
+</a></div>
+
+<div class="csp-icon-container">
+<a href="cyclic-sieving-list-path.htm">
+<img src="./svg-images/csp-icon-path.svg" 
+alt="CSP Icon Path" 
+class="cspIcon" />
+<span>Paths</span>
+</a></div>
+
+<div class="csp-icon-container">
+<a href="cyclic-sieving-list-catalan.htm">
+<img src="./svg-images/csp-icon-catalan.svg" 
+alt="CSP Icon Catalan" 
+class="cspIcon" />
+<span>Catalan objects</span>
+</a></div>
+
+<div class="csp-icon-container">
+<a href="cyclic-sieving-list-match.htm">
+<img src="./svg-images/csp-icon-match.svg" 
+alt="CSP Icon Match" 
+class="cspIcon" />
+<span>Matchings &amp; crossings</span>
+</a></div>
+
+<div class="csp-icon-container">
+<a href="cyclic-sieving-list-young.htm">
+<img src="./svg-images/csp-icon-young.svg" 
+alt="CSP Icon Young" 
+class="cspIcon" />
+<span>Tableaux &amp; fillings</span>
+</a></div>
+
+<div class="csp-icon-container">
+<a href="cyclic-sieving-list-misc.htm">
+<img src="./svg-images/csp-icon-misc.svg" 
+alt="CSP Icon Misc" 
+class="cspIcon" />
+<span>Miscellaneous</span>
+</a></div>
+
+
+\subsection[cspDefinition]{Definition}
+
+The \defin{cyclic sieving phenomenon} (CSP) was introduced by V. Reiner, D. Stanton and 
+D. White in \cite{ReinerStantonWhite2004}. A nice survey by B. Sagan is given in \cite{Sagan2011}.
+
+Let $X$ be a set of combinatorial objects, $\grpc_n = \langle g \rangle$ be a finite cyclic group of size $n$, and $f(q) \in \setN[q]$.
+Then the triple $(X,\grpc_n,f(q))$ is said to \emph{exhibit the cyclic sieving phenomenon} if for all $d \in \setN$, we have
+\[
+|\{x \in X : g^d \circ x =x \}| = f\left(\exp\left(2\pi i  \frac{d}{n}\right)\right).
+\]
+In words, $f(q)$ evaluated at certain roots of unity gives the number of elements in $X$ fixed by powers of $g$.
+Note that $f(1) = |X|$, so in many instances, $f(q)$
+is a \hyperref[q-analogs]{$q$-analog}(or $q$-enumeration) of the set $X$.
+
+
+
+\begin{proposition}
+Let $\xi$ is a primitive $n^\thsup$ root of unity,
+and suppose that $f \in \setN[q]$ such that $f(\xi^j) \in \setZ$ for all $j \in \setZ$.
+Then for all $j \in \setZ$, $f(\xi^j) = f( \xi^{\gcd(j,n)})$.
+\end{proposition}
+\begin{proof*}
+In \cite{Desarmenien1989} and \cite[Lem. 2.2]{AlexanderssonAmini2018}, 
+it is proved that $f$ (up to mod $q^n-1$) is a linear combination of 
+\[
+ h_d(q) \coloneqq \sum_{j=0}^{n/d-1} q^{dj}  = \frac{[n]_q}{[d]_q} \qquad \text{ where } d \mid n.
+\]
+It then suffices to verify that 
+\[
+h_d(\xi^j) = h_d( \xi^{\gcd(j,n)})
+=
+\begin{cases}
+\frac{n}{d} &\text{ if } n \mid j d \\
+0 &\text{ otherwise}
+\end{cases}
+\]
+for all $d \mid n$, $j\in \setZ$, which is straightforward.
+\end{proof*}
+This proposition is very handy: Suppose we know that $f$ is an integer at $n^\thsup$ roots of unity.
+Then it suffices to verify that for all $d \mid n$, we have that
+\[
+|\{x \in X : g^d \circ x =x \}| = f\left(\exp\left(2\pi i  \frac{d}{n}\right)\right)
+\]
+in order to prove CSP.
+
+
+
+\begin{theorem}[From \cite{ReinerStantonWhite2004}]
+
+Given $X$ and $\grpc_n$ acting on $X$ and $f(q) \in \setN[q]$,
+then $(X,\grpc_n,f(q))$ exhibits the CSP if and only if 
+\[
+f(q) \equiv \sum_{O \in Orb_{\grpc_n}(X)} \frac{q^n-1}{ q^{n/|O|} - 1} \mod (q^n-1),
+\]
+where $Orb_\grpc(X)$ is the set of orbits of $X$ under $\grpc$.
+
+In other words, in a CSP triple $(X,\grpc_n,f(q))$ 
+the polynomial $f(q)$ is essentially uniquely determined by $\grpc_n$ acting on $X$.
+\end{theorem}
+
+There is a converse to the above theorem.
+\begin{theorem}[From \cite{AlexanderssonAmini2018}]
+
+Let $\xi$ be a primitive $n$th root of unity,
+and suppose $f(q) \in \setN[q]$ has the property that $f(\xi^j) \in \setN$ for all $j\in \setN$.
+Let $S_k$ be defined as
+\[
+S_k \coloneqq \sum_{j|k} \mu(k/j) f(\xi^j).
+\]
+Then there is a group action $\grpc_n$ acting on some $X$ with cardinality $f(1)$
+and $(X,\grpc_n,f(q))$ exhibits the CSP if and only if all $S_k$ are non-negative.
+
+In other words, these are necessary and sufficient conditions on $f(q) \in \setN[q]$
+for there to be a CSP involving $f(q)$.
+\end{theorem}
+
+Research situation: You have your favorite set $X$ and a $q$-analog $f(q)$.
+The previous theorem allows you to check (by computer, preferably) if there is 
+some CSP phenomenon on $X$, involving $f(q)$.
+Note that it is not sufficient for $f(q)$ to evaluate to non-negative integers at roots of unity!
+
+The number of orbits of size $k$ is determined by $\frac{1}{k}\sum_{j|k} \mu(k/j) f(\xi^j)$,
+and it follows that the total number of orbits is 
+\[
+\sum_{k|n} \frac{1}{k}\sum_{j|k} \mu(k/j) f(\xi^j).
+\]
+
+\begin{example*}[Example 2.10 from \cite{AlexanderssonAmini2018}]
+ Take $f(q)=q^5+3q^3+q+10$.
+ At any $6^\thsup$ roots of unity, $f(\xi^j)$ is a positive integer.
+ However, for $k=3$, the sum $\sum_{d|k} \mu(k/d) f(\xi^d)$ is $-3$.
+ This sum represents the number of elements in an orbit of size $3$ under the cyclic group,
+ and this number is not allowed to be negative.
+ Hence, there is no set $X$ of size $15$ with a cyclic group action $C_6$ of order $6$,
+ such that $(X,C_6,f(q))$ is a CSP-triple.
+\end{example*}
+
+
+\subsection[cspAndRepTheory]{Connection with representation theory}
+
+We can prove cyclic sieving using \hyperref[general-representation-theory]{representation theory}.
+
+Suppose $G$ (in this case the cyclic group $C_n$) act on the set $X$. 
+We can form the $|X|$-dimensional vector space 
+\[
+V = \setC X = \{a_1 x_1 + a_2x_2+\dotsb + a_M x_M : a_1,\dotsc,a_m \in \setC \},
+\]
+and note that $G$ act on $V$. 
+We can \hyperref[computingSnCharacters]{compute} the character $\chi(g)$ for $g\in G$,
+as a certain type of trace. Since $G$ in our case act via 
+permutations, $\chi(g)$ is simply the number of elements in $X$ fixed by $g$.
+
+
+One then wish to find a different basis $B$ for $V$ (perhaps starting with the 
+diagonal matrix with entries $(1,\zeta,\zeta^2,\dotsc,\zeta^{n-1})$ representing a generator of $C_n$)
+such that the action of $G$ on $B$ is diagonal. 
+It is then easy to compute the trace, expressed in terms of roots of unity.
+If this trace of $g^d$ is exactly $f(\zeta^d)$ for our polynomial $f$(q), we have proved an instance of CSP.
+
+Several examples are given in \cite{Sagan2011}.
+One can also construct new CSP from existing ones by using representation theory, see \cite{BergetEuReiner2011,ReinerStantonWhite2004}.
+
+
+
+\subsection[cspUniversal]{Universal CSP statistics}
+
+The noition of universal statistics was introduced in \cite{AhlbachSwanson2018}.
+
+Suppose $(X,\grpc_n,f(q))$ exhibits the CSP, where $f(q) = \sum_{x\in X} q^{\tau(x)}$
+for some combinatorial statistic $\tau:X \to \setN$.
+Then $\tau$ is said to be \emph{universal} if for every $\grpc_n$-orbit $O \subseteq X$,
+we have that $(O,\grpc_n,\sum_{x\in O} q^{\tau(x)})$ exhibits the CSP.
+
+The usual \hyperref[cspWords]{major index on words} is not universal.
+The authors of \cite{AhlbachSwanson2018} introduce a new (universal) statistic on words
+equidistributed with $\maj$ on words of length $n$ with fixed content $\alpha$.
+
+\subsection[cspProper]{Proper statistic}
+
+\emph{The following definition has not been defined in any journal to my knowledge.
+This is possibly related/equivalent with the notion of a universal CSP statistic.
+}
+
+Suppose $X$ is a combinatorial family with a statistic $\sigma:X \to \setN$,
+that defines the $q$-analog $f(q)$ of $X$, and that $(X, \grpc_n, f(q))$ is a CSP-triple.
+
+Then the statistic is called \defin{proper}
+if whenever $d|n$, we have that
+\[
+ g^{d}(x) = x \implies   \sigma(x) \equiv_{n/d} 0   \text{ for all } x \in X. 
+\]
+
+\begin{example}
+Let $n=2$ and suppose $g$ generate a $\grpc_2$-action on $X$.
+If $\sigma$ is a proper statistic on $X$, and $X^g \subseteq X$ are the elements 
+fixed under $g$, then there should (in principle) 
+exist an involution $\psi : X\setminus X^g \to X\setminus X^g$,
+such that $(-1)^{\sigma(x)}+(-1)^{\sigma(\psi(x))} = 0$,
+which would provide a proof of CSP.
+\end{example}
+
+
+
+\section[subsetCyclicSieving]{Subset cyclic sieving}
+
+There is a natural generalization of the cyclic sieving phenomenon described in 
+\cite{AlexanderssonLinussonPotka2019}.
+Let $X$ be a set of combinatorial objects and $Y \subseteq X$. 
+Let $\grpc_n = \langle g \rangle$ be a finite cyclic group of size $n$, and $f(q) \in \setN[q]$.
+Then the triple $(Y\subseteq X,\grpc,f(q))$ is said to 
+\emph{exhibit the subset cyclic sieving phenomenon} if for all $d \in \setN$, we have
+\[
+|\{y \in Y : g^d \circ y = y \}| = f\left(\exp\left(2\pi i  \frac{d}{n}\right)\right).
+\]
+Note that in particular, $f(1)=|Y|$.
+
+The subset CSP can be thought of as a CSP on $Y$, but where the group action
+is allowed to leave $Y$. By using the main theorem in \cite{AlexanderssonAmini2018},
+one can show that if $Y\subset X$ admits a subset CSP,
+then $Y$ also admits a proper CSP, with some cyclic group action that does not leave $Y$.
+
+
+\begin{example}[Taken from \cite{AlexanderssonLinussonPotka2019}]
+
+Let $X_n$ be the set of binary words, and let $Y_n \subseteq X_n$ be the set of words ending with a $1$.
+Furthermore, let $\eta$ act on $X_n$ by a \emph{twisted two-step cyclic shift}
+\[
+\eta(b_1,b_2,\dotsc,b_{n-1},b_n) = (1-b_{n-1},1-b_n,b_1,b_2,\dotsc,b_{n-2}).
+\]
+It is easy to show that $\langle \eta \rangle$ is a cyclic group of order $n$.
+The polynomial we shall use is $f_n(q) = \prod_{j=1}^{n-1}(1+q^j)$.
+Then
+\[
+(Y_n \subseteq X_n, \langle \eta \rangle, f_n(q))
+\]
+exhibits the subset cyclic sieving phenomenon.
+Note that $(X_n, \langle \eta \rangle, 2f_n(q))$ is an instance of the classical CSP.
+\end{example}
+
+\section[lyndonCSP]{Lyndon-like cyclic sieving}
+
+In \cite{AlexanderssonLinussonPotka2019}, we consider a special type of 
+cyclic sieving phenomenon, on a family $\{X_n\}_{n=1}^\infty$ of combinatorial objects.
+This idea captures the case where fixed points in $X_n$ under the group action
+are in bijection with smaller members of the family.
+
+\begin{definition}
+Let $\{(X_n, C_n, f_n(q))\}_{n=1}^\infty$ be a family of instances of CSP.
+The family is \defin{Lyndon-like} if for all $n\geq 1$,
+\[
+ f_{n/m}(1) = f_n\left( e^{\tfrac{2 \pi i}{m}} \right), \text{ whenever } m|n.
+\]
+By the definition of CSP, we have that
+\[
+ f_n\left( e^{\tfrac{2 \pi i}{m}} \right) = |\{ x \in X_n : g^{n/m}(x) = x \}|,
+\]
+where $\langle g \rangle = C_n$. 
+The family is therefore Lyndon-like if and only if
+for every $d|n$ the number of elements in $X_n$ fixed under $g^{d}$ is equal to $|X_{d}|$.
+\end{definition}
+
+The connection with counting fixed-points under iterations of a map is also 
+discussed in the earlier work \cite{Zarelua2008}, 
+where many related notions are discussed.
+
+
+There are several examples of Lyndon-like families of CSP.
+For example, \hyperref[cspWords]{Cyclic sieving on words}, \hyperref[cspAreaSequences]{CSP on circular Dyck paths}
+and \hyperref[cspMacdonaldE]{(conjecturally) CSP on non-attacking filling}.
+
+
+Notice that it is easy to gather computer evidence for 
+a sequence of $q$-analogs $\{f_n(q)\}_{n=1}^\infty$ to be Lyndon-like.
+Such evidence should give strong hints about 
+possible corresponding cyclic group actions, 
+as it should in principle behave as a type of cyclic shift on words.
+
+\section[lyndonCSPII]{$q$-Gauß congruences}
+
+\todo{Add the CSP-phenomena that appear in Gorodetsky2019}
+
+In \cite{Gorodetsky2019}, O. Gorodetsky introduces the notion of $q$-Gauß congruences.
+A sequence of polynomials $\{ a_n(q) \}_{n=1}^\infty$ is said to 
+satisfy \defin{$q$-Gauß congruences} if for every $n \in \setP$, we have 
+\[
+   \sum_{d|n} \mu(d) a_{n/d}(q^d) \equiv 0 \mod [n]_q.
+\]
+It can be verified that this condition on the family is equivalent with being \hyperref[lyndonCSP]{Lyndon-like},
+that is $a_{n/m}(1) = a_n(\xi)$ where $\xi$ is an $n$th root of unity with order $m$,
+see \cite[Cor. 2.5]{Gorodetsky2019}.
+
+
+
+
+
+\section[orbitalHarmonics]{Orbital harmonics}
+
+In \href{https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2021/70Oh.pdf}{this FPSAC abstract}, Jaeseong Oh
+gives an introduction to a representation-theoretical approach to proving 
+cyclic sieving results.
+
+
+\section[dilateralSieving]{Dilateral Sieving and $G$-sieving}
+
+It is possible to extend the cyclic sieving phenomenon to other groups, see \cite{RaoSuk2020}.
+The next natural example is the dilateral group, $D_n$. This group
+is presented as $\langle r,s : r^n=s^2=e, rs=sr^{-1} \rangle$.
+We can interpret this as $r$ being a one-step rotation of an $n$-gon and $s$ being a reflection.
+Several examples of dilateral sieving is given in \cite{RaoSuk2020}.
+
+Rao and Suk has introduced the notion of \defin{$G$-sieving} for arbitrary groups.
+
+
+
+\section[homomesy]{Homomesy}
+
+
+The term \defin{homomesy} introduced by J. Propp and T. Roby in \cite{ProppRoby2013x} is defined as follows.
+Let $X$ be some combinatorial set and let $\langle g \rangle$ act on $X$ such that every orbit is finite,
+and let $\sigma : X \to \setZ$ be statistic on $X$.
+Then the triple $(X,\langle g \rangle,\sigma)$ is said to exhibit homomesy if for every orbit $O \subseteq X$, we have
+\[
+\frac{1}{|O|} \sum_{x \in O} \sigma(x) = \frac{1}{|X|} \sum_{x \in X} \sigma(x).
+\]
+In other words, the average value of $\sigma$ is the same on every orbit.
+
+The first instance of the homomesy phenomenon was observed by D. Panyushev in \cite{Panyushev2009},
+when studying an action on antichains of positive roots. 
+Since then, many more instances have been found.
+
+
+For homomesy on miniscule posets, see \cite{Okada2021},
+and for the Foata map, see \cite{LaCroixRoby2020x}.
+Spectral theory approach to homomesy, see \cite{Propp2021x}.
+
+
+An action is \defin{homometric} if the total sum of the statistic on orbits of the same size,
+is the same. For example, for all orbits of size 4, the sum of the statisic on each orbit must be the same.
+This notion was introduced by Elizalde, Roby, Plante and Sagan.
+
+Homomesy and homometry for promotion on rooted trees is considered in \cite{DangwalKimbleLiangLouSaganStewart2023}.

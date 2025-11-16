@@ -1,0 +1,73 @@
+\metatitle{Lattice models}
+\metadescription{Brief overview of what a lattice model is}
+
+
+
+\todo{https://arxiv.org/pdf/2404.13221.pdf}
+
+\section[latticeModel]{Introduction}
+
+From \cite{Karhadkar2022x}: A \defin{lattice model} is based on an edge-labeled graph 
+(usually a rectangular grid) with some local constraints. 
+Each vertex is assigned a weight, depending on its adjacent edges. 
+If every vertex satisfies the constraints, we say that this assignment is an \emph{admissible state}.
+The goal is to conclude some sort of global behavior.
+
+The \defin{partition function} of a lattice model, is the sum over all admissible states:
+\[
+ Z = \sum_{S \in \mathrm{ states}} \prod_{v \in V} \mathrm{weight}_S(v).
+\]
+
+Depending on the conditions, various functions and identities may be recovered.
+For example, we can obtain the \hyperref[schurS]{Schur functions},
+the \hyperref[schurCauchyFormula]{dual Cauchy identity}, etc.
+
+From now on, we assume that we are in the rectangular grid 
+setting (each vertex has four adjacent neighbors) unless stated otherwise.
+
+\subsection[latticeModelVertex]{Vertex models}
+
+
+The terms \defin{five-vertex model}, \defin{six-vertex model} or \defin{eight-vertex model},
+refer to the number of admissible local labelings around a vertex.
+For example, the figure below illustrates the six labelings in the six-vertex model.
+\begin{figure}
+<img src="./svg-images/6-vertex-model.svg" alt="The 6 admissible local labelings for the 6-vertex model." style="width:95%; margin:5px;"/>
+\end{figure}
+
+Each such state is then assigned a weight, so in the $n$-vertex model, 
+there are $n$ possible weights associated with a vertex.
+This weight is sometimes referred to as the \defin{Boltzmann weight},
+and the matrix which records the weights is called the \defin{R-matrix}.
+
+It is usually interesting to compute the partition function 
+with some fixed \defin{boundary condition} or \defin{wall condition}
+that is, labels on the edges "exiting" the rectangular grid.
+
+
+\subsection[YangBaxter]{The Yang--Baxter equation}
+
+In order to discuss the Yang--Baxter equation. 
+the edges in the graph can be seen as forming strands, or braidings.
+
+The \defin{Yang--Baxter equation} is a relation describes how 
+certain quantities are preserved as strands are permuted.
+This is useful for proving symmetries.
+
+Models which satisfy the Yang--Baxter equation are 
+called \defin{integrable} or \defin{exactly solvable}. 
+
+
+\subsection[latticeModelList]{Symmetric functions via lattice models}
+
+In \cite{CurranFrechetteYostWolffZhangZhang2021x},
+the 6-vertex model for (supersymmetric) \hyperref[LLT]{LLT polynomials} 
+and they prove a Cauchy identity for the spin LLT polynomials $\LLTG^{(k)}_{\lambda/\mu}(\xvec;q)$.
+The same model is considered in \cite{Hardt2021x}, and it is shown 
+that the partition function is more or less is unique in a certain sense.
+
+
+For metaplectic Whittaker functions, see \cite{BrubakerBuciumasBumpGustafsson2020}.
+
+Lattice models for Grothendieck polynomials,
+\cite{BrubakerFrechetteHardtTiborWeber2020x,BuciumasScrimshaw2020x}.

@@ -1,0 +1,61 @@
+
+
+\todo{
+From Z. Hamaker:
+In this [paper], Ikeda and Naruse define K-theoretic analaogues of Schur P and Schur Q functions. 
+They give a presentation for equivariant K-theory classes of the orthogonal and 
+Lagrangian Grassmannian and are typically denoted GP_lambda or GQ_lambda. 
+The paper has determinantal formulas as well as tableaux formulas for these objects.
+
+An expansion of the GP_lambda’s into fundamental quasisymmetric 
+functions can be found in my paper with Rebecca Patrias and some undergrads we worked with. 
+The Littlewood-Richardson rule for GP_lambda's is due to Clifford-Thomas-Yong based on a 
+Pieri rule due to Buch and Ravikumar, while the Littlewood-Richardson rule for GQ_lambda’s is open. 
+
+Recently, Marberg and Pawloski showed that stable Grothendieck 
+polynomial analogues for fixed-point-free involutions 
+expand positively into GP_lambda’s and conjectured that 
+analogues for arbitrary involutions expand positively into GQ_lambda’s (they proved this in the vexillary case).
+}
+
+\todo{Add more info on these polynomials.}
+
+\section[schurKPQ]{K-theoretic Schur P/Q polynomials}
+\begin{polydata}{schurKPQ}
+  Name   & K-theoretic Schur P/Q polynomials \\
+  Space    &  Sym   \\
+  Basis    &  True   \\
+  Rating   &  1      \\
+  Bib      &  IkedaNaruse2013 \\
+  Year     &  2013 \\
+  Keywords &  jacobi-trudi,tableaux,pieri,littlewood-richardson \\
+  Symbol   &  $\schurKP_{\lambda}(\xvec)$ \\
+  Category &  Schur \\
+\end{polydata}
+
+
+In \cite{IkedaNaruse2013}, Ikeda and Naruse introduce $K$-theoretic analogues of the \hyperref[schurP]{Schur $P$}
+and \hyperref[schurQ]{Schur $Q$} functions, as well as factorial versions of these.
+The factorial versions are denoted $\schurKP_{\lambda}(\xvec|b)$ and $\schurKQ_{\lambda}(\xvec|b)$,
+where $b = (b_1,b_2,\dotsc)$ is a vector of parameters.
+When all these are set to $0$, we obtain $\schurKP_{\lambda}(\xvec)$ and $\schurKQ_{\lambda}(\xvec)$. 
+These are $K$-theoretic analogues of $\schurP_{\lambda}(\xvec)$ and  $\schurQ_{\lambda}(\xvec)$.
+
+They give a presentation for equivariant $K$-theory classes of the orthogonal and Lagrangian Grassmannian.
+
+
+\subsection[schurKPQProps]{Properties}
+
+The fundamental quasisymmetric expansion of $\schurKP_{\lambda}(\xvec)$
+and $\schurKQ_{\lambda}(\xvec)$ can be found in \cite{HamakerKeilthyPatriasWebsterZhangZhou2017}.
+
+
+\subsection[schurKPQLRRule]{Littlewood--Richardson rule}
+
+The Littlewood-Richardson rule for $\schurKP_{\lambda}(\xvec)$ is due to 
+Clifford-Thomas-Yong \cite{CliffordThomasYong2014}.
+Their result is based on a Pieri rule due to Buch and Ravikumar, \cite{BuchRavikumar2012}.
+
+\begin{problem}[Littlewood--Richardson rule]
+Find a Littlewood--Richardson rule for $\schurKQ_{\lambda}(\xvec)$.
+\end{problem}

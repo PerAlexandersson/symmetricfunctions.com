@@ -1,0 +1,94 @@
+
+
+\section[macdonaldE]{Macdonald E polynomials}
+
+\begin{polydata}{macdonaldE}
+  Name     & Macdonald E polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & Opdam1995\\
+  Year     & 1995\\
+  Symbol   & $\macdonaldE_\mu(\xvec;q,t)$ \\
+  Keywords & fillings \\
+  Category & Schur \\
+\end{polydata}
+
+
+The non-symmetric Macdonald polynomials were introduced in \cite{Opdam1995},
+\cite{Macdonald1996} and \cite{Cherednik1995nonsymmetric}.
+The non-symmetric Macdonald polynomials are closely related with \emph{affine root systems},
+and the \emph{double affine Hecke algebra}. Their definition is rather indirect,
+and does not give an efficient way of computing these non-symmetric polynomials.
+
+In \cite{HaglundHaimanLoehr2008}, J. Haglund, M. Haiman and N. Loehr 
+found an explicit formula for the non-symmetric Macdonald polynomials in type $A$,
+as a sum over \emph{non-attacking fillings}.
+This model is the basis for the \hyperref[macdonaldEperm]{permuted basement Macdonald polynomials},
+and we refer to that page for definitions.
+
+Later, an alternative combinatorial formula using alcove walks was
+proved by A. Ram and M. Yip \cite{RamYip2011}, which works for all Lie types.
+At $q=t=0$, their model reduces to the \emph{Littelmann path model}.
+
+In \cite{BorodinWheeler2019}, an integrable vertex model is used to 
+give an alternative formula for non-symmetric Macdonald polynomials.
+\todo{Explain this model!}
+
+See the book \cite{qtCatalanBook} for more background on the type $A$
+non-symmetric Macdonald polynomials.
+My personal research with non-symmetric Macdonald polynomials and further generalizations 
+can be found in 
+\cite{Alexandersson2015gbMacdonald,AlexanderssonSawhney2017,AlexanderssonSawhney2019}.
+
+A model using multiline queues is introduced in \cite{CorteelMandelshtamWilliams2018},
+and further explored in \cite{CorteelMandelshtamMasonWilliams2019x}.
+\todo{Explain this model also!}
+
+
+\subsection[macdonaldEMonks]{Monk's rule}
+
+W. Baratta \cite{Baratta2009,Baratta2011} give Monk type 
+rules (terminology from \hyperref[schubertMonksRule]{Schubert calculus}) for products of the form 
+\[
+x_j \macdonaldE_\mu(x_1,\dotsc,x_n;q,t), \quad \elementaryE_1(\xvec) \cdot \macdonaldE_\mu(x_1,\dotsc,x_n;q,t), \quad 
+ \elementaryE_{r}(\xvec) \cdot\macdonaldE_\mu(x_1,\dotsc,x_n;q,t),
+\]
+expanded again in the $\{\macdonaldE_\alpha\}$ basis. 
+Baratta uses interpolation Macdonald polynomials in the proof.
+
+In \cite{HalversonRam2022x}, the authors prove Monk type formulas for 
+\[
+x_j \macdonaldE_\mu, \qquad (x_1+\dotsb + x_j) \macdonaldE_\mu, \qquad 
+x_j^{-1} \macdonaldE_\mu, \qquad (x_j^{-1}+\dotsb + x^{-1}_j) \macdonaldE_\mu.
+\]
+Halverson--Ram uses a different method based on intertwiners.
+
+\todo{Write about recursion relations}
+
+
+\section[macdonaldEspec]{Non-symmetric q-Whittaker polynomials}
+
+\begin{polydata}{macdonaldEspec}
+  Name     & Non-symmetric q-Whittaker polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & Opdam1995\\
+  Year     & 1995\\
+  Symbol   & $\macdonaldE_\mu(\xvec;q,0)$ \\
+  Keywords & fillings, key-positive \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{non-symmetric $q$-Whittaker polynomials} are obtained by letting $t=0$ in $\macdonaldE_\mu(\xvec;q,t)$.
+The result can be though of as a non-symmetric analogue of the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials},
+and generalize the \hyperref[qWhittaker]{$q$-Whittaker functions}.
+
+The polynomials $\macdonaldE_\mu(\xvec;q,0)$ expand positively in key polynomials,
+and the coefficients are \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials},
+see \cite{AlexanderssonSawhney2017,Assaf2018Kostka,AssafGonzalez2018}.
+
+Models using \emph{quantum alcove walks} and \emph{quantum Lakshmibai--Seshadri path} 
+are considered in \cite{LenartNaitoSagakiSchillingShimozono2017}.
+

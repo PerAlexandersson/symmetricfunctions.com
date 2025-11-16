@@ -1,0 +1,243 @@
+\metatitle{Crystals}
+\metadescription{Background and properties of crystals}
+
+
+A nice \href{http://sporadic.stanford.edu/crystals/index.html}{online introduction is given here.}
+
+\section[crystals]{Crystals on words and semi-standard tableaux}
+
+The notion of \defin{crystals} (in type $A$) refer to a set of \emph{raising}- and \emph{lowering operators} that give rise to a 
+certain graph structure on combinatorial objects (words, tableaux) with weights.
+If the operators satisfy certain axioms, each connected component in the graph is a singe Schur function.
+
+The operators also provide an explicit $\symS_n$-action on the set of objects, 
+thus also providing a representation-theoretic proof of Schur positivity.
+
+A nice introduction to crystals in type $A$ is given in \cite{Shimozono2005}.
+See also \cite{BumpSchilling2017} for a thorough introduction to crystals.
+
+In this video, \href{https://www.youtube.com/watch?v=qr7BcV3swMk}{J. Blasiak gives a nice overview}
+of crystals in type A, starting at 25:00.
+
+\subsection[crystal-operators]{Operators on words}
+
+We define two operators, $\cryse_i$, $\crysf_i : \setN^k \to \setN^k \cup \{ \emptyset \}$ as follows.
+Given a word $w$ consider the subword $w_i$ consisting only of the letters $i$ and $i+1$.
+Replace each instance of $i$ with a right bracket and each $i+1$ with a left bracket.
+Remove all pairs of matching brackets and consider the remaining unmatched brackets,
+which is now consists of $a$ right-brackets and $b$ left-brackets.
+These brackets correspond to a subword $w'$ of the form $i^a (i+1)^b$ in $w$.
+
+The operator $\cryse_i$ acting on $w$ turns the leftmost $i+1$ of $w'$ into $i$,
+if such an entry exists, otherwise, $\cryse_i(w)=\emptyset$.
+Similarly, $\crysf_i$ acting on $w'$ turns the rightmost $i$ in $w'$ into $i+1$,
+if such an entry exists, otherwise, $\crysf_i(w)=\emptyset$.
+The operator $\cryse_i$ is a \defin{crystal raising operator}
+while $\crysf_i$ is a \defin{crystal lowering operator}.
+
+
+We also define \defin{crystal reflections} $\cryss_i(w)$ by 
+replacing the subword $i^a (i+1)^b$ above with $i^b (i+1)^a$.
+Such a reflection can be realized by applying a number of $\cryse_i$ or $\crysf_i$ to the word.
+The \defin{crystal reflection operators} $\cryss_1,\dotsc,\cryss_{n-1}$ generate an $\symS_n$ action on words.
+These crystal reflection operators are also called \defin{Lascoux--Schützenberger involutions}.
+
+
+\begin{example}
+Let us compute $\crysf_2$ and $\cryse_2$ of the word $213313212131$.
+First find the subword consisting of the letters $2$ and $3$,
+replace with brackets and remove paired brackets.
+\[
+\begin{matrix}
+2&1&3&3&1&3&2&1&2&1&3&1 \\
+2& &3&3& &3&2& &2& &3&  \\
+]& &[&[& &[&]& &]& &[&  \\
+]& &[& & & & & & & &[& 
+\end{matrix}
+\]
+We can now see that
+\[
+ \crysf_2(213313212131) = \underline{3}13313212131, \qquad \cryse_2(213313212131) = 31\underline{2}313212131.
+\]
+\end{example}
+
+
+
+\subsection[crystal-graphs]{Strings and graphs}
+
+Given a word $w$, consider the sequence $\dotsc, \cryse^2_i(w), \cryse_i(w), w, \crysf_i(w), \crysf^2_i(w),\dotsc$.
+This is referred to an \defin{$i$-string}.
+For example, 
+\[
+\emptyset \overset{1}{\rightarrow}  
+12112111 \overset{1}{\rightarrow}  
+12112112 \overset{1}{\rightarrow}
+12112122 \overset{1}{\rightarrow} 
+12122122 \overset{1}{\rightarrow} 
+22122122 \overset{1}{\rightarrow} \emptyset
+\]
+is a $1$-string. 
+
+
+Consider the connected graph consisting of words connected with edges given by $\cryse_i$ and $\crysf_i$,
+for all $i$. 
+This is referred to as a \defin{crystal}.
+Each such crystal contains a unique word $w$ of the form $n^{\lambda_n} \dotsm 2^{\lambda_2} 1^{\lambda_1}$,
+where $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n$ is a partition.
+Note that  for this particular word, $\cryse_i(w)=\emptyset$ for all $i$. 
+This word is called the \defin{highest weight} in the crystal 
+and $\lambda$ is the \emph{highest weight vector} of the crystal.
+
+
+\subsection[crystal-ssyt]{Crystals on semi-standard tableaux}
+
+One can show that all words in a crystal with highest weight vector $\lambda$ are in bijection 
+with semi-standard Young tableaux of shape $\lambda$.
+In fact, the set of reading words of tableaux of shape $\lambda$ is 
+closed under $\cryse_i$ and $\crysf_i$.
+This can be proved by realizing that an $i+1$ on 
+top of an $i$ in the tableau will always become paired brackets.
+
+
+In conclusion, if a set of combinatorial objects is closed under the crystal operators,
+the sum over the weights of these objects is Schur-positive.
+One way to do this is to exhibit a crystal-preserving bijection with words or SSYTs 
+--- a bijection that commutes with the raising and lowering operators.
+
+
+
+Note that the crystal operators $\cryse_i$, $\crysf_i$ and $\cryss_i$
+are also defined on \emph{skew semi-standard Young tableaux}, by acting on the reading word.
+The crystal graph on $\SSYT(\lambda/\mu)$ is no longer connected --- the connected components 
+correspond to the right hand side in the Schur expansion
+\[
+\schurS_{\lambda/\mu} = \sum_{\nu} c^{\lambda}_{\mu \nu} \schurS_\nu.
+\]
+Here, $c^{\lambda}_{\mu \nu}$ are the \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients},
+and the crystal graph on $\SSYT(\lambda/\mu)$ contains  $c^{\lambda}_{\mu \nu}$
+connected components isomorphic to the (irreducible) crystal graph on $\SSYT(\nu)$.
+In other words, crystals can be used to prove the Littlewood--Richardson rule.
+
+One important property of the crystal operators acting on skew shapes is that they are \defin{coplactic},
+meaning that they commute with \hyperref[jeu-de-taquin]{jeu-de-taqin slides}.
+
+
+\begin{example*}[Crystal graphs on words and SSYT]
+In the following figures, the solid lines are the $\crysf_1$ edges,
+and the dashed lines are $\crysf_2$.
+The two graphs are isomorphic, and they have to be since the highest weight is $\lambda =31$
+in both cases.
+\begin{figure}
+<img src="./svg-images/wordCrystal.svg" alt="Crystal on words" style="width:30%; min-width:10em; margin-right:15px;margin-left:15px;"/>
+<img src="./svg-images/ssytCrystal.svg" alt="Crystal on SSYT" style="width:30%; min-width:10em; margin-right:15px;margin-left:15px;"/>
+\end{figure}
+\end{example*}
+
+
+
+\section[kashiwaraCrystals]{Kashiwara crystals}
+
+The following definition is taken from \cite{GillespieLevinson2019}.
+
+A finite \defin{$\GL_n$ Kashiwara crystal} is a set $B$ together with 
+raising and lowering operators $\cryse_i$, $\crysf_i$ on $B$ and \defin{length functions}
+$\epsilon_i$, $\phi_i$ from $B$ to $\setZ$, and a \defin{weight function} $w$,
+satisfying the following axioms (where $1 \leq i \leq n-1$);
+\begin{enumerate}
+ \item The operators $\cryse_i$, $\crysf_i$ are partial inverses, and if $Y = \cryse_i(X)$, then 
+ \[
+		\left(\epsilon_i(Y), \phi_i(Y)   \right) = \left( \epsilon_i(X)-1, \phi_i(X)+1 \right) \quad \text{and} \quad
+		w(Y) = w(X)+ \alpha_i,
+ \]
+ where $\alpha_i = \evec_i - \evec_{i+1}$, the vector with coordinate $i$ set to $1$,
+ and coordinate $i+1$ set to $-1$.
+ \item For any $i \in [n-1]$ and any $X \in B$,  $\phi_i(X) = \langle w(X), \alpha_i \rangle + \epsilon_i(X)$.
+\end{enumerate}
+The inner product used here is from the \hyperref[root-systems]{root system}.
+
+
+Moreover, a Kashiwara crystal is a type $A$ \defin{Stembrige crystal} if 
+
+\begin{enumerate}
+\item If $|i-j| \gt 1$ and $\cryse_i(X)$, $\cryse_j(X)$ are defined, then their compositions are defined and equal, i.e., 
+$\cryse_i \cryse_j(X) = \cryse_j \cryse_i(X)$. Same statement is true for $\crysf_i$, $\crysf_j$.
+
+\item If $\crysf_{i \pm 1}(Y) = X$, then 
+\[
+	 \left(\epsilon_i(Y) - \epsilon_i(X), \phi_i(Y) - \phi_i(X) \right) \in \{ (0,-1), (1,0) \}.
+\]
+
+\item Suppose $|i-j|=1$ and $\crysf_i(Z)=X$, $\crysf_j(Z)=X$ are both defined. Set 
+\[
+ \Delta \coloneqq \left(\epsilon_i(Z) - \epsilon_i(X), \epsilon_i(Z) - \epsilon_i(Y) \right).
+\]
+(By previous axioms, $\Delta \in \{ (1,1), (1,0), (0,1), (0,0) \}$.) 
+If $\Delta \neq (0,0)$ then $\crysf_i \crysf_j(Z) = \crysf_j \crysf_i(Z) \neq \emptyset$. 
+Otherwise, 
+$\crysf_i \crysf^2_j \crysf_i(Z) = \crysf_j \crysf^2_i \crysf_j(Z) \neq \emptyset$.
+
+\item We have the dual axiom, where the $\crysf_i$ above are replaced with $\cryse_i$,
+and  the $\epsilon_i$ are replaced with $\phi_i$.
+\end{enumerate}
+These are reworded versions of Stembridge's local axioms given in \cite{Stembridge2003}.
+
+
+\section[demazure-crystals]{Demazure crystals}
+
+Demazure crystals (in type $A$) are truncated versions of the classical type $A$
+crystals. Connected components are now \hyperref[key]{Demazure polynomials}.
+
+Some papers using these crystal structures are
+\cite{Wang2020x}, \cite{AssafSchilling2018} and \cite{AssafGonzalez2020x}.
+
+
+
+\section[quasi-crystals]{Quasi-crystals}
+
+
+Quasi-crystals are used to find the fundamental quasisymmetric expansion,
+see \url{https://arxiv.org/pdf/2309.14898}, \url{https://arxiv.org/pdf/2309.14887}.
+
+
+
+
+A similar notion to crystals are \hyperref[schurPositivityDualEquivalence]{dual equivalence graphs}.
+
+
+
+
+\section[crystals-type-B]{Crystals for type B}
+
+In \cite{GillespieHawkesPohSchilling2020,AssafOguz2018,AssafOguz2020},
+the authors define crystal operators are defined on skew shifted SSYT.
+This gives a crystal structure where connected components are 
+\hyperref[schurP]{Schur P functions}.
+
+
+
+In \cite{GillespieLevinson2019}, a Sembridge-type set of local axioms are used to define a type $B$ crystal structure.
+The using raising and lowering operators act on shifted tableaux.
+These operators commute with jeu-de-taquin slides (as in type $A$), making them \defin{coplactic}.
+This gives a crystal structure where connected components are 
+\hyperref[schurQ]{Schur Q functions}.
+
+In the follow-up paper, M. Gillespie, J. Levinston and K. Purbhoo \cite{GillespieLevinsonPurbhoo2020}
+further studies this crystal structure on skew shifted tableaux,
+and show how one can act on the reading-word of the tableaux.
+Furthermore, they identify the highest weight elements in the crystals, which turn out to
+be shifted Littlewood--Richardson tableaux.
+With this machinery, they obtain a new proof of the Littlewood--Richardson rule for the 
+\hyperref[schurQ]{Schur Q functions}.
+
+
+
+
+\section[crystals-see-also]{See also}
+
+There is a lot of more background and references 
+in the \href{http://doc.sagemath.org/html/en/thematic_tutorials/lie/crystals.html}{Sage manual for crystals}.
+
+There are some results on the interaction with crystals and dual RSK here, \cite{Azenhas2006}.
+Also, \url{http://www.mat.uc.pt/~oazenhas/azenhasmamede.pdf}
+
+

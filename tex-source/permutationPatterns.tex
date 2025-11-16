@@ -1,0 +1,217 @@
+\metatitle{Permutation patterns}
+\metadescription{Permutation matrices and permutation patterns}
+
+
+
+\section[permutationMatrix]{Permutation matrices}
+
+
+For permutations $\pi,\sigma \in \symS_n$, we think
+of multiplication as composition of functions, so that
+\[
+  (\pi \circ \sigma)(k) = \pi(\sigma(k)) \text{ for $k \in [n]$.}
+\]
+Given $\pi$, we associate its \defin{permutation matrix},
+\[
+ P_\pi = \left( \delta_{i, \pi(j)} \right)_{1 \leq i, j \leq n}.
+\]
+The permutation matrix of the composition $\pi \circ \sigma$ is $P_{\pi} P_{\sigma}$.
+We follow the convention in \cite{Kitaev2011}
+and illustrate permutation matrices by letting row indices start at the \emph{bottom},
+as in the figure below. 
+From now on, this is the picture we have in mind when referring to permutation matrices.
+
+\begin{example}
+The permutation matrix $P_\pi$ associated with $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$
+using conventional row/column coordinates, and the convention we use.
+The rightmost figure is simply the graph of the function $i \mapsto \pi(i)$ 
+(using Cartesian coordinates).
+\begin{figure}
+$
+P_\pi = 
+\begin{pmatrix}
+  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+ 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+ 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+ 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+\end{pmatrix}
+$
+\begin{ytableau}
+\none 8& \, & \bullet & \, & \, & \, & \, & \, & \, \\
+\none 7& \, & \, & \, & \, & \bullet & \, & \, & \, \\
+\none 6&\, & \, & \, & \, & \, & \, & \bullet & \, \\
+\none 5& \, & \, & \bullet & \, & \, & \, & \, & \, \\
+\none 4 & \, & \, & \, & \, & \, & \bullet & \, & \, \\
+\none 3 & \, & \, & \, & \bullet & \, & \, & \, & \, \\
+\none 2 & \, & \, & \, & \, & \, & \, & \, & \bullet \\
+\none 1 & \bullet & \, & \, & \, & \, & \, & \, & \, \\
+\none   & \none 1 &\none 2 &\none 3 &\none 4 &\none 5 &\none 6 &\none 7 &\none 8 
+\end{ytableau}
+\end{figure}
+
+\end{example}
+
+\subsection[permPatterns]{Permutation patterns}
+
+A permutation $\pi \in \symS_n$ is said to \defin{contain} the pattern $\sigma \in \symS_k$,
+if there is a subsequence of $\pi$ which is order-isomorphic to $\sigma$.
+For example, $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$ contains the pattern $[2,3,1]$
+as the subsequence $3, 6, 2$ in $\pi$ have its elements in the same relative order.
+
+
+\begin{example}
+The permutation matrices associated with $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$ 
+and $\sigma = [2,3,1]$. Here we see that $\pi$ contains the pattern $\sigma$
+(there are other instances of this pattern in $\pi$).
+\begin{figure}
+\begin{ytableau}
+ \, & \bullet & \, & \, & \, & \, & \, & \, \\
+ \, & \, & \, & \, & \bullet & \, & \, & \, \\
+ \, & \, & \, & \, & \, & \, & \odot & \, \\
+ \, & \, & \bullet & \, & \, & \, & \, & \, \\
+ \, & \, & \, & \, & \, & \bullet & \, & \, \\
+ \, & \, & \, & \odot & \, & \, & \, & \, \\
+ \, & \, & \, & \, & \, & \, & \, & \odot \\
+ \bullet & \, & \, & \, & \, & \, & \, & \, \\
+\end{ytableau}
+
+\begin{ytableau}
+ \, & \bullet & \, \\
+ \bullet & \, & \, \\
+ \, & \, & \bullet \\
+\end{ytableau}
+\end{figure}
+
+
+\end{example}
+
+
+
+The structure of a permutation matrix avoiding the pattern $132$.
+The larger regions on the left and right are also $132$-avoiding.
+\begin{figure}
+<img src="./svg-images/132PermutationStructure.svg" alt="Structure of a 132-avoiding permutation" style="width:55%; margin:5px;"/>
+\end{figure}
+
+
+
+In \cite{Vatter2019}, the author studies possible growth rates for pattern-avoiding permutations.
+
+\subsection[directSumPermutations]{Direct sums and skew sums of permutations}
+
+Given $\pi \in \symS_m$ and $\sigma \in \symS_n$, we define the \defin{direct sum}
+and the \defin{skew sum} of $\pi$ and $\sigma$ as
+\begin{align}
+ \pi \ast \sigma \coloneqq & [pi_1,\dotsc,\pi_m,\sigma_1+m,\dotsc,\sigma_n+m]  \in \symS_{m+n} \\
+ \pi \times \sigma \coloneqq & [pi_1+n,\dotsc,\pi_m+n,\sigma_1,\dotsc,\sigma_n]  \in \symS_{m+n}
+\end{align}
+Note that these operations are not commutative, but they are associative.
+
+
+
+\section[namedPermutationSets]{Named sets of permutation}
+
+\begin{itemize}
+
+\item \defin{Up-down} ---  in one-line notation, we have $\pi_1 \lt \pi_2 \gt \pi_3 \lt \pi_4 \dotsb$.
+\defin{Down-up} permutations are of the form $\pi_1 \gt \pi_2 \lt \pi_3 \gt \pi_4 \dotsb$.
+Enumerated by the Euler numbers \oeis{A000111}.
+
+\item \defin{André} --- Either up-down or down-up, \oeis{A001250}.
+
+\item \defin{Derangements} --- permutations with no fixed point, \oeis{A000166}.
+
+\item \defin{Dominant} --- 132-avoiding. Enumerated by the Catalan numbers, \oeis{A000108}.
+
+\item \defin{Baxter} --- avoids $2-14-3$ and $3-14-2$, see  \url{https://doi.org/10.1016/S0012-365X(97)00112-X}.
+
+\item \defin{Boolean} --- 123-avoiding and 3412-avoiding, see \cite{Tenner2007,GunawanPanRussellTenner2022x}.
+A permutation is boolean iff the order ideal it defines in the Bruhat order, is a Boolean lattice, see \cite[Thm. 4.3]{Tenner2007}.
+Enumerated by odd-indexed Fibonacci numbers, \oeis{A001519}.
+
+\item \defin{Fireworks} --- Same as 3-12 avoiding, see \url{https://arxiv.org/pdf/2508.09107}. This means that the initial terms of decreasing runs, are increasing.
+
+\item \defin{Fully commutative} --- 123-avoiding, see \cite{BilleyJockuschStanley1993,GunawanPanRussellTenner2022x}.
+Enumerated by the Catalan numbers, \oeis{A000108}.
+
+\item A \defin{simsun permutation} is a permutation such that restricting to entries $1,2,\dotsc,k$,
+it does not have a double descent, i.e., $\pi(i)\gt \pi(i+1) \gt \pi(i+2)$, see \cite{MaYeh2016}. 
+The number of simsun permutations in $\symS_n$ is given by the Euler number $E_{n+1}$, see \oeis{A000111}.
+
+\item \defin{King permutations} are permutations where no two adjacent entries differ by $1$ in one-line notation.
+This can be described via mesh-pattern avoidance, see \oeis{A002464}.
+
+\item A permutation is \defin{vexillary} if it avoids the pattern 2143, see \oeis{A005802}.
+
+\item A permutation is \defin{Grassmann} if it has at most one descent. These are special cases of vexillary permutations.
+There are $2^n-n$ Grassman permutations in $\symS_n$, see \oeis{A000325}.
+
+\item A permutation $\pi$ is \defin{bi-Grassmann} if both $\pi$ and $\pi^{-1}$ are Grassman. Equivalent with avoiding 2413.
+This set has size $1+\binom{n+1}{3}$.
+
+\item \defin{Separable} permutations are those which avoids $2413$ and $3142$, see \oeis{A006318}.
+For reference, see \cite{West1995}.
+
+\item \defin{Skew-merged} permutations avoid $2143$ and $3412$. These are exactly the ones 
+created by a union of an increasing sequence, and a decreasing sequence, see \cite[Thm.2.9]{Stankova1994}, \oeis{A029759}.
+See \cite{Atkinson1998} for exact enumeration and connection with RSK.
+
+\item \defin{Flattened permutations}, where runs are in lex order. 
+Enumerated by Bell numbers \oeis{A000110}, see \cite[Prop. 16]{NabawandaRakotondrajaoBamunoba2020}.
+
+\item \defin{Parity-alternating permutations} are permutations which sends odd numbers to odd numbers,
+and even numbers to even, see \cite{KebedeRakotondrajao2021}. 
+This can be generalized to \defin{mod-k-alternating permutations},
+where we demand that $\pi(i) \equiv i \mod k$. 
+For pattern-avoidance in mod-k-alternating permutations, see \cite{AlexanderssonFufaGetachewQiu2022x}.
+
+
+\item The \defin{Richardson permutation} with parameters $(k_1,k_2,\dotsc,k_m)$
+is given by the following in two-line notation.
+\[
+\begin{pmatrix}
+1 & 2 &       \dotsc & k_1   & k_1+1 & k_1+2 & \dotsc & k_1 + k2 & k_1+k_2+1 & \dotsc \\
+k_1 & k_1-1 & \dotsc,   1		 & k_1+k_2 & k_1+k_2-1 & \dotsc & k_1+1 & k_1+k_2+k_3 & \dotsc \\
+\end{pmatrix}
+\]
+Basically, we take the unique longest permutation in each of the sets $\symS_{k_1},\dotsc,\symS_{k_m}$,
+and produce the \emph{direct sum} of these.
+
+\item \defin{Wachs permutations} --- \oeis{A359039}. These are the permutations in $\symS_n$ defined as
+\[
+ W_n \coloneqq \{ \sigma \in \symS_n : |\sigma^{-1}(i)-\sigma^{-1}(i^*)|\leq 1 \text{ for all } i \in [n-1] \},
+\]
+where $i^*$ is defined as 
+\[
+ i^* \coloneqq \begin{cases}
+ i-1 &\text{if $i$ is even}  \\
+ i+1 &\text{if $i$ is odd and $i+1 \leq n$}  \\
+ n & \text{otherwise.}
+ \end{cases}
+\]
+These permutations are studied in \cite{BrentiSentinelli2022x}, and there are generalizations to
+other types.
+
+\end{itemize}
+
+
+
+
+\section[permutationsTypeB]{Permutations of type B}
+
+The set of permutations of type $B$, is defined as the permutations on $B_n \coloneqq \{\pm 1, \pm 2,\dotsc, \pm n\}$
+with the property that $\pi(-i)=-\pi(i)$. This is also known as the \hyperref[weyl-lie-groups]{hyperoctahedral group}.
+
+
+\section[permutationsStirling]{Stirling permutations}
+
+In \cite{GesselStanley1978}, Gessel and Stanley introduced the set of \defin{Stirling permutations, $Q_n$}.
+These are permutations of the multiset $\{1,1,2,2,3,3,\dotsc,n,n\}$ with the additional property
+that for between the two entries equal to $i \in [n]$, only entries larger than $i$ may appear.
+For example, $12234431$ is an element in $Q_n$.
+
+We have that $|Q_n| = (2n-1)!!$.

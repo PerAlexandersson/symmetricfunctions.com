@@ -1,0 +1,69 @@
+\metatitle{Interpolation Macdonald P polynomials}
+\metadescription{Interpolation Macdonald P polynomials and related symmetric functions.}
+
+
+\section[macdonaldPi]{Interpolation Macdonald P polynomials}
+
+\begin{polydata}{macdonaldPi}
+  Name     & Interpolation Macdonald P polynomials \\
+  Space    & ShiftedSym \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & Okounkov1998shifted \\
+  Year     & 1998 \\
+  Symbol   & $\macdonaldP^*_\lambda(\xvec;q,t)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The interpolation Macdonald polynomials (in type $A$) is a family of non-homogeneous polynomials 
+which generalize the \hyperref[schurShifted]{shifted Schur polynomials}.
+They are also known under the name \defin{shifted Macdonald polynomials}
+or \emph{inhomogeneous Macdonald polynomials}.
+
+This definition is taken from \cite{Okounkov1998}.
+Let $\lambda \vdash n$. The \defin{interpolation Macdonald polynomial} 
+$\macdonaldP^*_\lambda(\xvec;q,t)$ is the unique (up to scalar) 
+polynomial of of degree $n$ that is 
+symmetric in $x_1t^{n-1},x_2 t^{n-2},\dotsc,x_n$, and fulfills
+\[
+\macdonaldP^*_\lambda(q^{\mu_1},q^{\mu_2},\dotsc,q^{\mu_n};q,t) = 0
+\text{ whenever } \lambda \not\subset \mu.
+\]
+
+The shifted Schur functions obtained as the limit
+\[
+\schurS^*_\lambda(\xvec) = \lim_{q \to 1} \frac{\macdonaldP^*_\lambda(q^{x_1},\dotsc,q^{x_n} ;q,q)}{ (q-1)^n }.
+\]
+Moreover, the \hyperref[jackShifted]{shifted Jack polynomials} are obtained as the limit
+\[
+\jackShifted_\mu(\xvec;a) = \lim_{q \to 1} 
+\frac{\macdonaldP^*_\lambda(q^{x_1},\dotsc,q^{x_n} ;q,q^a)}{ (q-1)^n }.
+\]
+
+
+\subsection[macdonaldPiRSSYTFormula]{RSSYT formula}
+
+In \cite{Okounkov1998shifted} A. Okounkov proves the following combinatorial formula for 
+the interpolation Macdonald polynomials:
+\[
+\macdonaldP^*_\mu(\xvec;q,t) = 
+\sum_T \psi_{T}(q,t)  \prod_{\square \in \mu} t^{1-T(\square)} \left( \xvec_{T(\square)} - q^{\arm'(\square)} t^{-\leg'(\square)
+} \right)
+\]
+Here, the sum is over all reverse-tableaux of shape $\mu$,
+and $\psi_{T}(q,t)$ is the \hyperref[macdonaldPTableauFormula]{same weight} which appear in the formula for 
+the classical Macdonald $P$ polynomials $\macdonaldP(\xvec;q,t)$.
+
+
+\section[macdonaldPiBC]{Type BC interpolation Macdonald polynomials}
+
+In \cite{Okounkov1998}, a type BC family is introduced.
+These are polynomials in the variables $x_1^{\pm},\dotsc,x_n^{\pm}$,
+with coefficients in $\setQ(q,t,s)$.
+Moreover, as $s\to \infty$, the polynomials $\macdonaldP^*_\lambda(\xvec;q,t)$ are 
+recovered.
+
+
+
+
+

@@ -1,0 +1,61 @@
+\metatitle{Peak quasisymmetric functions}
+\metadescription{Definition of the peak quasisymmetric functions and related theorems.}
+
+
+
+\section[peakQSym]{Peak quasisymmetric functions}
+
+\begin{polydata}{peakQSym}
+  Name   & Peak quasisymmetric functions \\
+  Space    & PQSym \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & Stembridge1997 \\
+  Year     & 1997 \\
+  Symbol   & $\peakQSym_\Lambda(x)$ \\
+  Category & Quasi \\
+\end{polydata}
+
+
+The \emph{peak quasisymmetric functions} were introduced by J. Stembridge in 1997 \cite{Stembridge1997}.
+They constitute a basis for a graded subring of the quasisymmetric functions.
+
+Given a composition $\alpha$,
+\hyperref[gesselDefinitionSubsets]{recall how to create a corresponding subset} $S_\alpha$.
+The following definitions are from \cite{Li2018}.
+A set $\Lambda \subset [2,n-1]$ is a \defin{peak set} if $j \in \Lambda \implies j-1 \notin \Lambda$.
+Given a composition $\alpha$, we let
+\[
+ P(\alpha) \coloneqq \{ j \in S_\alpha \cap [2,n-1]  | j-1 \notin S_\alpha \}.
+\]
+be its \defin{peak subset}. We let $\mathcal{P}_n$ be the set of all peak subsets of $[n]$.
+The cardinalities of $\mathcal{P}_n$ for $n=1,2,3,\dotsc$ are 
+$ 1,1,2,3,5,8,13, \dotsc $
+i.e., the Fibonacci numbers. The following Mathematica
+code produces the set $\mathcal{P}_n$.
+\begin{lstlisting}
+Select[Subsets[Range[2, n - 1]], Length[Intersection[#, # - 1]] == 0 &]
+\end{lstlisting} 
+
+The \defin{peak quasisymmetric function} 
+$\peakQSym_\Lambda(x)$, $\Lambda\in \mathcal{P}_n $ is defined as 
+\[
+  \peakQSym_{\Lambda}(\xvec) = 2^{|\Lambda|+1} \sum_{\substack{ \alpha \vDash n \\ \Lambda \subseteq S_{\alpha} \triangle (S_{\alpha}+1) }}
+  \gessel_{\alpha}(\xvec).
+\]
+Here, $\triangle$ denotes symmetric difference.
+The definition of $\peakQSym_\Lambda(\xvec)$ is also given in \cite[Prop. 3.5]{Stembridge1997}.
+
+See also \cite{GesselZhuang2018}.
+
+
+\subsection[enrichedPPartitions]{Enriched P-partitions}
+
+J. Stembridge introduced the notion of \emph{Enriched $P$-partitions},
+analogous to the classical theory of \hyperref[pPartition]{P-partitions} \cite{Stembridge1997}.
+The idea is to replace the role of descents with peaks.
+Given a linear extension $w$ of some poset $P$, $i$ is a \defin{peak} of $w$ if $w_{i-1} \lt w_i \gt w_{i+1}$.
+
+
+
+

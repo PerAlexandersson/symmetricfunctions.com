@@ -1,0 +1,119 @@
+\metatitle{Character symmetric functions, the induced character basis and the induced trivial basis}
+\metadescription{Character symmetric functions, the induced character basis and the induced trivial basis}
+
+
+\section[characterSymmetricFunctions]{Character symmetric functions}
+
+\begin{polydata}{characterSymmetricFunctions}
+  Name     & Character symmetric functions \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & OrellanaZabrocki2016 \\
+  Year     & 2016 \\
+  Symbol   &  $\tilde{s}_\lambda(\xvec)$ \\
+  Keywords & characters, kronecker, murnaghan-nakayama \\
+  Category & Schur \\
+\end{polydata}
+
+
+\label{indCharBasis}
+\begin{polydata}{indCharBasis}
+  Name     & Induced character basis \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & OrellanaZabrocki2018\\
+  Year     & 2018 \\
+  Symbol   & $\indCharBasis$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+\label{indTrivBasis}
+\begin{polydata}{indTrivBasis}
+  Name     & Induced trivial basis \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & OrellanaZabrocki2018\\
+  Year     & 2018 \\
+  Symbol   & $\indTrivBasis$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+In \cite{OrellanaZabrocki2018}, the authors define 
+the \defin{irreducible character basis}, $\{\chSym_\lambda\}$, 
+the \defin{induced character basis}, $\{\indCharBasis_\lambda\}$, and 
+the \defin{induced trivial character basis}, $\{\indTrivBasis_\lambda\}$.
+See also the \href{https://www.youtube.com/watch?v=4fDmCz9gWac}{OPAC Youtube lectures on this topic}.
+The induced character basis was previously studied by D. Speyer and S. Assaf \cite{AssafSpeyer2019} under the name 
+\defin{stable Specht polynomials}.
+
+In order to define these three families, we need some additional notation.
+First, let 
+\[
+  \bar{\powerSum}_{i^r} \coloneqq i^r \left( \frac{1}{i} \sum_{d \mid i } \mu(i/d) \powerSum_d \right)_i
+  \text{ and }
+  \hat{\powerSum}_{i^r} \coloneqq \sum_{k=0}^r (-1)^{r-k} \binom{r}{k} \bar{\powerSum}_{i^k},
+\]
+where we use the notation of falling factorial in the first expression.
+With these definitions, we can define $\bar{\powerSum}_\gamma$ and $\hat{\powerSum}_\gamma$, for partitions $\gamma$.
+Finally, we set
+\[
+	\chSym_\lambda \coloneqq \sum_{\gamma} \chi^{\lambda}(\gamma) \frac{ \hat{\powerSum}_\gamma }{z_\gamma}
+	\qquad 
+	\indCharBasis_\lambda \coloneqq \sum_{\gamma} \chi^{\lambda}(\gamma) \frac{ \bar{\powerSum}_\gamma }{z_\gamma}
+	\quad
+	\indTrivBasis_\lambda \coloneqq \sum_{\gamma} \langle \completeH_\gamma, \powerSum_\gamma \rangle \frac{ \bar{\powerSum}_\gamma }{z_\gamma}
+\]
+
+
+The \defin{irreducible character symmetric functions} $\{\chSym_\lambda\}$ were 
+introduced by Orellana and Zabrocki already in \cite{OrellanaZabrocki2016}.
+They are non-homogeneous symmetric functions, and may alternatively be defined as follow.
+
+Let $\lambda$ be a fixed partition, and $n \geq |\lambda|+\lambda_1$.
+Then for all partitions $\gamma \vdash n$,
+\[
+\chSym_\lambda(\zeta_{1},\dotsc,\zeta_{n}) = \chi^{(n-|\lambda|,\lambda)}(\gamma)
+\]
+where $\zeta_{1},\dotsc,\zeta_{n}$ are the eigenvalues of 
+a permutation matrix with cycle structure $\gamma$.
+This property uniquely defines the $\chSym_\lambda$.
+
+This definition makes the connection with \defin{character polynomials}
+evident, see the paper \cite{GarsiaGoupil2009} for more background.
+
+
+\subsection[charSymFuncProps]{Properties}
+
+The multiplicative structure constants are given by 
+the \emph{reduced} \hyperref[schurKroneckerCoefficients]{Kronecker coefficients},
+\[
+\chSym_\lambda \chSym_\mu = \sum_{\nu} \bar{g}^{\nu}_{\lambda,\mu} \chSym_\nu.
+\]
+Moreover, this property plus $\schurS_{1^r} = \chSym_{1^r}+\chSym_{1^{r-1}}$
+uniquely defines the character symmetric functions.
+
+
+The $\{\chSym_\mu\}$ are the unique set of solutions to the system of equations
+\[
+ \schurS_\lambda = \sum_{\mu : |\mu| \leq |\lambda|} A_{\lambda,(n-|\mu|,\mu)} \chSym_\mu
+\]
+for all $n$ sufficiently large.
+Here, $A_{\lambda,\mu} = \langle \schurS_\lambda, \schurS_\mu[1 + \completeH_1 + \completeH_2 + \dotsb \rangle$,
+where we use plethystic notation.
+It is an open problem to combinatorially describe the $A_{\lambda,\mu}$.
+
+For a brief overview, see \href{https://realopacblog.wordpress.com/2019/11/17/the-restriction-problem/}{this OPAC blog post}.
+
+Orellana and Zabrocki prove a Murnaghan--Nakayama type identity.
+
+
+See also \url{https://arxiv.org/abs/2004.03928} and \url{https://arxiv.org/pdf/2001.04112.pdf}.
+Also related to \url{https://www.math.uchicago.edu/~farb/papers/FImod.pdf}
+
+\todo{Add the above references}
+

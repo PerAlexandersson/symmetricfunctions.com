@@ -1,0 +1,46 @@
+
+\section[schurSS]{Schur-S polynomials}
+
+
+\begin{polydata}{schurSS}
+  Name   & Schur-S polynomials \\
+  Space    &  All   \\
+  Basis    &  True   \\
+  Rating   &  1      \\
+  Bib      &  BehzadGatto2020x\\
+  Year     &  ? \\
+  Keywords & jacobi-trudi,tableaux, cauchy-identity,skew \\
+  Symbol   & $S_{\lambda/\mu}(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+
+
+
+Let us first introduce $S_j(\xvec)$ via the expansion
+\[
+\sum_{j \geq 0} S_j z^j = \exp\left( \sum_{j \geq 1} x_j z^j\right).
+\]
+Then define 
+\[
+ S_\lambda(\xvec) \coloneqq \det[ S_{\lambda_j-j+i} ].
+\]
+Note that this is the image of $\schurS_\lambda$ under 
+the algebra homomorphism $\completeH_j \mapsto S_j$.
+
+As an example,
+\[
+S_{32}(\xvec)= \frac{x_1^5}{24}+\frac{1}{6} x_2 x_1^3-\frac{1}{2}
+   x_3 x_1^2+\frac{1}{2} x_2^2 x_1-x_4 x_1+x_2 x_3.
+\]
+
+After this map, we have that $\{ S_\lambda \}_\lambda$
+is a basis for $\setQ[\xvec]$, which is a bit unusual compared 
+to other families of Schur polynomials.
+
+In \cite{BehzadGatto2020x}, the main result is that when $\lambda \vdash d$, 
+\[
+   \frac{\partial^d}{\partial x_1^d} S_\lambda(x) =  f^\lambda.
+\]
+

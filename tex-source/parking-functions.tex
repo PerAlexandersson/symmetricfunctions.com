@@ -1,0 +1,53 @@
+
+\metatitle{Parking functions}
+\metadescription{Properties of parking functions}
+
+
+\section[parking-functions]{Parking functions}
+
+
+\begin{definition}
+Let $(a_1, a_2, \dots, a_n)$ be a sequence of positive integers.
+We think of these as $n$ cars, where $a_i$ is the preferred parking spot for car $i$.
+The parking spots are labeled $1, 2, \dotsc, n$ and the $n$ cars attempt to park according to the following
+rules:
+\begin{itemize}
+  \item Car \( i \) attempts to park in spot \( a_i \).
+  \item If that spot is taken, it proceeds to the next available empty spot to the right (higher index).
+\end{itemize}
+If all cars can park successfully, then the sequence \( (a_1, \dots, a_n) \) is a  \defin{parking function}.
+\end{definition}
+
+There are $(n+1)^{n-1}$ parking functions in total, Pyke (1956) and Konheim and Weiss (1966).
+Pollak (1966) has a neat proof for this formula by adding an extra $(n+1)$th spot.
+
+
+\begin{theorem}
+The sequence $(a_1, \dots, a_n)$ of positive integers is a 
+parking function if and only if, when rearranged 
+in non-decreasing order $(b_1 \le b_2 \le \dots \le b_n)$, it satisfies
+\[
+b_i \le i \quad \text{for all } i = 1, \dots, n.
+\]
+\end{theorem}
+\begin{proof}
+\textbf{First direction:} 
+If $(a_1, \dots, a_n)$ is a parking function, then $b_i \leq i$ for all $i$.
+
+For any $k$, there must be at least $k$ cars preferring spots among $1,2,\dotsc,k$.
+This immediately gives that $b_k \leq k$ for all $k$.
+
+\textbf{Other direction:} If $b_i \le i$ for all $i =1,2,\dotsc,n$, 
+then$(a_1, \dots, a_n)$ is a parking function.
+
+Suppose this statement is not correct. We can then (by minimal counterexample) 
+assume the first $n-1$ cars manage to park, but the last car fails to park.
+Then there must be some (smallest) $j$ such that spots $\{j,j+1,\dotsc,n\}$
+are occupied after the first $n-1$ cars, and $a_n \geq j$.
+
+Since the spot $j-1$ is empty, we know that there are $(n-j+1)+1$
+cars that want to park at spot at least $j$.
+
+But then, only (the remaining) $j-2$ cars want to park at spots $\{1,2,\dotsc,j-1\}$.
+This implies that $b_{j-1} > j-1$, violating our assumption.
+\end{proof}

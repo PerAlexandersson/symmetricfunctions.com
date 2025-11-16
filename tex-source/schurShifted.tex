@@ -1,0 +1,243 @@
+\section[schurShifted]{Shifted Schur polynomials}
+
+
+\begin{polydata}{schurShifted}
+  Name   & Shifted Schur polynomials \\
+  Space    & ShiftedSym \\
+  Basis    & Yes \\
+  Rating   & 3 \\
+  Symbol   & $\schurShifted_\mu(\xvec) $ \\
+  Bib      & OkounkovOlshanski1996 \\
+  Keywords & shifted \\
+  Year     & 1996 \\
+  Categoty & Schur \\
+\end{polydata}
+
+
+Shifted Schur functions were studied in \cite{OkounkovOlshanski1996}, 
+and are closely related to the factorial Schur polynomials.
+The shifted Schur functions are specializations of the \hyperref[jackShifted]{shifted Jack functions}.
+
+Define the \defin{falling factorial} as
+\[
+\fallingFactorial{x}{k} \coloneqq x(x-1)\dotsm (x-k+1), \qquad \fallingFactorial{x}{0} \coloneqq 1.
+\]
+
+The \defin{shifted Schur polynomials} are defined as the quotient
+\[
+\schurShifted_\mu(x_1,\dotsc,x_n) \coloneqq \frac{ \det( \fallingFactorial{x_i+n-i}{\mu_j+n-j} ) }{  \det( \fallingFactorial{x_i+n-i}{n-j} )  }.
+\]
+
+
+\subsection[schurShiftedProperties]{Properties}
+
+The shifted Schur polynomials are stable in the sense that
+\[
+\schurShifted_\mu(x_1,\dotsc,x_n) = \schurShifted_\mu(x_1,\dotsc,x_n,0).
+\]
+
+Let $H(\mu)$ be the product of hook lengths in the diagram $\mu$.
+The shifted Schur functions $\schurShifted_\mu(\xvec)$
+is the unique family of shifted symmetric functions with degree $\leq |\mu|$
+such that 
+\[
+\schurShifted_\mu(\lambda) = \delta_{\lambda\mu} H(\mu)
+\]
+for all $\lambda$ such that $|\lambda| \leq |\mu|$.
+This is commonly referred to as the \defin{vanishing property}.
+
+
+Let $l=|\lambda|$ and $k=|\mu|$. 
+Then
+\[
+\frac{f^{\lambda/\mu}}{f^{\lambda}} = \frac{\schurShifted_\mu(\lambda)}{\fallingFactorial{l}{k}}
+\]
+where $f^{\lambda/\mu}$ is the number of skew standard Young tableaux of shape $\lambda/\mu$.
+
+
+\subsection[schurShiftedCombinatorialFormula]{Combinatorial formula}
+
+There is a combinatorial formula, see \cite{OkounkovOlshanski1996},
+\[
+\schurShifted_\mu(\xvec) = \sum_{T \in \mathrm{RSSYT}(\mu)} \prod_{s \in \mu} (x_{T(s)} - c(s))
+\]
+where $\mathrm{RSSYT}(\mu)$ is the set of reverse semi-standard Young tableaux.
+These are fillings of $\mu$ with weakly decreasing rows and strictly decreasing columns.
+Here, $c(s)$ is the \emph{content} of the square $s$.
+
+Note that this formula implies that
+\[
+\schurShifted_\mu(\xvec) = \schurS_\mu(\xvec) + \text{ lower order terms}.
+\]
+
+
+\subsection[schurShiftedJacobiTrudi]{Jacobi--Trudi identities}
+
+Define the shifted elementary and complete homogeneous symmetric functions as
+\[
+\elementaryE^*_r(\xvec) = \schurShifted_{(1^r)}(\xvec)\qquad
+\completeH^*_r(\xvec) = \schurShifted_{(r)}(\xvec).
+\]
+
+Let $H^*(u)$ be the formal power series in $u^{-1}$:
+\[
+H^*(u) \coloneqq \sum_{r\geq 0} \frac{ \completeH^*_r(\xvec) }{ \fallingFactorial{u}{r} } = 
+\prod_{i=1}^\infty \frac{u+i}{u+i-x_i}.
+\]
+
+Define the automorphism $\phi$ on the algebra of symmetric functions as $\phi H^*(u) = H^*(u-1)$.
+
+In \cite{OkounkovOlshanski1996} it is then proved that
+\[
+\schurShifted_{\mu}(\xvec) = \det[ \phi^{j-1} \completeH^*_{\mu_i - i +j} ]_{1\leq i,j \leq l}
+\qquad 
+\schurShifted_{\mu}(\xvec) = \det[ \phi^{1-j} \elementaryE^*_{\mu'_i - i +j} ]_{1\leq i,j \leq m}
+\]
+where $l \geq \length(\mu)$ and $m \geq \mu_1$.
+
+\subsection[schurShiftedLittlewoodRichardson]{Littlewood--Richardson rule}
+
+Since the \hyperref[schurFactorial]{factorial Schur polynomials} 
+has a \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson rule} \cite{MolevSagan1999},
+one can find one for the shifted Schur polynomials as well.
+For examples of a combinatorial interpretation, see \cite{Molev2009}.
+
+\begin{theorem}
+The shifted Schur Littlewood--Richardson coefficients are defined via 
+\[
+\schurShifted_{\lambda}\schurShifted_{\mu} = \sum_{\nu} c^{\nu}_{\lambda \mu} \schurShifted_{\nu}.
+\]
+Let $\mu, \nu \subseteq \lambda$. Then
+\begin{equation*}
+c^{\lambda}_{\mu\nu} = 
+\frac{1}{|\lambda|-|\nu|}\left( 
+ \sum_{\nu \to \nu^+}  c^{\lambda}_{\mu \nu^+} - \sum_{\lambda^- \to \lambda }  c^{\lambda^-}_{\mu \nu}
+\right)
+\end{equation*}
+where the first sum is taken over all possible ways to add one box to the diagram $\nu$,
+and the second sum is over all ways to remove one box from $\lambda$.
+
+This together with the identity 
+$c^{\lambda}_{\mu \lambda} = \schurShifted_\mu(\lambda)$ 
+(which can be computed via the Jacobi--Trudi identity) gives a recursive method to compute the $c^{\lambda}_{\mu\nu}$.
+This recursion has an analog for the \hyperref[jackShiftedLittlewoodRichardsonFormula]{shifted Jack functions}.
+\end{theorem}
+
+Note that if $|\nu| = |\lambda|+|\mu|$, then $c^{\lambda}_{\mu\nu}$ is the
+classical \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficient} for the Schur functions.
+
+
+
+
+\section[schurFactorial]{Factorial Schur polynomials}
+
+
+\begin{polydata}{schurFactorial}
+  Name   & Factorial Schur polynomials \\
+  Space    & Sym \\
+  Basis    & Yes \\
+  Rating   & 2 \\
+  Symbol   & $\schurFactorial_\mu(\xvec)$ \\
+  Bib      & BiedenharnLouck1989  \\
+  Keywords & factorial, jacobi-trudi, lr-rule, alternant, ssyt, gt-patterns \\
+  Year     & 1989 \\
+  Categoty & Schur \\
+\end{polydata}
+
+\todo{I think BL defined what is now known as shifted Schur functions, and factorial ones are Molev-Sagan.}
+
+The \defin{factorial Schur functions} $\schurFactorial_\lambda(\xvec)$ is a family of non-homogeneous symmetric polynomials, indexed by partitions.
+They were introduced by Biedenharn and Louck in \cite{BiedenharnLouck1989}.
+The top-degree component is the classical Schur polynomial 
+$\schurS_\lambda$. They form a $\setZ$-basis for the space of symmetric polynomials (in $n$ variables).
+
+
+The factorial Schur functions can be defined using \hyperref[gtpatterns]{Gelfand--Tsetlin patterns}.
+We sum over all GT-patterns with $n$ rows and top row $\lambda$ (note that this set is in bijection with 
+semi-standard Young tableaux of shape $\lambda$ and maximal entry at most $n$):
+\[
+ \schurFactorial_\lambda(x_1,\dotsc,x_n) \coloneqq \sum_{(m_{ij}) \in GT(\lambda)} \prod_{j=1}^n \prod_{i=1}^j
+ \left( x_j - m_{i,j-1} + i-j \right)_{m_{i,j}-m_{i,j-1}}
+\]
+where we are using the falling factorial notation $(a)_k = a(a-1)\dotsm (a-k+1)$.
+Under the GT-pattern to SSYT bijection, the quantity $m_{i,j}-m_{i,j-1}$ is sent 
+to the number of times $j$ appears in row $i$ (in the SSYT).
+
+From this definition, we can see that 
+\[
+ \schurFactorial_\lambda(x_1,\dotsc,x_n) = \sum_{\mu \downarrow \lambda} \prod_{i=1}^n 
+ (x_n - \mu_i - n +i  )_{\lambda_i - \mu_i} \cdot  \schurFactorial_\mu(x_1,\dotsc,x_{n-1}),
+\]
+where we write $\mu \downarrow \lambda$ for when 
+\[
+ \lambda_1 \geq \mu_1 \geq \lambda_2 \geq \mu_2 \geq \dotsb \geq \mu_{n-1} \geq \lambda_n.
+\]
+This is the same as $\mu$ can be in a row immediately below $\lambda$ in a GT-pattern.
+
+The factorial Schur polynomials are special cases of the \hyperref[schubertDouble]{double Schubert polynomials},
+indexed by Grassmann permutations.
+
+
+\defin{Skew factorial Schur functions} can similarly be defined using sums over skew GT-patterns instead 
+(see \cite{ChenLouck1993}): 
+\[
+ \schurFactorial_{\lambda/\mu}(x_1,\dotsc,x_n) \coloneqq \sum_{(m_{ij}) \in GT(\lambda/\mu)} \prod_{j=1}^n \prod_{i=1}^j
+ \left( x_j - m_{i,j-1} + i-j \right)_{m_{i,j}-m_{i,j-1}}.
+\]
+Here, we sum over GT-patterns with $n+1$ rows, with top row $\lambda$ and bottom row $\mu$.
+
+
+\subsection[schurFactorialAlternant]{Alternant quotient formula}
+
+We have that 
+\[
+\schurFactorial_{\lambda}(x_1,\dotsc,x_n) = \frac{1}{\Delta(\xvec)} \sum_{\mu} K_{\lambda \mu} \Delta(\xvec-\mu)
+\prod_{i=1}^n (x_i)_{\mu_i}
+\]
+where $\Delta(\xvec)$ is the Vandermonde determinant, see \cite[Thm. 5]{BiedenharnLouck1990}.
+
+
+Macdonald proved that the above formula leads to the simpler 
+\[
+\schurFactorial_{\lambda}(x_1,\dotsc,x_n) = \frac{\left| (x_i)_{\lambda_j+n-i} \right| }{ \prod_{i \lt j} x_j - x_j  },
+\]
+which is analogous to the alternant quotient formula for Schur functions,
+see \cite[Thm. 3.2]{ChenLouck1993} for a proof.
+
+
+\subsection[schurFactorialJT]{Jacobi--Trudi}
+
+There is a Jacobi--Trudi identity for skew factorial Schur functions, see \cite{ChenLouck1993}.
+
+\todo{http://docplayer.net/163152902-Combinatorial-aspects-of-generalizations-of-schur-functions.html}
+
+
+
+\subsection[schurFactorialMolevSagan]{Generalized factorial Schur functions}
+
+Molev--Sagan (see \cite{MolevSagan1999}) considers the \defin{generalized factorial Schur functions} 
+defined via the alternant formula
+\[
+\schurFactorial_{\lambda}(x_1,\dotsc,x_n | \avec) = \frac{\left| (x_i|a)_{\lambda_j+n-i} \right|}{ \prod_{i \lt j} x_j - x_j  },
+\]
+where $(y|a)_k \coloneqq (y-a_1)(y-a_2)\dotsm (y-a_k)$.
+Thus, we have that the classical factorial Schur functions are a specialization of the Molev--Sagan family:
+\[
+\schurFactorial_{\lambda}(x_1,\dotsc,x_n ) = \schurFactorial_{\lambda}(x_1,\dotsc,x_n | 0,1,2,3,\dotsc).
+\]
+
+These also admits a tableau definition:
+\[
+\schurFactorial_{\lambda}(x_1,\dotsc,x_n | \avec) =
+\sum_{T \in \SSYT(\lambda)} \prod_{\alpha \in \lambda} \left( x_{T(\alpha)} - a_{T(\alpha)+c(\alpha)}  \right)
+\]
+where $c(\alpha)$ is the \hyperref[partitionCores]{content} of the box $\alpha$.
+These are more or less the same as the \emph{double Schur functions}, see \cite{Molev2009co}.
+
+
+
+\subsection[schurFactorialLR]{Littlewood--Richardson rule}
+
+The factorial Schur functions admits a Littlewood--Richardson rule, see \cite{MolevSagan1999}.
+
+

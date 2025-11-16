@@ -1,0 +1,139 @@
+
+\section[slideM]{Monomial slide polynomials}
+
+\begin{polydata}{slideM}
+  Name  & Monomial slide polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & AssafSearles2016 \\
+  Year     & 2016 \\
+  Symbol   & $\slideM_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{monomial slide polynomials} were introduced by S. Assaf and D. Searles in \cite{AssafSearles2016}.
+The slide polynomials form a basis for the space of polynomials, and can be seen as a lift 
+of the \hyperref[qmonom]{monomial quasisymmetric functions}.
+
+
+\begin{definition}
+For $\alpha$ being a weak composition, we set
+\[
+\slideM_\alpha(\xvec) \coloneqq \sum_{\substack{b \trianglerighteq a \\ \mathrm{flat}(b)=\mathrm{flat}(a)}} \xvec^b
+\]
+where $\mathrm{flat}(\beta)$ denotes the composition obtained by removing all 0s from $\beta$,
+and $\trianglerighteq$ denotes \hyperref[partialOrderingsOnPartitions]{dominance order}.
+\end{definition}
+
+As an example (from \cite[Eq. 3.7]{AssafSearles2016}), $\slideM_{(0,2,0,3)}(\xvec) = x_1^2x_2^3 + x_1^2x_3^3 + x_1^2 x_4^3 + x_2^2 x_3^3  + x_2^2 x_4^3$.
+
+
+
+The monomial slide polynomials have the \hyperref[qmonom]{monomial quasisymmetric functions}
+as stable limit:
+\[
+ \lim_{m \to \infty} \slideM_{0^m\times \alpha}(\xvec) = \qmonom_{\mathrm{flat}(\alpha)}(\xvec).
+\]
+
+
+\section[slideF]{Fundamental slide polynomials}
+
+\begin{polydata}{slideF}
+  Name &  Fundamental slide polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & AssafSearles2016 \\
+  Year     & 2016 \\
+  Symbol   & $\slideF_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The \emph{fundamental slide polynomials} (or sometimes just \defin{slide polynomials})
+were introduced by S. Assaf and D. Searles in \cite{AssafSearles2016}.
+The slide polynomials form a basis for the space of polynomials, and can be seen as a lift 
+of the \hyperref[gessel]{gessel quasisymmetric functions}.
+
+The $K$-theoretical analog of fundamental slide 
+polynomials are the \emph{glide polynomials}, see \cite{PechenikSearles2017}.
+\todo{add glide polynomials from \cite{PechenikSearles2017}}
+
+The fundamental slide polynomials expand positively 
+in the \hyperref[slideM]{monomial slide polynomials}.
+Moreover, the \hyperref[schubert]{Schubert polynomials}
+expand positively in the fundamental slide polynomials, \cite[thm. 3.13]{AssafSearles2016}.
+The main motivation for introducing the fundamental slide polynomials,
+is that products of Schubert polynomials can be expanded (with a combinatorial formula) into
+fundamental slide polynomials.
+
+\begin{definition}
+For $\alpha$ being a weak composition, \defin{fundamental slide polynomial} $\slideF_\alpha$
+is defined as
+\[
+\slideF_\alpha(\xvec) \coloneqq \sum_{\substack{b \trianglerighteq a \\ \mathrm{flat}(b)\text{ refines }\mathrm{flat}(a)}} \xvec^b
+\]
+where $\mathrm{flat}(\beta)$ denotes the composition obtained by removing all 0s from $\beta$,
+and $\trianglerighteq$ denotes \hyperref[partialOrderingsOnPartitions]{dominance order}.
+\end{definition}
+
+
+The fundamental slide polynomials have the \hyperref[gessel]{gessel quasisymmetric functions}
+as stable limit:
+\[
+ \lim_{m \to \infty} \slideF_{0^m\times \alpha}(\xvec) = \gessel_{\mathrm{flat}(\alpha)}(\xvec).
+\]
+
+\subsection[slidePositive]{Slide positive families}
+
+\hyperref[key]{Key polynomials} expand positively in the 
+fundamental slide basis, \cite[Thm. 2.13]{AssafSearles2018}.
+In \cite{ChoWilligenburg2022}, the authors determine for which $\alpha$,
+the key polynomials $\key_\alpha$ expanded into slide polynomials are multiplicity free.
+
+In \cite{AssafBergeron2019}, the authors consider a flagged version of 
+$(P,w)$-partitions, and show that these are slide-positive.
+In \cite{TewariWilsonZhang2022}, it is shown that certain polynomials similar to 
+chromatic symmetric functions are slide-positive.
+
+
+See \cite{SmirnovTutubalina2021} the notion of \emph{slide complexes}.
+
+
+\section[lock]{Lock polynomials}
+
+\begin{polydata}{lock}
+  Name   & Lock polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & AssafSearles2019 \\
+  Year     & 2019 \\
+  Symbol   & $\lock_\alpha(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+Lock polynomials were introduced by S. Assaf and D. Searles in \cite{AssafSearles2019}.
+The Lock polynomials form a basis for the polynomial ring, 
+and are indexed by weak compositions.
+The combinatorial formula for these is
+\[
+\lock_\alpha(\xvec) \coloneqq \sum_{T \in LT(\alpha)} \xvec^T
+\]
+where the sum is over all \emph{lock tableaux}.
+
+As an example (from \cite{Wang2020}), we have
+\[
+\lock_{(0,2,3)}(\xvec) = x_2^2 x_3^2 + x_1x_2x_3^3 + x_1^2x_3^3 + x_1x_2^2x_3^2 + 
+x_1^2x_2x_3^2 + x_1^2x_2^2x_3 + x_1^2 x_2^3
+\]
+
+Whenever the non-zero parts of $\alpha$ are weakly decreasing,
+we have that the lock polynomial coincides with a \hyperref[key]{key polynomial};
+$\lock_\alpha(\xvec)=\key_\alpha(\xvec)$, see \cite[Thm. 6.12]{AssafSearles2019}.
+
+There is a \hyperref[crystals]{crystal structure} on lock polynomials, 
+explored by G. Wang in \cite{Wang2020}.
+This crystal structure embeds naturally into Demazure crystals.
+
+

@@ -1,0 +1,142 @@
+\metatitle{Miscellaneous cyclic sieving}
+\metadescription{A list of miscellaneous cyclic sieving phenomena}
+
+See the \hyperref[cyclicSieving]{cyclic sieving phenomenon} 
+page for the definition and related theorems.
+
+
+
+
+\todo{Add the conjectures in https://arxiv.org/pdf/1907.09337.pdf}
+
+
+\todo{Add conjectures in https://arxiv.org/pdf/2006.01568.pdf}
+
+
+
+\section[cspListMisc]{Miscellaneous}
+
+
+
+\subsection[cspListPosetsRoot]{Root posets}
+
+
+Let $\Phi$ be a \hyperref[root-systems]{root system} and $\Phi^+$ its poset of positive roots.
+Armstong--Stump--Thomas \cite{ArmstrongStumpThomas2013} studied the action of the
+rowmotion operator (a.k.a. the 'Fon-Der-Flaass/Panyushev map') on the antichains of $\Phi^+$.
+Addressing conjectures of Panyushev and Bessis--Reiner, they showed that this action is
+in equivariant bijection with the Kreweras complementation action on
+the $\Phi$-noncrossing partition lattice.
+Moreover, they showed that the $q$-$\Phi$-Catalan polynomial is a cyclic sieving polynomial
+for the action of rowmotion on the  antichains of $\Phi^+$ (equivalently, for the Kreweras
+complement acting on $\Phi$-noncrossing partitions).
+Note that the Type $A$ case of this CSP is equivalent to
+the \hyperref[cspNonCrossingMatchingsI]{Non-crossing matchings} CSP.
+
+
+Rowmotion can be realized as a certain composition of toggles.
+By making these toggles piecewise-linear, one obtains a piecewise-linear action
+of rowmotion on height $m$ $P$-partitions of a poset $P$.
+Hopkins (see \cite{Hopkins2020}) conjectured a CSP for the action
+of piecewise-linear rowmotion on these $P$-partitions when $P$ is
+root poset 'of coincidental type', where the sieving polynomial is
+the so-called '$q$-$\Phi$-multi-Catalan number'.
+This conjecture extend the aforementioned result of Armstong--Stump--Thomas, which is the case $m=1$.
+
+
+\subsection[cspListFrieze]{Polygonal dissections and Frieze patterns}
+
+In \cite{AdamsBanian2025x}, the authors prove CSP for 
+the set $A_\mu$, consisting of non-crossing dissections of an $(n+2)$-gon, where the number of $j$-gons in
+the dissection is $\mu_j$. The group action is rotation of the $(n+2)$-gon.
+This is gives 
+\[
+\left( A_\mu, C_{n+2},  \frac{1}{[n+1]_q} \qbinom{n+k}{k}\qbinom{k}{\mu_1,\mu_2,\dotsc,\mu_n} \right)
+\]
+where $k-1$ is the number of non-crossing diagonals in the dissection.
+
+There is then a certain bijection between non-crossing dissections of $(n+2)-gons$ and classes of Frieze patterns,
+see \cite{HolmJorgensen2018}.
+
+
+
+\subsection[cspListPosetsMinuscule]{Minuscule posets}
+
+
+
+In \cite{RushShi2012}, the authors consider rowmotion acting on the antichains of minuscule posets.
+The corresponding CSP-polynomial is the rank-generating function of the poset,
+which for minuscule posets enjoys some particularly nice properties, see \cite[Exercise 170]{StanleyEC1}.
+
+For the product of two chains, this action is a special case of the
+\hyperref[cspPlanePartitions]{plane partitions CSP}.
+
+Hopkins (see \cite{Hopkins2020}) conjectured a CSP for the action of piecewise-linear
+rowmotion on height $m$ $P$-partitions when $P$ is a minuscule poset, where the
+sieving polynomial is the rank-generating of $P\times[m]$,
+which again has nice properties (in particular, a product formula).
+This conjecture extends the aforementioned result of Rush--Shi, which is the case $m=1$.
+
+
+
+\subsection[csp01Matrices]{BiCSP on 01-matrices and Hall--Littlewood}
+
+In \cite{BarceloReinerStanton2008}, a bi-cyclic sieving phenomenon on permutation matrices is described.
+Let $X_n$ be the set of $n\times n$ permutation matrices,
+and let $\grpc_n \times \grpc_n $ act on $X_n$ by cyclic shift on rows, and columns.
+Then
+\[
+\left(X_n, \grpc_n \times \grpc_n, \epsilon(q,t)\sum_{\lambda \vdash n} f^\lambda(q) f^\lambda(t) \right)
+\]
+exhibit the bi-cyclic sieving phenomenon. 
+Here, $\epsilon(q,t)$ is $(qt)^{n/2}$ if $n$ is even, and$1$ if $n$ is odd.
+In fact, they prove a much stronger statement regarding complex reflection groups.
+
+This is further generalized in \cite{Rhoades2010b} to $01$-matrices,
+where the column sums and row sums in the matrices are given by fixed integer partitions.
+
+B. Rhoades further generalizes this to matrices with non-negative integer entries, and prove 
+a bi-cyclic phenomenon using
+\[
+\epsilon(q,t)\sum_{\lambda \vdash n} K_{\lambda,\mu}(q) K_{\lambda,\nu}(t)
+\]
+as biCSP polynomial. Note that this is closely 
+related to the \hyperref[rsk]{Robinson--Schensted--Knuth algorithm}.
+
+
+
+\subsection[cspTensors]{Tensor products}
+
+In \cite{Westbury2016}, cyclic sieving phenomena are created via representation theory
+and crystals, generalizing the promotion CSP by Rhoades.
+This is related to the principal specialization of \hyperref[frobeniusCharacteristic]{Frobenius image} of 
+characters of the symmetric group.
+
+
+
+\subsection[cspLatticePolytopes]{Lattice polytopes}
+
+J. Propp asks for a solution to the following problem.
+Let $P \subset \setR^d$ be a lattice polytope 
+and $g$ be a \emph{linear map} $\setR^d \to \setR^d$, such that $\langle g \rangle$ 
+is a cyclic group of order $n$ where $g(P) = P$.
+
+Can we find a linear function $\sigma:\setZ^d \to \setZ$ such that for 
+the $q$-analogue of the Ehrhart function of $P$, defined as
+\[
+p_m(q) \coloneqq \sum_{x \in mP \cap \setZ^d} q^{\sigma(x)},
+\]
+we have that $(mP \cap \setZ^d, \langle g \rangle, p_m(q))$ is a CSP-triple, for all $m \in \setN$?
+That is, we get a family of cyclic sieving phenomena on the lattice points of dilations of $P$.
+
+
+\subsection[cspCyclicCodes]{Hamming codes}
+
+A. Mason, V. Reiner and S. Sridhar have some results on 
+cyclic codes and (dual) Hamming codes in \cite{MasonReinerSridhar2020x}.
+
+
+\subsection[cspMaximalWeights]{Dominant maximal weights}
+
+A cyclic sieving phenomenon on dominant maximal weights in affine Kac--Moody algebras
+is described in \url{https://arxiv.org/pdf/1909.07010.pdf}.

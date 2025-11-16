@@ -1,0 +1,451 @@
+\section[hallLittlewoodP]{Hall--Littlewood P}
+
+
+\begin{polydata}{hallLittlewoodP}
+  Name   & Hall--Littlewood P \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 5 \\
+  Bib      & Littlewood1961 \\
+  Year     & 1961 \\
+  Keywords & cauchy-identity,skew \\
+  Symbol   & $\hallLittlewoodP_\lambda(\xvec;t)$ \\
+  Category & Schur \\
+\end{polydata}
+
+\todo{
+Add info in \cite{WheelerZinnJustin2018}
+}
+
+\todo{
+Non-symmetric : https://arxiv.org/pdf/math/0609512.pdf
+}
+
+
+\todo{
+Carbonara: A combinatorial interpretation of the inverse t-Kostka matrix
+}
+
+\todo{
+Via GT-patterns, Tokuyamas formula:https://www.combinatorics.org/ojs/index.php/eljc/article/view/v22i2p11/pdf
+
+}
+
+The Hall--Littlewood $P$ polynomals interpolates between
+the Schur polynomals and the monomial symmetric functions.
+They were introduced by P. Hall (implicitly) and later by D. E. Littlewood in \cite{Littlewood1961}.
+
+
+\subsection[hallLittleWoodPWeylformula]{Definition}
+
+For a partition $\lambda$, with $\alpha_i$ parts equal to $i$, we define the Hall--Littlewood functions as
+\begin{equation*}
+\hallLittlewoodP_\lambda(x_1,\dotsc,x_n;t) = 
+\frac{1}{\prod_{i\geq 0} [\alpha_i]_t! }\sum_{\sigma \in \symS_n} 
+\sigma\left( \xvec^\lambda \frac{ \prod_{i \lt j} 1-tx_j/x_i }{\prod_{i \lt j} 1-x_j/x_i }  \right).
+\end{equation*}
+Compare with the \hyperref[schurWeylformula]{Weyl formula for Schur polynomials}.
+Note that 
+\[
+\hallLittlewoodP_\lambda(\xvec;1) = \monomial_\lambda(\xvec) \text{ and }
+\hallLittlewoodP_\lambda(\xvec;0) = \schurS_\lambda(\xvec).
+\]
+Furthermore, $\hallLittlewoodP_\lambda(\xvec;-1)$ is equal to the \hyperref[schurP]{Schur-$P$ function}.
+
+The Hall--Littlewood polynomials are orthogonal with respect to the inner product $\langle - , - \rangle_t$
+defined via
+\[
+\langle \powerSum_\lambda , \powerSum_\mu \rangle_t = \delta_{\lambda\mu} z_{\lambda} \prod_{i=1}^{\length(\lambda)}
+\frac{1}{1-t^{\lambda_i} },
+\]
+see \cite[III. §4]{Macdonald1995}. This is a $t$-deformation of the usual Hall inner product,
+which is recovered at $t=0$.
+
+
+\begin{example*}[The Hall--Littlewood polynomial indexed by 221]
+We have that $\hallLittlewoodP_{221}(\xvec;t)$ is equal to
+\[
+\monomial_{221} + (2-t-t^2)\monomial_{2111} + (5-4 t-4 t^2+t^3+t^4+t^5)\monomial_{11111}.
+\]
+\end{example*}
+
+
+The (skew) Hall--Littlewood $\hallLittlewoodP$ functions can be computed via a branching rule as follows.
+First let the one-variable specialization be $\hallLittlewoodP_{\lambda/\mu}(z;t) = z^{|\lambda/\mu|} \psi_{\lambda/\mu}(t)$,
+where
+\[
+\psi_{\lambda/\mu}(t) = \prod_{\substack{ i \geq 1 \\ m_i(\mu) = m_i(\lambda)+1  }} \left( 1-t^{m_i(\mu)} \right).
+\]
+Then the \defin{skew Hall--Littlewood}  $\hallLittlewoodP$ polynomial is given by
+\[
+\hallLittlewoodP_{\lambda/\mu}(x_1,\dotsc,x_n;t) 
+= \sum_{ \mu = \nu^{0} \prec \dotsb \prec \nu^n = \lambda}
+\prod_{i=1}^n \psi_{\nu^{i}/\nu^{i-1}}(t) x_i^{|\nu^{i}/\nu^{i-1}|}.
+\]
+Here, we write $\mu \prec \lambda$ if $\lambda/\mu$ is a skew shape.
+
+We have that the Hall--Littlewood $\hallLittlewoodP$ polynomials is the dual basis to the Hall--Littlewood $\hallLittlewoodQ$
+basis, $\langle \hallLittlewoodQ_\lambda, \hallLittlewoodP_\lambda \rangle_t = \delta_{\lambda\mu}$.
+
+
+\subsection[hallLittlewoodCauchy]{Cauchy identity}
+
+We have the Cauchy identity (see \cite[Chapter III, Eq. (4.4)]{Macdonald1995}),
+\[
+\prod_{i=1}^n \prod_{j=1}^n \left( \frac{1-tx_i y_j}{1-x_iy_j } \right) = 
+\sum_{\mu} \hallLittlewoodP_\mu(x_1,\dotsc,x_n;t) \hallLittlewoodQ_\mu(y_1,\dotsc,y_n;t).
+\]
+
+\subsection[hallLittlewoodGT]{Gelfand--Tsetlin patterns}
+
+
+In \cite{FeiginMakhlin2016}, the authors give a combinatorial formula of the form 
+\begin{equation}
+ \hallLittlewoodP_\lambda(\xvec) = \sum_{G \in \GT(\lambda) } p_G(t) \xvec^{w(G)}
+\end{equation}
+where $p_G(t)$ is a certain polynomial defined 
+via a statistic on the \hyperref[gtpatterns]{Gelfand--Tsetlin pattern} $G$.
+
+Another formula using GT-patterns is given in \cite[Thm. 11]{GuptaRoyPeski2015}.
+They generalize \hyperref[gtpatternsTokuyama]{Tokuyama's formula}, \cite{Tokuyama1988} 
+and recover Stanley's formula \cite{Stanley1986} for Schurs-Q functions as a special case.
+
+
+\subsection[hallLittlewoodPieri]{Pieri Rule}
+
+In \cite{KonvalinkaLauve2012}, the authors prove a skew Pieri rule for the Hall--Littlewood $\hallLittlewoodP$
+functions. Below is the simpler non-skew version.
+
+\begin{theorem}[See \cite[Thm. 1]{KonvalinkaLauve2012}]
+Let $\lambda$ be a partition and $r \geq 0$. Then
+\[
+\hallLittlewoodP_\mu(\xvec;t) \elementaryE_r(\xvec) = 
+\sum_{\substack{ \lambda \\ |\lambda/\mu| = r }} sk_{\lambda/\mu}(t) \hallLittlewoodP_\lambda(\xvec;t)
+\]
+where 
+\[
+sk_{\lambda/\mu}(t) = 
+t^{\sum_{j} \binom{\lambda'_j - \mu'_j}{2} } \prod_{i\geq i} \qbinom{ \lambda'_j - \mu'_{j+1}}{ m_j(\mu) }_t.
+\]
+\end{theorem}
+
+
+\subsection[kostkaFoulkesPolynomials]{Kostka--Foulkes polynomials}
+
+The polynomials $K_{\lambda\mu}(t)$ in the expansion
+\[
+\schurS_\lambda(\xvec) = \sum_\mu K_{\lambda\mu}(t) \hallLittlewoodP_\mu(\xvec)
+\]
+are called \defin{Kostka--Foulkes polynomials} and are 
+certain $t$-analogues of the \hyperref[schurCombinatorialFormula]{Kostka coefficients}.
+It was shown by Lascoux and Schutzenberger \cite{LascouxSchutzenberger78} that
+\[
+K_{\lambda\mu}(t) = \sum_{T \in \mathrm{SSYT}(\lambda,\mu)} t^{\charge(T)},
+\]
+where the sum is over semi-standard Young tableaux and \hyperref[kostkaFoulkes]{charge} is a certain statistic on SSYTs.
+There is an alternative way to define Kostka--Foulkes polynomials 
+using \hyperref[riggedConfigurations]{rigged configurations},
+introduced by Kirillov and Reshetikhin \cite{KirillovReshetikhin1988thebethe}.
+See the page on \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials} for more information.
+
+
+
+\section[hallLittlewoodProducts]{Products}
+
+
+There are various different products that lead to $t$-deformations of known structure constants.
+
+\subsection[hallPolynomials]{Hall polynomials}
+
+The \defin{Hall polynomials}, $c^{\nu}_{\lambda\mu}(t) \in \setZ[t]$
+deform the \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficients}.
+They are defined via the expansion
+\[
+\hallLittlewoodP_\lambda(\xvec) \hallLittlewoodP_\mu(\xvec) 
+= \sum_\nu c^{\nu}_{\lambda\mu}(t) \hallLittlewoodP_\nu(\xvec),
+\]
+and at $t=0$, the Littlewood--Richardson coefficients for Schur polynomials are recovered.
+Note that the polynomials $c^{\nu}_{\lambda\mu}(t)$ may have negative coefficients.
+
+A combinatorial model for $c^{\nu}_{\lambda\mu}(t)$ can be recovered 
+from the more general theory in \cite{Yip2012}. 
+An earlier proof appear in \cite{Schwer2006}.
+
+In \cite{ZinnJustin2019}, a honeycomb model for the Hall polynomials is described.
+This extends the \hyperref[knutsonTaoHoneycomb]{honeycomb model} 
+by Knutson--Tao for the \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficients}.
+
+
+The Hall polynomials have significance in the study of \emph{abelian $p$-groups}.
+Let $p$ be a prime number. 
+An abelian $p$-group of \emph{type} $\lambda$ is isomorphic to 
+\[
+G = \setZ/p^{\lambda_1} \oplus  \setZ/p^{\lambda_2} \oplus  \dotsb \oplus \setZ/p^{\lambda_\ell}.
+\]
+A subgroup $H \subseteq G$ has \defin{cotype} $\nu$ if $G/H$ has type $\nu$.
+
+\begin{theorem}
+The number of subgroups of type $\mu$ and cotype $\nu$ in 
+a finite abelian $p$-group of type $\lambda$ is given by $c^{\lambda}_{\mu\nu}(p)$.
+\end{theorem}
+
+For fixed $\lambda$, the Hall polynomial $c^{\lambda}_{\mu\nu}(p)$ has non-negative
+coefficients for all $\mu$ and $\nu$ if and only if no two parts of $\lambda$ 
+differ by more than one.
+
+The parameters for which all coefficients are positive is determined exactly in \cite{ButlerHales1993}.
+This result later inspired a proof of the following theorem.
+\begin{theorem}[See \cite{Maley1996}]
+The shifted polynomial $c^{\lambda}_{\mu\nu}(p+1)$ lie in $\setN[p]$.
+\end{theorem}
+
+
+\subsection[hallLittlewoodOtherCoeffs]{Other deformations}
+
+In \cite[Thm. 4]{WheelerZinnJustin2018}, the authors give a 
+(signed) combinatorial formula for $\overline{K}^{\nu}_{\lambda\mu}(t)$
+in the product 
+\[
+\hallLittlewoodP_\lambda(\xvec;t) \schurS_\mu(\xvec) 
+= \sum_{\nu} \overline{K}^{\nu}_{\lambda\mu}(t) \schurS_\nu(\xvec).
+\]
+
+
+\section[hallLittlewoodConjectures]{Conjectures}
+
+
+\subsection[hallLittlewoodNegativeT]{MathOverflow conjecture}
+
+Let $\lambda = (\lambda_1,\dotsc,\lambda_\ell)$ 
+be a partition satisfying $\lambda_i \geq \lambda_{i+1} +2$ for all $1 \leq i \leq \ell-1$.
+In the MathOveflow post \cite{MO190646}, it is conjectured that 
+$\hallLittlewoodP_\lambda(\xvec,-t)$ 
+expands positively in the Schur polynomial basis under this condition on $\lambda$.
+This conjecture should be attributed to Igor Makhlin (monomial positivity) and Richard Stanley (Schur positivity).
+
+
+\subsection[hallLittlewoodBhattacharya]{Bhattacharya conjecture}
+
+Aritra Bhattacharya (personal communication, FPSAC 2022 Bangalore) 
+suggests the following conjecture:
+\begin{conjecture}
+Consider the expansion 
+\[
+\hallLittlewoodP_\lambda(\xvec,t) = \sum_\mu B_{\lambda\mu}(t) \hallLittlewoodP_\mu(\xvec,t+1).
+\]
+Then $B_{\lambda\mu}(t)$ are unimodular polynomials with non-negative integer coefficients.
+
+Similarly, we fix a non-negative integer $m$ and consider
+\[
+\hallLittlewoodP_\lambda(\xvec,m) = \sum_\mu B^m_{\lambda\mu}(t) \hallLittlewoodP_\mu(\xvec,t+m).
+\]
+Then $B^m_{\lambda\mu}(t)$ are unimodular polynomials with non-negative integer coefficients.
+\end{conjecture}
+Note that the first conjecture implies that expanding $\hallLittlewoodP_\lambda(\xvec,t)$ into 
+$\hallLittlewoodP_\mu(\xvec,t+m)$ for any $m \geq 1$, gives non-negative coefficients also.
+
+\begin{example*}[Case $n=4$, $m=2$]
+The transition matrix $\{B^2_{\lambda\mu}(t)\}$ for $\lambda, \mu \vdash 4$ is 
+\[
+\begin{pmatrix}
+ 1 & t & t^2+2 t & t^3+4 t^2+2 t & t^6+10 t^5+38
+   t^4+66 t^3+48 t^2+12 t \\
+ 0 & 1 & t & t^2+3 t & t^5+9 t^4+31 t^3+46 t^2+18 t
+   \\
+ 0 & 0 & 1 & t & t^4+6 t^3+11 t^2+2 t \\
+ 0 & 0 & 0 & 1 & t^3+7 t^2+17 t \\
+ 0 & 0 & 0 & 0 & 1 \\
+\end{pmatrix}
+\]
+Rows and columns are indexed by the partitions $4,31,22,211,1111$ in this order.
+\end{example*}
+
+
+This conjecture does not generalize to 
+quasisymmetric Hall--Littlewood polynomials, there is a counterexample for $n=5$.
+For the definition of quasisymmetric Schur functions, see \cite{HaglundLuotoMasonWilligenburg2011}.
+
+
+
+\section[hallLittlewoodQ]{Hall--Littlewood Q}
+
+
+\begin{polydata}{hallLittlewoodQ}
+  Name   & Hall--Littlewood Q \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 4 \\
+  Bib      & Littlewood1961 \\
+  Year     & 1961 \\
+  Keywords & cauchy-identity,skew \\
+  Symbol   & $\hallLittlewoodQ_\lambda(\xvec;t)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+The \defin{Hall--Littlewood $Q$ polynomials} can be defined as 
+\begin{equation*}
+\hallLittlewoodQ_\lambda(x_1,\dotsc,x_n;t) = 
+(1-t)^{\length(\lambda)}[n-\length(\lambda)]_t!
+\sum_{\sigma \in \symS_n} 
+\sigma\left( \xvec^\lambda \frac{ \prod_{i \lt j} 1-tx_j/x_i }{\prod_{i \lt j} 1-x_j/x_i }  \right).
+\end{equation*}
+Thus, $\hallLittlewoodQ_\lambda(\xvec;t)$ and $\hallLittlewoodP_\lambda(\xvec;t)$ differ only by a factor in $\setZ[t]$.
+
+
+\begin{theorem}[See \cite[Eq. (17)]{DesarmenienLeclercThibon1994} ]
+
+Littlewood proved that
+\[
+\hallLittlewoodQ_\lambda(\xvec;q) = \prod_{i \lt j} (1-qR_{ij})^{-1}\schurS_\lambda[(1-q)X]
+\]
+where we use \hyperref[schurRaisingFormula]{raising operators} and \hyperref[plethysm]{plethystic notation}.
+\end{theorem}
+
+See also \cite{Jing1991} for a similar way of creating Hall--Littlewood functions via a modification of the 
+\hyperref[mapsOnSymmetricFunctions]{Bernstein operator}.
+
+
+\section[hallLittlewoodT]{Transformed Hall--Littlewood}
+
+
+\begin{polydata}{hallLittlewoodT}
+  Name   & Transformed Hall--Littlewood \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 5 \\
+  Bib      & Littlewood1961 \\
+  Year     & 1961 \\
+  Keywords & schur-positive, skew \\
+  Symbol   & $\hallLittlewoodT_\lambda(\xvec;t)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+The \defin{transformed Hall--Littlewood polynomials} are defined via the Kostka--Foulkes polynomials as
+\[
+\hallLittlewoodT_\mu(\xvec;q) \coloneqq \sum_{\lambda} K_{\lambda\mu}(q) \schurS_\lambda(\xvec).
+\]
+These are sometimes also denoted $Q'_\mu(\xvec;q)$, some references are \cite{DesarmenienLeclercThibon1994}
+and \cite{TudoseZabrocki2003}. 
+It is shown that
+\[
+\hallLittlewoodT_\mu(\xvec;q) = \prod_{i \lt j} \frac{1-R_{ij}}{1-q R_{ij}} \completeH_{\mu}(\xvec)
+=
+\prod_{i \lt j} (1-q R_{ij})^{-1} \schurS_{\mu}(\xvec)
+\]
+where we use the same notation as in \hyperref[schurRaisingFormula]{the raising operator formula}
+for Schur polynomials. In particular, from this deinition it is 
+clear that $\hallLittlewoodT_\mu(\xvec;0) = \schurS_\mu(\xvec)$.
+
+The relationship between the classical and transformed Hall--Littlewood functions is given by
+the \hyperref[plethysm]{plethystic relationship}
+\[
+\hallLittlewoodQ_\mu(\xvec;q) = \hallLittlewoodT_\mu[(1-q)\xvec;q].
+\]
+
+
+In \cite{TudoseZabrocki2003}, a $q$-deformation of \hyperref[schurQ]{Schur's Q-functions} is introduced
+in a manner analogously to the construction above.
+
+\begin{example}
+The transformed Hall--Littlewood polynomials indexed by partitions of size four are
+given as
+\begin{align*}
+\hallLittlewoodT_{4}(\xvec;q) &= \schurS_{4} \\
+\hallLittlewoodT_{31}(\xvec;q) &= q \schurS_{4} + \schurS_{31} \\
+\hallLittlewoodT_{22}(\xvec;q) &=q^2 \schurS_{4}+\schurS_{22} + q\schurS_{31} \\
+\hallLittlewoodT_{211}(\xvec;q) &=q^3 \schurS_{4} + q \schurS_{22} + (q+q^2)\schurS_{31}+ \schurS_{211} \\
+\hallLittlewoodT_{1111}(\xvec;q) &=q^6 \schurS_{4} + (q^2+q^4)\schurS_{22} + (q^3+q^4+q^5)\schurS_{31}+(q+q^2+q^3) \schurS_{211} + \schurS_{1111}
+\end{align*}
+The coefficients are the \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials}.
+\end{example}
+
+The transformed Hall--Littlewood polynomials are 
+special cases of the \hyperref[catalanSymmetric]{Catalan symmetric functions}.
+Using these, one can define 
+\defin{compositional Hall--Littlewood polynomials}, $\hallLittlewoodT_{\gamma}(\xvec;q)$ where $\gamma$
+is a composition.
+
+We also have the following relation with \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}:
+\[
+\omega\hallLittlewoodT_{\lambda'}(x_1,\dotsc,x_n;q) = \macdonaldE_{\rev(\lambda)}(x_1,\dotsc,x_n;q,0).
+\]
+A consequence of this relation is the following identity involving LLT polynomials:
+\[
+q^{\sum_{i\geq 2} \binom{\lambda_i}{2} } \omega \hallLittlewoodH_\lambda(\xvec;t) = \LLT_{\nuvec}(\xvec;q)
+\]
+where $\nuvec = (1^{\lambda_1}, 1^{\lambda_2},\dotsc,1^{\lambda_\ell})$.
+
+
+\begin{theorem}[See proof of \cite[Cor. 40]{Alexandersson2019llt}]
+The function $\hallLittlewoodT_\mu(\xvec;q+1)$ expands in the 
+complete homogeneous symmetric basis with coefficients in $\setN[q]$.
+
+An explicit combinatorial expansion is given in \cite{AlexanderssonSulzgruber2020x}:
+\[
+ \hallLittlewoodT_{\mu'}(\xvec;q+1) = (q+1)^{-\sum_{i\geq 2} \binom{\mu_i}{2} }
+ \sum_{\theta \in \mathcal{O}(P_\mu)} q^{\asc(\theta)} \completeH_{\lambda(\theta)}(\xvec).
+\]
+Here, $\lambda(\theta)$ is a certain statistic on orientations of a graph,
+indexed by a Schroder path $P_\mu$. 
+\end{theorem}
+
+
+
+
+\section[hallLittlewoodH]{Modified Hall--Littlewood polynomials}
+
+\begin{polydata}{hallLittlewoodH}
+  Name   & Modified Hall--Littlewood polynomials \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 5 \\
+  Bib      & Littlewood1961 \\
+  Year     & 1961 \\
+  Keywords & schur-positive, skew \\
+  Symbol   & $\hallLittlewoodH_\lambda(\xvec;t)$ \\
+  Category & Schur \\
+\end{polydata}
+
+\todo{  State uniqueness properties }
+
+The \defin{modified Hall--Littlewood polynomials} are related to 
+the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials} via
+\[
+\hallLittlewoodH_\lambda(\xvec;t) = t^{\partitionN(\lambda)} \hallLittlewoodT_\lambda(\xvec;t^{-1}). 
+\]
+The modified Hall--Littlewood polynomials are more combinatorial in nature.
+They are Schur-positive and are in fact 
+the \hyperref[frobeniusCharacteristic]{Frobenius image} of a certain graded vector space.
+
+The modified Hall--Littlewood polynomials are 
+specializations of the \hyperref[macdonaldH]{the modified Macdonald polynomials}.
+
+
+\subsection[modifiedKostkaFoulkesPolynomials]{Modified Kostka--Foulkes polynomials}
+
+The \defin{modified Kostka--Foulkes polynomials} are defined as
+\[
+\tilde{K}_{\lambda\mu}(t) = t^{\partitionN(\mu)}K_{\lambda\mu}(1/t) = \sum_{T \in \mathrm{SSYT}(\lambda,\mu)} t^{\cocharge(T)},
+\]
+where the sum is over semi-standard Young tableaux and \hyperref[notationPermutations]{cocharge} is 
+defined via the \hyperref[computingKostkaFoulkes]{charge statistic}.
+
+We then have that
+\[
+\hallLittlewoodH_\mu(\xvec;t) = \sum_{\lambda} \tilde{K}_{\lambda\mu}(t) \schurS_{\lambda}(\xvec). 
+\]
+
+
+
+\section[hallLittlewoodOtherRootSystems]{In other root systems}
+
+\todo{Add more info}
+
+Hall--Littlewood polynomials can be define in general for 
+symmetrizable Kac--Moody algebras, see \url{http://www.kurims.kyoto-u.ac.jp/EMIS/journals/SLC/wpapers/s58viswa.pdf}
+
+
+
+\todo{Spin Hall-Littlewood and Yang-Baxter: https://doi.org/10.1063/1.5001687}

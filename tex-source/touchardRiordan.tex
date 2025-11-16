@@ -1,0 +1,195 @@
+\metatitle{Touchard--Riordan polynomials}
+\metadescription{Touchard--Riordan polynomials and Catalan objects.}
+
+
+\section[unitIntervalAO]{A weighted Dyck path enumeration}
+
+In the \hyperref[chromaticQuasisymmetricGesselExpansion]{expansion of chromatic quasisymmetric functions}
+in the \hyperref[gessel]{Gessel quasisymmetric fundamental basis}, the following expression shows up,
+where $\avec$ is the area sequence of a \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graph}.
+The number of area sequences of length $n$ is given by the $n$th Catalan number, and
+there is a natural correspondence between area sequences and Dyck paths of size $\DP(n)$.
+
+Let $\avec$ be an area sequence of length $n$ and let $X_{\avec}(q) \coloneqq \prod_{i=1}^n [a_i+1]_q$,
+where we use the $q$-analogue $[n]_q = 1+q+q^2+\dotsb+q^{n-1}$.
+Notice that $X_{\avec}(q)$ defines a weight on the corresponding Dyck path.
+This weight is quite remarkable.
+
+By using \cite[Thm. 1]{Flajolet2006}, we immediately get the following continued fraction:
+\[
+\sum_{n\geq 0} z^n \sum_{\avec \in \DP(n) } X_{\avec}(q) = 
+\cfrac{1}{
+1 - \cfrac{z[1]_q}{
+1 - \cfrac{z^2[2]_q}{
+1 - \cfrac{z^3[3]_q}{
+\cdots
+}}}}
+\]
+
+\subsection[aoPerfectMatchings]{Perfect matchings}
+
+Let $\setPM(n)$ be the set of perfect matchings on $[2n]$, placed in a circle.
+Let $cr(M)$ denote the number of crossings. Let the \defin{Touchard--Riordan polynomials},
+see \oeis{A067311} be defined as
+\[
+T_n(q) = \sum_{M \in \setPM(n)} q^{cr(M)}.
+\]
+Then
+\[
+T_n(q) = \sum_{\avec \in \catalan_n} X_{\avec}(q).
+\]
+This follows from \cite{Read1979} who shows that $\sum_{n \geq 0} z^n T_n(q)$
+is given by the continued fraction expression above.
+
+
+Another formula is 
+\[
+ (q-1)^m T_m(q) = \sum_{j=0}^{2m} (-1)^j \binom{2m}{j} q^{\binom{m-j+1}{2}},
+\]
+see \cite{PrasadRam2022x} for a connection with certain sets of subspaces of $F_q^{2m}$.
+
+\begin{example*}[Table of $T_n(q)$]
+
+Here is a table of the first few Touchard--Riordan polynomials.
+See \oeis{A067311} for more information.
+
+\begin{array}{ll}
+\toprule
+n & T_n(q) \\
+\midrule
+ 1 & 1 \\
+ 2 & q+2 \\
+ 3 & q^3+3 q^2+6 q+5 \\
+ 4 & q^6+4 q^5+10 q^4+20 q^3+28 q^2+28 q+14 \\
+ 5 & q^{10}+5 q^9+15 q^8+35 q^7+70 q^6+117 q^5+165 q^4+195 q^3+180 q^2+120 q+42 \\
+\bottomrule
+\end{array}
+\end{example*}
+
+
+A perfect matching $M \in \setPM(n)$ may be described as a list of $n$ tuples, 
+which we represent as an array.
+\[
+M=
+\begin{bmatrix}
+m_1 & m_3 &  m_5 & \dotsc & m_{2n-1} \\
+m_2 & m_4 &  m_6 &\dotsc & m_{2n},
+\end{bmatrix}
+\]
+where $m_{2i-1} \lt m_{2i}$ for $i\in [n]$ and $m_{2i-1} \lt m_{2i+1}$
+for all $i \in [n-1]$. That is, the top row is strictly increasing, and the smallest entry in each column
+appear at the top.
+We write $(i,j) \in M$ whenever $\binom{i}{j}$ appear as a column in $M$.
+
+
+\subsection[pfaffian]{The pfaffian}
+
+Perfect matchings are closely related to pfaffians.
+Let $A$ be a $2n \times 2n$ skew-symmetric matrix.
+The \defin{pfaffian} of $A$ is defined as 
+\[
+\pfaff(A) \coloneqq \sum_{M \in \setPM(n)} (-1)^{cr(M)} \prod_{(i,j) \in M} a_{ij}.
+\]
+We have that $\pfaff(A)^2 = |A|$. 
+See \cite{Stembridge1990} for combinatorial appliactions of the pfaffian.
+
+
+
+\subsection[aoMaps]{Projection to Dyck paths}
+
+There is a natural projection $\psi$ from perfect matchings to Dyck paths.
+
+Let $a_i \coloneqq (2i-1) - m_{2i-1}$ be the \defin{area sequence} of the matching $M$.
+This defines a map from $\setPM(n)$ to $\DP(n)$.
+One can show $\psi$ is surjective and that $\psi: \setPM(n) \to \DP(n)$ 
+restricted to \emph{non-crossing} perfect matchings is a bijection.
+
+\begin{example}
+
+The perfect matching
+\[
+\{ \{1, 6\}, \{2, 4\}, \{3, 11\}, \{5, 7\}, \{8, 9\}, \{10, 12\}\}
+\]
+is mapped to the area sequence $0 1 2 2 1 1$
+which is the Dyck path $0 0 0 1 0 1 1 0 1 0 1 1$.
+
+\todo{Ensure this looks fine}
+\begin{figure}
+<object type="image/svg+xml" data="svg-images/perfectMatch.svg" style="width:25%"></object>
+\begin{ytableau}
+\none \emph{1} & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray)&   &*(yellow) 10 \\
+\none \emph{1} & *(lightgray) & *(lightgray) & *(lightgray) & &*(yellow) 8 \\
+\none \emph{2} & *(lightgray) & &  &*(yellow) 5 \\
+\none \emph{2} &   	 &   &*(yellow) 3 \\
+\none \emph{1} &    &*(yellow) 2 \\
+\none \emph{0} & *(yellow) 1 \\
+\end{ytableau}
+\end{figure}
+
+\end{example}
+
+\subsection[aoOnUnitIntervalGraphs]{Acyclic orientations of unit interval graphs}
+
+Let $AO(\avec)$ be the set of acyclic orientations on the unit interval graph with area sequence $\avec$.
+Furthermore, let $\asc(\theta)$ be the number of edges oriented from smaller to larger vertex label.
+Then
+\begin{theorem}[See \cite[Section 9]{AlexanderssonPanova2018}]
+\[
+ X_\avec(q) = \sum_{\theta \in AO(\avec)} q^{\asc(\theta)}.
+\]
+\end{theorem}
+
+
+\subsection[aoRooks]{Rook placements}
+
+Given an area sequence $\avec$ of length $n$, we can complete the Dyck path to a Ferrers board.
+Let $RP(\avec)$ be the set of non-attacking rook placements on this board, using $n$ rooks.
+An \defin{inversion} of a rook placement $\pi$ is a square on the board with no rook above it,
+and no rook to its left. Let $\inv(\pi)$ denote the number of such inversions.
+
+\begin{theorem}[See e.g. \cite[Section 9]{AlexanderssonPanova2018}]
+\[
+X_\avec(q) = \sum_{\pi \in RP(\avec)} q^{\inv(\pi)}.
+\]
+\end{theorem}
+
+The fact that the number or rook placements factors 
+nicely was first proved in \cite{GoldmanJoichiWhite975}.
+Another $q$-analog of the above identity is due to Garsia and Remmel, \cite{GarsiaRemmel1986},
+
+
+\subsection[aoMacdonald]{Macdonald polynomials}
+
+In \cite[Prop. 5.9]{AlexanderssonUhlin2020} J. Uhlin and I prove that
+\[
+[\monomial_{1^{2n}}] \macdonaldE_{(n,n)}(\xvec;q,0) = [n]_q! T_n(q).
+\]
+This formula appear as a conjecture in \cite{Uhlin2019}.
+
+\todo{Add refinement and relation with modified Macdonald polys.}
+
+
+\todo{Add the stuff below?}
+% 
+% \subsection[aoPBWBasis]{A PBW-basis for the positive part of $U_q(\widehat{\mathfrak{sl}}_2)$}
+% 
+% The following is from P. Terwilliger \cite{Terwilliger2019}.
+% 
+% In 1993 I. Damiani obtained a PBW basis for $U_q^+$, the positive part of $U_q(\hat{\mathfrak{sl}}_2)$.
+% This basis is defined recursively. 
+% Rosso gave an injective algebra homomorphism $\phi$ from $U_q^+$ to the \defin{shuffle algebra}.
+% 
+% Terwilliger shows that the image of the PBW-basis under $\phi$ is given by
+% expressions that seem closely related to $X_\avec(q)$ (although the $q$-analogues used are slightly different).
+% 
+% \[
+% q^{-2n}(q-q^{-1})^{2n}x C_n, \qquad 
+% q^{-2n}(q-q^{-1})^{2n}  C_n y, \qquad 
+% q^{-2n}(q-q^{-1})^{2n-1}  C_n
+% \]
+% 
+
+\section[aoOther]{Other references}
+
+See \cite{CiglerZeng2011} for connection with Hermite polynomials and $q$-Fibonacci numbers.
+

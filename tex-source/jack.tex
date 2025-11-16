@@ -1,0 +1,549 @@
+
+\section[jackP]{Jack P polynomials}
+
+
+\begin{polydata}{jackP}
+  Name   & Jack P polynomials \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 5 \\
+  Bib      & Jack1970 \\
+  Year     & 1970 \\
+  Symbol   & $\jackP_\lambda(\xvec)$ \\
+  Keywords & inner-product\\
+  Category & Schur \\
+\end{polydata}
+
+\todo{
+https://arxiv.org/pdf/2004.07824.pdf
+}
+
+\todo{
+Add info about CMS operators: and super jack functions
+https://arxiv.org/pdf/0712.1496.pdf
+https://mysite.science.uottawa.ca/hsalmasi/report/thesis-evans.pdf
+}
+
+The Jack polynomials are a family of symmetric functions which extends the Schur polynomials.
+They were introduced by H. Jack in \cite{Jack1970}.
+They are indexed by integer partitions and constitute a basis for the space of symmetric functions.
+For an overview, see \cite{Macdonald1995} and \cite{Stanley1989}.
+
+The Jack polynomials can be generalized to the \hyperref[jackShifted]{shifted Jack polynomials},
+\hyperref[jackPi]{Jack interpolation polynomials}
+and \hyperref[macdonaldP]{Macdonald $P$ polynomials}.
+
+\subsection[jackInnerProduct]{Deformed Hall inner product}
+
+Let $\langle \cdot, \cdot \rangle_a$ be the inner product on symmetric functions
+such that $\langle \powerSum_\lambda, \powerSum_\mu \rangle_a = \delta_{\lambda\mu} a^{\length(\lambda)}  z_\lambda$.
+Then the family $\jackP_\lambda(x;a)$ is the unique family that satisfies:
+
+\begin{itemize}
+\item Orthogonality: $\langle \jackP_\lambda, \jackP_\mu \rangle_a = 0$ whenever $\lambda \neq \mu$.
+\item Triangularity: $\jackP_\lambda = \sum_{\mu \lt_d \lambda } c_{\lambda \mu} \monomial_\mu$.
+\item Normalization: $[\monomial_{1^n}]\jackP_\lambda = 1$.
+\end{itemize}
+
+These symmetric functions have coefficients which are rational functions in $a$.
+
+
+
+
+\subsection[jackTableauFormula]{RSSYT formula}
+
+
+The Jack polynomial $\jackP_\mu(\xvec;a)$ in $n$ variables may be defined as 
+\[
+\jackP_\mu(\xvec;a) = \sum_{T \in \textrm{RSSYT}(\mu)} \psi_T(a) \prod_{s \in \mu} x_{T(s)},
+\]
+where the sum is taken over all reverse tableau with entries in $[n]$ and shape $\mu$.
+Here, $\psi_T(a)$ is the rational function defined in \cite{Macdonald1995} as 
+\begin{equation*}
+\psi_T(a) = \prod_{i=1}^n \psi_{\rho^i/\rho^{i-1}}(a)
+\end{equation*}
+where $\rho^i/\rho^{i-1}$ defines the skew-shape in $T$ with content $i$ ($\rho^0 = \emptyset$)
+and 
+\begin{equation*}
+\psi_{\lambda/\mu}(a) = \prod_{s \in R_{\lambda/\mu} \setminus C_{\lambda/\mu} } 
+\frac{
+(a \cdot\arm_\lambda(s) + \leg_\lambda(s) + a)(a \cdot \arm_\mu(s) + \leg_\mu(s) + 1)
+}{
+(a\cdot \arm_\lambda(s) + \leg_\lambda(s) + 1)(a \cdot\arm_\mu(s) + \leg_\mu(s) + a)
+}.
+\end{equation*}
+Here, $R_{\lambda/\mu}$ denotes the set of boxes in a row that intersects the shape $\lambda/\mu$.
+The set of boxes  $C_{\lambda/\mu}$  is defined in a similar manner for columns.
+
+This formula generalizes to the \defin{super Jack polynomials}, see \cite{SergeevVeselov2005}.
+
+
+\begin{example*}[Example of $\psi_{\lambda/\mu}(a)$ ]
+If $\lambda/\mu = (7,5,3,2)/(5,4,2,2)$, then the product for computing $\psi_{\lambda/\mu}(a)$ is 
+taken over all boxes marked with a dot in
+\begin{figure}
+\begin{ytableau}
+\cdot & \cdot &  & \cdot & & \times & \times \\
+\cdot & \cdot &  & \cdot & \times \\
+\cdot & \cdot & \times \\
+  &    \\
+\end{ytableau}
+\end{figure}
+From this definition, it is evident
+that $\jackP_\mu(\xvec;1)$ is the \hyperref[schurS]{Schur polynomial} $\schurS_\mu(\xvec)$.
+\end{example*}
+
+
+\subsection[jackRecursive]{Recursive formula}
+
+There is an \hyperref[kostkaRecursion]{efficient recursion for computing the Kostka coefficients} $K_{\lambda\mu}(\alpha)$,
+appearing in the expansion $\jackP_\lambda = \sum_{\mu} K_{\lambda\mu}(\alpha) \monomial_\lambda$.
+This recursion be found in \cite[p.327]{Macdonald1995} where he uses the notation $u_{\lambda\mu}$
+for these coefficients. See also \cite{LapointeLascouxMorse1999,Roberts2000},
+and \cite[Prop. 2.16]{DumitriuEdelmanShuman2007} where this formula appears.
+Generalizations to other root systems can be found in \cite{vanDiejenLapointeMorse2004}.
+
+
+
+\subsection[jackPCauchy]{Cauchy identity}
+
+The (dual) Cauchy identity for Jack $P$ polynomials states that
+\[
+\sum_{\lambda}  \jackP_\lambda(x;a) \jackP_\lambda(y;1/a)  = \prod_{i,j} (1+x_i y_j),
+\]
+see \cite[Eq. (2.6)]{Macdonald1992}. There is also a generalization of the \hyperref[jackJCauchy]{Cauchy identity
+for the Jack J polynomials}.
+
+\section[jackJ]{Jack J polynomials}
+
+\begin{polydata}{jackJ}
+  Name     & Jack J polynomials \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 5 \\
+  Bib      & Jack1970 \\
+  Year     & 1970 \\
+  Symbol   & $\jackJ_\lambda(\xvec)$ \\
+  Keywords & fillings, cauchy-identity \\
+  Category & Schur \\
+\end{polydata}
+
+
+The \defin{integral form Jack polynomals} are defined as the unique family satisfying the following relations:
+
+\begin{itemize}
+\item  Orthogonality: $\langle \jackJ_\lambda, \jackJ_\mu \rangle_a = 0$ whenever $\lambda \neq \mu$.
+\item  Triangularity: $\jackJ_\lambda = \sum_{\mu \lt_d \lambda } c_{\lambda \mu} \monomial_\mu$.
+\item  Normalization: $[\monomial_{1^n}]\jackJ_\lambda = n!$.
+\end{itemize}
+These symmetric functions have coefficients in $\setN[a]$, 
+see the \hyperref[jackCombinatorialFormula]{combinatorial formula} below.
+
+It is convenient to introduce the following notation:
+Let $\lambda$ be a diagram, and $\square$ a box in $\lambda$, and define the
+\defin{upper hook length} and \defin{lower hook length} as
+\begin{align}
+h'_\lambda(\square) & \coloneqq (a \cdot \arm_\lambda(\square) + \leg_\lambda(\square) + a) \\
+ h_\lambda(\square) & \coloneqq (a \cdot \arm_\lambda(\square) + \leg_\lambda(\square) + 1).
+\end{align}
+These are denoted $h^*_\lambda(s)$ and $h_*^\lambda(s)$, respectively, in \cite{Stanley1989}.
+
+Define the two $a$-deformations of the product of hook values in the diagram $\lambda$:
+\[
+H_\lambda = \prod_{\square \in \lambda} h_\lambda(\square), \quad
+H'_\lambda = \prod_{\square \in \lambda} h'_\lambda(\square).
+\]
+The relationship between $\jackJ_\lambda$ and $\jackP_\lambda$ is 
+then given by $\jackJ_\lambda(x;a) = H_\lambda \jackP_\lambda(x;a)$.
+Furthermore, we have that
+\[
+\langle \jackJ_\lambda, \jackJ_\lambda \rangle_a = H_\lambda H'_\lambda
+\quad 
+\text{and}
+\quad 
+\langle \jackJ_\mu \jackJ_\nu, \jackJ_\lambda \rangle_a =  H_\lambda H_\mu H_\nu \langle \jackP_\mu \jackP_\nu, \jackP_\lambda \rangle_a .
+\]
+
+
+
+%
+% lam = {2, 2, 1, 1};
+% mu = {2, 1};
+% nu = {1, 1, 1};
+% Times[
+%    JackLowerHook[mu, a],
+%    JackLowerHook[nu, a],
+%    JackLowerHook[lam, a],
+%    JackInnerProduct[
+%     JackPSymmetric[mu, a]
+%      JackPSymmetric[nu, a],
+%     JackPSymmetric[lam, a], a]] // Together // Factor
+%
+% JackInnerProduct[
+%    JackJSymmetric[mu, a]
+%     JackJSymmetric[nu, a],
+%    JackJSymmetric[lam, a], a] // Together // Factor
+%
+
+
+\begin{example}
+For example,
+\[
+\jackJ_{31}(x;a) =
+(2a^2 + 4a + 2)\monomial_{31}+(6a + 10)\monomial_{211}+(4a + 4)\monomial_{22}+ 24\monomial_{1111}.
+\]
+\end{example}
+
+% poly = JackJPolynomial[{3, 1, 0}, 4, x, a] // Together;
+% Total[#2 mm[#1] & @@@ Select[CoefficientRules[poly, x /@ Range[4]],
+%     Sort[#[[1]], Greater] == #[[1]] &]] // Nicify
+
+
+\subsection[jackSpecializations]{Specializations}
+
+We have that 
+\[
+\jackP_\lambda(x;1) =\schurS_\lambda(x),\quad  
+\jackP_{\lambda'}(x;0)=\elementaryE_{\lambda}(x) \text{ and } 
+\jackP_{\lambda}(x;\infty) = \monomial_{\lambda}(x).
+\]
+
+Similarly, 
+\[
+\jackJ_\lambda(x;1) = H_\lambda \schurS_\lambda(x), \quad 
+\jackJ_{\lambda'}(x;0) = \lambda! \elementaryE_{\lambda}(x) \text{ and }
+\jackJ_{\lambda}(x;\infty) = n! \monomial_{\lambda}(x).
+\]
+
+We also have that $\jackJ_\lambda(\xvec;2) = \zonal_\lambda(\xvec)$, the \hyperref[zonal]{Zonal symmetric functions}.
+
+
+\subsection[jackJCauchy]{Cauchy identity}
+
+Recall that $H_\lambda H'_\lambda = \langle \jackJ_\lambda, \jackJ_\lambda \rangle_a$.
+The Cauchy identity for Jack polynomials states that
+\[
+\sum_{\lambda} \frac{\jackJ_\lambda(x;a) \jackJ_\lambda(y;a)}{H_\lambda H'_\lambda} = \prod_{i,j} (1-x_i y_j)^{-1/a}.
+\]
+
+
+\subsection[jackLaplaceBeltrami]{Calogero--Sutherland and Laplace--Beltrami operators}
+
+The Jack polynomials $\jackJ_\lambda$ are eigenpolynomials for the 
+\defin{Calogero--Sutherland} operator
+\[
+\mathcal{H} \coloneqq \frac{\alpha}{2} \sum_{i=1}^n \left(x_i\frac{\partial}{\partial x_i}\right)^2 + 
+\frac{1}{2} \sum_{i\lt j} \left( \frac{x_i+x_j}{ x_i - x_j } \right)\left( x_i \frac{\partial}{\partial x_i} - x_j \frac{\partial}{\partial x_j} \right),
+\]
+so that 
+\[
+\mathcal{H} \jackJ_\lambda = \sum_{i=1}^n \left( \frac{\alpha}{2} \lambda_i^2 + \frac{n+1-2i}{2} \right) \jackJ_\lambda.
+\]
+See \cite{Sutherland1971} for the physics background of $\mathcal{H}$.
+
+The are also eigenpolynomials for the (quasi) \defin{Laplace--Beltrami} operator,
+\[
+\frac{\alpha}{2} \sum_{i=1}^n \left(x_i\frac{\partial}{\partial x_i}\right)^2 + 
+\frac{1}{2} \sum_{i\neq j} \left( \frac{x_i^2}{ x_i - x_j } \right) \frac{\partial}{\partial x_i}.
+\]
+See \cite{LapointeLascouxMorse1999,Roberts2000} for background.
+
+
+
+\subsection[jackCombinatorialFormula]{Knop--Sahi combinatorial formula}
+
+In \cite{KnopSahi1997}, the following formula for the monomial
+expansion of the integral form Jack polynomials was found:
+\[
+\jackJ_\lambda (x;a) = \sum_{T \in \mathrm{NAF}(\lambda)} d_T(a) x^T
+\]
+where $\mathrm{NAF}(\lambda)$ is the set of non-attacking fillings of the diagram $\lambda$.
+These are fillings of $\lambda$ with natural numbers such that for all boxes $(i,j)$,
+we have 
+\begin{itemize}
+\item $T(i,j) \neq T(i',j)$  whenever $i \neq i'$,
+\item $T(i,j) \neq T(i',j+1)$  whenever $i \gt i'$.
+\end{itemize}
+The quantity $d_T(a)$ is defined as 
+\[
+d_T(a) = \prod_{s \in crit(T)} [a( \arm_\lambda(s) +1 ) + ( \leg_\lambda(s) +1 ) ]
+\]
+and $crit(T)$ is the set of boxes $(i,j)$ with $j>1$ such that $T(i,j) = T(i,j-1)$.
+The Knop--Sahi formula follows from the more general combinatorial formula for Macdonald polynomials in \cite{HaglundHaimanLoehr2005}.
+
+
+In a recent paper \cite{NaqviSahiSergel2021x}, the Knop--Sahi formula is generalized to the 
+non-symmetric, interpolation setting.
+
+
+
+\subsection[jackPieri]{Pieri rule}
+
+
+R. Stanley provides a Pieri rule for Jack polynomials.
+\begin{theorem}[See \cite[Thm. 6.1]{Stanley1989}]
+Let $\mu \subseteq \lambda$ and let $\lambda/\mu$ be a horizontal $r$-strip. Then
+\begin{equation*}
+\langle \jackJ_{(r)}\jackJ_{(\mu)},  \jackJ_\lambda \rangle = 
+\left( \prod_{\square \in \mu} A_{\lambda \mu}(\square) \right)
+\left( \prod_{\square \in (r)} h_{(r)}(\square) \right)
+\left( \prod_{\square \in \lambda} B_{\lambda \mu}(\square) \right)
+\end{equation*}
+where
+\begin{align}
+ A_{\lambda \mu}(\square) &= 
+ \begin{cases}
+ h'_\mu(\square) \text{ if $\lambda/\mu$ does does not intersect the column of $\square$} \\
+ h_\mu(\square) \text{ otherwise,} \\
+ \end{cases} \\
+ B_{\lambda \mu}(\square) &= 
+ \begin{cases}
+ h_\lambda(\square) \text{ if $\lambda/\mu$ does does not intersect the column of $\square$} \\
+ h'_\lambda(\square) \text{ otherwise.} \\
+ \end{cases}
+\end{align}
+\end{theorem}
+The middle product is simply $r!a^r$.
+
+A dual Pieri rule, for computing $\langle \jackJ_{(1^r)}\jackJ_{(\mu)},  \jackJ_\lambda \rangle$
+is given in \cite[Thm. 6.1]{KnopSahi1996}. It is given for the Jack $P$ functions,
+and is stated as follows.
+Let $X(\lambda/\mu)$ be the set of boxes $(i,j)$ in $\mu$, such that $\mu_i=\lambda_i$
+and $\mu'_j \lt \lambda'_j$. Then
+\[
+\langle \jackP_{(1^r)}\jackP_{(\mu)},  \jackP_\lambda \rangle =
+\prod_{\square \in X(\lambda/\mu)}  
+\frac{ h'_\lambda(\square) h_\mu(\square)}{h_\lambda(\square) h'_\mu(\square)}.
+\]
+There is a nice symmetry for the Littlewood--Richardson coefficients, 
+where conjugation of all three shapes correspond to swapping upper and lower hooks,
+see Eq. 2.3.1 in \url{https://rucore.libraries.rutgers.edu/rutgers-lib/44186/PDF/1/play/}.
+
+
+
+\subsection[jackChromaticPowerSumExpansion]{Jack in power-sum basis}
+
+In \cite{HaglundWilson2017}, a formula for $\jackJ_\lambda (x;a)$ in terms of
+power-sum symmetric functions is given. It is in general not cancellation free.
+
+A formula for the Schur expansion is also given, but it is fairly complicated and not cancellation free in general.
+
+
+
+\subsection[jackLittlewoodRichardsonConjecture]{Jack Littlewood--Richardson coefficients}
+
+
+\begin{conjecture}[See \cite{Stanley1989}]
+R. Stanley conjecture that the coefficients $g^\lambda_{\mu\nu}(a) \coloneqq  \langle \jackJ_\mu \jackJ_\nu, \jackJ_\lambda \rangle_a = 
+H_\lambda H_\mu H_\nu \langle \jackP_\mu \jackP_\nu, \jackP_\lambda \rangle_a$ are polynomials in $a$ with non-negative integer coefficients.
+\end{conjecture}
+Polynomiality of $g^\lambda_{\mu\nu}(a)$ has been proved \cite{KnopSahi1997}, so only the non-negativity result remains open.
+The case when the indexing partitions has at most three parts is proved in \cite{Naqvi2016},
+and another case involving rectangular shapes is considered in \cite{CaiJing2013}.
+
+This conjecture has a generalization for \hyperref[jackShiftedLittlewoodRichardson]{shifted Jack polynomials}.
+
+
+\begin{lemma}
+Let us define the Jack Littlewood--Richardson coefficients $c^\lambda_{\mu\nu}(a)$ via
+\[
+\jackP_\mu \jackP_\nu = \sum_{\lambda} c^\lambda_{\mu\nu}(a)  \jackP_\lambda.
+\]
+Then $g^\lambda_{\mu\nu}(a) = H'_\lambda H_\mu H_\nu c^\lambda_{\mu\nu}(a)$.
+
+\end{lemma}
+\begin{proof*}
+Since $\jackJ_\mu = H_\mu\jackJ_\mu$, we have that 
+\begin{align}
+\frac{\jackJ_\mu}{H_\mu} \frac{\jackJ_\nu}{H_\nu} = \sum_{\lambda} c^\lambda_{\mu\nu}(a) \frac{\jackJ_\lambda}{H_\lambda}
+\end{align}
+and by rearranging the factors,
+\[
+\jackJ_\mu  \jackJ_\nu = \sum_{\lambda} \frac{H_\mu \cdot  H_\nu \cdot c^\lambda_{\mu\nu}(a)}{H_\lambda} \jackJ_\lambda.
+\]
+We now apply $\langle \cdot , \jackJ_\lambda \rangle_a$ on both sides and get 
+\[
+\langle \jackJ_\mu  \jackJ_\nu, \jackJ_\lambda \rangle_a  =
+ \frac{H_\mu \cdot  H_\nu \cdot c^\lambda_{\mu\nu}(a)}{H_\lambda} \langle \jackJ_\lambda , \jackJ_\lambda \rangle_a.
+\]
+This implies that 
+\[
+g^\lambda_{\mu\nu}(a) = H'_\lambda H_\mu   H_\nu \cdot c^\lambda_{\mu\nu}(a)
+\]
+since $\langle \jackJ_\lambda , \jackJ_\lambda \rangle_a = H_\lambda H'_\lambda$.
+\end{proof*}
+
+For some recent progress on the Jack Littlewood--Richardson coefficients, see \cite{Mickler2023x}.
+
+
+
+\subsection[jackSkew]{Skew Jack polynomials}
+
+There is no Knop--Sahi analog known for skew Jack polynomials, and there is no
+combinatorial formula for the monomial expansion of skew Jack polynomials (even though the coefficients are conjectured to be in $\setN[a]$).
+Some observations are proved in \cite{BraviGandini2021x}, and it is clear that this conjecture 
+is very much related to the positivity of $g^\lambda_{\mu\nu}(a)$.
+
+
+
+\subsection[jackCharacterConjecture]{Hanlon's conjecture}
+
+
+\begin{conjecture}[See \cite{Hanlon1988}]
+Hanlon conjectured that there is 
+some weight function $w(\sigma,\tau)$, such that 
+\begin{equation*}
+\jackJ_\lambda(x;a) = 
+\sum_{\substack{\sigma \in RS(\lambda) \\ \tau \in CS(\lambda)}} \sign(\sigma) a^{w(\sigma,\tau)} \powerSum_{\text{type}(\sigma\tau)}(x)
+\end{equation*}
+where $RS(\lambda)$  and $CS(\lambda)$ is the row- and column-stabilizers 
+of a fixed standard Young tableau of shape $\lambda$.
+\end{conjecture}
+
+
+
+\subsection[jackSchurExpansionConjecture]{Schur expansion conjecture}
+
+Expanding Jack polynomials in terms of Schur functions seem to have a strong connection
+with rook polynomials. This is explored in \cite{AlexanderssonHaglundWang2018}.
+We pose the following conjecture in that paper.
+
+\begin{conjecture}[Alexandersson--Haglund--Wang, 2018]
+Define the coefficients $b_{n-k}(\mu,\lambda)$ and $c_k(\mu,\lambda)$ via the expansions
+\begin{equation*}
+\langle a^{|\lambda|}\jackJ_\mu(x;1/a) , \schurS_\lambda(x) \rangle = \sum_{k=0}^{n} c_k(\mu,\lambda) \binom{a+k}{n} 
+=
+\sum_{k=0}^{n} b_{n-k}(\mu,\lambda) \binom{a}{k} k!.
+\end{equation*}
+Then $b_{n-k}(\mu,\lambda)$ and $c_k(\mu,\lambda)$ are non-negative integers.
+Moreover, the roots of the polynomials 
+\[
+\sum_{k=0}^{n} b_k(\mu,\lambda) z^k \qquad \text{ and } \qquad \sum_{k=0}^{n} c_k(\mu,\lambda) z^k
+\]
+are all real.
+\end{conjecture}
+This conjecture has a rich interplay with rook polynomials, and the relationship between the $c_k(\mu,\lambda)$
+and $b_{n-k}(\mu,\lambda)$ are similar to that of rook hit polynomials and rook polynomials.
+
+
+\begin{example*}[Table of coefficients]
+
+Consider the expansions
+\[
+ a^{|\lambda|}\jackJ_\mu(x;1/a) = \sum_{k=0}^{n} c_k(\mu,\lambda) \binom{a+k}{n} = 
+ \sum_{k=0}^{n} b_{n-k}(\mu,\lambda) \binom{a}{k} k! 
+\]
+and define the \defin{Jack rook polynomial} $R_{\lambda,\mu}(t)$ 
+and the \defin{Jack hit polynomial} $R_{\lambda,\mu}(t)$ as
+\[
+R_{\lambda,\mu}(t) = \sum_{k=0}^{n} b_k(\mu,\lambda) z^k \qquad 
+H_{\lambda,\mu}(t) = \sum_{k=0}^{n} c_k(\mu,\lambda) z^k,
+\]
+respectively. For small $(\lambda,\mu)$ we get the following table.
+Missing combinations of $\lambda$ and $\mu$ means that the 
+corresponding polynomial vanish.
+
+\begin{array}{rrrr}
+\toprule
+\mu & \lambda & \textbf{Rook} & \textbf{Hit} \\
+\midrule
+ 1 & 1 & 1 & 1 \\
+ 2 & 2 & 2 z+1 & 2 z \\
+ 2 & 11 & 1 & 2 \\
+ 11 & 11 & 2 z+2 & 2 z+2 \\
+ \midrule
+ 3 & 3 & 6 z^2+6 z+1 & 6 z^2 \\
+ 3 & 21 & 6 z+2 & 12 z \\
+ 3 & 111 & 1 & 6 \\
+ 21 & 21 & 3 z^2+7 z+2 & 3 z^2+8 z+1 \\
+ 21 & 111 & 4 z+2 & 8 z+4 \\
+ 111 & 111 & 6 z^2+18 z+6 & 6 z^2+24 z+6 \\
+ \midrule
+ 4 & 4 & 24 z^3+36 z^2+12 z+1 & 24 z^3 \\
+ 4 & 31 & 36 z^2+24 z+3 & 72 z^2 \\
+ 4 & 22 & 12 z^2+12 z+2 & 24 z^2+24 z \\
+ 4 & 211 & 12 z+3 & 72 z \\
+ 4 & 1111 & 1 & 24 \\
+ 31 & 31 & 8 z^3+28 z^2+16 z+2 & 8 z^3+32 z^2+8 z \\
+ 31 & 22 & 12 z^2+12 z+2 & 24 z^2+24 z \\
+ 31 & 211 & 20 z^2+22 z+4 & 40 z^2+52 z+4 \\
+ 31 & 1111 & 6 z+2 & 36 z+12 \\
+ 22 & 22 & 12 z^3+48 z^2+30 z+4 & 12 z^3+60 z^2+24 z \\
+ 22 & 211 & 20 z^2+22 z+4 & 40 z^2+52 z+4 \\
+ 22 & 1111 & 12 z^2+18 z+4 & 24 z^2+60 z+12 \\
+ 211 & 211 & 8 z^3+48 z^2+38 z+6 & 8 z^3+72 z^2+60 z+4 \\
+ 211 & 1111 & 24 z^2+30 z+6 & 48 z^2+84 z+12 \\
+ 1111 & 1111 & 24 z^3+168 z^2+144 z+24 & 24 z^3+264 z^2+264 z+24 \\
+ \bottomrule
+\end{array}
+
+Data for partitions of sizes $1,2,\dotsc,9$ is available
+from <a href="jack-rook-hit-data.txt" class="dataFile">jack-rook-hit-data.txt (106 KiB)</a>.
+
+We conjecture that each polynomial above is real-rooted.
+One can show that if the Jack hit polynomials are real-rooted,
+then so are the Jack rook polynomials.
+
+\end{example*}
+
+
+\subsection[jackGesselExpansionConjecture]{Gessel expansion conjecture}
+
+\begin{conjecture}[See \cite{AlexanderssonHaglundWang2018}]
+We conjecture that there is a statistic $\sigma$, such that
+\begin{equation*}
+a^{|\lambda|}\jackJ_\lambda(x;1/a) = \sum_{\pi,\tau \in \symS_n} \binom{a+n-1-\des(\pi)}{n} \gessel_{\sigma(\mu,\pi,\tau)}(x).
+\end{equation*}
+\end{conjecture}
+
+\todo{
+Affine Jack polynomials:  https://arxiv.org/pdf/hep-th/9403168.pdf
+}
+
+
+\todo{
+Add stuff on Double Jack, see \url{http://www.emis.de/journals/SIGMA/2015/051/sigma15-051.pdf}
+}
+
+
+
+
+\section[jackCharacters]{Jack characters}
+
+The Jack characters are certain normalizations of the coefficients
+when Jack polynomials are expanded in the power-sum basis.
+
+Let $\lambda \vdash n$ and $\mu \vdash m$. 
+Then the \defin{Jack character} (introduced in \cite{Lassalle2008,Lassalle2009}) is defined as
+\[
+ \theta_{\mu}^{(\alpha)}(\lambda) \coloneqq 
+ \begin{cases}
+ \binom{n- m + m_1(\mu)}{m_1(\mu)} \powerSum_{\mu,1^{n-m}} & \text{if } n\lt m \\
+  0 & \text{if } n\lt m
+  \end{cases}
+\]
+where $m_1(\mu)$ denotes the number of parts equal to $1$ in $\mu$.
+
+
+Lasalle conjectured that $\theta_{\mu}^{(\alpha)}(\lambda)$ satisfy a certain positivity property \cite{Lassalle2008}.
+This was recently proved by H.B. Dali and M. Dołęga \cite{DaliDolega2023x}.
+We shall need some more definitions and background in order to state their result.
+
+Let $\lambda = [s_1^{r_1}, s_2^{r_2}, s_k^{r_k}]$ be the multi-rectangular coordinates for $\lambda$,
+where $s_1 \geq s_2 \geq \dotsb \geq s_k$. That is, $\lambda$ consists of $k$
+rectangles of size $s_i \times r_i$ stacked on top of each other.
+It was then proved that 
+$\theta_{\mu}^{(\alpha)}(\mathbf{r},\mathbf{s})$ is a polynomial in $\setQ[\alpha,s_1,\dotsc,s_k,r_1,\dotsc,r_k]$. Stanley conjectured a combinatorial formula in the case 
+$\alpha=1$ \cite{Stanley2003}, and this was later proved by V. Féray \cite{Feray2010}.
+
+\begin{theorem}[H.B. Dali and M. Dołęga \cite{DaliDolega2023x}]
+The polynomial $(-1)^{|\mu|}z_\mu \theta_{\mu}^{(\alpha)}(\mathbf{r},\mathbf{s})$
+is a polynomial in the variables $\beta\coloneqq \alpha-1$, $-s_1,\dotsc,-s_k$,
+$r_1,\dotsc,r_k$ with non-negative integer coefficients.
+\end{theorem}
+
+H.B. Dali and M. Dołęga also give a combinatorial formula for 
+$(-1)^{|\mu|}\theta_{\mu}^{(\alpha)}(\lambda)$ in terms of 
+layered, non-oriented maps.
+
+

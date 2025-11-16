@@ -1,0 +1,48 @@
+
+\section[zonal]{Zonal symmetric functions}
+
+\begin{polydata}{zonal}
+  Name     & Zonal symmetric functions \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 3 \\
+  Bib      & Hua1963 \\
+  Year     & 1963 \\
+  Symbol   & $\zonal_\lambda(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The zonal symmetric functions were introduced by Hua in \cite{Hua1963}.
+For an introduction, see \cite[Chapter 7]{Macdonald1995}.
+
+The zonal symmetric functions $\zonal_\lambda(\xvec)$ 
+associated with the Gelfand pair $(\symS_{2n},H_n)$
+are given by the specialization $\alpha=2$
+in the \hyperref[jackJ]{Jack symmetric functions}.
+That is, $\zonal_\lambda(\xvec) = \jackJ_\lambda(\xvec;2)$.
+
+Here, $H_n$ is the hyperoctahedral group of degree $n$,
+given by the centralizer of the simple transpositions $(12),(34),\dotsc,(2n-1,2n)$.
+We have that $|H_n| = 2^n n!$.
+
+
+\subsection[zonalPowerSumExpansion]{Power sum expansion}
+
+In \cite{FeraySniady2011}, the authors present a formula for $\zonal_\lambda(\xvec)$
+as a signed sum over $T$-admissible pair-partitions.
+\[
+\zonal_\lambda(\xvec) = \sum_{(S_1,S_2) \text{ T-admissible}} (-1)^{L(S_1,S_2)} \powerSum_{L(S_1,S_2)}(\xvec).
+\]
+Here, $T$ is the standard Young tableau of shape $2\lambda$,
+with $1,2,\dotsc,2\lambda_1$ in the first row, and so on.
+The expression $L(S_1,S_2)$ is the sizes of the components of certain bipartite graphs,
+where every vertex has degree $2$, there are $2n$ edges labeled $1,\dotsc,2n$
+and $\{i,j\} \in S_c$ if and only if edges $i$ and $j$ are share a vertex
+with color $c \in \{1,2\}$.
+
+Pair-partitions can be interpreted as a disjoint product of transpositions,
+and thus as elements in $\symS_{2n}$.
+Let $S = \{\{1,2\},\{3,4\},\dotsc,\{2n-1,2n\}\}$.
+Let $T$ be a standard Young tableau. 
+The pair $(S_1,S_2)$ is $T$-admissible if $S \circ S_1$
+preserves the rows of $T$, and $S_2$ preserves the columns.

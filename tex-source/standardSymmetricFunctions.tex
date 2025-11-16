@@ -1,0 +1,566 @@
+
+
+\todo{Add generating functions?}
+
+
+\todo{Add newton identities, and other stuff - see intro in https://mysite.science.uottawa.ca/hsalmasi/report/thesis-evans.pdf }
+
+\todo{A recent paper with skew elementary symmetric functions and skew complete homogeneous sym-funcs.
+https://arxiv.org/pdf/1804.05647.pdf }
+
+\todo{ Colored versions (Wreath prod.) of these. 
+https://arxiv.org/abs/0809.2439  }
+
+\section[symmetricFunctions]{Symmetric functions}
+
+
+A function $f$ in $n$ variables is \defin{symmetric} if for any permutation $w\in \symS_n$,
+we have 
+\[
+ f(x_1,x_2,\dotsc,x_n) = f(x_{w(1)},x_{w(2)},\dotsc,x_{w(n)}).
+\]
+The space of symmetric functions is denoted \defin{$\spaceSym$}. This is a graded vector space,
+and the Hilbert series of this space is given by the partition numbers, \oeis{A000041}.
+
+Further down we list the most common families symmetric functions.
+These are all bases for the space of symmetric functions.
+
+Here are a few great resources:
+\begin{itemize}
+
+\item 
+\href{http://garsia.math.yorku.ca/ghana03/chapters/mainfile3.pdf}{M. Zabrocki's introduction to symmetric functions}
+
+\item 
+\href{http://de.arxiv.org/pdf/1802.06073.pdf}{A. Prasad's introduction to Schur polynomials}, published in \cite{Prasad2019}.
+
+\end{itemize}
+
+
+\section[monomial]{Monomial symmetric functions}
+
+\begin{polydata}{monomial}
+  Name   & Monomial symmetric functions \\
+  Space    & Sym \\
+  Basis    & Yes \\
+  Rating   & 5 \\
+  Symbol   & $\monomial_\lambda(\xvec)$ \\
+  Year     & 1700 \\
+  Categoty & Elementary \\
+\end{polydata}
+
+Given a partition $\lambda$, we define the monomial symmetric functions as
+\[
+\monomial_\lambda(\xvec) = \sum_{\alpha \sim \lambda} \xvec^{\alpha}
+\]
+where $\alpha \sim \lambda$ if the parts of $\alpha$ is a rearrangement of the parts of $\lambda$.
+
+
+The \defin{augmented monomial symmetric functions} are defined 
+as $\tilde{\monomial}_\lambda \coloneqq m_1!m_2!\dotsm m_n! \monomial_\lambda$
+where $\lambda = (1^{m_1},2^{m_2},\dotsc)$.
+See \cite{Merca2015} for more background.
+
+
+\section[elementaryE]{Elementary symmetric functions}
+
+
+\begin{polydata}{elementaryE}
+  Name   & Elementary symmetric functions \\
+  Space    & Sym \\
+  Basis    & Yes \\
+  Rating   & 5 \\
+  Symbol   & $\elementaryE_\lambda(\xvec)$ \\
+  Year     & 1700 \\
+  Categoty & Elementary \\
+\end{polydata}
+
+
+The elementary symmetric functions are defined as follows:
+\[
+\elementaryE_k(\xvec) = \sum_{i_1 \lt i_2 \lt \dotsb \lt i_k } x_{i_1} \dotsm x_{i_k} = \monomial_{1^k}(\xvec),
+\qquad 
+\elementaryE_\lambda(\xvec) = \elementaryE_{\lambda_1} \elementaryE_{\lambda_2} \dotsm \elementaryE_{\lambda_\ell}
+\]
+
+
+\section[completeH]{Complete homogeneous symmetric functions}
+
+\begin{polydata}{completeH}
+  Name   & Complete homogeneous symmetric functions \\
+  Space    & Sym \\
+  Basis    & Yes \\
+  Rating   & 5 \\
+  Symbol   & $\completeH_\lambda(\xvec)$ \\
+  Year     & 1700 \\
+  Categoty & Elementary \\
+\end{polydata}
+
+
+
+Similar to the elementary symmetric functions, the complete homogeneous functions are defined as
+\[
+\completeH_k(\xvec) = \sum_{i_1 \leq i_2 \leq \dotsb \leq i_k } x_{i_1} \dotsm x_{i_k} = \sum_{\lambda \vdash k} \monomial_\lambda(\xvec),
+\qquad 
+\completeH_\lambda(\xvec) = \completeH_{\lambda_1} \completeH_{\lambda_2} \dotsm \completeH_{\lambda_\ell}
+\]
+
+\section[powerSum]{Powersum symmetric functions}
+
+
+\begin{polydata}{powerSum}
+  Name   & Powersum symmetric functions \\
+  Space    & Sym \\
+  Basis    & Yes \\
+  Rating   & 5 \\
+  Symbol   & $\powerSum_\lambda(\xvec)$ \\
+  Year     & 1700 \\
+  Categoty & Elementary \\
+\end{polydata}
+
+
+The powersum symmetric functions are defined as
+\[
+\powerSum_k(\xvec) =  x_{1}^k +  x_2^k + x_3^k + \dotsb = \monomial_{(k)}(\xvec),
+\qquad 
+\powerSum_\lambda(\xvec) = \powerSum_{\lambda_1} \powerSum_{\lambda_2} \dotsm \powerSum_{\lambda_\ell}.
+\]
+
+
+They serve as an orthogonal basis for the \hyperref[hallInnerProduct]{Hall inner product}.
+We have the following product expansions \cite[Sec. 1.4]{Macdonald1995} 
+(see the \hyperref[prelimPartitionStatistics]{preliminaries} for the definition of $z_\lambda$):
+\[
+\prod_{i,j\geq 1}(1-x_i y_j)^{-1} = \sum_{\lambda} z_\lambda^{-1} \powerSum_\lambda(\xvec)\powerSum_\lambda(\yvec).
+\]
+and
+\[
+\prod_{i,j\geq 1}(1+x_i y_j) = \sum_{\lambda} (-1)^{|\lambda|-\length(\lambda)} z_\lambda^{-1} \powerSum_\lambda(\xvec)\powerSum_\lambda(\yvec).
+\]
+
+\begin{lemma}
+\[
+\prod_{i,j,k\geq 1}(1+x_i y_j z_k) = \sum_{\lambda} 
+(-1)^{|\lambda|-\length(\lambda)} z_\lambda^{-1} \powerSum_\lambda(\xvec)\powerSum_\lambda(\yvec)\powerSum_\lambda(\zvec).
+\]
+\end{lemma}
+\begin{proof*}
+First note that
+\begin{align}
+\prod_{i,j,k\geq 1}(1+x_i y_j z_k) &= \prod_{k\geq 1} \prod_{i,j\geq 1}(1+x_i (y_j z_k)) \\
+ &= \prod_{k\geq 1} 
+ \sum_{\lambda} (-1)^{|\lambda|-\length(\lambda)} z_\lambda^{-1} \powerSum_\lambda(\xvec)\powerSum_\lambda(\yvec z_k).
+\end{align}
+Now using that $\powerSum_\lambda(\yvec z_k) = z_k^{|\lambda|} \powerSum_\lambda(\yvec)$,
+we can easily deduce the statement.
+\end{proof*}
+
+
+There are two \hyperref[qPsi]{quasisymmetric refinements of the powersum symmetric functions} 
+given in \cite{BallantineDaughertyHicksMason2020}.
+
+\begin{conjecture}[Sundaram 2018, \cite{Sundaram2018}]
+ Let $L_n$ be the reverse lexicographic ordering of partitions.
+Then the following sum over any initial segment,
+\[
+\sum_{\lambda \in [1^n,\mu]} \powerSum_\lambda(x)
+\]
+is Schur-positive.
+\end{conjecture}
+
+For some partial progress on S. Sundaram's conjecture, 
+see \href{http://fpsac2019.fmf.uni-lj.si/resources/Proceedings/92.pdf}{these FPSAC 2019 proceedings}.
+
+For a $q$-analog of the power-sum symmetric functions, see \cite{Brugidou2023x}.
+
+
+\section[forgotten]{Forgotten symmetric functions}
+
+\begin{polydata}{forgotten}
+  Name   & Forgotten symmetric functions \\
+  Space    & Sym \\
+  Basis    & Yes \\
+  Rating   & 3 \\
+  Symbol   & $\forgotten_\lambda(\xvec)$ \\
+  Year     & 1900 \\
+  Categoty & Elementary \\
+\end{polydata}
+
+Finally, there is a family of symmetric functions, $\forgotten_\lambda(\xvec)$,
+defined as $\forgotten_\lambda = \omega(\monomial_\lambda)$
+(sometimes $(-1)^{|\lambda|-\length(\lambda)}\omega(\monomial_\lambda)$)
+where $\omega$ is the \hyperref[standardInvolution]{involution on symmetric functions}.
+Note that $\langle \forgotten_\lambda, \elementaryE_\mu \rangle = \delta_{\lambda \mu}$.
+
+It does not have as many applications as the other bases.
+
+In \cite[Ex. 7.9]{StanleyEC2}, the following monomial expansion is given,
+where $\lambda \vdash n$ has $\ell$ parts: 
+\begin{equation}
+(-1)^{n-\ell} \forgotten_\lambda(\xvec) = \sum_{\mu} a_{\lambda\mu} \monomial_\mu(\xvec)
+\end{equation}
+where $a_{\lambda \mu}$ is the number of distinct permutations $(\alpha_1,\dotsc,\alpha_\ell)$
+of $(\lambda_1,\dotsc,\lambda_\ell)$ such that 
+\[
+ \{ \alpha_1+ \dotsb + \alpha_i : i \in [\ell] \} \supseteq 
+ \{ \mu_1+ \dotsb + \mu_j : j \in \length(\mu) \}.
+\]
+
+
+
+\subsection[hallInnerProduct]{Hall inner product}
+
+
+Let $\langle \cdot, \cdot \rangle$ be the inner product on symmetric functions
+such that $\langle \powerSum_\lambda, \powerSum_\mu \rangle = \delta_{\lambda\mu}z_\lambda$,
+that is, the \hyperref[powerSum]{power-sum} functions form an orthogonal basis.
+Then $\langle \schurS_\lambda, \schurS_\mu \rangle = \delta_{\lambda\mu}$,
+so that the Schur polynomials is an orthonormal basis for $\spaceSym$.
+See the \hyperref[prelimPartitionStatistics]{preliminaries} for the definition of $z_\lambda$.
+
+
+The following properties hold for the Hall inner product:
+\begin{itemize}
+
+\item The monomial basis and the complete homogeneous basis are dual: $\langle \monomial_\lambda, \completeH_\mu \rangle = \delta_{\lambda\mu}$.
+
+\item The \hyperref[standardInvolution]{$\omega$ involution} is self-adjoint:
+\[
+\langle \omega(f), g \rangle = \langle f, \omega(g) \rangle
+\]
+
+\item Any symmetric function $f$, defines a map $f :\spaceSym \to \spaceSym$ by multiplication.
+This gives an adjoint map $f^{\perp}: \spaceSym \to \spaceSym$ called \defin{skewing by $f$}.
+I.e.,
+\[
+\langle f\cdot g , h  \rangle = \langle g ,f^{\perp}\, h \rangle.
+\]
+
+For example, multiplication by $\schurS_\mu$, is adjoint to the the linear map that
+sends $\schurS_\lambda$ to $\schurS_{\lambda/\mu}$.
+In other words,
+\[
+\langle \schurS_\mu \schurS_\nu , \schurS_{\lambda}  \rangle = \langle \schurS_\nu , \schurS_{\lambda/\mu} \rangle.
+\]
+We also have $\powerSum_n^{\perp} = n \frac{\partial}{\partial \powerSum_n}$.
+
+
+\item Multiplication and comultiplication are adjoint; see \hyperref[hopfAlgebra]{the Hopf algebra} structure on $\spaceSym$.
+
+\item We have that Schur positivity for an operator $T$ implies Schur positivity for the adjoint.
+To be more precise,
+\[
+T(\schurS_\lambda) = \sum_{\mu} c_{\lambda \mu} \schurS_\mu
+\iff
+T^{\perp}(\schurS_\mu) = \sum_{\lambda} c_{\lambda \mu} \schurS_\lambda.
+\]
+This holds since the Schur functions constitutes an orthonormal basis.
+\end{itemize}
+
+See also \hyperref[mapsOnSymmetricFunctions]{these other maps on symmetric functions}.
+
+
+
+
+
+\section[standardIdentities]{Various identities}
+
+We have that
+\[
+\sum_{i=0}^n (-1)^i \elementaryE_i \completeH_{n-i} = \delta_{n,0}.
+\]
+Introducing 
+\[
+E(z) = \sum_{k \geq 0} \elementaryE_k z^k, \quad 
+P(z) = \sum_{k \geq 0} \powerSum_{k+1} z^k
+\text{ and }
+H(z) = \sum_{k \geq 0} \completeH_k z^k
+\]
+we get $E(-z)H(z)=1$. 
+Moreover,
+\[
+  P(-t) = \frac{E'(t)}{E(t)}, \quad P(t) = \frac{H'(t)}{H(t)}.
+\]
+One can show that 
+\begin{align}
+H(z) = \exp\left( \sum_{k \geq 1} \frac{\powerSum_k }{k}  z^k \right) 
+\text{ and }
+E(-z) = \exp\left( - \sum_{k \geq 1} \frac{\powerSum_k }{k} z^k \right).
+\end{align}
+
+
+Another common identity is 
+\[
+ \prod_{i} \frac{1+t x_i}{1-t x_i} = \sum_{\lambda} t^{|\lambda|} 2^{\length(\lambda)} \monomial_{\lambda}(\xvec).
+\]
+Note that $\sum_{\lambda \vdash n} 2^{\length(\lambda)} \monomial_{\lambda}(\xvec)$ is the 
+\hyperref[schurQ]{Schur's Q function} $\schurQ_{(n)}(\xvec)$.
+
+We have---by using a relation above---that
+\[
+  \sum_{\lambda \vdash n} \forgotten_\lambda(\xvec) = \monomial_{1^n}(\xvec), \qquad 
+  \sum_{\lambda \vdash n} \monomial_\lambda(\xvec) = \forgotten_{1^n}(\xvec).
+\]
+
+
+\subsection[standardNewton]{Newton identities and determinants}
+
+We have
+\[
+r \completeH_r = \sum_{k=1}^r \powerSum_k  \completeH_{r-k}
+\text{ and }
+r \elementaryE_r = \sum_{k=1}^r (-1)^{k-1} \powerSum_k  \elementaryE_{r-k}.
+\]
+
+
+The following determinant identities can be useful:
+\[
+n! \elementaryE_n = \begin{vmatrix}
+\powerSum_1 & 1 & 0 & \cdots \\
+\powerSum_2 & \powerSum_1 & 2 & 0 & \cdots  \\
+\vdots && \ddots & \ddots \\
+\powerSum_{n-1} & \powerSum_{n-2} & \cdots & \powerSum_1 & n-1 \\ 
+\powerSum_n & \powerSum_{n-1} & \cdots & \powerSum_2 & \powerSum_1
+\end{vmatrix}.
+\]
+
+We also have
+\[
+p_n =
+\begin{vmatrix}
+\elementaryE_1 & 1 & 0 & \cdots & \\
+2\elementaryE_2 & \elementaryE_1 & 1 & 0 & \cdots & \\
+3\elementaryE_3 & \elementaryE_2 & \elementaryE_1 & 1 & \cdots & \\
+\vdots &&& \ddots & \ddots  & \\
+n\elementaryE_n & \elementaryE_{n-1} & \cdots & & \elementaryE_1 &
+\end{vmatrix}.
+\]
+
+
+
+\subsection[standardSpecialization]{Principal specializations}
+
+Given a symmetric function $f$, we define the following \defin{principal specializations}:
+\[
+\princSpec_k^q(f) = f(1,q,q^2,\dotsc,q^{k-1})
+\qquad
+\princSpec_k^1(f) = f(\underbrace{1,1,\dotsc,1}_k)
+\qquad 
+\princSpec(f) = f(1,q,q^2,\dotsc)
+\]
+The last specialization is a formal power series,
+and is called the \defin{stable principal specialization}.
+
+\begin{example*}[Small example]
+For example, consider $\powerSum_1(\xvec)=x_1+x_2+x_3+\dotsb$.
+The stable principal specialization is
+\[
+\powerSum_1(1,q,q^2,\dotsc) = 1+q+q^2+\dotsb = \frac{1}{1-q}.
+\]
+In a similar manner, with $\powerSum_k(\xvec)=x_1^k + x_2^k + x_3^k + \dotsb$, we find that
+\[
+\powerSum_k(1,q,q^2,\dotsc) = 1+q^k+q^{2k}+\dotsb = \frac{1}{1-q^k}.
+\]
+Since every symmetric function $f$ can be expressed in terms of power-sum symmetric functions,
+this gives one possible way for computing $\princSpec(f)$.
+\end{example*}
+
+Let $\lambda$ be a partition of $n$ with $\ell$ parts. 
+Furthermore, let $m_i$ be the number of parts of size $i$,
+and we use the notation of raising and falling factorials.
+\begin{itemize}
+\item
+$\princSpec_k^1(\monomial_\lambda) = \frac{(k)_{\ell}}{m_1!m_2!\dotsm m_\ell!}$
+
+\item
+$\princSpec_k^1(\powerSum_\lambda) = k^{\ell}$
+
+\item
+$\princSpec_k^1(\forgotten_\lambda) = (-1)^{n-\ell}\frac{(k)^{\ell}}{m_1!m_2!\dotsm m_\ell!}$
+
+\item
+$\princSpec_k^1(\completeH_\lambda) = \prod_{j=1}^\ell \frac{(k)^{\lambda_j}}{\lambda_j!}$
+
+\item
+$\princSpec_k^1(\elementaryE_\lambda) = \prod_{j=1}^\ell \frac{(k)_{\lambda_j}}{\lambda_j!}$
+\end{itemize}
+
+We also have 
+\[
+\princSpec_k^q( \elementaryE_n ) = q^{\binom{n}{2}} \qbinom{k}{n}_q, \qquad 
+\princSpec_k^q( \completeH_n )  =  \qbinom{n+k-1}{n}_q \qquad 
+\princSpec_k^q( \powerSum_n )  =  \frac{1-q^{kn}}{1-q^n}.
+\]
+
+For reference and proofs, see e.g. \cite{Rosas2002}. 
+\emph{Warning!} Note that she uses the non-standard notation $|\lambda|=m_1!m_2!\dotsm m_\ell!$.
+
+We also have the following stable principal specializations,
+see \cite[p. 303]{StanleyEC2} for details.
+
+\begin{itemize}
+\item
+$\princSpec(\powerSum_\lambda) = \prod_{j=1}^\ell \frac{1}{1-q^{\lambda_j}} $
+
+\item
+$\princSpec(\completeH_\lambda) =  \prod_{j=1}^\ell \frac{1}{(1-q)(1-q^2)\dotsm (1-q^{\lambda_j})} $
+
+\item
+$\princSpec(\elementaryE_\lambda) = \prod_{j=1}^\ell \frac{q^{\binom{\lambda_j}{2}}}{(1-q)(1-q^2)\dotsm (1-q^{\lambda_j})} $
+
+\end{itemize}
+
+The combinatorics involving the elementary, powersum and complete homogeneous polynomials
+is studied in \cite{OSullivan2022x}, where various combinatorial sequences are shown 
+to satisfy similar relations. 
+
+
+Sagan--Swanson show in \cite{SaganSwanson2022x} that
+$q$-Stirling numbers of type $B$ can be obtained as the following specialization:
+\[
+ S_B(n,k;q) = \completeH_{n-k}\left([1]_q,[3],[5]_q,\dotsc,[2k+1]_q \right).
+\]
+They also show some other interesting identities.
+
+
+
+\section[standardInvolution]{Involution on symmetric functions}
+
+There is an involution $\omega$ on symmetric functions defined 
+as $\omega(\elementaryE_\lambda) = \completeH_\lambda$ for all $\lambda$.
+It acts on the power-sum symmetric functions and the \hyperref[schurS]{Schur polynomials} as
+\[
+\omega(\powerSum_\lambda) = (-1)^{|\lambda|-\length(\lambda)}\powerSum_\lambda \quad \text{ and } \quad
+\omega(\schurS_\lambda) = \schurS_{\lambda'}.
+\]
+
+This involution has \hyperref[gesselProperties]{natural extensions} to quasisymmetric functions, by defining it on
+the \hyperref[gessel]{Gessel quasisymmetric functions}.
+
+
+\begin{lemma}[From \cite{BernardiNadeau2020}]
+If $F(t)$ is a polynomial with constant term $1$, then
+\[
+ \omega \left( F(x_1)F(x_2)F(x_3) \dotsm \right) = \left( F(-x_1)F(-x_2)F(-x_3) \dotsm \right)^{-1}.
+\]
+\end{lemma}
+
+
+
+\section[symmetricTransisionMatrices]{Transition matrices}
+
+There are combinatorial interpretations of the coefficients in the transition 
+matrices between these bases. 
+The reference \cite{EgeciogluRemmel1991} gives a comprehensive overview.
+
+In the table below, we show the coefficients in the expansion 
+\[
+\mathrm{v}_\lambda = \sum_{\mu} c_{\lambda \mu} \mathrm{u}_\mu,
+\]
+for different choices of bases $\{\mathrm{v}_\lambda\}$ and $\{\mathrm{u}_\lambda\}$.
+
+\begin{array}{llllll}
+\toprule
+ \; & \completeH_\lambda & \elementaryE_\lambda & \schurS_\lambda & \powerSum_\lambda & \monomial_\lambda  \\
+\midrule
+\completeH_\mu & I & (-1)^{n-\length(\mu)}|B_{\mu,\lambda}| & (K_{\lambda,\mu})^{-1} & (-1)^{\length(\mu)-\length(\lambda)}w(B_{\mu,\lambda}) & (IM_{\lambda,\mu})^{-1} \\
+\elementaryE_\mu & (-1)^{n-\length(\mu)}|B_{\mu,\lambda}| & I & (K_{\lambda',\mu})^{-1} & (-1)^{n-\length(\mu)}w(B_{\mu,\lambda}) & (BM_{\lambda,\mu})^{-1} \\
+\schurS_\mu & K_{\lambda,\mu} & K_{\lambda',\mu} & I & \chi_{\mu,\lambda} & (K_{\lambda,\mu})^{-1} \\
+\powerSum_\mu & |OB_{\mu,\lambda}|/z_\mu & (-1)^{n-\length(\mu)}|OB_{\mu,\lambda}|/z_\mu & \chi_{\lambda,\mu}/z_\mu & I & (-1)^{\length(\mu)-\length(\lambda)}w(B_{\lambda,\mu})/z_\mu  \\
+\monomial_\mu & IM_{\lambda,\mu} &  BM_{\lambda,\mu} & K_{\lambda,\mu} & |OB_{\lambda,\mu}| & I  \\
+\bottomrule
+\end{array}
+
+
+We have that $BM_{\lambda,\mu}$ is the number of $01$-matrices with row sums given by $\lambda$
+and column sums given by $\mu$. Similarly, $IM_{\lambda,\mu}$ is the number of non-negative integer matrices
+with row sums given by $\lambda$ and column sums given by $\mu$.
+Combinatorial interpretations for computing the matrices
+$(IM_{\lambda,\mu})^{-1}$ and $(BM_{\lambda,\mu})^{-1}$ are given in \cite{KulikauskasRemmel2006}.
+
+
+The coefficient $\chi_{\lambda,\mu}$ is a character value, and can be computed
+using the \hyperref[schurMurnaghanNakaygama]{Murnaghan--Nakayama rule}.
+
+
+The coefficient $K_{\lambda,\mu}$ is a \hyperref[kostkaCoefficients]{Kostka coefficient}.
+Moreover, the entries in the \defin{inverse Kostka matrix}, $(K_{\lambda,\mu})^{-1}$,
+have a combinatorial formula, see \cite{EgeciogluRemmel1990}.
+\begin{theorem}[Eğecioğlu, Remmel (1990)]
+A \defin{special rim hook tabloid} of shape $\lambda$ and type $\mu$
+is a filling of $\lambda$ with rim hooks, such that each rim hook has at least one box in
+the first column. The sign of a rim hook is $(-1)^{r-1}$ where $r$ is the number of rows it spans,
+and the sign $\sign(T)$ of a special rim hook tabloid $T$ is the product of the signs of the rim hooks.
+We have that
+\[
+  (K_{\lambda,\mu})^{-1} = \sum_{T \in \mathrm{RHT}(\lambda,\mu) } \sign(t)
+\]
+where $\mathrm{RHT}(\lambda,\mu)$ is the set of special rim hook tabloids with shape $\lambda$ and type $\mu$.
+\end{theorem}
+
+
+The coefficients $B_{\mu,\lambda}$ and $OB_{\mu,\lambda}$ may be computed by
+counting certain \defin{brick tabloids}, see \cite{EgeciogluRemmel1991}.
+
+
+
+
+\section[mapsOnSymmetricFunctions]{Other maps on symmetric functions}
+
+
+
+\begin{definition}[The Adams operator and the Verschiebung operator]
+
+The \defin{$k$th Adams operator} on $\spaceSym$ is the ring homomorphism
+\[
+ f(\xvec) \mapsto f[ \powersum_k ] = f(x_1^k, x_2^k, \dotsc ),
+\]
+which is a \hyperref[plethysm]{plethysm}.
+
+The \hyperref[hallInnerProduct]{adjoint operator} to the Adams operator
+is the \defin{Verschiebung operator} $\phi_k$, which is defined on the powersum symmetric
+functions via
+\[
+ \phi_k \powersum_m(\xvec) =
+ \begin{cases}
+k\cdot \powersum_{m/k}(\xvec) & \text{ if } k \mid m \\
+ 0 & \text{ otherwise,}
+ \end{cases}
+\]
+and then extend this to a ring homomorphism.
+\end{definition}
+
+
+\begin{definition}[The Bernstein operator]
+The \defin{Bernstein operator} $\mathbf{B}_r$ is defined as 
+\[
+   \mathbf{B}_r \coloneqq \sum_{j \geq 0} (-1)^j \completeH_{r+j} \elementaryE^{\perp}_j.
+\]
+This is also called the \defin{creation operator} as it satisfies
+\[
+ \schurS_{\lambda} = \mathbf{B}_{\lambda_1} \mathbf{B}_{\lambda_{2}} \dotsb \mathbf{B}_{\lambda_{\ell}}(1).
+\]
+That is, we can create the Schur function $\schurS_{\lambda}$ from $1$, and $\mathbf{B}_r$
+is the operator that adds a new top row of length $r$.
+
+
+\end{definition}
+
+
+
+\section[positivityProbabilities]{Positivity probabilities}
+
+In \cite{PatriasWilligenburg2018}, the authors describe the probability that 
+a random symmetric function is monomial- Schur- and elementary-positive, by comparing volumes of
+cones spanned by the basis elements.
+
+
+
+\section[hopfAlgebra]{Hopf algebra}
+
+The algebra of symmetric functions admit a Hopf algebra structure,
+where the coproduct is defined as
+\[
+\Delta( \elementaryE_k ) = \sum_{j=0}^k \elementaryE_j \otimes \elementaryE_{k-j}
+\]
+See \href{https://pdfs.semanticscholar.org/2e2c/db9605de96fc71b4539bf8d40192fa0f2f4b.pdf}{Hopf algebras, symmetric functions and representations, by R. Cheng} and \href{http://www-users.math.umn.edu/~reiner/Classes/HopfComb.pdf}{Hopf algebras in combinatoris, D. Grinberg and V. Reiner}.

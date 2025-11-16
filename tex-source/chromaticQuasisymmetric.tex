@@ -1,0 +1,604 @@
+\section[chromaticQuasisymmetric]{Chromatic quasisymmetric functions}
+
+\begin{polydata}{chromaticQuasisymmetric}
+  Name   & Chromatic quasisymmetric functions \\
+  Space  & Sym \\
+  Basis  & False \\
+  Rating & 7 \\
+  Bib    & ShareshianWachs2012 \\
+  Year   & 2012 \\
+\end{polydata}
+
+\todo{
+Some Lie algebra connection
+https://arxiv.org/pdf/1908.08198.pdf
+}
+
+\todo{
+ Chromatic quasisymmetric functions under group action:
+\url{https://arxiv.org/pdf/2112.09109.pdf}
+ \url{https://arxiv.org/pdf/2106.02665.pdf}
+}
+
+
+\todo{
+Relation with Macdonald Nabla operator, and Hopf algebra and e-positivity.
+http://de.arxiv.org/pdf/1908.04841.pdf
+}
+
+\todo{
+Non-symmetric quasisymmetric, and slide positivity
+https://arxiv.org/pdf/1908.06598.pdf
+}
+
+\todo{
+Dual-equivalence graphs, refinement and Schur expansion:
+https://arxiv.org/pdf/2003.12123.pdf
+}
+
+
+\todo{
+2-cycle chord graphs are e-positive (non-commutative)
+https://arxiv.org/pdf/2112.06679.pdf
+Same authors:
+Spiders, brooms: 
+https://arxiv.org/pdf/2112.06619.pdf
+}
+
+
+\subsection[chromaticQuasisymmetricHistory]{Historical overview}
+
+R. Stanley introduced the \defin{chromatic symmetric function} of a graph $G$ in \cite{Stanley1995}.
+This definition was later refined by J. Shareshian and M. Wachs in \cite{ShareshianWachs2012} and \cite{ShareshianWachs2016},
+where the graph $G$ is labeled and a parameter $q$ is introduced.
+\bigskip 
+
+In Spring 2016, B. Ellzey \cite{Ellzey2017} presented a generalization where labeled graphs are replaced with \emph{oriented graphs}.
+This new model is equivalent to the Shareshian--Wachs model when the orientation of the edges has no directed cycle.
+See also  G. Panova, P. Alexandersson \cite{AlexanderssonPanova2018}, who considered the same model from a different perspective.
+
+The main open problem in this area concerns the conjectured positive 
+expansion of chromatic symmetric functions in the elementary symmetric function basis,
+and later the refined conjecture by J. Shareshian and M. Wachs in \cite{ShareshianWachs2012,ShareshianWachs2016}.
+These conjectures are referred to 
+the \hyperref[chromaticQuasisymmetricElementaryExpansion]{Stanley--Stembridge conjecture and Shareshian--Wachs conjecture}, respectively.
+Shareshian and Wachs also conjectured that $\omega \chrom_G(\xvec;q)$ is 
+\hyperref[chromaticQuasisymmetricHessenberg]{related to 
+the equivariant cohomology of regular semisimple Hessenberg varieties}.
+
+
+
+In \cite{Hwang2022x}, Byung-Hak Hwang introduces an additional refinement on the chromatic quasisymmetric functions.
+He defines a \enquote{flip} operator on colorings and show that connected components under such flips
+are Schur-positive. The ascent parameter introduced by Shareshian--Wachs is preserved by such flips.
+It is conjectured that each such component is positive in the elementary symmetric function basis.
+See also \cite{Hwang2023x} for a connection with non-commutative functions.
+A proof for Schur-positivity of the flip-components is also given in \cite{BlasiakErikssonPylyavskyySiegl2022x}.
+
+
+For a representation-theoretical perspective, see \cite{Skandera2020},
+where connections with immanents and characters is studied.
+
+
+\subsection[chromaticQuasisymmetricDefinition]{Definition}
+
+Let $G$ be an \emph{oriented graph} with $n$ vertices. Given a vertex-coloring $\kappa:G\to \setP$,
+let $\asc(\kappa)$ denote the number of directed edges $(u,v)$ in $G$ such that $\kappa(u) \lt \kappa(v)$.
+
+The \defin{chromatic quasisymmetric function} of $G$ is defined as 
+\[
+\chrom_G(\xvec;q) \coloneqq  
+\sum_{\substack{\kappa : G\to \setP \\ \kappa \text{ proper}} } x_{\kappa(1)}\dotsm x_{\kappa(n)} q^{\asc(\kappa)},
+\]
+where the sum runs over all proper colorings of the graph $G$. 
+A coloring is proper there are no edges whose endpoints receive the same color.
+The function $\chrom_G(\xvec;q)$ is quasi-symmetric in $\xvec$.
+
+From the definition, it is clear that
+\[
+\chrom_G(1^k;1)
+\]
+is the number of ways to color $G$ with $k$ colors, 
+so the classical \defin{chromatic polynomial} $\chi_G(k)$ is given by the specialization $\chrom_G(1^k;1)$.
+See \cite{SaganVatter2021} for a nice article with bijective proofs of properties of $\chi_G(k)$.
+
+
+Note that every labeling induces an orientation, by orienting edges in the direction of largest label.
+This labeled model is what was introduced in \cite{ShareshianWachs2012,ShareshianWachs2016}.
+
+\subsection[chromaticClawFree]{Claw-free graphs}
+
+If $G$ is a claw-free graph, Gasharov (see \cite{Stanley1998}) conjecture that $\chrom_G(\xvec;1)$ is Schur-positive.
+There is no known $q$-analogue of this conjecture.
+
+Some progress in this direction has been made in \cite{ShelburneWilligenburg2024x},
+using a type of involution inspired by the \hyperref[gesselSlinkyRule]{slinky rule}.
+They prove Schur positivity for the family of graphs called \defin{generalized nets}.
+
+\subsection[chromaticQuasisymmetricUnitIntervalGraph]{Unit interval graphs}
+
+The following definition using area sequences is from \cite{AlexanderssonPanova2018}.
+
+A \defin{circular unit arc digraph} (or circular Dyck path) 
+$\Gamma_\avec$ is a directed graph with vertex set $[n]$ and edges
+\begin{align}
+(i-a_i) \to i, \; (i-a_i + 1) \to i,  \; (i-a_i + 2) \to i, \; \dotsc \; , (i-1) \to i
+%   i \to i+1, \; i \to i+2,\; \dotsc, i \to i+a_i
+\end{align}
+for all $i = 1,\dotsc,n$, where indices are taken modulo $n$, 
+and the integers $\avec=(a_1,\dotsc,a_n)$ satisfy
+
+\begin{itemize}
+\item $0 \leq a_i \leq n-1 $ for $1 \leq i \leq n$, 
+\item $a_{i+1} \leq a_{i} + 1$ for $1 \leq i \leq n$, (index mod $n$).
+\end{itemize}
+
+Whenever $a_1=0$, $\Gamma_\avec$ is a \defin{unit interval graph}.
+The sequence $\avec = (a_1,a_2,\dotsc,a_n)$ is called the \defin{area sequence} of the graph.
+
+There are Catalan $\frac{1}{n+1}\binom{2n}{n}$ many unit interval graphs on $n$ vertices, 
+and a total of 
+\[
+(n+2)\binom{2n-1}{n-1} - 2^{2n-1}
+\]
+circular unit arc digraph on $n$ vertices, see \cite{AlexanderssonLinussonPotka2019} for a proof.
+This sequence appears as \oeis{A194460} in the OEIS.
+
+
+\begin{example}
+The area sequences $(0,1,2,1,1)$ and $(3,2,1,2,2)$ can be 
+presented as \emph{Dyck diagrams}, or in the second circular case,
+a \defin{circular Dyck diagram}:
+
+\begin{figure}
+\begin{ytableau}
+\square & \square & \square &  & 5 \\
+\square & \square &   & 4 \\
+  &   &  3 \\
+  &  2 \\
+1
+\end{ytableau}
+\begin{ytableau}
+\none & \none & \none & \none & \square & \square & & & 5 \\
+\none & \none & \none & \square & \square & & & 4 \\
+\none & \none & \square & \square & \square & & 3 \\
+\none & \square & \square & & & 2 \\
+\square &  & & & 1
+\end{ytableau}
+\end{figure}
+
+The labeled boxes represent vertices, the empty boxes are edges 
+(connecting the vertex in the same column with the vertex in the same row),
+and the squares represent non-edges. The first graph has 5 edges, while the second has 9 edges.
+Note that circular Dyck diagrams \enquote{wrap around} at top and bottom.
+Edges are directed upwards (or rightwards) in these diagrams.
+\end{example}
+
+
+The \defin{Abelian unit interval graphs} on vertices $\{1,2,\dotsc,n\}$
+are the unit interval graphs where there is no vertex $j$ such that both $(1,j)$ and $(j,n)$ are non-edges.
+The number of Dyck paths of size $n$ with an Abelian unit interval graph is $2^{n-1}$.
+
+
+
+
+
+\section[chromaticQuasisymmetricProperties]{Properties of chromatic quasisymmetric functions}
+
+
+\subsection[chromaticQuasisymmetricSymmetric]{Symmetry}
+
+Whenever $G$ is a unit arc digraph as above, $\chrom_G(\xvec;q)$ is symmetric 
+(for labeled graphs, \cite{ShareshianWachs2012,ShareshianWachs2016} and for oriented graphs, \cite{Ellzey2017,AlexanderssonPanova2018}).
+Furthermore, the coefficients in $\setZ[q]$ in the monomial basis are palindromic.
+To be precise,
+\[
+\chrom_\avec(\xvec;q)=\sum_\lambda c_\lambda(q) \monomial_\lambda(\xvec) \qquad \Longrightarrow \qquad
+c_\lambda(q) = q^{|\avec|}c_\lambda(1/q),
+\]
+where $|\avec|$ denotes the sum $a_1+a_2+\dotsb + a_n$.
+
+
+\subsection[chromaticQuasisymmetricReciprocity]{Reciprocity}
+
+Let $\chi_G(k)$ be the chromatic polynomial associated with the graph $G$ on the vertex set $[n]$.
+O. Bernardi and P. Nadeau \cite{BernardiNadeau2020} gave the following interpretation of
+the specialization $(-1)^{n-i}\chi^{(i)}_G(-j)$.
+\begin{theorem}
+Let $i,j \geq 0$. Then $(-1)^{n-i}\chi^{(i)}_G(-j)$ counts the number of tuples
+\[
+\left( (V_1, \theta_1),\dotsc,(V_{i+j}, \theta_{i+j}) \right)
+\]
+such that 
+\begin{itemize}
+\item $V_1,\dotsc,V_{i+j}$ is a set-partition of the vertices of $G$,
+\item $\theta_\ell$ is an acyclic orientation of the graph induced by $V_\ell$,
+\item for all $\ell \in [i]$, $V_\ell$ is non-empty and $\theta$ has a unique source, given by $\min V_\ell$.
+\end{itemize}
+\end{theorem}
+
+
+
+
+
+\subsection[chromaticQuasisymmetricLLT]{Relationship with LLT polynomials}
+
+Carlson--Mellit \cite[Prop.3.4]{CarlssonMellit2017} proved the following \hyperref[plethysm]{plethystic} relationship between 
+chromatic quasisymmetric functions and \hyperref[LLT]{unicellular LLT polynomials} indexed by unit interval graphs 
+on $n$ vertices:
+\[
+(q-1)^{-n} \LLT_\avec[\xvec(q-1);q] =  \chrom_\avec(\xvec;q).
+\]
+This relationship is not always true in the circular case, that is, for area sequences where $a_1 \gt 0$.
+The relationship is reminiscent of the technique introduced by Haglund, Haiman and Loehr \cite{HaglundHaimanLoehr2005}.
+
+This plethystic relationship is generalized in \cite[Thm. 6.2]{NovelliThibon2019},
+where a non-commutative lift is given. J.-C. Novelli and J.-Y. Thibon also introduce 
+a non-commutative lift of the unicellular LLT polynomials.
+
+
+\subsection[chromaticQuasisymmetricGesselExpansion]{Fundamental quasisymmetric positivity}
+
+It is easy to show that
+\[
+\chrom_G(\xvec;q) = \sum_{\theta \in AO(G)} q^{\asc(\theta)} K_{P(\theta)}(\xvec)
+\]
+where $K_{P(\theta)}(\xvec)$ is the generating function 
+of \emph{strict} \hyperref[pPartition]{order-preserving maps} 
+from the poset $P(\theta)$ given by the transitive closure of the directed edges in $\theta$,
+to the set of positive integers.
+
+From this, it follows that $\chrom_G(\xvec;q)$ is 
+positive in the \hyperref[gessel]{fundamental quasisymmetric basis}.
+
+
+\subsection[chromaticQuasisymmetricPowerSumExpansion]{Power-sum positivity}
+
+In \cite{AlexanderssonSulzgruber2019}, 
+it is proved that $\omega \chrom_G(\xvec;q)$ is always $\qPsi$-positive, 
+that is, positive in a \hyperref[qPsi]{quasisymmetric powersum} basis.
+Consequently, $\omega \chrom_G(\xvec;q)$ 
+is $\powerSum$-positive whenever $\chrom_G(\xvec;q)$ is symmetric. 
+This was proved earlier in \cite{Ellzey2017}, and in the case of unit interval graphs $G$ in \cite{Athanasiadis2015}.
+A combinatorial formula in the unit-interval case was conjectured earlier by Shareshian--Wachs.
+
+
+We have the following expansion, proved in \cite{AlexanderssonSulzgruber2019}:
+\begin{theorem}[Alexandersson, Sulzgruber (2019)]
+Let $G$ be a graph on $n$ vertices.
+The quasisymmetric power-sum expansion of $\omega \chrom_G(\xvec;q)$ is given by
+\[
+\omega \chrom_G(\xvec;q) = \sum_{\theta \in AO(G)} q^{\asc(\theta)} 
+\sum_{f \in \opsurj^{\ast}(\theta)} \frac{\qPsi_{\type(f)}(\xvec)}{z_{\type(f)}}
+\]
+where the first sum ranges over acyclic orientations of $G$.
+The set $\opsurj_{\alpha}^{\ast}(\theta)$
+consists of of order-preserving surjections $f$ from $\theta$ to some $[k]$,
+such that $\theta$ restricted to the vertices $f^{-1}(j)$ has a unique sink.
+The type of $f$ is the composition $\alpha$ given by $\alpha_j \coloneqq |f^{-1}(j)|$.
+\end{theorem}
+In particular, for $q=1$, we have that $\chrom_G(\xvec)  = \chrom_G(\xvec;1)$ is symmetric.
+Thus, the formula above gives that
+\begin{align}
+\omega \chrom_G(\xvec) &= \sum_{\theta \in AO(G)} 
+\sum_{f \in \opsurj^{\ast}(\theta)}
+\frac{\powerSum_{\type(f)}(\xvec)}{z_{\type(f)}}.
+\end{align}
+This can further be simplified,
+to give 
+\begin{align}
+\omega \chrom_G(\xvec) &=\sum_{\theta \in AO(G)} \powerSum_{\type(\theta)}(\xvec),
+\end{align}
+where $\type(\theta)$ is given by the \emph{source-components}
+of $\theta$, see \cite{BernardiNadeau2020}.
+This formula is very similar to the stronger result by C. Athanasiadis \cite{Athanasiadis2015},
+which treats the case with general $q$.
+
+
+%
+% For a given $\theta$, we define an ordered set partition $\pi(\theta)$
+% as follows (compare with the $\elementaryE$-expansion
+% of \hyperref[unicellularLLTEExpansion]{unicellular LLT polynomials}).
+% Each sink $s$ of $\theta$ lies in a unique part of $\pi(\theta)$.
+% Furthermore, vertex $j$ is in the same part as $s$,
+% if $s$ is the largest sink $j$ can reach via a directed path.
+% Hence, each part of $\pi(\theta)$ induces an
+% orientation with a unique sink --- the largest element in the part.
+%
+% Recall also that $z_\alpha = \prod_j m_j! j^{m_j}$,
+% where there are $m_j$ parts equal to $j\geq  1$ in $\alpha$.
+%
+% &= \sum_{\theta \in AO(G)} \powerSum_{\type(\theta)}(\xvec)
+% where the type of $\theta$ is the partition given by the part sizes of $\pi(\theta)$.
+
+
+\subsection[chromaticQuasisymmetricSchurExpansion]{Schur positivity}
+
+In \cite{Gasharov1996}, Gasharov proved that the $\chrom_G(\xvec;1)$ are Schur-positive with an explicit expansion,
+whenever $G$ is the incomparability graph of a $3+1$-free poset.
+In particular, this implies the unit-interval case, as those are given as the incomparability graphs
+of $3+1$ and $2+2$-free posets. Gasharov's proof uses a kind of sign-reversing involution.
+
+Gasharov's result was later extended to the Shareshian--Wachs setting (with a $q$-parameter),
+by using a different involution.
+That is, $\chrom_G(\xvec;q)$ is Schur-positive for unit-interval graphs $G$,
+see \cite[Thm. 6.3]{ShareshianWachs2012}.
+
+\begin{example}
+We have the following Schur expansions of chromatic quasisymmetric functions, indexed by area sequences:
+\begin{align*}
+\chrom_{000}(x;q)&=\schurS_{111}+2 \schurS_{21}+\schurS_{3} \\
+\chrom_{001}(x;q)&=(1+q) \schurS_{111}+(1+q) \schurS_{21} \\
+\chrom_{011}(x;q)&=(1+2 q+q^2) \schurS_{111}+q \schurS_{210} \\
+\chrom_{111}(x;q)&=(3 q+3 q^2) \schurS_{111} \\
+\chrom_{012}(x;q)&=(1+2 q+2 q^2+q^3) \schurS_{111} \\
+\chrom_{112}(x;q)&=(q+4 q^2+q^3) \schurS_{111} \\
+\chrom_{122}(x;q)&=(3 q^2+3 q^3) \schurS_{111} \\
+\chrom_{222}(x;q)&=6 q^3 \schurS_{111} 
+\end{align*}
+\end{example}
+
+
+\begin{problem}
+Prove that $\chrom_G(\xvec;q)$ is Schur-positive (with coefficients in $\setN[q]$) 
+in the case of \emph{circular} unit arc digraphs.
+This conjecture has been verified for all circular unit arc digraphs up to 10 vertices.
+
+Find a bijective proof of Schur-positivitity (using \hyperref[schurPositivityCrystals]{crystals} or 
+a version of \hyperref[schurPositivityRSK]{RSK}).
+Gasharov's result provides a hint on how a crystal graph structure might be defined.
+
+A step in the direction of a crystal structure is taken in \cite{Ehrhard2022x},
+but the \enquote{crystals} described there are not crystals in the usual sense.
+\end{problem}
+
+
+In \cite{WangWang2020}, the authors give a (signed) formula 
+for the Schur coefficients of the chromatic symmetric function of any graph.
+They do this by inverting the matrix of Kostka coefficients.
+The approach is reminiscent of how one can turn a fundamental quasisymmetric expansion
+into a Schur expansion, using the \hyperref[gesselSlinkyRule]{slinky rule}.
+The authors also characterize all Schur positive complete tripartite graphs.
+
+
+
+\subsection[chromaticQuasisymmetricElementaryExpansion]{Elementary symmetric expansion}
+
+The Stanley--Stembridge conjecture (1993) is a long-standing open problem in 
+algebraic combinatorics, first formulated in \cite{StanleyStembridge1993} and \cite{Stanley1995} (for $q=1$).
+A refinement using the general $q$-parameter was presented in \cite[Conj. 4.9]{ShareshianWachs2012},
+which we now state.
+
+\todo{Add Hikita's result}
+
+\begin{conjecture}[Shareshian--Wach (2012)]
+Let $G$ be a unit interval graph. Find a statistic $\mu$ on acyclic orientations of $G$,
+such that
+\[
+\chrom_G(\xvec;q) = \sum_{\theta \in AO(G)} q^{\asc(\theta)} \elementaryE_{\mu(\theta)}(\xvec).
+\]
+That is, prove that $\chrom_G(\xvec;q)$ are $\elementaryE$-positive.
+\end{conjecture}
+See \hyperref[unitIntervalAO]{the weighed Dyck path enumeration page} for more info.
+
+This conjecture extends to the circular unit arc digraph case,
+see \cite{Ellzey2017,AlexanderssonPanova2018}.
+According to A. Mellit (personal communication), 
+this would imply Conjecture 5.4 in \url{https://arxiv.org/pdf/1506.08188.pdf}.
+
+Positivity has been proved for several families of unit-interval graphs,
+see the \hyperref[chromaticEExpansionCurrentStatus]{separate subsection on the current status}.
+
+
+\begin{conjecture}[See \cite[Conj. 5.1]{ShareshianWachs2016}]
+The following unimodality conjecture is posed:
+Write 
+\[
+\chrom_{G}(\xvec;q) = \sum_{j=0}^m q^j a_j(\xvec),
+\]
+where $m$ is the number of edges of $G$.
+Then $a_{j+1}(\xvec) - a_{j}(\xvec)$ is $\elementaryE$-positive for all $0 \leq j \lt (m-1)/2$.
+\end{conjecture}
+This conjecture extends to the circular unit arc digraphs.
+
+
+The main theorem of \cite{ChoHongLee2020x}, gives an explicit condition
+for when a coefficient in the $\elementaryE$-expansion is positive.
+
+
+\subsection[chromaticEExpansionCurrentStatus]{Current status of the Stanley--Stembridge/Shareshian--Wach conjecture}
+
+The following references give proofs 
+of $\elementaryE$-positivity for some families of graphs.
+
+\begin{itemize}
+\item 
+Combinatorial interpretation of line graph, 
+complete graph and cycle graph, \cite{Ellzey2017,AlexanderssonPanova2018}.
+\item 
+When the complement graph is also a unit-interval graph, \cite{FoleyHoangMerkel2019}.
+\item
+Triangular ladders, \cite{Dahlberg2018x}. 
+This correspond to area sequences of the form $(0,1,2,2,\dotsc,2)$.
+\item 
+Lollipop graphs for $q=1$, \cite{DahlbergWilligenburg2018}.
+\item 
+Melting lollipop graphs, \cite{HuhNamYoo2020}.
+\item 
+Abelian area sequences with bounce number 2, using a recursive method, \cite{HaradaPrecup2019}.
+See also the alternative proof in \cite{ChoHuh2019}, using a sign-reversing involution.
+Yet another proof is given in \cite{NadeauTewari2022x}. See also \cite{LeeSoh2022x} for a proof.
+
+
+\item 
+For area sequences with bounce number 3, some coefficients considered in \cite{ChoHong2019}. 
+This is extended further in \cite{Wang2022x}.
+
+\item Generalized pyramid graphs, and $(claw, 2K_2)$-free unit interval graphs, \cite{LiYang2021}.
+
+\item A generalization of melting lollipop graphs, \cite{Tom2023x}.
+This paper includes a signed $\elementaryE$-expansion derived from the $\elementaryE$-expansion
+of unicellular LLT polynomials.
+
+\item All $e$-coefficients with at most 2 parts are non-negative,
+see \cite{AbreuNigro2023x} 
+(using the cohomology of \hyperref[hessenbergVarieties]{Hessenberg varieties}) 
+and also \cite{RokSzenes2023x}.
+
+\item The case for $2+1+1$-avoiding unit interval orders. \cite{McDonoughPylyavskyyWang2024x}.
+This corresponds to the case when $i-2 \leq a_i$ for all $i$ in the area sequence.
+The authors use a novel idea using \emph{strand diagrams} and representation theory.
+
+
+\item Twinning operation applied to several families of graphs, \cite{BanaianCelanoChangLeeColmenarejoGoffKimbleKimpelLentferLiangSundaram2024x}.
+Page 7 in this reference has a nice overview of $e$-positivity results.
+
+\item Certain conjoined graphs, \cite{QiTangWang2024x}.
+
+\end{itemize}
+
+
+Moreover, some larger families of graphs are shown not to be $e$-positive,
+see \cite{DahlbergFoleyWilligenburg2017x,FoleyKazdanKrollAlbergaMelnykTenenbaum2018x}.
+
+
+\subsection[chromaticDeletionContraction]{Deletion contraction property}
+
+There is an extension to \hyperref[extendedChromatic]{extended chromatic symmetric functions}
+which admits a deletion-contraction recurrence.
+
+
+\subsection[rookTheory]{Connection with rook placements}
+
+Chromatic quasisymmetic functions of unit interval graphs has a strong connection with rook placements.
+Acyclic orientations and rook placements are in bijection, see for example \cite{AlexanderssonPanova2018}.
+This connection is expanded upon in \cite{ColmenarejoMoralesPanova2023}.
+In particular, some new results in the Abelian case using $q$-hit numbers are given.
+
+
+\section[treesChomaticQuasisymmetric]{Chromatic symmetric functions of trees}
+
+
+R. Stanley conjectures \cite{Stanley1995} that the chromatic symmetric function of a tree, 
+uniquely determines the tree. In \cite{WangYubZhang2023x} it is shown that trees with exactly 
+two vertices of degree greater than 2, are distinguished by their chromatic symmetric functions.
+
+For chromatic symmetric functions (CSF) for trees in the star basis, see \cite{PrietoMierOrellanaZamora2023,GonzalezOrellanaTomba2024x}.
+It is shown that trees of diameter less than 5 can be reconstructed from their CSF.
+Caterpillar graphs are known to be reconstructed from their CSF, \cite{LoeblSereni2019}.
+Certain $q$-caterpillar trees can be reconstructed from their CSF, \cite{ArunkumarNarayananBVSawant2023x}.
+
+In \cite[Thm. 1.3]{HasebeTsujie2017}, it is proved that \emph{ordered trees} are distinguished by
+their order quasisymmetric function (where the rooted tree is viewed as a poset, colors are increasing away from the root).
+Both the weakly increasing, or strictly increasing version of the quasisymmetric function does the job.
+The work by Hasabe and Tsujie is continued in \cite{Zhou2020x},
+where one is interested in reconstructing the tree from the quasisymmetric function.
+
+It is still an open problem (posed by Hasabe and Tsujie) to prove that 
+the \hyperref[pPartition]{P-partition quasisymmetric function} distinguishes
+posets whose Hasse diagrams are trees.
+
+In \cite{AlexanderssonSulzgruber2019}, we conjecture that in the family of directed trees,
+the chromatic quasisymmetric function uniquely determines the directed tree.
+This conjecture would follow from the conjecture by Hasabe and Tsujie.
+See also \cite{FoleyKazdanKrollAlbergaMelnykTenenbaum2021x}.
+
+
+There is a variant of Stanley's CSF defined for \emph{rooted trees},
+and this rooted version is shown to distinguish non-isomorphic trees, see \cite{LoehrWarrington2024}.
+
+
+The CSF associated with trees are in general not Schur positive,
+see the counterexamples presented in \cite{EmmanuellaSandratraRambeloson2020}.
+In fact, no tree on 20 vertices with maximal degree 10 is Schur positive.
+
+
+See also \cite{PrietoMartinWagnerZamora2024x} for various results on polynomial invariants of trees.
+
+
+\section[chromaticQuasisymmetricGeneralGraphs]{Other families of graphs}
+
+By writing the CSF in different bases, one can obtain various classical statistics of graphs,
+see \cite{ChanCrew2023}. For coefficients in the elementary basis in relation to sinks, see \cite{CrewZhang2022x}.
+
+
+The chromatic symmetric functions for certain "spider graphs" are shown to be Schur positive in \cite{ThibonWang2023x}.
+The approach uses non-commutative ideas.
+
+
+
+\section[chromaticQuasisymmetricHessenberg]{Connection with Hessenberg varieties}
+
+In \cite[Conj. 5.3]{ShareshianWachs2012}, a connection with cohomology of regular semisimple Hessenberg varieties 
+was conjectures.
+This conjecture was resolved in in 2015, where Brosnan and Chow proved that for unit-interval graphs $\avec$, 
+the symmetric function $\omega \chrom_\avec(\xvec;q)$ 
+is the \hyperref[frobeniusCharacteristic]{Frobenius characteristic} of 
+a symmetric group action on the cohomology of regular semisimple Hessenberg varieties.
+This was also proved independently by Guay-Paquet \cite{GuayPaquet2016x}.
+Note that their result implies Schur positivity.
+
+There is a bijection between acyclic orientations of a unit interval graph, and 
+the Tymoczko cells of the corresponding regular nilpotent Hessenberg variety, see \cite{NovelliThibon2024x}.
+
+
+\subsection[hessenbergVarieties]{Hessenberg varieties}
+
+This section uses information from \href{https://math.dartmouth.edu/~orellana/wachs.pdf}{these slides}.
+See also the PhD thesis by N. Teff \cite{Teff2013}.
+
+\todo{Add more from https://math.dartmouth.edu/~orellana/wachs.pdf}
+
+
+
+A \defin{Hessenberg sequence} is a sequence of natural numbers $(m_1,\dotsc,m_n)$
+such that $i \leq m_i \leq n$. These are in bijection with area sequences of unit inverval graphs, via $a_i = m_i - i$.
+
+Let $F(n)$ be the set of all flags, $F_1 \subset F_2 \subset \dotsb \subset F_n = \setC^n$,
+where $F_i$ has dimension $i$.
+Let $D$ be a diagonal $n\times n$-matrix with distinct diagonal entries.
+
+Then the \defin{type $A$ Hessenberg variety} associated with $m$ is defined as
+\[
+H(m) \coloneqq \{ F \in F(n) : DF_i \subseteq F_{m_i} \text{ for all $i$} \}.
+\]
+
+\begin{example}
+The area sequence $(0,1,2,1,1)$ correspond to the Hessenberg sequence $(2,3,5,5,5)$.
+Note that the Hessenberg sequence is simply the number of 
+non-$\square$ boxes in each row in the extended $n\times n$-diagram.
+
+\begin{figure}
+\begin{ytableau}
+\square & \square & \square &  &  \\
+\square & \square &   & & \\
+ &   &   &  & \\
+ &   &   &  & \\
+ &   &   &  &
+\end{ytableau}
+\end{figure}
+
+\end{example}
+
+There is a torus action on $H(m)$, by left multiplication of invertible $n\times n$-matrices.
+We consider $0$-dimensional and $1$-dimensional fixed-points under this torus action.
+This is what is called the \defin{moment graph}, associated with $H(m)$.
+
+The combinatorial description of the moment graph is easier to define using 
+the corresponding unit-interval graph $\Gamma_\avec$,
+with edge set $E$. The vertices are the permutations in $\symS_n$,
+and the edge set is 
+\[
+\{ (\sigma, (i,j)\sigma : \sigma \in \symS_n \text{ and } \{i,j\} \in E \}.
+\]
+Let us denote this graph by $MG(\avec)$.
+
+One can then define the so called \defin{Tymoczko’s representation} \cite{Tymoczko2008}
+where $\symS_n$ act on a certain polynomial ring defined via $MG(\avec)$.
+
+
+\section[chromaticQuasisymmetricMisc]{Other results related to chromatic symmetric functions}
+
+In \cite{LinPierson2025x}, the authors study a different multiplicative structure (Hopf algebra)
+on chromatic symmetric functions and show that graph complement (of unweighted, triangle-free graphs)
+corresponds naturally to a Hopf algebra operation.

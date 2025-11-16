@@ -1,0 +1,53 @@
+
+\section[yang-baxter]{The Yang--Baxter equations}
+
+
+Let $V$ be a vector space. A linear operator $R$ on $V\otimes V$
+is said to be a solution to the \defin{Yang--Baxter equation} if
+\[
+R^{12} \circ R^{23} \circ R^{12} = R^{23} \circ R^{12} \circ R^{23} 
+\]
+when acting on $V \times V \times V$,
+where $R^{ij}$ means that we act on components $i$ and $j$.
+Stated differently, we wish that
+\[
+(R \times Id)\circ 
+(Id \times R)\circ (R \times Id) =
+(Id \times R) \circ (R \times Id) \circ (Id \times R).
+\]
+
+Another form is to have some operators, $h_i$, so that
+\[
+h_i(x)h_{i+1}(x+y)h_i(y) = h_{i+1}(y) h_{i}(x+y) h_{i+1}(x) 
+\]
+See \href{https://users.mccme.ru/valya/Kirillov-Fomin_%20Schubert%20polynomials.pdf}{this pdf} for the connection with Schubert polynomials.
+
+Yet another reference state the Yang--Baxter relation as
+\[
+R^{12} \circ R^{13} \circ R^{23} = R^{23} \circ R^{13} \circ R^{12}.
+\]
+\url{https://lapth.cnrs.fr/conferences/RAQIS/RAQIS12/pdfRAQIS12/fonseca.pdf}
+
+
+Notions close to the Yang--Baxter equation are \defin{(integrable) vertex models},
+\defin{R-matrix}, \defin{5-vertex model}, \defin{partition function}.
+
+It is interesting to show that symmetric functions are partition functions for 
+some particular choice of a vertex model.
+This is closely related to Jacobi--Trudi identities.
+
+
+\section[6vertexModel]{The 6 vertex model}
+
+
+\todo{
+
+\url{https://hal.archives-ouvertes.fr/hal-01417747/document} YB and RSK
+
+\url{https://arxiv.org/pdf/0912.0911.pdf}
+
+Book on Yang--Baxter: \url{https://doi.org/10.1142/9789814354448_0001}
+}
+
+
+\todo{Integrable vertex model: https://arxiv.org/pdf/2012.15011.pdf}

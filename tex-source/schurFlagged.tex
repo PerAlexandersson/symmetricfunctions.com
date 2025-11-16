@@ -1,0 +1,162 @@
+\section[schurFlagged]{Schur polynomials (flagged)}
+
+\begin{polydata}{schurFlagged}
+  Name   & Schur polynomials (flagged) \\
+  Space    & All \\
+  Basis    & False \\
+  Rating   & 2 \\
+  Bib      & LascouxSchutzenberger1982 \\
+  Year     & 1982 \\
+  Symbol   & $\schurS_{\lambda,b}(x_1,\dotsc,x_n)$ \\
+  Category & Schur \\
+  Keywords & key-positive \\
+\end{polydata}
+
+
+The flagged Schur polynomials generalize the classical
+\hyperref[schurS]{Schur polynomials} and these are no longer symmetric in general.
+They were first considered in \cite{LascouxSchutzenberger1982},
+in the study of Schubert polynomials.
+
+We follow the introduction given in \cite{MerzonSmirnov2015}.
+
+Let $m \leq n$ be fixed integers and let $\lambda$ be a partition with
+$m$ parts and let $1 \leq b_1 \leq b_2 \leq \dotsb \leq b_\ell = n$ be
+a sequence of integers.
+Let $T(\lambda,b)$ denote the set of semi-standard tableaux
+of shape $\lambda$ such that the entries in row $i$ do not exceed $b_i$. 
+
+Then the \defin{flagged Schur polynomial} is defined as
+\[
+\schurS_{\lambda,b}(x_1,\dotsc,x_n) \coloneqq \sum_{T \in T(\lambda,b)} \xvec^T.
+\]
+Note that if $b_1=\dotsb = b_m = n$, then $\schurS_{\lambda,b}(\xvec)$
+is the usual Schur polynomial in $n$ variables.
+
+
+Every flagged Schur polynomial $\schurS_{\lambda,b}(\xvec)$ is a key polynomial,
+see \cite[Thm. 23]{ReinerShimozono1995}.
+Moreover, a \hyperref[schubert]{Schubert polynomial} $\schubert_w(\xvec)$ is a flagged Schur function
+if and only if $w$ is a \hyperref[namedPermutationSets]{vexillary permutation} (avoids 2143).
+
+
+\subsection[hFlaggedSchurPolynomials]{$h$-flagged Schur polynomials}
+
+Whenever $b = (h,h+1,\dotsc,h+m)$ for some $h$, we say that $\schurS_{\lambda,b}(\xvec)$
+is \defin{$h$-flagged}, and use the shorthand notation $\schurS^{(h)}_{\lambda}(\xvec)$.
+
+\subsection[flaggedSchurDividedDifferences]{Divided differences}
+
+In \cite{Wachs1985}, it is proven that flagged Schur polynomials can 
+be obtained via \hyperref[schubertOperatorformula]{divided difference operators}:
+\begin{align*}
+\schurS_{\lambda,b}(\xvec) = \partial_w( x_1^{a_1} \dotsm x_m^{a_m})
+\end{align*}
+where $a_i = \lambda_i + b_i -i$ and 
+\[
+w = (m,m+1,\dotsc, b_m-1,\;  m-1,m,\dotsc, b_{m-1} - 1, \dotsc 1,2,\dotsc, b_1 -1 )
+\]
+and the entries in the word are applied from left to right.
+
+
+\subsection[flaggedSchurPolynomialJacobiTrudi]{Jacobi--Trudi identity}
+
+Define the complete homogeneous polynomials in $k$ variables as 
+\[
+\completeH_d(\xvec_k) \coloneqq \sum_{i_1 \leq \dotsb \leq i_d}
+x_{i_1}\dotsm x_{i_k}.
+\]
+Then, using the Lindström--Gessel--Viennot lemma, one can prove that
+\[
+\schurS_{\lambda,b}(\xvec) = \det(  \completeH_{\lambda_i -i+j}(\xvec_{b_i}) )_{1\leq i,j \leq m}.
+\]
+See also \cite{Wachs1985} or \cite[Cor. 2.6.3]{Manivel2001}.
+This generalizes the classical \hyperref[schurJacobiTrudi]{Jacobi--Trudi identity}
+for Schur polynomials.
+
+
+The \defin{flagged skew Schur polynomials}, $\schurS_{\lambda/\mu,a,b}(\avec,\bvec)$
+are now defined as the sum over all skew semistandard Young tableaux of shape $\lambda/\mu$
+such that entries in row $i$ must be from the interval $\{a_i,a_i+1,\dotsb,b_i\}$.
+We still require that the corresponding flags are weakly increasing.
+
+With $\completeH_m(a,b) \coloneqq  \completeH_m(x_a,x_{a+1},\dotsc,x_b)$,
+one can show the Jacobi--Trudi type formula
+\begin{equation}
+ \schurS_{\lambda/\mu}(\avec,\bvec) = 
+ \left| h_{\lambda_i-\mu_j - i + j}(a_j,b_i) \right|_{1 \leq i,j \leq \ell}.
+\end{equation}
+This was proved by I. Gessel and X. Viennot (see \cite{GesselViennot1989}) and later in \cite{Wachs1985}.
+An alternative proof is given in \cite{Chu1992}, which relies on a recursion.
+
+
+
+Unlike the classical Jacobi--Trudi identities, exchanging $\completeH \leftrightarrow \elementaryE$ does
+not in general yield the same determinant.
+Rather, the corresponding determinant of elementary symmetric polynomials
+is equal to a \enquote{column-flagged} Schur polynomial (where the tableaux in the generating
+set have bounds on the columns rather than the rows); see \cite{Wachs1985}.
+An identity between determinants of this type is given in \cite{McDowell2023},
+thus giving a \enquote{duality} for row- and column-flagged Schur polynomials under certain conditions.
+
+\subsection[flaggedSchurKostka]{Kostka coefficients}
+
+The flagged Kostka coefficients are defined as the coefficients in the 
+monomial expansion of the flagged Schur functions. Given a skew shape $\lambda/\mu$
+and a vector $(\nu_1,\dotsc,\nu_\ell)$ with $\nu_i \geq 0$, we define 
+the \defin{flagged Kostka coefficient} $K_{\lambda/\mu,\nu}(\avec,\bvec)$ via the expansion
+\[
+  \schurS_{\lambda/\mu}(\avec,\bvec) = \sum_{\nu}  K_{\lambda/\mu,\nu}(\avec,\bvec) \cdot \xvec^\nu.
+\]
+
+In \cite{AlexanderssonOguz2023x}, we prove the following results:
+\begin{theorem}[Alexandersson--Kantarci-Oğuz (2023)]
+We have that for any integer $k \geq 1$, 
+\[
+ K_{\lambda/\mu,\nu}(\avec,\bvec) \gt 0 \iff 
+ K_{k\lambda/k\mu,k\nu}(\avec,\bvec) \gt 0
+\]
+where multiplication of a partition by $k$ is done elementwise. 
+This is a generalization of \hyperref[gtKostkaSaturation]{saturation for Gelfand--Tsetlin polytopes}.
+
+Moreover, the map
+\[
+ k \mapsto K_{k\lambda/k\mu,k\nu}(\avec,\bvec)
+\]
+is a polynomial in $k$. 
+\end{theorem}
+
+Note that it is relatively easy to see that the map 
+\[
+ k \mapsto K_{k\lambda/k\mu,k\nu}(\avec,\bvec)
+\]
+is a quasi-polynomial as this is the Ehrhart function for 
+a face of a (rational) \hyperref[gtKoskta]{Gelfand--Tsetlin polytope}.
+
+The following conjecture is then a flagged generalization of 
+a \hyperref[gtKostkaEhrhart]{conjecture by King, Tollu and Toumazet}, \cite{KingTolluToumazet2004}.
+\begin{conjecture}[Alexandersson--Kantarci-Oğuz (2023)]
+The Ehrhart polynomial
+\[
+ k \mapsto K_{k\lambda/k\mu,k\nu}(\avec,\bvec)
+\]
+has non-negative coefficients.
+\end{conjecture}
+
+
+
+
+\subsection[flaggedSchurKeyExpansion]{Key expansion}
+
+
+The flagged skew Schur polynomials expand positively into \hyperref[key]{key polynomials},
+see \cite{ReinerShimozono1995}.
+
+
+
+\subsection[flaggedSchurRootsOfUnity]{Twist by roots of unity}
+
+In \cite{Kumar2023x} the author generalizes a previous result by Kumari \cite{Kumari2022x},
+and \cite[Thm. 16]{LeeOh2022}.
+
+

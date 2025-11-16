@@ -1,0 +1,158 @@
+\metatitle{Various problems}
+\metadescription{Problems that I find interesting}
+
+
+\section[personal-minor-problems]{Minor problems}
+
+
+\subsection[keyRealRootedHstar]{Interlacing roots and key polynomials}
+
+Let $\key_{\lambda,\sigma}$ denote a \hyperref[key]{key polynomial},
+and define
+\[
+P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k) \coloneqq \key_{k\lambda,\sigma}(1^n).
+\]
+This is a polynomial in $\setQ[\lambda_1,\dotsc,\lambda_n,k]$,
+and for fixed $\lambda$, this is an Ehrhart polynomial of 
+a certain union of faces in a GT-polytope.
+See \cite{AlexanderssonAlhajjar2018} for more background.
+
+
+We may compute the corresponding $h^*$-polynomial, and get some interesting properties.
+\begin{conjecture}[Alexandersson (May 2020)]
+Let $\lambda$ and $\sigma$ be fixed and define $H_{\lambda,\sigma}(t) \in \setN[t]$ via
+\[
+\sum_{k\geq 0} P_{\lambda,\sigma}(k) t^k = \frac{H_{\lambda,\sigma}(t)}{(1-t)^{d+1}}
+\]
+where $d$ is the degree (in $k$) of $P_{\lambda,\sigma}(k)$.
+Then $H_{\lambda,\sigma}(t)$ is a real-rooted polynomial.
+Moreover, if $\sigma_1,\sigma_2,\dotsc,\sigma_\ell$ is a saturated 
+chain in the \hyperref[bruhatOrder]{Bruhat order}, then 
+\[
+P_{\lambda,\sigma_1}(k), P_{\lambda,\sigma_2}(k),\dotsc,P_{\lambda,\sigma_\ell}(k)
+\]
+is a sequence of interlacing polynomials.
+\end{conjecture}
+I have checked this for some small cases.
+
+
+
+\subsection[qInequality]{A $q$-generalization of an inequality}
+
+In \cite{AlexanderssonAmini2018}, we used the following inequality,
+where $a,b\geq 0$ and $k \geq j \ge 0$.
+\[
+\binom{ka+kb}{ka}^j \geq \binom{ja+jb}{ja}^k. 
+\]
+This is not very hard to prove. I realized that there might be a $q$-analogue of this inequality.
+
+\begin{conjecture}[Alexandersson, 2019]
+Suppose $a,b\geq 0$ and $k \geq j \ge 0$. Then
+\[
+q^{kab \binom{j}{2}} \qbinom{ka+kb}{ka}_q^j -  q^{jab \binom{k}{2}} \qbinom{ja+jb}{ja}_q^k
+\]
+is a polynomial in $\setN[q]$. 
+\end{conjecture}
+
+This was poset on \href{https://mathoverflow.net/questions/330620/q-analogue-of-an-inequality}{MathOverflow},
+and there I sketched a proof that shows that this is true whenever $j$ divides $k$.
+
+
+\subsection[schurPositive]{A Schur-positive expansion?}
+
+Let $\BST(\lambda,\mu)$ be the set of border-strip tableaux of shape $\lambda$
+and strip-sizes $\mu$.
+Define
+\[
+T_\lambda(\xvec) \coloneqq \sum_{\mu} |\BST(\lambda,\mu)| \powerSum_\mu(\xvec).
+\]
+Show that $T_\lambda(\xvec)$ is Schur-positive.
+Note the close resemblance with the usual power-sum expansion of Schur polynomials. 
+
+\href{https://mathoverflow.net/questions/353150/schur-positive-expression-involving-border-strip-tableaux}{See this MO-post also}
+
+
+\subsection[A189912]{On A189912}
+
+The sequence \oeis{A189912} is defined as
+\[
+a_n \coloneqq \sum_{k=0}^n 
+\frac{n!}{(n-k)! (\lfloor k/2 \rfloor!)^2 (\lfloor k/2 \rfloor +1)}.
+\]
+Let us split this sum into even and odd $k$.
+We get
+\begin{align*}
+&\sum_{k=0}^n
+\frac{n!}{(n-2k)! (\lfloor 2k/2 \rfloor!)^2 (\lfloor 2k/2 \rfloor +1)}
++ \\
+&\sum_{k=0}^n 
+\frac{n!}{(n-(2k+1))! (\lfloor (2k+1)/2 \rfloor!)^2 (\lfloor (2k+1)/2 \rfloor +1)}.
+\end{align*}
+Simplification and reindexing leads to
+\[
+\sum_{k=0}^n \left(
+\frac{n!}{(n-2k)! (k!)^2 (k+1)}
++
+\frac{n!}{(n-2k-1)! (k!)^2 (k+1)}
+\right).
+\]
+Rewriting gives
+\[
+\sum_{k=0}^n 
+\frac{n!}{ (k!) (k+1)!}\left(
+\frac{1}{(n-2k)!} + \frac{1}{(n-2k-1)!}
+\right)
+=
+\sum_{k=0}^n 
+\frac{n!}{(k!) (k+1)!}\left(
+\frac{1}{(n-2k)!} + \frac{n-2k}{(n-2k)!}
+\right)
+\]
+so we end up with
+\[
+\sum_{k=0}^n (n+1-2k) \frac{n!}{ (k!) (k+1)! (n-2k)!}.
+\]
+The expression $\frac{n!}{(k!) (k+1)! (n-2k)!}$
+is exactly \oeis{A055151}, so this verifies 
+the conjecture by Werner Schulte, Oct 23 2016.
+
+
+\subsection[schubertCharge]{Schubert charge}
+
+The Schubert polynomials generalize the Schur polynomials,
+so for Grassmann permutations, there should be a bijection 
+to SSYT from pipe dreams. 
+What is the notion of (co)charge on pipe dreams?
+Does it generalize to arbitrary permutations?
+
+
+
+\subsection[intersections]{Combinatorial characterization of interval intersections}
+
+See \url{https://mathoverflow.net/questions/251560/combinatorial-characterization-of-intersecting-intervals-in-the-plane}
+
+
+\subsection[staircaseSchurRoots]{Roots of staircase Schur polynomials (solved)}
+
+I wrote down the following observation here,
+and Vasu Tewari pointed out the straightforward proof presented below.
+\begin{proposition}
+Let $\delta_n$ be the staircase partition $(n,n-1,\dotsc,1,0)$.
+Consider the Schur polynomial indexed by the stretched straircase,
+\[
+P_{n,k}(t) \coloneqq \schurS_{k \delta_n}(t,1^{n}).
+\]
+Then
+\[
+P_{n,k}(t) = (k+1)^{\binom{n}{2}} ([k+1]_t)^{n}.
+\]
+\end{proposition}
+\begin{proof}
+By the Vandermonde determinant formula,
+\[
+\schurS_{k \delta_n}(x_1,\dotsc,x_n) = \prod_{1 \leq i \lt j \leq n+1}
+\frac{x_i^{k+1}-x_j^{k+1}}{x_i-x_j}.
+\]
+This then implies the claim.
+\end{proof}
+

@@ -1,0 +1,60 @@
+
+
+\section[booleanProduct]{Boolean product polynomials}
+
+\begin{polydata}{booleanProduct}
+  Name   & Boolean product polynomials \\
+  Space  & Sym \\
+  Basis  & False \\
+  Rating & 1 \\
+  Bib    & BilleraBilleyTewari2018 \\
+  Year   & 2018 \\
+  Category & Other \\
+\end{polydata}
+
+
+The \defin{boolean product polynomials} is a family of polynomials defined as follows:
+\[
+\booleanProduct_{k}(\xvec_n) \coloneqq 
+\prod_{ 1 \leq i_1 \lt i_2 \lt \dotsb \lt i_k \leq n } (x_{i_1} + x_{i_2}+\dotsb + x_{i_k}).
+\]
+These were introduced by L. Billera, S. Billey, and V. Tewari, in an FPSAC abstract,
+and inspired by certain applications in hyperplane arrangement, among other things.
+
+
+\subsection[booleanProductSchurPositivity]{Schur positivity}
+
+In \cite{BilleyRhoadesTewari2019} it is proved that the 
+functions $\booleanProduct_{k}(\xvec_n)$ are Schur-positive.
+The authors use a new method for proving Schur positivity, called \emph{Chern plethysm}.
+
+\begin{problem}
+Find a combinatorial interpretation for the coefficients in the expansion
+\[
+\booleanProduct_{k}(\xvec_n) = \sum_{\lambda} \delta^{n,k}_{\lambda} \schurS_\lambda(\xvec_n).
+\]
+Find natural $\symS_n$-modules whose \hyperref[frobeniusCharacteristic]{Frobenius characteristic}
+is $\booleanProduct_{n,k}(\xvec)$.
+\end{problem}
+
+\subsection[booleanProductBivariate]{Bivariate extension}
+
+There is a bivariate extension,
+\[
+\booleanProduct_{k,\ell}(\xvec_n;\yvec_m) =
+ \coloneqq 
+\prod_{ \substack{ 1 \leq i_1 \lt i_2 \lt \dotsb \lt i_k \leq n 
+\\
+1 \leq j_1 \lt j_2 \lt \dotsb \lt j_\ell \leq m
+}}
+(x_{i_1} + x_{i_2}+\dotsb + x_{i_k} + 
+ y_{j_1} + y_{j_2}+\dotsb + y_{j_\ell}
+).
+\]
+One can show using representation theory (see \cite{BilleyRhoadesTewari2019}) 
+that the $a_{\lambda,\mu}$ in 
+\[
+\booleanProduct_{k,\ell}(\xvec_n;\yvec_m) = \sum_{\lambda,\mu} a_{\lambda,\mu} \schurS_\lambda(\xvec_n)\schurS_\mu(\yvec_m).
+\]
+are non-negative integers. When $k=\ell = 1$, this reduces 
+to the \hyperref[schurCauchyFormula]{dual Cauchy identity}.

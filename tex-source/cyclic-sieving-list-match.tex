@@ -1,0 +1,102 @@
+\metatitle{Non-crossing cyclic sieving}
+\metadescription{A list of instances of the cyclic sieving phenomenon on non-crossing objects}
+
+See the \hyperref[cyclicSieving]{cyclic sieving phenomenon} 
+page for the definition and related theorems.
+
+
+\section[cspListCrossings]{Matchings and crossings}
+
+
+\subsection[cspPolygon]{Polygon dissections with $k$ edges}
+
+In \cite{ReinerStantonWhite2004}, the authors consider dissections of polygons with $k$ non-crossing edges,
+where each edge connects two vertices, $X_{n,k}$. Let $\grpc_{n}$ act by rotation.
+This gives the CSP-triple
+\[
+\left( X_{n,k}, \grpc_{n}, \frac{1}{[n+k]_q}\qbinom{n+k}{k+1}_q \qbinom{n-3}{k}_q \right).
+\]
+This can also be turned into a CSP on the set $\SYT((k+1)^2 1^{n-k-3})$, but 
+it is not explained what the corresponding group action is.
+
+
+See also \cite{BowmanRegev2014} for some related results.
+
+\subsection[cspMatchings]{Matchings with $k$ crossings}
+
+In \cite{LiangBowling2017x}, matchings on $[2n]$ with $k$ crossings is studied.
+Let $X_{n,k}$ be the set of such matchings, and let $\grpc_{2n}$ act on such matchings via rotation.
+The case $k=0$ correspond to the \hyperref[cspNonCrossingMatchingsI]{Catalan case}.
+For $k=1,2,3$ they prove the following instances of cyclic sieving:
+
+\[
+\left( X_{n,1}, \grpc_{2n}, \qbinom{2n}{n-2}_q \right)
+,
+\quad
+\left( X_{n,2}, \grpc_{2n},  \frac{[n+3]_q}{[2]_q}  \qbinom{2n}{n-3}_q \right)
+\]
+and
+\[
+\left( X_{n,3}, \grpc_{2n},  \frac{1}{[3]_q} \qbinom{n+5}{2}_q \qbinom{2n}{n-4}_q + \qbinom{2n}{n-3}_q  \right).
+\]
+
+\begin{problem}
+Find a cyclic sieving phenomena on matchings with more than $3$ crossings.
+\end{problem}
+
+
+\subsection[cspAnnularNonCrossingPermutations]{Annular non-crossing permutations}
+
+Let $\pi$ be a permutation on $[n]$ and draw the \emph{directed} edges $i\to \pi(i)$ on a circle
+with vertices $1,\dotsc,n$ on the boundary. If all edges are non-crossing,
+and all cycles are oriented clockwise, we say that $\pi$ is a \defin{non-crossing permutation}.
+Such permutations are in natural bijection with Catalan objects.
+
+In \cite{Kim2013}, a generalization of non-crossing permutations are studied.
+Instead of a circle, one chooses $n$ and $m$ and places \emph{exterior} vertices $1,\dotsc,n$ on a circle
+clockwise, and \emph{interior} vertices $n+1,\dotsc,n+m$ counter-clockwise on an interior circle.
+
+A permutation is $(n,m)$-non-crossing if one can draw the edges as before in a non-crossing manner,
+such that every cycle is oriented clockwise. A non-crossing permutation is called \emph{connected} 
+if it contains at least one cycle with both exterior and interior vertices. 
+The paper \cite{Kim2013} only consider non-crossing permutations with at least one connected cycle.
+Let $ANC(n,m)$ denote the set of connected $(n,m)$-non-crossing permutations.
+
+Let $C$ act on the annulus by rotation, where the order of $C$ is $\gcd(m,n)$.
+Then
+\[
+\left( ANC(n,m), C, \frac{[2nm]_q}{[n+m]_q}\qbinom{2n-1}{n}_q\qbinom{2m-1}{m}_q \right)
+\]
+is a CSP-triple.
+
+Several refinements, such as the $q$-Narayana and $q$-Kreweras analogue are also considered 
+in \cite{Kim2013} and proved to have CSP.
+The type $B$ variants, where all non-crossing partitions are symmetric with respect to rotation by half a turn,
+are also covered. For example,
+\[
+\left( ANC_B(n,m), C, \frac{[2nm]_q}{[n+m]_q}\qbinom{2n}{n}_q\qbinom{2m}{m}_q \right)
+\]
+is a CSP-triple.
+
+\subsection[cspNonCrossingForests]{Non-crossing trees, forests and graphs}
+
+In \cite{Kluge2012}, we have the following CSP.
+Let $X_{n,k}$ be the set of non-crossing forests with $n$ vertices and $k$ components.
+These are forests drawn with vertices on a circle and edges inside, such that edges do not cross.
+
+Let
+\[
+f_{n,k}(q) \coloneqq \frac{1}{[2n-k]_q} \qbinom{n}{k-1}_q \qbinom{3n-2k-1}{n-k}_q,
+\]
+and let $\grpc_n$ act on $X_{n,k}$ by $2\pi/n$ rotation. Then $(X_{n,k},\grpc_n,f_{n,k}(q))$
+is a CSP triple. This is also proved in \cite{Poznanovic2011}.
+
+
+We can also count graphs according to edges. In \cite{Poznanovic2011},
+the following $q$-analogue is considered, which enumerates the number of 
+\emph{non-crossing graphs with $n$ vertices and $k$ edges}, $Y_{n,k}$:
+\[
+g_{n,k}(q) \coloneqq \frac{1}{[n-1]_q} \sum_{j=0}^{n-2} 
+q^{j(j+n-k+2)}\qbinom{n-1}{k-j}_q  \qbinom{n-1}{j+1}_q \qbinom{n-2+j}{n-2}_q.
+\]
+Then $(Y_{n,k},\grpc_n,g_{n,k}(q))$ is a CSP-triple, under rotation.

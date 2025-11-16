@@ -1,0 +1,1450 @@
+\metatitle{Real-rooted and stable polynomials}
+
+\metadescription{Polynomials with real roots, and their multivariate analogs. Also, Lorentzian polynomials.}
+
+
+\section[polynomialRootIntro]{Introduction}
+
+Whenever you encounter a family of polynomials, you
+might want to study properties such as \emph{unimodality},
+\emph{real-rootedness}, \emph{stability} or \emph{interlacing roots}.
+
+I highly recommend \cite{Branden2015} and other works of Petter Brändén.
+See also this \href{https://www.youtube.com/watch?v=wuQN0xaTkxE}{OPAC seminar}
+about unimodality, real-rootedness and stable polynomials.
+
+
+\section[polynomialUnimodality]{Unimodality, log-concavity and real roots}
+
+Let $P = a_0 + a_1t+\dotsb + a_n t^n$ be a polynomial. It is called \emph{unimodal} if there is some $j$
+such that $a_0 \leq a_1 \leq \dotsb \leq a_j \geq a_{j+1} \geq a_{j+2} \geq \dotsb \geq a_n$.
+
+Suppose now all coefficients are positive. We say that $P$ is \defin{log-concave} if
+\[
+  a_{j-1}a_{j+1} \leq a_j^2
+\]
+for all relevant $j$. This property implies unimodality.
+
+We get an even stronger property if the \defin{Newton inequalities} are satisfied:
+\[
+  \frac{a_{j-1}}{ \binom{n}{j-1} } \frac{a_{j+1}}{ \binom{n}{j+1} } \leq \frac{a_{j}^2}{ \binom{n}{j}^2 }.
+\]
+
+Finally, if $P$ has only real roots, it is called \defin{real-rooted}. 
+Every real-rooted polynomial satisfies the Newton inequalities, see e.g. \cite{Branden2015}.
+
+
+\begin{example*}[Ray through Pascal's triangle]
+The following is proved in \cite{Yu2009}. 
+Let $n \geq k \geq 0$ and $b \gt a \gt 0$, $k\lt b$.
+Then the polynomial
+\[
+ \sum_{j \geq 0} \binom{n+ja}{k+jb} t^j
+\]
+is real-rooted. The proof uses an interpretation via lattice paths.
+This solves \cite[Problem 12]{ForgcsTran2016}.
+\end{example*}
+
+
+
+
+\subsection[totallyNonnegative]{Totally non-negative matrices}
+
+A matrix is \defin{totally non-negative} if every minor is non-negative.
+One important class of such matrices arise from networks. Let $s_1,\dotsc,s_k$ 
+and $e_1,\dotsc,e_k$ be vertices in a graph (or network),
+and  let $a_{ij}$ count the number of paths from $s_i$ to $b_j$.
+Then the matrix $(a_{ij})$ is totally non-negative.
+
+See \cite{BrandenLeite2024x} for some applications related to chains in posets.
+
+Totally non-negative matrices are closed under taking products.
+
+\begin{theorem}[Stanley, \cite{Stanley1998}]
+A polynomial $Q(x)=1+a_1x+a_2x^2+\dotsb+a_n x^n$ has only negative real roots if and only if the product
+\[
+ \prod_{i \geq 1} Q(x_i)
+\]
+is Schur-positive.
+\end{theorem}
+
+
+\section[interlacingPolynomials]{Interlacing and interleaving roots}
+
+
+The following definitions are from \cite{Wagner1992}.
+See also \cite{Branden2015}
+
+\begin{definition}[Interleaving polynomials]
+Let $f$ and $g$ be polynomials with positive leading coefficients and 
+with real roots $\{f_{i}\}$ and $\{g_{i}\}$, respectively.
+We say that $f$ \defin{interlaces} $g$ if $\deg(f)+1=\deg(g)=d$ and
+\[
+g_1 \leq f_1 \leq g_2 \leq f_2 \leq \dotsm \leq  f_{d-1}\leq g_{d}.
+\]
+Moreover, we say that $f$ \defin{alternates left of} $g$ if $\deg(f)=\deg(g)=d$ and
+\[
+f_1 \leq g_1 \leq f_2 \leq \dotsm \leq f_{d}\leq g_{d}.
+\]
+We say that $f$ \defin{interleaves} $g$ if either $f$ interlaces $g$ or 
+$f$ alternates left of $g$. We write this as $f \interl g$.
+By convention, $0 \interl 0$, $0 \interl h$ and $h \interl 0$ whenever $h$ is a polynomial with 
+a positive leading coefficient.
+\end{definition}
+
+
+
+\begin{lemma}[Folklore]
+    Let $f, g$ be monic polynomials with $\deg(f) = \deg(g)+1$ and all real, non-positive roots.
+    If $g \interl f$, then $f-tg$ is real-rooted and $g \interl f- tg \interl f$.
+\end{lemma}
+
+
+The following very useful lemma is from \cite[Sec. 3]{Wagner1992}.
+\begin{lemma}[Wagner's lemma]
+Let $f, g, h \in \setR[t]$ be real-rooted polynomials with
+only real, non-positive roots and positive leading coefficients.
+Then
+\begin{itemize}
+\item if $f \interl h$ and $g \interl h$ then $f+g \interl h$.
+\item if $h \interl f$ and $h \interl g$ then $h \interl f+g$.
+\item $g \interl f$ if and only if $f \interl tg$.
+\end{itemize}
+\end{lemma}
+
+Wagner also shows that $f \interl g$ implies that $f \interl \lambda f + \mu g \interl g$
+for all $\lambda, \mu \geq 0$.
+
+
+As an example, if $f$ is real-rooted, then $f' \interl f$.
+Hence, recursions involving the derivative play well with interlacing roots.
+
+\todo{Cauchy interlace theorem: https://arxiv.org/pdf/math/0502408
+and this is same as  https://doi.org/10.1016/j.laa.2021.09.019
+}
+\todo{Binomial transform: https://doi.org/10.1112/jlms.70083 see also https://doi.org/10.1016/j.aam.2024.102776}
+
+
+
+A more recent result is the following theorem by Ma and Wang, \cite{MaWang2008}.
+\begin{theorem}[Ma and Wang, 2008]
+Suppose $f$ and $F$ are polynomials with positive leading coefficients,
+such that
+\[
+ F(x) = u(x) f(x) + v(x) f'(x), \qquad  \deg(f) \leq \deg(F) \leq \deg(f) + 1
+ \]
+with $u(x),v(x)$ having real coefficients.
+If $f$ is real-rooted and $v(r) \neq 0$ whenever $f(r)=0$,
+then $F$ is real-rooted and $f \interl F$.
+\end{theorem}
+The theorem states more regarding root placements and multiplicities.
+
+
+\subsection[sturmSequence]{Sturm sequences}
+
+
+It is fairly common to see sequences of polynomials, $\{ P_n(t) \}_{n \geq 0}$
+with the property that $P_j(t) \interl P_{j+1}(t)$ for all $j$.
+If the leading coefficient is always positive and $\deg(P_n)=n$,
+this is called a \defin{Sturm sequence}, see \cite{Liu2007}.
+If we drop the degree condition, the sequence is called a \defin{generalized Sturm sequence}.
+
+The notion of \defin{Sturm-unimodality} is defined in the analogous manner.
+
+
+\todo{Add general thm from \cite{Liu2007} }
+
+\subsection[limits]{Normality in the limit}
+
+The recursions used to prove real-rootedness can sometimes be used to show
+that one has convergence to a normal distribution, see \cite{Bender1973}.
+
+\begin{theorem*}[Bender 1973, Harper 1967]
+Suppose
+\[
+P_n(x) = \sum_{k} a_n(k) x^k = a_n \prod_j (x + r_j)
+\]
+where $r_j \geq 0$. Define
+\[
+\mu_n = \sum_j \frac{1}{1 + r_j}, \quad \sigma_n^2 = \sum_j \frac{r_j}{(1 + r_j)^2}.
+\]
+If $\sigma_n \to \infty$, then the \emph{normalized coefficients}
+\[
+p_n(k) = \frac{a_n(k)}{P_n(1)}
+\]
+are \emph{asymptotically normal}. That is, if we let $X_n$ be the random variable
+with probability distribution given by $p_n(k)$, then
+\[
+\frac{X_n - \mu_n}{\sigma_n} \xrightarrow{d} \mathcal{N}(0,1).
+\]
+Moreover, if the $a_n(k)$ are log-concave (which follows from real-rootedness), a local limit theorem holds:
+\[
+p_n(k) \approx \frac{1}{\sigma_n \sqrt{2 \pi}} e^{ - (k - \mu_n)^2 / (2 \sigma_n^2) }
+\]
+uniformly in $k$.
+\end{theorem*}
+
+Bender provides several examples, including ordered set partitions,
+Eulerian numbers, matchings on the $2\times n$ grid graph.
+
+For Baxter permutations, see \cite{Zhao2024x}.
+For P-recursively defined polynomials, see \cite{Li2025x}.
+
+Several examples are also provided in \cite{Hitczenko2024x}.
+
+
+
+
+\section[interlacingExamples]{Examples of Sturm sequences}
+
+
+\begin{example*}[Eulerian polynomials, descents in permutations]
+
+The \defin{Eulerian polynomials}, $A_n(t) \coloneqq \sum_{\sigma \in \symS_n} t^{\des(\sigma)}$.
+These satisfy 
+\[
+A_n(t) = (1+t(n-1))A_{n-1}(t) +  t(1-t) A'_{n-1}(t),
+\]
+and from this recurrence, one can prove that $A_j(t) \interl A_{j+1}(t)$ for all $j$.
+However, it is probably not possible to show this by only using Wagner's lemma above, 
+as the size of the coefficient $(n-1)$ has an impact.
+
+This result goes back to Frobenius, \cite{Frobenius1910}.
+
+The proof goes as follows. Introduce $\tilde{A}_n(x) \coloneqq x A_n(x)$.
+The recursion then becomes
+\[
+\tilde{A}_n(x) = x(1-x)\tilde{A}'_{n-1}(x) + nx \tilde{A}_{n-1}(x).
+\]
+Since $\tilde{A}'_{n-1} \interl \tilde{A}_{n-1}$, one can then see 
+that $nx \tilde{A}_{n-1}(x) \interl x(1-x)\tilde{A}'_{n-1}(x)$.
+Moreover, $x(1-x)\tilde{A}'_{n-1}(x)$ has a negative leading coefficient, so 
+but the sum 
+\[
+x(1-x)\tilde{A}'_{n-1}(x) + nx \tilde{A}_{n-1}(x)
+\]
+has a positive leading coefficient due to $n \geq 2$ in the recursion.
+By now drawing the right picture, the result follows.
+\end{example*}
+
+
+\begin{example*}[Multi-Eulerian polynomials]
+Let $\symS_M$ be the permutations of some multiset $1^{\mu_1},2^{\mu_2},\dotsc,n^{\mu_n}$ with $N=|\mu|$.
+Define 
+\[
+ A_M(x;q) \coloneqq  \sum_{\pi \in \symS_M } x^{\des(\pi)}q^{\maj(\pi)}.
+\]
+Then (MacMahon, \cite{MacMahon1960})
+\[
+ \frac{A_M(x;q)}{\prod_{j=0}^N (1-x q^j)} = \sum_{m \geq 0} \left(\prod_{j=1}^n \qbinom{\mu_j+m}{m}_q \right) x^m.
+\]
+The polynomials $A_M(x;1)$ are then real-rooted, see \cite[Section 2]{Simion1984}.
+Ma and Pan \cite[Thm. 1.11]{MaPan2023} gives a proof of this using interlacing polynomials.
+For stability in a multivariate version, see \cite[Eq. (4.7)]{BrandenHaglundVisontaiWagner2011}.
+
+One can also consider a colored version, see Deligeorgaki, Han, Solus,
+and obtain real-rooted results. MacMahon's formula above generalizes to their setting.
+\end{example*}
+
+
+
+\begin{example*}[Eulerian polynomials with descents from prescribed set]
+In \cite{AthanasiadisEvangelinou2023xII} the authors show that for any $T \subseteq [n-1]$,
+the polynomials
+\[
+ A_n^T(x) \coloneqq  \sum_{\substack{\pi \in \symS_n \\ \DES(\pi) \subseteq T}} x^{\des(\pi)}
+\]
+are real-rooted. The proof is based on refining the above polynomials 
+by the value of $\pi(n)$, and then using a recursion which preserves an interlacing 
+family of polynomials.
+\end{example*}
+
+
+\begin{example*}[Inversion-weighted Eulerian polynomials with fixed last entry]
+
+Let us introduce the refinement $A_{n,j}(t,q) \coloneqq \sum_{\substack{\sigma \in \symS_n \\ \sigma(n)=j}} t^{\des(\sigma)} q^{\inv(\sigma)}$.
+Then for any $q \gt 0$ we have that 
+\[
+ A_{n,n}(t,q), A_{n,n-1}(t,q), \dotsc, A_{n,1}(t,q)
+\]
+is an interlacing sequence, see \cite{SavageVisontai2015}.
+A short proof is given in \cite{AthanasiadisEvangelinou2023x}.
+\end{example*}
+
+
+\begin{example*}[Type $B$ Eulerian polynomials]
+
+We can instead consider \hyperref[permutationsTypeB]{permutations of type $B$}.
+For $\pi \in B_n$, we set $\pi(0)\coloneqq 0$, and $\des(\pi)$ is the cardinality of
+\[
+ \{ i \in \{0,1,2,\dotsc,n-1\} : \pi(i) \gt \pi(i+1) \}.
+\]
+The polynomials $P_n(t) = \sum_{\sigma \in B_n} t^{\des(t)}$ then satisfy the recurrence
+\begin{equation}
+ P_n(t) = ((2n-1)t+1) P_{n-1}(t) + 2t(1-t) P'_{n-1}(t),
+\end{equation}
+from which one can prove the interlacing property, see \cite{Chow2022}.
+They in fact show that the corresponding operator preserves
+real-rootedness, using the Borcea--Bränden method on stable polynomials.
+
+The analogous polynomials for type $D$, are proved to be real-rooted, but it is only conjectured
+to form interlacing pairs, see \cite[Section 5]{Chow2022}.
+\end{example*}
+
+
+
+\begin{example*}[Set partitions without singleton blocks]
+
+Let us define $D_n(t) = \sum_{\pi \in SP_2(n)} t^{blocks(\pi)}$,
+where $SP_2(n)$ are the set-partitions of $[n]$ where all blocks have size at least $2$.
+Then 
+\[
+ D_n(t) = t\left( D'_{n-1}(t) + (n-1) D_{n-2}(t) \right)
+\]
+and $D_{n-1}(t)$ and $D_{n}$ have interlacing roots, see \cite[Thm. 1]{BonaHezo2016}.
+Note that the degree of $D_n(t)$ is $\lfloor n/2 \rfloor$.
+
+
+The proof is easy by using Wagner's lemma and induction. 
+Prove the base case and assume $D_{n-2} \interl D_{n-1}$ for some $n \geq 2$.
+We then know that 
+\[
+D'_{n-1} \interl D_{n-1} \text{ and } (n-1)D_{n-2} \interl D_{n-1}.
+\]
+Wagner's lemma now gives that 
+\[
+D'_{n-1} + (n-1)D_{n-2} \interl D_{n-1} \implies D_{n-1} \interl t \left( D'_{n-1} + (n-1)D_{n-2} \right),
+\]
+and this is precisely  $D_{n-1} \interl D_{n}$, which completes the induction step.
+
+This result also follows from the general machinery in \cite[Subsection 3.4]{Hitczenko2024x}.
+A recursion for set partitions into blocks of size at least $s$ is also mentioned there (originally due to Comtet),
+but it does not immediately imply real-rootedness.
+
+\end{example*}
+
+\begin{example*}[Type 1 Stirling numbers (cycles, left to right minima)]
+
+We have that
+\[
+t(t+1)(t+2)\dotsm (t+n-1) = \sum_{k=1}^n |s(n,k)|t^k
+= \sum_{\pi \in \symS_n} t^{\mathrm{numberOfCycles}(\pi)} = \sum_{\pi \in \symS_n} t^{\mathrm{leftToRightMinima}(\pi)}
+\]
+where $|s(n,k)|$ are the unsigned Stirling numbers of the first kind, see \oeis{A132393}.
+\end{example*}
+
+\begin{example*}[Stirling permutations]
+
+The descent of a \hyperref[permutationsStirling]{Stirling permutation} $\pi \in Q_n$
+is defined as the cardinality of 
+\[
+ \{ i : \pi_i \gt \pi_{i+1} \} \cup \{2n\}.
+\]
+The descent-generating polynomials then satisfy the recurrence
+\begin{equation}
+ P_n(t) = (2n+1)t \cdot P_{n-1}(t) + t(1-t) P'_{n-1}(t),
+\end{equation}
+see \cite[Eq. 13]{Carlitz1965} and \cite[Thm. 2.1]{GesselStanley1978}.
+The coefficients can be found in \oeis{A008517}, the first few values are presented below.
+\begin{array}{rrrrrr}
+\toprule
+ 1  \\
+ 1 & 2  \\
+ 1 & 8 & 6 \\
+ 1 & 22 & 58 & 24 \\
+ 1 & 52 & 328 & 444 & 120 \\
+ 1 & 114 & 1452 & 4400 & 3708 & 720 \\
+\bottomrule
+\end{array}
+These numbers shows up when studying the Hilbert series of the Whitehouse complex,
+see \cite{Readdy2005}. These polynomials are the $h^*$-polynomials of the
+order polytope defined by the inequalities
+\[
+ y_1 \leq y_2 \leq \dotsb \leq y_n \qquad 0 \leq y_j \leq x_j \leq 1 \text{ for } j=1,\dotsc,n.
+\]
+It is worth pointing out that for $n=20$, the linear term of the Ehrhart polynomial (of degree 40)
+has a negative coefficient: $-22354369153/6983776800$.
+
+M. Bóna proved that these have only real zeros, \cite{Bona2009}.
+We may also show real-rootedness and the interlacing property using the Ma--Wang theorem.
+
+\todo{Add H.K Dey's result on interlacing, from Archiv der Mathematik}
+
+J. Haglund and M. Visontai \cite[Thm. 3.3]{HaglundVisontai2012} show that a multivariate generalization 
+results in stable polynomials.
+\end{example*}
+
+
+\begin{example*}[Peak polynomials, peaks in permutations]
+
+Peak-generating polynomials, $P_n(x) = \sum_{\sigma \in \symS_n} x^{\text{peaks}(\sigma)}$, see \oeis{A008303}.
+Real-rootednesss was proved in \cite{WarrenSeneta1996}, by using the recursion
+\begin{equation}
+ P_n(x) = (2+x(n-2)) P_{n-1}(x) + 2x(1-x) P'_{n-1}(x).
+\end{equation}
+
+Introducing $Q_n = x\cdot P_n$, we have the recursion
+\begin{equation}
+ Q_n(x) = n x\cdot  Q_{n-1}(x) + 2(1-x)x Q'_{n-1}(x).
+\end{equation}
+
+The operator $T_n:f \mapsto nx f + 2(1-x)t \cdot f'$
+satisfies $T_n[(x+y)^n] = n t (2+s-t)(s+t)^{n-1}$,
+and since the right hand side vanish at $s=i$, $t = 2+i$,
+we have that the operator does \emph{not} preserve real-rootedness.
+
+However, we can apply the Ma--Wang theorem \cite{MaWang2008}
+and deduce that all roots of $Q_n$ are real, and that  $Q_n \interl Q_{n+1}$
+\end{example*}
+
+
+\begin{example*}[Alternating runs]
+In \cite{MaWang2008}, the authors considers the following polynomial (coefficients are \oeis{A059427}):
+\[
+  P_n(x) = x \cdot \sum_{\sigma \in \symS_n} x^{\text{peaks}(\sigma)+\text{valleys}(\sigma)}.
+\]
+The polynomials satisfy the recursion
+\[
+P_n = x(nx-2x+2)P_{n-1} + x(1-x^2) P'_{n-1}.
+\]
+By using Ma and Wang's general theorem, we obtain the
+interlacing relation $P_n \interl P_{n+1}$ here as well.
+However, note that there is a root at $x=-1$ with multiplicity $\lfloor n/2 \rfloor -1$.
+See \cite{MaWang2008} for more references---real-rootedness was observed earlier.
+\end{example*}
+
+\begin{example*}[Descents and left peaks in simsun permutations]
+Define the polynomials $P_n(t) = \sum_{\sigma \in \mathrm{RS}_n} t^{\des(\sigma)}$,
+where we sum over all \hyperref[namedPermutationSets]{simsun permutations}.
+It was shown in \cite{ChowShiu2011} that
+\begin{equation}
+ P_n(t) = ((n-1)t + 1) P_{n-1}(t) + t(1-2t) P'_{n-1}(t), \qquad P_0(t)=1.
+\end{equation}
+From this recursion, it follows that the $P_n(t)$ are real-rooted, and we have interlacing, see 
+\cite[Thm. 2.1 (iii)]{ChowShiu2011}.
+It is also noted that this is the same as counting left peaks in simsun permutations.
+
+Later in \cite{MaYeh2016}, it is proved that interior peaks also give rise 
+to real-rooted polynomials.
+\end{example*}
+
+
+
+
+\begin{example*}[Descents in run-sorted permutations]
+In \cite{AlexanderssonNabawanda2021}, we show that the polynomials $R_n(t)$ 
+given by $R_1(t)=R_2(t)=t$ and the recursion
+\begin{equation}
+R_n(t) = t\cdot R'_{n-1}(t) + t\cdot (n-2) R_{n-2}(t),
+\end{equation}
+satisfy $R_{n-1} \interl R_{n}$ for all $n \geq 1$.
+The triangle of coefficients can be found in \oeis{A124324}.
+
+The polynomial $R_n(t)$ is the generating function of the number of runs in \emph{run-sorted permutations}:
+\[
+ R_n(t) = \sum_{\pi \in \text{RSP}(n)} t^{\des(\pi)+1}.
+\]
+These are therefore fairly similar to Eulerian polynomials.
+\end{example*}
+
+
+\begin{example*}[Excedances and derangements, with proof]
+Let $P_n(t)\coloneqq \sum_{\pi \in D(n)} t^{\exc(\pi)}$,
+where $D(n)$ are the derangements (fixed-point-free permutations) of size $n$.
+Then $P_{n-1} \interl P_n$.
+
+The proof is as follows.
+From \cite{MantaciRakotondrajao2003}, we can show that $P_1 =1$, $P_2 =t$ and for $n \geq 3$,
+\[
+ P_n = t \left( (n - 1) P_{n - 2} + (n-1)  P_{n - 1} + (1-t) P'_{n - 1} \right).
+\]
+Note that $P_n(t)$ is a polynomial of degree $n-1$, as the
+permutation $\pi=2345\dotsc n 1$ contributes with $t^{n-1}$ in the definition.
+
+We shall proceed by induction over $n$,
+so assume that $P_{n-2} \interl P_{n-1}$, for some $n\geq 3$.
+
+By the induction hypothesis, and using that $P'_{n-1} \interl P_{n-1}$, we can deduce that
+\[
+  P_{n-2} \interl P_{n-1}, \text{ and }
+ (n-1)P_{n-1} + (1-t)P'_{n-1} \interl P_{n-1}.
+\]
+By using \cite{Wagner1992}, we have that
+\begin{align*}
+ (n-1)P_{n - 2} + (n-1)P_{n - 1} + (1-t)P'_{n-1} &\interl P_{n-1} \\
+ t\left((n-1)P_{n - 2} + (n-1)P_{n - 1} + (1-t)P'_{n-1}\right) &\interl t P_{n-1} \\
+ P_{n} &\interl t P_{n-1}.
+\end{align*}
+From here, we can conclude that $P_{n-1} \interl P_n$.
+
+See also \cite{Liu2007} where this is proved using a different recursion.
+\end{example*}
+
+
+
+\begin{example*}[Narayana polynomials]
+
+Let $P_n(t)\coloneqq \sum_{\pi \in Dyck(n)} t^{peaks(\pi)}$,
+where $Dyck(n)$ Dyck paths of size $n$, and $peaks(\pi)$ count the number of peaks.
+Equivalently, this is the same as counting descents in binary words with $n$ 0s and $n$ 1s,
+where in each prefix of the word, there are at least as many $0$s as $1$s, see \oeis{A001263}.
+A closed-form formula is 
+\[
+P_n(t) = \frac{1}{n} \sum_{k=1}^n \binom{n}{k} \binom{n}{k-1} t^k 
+\]
+These satisfy the recursion (see \cite[Eq. (2)]{Sulanke2002}, \cite[Eq. (3.3)]{Liu2007})
+\[
+(n+1) P_n(t) = (2n-1)(1+t)P_{n-1}(t) - (n-2)(1-t)^2 P_{n-2}(t),
+\]
+with initial conditions  $P_1(t)=t$, $P_2(t)=t(1+t)$, which is used to prove 
+the interlacing property.
+
+Real-rootedness and the interlacing property was first proved in \cite{Branden2006}.
+See also \cite[Eq (31)]{Agapito2014}, where a different recursive formula (involving derivatives)
+is listed:
+\[
+ (n+1)(n+2) P_{n+1} = t((1-t)^2 P''_{n} + 2(1+2n)(1-t)P'_{n} + (1+2n)(2+2n)P_n).
+\]
+Another approach is given in \cite{KostovFinkelshteinShapiro2009}.
+
+\begin{lstlisting}
+
+NN[1] := t;
+NN[2] := t (1 + t);
+NN[n_] := NN[n] = Expand[
+	(
+		(2 n - 1) (1 + t) NN[n - 1] -
+		(n - 2) (1 - t)^2 NN[n - 2]
+)/(n + 1)];
+\end{lstlisting}
+
+One can also prove real-rootedness by observing that the Narayana polynomials
+are a simple transformation of Jacobi polynomials, or Gegenbauer polynomials
+(which are orthogonal polynomials on an interval).
+We have that the Narayana polynomials are given by the Hypergeometric series:
+\[
+P_n(t) = {}_2F_1(-n, -n-1;2;x)
+\]
+or, \texttt{HypergeometricPFQ[{-n, -n - 1}, {2}, x]}, see \cite[Sec. 12]{BarryHennessy2011}.
+
+
+Yet another recurrence is
+\[
+(1 + n)P_n=(3nt + n - t - 1) P_{n-1} - 2 t(t-1) P'_{n-1}
+\]
+which can be proved using the first theorem in \cite{Dung2022x}.
+\end{example*}
+
+
+\begin{example*}[Type $B$ Narayana polynomials]
+The type $B$ Narayana polynomials can be defined as
+\[
+P_n(t) = \sum_{k=0}^n \binom{n}{k}^2 t^k.
+\]
+Since these are produced by the Hadamard product of $(1+t)^n$ with itself, it
+follows that the $P_n(t)$ are also real-rooted.
+\end{example*}
+
+
+\begin{example*}[Generalized Narayana polynomials]
+A two-parameter family of Narayana-type polynomials
+\[
+P_{n,m}(t) = \sum_{k=0}^n \left(\binom{n}{k}\binom{m}{k} -\binom{n}{k+1}\binom{m}{k-1} \right)t^k.
+\]
+is considered in \cite[Thm. 1.4]{ChenYangZhang2018},
+and they use a fairly general recurrence relation to obtain interlacing roots.
+\end{example*}
+
+
+\begin{example*}[NNE instances in Dyck paths with fixed number of peaks]
+
+In \cite{WangZhang2023x}, the authors consider the polynomials
+\[
+ W_{n,k}(t) \coloneqq [x^k] \sum_{\pi \in Dyck(n)} x^{\mathrm{peaks}(\pi)} t^{\mathrm{nne}(\pi)},
+\] 
+where $\mathrm{nne}(\pi)$ count the number of North-North-East instances in the path.
+The authors show that $\{ W_{n,k}(t) \}_{n \geq k}$ for fixed $k$ form a \hyperref[sturmSequence]{Sturm sequence},
+and that $\{ W_{n,k}(t) \}_{1\leq k \leq n}$ is \hyperref[sturmSequence]{Sturm-unimodal}.
+
+Alexandersson (2023): The generalization to Fuss--Catalan paths (in an $n \times nm$ rectangle)
+seem to be real-rooted as well.
+
+
+The following appears in \cite{BonaDimitrovLabelleLiPappeVindasMelendezZhuang2025}.
+
+Let $w_{n,k,m}$ be the number of Dyck paths of size $n$, with $k$
+instances of $NE$ and $m$ instances of $NNE$. Then the polynomials defined via
+\[
+W_{n,k}(t) = \sum_{m\geq 0} w_{n,k,m}t^m = \frac{1}{k} \binom{n}{k-1} \sum_{m \geq 1}^{\min(k,n-k)}  \binom{n-k-1}{m-1}\binom{k}{m} t^m
+\]
+are real-rooted. The formula above is valid for $n \gt k$, and for $n \leq k$ the polynomials are constant.
+The authors conjectured that for fixed $k$, $\{W_{n,k}\}_{n\geq k}$ form a \hyperref[sturmSequence]{Sturm sequence},
+and that for fixed $n$, $\{W_{n,k}\}_{1 \leq k\leq n}$ is \hyperref[sturmSequence]{Sturm-unimodal}.
+These conjectures were later proved in \cite{WangZhang2024}.
+The authors there finds a two-term recurrence, expression $W_{n,k}(t)$ in terms of $W_{n-1,k}(t)$ and $W_{n,k}(t)$.
+Alternatively, $W_{n,k}(t)$ can be expressed in terms of $W_{n,k-1}(t)$ and its derivative.
+
+\end{example*}
+
+
+\begin{example*}[Motzkin polynomials]
+
+The non-crossing matching polynomial of the complete 
+graph $K_n$ is the Motzkin polynomial, see \oeis{A055151}.
+These polynomials satisfy the recursion 
+\[
+ (n+2)M_n(x) = (2n+1)M_{n-1}(x) - (n-1)(1-4x)M_{n-2}(x), \text{ with } M_1(x)=1, \;
+ M_2(x)=x+1.
+\]
+By using the methods in \cite[Section 3]{Wagner1992}, 
+it is now easy to use induction to show that the roots of $M_{n-1}(x)$ interlaces 
+those of $M_{n}(x)$. In particular, these polynomials are real-rooted.
+
+% M[1] = 1;
+% M[2] = 1 + x;
+% M[n_] := 
+%   Together[
+%     1/(n + 2) ((2 n + 1) M[n - 1] - (n - 1) (1 - 4 x) M[n - 2])] // 
+%    Expand;
+
+\end{example*}
+
+
+
+
+\begin{example*}[Descents in standard Young tableaux]
+
+Brenti \cite[Thm. 5.2.3]{Brenti1989} showed that the $(P,w)$-Eulerian polynomial associated with
+a column-strict Ferrers diagram is real-rooted. This is a special case of the (now disproved in general)
+Neggers--Stanley conjecture. The descent-generating polynomial ($i$ is a descent if $i+1$ appears in a lower row):
+\[
+   W_\lambda(t) \coloneqq \sum_{T \in \SYT(\lambda)} t^{\des(T)}
+\]
+is real-rooted. Note that \cite[Thm. 4.6.1]{Brenti1989} proves a more general statement.
+It can be interpreted as being a Polya frequency sequence of the Ehrhart polynomial implies real-rootedness of the $h^*$-polynomial (of a polytope).
+To be precise, \cite[Eq. (7.96)]{StanleyEC2} states that for a skew shape $\lambda/\mu$ with $n$ boxes,
+\[
+  \sum_{m \geq 0} \schurS_{\lambda/\mu}(1^m)z^m = \frac{\sum_{T \in \SYT(\lambda/\mu)} t^{\des(T)} }{(1-z)^{n+1}}.
+\]
+Now, the map $m \mapsto \schurS_{\lambda/\mu}(1^m)$ is an order polynomial which factors in linear factors.
+This is due to the hook-content formula, so we get that $W_\lambda(t)$ is real-rooted by Brenti's result.
+
+Later, \cite{Branden2004operators} shows that $W_\lambda(t)$ interlaces $W_{\lambda^+}(t)$ whenever
+$\lambda^+$ is obtained from $\lambda$ by adding a box.
+
+In particular, for $\lambda=(n,n)$ we have that $W_{\lambda}(t)$ is a Narayana polynomial,
+so we have yet another proof of real-rootedness of these.
+\end{example*}
+
+
+\begin{example*}[Ehrhart polynomials from Schur functions]
+
+The map
+$
+ n \mapsto |\SSYT(n \lambda, k)|
+$
+where we count the number of semi-standard Young tableaux of shape $n \lambda$ with maximal entry $k$,
+is a polynomial in $n$. Explicitly, the Weyl character formula states that it is
+\[
+  P_\lambda(n) \coloneqq  \prod_{1 \leq i \lt j \leq k} \frac{n(\lambda_i - \lambda_j)+j-i}{j-i}.
+\]
+which is real-rooted. (Real-rootedness is attributed to Brenti \cite{Brenti1989}, but he uses 
+a more convoluted proof). Brändén \cite{Branden2004operators} showed that $P_\lambda(n)$ 
+interlaces $P_\mu(n)$ whenever $\mu$ covers $\lambda$ in Young's lattice.
+The above map is the Ehrhart polynomial of the \hyperref[gtpatterns]{Gelfand--Tsetlin polytope} associated with $\lambda$ and $k$.
+
+
+We note that the map 
+\[
+ n \mapsto |\SSYT(n \lambda/ n\mu, k)|
+\]
+for skew shapes is not real-rooted in general: $\lambda =(3,2)$, $\mu = (1)$ gives for $k=3$
+the polynomial $\frac{1}{4} (n+1)^2 \left(7 n^2+10 n+4\right)$ which has non-real roots.
+
+It does look like the corresponding $h^*$-polynomials are real-rooted even for skew shapes.
+For non-skew shapes, this is proved by Brenti \cite{Brenti1989}.
+\end{example*}
+
+
+
+\begin{example*}[Type $B$ Set partitions]
+
+In \cite{Wang2014}, a type $B$ version (and in general, a colored version)
+of counting blocks in set partitions is considered.
+The polynomials considered satisfy the (general) recursion
+\[
+  T_n(x) = (x+c) \cdot  T_{n-1}(x) + mx\cdot T'_{n-1}(x),
+\]
+where $m$ and $c$ are positive integers.
+
+\end{example*}
+
+
+\begin{example*}[Ordered partitions]
+In \cite{Simion1984}, one takes any multiset $M$, and considers the number of compositions into exactly $k$
+parts, $O(M,k)$. The polynomial $\sum_k O(M,k)x^k$ is shown to be real-rooted.
+
+In particular, this implies the real-rootedness of the Touchard polynomials.
+\end{example*}
+
+
+
+
+\section[realRootedMatching]{Matching and independence polynomials}
+
+Let $G = (V,E)$ be any graph.
+The \defin{matching polynomial} $\mu_G(x)$ is defined as
+\[
+\mu_G(x) \coloneqq \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}} x^{|M|}
+\]
+where $|M|$ is the number of edges in the matching.
+
+In \cite[Thm. 4.2]{HeilmannLieb1972}, it was shown that $\mu_G(x)$
+is real-rooted. Moreover, $\mu_G(x)$ interlaces $\mu_{G'}(x)$, where $G'$
+is any graph obtained from $G$ by removing a vertex.
+This is a very powerful theorem, but it follows
+from the more general Chudnovsky--Seymour theorem on independence polynomials below.
+
+A hypergraph generalization (including multigraphs) 
+is considered by N. Amini in \cite{Amini2019x}.
+
+
+\begin{example*}[Fibonacci tilings via matchings]
+Recall that the number of ways to tile the  one-row Young diagram $(n)$
+with tiles of shape $(1)$ and $(2)$ is given by the $(n+1)th$ Fibonacci number.
+If we then define 
+\[
+ F_0(x) \coloneqq 1 \quad F_1(x) \coloneqq 1, \quad F_n(x) \coloneqq F_{n-1}(x) + x\cdot F_{n-2}(x)
+\]
+we see that $[x^k] F_n(x)$ is the number of ways to tile $(n)$ using exactly $k$ (2)-tiles.
+
+By the Heilmann--Lieb theorem, we can see that for all $n$, $F_n(x)$ is real-rooted,
+since we can see that $\mu_G(x) = F_n(x)$ for the path graph with $n$ vertices.
+\end{example*}
+
+
+
+
+\begin{example*}[Touchard polynomials (blocks in set partitions), with proof]
+
+The \defin{Touchard polynomials} may be defined via
+\[
+T_n(x) \coloneqq \sum_{P \in SP(n)} x^{blocks(P)} = \sum_{k=1}^n S(n,k) x^k,
+\]
+where $SP(n)$ are the set partitions of $n$, and we count the number of blocks.
+Note that the coefficients are Stirling numbers of the second type.
+
+One can show (see \cite[p. 20, p. 139]{Wilf1994}) that 
+\[
+  T_n(x) = x \cdot  T_{n-1}(x) + x\cdot T'_{n-1}(x).
+\]
+We know $T_{n-1} \interl x T_{n-1}$. Moreover, $T_{n-1} \interl x T'_{n-1}$,
+so by \cite{Wagner1992}, we have $T_{n-1} \interl x T_{n-1} +  x T'_{n-1}$.
+But this is exactly $T_{n-1} \interl T_n$.
+
+
+\emph{The matching approach:} \cite[Lem. 5.1]{Godsil2017}, states 
+that the Stirling number $S(n,k)$ is equal to the number 
+of size $n-k$ matchings in the bipartite graph $G_n$ on vertex set 
+\[
+ \{1,2,\dotsc,n\} \cup \{1',2',\dotsc,n'\}
+\]
+where $i$ has an edge with $j'$ if and only if $i \lt j$.
+
+For example, the graph $G_4 = \{ \{1,2'\}, \{1,3'\}, \{1,4'\}, \{2,3'\}, \{2,4'\}, \{3,4'\} \}$
+has $7=S(4,4-2)$ matchings of size $2$,
+and $6=S(4,4-1)$ matchings of size $1$.
+We then have that $x^n T_n(x^{-1}) = \mu_{G_n}(x)$ where
+$\mu_{G_n}(x)$ is the matching polynomial of $G_n$.
+Since removal of vertices gives interlacing, we have that 
+$\mu_{G_{n-1}}(x) \interl \mu_{G_n}(x)$
+from which interlacing for Touchard polynomials follows.
+
+
+\emph{The rook placement approach:} 
+The matching polynomial $\mu_{G_n}(x)$ for the bipartite graph above, is the rook polynomial 
+of the staircase board of size $n-1$.
+
+\end{example*}
+
+
+\begin{example*}[r-Lah number polynomials and $r$-Touchard polynomials]
+
+An interpretation of $r$-Lah polynomials and $r$-Stirling numbers as 
+matching polynomials is given in \cite{NyulRacz2021}.
+\end{example*}
+
+
+
+\todo{
+Independence polynomials sometimes have only real roots.
+https://www.emis.de/journals/JACO/Volume19_3/pn5l8gh2q7025747.fulltext.pdf
+https://ajc.maths.uq.edu.au/pdf/38/ajc_v38_p027.pdf (Caterpillars)
+https://ajc.maths.uq.edu.au/pdf/71/ajc_v71_p104.pdf
+}
+
+\todo{Eigenvalues of Hermitian matrices and its principal minor}
+
+
+\subsection[rookPolynomials]{Rook polynomials}
+
+The \defin{rook polynomial} of a board $B$ is defined as
+\[
+  R_B(z) \coloneqq \sum_k r_k(B) z^k
+\]
+where $r_k(B)$ is the number of ways to place $k$ non-attacking rooks on the board.
+Here, the board can be any subset of some $n {\times} n$-board.
+Note that $R_B(x)$ is exactly a matching polynomial, $\mu_G(x)$ for a bipartite
+graph $G$ on vertex set $\{v_1,\dotsc,v_n,v'_1,\dotsc,v'_n\}$
+where  $(v_i,v'_j)$ is an edge if and only if $(i,j)$ is a cell of the board $B$.
+
+Nijenhuis \cite{Nijenhuis1976} proved that the rook polynomials are always real-rooted.
+In fact, Nijenhuis shows a weighted result involving permanents.
+\begin{theorem}[Nijenhuis, 1976]
+Let $A = (a_{ij})$ be a non-negative $m\times n$-matrix.
+Then
+\[
+ R_{A}(z) \coloneqq \sum_{\rho} (-z)^{\length(\rho)} \prod_{j=1}^{\length(\rho)}
+  a(\rho_j)
+\]
+where we sum over all ways to place rooks on the $m\times n$-board,
+and $a(\rho_j)$ is the value of the matrix at position given by the $j$th rook.
+\end{theorem}
+
+
+The \defin{hit polynomial} of a board can also be defined in terms of the $r_k(B)$.
+Let $B$ be a subset of the $n\times n$-board.
+The hit polynomial is then defined as
+\[
+ T_B(z) \coloneqq \sum_{k =0}^n k! r_{n-k}(B)(z-1)^{n-k} = \sum_{j=0}^n h_j(B) z^j.
+\]
+Here, $h_j(B)$ is the number of ways to place $n$ rooks on the $n \times n$-board,
+with exactly $j$ rooks in $B$, see \cite{KaplanskyRiordan1946,Haglund2000}.
+
+A theorem by Haglund--Ono--Wagner \cite{HaglundOnoWagner1999}
+states that if $B$ is a Ferrers board (same as a Young diagram),
+then $T_B(z)$ is real-rooted.
+
+
+
+
+\subsection[realRootedIndependence]{Independence polynomials for claw-free graphs}
+
+Let $G = (V,E)$ be any graph. The \defin{independence polynomial} $I(G,x)$ is defined 
+as
+\[
+I(G,x) \coloneqq \sum_{\substack{A \subseteq V(G) \\ \text{$A$ independent}}} x^{|A|}
+\]
+where $|A|$ is the number of edges in the matching.
+
+A graph called \defin{claw-free} if no induced subgraph is isomorphic 
+to the graph with edges $\{\{1,2\},\{1,3\},\{1,4\}\}$.
+
+If $G$ is any simple graph, its \emph{line graph} $L(G)$ is also simple.
+Moreover, $L(G)$  is claw-free. Finally, we have that $I(L(G),x) = \mu_G(x)$.
+
+\begin{theorem}[Chudnovsky--Seymour 2007, \cite{ChudnovskySeymour2007},]
+Suppose $G$ is claw-free. Then $I(G,x)$ is real-rooted.
+As a corollary, we get the Heilmann--Lieb theorem on matching polynomials.
+\end{theorem}
+\begin{proof*}
+This very briefly illustrates the ideas. Note that if $v \in V(G)$ and $nbh(v)$ 
+is $v$ and all vertices adjacent to $v$, then
+\[
+ I(G,x) = I(G \setminus \{v\} ,x) + x \cdot  I(G \setminus nbh(v),x).
+\]
+Essentially, the above sum is broken down into the cases where $v \notin A$, and when $v \in A$.
+Observe that if $G$ is claw-free, then any induced subgraph is also claw-free.
+Chudnovsky--Seymour then use the notion of \emph{compatible polynomials}
+to obtain their result.
+\end{proof*}
+
+This result conjectured by R. Stanley in \cite{Stanley1998},
+a vertex-weighted version is given by A. Engström \cite{Engstrom2007}
+and an alternative (non-vertex-deletion-recursive) 
+proof is given by B. Lass \cite{Lass2012}.
+Finally, a multivariate refinement is given by \cite{LeakeRyder2019} where 
+one obtains \hyperref[stablePolynomial]{stable polynomials}.
+
+Alexander Engström proved the following weighted generalization 
+of the Chudnovsky--Seymour theorem. 
+\begin{theorem*}[Alexander Engström, \cite[Thm. 2.5]{Engstrom2007}]
+Let $G = (V,E)$ be a graph, and $w : V \to \setR$ be vertex weights.
+The \defin{weighted independence polynomial} $I(G,w,x)$ is defined as
+\[
+I(G,w,x) \coloneqq \sum_{\substack{A \subseteq V(G) \\ \text{$A$ independent}}} x^{|A|} \prod_{v\in A} w(v).
+\]
+If $G$ is claw-free and all weights are non-negative, then $I(G,w,x)$ is real-rooted.
+\end{theorem*}
+
+
+\subsection[realRootsChow]{Chow polynomials}
+
+In \cite{BrandenVecchi2025x}, the authors show various real-rootedness results regarding Chow polynomials.
+
+
+\section[interlacingSequences]{Interlacing sequences}
+
+
+The following definitions are from \cite{Branden2015}.
+
+\begin{definition}[Interlacing sequences of polynomials]
+A sequence $\{f_1,f_2,\dotsc,f_n\}$ of polynomials with positive leading coefficients
+is said to be an \defin{interlacing sequence}
+if $f_i \interl f_j$  for all $1\leq i \lt j \leq n$.
+
+We let \defin{$\mathscr{F}_n^+$} denote the family of interlacing
+sequences of length $n$ with \emph{non-negative} coefficients.
+\end{definition}
+
+In \cite{Branden2015}, there are nice examples of how interlacing
+sequences can be used to prove real-rootedness.
+In particular, rook polynomials associated with
+Ferrers diagrams can be proved to be real-rooted using this method.
+
+\subsection[realMatrixRecursion]{Matrices preserving interlacing sequences}
+
+
+The following very useful theorem is proved in \cite[Thm. 7.8.5]{Branden2015}.
+
+\begin{theorem}[Matrices preserving interlacing sequences]
+Let $G$ be an $m \times n$ matrix of polynomials in $t$.
+Then $G : \mathscr{F}_n^+ \to \mathscr{F}_m^+$ if and only if
+\begin{enumerate}
+\item All entries of $G$ have nonnegative coefficients, and
+\item For every $2{\times}2$ sub-matrix
+$\begin{bmatrix}
+ a(t) & b(t) \\
+ c(t) & d(t)
+\end{bmatrix}$ of $G$ and real numbers
+$\lambda, \mu > 0$, we have
+\[
+ (\lambda t + \mu) b(t) + d(t) \interl (\lambda x + \mu) a(t) + c(t).
+\]
+\end{enumerate}
+\end{theorem}
+
+
+
+\begin{example*}[Minors preserving interleaving sequences]
+
+There are 81 matrices with entries in $\{0,1,t\}$.
+Remove those where first and last row are equal and those where one of the rows is $(0,0)$.
+There are 56 such matrices left, and among these, the following 21
+satisfies the conditions in the theorem above.
+\begin{equation*}
+\begin{pmatrix}0 & 1 \\ 0 & t\end{pmatrix}, \quad
+\begin{pmatrix}0 & 1 \\ t & 0\end{pmatrix}, \quad
+\begin{pmatrix}0 & t \\ 0 & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 0 \\ t & 0\end{pmatrix}, \quad
+\begin{pmatrix}t & 0 \\ 0 & t\end{pmatrix}, \quad
+\begin{pmatrix}t & 0 \\ 1 & 0\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+\begin{pmatrix}0 & 1 \\ t & 1\end{pmatrix}, \quad
+\begin{pmatrix}0 & 1 \\ t & t\end{pmatrix}, \quad
+\begin{pmatrix}1 & 0 \\ 1 & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 0 \\ t & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 1 \\ 0 & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 1 \\ t & 0\end{pmatrix}, \quad
+\begin{pmatrix}t & 0 \\ t & t\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+\begin{pmatrix}t & 1 \\ 0 & t\end{pmatrix}, \quad
+\begin{pmatrix}t & 1 \\ t & 0\end{pmatrix}, \quad
+\begin{pmatrix}t & t \\ 0 & t\end{pmatrix}, \quad
+\begin{pmatrix}1 & 1 \\ t & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 1 \\ t & t\end{pmatrix}, \quad
+\begin{pmatrix}t & 1 \\ t & t\end{pmatrix}, \quad
+\begin{pmatrix}t & t \\ 1 & 1\end{pmatrix}
+\end{equation*}
+\end{example*}
+
+
+Below are some examples where the proofs uses interlacing sequences.
+
+\begin{example*}[Binomial Eulerian polynomials]
+
+The \defin{binomial Eulerian polynomials} can be defined as 
+\[
+ \tilde{A}_n(t) \coloneqq \sum_{\sigma \in \symS_n} (1+t)^{\fix(\sigma)} t^{\exc(\sigma)}.
+\]
+Athanasiadis conjectured that these are real-rooted, 
+and it was later shown by Haglund and Zhang \cite{HaglundZhang2019} that this is indeed the case,
+by means of interlacing polynomials.
+
+It seems that $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$, but this does not follow immediately from 
+the reference above. See also the binomial $\svec$-Eulerian polynomials.
+
+\end{example*}
+
+
+\begin{example*}[Ascents and descents in inversion sequences]
+Fix $\svec = (s_1,\dotsc,s_n)$ and define 
+\[
+\mathcal{I}_n^\svec \coloneqq \{ (e_1,\dotsc,e_n) \in \setZ^n : 0 \leq e_i \lt s_i, \; 0 \leq i \leq n \}
+\]
+with the conventions that $e_0 = e_{n+1} =0$ and $s_0 = s_{n+1}=1$.
+This is the set of \defin{inversion sequences} associated with $\svec$.
+
+An index $0 \leq i \leq n$ is an \defin{ascent}, \defin{collision}, or \defin{descent}
+of an inversion sequence $\evec$ if
+\[
+ \frac{e_i}{s_i} \lt \frac{e_{i+1}}{s_{i+1}}, \qquad 
+ \frac{e_i}{s_i} = \frac{e_{i+1}}{s_{i+1}}, \qquad 
+ \frac{e_i}{s_i} \gt \frac{e_{i+1}}{s_{i+1}},
+\]
+respectively. Moreover, let $\mathcal{D}_n^\svec \subset \mathcal{I}_n^\svec$ 
+be the set of inversion sequences without collisions.
+
+It was proved in \cite{SavageVisontai2015} and \cite{GustafssonSolus2020}, respectively, 
+that
+\[
+E^\svec_n(t) = \sum_{\evec \in \mathcal{I}_n^\svec} t^{\asc(\evec)} \quad \text{and} \quad
+D^\svec_n(t) = \sum_{\evec \in \mathcal{D}_n^\svec} t^{\asc(\evec)}
+\]
+are real-rooted. The methods use theory of interlacing sequences of polynomials.
+In particular, if $\svec$ is a fixed \emph{sequence} of positive integers,
+then $E^\svec_n(t) \interl E^\svec_{n+1}(t)$.
+
+The proof by Savage and Visontai also shows that the $s$-Eulerian polynomials
+are real-rooted. See also the proof in \cite[Sec. 8.2]{Branden2015}.
+
+
+See \cite{HaglundZhang2019} for the binomial Eulerian polynomial analog of the above results.
+\end{example*}
+
+
+
+\subsection[compatiblePolynomials]{Compatible polynomials}
+
+Chudnovsky and Seymour introduced a concept closely related to interleaving sequences
+of polynomials. The polynomials $f_1,\dotsc,f_k \in \setR[z]$ have a \defin{common interlacing}
+if there is some $h \in \setR[z]$ with $h \interl f_j$ for all $j$.
+
+\begin{theorem}[Chudnovsky--Seymour, 2007, \cite{ChudnovskySeymour2007}]
+
+Let $\{f_1,f_2,\dotsc,f_n\}$ be a set of real-rooted polynomials with \emph{positive} leading coefficients.
+Such a set is said to be \defin{compatible} if for all
+choices $\lambda_j$, the sum $\sum_{j=1}^n \lambda_j f_j$ is real-rooted.
+
+Then the following are equivalent:
+\begin{itemize}
+\item $f_1,\dotsc,f_k$ are pairwise compatible;
+\item $f_1,\dotsc,f_k$ are compatible;
+\item $f_i,f_j$ have a common interlacing for all $1\leq i \lt j \leq n$;
+\item $f_1,\dotsc,f_k$ have a common interlacing.
+\end{itemize}
+\end{theorem}
+This theorem can be generalized to polynomials with arbitary real
+coefficients (with negative leading coefficients), see \cite{LeakeRyder2024x}.
+
+
+\todo{For polynomials arranged in a tree, with
+interlacing relations along edges: https://cs.uwaterloo.ca/~lapchi/cs860-2022/notes/12-interlacing-family.pdf}
+
+
+
+
+\section[stablePolynomial]{Stable polynomials}
+
+
+
+Let $\mathcal{H} \subset \setC$ denote the 
+upper half-plane $\{z \in \setC: \mathrm{im}(z) >0 \}$.
+
+\begin{definition}[Stability]
+
+A multivariate polynomial $P \in \setC[z_1,\dotsc,z_n]$ 
+is called \defin{stable} if it does not vanish on $\mathcal{H}^n$.
+That is, $P$ is stable if
+\[
+ \zvec^* \in \mathcal{H}^n \implies P(\zvec^*) \neq 0.
+\]
+One can easily show that $P \in \setR[z_1,\dotsc,z_n] $ is stable if and only if 
+$P(\alpha+\lambda t)=0$ has only real zeros
+for all $\alpha \in \setR^n$, $\lambda \in \setR_+^n$.
+A univariate polynomial with real coefficients 
+is stable if and only if all its roots are real.
+\end{definition}
+
+
+\begin{definition}[Strongly Rayleigh]
+A measure $\mu$ on the set of subsets of $[n]$, is called 
+\defin{strongly Rayleigh} if 
+\[
+ \sum_{S \subseteq [n]} \mu(S) \prod_{s\in S} x_s
+\]
+is real stable.
+\end{definition}
+
+\begin{theorem}[Stability preserving operators]
+The following operations on polynomials preserve stability.
+Let $p,q \in \setR[z_1,\dotsc,z_n]$ be stable polynomials.
+Then the following are also stable.
+\begin{itemize}
+\item $p\cdot q$ (Product)
+\item $\partial_{z_j} p$ (Differentiation)
+\item $z_j \partial_{z_j} p$ (Degree-preserving differentiation)
+\item $p(z_1,\dotsc,z_{j-1},r,z_{j+1},\dotsc,z_n)$ (Real specialization)
+\item $p(z_1,\dotsc,z_{j-1},z_1,z_{j+1},\dotsc,z_n)$ (Projection)
+\item $z_j^d p(z_1,\dotsc,-1/z_{j},z_1,z_{j+1},\dotsc,z_n)$ (Inversion)
+\end{itemize}
+Here, $d$ is the degree of $z_j$ in $p$.
+\end{theorem}
+
+
+A polynomial $P(z_1,\dotsc,z_n)$ is \defin{multi-affine} if the degree in each variable is at most $1$.
+
+
+\begin{theorem}[See \cite{ChoeOxleySokalWagner2004}]
+If $P$ is a homogeneous and multi-affine stable polynomial, 
+then its support is the set of bases of a matroid.
+See also  \cite[Cor. 3.4]{Branden2007}.
+\end{theorem}
+The converse is in general not true but some classes of matroids 
+always have a basis generating polynomial which is stable.
+For example, regular matroids (which include graphic matroids), uniform matroids and 
+a subclass of transversal matroids (see \cite{ChoeOxleySokalWagner2004}).
+
+Deletion and contraction on matroids preserve stability of the 
+basis generating polynomial.
+
+
+\begin{theorem}[See \cite{Branden2007}]
+A homogeneous multiaffine (real) polynomial $f(x_1,\dotsc,x_n)$ is real stable if and only if
+\[
+ \frac{\partial f}{\partial x_i} \cdot \frac{\partial f}{\partial x_j} -
+ \frac{\partial^2 f}{\partial x_i \partial x_j} \cdot f \geq 0
+\]
+whenever $x_1,x_2,\dotsc,x_n \in \setR$.
+\end{theorem}
+Tho satisfy this inequality is called to have the \defin{strongly Rayleigh property}.
+The \defin{weak Rayleigh property} holds if the above inequality is true whenever
+the variable are positive real numbers.
+
+
+\begin{theorem}[See \cite{BorceaBranden2010}]
+A polynomial in two variables, $P(z,w) \in \setR[s,t]$ is stable if and only if it can be expressed as
+$\pm \det(zA+wB+C)$ where $A,B,C$ are real $n \times n$-matrices, where $A$ and $B$ are positive semidefinite
+and $C$ is symmetric.
+\end{theorem}
+
+
+\begin{example*}[The monotone column permanent conjecture]
+
+Let $A$ be a real $n\times n$-matrix in which entries along columns decrease.
+Let $Z_n = \mathrm{diag}(z_1,\dotsc,z_n)$ be a diagonal matrix with indeterminates,
+and let $J_n$ be the matrix with all entries equal to $1$.
+Then
+\[
+ \mathrm{per}(J_nZ_n + A) = \mathrm{per}\left( (z_j + a_{ij})_{1 \leq i,j \leq n} \right)
+\]
+is stable, see \cite{BrandenHaglundVisontaiWagner2011}.
+By noting that the Eulerian polynomials are generated by excedances,
+they give a new proof that (a multivariate version of) Eulerian polynomials 
+are stable.
+\end{example*}
+
+
+\begin{example*}[Multivariate Eulerian polynomials]
+P. Bränden (see \cite[Thm. 2.5]{HaglundVisontai2012}) has proved that the 
+following generalization of the Eulerian polynomial is a multivariate stable polynomial:
+\[
+ A_n(\xvec,\yvec) = \sum_{\pi \in \symS_n} \prod_{\pi_i \gt \pi_{i+1}} x_{\pi_i} \prod_{\pi_i \lt \pi_{i+1}} y_{\pi_i}.
+\]
+In fact, Haglund and Visontai show that keeping track of plateaus as well 
+give rise to stable polynomials:
+\[
+ A_n(\xvec,\yvec,\zvec) = \sum_{\pi \in \symS_n} 
+ \prod_{\pi_i \gt \pi_{i+1}} x_{\pi_i}
+ \prod_{\pi_i \lt \pi_{i+1}} y_{\pi_i}
+ \prod_{\pi_i = \pi_{i+1}} z_{\pi_i}.
+\]
+\end{example*}
+
+
+
+
+\begin{example*}[Multivariate matching polynomials]
+The multivariate matching polynomial is real stable, see \cite{BorceaBranden2009I,BorceaBranden2009II}.
+See also In \cite{LeakeRyder2019} (there are two types of multivariate matching polynomials,
+either by recording vertex labels or edge labels in the matchings, respectively;
+\begin{align}
+\mu_V(G;x_1,\dotsc,x_n) & \coloneqq \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}} \prod_{uv \in M} -x_u x_v, \\
+\mu_E(G;x_1,\dotsc,x_n) & \coloneqq \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}} \prod_{e \in M} x_e.
+\end{align}
+\end{example*}
+
+The \defin{multi-affine vertex matching polynomial}
+$\mu_V(G;x_1,\dotsc,x_n)$ is real stable, see \cite{BorceaBranden2009I}.
+
+
+\todo{
+https://arxiv.org/pdf/0911.3569.pdf
+}
+
+
+
+
+\subsection[samePhaseStable]{Same phase stability}
+
+The following notion was introduced in \cite{LeakeRyder2019}
+and is a strictly weaker notion than stability.
+
+\begin{definition}[Same-phase stability]
+ A polynomial $P(z_1,\dotsc,z_n) \in \setR[z_1,\dotsc,z_n]$ is said 
+ to be \defin{same-phase stable}  if for
+ every $\lambda \in \setR_+^n$, we have that the univariate polynomial
+ $P(\lambda_1 t,\lambda_2 t,\dotsc,\lambda_n t) \in \setR[t]$ is real-rooted.
+\end{definition}
+
+A set of polynomials $\{p_j(\xvec) \}_{j=1}^m$ are \defin{same-phase compatible}
+if for every vector of positive numbers $\lambda$, we have that 
+ $\{p_j(\lambda t) \}_{j=1}^m$ are compatible (as univariate polynomials).
+
+
+Let $P, P_0, \dotsc, P_k$ be polynomials such that $P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$.
+This is a \defin{proper splitting of $P$} if all $P_{j}$ do not depend on 
+the variables $\{z_{i_1}, \dotsc, z_{i_m} \}$.
+
+
+\begin{theorem}[See \cite{LeakeRyder2019}]
+Suppose $P$ is a multiaffine polynomial with non-negative coefficients.
+Then the following are equivalent:
+\begin{itemize}
+\item $P$ is same-phase stable;
+\item For any proper splitting, $P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$,
+we have that $P_0, z_{i_1} P_{1}, \dotsc, z_{i_m} P_{m}$
+are same-phase compatible.
+
+\item There is some proper splitting, $P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$,
+such that $P_0, z_{i_1} P_{1}, \dotsc, z_{i_m} P_{m}$ are same-phase compatible.
+
+\end{itemize}
+
+\end{theorem}
+
+
+The \defin{multiaffine edge matching polynomial}
+$\mu_E(G;x_1,\dotsc,x_n)$ is same-phase stable \cite[Cor. 3.2]{LeakeRyder2019}.
+
+Let $G$ be a graph on the vertex set $[n]$, and define the \defin{multivariate independence polynomial}
+\[
+I(G;x_1,\dotsc,x_n) \coloneqq \sum_{\substack{A \subseteq V(G) \\ A \text{ independent}}} \prod_{v \in A} x_v.
+\]
+In \cite{LeakeRyder2019}, it is proved that $I(G;x_1,\dotsc,x_n)$
+is same-phase stable \emph{if and only if} $G$ is claw-free.
+This is a reinterpretation of Engström's weighted result, \cite{Engstrom2007},
+but Leake--Ryder gives a much sleeker proof, and the if-and-only-if condition explains 
+that the claw-free requirement is sharp.
+
+
+\begin{example*}[Multivariate Eulerian polynomials II]
+In \cite{AlexanderssonNabawanda2021}, we show that the following generalization 
+of the Eulerian polynomial is same-phase stable, but not stable:
+\[
+ \tilde{A}_n(\xvec) = \sum_{\pi \in \symS_n} \prod_{\pi_i \gt \pi_{i+1}} x_{i}.
+\]
+Note that we now keep track of the descent index, rather than the descent bottom value.
+Moreover, we showed that 
+\[
+ \tilde{A}_{n-1}(\lambda_1 t, \dotsc, \lambda_{n-1} t) \interl \tilde{A}_n(\lambda_1 t, \dotsc, \lambda_n t)
+\]
+for all positive real numbers $\lambda_1,\dotsc,\lambda_n$.
+\end{example*}
+
+
+
+\section[lorentzianPolynomial]{Lorentzian polynomials}
+
+Petter Brändén and June Huh introduced the notion of \defin{Lorentzian polynomials}.
+All stable polynomials are Lorentzian, but the converse is not true for polynomials 
+of degree three or more.
+For an introduction to the topic, see \href{https://www2.math.upenn.edu/~jhaglund/IPAC/2022.html}{these lectures by Brändén}.
+
+
+\begin{definition}[Lorentzian polynomial]
+
+A homogeneous polynomial $h(x_1,\dotsc,x_n)$ of degree $d$ is \defin{strictly Lorentzian} if 
+\begin{itemize}
+ \item All coefficients of $h$ are positive, and
+ \item The signature of (the degree $2$ polynomial)
+ \[
+   \frac{\partial}{\partial x_{i_1}}\frac{\partial}{\partial x_{i_2}} \dotsm \frac{\partial}{\partial x_{i_e}} h(x_1,\dotsc,x_n)
+ \]
+ is $(+,-,-,\dotsc,-)$ for any $i_1,\dotsc,i_e \in [n]$ where $e = d-2$. 
+ 
+ To compute the signature of a homogeneous polynomial $P(x_1,\dotsc,x_n)$ of degree 2,
+ consider the symmetric matrix 
+ \[
+  \left(  \frac{\partial}{\partial x_{i}}\frac{\partial}{\partial x_{j}} P \right)_{ij} \in \setR^{n \times n}.
+ \]
+ If it has only one positive eigenvalue, while the remaining are negative, then it has signature $(+,-,-,\dotsc,-)$.
+
+\end{itemize}
+
+A polynomial is called \defin{Lorentzian} if it is the limit of strictly Lorentzian polynomials.
+There are two other equivalent conditions listed in \cite{HuhMatherneMezarosDizier2022}.
+
+An equivalent definition for Lorentzian is:
+
+\begin{itemize}
+ \item All coefficients are non-negative.
+ \item The support of the polynomial forms an \hyperref[MConvexity]{M-convex set}.
+ \item All quadratic forms (as above) has at most one positive eigenvalue.
+\end{itemize}
+
+\end{definition}
+
+The basis generating function of a matroid is Lorentzian.
+
+Determining if polynomials are Lorentzian can be done efficiently, see \cite{Chin2024x}.
+This is in contrast with checking for real stability which is coNP-complete, see \cite{Chin2024x}.
+
+
+The following operations preserve the Lorentzian property:
+\begin{itemize}
+\item Taking the multi-affine part of a Lorentzian polynomial.
+\item Products of Lorentzian polynomials are Lorentzian.
+\item Specializing variables in a multiaffine Lorentzian polynomial.
+\end{itemize}
+
+
+
+In \cite{HuhMatherneMezarosDizier2022}, several generalizations of \hyperref[schurS]{Schur polynomials} 
+are either proved or conjectured to be Lorentzian.
+\begin{theorem}[See \cite{HuhMatherneMezarosDizier2022}]
+For any integer partition $\lambda$, the normalized \hyperref[schurS]{Schur polynomial}
+\[
+   \sum_{ \mu } K_{\lambda \mu} \frac{\monomial_\mu}{\mu_1! \mu_2 ! \dotsm \mu_\ell !}
+\]
+is Lorentzian. Here, $K_{\lambda \mu}$ are the Kostka coefficients.
+\end{theorem}
+Another proof of this is given in \cite{RossToma2023}.
+
+
+It is conjectured that the corresponding statement holds also for skew Schur polynomials, \hyperref[key]{key polynomials}
+and \hyperref[schubert]{Schubert polynomials}.
+In \cite{ChenFanYe2024x}, 0-1-Grothendieck polynomials are shown to be Lorentzian.
+
+
+In \cite{ChinQin2025x}, the authors study the set of symmetric polynomials which are also Lorentzian.
+This set is homeomorphic to a closed Euclidean ball.
+
+
+
+\begin{example}[Chromatic symmetric polynomials]
+
+For \emph{abelian Dyck paths}, the \hyperref[chromaticQuasisymmetricHistory]{chromatic symmetric polynomial}
+(in any number of variables) is Lorentzian, see \cite{MatherneMoralesSelover2022x}.
+
+In contrast, there is a (non-abelian) unit interval graph for which 
+the chromatic symmetric polynomial is not Lorentzian, or normalized Lorentzian. 
+The area sequence for when this fails is $01121121$ --- this example was found by 
+Ricky Liu and Cynthia Vinzant.
+\end{example}
+
+
+In \cite{RossSussWannerer2023x}, the authors describe a way to construct operators preserving 
+the Lorentzian property.
+
+See \cite{BrandenLeake2023x,Ross2023x} for Lorentzian polynomials on fans.
+See \cite{HuXiao2023x} for Lorentzian polynomials and intersection theory.
+
+
+For Lorentzian polynomials from independence sets in graphs,
+see \cite{BendjeddouHardiman2025}.
+
+
+
+\section[symmetricDecomposition]{Symmetric decomposition}
+
+See \cite{BrandenSolus2019} for the symmetric decomposition
+and relationship with real-rootedness.
+
+
+
+
+
+\section[gammaPositivity]{Gamma positivity}
+
+See C. Athanasiadis survey \cite{Athanasiadis2018}.
+
+A polynomial $p(x)$ of degree $n$ is \defin{symmetric} or \defin{palindromic} if $x^n p(x^{-1}) = p(x)$.
+Such a polynomial is said to be \defin{gamma-positive} if it can be expressed as
+\[
+ p(x) = \sum_{i=0}^{\lfloor n/2 \rfloor} \gamma_i x^i (1+x)^{n-2i}, \qquad \gamma_i \geq 0.
+\]
+The \defin{gamma-polynomial} of $p(x)$ is then the polynomial $\gamma_p(x) = \sum_j \gamma_j x^j$.
+
+
+\todo{Add https://arxiv.org/pdf/2302.00754.pdf }
+
+\todo{https://arxiv.org/pdf/2202.08984.pdf}
+
+\todo{https://arxiv.org/pdf/2306.15785.pdf}
+
+
+
+
+\begin{itemize}
+
+\item $p(x)$ has all roots on the negative real axis if and only if $\gamma_p(x)$ does, \cite{Branden2004Poset,Gal2005}.
+
+\item Suppose $p(x)$ is palindromic with center of symmetry $n/2$. 
+If $\gamma_p(x)$ is ultra-log-concave of order $\lfloor n/2 \rfloor$ with no internal zeros, then
+$p(x)$ is also ultra-log-concave of order $n$ with no internal zeros, \cite{BrandenFerroniJochemko2024x}.
+The converse does not hold.
+
+\item  Suppose $p(x)$ is palindromic. 
+If $\gamma_p(x)$ is log-concave with no internal zeros, then
+$p(x)$ is also log-concave with no internal zeros, \cite{FerroniPanovaVenturello2025x}.
+The converse does not hold.
+
+\end{itemize}
+
+
+
+\subsection[gammaPositiveExamples]{Examples of gamma-positivity}
+
+
+\begin{theorem}
+Foata and Strehl proved that the Eulerian polynomials $A_n(t)$ are gamma-positive,
+and the gamma-coefficients count orbits under the \defin{Foata--Strehl} action.
+
+In \cite{Branden2008}, P. Brändén generalizes this result to sign-graded posets.
+We also get gamma-positivity for the peak polynomials.
+\end{theorem}
+
+
+\begin{theorem}
+Let $Z_m(t)$ be the $P$-Eulerian polynomial associated with the zig-zag poset on $m$ vertices.
+Then $Z_m(t)$ is gamma-positive, see \cite{PetersenZhuang2024x}.
+That is,
+\[
+ Z_m(t) = t \cdot \sum_{0 \leq 2j \leq m-2} \gamma_{m,j}t^j (1+t)^{m-2-2j}, \qquad \gamma_{m,j} \geq 0.
+\]
+We have that 
+\[
+ Z_m(t) = t \cdot \sum_{\pi \in U_m} t^{\ret_1(\pi)}
+\]
+where the sum is over \hyperref[namedPermutationSets]{up-down permutations},
+and $\ret_1$ is the number of instances where $i+1$ appears to the left of $i$, but not adjacent to.
+
+It is an open problem to explain (combinatorially) the symmetry and unimodality of these coefficients. 
+\end{theorem}
+
+
+\section[realrootedOpenProblems]{Open problems}
+
+
+In \cite{CoulterDoMoskovsky2023x}, the authors consider polynomials related to Hurwitz numbers.
+These are conjectured to be real-rooted and interlace in a certain fashion \cite[Conj. 3.14]{CoulterDoMoskovsky2023x}.
+The authors prove this statement for one-point Hurwitz numbers.
+
+
+

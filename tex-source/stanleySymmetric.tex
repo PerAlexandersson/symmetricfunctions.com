@@ -1,0 +1,434 @@
+\metatitle{Stanley symmetric functions}
+\metadescription{Definitions of Stanley symmetric functions and various generalizations, for example affine Stanley symmetric functions and affine Schur functions.}
+
+
+\section[stanleySym]{Stanley symmetric functions}
+
+
+\begin{polydata}{stanleySym}
+  Name   & Stanley symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 5 \\
+  Bib      & Stanley1984 \\
+  Year     & 1984 \\
+  Keywords & schur-positive, operators, frobenius \\
+  Symbol   & $\stanleySym_\omega(\xvec)$ \\
+  Category & Schubert \\
+\end{polydata}
+
+\todo{
+Thomas Lam: Nice overview
+https://pdfs.semanticscholar.org/d6fc/62f1d0edaf0a7c79ffceee1211da9e18d2ce.pdf
+There are Affine Stanley Sym functions, which expand positively into affine Schur functions.
+}
+
+\todo{
+Affine in type B/C/D
+https://arxiv.org/pdf/1111.3312.pdf 
+}
+
+\todo{
+Bialgebra connection, type A and other types
+https://arxiv.org/pdf/1809.09857.pdf
+}
+
+The Stanley symmetric functions were introduced by R. Stanley in \cite{Stanley1984}.
+They are used for studying the number of reduced words of permutations.
+It was later proved that these symmetric 
+functions are Schur positive --- and now there are many different proofs of this result.
+
+
+\subsection[stanleySymReducedWordDefinition]{Reduced word definition}
+
+Let $\omega \in \symS_n$, and let $Red(\omega)$ be the set of reduced words of $\omega$.
+Given a reduced word $a$, let $I(a)$ be the set of integer sequences $1 \leq i_1 \leq i_2 \leq \dotsb \leq i_{\ell(\omega)}$ 
+such that $a_j \lt a_{j+1}$ implies $i_j \lt i_{j+1}$. 
+Then \defin{the Stanley symmetric functions} $\stanleySym_\omega(\xvec)$ are defined as
+\begin{equation*}
+ \stanleySym_\omega(\xvec) \coloneqq \sum_{a \in Red(\omega)} \sum_{i \in I(a)} x_{i_1}\dotsm x_{i_{\ell(\omega)}}.
+\end{equation*}
+
+From this definition, it is fairly easy to obtain the expansion in the \hyperref[gessel]{Gessel fundamental basis}.
+\begin{equation*}
+ \stanleySym_\omega(\xvec) \coloneqq \sum_{a \in Red(\omega)} \gessel_{n,\DES(i_1i_2 \dotsc i_\ell))}
+\end{equation*}
+where $a = s_{i_\ell} s_{i_{\ell-1}}\dotsb s_{i_1}$.
+Using the \hyperref[gesselSlinkyRule]{slinky rule}, this formula provides a 
+way to compute the Schur expansion of these symmetric functions.
+\todo{
+https://arxiv.org/pdf/1603.09744.pdf
+}
+
+\subsection[stanleyDecreasingFactorizationDefinition]{Decreasing factorization definition}
+
+A permutation is decreasing if it admits a reduced word $a_1 \dotsc a_\ell$
+with $a_1 \gt \dotsb \gt a_{\ell}$. If such a word exists, it is unique.
+A decreasing factorization of a permutation $\omega \in \symS_n$ is an expression of the form 
+$\omega = v_1 \dotsm v_r$ where each $v_i$ is a decreasing permutation.
+
+In \cite{Stanley1984}, the following formula was proved:
+\begin{equation*}
+ \stanleySym_\omega(x) = \sum_{\omega = v_1 \dotsm v_r } x^{\ell(v_1)} \dotsm x^{\ell(v_r)}.
+\end{equation*}
+
+
+
+\subsection[stanleySymLimitDefinition]{Stable limit definition}
+
+The Stanley symmetric functions can also be defined via the stable 
+limit of the \hyperref[schubert]{Schubert polynomials}.
+Given a permutation $\omega \in \symS_n$, we let 
+\begin{equation*}
+1^k \times \omega \coloneqq 1,2,3,\dotsc,k,\omega_1+k,\omega_2+k,\dotsc,\omega_n+k.
+\end{equation*}
+
+We have
+\begin{equation*}
+ \stanleySym_\omega(x) = \lim_{k\to \infty}  \schubert_{1^k \times \omega}(x).
+\end{equation*}
+
+The function $\stanleySym_\omega(x)$ is homogeneous with degree given by the number of inverions of $\omega$.
+There is also a recursive definition. 
+
+
+
+\subsection[stanleySymFrobenius]{Frobenius image of Specht modules}
+
+\todo{
+https://arxiv.org/pdf/1304.7870.pdf 
+}
+
+There is a generalization of Specht modules, indexed by diagrams $D$, denoted $S^D$, see \cite{BilleyPawlowski2014}.
+The Frobenius image of $S^D$ is denoted $\schurS_D$, where we obtain the irreducible Specht modules 
+whenever $D$ is a Ferrers diagram. Given a permutation $\omega$, $D(\omega)$ is the associated Rothe diagram:
+\begin{equation*}
+D(\omega) \coloneqq \{ (i, \omega_j) : 1\leq i \lt j \leq n, \omega_i > \omega_j \}
+\end{equation*}
+For a general diagram $D$ and a filling $T$ of $D$, let 
+\[
+y_T = \sum_{\substack{\sigma \in R(D) \\ \tau \in C(D)}} \sign(\tau) \tau \sigma \qquad \in \setC[\symS_n]
+\]
+where $R(D)$ is the set of permutations in $\symS_n$ permuting entries within rows of $D$, and $C(D)$ is similar but for columns.
+The \defin{Specht module} of $D$ is then $\setC[\symS_n]y_T$, and we let $\schurS_D$ be its Frobenius image.
+
+Then $\stanleySym_{\omega}(x) = \schurS_{D(\omega)}(x)$, which implies that $\stanleySym_{\omega}$ is Schur positive.
+
+\begin{problem}[See \cite{LiuThesis}]
+Find a combinatorial description of the 
+decomposition of $\schurS_D$ into Schur polynomials.
+\end{problem}
+
+
+Liu's conjecture, \cite{LiuThesis} states that the coefficients of the 
+Schur expansion of $\schurS_D$ are the same as certain coefficients appearing when studying 
+cohomology classes of Schubert varieties defined by $D$.
+
+
+\todo{
+This should be related to Foulkes characters. 
+Yes, adding up a bunch of skew shapes (whose Frobenius img is skew Schur), gives the Foulkes characters.
+https://arxiv.org/pdf/1102.5159.pdf
+}
+
+
+\subsection[stanleySymSchurExpansion]{Schur expansion}
+
+\todo{https://arxiv.org/pdf/1304.7870.pdf}
+Let $EG(\omega)$ be the set of semi-standard tableaux whose column reading word (reading columns left to right, bottom to top)
+is a reduced word for $\omega$. Then 
+\begin{equation*}
+ \stanleySym_\omega = \sum_{T \in EG(\omega)} \schurS_{sh(T)^t}.
+\end{equation*}
+This is proved using the Edelman--Greene correspondence, see \cite{EdelmanGreene1987}.
+
+There is also a crystal structure, see \cite{MorseSchilling2015} proving Schur positivity.
+
+
+\section[stanleySymBC]{Type B/C Stanley symmetric functions}
+
+
+\begin{polydata}{stanleySymBC}
+  Name   & Type B/C Stanley symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 2 \\
+  Bib      & FominKirillov1996 \\
+  Year     & 1996 \\
+  Keywords & reduced-words \\
+  Symbol   & $\stanleySym^B_\omega(\xvec)$ \\
+  Category & Schubert \\
+\end{polydata}
+
+The type $B$ and $C$ Stanley symmetric functions were introduced in \cite{FominKirillov1996},
+where the authors also introduce type $B$ and $C$ analogs of Schubert polynomials.
+
+Let $W_C$ be the type $B_n/C_n$ Coxeter group, consisting of signed permutations.
+The group $W_C$ is generated by $s_0,\dotsc,s_{n-1}$ subject to 
+\[
+s_i s_j =s_j s_i \text{ if } |i-j|>1, \quad
+s_i s_{i+1} s_i = s_{i+1} s_i s_{i+1} \text{ if } i>1, \text{ and }
+s_0 s_{1} s_0 s_1 =  s_1 s_0 s_{1} s_0.
+\]
+We have the notion of reduced words of generators.
+A reduced word $w_1,w_2,\dotsc,w_k$ is unimodal if $w_1 \lt w_2 \lt \dotsb \lt w_j \gt \dotsb \gt w_k$
+for some $j$. A \defin{unimodal factorization} of a reduced word $w$ is a factorization 
+\[
+\omega = (w_1,\dotsc w_{\ell_1})(w_{\ell_1+1},\dotsc w_{\ell_2}) \dotsm (w_{\ell_{m-1}+1},\dotsc w_{\ell_m})
+\]
+where each factor is unimodal. Factors can be empty. Let $UF(\omega)$ be the set of unimodal factorizations of $\omega$.
+Given such a factorization $F$, let $w(F)$
+be the vector of the number of elements in each factor, and let $nz(F)$ be the number of non-zero factors.
+
+Given $\omega \in  W_C$, the \defin{type $C$ Stanley symmetric function} is defined as
+\[
+\stanleySym^C_\omega(\xvec) = \sum_{F \in UF(\omega)} 2^{nz(F)}\xvec^{w(F)}.
+\]
+and the \defin{type $B$ Stanley symmetric function} is defined as
+\[
+\stanleySym^B_\omega(\xvec) = 2^{-zero(\omega)} \stanleySym^C_\omega(\xvec)
+\]
+where $zero(\omega)$ count the number of zeros in a reduced word for $\omega$.
+
+
+\subsection[stanleySymBCSchurExpansion]{Schur expansion}
+
+The type $B$ and $C$ Stanley symmetric functions are Schur positive,
+a crystal proof is given in \cite{HawkesParamonovSchilling2017}, 
+where a combinatorial interpretation of the coefficients are given.
+
+
+T. Lam shows that the type $B$ Stanley symmetric functions are Schur's $P$-function positive (see \cite{Lam1996}),
+which is a stronger statement.
+
+
+\section[stanleySymDouble]{Double Stanley symmetric functions}
+
+
+\begin{polydata}{stanleySymDouble}
+  Name   & Double Stanley symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Hawkes2018 \\
+  Year     & 2018 \\
+  Symbol   & $\stanleySym_\omega(\xvec;\yvec)$ \\
+  Category & Schubert \\
+\end{polydata}
+
+
+
+In \cite{Hawkes2018}, an interpolaton of the type $A$ and type $C$ Stanley symmetric functions is introduced.
+Hawkes show that his symmetric functions, $\stanleySym_\omega(\xvec;\yvec)$
+are Schur-positive for all $\omega \in A_n$, by a version of the Edelman--Greene insertion algorithm.
+
+
+\section[stanleySymAffine]{Affine Stanley symmetric functions}
+
+
+\begin{polydata}{stanleySymAffine}
+  Name   & Affine Stanley symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 2 \\
+  Bib      & Lam2006 \\
+  Year     & 2006 \\
+  Keywords & affine \\
+  Symbol   & $\stanleySymAffine_{w/v}(\xvec)$ \\
+  Category & Schubert \\
+\end{polydata}
+
+
+
+The affine Stanley symmetric functions were introduced by Thomas Lam in \cite{Lam2006}.
+The family $\stanleySymAffine_\omega(\xvec)$ are indexed by affine permutations $\omega \in \asymS_n$.
+Whenevere $\omega \in \symS_n$, they agree with the classical 
+Stanley symmetric function $\stanleySym_\omega(\xvec)$.
+
+There is a "skew" version of affine Stanley symmetric functions, where
+\[
+\stanleySymAffine_{w/v}(\xvec) = \stanleySymAffine_{wv^{-1}}(\xvec).
+\]
+In other words, the family of affine Stanley symmetric functions contain these skew versions.
+
+The family of affine Stanley symmetric functions contains the \hyperref[schurCylindric]{cylindrical Schur functions}.
+
+
+\subsection[stanleySymAffineCoproduct]{Coproduct}
+
+It is proved in \cite{Lam2006} that
+\[
+\stanleySymAffine_w(x_1,y_1,x_2,y_2,\dotsc) = \sum_{uv=w} \stanleySymAffine_u(\xvec)\stanleySymAffine_v(\yvec).
+\]
+
+\subsection[stanleySymAffineSchurExpansion]{Schur expansion}
+
+In \cite{MorseSchilling2015}, 
+the authors give a crystal proof that the (some?) affine Stanley symmetric functions are Schur positive.
+
+\subsection[stanleySymAffineSchurAffineExpansion]{Affine Schur expansion}
+
+
+\begin{conjecture}[See \cite{Lam2006}]
+For $w\in \asymS_n$, the expansion
+in the \hyperref[schurAffine]{affine Schur functions}
+\[
+\stanleySymAffine_w(\xvec) = \sum_{\lambda} a_{w\lambda} \stanleySymAffine_\lambda(\xvec)
+\]
+is non-negative.
+\end{conjecture}
+
+This result be analogous to the Schur 
+expansion of \hyperref[stanleySymSchurExpansion]{Stanley symmetric functions}.
+
+
+
+\section[schurAffine]{Affine Schur functions}
+
+
+\begin{polydata}{schurAffine}
+  Name   & Affine Schur functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 2 \\
+  Bib      & Lam2006 \\
+  Year     & 2006 \\
+  Keywords & affine \\
+  Symbol   & $\stanleySymAffine_{\lambda}(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+
+The \defin{affine Schur functions} are obtained as a special case of the 
+\hyperref[stanleySymAffine]{affine Stanley symmetric functions}.
+
+Let $\omega$ be an affine Grassman permutation, corresponding to $\lambda = \lambda(\omega)$,
+we let $\stanleySymAffine_\lambda(\xvec) \coloneqq \stanleySymAffine_\omega(\xvec).$
+These are called the affine Schur functions.
+These are dual to the \hyperref[kSchur]{$k$-Schur functions}, see \cite{MorseSchilling2015,LapointeMorse2008},
+and are thus sometimes referred to as \defin{dual $k$-Schur functions}.
+
+Let $Par^n$ denote the set of partitions with $\lambda_1 \leq n-1$.
+\[
+\{ \stanleySymAffine_{\lambda}(\xvec) : \lambda \in Par^n \}
+\]
+form a basis for the space $\spaceSym^{(n)}$ where
+\[
+\spaceSym^{(n)} \coloneqq\{ \monomial_{\lambda}(\xvec) : \lambda \in Par^n \}, \qquad 
+\spaceSym_{(n)} \coloneqq\{ \completeH_{\lambda}(\xvec) : \lambda \in Par^n \}.
+\]
+
+
+\section[schurAffineSkew]{Skew affine Schur functions}
+
+\begin{polydata}{schurAffineSkew}
+  Name   & Skew affine Schur functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 2 \\
+  Bib      & Lam2006 \\
+  Year     & 2006 \\
+  Keywords & affine \\
+  Symbol   & $\stanleySymAffine_{\lambda/\mu}(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+\todo{
+\[
+\stanleySymAffine_{\lambda/\mu}(\xvec) = \sum_{a=(a_1,\dotsc,a_r)} 
+\langle \completeHomogeneous_{a_1} \dotsm \completeHomogeneous_{a_r} \cdot \mu , \lambda \rangle \xvec^a 
+\]
+}
+
+Let $\mu \subseteq \lambda$ be two $n$-cores such that there is some $w \in \asymS_n$
+such that $u_w \cdot \mu = \lambda$. This means that $\lambda$ can be obtained from $\mu$
+under a certain $\asymS_n$-action given by $u_w$.
+Then \cite{Lam2006}, a formula of the form
+\[
+\stanleySymAffine_{\lambda/\mu}(\xvec) = \sum_{T} \xvec^{w(T)}
+\]
+is presented, where the sum is over certain $k$-tableaux of shape $\lambda/\mu$,
+and it is shown that whenever $\lambda \subseteq ((n-m)^m)$ for some $1\leq m\leq n-1$, then
+$\stanleySymAffine_{\lambda}(\xvec) = \schurS_\lambda(\xvec)$.
+
+The family of skew affine Schur functions contains the cylindrical Schur functions.
+
+\begin{remark}
+Note that some skew affine Schur functions are not obtained as 
+(skew) affine Stanley symmetric functions.
+\end{remark}
+
+
+\subsection[schurSkewAffineInschurAffine]{Expansion in affine Schur functions}
+
+See \cite[Theorem 6.9]{LapointeMorse2008}, which expands the skew affine Schur functions 
+in terms of affine Schur functions.
+
+
+\section[stanleySymInvolution]{Involution Stanley symmetric functions}
+
+
+
+\begin{polydata}{stanleySymInvolution}
+  Name   & Involution Stanley symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & HamakerMarbergPawlowski2017 \\
+  Year     & 2017 \\
+  Keywords & schur-positive \\
+  Symbol   & $\stanleySymInvolution_{y}(\xvec)$ \\
+  Category & Schubert \\
+\end{polydata}
+
+
+The involution Stanley symmetric functions were introduced in \cite{HamakerMarbergPawlowski2017},
+as the stable limit of the \hyperref[schubertInvolution]{involution Schubert polynomials}.
+
+The involution Stanley symmetric functions are by definition 
+a positive linear combination of the usual Stanley symmetric functions,
+and are therefore Schur positive.
+
+\begin{theorem}[See \cite[Corollary 4.37]{HamakerMarbergPawlowski2017}]
+The involution Stanley symmetric functions are \hyperref[schurP]{$P$-Schur positive}.
+\end{theorem}
+
+
+\section[stanleySymAffineInvolution]{Affine involution Stanley symmetric functions}
+
+\begin{polydata}{stanleySymAffineInvolution}
+  Name   & Affine involution Stanley symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & MarbergZhang2018 \\
+  Year     & 2018 \\
+  Symbol   & $\stanleySymAffineInvolution_{y}(\xvec)$ \\
+  Category & Schubert \\
+\end{polydata}
+
+There is a unification of the involution Stanley symmetric functions and the affine Stanley symmetric functions,
+introduced by E. Marberg and Y. Zhang 2018 in \cite{MarbergZhang2018}. 
+It is expected that these are related to geometry of affine analogues of certain symmetric varieties.
+
+
+\section[stanleySymAffineFPF]{Affine fixed-point free Stanley symmetric functions}
+
+\begin{polydata}{stanleySymAffineFPF}
+  Name   & Affine fixed-point free Stanley symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Zhang2019 \\
+  Year     & 2019 \\
+  Symbol   & $\stanleySymAffineFPF_{y}(\xvec)$ \\
+  Category & Schubert \\
+\end{polydata}
+
+In \cite{MarbergZhang2018}, the authors also introduced the \defin{fixed-point free 
+Stanley symmetric functions} which are indexed by fixed-point-free permutations.
+An affine extension is introduced by Zhang \cite{Zhang2019}.
+These are indexed by self-inverse permutations without fixed-points.
+

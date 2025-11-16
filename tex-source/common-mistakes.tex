@@ -1,0 +1,287 @@
+
+\metatitle{Per Alexandersson Common mistakes when writing mathematics}
+\metadescription{Common mistakes when writing mathematics, and how to fix them}
+
+\section[sec-mistakes-intro]{Introduction}
+
+First and foremost, a mathematical text with equations, expressions and symbols is still a text.
+It should still be built with complete sentences, ending with a period.
+The text should have a natural flow when read.
+\emph{It is a good idea to read the text out loud, even all the symbols and equations!}
+
+
+
+\subsection[sec-mistakes-symbols]{Symbols}
+
+It is common to overuse symbols or being redundant.
+\begin{example}
+\emph{This implies that}
+$
+\implies x^2=2+x.
+$
+The implication arrow ($\implies$) is redundant.
+\end{example}
+
+Symbols should usually not replace words in inline text.
+\begin{example}
+\emph{We have that $x=2 \wedge x=3$ are solutions.}
+
+It is better to just write \emph{We have that $x=2$ and $x=3$ are solutions.}
+\end{example}
+
+
+Symbols are mainly used when making definitions, where it is important to avoid ambiguity.
+\begin{example}
+\emph{An injective function is a function such that whenever $x$ and $y$ are different values in its domain, the function values 
+at $x$ and $y$ are different.}
+
+Notice that this definition is rather difficult to parse. 
+The following definition is easier to understand.
+
+\emph{
+A function $f$ is injective if $x\neq y \implies f(x) \neq f(y)$ whenever $x,y \in D_f$.
+}
+
+\end{example}
+
+\subsection[sec-mistakes-sentece-start]{Inline math expressions}
+
+Do not start sentences with a mathematical expression.
+This usually looks strange and more often than not, sound strange when read out loud.
+
+\begin{example}
+\emph{$x=2$ is the only solution.}
+
+Better write 
+\emph{The only solution is $x=2$.}
+\end{example}
+
+
+
+
+\subsection[sec-mistakes-equation-mode]{Equation mode expressions}
+
+A centered equation should also be part of a sentence.
+
+\begin{example}
+\emph{We add two to both sides.}
+\[
+(x-2) + 2 = (x^2-4)+2
+\]
+\emph{Both sides are now simplified.}
+\[
+x = x^2-2
+\]
+
+Notice that there is no real sentence structure here. 
+Rewrite as follows instead
+and notice the period and comma in the equations.
+
+\emph{We add $2$ to both sides and get
+\[
+(x-2) + 2 = (x^2-4)+2,
+\]
+which then simplifies to the equation
+\[
+x = x^2-2.
+\]
+}
+\end{example}
+
+
+\subsection[sec-mistakes-colon]{Usage of colon and semicolon}
+
+There is usually no need to use a colon, or a semicolon before an equation.
+
+\begin{example}
+\emph{The identity:}
+\[
+\sin^2(x) + \cos^2(x)=1
+\]
+\emph{is called the "Pythagorean trigonometric identity".}
+
+Here, the colon makes no sense, as the identity is part of the statement.
+However, for other sentence structures, it makes sense to use a colon or semicolon.
+
+\emph{Consider the following identity, which is called the Pythagorean trigonometric identity:}
+\[
+\sin^2(x) + \cos^2(x)=1.
+\]
+
+In this case, the formula does not fit into the sentence as it is --- we need the semicolon to start a new phrase.
+\end{example}
+
+
+
+
+
+\section[sec-mistakes-type]{Problems with types}
+
+\subsection[sec-mistakes-types-intro]{Confusing notation}
+
+We are exposed to different \emph{types} (as in programming) in mathematics.
+Think of these as units in physics.
+Some common types are \emph{numbers}, \emph{statements}, \emph{functions}, \emph{matrices}, etc.
+Note that for example, $3$ can be seen as both a number and a function.
+We have different notation for dealing with equality between objects of different types.
+
+Make sure that equivalence arrow ($\iff$) is only between statements (things that can be true or false).
+Arrows $(\to)$ are used for various purposes, for example when talking about limits.
+Equality $(=)$ is for things which have the same (numerical, usually) value.
+It is unfortunate that we use $=$ both for \emph{identically equal to} (i.e, equal for all values of parameters),
+and when talking about \emph{equations}, where we mainly are interested in for which values equality holds.
+For example, the \emph{identity} $\sin^2(x)+\cos^2(x)=1$ is an equality between \emph{functions},
+while $\sin(x)+\cos(x)=1$ is interpreted as an \emph{equation} and thus $=$ is now equality between \emph{numbers}.
+
+
+Equality is also used for introducing new notation, or making substitutions.
+For example, in the middle of
+\[
+\lim_{x\to 1} \frac{(\sqrt{x}-1)^2}{x(\sqrt{x}-1)} = 
+\left[
+\begin{smallmatrix}
+t = \sqrt{x} \\
+t^2 = x
+\end{smallmatrix}
+\right] = 
+\lim_{t\to 1} \frac{(t-1)^2}{t^2(t-1)} 
+\]
+we make a substitution by introducing new notation. In this context, $t = \sqrt{x}$ 
+can be seen as introducing the function $t(x) = \sqrt{x}$.
+
+When introducing new functions or notation, mathematicians sometimes write $\coloneqq$.
+This is read as \emph{defined as}. For example,
+\[
+|x| \coloneqq 
+\begin{cases}
+x \text{ if } x\geq 0 \\
+-x \text{ otherwise}.
+\end{cases}
+\]
+This is read out loud as 
+\begin{blockquote}
+Let the absolute value of x be defined as x, if x is greater-than-or-equal-to zero,
+and minus x otherwise.
+\end{blockquote}
+
+
+\subsection[sec-mistakes-types-equal]{Example with equality signs}
+
+A common source of confusion is the mixing of equality-as-expression with equation-equality.
+\begin{example}
+Consider the following fragment from a solution:
+
+\emph{
+In order to find extremal points of $f(x)=x^3+2x-\cos(x)$, we set the derivative to 0.
+That is, $f'(x) = 3x^2+2+\sin(x)=0$.
+}
+
+The problem here is that the first equality sign is the \emph{identity} $f'(x) = 3x^2+2+\sin(x)$. This is true for all value of $x$.
+The second equality sign $3x^2+2+\sin(x)=0$ is an \emph{equation} and only true for some particular values of $x$.
+What is \emph{not} true, is that $f'(x)=0$ for all $x$.
+
+We can instead write as follows in order to avoid mixing types of equality.
+
+\emph{
+In order to find extremal points of $f(x)=x^3+2x-\cos(x)$, we want to find zeros of the derivative.
+The derivative is given by $f'(x) = 3x^2+2+\sin(x)$,
+so we need to solve the equation $3x^2+2+\sin(x) = 0$.
+}
+
+This is a bit more verbose, but it has the advantage of being correct.
+
+\end{example}
+
+
+
+\subsection[sec-mistakes-types-limits]{Examples with limits}
+
+
+We shall now see a few common mistakes in the context of limits.
+
+\begin{example}
+\[
+\text{Incorrect: } 
+\lim_{t\to 0} \frac{t^3-1}{t-1} \to 3
+\qquad 
+\text{Correct: } 
+\lim_{t\to 0} \frac{t^3-1}{t-1} = 3.
+\]
+\emph{Explanation:} A limit is either a number, (or $\pm \infty$ or undefined), so equality sign should be used.
+\end{example}
+
+\begin{example}
+\[
+\text{Incorrect: } 
+\lim_{t\to 0} \frac{t^3-1}{t-1}  = \frac{t^2+2t+1}{1}
+\qquad 
+\text{Correct: } 
+\lim_{t\to 0} \frac{t^3-1}{t-1} = \lim_{t\to 0} \frac{t^2+2t+1}{1}.
+\]
+\emph{Explanation:} The first one is incorrect, as it states that the number $3$ is equal to the expression $\frac{t^2+2t+1}{1}$.
+
+Perhaps more true to the writers intention, one could alternatively express the identity as
+\[
+\lim_{t\to 0} \frac{t^3-1}{t-1}  = \left. \frac{t^2+2t+1}{1} \right\vert_{t=1}.
+\]
+Here, $\left. \frac{t^2+2t+1}{1} \right\vert_{t=1}$ is a commonly established shorthand for 
+\[
+f(1) \text{ where } f(t) = \frac{t^2+2t+1}{1}.
+\]
+In computer science lingo, this notation allows us to evaluate an anonymous function with a particular argument.
+We read $t^2+4\vert_{t=1}$ out loud as 
+\begin{blockquote}
+Tee-squared-plus-four evaluated at tee-equals-one.
+\end{blockquote}
+
+\end{example}
+
+
+\begin{example}
+\[
+\text{Incorrect: } 
+ \frac{t^3-1}{t-1}  = 3 \text{ when $t=1$}.
+\qquad 
+\text{Correct: } 
+\frac{t^3-1}{t-1}  \to 3 \text{ as $t\to1$}.
+\]
+\emph{Explanation:} The expression is not defined at $t=1$. However, it is true that the limit is $3$,
+and we are justified to use the arrows to express this. The latter statement is read out loud as
+\begin{blockquote}
+Tee-cubed minus one, over tee-minus-one approaches three, as tee approaches one.
+\end{blockquote}
+
+\end{example}
+
+
+\begin{example}
+The following is incorrect:
+\[
+ \lim_{x\to 0} \frac{e^x-1}{x} \frac{\sin(x)}{x} \implies  
+ \lim_{x\to 0} \frac{e^x-1}{x} \lim_{x\to 0} \frac{\sin(x)}{x}.
+\]
+We do not use implication between values. To make it correct, put an equality sign instead.
+What is meant is perhaps that the equality is a consequence of the following implication,
+correctly stated as:
+\[
+ \lim_{x\to 0} \frac{e^x-1}{x} = A \text{ and } \lim_{x\to 0} \frac{\sin(x)}{x} \implies 
+ \lim_{x\to 0} \frac{e^x-1}{x} \frac{\sin(x)}{x} = AB.
+\]
+Note that this implication in general has some restrictions on $A$ and $B$.
+\end{example}
+
+
+\begin{example}
+The following is incorrect, for the same reason as above.
+\[
+ \lim_{x\to 0} \sqrt{ \frac{e^{2x}-1}{x} } \implies  
+ \sqrt{\lim_{x\to 0} \frac{e^{2x}-1}{x} }.
+\]
+Here, it would be clearer to give the limit a name:
+\[
+\text{Let } A \coloneqq \lim_{x\to 0} \sqrt{ \frac{e^{2x}-1}{x} }, \text{ then } \lim_{x\to 0} \frac{e^{2x}-1}{x} = \sqrt{A}.
+\]
+Since $\sqrt{A}=2$, we find that $A=4$.
+\end{example}
+
+

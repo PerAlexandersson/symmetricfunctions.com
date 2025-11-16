@@ -1,0 +1,40 @@
+\metatitle{Plane partitions}
+\metadescription{Plane partitions.}
+
+
+\section[planePartitions]{Plane partitions}
+
+A \defin{plane partition} is an array $\pi_{ij}$ of non-negative 
+integers with weakly decreasing rows and columns.
+We let $|\pi|$ denote the total sum of the entries.
+
+See \href{http://www-math.mit.edu/~rstan/pubs/pubfiles/75.pdf}{Stanley's survey}
+for a bit more background.
+
+\begin{theorem}[MacMahon, \cite{MacMahon1960}]
+We have
+\[
+\sum_{\pi} q^{|\pi|} = 
+\prod_{i=1}^a \prod_{j=1}^b \prod_{k=1}^m
+\frac{1-q^{i+j+m-1}}{1-q^{i+j+m-2}}
+\]
+where the sum is over all plane partitions 
+with $\leq a$ rows, $\leq b$ columns and largest entry $\leq m$.
+\end{theorem}
+
+
+\begin{theorem}[Kreweras, \cite{Kreweras1965}]
+The number of plane partitions of shape $\lambda/\mu$
+with maximal entry at most $m$, is given by
+\[
+\det\left(
+\binom{\lambda_i-\mu_j + m}{i-j+m}
+\right)_{i,j=1,\dotsc,\ell}
+\]
+where $\ell = \length(\lambda)$.
+\end{theorem}
+Note that this allow us to efficiently compute the Ehrhart polynomial of 
+order polytopes associated with Ferrer's diagrams.
+
+S. Hopkins: \href{https://mathoverflow.net/questions/350445/determinantal-formula-for-plane-partitions-of-shifted-shape}{Is there a similar formula for shifted shapes?}
+

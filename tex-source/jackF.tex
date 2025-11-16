@@ -1,0 +1,90 @@
+
+
+
+\section[jackPi]{Jack interpolation polynomials}
+
+
+\begin{polydata}{jackPi}
+  Name   & Jack interpolation polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & Sahi1994 \\
+  Year     & 1994 \\
+  Symbol   & $\jackP^{\rho}_\lambda(\xvec)$ \\
+  Keywords & fillings \\
+  Category & Schur \\
+\end{polydata}
+
+The \emph{Jack interpolation polynomials} $\jackP^{\rho}_\lambda(\xvec)$
+are non-homogeneous extensions of the \hyperref[jackP]{Jack polynomials},
+where $\rho = (\rho_1,\rho_2,\dotsc)$ is a sequence of indeterminates.
+These polynomials were first introduced by S. Sahi in 1994, see \cite{Sahi1994}.
+Similar to the \hyperref[jackShifted]{shifted Jack polynomials}, the 
+Jack interpolation polynomials are characterized by relatively simple vanishing conditions.
+
+
+\subsection[jackPiDef]{Definition}
+
+The polynomial $\jackP^{\rho}_\lambda(x_1,\dotsc,x_n)$, is the unique
+symmetric function of total degree $|\lambda|$ which satisfies the following.
+\begin{itemize}
+\item For every integer partitions $\mu$, $|\mu| \leq |\lambda|$ and $\mu \neq \lambda$,
+we have $\jackP^{\rho}_\lambda(\mu + \rho) = 0$.
+
+\item The coefficient of $\monomial_\lambda$ in $\jackP^{\rho}_\lambda$ is $1$.
+
+\end{itemize}
+
+Let $\delta = (n-1,n-2,\dotsc,1,0)$.
+In the case $\rho = r \delta$, one have that 
+\[
+ \jackP^{r \delta}_\lambda(\xvec) = \jackP_\lambda(\xvec; 1/r) + \text{ lower order terms}.
+\]
+That is, a particular choice of $\rho$ allows us to recover the classical 
+Jack $P$ polynomial $\jackP_\lambda(\xvec; 1/r)$, as the highest term.
+
+\subsection[jackJiMonomialPositivity]{Monomial positivity}
+
+In \cite{NaqviSahiSergel2021x}, the authors study the normalized version
+\[
+ \jackJ^{r \delta}_\lambda(\xvec) \coloneqq 
+ H_\lambda(a) \cdot (-1)^{|\lambda|} \jackP^{r \delta}_\lambda(-\xvec),
+\]
+where $H_\lambda$ is an \hyperref[jackJ]{$a$-deformation of hook products},
+and $r = 1/a$.
+
+They show that the coefficients $c_{\mu}(a)$ in the expansion
+\[
+\jackJ^{r \delta}_\lambda(\xvec) = \sum_{\mu} a^{|\mu|-|\lambda|} c_{\mu}(a) \monomial_\mu(\xvec)
+\]
+are elements in $\setN[a]$.
+
+In fact, in \cite[Thm. 5.4]{NaqviSahiSergel2021x} the authors give a combinatorial expansion,
+\[
+\jackJ^{r \delta}_{\gamma^+}(\xvec) = \sum_{\text{$T$ admissible}} d_T(a) \xvec^{\underline{w(T)}},
+\]
+where $ \xvec^{\underline{w(T)}}$ is a certain \emph{bar monomial}, which is monomial positive.
+This formula is the interpolation analog of the \hyperref[jackCombinatorialFormula]{Knop--Sahi formula}.
+A non-symmetric version is also given in \cite{NaqviSahiSergel2021x}.
+
+
+
+% \section[jackF]{Jack non-symmetric interpolation polynomials}
+
+% 
+% \begin{polydata}{jackF}
+%   Name   & Jack non-symmetric interpolation polynomials \\
+%   Space    & All \\
+%   Basis    & True \\
+%   Rating   & 2 \\
+%   Bib      & Jack1970 \\
+%   Year     & 1970 \\
+%   Symbol   & $\jackF_\alpha(\xvec)$ \\
+%   Keywords & fillings \\
+%   Category & Schur \\
+% \end{polydata}
+% 
+% \todo{ Add defs and info from {NaqviSahiSergel2021x}  }
+
+

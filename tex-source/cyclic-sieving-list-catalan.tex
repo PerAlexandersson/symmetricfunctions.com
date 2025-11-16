@@ -1,0 +1,314 @@
+\metatitle{Catalan cyclic sieving}
+\metadescription{A list of instances of the cyclic sieving phenomenon on Catalan and Narayana-type objects}
+
+See the \hyperref[cyclicSieving]{cyclic sieving phenomenon} 
+page for the definition and related theorems.
+
+The $q$-analog of the Catalan numbers here is defined as $\catalan(n,q) = \frac{1}{[n+1]_q}\qbinom{2n}{n}_q $.
+
+\section[cspListCatalan]{Catalan objects}
+
+\subsection[cspCatalanTriangulations]{Triangulations of $(n+2)$-gons}
+
+Let $\mathrm{TRI}(n)$ be the set of triangulations on an $n$-gon.
+Note that $|\mathrm{TRI}(n)| = \catalan(n-2)$.
+We let $\rot_{n}$ denote rotation by $2\pi/n$.
+Then 
+\[
+\left( \mathrm{TRI}(n), \langle \rot_{n} \rangle,  \catalan(n-2,q) \right)
+\]
+exhibits the CSP, see \cite{ReinerStantonWhite2004}.
+
+
+
+
+In \cite[Thm. 8.2]{AlexanderssonLinussonPotkaUhlin2021}, we refine this result.
+We let $\mathrm{TRI}_{\mathrm{ear}}(n,k)$ denote the set of triangulations 
+of an $n$-gon with $k$ ears. An ear is a triangle with at most one side in the interior.
+\begin{theorem}
+Let $2 \leq k \leq \frac{n}{2}$ and let
+\begin{equation*}
+\mathrm{Tri}_q(n,k) \coloneqq
+q^{k(k-2)} \frac{[n]_q}{[k]_q} \qbinom{n-4}{2k-4}\catalan_q(k-2)
+\left( \sum_{j=0}^{n-2k} q^{j(n-2)}\qbinom{n-2k}{j}\right).
+\end{equation*}
+Then $\sum_k \mathrm{Tri}_q(n,k) = \catalan_q(n-2),$ and
+$
+\left(
+\mathrm{TRI}_{\mathrm{ear}}(n,k), \langle \rot_n \rangle, \mathrm{Tri}_q(n,k)
+\right)
+$
+exhibits the cyclic sieving phenomenon.
+\end{theorem}
+
+
+
+\subsection[cspNonCrossingMatchingsI]{Non-crossing matchings}
+
+Let $X_n$ be the set of non-crossing matchings, on $2n$ vertices. It is well-known
+that $|X_n| =\catalan(n)$.
+We let the generator of $\grpc_n$ act on $X_n$ by a $2\pi/n$ rotation.
+Then 
+\[
+\left( X_{n}, \grpc_n,  \frac{1}{[n+1]_q}\qbinom{2n}{n}_q \right)
+\]
+exhibits the CSP.
+This is a special case of promotion, $\partial$, on \hyperref[cspRectangularSYT]{rectangular SYT},
+in the case of tableaux of shape $(n,n)$.
+In fact, we can refine the above CSP, and let $\grpc_{2n}$ act on $X_n$ by a $\pi/n$ rotation.
+Then 
+\[
+\left( X_{n}, \grpc_{2n},  \frac{1}{[n+1]_q}\qbinom{2n}{n}_q \right)
+\]
+exhibits the CSP, see \cite{PetersenPylyavskyyRhoades2008}.
+
+\todo{
+A direct combinatorial proof:
+https://math.stackexchange.com/questions/2913242/computing-fixpoints-of-noncrossing-matchings-of-2n-points-under-rotation
+}
+
+\begin{example}
+For $n=3$, there are five non-crossing matchings:
+
+\begin{figure}
+<img src="./svg-images/nonCrossingMatching000.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+<img src="./svg-images/nonCrossingMatching010.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+<img src="./svg-images/nonCrossingMatching100.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+<img src="./svg-images/nonCrossingMatching110.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+<img src="./svg-images/nonCrossingMatching210.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+\end{figure}
+
+These are in bijection with north-east lattice paths from $(0,0)$ to $(n,n)$ which are never below the main diagonal.
+The bijection is given by parenthesis matching, where a north-step is a left parenthesis, and an east step is a right parenthesis.
+
+\begin{figure}
+<img src="./svg-images/dyckPath000.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+<img src="./svg-images/dyckPath010.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+<img src="./svg-images/dyckPath100.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+<img src="./svg-images/dyckPath110.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+<img src="./svg-images/dyckPath210.svg" alt="Non-crossing" style="width:17%; margin:5px;"/>
+\end{figure}
+
+The lattice paths are now in bijection with $2\times n$ standard Young tableaux.
+The bijection is given by making the number $k$ appear in the first row of the SYT if step $k$
+in the path is a north-step.
+
+\begin{figure}
+\begin{ytableau}
+1 & 3 & 5 \\
+2 & 4 & 6
+\end{ytableau}
+\begin{ytableau}
+1 & 3 & 4 \\
+2 & 5 & 6
+\end{ytableau}
+\begin{ytableau}
+1 & 2 & 5 \\
+3 & 4 & 6
+\end{ytableau}
+\begin{ytableau}
+1 & 2 & 4 \\
+3 & 5 & 6
+\end{ytableau}
+\begin{ytableau}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{ytableau}
+\end{figure}
+
+\end{example}
+
+
+
+In \cite[Thm. 4.8]{AlexanderssonLinussonPotkaUhlin2021}, we refine the CSP on non-crossing matchings.
+Let $\NCM_{sh}(n, k)$ be the set of non-crossing matchings with exactly $k$ short edges,
+and $\SYT_{cdes}(n^2,k)$ be the set of $2 \times n$ standard Young tableaux with exactly $k$ cyclic descents.
+\begin{theorem}
+Let $k, n \geq 2$ be natural numbers and let
+\[
+ \SYT_q(n,k) \coloneqq \frac{q^{k(k-2)}(1+q^n)}{[n+1]_q} \qbinom{n+1}{k} \qbinom{n-2}{k-2}.
+\]
+Then \[
+\sum_{k} \SYT_q(n,k) = \catalan_{n}(q),
+\] and the triples
+\[
+(\SYT_{cdes}(n^2,k),\langle \partial_{2n} \rangle,\SYT_q(n,k) )\]
+and
+\[
+(\NCM_{sh}(n, k),\langle \mathrm{rot}_{2n} \rangle, \SYT_q(n,k) )
+\]
+exhibit the cyclic sieving phenomenon.
+\end{theorem}
+
+
+
+
+\subsection[csp12]{Non-crossing (1,2)-configurations}
+
+Let $\mathrm{NCC}_n$ be the set non-crossing $(1,2)$-configurations of $[n-1]$.
+That is, elements are partitioned into sets of size $1$ or $2$
+and sets of size $2$ are non-crossing.
+We have that $|X_n| = \catalan(n)$, \cite[Family 60]{StanleyCatalan}.
+The generator of $\grpc_{n}$ act on $\mathrm{NCC}_{n+1}$ by a $2\pi/n$ rotation.
+Then 
+\[
+\left( \mathrm{NCC}_{n+1}, \grpc_{n}, \catalan_{n+1}(q) \right)
+\]
+exhibits the CSP, see \cite{Thiel2017}.
+
+
+A representation-theoretical proof of this cyclic sieving phenomenon 
+can be found in \cite{ZengZhang2024x}. The authors also 
+give a dihedral group action with CSP. 
+
+
+\subsection[csp12twist]{Non-crossing (1,2)-configurations, with twist}
+
+There is an alternative group action, combining rotation with a type of twist,
+see \cite[Thm. 5.4]{AlexanderssonLinussonPotkaUhlin2021}.
+With a different $q$-analog of the Catalan numbers, we get CSP for non-crossing $(1,2)$-configurations.
+\begin{theorem}
+The triple
+\[
+\left(
+\mathrm{NCC}(n+1), \langle \mathrm{twist}_{2n} \rangle, \qbinom{2n}{n} - q^2 \qbinom{2n}{n-2}
+\right)
+\]
+exhibits the cyclic sieving phenomenon.
+\end{theorem}
+
+There is a type $B$ version of non-crossing $(1,2)$-configurations.
+In \cite[Thm. 6.6]{AlexanderssonLinussonPotkaUhlin2021},
+we show that
+$
+\left(\mathrm{NCC}^B(n+1), \langle \mathrm{twist}^2_{2n} \rangle, \qbinom{2n}{n}\right)
+$
+is a CSP-triple.
+
+
+\subsection[cspNonCrossingPartitions]{Non-crossing partitions (Narayana)}
+
+A non-crossing partition is a set-partition of the vertices in an $n$-gon,
+so that the convex hulls of the sets do not intersect.
+Let $X_{n,k}$ be the set of non-crossing partitions with $k$ blocks,
+and let $\grpc_n$ act by rotation of the $n$-gon.
+Then 
+\[
+\left( X_{n,k}, \grpc_n, q^{k(k+1)} \frac{1}{[n]_q} \qbinom{n}{k}_q  \qbinom{n}{k+1}_q \right)
+\]
+exhibits the CSP, see \cite{ReinerStantonWhite2004}.
+
+
+\subsection[cspWCatalan]{Non-crossing partitions II}
+
+D. Bessis and V. Reiner \cite{BessisReiner2011} study \emph{well-generated complex reflection groups}.
+For such groups $W$, one can define a generalization of the $q$-Catalan numbers, $\catalan(W,q)$
+as well as the notion of non-crossing partitions.
+The set of non-crossing partitions, $NC(W)$ are identified with a certain set of reflections in $W$.
+There is then a special element, $c\in W$ acting on $NC(W)$ via conjugation.
+
+It is then proved that
+\[
+\left( 
+NC(W), \langle c \rangle , \catalan(W,q)
+\right)
+\]
+is a CSP-triple.
+
+The authors provide a connection with Springer's theory, and end the article with 
+several conjectures. Most of these conjectures are resolved later in \cite{ReinerSommers2018}.
+
+
+\subsection[cspNarayana]{Non-crossing partitions III (Narayana, Kreweras)}
+
+In \cite{ReinerSommers2018}, the authors find a cyclic sieving phenomenon 
+on non-crossing partitions of $n$ with exactly $k$ parts.
+The number of such non-crossing partitions is given by the \defin{Narayana numbers},
+and we define a $q$-analogue of the \hyperref[prelimQanalogsCatalan]{Narayana numbers} as
+\[
+N_{n,k}(q) \coloneqq \frac{ q^{k(k-1)} }{ [n]_q } \qbinom{n}{k}_q \qbinom{n}{k-1}_q 
+= \frac{ q^{k(k-1)} }{[k]_q} \qbinom{n-1}{k-1}_q \qbinom{n}{k-1}_q.
+\]
+Note that $\catalan_n(q)=\sum_k N_{n,k}(q)$.
+The $\grpc_n$ group action on the non-crossing partitions is given by rotation.
+For each fixed value of $n$ and $k$ with $1\leq k \leq n$, 
+we have a cyclic sieving phenomenon.
+
+
+The authors also prove CSP in the case of \defin{$q$-Kreweras numbers}.
+Let $\lambda \vdash n$ and $\length(\lambda)=k$. The $q$-analogue 
+of the Kreweras numbers is defined as 
+\[
+Krew(\lambda;q) \coloneqq \frac{q^{k(n-1)-c(\lambda)}}{[n+1]_q} \qbinom{n+1}{m(\lambda),n-k+1}
+\]
+where $c(\lambda) = \sum_{i} \lambda'_i \lambda'_{i+1}$
+and $m(\lambda)$ is the type of $\lambda$.
+Then $Krew(\lambda;1)$ is the number of non-crossing partitions where the part sizes 
+are given by $\lambda$. 
+The cyclic group action still gives a cyclic sieving phenomenon.
+
+The authors generalize this to other classical types of 
+Weyl groups ($A$,$B$,$C$,$D$).
+
+
+\begin{example}[Non-crossing partitions]
+
+Here is a list of the non-crossing partitions for $n=4$:
+
+\begin{figure}
+<img src="./svg-images/nonCrossingPartitions.svg" 
+alt="Non-crossing partitions for n=4" class="imgFullWidth"/>
+\end{figure}
+
+\end{example}
+
+
+
+\subsection[cspNonCrossingPartitionsFuss]{Non-crossing partitions IV (Fuß--Catalan)}
+
+In \cite{KrattenthalerMuller2013}, the authors consider 
+$m$-divisible non-crossing partitions.
+Let $X_{n,m}$ be the number of non-crossing partitions of $[nm]$
+where each part has a size which is a multiple of $m$.
+Consider the $q$-analogue $q$-analogue of the Fuß--Catalan numbers:
+\[
+f_{n,m}(q) \coloneqq \frac{1}{[n]_q} \qbinom{(m+1)n}{n-1}_q =  \frac{1}{[(m+1)n+1]_q}\qbinom{(m+1)n+1}{n}_q.
+\]
+Then $(X_{n,m},\grpc_{mn},f_{n,m}(q))$ is a CSP-triple,
+where $\grpc_n$ act by rotation of $2\pi/(mn)$.
+
+
+Similarly, let $Y_{n,m}$ be the number of non-crossing partitions of $[nm]$
+where each part has a size equal to $m$, and let
+\[
+g_{n,m}(q) \coloneqq \frac{1}{[n]_q} \qbinom{mn}{n-1}_q.
+\]
+Then $(Y_{n,m},\grpc_{mn},g_{n,m}(q))$ is a CSP-triple,
+where $\grpc_n$ act by rotation of $2\pi/(mn)$.
+
+
+The authors also consider \emph{irreducible well-generated complex reflection groups},
+which reduce to the Fuß--Catalan numbers in type $A$.
+See also \cite{ReinerSommers2018}.
+
+
+
+\subsection[cspRationalCatalan]{Rational Catalan and Kreweras}
+
+In \cite{BodnarRhoades2016} M. Bodnar and B. Rhoades prove that the 
+rational $q$-Catalan numbers,
+\[
+\catalan_{a/b}(q) = \frac{1}{[a+b]_q} \qbinom{a+b}{a}_q,
+\]
+admits a cyclic sieving phenomenon. They require that $a\lt b$ and $a$, $b$ are coprime.
+Then $\grpc_{b-1}$ act on the set of $(a,b)$-non-crossing 
+partitions of $[b-1]$ by rotation, and this gives a CSP.
+This settles a conjecture stated in \cite{Armstrong2012}.
+
+They also prove the corresponding refined rational $q$-Narayana and $q$-Kreweras version of this.
+The rational $q$-Narayana numbers are defined as
+\[
+N_{a/b,k}(q) = \frac{1}{[a]_q} \qbinom{a}{k}_q \qbinom{b-1}{k-1}_q,
+\]
+where the classical \hyperref[prelimQanalogsCatalan]{Narayana numbers} are recovered when $a=b=n$ and $q=1$.
+

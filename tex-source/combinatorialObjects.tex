@@ -1,0 +1,59 @@
+\metatitle{Other combinatorial families}
+\metadescription{Set-valued tableaux, Catalan numbers, and so on}
+
+
+\section[combinatorialObjects]{Other combinatorial objects}
+
+
+\section[fussCatalanObjects]{Generalizations of Catalan numbers}
+
+The \defin{$k$-Catalan numbers} or \defin{Fuß--Catalan numbers} are defined as
+\[
+  \catalan^k(n) \coloneqq \frac{1}{kn+1}\binom{kn+1}{n}.
+\]
+There are many interpretations of these,
+see e.g. \url{https://www.sciencedirect.com/science/article/pii/S0012365X07009107}
+
+
+
+The \defin{s-binomial coefficients} are defined via 
+\[
+  (1+x+x^2+\dotsb+x^s)^n = \sum_{j=0}^{sn} \binom{n}{j}_s x^j.
+\]
+The \defin{s-Catalan numbers} are then defined as 
+\[
+\catalan^s(n) \coloneqq \binom{2n}{sn}_s  - \binom{2n}{sn}_{s+1}.
+\]
+There is a relationship between s-Catalan numbers
+and \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficients},
+see \cite{Linz2021x}.
+In fact, let $\delta = (n,n-1,\dotsc,2,1)$.
+Then
+\[
+c^{2 \delta_{2n}}_{2 \delta_{2n-1} , (sn,sn)} = \binom{2n}{sn}_s  - \binom{2n}{sn}_{s+1}.
+\]
+Note that the left hand side is a polynomial in $s$, due to 
+a result by E.~Rassart \cite{Rassart2004}.
+
+
+\section[skewSYT]{Skew standard Young tableaux}
+
+For formulas for the number of skew SYT, see \cite{MoralesZhu2020x}.
+
+
+\section[parkingFunctions]{Parking functions}
+
+See \cite{CarlsonChristensenHarrisJonesRodriguez2021} for many variations of parking functions.
+
+
+\section[setValuedTableaux]{Set-valued tableaux}
+
+A. Buch introduced set-valued tableaux in \cite{Buch2002}, 
+in order to study the K-theoretical Grassmannian.
+
+In \cite{Drube2018}, it is shown that $\catalan^k(n)$
+is equal to the number of set-valued SYT of shape $(n,n)$,
+where each box in the first row has one entry, while the boxes in the second row
+all have exactly $k-1$ entries. Note that for $k=2$, we recover the classical 
+Catalan numbers, which count the number of SYT of shape $(n,n)$.
+Note that the total number of entries is $kn$.

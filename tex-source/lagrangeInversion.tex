@@ -1,0 +1,33 @@
+\metatitle{Lagrange inversion}
+
+\metadescription{Lagrange inversion}
+
+
+
+\section[lagrangeInversion]{Lagrange inversion}
+
+Lagrange inversion is a method to extract formal power series coefficients,
+from the functional inverse of a power series, see \cite{Wilf1994}.
+A proof by induction can be found in \cite{SuryaWarnke2023x}.
+
+\begin{theorem}
+Let $f(u)$ and $\phi(u)$ be formal power series,
+with $\phi(0)=1$. Then there is a unique formal power series $u(t)$
+solving $u(t)= t\cdot\phi(u(t))$. Moreover,
+\[
+ [t^n] f(u(t)) = \frac{1}{n}[u^{n-1}]\{ f'(u)\phi(u)^n \}.
+\]
+\end{theorem}
+
+One particular consequence is the following (when taking $f(x)=x$):
+
+\begin{theorem}
+Let $u(x)$ satisfy the equation $u(x) = x \cdot R(u(x))$.
+Then 
+\[
+  [x^n]u = \frac{1}{n} [x^{n-1}] R(x)^n.
+\]
+\end{theorem}
+
+This allows us to find the generating functions (and closed-form formulas)
+for the Fuss--Catalan numbers.

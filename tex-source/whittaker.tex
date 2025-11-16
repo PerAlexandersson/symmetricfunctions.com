@@ -1,0 +1,95 @@
+
+\section[whittaker]{Whittaker functions}
+
+
+\begin{polydata}{whittaker}
+  Name     &  Whittaker functions \\
+  Space    &  Sym   \\
+  Basis    &  True   \\
+  Rating   &  1      \\
+  Bib      &  Jacquet1967\\
+  Year     &  1967 \\
+  Keywords & eigenfunction \\
+  Symbol   & $\whittaker_{\lambda}(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+The Whittaker functions where introduced by H. Jacquet in 1967 \cite{Jacquet1967}.
+
+T. Lam has a nice intro in \url{https://arxiv.org/abs/1308.5451v2}
+
+Iwahori Whittaker functions: \url{https://arxiv.org/pdf/1906.04140.pdf}
+
+Spin q-Whittaker: \url{https://arxiv.org/pdf/2003.14260.pdf}
+
+(p,q)-Whittaker: \url{https://arxiv.org/pdf/1710.07196.pdf}
+
+Metaplectic Whittaker and connection with LLT polynomials 
+\url{https://arxiv.org/pdf/1806.07776.pdf}
+
+Whittaker from non-symmetric Macdonalds: \url{dx.doi.org/10.1016/j.jnt.2014.01.001}
+
+
+
+
+\section[qWhittaker]{$q$-Whittaker functions}
+
+
+\begin{polydata}{qWhittaker}
+  Name     & q-Whittaker functions \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & Opdam1995\\
+  Year     & 1995\\
+  Symbol   & $\macdonaldE_\mu(\xvec;q,0)$ \\
+  Keywords & fillings, key-positive \\
+  Category & Schur \\
+\end{polydata}
+
+The $q$-Whittaker functions $\qWhittaker_\lambda(\xvec;q)$ are eigenfunctions of the quantum Toda lattice.
+
+For a recent survey on this topic, see \cite{Bergeron2024}.
+The \defin{$q$-Whittaker function $\qWhittaker_\lambda(\xvec;q)$}
+can be defined as any of the quantities:
+\begin{itemize}
+\item 
+the \hyperref[macdonaldH]{modified Macdonald polynomial} $[t^{\partitionN(\lambda)}] \macdonaldH_\lambda(\xvec;q,t)$,
+\item 
+the \hyperref[macdonaldP]{Macdonald $P$ polynomial} $\macdonaldP_\lambda(\xvec;q,0)$
+\item 
+the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomial} $\omega \hallLittlewoodT_{\lambda'}(\xvec;q)$,
+\item 
+the \hyperref[macdonaldE]{non-symmetric Macdonald polynomial} $\macdonaldE_\lambda(\xvec;q,0)$.
+\end{itemize}
+
+We have that 
+\[
+  \qWhittaker_\mu(\xvec;q) = \sum_{\lambda} K_{\lambda'\mu'}(q) \schurS_\lambda,
+\]
+where the coefficients are given by the \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials}.
+Proofs of this can be found in \cite{Assaf2018Kostka,AssafGonzalez2018},
+where RSK ans a crystal structure is given.
+
+
+See \cite{Uhlin2019,AlexanderssonUhlin2020} and \hyperref[cspMacdonaldE]{the cyclic sieving page}
+for a cyclic sieving phenomena on non-attacking fillings associated with
+$q$-Whittaker polynomials.
+
+
+\subsection[skewqWhittaker]{Skew $q$-Whittaker functions}
+
+In \cite{AlexanderssonUhlin2020}, we introduce a skew version, $\qWhittaker_{\lambda/\mu}(\xvec;q)$
+which is symmetric and Schur positive for partitions $\mu \subseteq \lambda$.
+
+
+
+\subsection[geometricWhittaker]{Relation with geometric RSK and crystals}
+
+The Whittaker functions show up when 
+considering a geometric lift of \hyperref[rsk]{RSK}.
+There is also a notion of geometric crystals.
+\todo{ \url{http://www.math.lsa.umich.edu/~tfylam/CDM2014talk1.pdf} }
+
+Geometric RSK \url{https://maths.ucd.ie/~noconnell/pubs/cosz.pdf}
+Reda's thesis: \url{https://arxiv.org/abs/1302.0902}

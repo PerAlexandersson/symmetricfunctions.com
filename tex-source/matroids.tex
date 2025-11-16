@@ -1,0 +1,506 @@
+
+\metatitle{Matroids}
+\metadescription{Introduction to matroids}
+
+
+
+\section[matroid]{Matroids}
+
+Matroids were first introduced by H. Whitney \cite{Whitney1935}, and independently by \cite{NishimuraKuroda2009}.
+This was further developed by 
+
+
+One motivating example for introducing matriods is the notion of
+\emph{bases} for a vector space. 
+Let $E = \{v_1,\dotsc, v_n \}$ be a collection of vectors in some $r$-dimensional space $V$.
+We let $\mathcal{B}$ be the collection of subsets of $E$ which constitute a basis for $V$.
+The pair $(E,\mathcal{B})$ is then an example of a matroid.
+
+There are many equivalent definitions of a \defin{matroid}.
+Let $E$ be a set (called the \defin{ground set}) and let $\mathcal{B}$
+be a collection of subsets of size $r$ from $E$.
+Then $M = (E,\mathcal{B})$ is a matroid if the \defin{basis exchange axiom} is satisfied.
+This states that for every two different $A, B \in \mathcal{B}$ and 
+$x \in A \setminus B$, there is some $y \in B \setminus A$ such that 
+\[
+   (A \setminus \{x\}) \cup \{y\} \in \mathcal{B}.
+\]
+The cardinality, $r$, of each set in $\mathcal{B}$ is called the \defin{rank} of the matroid,
+and the set $\mathcal{B}$ are the \defin{bases} of $M$.
+
+
+\begin{example}[Uniform matroid]
+The \defin{uniform matroid} $U_{r,n}$ is the matroid on ground set $[n]$
+and the bases being all $r$-element subsets of $[n]$.
+\end{example}
+
+
+
+
+\subsection[matroidRank]{Rank functions}
+
+A matroid can also be defined via a \emph{rank function}.
+Let $E$ be a (ground) set. A \defin{rank function} $r$ is an integer-valued function on subsets of $E$,
+satisfying the following three properties:
+\begin{itemize}
+\item $0 \leq r(X) \leq |X|$ for every $X \subseteq E$;
+\item $r(X) \leq r(Y)$ for all $X\subseteq Y \subseteq E$;
+\item $r(X \cup Y) + r(X \cap Y) \leq r(X)+r(Y)$, whenever $X,Y \subseteq E$.
+\end{itemize}
+
+A set is an independent set if $r(X)=|X|$.
+The bases of a matroid are all independent sets of maximal rank.
+
+
+If $(E,\mathcal{B})$ is a matroid with bases $\mathcal{B}$,
+then the rank of a set $X$ is simply
+\[
+  r(X) = \max \{ |X \cap B| : B \in \mathcal{B} \} = \max \{ |I| : I \subseteq X \text{ where } I \in \mathcal{I} \}.
+\]
+That is, the rank is the cardinality of the maximal independent set it contains.
+
+
+\subsection[matroidFlats]{Flats}
+
+A subset $X \subseteq E$ of a matroid is called a \defin{flat} (or closed) if
+there is no element we can add to $X$ from $E \setminus X$ and preserve the rank.
+For representable matroids, flats correspond to the various linear subspaces spanned by the independent sets.
+
+The set of flats form a lattice under inclusion, the \defin{lattice of flats}.
+
+
+
+\section[matroidOperations]{Operations on matroids}
+
+
+\subsection[matroidLoopsColoops]{Matroid loops and coloops}
+
+Let $M$ be a matroid on the ground set $E$.
+An element $e \in E$ is called a \defin{loop} if it does not appear in any basis.
+An element $e \in E$ is called a \defin{coloop} if it appears in every basis.
+
+
+\subsection[matroidDuality]{Dual of a matroid}
+
+If $M=(E,\mathcal{B})$ then $M^* \coloneqq (E,\mathcal{B}^*)$
+with 
+\[
+\mathcal{B}^* \coloneqq (E \setminus A : A \in \mathcal{B})
+\]
+is also a matroid. The matroid $M^*$ is called the \defin{dual} of $M$.
+
+The dual of the uniform matroid $U_{r,n}$ is the uniform matroid $U_{n-r,n}$.
+
+
+
+\subsection[matroidMinors]{Minors of a matroid}
+
+Let $M=(E,\mathcal{B})$ be a matroid and $e \in E$. The \defin{deletion} $M \setminus e$
+is the matroid on ground set $E\setminus \{e\}$,
+and the bases are 
+\[
+\begin{cases}
+\{ B \in \mathcal{B} : e \notin B \} & \text{ if $e$ is not a coloop} \\
+\{ B \setminus \{e\} : B \in \mathcal{B}  \} & \text{ if $e$ a coloop}.
+\end{cases}
+\]
+The deletion $M \setminus X$ is computed by iteratively deleting each element in $X$.
+
+The \defin{restriction} of $M$ to $X \subseteq E$
+is denoted $M \vert_{X}$, and corresponds to deletion of $M$ by $E\setminus X$.
+
+
+The \defin{contraction} $M / e$ is the matroid on 
+ground set $E\setminus \{e\}$ whose bases are 
+\[
+\begin{cases}
+\{ B \setminus \{e\} : B \in \mathcal{B}  \} & \text{ if $e$ is not a loop} \\
+\{ B : B \in \mathcal{B}  \} & \text{ if $e$ a loop}.
+\end{cases}
+\]
+One has that deletion and contraction are dual operators: $M/e = (M^* \setminus e)^*$.
+
+
+
+
+\section[matroidFamilies]{Families of matroids}
+
+
+\subsection[matroidGraphic]{Graphic matroids}
+
+Given a graph $G=(V,E)$, the \defin{graphic matroid} associated by $G$ is 
+the matroid whose indepentent sets are subsets of edges of $E$, that contain no cycles.
+
+
+\begin{example}
+In the figure below, we have five vectors that define a matroid. Vectors $b,c,d,e$ lie in the same plane,
+but $a$ is independent of these. To the right is a graph that defines the same matroid.
+
+\begin{figure}
+<img src="./svg-images/graphic-matroid.svg" alt="A set of vectors and a graph. Both define the same matroid." style="width:75%; margin:5px;"/>
+\end{figure}
+The sets of linearly independent vectors are
+\begin{equation}
+  \mathcal{I} = \{ abc, abd, abe, ace, ab, ac,ad, ae, bc, bd, be, cd, ce, a, b, c, d, e \}.
+\end{equation}
+\end{example}
+
+
+\subsection[matroidRealizability]{Representable matroids}
+
+A \defin{matroid isomorphism} from $(E_1,\mathcal{B}_1)$ to $(E_2,\mathcal{B}_2)$
+is a bijection from $E_1$ to $E_2$ which induces a bijection from $\mathcal{B}_1$ to $\mathcal{B}_2$.
+
+
+Given a $r \times n$ full-rank matrix $X$ over a field $\mathbb{F}$, we let $M[X]$
+be the matriod with ground set being the column vectors of $X$, and bases 
+being the collection of all sets of columns being of full rank.
+
+A matroid $M$ is said to be \defin{realizable} over a field $\mathbb{F}$
+if it is isomorphic to some $M[X]$ with $X \in \mathbb{F}^{r \times n }$.
+
+There are matroids which are not realizable over any field, for example the \defin{Vámos matroid}.
+It is the matroid whose bases are all $4$-element subsets of $[8]$, except
+\[
+1234, 1456, 1478, 2356, 2378.
+\]
+
+\begin{figure}
+<img src="./svg-images/vamos-matroid.svg" alt="The Vámos matroid, with dependent sets shown." style="width:50%; margin:5px;"/>
+\end{figure}
+
+
+
+\begin{theorem}
+If $M$ is representable over $\mathbb{F}$ then so is $M^*$.
+\end{theorem}
+
+
+\begin{theorem}
+The matroid $M$ is representable over every $\mathbb{F}$ if and only if
+it is the vector matroid for some totally unimodular matrix (every minor has determinant $\pm 1$ or $0$).
+\end{theorem}
+Matroids representable over every field are called \defin{regular matroids}.
+
+\begin{theorem}
+All graphic matroids are regular.
+\end{theorem}
+
+
+\subsection[partitionMatroids]{Partition matroids}
+
+A \defin{partition matroid} is a direct sum of uniform matroids. This family is closed under minors and duality.
+All partition matroids are \hyperref[latticePathMatroids]{lattice path matroids}.
+
+\subsection[transversalMatroids]{Transversal matroids}
+
+\begin{definition}
+Let $(A_1,A_2,\dotsc,A_m)$ be subsets of some set $E$ (this is called a \defin{set system}).
+A \defin{partial transversal} of the set system is a subset $I=\{e_1,e_2,\dotsc,e_k\} \subseteq E$
+such that there is an injection $\phi$ such that $e_i \in A_{\phi(i)}$. 
+We can think of this as $e_i$ being a representative of some $A_j$.
+If we have a representative from each $A_j$, the set $I$ is just called a \defin{transversal}.
+\end{definition}
+
+\begin{theorem}[Piff--Welsh, 1970]
+Let $(A_1,A_2,\dotsc,A_m)$ be a set system on $E$, and let $\mathcal{I}$ be the set of partial transversals.
+Then $\mathcal{M} = (E,\mathcal{I})$ is a matroid, where the partial transversals constitute the independent sets.
+Moreover, $\mathcal{M}$ is representable over $\mathbb{F}_k$ for $k$ sufficiently large,
+in particular over all infinite fields.
+\end{theorem}
+
+\begin{example}
+Consider the set system $\{1, 2, 3\}$, $\{2, 4, 5\}$, $\{1, 4, 5\}$, and $\{3, 4, 5\}$ on $E = [5]$.
+The transversals of this set system are $1234,1235,1245,1345$, and $2345$,
+and thus constitute the set of bases of a transversal matroid.
+\end{example}
+
+Observe that there is a close connection between partial transversals and matchings.
+If we consider a bipartite graph, where one set of vertices are labeled by elements in $|E|$,
+and the second set of vertices correspond to $A_1,\dotsc,A_m$.
+The vertex $e \in E$ is connected to $A_j$ iff $e \in A_j$.
+A partial transversal is then a matching, and transversals are maximal matchings.
+
+The family of transversal matroids is closed under deletion/restriction, but not under contraction in general.
+
+
+Transversal matroids coincide with the class of \hyperref[matroidMatching]{matching matroids}.
+
+
+\subsection[matroidMatching]{Matching matroids}
+
+Let $G=(V,E)$ be a graph. Now consider all subsets $I \subseteq V$ that can be covered by a matching on $G$.
+Then these subsets form the independent sets of a matroid, called the \defin{matching matroid}.
+For $A\subseteq E$, let $\mathrm{match}(G,A)$ be the family of subsets $I \subseteq A$,
+which may be covered by a matching of $G$. Then $\mathrm{match}(G,A)$ is a matroid with $A$ as ground set.
+Compare this with the \hyperref[stablePolynomial]{multivariate matching polynomial} which are stable.
+
+All matching matroids are \hyperref[transversalMatroids]{transversal matroids} and vice versa, see \cite{EdmondsFulkerson1965,Triesch1992}.
+
+\begin{example}[A matching matroid]
+Let $G$ be the graph on $[7]$ with edges $12,23,13,34,45,35,56,67$.
+Then the matching matroid of $G$ has the set of bases
+\[
+\mathcal{B} = \{123456,123467,123567,124567,134567,234567\},
+\]
+since $G$ has the (maximal) matchings
+\[
+ \{12,34,56\}, \{12,34,67\}, \{12,35,67\}, \{13,45,67\}, \{23,45,67\}.
+\]
+\end{example}
+
+
+
+
+\subsection[latticePathMatroids]{Lattice path matroids}
+
+The family of lattice path matroids were introduced by Bonin, de Mier and Noy \cite{BoninMierNoy2003}.
+This family is closed under all matrix minors (deletions and contraction) and also under matrix duality.
+All lattice path matroids are transversal matroids.
+
+\begin{example}
+
+\begin{figure}
+<img src="./svg-images/latticepath-matroid.svg" alt="A skew Ferrers shape and labeling of the East steps." style="width:50%; margin:5px;"/>
+\end{figure}
+
+\end{example}
+
+
+The Tutte polynomial for a lattice path matroid can be computed efficiently, 
+see \cite{BoninMierNoy2003}. Moreover, there is a nice combinatorial
+description on the internal and external activity for the bases.
+
+
+For an introduction to lattice path matroids, see \href{https://maa.org/sites/default/files/pdf/shortcourse/2011/TransversalNotes.pdf}{these lecture notes} by J. Bonin.
+
+\section[matroidOptimization]{Matroids in optimization}
+
+
+
+
+
+\section[tuttePolynomial]{Tutte polynomial}
+
+The \defin{Tutte polynomial} $T_M(x,y)$ of a matroid $M$ (on ground set $E$) 
+is defined via a deletion-contraction recursion.
+If $M$ is the empty matroid (on ground set $\emptyset$) then $T_M(x,y) \coloneqq 1$.
+
+If $x \in E$ is a \emph{loop} in $M$ then
+\[
+  T_M(x,y) = y \cdot T_{M/e}(x,y).
+\]
+If $x \in E$ is a \emph{coloop} in $M$ then
+\[
+  T_M(x,y) = x \cdot T_{M/e}(x,y).
+\]
+If $x \in E$ is neither a loop or a coloop, then
+\[
+  T_M(x,y) = T_{M/e}(x,y) + T_{M\setminus e}(x,y).
+\]
+
+\begin{example}
+The uniform matroid $U_{2,4}$ has Tutte polynomial $x^2 + 2x + y^2 + 2y$.
+\end{example}
+
+
+\subsection[tutteInternalExternal]{Internal and external activity}
+
+
+In the definition below, we assume that the ground set is $\{1,2,\dotsc,n\}$.
+For other ground sets, one needs to choose a total ordering on the ground set, 
+and the word \emph{smaller} is with respect to this ordering.
+
+\begin{definition}[Internally and externally active elements]
+Let $\mathcal{B}$ be the set of bases for a matroid with ground set $E=\{1,2,\dotsc,n\}$.
+Let $F \in \mathcal{B}$. An element $e\in E$ is said to be 
+\begin{itemize}
+ \item \defin{internally active} if $e \in F$, and there is no smaller $y \in E\setminus F$
+ such that 
+ \[
+ (F\setminus \{e\})\cup \{y\} \text { is in } \mathcal{B};
+ \]
+ 
+ \item \defin{externally active} if $e \notin F$, and there is no smaller $y \in F$ 
+ such that 
+ \[
+ (F\setminus \{y\})\cup \{e\}\text { is in } \mathcal{B}.
+ \]
+\end{itemize}
+\end{definition}
+
+The Tutte polynomial can then be expressed as 
+\[
+  T_M(x,y) = \sum_{B \in \mathcal{B}} x^{ia(B)} y^{ea(B)}
+\]
+where $ia(b)$ and $ea(B)$ denotes the internal and external activity, respectively.
+
+
+
+
+\subsection[tutteProperties]{Properties of the Tutte polynomial}
+
+We have that $T_{M}(x,y) = T_{M^*}(y,x)$.
+Moreover, the Tutte polynomial is multiplicative with respect to direct sum: 
+\[
+T_{M_1 \oplus M_2}(x,y) = T_{M_1}(x,y) T_{M_2}(x,y).
+\]
+
+
+
+
+\section[matroidPolytopes]{Matroid (base) polytopes}
+
+
+\begin{definition}[Matroid Base polytope]
+The \defin{matroid base polytope} is the convex hull of all indicator vectors of the bases.
+\end{definition}
+
+For example, the matroid with bases $\{123456,123467,123567,124567,134567,234567\}$
+is the convex hull of
+\[
+(1,1,1,1,1,1,0),\; (1,1,1,1,0,1,1),\; (1,1,1,0,1,1,1),\; (1,1,0,1,1,1,1),\; (1,0,1,1,1,1,1),\; (0,1,1,1,1,1,1).
+\]
+We let $\xvec(S) \coloneqq \sum_{i \in S} x_i$.
+
+\begin{theorem}
+The matroid base polytope is precicely the polytope defined by the following set of inequalities:
+\begin{equation}
+  \xvec(S) \leq r(S) \text{ for all $S \subseteq E$}, \qquad x_i \geq 0 \text{ for all $i \in [n]$},
+\end{equation}
+together with the equality $\xvec([n]) = r([n])$.
+\end{theorem}
+The matroid base polytope is a \defin{generalized permutohedron}.
+
+Every matroid base polytope has a \defin{regular unimodular triangulation}, see \cite{BackmanLiu2023x}.
+This implies that the base polytope satisfies the integer decomposition property,
+which was known before, see \cite{GijswijtRegts2012}.
+
+
+
+\section[matroidCharacteristicPolynomial]{The characteristic polynomial of a matroid}
+
+See \url{https://arxiv.org/pdf/2508.08391}, and Rota--Heron--Welsh conjecture.
+
+
+\section[KazhdanLusztig]{Kazhdan--Lusztig polynomials}
+
+\url{https://arxiv.org/pdf/2007.15349.pdf} Inverse Kazhdan--Lusztig polynomials for matroids.
+
+\url{https://arxiv.org/pdf/2311.06929.pdf}
+
+
+
+
+\section[SNP]{Saturated Newton polytopes}
+
+Given a polynomial $f \in \setC[x_1,\dotsc,x_n]$ with $f = \sum_\alpha c_\alpha \xvec^\alpha$,
+with $\alpha \in \setN^n$, the \defin{support} of $f$ is the 
+set $\mathrm{supp}(f) \coloneqq \{\alpha : c_\alpha \neq 0\}$.
+The \defin{Newton polytope} of $f$ is defined as the convex hull of the support.
+This is a polytope in $\setR^n$ which we denote by $\mathrm{Newton}(f)$.
+
+A polynomial has a \defin{saturated Newton polytope} (SNP) if 
+\[
+ \mathrm{Newton}(f)\cap \setZ^n = \mathrm{supp}(f).
+\]
+Several classical polynomials such as \hyperref[schurS]{Schur polynomials} and \hyperref[stanleySym]{Stanley symmetric functions}
+have saturated Newton polytopes.
+
+A seminal paper in this area is \cite{MonicalTokcanYong2019} where many conjectures 
+were presented. Several have since then been proved.
+
+Key polynomials and Schubert polynomials have SNP \cite{FinkMeszarosDizier2018}.
+Key polynomials in other types ($A_r$, $B_r$, $C_r$, $F_4$, $G_2$) also have SNP, see \cite{BessonJeraldsKiers2023}.
+SNP for \hyperref[chromaticQuasisymmetric]{chromatic symmetric polynomials} obtained from incomparability graphs of $(3+1)$-free posets
+was proved in \cite{MatherneMoralesSelover2022x}.
+
+For more background and results, see \cite{WangZhangZhang2024x}.
+
+In \cite{NguyenNgocTuanHai2023} the authors prove SNP for many families of symmetric functions,
+such as SChur-P and Schur-Q polynomials as well as many of the above mentioned families.
+Moreover, they prove that $\mathrm{Newton}(f)$ has the \emph{integer decomposition property}
+in many cases.
+
+\section[MConvexity]{M-convexity}
+
+A subset $J \in \setN^n$ is \defin{M-convex} if for all $\alpha,\beta \in J$,
+and any index $i\in [n]$ with $\alpha_i \gt \beta_i$, there is some index $j$
+with $\alpha_j \lt \beta_j$ and $\alpha - e_i + e_j \in J$.
+Here, $e_i$ is the $i^\thsup$ unit vector.
+
+This notion generalizes the basis exchange axiom for matroids.
+
+\begin{theorem}[See \cite{DizierPhDThesis}]
+A homogeneous polynomial $f$ is $M$-convex if and only if $f$ 
+has a saturated Newton polytope and this Newton polytope a generalized permutahedron.
+\end{theorem}
+
+\hyperref[key]{Key polynomials} are M-convex (conjectured earlier by Monical, Tokcan and Yong \cite{MonicalTokcanYong2019}) see \cite{FanGuoPengSun2020}.
+
+In \cite{WangZhangZhang2024x}, it is proved that 
+affine Stanley symmetric functions and cylindric skew Schur functions are $M$-convex.
+
+
+\section[matroidLinks]{More on matroids}
+
+\url{https://arxiv.org/pdf/2505.02822} New matroid invariant
+
+\url{https://arxiv.org/pdf/2504.15518} The beta invariant is obtained from the base polytope Ehrhart polynomial.
+
+\url{https://arxiv.org/pdf/2501.07364} Chow polynomials of uniform matroids are real-rooted.
+\url{https://arxiv.org/pdf/2410.22329} Chow polynomials, Schubert matroids
+
+\href{https://en.wikipedia.org/wiki/Rota%27s_basis_conjecture}{Rota basis conjecture}
+
+\url{https://arxiv.org/pdf/2408.07810} Shifted and threshold matroids
+
+\url{https://arxiv.org/pdf/2408.06795} q-matroids stuff
+
+\url{https://arxiv.org/pdf/2406.14944} q-Delta-matroids
+
+\url{https://arxiv.org/pdf/2405.09088} Determining if contraction of element in transversal matroid is again transversal, can be done in polynomial time.
+
+\url{https://arxiv.org/pdf/2404.09347.pdf}
+
+\url{https://www.sciencedirect.com/science/article/pii/S019566981830026X} Matroids from trees (Carsten Seeman and Marc Helmuth)
+
+\url{https://arxiv.org/pdf/2201.12442.pdf} Ehrhart for panhandle and Lattice paths
+
+\url{https://www.math.ucdavis.edu/~deloera/RECENT_WORK/matroidpolys.pdf} Ehrhart poly is not computable via deletion-contraction.
+
+\url{https://arxiv.org/pdf/2509.02832} Matroid bingo, nice way of characterizing matroids.
+
+\url{https://arxiv.org/pdf/2403.05825.pdf} Tutte polynomials for polymatroids
+
+\url{https://arxiv.org/pdf/2311.06929.pdf}
+
+\url{https://arxiv.org/pdf/2311.08332.pdf}
+
+\url{https://arxiv.org/pdf/2311.01640.pdf}
+
+\url{https://arxiv.org/pdf/2404.11837.pdf}
+
+\url{https://arxiv.org/pdf/2403.15496.pdf}
+
+\url{https://arxiv.org/pdf/2410.01743}
+
+\url{https://arxiv.org/pdf/2311.15441.pdf} Symmetric lattice path matroids
+
+\url{https://arxiv.org/pdf/2406.05384} Schubert calculus and sparse paving matroids
+
+\url{https://arxiv.org/pdf/2311.01640.pdf} Matroids, Ehrhart stuff (looks nice)
+\url{https://arxiv.org/pdf/2110.11549.pdf} Matroids (Schubert matroids) Ehrhart positivity, Kohnert diagrams
+\url{https://arxiv.org/pdf/2402.01272.pdf} Matroid counterexample thing
+
+\url{https://arxiv.org/pdf/1912.08318.pdf} Dyck paths, unit intervals and positroids
+
+\url{https://arxiv.org/pdf/2402.17582.pdf} Polymatroids
+
+\url{https://arxiv.org/pdf/2407.05808} Log-concavity stuff
+
+\url{https://arxiv.org/pdf/2402.17841.pdf} Every positroid envelope class contains at least one graphic matroid, by
+explicitly constructing a planar graph whose cycle matroid lies in the desired positroid envelope.
+
+\url{https://arxiv.org/pdf/2403.17696.pdf} Tutte polynomials and valuations, Ferroni, Schröter
+

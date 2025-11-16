@@ -1,0 +1,61 @@
+\section[specht-modules]{Specht modules}
+
+
+\todo{https://arxiv.org/pdf/1007.2946}
+
+\todo{https://arxiv.org/pdf/2511.03702}
+
+\subsection[specht-modules-intro]{Introduction to Specht modules}
+
+The purpose of \defin{Specht modules} is to construct $\symS_n$-modules, one for each partition of $n$,
+such that the modules are irreducible.
+
+
+In order to construct an $\symS_n$-module, we need a vector space on which $\symS_n$ acts.
+A \defin{tableau} of shape $\lambda$ is a filling of the Young diagram $\lambda$ with $\{1,2,3,\dotsc,n\}$.
+The \defin{row-stabilizer} $R_T$ of a tableau $T$ is the set of permutations that keep entries within rows.
+Similarly, \defin{column-stabilizer} $C_T$ of a tableau $T$ is the set of permutations
+that preserves the column entries.
+
+For example, the following tableaux are in the same orbit under $R_T$, and there are $3! \cdot 2!$
+permutations total in $R_T$.
+\begin{figure}
+\begin{ytableau}
+1 & 2 & 4 \\
+3 & 5
+\end{ytableau}
+\begin{ytableau}
+4 & 1 & 2 \\
+3 & 5
+\end{ytableau}
+\end{figure}
+
+Similarly, all tableaux which can be obtained from the first one by
+some element in $C_T$ are the following.
+\begin{figure}
+\begin{ytableau}
+1 & 2 & 4 \\
+3 & 5
+\end{ytableau}
+\begin{ytableau}
+3 & 2 & 4 \\
+1 & 5
+\end{ytableau}
+\begin{ytableau}
+1 & 5 & 4 \\
+3 & 2
+\end{ytableau}
+\begin{ytableau}
+3 & 5 & 4 \\
+1 & 2
+\end{ytableau}
+\end{figure}
+
+Two tableaux are considered \emph{equivalent} if they are in the same orbit under $R_T$,
+and that $\symS_n$ acts on such equivalence classes.
+(Equivalently, we can think of $\symS_n$ acting on tableaux, by first permuting
+the entries, then rearranging each of the rows in increasing order.)
+
+
+A \defin{polytabloid}
+

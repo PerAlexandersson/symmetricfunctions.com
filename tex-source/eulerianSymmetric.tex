@@ -1,0 +1,140 @@
+\section[eulerianSymmetric]{Eulerian quasisymmetric functions}
+
+
+\begin{polydata}{eulerianSymmetric}
+  Name   & Eulerian quasisymmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 3 \\
+  Bib      & ShareshianWachs2010 \\
+  Year     & 2010 \\
+  Symbol   & $\eulerianQ_{\lambda,j}(\xvec)$ \\
+  Keywords & schur-positive, plethysm, cyclic-sieving \\
+  Category & Other \\
+\end{polydata}
+
+
+
+The Eulerain quasisymmetric functions are actually symmetric.
+They were introduced in \cite{ShareshianWachs2010}.
+
+\subsection[eulerianSymmetricDefinition]{Definition}
+
+Let $\bar{1} \lt \bar{2} \lt \dotsb \lt \bar{n} \lt 1 \lt 2 \lt \dotsb \lt n$.
+For $\sigma \in \symS_n$, let $\overline{\sigma}$ be define as the word 
+obtained from $\sigma$ by replacing $\sigma_i$ with $\overline{\sigma}_i$ whenever $\sigma_i \gt i$.
+Let
+\[
+\DEX(\sigma) = \{ i \in [n-1] : \overline{\sigma}(i+1)>\overline{\sigma}(i) \}
+\]
+that is, the set of descents in the modified alphabet.
+
+The \defin{Eulerian quasisymmetric function} indexed by $n$ and $j$ is then 
+described using the \hyperref[gessel]{Gessel quasisymmetric functions}:
+\[
+\eulerianQ_{\lambda,j}(\xvec) \coloneqq \sum_{\substack{\sigma \in \symS_n \\ \type(\sigma) = \lambda}} \gessel_{n,\DEX(\sigma)}(\xvec).
+\]
+
+\begin{example}
+We have that 
+\begin{align*}
+\eulerianQ_{33,2}(\xvec) &= 
+\gessel_{\emptyset,6} + 
+\gessel_{\{2\},6} + 
+\gessel_{\{3\},6} + 
+\gessel_{\{4\},6} + 
+\gessel_{\{1,3\},6}  \\
+&+\gessel_{\{1,4\},6} + 
+\gessel_{\{1,5\},6} + 
+\gessel_{\{2,4\},6} + 
+\gessel_{\{2,5\},6} + 
+\gessel_{\{3,5\},6}.
+\end{align*}
+\end{example}
+
+\subsection[eulerianSymmetricPlethystic]{Plethystic formula}
+
+
+\begin{theorem}[See \cite{ShareshianWachs2010}]
+Let $\lambda$ have $m_i$ parts of size $i$. 
+Then
+\[
+\sum_{j=0}^{|\lambda|-1} \eulerianQ_{\lambda,j}(\xvec)t^j = 
+\prod_{i \geq 1} \completeH_{m_i}\left[ \sum_{j=0}^{i-1} \eulerianQ_{(i),j} t^j \right].
+\]
+\end{theorem}
+
+
+\subsection[eulerianSymmetricSchurPositivity]{Schur positivity}
+
+In \cite{HendersonWachs2012} it is proved that $\eulerianQ_{\lambda,j} = \frobChar V_{\lambda,j}$,
+that is, it is the \hyperref[frobeniusCharacteristic]{Frobenous characteristic} of a 
+certain vector space $V_{\lambda,j}$ spanned by forests of marked trees.
+This implies Schur positivity.
+
+\subsection[eulerianSymmetricPowerSumPositivity]{Power-sum positivity}
+
+In \cite{SaganShareshianWachs2011}, it is proved that $\eulerianQ_{(n),j}$ expand positively in the power-sum basis.
+
+\begin{conjecture}[Alexandersson (2018)]
+ It seems like all $\eulerianQ_{\lambda,j}$ are $\powerSum_\mu$-positive.
+\end{conjecture}
+
+The stronger statement, being positive in the complete homogenous basis, is not true.
+For example, 
+\[
+\eulerianQ_{(6),3} = \completeH_{321} - \completeH_{411}+2\completeH_{42} + \completeH_{51}.
+\]
+
+\subsection[eulerianSymmetricCSP]{Cyclic sieving phenomena}
+
+Let $\symS_{\lambda,j}$ be the subset of permutations in $\symS_n$ with cycle type $\lambda$
+and exactly $j$ excedances. In \cite{SaganShareshianWachs2011}, it is shown that
+\[
+\left(\symS_{\lambda,j}, C_n, \sum_{\sigma \in \symS_{\lambda,j}} q^{\maj(\sigma) - \exc(\sigma)} \right)
+\]
+exhibit the cyclic sieving phenomena, where $C_n$ act by conjugation.
+
+
+\begin{conjecture}[Alexandersson (2018)]
+Let $\lambda$ be a partition of $n$. Then 
+\[
+\eulerianQ_{\lambda,j}(1,q,q^2,\dotsc,q^{n-1})
+\]
+evaluates to non-negative integers at $q = e^{2 \pi i k/n}$, and there should be some action $C_n$
+that completes this to a cyclic sieving phenomena.
+\end{conjecture}
+
+
+\section[eulerianSymmetricColored]{Colored Eulerian quasisymmetric functions}
+
+
+\begin{polydata}{eulerianSymmetricColored}
+  Name   & Colored Eulerian quasisymmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Hyatt2012 \\
+  Year     & 2012 \\
+  Keywords & cyclic-sieving \\
+  Category & Other \\
+\end{polydata}
+
+
+
+In \cite{Hyatt2012}, the notion of Eulerian quasisymmetric functions is generalized to the wreath product of 
+a cyclic group and the symmetric group, also known as the group of \emph{colored permutations}.
+The notion of descents, fixed points and so on generalizes naturally to this setting,
+and thus allow for a definition of \emph{colored Eulerian quasisymmetric functions}.
+
+A special case would be to choose the cyclic group to be $\setZ_2$, which can then be 
+called a \defin{type $B$ Eulerian quasisymmetric function}.
+
+In \href{https://arxiv.org/abs/1309.6368}{this preprint they are shown to be symmetric}.
+These are believed to be symmetric and satisfy a cyclic sieving phenomena as above.
+
+
+\todo{Wreath product Schur polys}
+% There is a notion of Wreath product Schur polys. Are these WS-positive? 
+% http://www.m-hikari.com/ija/ija-password-2009/ija-password1-4-2009/jingIJA1-4-2009.pdf 
+

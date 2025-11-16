@@ -1,0 +1,502 @@
+\section[key]{Key polynomials}
+
+\begin{polydata}{key}
+  Name     & Key polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 5 \\
+  Bib      & Demazure1974nouvelle \\
+  Year     & 1974 \\
+  Symbol   & $\key_{\lambda,\sigma}(z)$ \\
+  Keywords & atom-positive, divided-difference, fillings, polytopes \\
+  Category & Schur \\
+\end{polydata}
+
+The \defin{key polynomials},  also known as  \defin{Demazure characters},
+is a family of non-symmetric polynomials, indexed by weak compositions, or alternatively, an integer partition and a 
+permutation. The set $\{ \key_\alpha(x_1,\dotsc,x_n) \}_\alpha$ where $\alpha$
+ranges over all compositions of length $n$, is a basis for $\setC[x_1,\dotsc,x_n]$.
+
+The key polynomials generalize the \hyperref[schurS]{Schur polynomials}.
+
+Demazure characters were introduced in \cite{Demazure1974nouvelle,Demazure1974}.
+Later, a combinatorial formula using so called \defin{key tableaux} was discovered in
+\cite{Lascoux1990Keys}.
+Key polynomials are also given as a specialization of \hyperref[macdonaldE]{non-symmetric Macdonald polynomials},
+see \cite{HaglundHaimanLoehr2008}, and this gives several combinatorial 
+models for the key polynomials, see the works of S. Mason \cite{Mason2009},
+and also \cite{Kurland2016,AlexanderssonSawhney2019}.
+
+Key polynomials are closely related to \hyperref[atom]{Demazure atoms}.
+
+
+The K-theoretic version of key polynomials are the \hyperref[lascoux]{Lascoux polynomials}.
+
+\subsection[keyDefinitionOperators]{Definition (Operators)}
+
+Define the \emph{divided difference operator} $\partial_i$ as
+\[
+ \partial_i(f) = \frac{f - s_i(f)}{z_i - z_{i+1}},
+\]
+and let $\pi_i(f) \coloneqq \partial_i(z_i f)$ for $i=1,\dotsc,n-1$ whenever $f \in \setC[z_1,\dotsc,z_n]$.
+One can show that $\pi_i^2 = \pi_i$ and that they satisfiy the braid relations.
+
+Let $\sigma = s_{i_1} s_{i_2} \dotsc s_{i_\ell}$ be a \emph{reduced word} of a permutation $\sigma \in \symS_n$,
+and let
+\[
+ \pi_\sigma \coloneqq \pi_{i_1} \circ \pi_{i_2} \circ \dotsb \circ \pi_{i_\ell}.
+\]
+This is well-defined, as the action of $\pi_\sigma$ is independent of the choice of reduced word.
+
+
+Let $\lambda$ be a partition with at most $n$ parts, and let $\sigma \in \symS_n$.
+In fact, we can choose $\sigma$ to be the \emph{minimal coset representation} for 
+the parabolic subgroup $W_J \subseteq \symS_n$ that fixes $\lambda$.
+The \defin{key polynomial} $\key_{\lambda,\sigma}(z)$ is defined as
+\begin{equation*}
+ \key_{\lambda,\sigma}(z) \coloneqq \pi_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
+\end{equation*}
+Note that if $\sigma^1(\lambda)=\sigma^2(\lambda)$, then 
+$\key_{\lambda,\sigma^1}(z) = \key_{\lambda,\sigma^2}(z)$.
+
+
+This definition shows the close connection between \hyperref[schubert]{Schubert polynomials}
+and key polynomials.
+Notice that if we take $w_0$ to be the longest permutation in $\symS_n$, then
+\[
+ \schurS_\lambda(z_1,\dotsc,z_n) = \key_{\lambda,w_0}(z_1,\dotsc,z_n),
+\]
+so the key polynomials are a superfamily of the \hyperref[schurS]{Schur polynomials}.
+
+
+
+\begin{example}[Taken from \cite{AlexanderssonAlhajjar2018}]
+
+Let $\lambda = (2,1,0,0)$ and $\sigma = [2,4,3,1] \in \symS_4$ in one-line notation.
+The permutation can be expressed as a reduced word as 
+$\sigma = s_2 s_3 s_2 s_1$.
+We compute the key polynomial as follows:
+\begin{align*}
+ \key_{\lambda,\sigma}(z) &= \pi_2 \pi_3 \pi_2 \pi_1 (z_1^2 z_2) = 
+ \pi_2 \pi_3 \pi_2 \partial_1 (z_1^3 z_2 ) = \pi_2 \pi_3 \pi_2 \left( \frac{z_1^3z_2 - z_1 z^3_2}{z_1-z_2}\right) \\
+ &= \pi_2 \pi_3 \pi_2  (z_1^2z_2 + z_1 z_2^2).
+\end{align*}
+We continue the calculation by applying $\pi_2$ and get
+\begin{align*}
+\key_{\lambda,\sigma}(z) &=
+ \pi_2 \pi_3 (z_2 z_1^2+z_3 z_1^2+z_2^2 z_1+z_3^2 z_1+z_2 z_3 z_1).
+ \end{align*}
+ Applying $\pi_2 \pi_3$ then finally gives
+\begin{equation*}\label{eq:keyExample}
+\begin{split}
+\key_{\lambda,\sigma}(z) &=
+z_1^2 z_2  + 
+z_1^2 z_3  + 
+z_1^2 z_4  + 
+z_1 z_2^2  + 
+z_1 z_3^2  \\
+&\phantom{=}+
+z_1 z_4^2  +
+z_1 z_2 z_3  + 
+z_1 z_2 z_4  + 
+z_1 z_3 z_4 .
+ \end{split}
+\end{equation*}
+In general, some monomials may appear multiple times.
+\end{example}
+
+
+Alternatively, key polynomials are also commonly indexed by weak compositions. 
+If $\alpha = (\alpha_1,\dotsc,\alpha_n)$ is a weak composition,
+we let $\key_{\alpha}(z)$ be the key polynomial $\key_{\lambda,\sigma}(z)$,
+where $\lambda$ is the partition obtained from $\alpha$ by sorting the elements in decreasing order,
+and $\sigma \in \symS_n$ is a permutation with the property that it sorts $\alpha$
+into a partition; $\lambda = (\alpha_{\sigma(1)},\alpha_{\sigma(2)},\dotsc,\alpha_{\sigma(n)})$.
+
+For example, $\alpha = (1,0,3,2)$ corresponds to $\lambda = (3,2,1,0)$ and $\sigma = [3, 4, 1, 2]$.
+With these conventions, $\key_{\lambda}(z)=\schurS_{\lambda}(z)$.
+
+\emph{Note:} This indexing convention is not uniform in the literature;
+in some places, one needs to reverse the indexing composition $\alpha$.
+
+
+
+\subsection[keyDefinitionGT]{Definition (GT-patterns)}
+
+A formula for the key polynomials 
+as a sum over lattice points in a union of faces 
+of Gelfand--Tsetlin polytopes was proved in \cite{KiritchenkoSmirnovTimorin2010}.
+
+\begin{theorem}[See \cite{KiritchenkoSmirnovTimorin2010}]
+Let $\GT(\lambda,\sigma)$ be defined as the polytopal complex
+\[
+ \GT(\lambda,\sigma) \coloneqq  \bigcup_{\substack{\mathcal{F} \in \GT(\lambda) \\ \type(\mathcal{F}) = w_0\sigma}} \mathcal{F}.
+\]
+That is, $\GT(\lambda,\sigma)$ is the union of all reduced Kogan faces of type $w_0\sigma$
+in the polytope $\GT(\lambda)$.
+
+The key polynomial $\key_{\lambda,\sigma}(z)$ can be computed as
+\begin{align}\label{eq:keyGTFormula}
+ \key_{\lambda,\sigma}(z_1,\dotsc,z_n) = \sum_{G \in \GT(\lambda,\sigma) \cap \setZ^{\tfrac{n(n+1)}{2}} } z_1^{w_1(G)} \dotsm z_n^{w_n(G)}
+\end{align}
+\end{theorem}
+
+
+Fix $\lambda$, $\sigma \in \symS_n$. 
+With the above theorem, it follows that for the map 
+\[
+k \mapsto \key_{k \lambda,\sigma}(1^n)
+\]
+is a polynomial in $k$. 
+This is in fact an Ehrhart polynomial of a union of faces in a GT-polytope.
+Let $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$ denote this polynomial.
+From the definition via divided difference operators,
+one can see that $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$
+is a polynomial in $\setQ[\lambda_1,\dotsc,\lambda_n,k]$.
+
+See \cite{AlexanderssonAlhajjar2018} for the following conjecture.
+\begin{conjecture}[Alexandersson--Alhajjar (2018)]
+The polynomial $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$ has non-negative coefficients.
+
+Moreover, after setting $a_j = \lambda_1+\lambda_2+\dotsb+\lambda_j$, the function
+$P_{\sigma}(a_1,\dotsc,a_n;k)$ is a polynomial in $\setQ[a_1,\dotsc,a_n,k]$
+with non-negative coefficients.
+\end{conjecture}
+
+See also \hyperref[keyRealRootedHstar]{my conjecture} regarding the corresponding $h^*$-polynomial.
+
+
+\subsection[keyDefinitionKeyFillings]{Definition (Skyline fillings)}
+
+In \cite{HaglundHaimanLoehr2008}, the authors presented a combinatorial model for the
+\hyperref[macdonaldE]{non-symmetric Macdonald polynomials}.
+It is relatively straightforward to see that setting $q=t=0$ in a non-symmetric Macdonald polynomial
+$\macdonaldE_{\alpha}(\xvec,q,t)$, we recover the key polynomial $\key_\alpha(\xvec)$.
+
+
+From the work of S. Mason \cite{Mason2009}, 
+we in fact get two combinatorial models for key polynomials 
+as special cases of the \hyperref[macdonaldEperm]{permuted basement Macdonald polynomials}.
+In the below definition, we assume that the reader is familiar with 
+the combinatorial model for the permuted basement Macdonald polynomials.
+
+
+\begin{definition}
+A \defin{semi-standard augmented filling} of shape $\alpha = (\alpha_1,\dotsc,\alpha_n)$
+is a non-attacking filling of the diagram with shape $\alpha$,
+basement $\sigma = [n,n-1,\dotsc,2,1]$ such that all rows (including the basement)
+are weakly decreasing, and there are no coinversion triples.
+Let $\mathrm{SSAF}(\alpha)$ be the set of semi-standard augmented fillings
+of shape $\alpha$.
+
+The key polynomial $\key_\alpha(\xvec)$ is defined as 
+\[
+\key_\alpha(\xvec) = \sum_{T \in \mathrm{SSAF}(\alpha)} \xvec^T.
+\]
+Note that when $\alpha$ is a partition, we sum over fillings with 
+weakly decreasing rows, and strictly decreasing columns. 
+It is then easy to see that this sum is the Schur polynomial $\schurS_{\lambda}(x_1,\dotsc,x_n)$.
+
+Alternatively, by choosing a different basement,
+we can realize $\key_\alpha(\xvec)$ as a sum over augmented fillings 
+with partition shape.
+Let $\mathrm{SSAF}_{\sigma}(\lambda)$ be the set of semi-standard augmented fillings 
+with basement $\sigma$ and shape $\lambda$.
+Then 
+\[
+\key_\alpha(\xvec) = \sum_{T \in \mathrm{SSAF}_{\sigma}(\lambda)} \xvec^T,
+\quad
+\text{where} \quad
+\alpha = (\lambda_{\sigma^{-1}(n)}, \lambda_{\sigma^{-1}(n-1)},\dotsc,\lambda_{\sigma^{-1}(1)}).
+\]
+\end{definition}
+
+In fact, one can find a series of bijections 
+proving the equivalence of the two above formulas,
+see \cite[Prop. 5.5]{AlexanderssonSawhney2019} (with $t=0$).
+It amounts to prove that interchanging two adjacent rows (including the basement) in 
+an augmented diagram in such a way that a longer row is moved upwards,
+preserves the weighted sum of SSAF's with corresponding shape and basement.
+
+
+
+\todo{
+Reference Proctor's papers, and Postnikov-Stanley paper.
+}
+
+
+\subsection[keyDefinitionSSYT]{Definition (SSYT)}
+
+A \defin{key} is a semistandard tableau, with the property
+that the entries in column $j+1$ is a subset of the entries in column $j$, for all $j$.
+
+Below is the unique key tableau with weight $(1,3,0,1,2,4)$:
+\begin{figure}
+\begin{ytableau}
+1 & 2 & 2 & 6\\
+2 & 5 & 6 \\
+4 & 6 \\
+5 \\
+6 \\
+\end{ytableau}
+\end{figure}
+One can prove that the map that sends a key to its weight is a bijection between the set of key tableaux
+and the set of compositions. Given a composition $\alpha = (\alpha_1,\dotsc,\alpha_\ell)$
+we simply place a cell $j$ in the first $\alpha_j$ columns.
+This produces a unique key tableau, $\mathrm{key}(\alpha)$, of shape $\sort(\alpha)$.
+
+
+Given a semi-standard tableau $T$, we can compute its \defin{right key} $K_+(T)$,
+via a rather involved process. A simpler method is proved in \cite{Mason2009}.
+The key polynomial can then be computed by
+\[
+  \key_\alpha(\xvec) = \sum_{\substack{T \in \SSYT(\sort(\alpha) \\ K_+(T) \leq \mathrm{key}(\alpha)}} \xvec^T
+\]
+where we sum over all semi-standard tableaux $T$ whose right key, $K_+(T)$, are entry-wise weakly smaller than $\mathrm{key}(\alpha)$.
+
+Similarly, the Demazure atoms are given as the sum over semi-standard tableaux with a given right key:
+\[
+  \atom_\alpha(\xvec) = \sum_{\substack{T \in \SSYT(\sort(\alpha) \\ K_+(T) = \mathrm{key}(\alpha)}} \xvec^T
+\]
+
+
+
+
+\subsection[keyRepresentation]{Representation theory of $GL_n$}
+
+See introduction in e.g. \cite{FanGuoPengSun2020}.
+
+
+
+
+
+\subsection[keyProduct]{Products of key polynomials}
+
+A product of key polynomials is not in general key positive. 
+However, in some instances such a product is key positive, see \cite{Kouno2018}.
+
+
+\todo{survey of models for key polys: https://guilhermezeus.com/maththesis.pdf}
+
+
+
+\begin{conjecture}[Attributed to unpublished work by Reiner--Shimozono]
+A product of two key polynomials expands positively into Demazure atoms.
+\end{conjecture}
+See \cite{Pun2016Thesis} for special cases of this result (she verifies the conjecture in $\setZ[x_1,x_2,x_3]$).
+
+
+
+\subsection[keyPieri]{Pieri rule for key polynomials}
+
+A Pieri rule for key polynomials is described via 
+an \hyperref[rsk]{Robinson--Schensted--Knuth}-type algorithm is given by S. Assaf and D. Quijada in \cite{AssafQuijada2019x}.
+
+
+\todo{Write more about key polynomial pieri rule.}
+
+\todo{Add skew key family}
+
+\subsection[keySkew]{Skew key polynomials}
+
+In \cite{AssafvanWilligenburg2019}, the authors introduce skew key polynomials,
+and show that these are positive in the key basis. They use weak dual equivalence 
+to obtain their result. 
+This generalizes an earlier result by Reiner and Shimozono, \cite{ReinerShimozono1995}.
+
+
+
+\section[atom]{Demazure atoms}
+
+\begin{polydata}{atom}
+  Name   & Demazure atoms \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 4 \\
+  Bib      & Lascoux1990Keys \\
+  Year     & 1990 \\
+  Symbol   & $\atom_{\lambda,\sigma}(z)$ \\
+  Keywords & divided-difference, fillings, polytopes \\
+  Category & Schur \\
+\end{polydata}
+
+
+\todo{
+5color vertex model  : 
+http://de.arxiv.org/pdf/1902.01795.pdf
+}
+
+The Demazure atoms (originally called \defin{standard bases})
+may be defined in a manner similar to \hyperref[keyDefinitionOperators]{key polynomials} using operators.
+They were introduced by Lascoux and Schützenberger in \cite{Lascoux1990Keys}.
+Using the notation for divided difference operators, let $\theta_i \coloneqq \pi_i -1$.
+These satisfy the braid relations and we have $\theta_i \theta_j = \theta_j \theta_i$
+whenever $|i-j| \geq 2$. However, note that $\theta_i^2 = 0$,
+so we must now pay extra attention to choices of permutations.
+
+Let $\lambda$ be a partition with at most $n$ parts, and let $\sigma \in \symS_n$
+be a minimal coset representatative in $\symS_n / Stab_n(\lambda)$.
+The \defin{Demazure atom} $\atom_{\lambda,\sigma}(z)$ is defined as
+\begin{equation*}
+ \atom_{\lambda,\sigma}(z) \coloneqq \theta_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
+\end{equation*}
+Again, instead of using $(\lambda,\sigma)$ as index, we simply use $\sigma(\lambda)$
+as index. 
+Here, we must must choose $\sigma$ to be the \emph{shortest permutation} $\sigma$
+which sends $\lambda$ to $\alpha = \sigma(\lambda)$.
+
+For example, if $\alpha = 1113$, then $\lambda=3111$, 
+and we must pick $\sigma = 4123$, and 
+\[
+\atom_{1113}(z) = \atom_{3111,4123}(z) = 
+z_1 z_2 z_3 z_4^3 + 
+z_1 z_2 z_3^2 z_4^2 + 
+z_1 z_2^2 z_3z_4^2 + 
+z_1^2 z_2 z_3 z_4^2.
+\]
+Similarly,
+\[
+ \atom_{103}(z) = = \atom_{310,312}(z)  z_1^3 z_2  + z_1^3 z_3  + z_1^2 z_2^2 +  z_1^2 z_3^2 +  z_1^2 z_2 z_3 + 
+  z_1 z_2^3 + z_1 z_3^3 + z_1 z_2 z_3^2 + z_1 z_2^2 z_3.   
+\]
+
+Since $\pi_i = \theta_i+1$, one can easily show that key polynomials are 
+positive in the Demazure atom basis. 
+In fact we have that (see \cite[Thm. 2.8]{Pun2016Thesis})
+\[
+	\key_{\alpha}(z) = \sum_{\beta \leq \alpha} \atom_{\beta}(z),
+\]
+where we have $\beta \leq \alpha$ if one can obtain 
+$\beta$ from $\rev(\alpha)$ by successively permuting entries which are
+in increasing order.
+For example, 
+\[
+ \key_{301} = \atom_{103} + \atom_{130}+\atom_{301}+\atom_{310}
+\]
+since $103$, $130$, $301$ and $310$ can be obtained from $\rev(301)=103$
+by successive swaps of elements (see also \hyperref[bruhatOrder]{Bruhat order}).
+Similarly,
+\[
+\key_{002} = \atom_{200} + \atom_{020} + \atom_{002}.
+\]
+\emph{Again, note that the notation used here might differ from yours.}
+
+\begin{example*}[Key polynomials into atoms]
+We have that
+\[
+ \key_{202} = \atom_{202}+\atom_{220}
+\]
+and 
+\[
+ \key_{301} = \atom_{103} + \atom_{130}+\atom_{301}+\atom_{310}
+\]
+\end{example*}
+
+See Anna Pun's thesis for a good 
+overview of Demazure atoms, key polynomials and recent results \cite{Pun2016Thesis}.
+
+
+\subsection[atomCauchyKernel]{Cauchy kernel}
+
+A bijective proof of the Cauchy-type identity below is given in \cite[Thm. 6]{Lascoux2003}.
+The proof uses the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}.
+
+\begin{theorem}[See \cite[Thm. 6]{Lascoux2003}]
+We have that
+\[
+\prod_{i+j \leq n+1} (1-x_iy_j)^{-1} = 
+\sum_{\alpha \in \setN^n} \atom_{w_0\alpha}(\xvec) \key_{\alpha}(\yvec).
+\]
+\end{theorem}
+
+In \cite{FuLascoux2009}, the authors prove this formula and several other Cauchy-type 
+identities involving key polynomials and Demazure atoms in other types.
+
+A generalization to \emph{truncated staircase shapes} is provided 
+by O. Azenhas and A. Emami in \cite{AzenhasEmami2015}. 
+They use a version of RSK introduced by S. Mason in \cite{Mason2008}.
+
+An alternative proof also appear in \cite{ChoiKwon2017} where the 
+authors use $U_q(\mathfrak{g})$ \hyperref[crystals]{crystals}.
+
+See also \cite{AzenhasGobetLecouvey2022x} for the connection between the Cauchy kernel, 
+RSK, crystals and last passage percolation.
+
+
+\begin{example}[Personal communication, Vasu Tewari 2019]
+Recall the Cauchy identity for 
+\hyperref[schubert]{Schubert polynomials} (see e.g. \cite[p. 30]{PostnikovStanley2008}).
+\[
+ \sum_{w \in \symS_n} \schubert_w(\xvec) \schubert_{w w_0}(\yvec) = \prod_{i+j \leq n} (1 + x_iy_j) =
+ \prod_{k=1}^{n-1}\sum_{j=0}^k y_{n-k}^{k-j} \elementaryE_{j}(x_1,\dotsc,x_k).
+\]
+Since the Schubert polynomials are positive in the key basis,
+it follows that the \hyperref[schubertAsSumOfElementary]{standard elementary monomials}
+are key-positive.
+\end{example}
+
+
+
+
+\section[keysAndAtomsTypeBCD]{Demazure keys and Demazure atoms in type $B$, $C$ and $D$}
+
+
+In \cite{FuLascoux2009}, A. Fu and A. Lascoux define divided difference operators
+that allow us to define key polynomials and Demazure atoms in types $B$, $C$ and $D$.
+
+\todo{Write down the operators.}
+
+See \href{http://www.mat.uc.pt/~oazenhas/KC.pdf}{these slides} for a nice overview.
+In particular, the type $C$ key polynomials contain the \hyperref[schurSymplectic]{symplectic Schur functions}.
+There is an operator definition, crystal graph definition and a key-tableau definition of these.
+
+They end with an open question about how to characterize type $B$ Demazure atoms
+as a sum over fillings.  This question is perhaps answered in the recent preprint
+\url{https://arxiv.org/pdf/1910.14115.pdf}.
+
+See also \cite{RamYip2011}, as key polynomials are specializations of non-symmetric Macdonald polynomials.
+
+
+\section[keyTypeBC]{Type $B/C$ key polynomials}
+
+\begin{polydata}{keyTypeBC}
+  Name   & Type $B/C$ key polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & FuLascoux2009\\
+  Year     & 2009\\
+  Category & Schur \\
+\end{polydata}
+
+\todo{Add type BC keys and atoms}
+
+
+In \cite{Santos2021}, J. M. Santos gives combinatorial formulas 
+for the type $C$ key polynomials and Demazure atom polynomials.
+The type $C$ key polynomials expand positively into type $C$ Demazure atoms,
+by summing over an ideal in the Bruhat poset, see \cite[Prop. 53]{Santos2021}.
+This is analogous to the type $A$ setting.
+A crystal characterization is also given, as well as analogs of key tableaux.
+
+
+
+\section[atomsTypeBC]{Type $B/C$ Demazure atoms}
+
+\begin{polydata}{atomsTypeBC}
+  Name   & Type $B/C$ Demazure atoms \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & FuLascoux2009\\
+  Year     & 2009\\
+  Category & Schur \\
+\end{polydata}
+
+
+See \cite{FuLascoux2009} for definitions of key polynomials in other types.
+These are related to the  \hyperref[schurOrthogonal]{orthogonal} 
+and \hyperref[schurSymplectic]{symplectic} Schur functions.
+
+
+

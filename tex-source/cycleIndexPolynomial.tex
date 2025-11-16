@@ -1,0 +1,150 @@
+\section[cycleIndexPolynomial]{Cycle index polynomials}
+
+\begin{polydata}{cycleIndexPolynomial}
+  Name     & Cycle index polynomials \\
+  Space    & Sym   \\
+  Basis    & False   \\
+  Rating   & 2     \\
+  Bib      & Polya1937\\
+  Year     & 1937 \\
+  Keywords & schur-positive \\
+  Symbol   & $\cyc_G(\xvec)$ \\
+  Category & Other \\
+\end{polydata}
+
+The cycle index polynomial (\emph{Zyklenzeiger}) of a group $G$ was 
+introduced by G. Pólya in \cite[Eq. (1,5)]{Polya1937}.
+Let $G \subseteq \symS_n$ be a subgroup. The \defin{cycle index polynomial} is defined 
+in terms of the \hyperref[powerSum]{powersum symmetric functions} as the average
+\[
+\cyc_G(\xvec) \coloneqq \frac{1}{|G|} \sum_{\pi \in G} \powerSum_{\type(\pi)}(\xvec).
+\]
+
+Let $\symS_n/G$ denote the set of let cosets of $G$, and let $\symS_n$ act on $\setC[\symS_n/G]$.
+This makes $\setC[\symS_n/G]$ into an $\symS_n$-module, 
+and its \hyperref[frobeniusCharacteristic]{Frobenius characteristic} is given by $\cyc_G(\xvec)$. 
+In particular, $\cyc_G(\xvec)$ is Schur-positive.
+For more info on the cycle index polynomial, we refer to \cite{LoehrWarrington2019}.
+
+
+\begin{conjecture}[Foulkes Conjecture, \cite{Foulkes1950}]
+Let $X_{a,b}$ be the set of set-partitions of $\{1,2,\dotsc,ab\}$ into 
+$a$ blocks of size $b$. The symmetric group $S_{ab}$ act on $X_{a,b}$
+in the obvious manner. Let $G_{a,b}$ be the stabilizer subgroup of some fixed element in 
+$X_{a,b}$ under this action.
+Let
+\[
+\cyc_{G_{a,b}}(\xvec) = \sum_\lambda c_{\lambda,a,b}\; \schurS_\lambda(\xvec).
+\]
+Foukes conjecture states that whenever $a\leq b$, then for all $\lambda$,
+$c_{\lambda,a,b} \leq c_{\lambda,b,a}$.
+This is equivalent with the statement that 
+$
+\completeH_b[\completeH_a]-\completeH_a[\completeH_b]
+$
+is Schur-positive whenever $a \leq b$. 
+The notation here indicates \hyperref[plethysm]{plethysm}.
+\end{conjecture}
+
+See also \url{https://arxiv.org/pdf/2008.13070.pdf} and \url{https://arxiv.org/pdf/2507.06220}.
+\todo{add this refs}
+
+
+
+
+\section[lyndonSymmetric]{Lyndon symmetric functions}
+
+
+\begin{polydata}{lyndonSymmetric}
+  Name     & Lyndon symmetric functions \\
+  Space    & Sym   \\
+  Basis    & False   \\
+  Rating   & 2  \\
+  Bib      & GesselReutenauer1993\\
+  Year     & 1993 \\
+  Keywords & schur-positive \\
+  Symbol   & $L_\lambda(\xvec)$ \\
+  Category & Sym \\
+\end{polydata}
+
+The \defin{Lyndon symmetric functions}, also known as \defin{higher Lie characters} in \cite{AdinHegendusRoichman2019x},
+are described using 
+the \hyperref[gessel]{fundamental quasisymmetric functions}:
+\[
+L_{\lambda}(\xvec) \coloneqq \sum_{\pi \in K_\lambda} \gessel_{n,D(w)}(\xvec)
+\]
+where $K_\lambda$ is the set of permutations in $\symS_n$ with cycle type $\lambda$.
+See also \cite[Def 1.5]{AdinHegendusRoichman2019x} for a representation-theoretical definition,
+
+
+The Lyndon symmetric functions are also covered in \cite[p. 480]{StanleyEC2},
+and it was shown by Gessel--Reutenauer \cite[Thm. 3.6]{GesselReutenauer1993}, that
+we have
+\begin{equation}
+L_{n}(\xvec) = \frac{1}{n} \sum_{d \mid n} \mu(d)\powerSum_{d}^{n/d},
+\quad 
+L_{n^k}(\xvec) = \completeH_k[L_{n}],
+\quad 
+\text{ and }
+\quad
+L_{1^{m_1}2^{m_2}\dotsb}(\xvec) = L_{1^{m_1}} L_{2^{m_2}} \dotsm.
+\end{equation}
+These relations uniquely define the $L_{\lambda}(\xvec)$ where 
+we write $\lambda = 1^{m_1}2^{m_2}\dotsb$.
+Moreover, since $L_{n}(\xvec)$ can be shown to be Schur-positive,
+it follows that the Lyndon symmetric functions are also Schur positive.
+A monomial expansion for $L_{\lambda}(\xvec)$ is given by summing over all 
+multisets of primitive necklaces whose sizes are given by $\lambda$.
+Gesses then has a bijection which sends such multisets to
+words of length $n$ whose \emph{standardization permutation} is $\lambda$.
+
+
+See also \cite[Ex. 7.69c]{StanleyEC2} for some applications of Lyndon symmetric functions.
+In particular, T. Scharf shows that a certain character is 
+\[
+  \sum_{n\geq 0} \completeH_{n}\left[ \sum_{d\mid k} L_d \right].
+\]
+
+
+\begin{problem}[Thrall's problem]
+Find a combinatorial formula for the Schur expansion of $L_{\lambda}(\xvec)$.
+\end{problem}
+See the Youtube video \href{https://www.youtube.com/watch?v=bQc6D0aAu0M}{GOCC 4/12/23 "A crystal base approach to Thrall's problem"}
+for background and a possible approach to solving this problem.
+
+
+
+\begin{problem}[Yuval Roichman, FPSAC 2023]
+Prove that for any $\lambda \vdash n$
+\[
+  \sum_{k=0}^n \langle L_{\lambda}, \schurS_{k,1^{n-k}} \rangle t^k
+\]
+is unimodal. This is \cite[Conj. 7.13]{AdinHegendusRoichman2019x}.
+\end{problem}
+
+
+\begin{problem}
+It is an open problem (Stanley, 2022)
+to find the (co)dimension of the span of the $L_\lambda$,
+see 38:00 in \href{https://www.youtube.com/watch?v=NDAzHTP3vOs}{this youtube video}.
+\end{problem}
+
+
+The functions $L_{n}(\xvec)$ are Lie characters, see \cite[Thm. 8.3]{Reutenauer1993}.
+Richard Stanley discusses these also in \href{https://math.mit.edu/~rstan/transparencies/whouse.pdf}{these slides}.
+One can show that 
+\[
+L_{n}(\xvec) = \sum_{\lambda \vdash n} |\{T \in \SYT(n) : \maj(T) \equiv_n 1\}| \schurS_\lambda(\xvec).
+\]
+
+There is also the \defin{Whitehouse module}, see \cite{StanleyWhitehouse}.
+Their Frobenius characteristic is 
+\[
+\powerSum_{1} L_{n-1}(\xvec) - L_{n}(\xvec)
+\]
+so this is Schur-positive.
+Can we find a combinatorial proof that these are Schur-positive?
+
+
+\todo{Add https://arxiv.org/pdf/2210.04478}
+

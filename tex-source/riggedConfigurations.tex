@@ -1,0 +1,175 @@
+\metatitle{Rigged configurations}
+\metadescription{Description of rigged configurations}
+
+
+
+ \section[riggedConfigurations]{Rigged configurations}
+ 
+ Rigged configurations were introduced by Kirillov and Reshetikhin \cite{KirillovReshetikhin1988thebethe}.
+ One of the main applications is to compute \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials} in an efficient manner.
+ 
+ We shall now introduce the terminology to define these objects, by following the 
+ introduction in \cite{DesarmenienLeclercThibon1994}.
+ 
+ Let $\lambda$ and $\mu$ be partitions of $n$. A \emph{matrix of type} $(\lambda,\mu)$
+ is a matrix $M=(m_{ij})$ with a finite number of non-zero in $\setZ$, such that
+ \[
+ \sum_{j\geq 1} m_{ij} = \lambda_j \qquad \sum_{i\geq 1} m_{ij} = \mu'_j.
+ \]
+ We also associate matrices $P$ and $Q$ with $M$, via
+ \[
+  P_{ij} = \sum_{k \leq j } \left( m_{i,k} - m_{i+1,k} \right) \qquad 
+  Q_{ij} = \sum_{k \geq i+1 } \left( m_{k,j} - m_{k,j+1} \right).
+ \]
+ The matrix $M$ is \emph{admissible} if and only if the entries in $P$ and $Q$ are non-negative.
+ The numbers $P_{ij}$ for which $Q_{ij}\gt 0$ are called the \defin{vacancy numbers} of $M$.
+ 
+ \subsection[configurations]{Configurations}
+ 
+ An admissible matrix can be represented via a sequence of partitions, $\nuvec = (\nu^0,\nu^1,\dotsc)$,
+ such that 
+ \[
+ (\nu^i)'_j = \sum_{k \geq i+1} m_{kj}.
+ \]
+ Note that $\nu^0 = \mu$ and that $\lambda_i = |\nu^i|-|\nu^{i-1}|$ for $i \geq 1$.
+ Each entry $Q_{ij}$ gives the multiplicity of occurrence of the value $j$ as a part of the partition $\nu^i$.
+ 
+ 
+ A \defin{rigging} of a configuration is defined as follows.
+ For each $i$, $j$, an \emph{integer partition} $I^i_j$
+ is assigned to each $j$ which appear as a part of $\nu^i$,
+ in such a way that the largest part of $I^i_j$ does not exceed $P_{ij}$,
+ and the length of $I^i_j$ does not exceed $Q_{ij}$, 
+ which is also the number of parts of size $j$ in $\nu^i$.
+ 
+ The parts in the partitions $I^i_j$ are traditionally written in the 
+ leftmost box of the part in the Young diagram associated with $\nu^i$.
+ 
+ \begin{example*}[Rigged configuration]
+ Consider the following matrix $M$, and the associated $P$ and $Q$.
+ The vacancy numbers in $P$ have been marked in bold.
+ \[
+ M=
+ \begin{pmatrix}
+ 3 & 2 & 1 & -1 & 1 & 1 \\
+ 2 & 1 & 1 & 1 & 0 & 1 \\
+ 2 & 1 & 1 & 1 & 0 & 0 \\
+ 1 & 1 & 1 & 1 & 1 & 0 \\
+ 1 & 1 & 1 & 0 & 0 & 0
+ \end{pmatrix}
+ \]
+ \[
+ P=
+ \begin{pmatrix}
+ \mathbf{1} & 2 & \mathbf{2} & \mathbf{0} & 1 & \mathbf{1} \\
+ \mathbf{0} & 0 & \mathbf{0} & \mathbf{0} & \mathbf{0} & 1 \\
+ 1 & 1 & \mathbf{1} & 1 & \mathbf{0} & 0 \\
+ 0 & 0 & \mathbf{0} & 1 & 2 & 2 \\
+ 1 & 2 & 3 & 3 & 3 & 3 \\
+ \end{pmatrix}
+ \;
+ Q=
+ \begin{pmatrix}
+ 2 & 0 & 1 & 2 & 0 & 1 \\
+ 1 & 0 & 1 & 1 & 1 & 0 \\
+ 0 & 0 & 1 & 0 & 1 & 0 \\
+ 0 & 0 & 1 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 \\
+ \end{pmatrix}
+ \]
+ We have that the type $(\lambda,\mu)$ of $M$ is  
+ $(7 6 5 5 3, 6 6 3 3 3 2 1 1 1)$ and the associated $(\nu^i)_{i=0}^4$ is given by 
+ \[
+ \nu^0= 663332111,\quad \nu^1 = 6 4 4 3 1 1 ,\quad \nu^2 = 5 4 3 1 ,\quad \nu^3= 53 ,\quad \nu^4 = 3.
+ \]
+ A rigged configuration for this $\nuvec$  is given by the following decorated sequence of Young diagrams.
+ \begin{figure}
+ \begin{ytableau}
+  & & & & & \\
+  & & & & & \\
+  & & \\
+  & & \\
+  & & \\
+  & \\
+ \, \\
+ \, \\
+ \, 
+\end{ytableau}
+ \begin{ytableau}
+ *(lightblue) 1 & & & & & & \none 1\\
+ *(lightblue) 0 & & & & \none 0 \\
+ *(lightblue) 0 & & & \\
+ *(lightblue) 2 & & & \none 2\\
+ *(lightblue) 1\, & \none 1\\
+ *(lightblue) 0\, 
+\end{ytableau}
+ \begin{ytableau}
+ *(lightblue) 0 & & & &  & \none 0\\
+ *(lightblue) 0 & & &  & \none 0\\
+ *(lightblue) 0 & &  & \none 0\\
+ *(lightblue) 0\,  & \none 0
+\end{ytableau}
+ \begin{ytableau}
+ *(lightblue) 0 & & & &  & \none 0\\
+ *(lightblue) 1 & &  & \none 1
+\end{ytableau}
+ \begin{ytableau}
+ *(lightblue) 0 & &  & \none 0
+\end{ytableau}
+ \end{figure}
+The vacancy numbers have been written to the right of the parts (parts of the same size have the same 
+vacancy). The shaded boxes is an example of a rigged configuration. Each such entry must not exceed 
+the vacancy of that part. Furthermore, in diagram $i$, 
+for sequence of block of parts of the same size $j$, the numbers in the shaded
+boxes are weakly decreasing, so that they form an integer partition $I^i_j$.
+\end{example*}
+ 
+ 
+ The pair $(\nuvec, I)$ is called a \defin{rigged configuration}.
+ The set of rigged configurations of type $(\lambda,\mu)$
+ are in bijection with $\SSYT(\lambda,\mu)$.
+Given a configuration $\nuvec$, there are $\prod_{i,j \geq 1} \binom{P_{ij} + Q_{ij}}{Q_{ij}}$ 
+different rigged configurations.
+
+
+
+ 
+ \subsection[configurationCharge]{Charge}
+ 
+ The \defin{charge} of a configuration $\nuvec$ is 
+ \[
+ \charge(\nuvec) = \sum_{i,j} \binom{ m_{ij} }{2},
+ \]
+ and the charge of a rigged configuration is defined as
+ \[
+ \charge(\nuvec,I) =  \charge(\nuvec) + \sum_{i,j} I^i_j.
+ \]
+ 
+ 
+ \begin{theorem}[See \cite{DesarmenienLeclercThibon1994}]
+ The Kostka--Foulkes polynomial $K_{\lambda\mu}(q)$ is equal to
+ \[
+ K_{\lambda\mu}(q) = \sum_{\nu} \prod_{i,j \geq 1} q^{\charge(\nu)} \qbinom{P_{ij} + Q_{ij}}{Q_{ij}}_q.
+ \]
+ \end{theorem}
+
+ 
+
+
+\todo{Add refs below}
+% 
+% https://sites.google.com/site/affinecrystal/rigged-configurations
+% 
+% https://arxiv.org/pdf/0902.2286.pdf
+% 
+% https://arxiv.org/pdf/math/0512161.pdf
+% 
+% https://arxiv.org/pdf/math-ph/0210014.pdf
+% 
+% http://www.ams.org/journals/proc/1995-123-10/S0002-9939-1995-1264811-3/S0002-9939-1995-1264811-3.pdf
+% 
+% 
+% This paper describes explicitly how to do it, see (40), giving HL-polynomials 
+% as sum over rigged configs.
+% https://hal.archives-ouvertes.fr/hal-00123035v2/document
+

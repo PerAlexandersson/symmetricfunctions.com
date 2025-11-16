@@ -1,0 +1,645 @@
+
+\section[schurSymplectic]{Symplectic Schur polynomials}
+
+
+\begin{polydata}{schurSymplectic}
+  Name     & Symplectic Schur polynomials \\
+  Space    &  Other   \\
+  Basis    &  False   \\
+  Rating   &  1      \\
+  Bib      &  King1971\\
+  Year     &  1971? \\
+  Keywords & jacobi-trudi,tableaux,cauchy-identity,skew \\
+  Symbol   & $\schurSp_{\lambda/\mu}(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+\todo{
+Combinatorial def: https://pdfs.semanticscholar.org/f1e7/d5a08b9ff7745473403237f170795f1b32e2.pdf 
+}
+\todo{http://de.arxiv.org/pdf/1804.08495.pdf}
+
+
+\todo{
+Orthosymplectic pieri rule
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=22&ved=2ahUKEwjJ1-28vtvdAhWkiaYKHd7pDks4FBAWMAF6BAgIEAI&url=http%3A%2F%2Fwww.combinatorics.org%2Fojs%2Findex.php%2Feljc%2Farticle%2Fdownload%2Fv25i3p37%2Fpdf&usg=AOvVaw2KLWUbv88cUcV-wRPc4FQI
+}
+
+
+\todo{
+Operator and Giambelli formulas
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.11.6964&rep=rep1&type=pdf
+}
+
+
+The \emph{even symplectic Schur polynomials} were explicitly described combinatorially in \cite{King1976},
+and are characters for the lie group $Sp(2n)$. See also \cite{Krattenthaler1998} for a good reference.
+
+We work in the alphabet $\xvec = (x_1,x_1^{-1},x_2,x_2^{-1},\dotsc,x_n,x_n^{-1})$.
+A \defin{symplectic tableau} (also known as King tableau) of shape $\lambda/\mu$ is a filling of the shape $\lambda/\mu$
+with entries in 
+\[
+1 \lt \overline{1} \lt 2 \lt \overline 2 \lt \dotsb \lt n \lt \overline{n}
+\]
+such that (a) entries are weakly increasing along rows, and strictly increasing along columns and
+(b) entries in row $i$ are greater than or equal to $i$.
+Let $SP(\lambda/\mu)$ denote the set of such tableaux.
+We then define the \defin{even symplectic Schur polynomials} 
+(using the definition in \cite{Hamel1997}) as
+\[
+\schurSp_{\lambda/\mu}(\xvec) = \sum_{T \in SP(\lambda/\mu)} \xvec^{T},
+\]
+where entries $i$ in $T$ contribute with $x_i$, and entries $\overline{j}$ contribute with $x_j^{-1}$.
+
+\begin{example}
+The following tableau is an element in $SP(\lambda/\mu)$
+\begin{figure}
+\begin{ytableau}
+1 & 1 & \overline{1} & \overline{1} & \overline{2} & 3 \\
+\overline{1} & \overline{2} & 3 & 4 \\
+3 & 3
+\end{ytableau}
+\end{figure}
+\end{example}
+
+
+To prove that these are symmetric functions, see \cite[Thm. 6.12]{SundaramThesis}
+where a type of Bender-Knuth involutions are defined.
+The proof however \href{https://mathoverflow.net/questions/362997/bender-knuth-involutions-for-symplectic-king-tableaux}{seems to have a gap},
+a complete proof is available in \cite{Gutirrez2024}.
+
+
+There are also altnerative tableaux-descriptions. For example, the \defin{Kashiwara--Nakashima tableaux},
+see for example \cite{AzenhasFellerTorres2022}. There is a $U_q(\mathfrak{sp}(2m,\setC))$-crystal structure
+defined on these KN-tableaux.
+
+
+\subsection[schurSymplecticBialternant]{Bialternant formula}
+
+We have that the \emph{even symplectic Schur functions} can be expressed as 
+\[
+\schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
+=
+\frac{
+\left| x_i^{\lambda_j+n-j+1} - x_i^{-(\lambda_j+n-j+1)}\right|_{1 \leq i,j \leq n}
+}{
+\left| x_i^{n-j+1} - x_i^{-(n-j+1)}\right|_{1 \leq i,j \leq n}
+}
+\]
+
+The \emph{odd symplectic Schur functions} has a more complicated bialternant formula,
+see \url{http://de.arxiv.org/pdf/1905.12964.pdf}.
+
+
+\subsection[schurSymplecticCauchy]{Cauchy-identity}
+
+
+The following Cauchy-identity is proved by S. Sundaram in her thesis, see \cite{SundaramThesis}.
+\[
+\sum_{\lambda} \schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) \schurS_\lambda(y_1,\dotsc,y_n)
+= \prod_{1\leq i \lt j \leq n} (1-y_i y_j)
+\prod_{1\leq i \lt j \leq n} \frac{1}{(1-y_i x_j)(1-y_i x^{-1}_j)}.
+\]
+
+
+
+
+
+\subsection[schurSymplecticJacobiTrudy]{Jacobi--Trudi}
+
+In \cite{FulmekKrattenthaler1997}, the following analogues of the Jacobi-Trudi identities are proved:
+\begin{align}
+\schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) 
+& = \frac{1}{2}\det[ \completeH_{\lambda_i - i+j}(\xvec) + \completeH_{\lambda_i - i- j + 2}(\xvec) ]_{1\leq i,j \leq \length(\lambda)} \\
+& = \det[ \elementaryE_{\lambda'_j - j+i}(\xvec) - \elementaryE_{\lambda'_j - j- i}(\xvec) ]_{1\leq i,j \leq \lambda_1}.
+\end{align}
+Note that these formulas allow us to consider $\schurSp_\lambda(\xvec)$ as a symmetric function, 
+by instead using the infinite alphabet $x_1,x_2,\dotsc$.
+
+\begin{example}
+We have the following expansions in the monomial basis:
+\begin{align}
+\schurSp_{4}  &= \monomial_{4} + \monomial_{22} + \monomial_{31}+\monomial_{211}+\monomial_{1111} \\
+\schurSp_{31} &= -\monomial_{2} - \monomial_{11} + \monomial_{22}+\monomial_{31}+2\monomial_{211}+3\monomial_{1111} \\
+\schurSp_{22} &= - \monomial_{11} + \monomial_{22} + \monomial_{211}+2\monomial_{1111} \\
+\schurSp_{211} &= 1 - \monomial_{2} -2 \monomial_{11} + \monomial_{211} + 3\monomial_{1111} \\
+\schurSp_{1111} &= - \monomial_{11} + \monomial_{1111} 
+\end{align}
+Observe that one needs to substitute the finite symplectic alphabet 
+in these expressions in order for these formulas to agree with the tableau definition.
+For example,
+\begin{align}
+\schurSp_{11}(\xvec) &= - 1 + \monomial_{11}(\xvec)\\
+\schurSp_{11}(x_1,x_1^{-1},x_2,x_1^{-2}) &=
+1 + x_1^{-1}x_2^{-1} + x_1x^{-1}_2+x^{-1}_1x_2 + x_1x_2
+\end{align}
+\end{example}
+
+
+\subsection[schurSymplecticGiambelli]{Giambelli formula}
+
+In Frobenius coordinates, we have that
+\[
+\schurSp_{(\alpha|\beta)} = \left| \schurSp_{(\alpha_i|\beta_j)} \right|_{s \times s}
+\]
+see e.g. \cite[Eq. (3.11)]{FulmekKrattenthaler1997}.
+
+
+
+\subsection[schurSymplecticCrystal]{Kashiwara crystals}
+
+In \cite{Lee2019} S. J. Lee defines a \hyperref[crystals]{crystal graph} structure on King tableaux,
+so that connected components correspond to single symplectic Schur functions.
+The crystal structure on $K(\mu,n)$ --- the set of symplectic tableaux of shape $\mu$ and maximal entry at most $n$ ---
+is isomorphic to the crystal $B(\mu)$, the irreducible representation of $\mathfrak{sp}_{2n}$ indexed by $\mu$.
+
+Lee also shows a bijection between symplectic tableaux and so called \emph{oscillating tableaux}, preserving the crystal structure.
+
+An explicit conjecture regarding the expansion
+\[
+ \schurSp_\lambda(\xvec^{\pm}) \schurS_\mu(\xvec^{\pm}) = \sum_{\nu} c^{\nu}_{\lambda\mu} \schurSp_\nu(\xvec^{\pm})
+\]
+is also given in \cite[Conj. 6.2]{Lee2019}.
+
+
+\subsection[schurSymplecticOtherProperties]{Further properties}
+
+There are analogs of Gelfand--Tsetlin patterns for these functions, see e.g. \cite{AyyerFischer2019}.
+
+One can express the even symplectic Schur functions as a sum of skew Schur functions as
+\[
+\schurSp_\lambda(\xvec) = \sum_\alpha (-1)^{|\alpha|/2} \schurS_{\lambda/\alpha}(\xvec)
+\]
+where $\alpha$ ranges over the \hyperref[prelimPartitions]{Frobenius coordinates} $(a_1,a_2,\dotsc, | a_1+1,a_2+1,\dotsc)$,
+including the empty partition.
+
+
+The following branching rule is due to Littlewood (\cite[p.295]{Littlewood1977}), see also \cite[p.54]{Krattenthaler1998}.
+\begin{theorem}[Littlewood]
+We have that
+\[
+\schurS_{\lambda}(\xvec) = \sum_{\nu} \schurSp_\nu(\xvec) \sum_{\mu, \text{ $\mu'$ even}} c^{\lambda}_{\mu,\nu}
+\]
+where the sum is over all partitions $\mu$ where the columns are even.
+\end{theorem}
+
+
+
+
+
+\section[schurOrthogonal]{Orthogonal Schur polynomials}
+
+
+
+
+\begin{polydata}{schurOrthogonal}
+  Name   & Orthogonal Schur polynomials \\
+  Space    & Other \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & King1971\\
+  Year     & 1971? \\
+  Keywords & jacobi-trudi,tableaux,cauchy-identity,skew \\
+  Symbol   & $\schurOr_\lambda(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+A \defin{special orthogonal tableau} of shape $\lambda/\mu$ is a filling of the shape $\lambda/\mu$
+with entries in 
+\[
+1 \lt \overline{1} \lt 2 \lt \overline 2 \lt \dotsb \lt n \lt \overline{n} \lt \infty
+\]
+such that (a) entries are weakly increasing along rows 
+and all finite entries are strictly increasing along columns,
+(b) entries in row $i$ are greater than or equal to $i$,
+and (c) there are at most one $\infty$ in every row.
+Let $SO(\lambda/\mu)$ denote the set of such tableaux.
+
+We then define the \defin{even orthogonal Schur polynomials} (using the definition in \cite{Hamel1997}) as
+\[
+\schurSp_{\lambda/\mu}(\xvec) = \sum_{T \in SO(\lambda/\mu)} \xvec^{T},
+\]
+where entries $i$ in $T$ contribute with $x_i$ and entries $\overline{j}$ contributes with $x_j^{-1}$.
+The $\infty$-elements do not contribute.
+
+We note that $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$, where $\omega$ is the standard involution on the symmetric group.
+
+
+\subsection[schurOrthogonalJacobiTrudy]{Jacobi--Trudi}
+
+We have the following Jacobi--Trudi identities for the 
+orthogonal Schur polynomials, see \cite{FulmekKrattenthaler1997,Hamel1997}.
+These follow from the symplectic ones, using the identity $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$.
+
+\begin{align}
+\schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) 
+& 
+=\det[ \completeH_{\lambda_i - i+j}(\xvec) - \completeH_{\lambda_i - i- j }(\xvec) ]_{1\leq i,j \leq \length(\lambda)} \\
+& =\frac{1}{2}\det[ \elementaryE_{\lambda'_i - i+j}(\xvec) + 
+\elementaryE_{\lambda'_i - i- j + 2}(\xvec) ]_{1\leq i,j \leq \lambda_1}.
+\end{align}
+Note that the functions in the right hand side are also evaluated in 
+the alphabet $\xvec = (x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})$.
+
+
+There are more general identities, analogous to the Hamel--Goulden identities, see \cite{Hamel1997}.
+
+
+
+As with the symplectic characters, we have the following expansion.
+\begin{theorem}[Littlewood]
+We have that
+\[
+\schurS_{\lambda}(\xvec) = \sum_{\nu} \schurOr_\nu(\xvec) \sum_{\mu, \text{ $\mu$ even}} c^{\lambda}_{\mu,\nu}
+\]
+where the sum is over all partitions $\mu$ where the rows are even.
+\end{theorem}
+
+
+\todo{Add https://core.ac.uk/download/pdf/157582001.pdf this has a great intro and correct formulas}
+% 
+% \subsection[schurOrthogonalBialternant]{Bialternant formula}
+% 
+% We have that the \emph{orthogonal Schur functions} can be expressed as 
+% \[
+% \schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
+% =
+% \frac{
+% \left| x_i^{\lambda_j+n-j+1} - x_i^{-(\lambda_j+n-j+1)}\right|_{1 \leq i,j \leq n}
+% }{
+% \left| x_i^{n-j+1} - x_i^{-(n-j+1)}\right|_{1 \leq i,j \leq n}
+% }
+% \]
+
+
+
+\subsection[schurOrthogonalCauchy]{Cauchy identity}
+
+\[
+\sum_{\lambda} \schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) \schurS_\lambda(y_1,\dotsc,y_n)
+=
+\prod_{1\leq i \leq j \leq n} (1-y_i y_j)
+\prod_{1\leq i \lt j \leq n} \frac{1}{(1-y_i x_j)(1-y_i x^{-1}_j)}.
+\]
+
+\subsection[schurOrthogonalOtherProperties]{Further properties}
+
+One can express the \defin{orthogonal Schur functions} as a sum of skew Schur functions as
+\[
+\schurOr_\lambda(\xvec) = \sum_\beta (-1)^{|\beta|/2} \schurS_{\lambda/\beta}(\xvec)
+\]
+where $\beta$ ranges over the Frobenius coordinates $(b_1+1,b_2+1,\dotsc, | b_1,b_2,\dotsc)$,
+including the empty partition.
+
+
+
+\section[schurP]{Schur's $P$ functions}
+
+
+\begin{polydata}{schurP}
+  Name   & Schur's $P$ functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 4 \\
+  Bib      & Schur1911\\
+  Year     & 1911 \\
+  Keywords & pfaffian,tableaux,schur-positive \\
+  Symbol   & $\schurP_\lambda(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+\todo{ add this http://math.sfsu.edu/federico/Articles/staircaseschur.pdf }
+\todo{ Add this rule: \url{https://mathoverflow.net/questions/337891/pieri-type-rule-for-schur-p-functions} }
+
+Schur's $P$ functions were introduced by Issai Schur in \cite{Schur1911},
+to stody projective resentations of the symmetric and alternating groups.
+Schur's $P$ functions $\schurP_\lambda(\xvec)$ are indexed by partitions with \emph{distinct parts} and are given 
+as the specialization of the \hyperref[hallLittlewoodP]{Hall--Littlewood $P$ functions} at $t=-1$.
+
+
+\subsection[schursPPfaffian]{Pfaffian formula}
+
+Let $\lambda$ be a partition with $\ell$ distinct parts and let $n \geq \ell$.
+Then
+\[
+\schurP_\lambda(x_1,\dotsc,x_n) \coloneqq \frac{1}{(n-\ell)!} \sum_{\sigma \in \symS_n} \sigma \left(
+\xvec^{\lambda} \prod_{\substack{i \leq \ell \\  i \lt i \leq n } } \frac{x_i+x_j}{x_i-x_j}
+\right).
+\]
+
+\subsection[schursPTableauformula]{Combinatorial formula}
+
+Given a partition $\lambda$ with distinct parts, consider the \defin{shifted tableau} of shape $\lambda$.
+Then consider fillings of this diagram with entries in the alphabet $1' \lt 1 \lt 2' \lt 2 \lt \dotsb $
+such that 
+\begin{itemize}
+\item 
+	each row has at most one marked $i$ for every $i=1,2,\dotsc$ 
+\item 
+	each column has at most one unmarked $i$, for every $i=1,2,\dotsc$,
+\item 
+	entries in rows and columns are weakly increasing and
+\item 
+	there are no marked entries on the main diagonal.
+\end{itemize}
+We let $ShSSYT(\lambda)$ denote the set of such fillings.
+
+\begin{example}
+For $\lambda=9531$ we have the shifted diagram with an element in $ShSSYT(\lambda)$.
+\begin{figure}
+\begin{ytableau}
+ &   &  & & & & & & \\
+\none & & & & & \\
+\none & \none & & & \\
+\none & \none & \none & 
+\end{ytableau}
+\begin{ytableau}
+1 & 1  & 2' & 3' & 3 & 3 & 4 & 4 & 4 \\
+\none & 2 & 2 & 3 & 4' & 4 \\
+\none & \none & 2 & 3 & 4 \\
+\none & \none & \none & 4 
+\end{ytableau}
+\end{figure}
+\end{example}
+
+\defin{Schur's $P$ function} can then be defined as
+\[
+\schurP_\lambda(\xvec) \coloneqq \sum_{T \in ShSSYT(\lambda)} \xvec^T
+\]
+where $\xvec^T$ is the product over all entries in $T$ and $i$ and $i'$ both contribute with $x_i$.
+
+\todo{
+For other Lie types, see http://igm.univ-mlv.fr/~fpsac/FPSAC07/SITE07/PDF-Proceedings/Posters/75.pdf 
+}
+
+An alternative combinatorial model uses semi-standard decomposition tableaux, introduced in \cite{Serrano2010}.
+See \cite{Cho2012} for additional results.
+
+\subsection[schurPSchurExpansion]{Schur expansion}
+
+Schur's $P$ functions are Schur-positive, see \cite{WorleyThesis,Sagan1987,Assaf2018ShiftedDual}.
+B. Sagan gives a proof using an insertion algorithm similar to RSK insertion 
+that respects the Knuth relations. The proof by S. Assaf uses the notion of dual 
+equivalence which in some sense is very close to RSK.
+
+S. Choi and J-H Kwon gives a proof of Schur positivity using \hyperref[crystals]{crystals}, see \cite{ChoiKwon2018}.
+A different proof using crystals is provided in \cite{AssafOguz2018}.
+
+
+\begin{example*}[Schur expansions]
+Here are the Schur expansions of $\schurP_\lambda(\xvec)$ for various $\lambda$.
+
+\begin{array}{lll}
+\toprule
+\text{Partition} & \text{Schur expansion} \\
+\midrule
+1	& \schurS_{1} \\
+2	& \schurS_{2} + \schurS_{11} \\
+21	& \schurS_{21} \\
+3	& \schurS_{3} + \schurS_{21} + \schurS_{111} \\
+31	& \schurS_{22} + \schurS_{31} + \schurS_{211} \\
+321	& \schurS_{321} \\
+4	& \schurS_{4} + \schurS_{31} + \schurS_{211} + \schurS_{1111} \\
+41	& \schurS_{32} + \schurS_{41} + \schurS_{221} + \schurS_{311} + \schurS_{2111} \\
+32	& \schurS_{32} + \schurS_{221} + \schurS_{311} \\
+421	& \schurS_{322} + \schurS_{331} + \schurS_{421} + \schurS_{3211} \\
+\bottomrule
+\end{array}
+\end{example*}
+
+\subsection[schurPLRRule]{Littlewood--Richardson rule}
+
+The coefficients $f_{\lambda\mu}^{\nu}$ in
+\[
+\schurP_\lambda(\xvec) \schurP_\mu(\xvec) = \sum_{\nu} f_{\lambda\mu}^{\nu} \schurP_\nu(\xvec)
+\]
+are non-negative integers, see \cite{Stembridge1989}. A combinatoral description of these coefficients
+was first given by L. Serrano \cite{Serrano2009}.
+See also Another proof is given in \cite{Cho2012}.
+S. Assaf gave a proof using \hyperref[schurPositivityDualEquivalence]{dual equivalence}, see \cite{Assaf2018ShiftedDual}.
+
+The coefficients $f_{\lambda\mu}^{\nu}$ appear in the study of the type $B$ and type $D$
+Schubert calculus of Grassmannians.
+
+A new combinatorial model for $f_{\lambda\mu}^{\nu}$ is given in \cite{Nguyen2022}.
+He also give a new model for the coefficients in the Schur expansion of $\schurQ_\lambda$.
+An easier formula for for $f_{\lambda\mu}^{\nu}$ using a type of Yamanouchiwords is given in \cite{EstupinanSalamancaPechenik2025x}.
+
+
+\subsection[schurPEvacuation]{Evacuation}
+
+For evacuation, see \url{https://arxiv.org/pdf/1701.08950.pdf}.
+
+
+\section[schurQ]{Schur's $Q$ functions}
+
+
+\begin{polydata}{schurQ}
+  Name   & Schur's $Q$ functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 3 \\
+  Bib      & Schur1911\\
+  Year     & 1911 \\
+  Keywords & pfaffian,tableaux,schur-positive \\
+  Symbol   & $\schurQ_\lambda(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+Schur's $Q$ functions $\schurQ_\lambda(\xvec)$ are indexed by partitions with distinct parts, and are given 
+as the specialization of the \hyperref[hallLittlewoodQ]{Hall--Littlewood $Q$ functions} at $t=-1$.
+A combinatorial formula using \hyperref[gtpatterns]{Gelfand--Tsetlin patterns} is provided by R. Stanley in
+\cite{Stanley1986}.
+
+Alternatively, $\schurQ_\lambda(\xvec) = 2^{\length(\lambda)} \schurP_\lambda(\xvec)$.
+Hence, $\schurQ_\lambda(\xvec)$ can be realized as a sum over tableau objects by modifying the 
+formula for Schur's $P$ functions by allowing diagonal entries in $ShSSYT(\lambda)$
+to be marked.
+
+
+The Schur $Q$ functions are related to so called \defin{spin characters},
+and this was perhaps the original motivation for studying these functions.
+The following is due to Schur. 
+
+\begin{theorem}[See \cite[3.3.6]{Morris1962} and \cite[(7.1)]{Stembridge1989}]
+
+Let $\lambda$ be a partition of $n$ with $m$ distinct parts.
+We have that the spin characters $\zeta_{\mu}^{\lambda}$
+\[
+\schurQ_\lambda(\xvec) = \sum_{\mu}
+2^{(\length(\lambda)+ \length(\mu)+\epsilon)/2} 
+\zeta_{\lambda}(\mu) \frac{ \powerSum_{\mu} }{z_\mu} .
+\]
+Here, $\mu$ runs over partitions with odd parts,
+and $\epsilon$ is $0$ or $1$ depending on if $n-m$ is even or odd.
+\end{theorem}
+
+The one-part partitions have a rather explicit expression:
+\[
+\schurQ_{(n)}(\xvec) = \sum_{\lambda \vdash n} 2^{\length(\lambda)} \monomial_{\lambda}(\xvec).
+\]
+
+
+H. Rosengren gives formulas for $\schurQ_{\lambda}(1,q,q^2,\dotsc,q^n)$
+and also shows \cite[Prop.3.1]{Rosengren2008}, that for a partition $\lambda$ of length $m$,
+\[
+\schurQ_{\lambda}(1,q,q^2,\dotsc) = \prod_{i=1}^m \frac{(-1;q)_{\lambda_i}}{ (q;q)_{\lambda_i} } 
+\prod_{1 \leq i \lt \leq j} \frac{q^{\lambda_j} - q^{\lambda_i}}{1-q^{\lambda_i+\lambda_j}}.
+\]
+Rosengren mentions that this formula is in fact equivalent with \hyperref[schurKawanaka]{Kawanaka's identity} for 
+Schur functions.
+
+
+A \hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama} type formula for computing
+the spin characters $\zeta_{\mu}^{\lambda}$  is given in \cite{MorrisOlsson1988}.
+
+In \cite[Cor. 4.3]{MorrisOlsson1988}, they 
+give a formula which seem to be a spin 
+version of the \hyperref[borderStripHookFormulas]{Fomin--Lulov}
+hook formula for ribbon tableaux. 
+This is similar to the properties of the classical irreducible 
+character values for the symmetric group.
+Morris and Olsson use the abacus model to prove their results.
+
+
+A Hall--Littlewood analog of $\schurQ_\lambda(\xvec)$ is introduced in \cite{TudoseZabrocki2003}.
+
+In \cite{ChoHuhNam2020}, the authors conjecture a classification
+of ribbon shapes, such that the functions $\schurQ_{\lambda/\mu}(\xvec)$ are \hyperref[powerSum]{power-sum} positive.
+
+For more on spin characters, see \cite{MatsumotoSniady2020}.
+
+Plethysm stability for Schur's $Q$-functions is considered in \cite{GrafJing2024x}.
+
+
+
+\subsection[schurQCauchy]{Cauchy identity}
+
+In \cite[Corollary 8.3]{Sagan1987}, it is proved that
+\begin{equation*}
+\prod_{i,j=1}^\infty \frac{1+x_iy_j}{1-x_iy_j} = \sum_{\lambda} 2^{-\length(\lambda)} \schurQ_\lambda(\xvec)\schurQ_\lambda(\yvec),
+\end{equation*}
+where the sum is over all strict partitions.
+
+
+
+
+\section[schurBottom]{Bottom Schur functions}
+
+\begin{polydata}{schurBottom}
+  Name   & Bottom Schur functions \\
+  Space  & Sym \\
+  Basis  & False \\
+  Rating & 2 \\
+  Bib    & CliffordStanley2004 \\
+  Year   & 2004 \\
+  Category & Schur \\
+\end{polydata}
+
+
+The bottom Schur functions were introduced by P. Clifford and R. Stanley in \cite{CliffordStanley2004}.
+
+Let the degree of the power-sum symmetric functions be $1$, so that $deg(\powerSum_i)=1$
+and $deg(\powerSum_\nu) = \length(\nu)$. The Murnaghan--Nakayama rule states that
+\[
+\schurS_\lambda = \sum_{\mu} \frac{\chi^\lambda(\mu)}{z_\mu} \powerSum_\mu
+\]
+The \defin{bottom Schur function} $\hat{\schurS}_\lambda$ is defined as
+\[
+\schurS_\lambda = \sum_{\mu : \length(\mu)=\text{lowest}} \frac{\chi^\lambda(\mu)}{z_\mu} \powerSum_\mu,
+\]
+where we only sum over partitions contributing to the lowest-degree part in the power-sum expansion.
+
+The bottom Schur functions can be expressed as the lowest-degree term in a Jacobi--Trudi type 
+determinant of power-sum symmetric functions.
+
+
+\begin{conjecture}[Alexandersson, 2019]
+
+Let $R=(R_{\lambda\mu})$ with $\lambda,\mu \vdash n$ be the matrix with coefficients 
+defined via $\powerSum_{\lambda} = \sum_\mu R_{\lambda\mu} \monomial_\mu$.
+
+
+In \cite{CliffordStanley2004}, the authors consider $R-D$, where $D$ is the diagonal of $R$,
+and compute the dimension of the null-space of $R-D$ as $n$ increases. They computed the beginning of this sequence,
+and got
+\[
+1,1,1,2,2,3,4,5,7,9,11,15,19,24,\dotsc
+\]
+They did not guess any combinatorial interpretation of these coefficients.
+
+In 2019, I did a search in the OEIS and the sequence $a(n)$ given by \oeis{A129528} seems to be a match.
+The sequence $a(n)$ is defined as follows:
+ Consider the set of all Dyck paths, consisting of steps $(1,1)$ and $(1,−1)$. 
+ The \defin{peak-abscissa-sum} of a path is the sum of the $x$-coordinates of all peaks. 
+ Then $a(n)$ is the number of Dyck paths of \emph{any length} with peak-abscissa-sum $n$.
+
+\end{conjecture}
+
+\todo{
+Bottom Schur functions: (not monomial positive, but has 'sort of' JT).
+\cite{CliffordStanley2004}
+}
+
+
+\section[schurLectureHall]{Lecture hall Schur functions}
+
+
+\begin{polydata}{schurLectureHall}
+  Name   & Lecture hall Schur functions \\
+  Space  & All \\
+  Basis  & False \\
+  Rating & 1 \\
+  Bib    & CorteelKim2018 \\
+  Year   & 2018 \\
+  Category & Schur \\
+\end{polydata}
+
+\todo{Write more about lecture hall Schur funcs}
+
+
+Introduced in \cite{CorteelKim2018}. The authors prove analogues of the Jacobi--Trudi identity and its dual.
+The lecture hall Schur functions are related to multivariate little $q$-Jacobi polynomials.
+
+See also \url{http://de.arxiv.org/pdf/1904.10602.pdf}
+
+For asymptotics of lecture hall tableaux, se \url{http://de.arxiv.org/pdf/1905.02881.pdf}.
+
+
+
+\section[schurWreath]{Wreath product Schur polynomials}
+
+
+\begin{polydata}{schurWreath}
+  Name   & Wreath product Schur polynomials \\
+  Space  & Other \\
+  Basis  & True \\
+  Rating & 1 \\
+  Bib    & IngramJingStitzinger2009 \\
+  Year   & 2009 \\
+  Symbol & $\schurS_{\underline{\lambda}}$ \\
+  Category & Schur \\
+\end{polydata}
+
+Wreath product Schur polynomials show up in the study of $G \wr \symS_n$,
+see for example in \cite{Macdonald1980} and \cite{MendesRemmelWagner2004}.
+
+A good intruduction for the combinatorics is given in \cite{IngramJingStitzinger2009}. 
+These are indexed by $r$-tuples of partitions, $\underline{\lambda}$, and live in the space $\spaceSym^{\otimes r}$.
+We then define the \defin{wreath product Schur polynomials} as
+\[
+\schurS_{\underline{\lambda}}(\xvec^{(1)},\dotsc,\xvec^{(r)}) = \prod_{i} \schurS_{\lambda^i}(\xvec^{(i)}).
+\]
+This can be realized as a sum over $r$-tuples of semi-standard Young tableaux of shape $\lambda^i$, where tableau $i$ only uses 
+entries from the alphabet $\xvec^{(i)}$.
+
+
+A Murnaghan--Nakayama rule is described in \cite{MendesRemmelWagner2004}.
+
+\todo{
+See also 
+http://www.math.wm.edu/~vinroot/KostkaSeq.pdf
+}

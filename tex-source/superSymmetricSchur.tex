@@ -1,0 +1,340 @@
+
+
+\section[hookSchur]{Hook Schur polynomials}
+
+
+\begin{polydata}{hookSchur}
+  Name   & Hook Schur polynomials \\
+  Space    & SuperSym \\
+  Basis    & True \\
+  Rating   & 5 \\
+  Bib      & BereleRegev1983 \\
+  Year     & 1983 \\
+  Keywords & jacobi-trudi,weyl,tableaux,character,plethysm,skew \\
+  Symbol   & $\schurHook_\lambda(\xvec/\yvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+The \emph{hook Schur functions} also known as \emph{supersymmetric Schur functions},
+are characters of the Lie superalgebra $\mathrm{gl}(m/n)$, see \cite{Kac1977}.
+The hook Schur functions were introduced by Berele and Regev 1983, see \cite{BereleRegev1983}.
+A good overview of this area can be found in the PhD thesis by E. Moens, \cite{Moens2007}.
+
+This is also the 6th variant of Schur functions considered in \cite[Eq. 6.19]{Macdonald1992}.
+
+\subsection[superSymmetricFunctions]{Supersymmetric functions}
+
+We follow the definitions in \cite{MoensJeugt2003}. We let $\xvec = (x_1,\dotsc,x_m)$
+and $\yvec = (y_1,\dotsc,y_n)$. A function $f(\xvec,\yvec)$
+is \defin{doubly symmetric} if it is symmetric in each alphabet.
+We let $\spaceSym(\xvec/\yvec)$ denote the subspace of doubly symmetric functions
+with the property that substituting $x_1=t$, $y_1=-t$ results in an expression independent of $t$.
+We refer to functions in this subspace as the \defin{supersymmetric functions}.
+For example, $x_1+x_2-y_1-y_2$ is doubly symmetric, (in $2+2$ variables),
+while $x_1+x_2 + y_1 + y_2$ is also supersymmetric.
+
+
+The \defin{complete homogeneous supersymmetric functions} are defined as
+\[
+\completeH_r(\xvec/\yvec) \coloneqq \sum_{j=0}^r \completeH_{j}(\xvec)\elementaryE_{r-j}(\yvec).
+\]
+Similarly, the \defin{elementary supersymmetric functions} are defined as
+\[
+\elementaryE_r(\xvec/\yvec) \coloneqq \sum_{j=0}^r \elementaryE_j(\xvec)\completeH_{r-j}(\yvec).
+\]
+The \defin{supersymmetric powersum polynomials} are defined as
+\[
+\powerSum_r(\xvec/\yvec) \coloneqq \powerSum_r(\xvec) + (-1)^{r-1} \powerSum_r(\yvec).
+\]
+The \defin{supersymmetric monomial polynomials} are defined as
+\[
+\monomial_\lambda(\xvec/\yvec) = \sum_{\mu\cup \nu = \lambda} \monomial_{\mu}(\xvec) \omega(\monomial_{\nu}(\yvec)).
+\]
+All these give bases for $\spaceSym(\xvec/\yvec)$.
+
+\subsection[hookSchurTableauDef]{Tableau definition}
+
+There is also a definition in terms of fillings of a Ferrers diagram of shape $\lambda$.
+We fill the shape with entries  
+\[
+1 \lt 2 \lt \dotsb \lt k \lt 1' \lt 2' \lt \dotsb \lt l'.
+\]
+A filling in $SST(\lambda)$ is defined as a filling of $\lambda$ with entries in the alphabet above
+such that rows and columns are weakly increasing. 
+Furthermore, the unprimed entries must be strictly increasing with row index,
+and the primed entries must be strictly increasing with column index.
+The weight $x^{w_x(T)} y^{w_y(T)}$ is what you expect, keeping track of the primed and 
+the unprimed alphabet. We have
+\[
+\schurHook_{\lambda/\mu}(\xvec/\yvec) \coloneqq \sum_{T \in SST(\lambda/\mu)} x^{w_x(T)} y^{w_y(T)}
+\]
+where the expansion in the last sum is in terms of the 
+classical \hyperref[schurS]{schur functions}.
+
+\begin{example}
+The following tableau is an element in $SST(7,6,5,2)$, contributing with 
+$x_1^2 x_2^2 x_3^3 y_1^4 y_2 y_3^2 y_4 y_5^2 y_6^2 y_7$.
+
+\begin{figure}
+\begin{ytableau}
+1 & 1 & 2 & 3 & 1' & 6' & 7' \\
+2 & 3 & 3 & 1'& 5' & 6' \\
+1'& 2'& 3'& 4'& 5' \\
+1'& 3' 
+\end{ytableau}
+\end{figure}
+
+\end{example}
+
+\subsection[schurHookDeterminant]{Weyl type formula}
+
+See 1.17 in  \url{http://igm.univ-mlv.fr/~fpsac/FPSAC02/ARTICLES/Moens.pdf}
+
+\subsection[schurHookJacobiTrudi]{Jacobi--Trudi identity}
+
+A Jacobi--Trudi type formula for hook Schur functions was proved in \cite{PragaczThorup1992},
+and it also follows from \cite[Thm. 4.5]{Kwon2008}.
+The \defin{$(m,n)$-hook Schur functions} are then given as
+\[
+\schurHook_{\lambda/\mu}(\xvec/\yvec) \coloneqq 
+\det[ \completeH_{\lambda_i-\mu_j + j - i}(\xvec/\yvec) ]_{1\leq i,j \leq \length(\lambda)}.
+\]
+There is also the dual version of this identity.
+
+The functions $\schurHook_\lambda(\xvec/\yvec)$ are identically zero whenever
+$\lambda_{m+1} \geq n$.
+
+
+\subsection[hookSchurPlethDef]{Plethysm definition}
+
+The \defin{$(m,n)$-hook Schur functions} can be 
+defined in \hyperref[plethysm]{plethystic notation} as 
+\[
+\schurHook_\lambda(x_1,\dotsc,x_m/y_1,\dotsc,y_n) \coloneqq \schurS_\lambda(X - t Y) \vert_{t=-1}
+\]
+where $X= x_1+\dotsb+x_m$ and $Y= y_1+\dotsb+y_n$, see \cite[Eq. (55)]{YangRemmel1998}.
+
+
+
+\subsection[schurHookProperties]{Properties}
+
+The following four properties uniquely characterize the hook Schur functions,
+see \cite{Macdonald1995} and \cite{MoensJeugt2003}.
+
+\begin{itemize}
+
+\item
+(Homogeniety) 
+The polynomial $\schurHook_{\lambda}(\xvec/\yvec)$ is a homogeneous of degree $|\lambda|$.
+
+\item 
+(Factorization) If $\lambda_m\geq n \geq  \lambda_{m+1}$ 
+so that $\lambda = (n^m + \tau)\cup \eta$, then
+\[
+\schurHook_{\lambda}(\xvec/\yvec) = 
+\schurS_{\tau}(\xvec)\schurS_{\eta'}(\yvec) \prod_{i=1}^m\prod_{j=1}^n (x+i+y_j).
+\]
+
+\item 
+(Cancellation) We have that
+\[
+\schurHook_{\lambda}(x_1,\dotsc,x_{m-1},t/y_1,\dotsc,y_{n-1},-t)
+=\schurHook_{\lambda}(x_1,\dotsc,x_{m-1}/y_1,\dotsc,y_{n-1}).
+\]
+
+\item 
+(Restriction) We have that
+\[
+\schurHook_{\lambda}(x_1,\dotsc,x_{m-1},0/\yvec)
+=\schurHook_{\lambda}(x_1,\dotsc,x_{m-1}/\yvec)
+\]
+and 
+\[
+\schurHook_{\lambda}(\xvec/y_1,\dotsc,y_{n-1},0)
+=\schurHook_{\lambda}(\xvec/y_1,\dotsc,y_{n-1}).
+\]
+\end{itemize}
+
+We have the following properties of the hook Schur functions,
+see e.g., \cite{YangRemmel1998}.
+
+\begin{itemize}
+\item 
+$\schurHook_{\lambda/\mu}(\xvec/\emptyset) = \schurS_{\lambda/\mu}(\xvec)$.
+
+\item 
+$\schurHook_{\lambda/\mu}(\emptyset/\yvec) = \schurS_{\lambda'/\mu'}(\yvec)$.
+
+\item 
+$\schurHook_{\lambda/\mu}(\xvec/\yvec) = \schurHook_{\lambda'/\mu'}(\yvec/\xvec)$.
+
+\item 
+$\schurHook_{\lambda/\mu}(\xvec/ \yvec) = 
+\sum_{\mu \subseteq \nu \subseteq \lambda} \schurS_{\nu/\mu}(\xvec) \schurS_{\lambda'/\nu'}(\yvec)$.
+\end{itemize}
+
+A Weyl-type formula for $\schurHook_{\lambda}(\xvec/\yvec)$ as a quotient 
+of determinants is given in \cite[Eq. (1.17)]{MoensJeugt2003}.
+This is referred to as the \defin{Sergeev--Pragacz} formula,
+proved by Sergeev and independently in \cite{JeugtHughesKingThierry1990}.
+A skew version was proved later in 1995 by Hamel and Goulden.
+
+
+In \cite[Thm. 4.4]{Remmel1987}, a version of the
+hook-content formula is  proved where an expression for
+\[
+\sum_{k,l\geq 0}
+t^k s^l \schurHook_\lambda(1,q,q^2,\dotsc,q^k / 1,p,p^2,\dotsc,p^l) 
+\]
+is given.
+
+
+
+
+\subsection[schurHookCauchy]{Cauchy identity}
+
+In \cite{BereleRemmel1985}, the following Cauchy-type identity is proved.
+\[
+\sum_{\lambda}
+\schurHook_\lambda(\xvec / \svec) 
+\schurHook_\lambda(\yvec / \tvec) = 
+\prod_{i,j} \frac{1+x_i t_j}{1-x_iy_j} \frac{1+y_i s_j}{1-s_i t_j}
+\]
+A bijective proof can be found  in \cite{YangRemmel1998}.
+
+
+\subsection[schurHookLittlewoodFormula]{Littlewood formula}
+M. Yang and J. Remmel \cite{YangRemmel1998} prove that
+\[
+\prod_{i\lt j} (1-x_i x_j)
+\prod_{i\gt j} (1+y_i y_j)
+\prod_{i, j} \frac{1}{1-x_iy_j} = 1 +\sum_{\alpha} \schurHook_\alpha(x_1,\dotsc,x_m/y_1,\dotsc,y_n)
+\]
+where we sum over all partitions of the form
+\[
+\alpha = 
+\begin{pmatrix}
+a_1  & a_2 & \dotsc & a_r \\
+a_1+1& a_2+1& \dotsc & a_r+1
+\end{pmatrix}
+\]
+in \hyperref[prelimPartitions]{Frobenius notation}.
+
+
+\subsection[schurHookGeneralizations]{Generalizations}
+
+A quasisymmetric refinement is introduced in \cite{MasonNiese2018},
+and the symmetric hook Schur functions can be 
+decomposed into such quasi-symmetric counterparts.
+That is
+\[
+\schurHook_\lambda(x_1,\dotsc,x_m/y_1,\dotsc,y_n) = 
+\sum_{\alpha \sim \lambda} \schurHookQS_\alpha(x_1,\dotsc,x_m/y_1,\dotsc,y_n)
+\]
+
+\todo{Make as a separate family}
+
+The quasisymmetric hook Schur functions are positive in the 
+super Gessel fundamental basis, see \cite[Theorem 4.2]{MasonNiese2018}.
+They conjecture that the structure constants for 
+quasisymmetric hook Schur functions are the same as for the 
+quasisymmetric Schur functions.
+
+\bigskip
+
+There is also a generalization in the direction of supersymmetric Schur functions
+indexed by \emph{composite partitions}. A conjectured Jacobi--Trudi formula 
+was presented in \cite{Moens2007} and later proved in \cite{BinhDungHai2018}.
+
+
+
+
+
+\section[bigSchur]{Big Schur functions}
+
+\begin{polydata}{bigSchur}
+  Name   & Big Schur functions \\
+  Space    & Sym \\
+  Basis    & Yes \\
+  Rating   & 1 \\
+  Bib      & Shigechi2017x \\
+  Keywords & jacobi-trudi, tableau \\
+  Year     & 2017 \\
+  Categoty & Schur \\
+\end{polydata}
+
+
+In \cite{Shigechi2017x}, K. Shigechi introduces the big Schur functions.
+These are closely related to \hyperref[schurP]{Schur's P functions},
+and the \hyperref[hookSchur]{supersymmetric Schur functions}.
+
+We consider fillings of $\lambda$ with entries in 
+the alphabet $1' \lt 1 \lt 2' \lt 2 \lt \dotsb $
+such that 
+\begin{itemize}
+\item 
+	each row has at most one marked $i$ for every $i=1,2,\dotsc$ 
+\item 
+	each column has at most one unmarked $i$, for every $i=1,2,\dotsc$,
+\item 
+	entries in rows and columns are weakly increasing and
+\end{itemize}
+We let $SSShYT(\lambda)$ denote the set of such fillings.
+
+Then, the \defin{big Schur function} $\bigSchur_{\lambda}(\xvec)$
+is defined as 
+\[
+\bigSchur_{\lambda}(\xvec) = \sum_{T \in SSShYT(\lambda)} \xvec_T
+\]
+where the weight of a tableau is obtained by treating primed entries as unprimed.
+
+We can also realize $\bigSchur_{\lambda}(\xvec)$ as the specialization $\schurHook_{\lambda}(\xvec/\xvec)$.
+
+
+\begin{example}
+We have
+\[
+\bigSchur_{211} = 12 \monomial_{32}+4 \monomial_{41}+40 \monomial_{221}+24 \monomial_{311}+80 \monomial_{2111}+160 \monomial_{11111}.
+\]
+\end{example}
+
+
+Of course, there is a Jacobi--Trudi identity (also valid on the skew case):
+\[
+\bigSchur_{\lambda}(\xvec) = \det\left[ r_{\lambda_i -i +j}(\xvec) \right]_{1\leq i, j \leq \length(\lambda)}
+\]
+where $r_k(\xvec) = \sum_{\mu \vdash r} 2^{\length(\mu)} \monomial_{\mu}(\xvec)$.
+Alternatively, $\sum_{k \geq 0} t^k r_k(\xvec) = \prod_{i} \frac{1+x_i t}{1-x_i t}$.
+
+
+\todo{
+Another note: The big Schur functions can also be realized as 
+skew Schur's Q functions. 
+}
+
+
+
+
+\section[factorialHookSchur]{Factorial supersymmetric Schur polynomials}
+
+\begin{polydata}{factorialHookSchur}
+  Name   & Factorial supersymmetric Schur polynomials \\
+  Space    & SuperSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & Molev1996 \\
+  Year     & 1996 \\
+  Keywords & jacobi-trudi,tableaux,skew \\
+  Symbol   & $\schurS_\lambda(\xvec/\yvec|a)$ \\
+  Category & Schur \\
+\end{polydata}
+
+
+In \cite[Def. 1.1]{Molev1996}, Molev introduces a factorial version of supersymmetric Schur functions.
+They can be described  via tableaux and Jacobi--Trudi identities. 
+Molev also proves a characterization theorem and a Sergeev--Pragacz type formula,
+and introduces the \defin{shifted supersymmetric Schur polynomials}.
+
+
+In \cite{FoleyKing2020x}, the authors present determinant identities for skew factorial supersymmetric Schur functions.
