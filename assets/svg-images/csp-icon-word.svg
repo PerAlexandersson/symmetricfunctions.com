@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+id="miscSVG" viewBox="0 0 500 500">
+	<style>
+		.svgIconBGColor {
+			fill: none;
+		}
+		.strokeColor {
+			stroke: white;
+			fill: white;
+		}
+	.lineClass {
+		stroke-width: 2%;
+	}
+	.smalltext {
+			font-family: 'courier';
+			font-weight: bold;
+			font-size: 1000%;
+		}
+	</style>
+	
+	<rect width="100%" height="100%" class="svgIconBGColor"/>
+	<text x="10%" y="30%" class="smalltext strokeColor">1110</text>
+	<text x="10%" y="55%" class="smalltext strokeColor">0101</text>
+	<text x="10%" y="80%" class="smalltext strokeColor">1011</text>
+</svg>

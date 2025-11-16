@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+id="miscSVG" viewBox="0 0 500 500">
+	<style>
+		.svgIconBGColor {
+			fill: none;
+		}
+		.strokeColor {
+			stroke: white;
+			fill: white;
+		}
+		.circDashed {
+			stroke-width: 1%;
+			fill: none;
+			stroke-dasharray: 50 20;
+		}
+	</style>
+	<rect width="100%" height="100%" class="svgIconBGColor"/>
+	<rect class="circDashed strokeColor" x="10%" y="10%" width="80%" height="80%"/>
+	<circle class="circVert strokeColor" cx="40%" cy="50%" r="2%"/>
+	<circle class="circVert strokeColor" cx="50%" cy="50%" r="2%"/>
+	<circle class="circVert strokeColor" cx="60%" cy="50%" r="2%"/>
+</svg>

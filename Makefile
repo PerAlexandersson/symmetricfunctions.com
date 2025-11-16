@@ -13,8 +13,11 @@ SHELL := /bin/bash
 
 # Folders
 SRC_DIR  = tex-source
+TEST_DIR  = tests
 TEMP_DIR = temp
 WWW_DIR  = www
+ASSETS_DIR = assets
+
 
 # Tools
 PANDOC  = pandoc
@@ -43,7 +46,7 @@ SITEMAP_XML     = $(WWW_DIR)/sitemap.xml
 
 
 # Unittest single-file pipeline
-UNIT_SRC   := $(SRC_DIR)/unittest.tex
+UNIT_SRC   := $(TEST_DIR)/unittest.tex
 UNIT_PRE   := $(TEMP_DIR)/unittest.pre.tex
 UNIT_JSON  := $(TEMP_DIR)/unittest.json
 UNIT_HTML  := $(WWW_DIR)/unittest.htm
@@ -53,12 +56,12 @@ export SRC_DIR TEMP_DIR WWW_DIR
 export TEMPLATE REFS_JSON LABELS_JSON POLYDATA_JSON TODOS_JSON SITEMAP_XML
 
 
-.PHONY: all gather meta bib render todo clean
+.PHONY: all gather meta bib render copy-assets clean
 .DELETE_ON_ERROR:
 # Keep preprocessed files; don't let make auto-delete them as intermediates
 .SECONDARY: $(PRE_TEX)
 
-all: gather meta render
+all: gather meta render copy-assets
 
 # Ensure build directories exist
 $(TEMP_DIR) $(WWW_DIR):
@@ -78,20 +81,21 @@ $(TEMP_DIR)/%.pre.tex: $(SRC_DIR)/%.tex $(PREPROC_LUA) | $(TEMP_DIR)
 #    Use stem-specific prereqs instead of 'all pre files'
 # --------------------------------------------------------------------
 
-
 gather: $(TEMP_DIR) $(REFS_JSON) $(JSON_FILES)
 
 $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
 	@echo "Gathering $< → $@"
 	$(PANDOC) "$<" --from=latex+raw_tex --to=json --lua-filter=$(GATHER_LUA) --fail-if-warnings -o - | jq -S . > "$@"
 
-# Pandoc ≥ 2.11 (incl. 3.8): convert .bib → CSL-JSON
+
+.PHONY: bib
+
+bib: $(REFS_JSON)
+# Requires pandoc ≥ 2.11
 $(REFS_JSON): $(BIBFILE) | $(TEMP_DIR)
 	@echo "Generating $@"
 	$(PANDOC) -f biblatex -t csljson $< --fail-if-warnings -o $@.tmp && mv $@.tmp $@
 
-.PHONY: bib
-bib: $(REFS_JSON)
 
 
 # --------------------------------------------------------------------
@@ -120,6 +124,9 @@ $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) $(LA
 	@echo "Rendering $< → $@"
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
 
+
+copy-assets:
+    cp -r $(ASSETS_DIR)/* $(WWW_DIR)/
 
 .PHONY: unittest
 unittest: $(TEMP_DIR) $(WWW_DIR) $(REFS_JSON) $(UNIT_HTML)

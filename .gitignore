@@ -1,0 +1,27 @@
+# Build directories (generated)
+temp/
+www/
+untracked/
+
+
+# LaTeX build artefacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.nav
+*.snm
+
+# Editor and OS junk
+*~
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/

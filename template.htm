@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title><!--TITLE--></title>
+	<meta charset="utf-8">
+	<meta name="description" content="<!--DESCRIPTION-->" />
+	<meta name="robots" content="index, follow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta property="og:url" content="https://www.symmetricfunctions.com/<!--CANONICAL-->" />
+	<meta property="og:image" content="https://www.symmetricfunctions.com/fbicon.png" />
+	<meta property="og:image:alt" content="SymCat — The symmetric functions catalog" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="<!--TITLE-->" />
+	<meta name="twitter:description" content="<!--DESCRIPTION-->" />
+	<meta name="twitter:image" content="https://www.symmetricfunctions.com/fbicon.png" />
+
+
+	<meta property="og:title" content="<!--TITLE-->" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="<!--DESCRIPTION-->" />
+	<meta property="og:site_name" content="SymCat" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:image" content="http://symmetricfunctions.com/fbicon.png" />
+
+		
+	<script type="application/ld+json">
+	{
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"name": "SymCat — The symmetric functions catalog",
+	"url": "https://www.symmetricfunctions.com/",
+	"inLanguage": "en",
+	"potentialAction": {
+		"@type": "SearchAction",
+		"target": "https://www.symmetricfunctions.com/topicsindex.htm?q={search_term_string}",
+		"query-input": "required name=search_term_string"
+	},
+	"publisher": {
+		"@type": "Person",
+		"name": "Per Alexandersson",
+		"url": "https://alexandersson.symmetricfunctions.com"
+	}
+	}
+	</script>	
+	
+	<link rel="canonical" href="https://www.symmetricfunctions.com/<!--CANONICAL-->" />
+	
+	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="shortcut icon" href="favicon196x196.ico" type="image/x-icon">
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+	crossorigin="anonymous">
+	
+	<link rel="preload" href="./style.css" as="style" onload="this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="./style.css"></noscript>
+	<link rel="preload" href="./mathstyle.css" as="style" onload="this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="./mathstyle.css"></noscript>
+
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<!--
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139966103-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-139966103-1');
+	</script>-->
+
+
+
+<!-- KaTeX assets -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js"></script>
+
+
+<style>.katex{font-size: 1em}</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "$",  right: "$",  display: false},
+        {left: "\\(", right: "\\)", display: false}
+      ],
+      throwOnError: false,
+      macros: {
+        "\\abs": "\\left\\lvert #2 \\right\\rvert_{\\text{#1}}",
+        "\\qbinom": "\\genfrac{[}{]}{0pt}{}{#1}{#2}",
+        "\\fallingFactorial": "( {#2} \\downharpoonright {#3} )",
+        "\\iddots": "{\\mathinner{\\kern{1.2mu}\\raisebox{2mu}{.}\\kern{3mu}\\raisebox{7.4mu}{.}\\kern{3mu}\\raisebox{12.8mu}{.}\\kern{1.2mu}}}",
+        "\\interl": "{\\ll}",
+        "\\thsup": "{\\text{th}}",
+        "\\kostantP": "{\\mathfrak{P}}",
+        "\\opsurj": "{\\mathcal{O}}",
+        "\\grpc": "{{C}}",
+        "\\coloneqq": "{\\,:=\\,}",
+        "\\rskArrow": "{\\;\\xrightarrow{\\scriptstyle{RSK}}\\;}",
+        "\\rskDualArrow": "{\\;\\xrightarrow{\\scriptstyle{RSK'}}\\;}",
+        "\\rskbArrow": "{\\;\\xrightarrow{\\scriptstyle{bRSK}}\\;}",
+        "\\rskbDualArrow": "{\\;\\xrightarrow{\\scriptstyle{bRSK'}}\\;}",
+        "\\revCompl": "{\\mathrm{RC}}",
+        "\\promotion": "{\\partial}",
+        "\\evac": "{\\epsilon}",
+        "\\pfaff": "{\\mathrm{pf}}",
+        "\\cryss": "{{\\tilde{s}}}",
+        "\\cryse": "{{\\tilde{e}}}",
+        "\\crysf": "{{\\tilde{f}\\!}}",
+        "\\setPM": "{\\mathcal{PM}}",
+        "\\setN": "{\\mathbb{N}}",
+        "\\setP": "{\\mathbb{N}_+}",
+        "\\setZ": "{\\mathbb{Z}}",
+        "\\setQ": "{\\mathbb{Q}}",
+        "\\setR": "{\\mathbb{R}}",
+        "\\setC": "{\\mathbb{C}}",
+        "\\spaceSym": "{{\\Lambda}}",
+        "\\spaceQSym": "{{\\mathrm{QSym}}}",
+        "\\catalan": "{{\\mathbf{Cat}}}",
+        "\\DP": "{{\\mathbf{Dyck}}}",
+        "\\avec": "{\\mathbf{a}}",
+        "\\bvec": "{\\mathbf{b}}",
+        "\\evec": "{\\mathbf{e}}",
+        "\\nuvec": "{\\overline{\\nu}}",
+        "\\lambdavec": "{\\overline{\\nu}}",
+        "\\qvec": "{\\mathbf{q}}",
+        "\\svec": "{\\mathbf{s}}",
+        "\\tvec": "{\\mathbf{t}}",
+        "\\xvec": "{{x}}",
+        "\\yvec": "{{y}}",
+        "\\zvec": "{{z}}",
+        "\\GL": "{\\mathrm{GL}}",
+        "\\frobChar": "{\\mathrm{ch}}",
+        "\\glChar": "{\\mathrm{char}}",
+        "\\area": "{\\mathrm{area}}",
+        "\\arm": "{\\mathrm{arm}}",
+        "\\asc": "{\\mathrm{asc}}",
+        "\\bigSchur": "{\\hat{S}}",
+        "\\bounce": "{\\mathrm{bounce}}",
+        "\\charge": "{\\mathrm{charge}}",
+        "\\cocharge": "{\\mathrm{cocharge}}",
+        "\\coinv": "{\\mathrm{coinv}}",
+        "\\des": "{\\mathrm{des}}",
+        "\\Des": "{\\mathrm{Des}}",
+        "\\det": "{\\mathrm{det}}",
+        "\\dinv": "{\\mathrm{dinv}}",
+        "\\exc": "{\\mathrm{exc}}",
+        "\\fix": "{\\mathrm{fix}}",
+        "\\ht": "{\\mathrm{ht}}",
+        "\\ins": "{\\mathrm{ins}}",
+        "\\inv": "{\\mathrm{inv}}",
+        "\\jdt": "{\\mathrm{jdt}}",
+        "\\leg": "{\\mathrm{leg}}",
+        "\\length": "{\\ell}",
+        "\\maj": "{\\mathrm{maj}}",
+        "\\partitionN": "{\\kappa}",
+        "\\princSpec": "{\\mathrm{ps}}",
+        "\\rec": "{\\mathrm{rec}}",
+        "\\rw": "{\\mathrm{rw}}",
+        "\\ret": "{\\mathrm{ret}}",
+        "\\rev": "{\\mathrm{rev}}",
+        "\\rot": "{\\mathrm{rot}}",
+        "\\sign": "{\\mathrm{sign}}",
+        "\\sort": "{\\mathrm{sort}}",
+        "\\stat": "{\\mathrm{stat}}",
+        "\\std": "{\\mathrm{std}}",
+        "\\trace": "{\\mathrm{Tr}}",
+        "\\type": "{\\mathrm{type}}",
+        "\\symS": "{\\mathrm{S}}",
+        "\\symB": "{\\mathrm{B}}",
+        "\\symD": "{\\mathrm{D}}",
+        "\\symAff": "{\\mathrm{S}}",
+        "\\asymS": "{\\tilde{\\mathrm{S}}}",
+        "\\gtp": "{\\mathcal{GT}}",
+        "\\GT": "{\\mathrm{GT}}",
+        "\\SYT": "{\\mathrm{SYT}}",
+        "\\SSYT": "{\\mathrm{SSYT}}",
+        "\\BST": "{\\mathrm{BST}}",
+        "\\DEX": "{\\mathrm{DEX}}",
+        "\\DES": "{\\mathrm{DES}}",
+        "\\cDES": "{\\mathrm{cDES}}",
+        "\\INV": "{\\mathrm{INV}}",
+        "\\CDP": "{\\mathrm{CDP}}",
+        "\\NCM": "{\\mathrm{NCM}}",
+        "\\JackCh": "{\\vartheta}",
+        "\\atom": "{{\\mathcal{A}}}",
+        "\\tutte": "{{\\mathrm{XB}}}",
+        "\\booleanProduct": "{\\mathrm{B}}",
+        "\\catalanH": "{\\mathrm{H}}",
+        "\\chrom": "{X}",
+        "\\chSym": "{\\tilde{\\mathrm{s}}}",
+        "\\completeH": "{\\mathrm{h}}",
+        "\\cyc": "{\\mathrm{cyc}}",
+        "\\diSchur": "{\\mathcal{DS}}",
+        "\\grothendieck": "{\\mathfrak{G}}",
+        "\\grothendieckStable": "{G}",
+        "\\grothendieckDual": "{g}",
+        "\\grothendieckPDual": "{\\mathfrak{B}}",
+        "\\grothendieckRefinedDualStable": "{\\tilde{g}}",
+        "\\hivert": "{\\mathrm{G}}",
+        "\\elementaryE": "{\\mathrm{e}}",
+        "\\eulerianQ": "{{\\mathrm{Q}}}",
+        "\\forgotten": "{\\mathrm{f}}",
+        "\\gessel": "{\\mathrm{F}}",
+        "\\hallLittlewoodP": "{\\mathrm{P}}",
+        "\\hallLittlewoodPsp": "{\\mathrm{P}^C}",
+        "\\hallLittlewoodQ": "{\\mathrm{Q}}",
+        "\\hallLittlewoodT": "{\\mathrm{H}}",
+        "\\hallLittlewoodH": "{\\tilde{\\mathrm{H}}}",
+        "\\ischubert": "{\\hat{\\mathfrak{S}}}",
+        "\\indCharBasis": "{\\tilde{\\mathrm{x}}}",
+        "\\indTrivBasis": "{\\tilde{\\mathrm{h}}}",
+        "\\jackJ": "{\\mathrm{J}}",
+        "\\jackP": "{\\mathrm{P}}",
+        "\\jackShifted": "\\mathrm{P}^{\\#}",
+        "\\jackShiftedJ": "\\mathrm{J}^{\\#}",
+        "\\key": "{{\\mathcal{K}}}",
+        "\\kohnert": "{{\\mathfrak{K}}}",
+        "\\kSchur": "{\\mathrm{s}}",
+        "\\lah": "{{\\mathrm{L}}}",
+        "\\lascoux": "{{\\mathcal{L}}}",
+        "\\lascouxAtom": "{{\\mathcal{A}}}",
+        "\\LLT": "{\\mathrm{LLT}}",
+        "\\LLTG": "{\\mathcal{G}}",
+        "\\lock": "{\\mathfrak{L}}",
+        "\\macdonaldE": "{\\mathrm{E}}",
+        "\\macdonaldEQuasi": "{\\mathcal{E}}",
+        "\\macdonaldH": "{\\tilde{\\mathrm{H}}}",
+        "\\macdonaldJ": "{\\mathrm{J}}",
+        "\\macdonaldP": "{\\mathrm{P}}",
+        "\\monomial": "{\\mathrm{m}}",
+        "\\oddElementaryE": "{\\mathrm{oe}}",
+        "\\oddCompleteH": "{\\mathrm{oh}}",
+        "\\oddSchur": "{\\mathrm{os}}",
+        "\\parking": "{\\mathrm{PF}}",
+        "\\peakQSym": "{\\hat{\\mathrm{K}}}",
+        "\\pPartition": "{\\mathrm{K}}",
+        "\\powerSum": "{\\mathrm{p}}",
+        "\\powerSumShifted": "\\mathrm{p}^{\\#}",
+        "\\qmonom": "{\\mathrm{M}}",
+        "\\qSchur": "{\\mathcal{S}}",
+        "\\qPsi": "{\\Psi}",
+        "\\qPhi": "{\\Phi}",
+        "\\qRho": "{\\mathcal{p}}",
+        "\\qWhittaker": "{\\mathrm{W}}",
+        "\\rsdiSchur": "{\\mathcal{R}\\mathfrak{S}^*}",
+        "\\rsqSchur": "{\\mathcal{RS}}",
+        "\\rsyqSchur": "{\\mathcal{RY}}",
+        "\\schurCylindric": "{\\mathrm{s}^c}",
+        "\\schurFactorial": "{\\mathrm{t}}",
+        "\\schurHook": "{\\mathrm{hs}}",
+        "\\schurHookQS": "{\\mathrm{hq}}",
+        "\\schurKP": "{\\mathrm{GP}}",
+        "\\schurKQ": "{\\mathrm{GQ}}",
+        "\\schurOr": "{\\mathrm{o}}",
+        "\\schurP": "{\\mathrm{P}}",
+        "\\schurQ": "{\\mathrm{Q}}",
+        "\\schurQS": "{\\mathrm{QS}}",
+        "\\schurS": "{\\mathrm{s}}",
+        "\\schurShifted": "{\\mathrm{s}^*}",
+        "\\schurSp": "{\\mathrm{sp}}",
+        "\\schurSpQ": "{\\mathrm{Q}^C}",
+        "\\schubert": "{\\mathfrak{S}}",
+        "\\slideF": "{\\mathfrak{L}}",
+        "\\slideM": "{\\mathfrak{m}}",
+        "\\stanleySym": "{F}",
+        "\\stanleySymAffine": "{\\tilde{F}}",
+        "\\stanleySymAffineFPF": "{\\hat{FPF}}",
+        "\\yqSchur": "{\\mathcal{YS}}",
+        "\\zonal": "{\\mathrm{Z}}"
+      }
+    });
+  });
+</script>
+
+
+</head>
+
+<body>
+<div id="doc-all">
+  <header id="doc-title" role="banner">
+    <h1 id="symcatTitle">The symmetric functions catalog</h1>
+    <p id="symcatSubtitle">An overview of symmetric functions and related topics</p>
+      <nav id="topnav" aria-label="Main navigation">
+      <a href="index.htm" class="toplink"><i class="fas fa-home"></i> Index</a>
+      <a href="cyclic-sieving.htm" class="toplink"><i class="fas fa-sync"></i> CSP</a>
+      <a href="topicsindex.htm" class="toplink"><i class="far fa-compass"></i> Topics</a>
+      <a href="metaindex.htm" class="toplink"><i class="far fa-question-circle"></i> Meta</a>
+      </nav>
+  </header>
+
+  <aside id="tocContainer">
+  <nav label="Page contents">
+  <ul id="tocLinkList">
+  <!--SIDELINKS-->
+  </ul>
+  <div id="tocPad"></div>
+  </nav>
+  </aside>
+
+  <main id="doc-main">
+    <section id="doc-section">
+    
+    <!--LASTMOD-->
+    
+    <!--MAIN-->
+    </section>
+
+    <!--REFERENCES-->
+
+  </main>
+  
+  <!-- Cookie dialog start -->
+  <dialog id="cookie-dialog" aria-label="Cookie notice">
+    <p>
+      I use cookies to detect website issues and track search terms.
+    </p>
+    <form method="dialog">
+      <button value="accept">Got it!</button>
+    </form>
+  </dialog>
+
+  <noscript>
+    <p id="cookie-notice-noscript">
+      I use cookies to detect website issues and track search terms.
+    </p>
+  </noscript>
+  <!-- Cookie dialog end -->
+
+
+	<!-- Toggle sidebar start -->
+	<button
+      id="tocButton"
+      onclick="toggleSideBar()"
+      aria-controls="tocContainer"
+      aria-expanded="false">
+      &#x2630; <span class="toc-label">Content</span>
+    </button>
+	<!-- Toggle sidebar end -->
+  
+<footer id="doc-footer" aria-label="Contact">
+	<address>
+	Maintained by <a href="https://alexandersson.symmetricfunctions.com">Per Alexandersson</a>,
+	<a href="mailto:per@symmetricfunctions.com">per@symmetricfunctions.com</a>.
+	&nbsp;
+	<a href="https://www.facebook.com/groups/SymmetricFunctions/">
+	<i class="fab fa-facebook-square" title="Symmetric functions on Facebook"></i></a>
+	</address>
+</footer>
+</div>
+
+<script>
+function setCookieAccepted() {
+  document.cookie = "cookieaccepted=1; expires=Thu, 18 Dec 2030 12:00:00 UTC; path=/";
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  // If cookie already set, do nothing
+  if (document.cookie.indexOf("cookieaccepted=") >= 0) {
+    return;
+  }
+
+  var dlg = document.getElementById("cookie-dialog");
+  if (!dlg || !dlg.showModal) {
+    // Fallback: no <dialog> support, show noscript-style paragraph if you want
+    return;
+  }
+
+  // Show the dialog
+  dlg.showModal();
+
+  // When the form is submitted via the button, persist the choice
+  dlg.addEventListener('close', function () {
+    if (dlg.returnValue === "accept") {
+      setCookieAccepted();
+    }
+  });
+});
+</script>
+
+
+
+<script>
+function toggleSideBar() {
+  var toc = document.getElementById("tocContainer");
+  var btn = document.getElementById("tocButton");
+
+  // Toggle the CSS class that shows/hides the sidebar
+  toc.classList.toggle("sideBarShowHide");
+
+  // Flip aria-expanded on the button
+  var expanded = btn.getAttribute("aria-expanded") === "true";
+  btn.setAttribute("aria-expanded", expanded ? "false" : "true");
+
+  // Optional: keep aria-hidden on the sidebar in sync
+  toc.setAttribute("aria-hidden", expanded ? "true" : "false");
+}
+</script>
+
+
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+	var currentScrollPos = window.pageYOffset;
+	if (prevScrollpos > currentScrollPos) {
+		document.getElementById("tocButton").style.bottom = "0";
+	} else {
+		document.getElementById("tocButton").style.bottom = "-50px";
+	}
+	prevScrollpos = currentScrollPos;
+} 
+
+var listItems = document.getElementById("tocLinkList").children;
+if(listItems.length) {
+  for (var lstItm of listItems) {
+    lstItm.addEventListener("click", function() {
+      toggleSideBar();
+    });
+  }
+}
+
+function sortByVariable(newClass) {
+	var elem = document.getElementById("index-container");
+	if(elem.className == newClass) {
+		if(elem.style.flexDirection == "column") {
+			elem.style.flexDirection = "column-reverse";
+		}
+		else {
+			elem.style.flexDirection = "column";
+		}
+	}
+	else {
+		elem.className = newClass;
+	}
+}
+</script>
+
+</body>
+</html>

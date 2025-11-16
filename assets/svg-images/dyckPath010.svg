@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="360pt" height="360pt" viewBox="0 0 360 360" version="1.1">
+<g id="surface8">
+<path style="fill:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 104 343 L 104 43 " transform="matrix(1,0,0,1,-74,-13)"/>
+<path style="fill:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 204 343 L 204 43 " transform="matrix(1,0,0,1,-74,-13)"/>
+<path style="fill:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 304 343 L 304 43 " transform="matrix(1,0,0,1,-74,-13)"/>
+<path style="fill:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 404 343 L 404 43 " transform="matrix(1,0,0,1,-74,-13)"/>
+<path style="fill:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 104 343 L 404 343 " transform="matrix(1,0,0,1,-74,-13)"/>
+<path style="fill:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 104 243 L 404 243 " transform="matrix(1,0,0,1,-74,-13)"/>
+<path style="fill:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 104 143 L 404 143 " transform="matrix(1,0,0,1,-74,-13)"/>
+<path style="fill:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 104 43 L 404 43 " transform="matrix(1,0,0,1,-74,-13)"/>
+<path style="fill:none;stroke-width:5.4;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 104 343 L 104 243 L 204 243 L 204 43 L 404 43 " transform="matrix(1,0,0,1,-74,-13)"/>
+</g>
+</svg>

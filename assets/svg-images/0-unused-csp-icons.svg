@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none">
+<!--
+<style>
+		.svgIconBGColor {
+			fill: lightblue;
+		}
+		.strokeColor {
+			stroke: rgb(100,100,120);
+			fill: rgb(100,100,120);
+		}
+	</style>
+-->
+<symbol id="miscSVG" viewBox="0 0 500 500">
+	<style>
+		.circDashed {
+			stroke-width: 1%;
+			fill: none;
+			stroke-dasharray: 50 20;
+		}
+	</style>
+	<rect width="100%" height="100%" class="svgIconBGColor"/>
+	<rect class="circDashed strokeColor" x="10%" y="10%" width="80%" height="80%"/>
+	<circle class="circVert strokeColor" cx="40%" cy="50%" r="2%"/>
+	<circle class="circVert strokeColor" cx="50%" cy="50%" r="2%"/>
+	<circle class="circVert strokeColor" cx="60%" cy="50%" r="2%"/>
+</symbol>
+
+<symbol id="matchSVG" viewBox="0 0 500 500">
+	<style>
+		.circVert {
+		}
+		.circ2 {
+			stroke-width: 1%;
+			fill: none;
+		}
+		.lineClass strokeColor2 {
+			stroke-width: 1%;
+		}
+	</style>
+	
+	<rect width="100%" height="100%" class="svgIconBGColor"/>
+	<circle class="circ2" cx="50%" cy="50%" r="40%"/>
+	<circle class="circVert strokeColor" cx="50%" cy="90%" r="2%"/>
+	<circle class="circVert strokeColor" cx="50%" cy="10%" r="2%"/>
+	<circle class="circVert strokeColor" cx="85%" cy="70%" r="2%"/>
+	<circle class="circVert strokeColor" cx="85%" cy="30%" r="2%"/>
+	<circle class="circVert strokeColor" cx="15%" cy="70%" r="2%"/>
+	<circle class="circVert strokeColor" cx="15%" cy="30%" r="2%"/>
+	<circle class="circVert strokeColor" cx="90%" cy="50%" r="2%"/>
+	<circle class="circVert strokeColor" cx="10%" cy="50%" r="2%"/>
+	<circle class="circVert strokeColor" cx="70%" cy="85%" r="2%"/>
+	<circle class="circVert strokeColor" cx="30%" cy="85%" r="2%"/>
+	<circle class="circVert strokeColor" cx="70%" cy="15%" r="2%"/>
+	<circle class="circVert strokeColor" cx="30%" cy="15%" r="2%"/>
+
+	<line class="lineClass strokeColor2 strokeColor" x1="30%" y1="15%" x2="15%" y2="70%"/>
+	<line class="lineClass strokeColor2 strokeColor" x1="15%" y1="30%" x2="30%" y2="85%"/>
+	<line class="lineClass strokeColor2 strokeColor" x1="50%" y1="10%" x2="70%" y2="85%"/>
+	<line class="lineClass strokeColor2 strokeColor" x1="50%" y1="90%" x2="85%" y2="70%"/>
+	<line class="lineClass strokeColor2 strokeColor" x1="70%" y1="15%" x2="90%" y2="50%"/>
+	<line class="lineClass strokeColor2 strokeColor" x1="85%" y1="30%" x2="10%" y2="50%"/>
+</symbol>
+
+<symbol id="wordSVG" viewBox="0 0 500 500">
+	<style>
+		.svgIconBGColor {
+			fill: lightblue;
+		}
+		.strokeColor {
+			stroke: rgb(100,100,120);
+			fill: rgb(100,100,120);
+		}
+		.smalltext {
+			font-family: 'courier';
+			font-weight: bold;
+			font-size: 1000%;
+		}
+	</style>
+	
+	<rect width="100%" height="100%" class="svgIconBGColor"/>
+	<text x="10%" y="30%" class="smalltext strokeColor">1110</text>
+	<text x="10%" y="55%" class="smalltext strokeColor">0101</text>
+	<text x="10%" y="80%" class="smalltext strokeColor">1011</text>
+</symbol>
+
+<symbol id="pathSVG" viewBox="0 0 500 500">
+	<style>
+	.lineClass {
+		stroke-width: 2%;
+	}
+	</style>
+	<rect width="100%" height="100%" class="svgIconBGColor"/>
+	<circle class="strokeColor" cx="10%" cy="10%" r="4%"/>
+	<circle class="strokeColor" cx="10%" cy="30%" r="4%"/>
+	<circle class="strokeColor" cx="30%" cy="30%" r="4%"/>
+	<circle class="strokeColor" cx="30%" cy="50%" r="4%"/>
+	<circle class="strokeColor" cx="50%" cy="50%" r="4%"/>
+	<circle class="strokeColor" cx="70%" cy="50%" r="4%"/>
+	<circle class="strokeColor" cx="70%" cy="70%" r="4%"/>
+	<circle class="strokeColor" cx="70%" cy="90%" r="4%"/>
+	<circle class="strokeColor" cx="90%" cy="90%" r="4%"/>
+	
+	<line class="lineClass strokeColor" x1="10%" y1="10%" x2="10%" y2="30%"/>
+	<line class="lineClass strokeColor" x1="10%" y1="30%" x2="30%" y2="30%"/>
+	<line class="lineClass strokeColor" x1="30%" y1="30%" x2="30%" y2="50%"/>
+	<line class="lineClass strokeColor" x1="30%" y1="50%" x2="50%" y2="50%"/>
+	<line class="lineClass strokeColor" x1="50%" y1="50%" x2="70%" y2="50%"/>
+	<line class="lineClass strokeColor" x1="70%" y1="50%" x2="70%" y2="70%"/>
+	<line class="lineClass strokeColor" x1="70%" y1="70%" x2="70%" y2="90%"/>
+	<line class="lineClass strokeColor" x1="70%" y1="90%" x2="90%" y2="90%"/>
+</symbol>
+
+<symbol id="catalanSVG" viewBox="0 0 500 500">
+	<style>
+		.lineClass {
+			stroke-width: 1%;
+		}
+	</style>
+	<rect width="100%" height="100%" class="svgIconBGColor"/>
+	
+	<circle class="strokeColor" cx="50%" cy="90%" r="4%"/>
+	<circle class="strokeColor" cx="50%" cy="10%" r="4%"/>
+	<circle class="strokeColor" cx="85%" cy="70%" r="4%"/>
+	<circle class="strokeColor" cx="85%" cy="30%" r="4%"/>
+	<circle class="strokeColor" cx="15%" cy="70%" r="4%"/>
+	<circle class="strokeColor" cx="15%" cy="30%" r="4%"/>
+	
+	<line class="lineClass strokeColor" x1="50%" y1="90%" x2="85%" y2="70%"/>
+	<line class="lineClass strokeColor" x1="50%" y1="90%" x2="15%" y2="70%"/>
+	<line class="lineClass strokeColor" x1="85%" y1="70%" x2="15%" y2="70%"/>
+	<line class="lineClass strokeColor" x1="85%" y1="70%" x2="15%" y2="30%"/>
+	<line class="lineClass strokeColor" x1="15%" y1="30%" x2="15%" y2="70%"/>
+	<line class="lineClass strokeColor" x1="15%" y1="30%" x2="50%" y2="10%"/>
+	<line class="lineClass strokeColor" x1="85%" y1="30%" x2="50%" y2="10%"/>
+	<line class="lineClass strokeColor" x1="85%" y1="30%" x2="85%" y2="70%"/>
+	<line class="lineClass strokeColor" x1="50%" y1="10%" x2="85%" y2="70%"/>
+</symbol>
+
+<symbol id="youngSVG" viewBox="0 0 500 500">
+	<style>
+		.box {
+			stroke-width: 1.5%;
+			fill: none;
+		}
+	</style>
+	<rect width="100%" height="100%" class="svgIconBGColor"/>
+	<rect class="box strokeColor" x="10%" y="10%" width="25%" height="25%"/>
+	<rect class="box strokeColor" x="35%" y="10%" width="25%" height="25%"/>
+	<rect class="box strokeColor" x="60%" y="10%" width="25%" height="25%"/>
+	<rect class="box strokeColor" x="10%" y="35%" width="25%" height="25%"/>
+	<rect class="box strokeColor" x="35%" y="35%" width="25%" height="25%"/>
+	<rect class="box strokeColor" x="10%" y="60%" width="25%" height="25%"/>
+</symbol>
+</svg>
