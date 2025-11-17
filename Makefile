@@ -60,12 +60,21 @@ $(TEMP_DIR)/%.pre.tex: $(SRC_DIR)/%.tex $(PREPROC_LUA) | $(TEMP_DIR)
 	$(LUA) $(PREPROC_LUA) < "$<" > "$@"
 
 # === 2) GATHER: Collect metadata to JSON ===
+FILE ?=
 .PHONY: gather
+ifeq ($(strip $(FILE)),)
 gather: $(TEMP_DIR) $(REFS_JSON) $(JSON_FILES)
+	@echo "Gathered ALL → $(TEMP_DIR)/*.json"
+else
+gather: $(TEMP_DIR) $(REFS_JSON) $(TEMP_DIR)/$(basename $(FILE)).json
+	@echo "Gathered $(FILE) → $(TEMP_DIR)/$(basename $(FILE)).json"
+endif
 
 $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
 	@echo "Gathering $< → $@"
-	$(PANDOC) "$<" --from=latex+raw_tex --to=json --lua-filter=$(GATHER_LUA) --fail-if-warnings -o - | jq -S . > "$@"
+	$(PANDOC) "$<" --from=latex+raw_tex --to=json \
+	  --lua-filter=$(GATHER_LUA) --fail-if-warnings -o - | jq -S . > "$@"
+
 
 # === BIBLIOGRAPHY ===
 .PHONY: bib
