@@ -1,4 +1,3 @@
--- ytableau_to_html.lua
 -- Convert ytableau/youngtab/array/tabular to HTML tables.
 -- Exposes:
 --   format_cell, tex_tabular_to_html, ytableaushort_to_html, youngtab_to_html, transform_tex_snippet
@@ -11,7 +10,6 @@ local CONSOLE = utils.CONSOLE
 local print_warn = utils.print_warn
 local print_info = utils.print_info
 local print_error = utils.print_error
-
 
 local M = {}
 
@@ -375,6 +373,7 @@ function M.transform_tex_snippet(s)
 
   return nil
 end
+
 
 -- ---------- Return module ----------
 return M

@@ -8,30 +8,31 @@
 local json = require("dkjson")
 
 local utils = dofile("utils.lua")
-local trim = utils.trim
-local html_escape = utils.html_escape
-local slugify = utils.slugify
-local CONSOLE = utils.CONSOLE
-local print_warn  = utils.print_warn
-local print_info  = utils.print_info
-local print_error = utils.print_error
-local load_json      = utils.load_json_file
-local json_lib       = utils.json_lib
+local trim         = utils.trim
+local html_escape  = utils.html_escape
+local slugify      = utils.slugify
+local CONSOLE      = utils.CONSOLE
+local print_warn   = utils.print_warn
+local print_info   = utils.print_info
+local print_error  = utils.print_error
+local load_json    = utils.load_json_file
+local json_lib     = utils.json_lib
+local file_exists  = utils.file_exists
 
 
 local bibhandler = dofile("bibhandler.lua")
 local build_bibliography_HTML = bibhandler.build_bibliography_HTML
 
 
-local M = dofile("ytableau_to_html.lua")
+local M = dofile("figure_to_html.lua")
 local transform_tex_snippet = M.transform_tex_snippet
-
+local svgimg_to_html        = M.svgimg_to_html
 
 local TEMP_DIR    = os.getenv("TEMP_DIR") or "temp"
 local REFS_JSON   = os.getenv("REFS_JSON") or (TEMP_DIR .. "/bibliography.json")
 local LABELS_JSON = os.getenv("LABELS_JSON") or (TEMP_DIR .. "/site-labels.json")
 local TEMPLATE    = os.getenv("TEMPLATE") or "template.htm"
-
+local WWW_DIR     = os.getenv("WWW_DIR") or "www"
 
 -- Read the big file with all labels
 local SITE_LABELS_MAP = load_json(LABELS_JSON, "site-labels")
@@ -121,8 +122,7 @@ local function render_inlines_html(inl)
     if t == "Str" then
       local s = c
       -- Replace triple dash then double dash (order matters)
-      s = s:gsub("%-%-%-", "—")
-          :gsub("%-%-",  "–")
+      s = s:gsub("%-%-%-", utf8.char(0x2014)):gsub("%-%-",  utf8.char(0x2013))
       table.insert(out, html_escape(s))
     elseif t == "Space" then
       table.insert(out, " ")
@@ -265,6 +265,56 @@ local function render_inlines_html(inl)
       table.insert(out, "<q>" .. render_inlines_html(c[2] or {}) .. "</q>")
     elseif t == "Cite" then
       table.insert(out, render_inlines_html(c[2] or {}))
+    elseif t == "Image" then
+
+      local attr    = c[1] or {"", {}, {}}
+      local caption = c[2] or {}
+      local target  = c[3]
+
+      -- Decode target: can be string or {src, title}
+      local src, title = "", ""
+      if type(target) == "table" then
+        src   = target[1] or target.src or ""
+        title = target[2] or target.title or ""
+      elseif type(target) == "string" then
+        src = target
+      end
+
+      if src ~= "" then
+        if not file_exists(WWW_DIR .. "/" .. src) then
+          print_error("Image file not found: %s", src)
+        end
+      else
+        print_error("Image with empty src (caption: %s)", render_inlines_html(caption))
+      end
+
+      -- Default style (only if user hasn't specified one in attributes)
+      local has_style = false
+      local kvs = attr[3] or {}
+      for _, kv in ipairs(kvs) do
+        if kv[1] == "style" then
+          has_style = true
+          break
+        end
+      end
+      local style_attr = has_style or ""
+
+      local attr_html = render_attr(attr)
+
+      -- Title attribute if present
+      local title_attr = ""
+      if title ~= "" then
+        title_attr = ' title="' .. html_escape(title) .. '"'
+      end
+
+      table.insert(out,
+        '<img src="' .. html_escape(src) .. '"' ..
+        ' alt="' .. html_escape(alt) .. '"' ..
+        style_attr ..
+        title_attr ..
+        attr_html ..
+        '/>'
+      )
     else
       print_error("Exotic inline: %s", t)
     end

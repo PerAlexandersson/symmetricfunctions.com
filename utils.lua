@@ -240,7 +240,14 @@ local function load_json_file(path, what)
   return json_decode_safe(s, what)
 end
 
-
+local function file_exists(path)
+  local f = io.open(path, "r")
+  if f ~= nil then
+    f:close()
+    return true
+  end
+  return false
+end
 
 return {
   ascii_fold_string = ascii_fold_string,
@@ -262,4 +269,5 @@ return {
   json_lib = JSON_LIB,
   json_decode_safe = json_decode_safe,
   load_json_file = load_json_file,
+  file_exists = file_exists,
 }

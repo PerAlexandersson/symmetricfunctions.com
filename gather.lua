@@ -207,8 +207,7 @@ function RawInline(el)
 
   local s = el.text
   
-  
-    -- \bigskip / \medskip / \smallskip used inline
+      -- \bigskip / \medskip / \smallskip used inline
     if s:match("^%s*\\bigskip%s*$") then
       return pandoc.Span(
         { pandoc.RawInline("html", "&#8203;") },
@@ -259,6 +258,40 @@ function RawInline(el)
     if b then
       return pandoc.RawInline("latextable", b)
     end
+  end
+
+  -- \svgimg
+  do
+    -- \svgimg[0.8]{path}{alt}
+    local opt, path, alt =
+      s:match("^%s*\\svgimg%s*(%b[])%s*(%b{})%s*(%b{})%s*$")
+    if path then
+      print_info("Image found (with opt): %s | %s | %s", opt, path, alt)
+    else 
+     -- \svgimg{path}{alt}
+      local path2, alt2 = s:match("^%s*\\svgimg%s*(%b{})%s*(%b{})%s*$")
+      if path2 then
+        print_info("Image found: %s | %s", path2, alt2)
+        opt, path, alt = "", path2, alt2
+      else 
+        print_erro("Image %s could not be parsed", s)
+        return nil
+      end
+    end
+   
+    local styleVal = ""
+    if opt and opt ~= "" then
+        --TODO parse more options 
+        styleVal = opt
+    end
+
+    local attr = pandoc.Attr(
+      "",          -- id
+      {},          -- classes
+      {{"style", styleVal}}
+    )
+
+      return pandoc.Image(pandoc.Str(alt), path, "", attr)
   end
 
   -- \todo appears inline sometimes
