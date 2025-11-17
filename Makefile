@@ -97,12 +97,20 @@ $(TEMP_DIR)/site-meta.stamp: $(JSON_FILES) $(MERGE_META_LUA) | $(TEMP_DIR)
 $(LABELS_JSON) $(POLYDATA_JSON) $(SITEMAP_XML): $(TEMP_DIR)/site-meta.stamp
 
 # === 4) RENDER: Generate HTML ===
+FILE ?=
 .PHONY: render
+ifeq ($(strip $(FILE)),)
 render: $(LABELS_JSON) $(WWW_DIR) $(HTML_FILES) $(TEMPLATE)
+	@echo "Rendered ALL → $(WWW_DIR)/*.htm"
+else
+render: $(LABELS_JSON) $(WWW_DIR) $(TEMPLATE) $(WWW_DIR)/$(basename $(FILE)).htm
+	@echo "Rendered $(FILE) → $(WWW_DIR)/$(basename $(FILE)).htm"
+endif
 
 $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) | $(WWW_DIR)
 	@echo "Rendering $< → $@"
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
+
 
 # === COPY ASSETS ===
 .PHONY: copy-assets

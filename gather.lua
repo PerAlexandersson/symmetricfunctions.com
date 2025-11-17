@@ -275,15 +275,15 @@ function RawInline(el)
       alt  = alt:sub(2,-2) or ""
       opt  = opt:sub(2,-2) or ""
       
-      print_info("Image found (with opt): %s | %s | %s", opt, path, alt)
+      --print_info("Image found (with opt): %s | %s | %s", opt, path, alt)
 
       local styleVal = ""
       local widthString="auto"
       if opt and opt ~= "" then
           --TODO parse more options 
-          local num = opt:match("^([%d%.]+)%s*\\%a+width$")
+          local num = opt:match("width%s*=%s*([%d]*%.?%d+)%s*\\%a+")
           if num then
-            print_info("Num %s ", num)
+            --print_info("Num %s ", num)
             local f = tonumber(num)
             if f and f > 0 then
               local p = math.floor(f * 100 + 0.5) 

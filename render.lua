@@ -288,6 +288,9 @@ local function render_inlines_html(inl)
         print_error("Image with empty src (caption: %s)", render_inlines_html(caption))
       end
 
+      captionHTML = render_inlines_html(caption)
+      title = captionHTML
+
       -- Default style (only if user hasn't specified one in attributes)
       local has_style = false
       local kvs = attr[3] or {}
@@ -297,21 +300,13 @@ local function render_inlines_html(inl)
           break
         end
       end
-      local style_attr = has_style or ""
-
       local attr_html = render_attr(attr)
 
-      -- Title attribute if present
-      local title_attr = ""
-      if title ~= "" then
-        title_attr = ' title="' .. html_escape(title) .. '"'
-      end
+      print_info("Image found (with opt): %s | %s | %s ", captionHTML, src, attr_html)
 
       table.insert(out,
-        '<img src="' .. html_escape(src) .. '"' ..
-        ' alt="' .. html_escape(alt) .. '"' ..
-        style_attr ..
-        title_attr ..
+        '<img src="' .. src .. '"' ..
+        ' alt="' .. captionHTML .. '"' ..
         attr_html ..
         '/>'
       )
