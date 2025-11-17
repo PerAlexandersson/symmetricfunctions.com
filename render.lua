@@ -280,36 +280,26 @@ local function render_inlines_html(inl)
         src = target
       end
 
+      captionHTML = render_inlines_html(caption)
+
       if src ~= "" then
         if not file_exists(WWW_DIR .. "/" .. src) then
           print_error("Image file not found: %s", src)
         end
       else
-        print_error("Image with empty src (caption: %s)", render_inlines_html(caption))
+        print_error("Image with src (caption: %s)", captionHTML)
       end
-
-      captionHTML = render_inlines_html(caption)
-      title = captionHTML
-
-      -- Default style (only if user hasn't specified one in attributes)
-      local has_style = false
-      local kvs = attr[3] or {}
-      for _, kv in ipairs(kvs) do
-        if kv[1] == "style" then
-          has_style = true
-          break
-        end
-      end
+     
       local attr_html = render_attr(attr)
 
-      print_info("Image found (with opt): %s | %s | %s ", captionHTML, src, attr_html)
+      --print_info("Image found (with opt): %s | %s | %s ", captionHTML, src, attr_html)
 
-      table.insert(out,
-        '<img src="' .. src .. '"' ..
-        ' alt="' .. captionHTML .. '"' ..
-        attr_html ..
-        '/>'
-      )
+       table.insert(out,
+        string.format('<img src="%s" alt="%s"%s/>',
+          src,
+          captionHTML,
+          attr_html
+        ))
     else
       print_error("Exotic inline: %s", t)
     end
