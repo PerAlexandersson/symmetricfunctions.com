@@ -267,10 +267,14 @@ function RawInline(el)
     if not path then
       -- \svgimg{path}{alt}
       path, alt = s:match("^%s*\\svgimg%s*(%b{})%s*(%b{})%s*$")
-      opt=""
+      opt="[]"
     end
     --If we found a file path
     if path then
+      path = path:sub(2,-2) or ""
+      alt  = alt:sub(2,-2) or ""
+      opt  = opt:sub(2,-2) or ""
+      
       print_info("Image found (with opt): %s | %s | %s", opt, path, alt)
 
       local styleVal = ""
@@ -279,10 +283,11 @@ function RawInline(el)
           --TODO parse more options 
           local num = opt:match("^([%d%.]+)%s*\\%a+width$")
           if num then
+            print_info("Num %s ", num)
             local f = tonumber(num)
             if f and f > 0 then
               local p = math.floor(f * 100 + 0.5) 
-              widthString=tostring(p) .. "%"
+              widthString = tostring(p) .. "%"
             end
           end
           styleVal = "width:" .. widthString ..";"
@@ -404,7 +409,7 @@ function RawBlock(el)
   do
     local mt = s:match("^%s*\\metatitle(%b{})%s*$")
     if mt then metatitle = mt:sub(2,-2);
-      print_color(CONSOLE.green, "::: metatitle: %s", metatitle)
+      --print_color(CONSOLE.green, "::: metatitle: %s", metatitle)
       return {}
     end
   end
@@ -413,7 +418,16 @@ function RawBlock(el)
   do
     local md = s:match("^%s*\\metadescription(%b{})%s*$")
     if md then metadesc = md:sub(2,-2);
-      print_color(CONSOLE.green, "::: metadescription: %s", metadesc)
+      --print_color(CONSOLE.green, "::: metadescription: %s", metadesc)
+      return {}
+    end
+  end
+
+  -- These are not relevant, so throw away
+  -- \metakeywords{...}
+  do
+    local md = s:match("^%s*\\metakeywords(%b{})%s*$")
+    if md then metadesc = md:sub(2,-2);
       return {}
     end
   end

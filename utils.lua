@@ -171,18 +171,19 @@ local function _fmt(fmt, ...) return (select("#", ...) > 0) and string.format(fm
 
 local function print_todo(fmt, ...)
   local m=_fmt(fmt,...);
-  if _use_color then io.stderr:write(CONSOLE.yellow," ❤  todo: ",CONSOLE.cyan,m,CONSOLE.reset,"\n")
-  else io.stderr:write("[TODO] ",m,"\n") end
+  if #m>60 then m=m:sub(1,57).."..." end
+  if _use_color then io.stderr:write(CONSOLE.yellow," 📝  todo: ",CONSOLE.cyan,m,CONSOLE.reset,"\n")
+  else io.stderr:write("[TODO] ", m ,"\n") end
 end
 
 local function print_warn(fmt, ...)
   local m=_fmt(fmt,...);
-  if _use_color then io.stderr:write(CONSOLE.bg_yellow,CONSOLE.black," ⚠ ",CONSOLE.reset," ",CONSOLE.yellow,m,CONSOLE.reset,"\n")
+  if _use_color then io.stderr:write(CONSOLE.yellow," ⚠ warn: ",CONSOLE.yellow,m,CONSOLE.reset,"\n")
   else io.stderr:write("[WARN] ",m,"\n") end
 end
 
 local function print_info(fmt, ...)
-  local m=_fmt(fmt,...); if _use_color then io.stderr:write(CONSOLE.bold," ℹ ",CONSOLE.reset," ",m,"\n")
+  local m=_fmt(fmt,...); if _use_color then io.stderr:write(CONSOLE.bold," ℹ️ ",CONSOLE.reset," ",m,"\n")
   else io.stderr:write("[INFO] ",m,"\n") end
 end
 
