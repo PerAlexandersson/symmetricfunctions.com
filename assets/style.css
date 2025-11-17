@@ -227,6 +227,8 @@ footer { margin-top: 3em; }
   font-size: 95%;
 }
 .dateMod {
+  display: block;
+  width: 100%;
   text-align: right;
   color: var(--muted-2);
   font-size: 95%;

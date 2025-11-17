@@ -489,7 +489,7 @@ tpl = select(1, repl(tpl, "<!--DESCRIPTION-->", html_escape(desc)))
 -- tpl = select(1, repl(tpl, "<!--KEYWORDS-->",    html_escape(keywords)))
 tpl = select(1, repl(tpl, "<!--CANONICAL-->",   html_escape(canonical)))
 tpl = select(1, repl(tpl, "<!--SIDELINKS-->",   sidelinks_str))
-tpl = select(1, repl(tpl, "<!--LASTMOD-->",     string.format('<p class="dateMod">%s</p>', lastmod)))
+tpl = select(1, repl(tpl, "<!--LASTMOD-->",     string.format('<time class="dateMod" datetime="%s">%s</time>', lastmod, lastmod)))
 tpl = select(1, repl(tpl, "<!--MAIN-->",        html_body))
 tpl = select(1, repl(tpl, "<!--REFERENCES-->",  cite_html))
 
