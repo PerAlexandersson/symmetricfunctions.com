@@ -295,8 +295,9 @@ local function render_inlines_html(inl)
       --print_info("Image found (with opt): %s | %s | %s ", captionHTML, src, attr_html)
 
        table.insert(out,
-        string.format('<img src="%s" alt="%s"%s/>',
+        string.format('<img src="%s" title="%s" alt="%s" %s/>',
           src,
+          captionHTML,
           captionHTML,
           attr_html
         ))
