@@ -75,7 +75,11 @@ ifeq ($(strip $(FILE)),)
 render: $(LABELS_JSON) $(WWW_DIR) $(HTML_FILES) $(TEMPLATE)
 	@echo "Rendered ALL → $(WWW_DIR)/*.htm"
 else
-render: $(LABELS_JSON) $(WWW_DIR) $(TEMPLATE) $(WWW_DIR)/$(basename $(FILE)).htm
+# When rendering a single file, avoid depending on site-wide metadata
+# which would force generation of all JSON files. Only depend on the
+# template and the single output target; the output target itself will
+# depend on the corresponding per-file JSON.
+render: $(WWW_DIR) $(TEMPLATE) $(WWW_DIR)/$(basename $(FILE)).htm
 	@rm -f $(WWW_DIR)/$(basename $(FILE)).htm
 	@$(MAKE) $(WWW_DIR)/$(basename $(FILE)).htm
 	@echo "Rendered $(FILE) → $(WWW_DIR)/$(basename $(FILE)).htm"
