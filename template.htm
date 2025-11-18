@@ -3,7 +3,7 @@
 <head>
 	<title><!--TITLE--></title>
 	<meta charset="utf-8">
-  <meta name="author" content="Per Alexandersson" />
+    <meta name="author" content="Per Alexandersson" />
 	<meta name="description" content="<!--DESCRIPTION-->" />
 	<meta name="robots" content="index, follow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,8 +21,7 @@
 	<meta name="twitter:title" content="<!--TITLE-->" />
 	<meta name="twitter:description" content="<!--DESCRIPTION-->" />
 	<meta name="twitter:image" content="https://www.symmetricfunctions.com/icons/fbicon.png" />
-  <meta name="twitter:image:alt" content="SymCat — The symmetric functions catalog" />
-
+    <meta name="twitter:image:alt" content="SymCat — The symmetric functions catalog" />
 
 	<script type="application/ld+json">
 	{
@@ -58,8 +57,7 @@
 	<link rel="preload" href="./mathstyle.css" as="style" onload="this.rel='stylesheet'">
 	<noscript><link rel="stylesheet" href="./mathstyle.css"></noscript>
 
-	
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <!--
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139966103-1"></script>
 	<script>
@@ -67,18 +65,15 @@
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 		gtag('config', 'UA-139966103-1');
-	</script>-->
-
+	</script>
+-->
 
 
 <!-- KaTeX assets -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+<style>.katex{font-size: 1em}</style>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js"></script>
-
-
-<style>.katex{font-size: 1em}</style>
-
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     renderMathInElement(document.body, {
@@ -93,6 +88,10 @@
 		});
   });
 </script>
+<script src="./tex-init.js" defer></script>
+<!--KaTeX assets end -->
+
+<script src="./site.js" defer></script>
 </head>
 
 <body>
@@ -116,7 +115,6 @@
   <div id="tocPad"></div>
   </nav>
   </aside>
-
   <main id="doc-main">
     <section id="doc-section">
     <!--LASTMOD-->
@@ -126,23 +124,17 @@
 
     <!--REFERENCES-->
   </main>
-  
   <!-- Cookie dialog start -->
   <dialog id="cookie-dialog" aria-label="Cookie notice">
-    <p>
-      I use cookies to detect website issues and track search terms.
-    </p>
+    <p>I use cookies to detect website issues and track search terms.</p>
     <form method="dialog">
       <button value="accept">Got it!</button>
     </form>
   </dialog>
   <noscript>
-    <p id="cookie-notice-noscript">
-      I use cookies to detect website issues and track search terms.
-    </p>
+    <p id="cookie-notice-noscript">I use cookies to detect website issues and track search terms.</p>
   </noscript>
   <!-- Cookie dialog end -->
-
 
 	<!-- Toggle sidebar start -->
 	<button
@@ -159,13 +151,9 @@
 	Maintained by <a href="https://alexandersson.symmetricfunctions.com">Per Alexandersson</a>,
 	<a href="mailto:per@symmetricfunctions.com">per@symmetricfunctions.com</a>.
 	&nbsp;
-	<a href="https://www.facebook.com/groups/SymmetricFunctions/">
-	<i class="fab fa-facebook-square" title="Symmetric functions on Facebook"></i></a>
+	<a href="https://www.facebook.com/groups/SymmetricFunctions/">Symmetric functions on Facebook</a>
 	</address>
 </footer>
 </div>
-
-<script src="./tex-init.js" defer></script>
-<script src="./site.js" defer></script>
 </body>
 </html>

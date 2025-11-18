@@ -16,7 +16,6 @@ local CONSOLE = utils.CONSOLE
 local bib = dofile("bibhandler.lua")
 local get_bib_entry_label = bib.get_bib_entry_label
 
-
 -- derive current input filename/stem
 local _INPUT = (PANDOC_STATE and PANDOC_STATE.input_files and PANDOC_STATE.input_files[1]) or "(stdin)"
 local _BASENAME = _INPUT:match("([^/\\]+)$") or _INPUT
