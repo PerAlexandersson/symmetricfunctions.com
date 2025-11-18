@@ -38,15 +38,14 @@ if not args["--no-url-rewrite"] then
   if input ~= before then note("replaced \\url with \\href") end
 end
 
+-- \filelink{path}{label} -> \href{path}{label} (styled via CSS)
+input = input:gsub("\\filelink", "\\href")
 
-if true then
-  local before = input
-  -- Replace only the begin/end tags; leave inner content untouched.
-  input = input
-    :gsub("%{%s*proof%s*%}", "{symproof}")
-    :gsub("%{%s*proof%*%s*%}",   "{symproof*}")
-  if input ~= before then note("proof environments frozen as symproof") end
-end
+
+-- Replace only the begin/end tags; leave inner content untouched.
+input = input
+        :gsub("%{%s*proof%s*%}", "{symproof}")
+        :gsub("%{%s*proof%*%s*%}",   "{symproof*}")
 
 
 -- Pandoc eats tabular

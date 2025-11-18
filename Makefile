@@ -2,46 +2,8 @@ SHELL := /bin/bash
 .ONESHELL:
 .SHELLFLAGS := -eu -o pipefail -c
 
-# === DIRECTORIES ===
-SRC_DIR    = tex-source
-TEST_DIR   = tests
-TEMP_DIR   = temp
-WWW_DIR    = www
-ASSETS_DIR = assets
-
-# === TOOLS ===
-PANDOC = pandoc
-LUA    = lua
-
-# === SCRIPTS ===
-PREPROC_LUA    = preprocess.lua
-GATHER_LUA     = gather.lua
-RENDER_LUA     = render.lua
-MERGE_META_LUA = merge_meta.lua
-
-# === SOURCE FILES ===
-TEMPLATE   := template.htm
-BIBFILE    := ~/Dropbox/latex/bibliography.bib
-TEX_FILES  := $(wildcard $(SRC_DIR)/*.tex)
-PRE_TEX    := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.pre.tex,$(TEX_FILES))
-JSON_FILES := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.json,$(TEX_FILES))
-HTML_FILES := $(patsubst $(SRC_DIR)/%.tex,$(WWW_DIR)/%.htm,$(TEX_FILES))
-
-# === GENERATED OUTPUTS ===
-REFS_JSON     := $(TEMP_DIR)/bibliography.json
-LABELS_JSON   := $(TEMP_DIR)/site-labels.json
-POLYDATA_JSON := $(TEMP_DIR)/site-polydata.json
-SITEMAP_XML   := $(WWW_DIR)/sitemap.xml
-
-# === UNITTEST ===
-UNIT_SRC   := $(TEST_DIR)/unittest.tex
-UNIT_PRE   := $(TEMP_DIR)/unittest.pre.tex
-UNIT_JSON  := $(TEMP_DIR)/unittest.json
-UNIT_HTML  := $(WWW_DIR)/unittest.htm
-
-# === EXPORTS FOR SCRIPTS ===
-export SRC_DIR TEMP_DIR WWW_DIR
-export TEMPLATE REFS_JSON LABELS_JSON POLYDATA_JSON SITEMAP_XML
+# === LOAD CONFIGURATION ===
+include config.mk
 
 .PHONY: all gather meta bib render copy-assets clean unittest
 .DELETE_ON_ERROR:
@@ -75,6 +37,16 @@ $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
 	$(PANDOC) "$<" --from=latex+raw_tex --to=json \
 	  --lua-filter=$(GATHER_LUA) --fail-if-warnings -o - | jq -S . > "$@"
 
+# Test file preprocessing
+$(TEST_PRE): $(TEMP_DIR)/%.pre.tex: $(TEST_DIR)/%.tex $(PREPROC_LUA) | $(TEMP_DIR)
+	@echo "Preprocessing $< → $@"
+	$(LUA) $(PREPROC_LUA) < "$<" > "$@"
+
+# Test file gathering
+$(TEST_JSON): $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
+	@echo "Gathering $< → $@"
+	$(PANDOC) "$<" --from=latex+raw_tex --to=json \
+	  --lua-filter=$(GATHER_LUA) --fail-if-warnings -o - | jq -S . > "$@"
 
 # === BIBLIOGRAPHY ===
 .PHONY: bib
@@ -113,6 +85,11 @@ $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) $(LA
 	@echo "Rendering $< → $@"
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
 
+# Test file rendering (without metadata dependencies)
+$(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) | $(WWW_DIR)
+	@echo "Rendering test $< → $@"
+	$(LUA) $(RENDER_LUA) "$<" > "$@"
+
 
 # === COPY ASSETS ===
 .PHONY: copy-assets
@@ -121,8 +98,8 @@ copy-assets:
 
 # === UNITTEST ===
 .PHONY: unittest
-unittest: $(TEMP_DIR) $(WWW_DIR) $(REFS_JSON) $(UNIT_HTML)
-	@echo "Unittest pipeline finished for $(UNIT_SRC)"
+unittest: $(TEMP_DIR) $(WWW_DIR) $(TEST_HTML)
+	@echo "Unittest pipeline finished — processed $(words $(TEST_TEX)) test file(s)"
 
 # === CLEAN ===
 .PHONY: clean

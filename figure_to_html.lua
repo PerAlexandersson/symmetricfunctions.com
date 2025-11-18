@@ -243,7 +243,7 @@ local function split_yshort_row(row)
     end
   end
 
-  print_info("Split ytableaushort row '%s' into tokens: %s", row, table.concat(toks, "|"))
+ -- print_info("Split ytableaushort row '%s' into tokens: %s", row, table.concat(toks, "|"))
 
   return toks
 end
@@ -254,7 +254,7 @@ function M.ytableaushort_to_html(argstr, opts)
   opts = opts or {}
   local delim = (opts.delimiter ~= nil) and opts.delimiter or "$"
 
-  print_info("Converting ytableaushort '%s' to HTML with delimiter '%s'", argstr, delim)
+ -- print_info("Converting ytableaushort '%s' to HTML with delimiter '%s'", argstr, delim)
 
   local s = trim(argstr or "")
 

@@ -262,6 +262,7 @@ as a sum of positive roots, where exactly $j$ roots appear with a positive multi
 
 
 See \url{http://de.arxiv.org/pdf/1111.6648.pdf} for a connection with Fibonacci numbers.
+
 \todo{Expand this}
 
 
@@ -558,12 +559,17 @@ We have the relation
 We shall now compute $K_{421,3211}(q)$. 
 There are four tableaux in $\SSYT(421,3211)$:
 
+
+
+
 \begin{figure}
-\begin{ytableau} 1&1&1&4\\2&2\\3 \end{ytableau} 
-\begin{ytableau} 1&1&1&3 \\ 2&2\\ 4 \end{ytableau} 
-\begin{ytableau} 1&1&1&2 \\ 2&4\\ 3 \end{ytableau}
-\begin{ytableau} 1&1&1&2 \\ 2&3\\ 4 \end{ytableau}
+  \ytableaushort{1114,22,3}
+  \ytableaushort{1113,22,4}
+  \ytableaushort{1112,24,3}
+  \ytableaushort{1112,23,4}
 \end{figure}
+
+
 
 The corresponding standard subwords and charge values are given by
 \begin{equation*}
@@ -579,7 +585,6 @@ The corresponding standard subwords and charge values are given by
  \underset{2+1+0}{4231,\; 12,\; 1}
 \end{equation*}
 Hence, $K_{\lambda\mu}(q) = q+2q^2+q^3$.
-
 \end{example}
 
 
@@ -599,6 +604,7 @@ The rows are indexed by $\lambda$.
  \textbf{1111} & q^6 & q^5+q^4+q^3 & q^4+q^2 & q^3+q^2+q & 1 \\
  \bottomrule
  \end{array}
+
  \end{example*}
 
 
@@ -675,7 +681,7 @@ See \cite[Section 5.6]{Lothaire2002} for more properties of cyclage.
 \begin{example*}[Figure of a cyclage poset]
 The charge is displayed on the right hand side of each tableau.
 \begin{figure}
-  \svgimg[width=0.4\textwidth]{./svg-images/cyclagePoset.svg}{Cyclage poset}
+  \svgimg[width=0.4\textwidth]{svg-images/cyclagePoset.svg}{Cyclage poset}
 \end{figure}
 \end{example*}
  
@@ -700,6 +706,7 @@ The top row is moved to the bottom, to create a skew shape.
 \ytableaushort{{\none}{\none}23,{\none}{\none}4,11}
 \end{figure}
 We then perform \hyperref[jeu-de-taquin]{jeu-de-taquin} to get a straight shape.
+
 \begin{figure}
 \ytableaushort{{\none}{\none}23,{\none}{\none}4,11}
 \ytableaushort{{\none}{\none}23,{\none}14,1}
@@ -708,6 +715,7 @@ We then perform \hyperref[jeu-de-taquin]{jeu-de-taquin} to get a straight shape.
 \ytableaushort{1123,{\none}{\none}4}
 \ytableaushort{1123,4}
 \end{figure}
+
 The final tableau is the result of catabolism.
 This procedure is equivalent with the one described above.
 \end{example*}
@@ -715,9 +723,8 @@ This procedure is equivalent with the one described above.
 \begin{example*}[Figure of catabolism (poset)]
 The charge is displayed on the right hand side of each tableau.
 \begin{figure}
-<img src="./svg-images/catabolism.svg" alt="Catabolism" 
-style="width:90%; min-width:10em; margin-right:15px;margin-left:15px;"/>
-\end{figure}
+  \svgimg[width=0.9\textwidth]{svg-images/catabolismPoset.svg}{Catabolism poset}
+\end{figure} 
 \end{example*}
  
 \todo{
@@ -725,7 +732,6 @@ style="width:90%; min-width:10em; margin-right:15px;margin-left:15px;"/>
 }
  
  
-
 \subsection[kostkaIdentities]{Identities}
 
 Using the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}, one can show that
@@ -877,12 +883,8 @@ for all ribbons $r_j$ where the width is the number of columns the ribbon occupi
 
 
 \todo{
-
 \section[kostkaFoulkesGeneralizations]{Generalizations}
-
-
 See https://arxiv.org/pdf/math/9803006.pdf
-
 This has charge in other types.
 https://www.albany.edu/faculty/lenart/articles/charge.pdf
 }

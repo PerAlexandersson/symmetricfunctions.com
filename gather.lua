@@ -334,6 +334,17 @@ function RawInline(el)
       end
     end
 
+  -- \filelink{path}{label} → Link(label, path), class="dataFile"
+  do
+    local path, label = s:match("^%s*\\filelink(%b{})(%b{})%s*$")
+    if path and label then
+      local path_inner = path:sub(2,-2)
+      local label_inner = label:sub(2,-2)
+      record_link(path_inner, label_inner)
+      return pandoc.Link(parse_inlines_walk(label_inner), path_inner, "", {"dataFile"})
+    end
+  end
+
   -- \label{...} → a label span
   do
     local b = s:match("^%s*\\label(%b{})%s*$")
