@@ -3,6 +3,7 @@
 local utils = dofile("utils.lua")
 local trim = utils.trim
 local capitalize_first = utils.capitalize_first
+local html_escape = utils.html_escape
 local set_add = utils.set_add
 local set_to_sorted_list = utils.set_to_sorted_list
 local print_todo = utils.print_todo
@@ -405,6 +406,31 @@ function RawInline(el)
     end
   end
 
+  --\topiccard{ID}{Title}{Body}
+  -- <a href="ID" class="topic-card">
+  --   <img src="svg-images/card-ID.svg" alt="Title"/>
+  --  <p>Body</p>
+  -- </a>
+  do
+    local id,title,body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})$")
+    if id and title and body then
+      local id_inner    = id:sub(2,-2)
+      local title_inner = title:sub(2,-2)
+      local body_inner  = body:sub(2,-2)
+
+      local url = string.format('svg-images/card-%s.svg', id_inner)
+      local img = pandoc.Image(pandoc.Str("Link to " .. html_escape(title_inner)), url, "",{})      
+
+      local content = pandoc.Para(parse_inlines_walk(body_inner))
+
+      return pandoc.Link({img,content}, path_inner, "", {"topic-card"})
+    end
+  end
+
+
+
+  print_warn("Tex string %s is unparsed", s)
+
   return nil
 end
 
@@ -538,6 +564,7 @@ function RawBlock(el)
   end
 
 
+  -- \begin{symfig} ... \end{symfig}
   do
     local content = s:match("^%s*\\begin%s*%{symfig%}%s*([%s%S]-)%s*\\end%s*%{symfig%}%s*$")
     if content then
@@ -545,6 +572,27 @@ function RawBlock(el)
       return pandoc.Div(parse_blocks_walk(content),pandoc.Attr("", {"figure"}))
     end
   end
+
+
+  -- \begin{topicssection}{Title} ... \end{topicssection}
+  do
+    local title, body = s:match("^%s*\\begin%s*%{topicsection%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{topicsection%}%s*$")
+    
+    if title and body then
+      -- strip outer { } from title and parse as inlines
+      local heading      = pandoc.Header(2, parse_inlines_walk(title:sub(2, -2)))
+
+      -- inner grid wrapper for cards
+      local grid_div     = pandoc.Div(parse_blocks_walk(body), pandoc.Attr("", {"topic-card-grid"}))
+
+      -- combine heading + grid into one block list
+      local blocks       = pandoc.List({ heading, grid_div })
+
+      -- outer wrapper div for the whole section
+      return pandoc.Div(blocks, pandoc.Attr("", {"topicsection"}))
+    end
+  end
+
 
   ------- These are parsed to HTML later
 
