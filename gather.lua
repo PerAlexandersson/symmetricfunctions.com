@@ -137,6 +137,51 @@ local function parse_polydata_body(body)
 end
 
 
+local function parse_svgimg(s)
+  -- \svgimg
+  -- \svgimg[0.8]{path}{alt}
+  local opt, path, alt = s:match("^%s*\\svgimg%s*(%b[])%s*(%b{})%s*(%b{})%s*$")
+  if not path then
+    -- \svgimg{path}{alt}
+    path, alt = s:match("^%s*\\svgimg%s*(%b{})%s*(%b{})%s*$")
+    opt = "[]"
+  end
+
+  if not path then
+    return nil
+  end
+
+  path = path:sub(2,-2) or ""
+  alt  = alt:sub(2,-2) or ""
+  opt  = opt:sub(2,-2) or ""
+
+  local styleVal = ""
+  local widthString = "auto"
+
+  if opt and opt ~= "" then
+    -- TODO parse more options 
+    local num = opt:match("width%s*=%s*([%d]*%.?%d+)%s*\\%a+")
+    if num then
+      local f = tonumber(num)
+      if f and f > 0 then
+        local p = math.floor(f * 100 + 0.5)
+        widthString = tostring(p) .. "%"
+      end
+    end
+    styleVal = "width:" .. widthString .. ";"
+  end
+
+  local attr = pandoc.Attr(
+    "",          -- id
+    {},          -- classes
+    {{"style", styleVal}}
+  )
+
+  return pandoc.Image(pandoc.Str(alt), path, "", attr)
+end
+
+
+
 -- ===== Pandoc node handlers ===============================================
 function Header(el)
 
@@ -224,8 +269,6 @@ function RawInline(el)
       )
     end
  
-  
-
   -- \defin{...} → Span(class=defin)
   do
     local b = s:match("^%s*\\defin(%b{})%s*$")
@@ -261,43 +304,9 @@ function RawInline(el)
 
   -- \svgimg
   do
-    -- \svgimg[0.8]{path}{alt}
-    local opt, path, alt = s:match("^%s*\\svgimg%s*(%b[])%s*(%b{})%s*(%b{})%s*$")
-    if not path then
-      -- \svgimg{path}{alt}
-      path, alt = s:match("^%s*\\svgimg%s*(%b{})%s*(%b{})%s*$")
-      opt="[]"
-    end
-    --If we found a file path
-    if path then
-      path = path:sub(2,-2) or ""
-      alt  = alt:sub(2,-2) or ""
-      opt  = opt:sub(2,-2) or ""
-      
-      --print_info("Image found (with opt): %s | %s | %s", opt, path, alt)
-
-      local styleVal = ""
-      local widthString="auto"
-      if opt and opt ~= "" then
-          --TODO parse more options 
-          local num = opt:match("width%s*=%s*([%d]*%.?%d+)%s*\\%a+")
-          if num then
-            --print_info("Num %s ", num)
-            local f = tonumber(num)
-            if f and f > 0 then
-              local p = math.floor(f * 100 + 0.5) 
-              widthString = tostring(p) .. "%"
-            end
-          end
-          styleVal = "width:" .. widthString ..";"
-      end
-
-      local attr = pandoc.Attr(
-        "",          -- id
-        {},          -- classes
-        {{"style", styleVal}}
-      )
-      return pandoc.Image(pandoc.Str(alt), path, "", attr)
+    local img = parse_svgimg(s)
+    if img then
+      return img
     end
   end
 
@@ -429,6 +438,16 @@ function RawBlock(el)
     if md then metadesc = md:sub(2,-2);
       return {}
     end
+  end
+
+
+  -- \svgimg as block
+  do
+    local img = parse_svgimg(s)
+      if img then
+        -- Return a block-level image: wrap in a paragraph (or Plain)
+        return pandoc.Para{ img }
+      end
   end
 
   -- \todo{...} — log & drop

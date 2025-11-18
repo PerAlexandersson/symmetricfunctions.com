@@ -61,33 +61,6 @@ local function utf8_next_len(b)
   else return 1 end
 end
 
--- If row has spaces or & we treat those as token separators.
--- Otherwise we split into codepoints, keeping TeX control words (e.g. \none) intact.
-local function split_yshort_row(row)
-  local r = trim(row)
-  if r:find("[%s&]") then
-    local toks = {}
-    for tok in r:gmatch("[^%s&]+") do
-      table.insert(toks, tok)
-    end
-    return toks
-  end
-  local toks, i, n = {}, 1, #r
-  while i <= n do
-    local c = r:sub(i,i)
-    if c == "\\" then
-      local j = i + 1
-      while j <= n and r:sub(j,j):match("%a") do j = j + 1 end
-      table.insert(toks, r:sub(i, j - 1))
-      i = j
-    else
-      local len = utf8_next_len(r:byte(i))
-      table.insert(toks, r:sub(i, i + len - 1))
-      i = i + len
-    end
-  end
-  return toks
-end
 
 -- ---------- Cell formatter (re-usable) ----------
 
@@ -230,15 +203,60 @@ end
 local tex_tabular_to_html = M.tex_tabular_to_html
 
 -- ---------- ytableaushort{...} ----------
+-- Split a ytableaushort row into tokens (cells)
+-- Handles balanced {...} blocks and single-character cells
+local function split_yshort_row(row)
+  row = trim(row or "")
+  local toks = {}
+  local i, n = 1, #row
+
+  while i <= n do
+    local ch = row:sub(i, i)
+
+    -- Skip whitespace
+    if ch:match("%s") then
+      i = i + 1
+
+    -- Cell is a balanced {...} block
+    elseif ch == "{" then
+      local depth = 1
+      local j = i + 1
+      while j <= n and depth > 0 do
+        local c = row:sub(j, j)
+        if c == "{" then
+          depth = depth + 1
+        elseif c == "}" then
+          depth = depth - 1
+        end
+        j = j + 1
+      end
+      local tok = row:sub(i, j - 1)  -- include closing }
+      if tok ~= "" then
+        table.insert(toks, tok)
+      end
+      i = j
+
+    -- Cell is a single non-space character
+    else
+      table.insert(toks, ch)
+      i = i + 1
+    end
+  end
+
+  print_info("Split ytableaushort row '%s' into tokens: %s", row, table.concat(toks, "|"))
+
+  return toks
+end
+
 
 -- opts = { delimiter = "$" | "" }
 function M.ytableaushort_to_html(argstr, opts)
   opts = opts or {}
   local delim = (opts.delimiter ~= nil) and opts.delimiter or "$"
 
-  -- Strip outer braces if present
+  print_info("Converting ytableaushort '%s' to HTML with delimiter '%s'", argstr, delim)
+
   local s = trim(argstr or "")
-  s = s:gsub("^%s*{%s*", ""):gsub("%s*}%s*$", "")
 
   -- rows separated by top-level commas
   local rows = split_top_level_commas(s)
@@ -258,11 +276,17 @@ function M.ytableaushort_to_html(argstr, opts)
     row_tokens[i] = toks
   end
 
-  local html_rows = {}
+
+local html_rows = {}
   for _, toks in ipairs(row_tokens) do
     local tds = {}
     for _, tok in ipairs(toks) do
-      table.insert(tds, format_cell(tok, { delimiter = delim }))
+      -- Strip outer braces if present
+      local cell_content = tok
+      if cell_content:sub(1, 1) == "{" and cell_content:sub(-1) == "}" then
+        cell_content = cell_content:sub(2, -2)
+      end
+      table.insert(tds, format_cell(cell_content, { delimiter = delim }))
     end
     table.insert(html_rows, "<tr>" .. table.concat(tds, "") .. "</tr>\n")
   end
@@ -270,7 +294,10 @@ function M.ytableaushort_to_html(argstr, opts)
   return '<table class="ytab">' .. table.concat(html_rows, "") .. "</table>\n"
 end
 
+
+
 local ytableaushort_to_html = M.ytableaushort_to_html
+
 
 -- ---------- \begin{ytableau} ... \end{ytableau} / youngtab ----------
 
@@ -336,7 +363,7 @@ function M.transform_tex_snippet(s)
   local cmd, arg = src:match("^\\(%a+)%s*(%b{})%s*$")
   if cmd and arg then
     local inner = arg:sub(2, -2)
-    if cmd == "ytableaushort" or cmd == "young" then
+    if cmd == "ytableaushort" then
       return ytableaushort_to_html(inner, { delimiter = "$" })
     elseif cmd == "textytableaushort" then
       return ytableaushort_to_html(inner, { delimiter = "" })

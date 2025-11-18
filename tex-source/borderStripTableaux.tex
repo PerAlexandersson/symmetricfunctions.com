@@ -128,12 +128,12 @@ Note that for $k=1$ we recover the set of semi-standard Young tableaux, and the 
 The following figure shows the elements in 
 $\SSYT^{(3)}(4422,1111)$ where we have put the label of each $3$-ribbon on its head.
 \begin{figure}
-<img src="./svg-images/k-ribbon2211-1111.svg" alt="The 6 3-ribbon tableaux with shape 4422 and weight 1111." style="width:80%; margin:5px;"/>
+  \svgimg[width=0.8\textwidth]{svg-images/k-ribbon2211-1111.svg}{The 6 3-ribbon tableaux with shape 4422 and weight 1111.}
 \end{figure}
 
 The following figure shows the elements in $\SSYT^{(3)}(4422,211)$.
 \begin{figure}
-<img src="./svg-images/k-ribbon2211-211.svg" alt="The 3 3-ribbon tableaux with shape 4422 and weight 211." style="width:40%; margin:5px;"/>
+  \svgimg[width=0.4\textwidth]{svg-images/k-ribbon2211-211.svg}{The 3 3-ribbon tableaux with shape 4422 and weight 211.}
 \end{figure}
 \end{example*}
 
@@ -212,11 +212,12 @@ To find $\lambda^j$, simply consider all boxes in $\lambda$, such that the label
 and the vertical step in the same column both are labeled $j$.
 After removing empty columns and rows, these boxes form the shape $\lambda^j$.
 \begin{figure}
-<img src="./svg-images/partition-quotient.svg" alt="A partition and the 3-quotient" style="width:40%; margin:5px;"/>
+  \svgimg[width=0.4\textwidth]{svg-images/partition-quotient.svg}{A partition and the 3-quotient}
 \ytableaushort{{\;}{\;}{\;},{\;}{\;}{\;}}
 \ytableaushort{{\;}{\;}}
 \ytableaushort{{\;}{\;},{\;},{\;}}
 \end{figure}
+
 The $3$-quotient of $\lambda$ is therefore $(33,\;2,\; 211)$ in this case.
 For example, $\lambda^0$ has shape $33$ as the boxes marked $\blacksquare$ form this shape.
 
@@ -250,10 +251,19 @@ Let $\lambda = 8766641$ and $\ell=3$. The $3$-core of $\lambda$ is $(2)$,
 and the $3$-quotient is $(33,\;2,\; 211)$.
 
 \begin{figure}
-<img src="./svg-images/border-strip-example.svg" alt="A border-strip tableau with stips of size 3" style="width:30%; margin:5px;"/>
-\ytableaushort{138,2{11}{12}}
-\ytableaushort{67}
-\ytableaushort{49,5,{10}}
+  \svgimg[width=0.3\textwidth]{svg-images/border-strip-example.svg}{A border-strip tableau of shape 8766641 with 3-strips.}
+\begin{ytableau}
+1 & 3 & 8 \\
+2 & 11 & 12\\
+\end{ytableau}
+\begin{ytableau}
+  6 & 7 \\
+\end{ytableau}
+\begin{ytableau}
+  4 & 9 \\
+  5 \\
+  10 \\
+\end{ytableau}
 \end{figure}
 
 The figure shows a border-strip tableau $B$, where the label has been written in each strip.

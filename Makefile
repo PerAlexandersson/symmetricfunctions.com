@@ -104,6 +104,8 @@ render: $(LABELS_JSON) $(WWW_DIR) $(HTML_FILES) $(TEMPLATE)
 	@echo "Rendered ALL → $(WWW_DIR)/*.htm"
 else
 render: $(LABELS_JSON) $(WWW_DIR) $(TEMPLATE) $(WWW_DIR)/$(basename $(FILE)).htm
+	@rm -f $(WWW_DIR)/$(basename $(FILE)).htm
+	@$(MAKE) $(WWW_DIR)/$(basename $(FILE)).htm
 	@echo "Rendered $(FILE) → $(WWW_DIR)/$(basename $(FILE)).htm"
 endif
 
