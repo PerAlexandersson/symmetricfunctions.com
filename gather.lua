@@ -4,6 +4,7 @@ local utils = dofile("utils.lua")
 local trim = utils.trim
 local capitalize_first = utils.capitalize_first
 local html_escape = utils.html_escape
+local slugify = utils.slugify
 local set_add = utils.set_add
 local set_to_sorted_list = utils.set_to_sorted_list
 local print_todo = utils.print_todo
@@ -411,21 +412,71 @@ function RawInline(el)
   --   <img src="svg-images/card-ID.svg" alt="Title"/>
   --  <p>Body</p>
   -- </a>
+  -- \topiccard{ID}{Title}{Body}
+  -- \topiccard{ID}{Title}{Body}
   do
-    local id,title,body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})$")
+    local id, title, body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})%s*$")
+
     if id and title and body then
-      local id_inner    = id:sub(2,-2)
-      local title_inner = title:sub(2,-2)
-      local body_inner  = body:sub(2,-2)
+      local id_inner    = trim(id:sub(2, -2))
+      local title_inner = title:sub(2, -2)
+      local body_inner  = body:sub(2, -2)
 
-      local url = string.format('svg-images/card-%s.svg', id_inner)
-      local img = pandoc.Image(pandoc.Str("Link to " .. html_escape(title_inner)), url, "",{})      
+      -- Image path + alt text
+      local img_path = string.format("svg-images/card-%s.svg", id_inner)
+      local img_alt  = title_inner
 
-      local content = pandoc.Para(parse_inlines_walk(body_inner))
+      local img = pandoc.Image(pandoc.Str(img_alt), img_path, "", {})
 
-      return pandoc.Link({img,content}, path_inner, "", {"topic-card"})
+      -- Body text as inlines
+      local body_inls = parse_inlines_walk(body_inner)
+
+      -- Link content = image + line break + body text
+      local link_inls = { img, pandoc.LineBreak() }
+      for _, x in ipairs(body_inls) do
+        table.insert(link_inls, x)
+      end
+
+      -- Inline link with class "topic-card"
+      return pandoc.Link(
+        link_inls,
+        '#'..id_inner,
+        "",
+        pandoc.Attr("", { "topic-card" }, {})
+      )
     end
   end
+
+
+--   do
+--     local id,title,body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})$")
+--     if id and title and body then
+--       local id_inner    = id:sub(2,-2)
+--       local title_inner = title:sub(2,-2)
+--       local body_inner  = body:sub(2,-2)
+
+--       -- image as an inline (alt text as parsed string)
+--       local url = string.format('svg-images/card-%s.svg', id_inner)
+--       local img = pandoc.Image({ pandoc.Str(html_escape(title_inner)) }, url, "", pandoc.Attr("", {}))
+
+--       -- body parsed as inlines so it can be placed inside the link
+--       local body_inlines = parse_inlines_walk(body_inner)
+
+--       -- assemble inline content as a plain Lua array: <img> + space + body inlines
+--       local inlines = {}
+--       table.insert(inlines, img)
+--       table.insert(inlines, pandoc.Space())
+--       for _, x in ipairs(body_inlines) do table.insert(inlines, x) end
+
+-- --      inlines = pandoc.Para(inlines)
+
+--       -- target: link to internal anchor
+--       local target = "#" .. id_inner
+
+--       -- return an inline link
+--       return pandoc.Link(inlines, target, "",  {"topic-card"})
+--     end
+--   end
 
 
 
@@ -580,7 +631,10 @@ function RawBlock(el)
     
     if title and body then
       -- strip outer { } from title and parse as inlines
-      local heading      = pandoc.Header(2, parse_inlines_walk(title:sub(2, -2)))
+      local heading      = pandoc.Header(2, 
+                  parse_inlines_walk(title:sub(2, -2)),
+                  pandoc.Attr("topicheader-"..slugify(title:sub(2, -2)))
+                )
 
       -- inner grid wrapper for cards
       local grid_div     = pandoc.Div(parse_blocks_walk(body), pandoc.Attr("", {"topic-card-grid"}))
