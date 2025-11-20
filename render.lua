@@ -168,7 +168,7 @@ local function render_inlines_html(inl)
         end
       end
 
-      -- Rewrite internal hyperref links via SITE_LABELS_MAP
+      -- Rewrite links with hyperref class to interpage links via SITE_LABELS_MAP
       if is_hyperref then
         -- Expect things like "#label" or "label"
         local label = tostring(url or ""):gsub("^#", "")

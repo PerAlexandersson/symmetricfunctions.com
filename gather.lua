@@ -48,6 +48,18 @@ local polydata    = {}   -- map name -> { key = value, ... }
 
 -- ---- Unified link logging, in order to look for broken links perhaps -----------------------------------------
 
+local function record_todo(s)
+  local t = s:match("^%s*\\todo(%b{})%s*$")
+  if t then
+    local body = trim(t:sub(2,-2))
+    todos[#todos+1] = body
+    print_todo("%s", (body:gsub("\n"," "):sub(1,120)))
+    return {}
+  else
+    return nil
+  end
+end
+
 local function record_link(url, text)
   url  = url or ""
   text = text or ""
@@ -71,6 +83,9 @@ local function make_filter()
   }
 end
 
+
+
+
 -- Parse a LaTeX fragment to blocks, then re-run our own filter on it
 local function parse_blocks_walk(tex)
 
@@ -84,6 +99,7 @@ end
 local function parse_inlines_walk(tex)
   local doc = pandoc.read(tex, "latex+raw_tex")
   local first = doc.blocks[1]
+
   local inlines = (first and first.t == "Para") and first.c or {}
   local walked  = pandoc.walk_inline(pandoc.Span(inlines), make_filter())
   return walked.content  -- unwrap the Span
@@ -184,6 +200,49 @@ end
 
 
 
+  --\topiccard{ID}{Title}{Body}
+  -- <a href="ID" class="topic-card">
+  --   <img src="svg-images/card-ID.svg" alt="Title"/>
+  --  <p>Body</p>
+  -- </a>
+local function topic_card(s)
+  local id, title, body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})%s*$")
+
+  if id and title and body then
+    local id_inner    = trim(id:sub(2, -2))
+    local title_inner = title:sub(2, -2)
+    local body_inner  = body:sub(2, -2)
+
+    print_info("Topic card: id=%s title=%s", id_inner, title_inner)
+
+    -- Image path + alt text
+    local img_path = string.format("svg-images/card-%s.svg", id_inner)
+    local img_alt  = title_inner
+    local img = pandoc.Image(pandoc.Str(img_alt), img_path, "", {})
+
+     -- Body text as inlines
+    local body_inls = parse_inlines_walk(body_inner)
+  
+    -- Link content = image + line break + body text
+    local link_inls = { img, pandoc.LineBreak() }
+    for _, x in ipairs(body_inls) do
+      table.insert(link_inls, x)
+    end
+
+    -- Inline link with class "topic-card"
+    local link = pandoc.Link(
+      link_inls,
+      '#'..id_inner,
+      "",
+      pandoc.Attr("", { "topic-card","hyperref"}, {})
+    )
+    return link
+  else
+    return nil
+  end
+end
+
+
 -- ===== Pandoc node handlers ===============================================
 function Header(el)
 
@@ -201,7 +260,6 @@ function Header(el)
 
   return el
 end
-
 
 function Cite(el)
   for _, c in ipairs(el.citations or {}) do
@@ -241,9 +299,6 @@ function Link(el)
 
   record_link(url, text)
 
-  local classes = (#el.classes > 0) and table.concat(el.classes, " ") or "-"
---   print_info("Link url=%s  text=%s  classes=[%s]", url, text, classes)
-
   return el
 end
 
@@ -253,24 +308,6 @@ function RawInline(el)
 
   local s = el.text
   
-      -- \bigskip / \medskip / \smallskip used inline
-    if s:match("^%s*\\bigskip%s*$") then
-      return pandoc.Span(
-        { pandoc.RawInline("html", "&#8203;") },
-        pandoc.Attr("", {"vskip", "big"})
-      )
-    elseif s:match("^%s*\\medskip%s*$") then
-      return pandoc.Span(
-        { pandoc.RawInline("html", "&#8203;") },
-        pandoc.Attr("", {"vskip", "med"})
-      )
-    elseif s:match("^%s*\\smallskip%s*$") then
-      return pandoc.Span(
-        { pandoc.RawInline("html", "&#8203;") },
-        pandoc.Attr("", {"vskip", "small"})
-      )
-    end
- 
   -- \defin{...} → Span(class=defin)
   do
     local b = s:match("^%s*\\defin(%b{})%s*$")
@@ -296,14 +333,6 @@ function RawInline(el)
     end
   end
 
-  -- \ytableaushort appears as inline sometimes
-  do
-    local b = s:match("^%s*\\ytableaushort(%b{})%s*$")
-    if b then
-      return pandoc.RawInline("latextable", b)
-    end
-  end
-
   -- \svgimg
   do
     local img = parse_svgimg(s)
@@ -312,17 +341,7 @@ function RawInline(el)
     end
   end
 
-  -- \todo appears inline sometimes
-  do
-    local t = s:match("^%s*\\todo(%b{})%s*$")
-    if t then
-      local body = trim(t:sub(2,-2))
-      todos[#todos+1] = body
-      print_todo("%s", (body:gsub("\n"," "):sub(1,120)))
-      return {}
-    end
-  end
-
+  
 
   -- \oeis{Axxxxxx} → Link(id, https://oeis.org/id), class="oeis"
   -- <a title="The On-Line Encyclopedia of Integer Sequences" class="oeis" href="https://oeis.org/A000085">A000085</a>
@@ -354,7 +373,7 @@ function RawInline(el)
       local id = b:sub(2,-2)
       set_add(labels, id)
       print_info("label: %s", id)
-      -- Empty span with id; content left empty on purpose.
+      -- Empty span with id; content left empty on purpose
       return pandoc.Span({}, pandoc.Attr(id, {"label"}))
     end
   end
@@ -363,7 +382,6 @@ function RawInline(el)
   do
     local b = s:match("^%s*\\enquote(%b{})%s*$")
     if b then
-      --print_color(CONSOLE.bright_cyan, "--- QUOTE %s", b)
       return pandoc.Quoted("DoubleQuote", parse_inlines_walk(b:sub(2,-2)))
     end
   end
@@ -407,80 +425,42 @@ function RawInline(el)
     end
   end
 
-  --\topiccard{ID}{Title}{Body}
-  -- <a href="ID" class="topic-card">
-  --   <img src="svg-images/card-ID.svg" alt="Title"/>
-  --  <p>Body</p>
-  -- </a>
-  -- \topiccard{ID}{Title}{Body}
-  -- \topiccard{ID}{Title}{Body}
+
+  -- \bigskip / \medskip / \smallskip
   do
-    local id, title, body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})%s*$")
+   local size = s:match("^%s*\\(%a-)skip%s*$")
+    if size then
+      print_warn("Inline %sskip", size)
+      return {}
+   end
+  end
 
-    if id and title and body then
-      local id_inner    = trim(id:sub(2, -2))
-      local title_inner = title:sub(2, -2)
-      local body_inner  = body:sub(2, -2)
-
-      -- Image path + alt text
-      local img_path = string.format("svg-images/card-%s.svg", id_inner)
-      local img_alt  = title_inner
-
-      local img = pandoc.Image(pandoc.Str(img_alt), img_path, "", {})
-
-      -- Body text as inlines
-      local body_inls = parse_inlines_walk(body_inner)
-
-      -- Link content = image + line break + body text
-      local link_inls = { img, pandoc.LineBreak() }
-      for _, x in ipairs(body_inls) do
-        table.insert(link_inls, x)
-      end
-
-      -- Inline link with class "topic-card"
-      return pandoc.Link(
-        link_inls,
-        '#'..id_inner,
-        "",
-        pandoc.Attr("", { "topic-card" }, {})
-      )
+  -- \ytableaushort Handled by RawBlock
+  do
+    local b = s:match("^%s*\\ytableaushort(%b{})%s*$")
+    if b then
+      print_warn("Inline %s", b)
+      return {}
     end
   end
 
+  -- \topiccard as inline
+  do
+    local topiccardLink = topic_card(s)
+    if topiccardLink then
+      return topiccardLink
+    end
+  end
 
---   do
---     local id,title,body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})$")
---     if id and title and body then
---       local id_inner    = id:sub(2,-2)
---       local title_inner = title:sub(2,-2)
---       local body_inner  = body:sub(2,-2)
-
---       -- image as an inline (alt text as parsed string)
---       local url = string.format('svg-images/card-%s.svg', id_inner)
---       local img = pandoc.Image({ pandoc.Str(html_escape(title_inner)) }, url, "", pandoc.Attr("", {}))
-
---       -- body parsed as inlines so it can be placed inside the link
---       local body_inlines = parse_inlines_walk(body_inner)
-
---       -- assemble inline content as a plain Lua array: <img> + space + body inlines
---       local inlines = {}
---       table.insert(inlines, img)
---       table.insert(inlines, pandoc.Space())
---       for _, x in ipairs(body_inlines) do table.insert(inlines, x) end
-
--- --      inlines = pandoc.Para(inlines)
-
---       -- target: link to internal anchor
---       local target = "#" .. id_inner
-
---       -- return an inline link
---       return pandoc.Link(inlines, target, "",  {"topic-card"})
---     end
---   end
-
-
-
-  print_warn("Tex string %s is unparsed", s)
+  -- \todo inline
+  do
+    local t = record_todo(s)
+    if t then
+     return nil
+    end
+  end
+ 
+  print_warn("Tex Inline string %s is unparsed", s)
 
   return nil
 end
@@ -493,12 +473,11 @@ function RawBlock(el)
   local s = el.text or ""
 
   -- \bigskip / \medskip / \smallskip
-  if s:match("^%s*\\bigskip%s*$") then
-    return pandoc.Div({ pandoc.RawInline("html","&#8203;") }, pandoc.Attr("", {"vskip","big"}))
-  elseif s:match("^%s*\\medskip%s*$") then
-    return pandoc.Div({ pandoc.RawInline("html","&#8203;") }, pandoc.Attr("", {"vskip","med"}))
-  elseif s:match("^%s*\\smallskip%s*$") then
-    return pandoc.Div({ pandoc.RawInline("html","&#8203;") }, pandoc.Attr("", {"vskip","small"}))
+  do 
+    local size = s:match("^%s*\\(%a-)skip%s*$")
+    if size then
+      return pandoc.Div({ pandoc.RawInline("html","&#8203;") }, pandoc.Attr("", {"vskip",size}))
+   end
   end
 
   -- \metatitle{...}
@@ -540,13 +519,8 @@ function RawBlock(el)
 
   -- \todo{...} — log & drop
   do
-    local t = s:match("^%s*\\todo(%b{})%s*$")
-    if t then
-      local body = trim(t:sub(2,-2))
-      todos[#todos+1] = body
-      print_todo("%s", (body:gsub("\n"," "):sub(1,120)))
-      return {}
-    end
+    local t = record_todo(s)
+    if t then return nil end
   end
 
   -- blockquote
@@ -557,21 +531,6 @@ function RawBlock(el)
     end
   end
 
-  -- \family[ID]{Title} → Header(2, class=polynomialFamily, id=ID)
-  do
-    local O, T = s:match("^%s*\\family(%b[])(%b{})%s*$")
-    if O and T then
-      local id    = trim((O:sub(2,-2)) or "")
-      local title = T:sub(2,-2)
-
-      -- Log as a label, and as family
-      set_add(labels, id)
-      families[#families+1] = { id = id, title = title }
-
-      print_info("family: id=%s title=%s", id, title)
-      return pandoc.Header(2, parse_inlines_walk(title), pandoc.Attr(id, {"family"}))
-    end
-  end
 
   -- theorem-like envs: with [opt] or without
   for _, env in ipairs(theorem_envs) do
@@ -598,7 +557,6 @@ function RawBlock(el)
     if B2 then
       return make_env_div(env, "", B2, true)
     end
-
   end
 
 
@@ -613,7 +571,6 @@ function RawBlock(el)
       return {}
     end
   end
-
 
   -- \begin{symfig} ... \end{symfig}
   do
@@ -633,7 +590,7 @@ function RawBlock(el)
       -- strip outer { } from title and parse as inlines
       local heading      = pandoc.Header(2, 
                   parse_inlines_walk(title:sub(2, -2)),
-                  pandoc.Attr("topicheader-"..slugify(title:sub(2, -2)))
+                  pandoc.Attr("topic-header-"..slugify(title:sub(2, -2)))
                 )
 
       -- inner grid wrapper for cards
@@ -647,6 +604,14 @@ function RawBlock(el)
     end
   end
 
+  --\topiccard{ID}{Title}{Body}
+  do
+    local topiccardLink = topic_card(s)
+    if topiccardLink then
+      return {topiccardLink}
+    end
+  end
+  
 
   ------- These are parsed to HTML later
 
@@ -667,7 +632,7 @@ function RawBlock(el)
     end
   end
 
-  print_warn("Tex string %s is unparsed", s)
+  print_warn("Tex Block string %s is unparsed", s)
 
   return nil
 end
@@ -736,9 +701,7 @@ end
 -- ===== Finalizer ===========================================================
 function Pandoc(doc)
 
-  --print_info("Finalizing meta")
   local m = doc.meta
-
 
   if not metatitle then
     print_warn("Meta title missing")
@@ -754,7 +717,6 @@ function Pandoc(doc)
 
   -- Try to invent a description
   synthesize_meta(m)
-
 
   m.citations  = set_to_sorted_list(citations)
   m.labels     = set_to_sorted_list(labels)

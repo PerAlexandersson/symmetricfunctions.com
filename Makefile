@@ -4,6 +4,7 @@ SHELL := /bin/bash
 
 # === LOAD CONFIGURATION ===
 include config.mk
+include config-test.mk
 
 .PHONY: all gather meta bib render copy-assets clean unittest
 .DELETE_ON_ERROR:
@@ -82,12 +83,14 @@ else
 render: $(WWW_DIR) $(TEMPLATE) $(WWW_DIR)/$(basename $(FILE)).htm
 	@rm -f $(WWW_DIR)/$(basename $(FILE)).htm
 	@$(MAKE) $(WWW_DIR)/$(basename $(FILE)).htm
-	@echo "Rendered $(FILE) → $(WWW_DIR)/$(basename $(FILE)).htm"
+	@echo "Rendered $(SRC_DIR)/$(basename $(FILE)).tex → $(WWW_DIR)/$(basename $(FILE)).htm"
 endif
+
 
 $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) | $(WWW_DIR)
 	@echo "Rendering $< → $@"
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
+
 
 # Test file rendering (without metadata dependencies)
 $(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) | $(WWW_DIR)

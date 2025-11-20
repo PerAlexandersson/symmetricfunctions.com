@@ -518,5 +518,67 @@ footer { margin-top: 3em; }
     #tocContainer { padding-top: 15px; }
     #tocContainer a { font-size: 18px; }
   }
+
 }
 
+
+
+/*=============================
+  8) Topic cards
+=============================*/
+
+/* Section spacing */
+.topicsection {
+  margin: 2rem 0;
+}
+
+.topicsection > h2 {
+  margin-bottom: 1rem;
+}
+
+/* The grid that holds the cards */
+.topic-card-grid {
+  display: grid;
+  gap: 1rem; /* space between cards */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Remove default p-margins inside the grid */
+.topic-card-grid p {
+  margin: 0;
+}
+
+/* The card itself (the <a> element) */
+.topic-card {
+  display: block;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.9);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.1s ease;
+}
+
+
+/* Image inside card */
+.topic-card img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 0.5rem;
+}
+
+/* Hover / focus states */
+.topic-card:hover,
+.topic-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  border-color: rgba(0,0,0,0.2);
+}
+
+.topic-card.hyperref {
+  /* if your .hyperref links are colored, you can neutralize here if needed */
+  text-decoration: none;
+}
