@@ -108,7 +108,7 @@ local function make_env_div(baseIn, opt_text, body_tex, starred)
   -- body blocks
   local body_blocks = parse_blocks_walk(body_tex or "")
 
-  -- heading inlines: <strong>Base (Opt)</strong>.
+  -- heading inlines: <strong>Base (Opt).</strong>
   local strong_inls = pandoc.List()
   strong_inls:insert(pandoc.Str(capitalize_first(base)))
   if opt_text and opt_text ~= "" then
@@ -116,12 +116,11 @@ local function make_env_div(baseIn, opt_text, body_tex, starred)
     strong_inls:insert(pandoc.Str("("))
     local opt_inls = parse_inlines_walk(opt_text)
     for _, x in ipairs(opt_inls) do strong_inls:insert(x) end
-    strong_inls:insert(pandoc.Str(")"))
+    strong_inls:insert(pandoc.Str(")."))
   end
 
   local head_inls = pandoc.List()
   head_inls:insert(pandoc.Strong(strong_inls))
-  head_inls:insert(pandoc.Str("."))
 
   -- The renderer turn this into <summary>
   local head_para = pandoc.Para(head_inls)

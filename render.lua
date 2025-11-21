@@ -167,7 +167,7 @@ local function render_inlines_html(inl)
         attr_html = attr_html .. ' title="'..html_escape(title)..'"'
       end
       table.insert(out,
-        '<a href="'..html_escape(url)..'"'..attr_html..'>'..text..'</a>'
+        '<a href="'..html_escape(url)..'"'..attr_html..'>'..html_escape(text)..'</a>'
       )
 -----------------------------------------
 
@@ -324,13 +324,18 @@ local function render_blocks_html(blocks, header_collector)
       -- Tag: map level-1 (\section) to h2; others unchanged
       local tag = (level == 1) and "h2" or ("h" .. tostring(math.max(1, math.min(6, level))))
 
-      -- Optional: collect for sidebar TOC
       if header_collector then
         -- plain text for TOC entry
         local txt = {}
         for _, x in ipairs(inl) do
-          if x.t == "Str" then table.insert(txt, x.c)
-          elseif x.t == "Space" then table.insert(txt, " ") end
+          if x.t == "Str" then 
+            table.insert(txt, x.c)
+          elseif x.t == "Space" then 
+            table.insert(txt, " ")
+          elseif x.t == "Math" then
+            local body = x.c[2] or ""
+            table.insert(txt, body)
+          end
         end
         header_collector(level, id, table.concat(txt))
       end
@@ -486,7 +491,7 @@ local function collect_header(level, id, text)
 
   table.insert(
     toc_items,string.format(
-    '<li><a href="#%s" class="' .. lvlstr .. '">%s</a></li>\n', id, html_escape(text or "")
+    '<li><a href="#%s" class="' .. lvlstr .. '">%s</a></li>\n', id, (text or "")
     ))
 end
 
@@ -501,12 +506,9 @@ if #toc_items>0 then
     '<li><a href="#bibliography" class="section">Bibliography</a></li>\n'
   )
 end
+
 local sidelinks_str = table.concat(toc_items, "\n")
-
-
 local cite_html = build_bibliography_HTML(REFS_JSON, citations)
-
-
 local lastmod = os.date("%Y-%m-%d", tonumber(SOURCE_TS))
 local tpl = read_file(TEMPLATE,"html template")
 
@@ -523,8 +525,9 @@ local document_contents = {
   REFERENCES  = cite_html,
 }
 local used = {}
-tpl = tpl:gsub("<!--([A-Z_]+)-->", function(name)
-  local val = placeholders[name]
+
+tpl = tpl:gsub("<!%-%-([A-Z_]+)%-%->", function(name)
+  local val = document_contents[name]
   if not val then
     -- Template has a placeholder we don't know about → hard error.
     print_error("Unknown placeholder in template: <!--%s-->", name)

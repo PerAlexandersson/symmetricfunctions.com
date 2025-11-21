@@ -144,34 +144,77 @@ div.env, details.env {
 .solution strong {font-weight: 400; font-style: italic;}
 
 
+
 /* Remove the default triangle/marker for details tag */
 details.env > summary {
   list-style: none;
   cursor: pointer;
+  position: relative;          /* for caret positioning */
 }
-details.env > summary::marker {  /* Firefox */
+
+/* Firefox */
+details.env > summary::marker {
   content: "";
 }
-details.env > summary::-webkit-details-marker {  /* Chrome/Safari */
+
+/* Chrome/Safari */
+details.env > summary::-webkit-details-marker {
   display: none;
 }
 
-details.env > summary strong:focus-visible { outline: 2px solid var(--math-accent); outline-offset: 2px; }
-details.env > summary strong { color: var(--collapsible-header-color, var(--math-accent)); }
-
-details.env > summary strong::after {
-  content: "\f138";                 /* FA angle-right */
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-style: normal;
+/* Title styling + focus ring stays on <strong> */
+details.env > summary strong {
   display: block;
-  float: right;
-  padding-right: .5em;
+  padding-right: 1.5em;        /* room for caret on the right */
   color: var(--collapsible-header-color, var(--math-accent));
 }
-details.env[open] > summary strong::after {
-  content: "\f13a";
+
+details.env > summary strong:focus-visible {
+  outline: 2px solid var(--math-accent);
+  outline-offset: 2px;
 }
+
+/* Caret background circle */
+details.env > summary strong::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.0em;
+  width: 1.2em;
+  height: 1.2em;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: var(--math-accent);
+}
+
+
+details.env[open] > summary strong::before {
+  background: var(--math-accent);
+}
+
+/* Caret icon (CSS only, using your rotations) */
+details.env > summary strong::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.25em;
+  width: 0.6em;
+  height: 0.6em;
+  border-right: 5px solid white;
+  border-bottom: 5px solid white;
+
+  /* your preferred closed-state rotation */
+  transform: translateY(-50%) rotate(-45deg); /* ▶ */
+  transform-origin: 50% 50%;
+  transition: transform 0.05s ease;
+}
+
+/* Rotate caret when details is open */
+details.env[open] > summary strong::after {
+  transform: translateY(-50%) rotate(45deg); /* ▼ */
+}
+
+
 
 /* ===============================
    6) Citation list layout (grid)
@@ -216,9 +259,6 @@ details.env[open] > summary strong::after {
   100% { background-color: rgba(255,255,0,0); }
 }
 #bibliography li:target { animation: citeFade 4.5s ease; }
-
-
-
 
 
 /* ===============================

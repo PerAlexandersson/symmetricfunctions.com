@@ -172,18 +172,26 @@ end
 local norm_lines = normalize_blocks(raw_lines)
 input = table.concat(norm_lines, "\n")
 
--- ----- STEP 3: your existing global substitutions -------------------------
+-- ----- STEP 3: global substitutions -------------------------
 
--- (A) Freeze figures: \begin{figure}...\end{figure} → symfig
-if not args["--no-figure"] then
-  local before = input
-  input = input
+--  Freeze figures: \begin{figure}...\end{figure} → symfig
+input = input
     :gsub("\\begin%s*%{%s*figure%s*%}", "\\begin{symfig}")
     :gsub("\\end%s*%{%s*figure%s*%}",   "\\end{symfig}")
-  if input ~= before then note("figure environments frozen as symfig") end
-end
+--  Replace only the begin/end tags; leave inner content untouched.
+input = input
+  :gsub("%{%s*proof%s*%}", "{symproof}")
+  :gsub("%{%s*proof%*%s*%}",   "{symproof*}")
 
--- (B) maps \url{theURL} -> \href{theURL-with-https-added}{theURL-with-http-stripped}
+-- Pandoc eats tabular
+input = input
+  :gsub("\\begin%s*{tabular}(%b{})",
+        "\\begin{rawtabular}%1")
+  :gsub("\\end%s*{tabular}",
+        "\\end{rawtabular}")
+
+
+--  maps \url{theURL} -> \href{theURL-with-https-added}{theURL-with-http-stripped}
 if not args["--no-url-rewrite"] then
   local before = input
   input = input:gsub("\\url%s*(%b{})",
@@ -192,29 +200,18 @@ if not args["--no-url-rewrite"] then
       local href, display = normalize_url(raw)  -- from utils.lua
       return "\\href{" .. href .. "}{" .. display .. "}"
     end)
-  if input ~= before then note("replaced \\url with \\href") end
 end
 
--- (C) \filelink{path}{label} -> \href{path}{label} (styled via CSS)
+--  \filelink{path}{label} -> \href{path}{label} (styled via CSS)
 input = input:gsub("\\filelink", "\\href")
 
--- (D) Replace only the begin/end tags; leave inner content untouched.
-input = input
-  :gsub("%{%s*proof%s*%}", "{symproof}")
-  :gsub("%{%s*proof%*%s*%}",   "{symproof*}")
-
--- (E) Pandoc eats tabular
-input = input
-  :gsub("\\begin%s*{tabular}(%b{})",
-        "\\begin{rawtabular}%1")
-  :gsub("\\end%s*{tabular}",
-        "\\end{rawtabular}")
-
--- (F) Fix \section[label]{Title} into \section{Title}\label{label}
+--  Fix \section[label]{Title} into \section{Title}\label{label}
 input = input
   :gsub("\\section%[(.-)%]%s*(%b{})",      "\\section%2\\label{%1}")
   :gsub("\\subsection%[(.-)%]%s*(%b{})",   "\\subsection%2\\label{%1}")
   :gsub("\\subsubsection%[(.-)%]%s*(%b{})","\\subsubsection%2\\label{%1}")
+
+
 
 -- ----- write result --------------------------------------------------------
 
