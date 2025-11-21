@@ -19,6 +19,7 @@
           {left: "$",  right: "$",  display: false},
           {left: "\\(", right: "\\)", display: false}
         ],
+        output: "html",
         throwOnError: false,
         macros: macros
       });

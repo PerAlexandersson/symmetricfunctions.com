@@ -300,29 +300,21 @@ local function render_blocks_html(blocks, header_collector)
       -- Ensure we have an id (Pandoc usually gives one)
       local id = attrs[1]
       if (not id) or id == "" then
-
-        -- build a slug from visible text
+        -- Build a slug from visible text
         print_error("Header missing ID")
         local labeltxt = {}
         for _, x in ipairs(inl) do
-          if x.t == "Str" then table.insert(labeltxt, x.c)
-          elseif x.t == "Space" then table.insert(labeltxt, " ") end
+          if 
+            x.t == "Str" then table.insert(labeltxt, x.c)
+          end
         end
         id = slugify(table.concat(labeltxt, ""))
         attrs[1] = id
       end
 
-      -- Classes: make sure "section" is present for \section headers
-      local classes = attrs[2] or {}
-      if level == 1 then
-        local has_section = false
-        for _, cls in ipairs(classes) do if cls == "section" then has_section = true; break end end
-        if not has_section then table.insert(classes, "section") end
-        attrs[2] = classes
-      end
-
-      -- Tag: map level-1 (\section) to h2; others unchanged
-      local tag = (level == 1) and "h2" or ("h" .. tostring(math.max(1, math.min(6, level))))
+      --TODO REFACTOR A BIT HERE!
+      -- Section to heading tag
+      local tag = ("h" .. tostring(level))
 
       if header_collector then
         -- plain text for TOC entry
@@ -339,7 +331,7 @@ local function render_blocks_html(blocks, header_collector)
         end
         header_collector(level, id, table.concat(txt))
       end
-
+      --Insert the H-tag
       table.insert(buf, "<"..tag..render_attr(attrs)..">"..render_inlines_html(inl).."</"..tag..">\n")
 
     elseif t == "CodeBlock" then
