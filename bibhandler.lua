@@ -1,26 +1,21 @@
-
 -- Script for turning cite data into html
 
 
-local file_reading = dofile("file_reading.lua")
-local utils = dofile("utils.lua")
+local file_reading      = dofile("file_reading.lua")
+local utils             = dofile("utils.lua")
 local ascii_fold_string = utils.ascii_fold_string
-local trim = utils.trim
-local html_escape = utils.html_escape
-local CONSOLE = utils.CONSOLE
-local print_warn  = utils.print_warn
-local print_info  = utils.print_info
-local print_error = utils.print_error
+local html_escape       = utils.html_escape
+local print_error       = utils.print_error
 
 -- Where we get the bib from
 -- TODO: Make as flag/argument
-local bibliographyPath = "./temp/bibliography.json"
+local bibliographyPath  = "./temp/bibliography.json"
 
 
 -- helpers
 local function month_name(m)
-  local names = {"January","February","March","April","May","June",
-                 "July","August","September","October","November","December"}
+  local names = { "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" }
   return names[tonumber(m or 0)] or nil
 end
 
@@ -53,13 +48,13 @@ local function normalize_authors(a)
     local out = {}
     for _, v in ipairs(a) do
       if type(v) == "string" then
-        out[#out+1] = { literal = v }
+        out[#out + 1] = { literal = v }
       elseif type(v) == "table" then
         if v.family or v.given or v.literal then
-          out[#out+1] = v
+          out[#out + 1] = v
         else
           -- unknown shape -> stringify best-effort
-          out[#out+1] = { literal = tostring(v) }
+          out[#out + 1] = { literal = tostring(v) }
         end
       end
     end
@@ -79,7 +74,7 @@ local function join_authors(auth_arr)
     return g ~= "" and g or f
   end
   local parts = {}
-  for _, a in ipairs(auth_arr or {}) do parts[#parts+1] = name_of(a) end
+  for _, a in ipairs(auth_arr or {}) do parts[#parts + 1] = name_of(a) end
   if #parts == 0 then return "" end
   if #parts == 1 then return parts[1] end
   if #parts == 2 then return parts[1] .. " and " .. parts[2] end
@@ -113,7 +108,7 @@ end
 local function title_link(item)
   local title = item.title or ""
 
-  title = strip_nocase_spans(title)
+  title       = strip_nocase_spans(title)
 
   local href  = nil
   if item.DOI and item.DOI ~= "" then
@@ -137,10 +132,9 @@ end
 -- authors: array of last-name strings (multi-word last names allowed)
 -- year   : string or number (optional). If 4 chars, append chars 3-4.
 local function make_bib_label(authors_arr, year)
-
   -- Extract last names
-    local authors = {}
-    for _,a in ipairs(authors_arr) do authors[#authors+1] = last_name_of(a) end
+  local authors = {}
+  for _, a in ipairs(authors_arr) do authors[#authors + 1] = last_name_of(a) end
 
   -- utf8-safe: first codepoint of a word
   local function first_codepoint(s)
@@ -159,7 +153,7 @@ local function make_bib_label(authors_arr, year)
   local function first_letters_of_words(s)
     local letters = {}
     for w in tostring(s):gmatch("%S+") do
-      letters[#letters+1] = first_codepoint(w)
+      letters[#letters + 1] = first_codepoint(w)
     end
     return table.concat(letters)
   end
@@ -176,7 +170,7 @@ local function make_bib_label(authors_arr, year)
   else
     local parts = {}
     for _, a in ipairs(authors) do
-      parts[#parts+1] = first_letters_of_words(a or "")
+      parts[#parts + 1] = first_letters_of_words(a or "")
     end
     authKey = table.concat(parts)
   end
@@ -202,25 +196,24 @@ end
 -- Main formatter to match your sample HTML
 -- Pass: item (CSL-JSON), key (BibTeX key), label (e.g. "[Ale14]") optional
 local function format_bib_as_HTML(item, key, label)
-
-  local li_id   = item.id or (key or "")
-  local authArr = normalize_authors(item.author)
-  local authors = join_authors(authArr)
-  local year    = get_year(item)
-  local lab     = label or make_bib_label(authArr, year)
-  local month   = get_month(item)
-  local ctitle  = item["container-title"] or ""
-  local booktit = item["collection-title"] or item["event"] or item["event-title"] or item.booktitle or ""
-  local series  = item.series or ""
-  local edition = item.edition or ""
+  local li_id     = item.id or (key or "")
+  local authArr   = normalize_authors(item.author)
+  local authors   = join_authors(authArr)
+  local year      = get_year(item)
+  local lab       = label or make_bib_label(authArr, year)
+  local month     = get_month(item)
+  local ctitle    = item["container-title"] or ""
+  local booktit   = item["collection-title"] or item["event"] or item["event-title"] or item.booktitle or ""
+  local series    = item.series or ""
+  local edition   = item.edition or ""
   local publisher = item.publisher or ""
-  local volume  = item.volume or ""
-  local number  = item.number or item.issue or ""
-  local pages   = item.page or ""
-  local is_arxiv = (ctitle == "arXiv e-prints") or (item.URL and item.URL:match("arxiv%.org"))
+  local volume    = item.volume or ""
+  local number    = item.number or item.issue or ""
+  local pages     = item.page or ""
+  local is_arxiv  = (ctitle == "arXiv e-prints") or (item.URL and item.URL:match("arxiv%.org"))
 
   -- Start assembling
-  local parts = {}
+  local parts     = {}
   table.insert(parts, '<li id="' .. html_escape(li_id) .. '">')
   table.insert(parts, '<span class="citeKey">[' .. html_escape(lab) .. ']</span> ')
   if authors ~= "" then
@@ -249,7 +242,6 @@ local function format_bib_as_HTML(item, key, label)
       table.insert(parts, ',  ')
     end
     table.insert(parts, '<span class="citeYear">' .. html_escape(year) .. '. </span>')
-
   elseif booktit ~= "" then
     -- conference/collection
     table.insert(parts, '<span class="citeBooktitle">' .. html_escape(booktit) .. '</span>. ')
@@ -297,8 +289,8 @@ local function load_bibliography_json(path)
   if type(data) == "table" and #data > 0 then
     -- array of CSL entries
     for _, entry in ipairs(data) do
-      if entry and entry.id then 
-        map[entry.id] = entry 
+      if entry and entry.id then
+        map[entry.id] = entry
       end
     end
   else
@@ -324,7 +316,7 @@ local function build_bibliography_HTML(path, citations)
   end
 
   local out = {}
-  out[#out+1] = '<section id="bibliography">\n<h2>Bibliography</h2>\n<ol>\n'
+  out[#out + 1] = '<section id="bibliography">\n<h2>Bibliography</h2>\n<ol>\n'
 
   for _, c in ipairs(citations) do
     local key = (type(c) == "table" and c.c) or c
@@ -332,11 +324,11 @@ local function build_bibliography_HTML(path, citations)
     if not item then
       print_error("Missing citation key: %s ", key)
     else
-      out[#out+1] = format_bib_as_HTML(item, key) .. "\n"
+      out[#out + 1] = format_bib_as_HTML(item, key) .. "\n"
     end
   end
 
-  out[#out+1] = "</ol>\n</section>\n"
+  out[#out + 1] = "</ol>\n</section>\n"
   return table.concat(out)
 end
 
@@ -349,7 +341,7 @@ local function get_bib_entry_label(id)
 
   local authArr = normalize_authors(item.author)
   local year    = get_year(item)
-  local label   = make_bib_label(authArr, year)  -- e.g. "[AJ24]"
+  local label   = make_bib_label(authArr, year) -- e.g. "[AJ24]"
 
   return label
 end

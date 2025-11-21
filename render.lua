@@ -6,10 +6,10 @@
 -- Existence of files is also checked here.
 
 
-local bibhandler = dofile("bibhandler.lua")
+local bibhandler   = dofile("bibhandler.lua")
 local file_reading = dofile("file_reading.lua")
 
-local utils = dofile("utils.lua")
+local utils        = dofile("utils.lua")
 local html_escape  = utils.html_escape
 local slugify      = utils.slugify
 local print_warn   = utils.print_warn
@@ -49,7 +49,7 @@ local function render_attr(attr)
   local classes = attr[2] or {}
   local kvs     = attr[3] or {}
 
-  local out = {}
+  local out     = {}
   if id ~= "" then
     table.insert(out, ' id="' .. html_escape(id) .. '"')
   end
@@ -68,7 +68,6 @@ end
 
 -- --- inline/block renderers -----------------------------------------------
 local function render_inlines_html(inl)
-
   if type(inl) ~= "table" then return "" end
 
   local out = {}
@@ -78,30 +77,29 @@ local function render_inlines_html(inl)
     if t == "Str" then
       local s = c
       -- Replace triple dash then double dash (order matters)
-      s = s:gsub("%-%-%-", utf8.char(0x2014)):gsub("%-%-",  utf8.char(0x2013))
+      s = s:gsub("%-%-%-", utf8.char(0x2014)):gsub("%-%-", utf8.char(0x2013))
       table.insert(out, html_escape(s))
     elseif t == "Space" then
       table.insert(out, " ")
     elseif t == "SoftBreak" or t == "LineBreak" then
       table.insert(out, "\n")
     elseif t == "Emph" then
-      table.insert(out, "<em>"..render_inlines_html(c).."</em>")
+      table.insert(out, "<em>" .. render_inlines_html(c) .. "</em>")
     elseif t == "Strong" then
-      table.insert(out, "<strong>"..render_inlines_html(c).."</strong>")
+      table.insert(out, "<strong>" .. render_inlines_html(c) .. "</strong>")
     elseif t == "Code" then
       local code = c[2] or c.code or ""
-      table.insert(out, "<code>"..html_escape(code).."</code>")
+      table.insert(out, "<code>" .. html_escape(code) .. "</code>")
     elseif t == "Math" then
       local kind = c[1].t
       local body = c[2] or ""
-      table.insert(out, (kind == "DisplayMath") and ("\\["..body.."\\]") or ("\\("..body.."\\)"))
+      table.insert(out, (kind == "DisplayMath") and ("\\[" .. body .. "\\]") or ("\\(" .. body .. "\\)"))
 
-    -----------------------------------------
-
+      -----------------------------------------
     elseif t == "Link" then
-      local attr   = c[1] or {"",{},{}}
-      local inl    = c[2] or {}
-      local target = c[3]
+      local attr       = c[1] or { "", {}, {} }
+      local inl        = c[2] or {}
+      local target     = c[3]
       local url, title = "#", ""
 
       -- Decode target (Pandoc 2.x/3.x can use string or table)
@@ -143,14 +141,12 @@ local function render_inlines_html(inl)
 
       local attr_html = render_attr(attr)
       if title ~= "" then
-        attr_html = attr_html .. ' title="'..html_escape(title)..'"'
+        attr_html = attr_html .. ' title="' .. html_escape(title) .. '"'
       end
       table.insert(out,
-        '<a href="'..html_escape(url)..'"'..attr_html..'>'..html_escape(text)..'</a>'
+        '<a href="' .. html_escape(url) .. '"' .. attr_html .. '>' .. html_escape(text) .. '</a>'
       )
------------------------------------------
-
-
+      -----------------------------------------
     elseif t == "RawInline" then
       if type(c) == "table" then
         local fmt, body = c[1], c[2]
@@ -165,10 +161,9 @@ local function render_inlines_html(inl)
       else
         table.insert(out, c or "")
       end
-
     elseif t == "Span" then
-      local attr = c[1] or {"", {}, {}}
-      local inl  = c[2] or {}
+      local attr    = c[1] or { "", {}, {} }
+      local inl     = c[2] or {}
 
       local id      = attr[1] or ""
       local classes = attr[2] or {}
@@ -189,22 +184,26 @@ local function render_inlines_html(inl)
         local icon_name, icon_style
         for _, kv in ipairs(kvs) do
           local k, v = kv[1], kv[2]
-          if k == "data-icon"  then icon_name  = v end
+          if k == "data-icon" then icon_name = v end
           if k == "data-style" then icon_style = v end
         end
 
         icon_style = icon_style or "regular"
         local fa_style
-        if     icon_style == "solid"  then fa_style = "fas"
-        elseif icon_style == "light"  then fa_style = "fal"
-        elseif icon_style == "duotone" then fa_style = "fad"
-        else  fa_style = "fas"  -- default: solid
+        if icon_style == "solid" then
+          fa_style = "fas"
+        elseif icon_style == "light" then
+          fa_style = "fal"
+        elseif icon_style == "duotone" then
+          fa_style = "fad"
+        else
+          fa_style = "fas"     -- default: solid
         end
 
         if icon_name then
           -- Render as Font Awesome <i> element
           table.insert(out,
-            string.format('<i class="%s fa-%s" aria-hidden="true"></i>',fa_style, icon_name)
+            string.format('<i class="%s fa-%s" aria-hidden="true"></i>', fa_style, icon_name)
           )
         else
           -- No data-icon? Fallback to normal <span>
@@ -216,16 +215,14 @@ local function render_inlines_html(inl)
         local inner = render_inlines_html(inl)
         table.insert(out, "<span" .. render_attr(attr) .. ">" .. inner .. "</span>")
       end
-  
     elseif t == "Quoted" then
       table.insert(out, "<q>" .. render_inlines_html(c[2] or {}) .. "</q>")
     elseif t == "Cite" then
       table.insert(out, render_inlines_html(c[2] or {}))
     elseif t == "Image" then
-
-      local attr    = c[1] or {"", {}, {}}
-      local caption = c[2] or {}
-      local target  = c[3]
+      local attr       = c[1] or { "", {}, {} }
+      local caption    = c[2] or {}
+      local target     = c[3]
 
       -- Decode target: can be string or {src, title}
       local src, title = "", ""
@@ -245,12 +242,12 @@ local function render_inlines_html(inl)
       else
         print_error("Image with src (caption: %s)", captionHTML)
       end
-     
+
       local attr_html = render_attr(attr)
 
       --print_info("Image found (with opt): %s | %s | %s ", captionHTML, src, attr_html)
 
-       table.insert(out,
+      table.insert(out,
         string.format('<img src="%s" title="%s" alt="%s" %s/>',
           src,
           captionHTML,
@@ -271,10 +268,9 @@ local function render_blocks_html(blocks, header_collector)
     local t, c = b.t, b.c
 
     if t == "Para" or t == "Plain" then
-      table.insert(buf, "<p>"..render_inlines_html(c).."</p>\n")
-
+      table.insert(buf, "<p>" .. render_inlines_html(c) .. "</p>\n")
     elseif t == "Header" then
-      local level, attrs, inl = c[1], (c[2] or {"",{},{} }), (c[3] or {})
+      local level, attrs, inl = c[1], (c[2] or { "", {}, {} }), (c[3] or {})
 
       -- Ensure we have an id (Pandoc usually gives one)
       local id = attrs[1]
@@ -283,8 +279,9 @@ local function render_blocks_html(blocks, header_collector)
         print_error("Header missing ID")
         local labeltxt = {}
         for _, x in ipairs(inl) do
-          if 
-            x.t == "Str" then table.insert(labeltxt, x.c)
+          if
+              x.t == "Str" then
+            table.insert(labeltxt, x.c)
           end
         end
         id = slugify(table.concat(labeltxt, ""))
@@ -299,9 +296,9 @@ local function render_blocks_html(blocks, header_collector)
         -- plain text for TOC entry
         local txt = {}
         for _, x in ipairs(inl) do
-          if x.t == "Str" then 
+          if x.t == "Str" then
             table.insert(txt, x.c)
-          elseif x.t == "Space" then 
+          elseif x.t == "Space" then
             table.insert(txt, " ")
           elseif x.t == "Math" then
             local body = x.c[2] or ""
@@ -311,33 +308,32 @@ local function render_blocks_html(blocks, header_collector)
         header_collector(level, id, table.concat(txt))
       end
       --Insert the H-tag
-      table.insert(buf, "<"..tag..render_attr(attrs)..">"..render_inlines_html(inl).."</"..tag..">\n")
-
+      table.insert(buf, "<" .. tag .. render_attr(attrs) .. ">" .. render_inlines_html(inl) .. "</" .. tag .. ">\n")
     elseif t == "CodeBlock" then
-      table.insert(buf, "<pre><code>"..html_escape(c[2] or "").."</code></pre>\n")
+      table.insert(buf, "<pre><code>" .. html_escape(c[2] or "") .. "</code></pre>\n")
     elseif t == "BlockQuote" then
-      table.insert(buf, "<blockquote>"..render_blocks_html(c).."</blockquote>\n")
+      table.insert(buf, "<blockquote>" .. render_blocks_html(c) .. "</blockquote>\n")
     elseif t == "BulletList" then
       local items = {}
       for _, itemBlocks in ipairs(c) do
-        table.insert(items, "<li>"..render_blocks_html(itemBlocks).."</li>")
+        table.insert(items, "<li>" .. render_blocks_html(itemBlocks) .. "</li>")
       end
-      table.insert(buf, "<ul>"..table.concat(items).."</ul>")
+      table.insert(buf, "<ul>" .. table.concat(items) .. "</ul>")
     elseif t == "OrderedList" then
       local items = c[2] or {}
       local lis = {}
       for _, itemBlocks in ipairs(items) do
-        table.insert(lis, "<li>"..render_blocks_html(itemBlocks).."</li>")
+        table.insert(lis, "<li>" .. render_blocks_html(itemBlocks) .. "</li>")
       end
-      table.insert(buf, "<ol>"..table.concat(lis).."</ol>")
+      table.insert(buf, "<ol>" .. table.concat(lis) .. "</ol>")
     elseif t == "HorizontalRule" then
       table.insert(buf, "<hr/>")
     elseif t == "Div" then
-      local attr = c[1] or {"",{},{}}
+      local attr = c[1] or { "", {}, {} }
       local classes = attr[2] or {}
       local is_env = false
       local is_collapsible = false
-      for _,cls in ipairs(classes) do
+      for _, cls in ipairs(classes) do
         if cls == "env" then is_env = true end
         if cls == "collapsible" then is_collapsible = true end
       end
@@ -347,7 +343,7 @@ local function render_blocks_html(blocks, header_collector)
         local kids = c[2] or {}
         local head = kids[1]
         local rest = {}
-        for i=2,#kids do rest[#rest+1] = kids[i] end
+        for i = 2, #kids do rest[#rest + 1] = kids[i] end
 
         -- render heading inlines WITHOUT wrapping <p> (summary can't contain a <p>)
         local head_html = ""
@@ -357,16 +353,16 @@ local function render_blocks_html(blocks, header_collector)
           head_html = render_inlines_html(head.c or {})
         end
 
-        local open = '<details'..render_attr(attr)..'>'
+        local open = '<details' .. render_attr(attr) .. '>'
         -- drop env-head marker class from summary output CSS if you want, no harm keeping it
-        local summary = '<summary>'..head_html..'</summary>'
+        local summary = '<summary>' .. head_html .. '</summary>'
         local body = render_blocks_html(rest)
         local close = '</details>'
-        table.insert(buf, open..summary..body..close)
+        table.insert(buf, open .. summary .. body .. close)
       else
         -- default <div> rendering
         local inner = render_blocks_html(c[2] or {})
-        table.insert(buf, "<div"..render_attr(attr)..">"..inner.."</div>")
+        table.insert(buf, "<div" .. render_attr(attr) .. ">" .. inner .. "</div>")
       end
     elseif t == "RawBlock" then
       local fmt, body = c[1], c[2]
@@ -374,14 +370,13 @@ local function render_blocks_html(blocks, header_collector)
       if fmt and fmt:match("latextable") then
         -- print_error("Render: Must parse %s", (body or ""):match("([^\n\r]*)"))
         local latexTableHTML = transform_tex_snippet(body)
-        table.insert(buf,latexTableHTML)
+        table.insert(buf, latexTableHTML)
       elseif fmt and fmt:match("tex") then
         print_error("Render: Unknown tex: %s", (body or ""):match("([^\n\r]*)"))
       else
-        table.insert(buf, "<pre>"..html_escape(body or "").."</pre>")
+        table.insert(buf, "<pre>" .. html_escape(body or "") .. "</pre>")
         print_error("Render: Unknown tex: %s", (body or ""):match("([^\n\r]*)"))
       end
-
     else
       -- ignore exotic blocks (tables, figures, etc.) for now
       print_error("Render: Unhandled block type: %s", t)
@@ -423,8 +418,8 @@ for _, f in ipairs(families) do
     push_kw(f.title or (f.c and f.c.title))
   end
 end
-for _, lab in ipairs(labels) do push_kw(type(lab)=="table" and lab.c or lab) end
-local keywords = (#keywords_list>0) and table.concat(keywords_list, ", ") or title
+for _, lab in ipairs(labels) do push_kw(type(lab) == "table" and lab.c or lab) end
+local keywords = (#keywords_list > 0) and table.concat(keywords_list, ", ") or title
 
 
 -- render body + toc
@@ -442,8 +437,8 @@ local function collect_header(level, id, text)
   end
 
   table.insert(
-    toc_items,string.format(
-    '<li><a href="#%s" class="' .. lvlstr .. '">%s</a></li>\n', id, (text or "")
+    toc_items, string.format(
+      '<li><a href="#%s" class="' .. lvlstr .. '">%s</a></li>\n', id, (text or "")
     ))
 end
 
@@ -452,7 +447,7 @@ end
 local html_body = render_blocks_html(pandoc_doc.blocks or {}, collect_header)
 
 -- Insert Bibliography link in navigation
-if #toc_items>0 then
+if #toc_items > 0 then
   table.insert(
     toc_items,
     '<li><a href="#bibliography" class="section">Bibliography</a></li>\n'
@@ -463,7 +458,7 @@ end
 local sidelinks_str = table.concat(toc_items, "\n")
 local cite_html = bibhandler.build_bibliography_HTML(REFS_JSON, citations)
 local lastmod = os.date("%Y-%m-%d", tonumber(SOURCE_TS))
-local tpl = file_reading.read_file(TEMPLATE,"html template")
+local tpl = file_reading.read_file(TEMPLATE, "html template")
 
 local document_contents = {
   TITLE       = html_escape(title),
@@ -471,9 +466,9 @@ local document_contents = {
   CANONICAL   = html_escape(canonical),
   SIDELINKS   = sidelinks_str,
   LASTMOD     = string.format(
-                  '<time class="dateMod" datetime="%s">%s</time>',
-                  lastmod, lastmod
-                ),
+    '<time class="dateMod" datetime="%s">%s</time>',
+    lastmod, lastmod
+  ),
   MAIN        = html_body,
   REFERENCES  = cite_html,
 }

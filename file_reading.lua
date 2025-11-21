@@ -6,44 +6,44 @@
 -- luacheck: ignore 113/json (checking for global json library)
 
 ---@diagnostic disable-next-line: undefined-global
-local pandoc = pandoc
+local pandoc      = pandoc
 ---@diagnostic disable-next-line: undefined-field
-local g_json = _G.json
+local g_json      = _G.json
 
-local utils = dofile("utils.lua")
-local print_warn   = utils.print_warn
-local print_error   = utils.print_error
+local utils       = dofile("utils.lua")
+local print_warn  = utils.print_warn
+local print_error = utils.print_error
 
 -- Try multiple JSON libraries in order of preference
-local JSON_LIB = (function()
+local JSON_LIB    = (function()
   -- 1) Pandoc's decoder (when running inside pandoc)
   if type(pandoc) == "table" and pandoc.json and pandoc.json.decode then
     return { lib = pandoc.json, name = "pandoc.json" }
   end
-  
+
   -- 2) dkjson (pure Lua)
   local ok, dkjson = pcall(require, "dkjson")
   if ok and dkjson and dkjson.decode then
     return { lib = dkjson, name = "dkjson" }
   end
-  
+
   -- 3) lunajson (pure Lua, fast)
   local ok, lunajson = pcall(require, "lunajson")
   if ok and lunajson and lunajson.decode then
     return { lib = lunajson, name = "lunajson" }
   end
-  
+
   -- 4) cjson (C module)
   local ok, cjson = pcall(require, "cjson")
   if ok and cjson and cjson.decode then
     return { lib = cjson, name = "cjson" }
   end
-  
+
   -- 5) Global json fallback
   if g_json and g_json.decode then
     return { lib = g_json, name = "_G.json" }
   end
-  
+
   return nil
 end)()
 
@@ -63,9 +63,9 @@ local function json_decode(s, what, strict)
     end
     return {}
   end
-  
+
   local ok, data, err
-  
+
   -- dkjson returns (obj, pos, err) format
   if JSON_LIB.name == "dkjson" then
     data, _, err = JSON_LIB.lib.decode(s, 1, nil)
@@ -73,7 +73,7 @@ local function json_decode(s, what, strict)
   else
     ok, data = pcall(JSON_LIB.lib.decode, s)
   end
-  
+
   if not ok or type(data) ~= "table" then
     local msg = string.format("Could not decode %s: %s", what or "JSON", tostring(err or data or "unknown error"))
     if strict then
@@ -83,7 +83,7 @@ local function json_decode(s, what, strict)
       return {}
     end
   end
-  
+
   return data
 end
 
@@ -110,7 +110,7 @@ end
 -- @return file contents or nil on error
 local function read_file(path, what, strict)
   if strict == nil then strict = true end
-  
+
   local f, err = io.open(path, "r")
   if not f then
     local msg = string.format("Could not open %s '%s': %s", what or "file", path, err or "")
@@ -122,7 +122,7 @@ local function read_file(path, what, strict)
     end
     return nil
   end
-  
+
   local s = f:read("*a")
   f:close()
   return s
@@ -152,7 +152,7 @@ end
 local function read_json_input(args, strict)
   args = args or arg
   if strict == nil then strict = true end
-  
+
   -- Try to read from file argument
   if args and args[1] and args[1] ~= "-" then
     local doc = load_json_file(args[1], "JSON data", false)
@@ -166,7 +166,7 @@ local function read_json_input(args, strict)
     end
     return doc
   end
-  
+
   -- Read from stdin
   local contents = io.read("*a")
   local doc = json_decode(contents, "stdin JSON", false)
@@ -178,7 +178,7 @@ local function read_json_input(args, strict)
       return nil
     end
   end
-  
+
   return doc
 end
 
@@ -191,7 +191,7 @@ end
 local function json_encode(tbl, indent, strict)
   if indent == nil then indent = true end
   if strict == nil then strict = true end
-  
+
   if not JSON_LIB or not JSON_LIB.lib or not JSON_LIB.lib.encode then
     local msg = "No JSON encoder available (tried pandoc.json, dkjson, lunajson, cjson, _G.json)"
     if strict then
@@ -201,16 +201,16 @@ local function json_encode(tbl, indent, strict)
     end
     return nil
   end
-  
+
   local ok, result
-  
+
   -- Try encoding with indentation if supported
   if indent and JSON_LIB.name == "dkjson" then
     ok, result = pcall(JSON_LIB.lib.encode, tbl, { indent = true })
   else
     ok, result = pcall(JSON_LIB.lib.encode, tbl)
   end
-  
+
   if not ok then
     local msg = string.format("Could not encode table to JSON: %s", tostring(result))
     if strict then
@@ -220,7 +220,7 @@ local function json_encode(tbl, indent, strict)
       return nil
     end
   end
-  
+
   return result
 end
 

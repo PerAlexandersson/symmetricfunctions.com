@@ -30,31 +30,31 @@ local _STEM = _BASENAME:gsub("%.[^.]+$", "")
 -- ===== Lower block TeX macros/envs =========================================
 -- Observe that proof -> symproof as pandoc eats that command
 local theorem_envs = {
-  "definition","proposition",
-  "theorem","problem",
-  "example","lemma",
-  "conjecture","remark",
+  "definition", "proposition",
+  "theorem", "problem",
+  "example", "lemma",
+  "conjecture", "remark",
   "symproof",
-  "question","solution"
+  "question", "solution"
 }
 
 
 -- ===== State to fill into meta ============================================
-local metatitle   = nil  -- \metatitle{...}
-local metadesc    = nil  -- \metadescription{...}
-local citations   = {}   -- set
-local labels      = {}   -- set
-local urls_seen   = {}   -- set (url -> true), for logging
-local todos       = {}   -- list (strings)
-local families    = {}   -- list of {id=..., title=...}
-local polydata    = {}   -- map name -> { key = value, ... }
+local metatitle = nil   -- \metatitle{...}
+local metadesc  = nil   -- \metadescription{...}
+local citations = {}    -- set
+local labels    = {}    -- set
+local urls_seen = {}    -- set (url -> true), for logging
+local todos     = {}    -- list (strings)
+local families  = {}    -- list of {id=..., title=...}
+local polydata  = {}    -- map name -> { key = value, ... }
 
 
 local function record_todo(s)
   local t = s:match("^%s*\\todo(%b{})%s*$")
   if t then
-    local body = trim(t:sub(2,-2))
-    todos[#todos+1] = body
+    local body = trim(t:sub(2, -2))
+    todos[#todos + 1] = body
     print_todo(body)
     return {}
   else
@@ -64,8 +64,8 @@ end
 
 -- ---- Unified link logging, in order to look for broken links perhaps -----------------------------------------
 local function record_link(url, text)
-  url  = url or ""
-  text = text or ""
+  url       = url or ""
+  text      = text or ""
   local key = url .. "||" .. text
   if not urls_seen[key] then
     urls_seen[key] = true
@@ -96,12 +96,12 @@ end
 
 -- Parse a LaTeX inline fragment to inlines, then re-run our own filter
 local function parse_inlines_walk(tex)
-  local doc = pandoc.read(tex, "latex+raw_tex")
-  local first = doc.blocks[1]
+  local doc     = pandoc.read(tex, "latex+raw_tex")
+  local first   = doc.blocks[1]
 
   local inlines = (first and first.t == "Para") and first.c or {}
   local walked  = pandoc.walk_inline(pandoc.Span(inlines), make_filter())
-  return walked.content  -- unwrap the Span
+  return walked.content -- unwrap the Span
 end
 
 
@@ -134,8 +134,8 @@ local function make_env_div(baseIn, opt_text, body_tex, starred)
   blocks:extend(body_blocks)
 
   -- classes: env, base, (optional) collapsible
-  local classes = {"env", base}
-  if starred then classes[#classes+1] = "collapsible" end
+  local classes = { "env", base }
+  if starred then classes[#classes + 1] = "collapsible" end
 
   return pandoc.Div(blocks, pandoc.Attr("", classes))
 end
@@ -143,11 +143,11 @@ end
 
 
 local TEXTABLES = {
-   {name = "ytableau", pat = "^%s*(\\begin%s*%{ytableau%}%s*[%s%S]-%s*\\end%s*%{ytableau%})%s*$"},
-   {name = "array", pat = "^%s*(\\begin%s*%{array%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{array%})%s*$"},
-   {name = "rawtabular", pat = "^%s*(\\begin%s*%{rawtabular%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{rawtabular%})%s*$"},
-   {name = "ytableaushort", pat = "^%s*(\\ytableaushort%b{})%s*$"}
-  }
+  { name = "ytableau",      pat = "^%s*(\\begin%s*%{ytableau%}%s*[%s%S]-%s*\\end%s*%{ytableau%})%s*$" },
+  { name = "array",         pat = "^%s*(\\begin%s*%{array%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{array%})%s*$" },
+  { name = "rawtabular",    pat = "^%s*(\\begin%s*%{rawtabular%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{rawtabular%})%s*$" },
+  { name = "ytableaushort", pat = "^%s*(\\ytableaushort%b{})%s*$" }
+}
 
 local function match_textable(s)
   for _, m in ipairs(TEXTABLES) do
@@ -170,10 +170,10 @@ end
 -- Parse polydata body "Key & Value \\" lines → table
 local function parse_polydata_body(body)
   local map = {}
-  for line in (body.."\n"):gmatch("([^\n\r]+)\n") do
-    local clean = line:gsub("%%.*$",""):gsub("\\\\%s*$","")
+  for line in (body .. "\n"):gmatch("([^\n\r]+)\n") do
+    local clean = line:gsub("%%.*$", ""):gsub("\\\\%s*$", "")
     local k, v = clean:match("^%s*([^&]-)%s*&%s*(.-)%s*$")
-    if k and v and k~="" and v~="" then map[trim(k)] = trim(v) end
+    if k and v and k ~= "" and v ~= "" then map[trim(k)] = trim(v) end
   end
   return map
 end
@@ -193,15 +193,15 @@ local function parse_svgimg(s)
     return nil
   end
 
-  path = path:sub(2,-2) or ""
-  alt  = alt:sub(2,-2) or ""
-  opt  = opt:sub(2,-2) or ""
+  path              = path:sub(2, -2) or ""
+  alt               = alt:sub(2, -2) or ""
+  opt               = opt:sub(2, -2) or ""
 
-  local styleVal = ""
+  local styleVal    = ""
   local widthString = "auto"
 
   if opt and opt ~= "" then
-    -- TODO parse more options 
+    -- TODO parse more options
     local num = opt:match("width%s*=%s*([%d]*%.?%d+)%s*\\%a+")
     if num then
       local f = tonumber(num)
@@ -214,9 +214,9 @@ local function parse_svgimg(s)
   end
 
   local attr = pandoc.Attr(
-    "",          -- id
-    {},          -- classes
-    {{"style", styleVal}}
+    "", -- id
+    {}, -- classes
+    { { "style", styleVal } }
   )
 
   return pandoc.Image(pandoc.Str(alt), path, "", attr)
@@ -224,11 +224,11 @@ end
 
 
 
-  --\topiccard{ID}{Title}{Body}
-  -- <a href="ID" class="topic-card">
-  --   <img src="svg-images/card-ID.svg" alt="Title"/>
-  --  <p>Body</p>
-  -- </a>
+--\topiccard{ID}{Title}{Body}
+-- <a href="ID" class="topic-card">
+--   <img src="svg-images/card-ID.svg" alt="Title"/>
+--  <p>Body</p>
+-- </a>
 local function topic_card(s)
   local id, title, body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})%s*$")
 
@@ -240,13 +240,13 @@ local function topic_card(s)
     print_info("Topic card: id=%s title=%s", id_inner, title_inner)
 
     -- Image path + alt text
-    local img_path = string.format("svg-images/card-%s.svg", id_inner)
-    local img_alt  = title_inner
-    local img = pandoc.Image(pandoc.Str(img_alt), img_path, "", {})
+    local img_path  = string.format("svg-images/card-%s.svg", id_inner)
+    local img_alt   = title_inner
+    local img       = pandoc.Image(pandoc.Str(img_alt), img_path, "", {})
 
-     -- Body text as inlines
+    -- Body text as inlines
     local body_inls = parse_inlines_walk(body_inner)
-  
+
     -- Link content = body text + line break + image
     local link_inls = {}
     for _, x in ipairs(body_inls) do
@@ -258,9 +258,9 @@ local function topic_card(s)
     -- Inline link with class "topic-card"
     local link = pandoc.Link(
       link_inls,
-      '#'..id_inner,
+      '#' .. id_inner,
       "",
-      pandoc.Attr("", { "topic-card","hyperref"}, {})
+      pandoc.Attr("", { "topic-card", "hyperref" }, {})
     )
     return link
   else
@@ -271,7 +271,6 @@ end
 
 -- ===== Pandoc node handlers ===============================================
 function Header(el)
-
   -- Increase level
   el.level = math.min((el.level or 1) + 1, 6)
 
@@ -289,14 +288,13 @@ end
 
 function Cite(el)
   for _, c in ipairs(el.citations or {}) do
-    if c.id and c.id~="" then
+    if c.id and c.id ~= "" then
       set_add(citations, c.id)
       --print_color(CONSOLE.bright_cyan, "--- cite %s", c.id)
     end
   end
   return nil
 end
-
 
 function Quoted(el)
   local walked_span = pandoc.walk_inline(pandoc.Span(el.content or {}), make_filter())
@@ -310,35 +308,34 @@ end
 function Link(el)
   local text = pandoc.utils.stringify(el.content)
   local url  = (type(el.target) == "string" and el.target)
-               or (type(el.target) == "table" and (el.target[1] or el.target.url))
-               or el.target or ""
+      or (type(el.target) == "table" and (el.target[1] or el.target.url))
+      or el.target or ""
 
   el.classes = el.classes or {}
 
   if url:match("^https?://oeis%.org/") then
     table.insert(el.classes, "oeis")
   elseif url:match("^#") then
-    table.insert(el.classes, "hyperref")   -- internal anchors
+    table.insert(el.classes, "hyperref") -- internal anchors
   else
-    table.insert(el.classes, "href")       -- generic external link
+    table.insert(el.classes, "href")     -- generic external link
   end
   record_link(url, text)
 
   return el
 end
 
-
 function RawInline(el)
   if not el.format:match("tex") then return nil end
   local s = el.text
-  
+
 
   -- \defin{...} → Span(class=defin)
   do
     local b = s:match("^%s*\\defin(%b{})%s*$")
     if b then
-      local inner = b:sub(2,-2)
-      return pandoc.Span(parse_inlines_walk(inner), pandoc.Attr("", {"defin"}))
+      local inner = b:sub(2, -2)
+      return pandoc.Span(parse_inlines_walk(inner), pandoc.Attr("", { "defin" }))
     end
   end
 
@@ -346,13 +343,13 @@ function RawInline(el)
   do
     local b = s:match("^%s*\\icon(%b{})%s*$")
     if b then
-      local inner = b:sub(2,-2)
+      local inner = b:sub(2, -2)
       return pandoc.Span(
-        {},  -- no visible content
+        {},                       -- no visible content
         pandoc.Attr(
-          "",                       -- no id
-          {"icon"},                 -- classes
-          {["data-icon"] = inner}   -- attributes
+          "",                     -- no id
+          { "icon" },             -- classes
+          { ["data-icon"] = inner } -- attributes
         )
       )
     end
@@ -369,24 +366,24 @@ function RawInline(el)
 
   -- \oeis{Axxxxxx} → Link(id, https://oeis.org/id), class="oeis"
   -- <a title="The On-Line Encyclopedia of Integer Sequences" class="oeis" href="https://oeis.org/A000085">A000085</a>
-    do
-      local b = s:match("^%s*\\oeis(%b{})%s*$")
-      if b then
-        local id  = b:sub(2,-2)
-        local url = "https://oeis.org/" .. id
-        record_link(url, id)
-        return pandoc.Link({pandoc.Str(id)},url, "The On-Line Encyclopedia of Integer Sequences", {"oeis"})
-      end
+  do
+    local b = s:match("^%s*\\oeis(%b{})%s*$")
+    if b then
+      local id  = b:sub(2, -2)
+      local url = "https://oeis.org/" .. id
+      record_link(url, id)
+      return pandoc.Link({ pandoc.Str(id) }, url, "The On-Line Encyclopedia of Integer Sequences", { "oeis" })
     end
+  end
 
   -- \filelink{path}{label} → Link(label, path), class="dataFile"
   do
     local path, label = s:match("^%s*\\filelink(%b{})(%b{})%s*$")
     if path and label then
-      local path_inner = path:sub(2,-2)
-      local label_inner = label:sub(2,-2)
+      local path_inner = path:sub(2, -2)
+      local label_inner = label:sub(2, -2)
       record_link(path_inner, label_inner)
-      return pandoc.Link(parse_inlines_walk(label_inner), path_inner, "", {"dataFile"})
+      return pandoc.Link(parse_inlines_walk(label_inner), path_inner, "", { "dataFile" })
     end
   end
 
@@ -394,11 +391,11 @@ function RawInline(el)
   do
     local b = s:match("^%s*\\label(%b{})%s*$")
     if b then
-      local id = b:sub(2,-2)
+      local id = b:sub(2, -2)
       set_add(labels, id)
       print_info("label: %s", id)
       -- Empty span with id; content left empty on purpose
-      return pandoc.Span({}, pandoc.Attr(id, {"label"}))
+      return pandoc.Span({}, pandoc.Attr(id, { "label" }))
     end
   end
 
@@ -406,7 +403,7 @@ function RawInline(el)
   do
     local b = s:match("^%s*\\enquote(%b{})%s*$")
     if b then
-      return pandoc.Quoted("DoubleQuote", parse_inlines_walk(b:sub(2,-2)))
+      return pandoc.Quoted("DoubleQuote", parse_inlines_walk(b:sub(2, -2)))
     end
   end
 
@@ -417,34 +414,34 @@ function RawInline(el)
       braced = s:match("^%s*\\cite%s*(%b{})%s*$")
     end
     if braced then
-      local extra = opt and opt:sub(2, -2) or ""
-      local body  = braced:sub(2, -2)
+      local extra              = opt and opt:sub(2, -2) or ""
+      local body               = braced:sub(2, -2)
 
       local parts, any_missing = {}, false
       for key in body:gmatch("[^,%s]+") do
         local lbl = get_bib_entry_label(key)
         if not lbl then
           print_error("Missing citation key: %s", key)
-          parts[#parts+1] = pandoc.Str("UNDEF:" .. key)
+          parts[#parts + 1] = pandoc.Str("UNDEF:" .. key)
           any_missing = true
         else
           set_add(citations, key)
-          parts[#parts+1] = pandoc.Link({ pandoc.Str(lbl) }, "#" .. key, "", {"cite"})
+          parts[#parts + 1] = pandoc.Link({ pandoc.Str(lbl) }, "#" .. key, "", { "cite" })
         end
       end
 
       local inlines = { pandoc.Str("[") }
       if extra ~= "" then
-        inlines[#inlines+1] = pandoc.Str(extra)
-        inlines[#inlines+1] = pandoc.Str(", ")
+        inlines[#inlines + 1] = pandoc.Str(extra)
+        inlines[#inlines + 1] = pandoc.Str(", ")
       end
       for i, node in ipairs(parts) do
-        if i > 1 then inlines[#inlines+1] = pandoc.Str(", ") end
-        inlines[#inlines+1] = node
+        if i > 1 then inlines[#inlines + 1] = pandoc.Str(", ") end
+        inlines[#inlines + 1] = node
       end
-      inlines[#inlines+1] = pandoc.Str("]")
+      inlines[#inlines + 1] = pandoc.Str("]")
 
-      local classes = any_missing and {"citeSpan","missing"} or {"citeSpan"}
+      local classes = any_missing and { "citeSpan", "missing" } or { "citeSpan" }
       return pandoc.Span(inlines, pandoc.Attr("", classes))
     end
   end
@@ -457,7 +454,7 @@ function RawInline(el)
       print_warn("Inline skip of size %s", size)
       return pandoc.Span(
         { pandoc.RawInline("html", "&#8203;") },
-        pandoc.Attr("", {"vskip", size})
+        pandoc.Attr("", { "vskip", size })
       )
     end
   end
@@ -467,14 +464,14 @@ function RawInline(el)
   do
     local name, body = match_textable(s)
     if name and body then
-      print_warn("Inline latextable of type %s : %s", name,body)
+      print_warn("Inline latextable of type %s : %s", name, body)
       return pandoc.Span(
         { pandoc.RawInline("latextable", body) },
-        pandoc.Attr("", {"latextable-inline", name})
+        pandoc.Attr("", { "latextable-inline", name })
       )
     end
   end
-  
+
   -- \topiccard as inline
   do
     local topiccardLink = topic_card(s)
@@ -487,15 +484,14 @@ function RawInline(el)
   do
     local t = record_todo(s)
     if t then
-     return {}
+      return {}
     end
   end
- 
+
   print_warn("Tex Inline string %s is unparsed", s)
 
   return nil
 end
-
 
 -- Block TeX: meta, family, theorem-like envs, polydata, todo
 function RawBlock(el)
@@ -503,17 +499,18 @@ function RawBlock(el)
   local s = el.text or ""
 
   -- \bigskip / \medskip / \smallskip
-  do 
+  do
     local size = s:match("^%s*\\(%a-)skip%s*$")
     if size then
-      return pandoc.Div({ pandoc.RawInline("html","&#8203;") }, pandoc.Attr("", {"vskip",size}))
-   end
+      return pandoc.Div({ pandoc.RawInline("html", "&#8203;") }, pandoc.Attr("", { "vskip", size }))
+    end
   end
 
   -- \metatitle{...}
   do
     local mt = s:match("^%s*\\metatitle(%b{})%s*$")
-    if mt then metatitle = mt:sub(2,-2);
+    if mt then
+      metatitle = mt:sub(2, -2);
       --print_color(CONSOLE.green, "::: metatitle: %s", metatitle)
       return {}
     end
@@ -522,7 +519,8 @@ function RawBlock(el)
   -- \metadescription{...}
   do
     local md = s:match("^%s*\\metadescription(%b{})%s*$")
-    if md then metadesc = md:sub(2,-2);
+    if md then
+      metadesc = md:sub(2, -2);
       --print_color(CONSOLE.green, "::: metadescription: %s", metadesc)
       return {}
     end
@@ -532,7 +530,8 @@ function RawBlock(el)
   -- \metakeywords{...}
   do
     local md = s:match("^%s*\\metakeywords(%b{})%s*$")
-    if md then metadesc = md:sub(2,-2);
+    if md then
+      metadesc = md:sub(2, -2);
       return {}
     end
   end
@@ -541,10 +540,10 @@ function RawBlock(el)
   -- \svgimg as block
   do
     local img = parse_svgimg(s)
-      if img then
-        -- Return a block-level image: wrap in a paragraph (or Plain)
-        return pandoc.Para{ img }
-      end
+    if img then
+      -- Return a block-level image: wrap in a paragraph (or Plain)
+      return pandoc.Para { img }
+    end
   end
 
   -- \todo{...} — log & drop
@@ -565,25 +564,25 @@ function RawBlock(el)
   -- theorem-like envs: with [opt] or without
   for _, env in ipairs(theorem_envs) do
     -- with [opt]
-    local O, B = s:match("^%s*\\begin%s*%{"..env.."%}%s*(%b[])%s*([%s%S]-)\\end%s*%{"..env.."%}%s*$")
+    local O, B = s:match("^%s*\\begin%s*%{" .. env .. "%}%s*(%b[])%s*([%s%S]-)\\end%s*%{" .. env .. "%}%s*$")
     if O and B then
-      return make_env_div(env, O:sub(2,-2), B, false)
+      return make_env_div(env, O:sub(2, -2), B, false)
     end
 
     -- * with [opt]
-    O, B = s:match("^%s*\\begin%s*%{"..env.."%*%}%s*(%b[])%s*([%s%S]-)\\end%s*%{"..env.."%*%}%s*$")
+    O, B = s:match("^%s*\\begin%s*%{" .. env .. "%*%}%s*(%b[])%s*([%s%S]-)\\end%s*%{" .. env .. "%*%}%s*$")
     if O and B then
-      return make_env_div(env, O:sub(2,-2), B, true)
+      return make_env_div(env, O:sub(2, -2), B, true)
     end
 
     -- without [opt]
-    local B2 = s:match("^%s*\\begin%s*%{"..env.."%}%s*([%s%S]-)\\end%s*%{"..env.."%}%s*$")
+    local B2 = s:match("^%s*\\begin%s*%{" .. env .. "%}%s*([%s%S]-)\\end%s*%{" .. env .. "%}%s*$")
     if B2 then
       return make_env_div(env, "", B2, false)
     end
 
     -- * without [opt]
-    B2 = s:match("^%s*\\begin%s*%{"..env.."%*%}%s*([%s%S]-)\\end%s*%{"..env.."%*%}%s*$")
+    B2 = s:match("^%s*\\begin%s*%{" .. env .. "%*%}%s*([%s%S]-)\\end%s*%{" .. env .. "%*%}%s*$")
     if B2 then
       return make_env_div(env, "", B2, true)
     end
@@ -594,7 +593,7 @@ function RawBlock(el)
   do
     local N, B = s:match("^%s*\\begin%s*%{polydata%}%s*(%b{})%s*([%s%S]-)\\end%s*%{polydata%}%s*$")
     if N and B then
-      local name = trim(N:sub(2,-2))
+      local name = trim(N:sub(2, -2))
       local map = parse_polydata_body(B)
       polydata[name] = map
       --print_info("polydata: %s (%d keys)", name, (function(n) local c=0 for _ in pairs(n) do c=c+1 end return c end)(map))
@@ -607,7 +606,7 @@ function RawBlock(el)
     local content = s:match("^%s*\\begin%s*%{symfig%}%s*([%s%S]-)\\end%s*%{symfig%}%s*$")
     if content then
       --TODO use proper Figure tag with later Lua version
-      return pandoc.Div(parse_blocks_walk(content),pandoc.Attr("", {"figure"}))
+      return pandoc.Div(parse_blocks_walk(content), pandoc.Attr("", { "figure" }))
     end
   end
 
@@ -615,22 +614,22 @@ function RawBlock(el)
   -- \begin{topicssection}{Title} ... \end{topicssection}
   do
     local title, body = s:match("^%s*\\begin%s*%{topicsection%}%s*(%b{})%s*([%s%S]-)\\end%s*%{topicsection%}%s*$")
-    
+
     if title and body then
       -- strip outer { } from title and parse as inlines
-      local heading      = pandoc.Header(2, 
-                  parse_inlines_walk(title:sub(2, -2)),
-                  pandoc.Attr("topic-header-"..slugify(title:sub(2, -2)))
-                )
+      local heading  = pandoc.Header(2,
+        parse_inlines_walk(title:sub(2, -2)),
+        pandoc.Attr("topic-header-" .. slugify(title:sub(2, -2)))
+      )
 
       -- inner grid wrapper for cards
-      local grid_div     = pandoc.Div(parse_blocks_walk(body), pandoc.Attr("", {"topic-card-grid"}))
+      local grid_div = pandoc.Div(parse_blocks_walk(body), pandoc.Attr("", { "topic-card-grid" }))
 
       -- combine heading + grid into one block list
-      local blocks       = pandoc.List({ heading, grid_div })
+      local blocks   = pandoc.List({ heading, grid_div })
 
       -- outer wrapper div for the whole section
-      return pandoc.Div(blocks, pandoc.Attr("", {"topicsection"}))
+      return pandoc.Div(blocks, pandoc.Attr("", { "topicsection" }))
     end
   end
 
@@ -638,10 +637,10 @@ function RawBlock(el)
   do
     local topiccardLink = topic_card(s)
     if topiccardLink then
-      return {topiccardLink}
+      return { topiccardLink }
     end
   end
-  
+
 
   --latextable (ytableau, array, rawtabular, ytableaushort)
   do
@@ -665,7 +664,7 @@ local function _first_n_names_from_families(n)
   for _, f in ipairs(families or {}) do
     local pd = polydata and polydata[f.id]
     local name = (pd and pd.Name) or f.title or f.id
-    names[#names+1] = name
+    names[#names + 1] = name
     if #names == n then break end
   end
   return names
@@ -674,7 +673,7 @@ end
 local function _clamp_descr(s)
   s = (s or ""):gsub("%s+", " "):match("^%s*(.-)%s*$") or ""
   if #s <= 155 then return s end
-  s = s:sub(1, 155):gsub("%s+%S*$","") .. "…"
+  s = s:sub(1, 155):gsub("%s+%S*$", "") .. "…"
   return s
 end
 
@@ -689,7 +688,7 @@ local function synthesize_meta(meta)
     elseif #names == 2 then
       title = names[1] .. " & " .. names[2]
     else
-      title = table.concat({names[1], names[2]}, ", ") .. " & more"
+      title = table.concat({ names[1], names[2] }, ", ") .. " & more"
     end
   end
 
@@ -697,13 +696,13 @@ local function synthesize_meta(meta)
   if #(families or {}) > 0 then
     local count = #families
     local parts = {}
-    parts[#parts+1] = string.format(
+    parts[#parts + 1] = string.format(
       "Overview of %d symmetric-function famil%s",
       count, count == 1 and "y" or "ies"
     )
     local sample = _first_n_names_from_families(3)
     if #sample > 0 then
-      parts[#parts+1] = " including " .. table.concat(sample, ", ")
+      parts[#parts + 1] = " including " .. table.concat(sample, ", ")
     end
     descr = _clamp_descr(table.concat(parts, ". ") .. ".")
   end
@@ -720,7 +719,6 @@ end
 
 -- ===== Finalizer ===========================================================
 function Pandoc(doc)
-
   local m = doc.meta
 
   if not metatitle then
@@ -738,7 +736,7 @@ function Pandoc(doc)
   -- Try to invent a description
   synthesize_meta(m)
 
- 
+
   m.citations  = set_to_sorted_list(citations)
   m.labels     = set_to_sorted_list(labels)
   m.todos      = todos
@@ -746,11 +744,10 @@ function Pandoc(doc)
   m.polydata   = polydata
   m.sourcestem = pandoc.MetaString(_STEM)
 
-  local urls = {}
-  for u,_ in pairs(urls_seen) do urls[#urls+1]=u end
+  local urls   = {}
+  for u, _ in pairs(urls_seen) do urls[#urls + 1] = u end
   table.sort(urls)
   m.urls = urls
 
   return pandoc.Pandoc(doc.blocks, m)
 end
-

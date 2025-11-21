@@ -23,17 +23,12 @@ end
 
 source_filename = source_filename or "<stdin>"
 
-local function note(msg)
-  -- io.stderr:write("↳ ", msg, "\n")
-end
 
 -- ----- read all stdin as one big string ------------------------------------
 
 local input = io.read("*a")
 
--- ----- STEP 1: annotate \todo{...} with filename:lineno --------------------
--- Works even for multi-line bodies, because we only touch right after the `{`.
-
+-- ----- STEP 1: annotate \todo{... with filename:lineno --------------------
 local function annotate_todos(text, fname)
   local out = {}
   local i = 1
@@ -87,7 +82,6 @@ input = annotate_todos(input, source_filename)
 -- Here is a good place to add newlines around other block-level macros if needed.
 input = input:gsub("\\ytableaushort%b{}", "\n%0\n")
 
-
 -- Split into lines for tweaks that may add blank lines.
 local raw_lines = {}
 for line in (input .. "\n"):gmatch("([^\n]*)\n") do
@@ -129,19 +123,16 @@ local function normalize_blocks(lines)
   for i, line in ipairs(lines) do
     if is_comment_line(line) then
       table.insert(out, line)
-
     elseif is_pure_skip(line) then
       -- normalize skips to block: blank line before + after
       push_blank_if_needed()
       table.insert(out, trim(line))
       table.insert(out, "")
-
     elseif is_pure_ytableaushort(line) then
       -- normalize ytableaushort to block
       push_blank_if_needed()
       table.insert(out, trim(line))
       table.insert(out, "")
-
     else
       if contains_skip_inline(line) then
         io.stderr:write(
@@ -176,19 +167,18 @@ input = table.concat(norm_lines, "\n")
 --  Freeze figures: \begin{figure}...\end{figure} → symfig
 input = input
     :gsub("\\begin%s*%{%s*figure%s*%}", "\\begin{symfig}")
-    :gsub("\\end%s*%{%s*figure%s*%}",   "\\end{symfig}")
+    :gsub("\\end%s*%{%s*figure%s*%}", "\\end{symfig}")
 --  Replace only the begin/end tags; leave inner content untouched.
 input = input
-  :gsub("%{%s*proof%s*%}", "{symproof}")
-  :gsub("%{%s*proof%*%s*%}",   "{symproof*}")
+    :gsub("%{%s*proof%s*%}", "{symproof}")
+    :gsub("%{%s*proof%*%s*%}", "{symproof*}")
 
 -- Pandoc eats tabular
 input = input
-  :gsub("\\begin%s*{tabular}(%b{})",
-        "\\begin{rawtabular}%1")
-  :gsub("\\end%s*{tabular}",
-        "\\end{rawtabular}")
-
+    :gsub("\\begin%s*{tabular}(%b{})",
+      "\\begin{rawtabular}%1")
+    :gsub("\\end%s*{tabular}",
+      "\\end{rawtabular}")
 
 --  maps \url{theURL} -> \href{theURL-with-https-added}{theURL-with-http-stripped}
 if not args["--no-url-rewrite"] then
@@ -196,7 +186,7 @@ if not args["--no-url-rewrite"] then
   input = input:gsub("\\url%s*(%b{})",
     function(braced)
       local raw = braced:sub(2, -2)
-      local href, display = normalize_url(raw)  -- from utils.lua
+      local href, display = normalize_url(raw) -- from utils.lua
       return "\\href{" .. href .. "}{" .. display .. "}"
     end)
 end
@@ -206,13 +196,11 @@ input = input:gsub("\\filelink", "\\href")
 
 --  Fix \section[label]{Title} into \section{Title}\label{label}
 input = input
-  :gsub("\\section%[(.-)%]%s*(%b{})",      "\\section%2\\label{%1}")
-  :gsub("\\subsection%[(.-)%]%s*(%b{})",   "\\subsection%2\\label{%1}")
-  :gsub("\\subsubsection%[(.-)%]%s*(%b{})","\\subsubsection%2\\label{%1}")
-
+    :gsub("\\section%[(.-)%]%s*(%b{})", "\\section%2\\label{%1}")
+    :gsub("\\subsection%[(.-)%]%s*(%b{})", "\\subsection%2\\label{%1}")
+    :gsub("\\subsubsection%[(.-)%]%s*(%b{})", "\\subsubsection%2\\label{%1}")
 
 
 -- ----- write result --------------------------------------------------------
 
 io.write(input)
-

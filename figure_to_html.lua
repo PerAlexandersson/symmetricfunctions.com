@@ -23,7 +23,7 @@ end
 local function split_top_level_commas(s)
   local parts, buf, depth = {}, {}, 0
   for i = 1, #s do
-    local ch = s:sub(i,i)
+    local ch = s:sub(i, i)
     if ch == "{" then
       depth = depth + 1
       table.insert(buf, ch)
@@ -39,7 +39,7 @@ local function split_top_level_commas(s)
   end
   table.insert(parts, table.concat(buf))
   -- trim all parts
-  for i,p in ipairs(parts) do parts[i] = trim(p) end
+  for i, p in ipairs(parts) do parts[i] = trim(p) end
   return parts
 end
 
@@ -48,15 +48,6 @@ local function extract_color(ent)
   local color = ent:match("%*%((.-)%)")
   local cleaned = ent:gsub("%*%((.-)%)", "")
   return color or "", cleaned
-end
-
--- One UTF-8 codepoint at a time (for compact ytableaushort tokens)
-local function utf8_next_len(b)
-  if not b then return 1 end
-  if b >= 0xF0 then return 4
-  elseif b >= 0xE0 then return 3
-  elseif b >= 0xC0 then return 2
-  else return 1 end
 end
 
 
@@ -100,18 +91,20 @@ end
 
 
 local function split_cells_preserve_empties(s, sep)
-  s   = tostring(s or "")
-  sep = sep or "&"
+  s                  = tostring(s or "")
+  sep                = sep or "&"
   local out, i, n, m = {}, 1, #s, #sep
-  if n == 0 then return {""} end
+  if n == 0 then return { "" } end
   while true do
     local j = string.find(s, sep, i, true)
     if j then
-      out[#out+1] = string.sub(s, i, j - 1)
+      out[#out + 1] = string.sub(s, i, j - 1)
       i = j + m
-      if i > n + 1 then out[#out+1] = "" ; break end
+      if i > n + 1 then
+        out[#out + 1] = ""; break
+      end
     else
-      out[#out+1] = string.sub(s, i)
+      out[#out + 1] = string.sub(s, i)
       break
     end
   end
@@ -138,8 +131,8 @@ local function tex_tabular_to_html(s, type_, spec)
   local src = s or ""
   src = src:gsub("\r\n", "\n")
   src = src:gsub("\\toprule", "\\toprule\\\\")
-           :gsub("\\midrule", "\\midrule\\\\")
-           :gsub("\\bottomrule", "\\bottomrule\\\\")
+      :gsub("\\midrule", "\\midrule\\\\")
+      :gsub("\\bottomrule", "\\bottomrule\\\\")
   if not src:find("\\\\%s*$") then
     src = src .. "\\\\"
   end
@@ -160,7 +153,7 @@ local function tex_tabular_to_html(s, type_, spec)
     elseif tline == "\\bottomrule" then
       table.insert(matrix, { "__RULE__", "bottom" })
     elseif tline ~= "" then
-      local cells = split_cells_preserve_empties(line,"&")
+      local cells = split_cells_preserve_empties(line, "&")
       table.insert(matrix, cells)
       if #cells > maxw then maxw = #cells end
     end
@@ -192,6 +185,7 @@ local function tex_tabular_to_html(s, type_, spec)
 end
 
 
+
 -- ---------- ytableaushort{...} ----------
 -- Split a ytableaushort row into tokens (cells)
 -- Handles balanced {...} blocks and single-character cells
@@ -207,7 +201,7 @@ local function split_yshort_row(row)
     if ch:match("%s") then
       i = i + 1
 
-    -- Cell is a balanced {...} block
+      -- Cell is a balanced {...} block
     elseif ch == "{" then
       local depth = 1
       local j = i + 1
@@ -220,20 +214,20 @@ local function split_yshort_row(row)
         end
         j = j + 1
       end
-      local tok = row:sub(i, j - 1)  -- include closing }
+      local tok = row:sub(i, j - 1) -- include closing }
       if tok ~= "" then
         table.insert(toks, tok)
       end
       i = j
 
-    -- Cell is a single non-space character
+      -- Cell is a single non-space character
     else
       table.insert(toks, ch)
       i = i + 1
     end
   end
 
- -- print_info("Split ytableaushort row '%s' into tokens: %s", row, table.concat(toks, "|"))
+  -- print_info("Split ytableaushort row '%s' into tokens: %s", row, table.concat(toks, "|"))
 
   return toks
 end
@@ -244,7 +238,7 @@ local function ytableaushort_to_html(argstr, opts)
   opts = opts or {}
   local delim = (opts.delimiter ~= nil) and opts.delimiter or "$"
 
- -- print_info("Converting ytableaushort '%s' to HTML with delimiter '%s'", argstr, delim)
+  -- print_info("Converting ytableaushort '%s' to HTML with delimiter '%s'", argstr, delim)
 
   local s = trim(argstr or "")
 
@@ -256,7 +250,7 @@ local function ytableaushort_to_html(argstr, opts)
   local maxw = 0
   for _, row in ipairs(rows) do
     local toks = split_yshort_row(row)
-    row_tokens[#row_tokens+1] = toks
+    row_tokens[#row_tokens + 1] = toks
     if #toks > maxw then maxw = #toks end
   end
 
@@ -267,7 +261,7 @@ local function ytableaushort_to_html(argstr, opts)
   end
 
 
-local html_rows = {}
+  local html_rows = {}
   for _, toks in ipairs(row_tokens) do
     local tds = {}
     for _, tok in ipairs(toks) do
@@ -311,9 +305,9 @@ local function youngtab_to_html(body, opts)
   -- 2) Split rows into cells, preserving empties
   local rows, maxw = {}, 0
   for _, line in ipairs(lines) do
-    if line ~= "" or true then  -- keep empty-only rows too
+    if line ~= "" or true then -- keep empty-only rows too
       local cells = split_cells_preserve_empties(line, "&")
-      rows[#rows+1] = cells
+      rows[#rows + 1] = cells
       if #cells > maxw then maxw = #cells end
     end
   end
@@ -355,11 +349,11 @@ local function transform_tex_snippet(s)
     end
   end
 
---   -- environments...
---   local young_body = src:match("^%s*\\begin%s*%{youngtab%}%s*([%s%S]-)%s*\\end%s*%{youngtab%}%s*$")
---   if young_body then
---     return youngtab_to_html(young_body, { delimiter = "$" })
---   end
+  --   -- environments...
+  --   local young_body = src:match("^%s*\\begin%s*%{youngtab%}%s*([%s%S]-)%s*\\end%s*%{youngtab%}%s*$")
+  --   if young_body then
+  --     return youngtab_to_html(young_body, { delimiter = "$" })
+  --   end
 
   local ytab_body = src:match("^%s*\\begin%s*%{ytableau%}%s*([%s%S]-)%s*\\end%s*%{ytableau%}%s*$")
   if ytab_body then
@@ -374,13 +368,13 @@ local function transform_tex_snippet(s)
   --  \begin{array}{...}...\end{array}
   local a_cols, a_body = src:match("^%s*\\begin%s*%{array%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{array%}%s*$")
   if a_cols and a_body then
-    return tex_tabular_to_html(a_body, "array", trim(a_cols:sub(2,-2)))
+    return tex_tabular_to_html(a_body, "array", trim(a_cols:sub(2, -2)))
   end
 
   -- \begin{rawtabular}{...}...\end{rawtabular}
   local t_cols, t_body = src:match("^%s*\\begin%s*%{rawtabular%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{rawtabular%}%s*$")
   if t_cols and t_body then
-    return tex_tabular_to_html(t_body, "tabular", trim(t_cols:sub(2,-2)))
+    return tex_tabular_to_html(t_body, "tabular", trim(t_cols:sub(2, -2)))
   end
 
   return nil
