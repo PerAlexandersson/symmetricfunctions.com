@@ -98,10 +98,9 @@ local ACCENT_MAP = {
   ["Ğ"] = "G"
 }
 
-local UTF8_CP = "[%z\1-\127\194-\244][\128-\191]*"
-
 local function ascii_fold_string(s)
   -- replace known accented codepoints
+  local UTF8_CP = "[%z\1-\127\194-\244][\128-\191]*"
   s = s:gsub(UTF8_CP, function(cp) return ACCENT_MAP[cp] or cp end)
 
   -- keep only ASCII alnum, brackets, and +-
