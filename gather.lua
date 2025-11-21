@@ -456,6 +456,7 @@ function RawInline(el)
   do
     local size = s:match("^%s*\\(%a-)skip%s*$")
     if size then
+      print_warn("Inline skip of size %s", size)
       return pandoc.Span(
         { pandoc.RawInline("html", "&#8203;") },
         pandoc.Attr("", {"vskip", size})
@@ -468,6 +469,7 @@ function RawInline(el)
   do
     local name, body = match_textable(s)
     if name and body then
+      print_warn("Inline latextable of type %s", name)
       return pandoc.Span(
         { pandoc.RawInline("latextable", body) },
         pandoc.Attr("", {"latextable-inline", name})

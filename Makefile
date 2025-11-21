@@ -20,7 +20,8 @@ $(TEMP_DIR) $(WWW_DIR):
 
 $(TEMP_DIR)/%.pre.tex: $(SRC_DIR)/%.tex $(PREPROC_LUA) | $(TEMP_DIR)
 	@echo "Preprocessing $< → $@"
-	$(LUA) $(PREPROC_LUA) < "$<" > "$@"
+	$(LUA) $(PREPROC_LUA) "$<" < "$<" > "$@"
+
 
 # === 2) GATHER: Collect metadata to JSON ===
 FILE ?=

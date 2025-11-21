@@ -169,8 +169,8 @@ local function _fmt(fmt, ...) return (select("#", ...) > 0) and string.format(fm
 
 local function print_todo(fmt, ...)
   local m=_fmt(fmt,...);
-  if #m>60 then m=m:sub(1,57).."..." end
-  if _use_color then io.stderr:write(CONSOLE.yellow," 📝  todo: ",CONSOLE.cyan,m,CONSOLE.reset,"\n")
+  if #m>80 then m=m:sub(1,70).."..." end
+  if _use_color then io.stderr:write(CONSOLE.cyan,"todo: ",CONSOLE.yellow,m,CONSOLE.reset,"\n")
   else io.stderr:write("[TODO] ", m ,"\n") end
 end
 
