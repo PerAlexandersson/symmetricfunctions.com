@@ -326,6 +326,25 @@ end
 -- Exports
 -- ============================================================================
 
+---@class Utils
+---@field ascii_fold_string fun(s: string): string
+---@field trim fun(s: string|nil): string
+---@field ltrim fun(s: string|nil): string
+---@field rtrim fun(s: string|nil): string
+---@field slugify fun(s: string|nil): string
+---@field html_escape fun(s: string): string
+---@field capitalize_first fun(s: string|any): string|any
+---@field normalize_url fun(u: string): (string, string)
+---@field table_size fun(t: table): number
+---@field set_add fun(set: table, k: any): nil
+---@field set_to_sorted_list fun(set: table): table
+---@field CONSOLE table
+---@field print_error fun(fmt: string, ...: any): nil
+---@field print_todo fun(fmt: string, ...: any): nil
+---@field print_warn fun(fmt: string, ...: any): nil
+---@field print_info fun(fmt: string, ...: any): nil
+---@field print_color fun(col: string, fmt: string, ...: any): nil
+
 return {
   -- String utilities
   ascii_fold_string = ascii_fold_string,
