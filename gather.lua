@@ -143,6 +143,32 @@ local function make_env_div(baseIn, opt_text, body_tex, starred)
 end
 
 
+
+local TEXTABLES = {
+   {name = "ytableau", pat = "^%s*(\\begin%s*%{ytableau%}%s*[%s%S]-%s*\\end%s*%{ytableau%})%s*$"},
+   {name = "array", pat = "^%s*(\\begin%s*%{array%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{array%})%s*$"},
+   {name = "rawtabular", pat = "^%s*(\\begin%s*%{rawtabular%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{rawtabular%})%s*$"},
+   {name = "ytableaushort", pat = "^%s*(\\ytableaushort%b{})%s*$"}
+  }
+
+local function match_textable(s)
+  for _, m in ipairs(TEXTABLES) do
+    local b = s:match(m.pat)
+    if b then return m.name, b end
+  end
+  return nil, nil
+end
+
+
+local function match_textable(s)
+  for _, m in ipairs(TEXTABLES) do
+    local b = s:match(m.pat)
+    if b then return m.name, b end
+  end
+  return nil, nil
+end
+
+
 -- Parse polydata body "Key & Value \\" lines → table
 local function parse_polydata_body(body)
   local map = {}
@@ -223,11 +249,13 @@ local function topic_card(s)
      -- Body text as inlines
     local body_inls = parse_inlines_walk(body_inner)
   
-    -- Link content = image + line break + body text
-    local link_inls = { img, pandoc.LineBreak() }
+    -- Link content = body text + line break + image
+    local link_inls = {}
     for _, x in ipairs(body_inls) do
       table.insert(link_inls, x)
     end
+    table.insert(link_inls, pandoc.LineBreak())
+    table.insert(link_inls, img)
 
     -- Inline link with class "topic-card"
     local link = pandoc.Link(
@@ -296,7 +324,6 @@ function Link(el)
   else
     table.insert(el.classes, "href")       -- generic external link
   end
-
   record_link(url, text)
 
   return el
@@ -305,9 +332,9 @@ end
 
 function RawInline(el)
   if not el.format:match("tex") then return nil end
-
   local s = el.text
   
+
   -- \defin{...} → Span(class=defin)
   do
     local b = s:match("^%s*\\defin(%b{})%s*$")
@@ -341,7 +368,6 @@ function RawInline(el)
     end
   end
 
-  
 
   -- \oeis{Axxxxxx} → Link(id, https://oeis.org/id), class="oeis"
   -- <a title="The On-Line Encyclopedia of Integer Sequences" class="oeis" href="https://oeis.org/A000085">A000085</a>
@@ -426,24 +452,29 @@ function RawInline(el)
   end
 
 
-  -- \bigskip / \medskip / \smallskip
+  -- \bigskip / \medskip / \smallskip inline: treat as span
   do
-   local size = s:match("^%s*\\(%a-)skip%s*$")
+    local size = s:match("^%s*\\(%a-)skip%s*$")
     if size then
-      print_warn("Inline %sskip", size)
-      return {}
-   end
-  end
-
-  -- \ytableaushort Handled by RawBlock
-  do
-    local b = s:match("^%s*\\ytableaushort(%b{})%s*$")
-    if b then
-      print_warn("Inline %s", b)
-      return {}
+      return pandoc.Span(
+        { pandoc.RawInline("html", "&#8203;") },
+        pandoc.Attr("", {"vskip", size})
+      )
     end
   end
 
+
+  -- \ytableaushort and friends inline
+  do
+    local name, body = match_textable(s)
+    if name and body then
+      return pandoc.Span(
+        { pandoc.RawInline("latextable", body) },
+        pandoc.Attr("", {"latextable-inline", name})
+      )
+    end
+  end
+  
   -- \topiccard as inline
   do
     local topiccardLink = topic_card(s)
@@ -452,11 +483,11 @@ function RawInline(el)
     end
   end
 
-  -- \todo inline
+  -- \todo inline -- record & drop
   do
     local t = record_todo(s)
     if t then
-     return nil
+     return {}
     end
   end
  
@@ -520,7 +551,7 @@ function RawBlock(el)
   -- \todo{...} — log & drop
   do
     local t = record_todo(s)
-    if t then return nil end
+    if t then return {} end
   end
 
   -- blockquote
@@ -613,24 +644,14 @@ function RawBlock(el)
   end
   
 
-  ------- These are parsed to HTML later
-
-  local TEXTABLES = {
-   {name = "ytableau", pat = "^%s*(\\begin%s*%{ytableau%}%s*[%s%S]-%s*\\end%s*%{ytableau%})%s*$"},
-   {name = "array", pat = "^%s*(\\begin%s*%{array%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{array%})%s*$"},
-   {name = "rawtabular", pat = "^%s*(\\begin%s*%{rawtabular%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{rawtabular%})%s*$"},
-   {name = "ytableaushort", pat = "^%s*(\\ytableaushort%b{})%s*$"}
-  }
-
+  --latextable (ytableau, array, rawtabular, ytableaushort)
   do
-    for _, m in ipairs(TEXTABLES) do
-      local b = s:match(m.pat)
-      if b then
-        -- print_color(CONSOLE.bright_cyan, "--- %s", m.name)
-        return pandoc.RawBlock("latextable", b)
-      end
+    local name, body = match_textable(s)
+    if name and body then
+      return pandoc.RawBlock("latextable", body)
     end
   end
+
 
   print_warn("Tex Block string %s is unparsed", s)
 

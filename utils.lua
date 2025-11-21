@@ -37,7 +37,6 @@ local function ascii_fold_string(s)
 end
 
 
-
 local function set_add(set, k)
     if k and k~="" then set[k]=true end
 end
@@ -88,7 +87,6 @@ local function normalize_url(u)
   end
   return href, display
 end
-
 
 
 -- Slugify (for ids/anchors): ASCII fold + lowercase + dash collapse

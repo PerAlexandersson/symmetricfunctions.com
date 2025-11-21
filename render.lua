@@ -1,8 +1,9 @@
 -- Pure Lua renderer for Pandoc JSON → template HTML
 
 -- The point of this pass, is to make sure all internal
--- links are created in a meaningful manner,
--- and the .bib data is inserted.
+-- links are resolved, and the .bib data is inserted.
+-- youngtableau and tabular environments are converted to HTML.
+-- Existence of files is also checked here.
 
 
 local json = require("dkjson")
@@ -23,7 +24,6 @@ local file_exists  = utils.file_exists
 local bibhandler = dofile("bibhandler.lua")
 local build_bibliography_HTML = bibhandler.build_bibliography_HTML
 
-
 local M = dofile("figure_to_html.lua")
 local transform_tex_snippet = M.transform_tex_snippet
 local svgimg_to_html        = M.svgimg_to_html
@@ -34,7 +34,8 @@ local LABELS_JSON = os.getenv("LABELS_JSON") or (TEMP_DIR .. "/site-labels.json"
 local TEMPLATE    = os.getenv("TEMPLATE") or "template.htm"
 local WWW_DIR     = os.getenv("WWW_DIR") or "www"
 
--- Read the big file with all labels
+
+-- Read the global file with all labels
 local SITE_LABELS_MAP = load_json(LABELS_JSON, "site-labels")
 -- Example entry:
 -- SITE_LABELS_MAP["schurS"] = { page = "schur", href = "schur.htm#schurS", title = "Schur polynomials"}
@@ -53,14 +54,6 @@ local function read_file(path, what)
   return s
 end
 
-
-local function read_json_input()
-  if arg and arg[1] and arg[1] ~= "-" then
-    return read_file(arg[1],"JSON data")
-  else
-    return io.read("*a")
-  end
-end
 
 -- escape a Lua pattern so we can do literal gsub
 local function escape_lua_pattern(s)
@@ -440,12 +433,27 @@ end
 
 
 -- --- main ------------------------------------------------------------------
-local json_input = read_json_input()
-local pandoc_doc, _, err = json_lib.decode(json_input)
-if not pandoc_doc then
-  print_error("JSON decode error: %s", tostring(err))
-  os.exit(1)
+
+--TODO-can this be made nicer?
+local function read_json_input()
+  if arg and arg[1] and arg[1] ~= "-" then
+    local doc = load_json(arg[1], "JSON data")
+    if not doc or next(doc) == nil then
+      print_error("JSON decode error reading %s", arg[1])
+      os.exit(1)
+    end
+    return doc
+  end
+
+  local doc, _, err = json_lib.decode(io.read("*a"))
+  if not doc or type(doc) ~= "table" then
+    print_error("JSON decode error: %s", tostring(err))
+    os.exit(1)
+  end
+  return doc
 end
+
+local pandoc_doc = read_json_input()
 
 
 local meta = pandoc_doc.meta or {}

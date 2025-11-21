@@ -103,7 +103,6 @@ end
 local format_cell = M.format_cell
 
 
-
 local function split_cells_preserve_empties(s, sep)
   s   = tostring(s or "")
   sep = sep or "&"

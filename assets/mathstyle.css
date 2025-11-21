@@ -82,9 +82,13 @@ a[href$=".zip" i]::after {
 }
 
 
-.vskip.small { margin: 0.4rem 0; }
-.vskip.med   { margin: 0.8rem 0; }
-.vskip.big   { margin: 1.2rem 0; }
+.vskip.bigskip,
+.vskip.big { display:block; margin-top:2.5rem; }
+.vskip.medskip,
+.vskip.med { display:block; margin-top:1.5rem; }
+.vskip.smallskip,
+.vskip.small { display:block; margin-top:0.75rem; }
+
 
 /* OEIS style */
 .oeis {
@@ -160,9 +164,9 @@ details.env > summary strong::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-style: normal;
+  display: block;
   float: right;
   padding-right: .5em;
-  display: inline-block;
   color: var(--collapsible-header-color, var(--math-accent));
 }
 details.env[open] > summary strong::after {
