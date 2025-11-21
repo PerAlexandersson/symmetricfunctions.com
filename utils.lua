@@ -168,11 +168,44 @@ local _use_color = _color_enabled()
 local function _fmt(fmt, ...) return (select("#", ...) > 0) and string.format(fmt, ...) or tostring(fmt) end
 
 local function print_todo(fmt, ...)
-  local m=_fmt(fmt,...);
-  if #m>80 then m=m:sub(1,70).."..." end
-  if _use_color then io.stderr:write(CONSOLE.cyan,"todo: ",CONSOLE.yellow,m,CONSOLE.reset,"\n")
-  else io.stderr:write("[TODO] ", m ,"\n") end
+  local m = _fmt(fmt, ...)
+  -- keep a reasonably short line in the log
+  m = m:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
+  if #m > 160 then m = m:sub(1, 150) .. "..." end
+
+  if not _use_color then
+    io.stderr:write("[TODO] ", m, "\n")
+    return
+  end
+
+  -- Try to split into "location" + "message"
+  -- Expect something like "path/to/file.tex:123 rest of message"
+  local loc, msg = m:match("^(%S+:%d+)%s*(.*)$")
+  if not loc then
+    -- Fallback: no recognizable "file:line" prefix, keep old style
+    io.stderr:write(
+      CONSOLE.cyan,  "todo: ",
+      CONSOLE.yellow, m,
+      CONSOLE.reset, "\n"
+    )
+    return
+  end
+
+  -- If msg is empty (just "file.tex:123"), keep it non-empty for cosmetics
+  if msg == "" then msg = "(no message)" end
+
+  -- location: underlined + one color
+  -- message : another color
+  io.stderr:write(
+    CONSOLE.cyan, "todo: ",
+    CONSOLE.underline, CONSOLE.bright_blue, loc, CONSOLE.reset,
+    " ",
+    CONSOLE.bright_yellow, msg,
+    CONSOLE.reset,
+    "\n"
+  )
 end
+
 
 local function print_warn(fmt, ...)
   local m=_fmt(fmt,...);

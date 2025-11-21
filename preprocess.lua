@@ -4,6 +4,7 @@
 local utils = dofile("utils.lua")
 local normalize_url = utils.normalize_url
 local trim = utils.trim
+local CONSOLE = utils.CONSOLE
 
 -- ----- argument handling ----------------------------------------------------
 
@@ -82,6 +83,11 @@ end
 input = annotate_todos(input, source_filename)
 
 -- ----- STEP 2: line-based normalization (bigskip/ytableaushort) ------------
+
+-- Add newlines around \ytableaushort
+-- Here is a good place to add newlines around other block-level macros if needed.
+input = input:gsub("\\ytableaushort%b{}", "\n%0\n")
+
 
 -- Split into lines for tweaks that may add blank lines.
 local raw_lines = {}

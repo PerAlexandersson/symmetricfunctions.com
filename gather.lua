@@ -46,20 +46,19 @@ local families    = {}   -- list of {id=..., title=...}
 local polydata    = {}   -- map name -> { key = value, ... }
 
 
--- ---- Unified link logging, in order to look for broken links perhaps -----------------------------------------
-
 local function record_todo(s)
   local t = s:match("^%s*\\todo(%b{})%s*$")
   if t then
     local body = trim(t:sub(2,-2))
     todos[#todos+1] = body
-    print_todo("%s", (body:gsub("\n"," "):sub(1,120)))
+    print_todo(body)
     return {}
   else
     return nil
   end
 end
 
+-- ---- Unified link logging, in order to look for broken links perhaps -----------------------------------------
 local function record_link(url, text)
   url  = url or ""
   text = text or ""
@@ -69,7 +68,6 @@ local function record_link(url, text)
     --print_color(CONSOLE.blue,"--- url=%s text=%s", url, text)
   end
 end
-
 
 -- To lazily define the custom handling.
 local function make_filter()
@@ -84,11 +82,8 @@ local function make_filter()
 end
 
 
-
-
 -- Parse a LaTeX fragment to blocks, then re-run our own filter on it
 local function parse_blocks_walk(tex)
-
   local blocks = pandoc.read(tex, "latex+raw_tex").blocks
   -- Wrap/unwrap div
   local walked = pandoc.walk_block(pandoc.Div(blocks), make_filter())
@@ -469,7 +464,7 @@ function RawInline(el)
   do
     local name, body = match_textable(s)
     if name and body then
-      print_warn("Inline latextable of type %s", name)
+      print_warn("Inline latextable of type %s : %s", name,body)
       return pandoc.Span(
         { pandoc.RawInline("latextable", body) },
         pandoc.Attr("", {"latextable-inline", name})
@@ -497,7 +492,6 @@ function RawInline(el)
 
   return nil
 end
-
 
 
 -- Block TeX: meta, family, theorem-like envs, polydata, todo
@@ -558,7 +552,7 @@ function RawBlock(el)
 
   -- blockquote
   do
-    local body = s:match("^%s*\\begin%s*%{blockquote%}%s*([%s%S]-)%s*\\end%s*%{blockquote%}%s*$")
+    local body = s:match("^%s*\\begin%s*%{blockquote%}%s*([%s%S]-)\\end%s*%{blockquote%}%s*$")
     if body then
       return pandoc.BlockQuote(parse_blocks_walk(body))
     end
@@ -568,25 +562,25 @@ function RawBlock(el)
   -- theorem-like envs: with [opt] or without
   for _, env in ipairs(theorem_envs) do
     -- with [opt]
-    local O, B = s:match("^%s*\\begin%s*%{"..env.."%}%s*(%b[])%s*([%s%S]-)%s*\\end%s*%{"..env.."%}%s*$")
+    local O, B = s:match("^%s*\\begin%s*%{"..env.."%}%s*(%b[])%s*([%s%S]-)\\end%s*%{"..env.."%}%s*$")
     if O and B then
       return make_env_div(env, O:sub(2,-2), B, false)
     end
 
     -- * with [opt]
-    O, B = s:match("^%s*\\begin%s*%{"..env.."%*%}%s*(%b[])%s*([%s%S]-)%s*\\end%s*%{"..env.."%*%}%s*$")
+    O, B = s:match("^%s*\\begin%s*%{"..env.."%*%}%s*(%b[])%s*([%s%S]-)\\end%s*%{"..env.."%*%}%s*$")
     if O and B then
       return make_env_div(env, O:sub(2,-2), B, true)
     end
 
     -- without [opt]
-    local B2 = s:match("^%s*\\begin%s*%{"..env.."%}%s*([%s%S]-)%s*\\end%s*%{"..env.."%}%s*$")
+    local B2 = s:match("^%s*\\begin%s*%{"..env.."%}%s*([%s%S]-)\\end%s*%{"..env.."%}%s*$")
     if B2 then
       return make_env_div(env, "", B2, false)
     end
 
     -- * without [opt]
-    B2 = s:match("^%s*\\begin%s*%{"..env.."%*%}%s*([%s%S]-)%s*\\end%s*%{"..env.."%*%}%s*$")
+    B2 = s:match("^%s*\\begin%s*%{"..env.."%*%}%s*([%s%S]-)\\end%s*%{"..env.."%*%}%s*$")
     if B2 then
       return make_env_div(env, "", B2, true)
     end
@@ -595,7 +589,7 @@ function RawBlock(el)
 
   -- \begin{polydata}{name} ... \end{polydata} → meta.polydata[name] = {k=v,...}; drop block
   do
-    local N, B = s:match("^%s*\\begin%s*%{polydata%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{polydata%}%s*$")
+    local N, B = s:match("^%s*\\begin%s*%{polydata%}%s*(%b{})%s*([%s%S]-)\\end%s*%{polydata%}%s*$")
     if N and B then
       local name = trim(N:sub(2,-2))
       local map = parse_polydata_body(B)
@@ -607,7 +601,7 @@ function RawBlock(el)
 
   -- \begin{symfig} ... \end{symfig}
   do
-    local content = s:match("^%s*\\begin%s*%{symfig%}%s*([%s%S]-)%s*\\end%s*%{symfig%}%s*$")
+    local content = s:match("^%s*\\begin%s*%{symfig%}%s*([%s%S]-)\\end%s*%{symfig%}%s*$")
     if content then
       --TODO use proper Figure tag with later Lua version
       return pandoc.Div(parse_blocks_walk(content),pandoc.Attr("", {"figure"}))
@@ -617,7 +611,7 @@ function RawBlock(el)
 
   -- \begin{topicssection}{Title} ... \end{topicssection}
   do
-    local title, body = s:match("^%s*\\begin%s*%{topicsection%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{topicsection%}%s*$")
+    local title, body = s:match("^%s*\\begin%s*%{topicsection%}%s*(%b{})%s*([%s%S]-)\\end%s*%{topicsection%}%s*$")
     
     if title and body then
       -- strip outer { } from title and parse as inlines
@@ -741,6 +735,7 @@ function Pandoc(doc)
   -- Try to invent a description
   synthesize_meta(m)
 
+ 
   m.citations  = set_to_sorted_list(citations)
   m.labels     = set_to_sorted_list(labels)
   m.todos      = todos

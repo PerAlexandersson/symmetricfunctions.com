@@ -33,6 +33,7 @@ local REFS_JSON   = os.getenv("REFS_JSON") or (TEMP_DIR .. "/bibliography.json")
 local LABELS_JSON = os.getenv("LABELS_JSON") or (TEMP_DIR .. "/site-labels.json")
 local TEMPLATE    = os.getenv("TEMPLATE") or "template.htm"
 local WWW_DIR     = os.getenv("WWW_DIR") or "www"
+local SOURCE_TS   = os.getenv("SOURCE_TS") or tostring(os.time()) --seconds since 1970
 
 
 -- Read the global file with all labels
@@ -54,23 +55,6 @@ local function read_file(path, what)
   return s
 end
 
-
--- escape a Lua pattern so we can do literal gsub
-local function escape_lua_pattern(s)
-  return (s:gsub("([%%%^%$%(%)%.%[%]%*%+%-%?])","%%%1"))
-end
-
--- replace literal token; returns new string and count
-local function repl(hay, token, value)
-  local pat = escape_lua_pattern(token)
-  local n = 0
-  local out = hay:gsub(pat, function() n = n + 1 return value end)
-  if n == 0 then
-    print_error("Placeholder not found: %s", token)
-    os.exit(1)
-  end
-  return out, n
-end
 
 
 -- Replace -- and --- with correct character
@@ -522,19 +506,32 @@ local sidelinks_str = table.concat(toc_items, "\n")
 
 local cite_html = build_bibliography_HTML(REFS_JSON, citations)
 
---TODO use last modified date from file instead!
-local lastmod = os.date("%Y-%m-%d")
+
+local lastmod = os.date("%Y-%m-%d", tonumber(SOURCE_TS))
 local tpl = read_file(TEMPLATE,"html template")
 
+local document_contents = {
+  TITLE       = html_escape(title),
+  DESCRIPTION = html_escape(desc),
+  CANONICAL   = html_escape(canonical),
+  SIDELINKS   = sidelinks_str,
+  LASTMOD     = string.format(
+                  '<time class="dateMod" datetime="%s">%s</time>',
+                  lastmod, lastmod
+                ),
+  MAIN        = html_body,
+  REFERENCES  = cite_html,
+}
+local used = {}
+tpl = tpl:gsub("<!--([A-Z_]+)-->", function(name)
+  local val = placeholders[name]
+  if not val then
+    -- Template has a placeholder we don't know about → hard error.
+    print_error("Unknown placeholder in template: <!--%s-->", name)
+  end
+  used[name] = true
+  return val
+end)
 
--- literal replacements (safe)
-tpl = select(1, repl(tpl, "<!--TITLE-->",       html_escape(title)))
-tpl = select(1, repl(tpl, "<!--DESCRIPTION-->", html_escape(desc)))
--- tpl = select(1, repl(tpl, "<!--KEYWORDS-->",    html_escape(keywords)))
-tpl = select(1, repl(tpl, "<!--CANONICAL-->",   html_escape(canonical)))
-tpl = select(1, repl(tpl, "<!--SIDELINKS-->",   sidelinks_str))
-tpl = select(1, repl(tpl, "<!--LASTMOD-->",     string.format('<time class="dateMod" datetime="%s">%s</time>', lastmod, lastmod)))
-tpl = select(1, repl(tpl, "<!--MAIN-->",        html_body))
-tpl = select(1, repl(tpl, "<!--REFERENCES-->",  cite_html))
 
 print(tpl)

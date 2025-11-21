@@ -39,6 +39,7 @@ $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
 	$(PANDOC) "$<" --from=latex+raw_tex --to=json \
 	  --lua-filter=$(GATHER_LUA) --fail-if-warnings -o - | jq -S . > "$@"
 
+
 # Test file preprocessing
 $(TEST_PRE): $(TEMP_DIR)/%.pre.tex: $(TEST_DIR)/%.tex $(PREPROC_LUA) | $(TEMP_DIR)
 	@echo "Preprocessing $< → $@"
@@ -90,13 +91,16 @@ endif
 
 $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) | $(WWW_DIR)
 	@echo "Rendering $< → $@"
+	SOURCE_TS=$$(stat -c '%Y' "$(SRC_DIR)/$*.tex") \
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
 
 
 # Test file rendering (without metadata dependencies)
 $(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) | $(WWW_DIR)
 	@echo "Rendering test $< → $@"
+	SOURCE_TS=$$(stat -c '%Y' "$(TEST_DIR)/$*.tex") \
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
+
 
 
 # === COPY ASSETS ===
