@@ -1,18 +1,22 @@
 -- gather.lua — traverse AST once; log + lower TeX to Pandoc nodes in-place
 
+-- luacheck: globals PANDOC_STATE pandoc
+---@diagnostic disable-next-line: undefined-global
+local PANDOC_STATE = PANDOC_STATE
+---@diagnostic disable-next-line: undefined-global
+local pandoc = pandoc
+
+
 local utils = dofile("utils.lua")
 local trim = utils.trim
 local capitalize_first = utils.capitalize_first
-local html_escape = utils.html_escape
 local slugify = utils.slugify
 local set_add = utils.set_add
 local set_to_sorted_list = utils.set_to_sorted_list
 local print_todo = utils.print_todo
 local print_warn = utils.print_warn
-local print_color = utils.print_color
 local print_info = utils.print_info
 local print_error = utils.print_error
-local CONSOLE = utils.CONSOLE
 
 
 local bib = dofile("bibhandler.lua")

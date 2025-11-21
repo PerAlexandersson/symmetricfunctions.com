@@ -11,7 +11,6 @@ local print_warn = utils.print_warn
 local print_info = utils.print_info
 local print_error = utils.print_error
 
-local M = {}
 
 -- ---------- Utilities ----------
 
@@ -19,7 +18,6 @@ local function pad_right(t, n, val)
   for i = #t + 1, n do t[i] = val end
   return t
 end
-
 
 -- split on top-level commas (ignore commas inside {...})
 local function split_top_level_commas(s)
@@ -65,7 +63,7 @@ end
 -- ---------- Cell formatter (re-usable) ----------
 
 -- opts = { delimiter="$" | "", align="l"|"c"|"r"|"" }
-function M.format_cell(ent_in, opts)
+local function format_cell(ent_in, opts)
   opts = opts or {}
   local delimiter = opts.delimiter or ""
   local align = opts.align or ""
@@ -100,8 +98,6 @@ function M.format_cell(ent_in, opts)
   return string.format("<td%s%s>%s%s%s</td>", cls_attr, style_attr, delimiter, ent, delimiter)
 end
 
-local format_cell = M.format_cell
-
 
 local function split_cells_preserve_empties(s, sep)
   s   = tostring(s or "")
@@ -122,14 +118,10 @@ local function split_cells_preserve_empties(s, sep)
   return out
 end
 
--- export the local via the module table
-M.split_cells_preserve_empties = split_cells_preserve_empties
-
-
 -- ---------- TeX tabular/array ----------
 
 -- type_ = "tabular" | "array" ; spec like "lcr|l" (only l/c/r kept)
-function M.tex_tabular_to_html(s, type_, spec)
+local function tex_tabular_to_html(s, type_, spec)
   local type__ = type_ or "tabular"
 
   -- parse alignment spec -> only l/c/r kept
@@ -199,7 +191,6 @@ function M.tex_tabular_to_html(s, type_, spec)
   return string.format('<table class="%s">%s</table>', type__, table.concat(html_rows, ""))
 end
 
-local tex_tabular_to_html = M.tex_tabular_to_html
 
 -- ---------- ytableaushort{...} ----------
 -- Split a ytableaushort row into tokens (cells)
@@ -249,7 +240,7 @@ end
 
 
 -- opts = { delimiter = "$" | "" }
-function M.ytableaushort_to_html(argstr, opts)
+local function ytableaushort_to_html(argstr, opts)
   opts = opts or {}
   local delim = (opts.delimiter ~= nil) and opts.delimiter or "$"
 
@@ -295,14 +286,12 @@ end
 
 
 
-local ytableaushort_to_html = M.ytableaushort_to_html
-
 
 -- ---------- \begin{ytableau} ... \end{ytableau} / youngtab ----------
 
 -- ytableau / youngtab body -> HTML
 -- opts = { delimiter = "$" | "" }
-function M.youngtab_to_html(body, opts)
+local function youngtab_to_html(body, opts)
   opts = opts or {}
   local delim = (opts.delimiter ~= nil) and opts.delimiter or "$"
 
@@ -349,12 +338,9 @@ function M.youngtab_to_html(body, opts)
 end
 
 
-
-local youngtab_to_html = M.youngtab_to_html
-
 -- ---------- Convenience parser that detects and converts common TeX forms ----------
 
-function M.transform_tex_snippet(s)
+local function transform_tex_snippet(s)
   if not s or s == "" then return nil end
   local src = trim(s)
 
@@ -402,4 +388,8 @@ end
 
 
 -- ---------- Return module ----------
-return M
+return {
+  ytableaushort_to_html = ytableaushort_to_html,
+  youngtab_to_html = youngtab_to_html,
+  transform_tex_snippet = transform_tex_snippet
+}

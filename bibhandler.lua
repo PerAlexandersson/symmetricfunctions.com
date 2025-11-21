@@ -2,6 +2,7 @@
 -- Script for turning cite data into html
 
 
+local file_reading = dofile("file_reading.lua")
 local utils = dofile("utils.lua")
 local ascii_fold_string = utils.ascii_fold_string
 local trim = utils.trim
@@ -12,6 +13,7 @@ local print_info  = utils.print_info
 local print_error = utils.print_error
 
 -- Where we get the bib from
+-- TODO: Make as flag/argument
 local bibliographyPath = "./temp/bibliography.json"
 
 
@@ -22,16 +24,16 @@ local function month_name(m)
   return names[tonumber(m or 0)] or nil
 end
 
-local function get_year(item)
-  local dp = item.issued and item.issued["date-parts"]
-  if dp and dp[1] and dp[1][1] then return tostring(dp[1][1]) end
-  return ""
-end
-
 local function get_month(item)
   local dp = item.issued and item.issued["date-parts"]
   if dp and dp[1] and dp[1][2] then return month_name(dp[1][2]) end
   return nil
+end
+
+local function get_year(item)
+  local dp = item.issued and item.issued["date-parts"]
+  if dp and dp[1] and dp[1][1] then return tostring(dp[1][1]) end
+  return ""
 end
 
 
@@ -95,7 +97,6 @@ local function last_name_of(a)
   end
   return a.given or ""
 end
-
 
 local function strip_nocase_spans(s)
   s = tostring(s or "")
@@ -200,7 +201,7 @@ end
 
 -- Main formatter to match your sample HTML
 -- Pass: item (CSL-JSON), key (BibTeX key), label (e.g. "[Ale14]") optional
-function format_bib_as_HTML(item, key, label)
+local function format_bib_as_HTML(item, key, label)
 
   local li_id   = item.id or (key or "")
   local authArr = normalize_authors(item.author)
@@ -281,51 +282,8 @@ end
 
 
 
-
 -- Cached bib map (id -> CSL entry)
 local bib_by_id = nil
-
--- Return a Lua table from a JSON string, trying several decoders.
-local function decode_json_str(s)
-  -- 1) Pandoc's decoder (when running inside pandoc)
-  if type(pandoc) == "table" and pandoc.json and pandoc.json.decode then
-    return pandoc.json.decode(s)
-  end
-
-  -- 2) dkjson (pure Lua)
-  do
-    local ok, dkjson = pcall(require, "dkjson")
-    if ok and dkjson and dkjson.decode then
-      local obj, pos, err = dkjson.decode(s, 1, nil)
-      if obj ~= nil then return obj end
-      if err then error("dkjson decode error: " .. err) end
-    end
-  end
-
-  -- 3) lunajson (pure Lua, fast)
-  do
-    local ok, lunajson = pcall(require, "lunajson")
-    if ok and lunajson and lunajson.decode then
-      return lunajson.decode(s)
-    end
-  end
-
-  -- 4) cjson (C module)
-  do
-    local ok, cjson = pcall(require, "cjson")
-    if ok and cjson and cjson.decode then
-      return cjson.decode(s)
-    end
-  end
-
-  -- 5) If your utils set a global `json` (e.g. from dkjson), use it
-  if _G.json and _G.json.decode then
-    return _G.json.decode(s)
-  end
-
-  error("No JSON decoder available: tried pandoc.json, dkjson, lunajson, cjson, and _G.json")
-end
-
 
 -- Load and cache bibliography JSON, returning a map id -> entry.
 -- Accepts either CSL-JSON array or an object map; memoized across calls.
@@ -333,16 +291,15 @@ local function load_bibliography_json(path)
   if bib_by_id then return bib_by_id end
   path = path or bibliographyPath
 
-  local fh = assert(io.open(path, "r"))
-  local raw = fh:read("*a"); fh:close()
-
-  local data = decode_json_str(raw) or {}
+  local data = file_reading.load_json_file(path, "bibliography", true)
   local map = {}
 
   if type(data) == "table" and #data > 0 then
     -- array of CSL entries
     for _, entry in ipairs(data) do
-      if entry and entry.id then map[entry.id] = entry end
+      if entry and entry.id then 
+        map[entry.id] = entry 
+      end
     end
   else
     -- object map: id -> entry
@@ -357,7 +314,6 @@ local function load_bibliography_json(path)
   bib_by_id = map
   return bib_by_id
 end
-
 
 -- Creates the entire bibliography section using the cached loader
 local function build_bibliography_HTML(path, citations)
@@ -383,7 +339,6 @@ local function build_bibliography_HTML(path, citations)
   out[#out+1] = "</ol>\n</section>\n"
   return table.concat(out)
 end
-
 
 
 -- Returns the short label for an internal bib id, e.g. "AJ24".

@@ -6,27 +6,21 @@
 -- Existence of files is also checked here.
 
 
-local json = require("dkjson")
+local bibhandler = dofile("bibhandler.lua")
+local file_reading = dofile("file_reading.lua")
 
 local utils = dofile("utils.lua")
-local trim         = utils.trim
 local html_escape  = utils.html_escape
 local slugify      = utils.slugify
-local CONSOLE      = utils.CONSOLE
 local print_warn   = utils.print_warn
 local print_info   = utils.print_info
 local print_error  = utils.print_error
-local load_json    = utils.load_json_file
-local json_lib     = utils.json_lib
-local file_exists  = utils.file_exists
 
 
-local bibhandler = dofile("bibhandler.lua")
-local build_bibliography_HTML = bibhandler.build_bibliography_HTML
 
-local M = dofile("figure_to_html.lua")
-local transform_tex_snippet = M.transform_tex_snippet
-local svgimg_to_html        = M.svgimg_to_html
+local fig_to_html = dofile("figure_to_html.lua")
+local transform_tex_snippet = fig_to_html.transform_tex_snippet
+
 
 local TEMP_DIR    = os.getenv("TEMP_DIR") or "temp"
 local REFS_JSON   = os.getenv("REFS_JSON") or (TEMP_DIR .. "/bibliography.json")
@@ -37,32 +31,17 @@ local SOURCE_TS   = os.getenv("SOURCE_TS") or tostring(os.time()) --seconds sinc
 
 
 -- Read the global file with all labels
-local SITE_LABELS_MAP = load_json(LABELS_JSON, "site-labels")
+local SITE_LABELS_MAP = file_reading.load_json_file(LABELS_JSON, "site-labels")
 -- Example entry:
 -- SITE_LABELS_MAP["schurS"] = { page = "schur", href = "schur.htm#schurS", title = "Schur polynomials"}
 
 
--- --- io helpers ------------------------------------------------------------
-local function read_file(path, what)
-  local f, err = io.open(path, "r")
-  if not f then
-    print_error("Could not open %s '%s': %s", what or "file", path, err or "")
-    os.stderr:write("\n")
-    os.exit(1)
-  end
-  local s = f:read("*a")
-  f:close()
-  return s
-end
-
-
 
 -- Replace -- and --- with correct character
+--TODO: Is this even used? pandoc might handle this already.
 local function typodash(s)
   return (s or ""):gsub("%-%-%-", "—"):gsub("%-%-", "–")
 end
-
-
 
 local function render_attr(attr)
   -- attr = { id, classes, keyvals }
@@ -257,10 +236,10 @@ local function render_inlines_html(inl)
         src = target
       end
 
-      captionHTML = render_inlines_html(caption)
+      local captionHTML = render_inlines_html(caption)
 
       if src ~= "" then
-        if not file_exists(WWW_DIR .. "/" .. src) then
+        if not file_reading.file_exists(WWW_DIR .. "/" .. src) then
           print_error("Image file not found: %s", src)
         end
       else
@@ -415,26 +394,7 @@ end
 
 -- --- main ------------------------------------------------------------------
 
---TODO-can this be made nicer?
-local function read_json_input()
-  if arg and arg[1] and arg[1] ~= "-" then
-    local doc = load_json(arg[1], "JSON data")
-    if not doc or next(doc) == nil then
-      print_error("JSON decode error reading %s", arg[1])
-      os.exit(1)
-    end
-    return doc
-  end
-
-  local doc, _, err = json_lib.decode(io.read("*a"))
-  if not doc or type(doc) ~= "table" then
-    print_error("JSON decode error: %s", tostring(err))
-    os.exit(1)
-  end
-  return doc
-end
-
-local pandoc_doc = read_json_input()
+local pandoc_doc = file_reading.load_json_file(arg[1], "json pandoc document")
 
 
 local meta = pandoc_doc.meta or {}
@@ -499,10 +459,11 @@ if #toc_items>0 then
   )
 end
 
+-- Final assembly
 local sidelinks_str = table.concat(toc_items, "\n")
-local cite_html = build_bibliography_HTML(REFS_JSON, citations)
+local cite_html = bibhandler.build_bibliography_HTML(REFS_JSON, citations)
 local lastmod = os.date("%Y-%m-%d", tonumber(SOURCE_TS))
-local tpl = read_file(TEMPLATE,"html template")
+local tpl = file_reading.read_file(TEMPLATE,"html template")
 
 local document_contents = {
   TITLE       = html_escape(title),

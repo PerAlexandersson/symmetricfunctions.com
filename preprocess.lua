@@ -4,7 +4,6 @@
 local utils = dofile("utils.lua")
 local normalize_url = utils.normalize_url
 local trim = utils.trim
-local CONSOLE = utils.CONSOLE
 
 -- ----- argument handling ----------------------------------------------------
 

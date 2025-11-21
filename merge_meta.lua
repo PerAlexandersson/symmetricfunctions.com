@@ -9,9 +9,11 @@ local trim        = utils.trim
 local print_info  = utils.print_info
 local print_warn  = utils.print_warn
 local print_error = utils.print_error
-local print_todo  = utils.print_todo
-local load_json   = utils.load_json_file
-local json_lib    = utils.json_lib
+local table_size  = utils.table_size
+
+local file_reading    = dofile("file_reading.lua")
+local json_encode     = file_reading.json_encode
+local load_json_file  = file_reading.load_json_file
 
 -- FILE Paths (defined in the makefile)
 local OUT_DIR         = os.getenv("TEMP_DIR") or "temp"
@@ -25,23 +27,11 @@ local function basename(path) return path:match("([^/]+)$") end
 local function stem(path)     return basename(path):gsub("%.json$", "") end
 
 
-local function read_all(path)
-  local f, err = io.open(path, "r"); if not f then error(err) end
-  local s = f:read("*a"); f:close(); return s
-end
-
 local function write_all(path, s)
   local f, err = io.open(path, "w"); if not f then error(err) end
   f:write(s); f:close()
 end
 
-local function encode_pretty(tbl)
-  if json_lib and json_lib.encode then
-    local ok, out = pcall(json_lib.encode, tbl, { indent = true })
-    if ok then return out end
-  end
-  error("No json encoder available")
-end
 
 
 -- Pandoc Meta helpers (unwrap MetaString/MetaList of strings/MetaMap)
@@ -88,14 +78,13 @@ local pages = {}            -- { {id=..., slug=..., title=...} ... }
 local label_index = {}      -- label -> { page=..., href=..., title=... }
 local polydata_index = {}   -- polyId -> { page=..., ...original fields... }
 local todos_all = {}        -- { {page=..., text=...}, ... }
-
 local label_dups  = {}       -- Track labels that are duplicates.
 
 for i = 1, #arg do
   local path = arg[i]
 
   -- Use shared JSON loader; returns {} on error
-  local doc = load_json(path, "page-json")
+  local doc = load_json_file(path, "page-json")
   if type(doc) ~= "table" or not doc.meta then
     print_error("Skipping unreadable or malformed JSON: %s", path)
   else
@@ -177,17 +166,17 @@ validate_polydata()
 
 -- ----- outputs ------------------------------------------------------
 -- 1) label -> file index
-write_all(LABELS_JSON, encode_pretty(label_index))
-print_info("Generated %s (%d labels)", LABELS_JSON, (function(n) local c=0 for _ in pairs(label_index) do c=c+1 end return c end)())
+write_all(LABELS_JSON, json_encode(label_index))
+print_info("Generated %s (%d labels)", LABELS_JSON, table_size(label_index))
 
 -- 2) polydata index
-write_all(POLYDATA_JSON, encode_pretty(polydata_index))
-print_info("Generated %s (%d poly items)", POLYDATA_JSON, (function(n) local c=0 for _ in pairs(polydata_index) do c=c+1 end return c end)())
+write_all(POLYDATA_JSON, json_encode(polydata_index))
+print_info("Generated %s (%d poly items)", POLYDATA_JSON, table_size(polydata_index))
 
 
 -- 3) todos
-write_all(TODOS_JSON, encode_pretty(todos_all))
-print_info("Generated %s (%d todo notes)", TODOS_JSON, (function(n) local c=0 for _ in pairs(todos_all) do c=c+1 end return c end)())
+write_all(TODOS_JSON, json_encode(todos_all))
+print_info("Generated %s (%d todo notes)", TODOS_JSON, table_size(todos_all))
 
 
 -- 4) sitemap.xml (relative URLs)
