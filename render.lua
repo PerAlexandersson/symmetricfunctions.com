@@ -151,8 +151,14 @@ local function render_inlines_html(inl)
       if type(c) == "table" then
         local fmt, body = c[1], c[2]
         if fmt and fmt:match("latextable") then
-          local latexTableHTML = transform_tex_snippet(body)
-          table.insert(out, latexTableHTML)
+          local latexTableHTML, err = transform_tex_snippet(body)
+          if err then
+            print_error("Failed to convert LaTeX table (inline): %s", err)
+            -- Fallback: show the raw TeX in a code block for debugging
+            table.insert(out, "<code class='tex-error'>" .. html_escape(body) .. "</code>")
+          else
+            table.insert(out, latexTableHTML)
+          end
         elseif fmt and fmt:match("tex") then
           print_error("TEX still present: %s", body)
         else
@@ -368,14 +374,19 @@ local function render_blocks_html(blocks, header_collector)
       local fmt, body = c[1], c[2]
 
       if fmt and fmt:match("latextable") then
-        -- print_error("Render: Must parse %s", (body or ""):match("([^\n\r]*)"))
-        local latexTableHTML = transform_tex_snippet(body)
-        table.insert(buf, latexTableHTML)
+        local latexTableHTML, err = transform_tex_snippet(body)
+        if err then
+          print_error("Failed to convert LaTeX table (block): %s", err)
+          -- Fallback: show the raw TeX in a pre block for debugging
+          table.insert(buf, "<pre class='tex-error'>" .. html_escape(body) .. "</pre>\n")
+        else
+          table.insert(buf, latexTableHTML)
+        end
       elseif fmt and fmt:match("tex") then
         print_error("Render: Unknown tex: %s", (body or ""):match("([^\n\r]*)"))
       else
         table.insert(buf, "<pre>" .. html_escape(body or "") .. "</pre>")
-        print_error("Render: Unknown tex: %s", (body or ""):match("([^\n\r]*)"))
+        print_error("Render: Unknown raw block format: %s", fmt or "nil")
       end
     else
       -- ignore exotic blocks (tables, figures, etc.) for now
