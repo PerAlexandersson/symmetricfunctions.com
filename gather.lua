@@ -20,7 +20,7 @@ local print_error = utils.print_error
 
 
 local bib = dofile("bibhandler.lua")
-local get_bib_entry_label = bib.get_bib_entry_label
+local get_bibliography_label = bib.get_bibliography_label
 
 -- derive current input filename/stem
 local _INPUT = (PANDOC_STATE and PANDOC_STATE.input_files and PANDOC_STATE.input_files[1]) or "(stdin)"
@@ -419,7 +419,7 @@ function RawInline(el)
 
       local parts, any_missing = {}, false
       for key in body:gmatch("[^,%s]+") do
-        local lbl = get_bib_entry_label(key)
+        local lbl = get_bibliography_label(key)
         if not lbl then
           print_error("Missing citation key: %s", key)
           parts[#parts + 1] = pandoc.Str("UNDEF:" .. key)
