@@ -590,7 +590,7 @@ end
 local pandoc_doc = file_reading.load_json_file(arg[1], "json pandoc document")
 
 -- Extract metadata
-local meta = pandoc_doc.meta or {}
+local meta      = pandoc_doc.meta or {}
 local title     = get_meta(meta, "metatitle", "Untitled")
 local desc      = get_meta(meta, "metadescription", title)
 local canonical = get_meta(meta, "canonical", "index.htm")
