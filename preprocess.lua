@@ -97,9 +97,11 @@ input = annotate_todos(input, source_filename)
 -- STEP 2: Line-based Normalization (Block-level Macros)
 -- ============================================================================
 
--- Add newlines around \ytableaushort to make it block-level
+-- Add newlines to make it block-level
 -- TODO: EDGE CASE if ytableaushort is inside a commented line
 input = input:gsub("\\ytableaushort%b{}", "\n%0\n")
+input = input:gsub("\\specialblock%b{}", "\n%0\n")
+
 
 -- Split into lines for further processing
 local raw_lines = {}

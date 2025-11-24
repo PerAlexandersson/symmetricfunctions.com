@@ -536,6 +536,20 @@ function RawBlock(el)
     end
   end
 
+ -- \specialblock{...}
+ do
+  local sb = s:match("^%s*\\specialblock(%b{})%s*$")
+  if sb then
+    return pandoc.Div(
+        {},  -- Empty content
+        pandoc.Attr(
+          "",  -- No ID
+          {"specialblock"},  -- Class for identification
+          {{"data-type", sb:sub(2,-2)}}  -- Store the page ID
+        )
+      )
+  end
+end
 
   -- \svgimg as block
   do

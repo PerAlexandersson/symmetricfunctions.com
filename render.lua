@@ -6,6 +6,7 @@
 -- - LaTeX table environments (ytableau, tabular, etc.) → HTML tables
 -- - File existence validation for images
 -- - Table of contents generation from headers
+-- - Lazy template placeholder evaluation
 --
 -- Environment variables:
 --   TEMP_DIR    - Directory for intermediate files (default: "temp")
@@ -65,15 +66,6 @@ local ICON_STYLES = {
 
 
 -- ========== UTILITY FUNCTIONS ==========
-
---- Converts double/triple hyphens to proper dash characters.
--- Note: This may be redundant as Pandoc often handles this.
--- @param s string The string to process
--- @return string String with dashes replaced
-local function typodash(s)
-  return (s or ""):gsub("%-%-%-", "—"):gsub("%-%-", "–")
-end
-
 
 --- Renders Pandoc attributes as HTML attribute string.
 -- @param attr table Pandoc attribute triplet: {id, classes, keyvals}
@@ -135,10 +127,9 @@ end
 
 -- ========== INLINE ELEMENT RENDERERS ==========
 
--- TODO: Remove fa-dependency
 --- Renders an icon span as Font Awesome element.
 -- @param kvs table Key-value pairs from attributes
--- @return string HTML <i> element or empty string
+-- @return string|nil HTML <i> element or nil if not an icon
 local function render_icon(kvs)
   local kv_map = extract_keyvals(kvs)
   local icon_name = kv_map["data-icon"]
@@ -481,11 +472,22 @@ function render_blocks_html(blocks, header_collector)
       local attr = c[1] or { "", {}, {} }
       local classes = attr[2] or {}
       
+      -- Check for special page divs
+      if array_contains(classes, "specialblock") then
+        local kv_map = extract_keyvals(kvs)
+        local block_type = kv_map["data-type"]
+        
+        --TODO: do cases here depending on block type?
+        if block_type then
+          print_info("Special block found %s",block_type)
+          --table.insert(buffer, render_special_page(block_type, ctx or {}))
+        else
+          print_error("specialblock div missing data-type attribute")
+        end
+      end
+
       -- Check for special div types
-      local is_env = array_contains(classes, "env")
-      local is_collapsible = array_contains(classes, "collapsible")
-      
-      if is_env and is_collapsible then
+      if array_contains(classes, "collapsible") then
         table.insert(buffer, render_collapsible(attr, c[2] or {}))
       else
         -- Default div rendering
@@ -530,7 +532,6 @@ local function get_meta(meta, key, fallback)
 end
 
 
-
 -- ========== TABLE OF CONTENTS ==========
 
 --- Creates a TOC collector function.
@@ -561,11 +562,96 @@ local function create_toc_collector()
 end
 
 
+--- Builds the table of contents HTML from collected items.
+-- @param toc_items table Array of TOC HTML fragments
+-- @param has_citations boolean Whether to include bibliography link
+-- @return string Complete TOC HTML
+local function build_toc_html(toc_items, has_citations)
+  if #toc_items == 0 and not has_citations then
+    return ""
+  end
+  
+  local items = {}
+  for _, item in ipairs(toc_items) do
+    table.insert(items, item)
+  end
+  
+  -- Add bibliography link if we have citations
+  if has_citations then
+    table.insert(items, '<li><a href="#bibliography" class="section">Bibliography</a></li>\n')
+  end
+  
+  return table.concat(items)
+end
+
+
+-- ========== BIBLIOGRAPHY ==========
+
+--- Builds the bibliography HTML from citations.
+-- @param refs_json_path string Path to bibliography JSON file
+-- @param citations table Array of citation keys
+-- @return string Bibliography HTML
+local function build_bibliography_html(refs_json_path, citations)
+  if not citations or #citations == 0 then
+    return ""
+  end
+  
+  return bibhandler.build_bibliography_HTML(refs_json_path, citations)
+end
+
+
+-- ========== METADATA FORMATTING ==========
+
+--- Formats the last modified timestamp as HTML.
+-- @param timestamp string Unix timestamp (seconds)
+-- @return string HTML <time> element
+local function format_lastmod_html(timestamp)
+  local date = os.date("%Y-%m-%d", tonumber(timestamp))
+  return string.format(
+    '<time class="dateMod" datetime="%s">%s</time>',
+    date, date
+  )
+end
+
+
+-- ========== LAZY TEMPLATE EVALUATION ==========
+
+--- Creates a lazy value that only computes when accessed.
+-- @param fn function Function that produces the value
+-- @return table Lazy value wrapper
+local function lazy(fn)
+  return {
+    _lazy = true,
+    _fn = fn,
+    _computed = false,
+    _value = nil
+  }
+end
+
+
+--- Resolves a value, computing it if it's a lazy wrapper.
+-- @param value any Value or lazy wrapper
+-- @return any Resolved value
+local function resolve_value(value)
+  if type(value) == "table" and value._lazy then
+    if not value._computed then
+      value._value = value._fn()
+      value._computed = true
+    end
+    return value._value
+  end
+  return value
+end
+
+
 -- ========== TEMPLATE RENDERING ==========
 
---- Renders the final HTML document from template.
+--- Renders the final HTML document from template with lazy evaluation.
+-- Template placeholders are written as <!--PLACEHOLDER_NAME-->
+-- Values can be strings or lazy wrappers (created with lazy(fn))
+-- 
 -- @param template string Template HTML with <!--PLACEHOLDER--> markers
--- @param content table Map of placeholder names to values
+-- @param content table Map of placeholder names to values (or lazy wrappers)
 -- @return string Final HTML document
 local function render_template(template, content)
   local used = {}
@@ -576,9 +662,20 @@ local function render_template(template, content)
       print_error("Unknown placeholder in template: <!--%s-->", name)
       return ""
     end
+    
+    -- Mark as used and resolve lazy values
     used[name] = true
-    return val
+    local resolved = resolve_value(val)
+    
+    return resolved or ""
   end)
+  
+  -- Report unused expensive computations
+  for name, val in pairs(content) do
+    if not used[name] and type(val) == "table" and val._lazy and val._computed then
+      print_warn("Computed lazy value '%s' was never used in template", name)
+    end
+  end
   
   return result
 end
@@ -595,41 +692,34 @@ local title     = get_meta(meta, "metatitle", "Untitled")
 local desc      = get_meta(meta, "metadescription", title)
 local canonical = get_meta(meta, "canonical", "index.htm")
 local citations = meta.citations and (meta.citations.c or meta.citations) or {}
-local labels    = meta.labels and (meta.labels.c or meta.labels) or {}
-local families  = meta.families or {}
-
 
 -- Render body with TOC collection
 local collect_header, toc_items = create_toc_collector()
 local html_body = render_blocks_html(pandoc_doc.blocks or {}, collect_header)
 
--- Add bibliography to TOC
-if #toc_items > 0 then
-  table.insert(toc_items, '<li><a href="#bibliography" class="section">Bibliography</a></li>\n')
-end
-
--- Build bibliography
-local cite_html = bibhandler.build_bibliography_HTML(REFS_JSON, citations)
-
--- Format last modified date
-local lastmod = os.date("%Y-%m-%d", tonumber(SOURCE_TS))
-local lastmod_html = string.format(
-  '<time class="dateMod" datetime="%s">%s</time>',
-  lastmod, lastmod
-)
+-- Check if we have citations
+local has_citations = (citations and #citations > 0)
 
 -- Load template
 local template = file_reading.read_file(TEMPLATE, "html template")
 
--- Assemble document
+-- Assemble document with lazy evaluation for expensive operations
 local document_content = {
+  -- Simple values (always computed)
   TITLE       = html_escape(title),
   DESCRIPTION = html_escape(desc),
   CANONICAL   = html_escape(canonical),
-  SIDELINKS   = table.concat(toc_items, "\n"),
-  LASTMOD     = lastmod_html,
+  LASTMOD     = format_lastmod_html(SOURCE_TS),
   MAIN        = html_body,
-  REFERENCES  = cite_html,
+  
+  -- Lazy values (only computed if used in template)
+  SIDELINKS = lazy(function()
+    return build_toc_html(toc_items, has_citations)
+  end),
+  
+  REFERENCES = lazy(function()
+    return build_bibliography_html(REFS_JSON, citations)
+  end),
 }
 
 -- Render and output
