@@ -135,6 +135,7 @@ end
 
 -- ========== INLINE ELEMENT RENDERERS ==========
 
+-- TODO: Remove fa-dependency
 --- Renders an icon span as Font Awesome element.
 -- @param kvs table Key-value pairs from attributes
 -- @return string HTML <i> element or empty string
@@ -168,7 +169,7 @@ local function render_link(attr, inlines, target)
     url = target
   end
   
-  local text = render_inlines_html(inlines)
+  local link_inner_html = render_inlines_html(inlines)
   local classes = attr[2] or {}
   
   -- Handle internal cross-references with .hyperref class
@@ -177,7 +178,7 @@ local function render_link(attr, inlines, target)
     local entry = SITE_LABELS_MAP[label]
     
     if not entry then
-      print_error("Internal link to unknown label '%s' (text: %s)", label, text)
+      print_error("Internal link to unknown label '%s' (text: %s)", label, link_inner_html)
       url = "#" .. label  -- Graceful degradation
     else
       url = entry.href or ("#" .. label)
@@ -189,7 +190,7 @@ local function render_link(attr, inlines, target)
     attr_html = attr_html .. ' title="' .. html_escape(title) .. '"'
   end
   
-  return '<a href="' .. html_escape(url) .. '"' .. attr_html .. '>' .. html_escape(text) .. '</a>'
+  return '<a href="' .. html_escape(url) .. '"' .. attr_html .. '>' .. link_inner_html .. '</a>'
 end
 
 
@@ -221,7 +222,7 @@ local function render_image(attr, caption, target)
   end
   
   local attr_html = render_attr(attr)
-  
+
   return string.format(
     '<img src="%s" title="%s" alt="%s" %s/>',
     src,

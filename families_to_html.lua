@@ -14,15 +14,11 @@ local load_json    = json_utils.load_json_file
 -- Helpers
 ----------------------------------------------------------------------
 
-local function rating_to_number(r)
+--TODO: Use CSS and data-rating attribute instead.
+local function rating_to_stars(r)
   local n = tonumber(r or 0) or 0
   if n < 0 then n = 0 end
   if n > 5 then n = 5 end
-  return n
-end
-
-local function rating_to_stars(r)
-  local n = rating_to_number(r)
   return string.rep("★", n) .. string.rep("☆", 5 - n)
 end
 
