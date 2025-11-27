@@ -240,7 +240,7 @@ end
 --- Renders Pandoc inline elements to HTML.
 -- @param inlines table Array of Pandoc inline elements
 -- @return string Concatenated HTML string
-function render_inlines_html(inlines)
+local function render_inlines_html(inlines)
   if type(inlines) ~= "table" then 
     return "" 
   end
@@ -429,7 +429,7 @@ end
 -- @param blocks table Array of Pandoc block elements
 -- @param header_collector function|nil Optional callback(level, id, text) for TOC
 -- @return string Concatenated HTML string
-function render_blocks_html(blocks, header_collector)
+local function render_blocks_html(blocks, header_collector)
   local buffer = {}
   
   for _, b in ipairs(blocks or {}) do
@@ -477,6 +477,8 @@ function render_blocks_html(blocks, header_collector)
         local kv_map = extract_keyvals(kvs)
         local block_type = kv_map["data-type"]
         
+        print_info("Data-type: %s",block_type)
+
         --TODO: do cases here depending on block type?
         if block_type then
           print_info("Special block found %s",block_type)
