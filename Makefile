@@ -9,6 +9,10 @@ include config-test.mk
 .DELETE_ON_ERROR:
 .SECONDARY: $(PRE_TEX)
 
+# Supress file deletion messages
+.SILENT:
+
+
 # Default target
 all: gather meta render copy-assets
 
