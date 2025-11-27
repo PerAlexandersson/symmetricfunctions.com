@@ -127,6 +127,10 @@ end
 
 -- ========== INLINE ELEMENT RENDERERS ==========
 
+-- Forward declare these as they depend on each other.
+local render_inlines_html
+local render_blocks_html
+
 --- Renders an icon span as Font Awesome element.
 -- @param kvs table Key-value pairs from attributes
 -- @return string|nil HTML <i> element or nil if not an icon
@@ -240,7 +244,7 @@ end
 --- Renders Pandoc inline elements to HTML.
 -- @param inlines table Array of Pandoc inline elements
 -- @return string Concatenated HTML string
-local function render_inlines_html(inlines)
+function render_inlines_html(inlines)
   if type(inlines) ~= "table" then 
     return "" 
   end
@@ -429,7 +433,7 @@ end
 -- @param blocks table Array of Pandoc block elements
 -- @param header_collector function|nil Optional callback(level, id, text) for TOC
 -- @return string Concatenated HTML string
-local function render_blocks_html(blocks, header_collector)
+function render_blocks_html(blocks, header_collector)
   local buffer = {}
   
   for _, b in ipairs(blocks or {}) do
