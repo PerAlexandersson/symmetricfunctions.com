@@ -7,13 +7,15 @@ It uses `pandoc` for conversion, custom Lua filters for processing, and `make` f
 Several functions are specialized for www.symmetricfunctions.com,
 such as index of polynomials, Young tableau rendering etc.
 
+AI tools have been extensively used to generate and refactor the code.
 
-## Document Structure
+## Directory structure
 ```
 .
+├── assets/              # Static assets (CSS, images, JS)
+├── docs/                # Documentation (.md)
 ├── tex-source/          # LaTeX source files (.tex)
 ├── test/                # Test files for validation
-├── assets/              # Static assets (CSS, images, JS)
 ├── temp/                # Intermediate build files (generated)
 │   ├── *.pre.tex        # Preprocessed LaTeX files
 │   ├── *.json           # Pandoc JSON AST files
@@ -25,6 +27,7 @@ such as index of polynomials, Young tableau rendering etc.
 ├── www/                 # Output directory (generated)
 │   ├── *.htm            # Generated HTML files
 │   └── sitemap.xml      # Site sitemap
+├── README.md            # This file
 ├── config.mk            # Build configuration
 ├── config-test.mk       # Test configuration
 ├── Makefile             # Build orchestration
