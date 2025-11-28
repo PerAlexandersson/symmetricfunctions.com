@@ -242,7 +242,14 @@ local function topic_card(s)
     -- Image path + alt text
     local img_path  = string.format("svg-images/card-%s.svg", id_inner)
     local img_alt   = title_inner
-    local img       = pandoc.Image(pandoc.Str(img_alt), img_path, "", {})
+
+    --TODOL make sure this is ok dims
+    local img_attr  = pandoc.Attr("", {}, {
+        width = "200", 
+        height = "200" 
+    })
+
+    local img = pandoc.Image(pandoc.Str(img_alt), img_path, "", img_attr)
 
     -- Body text as inlines
     local body_inls = parse_inlines_walk(body_inner)

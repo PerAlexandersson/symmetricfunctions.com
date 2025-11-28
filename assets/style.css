@@ -268,7 +268,21 @@ h2 {
   border-color: var(--c-brand);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-.topic-card img { width: 100%; margin-top: auto; padding-top: 1rem; }
+
+.topic-card img {
+  width: 100%;        /* Stretches to container width */
+  height: auto;       /* Maintains aspect ratio */
+  max-width: 100%;    /* Prevents exploding past the card */
+  display: block;     /* Removes tiny gap below images */
+  margin-top: auto; 
+  padding-top: 1rem; 
+}
+@media (prefers-color-scheme: dark) {
+  .topic-card img {
+    filter: invert(1) opacity(0.8);
+  }
+}
+
 
 /* ==========================================================================
    7) MATH & TABLEAUX
