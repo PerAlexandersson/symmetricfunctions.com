@@ -21,6 +21,7 @@
 local bibhandler   = dofile("bibhandler.lua")
 local file_reading = dofile("file_reading.lua")
 local fig_to_html  = dofile("figure_to_html.lua")
+local poly_to_html = dofile("polydata_to_html.lua")
 
 local utils        = dofile("utils.lua")
 local html_escape  = utils.html_escape
@@ -34,12 +35,13 @@ local transform_tex_snippet = fig_to_html.transform_tex_snippet
 
 -- ========== CONFIGURATION ==========
 
-local TEMP_DIR    = os.getenv("TEMP_DIR") or "temp"
-local REFS_JSON   = os.getenv("REFS_JSON") or (TEMP_DIR .. "/bibliography.json")
-local LABELS_JSON = os.getenv("LABELS_JSON") or (TEMP_DIR .. "/site-labels.json")
-local TEMPLATE    = os.getenv("TEMPLATE") or "template.htm"
-local WWW_DIR     = os.getenv("WWW_DIR") or "www"
-local SOURCE_TS   = os.getenv("SOURCE_TS") or tostring(os.time())
+local TEMP_DIR      = os.getenv("TEMP_DIR") or "temp"
+local REFS_JSON     = os.getenv("REFS_JSON") or (TEMP_DIR .. "/bibliography.json")
+local LABELS_JSON   = os.getenv("LABELS_JSON") or (TEMP_DIR .. "/site-labels.json")
+local POLYDATA_JSON = os.getenv("POLYDATA_JSON") or (TEMP_DIR .. "/site-polydata.json")
+local TEMPLATE      = os.getenv("TEMPLATE") or "template.htm"
+local WWW_DIR       = os.getenv("WWW_DIR") or "www"
+local SOURCE_TS     = os.getenv("SOURCE_TS") or tostring(os.time())
 
 -- Site-wide label mapping for cross-page references
 -- Example entry: SITE_LABELS_MAP["schurS"] = { 
@@ -478,15 +480,22 @@ function render_blocks_html(blocks, header_collector)
       
       -- Check for special page divs
       if array_contains(classes, "specialblock") then
+        local kvs = attr[3] or {}  -- Extract key-value pairs from attributes
         local kv_map = extract_keyvals(kvs)
         local block_type = kv_map["data-type"]
-        
-        print_info("Data-type: %s",block_type)
 
-        --TODO: do cases here depending on block type?
-        if block_type then
-          print_info("Special block found %s",block_type)
-          --table.insert(buffer, render_special_page(block_type, ctx or {}))
+
+        if block_type and block_type == "polynomialList" then
+          
+          local polydata = file_reading.load_json_file(POLYDATA_JSON)
+
+          if polydata then
+            local poly_list_html = poly_to_html.render_polynomial_table(polydata) or ""
+            table.insert(buffer, poly_list_html )
+          else 
+            print_error("Could not open %s",POLYDATA_JSON)
+          end
+
         else
           print_error("specialblock div missing data-type attribute")
         end

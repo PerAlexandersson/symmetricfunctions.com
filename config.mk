@@ -2,9 +2,15 @@
 
 # === DIRECTORIES ===
 SRC_DIR    = tex-source
+ASSETS_DIR = assets
 TEMP_DIR   = temp
 WWW_DIR    = www
-ASSETS_DIR = assets
+
+# === SOURCE FILES ===
+TEMPLATE   := template.htm
+BIBFILE    := ~/Dropbox/latex/bibliography.bib
+
+# ======================================================
 
 # === TOOLS ===
 PANDOC = pandoc
@@ -16,9 +22,7 @@ GATHER_LUA     = gather.lua
 RENDER_LUA     = render.lua
 MERGE_META_LUA = merge_meta.lua
 
-# === SOURCE FILES ===
-TEMPLATE   := template.htm
-BIBFILE    := ~/Dropbox/latex/bibliography.bib
+# === SOURCE FILES AND INTERMEDIATE FILES ===
 TEX_FILES  := $(wildcard $(SRC_DIR)/*.tex)
 PRE_TEX    := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.pre.tex,$(TEX_FILES))
 JSON_FILES := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.json,$(TEX_FILES))

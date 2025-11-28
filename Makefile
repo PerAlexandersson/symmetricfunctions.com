@@ -1,6 +1,9 @@
 SHELL := /bin/bash
 .SHELLFLAGS := -eu -o pipefail -c
 
+# Use 8 threads by default
+MAKEFLAGS += -j8
+
 # === LOAD CONFIGURATION ===
 include config.mk
 include config-test.mk

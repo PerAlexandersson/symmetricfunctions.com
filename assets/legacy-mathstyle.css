@@ -53,8 +53,6 @@
    ========================================================================== */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { height: 100%; }
-
 body {
   margin: 0;
   font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
@@ -62,11 +60,6 @@ body {
   color: var(--c-text-main);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  
-  /* Sticky Footer Setup */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 a { color: var(--c-link); text-decoration: none; }
@@ -93,9 +86,6 @@ h2 {
   background-color: var(--c-bg-header);
   border-color: var(--c-border);
   border-style: solid;
-  
-  /* Prevent header/footer from shrinking in flex column */
-  flex-shrink: 0;
   
   display: grid;
   grid-template-columns: 
@@ -125,10 +115,6 @@ h2 {
 
 /* Main Content Grid */
 #doc-all {
-  /* Flex grow pushes footer down */
-  flex: 1 0 auto;
-  width: 100%;
-  
   max-width: var(--w-page);
   margin: 0 auto;
   padding-left: 1.5rem;
@@ -239,6 +225,7 @@ h2 {
   border-bottom: 1px solid var(--c-border);
   margin-bottom: 1.5rem;
 }
+/* Insert "Last updated: " before the date */
 .dateMod::before {
   content: "Last updated: ";
   margin-right: 0.3em;
@@ -354,52 +341,26 @@ tr.bottomrule td { border-bottom: 2px solid currentColor; }
   border-bottom: 1px solid var(--c-border);
 }
 
-/* Theorem Environments (Details/Summary) */
+/* Theorem Environments */
 div.env, details.env {
   border-left: 4px solid var(--math-env-bar);
   padding: 0.5em 0.5em 0.5em 1em;
   background: linear-gradient(to right, var(--c-bg-surface), transparent);
   margin: 1.5em 0;
 }
-
-/* Hide default markers */
 details.env > summary {
   color: var(--math-accent);
   font-weight: bold;
   cursor: pointer;
-  list-style: none; /* Firefox/Standard */
+  list-style: none;
   margin-bottom: 0.5em;
-  position: relative;
-  padding-right: 2em; /* Make space for the custom arrow */
-}
-details.env > summary::-webkit-details-marker {
-  display: none; /* Chrome/Safari */
-}
-
-/* Custom Arrow (Chevron) */
-details.env > summary::after {
-  content: "";
-  position: absolute;
-  right: 0.75em;
-  top: 0.4em;
-  width: 0.5em;
-  height: 0.5em;
-  border-right: 2px solid var(--math-accent);
-  border-bottom: 2px solid var(--math-accent);
-  transform: rotate(-45deg); /* Pointing right */
-  transition: transform 0.2s ease;
-}
-
-/* Arrow Rotation on Open */
-details.env[open] > summary::after {
-  transform: rotate(45deg); /* Pointing down */
-  top: 0.3em;
 }
 
 /* ==========================================================================
    8) BIBLIOGRAPHY & CITATIONS
    ========================================================================== */
 
+/* 1. Remove numbering and create hanging indent layout */
 #bibliography ol {
   list-style: none;
   margin: 0;
@@ -409,32 +370,36 @@ details.env[open] > summary::after {
 #bibliography li {
   position: relative;
   margin: 0.25em 0 0.75em;
-  padding-left: 6.5em;
+  padding-left: 6.5em; /* Space for the [Key] on the left */
   line-height: 1.45;
 }
 
+/* 2. Position the Key [Key] absolutely to the left */
 #bibliography li > .citeKey {
   position: absolute;
   left: 0;
   top: 0;
-  width: 6em;
+  width: 6em;       /* Fixed width for the key */
   text-align: left;
   font-weight: bold;
   color: var(--c-text-main);
 }
 
+/* 3. Style the value (details) */
 #bibliography li > .citeJournal,
 #bibliography li > .citeBooktitle { font-style: italic; }
 #bibliography li > .citeVolume { font-weight: 700; }
 
+/* 4. Highlight animation when clicking a link */
 @keyframes citeFade {
-  0% { background-color: rgba(255, 230, 0, 0.5); }
+  0% { background-color: rgba(255, 230, 0, 0.5); } /* Bright highlight */
   100% { background-color: transparent; }
 }
 
 #bibliography li:target {
-  animation: citeFade 3s ease-out;
+  animation: citeFade 3s ease-out; /* Fade out effect */
 }
+
 
 /* ==========================================================================
    9) MOBILE / TABLET

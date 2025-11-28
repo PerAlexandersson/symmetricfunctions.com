@@ -185,6 +185,7 @@ All Lua dependencies are included in the repository:
 ## Configuration
 
 Edit `config.mk` to customize:
+- `ASSETS_DIR` - Web page assets (default: `assets`)
 - `SRC_DIR` - Source directory (default: `tex-source`)
 - `TEMP_DIR` - Temporary files (default: `temp`)
 - `WWW_DIR` - Output directory (default: `www`)
