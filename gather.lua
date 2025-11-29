@@ -226,7 +226,7 @@ end
 
 --\topiccard{ID}{Title}{Body}
 -- <a href="ID" class="topic-card">
---   <img src="svg-images/card-ID.svg" alt="Title"/>
+--   <img src="nav-images/card-ID.svg" alt="Title"/>
 --  <p>Body</p>
 -- </a>
 local function topic_card(s)
@@ -240,13 +240,13 @@ local function topic_card(s)
     print_info("Topic card: id=%s title=%s", id_inner, title_inner)
 
     -- Image path + alt text
-    local img_path  = string.format("svg-images/card-%s.svg", id_inner)
+    local img_path  = string.format("nav-images/card-%s.svg", id_inner)
     local img_alt   = title_inner
 
     --TODOL make sure this is ok dims
     local img_attr  = pandoc.Attr("", {}, {
-        width = "200", 
-        height = "200" 
+        width = "200",
+        height = "200"
     })
 
     local img = pandoc.Image(pandoc.Str(img_alt), img_path, "", img_attr)

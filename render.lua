@@ -174,8 +174,9 @@ local function render_link(attr, inlines, target)
     local label = tostring(url or ""):gsub("^#", "")
     local entry = SITE_LABELS_MAP[label]
     
+    -- Print file name also
     if not entry then
-      print_error("Internal link to unknown label '%s' (text: %s)", label, link_inner_html)
+      print_error("hyperref to unknown label '%s' (text: %s)", label, link_inner_html)
       url = "#" .. label  -- Graceful degradation
     else
       url = entry.href or ("#" .. label)
@@ -699,7 +700,8 @@ end
 -- ========== MAIN EXECUTION ==========
 
 -- Load Pandoc document
-local pandoc_doc = file_reading.load_json_file(arg[1], "json pandoc document")
+local filename = arg[1];
+local pandoc_doc = file_reading.load_json_file(filename, "json pandoc document")
 
 -- Extract metadata
 local meta      = pandoc_doc.meta or {}
