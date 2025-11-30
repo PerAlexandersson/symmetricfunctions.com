@@ -7,14 +7,7 @@
 -- - File existence validation for images
 -- - Table of contents generation from headers
 -- - Lazy template placeholder evaluation
---
--- Environment variables:
---   TEMP_DIR    - Directory for intermediate files (default: "temp")
---   REFS_JSON   - Path to bibliography JSON (default: temp/bibliography.json)
---   LABELS_JSON - Path to site labels JSON (default: temp/site-labels.json)
---   TEMPLATE    - HTML template file (default: "template.htm")
---   WWW_DIR     - Output directory (default: "www")
---   SOURCE_TS   - Source timestamp in seconds (default: current time)
+-- - Injection of custom CSS variables defined in LaTeX
 
 -- ========== DEPENDENCIES ==========
 
@@ -44,11 +37,6 @@ local WWW_DIR       = os.getenv("WWW_DIR") or "www"
 local SOURCE_TS     = os.getenv("SOURCE_TS") or tostring(os.time())
 
 -- Site-wide label mapping for cross-page references
--- Example entry: SITE_LABELS_MAP["schurS"] = { 
---   page = "schur", 
---   href = "schur.htm#schurS", 
---   title = "Schur polynomials"
--- }
 local SITE_LABELS_MAP = file_reading.load_json_file(LABELS_JSON, "site-labels")
 
 
@@ -70,8 +58,6 @@ local ICON_STYLES = {
 -- ========== UTILITY FUNCTIONS ==========
 
 --- Renders Pandoc attributes as HTML attribute string.
--- @param attr table Pandoc attribute triplet: {id, classes, keyvals}
--- @return string HTML attributes string (e.g., ' id="foo" class="bar baz"')
 local function render_attr(attr)
   local id      = attr[1] or ""
   local classes = attr[2] or {}
@@ -99,8 +85,6 @@ end
 
 
 --- Extracts key-value pairs from Pandoc attributes.
--- @param kvs table Array of {key, value} pairs
--- @return table Map of key to value
 local function extract_keyvals(kvs)
   local result = {}
   for _, kv in ipairs(kvs or {}) do
@@ -114,9 +98,6 @@ end
 
 
 --- Checks if an array contains a specific value.
--- @param arr table Array to search
--- @param val any Value to find
--- @return boolean True if value is found
 local function array_contains(arr, val)
   for _, v in ipairs(arr) do
     if v == val then
@@ -129,21 +110,16 @@ end
 
 -- ========== INLINE ELEMENT RENDERERS ==========
 
--- Forward declare these as they depend on each other.
 local render_inlines_html
 local render_blocks_html
 
 --- Renders an icon span as Font Awesome element.
--- @param kvs table Key-value pairs from attributes
--- @return string|nil HTML <i> element or nil if not an icon
 local function render_icon(kvs)
   local kv_map = extract_keyvals(kvs)
   local icon_name = kv_map["data-icon"]
   local icon_style = kv_map["data-style"] or "solid"
   
-  if not icon_name then
-    return nil  -- Not an icon, render as normal span
-  end
+  if not icon_name then return nil end
   
   local fa_style = ICON_STYLES[icon_style] or "fas"
   return string.format('<i class="%s fa-%s" aria-hidden="true"></i>', fa_style, icon_name)
@@ -151,14 +127,9 @@ end
 
 
 --- Renders a link element, handling internal cross-references.
--- @param attr table Pandoc attributes
--- @param inlines table Array of inline elements (link text)
--- @param target string|table Link target (URL or {url, title})
--- @return string HTML <a> element
 local function render_link(attr, inlines, target)
   local url, title = "#", ""
   
-  -- Decode target (Pandoc 2.x/3.x compatibility)
   if type(target) == "table" then
     url   = target[1] or target.url or "#"
     title = target[2] or ""
@@ -174,10 +145,9 @@ local function render_link(attr, inlines, target)
     local label = tostring(url or ""):gsub("^#", "")
     local entry = SITE_LABELS_MAP[label]
     
-    -- Print file name also
     if not entry then
       print_error("hyperref to unknown label '%s' (text: %s)", label, link_inner_html)
-      url = "#" .. label  -- Graceful degradation
+      url = "#" .. label
     else
       url = entry.href or ("#" .. label)
     end
@@ -193,14 +163,9 @@ end
 
 
 --- Renders an image element with validation.
--- @param attr table Pandoc attributes
--- @param caption table Array of inline elements (caption)
--- @param target string|table Image source
--- @return string HTML <img> element
 local function render_image(attr, caption, target)
   local src, title = "", ""
   
-  -- Decode target
   if type(target) == "table" then
     src   = target[1] or target.src or ""
     title = target[2] or target.title or ""
@@ -210,7 +175,6 @@ local function render_image(attr, caption, target)
   
   local captionHTML = render_inlines_html(caption)
   
-  -- Validate image file exists
   if src ~= "" then
     if not file_reading.file_exists(WWW_DIR .. "/" .. src) then
       print_error("Image file not found: %s", src)
@@ -232,8 +196,6 @@ end
 
 
 --- Renders a LaTeX table inline element.
--- @param body string LaTeX table code
--- @return string HTML table or error markup
 local function render_latex_table_inline(body)
   local html, err = transform_tex_snippet(body)
   if err then
@@ -245,12 +207,8 @@ end
 
 
 --- Renders Pandoc inline elements to HTML.
--- @param inlines table Array of Pandoc inline elements
--- @return string Concatenated HTML string
 function render_inlines_html(inlines)
-  if type(inlines) ~= "table" then 
-    return "" 
-  end
+  if type(inlines) ~= "table" then return "" end
 
   local buffer = {}
 
@@ -258,7 +216,6 @@ function render_inlines_html(inlines)
     local t, c = el.t, el.c
     
     if t == "Str" then
-      -- Replace dashes: --- → —, -- → –
       local s = c:gsub("%-%-%-", EM_DASH):gsub("%-%-", EN_DASH)
       table.insert(buffer, html_escape(s))
       
@@ -307,17 +264,14 @@ function render_inlines_html(inlines)
       local classes = attr[2] or {}
       local kvs = attr[3] or {}
       
-      -- Check if this is an icon span
       if array_contains(classes, "icon") then
         local icon_html = render_icon(kvs)
         if icon_html then
           table.insert(buffer, icon_html)
         else
-          -- No icon data, render as normal span
           table.insert(buffer, "<span" .. render_attr(attr) .. ">" .. render_inlines_html(inl) .. "</span>")
         end
       else
-        -- Normal span
         table.insert(buffer, "<span" .. render_attr(attr) .. ">" .. render_inlines_html(inl) .. "</span>")
       end
       
@@ -342,17 +296,11 @@ end
 -- ========== BLOCK ELEMENT RENDERERS ==========
 
 --- Renders a collapsible environment (details/summary).
--- @param attr table Pandoc attributes
--- @param blocks table Array of block elements
--- @return string HTML <details> element
 local function render_collapsible(attr, blocks)
   local head = blocks[1]
   local rest = {}
-  for i = 2, #blocks do 
-    rest[#rest + 1] = blocks[i] 
-  end
+  for i = 2, #blocks do rest[#rest + 1] = blocks[i] end
   
-  -- Render heading without <p> wrapper (invalid inside <summary>)
   local head_html = ""
   if head and (head.t == "Para" or head.t == "Plain") then
     head_html = render_inlines_html(head.c or {})
@@ -364,14 +312,11 @@ local function render_collapsible(attr, blocks)
     render_blocks_html(rest),
     '</details>'
   }
-  
   return table.concat(parts)
 end
 
 
 --- Renders a LaTeX table block element.
--- @param body string LaTeX table code
--- @return string HTML table or error markup
 local function render_latex_table_block(body)
   local html, err = transform_tex_snippet(body)
   if err then
@@ -383,17 +328,12 @@ end
 
 
 --- Extracts plain text from inline elements (for TOC).
--- @param inlines table Array of inline elements
--- @return string Plain text representation
 local function extract_text_from_inlines(inlines)
   local parts = {}
   for _, x in ipairs(inlines) do
-    if x.t == "Str" then
-      table.insert(parts, x.c)
-    elseif x.t == "Space" then
-      table.insert(parts, " ")
-    elseif x.t == "Math" then
-      table.insert(parts, x.c[2] or "")
+    if x.t == "Str" then table.insert(parts, x.c)
+    elseif x.t == "Space" then table.insert(parts, " ")
+    elseif x.t == "Math" then table.insert(parts, x.c[2] or "")
     end
   end
   return table.concat(parts)
@@ -401,27 +341,18 @@ end
 
 
 --- Renders a header element.
--- @param level number Header level (1-6)
--- @param attr table Pandoc attributes
--- @param inlines table Array of inline elements (header text)
--- @param header_collector function|nil Optional callback for TOC generation
--- @return string HTML header element
 local function render_header(level, attr, inlines, header_collector)
-  -- Ensure we have an ID
   local id = attr[1]
   if (not id) or id == "" then
     print_error("Header missing ID")
     local text_parts = {}
     for _, x in ipairs(inlines) do
-      if x.t == "Str" then
-        table.insert(text_parts, x.c)
-      end
+      if x.t == "Str" then table.insert(text_parts, x.c) end
     end
     id = slugify(table.concat(text_parts, ""))
     attr[1] = id
   end
   
-  -- Collect for TOC if callback provided
   if header_collector then
     local text = extract_text_from_inlines(inlines)
     header_collector(level, id, text)
@@ -433,9 +364,6 @@ end
 
 
 --- Renders Pandoc block elements to HTML.
--- @param blocks table Array of Pandoc block elements
--- @param header_collector function|nil Optional callback(level, id, text) for TOC
--- @return string Concatenated HTML string
 function render_blocks_html(blocks, header_collector)
   local buffer = {}
   
@@ -481,39 +409,33 @@ function render_blocks_html(blocks, header_collector)
       
       -- Check for special page divs
       if array_contains(classes, "specialblock") then
-        local kvs = attr[3] or {}  -- Extract key-value pairs from attributes
+        local kvs = attr[3] or {} 
         local kv_map = extract_keyvals(kvs)
         local block_type = kv_map["data-type"]
 
-
         if block_type and block_type == "polynomialList" then
-          
           local polydata = file_reading.load_json_file(POLYDATA_JSON)
-
           if polydata then
             local poly_list_html = poly_to_html.render_polynomial_table(polydata) or ""
             table.insert(buffer, poly_list_html )
           else 
             print_error("Could not open %s",POLYDATA_JSON)
           end
-
         else
           print_error("specialblock div missing data-type attribute")
         end
       end
 
-      -- Check for special div types
+      -- Check for collapsible divs
       if array_contains(classes, "collapsible") then
         table.insert(buffer, render_collapsible(attr, c[2] or {}))
       else
-        -- Default div rendering
         local inner = render_blocks_html(c[2] or {})
         table.insert(buffer, "<div" .. render_attr(attr) .. ">" .. inner .. "</div>")
       end
       
     elseif t == "RawBlock" then
       local fmt, body = c[1], c[2]
-      
       if fmt and fmt:match("latextable") then
         table.insert(buffer, render_latex_table_block(body))
       elseif fmt and fmt:match("tex") then
@@ -534,11 +456,6 @@ end
 
 -- ========== METADATA EXTRACTION ==========
 
---- Safely extracts metadata value, handling MetaString wrappers.
--- @param meta table Pandoc metadata object
--- @param key string Metadata key
--- @param fallback any Default value if key not found
--- @return any Metadata value or fallback
 local function get_meta(meta, key, fallback)
   local v = meta[key]
   if type(v) == "table" and v.t == "MetaString" then 
@@ -550,104 +467,51 @@ end
 
 -- ========== TABLE OF CONTENTS ==========
 
---- Creates a TOC collector function.
--- @return function Collector function(level, id, text)
--- @return table Array to collect TOC items
 local function create_toc_collector()
   local toc_items = {}
-  
   local function collector(level, id, text)
-    if not id or id == "" then
-      return
-    end
-    
+    if not id or id == "" then return end
     local css_class = ""
-    if level == 2 then
-      css_class = "section"
-    elseif level == 3 then
-      css_class = "subsection"
-    end
-    
-    table.insert(
-      toc_items,
-      string.format('<li><a href="#%s" class="%s">%s</a></li>\n', id, css_class, text or "")
-    )
+    if level == 2 then css_class = "section"
+    elseif level == 3 then css_class = "subsection" end
+    table.insert(toc_items, string.format('<li><a href="#%s" class="%s">%s</a></li>\n', id, css_class, text or ""))
   end
-  
   return collector, toc_items
 end
 
-
---- Builds the table of contents HTML from collected items.
--- @param toc_items table Array of TOC HTML fragments
--- @param has_citations boolean Whether to include bibliography link
--- @return string Complete TOC HTML
 local function build_toc_html(toc_items, has_citations)
-  if #toc_items == 0 and not has_citations then
-    return ""
-  end
-  
+  if #toc_items == 0 and not has_citations then return "" end
   local items = {}
-  for _, item in ipairs(toc_items) do
-    table.insert(items, item)
-  end
-  
-  -- Add bibliography link if we have citations
+  for _, item in ipairs(toc_items) do table.insert(items, item) end
   if has_citations then
     table.insert(items, '<li><a href="#bibliography" class="section">Bibliography</a></li>\n')
   end
-  
   return table.concat(items)
 end
 
 
 -- ========== BIBLIOGRAPHY ==========
 
---- Builds the bibliography HTML from citations.
--- @param refs_json_path string Path to bibliography JSON file
--- @param citations table Array of citation keys
--- @return string Bibliography HTML
 local function build_bibliography_html(refs_json_path, citations)
-  if not citations or #citations == 0 then
-    return ""
-  end
-  
+  if not citations or #citations == 0 then return "" end
   return bibhandler.build_bibliography_HTML(refs_json_path, citations)
 end
 
 
 -- ========== METADATA FORMATTING ==========
 
---- Formats the last modified timestamp as HTML.
--- @param timestamp string Unix timestamp (seconds)
--- @return string HTML <time> element
 local function format_lastmod_html(timestamp)
   local date = os.date("%Y-%m-%d", tonumber(timestamp))
-  return string.format(
-    '<time class="dateMod" datetime="%s">%s</time>',
-    date, date
-  )
+  return string.format('<time class="dateMod" datetime="%s">%s</time>', date, date)
 end
 
 
 -- ========== LAZY TEMPLATE EVALUATION ==========
 
---- Creates a lazy value that only computes when accessed.
--- @param fn function Function that produces the value
--- @return table Lazy value wrapper
 local function lazy(fn)
-  return {
-    _lazy = true,
-    _fn = fn,
-    _computed = false,
-    _value = nil
-  }
+  return { _lazy = true, _fn = fn, _computed = false, _value = nil }
 end
 
-
---- Resolves a value, computing it if it's a lazy wrapper.
--- @param value any Value or lazy wrapper
--- @return any Resolved value
 local function resolve_value(value)
   if type(value) == "table" and value._lazy then
     if not value._computed then
@@ -662,44 +526,30 @@ end
 
 -- ========== TEMPLATE RENDERING ==========
 
---- Renders the final HTML document from template with lazy evaluation.
--- Template placeholders are written as <!--PLACEHOLDER_NAME-->
--- Values can be strings or lazy wrappers (created with lazy(fn))
--- 
--- @param template string Template HTML with <!--PLACEHOLDER--> markers
--- @param content table Map of placeholder names to values (or lazy wrappers)
--- @return string Final HTML document
 local function render_template(template, content)
   local used = {}
-  
-  local result = template:gsub("<!%-%-([A-Z_]+)%-%->", function(name)
+  -- Modified regex allows hyphens in placeholders (e.g. )
+  local result = template:gsub("<!%-%-([A-Z_%-]+)%-%->", function(name)
     local val = content[name]
     if not val then
-      print_error("Unknown placeholder in template: <!--%s-->", name)
+      print_error("Unknown placeholder in template: ", name)
       return ""
     end
-    
-    -- Mark as used and resolve lazy values
     used[name] = true
-    local resolved = resolve_value(val)
-    
-    return resolved or ""
+    return resolve_value(val) or ""
   end)
   
-  -- Report unused expensive computations
   for name, val in pairs(content) do
     if not used[name] and type(val) == "table" and val._lazy and val._computed then
       print_warn("Computed lazy value '%s' was never used in template", name)
     end
   end
-  
   return result
 end
 
 
 -- ========== MAIN EXECUTION ==========
 
--- Load Pandoc document
 local filename = arg[1];
 local pandoc_doc = file_reading.load_json_file(filename, "json pandoc document")
 
@@ -709,33 +559,38 @@ local title     = get_meta(meta, "metatitle", "Untitled")
 local desc      = get_meta(meta, "metadescription", title)
 local canonical = get_meta(meta, "canonical", "index.htm")
 local citations = meta.citations and (meta.citations.c or meta.citations) or {}
+local custom_css= get_meta(meta, "custom_css", "")
 
--- Render body with TOC collection
+-- Render body
 local collect_header, toc_items = create_toc_collector()
 local html_body = render_blocks_html(pandoc_doc.blocks or {}, collect_header)
-
--- Check if we have citations
 local has_citations = (citations and #citations > 0)
 
 -- Load template
 local template = file_reading.read_file(TEMPLATE, "html template")
 
--- Assemble document with lazy evaluation for expensive operations
 local document_content = {
-  -- Simple values (always computed)
   TITLE       = html_escape(title),
   DESCRIPTION = html_escape(desc),
   CANONICAL   = html_escape(canonical),
   LASTMOD     = format_lastmod_html(SOURCE_TS),
   MAIN        = html_body,
   
-  -- Lazy values (only computed if used in template)
   SIDELINKS = lazy(function()
     return build_toc_html(toc_items, has_citations)
   end),
   
   REFERENCES = lazy(function()
     return build_bibliography_html(REFS_JSON, citations)
+  end),
+
+  -- Inject CSS variables captured in gather.lua
+  STYLE = lazy(function()
+    if custom_css and custom_css ~= "" then
+      return ":root {\n" .. custom_css .. "\n}"
+    else
+      return ""
+    end
   end),
 }
 

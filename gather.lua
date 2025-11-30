@@ -48,7 +48,7 @@ local urls_seen = {}    -- set (url -> true), for logging
 local todos     = {}    -- list (strings)
 local families  = {}    -- list of {id=..., title=...}
 local polydata  = {}    -- map name -> { key = value, ... }
-local custom_css= {}    -- inject custom css
+local custom_css= {}    -- inject custom css (List of strings)
 
 local function record_todo(s)
   local t = s:match("^%s*\\todo(%b{})%s*$")
@@ -564,8 +564,8 @@ end
   do
     local body = s:match("^%s*\\begin%s*%{cssvars%}%s*([%s%S]-)\\end%s*%{cssvars%}%s*$")
     if body then
-      custom_css = body
-      return {} -- Consume the block so it doesn't appear in the body text
+      table.insert(custom_css, body)
+      return {}
     end
   end
 
@@ -774,12 +774,12 @@ function Pandoc(doc)
   m.todos      = todos
   m.families   = families
   m.polydata   = polydata
-  m.sourcestem = pandoc.MetaString(_STEM)
-`
-
-  if css_vars_block then
-    m.css_vars = pandoc.MetaString(custom_css)
+  
+  if #custom_css > 0 then
+    m.custom_css = pandoc.MetaString(table.concat(custom_css, "\n"))
   end
+
+  m.sourcestem = pandoc.MetaString(_STEM or "")
 
   local urls   = {}
   for u, _ in pairs(urls_seen) do urls[#urls + 1] = u end

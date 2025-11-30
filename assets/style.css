@@ -26,6 +26,9 @@
   --w-sidebar: 17rem;    /* Fixed sidebar width */
   --gap: 3rem;           /* Gap between sidebar and main */
 
+
+  --toc-display: block;
+
   color-scheme: light;
 }
 
@@ -193,6 +196,7 @@ h2 {
   overflow-y: auto;
   font-family: system-ui, sans-serif;
   padding-right: 1rem;
+  display: var(--toc-display);
 }
 
 #tocContainer nav ul { list-style: none; padding: 0; margin: 0; }
