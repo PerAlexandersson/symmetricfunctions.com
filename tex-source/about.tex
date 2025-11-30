@@ -47,8 +47,20 @@ If you have a particular formula, problem or result you want to promote, please 
 Even better, provide a DOI or .bib-file with the reference and write the text and send it to me.
 
 The entire website covers currently about 800 topics (by counting sections and subsections),
-and uses a .bib file with over 1200 references.
-It was first published online around February 2019.
+and uses a .bib file with over 1200 references. It was first published online around February 2019.
+
+
+\subsection[howToCite]{How to cite}
+
+You can use the following BibTeX entry when citing:
+\begin{lstlisting}
+@misc{Alexandersson2020,
+ author = {Per Alexandersson},
+ title = {The symmetric functions catalog},
+ howpublished = {Online},
+ url = {https://www.symmetricfunctions.com}
+} 
+\end{lstlisting}
 
 
 
@@ -57,12 +69,12 @@ It was first published online around February 2019.
 There are no fancy techniques used on the website.
 I write the information in plain files using LaTeX syntax and convert this
 to HTML using Pandoc and Lua before uploading.
-The references are automatically incorporated through this system using bibtex.
+The references are automatically incorporated through this system using BibTeX.
+
 
 The math is rendered using the javascript library \href{https://katex.org//}{KaTeX} 
 and I use \href{https://fontawesome.com/}{FontAwesome} for icons.
-It is my intention to keep the website mobile friendly as about $30\%$ of the users access
-the page using a phone.
+It is my intention to keep the website mobile friendly as 
+about $30\%$ of the users access the page using a phone.
 
 Any suggestions of improvements are welcome.
-

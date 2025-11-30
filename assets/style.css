@@ -26,7 +26,6 @@
   --w-sidebar: 17rem;    /* Fixed sidebar width */
   --gap: 3rem;           /* Gap between sidebar and main */
 
-
   --toc-display: block;
 
   color-scheme: light;
@@ -233,7 +232,10 @@ h2 {
 /* ==========================================================================
    6) CONTENT & CARDS
    ========================================================================== */
-#doc-main { min-width: 0; }
+#doc-main { 
+  min-width: 0; 
+  grid-column: 2;
+}
 
 .dateMod {
   display: block;
@@ -499,6 +501,34 @@ details.env[open] > summary::after {
 #bibliography li:target {
   animation: citeFade 3s ease-out;
 }
+
+
+/* ==========================================================================
+   LISTS & TYPOGRAPHY TWEAKS
+   ========================================================================== */
+
+ul, ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+  padding-left: 2rem;
+}
+
+li {
+  margin-bottom: 0.25rem; /* Slight breathing room between items */
+}
+
+/* Kill the default margins of paragraphs inside list items */
+li > p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Ensure nested lists are tight */
+li > ul, li > ol {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
 
 /* ==========================================================================
    9) MOBILE / TABLET RESPONSIVENESS
