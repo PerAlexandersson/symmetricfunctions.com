@@ -12,54 +12,14 @@ Mention \cite[Sec. 2.5]{BessisReiner2011}, where a \emph{non-faithful action} is
 See below for the \hyperref[cspDefinition]{definition of the cyclic sieving phenomenon}, (CSP).
 There are many instances of the CSP, which I have put into different categories
 based roughly on the type of combinatorial object it concerns.
-
-<div class="csp-icon-container">
-<a href="cyclic-sieving-list-word.htm">
-<img src="./svg-images/csp-icon-word.svg" 
-alt="CSP Icon Word" 
-class="cspIcon" />
-<span>Words &amp; permutations</span>
-</a></div>
-
-<div class="csp-icon-container">
-<a href="cyclic-sieving-list-path.htm">
-<img src="./svg-images/csp-icon-path.svg" 
-alt="CSP Icon Path" 
-class="cspIcon" />
-<span>Paths</span>
-</a></div>
-
-<div class="csp-icon-container">
-<a href="cyclic-sieving-list-catalan.htm">
-<img src="./svg-images/csp-icon-catalan.svg" 
-alt="CSP Icon Catalan" 
-class="cspIcon" />
-<span>Catalan objects</span>
-</a></div>
-
-<div class="csp-icon-container">
-<a href="cyclic-sieving-list-match.htm">
-<img src="./svg-images/csp-icon-match.svg" 
-alt="CSP Icon Match" 
-class="cspIcon" />
-<span>Matchings &amp; crossings</span>
-</a></div>
-
-<div class="csp-icon-container">
-<a href="cyclic-sieving-list-young.htm">
-<img src="./svg-images/csp-icon-young.svg" 
-alt="CSP Icon Young" 
-class="cspIcon" />
-<span>Tableaux &amp; fillings</span>
-</a></div>
-
-<div class="csp-icon-container">
-<a href="cyclic-sieving-list-misc.htm">
-<img src="./svg-images/csp-icon-misc.svg" 
-alt="CSP Icon Misc" 
-class="cspIcon" />
-<span>Miscellaneous</span>
-</a></div>
+\begin{itemize}
+\item \hyperref[cspCatalan]{CSP on Catalan objects.}
+\item \hyperref[cspMatch]{CSP on matchings.}
+\item \hyperref[cspPath]{CSP on paths (including lattice paths).}
+\item \hyperref[cspTableau]{CSP on tableaux and fillings.}
+\item \hyperref[cspWord]{CSP on words and permutations.}
+\item \hyperref[cspMisc]{CSP on other objects.}
+\end{itemize}
 
 
 \subsection[cspDefinition]{Definition}
@@ -201,15 +161,14 @@ equidistributed with $\maj$ on words of length $n$ with fixed content $\alpha$.
 
 \subsection[cspProper]{Proper statistic}
 
-\emph{The following definition has not been defined in any journal to my knowledge.
+\emph{The following definition has not been defined in any publication to my knowledge.
 This is possibly related/equivalent with the notion of a universal CSP statistic.
-}
+ --- Per}
 
 Suppose $X$ is a combinatorial family with a statistic $\sigma:X \to \setN$,
 that defines the $q$-analog $f(q)$ of $X$, and that $(X, \grpc_n, f(q))$ is a CSP-triple.
 
-Then the statistic is called \defin{proper}
-if whenever $d|n$, we have that
+Then the statistic is called \defin{proper} if whenever $d|n$, we have that
 \[
  g^{d}(x) = x \implies   \sigma(x) \equiv_{n/d} 0   \text{ for all } x \in X. 
 \]

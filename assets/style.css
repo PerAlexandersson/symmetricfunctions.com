@@ -339,6 +339,13 @@ code {
   font-size: 0.9em;
 }
 
+/* Definitions */
+.defin {
+  font-style: italic;          /* Emph */
+  font-weight: 600;            /* Heavier */
+  color: var(--c-link-dark);   /* A bit blue */
+}
+
 /* Figures containing tableaux */
 .figure, .ytabs {
   margin: 2rem auto;

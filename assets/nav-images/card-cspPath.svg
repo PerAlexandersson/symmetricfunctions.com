@@ -5,8 +5,8 @@ id="miscSVG" viewBox="0 0 500 500">
 			fill: none;
 		}
 		.strokeColor {
-			stroke: white;
-			fill: white;
+			stroke: currentColor;
+			fill: currentColor;
 		}
 	.lineClass {
 		stroke-width: 2%;
