@@ -230,46 +230,48 @@ end
 --   <img src="nav-images/card-ID.svg" alt="Title"/>
 -- </a>
 local function topic_card(s)
-  local id, title, description = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})%s*$")
+ -- Capture ID, Title, Description
+  local id, title, description = s:match("\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})")
 
   if id and title and description then
     local id_inner    = trim(id:sub(2, -2))
-    local title_inner = title:sub(2, -2)
-    --TODO: The description is not used at the moment
-    local descr_inner  = description:sub(2, -2)
+    local title_inner = trim(title:sub(2, -2))
+    local descr_inner = trim(description:sub(2, -2))
 
-    print_info("Topic card: id=%s title=%s descr=%s", id_inner, title_inner, descr_inner)
-
-    -- Image path + alt text
+    -- 1. Create the Image
     local img_path  = string.format("nav-images/card-%s.svg", id_inner)
-    local img_alt   = title_inner
+    -- We set intrinsic dimensions, but CSS will handle the actual layout
+    local img_attr  = pandoc.Attr("", {}, {width="200", height="200"}) 
+    local img       = pandoc.Image(pandoc.Str(title_inner), img_path, "", img_attr)
 
-    --TODOL make sure this is ok dims
-    local img_attr  = pandoc.Attr("", {}, {
-        width = "100",
-        height = "100"
-    })
+    -- 2. Process Text
+    -- Visible Title (Rich Text with Math support)
+    local title_doc = pandoc.read(title_inner, "latex")
+    -- Safety check: ensure we got blocks back
+    local title_content = title_doc.blocks[1] and title_doc.blocks[1].content or {}
 
-    local img = pandoc.Image(pandoc.Str(img_alt), img_path, "", img_attr)
+    -- Tooltip Description (Plain Text for title="" attribute)
+    local desc_doc  = pandoc.read(descr_inner, "latex")
+    local desc_text = pandoc.utils.stringify(desc_doc)
 
-    local link_contents = parse_inlines_walk(title_inner)
+    -- Create span for CSS styling
+    local title_span = pandoc.Span(title_content, {class="card-title"})
+    
+    -- Wrap text in a container span (Flexbox helper)
+    local text_wrapper = pandoc.Span({title_span}, {class="card-text"})
 
-    -- Link content = body text + line break + image
-    local link_inls = {}
-    for _, x in ipairs(link_contents) do
-      table.insert(link_inls, x)
-    end
-    table.insert(link_inls, pandoc.LineBreak())
-    table.insert(link_inls, img)
-
-    -- Inline link with class "topic-card"
+    -- 3. Create Link: 
+    -- Content: [Text Wrapper] + [Image]
+    -- Title Attribute: desc_text
     local link = pandoc.Link(
-      link_inls,
-      '#' .. id_inner,
-      "",
+      {text_wrapper, img}, 
+      '#' .. id_inner, 
+      desc_text, -- <--- Description goes here as title
       pandoc.Attr("", { "topic-card", "hyperref" }, {})
     )
-    return link
+
+    -- Return as Paragraph to sit in the grid
+    return pandoc.Para({link})
   else
     return nil
   end
