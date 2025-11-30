@@ -226,18 +226,19 @@ end
 
 --\topiccard{ID}{Title}{Body}
 -- <a href="ID" class="topic-card">
+--   <p>Body</p>
 --   <img src="nav-images/card-ID.svg" alt="Title"/>
---  <p>Body</p>
 -- </a>
 local function topic_card(s)
-  local id, title, body = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})%s*$")
+  local id, title, description = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})%s*$")
 
-  if id and title and body then
+  if id and title and description then
     local id_inner    = trim(id:sub(2, -2))
     local title_inner = title:sub(2, -2)
-    local body_inner  = body:sub(2, -2)
+    --TODO: The description is not used at the moment
+    local descr_inner  = description:sub(2, -2)
 
-    print_info("Topic card: id=%s title=%s", id_inner, title_inner)
+    print_info("Topic card: id=%s title=%s descr=%s", id_inner, title_inner, descr_inner)
 
     -- Image path + alt text
     local img_path  = string.format("nav-images/card-%s.svg", id_inner)
@@ -245,18 +246,17 @@ local function topic_card(s)
 
     --TODOL make sure this is ok dims
     local img_attr  = pandoc.Attr("", {}, {
-        width = "200",
-        height = "200"
+        width = "100",
+        height = "100"
     })
 
     local img = pandoc.Image(pandoc.Str(img_alt), img_path, "", img_attr)
 
-    -- Body text as inlines
-    local body_inls = parse_inlines_walk(body_inner)
+    local link_contents = parse_inlines_walk(title_inner)
 
     -- Link content = body text + line break + image
     local link_inls = {}
-    for _, x in ipairs(body_inls) do
+    for _, x in ipairs(link_contents) do
       table.insert(link_inls, x)
     end
     table.insert(link_inls, pandoc.LineBreak())

@@ -244,16 +244,31 @@ h2 {
   margin-right: 0.3em;
 }
 
-/* Cards (Grid) */
+/* Cards Container */
 .topicsection { margin: 3rem 0; }
+
 .topic-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.2rem;
+  /* Request: 4 columns */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
+
+/* Fix: Pandoc often wraps these in <p> tags with default margins. 
+   We remove margins so the grid aligns perfectly. */
+.topic-card-grid p {
+  margin: 0;
+  height: 100%; /* Ensure the <p> fills the grid cell */
+}
+
+/* Individual Card */
 .topic-card {
   display: flex;
-  flex-direction: column;
+  /* Request: Image on right (Row direction) */
+  flex-direction: row; 
+  align-items: center; /* Center content vertically */
+  justify-content: space-between;
+  
   height: 100%;
   padding: 1rem;
   background: var(--c-bg-surface);
@@ -261,7 +276,12 @@ h2 {
   border-radius: 6px;
   color: var(--c-text-main);
   transition: transform 0.2s, border-color 0.2s;
+  
+  /* Text styling inside card */
+  font-size: 0.9rem;
+  line-height: 1.35;
 }
+
 .topic-card:hover {
   text-decoration: none;
   transform: translateY(-2px);
@@ -269,14 +289,21 @@ h2 {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+/* Card Image/Icon */
 .topic-card img {
-  width: 100%;        /* Stretches to container width */
-  height: auto;       /* Maintains aspect ratio */
-  max-width: 100%;    /* Prevents exploding past the card */
-  display: block;     /* Removes tiny gap below images */
-  margin-top: auto; 
-  padding-top: 1rem; 
+  /* Request: 15-20% width */
+  width: 20%;
+  /* Request: Tall as the card (constrained by object-fit to not distort) */
+  height: 100%; 
+  max-height: 5rem; /* Cap max height so short text doesn't make tiny icons, long text doesn't make massive icons */
+  object-fit: contain; 
+  object-position: center right;
+  
+  margin-left: 1rem; /* Space between text and image */
+  padding-top: 0;    /* Reset previous padding */
+  margin-top: 0;     /* Reset previous margin */
 }
+
 @media (prefers-color-scheme: dark) {
   .topic-card img {
     filter: invert(1) opacity(0.8);
@@ -451,12 +478,24 @@ details.env[open] > summary::after {
 }
 
 /* ==========================================================================
-   9) MOBILE / TABLET
+   9) MOBILE / TABLET RESPONSIVENESS
    ========================================================================== */
 #tocButton { display: none; }
 
-@media (max-width: 900px) {
+/* Tablet: Drop to 2 columns */
+@media (max-width: 1100px) {
+  .topic-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: Drop to 1 column */
+@media (max-width: 600px) {
   :root { --w-sidebar: 0px; --gap: 0px; }
+
+  .topic-card-grid {
+    grid-template-columns: 1fr;
+  }
 
   /* Collapse Header/Footer Grids */
   #doc-title, #doc-footer {
