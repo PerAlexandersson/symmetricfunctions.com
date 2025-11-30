@@ -48,7 +48,7 @@ local urls_seen = {}    -- set (url -> true), for logging
 local todos     = {}    -- list (strings)
 local families  = {}    -- list of {id=..., title=...}
 local polydata  = {}    -- map name -> { key = value, ... }
-
+local custom_css= {}    -- inject custom css
 
 local function record_todo(s)
   local t = s:match("^%s*\\todo(%b{})%s*$")
@@ -560,6 +560,15 @@ function RawBlock(el)
   end
 end
 
+-- \begin{cssvars} ... \end{cssvars}
+  do
+    local body = s:match("^%s*\\begin%s*%{cssvars%}%s*([%s%S]-)\\end%s*%{cssvars%}%s*$")
+    if body then
+      custom_css = body
+      return {} -- Consume the block so it doesn't appear in the body text
+    end
+  end
+
   -- \svgimg as block
   do
     local img = parse_svgimg(s)
@@ -766,6 +775,11 @@ function Pandoc(doc)
   m.families   = families
   m.polydata   = polydata
   m.sourcestem = pandoc.MetaString(_STEM)
+`
+
+  if css_vars_block then
+    m.css_vars = pandoc.MetaString(custom_css)
+  end
 
   local urls   = {}
   for u, _ in pairs(urls_seen) do urls[#urls + 1] = u end
