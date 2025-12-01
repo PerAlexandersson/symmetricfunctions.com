@@ -11,8 +11,7 @@ local print_warn = utils.print_warn
 -- ========== UTILITY FUNCTIONS ==========
 
 --- Pads a matrix (list of lists) to a rectangle using a specific value.
--- @param matrix table List of rows
--- @param val any The value to pad with (usually "\\none")
+-- @return number max_w The calculated width (number of columns)
 local function pad_matrix_to_rectangle(matrix, val)
   local max_w = 0
   for _, row in ipairs(matrix) do
@@ -102,6 +101,13 @@ local function split_yshort_row(row)
   return toks
 end
 
+--- Helper to check if a cell content counts as "empty/none"
+local function is_cell_none(content)
+  if not content or content == "" then return true end
+  if content:find("\\none") then return true end
+  return false
+end
+
 
 -- ========== CORE RENDERER ==========
 
@@ -122,13 +128,17 @@ local function format_cell_content(ent_in, opts)
   if ent:find("\\none", 1, true) then
     ent = ent:gsub("\\none", "")
     table.insert(classes, "none")
-    -- We add a helper style for safety, though CSS class .none should handle it
     table.insert(styles, "border: none; background: transparent") 
   end
 
   -- Alignment
   if align == "l" or align == "c" or align == "r" then
     table.insert(classes, "align-" .. align)
+  end
+  
+  -- Extra classes (borders, etc)
+  if opts.extra_classes then
+    for _, c in ipairs(opts.extra_classes) do table.insert(classes, c) end
   end
 
   -- Empty handling
@@ -147,7 +157,8 @@ end
 -- @param matrix table The data matrix
 -- @param specList table|nil List of alignment specs ['l', 'c', 'r'] matching columns
 -- @param opts table Configuration: { type="name", delimiter="$", is_block=bool }
-local function render_matrix_to_span(matrix, specList, opts)
+-- @param col_count number The number of columns (width of matrix)
+local function render_matrix_to_span(matrix, specList, opts, col_count)
   specList = specList or {}
   opts = opts or {}
   local type_name = opts.type or "tabular"
@@ -157,19 +168,41 @@ local function render_matrix_to_span(matrix, specList, opts)
   local classes = { "ytab-wrapper", type_name }
   if opts.is_block then table.insert(classes, "ytab-display") end
 
-  local html_parts = {}
-  table.insert(html_parts, '<span class="' .. table.concat(classes, " ") .. '">')
+  -- Inject Column Variable for CSS Grid
+  local style_attr = ""
+  if col_count and col_count > 0 then
+    style_attr = string.format(' style="--cols: %d;"', col_count)
+  end
 
-  for _, row in ipairs(matrix) do
+  local html_parts = {}
+  table.insert(html_parts, '<span class="' .. table.concat(classes, " ") .. '"' .. style_attr .. '>')
+
+  for r, row in ipairs(matrix) do
     if row[1] == "__RULE__" then
       -- Render structural rules as special rows
       local rule_cls = (row[2] == "top" and "rule-top") or (row[2] == "mid" and "rule-mid") or "rule-bottom"
       table.insert(html_parts, '<span class="ytab-row rule ' .. rule_cls .. '"></span>')
     else
       table.insert(html_parts, '<span class="ytab-row">')
-      for i, cell in ipairs(row) do
-        local align = specList[i] or ""
-        local cell_html = format_cell_content(cell, { delimiter = delimiter, align = align })
+      for c, cell in ipairs(row) do
+        local align = specList[c] or ""
+        
+        -- Smart borders logic
+        local border_classes = {}
+        if c > 1 then 
+           local left = matrix[r][c-1]
+           if not is_cell_none(left) then table.insert(border_classes, "nbl") end
+        end
+        if r > 1 and matrix[r-1] then
+           local top = matrix[r-1][c]
+           if not is_cell_none(top) then table.insert(border_classes, "nbt") end
+        end
+        
+        local cell_html = format_cell_content(cell, { 
+            delimiter = delimiter, 
+            align = align,
+            extra_classes = border_classes
+        })
         table.insert(html_parts, cell_html)
       end
       table.insert(html_parts, '</span>')
@@ -211,10 +244,13 @@ local function tex_tabular_to_span(s, type_, spec)
     end
   end
 
-  pad_matrix_to_rectangle(matrix, "\\none")
+  -- Pad and get Width
+  local width = pad_matrix_to_rectangle(matrix, "\\none")
   
   local delim = (type_ == "array") and "$" or ""
-  return render_matrix_to_span(matrix, specList, { type = type_, delimiter = delim })
+  local is_blk = (type_ == "tabular") -- Tabulars are blocks by default
+  
+  return render_matrix_to_span(matrix, specList, { type = type_, delimiter = delim, is_block = is_blk }, width)
 end
 
 --- 2. Ytableaushort
@@ -234,10 +270,10 @@ local function ytableaushort_to_span(argstr, opts)
     table.insert(matrix, tokens)
   end
 
-  pad_matrix_to_rectangle(matrix, "\\none")
+  local width = pad_matrix_to_rectangle(matrix, "\\none")
 
   local delim = opts.delimiter or "$"
-  return render_matrix_to_span(matrix, nil, { type = "ytableau", delimiter = delim })
+  return render_matrix_to_span(matrix, nil, { type = "ytableau", delimiter = delim }, width)
 end
 
 --- 3. Youngtab / Ytableau Environment
@@ -253,10 +289,10 @@ local function youngtab_to_span(body, opts)
     table.insert(matrix, split_cells_preserve_empties(rtrim(line), "&"))
   end
 
-  pad_matrix_to_rectangle(matrix, "\\none")
+  local width = pad_matrix_to_rectangle(matrix, "\\none")
 
   local delim = opts.delimiter or "$"
-  return render_matrix_to_span(matrix, nil, { type = "ytableau", delimiter = delim })
+  return render_matrix_to_span(matrix, nil, { type = "ytableau", delimiter = delim }, width)
 end
 
 
@@ -287,9 +323,13 @@ local function transform_tex_snippet(s)
   local acols, abody = src:match("^%s*\\begin%s*%{array%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{array%}%s*$")
   if acols then return tex_tabular_to_span(abody, "array", acols:sub(2, -2)) end
 
-  -- Environment: rawtabular
-  local tcols, tbody = src:match("^%s*\\begin%s*%{rawtabular%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{rawtabular%}%s*$")
+  -- Environment: tabular
+  local tcols, tbody = src:match("^%s*\\begin%s*%{tabular%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{tabular%}%s*$")
   if tcols then return tex_tabular_to_span(tbody, "tabular", tcols:sub(2, -2)) end
+
+  -- Environment: rawtabular
+  local rcols, rbody = src:match("^%s*\\begin%s*%{rawtabular%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{rawtabular%}%s*$")
+  if rcols then return tex_tabular_to_span(rbody, "tabular", rcols:sub(2, -2)) end
 
   return nil, "Unknown format"
 end

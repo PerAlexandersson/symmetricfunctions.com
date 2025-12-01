@@ -17,7 +17,7 @@
     --c-text-sub:    #495057;
     --c-text-muted:  #868e96;
   
-    /* Math/Tableaux specifics (Legacy) */
+    /* Math/Tableaux specifics */
     --math-env-bar:  rgb(200,200,200);
     --math-accent:   rgb(37,134,221);
   
@@ -331,7 +331,7 @@
   
   
   /* ==========================================================================
-     7) MATH & TABLEAUX (Refactored for Span/Flexbox)
+     7) MATH & TABLEAUX (Refactored for CSS Grid)
      ========================================================================== */
      
   code {
@@ -342,182 +342,159 @@
     font-size: 0.9em;
   }
   
-  /* Definitions */
   .defin {
-    font-style: italic;          /* Emph */
-    font-weight: 600;            /* Heavier */
-    color: var(--c-link-dark);   /* A bit blue */
+    font-style: italic;          
+    font-weight: 600;            
+    color: var(--c-link-dark);   
   }
   
-  /* Figures containing tableaux */
+  /* Figures containing tableaux: Use Flex Gap for consistent spacing */
   .figure, .ytabs {
     margin: 2rem auto;
-    display: block;
     width: 100%;
-    text-align: center;
-    overflow-x: auto;
     padding: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;       
+    justify-content: center; 
+    align-items: center;
+    gap: 1.5rem; 
   }
+      
+  .figure img, .ytabs img {
+    flex-shrink: 0;
+    max-width: 100%;
+    height: auto;
+    margin-right: 1rem; 
+  }
+
+  /* Strip layout from paragraphs inside figures so images sit next to tableaux */
+  .figure p, .ytabs p {
+    display: contents;
+    margin: 0;
+  }
+
   
-  /* --- New Span-Based Tableaux System --- */
+  /* --- A) STANDARD YOUNG TABLEAUX (Flexbox) --- */
   
-  /* The Wrapper (Acts as the table) */
+  /* The Wrapper */
   .ytab-wrapper {
     display: inline-flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack rows vertically */
     vertical-align: middle;
-    margin: 0 0.2rem;
-    /* Font settings to ensure consistent cell sizes */
+    margin: 0.3em 0.2rem;
     font-size: 0.9rem;
     line-height: 1;
   }
   
-  /* Block Display Mode (Centered) */
+  /* Display/Block Mode */
   .ytab-wrapper.ytab-display {
     display: flex;
     margin: 1.5rem auto;
     width: fit-content;
   }
   
+
   /* The Row */
   .ytab-row {
     display: flex;
     flex-direction: row;
   }
   
-  /* The Cell (Young Tableaux Style) */
+  /* The Cell (Square) */
   .ytab-cell {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     
-    /* Dimensions & Borders */
-    width: 1.8em;
-    height: 1.8em;
-    border: 0.1em solid currentColor; /* Use current text color */
+    /* Dimensions */
+    width: 1.6em;
+    height: 1.6em;
+    
+    /* Borders */
+    border: 0.15em solid currentColor;
     box-sizing: border-box;
     
-    /* Border collapsing hack: overlap adjacent borders */
-    margin-top: -0.1em;
-    margin-left: -0.1em;
-    
-    /* Content */
     font-weight: 600;
     background: inherit;
   }
+
+  /* Smart Border Logic (Only for Young Tableaux) */
+  .ytab-cell.nbl { border-left: none; }
+  .ytab-cell.nbt { border-top: none; }
+  .ytab-cell.none { border: none; background: transparent; }
   
-  /* Empty Cells in Tableaux (\none) */
-  .ytab-cell.none {
-    border-color: transparent;
-    background: transparent;
-  }
-  
-  /* Alignment Classes */
+  /* Alignment (Local) */
   .ytab-cell.align-l { justify-content: flex-start; padding-left: 0.2em; }
   .ytab-cell.align-r { justify-content: flex-end; padding-right: 0.2em; }
   
-  
-  /* --- Overrides for Data Arrays/Tabulars (Not Tableaux) --- */
-  /* These map to the 'array' or 'tabular' class added by the Lua script */
-  
+
+  /* --- B) DATA ARRAYS / TABULARS (CSS Grid) --- */
+    
   .ytab-wrapper.array, 
   .ytab-wrapper.tabular {
+    display: inline-grid;
+    /* Create N columns based on Lua variable */
+    grid-template-columns: repeat(var(--cols), max-content);
+    column-gap: 1em;
+    row-gap: 0;
+    
     margin: 1.5rem auto;
-    display: flex; /* Usually block level */
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
+    vertical-align: middle;
+    
+    /* Disable Flexbox inheritance */
+    flex-direction: unset;
   }
   
+  /* Flatten the rows so cells align to the Grid */
+  .ytab-wrapper.array .ytab-row,
+  .ytab-wrapper.tabular .ytab-row {
+    display: contents; 
+  }
+  
+  /* Array Cells (Fluid Width) */
   .ytab-wrapper.array .ytab-cell,
   .ytab-wrapper.tabular .ytab-cell {
-    /* Reset fixed square dimensions */
-    width: auto;
+    width: 100%;      
     height: auto;
     min-width: 1em;
-    padding: 0.5em 0.9em;
+    padding: 0.5em 0.5em;
     
-    /* Reset borders (Arrays usually rely on rules, not cell borders) */
+    /* Arrays usually only have rules, not cell borders */
     border: none;
-    margin: 0;
     border-bottom: 1px solid var(--c-border);
     
-    /* Alignment defaults */
     font-weight: normal;
-    justify-content: flex-start; /* Default left align for text */
+    justify-content: flex-start; /* Default align */
   }
   
-  /* Rules within Arrays (Generated as spans with 'rule' class) */
-  .ytab-row.rule {
+  /* Alignment Mapping for Grid Cells */
+  .ytab-wrapper.array .ytab-cell.align-r, .ytab-wrapper.tabular .ytab-cell.align-r { justify-content: flex-end; text-align: right; }
+  .ytab-wrapper.array .ytab-cell.align-c, .ytab-wrapper.tabular .ytab-cell.align-c { justify-content: center; text-align: center; }
+  .ytab-wrapper.array .ytab-cell.align-l, .ytab-wrapper.tabular .ytab-cell.align-l { justify-content: flex-start; text-align: left; }
+
+  /* Rules (toprule, midrule, etc.) in Grid */
+  .ytab-wrapper.array .ytab-row.rule,
+  .ytab-wrapper.tabular .ytab-row.rule {
+    display: block;
+    grid-column: 1 / -1; /* Span ALL columns */
     height: 0;
-    border: none;
-    display: block; /* Break out of flex flow if needed, or act as separator */
     width: 100%;
   }
-  .ytab-row.rule-top { border-top: 2px solid currentColor; margin-bottom: 2px; }
-  .ytab-row.rule-mid { border-top: 1px solid var(--c-border); }
-  .ytab-row.rule-bottom { border-top: 2px solid currentColor; margin-top: 2px; }
   
-  
-  /* Family Index Table (Legacy HTML tables still used here?) */
-  .family-index {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2rem;
+  /* Rule Styling */
+  .ytab-row.rule-top { border-top: 2px solid currentColor; margin-bottom: 4px; }
+  .ytab-row.rule-mid { border-top: 1px solid var(--c-border); margin: 4px 0; }
+  .ytab-row.rule-bottom { border-top: 2px solid currentColor; margin-top: 4px; }
+ 
+    
+  /* Override for Block-level Tabulars (Centers them) */
+  .ytab-wrapper.tabular.ytab-display {
+    display: grid;       
+    margin: 1.5rem auto; 
+    width: fit-content;
   }
-  .family-index th {
-    text-align: left;
-    border-bottom: 2px solid var(--c-border);
-    padding: 0.75rem;
-    background: var(--c-bg-header);
-  }
-  .family-index td {
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--c-border);
-  }
-  
-  /* Theorem Environments (Details/Summary) */
-  div.env, details.env {
-    border-left: 4px solid var(--math-env-bar);
-    padding: 0.5em 0.5em 0.5em 1em;
-    background: linear-gradient(to right, var(--c-bg-surface), transparent);
-    margin: 1.5em 0;
-  }
-  
-  /* Hide default markers */
-  details.env > summary {
-    color: var(--math-accent);
-    font-weight: bold;
-    cursor: pointer;
-    list-style: none; /* Firefox/Standard */
-    margin-bottom: 0.5em;
-    position: relative;
-    padding-right: 2em; /* Make space for the custom arrow */
-  }
-  details.env > summary::-webkit-details-marker {
-    display: none; /* Chrome/Safari */
-  }
-  
-  /* Custom Arrow (Chevron) */
-  details.env > summary::after {
-    content: "";
-    position: absolute;
-    right: 0.75em;
-    top: 0.4em;
-    width: 0.5em;
-    height: 0.5em;
-    border-right: 2px solid var(--math-accent);
-    border-bottom: 2px solid var(--math-accent);
-    transform: rotate(-45deg); /* Pointing right */
-    transition: transform 0.2s ease;
-  }
-  
-  /* Arrow Rotation on Open */
-  details.env[open] > summary::after {
-    transform: rotate(45deg); /* Pointing down */
-    top: 0.3em;
-  }
-  
+
+
   /* ==========================================================================
      8) BIBLIOGRAPHY & CITATIONS
      ========================================================================== */
@@ -648,9 +625,6 @@
     }
     .toc-label { display: none; }
   }
-  
-  
-  
   
   /* ==========================================================================
      10) LANDING PAGE OVERRIDES
