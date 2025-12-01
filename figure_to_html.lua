@@ -1,17 +1,12 @@
--- Convert ytableau/youngtab/array/tabular to HTML Spans (CSS Grid/Flex compatible).
--- This module converts TeX table formats into semantic <span> structures.
--- Exposes:
---   transform_tex_snippet, tex_tabular_to_span, ytableaushort_to_span, youngtab_to_span
+-- Convert ytableau/youngtab/array/tabular to HTML using CSS Grid with explicit positioning
+-- Simplified approach: one container span + positioned cell spans
 
 local utils = dofile("utils.lua")
 local trim = utils.trim
 local rtrim = utils.rtrim
-local print_warn = utils.print_warn
 
 -- ========== UTILITY FUNCTIONS ==========
 
---- Pads a matrix (list of lists) to a rectangle using a specific value.
--- @return number max_w The calculated width (number of columns)
 local function pad_matrix_to_rectangle(matrix, val)
   local max_w = 0
   for _, row in ipairs(matrix) do
@@ -25,7 +20,6 @@ local function pad_matrix_to_rectangle(matrix, val)
   return max_w
 end
 
---- Splits a string on top-level commas (ignoring commas inside {...}).
 local function split_top_level_commas(s)
   local parts, buf, depth = {}, {}, 0
   for i = 1, #s do
@@ -48,14 +42,12 @@ local function split_top_level_commas(s)
   return parts
 end
 
---- Extracts background color specified as "*(color)" and removes it from the entry.
 local function extract_color(ent)
   local color = ent:match("%*%((.-)%)")
   local cleaned = ent:gsub("%*%((.-)%)", "")
   return color or "", cleaned
 end
 
---- Splits a string on a separator, preserving empty entries.
 local function split_cells_preserve_empties(s, sep)
   s = tostring(s or "")
   sep = sep or "&"
@@ -74,7 +66,6 @@ local function split_cells_preserve_empties(s, sep)
   return out
 end
 
---- Splits a ytableaushort row into individual cell tokens.
 local function split_yshort_row(row)
   row = trim(row or "")
   local toks = {}
@@ -101,159 +92,165 @@ local function split_yshort_row(row)
   return toks
 end
 
---- Helper to check if a cell content counts as "empty/none"
 local function is_cell_none(content)
   if not content or content == "" then return true end
   if content:find("\\none") then return true end
   return false
 end
 
-
 -- ========== CORE RENDERER ==========
 
---- Formats a single cell content into a span.
-local function format_cell_content(ent_in, opts)
+--- Formats a single cell with inline grid position
+local function format_cell(content, row, col, opts)
   opts = opts or {}
   local delimiter = opts.delimiter or ""
   local align = opts.align or ""
-  local ent = ent_in or ""
-  local classes, styles = { "ytab-cell" }, {}
-
-  -- Extract Color
+  
+  local ent = content or ""
+  local classes = {}
+  local styles = {}
+  
+  -- Grid position
+  table.insert(styles, string.format("grid-row: %d", row))
+  table.insert(styles, string.format("grid-column: %d", col))
+  
+  -- Extract color
   local color
   color, ent = extract_color(ent)
-  if color ~= "" then table.insert(styles, "background-color: " .. color) end
-
+  if color ~= "" then 
+    table.insert(styles, "background-color: " .. color) 
+  end
+  
   -- Handle \none
   if ent:find("\\none", 1, true) then
     ent = ent:gsub("\\none", "")
     table.insert(classes, "none")
-    table.insert(styles, "border: none; background: transparent") 
   end
-
+  
   -- Alignment
   if align == "l" or align == "c" or align == "r" then
     table.insert(classes, "align-" .. align)
   end
   
-  -- Extra classes (borders, etc)
-  if opts.extra_classes then
-    for _, c in ipairs(opts.extra_classes) do table.insert(classes, c) end
-  end
-
   -- Empty handling
   if trim(ent) == "" then
     ent = "&nbsp;"
     delimiter = ""
   end
-
-  local cls_attr = (' class="' .. table.concat(classes, " ") .. '"')
-  local style_attr = (#styles > 0) and (' style="' .. table.concat(styles, "; ") .. '"') or ""
-
+  
+  local cls_attr = (#classes > 0) and (' class="' .. table.concat(classes, " ") .. '"') or ""
+  local style_attr = ' style="' .. table.concat(styles, "; ") .. '"'
+  
   return string.format("<span%s%s>%s%s%s</span>", cls_attr, style_attr, delimiter, ent, delimiter)
 end
 
---- Renders a normalized matrix (list of lists) into HTML Spans.
--- @param matrix table The data matrix
--- @param specList table|nil List of alignment specs ['l', 'c', 'r'] matching columns
--- @param opts table Configuration: { type="name", delimiter="$", is_block=bool }
--- @param col_count number The number of columns (width of matrix)
-local function render_matrix_to_span(matrix, specList, opts, col_count)
+--- Renders matrix to HTML with CSS Grid
+local function render_matrix(matrix, specList, opts, col_count)
   specList = specList or {}
   opts = opts or {}
-  local type_name = opts.type or "tabular"
+  local type_name = opts.type or "ytableau"
   local delimiter = opts.delimiter or ""
+  local is_inline = not opts.is_block
   
-  -- Base classes
-  local classes = { "ytab-wrapper", type_name }
-  if opts.is_block then table.insert(classes, "ytab-display") end
-
-  -- Inject Column Variable for CSS Grid
-  local style_attr = ""
-  if col_count and col_count > 0 then
-    style_attr = string.format(' style="--cols: %d;"', col_count)
-  end
-
-  local html_parts = {}
-  table.insert(html_parts, '<span class="' .. table.concat(classes, " ") .. '"' .. style_attr .. '>')
-
-  for r, row in ipairs(matrix) do
+  -- Container classes
+  local classes = { type_name }
+  if is_inline then table.insert(classes, "inline") end
+  
+  -- Count actual rows (including rules)
+  local total_rows = #matrix
+  local rule_count = 0
+  for _, row in ipairs(matrix) do
     if row[1] == "__RULE__" then
-      -- Render structural rules as special rows
-      local rule_cls = (row[2] == "top" and "rule-top") or (row[2] == "mid" and "rule-mid") or "rule-bottom"
-      table.insert(html_parts, '<span class="ytab-row rule ' .. rule_cls .. '"></span>')
-    else
-      table.insert(html_parts, '<span class="ytab-row">')
-      for c, cell in ipairs(row) do
-        local align = specList[c] or ""
-        
-        -- Smart borders logic
-        local border_classes = {}
-        if c > 1 then 
-           local left = matrix[r][c-1]
-           if not is_cell_none(left) then table.insert(border_classes, "nbl") end
-        end
-        if r > 1 and matrix[r-1] then
-           local top = matrix[r-1][c]
-           if not is_cell_none(top) then table.insert(border_classes, "nbt") end
-        end
-        
-        local cell_html = format_cell_content(cell, { 
-            delimiter = delimiter, 
-            align = align,
-            extra_classes = border_classes
-        })
-        table.insert(html_parts, cell_html)
-      end
-      table.insert(html_parts, '</span>')
+      rule_count = rule_count + 1
     end
   end
-
-  table.insert(html_parts, '</span>')
-  return table.concat(html_parts, "")
+  
+  -- Grid dimensions
+  local grid_style = string.format("grid-template-rows: repeat(%d, auto); grid-template-columns: repeat(%d, auto)", 
+                                   total_rows, col_count)
+  
+  local html = {}
+  table.insert(html, string.format('<span class="%s" style="%s">', 
+                                    table.concat(classes, " "), grid_style))
+  
+  -- Render cells with explicit positions
+  local current_row = 0
+  for r, row in ipairs(matrix) do
+    if row[1] == "__RULE__" then
+      current_row = current_row + 1
+      -- Render horizontal rule spanning all columns
+      local rule_type = row[2] or "mid"
+      local rule_class = "rule rule-" .. rule_type
+      local rule_style = string.format("grid-row: %d; grid-column: 1 / %d", 
+                                       current_row, col_count + 1)
+      table.insert(html, string.format('<span class="%s" style="%s"></span>', 
+                                       rule_class, rule_style))
+    else
+      current_row = current_row + 1
+      for c, cell in ipairs(row) do
+        if not is_cell_none(cell) then
+          local align = specList[c] or ""
+          local cell_html = format_cell(cell, current_row, c, {
+            delimiter = delimiter,
+            align = align
+          })
+          table.insert(html, cell_html)
+        end
+      end
+    end
+  end
+  
+  table.insert(html, '</span>')
+  return table.concat(html, "\n")
 end
 
+-- ========== PARSERS ==========
 
--- ========== PARSERS & CONVERTERS ==========
-
---- 1. Tabular / Array
 local function tex_tabular_to_span(s, type_, spec)
   if not s or s == "" then return "", "Empty content" end
   
-  -- Parse Specs
+  -- Parse column specs
   local specList = {}
   if spec then
     for ch in spec:gmatch(".") do
-      if ch == "l" or ch == "c" or ch == "r" then table.insert(specList, ch) end
+      if ch == "l" or ch == "c" or ch == "r" then 
+        table.insert(specList, ch) 
+      end
     end
   end
-
-  -- Normalize & Split Lines
+  
+  -- Normalize
   s = s:gsub("\r\n", "\n")
-       :gsub("\\toprule", "\\toprule\\\\"):gsub("\\midrule", "\\midrule\\\\"):gsub("\\bottomrule", "\\bottomrule\\\\")
+       :gsub("\\toprule", "\\toprule\\\\")
+       :gsub("\\midrule", "\\midrule\\\\")
+       :gsub("\\bottomrule", "\\bottomrule\\\\")
   if not s:find("\\\\%s*$") then s = s .. "\\\\" end
-
+  
   local matrix = {}
   for line in s:gmatch("(.-)\\\\") do
     local tline = trim(line)
-    if tline == "\\toprule" then table.insert(matrix, { "__RULE__", "top" })
-    elseif tline == "\\midrule" then table.insert(matrix, { "__RULE__", "mid" })
-    elseif tline == "\\bottomrule" then table.insert(matrix, { "__RULE__", "bottom" })
+    if tline == "\\toprule" then
+      table.insert(matrix, { "__RULE__", "top" })
+    elseif tline == "\\midrule" then
+      table.insert(matrix, { "__RULE__", "mid" })
+    elseif tline == "\\bottomrule" then
+      table.insert(matrix, { "__RULE__", "bottom" })
     elseif tline ~= "" then
       table.insert(matrix, split_cells_preserve_empties(line, "&"))
     end
   end
-
-  -- Pad and get Width
+  
   local width = pad_matrix_to_rectangle(matrix, "\\none")
   
   local delim = (type_ == "array") and "$" or ""
-  local is_blk = (type_ == "tabular") -- Tabulars are blocks by default
   
-  return render_matrix_to_span(matrix, specList, { type = type_, delimiter = delim, is_block = is_blk }, width)
+  return render_matrix(matrix, specList, { 
+    type = type_, 
+    delimiter = delim, 
+    is_block = true 
+  }, width)
 end
 
---- 2. Ytableaushort
 local function ytableaushort_to_span(argstr, opts)
   if not argstr or argstr == "" then return "", "Empty content" end
   opts = opts or {}
@@ -263,47 +260,49 @@ local function ytableaushort_to_span(argstr, opts)
   
   for _, row in ipairs(rows) do
     local tokens = split_yshort_row(row)
-    -- Clean braces {x} -> x
     for k, v in ipairs(tokens) do
       if v:match("^{.*}$") then tokens[k] = v:sub(2, -2) end
     end
     table.insert(matrix, tokens)
   end
-
+  
   local width = pad_matrix_to_rectangle(matrix, "\\none")
-
-  local delim = opts.delimiter or "$"
-  return render_matrix_to_span(matrix, nil, { type = "ytableau", delimiter = delim }, width)
+  
+  return render_matrix(matrix, nil, { 
+    type = "ytableau", 
+    delimiter = opts.delimiter or "$",
+    is_block = false 
+  }, width)
 end
 
---- 3. Youngtab / Ytableau Environment
 local function youngtab_to_span(body, opts)
   if not body or body == "" then return "", "Empty content" end
   opts = opts or {}
-
+  
   local s = body:gsub("\r\n", "\n")
   if not s:find("\\\\%s*$") then s = s .. "\\\\" end
-
+  
   local matrix = {}
   for line in s:gmatch("(.-)\\\\") do
     table.insert(matrix, split_cells_preserve_empties(rtrim(line), "&"))
   end
-
+  
   local width = pad_matrix_to_rectangle(matrix, "\\none")
-
-  local delim = opts.delimiter or "$"
-  return render_matrix_to_span(matrix, nil, { type = "ytableau", delimiter = delim }, width)
+  
+  return render_matrix(matrix, nil, { 
+    type = "ytableau", 
+    delimiter = opts.delimiter or "$",
+    is_block = false 
+  }, width)
 end
 
+-- ========== MAIN ENTRY ==========
 
--- ========== MAIN ENTRY POINT ==========
-
---- Detects format and transforms to HTML Span structure.
 local function transform_tex_snippet(s)
   if type(s) ~= "string" or s == "" then return nil, "Invalid input" end
   local src = trim(s)
-
-  -- Command: \ytableaushort{...}
+  
+  -- \ytableaushort{...}
   local cmd, arg = src:match("^\\(%a+)%s*(%b{})%s*$")
   if cmd == "ytableaushort" then
     return ytableaushort_to_span(arg:sub(2, -2), { delimiter = "$" })
@@ -311,36 +310,34 @@ local function transform_tex_snippet(s)
     return ytableaushort_to_span(arg:sub(2, -2), { delimiter = "" })
   end
   
-  -- Environment: ytableau
+  -- \begin{ytableau}
   local ytab = src:match("^%s*\\begin%s*%{ytableau%}%s*([%s%S]-)%s*\\end%s*%{ytableau%}%s*$")
   if ytab then return youngtab_to_span(ytab, { delimiter = "$" }) end
-
-  -- Environment: youngtabtext
+  
+  -- \begin{youngtabtext}
   local ytext = src:match("^%s*\\begin%s*%{youngtabtext%}%s*([%s%S]-)%s*\\end%s*%{youngtabtext%}%s*$")
   if ytext then return youngtab_to_span(ytext, { delimiter = "" }) end
-
-  -- Environment: array
+  
+  -- \begin{array}
   local acols, abody = src:match("^%s*\\begin%s*%{array%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{array%}%s*$")
   if acols then return tex_tabular_to_span(abody, "array", acols:sub(2, -2)) end
-
-  -- Environment: tabular
+  
+  -- \begin{tabular}
   local tcols, tbody = src:match("^%s*\\begin%s*%{tabular%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{tabular%}%s*$")
   if tcols then return tex_tabular_to_span(tbody, "tabular", tcols:sub(2, -2)) end
-
-  -- Environment: rawtabular
+  
+  -- \begin{rawtabular}
   local rcols, rbody = src:match("^%s*\\begin%s*%{rawtabular%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{rawtabular%}%s*$")
   if rcols then return tex_tabular_to_span(rbody, "tabular", rcols:sub(2, -2)) end
-
+  
   return nil, "Unknown format"
 end
 
 -- ========== EXPORTS ==========
 
-local M = {
+return {
   tex_tabular_to_span = tex_tabular_to_span,
   ytableaushort_to_span = ytableaushort_to_span,
   youngtab_to_span = youngtab_to_span,
   transform_tex_snippet = transform_tex_snippet
 }
-
-return M

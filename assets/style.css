@@ -12,6 +12,8 @@
     --c-bg-surface:  #f8f9fa; 
     --c-bg-header:   #f1f3f5; 
     --c-border:      #dee2e6;
+
+    --c-rule:       #000000;
     
     --c-text-main:   #212529;
     --c-text-sub:    #495057;
@@ -43,6 +45,8 @@
       --c-text-main:   #e1e1e1;
       --c-text-sub:    #b0b0b0;
       --c-text-muted:  #777;
+
+      --c-rule:       #d5c7c7;
       
       --c-link:        #64b5f6;
       --math-env-bar:  #3b4252;
@@ -53,7 +57,7 @@
   }
   
   /* ==========================================================================
-     2) RESET & BASE
+     RESET & BASE
      ========================================================================== */
   *, *::before, *::after { box-sizing: border-box; }
   
@@ -67,7 +71,6 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     
-    /* Sticky Footer Setup */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -88,19 +91,16 @@
   }
   
   /* ==========================================================================
-     3) LAYOUT ARCHITECTURE
+     LAYOUT ARCHITECTURE
      ========================================================================== */
   
-  /* Header/Footer Layout */
   #doc-title, #doc-footer {
+    position: sticky;
     width: 100%;
     background-color: var(--c-bg-header);
     border-color: var(--c-border);
     border-style: solid;
-    
-    /* Prevent header/footer from shrinking in flex column */
     flex-shrink: 0;
-    
     display: grid;
     grid-template-columns: 
       1fr 
@@ -118,7 +118,7 @@
   #doc-footer { 
     border-width: 1px 0 0 0; 
     padding: 2.5rem 0; 
-    margin-top: 4rem; 
+    margin-top: auto;
   }
   
   /* Force header/footer content into the 4th column (Main Content) */
@@ -147,7 +147,7 @@
   }
   
   /* ==========================================================================
-     4) HEADER CONTENT STYLING
+     HEADER CONTENT STYLING
      ========================================================================== */
   #symcatTitle {
     font-family: 'Raleway', sans-serif;
@@ -232,7 +232,7 @@
   }
   
   /* ==========================================================================
-     6) CONTENT & CARDS
+      CONTENT & CARDS
      ========================================================================== */
   #doc-main { 
     min-width: 0; 
@@ -331,7 +331,7 @@
   
   
   /* ==========================================================================
-     7) MATH & TABLEAUX (Refactored for CSS Grid)
+      MATH & TABLEAUX (Refactored for CSS Grid)
      ========================================================================== */
      
   code {
@@ -347,156 +347,106 @@
     font-weight: 600;            
     color: var(--c-link-dark);   
   }
-  
-  /* Figures containing tableaux: Use Flex Gap for consistent spacing */
-  .figure, .ytabs {
-    margin: 2rem auto;
-    width: 100%;
-    padding: 1rem 0;
-    display: flex;
-    flex-wrap: wrap;       
-    justify-content: center; 
-    align-items: center;
-    gap: 1.5rem; 
-  }
-      
-  .figure img, .ytabs img {
-    flex-shrink: 0;
-    max-width: 100%;
-    height: auto;
-    margin-right: 1rem; 
-  }
+  /* ==========================================================================
+   TABLEAUX STYLING - Simplified CSS Grid Approach
+   ========================================================================== */
 
-  /* Strip layout from paragraphs inside figures so images sit next to tableaux */
-  .figure p, .ytabs p {
-    display: contents;
-    margin: 0;
-  }
+/* --- CONTAINER --- */
+/* All three types use CSS Grid with explicit cell positioning */
+.ytableau,
+.array,
+.tabular {
+  display: grid;
+  gap: 0;
+  margin: 1.5rem auto;
+  width: fit-content;
+  font-size: 0.9rem;
+  line-height: 1;
+}
 
-  
-  /* --- A) STANDARD YOUNG TABLEAUX (Flexbox) --- */
-  
-  /* The Wrapper */
-  .ytab-wrapper {
-    display: inline-flex;
-    flex-direction: column; /* Stack rows vertically */
-    vertical-align: middle;
-    margin: 0.3em 0.2rem;
-    font-size: 0.9rem;
-    line-height: 1;
-  }
-  
-  /* Display/Block Mode */
-  .ytab-wrapper.ytab-display {
-    display: flex;
-    margin: 1.5rem auto;
-    width: fit-content;
-  }
-  
+/* ytableau can appear inline */
+.ytableau.inline {
+  display: inline-grid;
+  margin: 0.3em 0.5em;
+  vertical-align: middle;
+}
 
-  /* The Row */
-  .ytab-row {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  /* The Cell (Square) */
-  .ytab-cell {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* Dimensions */
-    width: 1.6em;
-    height: 1.6em;
-    
-    /* Borders */
-    border: 0.15em solid currentColor;
-    box-sizing: border-box;
-    
-    font-weight: 600;
-    background: inherit;
-  }
 
-  /* Smart Border Logic (Only for Young Tableaux) */
-  .ytab-cell.nbl { border-left: none; }
-  .ytab-cell.nbt { border-top: none; }
-  .ytab-cell.none { border: none; background: transparent; }
-  
-  /* Alignment (Local) */
-  .ytab-cell.align-l { justify-content: flex-start; padding-left: 0.2em; }
-  .ytab-cell.align-r { justify-content: flex-end; padding-right: 0.2em; }
-  
+/* --- CELLS --- */
+/* Grid positioning is done inline via style="grid-row: X; grid-column: Y" */
 
-  /* --- B) DATA ARRAYS / TABULARS (CSS Grid) --- */
-    
-  .ytab-wrapper.array, 
-  .ytab-wrapper.tabular {
-    display: inline-grid;
-    /* Create N columns based on Lua variable */
-    grid-template-columns: repeat(var(--cols), max-content);
-    column-gap: 1em;
-    row-gap: 0;
-    
-    margin: 1.5rem auto;
-    vertical-align: middle;
-    
-    /* Disable Flexbox inheritance */
-    flex-direction: unset;
-  }
-  
-  /* Flatten the rows so cells align to the Grid */
-  .ytab-wrapper.array .ytab-row,
-  .ytab-wrapper.tabular .ytab-row {
-    display: contents; 
-  }
-  
-  /* Array Cells (Fluid Width) */
-  .ytab-wrapper.array .ytab-cell,
-  .ytab-wrapper.tabular .ytab-cell {
-    width: 100%;      
-    height: auto;
-    min-width: 1em;
-    padding: 0.5em 0.5em;
-    
-    /* Arrays usually only have rules, not cell borders */
-    border: none;
-    border-bottom: 1px solid var(--c-border);
-    
-    font-weight: normal;
-    justify-content: flex-start; /* Default align */
-  }
-  
-  /* Alignment Mapping for Grid Cells */
-  .ytab-wrapper.array .ytab-cell.align-r, .ytab-wrapper.tabular .ytab-cell.align-r { justify-content: flex-end; text-align: right; }
-  .ytab-wrapper.array .ytab-cell.align-c, .ytab-wrapper.tabular .ytab-cell.align-c { justify-content: center; text-align: center; }
-  .ytab-wrapper.array .ytab-cell.align-l, .ytab-wrapper.tabular .ytab-cell.align-l { justify-content: flex-start; text-align: left; }
+/* Base cell styling for ytableau (square boxes) */
+.ytableau > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  height: 1.6em;
+  border: 0.15em solid currentColor;
+  box-sizing: border-box;
+  font-weight: 600;
+  margin: -0.15em -0.15em 0 0;
+}
 
-  /* Rules (toprule, midrule, etc.) in Grid */
-  .ytab-wrapper.array .ytab-row.rule,
-  .ytab-wrapper.tabular .ytab-row.rule {
-    display: block;
-    grid-column: 1 / -1; /* Span ALL columns */
-    height: 0;
-    width: 100%;
-  }
-  
-  /* Rule Styling */
-  .ytab-row.rule-top { border-top: 2px solid currentColor; margin-bottom: 4px; }
-  .ytab-row.rule-mid { border-top: 1px solid var(--c-border); margin: 4px 0; }
-  .ytab-row.rule-bottom { border-top: 2px solid currentColor; margin-top: 4px; }
- 
-    
-  /* Override for Block-level Tabulars (Centers them) */
-  .ytab-wrapper.tabular.ytab-display {
-    display: grid;       
-    margin: 1.5rem auto; 
-    width: fit-content;
-  }
+/* Base cell styling for array/tabular (fluid width) */
+.array > span,
+.tabular > span {
+  display: flex;
+  align-items: center;
+  min-width: 2em;
+  padding: 0.5em 0.75em;
+  border: none;
+  font-weight: normal;
+}
 
+/* --- ALIGNMENT --- */
+.align-l { justify-content: flex-start; text-align: left; }
+.align-c { justify-content: center; text-align: center; }
+.align-r { justify-content: flex-end; text-align: right; }
+
+/* --- NONE CELLS (empty/transparent) --- */
+.none {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* --- HORIZONTAL RULES (toprule, midrule, bottomrule) --- */
+/* Rules span all columns via grid-column: 1 / -1 */
+.rule {
+  border: none;
+  display: block;
+  background: transparent;
+  margin: 0;
+  padding: 0 !important;
+  background: var(--c-rule, #000000);
+}
+
+.rule-top, .rule-bottom {
+  height: 2px;
+}
+
+.rule-mid {
+  height: 1px;
+}
+
+/* --- SPACING FOR FIGURES --- */
+.figure, .ytabs {
+  margin: 2rem auto;
+  padding: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.figure p, .ytabs p {
+  display: contents;
+  margin: 0;
+}
 
   /* ==========================================================================
-     8) BIBLIOGRAPHY & CITATIONS
+     BIBLIOGRAPHY & CITATIONS
      ========================================================================== */
   
   #bibliography ol {
@@ -564,7 +514,7 @@
   
   
   /* ==========================================================================
-     9) MOBILE / TABLET RESPONSIVENESS
+      MOBILE / TABLET RESPONSIVENESS
      ========================================================================== */
   #tocButton { display: none; }
   
@@ -627,7 +577,7 @@
   }
   
   /* ==========================================================================
-     10) LANDING PAGE OVERRIDES
+     LANDING PAGE OVERRIDES
      ========================================================================== */
   
   /* Hide borders under headers on the landing page to create a cleaner dashboard look */
