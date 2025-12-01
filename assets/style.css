@@ -61,7 +61,13 @@
      ========================================================================== */
   *, *::before, *::after { box-sizing: border-box; }
   
-  html { height: 100%; }
+  html { 
+    height: 100%; 
+    overscroll-behavior-y: none;
+    background-color: var(--c-bg-header);
+    margin:0;
+    padding: 0;
+  }
   
   body {
     margin: 0;
@@ -95,7 +101,6 @@
      ========================================================================== */
   
   #doc-title, #doc-footer {
-    position: sticky;
     width: 100%;
     background-color: var(--c-bg-header);
     border-color: var(--c-border);
@@ -110,7 +115,7 @@
       1fr;
   }
   
-  #doc-title { 
+  #doc-title {
     border-width: 0 0 1px 0; 
     padding: 2rem 0; 
   }
@@ -443,6 +448,54 @@
 .figure p, .ytabs p {
   display: contents;
   margin: 0;
+}
+
+
+  /* ==========================================================================
+     SUMMARY / DETAILS
+     ========================================================================== */
+  
+
+/* Theorem Environments (Details/Summary) */
+div.env, details.env {
+  border-left: 4px solid var(--math-env-bar);
+  padding: 0.5em 0.5em 0.5em 1em;
+  background: var(--c-bg-surface, transparent);
+  margin: 1.5em 0;
+}
+
+/* Hide default markers */
+details.env > summary {
+  color: var(--math-accent);
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none; /* Firefox/Standard */
+  margin-bottom: 0.5em;
+  position: relative;
+  padding-right: 2em; /* Make space for the custom arrow */
+}
+details.env > summary::-webkit-details-marker {
+  display: none; /* Chrome/Safari */
+}
+
+/* Custom Arrow (Chevron) */
+details.env > summary::after {
+  content: "";
+  position: absolute;
+  right: 0.75em;
+  top: 0.4em;
+  width: 0.5em;
+  height: 0.5em;
+  border-right: 2px solid var(--math-accent);
+  border-bottom: 2px solid var(--math-accent);
+  transform: rotate(-45deg); /* Pointing right */
+  transition: transform 0.2s ease;
+}
+
+/* Arrow Rotation on Open */
+details.env[open] > summary::after {
+  transform: rotate(45deg); /* Pointing down */
+  top: 0.3em;
 }
 
   /* ==========================================================================
