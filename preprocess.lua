@@ -204,15 +204,6 @@ local function normalize_blocks(lines)
           )
         )
       end
-      if has_inline_ytableaushort(line) then
-        io.stderr:write(
-          string.format(
-            "WARNING: inline \\ytableaushort on line %d; " ..
-            "it is intended to be on its own line.\n",
-            i
-          )
-        )
-      end
       table.insert(out, line)
     end
   end

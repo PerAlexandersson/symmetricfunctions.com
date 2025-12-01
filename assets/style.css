@@ -1,619 +1,663 @@
 /* ==========================================================================
    1) DESIGN TOKENS
    ========================================================================== */
-:root {
-  /* Colors */
-  --c-brand:       rgb(225, 120, 65);
-  --c-brand-light: rgb(245, 140, 85);
-  --c-link:        rgb(37, 134, 221);
-  --c-link-dark:   #1d5bbf;
-
-  --c-bg-body:     #ffffff;
-  --c-bg-surface:  #f8f9fa; 
-  --c-bg-header:   #f1f3f5; 
-  --c-border:      #dee2e6;
+   :root {
+    /* Colors */
+    --c-brand:       rgb(225, 120, 65);
+    --c-brand-light: rgb(245, 140, 85);
+    --c-link:        rgb(37, 134, 221);
+    --c-link-dark:   #1d5bbf;
   
-  --c-text-main:   #212529;
-  --c-text-sub:    #495057;
-  --c-text-muted:  #868e96;
-
-  /* Math/Tableaux specifics (Legacy) */
-  --math-env-bar:  rgb(200,200,200);
-  --math-accent:   rgb(37,134,221);
-
- --header-border: 1px solid var(--c-border);
-
-  /* Dimensions */
-  --w-page: 72rem;       /* Total max width of content area */
-  --w-sidebar: 17rem;    /* Fixed sidebar width */
-  --gap: 3rem;           /* Gap between sidebar and main */
-
-  --toc-display: block;
-
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --c-bg-body:     #121212;
-    --c-bg-surface:  #1e1e1e;
-    --c-bg-header:   #1a1a1a;
-    --c-border:      #333;
+    --c-bg-body:     #ffffff;
+    --c-bg-surface:  #f8f9fa; 
+    --c-bg-header:   #f1f3f5; 
+    --c-border:      #dee2e6;
     
-    --c-text-main:   #e1e1e1;
-    --c-text-sub:    #b0b0b0;
-    --c-text-muted:  #777;
+    --c-text-main:   #212529;
+    --c-text-sub:    #495057;
+    --c-text-muted:  #868e96;
+  
+    /* Math/Tableaux specifics (Legacy) */
+    --math-env-bar:  rgb(200,200,200);
+    --math-accent:   rgb(37,134,221);
+  
+   --header-border: 1px solid var(--c-border);
+  
+    /* Dimensions */
+    --w-page: 72rem;       /* Total max width of content area */
+    --w-sidebar: 17rem;    /* Fixed sidebar width */
+    --gap: 3rem;           /* Gap between sidebar and main */
+  
+    --toc-display: block;
+  
+    color-scheme: light;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg-body:     #121212;
+      --c-bg-surface:  #1e1e1e;
+      --c-bg-header:   #1a1a1a;
+      --c-border:      #333;
+      
+      --c-text-main:   #e1e1e1;
+      --c-text-sub:    #b0b0b0;
+      --c-text-muted:  #777;
+      
+      --c-link:        #64b5f6;
+      --math-env-bar:  #3b4252;
+      --math-accent:   #7aa2ff;
+      
+      color-scheme: dark;
+    }
+  }
+  
+  /* ==========================================================================
+     2) RESET & BASE
+     ========================================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  
+  html { height: 100%; }
+  
+  body {
+    margin: 0;
+    font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    background: var(--c-bg-body);
+    color: var(--c-text-main);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
     
-    --c-link:        #64b5f6;
-    --math-env-bar:  #3b4252;
-    --math-accent:   #7aa2ff;
-    
-    color-scheme: dark;
+    /* Sticky Footer Setup */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
-}
-
-/* ==========================================================================
-   2) RESET & BASE
-   ========================================================================== */
-*, *::before, *::after { box-sizing: border-box; }
-
-html { height: 100%; }
-
-body {
-  margin: 0;
-  font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
-  background: var(--c-bg-body);
-  color: var(--c-text-main);
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
   
-  /* Sticky Footer Setup */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-a { color: var(--c-link); text-decoration: none; }
-a:hover { text-decoration: underline; color: var(--c-brand); }
-
-h1, h2, h3 { 
-  font-family: system-ui, -apple-system, sans-serif; 
-  color: var(--c-text-main);
-  margin-top: 1.8em; margin-bottom: 0.5em;
-}
-h2 {
-  color: var(--c-brand);
-  border-bottom: var(--header-border);
-  padding-bottom: 0.3em;
-}
-
-/* ==========================================================================
-   3) LAYOUT ARCHITECTURE
-   ========================================================================== */
-
-/* Header/Footer Layout */
-#doc-title, #doc-footer {
-  width: 100%;
-  background-color: var(--c-bg-header);
-  border-color: var(--c-border);
-  border-style: solid;
+  a { color: var(--c-link); text-decoration: none; }
+  a:hover { text-decoration: underline; color: var(--c-brand); }
   
-  /* Prevent header/footer from shrinking in flex column */
-  flex-shrink: 0;
-  
-  display: grid;
-  grid-template-columns: 
-    1fr 
-    var(--w-sidebar) 
-    var(--gap) 
-    minmax(0, calc(var(--w-page) - var(--w-sidebar) - var(--gap) - 3rem)) 
-    1fr;
-}
-
-#doc-title { 
-  border-width: 0 0 1px 0; 
-  padding: 2rem 0; 
-}
-
-#doc-footer { 
-  border-width: 1px 0 0 0; 
-  padding: 2.5rem 0; 
-  margin-top: 4rem; 
-}
-
-/* Force header/footer content into the 4th column (Main Content) */
-#doc-title > *, 
-#doc-footer > * {
-  grid-column: 4;
-}
-
-/* Main Content Grid */
-#doc-all {
-  /* Flex grow pushes footer down */
-  flex: 1 0 auto;
-  width: 100%;
-  
-  max-width: var(--w-page);
-  margin: 0 auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  
-  display: grid;
-  grid-template-columns: var(--w-sidebar) 1fr;
-  gap: var(--gap);
-  padding-top: 2.5rem;
-  padding-bottom: 4rem;
-  align-items: start;
-}
-
-/* ==========================================================================
-   4) HEADER CONTENT STYLING
-   ========================================================================== */
-#symcatTitle {
-  font-family: 'Raleway', sans-serif;
-  color: var(--c-brand);
-  font-size: 2.2rem;
-  font-weight: 300;
-  margin: 0;
-  line-height: 1.1;
-}
-
-#symcatSubtitle {
-  font-family: 'Raleway', sans-serif;
-  color: var(--c-text-sub);
-  margin: 0.5rem 0 1.2rem 0;
-  font-style: normal;
-  font-size: 1.1rem;
-}
-
-/* Navigation Pills */
-#topnav { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.toplink {
-  font-family: system-ui, sans-serif;
-  font-size: 0.9rem;
-  padding: 0.4em 0.9em;
-  background: var(--c-bg-body);
-  border: 1px solid var(--c-border);
-  border-radius: 4px;
-  color: var(--c-text-sub);
-  font-weight: 500;
-  transition: all 0.15s ease;
-}
-.toplink:hover {
-  text-decoration: none;
-  border-color: var(--c-brand);
-  color: var(--c-brand);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-/* ==========================================================================
-   5) SIDEBAR (TOC)
-   ========================================================================== */
-#tocContainer {
-  position: sticky;
-  top: 1rem;
-  max-height: 90vh;
-  overflow-y: auto;
-  font-family: system-ui, sans-serif;
-  padding-right: 1rem;
-  display: var(--toc-display);
-}
-
-#tocContainer nav ul { list-style: none; padding: 0; margin: 0; }
-#tocContainer li { margin: 0; }
-
-#tocContainer a {
-  display: block;
-  text-decoration: none;
-  line-height: 1.3;
-  padding: 0.25em 0;
-  color: var(--c-text-sub);
-  transition: color 0.1s;
-}
-#tocContainer a:hover { color: var(--c-brand); }
-
-#tocContainer .section {
-  font-weight: 700;
-  font-size: 0.95rem;
-  margin-top: 0.75em;
-  color: var(--c-text-main);
-}
-#tocContainer .subsection {
-  font-weight: 400;
-  font-size: 0.85rem;
-  padding-left: 0.8em;
-  color: var(--c-text-muted);
-  border-left: 2px solid transparent;
-}
-#tocContainer .subsection:hover {
-  border-left-color: var(--c-brand-light);
-  color: var(--c-text-main);
-}
-
-/* ==========================================================================
-   6) CONTENT & CARDS
-   ========================================================================== */
-#doc-main { 
-  min-width: 0; 
-  grid-column: 2;
-}
-
-.dateMod {
-  display: block;
-  text-align: right;
-  font-size: 0.85rem;
-  color: var(--c-text-muted);
-  margin-bottom: 1.5rem;
-}
-.dateMod::before {
-  content: "Last updated: ";
-  margin-right: 0.3em;
-}
-
-/* Cards Container */
-.topicsection { margin: 2rem 0; } /* Reduced margin slightly */
-
-.topic-card-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-
-.topic-card-grid p {
-  margin: 0;
-  height: 100%;
-}
-
-/* --- Card Base --- */
-.topic-card {
-  display: flex;
-  flex-direction: row; 
-  align-items: center; /* Vertically center the single line of text */
-  justify-content: space-between;
-  
-  /* Reduced min-height since we removed the description text */
-  min-height: 4.5rem; 
-  height: 100%;
-  padding: 0.75rem 0.75rem 0.75rem 1rem;
-  
-  background: var(--c-bg-surface);
-  border: 1px solid var(--c-border);
-  border-radius: 8px;
-  color: var(--c-text-main);
-  transition: all 0.2s ease;
-  overflow: hidden;
-}
-
-.topic-card:hover {
-  text-decoration: none;
-  transform: translateY(-2px);
-  border-color: var(--c-brand);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* --- Text Styling --- */
-.card-text {
-  display: flex;
-  flex-direction: column;
-  flex: 1; 
-  padding-right: 0.5rem;
-}
-
-.card-title {
-  display: block;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-weight: 600;     /* Slightly less bold than before */
-  font-size: 0.9rem;    /* Requested: Decreased size */
-  color: var(--c-brand);
-  line-height: 1.25;
-  margin: 0;            /* No margin needed */
-}
-
-/* --- Image Styling --- */
-.topic-card img {
-  width: 20%;
-  min-width: 3rem; 
-  height: 100%; 
-  max-height: 4rem; /* Adjusted cap for shorter cards */
-  
-  object-fit: contain;
-  object-position: center right;
-  
-  margin-left: 0.8rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  .topic-card img {
-    filter: invert(1) opacity(0.8);
+  h1, h2, h3 { 
+    font-family: system-ui, -apple-system, sans-serif; 
+    color: var(--c-text-main);
+    margin-top: 1.8em; margin-bottom: 0.5em;
   }
-}
-
-
-/* ==========================================================================
-   7) MATH & TABLEAUX
-   ========================================================================== */
-   
-code {
-  font-family: "Fira Code", monospace;
-  background: var(--c-bg-header);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-size: 0.9em;
-}
-
-/* Definitions */
-.defin {
-  font-style: italic;          /* Emph */
-  font-weight: 600;            /* Heavier */
-  color: var(--c-link-dark);   /* A bit blue */
-}
-
-/* Figures containing tableaux */
-.figure, .ytabs {
-  margin: 2rem auto;
-  display: block;
-  width: 100%;
-  text-align: center;
-  overflow-x: auto;
-  padding: 1rem 0;
-}
-
-/* Young Tableaux */
-table.ytab {
-  display: inline-block;
-  vertical-align: top;
-  border-collapse: collapse;
-  margin: 0.5em;
-  table-layout: fixed;
-}
-table.ytab td {
-  border: 0.15em solid currentColor;
-  width: 1.6em;
-  height: 1.6em;
-  aspect-ratio: 1 / 1;
-  text-align: center;
-  vertical-align: middle;
-  padding: 0;
-  font-size: 85%;
-  font-weight: 600;
-  line-height: 1;
-  background: inherit;
-}
-table.ytab td.none {
-  border: none;
-  background: transparent;
-}
-
-/* Data Tables (Arrays) */
-table.array, table.tabular {
-  border-collapse: collapse;
-  margin: 1.5rem auto;
-  white-space: nowrap;
-  max-width: 100%;
-  overflow-x: auto;
-  display: block;
-}
-table.array td, table.tabular td,
-table.array th, table.tabular th {
-  text-align: left;
-  font-size: 90%;
-  padding: 0.5em 0.9em;
-  border-bottom: 1px solid var(--c-border);
-}
-tr.toprule td, tr.toprule th { border-top: 2px solid currentColor; }
-tr.bottomrule td { border-bottom: 2px solid currentColor; }
-
-
-.latextable-inline {
-    display: inline-block; /* Allows the span to hold dimensions */
-}
-
-.latextable-inline table.ytab {
-    display: inline-block;
-    margin: 0 2px;          /* Adds breathing room */
-}
-
-
-/* Family Index Table */
-.family-index {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 2rem;
-}
-.family-index th {
-  text-align: left;
-  border-bottom: 2px solid var(--c-border);
-  padding: 0.75rem;
-  background: var(--c-bg-header);
-}
-.family-index td {
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--c-border);
-}
-
-/* Theorem Environments (Details/Summary) */
-div.env, details.env {
-  border-left: 4px solid var(--math-env-bar);
-  padding: 0.5em 0.5em 0.5em 1em;
-  background: linear-gradient(to right, var(--c-bg-surface), transparent);
-  margin: 1.5em 0;
-}
-
-/* Hide default markers */
-details.env > summary {
-  color: var(--math-accent);
-  font-weight: bold;
-  cursor: pointer;
-  list-style: none; /* Firefox/Standard */
-  margin-bottom: 0.5em;
-  position: relative;
-  padding-right: 2em; /* Make space for the custom arrow */
-}
-details.env > summary::-webkit-details-marker {
-  display: none; /* Chrome/Safari */
-}
-
-/* Custom Arrow (Chevron) */
-details.env > summary::after {
-  content: "";
-  position: absolute;
-  right: 0.75em;
-  top: 0.4em;
-  width: 0.5em;
-  height: 0.5em;
-  border-right: 2px solid var(--math-accent);
-  border-bottom: 2px solid var(--math-accent);
-  transform: rotate(-45deg); /* Pointing right */
-  transition: transform 0.2s ease;
-}
-
-/* Arrow Rotation on Open */
-details.env[open] > summary::after {
-  transform: rotate(45deg); /* Pointing down */
-  top: 0.3em;
-}
-
-/* ==========================================================================
-   8) BIBLIOGRAPHY & CITATIONS
-   ========================================================================== */
-
-#bibliography ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-#bibliography li {
-  position: relative;
-  margin: 0.25em 0 0.75em;
-  padding-left: 6.5em;
-  line-height: 1.45;
-}
-
-#bibliography li > .citeKey {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 6em;
-  text-align: left;
-  font-weight: bold;
-  color: var(--c-text-main);
-}
-
-#bibliography li > .citeJournal,
-#bibliography li > .citeBooktitle { font-style: italic; }
-#bibliography li > .citeVolume { font-weight: 700; }
-
-@keyframes citeFade {
-  0% { background-color: rgba(255, 230, 0, 0.5); }
-  100% { background-color: transparent; }
-}
-
-#bibliography li:target {
-  animation: citeFade 3s ease-out;
-}
-
-
-/* ==========================================================================
-   LISTS & TYPOGRAPHY TWEAKS
-   ========================================================================== */
-
-ul, ol {
-  margin-top: 0.5rem;
-  margin-bottom: 0.8rem;
-  padding-left: 2rem;
-}
-
-li {
-  margin-bottom: 0.25rem; /* Slight breathing room between items */
-}
-
-/* Kill the default margins of paragraphs inside list items */
-li > p {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/* Ensure nested lists are tight */
-li > ul, li > ol {
-  margin-top: 0.25rem;
-  margin-bottom: 0;
-}
-
-
-/* ==========================================================================
-   9) MOBILE / TABLET RESPONSIVENESS
-   ========================================================================== */
-#tocButton { display: none; }
-
-/* Tablet: Drop to 2 columns */
-@media (max-width: 1100px) {
-  .topic-card-grid {
-    grid-template-columns: repeat(2, 1fr);
+  h2 {
+    color: var(--c-brand);
+    border-bottom: var(--header-border);
+    padding-bottom: 0.3em;
   }
-}
-
-/* Mobile: Drop to 1 column */
-@media (max-width: 600px) {
-  :root { --w-sidebar: 0px; --gap: 0px; }
-
-  .topic-card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Collapse Header/Footer Grids */
+  
+  /* ==========================================================================
+     3) LAYOUT ARCHITECTURE
+     ========================================================================== */
+  
+  /* Header/Footer Layout */
   #doc-title, #doc-footer {
-    display: block;
+    width: 100%;
+    background-color: var(--c-bg-header);
+    border-color: var(--c-border);
+    border-style: solid;
+    
+    /* Prevent header/footer from shrinking in flex column */
+    flex-shrink: 0;
+    
+    display: grid;
+    grid-template-columns: 
+      1fr 
+      var(--w-sidebar) 
+      var(--gap) 
+      minmax(0, calc(var(--w-page) - var(--w-sidebar) - var(--gap) - 3rem)) 
+      1fr;
+  }
+  
+  #doc-title { 
+    border-width: 0 0 1px 0; 
+    padding: 2rem 0; 
+  }
+  
+  #doc-footer { 
+    border-width: 1px 0 0 0; 
+    padding: 2.5rem 0; 
+    margin-top: 4rem; 
+  }
+  
+  /* Force header/footer content into the 4th column (Main Content) */
+  #doc-title > *, 
+  #doc-footer > * {
+    grid-column: 4;
+  }
+  
+  /* Main Content Grid */
+  #doc-all {
+    /* Flex grow pushes footer down */
+    flex: 1 0 auto;
+    width: 100%;
+    
+    max-width: var(--w-page);
+    margin: 0 auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
-  #doc-title > *, #doc-footer > * {
-    grid-column: auto;
+    
+    display: grid;
+    grid-template-columns: var(--w-sidebar) 1fr;
+    gap: var(--gap);
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
+    align-items: start;
   }
   
-  /* Reset Footer alignment */
-  footer address { padding-top: 0; text-align: left; }
-
-  /* Collapse Main Grid */
-  #doc-all { display: block; }
-
-  /* Mobile Sidebar (Off-canvas) */
-  #tocContainer {
-    position: fixed; z-index: 1000;
-    top: 0; left: 0; bottom: 0;
-    width: 260px;
+  /* ==========================================================================
+     4) HEADER CONTENT STYLING
+     ========================================================================== */
+  #symcatTitle {
+    font-family: 'Raleway', sans-serif;
+    color: var(--c-brand);
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin: 0;
+    line-height: 1.1;
+  }
+  
+  #symcatSubtitle {
+    font-family: 'Raleway', sans-serif;
+    color: var(--c-text-sub);
+    margin: 0.5rem 0 1.2rem 0;
+    font-style: normal;
+    font-size: 1.1rem;
+  }
+  
+  /* Navigation Pills */
+  #topnav { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .toplink {
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    padding: 0.4em 0.9em;
     background: var(--c-bg-body);
-    border-right: 1px solid var(--c-border);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    padding: 1.5rem;
-    box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    color: var(--c-text-sub);
+    font-weight: 500;
+    transition: all 0.15s ease;
   }
-  .sideBarShowHide { transform: translateX(0) !important; }
-
-  /* Toggle Button */
-  #tocButton {
-    display: flex; align-items: center; justify-content: center;
-    position: fixed; bottom: 1.5rem; right: 1.5rem;
-    width: 3.5rem; height: 3.5rem;
-    background: var(--c-brand); color: #fff;
-    border: none; border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 1001; cursor: pointer;
+  .toplink:hover {
+    text-decoration: none;
+    border-color: var(--c-brand);
+    color: var(--c-brand);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
-  .toc-label { display: none; }
-}
-
-
-
-
-/* ==========================================================================
-   10) LANDING PAGE OVERRIDES
-   ========================================================================== */
-
-/* Hide borders under headers on the landing page to create a cleaner dashboard look */
-body.landing-page h2 {
-  border-bottom: none;
-  padding-bottom: 0;
-}
+  
+  /* ==========================================================================
+     5) SIDEBAR (TOC)
+     ========================================================================== */
+  #tocContainer {
+    position: sticky;
+    top: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    font-family: system-ui, sans-serif;
+    padding-right: 1rem;
+    display: var(--toc-display);
+  }
+  
+  #tocContainer nav ul { list-style: none; padding: 0; margin: 0; }
+  #tocContainer li { margin: 0; }
+  
+  #tocContainer a {
+    display: block;
+    text-decoration: none;
+    line-height: 1.3;
+    padding: 0.25em 0;
+    color: var(--c-text-sub);
+    transition: color 0.1s;
+  }
+  #tocContainer a:hover { color: var(--c-brand); }
+  
+  #tocContainer .section {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-top: 0.75em;
+    color: var(--c-text-main);
+  }
+  #tocContainer .subsection {
+    font-weight: 400;
+    font-size: 0.85rem;
+    padding-left: 0.8em;
+    color: var(--c-text-muted);
+    border-left: 2px solid transparent;
+  }
+  #tocContainer .subsection:hover {
+    border-left-color: var(--c-brand-light);
+    color: var(--c-text-main);
+  }
+  
+  /* ==========================================================================
+     6) CONTENT & CARDS
+     ========================================================================== */
+  #doc-main { 
+    min-width: 0; 
+    grid-column: 2;
+  }
+  
+  .dateMod {
+    display: block;
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--c-text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .dateMod::before {
+    content: "Last updated: ";
+    margin-right: 0.3em;
+  }
+  
+  /* Cards Container */
+  .topicsection { margin: 2rem 0; } /* Reduced margin slightly */
+  
+  .topic-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  
+  .topic-card-grid p {
+    margin: 0;
+    height: 100%;
+  }
+  
+  /* --- Card Base --- */
+  .topic-card {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; /* Vertically center the single line of text */
+    justify-content: space-between;
+    
+    /* Reduced min-height since we removed the description text */
+    min-height: 4.5rem; 
+    height: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+    
+    background: var(--c-bg-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    color: var(--c-text-main);
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+  
+  .topic-card:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+    border-color: var(--c-brand);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  /* --- Text Styling --- */
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+    padding-right: 0.5rem;
+  }
+  
+  .card-title {
+    display: block;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 600;     /* Slightly less bold than before */
+    font-size: 0.9rem;    /* Requested: Decreased size */
+    color: var(--c-brand);
+    line-height: 1.25;
+    margin: 0;            /* No margin needed */
+  }
+  
+  /* --- Image Styling --- */
+  .topic-card img {
+    width: 20%;
+    min-width: 3rem; 
+    height: 100%; 
+    max-height: 4rem; /* Adjusted cap for shorter cards */
+    
+    object-fit: contain;
+    object-position: center right;
+    
+    margin-left: 0.8rem;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .topic-card img {
+      filter: invert(1) opacity(0.8);
+    }
+  }
+  
+  
+  /* ==========================================================================
+     7) MATH & TABLEAUX (Refactored for Span/Flexbox)
+     ========================================================================== */
+     
+  code {
+    font-family: "Fira Code", monospace;
+    background: var(--c-bg-header);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  
+  /* Definitions */
+  .defin {
+    font-style: italic;          /* Emph */
+    font-weight: 600;            /* Heavier */
+    color: var(--c-link-dark);   /* A bit blue */
+  }
+  
+  /* Figures containing tableaux */
+  .figure, .ytabs {
+    margin: 2rem auto;
+    display: block;
+    width: 100%;
+    text-align: center;
+    overflow-x: auto;
+    padding: 1rem 0;
+  }
+  
+  /* --- New Span-Based Tableaux System --- */
+  
+  /* The Wrapper (Acts as the table) */
+  .ytab-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    margin: 0 0.2rem;
+    /* Font settings to ensure consistent cell sizes */
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+  
+  /* Block Display Mode (Centered) */
+  .ytab-wrapper.ytab-display {
+    display: flex;
+    margin: 1.5rem auto;
+    width: fit-content;
+  }
+  
+  /* The Row */
+  .ytab-row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* The Cell (Young Tableaux Style) */
+  .ytab-cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Dimensions & Borders */
+    width: 1.8em;
+    height: 1.8em;
+    border: 0.1em solid currentColor; /* Use current text color */
+    box-sizing: border-box;
+    
+    /* Border collapsing hack: overlap adjacent borders */
+    margin-top: -0.1em;
+    margin-left: -0.1em;
+    
+    /* Content */
+    font-weight: 600;
+    background: inherit;
+  }
+  
+  /* Empty Cells in Tableaux (\none) */
+  .ytab-cell.none {
+    border-color: transparent;
+    background: transparent;
+  }
+  
+  /* Alignment Classes */
+  .ytab-cell.align-l { justify-content: flex-start; padding-left: 0.2em; }
+  .ytab-cell.align-r { justify-content: flex-end; padding-right: 0.2em; }
+  
+  
+  /* --- Overrides for Data Arrays/Tabulars (Not Tableaux) --- */
+  /* These map to the 'array' or 'tabular' class added by the Lua script */
+  
+  .ytab-wrapper.array, 
+  .ytab-wrapper.tabular {
+    margin: 1.5rem auto;
+    display: flex; /* Usually block level */
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .ytab-wrapper.array .ytab-cell,
+  .ytab-wrapper.tabular .ytab-cell {
+    /* Reset fixed square dimensions */
+    width: auto;
+    height: auto;
+    min-width: 1em;
+    padding: 0.5em 0.9em;
+    
+    /* Reset borders (Arrays usually rely on rules, not cell borders) */
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid var(--c-border);
+    
+    /* Alignment defaults */
+    font-weight: normal;
+    justify-content: flex-start; /* Default left align for text */
+  }
+  
+  /* Rules within Arrays (Generated as spans with 'rule' class) */
+  .ytab-row.rule {
+    height: 0;
+    border: none;
+    display: block; /* Break out of flex flow if needed, or act as separator */
+    width: 100%;
+  }
+  .ytab-row.rule-top { border-top: 2px solid currentColor; margin-bottom: 2px; }
+  .ytab-row.rule-mid { border-top: 1px solid var(--c-border); }
+  .ytab-row.rule-bottom { border-top: 2px solid currentColor; margin-top: 2px; }
+  
+  
+  /* Family Index Table (Legacy HTML tables still used here?) */
+  .family-index {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  .family-index th {
+    text-align: left;
+    border-bottom: 2px solid var(--c-border);
+    padding: 0.75rem;
+    background: var(--c-bg-header);
+  }
+  .family-index td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  
+  /* Theorem Environments (Details/Summary) */
+  div.env, details.env {
+    border-left: 4px solid var(--math-env-bar);
+    padding: 0.5em 0.5em 0.5em 1em;
+    background: linear-gradient(to right, var(--c-bg-surface), transparent);
+    margin: 1.5em 0;
+  }
+  
+  /* Hide default markers */
+  details.env > summary {
+    color: var(--math-accent);
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none; /* Firefox/Standard */
+    margin-bottom: 0.5em;
+    position: relative;
+    padding-right: 2em; /* Make space for the custom arrow */
+  }
+  details.env > summary::-webkit-details-marker {
+    display: none; /* Chrome/Safari */
+  }
+  
+  /* Custom Arrow (Chevron) */
+  details.env > summary::after {
+    content: "";
+    position: absolute;
+    right: 0.75em;
+    top: 0.4em;
+    width: 0.5em;
+    height: 0.5em;
+    border-right: 2px solid var(--math-accent);
+    border-bottom: 2px solid var(--math-accent);
+    transform: rotate(-45deg); /* Pointing right */
+    transition: transform 0.2s ease;
+  }
+  
+  /* Arrow Rotation on Open */
+  details.env[open] > summary::after {
+    transform: rotate(45deg); /* Pointing down */
+    top: 0.3em;
+  }
+  
+  /* ==========================================================================
+     8) BIBLIOGRAPHY & CITATIONS
+     ========================================================================== */
+  
+  #bibliography ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #bibliography li {
+    position: relative;
+    margin: 0.25em 0 0.75em;
+    padding-left: 6.5em;
+    line-height: 1.45;
+  }
+  
+  #bibliography li > .citeKey {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6em;
+    text-align: left;
+    font-weight: bold;
+    color: var(--c-text-main);
+  }
+  
+  #bibliography li > .citeJournal,
+  #bibliography li > .citeBooktitle { font-style: italic; }
+  #bibliography li > .citeVolume { font-weight: 700; }
+  
+  @keyframes citeFade {
+    0% { background-color: rgba(255, 230, 0, 0.5); }
+    100% { background-color: transparent; }
+  }
+  
+  #bibliography li:target {
+    animation: citeFade 3s ease-out;
+  }
+  
+  
+  /* ==========================================================================
+     LISTS & TYPOGRAPHY TWEAKS
+     ========================================================================== */
+  
+  ul, ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
+    padding-left: 2rem;
+  }
+  
+  li {
+    margin-bottom: 0.25rem; /* Slight breathing room between items */
+  }
+  
+  /* Kill the default margins of paragraphs inside list items */
+  li > p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  /* Ensure nested lists are tight */
+  li > ul, li > ol {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+  
+  
+  /* ==========================================================================
+     9) MOBILE / TABLET RESPONSIVENESS
+     ========================================================================== */
+  #tocButton { display: none; }
+  
+  /* Tablet: Drop to 2 columns */
+  @media (max-width: 1100px) {
+    .topic-card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Mobile: Drop to 1 column */
+  @media (max-width: 600px) {
+    :root { --w-sidebar: 0px; --gap: 0px; }
+  
+    .topic-card-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    /* Collapse Header/Footer Grids */
+    #doc-title, #doc-footer {
+      display: block;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    #doc-title > *, #doc-footer > * {
+      grid-column: auto;
+    }
+    
+    /* Reset Footer alignment */
+    footer address { padding-top: 0; text-align: left; }
+  
+    /* Collapse Main Grid */
+    #doc-all { display: block; }
+  
+    /* Mobile Sidebar (Off-canvas) */
+    #tocContainer {
+      position: fixed; z-index: 1000;
+      top: 0; left: 0; bottom: 0;
+      width: 260px;
+      background: var(--c-bg-body);
+      border-right: 1px solid var(--c-border);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      padding: 1.5rem;
+      box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+    }
+    .sideBarShowHide { transform: translateX(0) !important; }
+  
+    /* Toggle Button */
+    #tocButton {
+      display: flex; align-items: center; justify-content: center;
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      width: 3.5rem; height: 3.5rem;
+      background: var(--c-brand); color: #fff;
+      border: none; border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1001; cursor: pointer;
+    }
+    .toc-label { display: none; }
+  }
+  
+  
+  
+  
+  /* ==========================================================================
+     10) LANDING PAGE OVERRIDES
+     ========================================================================== */
+  
+  /* Hide borders under headers on the landing page to create a cleaner dashboard look */
+  body.landing-page h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
