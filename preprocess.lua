@@ -91,6 +91,7 @@ local function annotate_todos(text, fname)
   return table.concat(out)
 end
 
+-- The full input text as one big string
 input = annotate_todos(input, source_filename)
 
 -- ============================================================================
@@ -98,9 +99,26 @@ input = annotate_todos(input, source_filename)
 -- ============================================================================
 
 -- Add newlines to make it block-level
--- TODO: EDGE CASE if ytableaushort is inside a commented line
-input = input:gsub("\\ytableaushort%b{}", "\n%0\n")
-input = input:gsub("\\specialblock%b{}", "\n%0\n")
+
+input = input:gsub("([^\n]*)(\\specialblock%b{})", function(prefix, command)
+    -- Check if the prefix contains % (then its commented out)
+    if prefix:match("%%") then
+        -- Return exactly what was found (do nothing).
+        return prefix .. command
+    else
+        -- It is safe to force block formatting.
+        return prefix .. "\n" .. command .. "\n"
+    end
+end)
+
+input = input:gsub("([^\n]*)(\\ytableaushort%b{})", function(prefix, command)
+    -- Check if the prefix contains any non-whitespace characters (%S matches non-whitespace)
+    if prefix:match("%S") then
+        return prefix .. command
+    else
+        return prefix .. "\n" .. command .. "\n"
+    end
+end)
 
 
 -- Split into lines for further processing

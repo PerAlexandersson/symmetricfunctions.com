@@ -561,6 +561,175 @@ local function transform_tex_snippet(s)
 end
 
 
+
+-- ========== SPAN-BASED IMPLEMENTATION ==========
+
+--- Parses a TeX tabular source string into a structured matrix of cells.
+-- @param s string The raw TeX body
+-- @param spec string The column specification (e.g. "lcr")
+-- @return table matrix A list of rows, where each row is a list of cell strings (or { "__RULE__", type })
+-- @return table specList A list of alignment characters ("l", "c", "r")
+-- @return number target_w The calculated width (max columns) of the table
+local function parse_tabular_source(s, spec)
+  -- Parse alignment spec -> only keep l/c/r
+  local specList = {}
+  if spec and spec ~= "" then
+    for ch in spec:gmatch(".") do
+      if ch == "l" or ch == "c" or ch == "r" then
+        table.insert(specList, ch)
+      end
+    end
+  end
+
+  -- Normalize line endings and ensure rules end with \\
+  local src = s or ""
+  src = src:gsub("\r\n", "\n")
+  src = src:gsub("\\toprule", "\\toprule\\\\")
+           :gsub("\\midrule", "\\midrule\\\\")
+           :gsub("\\bottomrule", "\\bottomrule\\\\")
+  
+  -- Ensure trailing \\
+  if not src:find("\\\\%s*$") then
+    src = src .. "\\\\"
+  end
+
+  -- Split into rows
+  local rows_raw = {}
+  for line in src:gmatch("(.-)\\\\") do
+    table.insert(rows_raw, rtrim(line))
+  end
+
+  -- Parse rows into cells
+  local matrix, maxw = {}, 0
+  for _, line in ipairs(rows_raw) do
+    local tline = trim(line)
+    if tline == "\\toprule" then
+      table.insert(matrix, { "__RULE__", "top" })
+    elseif tline == "\\midrule" then
+      table.insert(matrix, { "__RULE__", "mid" })
+    elseif tline == "\\bottomrule" then
+      table.insert(matrix, { "__RULE__", "bottom" })
+    elseif tline ~= "" then
+      local cells = split_cells_preserve_empties(line, "&")
+      table.insert(matrix, cells)
+      if #cells > maxw then 
+        maxw = #cells 
+      end
+    end
+  end
+
+  local target_w = math.max(maxw, #specList)
+  return matrix, specList, target_w
+end
+
+
+--- Formats a single table cell as an HTML SPAN (for inline validity).
+-- @param ent_in string The cell content
+-- @param opts table Options (delimiter, align)
+-- @return string HTML <span> element
+-- @return string|nil error Error message
+local function format_cell_span(ent_in, opts)
+  -- Input validation
+  if ent_in ~= nil and type(ent_in) ~= "string" then
+    return "", "Cell content must be a string or nil"
+  end
+  
+  opts = opts or {}
+  local delimiter = opts.delimiter or ""
+  local align = opts.align or ""
+
+  local ent = ent_in or ""
+  local classes, styles = { "ytab-cell" }, {} -- Base class for CSS Grid/Flex styling
+
+  -- Extract background color
+  local color
+  color, ent = extract_color(ent)
+  if color ~= "" then 
+    table.insert(styles, "background-color: " .. color) 
+  end
+
+  -- Handle \none
+  if ent:find("\\none", 1, true) then
+    ent = ent:gsub("\\none", "")
+    table.insert(classes, "none")
+    table.insert(styles, "border: none") -- Explicit style helper
+  end
+
+  -- Add alignment class
+  if align == "l" or align == "c" or align == "r" then
+    table.insert(classes, "align-" .. align)
+  end
+
+  -- Handle empty cells
+  if trim(ent) == "" then
+    ent = "&nbsp;"
+    delimiter = ""
+  end
+
+  local cls_attr = (' class="' .. table.concat(classes, " ") .. '"')
+  local style_attr = (#styles > 0) and (' style="' .. table.concat(styles, "; ") .. '"') or ""
+
+  return string.format("<span%s%s>%s%s%s</span>", cls_attr, style_attr, delimiter, ent, delimiter)
+end
+
+
+--- Converts TeX tabular/array to an HTML SPAN-based structure.
+-- This creates a structure safe for use inside <p> tags.
+-- @param s string The table content
+-- @param type_ string "tabular" or "array"
+-- @param spec string Column specification
+-- @return string HTML <span> structure
+-- @return string|nil error
+local function tex_tabular_to_span(s, type_, spec)
+  if not s or s == "" then return "", "Table content cannot be empty" end
+
+  -- 1. Parse Data
+  local matrix, specList, target_w = parse_tabular_source(s, spec)
+  
+  local type__ = type_ or "tabular"
+  local wrapper_class = "ytab-wrapper " .. type__
+
+  -- 2. Generate HTML
+  local html_parts = {}
+  table.insert(html_parts, '<span class="' .. wrapper_class .. '">')
+
+  for _, row in ipairs(matrix) do
+    if row[1] == "__RULE__" then
+      -- Render rules as a row with a specific class, or ignore if using borders via CSS
+      local cls = (row[2] == "top" and "rule-top") 
+                  or (row[2] == "mid" and "rule-mid") 
+                  or "rule-bottom"
+      -- We add a divider span
+      table.insert(html_parts, '<span class="ytab-row rule ' .. cls .. '"></span>')
+    else
+      -- Pad row
+      while #row < target_w do 
+        table.insert(row, "\\none") 
+      end
+      
+      table.insert(html_parts, '<span class="ytab-row">')
+      
+      for i, cell in ipairs(row) do
+        local align = (specList[i] == "l" or specList[i] == "c" or specList[i] == "r") 
+                      and specList[i] or ""
+        local delim = (type__ == "array") and "$" or ""
+        
+        local formatted_cell, err = format_cell_span(cell, { delimiter = delim, align = align })
+        if err then print_warn("Error formatting span cell: %s", err) end
+        
+        table.insert(html_parts, formatted_cell)
+      end
+      
+      table.insert(html_parts, '</span>') -- End row
+    end
+  end
+
+  table.insert(html_parts, '</span>') -- End wrapper
+  return table.concat(html_parts, "")
+end
+
+
+
 -- ========== MODULE EXPORTS ==========
 
 ---@class TexTableConverter
@@ -576,7 +745,9 @@ local M = {
   tex_tabular_to_html = tex_tabular_to_html,
   ytableaushort_to_html = ytableaushort_to_html,
   youngtab_to_html = youngtab_to_html,
-  transform_tex_snippet = transform_tex_snippet
+  transform_tex_snippet = transform_tex_snippet,
+  format_cell_span = format_cell_span,
+  tex_tabular_to_span = tex_tabular_to_span
 }
 
 return M

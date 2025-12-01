@@ -404,6 +404,17 @@ table.array th, table.tabular th {
 tr.toprule td, tr.toprule th { border-top: 2px solid currentColor; }
 tr.bottomrule td { border-bottom: 2px solid currentColor; }
 
+
+.latextable-inline {
+    display: inline-block; /* Allows the span to hold dimensions */
+}
+
+.latextable-inline table.ytab {
+    display: inline-block;
+    margin: 0 2px;          /* Adds breathing room */
+}
+
+
 /* Family Index Table */
 .family-index {
   width: 100%;

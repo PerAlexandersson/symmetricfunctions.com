@@ -469,11 +469,10 @@ function RawInline(el)
   end
 
 
-  -- \ytableaushort and friends inline
+  -- \ytableaushort and friends appearing as inline
   do
     local name, body = match_textable(s)
     if name and body then
-      print_warn("Inline latextable of type %s : %s", name, body)
       return pandoc.Span(
         { pandoc.RawInline("latextable", body) },
         pandoc.Attr("", { "latextable-inline", name })
