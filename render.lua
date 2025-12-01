@@ -230,11 +230,20 @@ function render_inlines_html(inlines)
       
     elseif t == "Strong" then
       table.insert(buffer, "<strong>" .. render_inlines_html(c) .. "</strong>")
-      
+   
+--   --TODO: make expandable.
+--     <details class="code-details">
+--   <summary>script.py</summary>
+  
+--   <pre><code>def hello():
+--     print("Hello World")</code></pre>
+-- </details>
     elseif t == "Code" then
       local code = c[2] or c.code or ""
       table.insert(buffer, "<code>" .. html_escape(code) .. "</code>")
       
+
+
     elseif t == "Math" then
       local kind = c[1].t
       local body = c[2] or ""
