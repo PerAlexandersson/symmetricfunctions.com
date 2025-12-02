@@ -1,18 +1,18 @@
 \documentclass[tikz]{standalone}
-
 \usetikzlibrary{arrows,positioning}
-\definecolor{pBlue}{RGB}{86,139,190}
-\definecolor{pCyan}{RGB}{149,186,201}
-\definecolor{pSand}{RGB}{184,166,121}
-\definecolor{pAlgae}{RGB}{87,115,135}
-\definecolor{pSkin}{RGB}{236,216,167}
-\definecolor{pGray}{RGB}{156,175,156}
-\definecolor{pPink}{RGB}{215,114,127}
-\definecolor{pOrange}{RGB}{211,153,80}
+\newcommand{\tikzsetnextfilename}[1]{}
 
+\definecolor{pGray}{gray}{0.6}
+
+\tikzset{
+    circ/.style={circle, draw, inner sep=1pt, minimum width=0.8em, fill=white},
+    bg grid/.style={line width=2.5\pgflinewidth, pGray}
+}
 
 \begin{document}
-\begin{tikzpicture}[x=2em,y=2em,scale=1.0,circ/.style={circle,draw,inner sep=1pt, minimum width=0.8em}]
+
+\tikzsetnextfilename{6-vertex-model-1}
+\begin{tikzpicture}[x=2em,y=2em,scale=1.0]
 \draw[line width=2.5\pgflinewidth,pGray] (-2,0)--(2,0);
 \draw[line width=2.5\pgflinewidth,pGray] (0,-2)--(0,2);
 \node[circ,fill=white] at (-1, 0) {$0$};
@@ -26,8 +26,8 @@
 \node[fill=white] at ( 0, 2) {$\bullet$};
 \end{tikzpicture}
 
-
-\begin{tikzpicture}[x=2em,y=2em,scale=1.0,circ/.style={circle,draw,inner sep=1pt, minimum width=0.8em}]
+\tikzsetnextfilename{6-vertex-model-2}
+\begin{tikzpicture}[x=2em,y=2em,scale=1.0]
 \draw[line width=2.5\pgflinewidth,pGray] (-2,0)--(2,0);
 \draw[line width=2.5\pgflinewidth,pGray] (0,-2)--(0,2);
 \node[circ,fill=white] at (-1, 0) {$1$};
@@ -41,8 +41,8 @@
 \node[fill=white] at ( 0, 2) {$\bullet$};
 \end{tikzpicture}
 
-
-\begin{tikzpicture}[x=2em,y=2em,scale=1.0,circ/.style={circle,draw,inner sep=1pt, minimum width=0.8em}]
+\tikzsetnextfilename{6-vertex-model-3}
+\begin{tikzpicture}[x=2em,y=2em,scale=1.0]
 \draw[line width=2.5\pgflinewidth,pGray] (-2,0)--(2,0);
 \draw[line width=2.5\pgflinewidth,pGray] (0,-2)--(0,2);
 \node[circ,fill=white] at (-1, 0) {$0$};
@@ -56,8 +56,8 @@
 \node[fill=white] at ( 0, 2) {$\bullet$};
 \end{tikzpicture}
 
-
-\begin{tikzpicture}[x=2em,y=2em,scale=1.0,circ/.style={circle,draw,inner sep=1pt, minimum width=0.8em}]
+\tikzsetnextfilename{6-vertex-model-4}
+\begin{tikzpicture}[x=2em,y=2em,scale=1.0]
 \draw[line width=2.5\pgflinewidth,pGray] (-2,0)--(2,0);
 \draw[line width=2.5\pgflinewidth,pGray] (0,-2)--(0,2);
 \node[circ,fill=white] at (-1, 0) {$1$};
@@ -71,8 +71,8 @@
 \node[fill=white] at ( 0, 2) {$\bullet$};
 \end{tikzpicture}
 
-
-\begin{tikzpicture}[x=2em,y=2em,scale=1.0,circ/.style={circle,draw,inner sep=1pt, minimum width=0.8em}]
+\tikzsetnextfilename{6-vertex-model-5}
+\begin{tikzpicture}[x=2em,y=2em,scale=1.0]
 \draw[line width=2.5\pgflinewidth,pGray] (-2,0)--(2,0);
 \draw[line width=2.5\pgflinewidth,pGray] (0,-2)--(0,2);
 \node[circ,fill=white] at (-1, 0) {$1$};
@@ -86,7 +86,8 @@
 \node[fill=white] at ( 0, 2) {$\bullet$};
 \end{tikzpicture}
 
-\begin{tikzpicture}[x=2em,y=2em,scale=1.0,circ/.style={circle,draw,inner sep=1pt, minimum width=0.8em}]
+\tikzsetnextfilename{6-vertex-model-6}
+\begin{tikzpicture}[x=2em,y=2em,scale=1.0]
 \draw[line width=2.5\pgflinewidth,pGray] (-2,0)--(2,0);
 \draw[line width=2.5\pgflinewidth,pGray] (0,-2)--(0,2);
 \node[circ,fill=white] at (-1, 0) {$0$};
