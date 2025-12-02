@@ -68,14 +68,17 @@ local function render_row(entry)
     href = string.format("#%s", key)
   end
 
+  local pct = (tonumber(rating) or 0) * 10
+
   local data_attrs = string.format(
-    'data-key="%s" data-space="%s" data-category="%s" data-year="%s" data-rating="%s" data-basis="%s"',
+    'data-key="%s" data-space="%s" data-category="%s" data-year="%s" data-rating="%s" data-basis="%s" style="--percent: %d%%;"',
     html_escape(key),
     html_escape(space),
     html_escape(category),
     html_escape(tostring(year)),
     rating,
-    is_basis
+    is_basis,
+    pct
   )
 
   local name_cell = string.format(

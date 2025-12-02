@@ -12,12 +12,16 @@
     --c-bg-surface:  #f8f9fa; 
     --c-bg-header:   #f1f3f5; 
     --c-border:      #dee2e6;
+    --c-bg-gray:     #888888;
 
     --c-rule:       #000000;
     
     --c-text-main:   #212529;
     --c-text-sub:    #495057;
     --c-text-muted:  #868e96;
+
+    --c-rating-from: #ffc107;
+    --c-rating-to:   rgb(230,230,230);
   
     /* Math/Tableaux specifics */
     --math-env-bar:  rgb(200,200,200);
@@ -193,7 +197,7 @@
   }
   
   /* ==========================================================================
-     5) SIDEBAR (TOC)
+      SIDEBAR (TOC)
      ========================================================================== */
   #tocContainer {
     position: sticky;
@@ -334,6 +338,8 @@
     }
   }
   
+
+
   
   /* ==========================================================================
       MATH & TABLEAUX (Refactored for CSS Grid)
@@ -564,8 +570,79 @@ details.env[open] > summary::after {
     margin-top: 0.25rem;
     margin-bottom: 0;
   }
+
   
+
+  /* ==========================================================================
+      Polynomial index table
+     ========================================================================== */
   
+  .fam-rating {
+    background: linear-gradient(to right, var(--c-rating-from) var(--percent), var(--c-rating-to) var(--percent));
+    
+    /* Standard masking to clip background to text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Make text transparent */
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .family-index {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-family: sans-serif;
+  }
+
+  .family-index th, 
+  .family-index td {
+      text-align: left;
+      padding: 10px 15px;
+  }
+
+  .family-index thead {
+      border-bottom: 3px solid var(--c-rule);
+  }
+
+  /* Make the first column take all available space */
+  .family-index th:first-child,
+  .family-index td:first-child {
+      width: auto; 
+  }
+
+  /* Make all OTHER columns shrink to fit content + padding */
+  .family-index th:not(:first-child),
+  .family-index td:not(:first-child) {
+      width: 1%; /* Hack: Forces column to be as small as possible... */
+      white-space: nowrap;
+  }
+
+  /* Interaction: Show the user they can sort */
+  .family-index th {
+      cursor: pointer;
+      user-select: none; /* Prevents text highlighting when clicking fast */
+  }
+
+  .family-index th:hover {
+      background-color: var(--c-rating-from);
+  }
+
+  /* Ensure the link inside doesn't confuse the cursor */
+  .family-index tbody tr a {
+      text-decoration: none;
+      color: inherit;        /* Optional: makes link blend in */
+      display: block;        /* Helps hit area */
+  }
+
+    /* Hover effect for table rows */
+  .family-index tbody tr:hover {
+      background-color: color-mix(in srgb, var(--c-bg-gray) 20%, var(--c-bg-body));
+      transition: background-color 0.1s ease-in;
+      cursor: pointer;
+  }
+
   /* ==========================================================================
       MOBILE / TABLET RESPONSIVENESS
      ========================================================================== */

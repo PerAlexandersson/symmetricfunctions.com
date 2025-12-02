@@ -80,6 +80,86 @@
     }, { passive: true });
   }
 
+  // Family Index Table Sorting & Row Linking
+  function initFamilyIndexTable() {
+    var table = document.getElementById("family-index");
+    if (!table) return;
+
+    var headers = table.querySelectorAll('th');
+    var tableBody = table.querySelector('tbody');
+    
+    // Map column index to data-attribute. 
+    // We use null for index 0 because we will special-case it to use textContent.
+    var columnDataMap = [null, 'space', 'category', 'year', 'rating'];
+    var directions = [1, 1, 1, 1, 1];
+
+    var rows = Array.prototype.slice.call(tableBody.querySelectorAll('tr'));
+
+    // 1. Sorting Logic
+    for (var i = 0; i < headers.length; i++) {
+      (function(index) {
+        headers[index].addEventListener('click', function() {
+          var direction = directions[index];
+
+          rows.sort(function(rowA, rowB) {
+            var valA, valB;
+
+            // If it's the first column (Name), sort by visible text
+            if (index === 0) {
+              valA = rowA.cells[0].textContent.replace(/\$/g, '').trim();
+              valB = rowB.cells[0].textContent.replace(/\$/g, '').trim();
+            } else {
+              // Otherwise sort by the data attribute
+              var attr = columnDataMap[index];
+              valA = rowA.getAttribute('data-' + attr);
+              valB = rowB.getAttribute('data-' + attr);
+            }
+
+            var numA = parseFloat(valA);
+            var numB = parseFloat(valB);
+
+            // Numeric Sort (if both are numbers)
+            if (!isNaN(numA) && !isNaN(numB)) {
+              return (numA - numB) * direction;
+            }
+            
+            // Text Sort
+            return valA.localeCompare(valB) * direction;
+          });
+
+            // Re-append sorted rows
+          for (var j = 0; j < rows.length; j++) {
+            tableBody.appendChild(rows[j]);
+          }
+
+          directions[index] = -direction;
+        });
+      })(i);
+    }
+
+    // Row Click Logic (Delegation)
+    tableBody.addEventListener('click', function(e) {
+      // Find the clicked row
+      var row = e.target.closest('tr');
+      if (!row) return;
+
+      // If the user actually clicked a link directly, let the browser handle it
+      // This prevents double-firing or breaking Middle-Click / Cmd-Click
+      if (e.target.closest('a')) return;
+
+      // Otherwise, find the primary link in this row and click it
+      var link = row.querySelector('a');
+      if (link) {
+        link.click();
+      }
+    });
+
+    // Sort table initially
+    if (headers.length > 0) {
+        headers[0].click();
+    }
+  }
+
   // Index sorting: keep the same API as before
   window.sortByVariable = function (newClass) {
     var elem = document.getElementById("index-container");
@@ -100,8 +180,9 @@
     initCookieDialog();
     initTOCListeners();
     initScrollBehavior();
+    initFamilyIndexTable();
 
-    // small accessibility improvement: keyboard to toggle sidebar
+    // Small accessibility improvement: keyboard to toggle sidebar
     var tocButton = document.getElementById("tocButton");
     if (tocButton) {
       tocButton.addEventListener('keydown', function (e) {
