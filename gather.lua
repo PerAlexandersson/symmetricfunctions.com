@@ -22,7 +22,7 @@ local print_error = utils.print_error
 local bib = dofile("bibhandler.lua")
 local get_bibliography_label = bib.get_bibliography_label
 
--- derive current input filename/stem
+-- Derive current input filename/stem
 local _INPUT = (PANDOC_STATE and PANDOC_STATE.input_files and PANDOC_STATE.input_files[1]) or "(stdin)"
 local _BASENAME = _INPUT:match("([^/\\]+)$") or _INPUT
 local _STEM = _BASENAME:gsub("%.[^.]+$", "")
@@ -69,7 +69,6 @@ local function record_link(url, text)
   local key = url .. "||" .. text
   if not urls_seen[key] then
     urls_seen[key] = true
-    --print_color(CONSOLE.blue,"--- url=%s text=%s", url, text)
   end
 end
 
@@ -238,13 +237,13 @@ local function topic_card(s)
     local title_inner = trim(title:sub(2, -2))
     local descr_inner = trim(description:sub(2, -2))
 
-    -- 1. Create the Image
+    --  Create the Image
     local img_path  = string.format("nav-images/card-%s.svg", id_inner)
     -- We set intrinsic dimensions, but CSS will handle the actual layout
-    local img_attr  = pandoc.Attr("", {}, {width="200", height="200"}) 
+    local img_attr  = pandoc.Attr("", {}, {style="height: 4rem; width: auto; max-width: 100%;"})
     local img       = pandoc.Image(pandoc.Str(title_inner), img_path, "", img_attr)
 
-    -- 2. Process Text
+    --  Process Text
     -- Visible Title (Rich Text with Math support)
     local title_doc = pandoc.read(title_inner, "latex")
     -- Safety check: ensure we got blocks back
@@ -260,7 +259,7 @@ local function topic_card(s)
     -- Wrap text in a container span (Flexbox helper)
     local text_wrapper = pandoc.Span({title_span}, {class="card-text"})
 
-    -- 3. Create Link: 
+    -- Create Link: 
     -- Content: [Text Wrapper] + [Image]
     -- Title Attribute: desc_text
     local link = pandoc.Link(
@@ -282,16 +281,9 @@ end
 function Header(el)
   -- Increase level
   el.level = math.min((el.level or 1) + 1, 6)
-
   if el.identifier and el.identifier ~= "" then
     set_add(labels, el.identifier)
-    if el.level == 2 then
-      --print_info("Section: %s", el.identifier)
-    elseif el.level == 3 then
-      --print_info("Subsection: %s", el.identifier)
-    end
   end
-
   return el
 end
 
@@ -371,7 +363,6 @@ function RawInline(el)
       return img
     end
   end
-
 
   -- \oeis{Axxxxxx} → Link(id, https://oeis.org/id), class="oeis"
   -- <a title="The On-Line Encyclopedia of Integer Sequences" class="oeis" href="https://oeis.org/A000085">A000085</a>

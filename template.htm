@@ -51,24 +51,22 @@
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
 	crossorigin="anonymous">
 	
-	<link rel="preload" href="./style.css" as="style" onload="this.rel='stylesheet'">
-	<noscript><link rel="stylesheet" href="./style.css"></noscript>
-
 	<style>
-		<!--STYLE-->
+		<!--STYLE-->		
 	</style>
 
+	<link rel="stylesheet" href="./style.css">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<!--
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139966103-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'UA-139966103-1');
-	</script>
--->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!--
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139966103-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-139966103-1');
+		</script>
+	-->
 
 
 <!-- KaTeX assets -->
@@ -76,20 +74,6 @@
 <style>.katex{font-size: 1em}</style>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: "$$", right: "$$", display: true},
-        {left: "\\[", right: "\\]", display: true},
-        {left: "$",  right: "$",  display: false},
-        {left: "\\(", right: "\\)", display: false}
-      ],
-			throwOnError: false,
-			macros: window.KATEX_MACROS || {}
-		});
-  });
-</script>
 <script src="./tex-init.js" defer></script>
 <!--KaTeX assets end -->
 

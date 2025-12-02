@@ -243,7 +243,6 @@ function render_inlines_html(inlines)
       table.insert(buffer, "<code>" .. html_escape(code) .. "</code>")
       
 
-
     elseif t == "Math" then
       local kind = c[1].t
       local body = c[2] or ""
@@ -342,7 +341,7 @@ local function extract_text_from_inlines(inlines)
   for _, x in ipairs(inlines) do
     if x.t == "Str" then table.insert(parts, x.c)
     elseif x.t == "Space" then table.insert(parts, " ")
-    elseif x.t == "Math" then table.insert(parts, x.c[2] or "")
+    elseif x.t == "Math" and x.c[2] then table.insert(parts, "\\(" .. x.c[2] .. "\\)")
     end
   end
   return table.concat(parts)

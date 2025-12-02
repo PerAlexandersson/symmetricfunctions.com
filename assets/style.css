@@ -1,3 +1,8 @@
+@layer reset, base, layout, components;
+
+
+@layer base {
+
 /* ==========================================================================
    1) DESIGN TOKENS
    ========================================================================== */
@@ -715,3 +720,7 @@ details.env[open] > summary::after {
     border-bottom: none;
     padding-bottom: 0;
   }
+
+
+
+} /* End base */
