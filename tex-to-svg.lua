@@ -4,6 +4,8 @@
 -- CONFIGURATION
 -- =============================================================================
 
+--- TODO: Use utils file
+
 local CONFIG = {
   SRC_DIR  = "svg-tex/src",
   LIB_DIR  = "svg-tex/lib",
@@ -123,7 +125,7 @@ for _, tex_path in ipairs(tex_sources) do
           
           -- Routing
           local dest_dir = CONFIG.SVG_OUT
-          if out_name:match("^card%-") or out_name:match("^csp%-") or out_name:match("6%-vertex") then
+          if out_name:match("^card%-") then
             dest_dir = CONFIG.NAV_OUT
           end
           
