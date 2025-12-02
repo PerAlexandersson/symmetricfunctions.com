@@ -6,33 +6,38 @@
 /* ==========================================================================
    1) DESIGN TOKENS
    ========================================================================== */
-   :root {
-    /* Colors */
-    --c-brand:       rgb(225, 120, 65);
-    --c-brand-light: rgb(245, 140, 85);
-    --c-link:        rgb(37, 134, 221);
-    --c-link-dark:   #1d5bbf;
-  
-    --c-bg-body:     #ffffff;
-    --c-bg-surface:  #f8f9fa; 
-    --c-bg-header:   #f1f3f5; 
-    --c-border:      #dee2e6;
-    --c-bg-gray:     #888888;
 
-    --c-rule:       #000000;
-    
-    --c-text-main:   #212529;
-    --c-text-sub:    #495057;
-    --c-text-muted:  #868e96;
+  :root {
+    /* Brand & Links */
+    --c-brand:       rgb(225, 120,  65);
+    --c-brand-light: rgb(245, 140,  85);
+    --c-link:        rgb( 37, 134, 221);
+    --c-link-dark:   rgb( 29,  91, 191);
 
-    --c-rating-from: #ffc107;
-    --c-rating-to:   rgb(230,230,230);
+    /* Backgrounds & Borders */
+    --c-bg-body:     rgb(255, 255, 255);
+    --c-bg-surface:  rgb(248, 249, 250);
+    --c-bg-header:   rgb(241, 243, 245);
+    --c-border:      rgb(222, 226, 230);
+    --c-bg-gray:     rgb(136, 136, 136);
+
+    /* Structural */
+    --c-rule:        rgb(  0,   0,   0);
+
+    /* Text */
+    --c-text-main:   rgb( 33,  37,  41);
+    --c-text-sub:    rgb( 73,  80,  87);
+    --c-text-muted:  rgb(134, 142, 150);
+
+    /* Components (Ratings) */
+    --c-rating-from: rgb(255, 193,   7);
+    --c-rating-to:   rgb(230, 230, 230);
   
     /* Math/Tableaux specifics */
     --math-env-bar:  rgb(200,200,200);
     --math-accent:   rgb(37,134,221);
   
-   --header-border: 1px solid var(--c-border);
+    --header-border: 1px solid var(--c-border);
   
     /* Dimensions */
     --w-page: 72rem;       /* Total max width of content area */
@@ -46,20 +51,24 @@
   
   @media (prefers-color-scheme: dark) {
     :root {
-      --c-bg-body:     #121212;
-      --c-bg-surface:  #1e1e1e;
-      --c-bg-header:   #1a1a1a;
-      --c-border:      #333;
-      
-      --c-text-main:   #e1e1e1;
-      --c-text-sub:    #b0b0b0;
-      --c-text-muted:  #777;
+        /* Backgrounds & Borders */
+        --c-bg-body:     rgb( 40,  40,  40);
+        --c-bg-surface:  rgb( 60,  60,  60);
+        --c-bg-header:   rgb( 26,  26,  26);
+        --c-border:      rgb( 81,  81,  81);
 
-      --c-rule:       #d5c7c7;
-      
-      --c-link:        #64b5f6;
-      --math-env-bar:  #3b4252;
-      --math-accent:   #7aa2ff;
+        /* Text */
+        --c-text-main:   rgb(225, 225, 225);
+        --c-text-sub:    rgb(176, 176, 176);
+        --c-text-muted:  rgb(119, 119, 119);
+
+        /* Structural */
+        --c-rule:        rgb(213, 199, 199);
+
+        /* Links & Accents */
+        --c-link:        rgb(100, 181, 246);
+        --math-env-bar:  rgb( 59,  66,  82);
+        --math-accent:   rgb(122, 162, 255);
       
       color-scheme: dark;
     }
@@ -404,9 +413,8 @@
 
   
   .defin {
-    font-style: italic;          
     font-weight: 600;            
-    color: var(--c-link-dark);   
+    color: var(--c-brand);   
   }
 
   /* Styling for \name{...} */
