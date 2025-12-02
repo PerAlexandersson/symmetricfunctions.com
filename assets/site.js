@@ -80,6 +80,48 @@
     }, { passive: true });
   }
 
+
+// Initialize Copy-to-Clipboard buttons on all <pre> blocks
+  function initCopyButtons() {
+    // 1. Find all <pre> tags
+    var blocks = document.querySelectorAll('pre');
+    
+    blocks.forEach(function(pre) {
+        // 2. Create the button
+        var button = document.createElement('button');
+        button.className = 'copy-btn';
+        // Using your FontAwesome icon
+        button.innerHTML = '<i class="far fa-copy"></i>'; 
+        button.setAttribute('aria-label', 'Copy to clipboard');
+
+        // 3. Add Click Logic
+        button.addEventListener('click', function() {
+            var code = pre.querySelector('code');
+            var text = code ? code.innerText : pre.innerText;
+
+            // The modern clipboard API
+            navigator.clipboard.writeText(text).then(function() {
+                // Success Feedback
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.style.color = 'green';
+                button.style.borderColor = 'green';
+                
+                // Reset after 2 seconds
+                setTimeout(function() {
+                    button.innerHTML = '<i class="far fa-copy"></i>';
+                    button.style.color = '';
+                    button.style.borderColor = '';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy!', err);
+            });
+        });
+
+        // 4. Append button to the <pre> block
+        pre.appendChild(button);
+    });
+  }
+
   // Family Index Table Sorting & Row Linking
   function initFamilyIndexTable() {
     var table = document.getElementById("family-index");
@@ -180,6 +222,7 @@
     initCookieDialog();
     initTOCListeners();
     initScrollBehavior();
+    initCopyButtons();
     initFamilyIndexTable();
 
     // Small accessibility improvement: keyboard to toggle sidebar

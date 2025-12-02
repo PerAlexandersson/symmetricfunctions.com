@@ -341,6 +341,25 @@ function RawInline(el)
     end
   end
 
+-- \name{...} → Span(class=author-name)
+  do
+    local b = s:match("^%s*\\name(%b{})%s*$")
+    if b then
+      local name = b:sub(2, -2)
+
+      local search_query = name:gsub(" ", "+").."+mathematics"
+      local url = "https://scholar.google.com/scholar?q=" .. search_query
+      
+      -- Return a Link object with class "author-name"
+      return pandoc.Link(
+        { pandoc.Str(name) }, -- Link Text
+        url,                  -- URL
+        "Search for " .. name,-- Tooltip title
+        { class = "author-name", target = "_blank" } -- Attributes
+      )
+    end
+  end
+
   -- \icon{...} → Span(class=icon)
   do
     local b = s:match("^%s*\\icon(%b{})%s*$")
