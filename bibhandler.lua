@@ -13,7 +13,6 @@ local html_escape       = utils.html_escape
 local print_error       = utils.print_error
 local print_info        = utils.print_info
 
-
 -- ========== CONSTANTS ==========
 
 local MONTH_NAMES = {
@@ -46,7 +45,8 @@ end
 local function extract_year(item)
   local date_parts = item.issued and item.issued["date-parts"]
   if date_parts and date_parts[1] and date_parts[1][1] then
-    return tostring(date_parts[1][1])
+    local y = tonumber(date_parts[1][1])
+    if y then return string.format("%.0f", y) end
   end
   return ""
 end
@@ -363,9 +363,39 @@ local function get_bibliography_label(id)
   return make_bibliography_label(authors, year)
 end
 
+
+
+local function get_bibliography_tooltop(id)
+  local bibliography = load_bibliography_json()
+  local entry = bibliography and bibliography[id]
+  if not entry then return nil end
+  local authors = normalize_authors(entry.author)
+  
+  if not authors or #authors == 0 then return "" end
+  local names = {}
+  for _, author in ipairs(authors) do
+    table.insert(names, extract_last_name(author))
+  end
+
+  local author_str = ""
+  if #names == 1 then
+    author_str = names[1]
+  elseif #names == 2 then
+    author_str = names[1] .. " and " .. names[2]
+  elseif #names > 2 then
+    local last = table.remove(names)
+    author_str = table.concat(names, ", ") .. " and " .. last
+  end
+  
+  local title = strip_nocase_spans(entry.title or "")
+  local year = extract_year(entry)
+  return string.format("%s, %s (%s)", author_str, title, year)
+end
+
 local M = {
   build_bibliography_HTML = build_bibliography_HTML,
-  get_bibliography_label = get_bibliography_label
+  get_bibliography_label = get_bibliography_label,
+  get_bibliography_tooltop = get_bibliography_tooltop
 }
 
 return M

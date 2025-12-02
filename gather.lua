@@ -21,6 +21,7 @@ local print_error = utils.print_error
 
 local bib = dofile("bibhandler.lua")
 local get_bibliography_label = bib.get_bibliography_label
+local get_bibliography_tooltop = bib.get_bibliography_tooltop
 
 -- Derive current input filename/stem
 local _INPUT = (PANDOC_STATE and PANDOC_STATE.input_files and PANDOC_STATE.input_files[1]) or "(stdin)"
@@ -426,7 +427,13 @@ function RawInline(el)
           any_missing = true
         else
           set_add(citations, key)
-          parts[#parts + 1] = pandoc.Link({ pandoc.Str(lbl) }, "#" .. key, "", { "cite" })
+          local tooltip = get_bibliography_tooltop(key) or "" -- Ensure it's not nil
+          parts[#parts + 1] = pandoc.Link(
+              { pandoc.Str(lbl) }, 
+              "#" .. key, 
+              tooltip,
+              { class = "cite" }
+          )
         end
       end
 
