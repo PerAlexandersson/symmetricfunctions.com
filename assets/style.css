@@ -113,6 +113,20 @@
     border-bottom: var(--header-border);
     padding-bottom: 0.3em;
   }
+
+  .figure > img {
+    flex-shrink: 0;
+    min-width: 60px;
+    max-width: 90%;
+    height: auto; 
+    object-fit: contain
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    img {
+      filter: invert(1) hue-rotate(180deg);
+    }
+  }
   
   /* ==========================================================================
      LAYOUT ARCHITECTURE
@@ -348,10 +362,9 @@
   
   @media (prefers-color-scheme: dark) {
     .topic-card img {
-      filter: invert(1) opacity(0.8);
+      filter: invert(1) hue-rotate(180deg);
     }
   }
-  
 
 
   

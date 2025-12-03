@@ -166,9 +166,8 @@ It is the matroid whose bases are all $4$-element subsets of $[8]$, except
 \]
 
 \begin{figure}
-  \svgimg[width=0.5\textwidth]{./svg-images/vamos-matroid.svg}{The Vámos matroid, with dependent sets shown.}
+  \svgimg[width=0.3\textwidth]{./svg-images/vamos-matroid.svg}{The Vámos matroid, with dependent sets shown.}
 \end{figure}
-
 
 
 \begin{theorem}
@@ -264,7 +263,7 @@ All lattice path matroids are transversal matroids.
 \begin{example}
 
 \begin{figure}
- \svgimg[width=0.5\textwidth]{./svg-images/latticepath-matroid.svg}{A skew Ferrers shape and labeling of the East steps.} 
+ \svgimg[width=0.35\textwidth]{./svg-images/latticepath-matroid.svg}{A skew Ferrers shape and labeling of the East steps.} 
 \end{figure}
 
 \end{example}
@@ -355,9 +354,10 @@ The \defin{matroid base polytope} is the convex hull of all indicator vectors of
 
 For example, the matroid with bases $\{123456,123467,123567,124567,134567,234567\}$
 is the convex hull of
-\[
-(1,1,1,1,1,1,0),\; (1,1,1,1,0,1,1),\; (1,1,1,0,1,1,1),\; (1,1,0,1,1,1,1),\; (1,0,1,1,1,1,1),\; (0,1,1,1,1,1,1).
-\]
+\begin{array}{lll}
+(1,1,1,1,1,1,0), & (1,1,1,1,0,1,1), & (1,1,1,0,1,1,1), \\ 
+(1,1,0,1,1,1,1), & (1,0,1,1,1,1,1), & (0,1,1,1,1,1,1).
+\end{array}
 We let $\xvec(S) \coloneqq \sum_{i \in S} x_i$.
 
 \begin{theorem}

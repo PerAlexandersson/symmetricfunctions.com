@@ -1,10 +1,9 @@
 
-
-
 \documentclass[crop,tikz,border=0pt,12pt]{standalone}
 
 \usepackage{amsthm,amsmath,latexsym,mathtools}
 
+\definecolor{pBlue}{RGB}{86,139,190}
 
 %Custom definitions
 \newcommand{\avec}{\mathbf{a}}
@@ -25,7 +24,7 @@
  \begin{tikzpicture}[scale=1.3]
  \begin{scope}
    % Define the plane
-  \fill[blue!10] (0,0,0) -- (2,0,0) -- (1,2,0) -- cycle;
+  \fill[pBlue] (0,0,0) -- (2,0,0) -- (1,2,0) -- cycle;
   % Draw the vectors
   \draw[thick, ->] (0,0,0) -- (2,0,0) node[below right] {$\mathbf{b}$};
   \draw[thick, ->] (0,0,0) -- (1,2,0) node[above right] {$\mathbf{c}$};
@@ -46,7 +45,7 @@
   \draw[thick, bend right=20] (3) to node[midway, left] {$d$} (4);
   \draw[thick, bend left=20] (3) to node[midway, right] {$e$} (4);
   % Labeling positions
-  \node at (0, 0.5) {}; % Adjust space if needed
+  \node at (0, 0.5) {};
 \end{scope}
 \end{tikzpicture}
 

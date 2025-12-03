@@ -1,10 +1,21 @@
 #!/usr/bin/env lua
 
 -- =============================================================================
--- CONFIGURATION
+-- DEPENDENCIES
 -- =============================================================================
 
---- TODO: Use utils file
+-- Ensure we can load the helper files from the root directory
+local file_reading = dofile("file_reading.lua")
+local utils        = dofile("utils.lua")
+
+local print_info   = utils.print_info
+local print_warn   = utils.print_warn
+local print_error  = utils.print_error
+local read_file    = file_reading.read_file
+
+-- =============================================================================
+-- CONFIGURATION
+-- =============================================================================
 
 local CONFIG = {
   SRC_DIR  = "svg-tex/src",
@@ -17,6 +28,7 @@ local CONFIG = {
 -- Setup Environment
 local PWD = os.getenv("PWD")
 local ABS_LIB = PWD .. "/" .. CONFIG.LIB_DIR
+-- TEXINPUTS needs absolute path and trailing colon
 local TEX_ENV = string.format("TEXINPUTS=.:%s/:", ABS_LIB)
 
 -- =============================================================================
@@ -27,21 +39,6 @@ local function exec(cmd)
   local success = os.execute(cmd)
   if success == 0 or success == true then return true end
   return false 
-end
-
-local function read_file(path)
-  local f = io.open(path, "rb")
-  if not f then return nil end
-  local content = f:read("*all")
-  f:close()
-  return content
-end
-
-local function write_file(path, content)
-  local f = io.open(path, "wb")
-  if not f then error("Cannot open " .. path .. " for writing") end
-  f:write(content)
-  f:close()
 end
 
 local function get_files(dir, extension)
@@ -60,7 +57,7 @@ end
 -- CORE LOGIC
 -- =============================================================================
 
-print(">> Setting up directories...")
+print_info("Setting up directories...")
 exec("mkdir -p " .. CONFIG.TEMP_DIR)
 exec("mkdir -p " .. CONFIG.NAV_OUT)
 exec("mkdir -p " .. CONFIG.SVG_OUT)
@@ -69,18 +66,21 @@ local tex_sources = get_files(CONFIG.SRC_DIR, "tex")
 
 for _, tex_path in ipairs(tex_sources) do
   local fname = basename(tex_path)
-  print("\n>> Processing Bundle: " .. fname)
+  print_info("Processing Bundle: %s", fname)
 
   -- 1. EXTRACT FILENAMES FROM SOURCE
   -- Scan the .tex file for \tikzsetnextfilename{...}
-  local source_content = read_file(tex_path)
+  -- read_file returns content or nil (exits if strict, but we use strict=false here to be safe)
+  local source_content = read_file(tex_path, "TeX source", true)
   local page_names = {}
-  for name in source_content:gmatch("\\tikzsetnextfilename%s*{([^{}]+)}") do
-    table.insert(page_names, name)
+  
+  if source_content then
+    for name in source_content:gmatch("\\tikzsetnextfilename%s*{([^{}]+)}") do
+      table.insert(page_names, name)
+    end
   end
 
   -- 2. COMPILE TO MULTI-PAGE PDF
-  -- No externalize flags needed. Just standard compilation.
   exec("rm -f " .. CONFIG.TEMP_DIR .. "/*.pdf") -- clean previous
   exec("cp " .. tex_path .. " " .. CONFIG.TEMP_DIR .. "/")
   
@@ -88,83 +88,74 @@ for _, tex_path in ipairs(tex_sources) do
     "cd %s && %s pdflatex -interaction=nonstopmode %s > /dev/null",
     CONFIG.TEMP_DIR, TEX_ENV, fname
   )
-  exec(cmd_compile)
-
-  -- 3. SPLIT PDF INTO SVGs
-  local pdf_name = fname:gsub("%.tex$", ".pdf")
-  local pdf_full_path = CONFIG.TEMP_DIR .. "/" .. pdf_name
   
-  -- Check if PDF exists
-  local f = io.open(pdf_full_path, "r")
-  if f then 
-    f:close() 
+  if not exec(cmd_compile) then
+    print_error("Compilation failed for %s", fname)
+  else
+    -- 3. SPLIT PDF INTO SVGs
+    local pdf_name = fname:gsub("%.tex$", ".pdf")
+    local pdf_full_path = CONFIG.TEMP_DIR .. "/" .. pdf_name
     
-    -- If we found named pages in the source, use them. 
-    -- Otherwise (standard file), just use the filename.
-    if #page_names > 0 then
-      print(string.format("   Found %d named figures.", #page_names))
+    -- Check if PDF exists using our helper
+    if file_reading.file_exists(pdf_full_path) then 
       
-      for i, out_name in ipairs(page_names) do
-        local svg_temp = CONFIG.TEMP_DIR .. "/" .. out_name .. ".svg"
+      -- Strategy A: Named Figures found in source
+      if #page_names > 0 then
+        print(string.format("   Found %d named figures.", #page_names))
         
-        -- dvisvgm -p flag extracts specific page
-        local cmd_convert = string.format(
-          "dvisvgm --pdf -p %d --no-fonts --zoom=1.5 --output=%s %s > /dev/null 2>&1",
-          i, svg_temp, pdf_full_path
-        )
-        exec(cmd_convert)
-        
-        -- Process and Move
-        local svg_content = read_file(svg_temp)
-        if svg_content then
-          -- Color replacement
-          svg_content = svg_content:gsub("#000000", "currentColor")
-          svg_content = svg_content:gsub("black", "currentColor")
-          svg_content = svg_content:gsub("rgb%(0%%,0%%,0%%%)", "currentColor")
-          svg_content = svg_content:gsub("#ff0000", "var(--c-brand)")
+        for i, out_name in ipairs(page_names) do
+          local svg_temp = CONFIG.TEMP_DIR .. "/" .. out_name .. ".svg"
           
-          -- Routing
+          -- Routing Logic
           local dest_dir = CONFIG.SVG_OUT
           if out_name:match("^card%-") then
             dest_dir = CONFIG.NAV_OUT
           end
-          
           local final_path = dest_dir .. "/" .. out_name .. ".svg"
-          write_file(final_path, svg_content)
+
+          -- Convert Page i -> Temp SVG
+          local cmd_convert = string.format(
+            "dvisvgm --pdf -p %d --no-fonts --zoom=1.5 --output=%s %s > /dev/null 2>&1",
+            i, svg_temp, pdf_full_path
+          )
+          exec(cmd_convert)
+          
+          -- Move to destination (No color substitution)
+          if file_reading.file_exists(svg_temp) then
+            exec("mv " .. svg_temp .. " " .. final_path)
+            print("   -> Generated: " .. final_path)
+          else
+            print_warn("Failed to extract page %d for %s", i, out_name)
+          end
+        end
+        
+      -- Strategy B: Single File (No \tikzsetnextfilename found)
+      else
+        local out_name = fname:gsub("%.tex$", "")
+        local svg_temp = CONFIG.TEMP_DIR .. "/" .. out_name .. ".svg"
+        
+        -- Routing Logic
+        local dest_dir = CONFIG.SVG_OUT
+        if out_name:match("^card%-") then dest_dir = CONFIG.NAV_OUT end
+        local final_path = dest_dir .. "/" .. out_name .. ".svg"
+        
+        -- Convert Page 1 -> Temp SVG
+        exec(string.format(
+          "dvisvgm --pdf -p 1 --no-fonts --zoom=1.5 --output=%s %s > /dev/null 2>&1",
+          svg_temp, pdf_full_path
+        ))
+        
+        -- Move to destination
+        if file_reading.file_exists(svg_temp) then
+          exec("mv " .. svg_temp .. " " .. final_path)
           print("   -> Generated: " .. final_path)
         end
       end
       
     else
-      -- SINGLE FILE CASE (No \tikzsetnextfilename found)
-      -- Just convert page 1 to [filename].svg
-      local out_name = fname:gsub("%.tex$", "")
-      local svg_temp = CONFIG.TEMP_DIR .. "/" .. out_name .. ".svg"
-      
-      exec(string.format(
-        "dvisvgm --pdf -p 1 --no-fonts --zoom=1.5 --output=%s %s > /dev/null 2>&1",
-        svg_temp, pdf_full_path
-      ))
-      
-      local svg_content = read_file(svg_temp)
-      if svg_content then
-          -- (Same processing logic as above...)
-          svg_content = svg_content:gsub("#000000", "currentColor")
-          svg_content = svg_content:gsub("black", "currentColor")
-          svg_content = svg_content:gsub("rgb%(0%%,0%%,0%%%)", "currentColor")
-          svg_content = svg_content:gsub("#ff0000", "var(--c-brand)")
-
-          local dest_dir = CONFIG.SVG_OUT
-          if out_name:match("^card%-") then dest_dir = CONFIG.NAV_OUT end
-          
-          local final_path = dest_dir .. "/" .. out_name .. ".svg"
-          write_file(final_path, svg_content)
-          print("   -> Generated: " .. final_path)
-      end
+      print_error("PDF not generated for %s", fname)
     end
-  else
-    print("   Error: PDF not generated.")
   end
 end
 
-print("\n>> Done.")
+print_info("Done.")
