@@ -6,8 +6,11 @@
 
 \section[matroid]{Matroids}
 
-Matroids were first introduced by H. Whitney \cite{Whitney1935}, and independently by \cite{NishimuraKuroda2009}.
-This was further developed by 
+Matroids were first introduced by \name{H. Whitney} \cite{Whitney1935},
+and independently by \name{T. Nakasawa}, see \cite{NishimuraKuroda2009}.
+This was further developed by \name{S. MacLane}, \name{B.L. van der Waerden} 
+\name{R. Rado} and \name{W.T. Tutte}.
+
 
 
 One motivating example for introducing matriods is the notion of
@@ -256,7 +259,7 @@ since $G$ has the (maximal) matchings
 
 \subsection[latticePathMatroids]{Lattice path matroids}
 
-The family of lattice path matroids were introduced by Bonin, de Mier and Noy \cite{BoninMierNoy2003}.
+The family of lattice path matroids were introduced by \name{J. Bonin}, \name{de Mier} and \name{Noy} \cite{BoninMierNoy2003}.
 This family is closed under all matrix minors (deletions and contraction) and also under matrix duality.
 All lattice path matroids are transversal matroids.
 
@@ -269,15 +272,17 @@ All lattice path matroids are transversal matroids.
 \end{example}
 
 
-The Tutte polynomial for a lattice path matroid can be computed efficiently, 
+The \hyperref{tuttePolynomial}{Tutte polynomial} for a lattice path matroid can be computed efficiently, 
 see \cite{BoninMierNoy2003}. Moreover, there is a nice combinatorial
 description on the internal and external activity for the bases.
 
 
 For an introduction to lattice path matroids, 
-see \href{https://maa.org/sites/default/files/pdf/shortcourse/2011/TransversalNotes.pdf}{these lecture notes} by J. Bonin.
+see \href{https://maa.org/sites/default/files/pdf/shortcourse/2011/TransversalNotes.pdf}{these lecture notes} by \name{J. Bonin}.
 
 \section[matroidOptimization]{Matroids in optimization}
+
+\todo{Matroid optimization.}
 
 
 \section[tuttePolynomial]{Tutte polynomial}
@@ -305,7 +310,6 @@ The uniform matroid $U_{2,4}$ has Tutte polynomial $x^2 + 2x + y^2 + 2y$.
 
 
 \subsection[tutteInternalExternal]{Internal and external activity}
-
 
 In the definition below, we assume that the ground set is $\{1,2,\dotsc,n\}$.
 For other ground sets, one needs to choose a total ordering on the ground set, 
@@ -413,8 +417,8 @@ was proved in \cite{MatherneMoralesSelover2022x}.
 For more background and results, see \cite{WangZhangZhang2024x}.
 
 In \cite{NguyenNgocTuanHai2023} the authors prove SNP for many families of symmetric functions,
-such as SChur-P and Schur-Q polynomials as well as many of the above mentioned families.
-Moreover, they prove that $\mathrm{Newton}(f)$ has the \emph{integer decomposition property}
+such as \hyperref{schurP}{Schur-P} and \hyperref{schurQ}{Schur-Q} polynomials as well as many of the above mentioned families.
+Moreover, they prove that $\mathrm{Newton}(f)$ has the \hyperref{polytopes}{integer decomposition property}
 in many cases.
 
 \section[MConvexity]{M-convexity}
@@ -431,7 +435,7 @@ A homogeneous polynomial $f$ is $M$-convex if and only if $f$
 has a saturated Newton polytope and this Newton polytope a generalized permutahedron.
 \end{theorem}
 
-\hyperref[key]{Key polynomials} are M-convex (conjectured earlier by Monical, Tokcan and Yong \cite{MonicalTokcanYong2019}) see \cite{FanGuoPengSun2020}.
+\hyperref[key]{Key polynomials} are M-convex (conjectured earlier by \name{Monical}, \name{Tokcan} and \name{Yong} \cite{MonicalTokcanYong2019}) see \cite{FanGuoPengSun2020}.
 
 In \cite{WangZhangZhang2024x}, it is proved that 
 affine Stanley symmetric functions and cylindric skew Schur functions are $M$-convex.

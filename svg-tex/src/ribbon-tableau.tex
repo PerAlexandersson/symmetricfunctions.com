@@ -1,53 +1,42 @@
-\pdfoutput=1
-\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[tikz]{standalone}
 
-
-\documentclass{standalone}
-
- %\usepackage[notref,notcite]{showkeys} % USED TO SHOW EQUATION LABELS. REMOVE BEFORE FINAL VERSION
-
-% \usepackage[pdftex]{hyperref}
-
-\usepackage{lmodern}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-% \usepackage[english]{babel}
-\usepackage{microtype} %Better font spacing
+\usepackage{lmodern}
 
-\usepackage{amsmath,amssymb,amsthm,mathrsfs,latexsym,mathtools,mathdots,booktabs,enumerate,tikz,bm,url,comment}
-\usepackage[enableskew,vcentermath]{youngtab}
-\usepackage[centertableaux]{ytableau}
-
-\usetikzlibrary{arrows,positioning}
-\usepackage[capitalize,noabbrev]{cleveref}
-
+\definecolor{pOrange}{RGB}{211,153,80}
+\definecolor{pBlue}{RGB}{86,139,190}
+\definecolor{pCyan}{RGB}{149,186,201}
+\definecolor{pSand}{RGB}{184,166,121}
+\definecolor{pAlgae}{RGB}{87,115,135}
+\definecolor{pSkin}{RGB}{236,216,167}
+\definecolor{pGray}{RGB}{156,175,156}
+\definecolor{pPink}{RGB}{215,114,127}
+\definecolor{pOrange}{RGB}{211,153,80}
 
 % 
 \tikzset{iTrio/.pic={%
 \begin{scope}[yscale=-1]
-\draw[black,x=1em,y=1em] (0,0)--(1,0)--(1,3)--(0,3)--(0,0);  
+\draw[black,x=1em,y=1em,fill=pOrange] (0,0)--(1,0)--(1,3)--(0,3)--(0,0);  
 \end{scope}
 }}
 \tikzset{hTrio/.pic={%
 \begin{scope}[yscale=-1]
-\draw[black,x=1em,y=1em] (0,0)--(0,1)--(3,1)--(3,0)--(0,0);  
+\draw[black,x=1em,y=1em,fill=pBlue] (0,0)--(0,1)--(3,1)--(3,0)--(0,0);  
 \end{scope}
 }}
 \tikzset{jTrio/.pic={%
 \begin{scope}[yscale=-1]
-\draw[black,x=1em,y=1em] (1,0)--(2,0)--(2,2)--(0,2)--(0,1)--(1,1)--(1,0); 
+\draw[black,x=1em,y=1em,fill=pPink] (1,0)--(2,0)--(2,2)--(0,2)--(0,1)--(1,1)--(1,0); 
 \end{scope}
 }}
 \tikzset{tTrio/.pic={%
 \begin{scope}[yscale=-1]
-\draw[black,x=1em,y=1em] (0,0)--(2,0)--(2,1)--(1,1)--(1,2)--(0,2)--(0,0); 
+\draw[black,x=1em,y=1em,fill=pCyan] (0,0)--(2,0)--(2,1)--(1,1)--(1,2)--(0,2)--(0,0); 
 \end{scope}
 }}
 
 
-
 \begin{document}
-
 
 \begin{tikzpicture}[baseline=(current bounding box.center)]
 \begin{scope}[yscale=-1]
@@ -72,7 +61,6 @@
 \end{scope}
 \end{tikzpicture}
 
-
 \begin{tikzpicture}[baseline=(current bounding box.center)]
 \begin{scope}[yscale=-1]
  \begin{scope}[xshift=0em,yshift=0em]
@@ -95,7 +83,6 @@
 \end{scope}
 \end{scope}
 \end{tikzpicture}
-
 
 \begin{tikzpicture}[baseline=(current bounding box.center)]
 \begin{scope}[yscale=-1]
@@ -143,7 +130,6 @@
 \end{scope}
 \end{scope}
 \end{tikzpicture}
-
 
 \begin{tikzpicture}[baseline=(current bounding box.center)]
 \begin{scope}[yscale=-1]

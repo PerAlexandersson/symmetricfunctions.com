@@ -21,7 +21,7 @@ and illustrate permutation matrices by letting row indices start at the \emph{bo
 as in the figure below. 
 From now on, this is the picture we have in mind when referring to permutation matrices.
 
-\begin{example}
+\begin{example*}[The permutation matrix for 18537462]
 The permutation matrix $P_\pi$ associated with $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$
 using conventional row/column coordinates, and the convention we use.
 The rightmost figure is simply the graph of the function $i \mapsto \pi(i)$ 
@@ -52,8 +52,7 @@ $
 \none   & \none 1 &\none 2 &\none 3 &\none 4 &\none 5 &\none 6 &\none 7 &\none 8 
 \end{ytableau}
 \end{figure}
-
-\end{example}
+\end{example*}
 
 \subsection[permPatterns]{Permutation patterns}
 
@@ -62,8 +61,7 @@ if there is a subsequence of $\pi$ which is order-isomorphic to $\sigma$.
 For example, $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$ contains the pattern $[2,3,1]$
 as the subsequence $3, 6, 2$ in $\pi$ have its elements in the same relative order.
 
-
-\begin{example}
+\begin{example*}[A permutation in $\symS_8$ and the pattern 231]
 The permutation matrices associated with $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$ 
 and $\sigma = [2,3,1]$. Here we see that $\pi$ contains the pattern $\sigma$
 (there are other instances of this pattern in $\pi$).
@@ -85,18 +83,18 @@ and $\sigma = [2,3,1]$. Here we see that $\pi$ contains the pattern $\sigma$
  \, & \, & \bullet \\
 \end{ytableau}
 \end{figure}
+\end{example*}
 
 
-\end{example}
-
-
-
-The structure of a permutation matrix avoiding the pattern $132$.
+\begin{example*}[Structure of 132-avoiding permutations]
+The number of permutations in $\symS_n$ avoiding $132$ is given by the Catalan number $\frac{1}{n+1}\binom{2n}{n}$.
+The structure of a permutation matrix avoiding the pattern $132$ can be seen in the figure below.
 The larger regions on the left and right are also $132$-avoiding.
 \begin{figure}
-  \svgimg[width=0.55\textwidth]{svg-images/132PermutationStructure.svg}{Structure of a 132-avoiding permutation.}
+  \svgimg[width=0.35\textwidth]{svg-images/132PermutationStructure.svg}{Structure of a 132-avoiding permutation.}
 \end{figure}
-
+This structure explains why 132-avoiding permutations satisfy the recursion for Catalan numbers.
+\end{example*}
 
 
 In \cite{Vatter2019}, the author studies possible growth rates for pattern-avoiding permutations.
@@ -112,8 +110,9 @@ and the \defin{skew sum} of $\pi$ and $\sigma$ as
 Note that these operations are not commutative, but they are associative.
 
 
-
 \section[namedPermutationSets]{Named sets of permutation}
+
+\todo{Organize this section better - or better yet, extract to separate wide page}
 
 \begin{itemize}
 
@@ -201,10 +200,13 @@ other types.
 
 
 
-\section[permutationsTypeB]{Permutations of type B}
+\section[permutationsTypeB]{Permutations of type $B$}
 
 The set of permutations of type $B$, is defined as the permutations on $B_n \coloneqq \{\pm 1, \pm 2,\dotsc, \pm n\}$
 with the property that $\pi(-i)=-\pi(i)$. This is also known as the \hyperref[weyl-lie-groups]{hyperoctahedral group}.
+
+\todo{Add colored permutations}
+%\section[permutationsColored]{Colored permutations}
 
 
 \section[permutationsStirling]{Stirling permutations}

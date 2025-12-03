@@ -174,6 +174,12 @@ This deletes `temp/` and `www/` directories.
 - **GNU Make 4.x+** - Build orchestration
 - **bash** - Shell for Make recipes
 
+### Tools for .svg generation
+- **pdflatex** - For compiling latex to .pdf
+- **dvisvgm** - Converting .pdf to .svg
+- **pdfinfo** - To count pages in a .pdf file
+
+
 ### Lua Modules
 All Lua dependencies are included in the repository:
 - `bibhandler.lua` - Bibliography processing
