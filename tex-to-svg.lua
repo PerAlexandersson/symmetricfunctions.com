@@ -129,26 +129,46 @@ for _, tex_path in ipairs(tex_sources) do
           end
         end
         
-      -- Strategy B: Single File (No \tikzsetnextfilename found)
+      -- Strategy B: No named figures found - handle multi-page PDFs
       else
         local out_name = fname:gsub("%.tex$", "")
-        local svg_temp = CONFIG.TEMP_DIR .. "/" .. out_name .. ".svg"
         
-        -- Routing Logic
-        local dest_dir = CONFIG.SVG_OUT
-        if out_name:match("^card%-") then dest_dir = CONFIG.NAV_OUT end
-        local final_path = dest_dir .. "/" .. out_name .. ".svg"
+        -- Get the number of pages in the PDF
+        local page_count_cmd = string.format(
+          "pdfinfo %s | grep 'Pages:' | awk '{print $2}'",
+          pdf_full_path
+        )
+        local p = io.popen(page_count_cmd)
+        local page_count_str = p:read("*a")
+        p:close()
+        local page_count = tonumber(page_count_str) or 1
         
-        -- Convert Page 1 -> Temp SVG
-        exec(string.format(
-          "dvisvgm --pdf -p 1 --no-fonts --zoom=1.5 --output=%s %s > /dev/null 2>&1",
-          svg_temp, pdf_full_path
-        ))
+        print(string.format("   No named figures. Processing %d page(s).", page_count))
         
-        -- Move to destination
-        if file_reading.file_exists(svg_temp) then
-          exec("mv " .. svg_temp .. " " .. final_path)
-          print("   -> Generated: " .. final_path)
+        -- Process each page
+        for page_num = 1, page_count do
+          local page_suffix = page_count > 1 and ("-" .. page_num) or ""
+          local svg_name = out_name .. page_suffix
+          local svg_temp = CONFIG.TEMP_DIR .. "/" .. svg_name .. ".svg"
+          
+          -- Routing Logic
+          local dest_dir = CONFIG.SVG_OUT
+          if svg_name:match("^card%-") then dest_dir = CONFIG.NAV_OUT end
+          local final_path = dest_dir .. "/" .. svg_name .. ".svg"
+          
+          -- Convert Page -> Temp SVG
+          exec(string.format(
+            "dvisvgm --pdf -p %d --no-fonts --zoom=1.5 --output=%s %s > /dev/null 2>&1",
+            page_num, svg_temp, pdf_full_path
+          ))
+          
+          -- Move to destination
+          if file_reading.file_exists(svg_temp) then
+            exec("mv " .. svg_temp .. " " .. final_path)
+            print("   -> Generated: " .. final_path)
+          else
+            print_warn("Failed to extract page %d", page_num)
+          end
         end
       end
       
