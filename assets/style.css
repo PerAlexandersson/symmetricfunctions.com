@@ -1,6 +1,5 @@
 @layer reset, base, layout, components;
 
-
 @layer base {
 
 /* ==========================================================================
@@ -8,68 +7,59 @@
    ========================================================================== */
 
   :root {
-    /* Brand & Links */
+    /* --- COLORS (Unchanged) --- */
     --c-brand:       rgb(225, 120,  65);
     --c-brand-light: rgb(245, 140,  85);
     --c-link:        rgb( 37, 134, 221);
     --c-link-dark:   rgb( 29,  91, 191);
-
-    /* Backgrounds & Borders */
     --c-bg-body:     rgb(255, 255, 255);
     --c-bg-surface:  rgb(248, 249, 250);
     --c-bg-header:   rgb(241, 243, 245);
     --c-border:      rgb(222, 226, 230);
     --c-bg-gray:     rgb(136, 136, 136);
-
-    /* Structural */
     --c-rule:        rgb(  0,   0,   0);
-
-    /* Text */
     --c-text-main:   rgb( 33,  37,  41);
     --c-text-sub:    rgb( 73,  80,  87);
     --c-text-muted:  rgb(134, 142, 150);
-
-    /* Components (Ratings) */
     --c-rating-from: rgb(255, 193,   7);
     --c-rating-to:   rgb(230, 230, 230);
-  
-    /* Math/Tableaux specifics */
     --math-env-bar:  rgb(200,200,200);
     --math-accent:   rgb(37,134,221);
-  
     --header-border: 1px solid var(--c-border);
   
-    /* Dimensions */
-    --w-page: 72rem;       /* Total max width of content area */
-    --w-sidebar: 17rem;    /* Fixed sidebar width */
-    --gap: 3rem;           /* Gap between sidebar and main */
+    /* --- DIMENSIONS (8-Column Logic) --- */
+    /* We have 6 central columns (N + CCCC + P). 
+       Setting each to ~14rem gives a total max width of 84rem.
+       Standard content (4 cols) = 56rem wide.
+    */
+    --w-col: 14rem; 
+    
+    /* DEFAULT SPANS (Standard Page) */
+    /* Content lives in the middle 4 columns (Cols 3, 4, 5, 6) */
+    --col-main-start: 3;
+    --col-main-end:   7; /* Ends before line 7 */
+
+    /* WIDE PAGE OVERRIDES (To be set in index.htm) */
+    /* --col-main-start: 2; */
+    /* --col-main-end:   8; */
   
     --toc-display: block;
-  
     color-scheme: light;
   }
   
   @media (prefers-color-scheme: dark) {
     :root {
-        /* Backgrounds & Borders */
         --c-bg-body:     rgb( 40,  40,  40);
         --c-bg-surface:  rgb( 60,  60,  60);
         --c-bg-header:   rgb( 26,  26,  26);
         --c-border:      rgb( 81,  81,  81);
-
-        /* Text */
         --c-text-main:   rgb(225, 225, 225);
         --c-text-sub:    rgb(176, 176, 176);
         --c-text-muted:  rgb(119, 119, 119);
-
-        /* Structural */
         --c-rule:        rgb(213, 199, 199);
-
-        /* Links & Accents */
         --c-link:        rgb(100, 181, 246);
         --math-env-bar:  rgb( 59,  66,  82);
         --math-accent:   rgb(122, 162, 255);
-      
       color-scheme: dark;
     }
   }
@@ -83,8 +73,7 @@
     height: 100%; 
     overscroll-behavior-y: none;
     background-color: var(--c-bg-header);
-    margin:0;
-    padding: 0;
+    margin:0; padding: 0;
   }
   
   body {
@@ -94,7 +83,6 @@
     color: var(--c-text-main);
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
-    
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -115,108 +103,83 @@
   }
 
   .figure > img {
-    flex-shrink: 0;
-    min-width: 60px;
-    max-width: 90%;
-    height: auto; 
-    object-fit: contain
+    flex-shrink: 0; min-width: 60px; max-width: 90%; height: auto; object-fit: contain;
   }
   
   @media (prefers-color-scheme: dark) {
-    img {
-      filter: invert(1) hue-rotate(180deg);
-    }
+    img { filter: invert(1) hue-rotate(180deg); }
   }
   
   /* ==========================================================================
-     LAYOUT ARCHITECTURE (6-Column Model)
+     LAYOUT ARCHITECTURE (8-Column Model)
+     L | N | C | C | C | C | P | R
      ========================================================================== */
   
-  #doc-title, #doc-footer {
+  #doc-title, #doc-footer, #doc-all {
     width: 100%;
-    background-color: var(--c-bg-header);
-    border-color: var(--c-border);
-    border-style: solid;
-    flex-shrink: 0;
-    
-    /* 5-column grid: [L | N | C | P | R] */
     
     display: grid;
+    /* 1. L (Left Flex) 
+       2. N (Nav / Wide Start)
+       3. C1 (Std Start)
+       4. C2
+       5. C3
+       6. C4 (Std End)
+       7. P (Padding / Wide End)
+       8. R (Right Flex)
+    */
     grid-template-columns: 
-      1fr                        /* L: left padding */
-      var(--w-sidebar)           /* N: nav/TOC space */
-      var(--gap)                 /* gap between N and content */
-      minmax(0, 1fr)             /* C: content columns (3 total) */
-      minmax(0, 1fr)
-      minmax(0, 1fr)
-      1fr;                       /* R: right padding */
-    max-width: none;
+      minmax(0, 1fr)                  /* L */
+      minmax(0, var(--w-col))         /* N */
+      minmax(0, var(--w-col))         /* C */
+      minmax(0, var(--w-col))         /* C */
+      minmax(0, var(--w-col))         /* C */
+      minmax(0, var(--w-col))         /* C */
+      minmax(0, var(--w-col))         /* P */
+      minmax(0, 1fr);                 /* R */
+      
+    column-gap: 1rem;
   }
 
-  /* Constrain the total NCCC width to 72rem */
-  #doc-title::before,
-  #doc-footer::before {
-    content: '';
-    grid-column: 2 / 7; /* span N through CCC */
-    max-width: var(--w-page);
-    margin: 0 auto;
-  }
+  /* --- HEADER & FOOTER PLACEMENT --- */
 
   #doc-title {
-    border-width: 0 0 1px 0; 
+    border-bottom: 1px solid var(--c-border); 
     padding: 2rem 0;
+    align-items: center; 
   }
+
   #doc-footer { 
-    border-width: 1px 0 0 0; 
+    border-top: 1px solid var(--c-border); 
     padding: 2.5rem 0; 
     margin-top: auto;
   }
 
-  /* Header/footer content occupies NCCC (columns 2-6) */
+  /* Header/Footer content respects the variable span */
   #doc-title > *, 
   #doc-footer > * {
-    grid-column: 2 / 8; /* Corrected to 7 to span all 3 Content columns */
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    grid-column-start: var(--col-main-start);
+    grid-column-end: var(--col-main-end);
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
-  /* Offset content to skip over N and gap */
-  #doc-title h1,
-  #doc-title p,
-  #doc-title nav,
-  #doc-footer address {
-    margin-left: calc(var(--w-sidebar) + var(--gap));
-  }
+  /* --- MAIN CONTENT PLACEMENT --- */
 
   #doc-all {
     flex: 1 0 auto;
-    width: 100%;
-    
-    display: grid;
-    grid-template-columns: 
-      1fr 
-      var(--w-sidebar)
-      var(--gap)
-      minmax(0, 1fr)
-      minmax(0, 1fr)
-      minmax(0, 1fr)
-      1fr;
-
-    /* max-width is handled by the grid tracks (L/R) filling space */
-    max-width: 100%; 
-    margin: 0 auto;
-    
     padding-top: 2.5rem;
     padding-bottom: 4rem;
     align-items: start;
   }
 
-  /* TOC in column N */
+  /* Sidebar: Always occupies Column 2 (N) */
   #tocContainer {
-    grid-column: 2;
-    padding-left: 1.5rem;
+    grid-column: 2; 
+    padding-left: 1rem;
+    
     position: sticky;
-    top: 1rem;
+    top: 2rem;
     max-height: 90vh;
     overflow-y: auto;
     font-family: system-ui, sans-serif;
@@ -224,10 +187,12 @@
     display: var(--toc-display);
   }
 
-  /* Main content in CCC (columns 4-6) */
+  /* Main Content: Controlled by variables */
   #doc-main {
-    grid-column: 4 / 8;
-    padding-right: 1.5rem;
+    grid-column-start: var(--col-main-start);
+    grid-column-end: var(--col-main-end);
+    
+    padding-right: 1rem;
     min-width: 0;
   }
 
@@ -251,7 +216,6 @@
     font-size: 1.1rem;
   }
   
-  /* Navigation Pills */
   #topnav { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .toplink {
     font-family: system-ui, sans-serif;
@@ -275,580 +239,220 @@
   /* ==========================================================================
       SIDEBAR (TOC) STYLING
      ========================================================================== */
-  
   #tocContainer nav ul { list-style: none; padding: 0; margin: 0; }
   #tocContainer li { margin: 0; }
   
   #tocContainer a {
-    display: block;
-    text-decoration: none;
-    line-height: 1.3;
-    padding: 0.25em 0;
-    color: var(--c-text-sub);
-    transition: color 0.1s;
+    display: block; text-decoration: none; line-height: 1.3;
+    padding: 0.25em 0; color: var(--c-text-sub); transition: color 0.1s;
   }
   #tocContainer a:hover { color: var(--c-brand); }
   
   #tocContainer .section {
-    font-weight: 700;
-    font-size: 0.95rem;
-    margin-top: 0.75em;
-    color: var(--c-text-main);
+    font-weight: 700; font-size: 0.95rem; margin-top: 0.75em; color: var(--c-text-main);
   }
   #tocContainer .subsection {
-    font-weight: 400;
-    font-size: 0.85rem;
-    padding-left: 0.8em;
-    color: var(--c-text-muted);
-    border-left: 2px solid transparent;
+    font-weight: 400; font-size: 0.85rem; padding-left: 0.8em;
+    color: var(--c-text-muted); border-left: 2px solid transparent;
   }
   #tocContainer .subsection:hover {
-    border-left-color: var(--c-brand-light);
-    color: var(--c-text-main);
+    border-left-color: var(--c-brand-light); color: var(--c-text-main);
   }
   
   /* ==========================================================================
       CONTENT & CARDS
      ========================================================================== */
-  
   .dateMod {
-    display: block;
-    text-align: right;
-    font-size: 0.85rem;
-    color: var(--c-text-muted);
-    margin-bottom: 1.5rem;
+    display: block; text-align: right; font-size: 0.85rem;
+    color: var(--c-text-muted); margin-bottom: 1.5rem;
   }
-  .dateMod::before {
-    content: "Last updated: ";
-    margin-right: 0.3em;
-  }
+  .dateMod::before { content: "Last updated: "; margin-right: 0.3em; }
   
-  /* Cards Container */
-  .topicsection { margin: 2rem 0; } /* Reduced margin slightly */
+  .topicsection { margin: 2rem 0; }
   
   .topic-card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
   }
   
-  .topic-card-grid p {
-    margin: 0;
-    height: 100%;
-  }
+  .topic-card-grid p { margin: 0; height: 100%; }
   
-  /* --- Card Base --- */
   .topic-card {
-    display: flex;
-    flex-direction: row; 
-    align-items: center; /* Vertically center the single line of text */
-    justify-content: space-between;
-    
-    /* Reduced min-height since we removed the description text */
-    min-height: 4.5rem; 
-    height: 100%;
-    padding: 0.75rem 0.75rem 0.75rem 1rem;
-    
-    background: var(--c-bg-surface);
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
-    color: var(--c-text-main);
-    transition: all 0.2s ease;
-    overflow: hidden;
+    display: flex; flex-direction: row; align-items: center; justify-content: space-between;
+    min-height: 4.5rem; height: 100%; padding: 0.75rem 0.75rem 0.75rem 1rem;
+    background: var(--c-bg-surface); border: 1px solid var(--c-border);
+    border-radius: 8px; color: var(--c-text-main); transition: all 0.2s ease; overflow: hidden;
   }
-  
   .topic-card:hover {
-    text-decoration: none;
-    transform: translateY(-2px);
-    border-color: var(--c-brand);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-decoration: none; transform: translateY(-2px);
+    border-color: var(--c-brand); box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
   
-  /* --- Text Styling --- */
-  .card-text {
-    display: flex;
-    flex-direction: column;
-    flex: 1; 
-    padding-right: 0.5rem;
-  }
-  
+  .card-text { display: flex; flex-direction: column; flex: 1; padding-right: 0.5rem; }
   .card-title {
-    display: block;
-    font-family: system-ui, -apple-system, sans-serif;
-    font-weight: 600;     /* Slightly less bold than before */
-    font-size: 0.9rem;    /* Requested: Decreased size */
-    color: var(--c-brand);
-    line-height: 1.25;
-    margin: 0;            /* No margin needed */
+    display: block; font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 600; font-size: 0.9rem; color: var(--c-brand); line-height: 1.25; margin: 0;
   }
-  
-  /* --- Image Styling --- */
   .topic-card img {
-    width: 20%;
-    min-width: 3rem; 
-    height: 100%; 
-    max-height: 4rem; /* Adjusted cap for shorter cards */
-    
-    object-fit: contain;
-    object-position: center right;
-    
-    margin-left: 0.8rem;
+    width: 20%; min-width: 3rem; height: 100%; max-height: 4rem;
+    object-fit: contain; object-position: center right; margin-left: 0.8rem;
   }
-  
   @media (prefers-color-scheme: dark) {
-    .topic-card img {
-      filter: invert(1) hue-rotate(180deg);
-    }
+    .topic-card img { filter: invert(1) hue-rotate(180deg); }
   }
 
-
-  
   /* ==========================================================================
-     CODE, AND CUSTOM MACROS
+     CODE, MACROS, TABLES
      ========================================================================== */
-     
   pre {
-      position: relative;
-      margin-left: 2rem;  /* Pushes the block to the right */
-      
-      /* 2. Visual Box Style */
-      background: var(--c-bg-header); /* Matches your gray inline code background */
-      padding: 1rem;                  /* Space inside the box */
-      border-radius: 4px;
-      border-left: 4px solid var(--c-brand);
-      
-      /* 3. Handling Long Lines */
-      overflow-x: auto; /* Adds a scrollbar if the code is too wide */
-      max-width: 100%;
+      position: relative; margin-left: 2rem; background: var(--c-bg-header);
+      padding: 1rem; border-radius: 4px; border-left: 4px solid var(--c-brand);
+      overflow-x: auto; max-width: 100%;
   }
-
   pre > code {
-      background: transparent;
-      padding: 0;
-      border-radius: 0;
-      color: inherit;
-      font-size: 1.0em; /* Keep your existing size preference */
+      background: transparent; padding: 0; border-radius: 0;
+      color: inherit; font-size: 1.0em;
   }
-
   .copy-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    
-    background: transparent;
-    border: 1px solid var(--c-border);
-    border-radius: 4px;
-    color: var(--c-text-muted);
-    
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    opacity: 0; /* Hidden by default until hover */
+    position: absolute; top: 0.5rem; right: 0.5rem; background: transparent;
+    border: 1px solid var(--c-border); border-radius: 4px; color: var(--c-text-muted);
+    font-size: 0.8rem; padding: 0.2rem 0.5rem; cursor: pointer; transition: all 0.2s; opacity: 0;
   }
+  pre:hover .copy-btn { opacity: 1; background: var(--c-bg-surface); }
+  .copy-btn:hover { color: var(--c-brand); border-color: var(--c-brand); }
 
-  /* Show button when hovering the code block */
-  pre:hover .copy-btn {
-      opacity: 1;
-      background: var(--c-bg-surface);
-  }
-
-  .copy-btn:hover {
-      color: var(--c-brand);
-      border-color: var(--c-brand);
-  }
-
-
-  
-  .defin {
-    font-weight: 600;            
-    color: var(--c-brand);   
-  }
-
-  /* Styling for \name{...} */
+  .defin { font-weight: 600; color: var(--c-brand); }
   .author-name {
-      white-space: nowrap;       /* Prevents line break inside the name */
-      letter-spacing: -0.01em;   /* Optional: slight tightening */
-      font-weight: 500;          /* Optional: make them stand out slightly */
-      color: var(--c-text-main); /* Default color */
-      text-decoration: none;
-      border-bottom: 1px dotted var(--c-text-muted); /* Subtle hint it's interactive */
-      transition: color 0.1s;
+      white-space: nowrap; letter-spacing: -0.01em; font-weight: 500;
+      color: var(--c-text-main); text-decoration: none;
+      border-bottom: 1px dotted var(--c-text-muted); transition: color 0.1s;
   }
+  .author-name:hover { color: var(--c-brand); border-bottom-style: solid; }
 
-  .author-name:hover {
-      color: var(--c-brand);
-      border-bottom-style: solid;
+  /* Tableaux */
+  .ytableau, .array, .tabular {
+    display: grid; gap: 0; margin: 1.5rem auto; width: fit-content; font-size: 0.9rem; line-height: 1;
   }
-
-
-  /* ==========================================================================
-   TABLEAUX STYLING - Simplified CSS Grid Approach
-   ========================================================================== */
-
-/* --- CONTAINER --- */
-/* All three types use CSS Grid with explicit cell positioning */
-.ytableau,
-.array,
-.tabular {
-  display: grid;
-  gap: 0;
-  margin: 1.5rem auto;
-  width: fit-content;
-  font-size: 0.9rem;
-  line-height: 1;
-}
-
-/* ytableau can appear inline */
-.ytableau.inline {
-  display: inline-grid;
-  margin: 0.3em 0.5em;
-  vertical-align: middle;
-}
-
-
-/* --- CELLS --- */
-/* Grid positioning is done inline via style="grid-row: X; grid-column: Y" */
-
-/* Base cell styling for ytableau (square boxes) */
-.ytableau > span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.6em;
-  height: 1.6em;
-  border: 0.15em solid currentColor;
-  box-sizing: border-box;
-  font-weight: 600;
-  margin: -0.15em -0.15em 0 0;
-}
-
-/* Base cell styling for array/tabular (fluid width) */
-.array > span,
-.tabular > span {
-  display: flex;
-  align-items: center;
-  min-width: 2em;
-  padding: 0.5em 0.75em;
-  border: none;
-  font-weight: normal;
-}
-
-/* --- ALIGNMENT --- */
-.align-l { justify-content: flex-start; text-align: left; }
-.align-c { justify-content: center; text-align: center; }
-.align-r { justify-content: flex-end; text-align: right; }
-
-/* --- NONE CELLS (empty/transparent) --- */
-.none {
-  border: none !important;
-  background: transparent !important;
-}
-
-/* --- HORIZONTAL RULES (toprule, midrule, bottomrule) --- */
-/* Rules span all columns via grid-column: 1 / -1 */
-.rule {
-  border: none;
-  display: block;
-  background: transparent;
-  margin: 0;
-  padding: 0 !important;
-  background: var(--c-rule, #000000);
-}
-
-.rule-top, .rule-bottom {
-  height: 2px;
-}
-
-.rule-mid {
-  height: 1px;
-}
-
-/* --- SPACING FOR FIGURES --- */
-.figure, .ytabs {
-  margin: 2rem auto;
-  padding: 1rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.figure p, .ytabs p {
-  display: contents;
-  margin: 0;
-}
-
-
-  /* ==========================================================================
-     SUMMARY / DETAILS
-     ========================================================================== */
-  
-
-/* Theorem Environments (Details/Summary) */
-div.env, details.env {
-  border-left: 4px solid var(--math-env-bar);
-  padding: 0.5em 0.5em 0.5em 1em;
-  background: var(--c-bg-surface, transparent);
-  margin: 1.5em 0;
-}
-
-/* Hide default markers */
-details.env > summary {
-  color: var(--math-accent);
-  font-weight: bold;
-  cursor: pointer;
-  list-style: none; /* Firefox/Standard */
-  margin-bottom: 0.5em;
-  position: relative;
-  padding-right: 2em; /* Make space for the custom arrow */
-}
-details.env > summary::-webkit-details-marker {
-  display: none; /* Chrome/Safari */
-}
-
-/* Custom Arrow (Chevron) */
-details.env > summary::after {
-  content: "";
-  position: absolute;
-  right: 0.75em;
-  top: 0.4em;
-  width: 0.5em;
-  height: 0.5em;
-  border-right: 2px solid var(--math-accent);
-  border-bottom: 2px solid var(--math-accent);
-  transform: rotate(-45deg); /* Pointing right */
-  transition: transform 0.2s ease;
-}
-
-/* Arrow Rotation on Open */
-details.env[open] > summary::after {
-  transform: rotate(45deg); /* Pointing down */
-  top: 0.3em;
-}
-
-  /* ==========================================================================
-     BIBLIOGRAPHY & CITATIONS
-     ========================================================================== */
-  
-  #bibliography ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .ytableau.inline { display: inline-grid; margin: 0.3em 0.5em; vertical-align: middle; }
+  .ytableau > span {
+    display: flex; align-items: center; justify-content: center;
+    width: 1.6em; height: 1.6em; border: 0.15em solid currentColor;
+    box-sizing: border-box; font-weight: 600; margin: -0.15em -0.15em 0 0;
   }
-  
+  .array > span, .tabular > span {
+    display: flex; align-items: center; min-width: 2em;
+    padding: 0.5em 0.75em; border: none; font-weight: normal;
+  }
+  .align-l { justify-content: flex-start; text-align: left; }
+  .align-c { justify-content: center; text-align: center; }
+  .align-r { justify-content: flex-end; text-align: right; }
+  .none { border: none !important; background: transparent !important; }
+  .rule { border: none; display: block; background: var(--c-rule, #000000); margin: 0; padding: 0 !important; }
+  .rule-top, .rule-bottom { height: 2px; }
+  .rule-mid { height: 1px; }
+
+  .figure, .ytabs {
+    margin: 2rem auto; padding: 1rem 0; display: flex;
+    flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem;
+  }
+  .figure p, .ytabs p { display: contents; margin: 0; }
+
+  /* Theorem/Details */
+  div.env, details.env {
+    border-left: 4px solid var(--math-env-bar); padding: 0.5em 0.5em 0.5em 1em;
+    background: var(--c-bg-surface, transparent); margin: 1.5em 0;
+  }
+  details.env > summary {
+    color: var(--math-accent); font-weight: bold; cursor: pointer;
+    list-style: none; margin-bottom: 0.5em; position: relative; padding-right: 2em;
+  }
+  details.env > summary::-webkit-details-marker { display: none; }
+  details.env > summary::after {
+    content: ""; position: absolute; right: 0.75em; top: 0.4em;
+    width: 0.5em; height: 0.5em; border-right: 2px solid var(--math-accent);
+    border-bottom: 2px solid var(--math-accent); transform: rotate(-45deg); transition: transform 0.2s ease;
+  }
+  details.env[open] > summary::after { transform: rotate(45deg); top: 0.3em; }
+
+  /* Biblio & Lists */
+  #bibliography ol { list-style: none; margin: 0; padding: 0; }
   #bibliography li {
-    position: relative;
-    margin: 0.25em 0 0.75em;
-    padding-left: 6.5em;
-    line-height: 1.45;
+    position: relative; margin: 0.25em 0 0.75em; padding-left: 6.5em; line-height: 1.45;
   }
-  
   #bibliography li > .citeKey {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 6em;
-    text-align: left;
-    font-weight: bold;
-    color: var(--c-text-main);
+    position: absolute; left: 0; top: 0; width: 6em; text-align: left; font-weight: bold; color: var(--c-text-main);
   }
-  
-  #bibliography li > .citeJournal,
-  #bibliography li > .citeBooktitle { font-style: italic; }
+  #bibliography li > .citeJournal, #bibliography li > .citeBooktitle { font-style: italic; }
   #bibliography li > .citeVolume { font-weight: 700; }
-  
   @keyframes citeFade {
-    0% { background-color: rgba(255, 230, 0, 0.5); }
-    100% { background-color: transparent; }
+    0% { background-color: rgba(255, 230, 0, 0.5); } 100% { background-color: transparent; }
   }
+  #bibliography li:target { animation: citeFade 3s ease-out; }
   
-  #bibliography li:target {
-    animation: citeFade 3s ease-out;
-  }
-  
-  
-  /* ==========================================================================
-     LISTS & TYPOGRAPHY TWEAKS
-     ========================================================================== */
-  
-  ul, ol {
-    margin-top: 0.5rem;
-    margin-bottom: 0.8rem;
-    padding-left: 2rem;
-  }
-  
-  li {
-    margin-bottom: 0.25rem; /* Slight breathing room between items */
-  }
-  
-  /* Kill the default margins of paragraphs inside list items */
-  li > p {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  
-  /* Ensure nested lists are tight */
-  li > ul, li > ol {
-    margin-top: 0.25rem;
-    margin-bottom: 0;
-  }
+  ul, ol { margin-top: 0.5rem; margin-bottom: 0.8rem; padding-left: 2rem; }
+  li { margin-bottom: 0.25rem; }
+  li > p { margin-top: 0; margin-bottom: 0; }
+  li > ul, li > ol { margin-top: 0.25rem; margin-bottom: 0; }
 
-  
-
-  /* ==========================================================================
-      Polynomial index table
-     ========================================================================== */
-  
+  /* Rating & Table */
   .fam-rating {
     background: linear-gradient(to right, var(--c-rating-from) var(--percent), var(--c-rating-to) var(--percent));
-    
-    /* Standard masking to clip background to text */
-    -webkit-background-clip: text;
-    background-clip: text;
-    
-    /* Make text transparent */
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
   }
-
   .family-index {
-      width: 90%;
-      margin: 20px auto;
-      border-collapse: collapse;
-      font-family: sans-serif;
+      width: 90%; margin: 20px auto; border-collapse: collapse; font-family: sans-serif;
   }
-
-  .family-index th, 
-  .family-index td {
-      text-align: left;
-      padding: 10px 15px;
-  }
-
-  .family-index thead {
-      border-bottom: 3px solid var(--c-rule);
-  }
-
-  /* Make the first column take all available space */
-  .family-index th:first-child,
-  .family-index td:first-child {
-      width: auto; 
-  }
-
-  /* Make all OTHER columns shrink to fit content + padding */
-  .family-index th:not(:first-child),
-  .family-index td:not(:first-child) {
-      width: 1%; /* Hack: Forces column to be as small as possible... */
-      white-space: nowrap;
-  }
-
-  /* Interaction: Show the user they can sort */
-  .family-index th {
-      cursor: pointer;
-      user-select: none; /* Prevents text highlighting when clicking fast */
-  }
-
-  .family-index th:hover {
-      background-color: var(--c-rating-from);
-  }
-
-  /* Ensure the link inside doesn't confuse the cursor */
-  .family-index tbody tr a {
-      text-decoration: none;
-      color: inherit;        /* Optional: makes link blend in */
-      display: block;        /* Helps hit area */
-  }
-
-    /* Hover effect for table rows */
+  .family-index th, .family-index td { text-align: left; padding: 10px 15px; }
+  .family-index thead { border-bottom: 3px solid var(--c-rule); }
+  .family-index th:first-child, .family-index td:first-child { width: auto; }
+  .family-index th:not(:first-child), .family-index td:not(:first-child) { width: 1%; white-space: nowrap; }
+  .family-index th { cursor: pointer; user-select: none; }
+  .family-index th:hover { background-color: var(--c-bg-surface); }
   .family-index tbody tr:hover {
       background-color: color-mix(in srgb, var(--c-bg-gray) 20%, var(--c-bg-body));
-      transition: background-color 0.1s ease-in;
-      cursor: pointer;
+      transition: background-color 0.1s ease-in; cursor: pointer;
   }
+  .family-index tbody tr a { text-decoration: none; color: inherit; display: block; }
 
   /* ==========================================================================
-      MOBILE / TABLET RESPONSIVENESS
+      RESPONSIVENESS
      ========================================================================== */
   #tocButton { display: none; }
   
-  /* Tablet: Drop to 2 columns */
   @media (max-width: 1100px) {
-    .topic-card-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .topic-card-grid { grid-template-columns: repeat(2, 1fr); }
   }
   
-  /* Mobile: Drop to 1 column */
   @media (max-width: 600px) {
-    :root { --w-sidebar: 0px; --gap: 0px; }
-  
-    .topic-card-grid {
-      grid-template-columns: 1fr;
+    /* RESET GRID to Block on Mobile */
+    #doc-title, #doc-footer, #doc-all {
+        display: block; padding-left: 1.5rem; padding-right: 1.5rem;
     }
-  
-    /* Collapse Header/Footer Grids */
-    #doc-title, #doc-footer {
-      display: block;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-    #doc-title > *, #doc-footer > * {
-      grid-column: auto;
-      /* Remove offset */
-      margin-left: 0 !important; 
-    }
+    #doc-title > *, #doc-footer > *, #doc-main { grid-column: auto; }
     
-    #doc-title h1,
-    #doc-title p,
-    #doc-title nav,
-    #doc-footer address {
-        margin-left: 0;
-    }
-
-    /* Reset Footer alignment */
-    footer address { padding-top: 0; text-align: left; }
+    .topic-card-grid { grid-template-columns: 1fr; }
   
-    /* Collapse Main Grid */
-    #doc-all { display: block; }
-  
-    /* Mobile Sidebar (Off-canvas) */
+    /* Off-canvas Sidebar */
     #tocContainer {
-      position: fixed; z-index: 1000;
-      top: 0; left: 0; bottom: 0;
-      width: 260px;
-      background: var(--c-bg-body);
-      border-right: 1px solid var(--c-border);
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      padding: 1.5rem;
-      box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+      grid-column: auto; position: fixed; z-index: 1000;
+      top: 0; left: 0; bottom: 0; width: 260px;
+      background: var(--c-bg-body); border-right: 1px solid var(--c-border);
+      transform: translateX(-100%); transition: transform 0.3s ease;
+      padding: 1.5rem; box-shadow: 5px 0 20px rgba(0,0,0,0.2);
     }
     .sideBarShowHide { transform: translateX(0) !important; }
   
-    /* Toggle Button */
     #tocButton {
       display: flex; align-items: center; justify-content: center;
       position: fixed; bottom: 1.5rem; right: 1.5rem;
-      width: 3.5rem; height: 3.5rem;
-      background: var(--c-brand); color: #fff;
-      border: none; border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      width: 3.5rem; height: 3.5rem; background: var(--c-brand); color: #fff;
+      border: none; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       z-index: 1001; cursor: pointer;
     }
     .toc-label { display: none; }
   }
   
-  /* ==========================================================================
-     LANDING PAGE OVERRIDES
-     ========================================================================== */
-  
-  /* Hide borders under headers on the landing page to create a cleaner dashboard look */
-  body.landing-page h2 {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-
+  /* Landing page overrides */
+  body.landing-page h2 { border-bottom: none; padding-bottom: 0; }
 
 } /* End base */
