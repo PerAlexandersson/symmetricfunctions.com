@@ -129,7 +129,7 @@
   }
   
   /* ==========================================================================
-     LAYOUT ARCHITECTURE
+     LAYOUT ARCHITECTURE (6-Column Model)
      ========================================================================== */
   
   #doc-title, #doc-footer {
@@ -138,51 +138,99 @@
     border-color: var(--c-border);
     border-style: solid;
     flex-shrink: 0;
+    
+    /* 5-column grid: [L | N | C | P | R] */
+    
     display: grid;
     grid-template-columns: 
-      1fr 
-      var(--w-sidebar) 
-      var(--gap) 
-      minmax(0, calc(var(--w-page) - var(--w-sidebar) - var(--gap) - 3rem)) 
-      1fr;
+      1fr                        /* L: left padding */
+      var(--w-sidebar)           /* N: nav/TOC space */
+      var(--gap)                 /* gap between N and content */
+      minmax(0, 1fr)             /* C: content columns (3 total) */
+      minmax(0, 1fr)
+      minmax(0, 1fr)
+      1fr;                       /* R: right padding */
+    max-width: none;
   }
-  
+
+  /* Constrain the total NCCC width to 72rem */
+  #doc-title::before,
+  #doc-footer::before {
+    content: '';
+    grid-column: 2 / 7; /* span N through CCC */
+    max-width: var(--w-page);
+    margin: 0 auto;
+  }
+
   #doc-title {
     border-width: 0 0 1px 0; 
-    padding: 2rem 0; 
+    padding: 2rem 0;
   }
-  
   #doc-footer { 
     border-width: 1px 0 0 0; 
     padding: 2.5rem 0; 
     margin-top: auto;
   }
-  
-  /* Force header/footer content into the 4th column (Main Content) */
+
+  /* Header/footer content occupies NCCC (columns 2-6) */
   #doc-title > *, 
   #doc-footer > * {
-    grid-column: 4;
+    grid-column: 2 / 8; /* Corrected to 7 to span all 3 Content columns */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
-  
-  /* Main Content Grid */
+
+  /* Offset content to skip over N and gap */
+  #doc-title h1,
+  #doc-title p,
+  #doc-title nav,
+  #doc-footer address {
+    margin-left: calc(var(--w-sidebar) + var(--gap));
+  }
+
   #doc-all {
-    /* Flex grow pushes footer down */
     flex: 1 0 auto;
     width: 100%;
     
-    max-width: var(--w-page);
-    margin: 0 auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    
     display: grid;
-    grid-template-columns: var(--w-sidebar) 1fr;
-    gap: var(--gap);
+    grid-template-columns: 
+      1fr 
+      var(--w-sidebar)
+      var(--gap)
+      minmax(0, 1fr)
+      minmax(0, 1fr)
+      minmax(0, 1fr)
+      1fr;
+
+    /* max-width is handled by the grid tracks (L/R) filling space */
+    max-width: 100%; 
+    margin: 0 auto;
+    
     padding-top: 2.5rem;
     padding-bottom: 4rem;
     align-items: start;
   }
-  
+
+  /* TOC in column N */
+  #tocContainer {
+    grid-column: 2;
+    padding-left: 1.5rem;
+    position: sticky;
+    top: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    font-family: system-ui, sans-serif;
+    padding-right: 1rem;
+    display: var(--toc-display);
+  }
+
+  /* Main content in CCC (columns 4-6) */
+  #doc-main {
+    grid-column: 4 / 8;
+    padding-right: 1.5rem;
+    min-width: 0;
+  }
+
   /* ==========================================================================
      HEADER CONTENT STYLING
      ========================================================================== */
@@ -225,17 +273,8 @@
   }
   
   /* ==========================================================================
-      SIDEBAR (TOC)
+      SIDEBAR (TOC) STYLING
      ========================================================================== */
-  #tocContainer {
-    position: sticky;
-    top: 1rem;
-    max-height: 90vh;
-    overflow-y: auto;
-    font-family: system-ui, sans-serif;
-    padding-right: 1rem;
-    display: var(--toc-display);
-  }
   
   #tocContainer nav ul { list-style: none; padding: 0; margin: 0; }
   #tocContainer li { margin: 0; }
@@ -271,10 +310,6 @@
   /* ==========================================================================
       CONTENT & CARDS
      ========================================================================== */
-  #doc-main { 
-    min-width: 0; 
-    grid-column: 2;
-  }
   
   .dateMod {
     display: block;
@@ -760,8 +795,17 @@ details.env[open] > summary::after {
     }
     #doc-title > *, #doc-footer > * {
       grid-column: auto;
+      /* Remove offset */
+      margin-left: 0 !important; 
     }
     
+    #doc-title h1,
+    #doc-title p,
+    #doc-title nav,
+    #doc-footer address {
+        margin-left: 0;
+    }
+
     /* Reset Footer alignment */
     footer address { padding-top: 0; text-align: left; }
   
