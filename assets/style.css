@@ -39,10 +39,6 @@
     --col-main-start: 3;
     --col-main-end:   7; /* Ends before line 7 */
 
-    /* WIDE PAGE OVERRIDES (To be set in index.htm) */
-    /* --col-main-start: 2; */
-    /* --col-main-end:   8; */
-  
     --toc-display: block;
     color-scheme: light;
   }
@@ -158,8 +154,7 @@
   /* Header/Footer content respects the variable span */
   #doc-title > *, 
   #doc-footer > * {
-    grid-column-start: var(--col-main-start);
-    grid-column-end: var(--col-main-end);
+    grid-column: 3 / 7;
     padding-left: 1rem;
     padding-right: 1rem;
   }
