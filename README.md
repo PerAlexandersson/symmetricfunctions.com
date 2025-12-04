@@ -13,6 +13,7 @@ AI tools have been extensively used to generate and refactor the code.
 ```
 .
 ├── assets/              # Static assets (CSS, images, JS)
+|   ├── nav-images/       # .svg files for navigation links
 ├── docs/                # Documentation (.md)
 ├── tex-source/          # LaTeX source files (.tex)
 ├── test/                # Test files for validation
@@ -173,12 +174,9 @@ This deletes `temp/` and `www/` directories.
 - **Pandoc 2.x+** - Document converter
 - **GNU Make 4.x+** - Build orchestration
 - **bash** - Shell for Make recipes
-
-### Tools for .svg generation
 - **pdflatex** - For compiling latex to .pdf
-- **dvisvgm** - Converting .pdf to .svg
+- **dvisvgm** - For converting TeX's output to .svg
 - **pdfinfo** - To count pages in a .pdf file
-
 
 ### Lua Modules
 All Lua dependencies are included in the repository:
@@ -197,4 +195,3 @@ Edit `config.mk` to customize:
 - `WWW_DIR` - Output directory (default: `www`)
 - `TEMPLATE` - HTML template file (default: `template.htm`)
 - `BIBFILE` - Bibliography file (default: `references.bib`)
-
