@@ -1,0 +1,52 @@
+\documentclass[tikz, border=5mm]{standalone}
+\usepackage{tikz}
+
+% For drawing matchings/partitions
+\newcommand{\matching}[4][]{%
+	\begin{tikzpicture}[anchor=base, baseline, #1]
+	\draw[line width=1pt] (0,0) circle (0.8);
+	\foreach \x in {1,...,#2} {
+		\node[shape=circle, fill=black, inner sep=2pt,
+		      label={{((-\x+1)*360/#2)+90}:$\scriptstyle{\x}$}] (n\x)
+		      at ({((-\x+1)*360/#2)+90}:0.8) {};
+	};
+	\foreach \x/\y in {#3} {
+		\draw[line width=2pt, line cap=round] (n\x) -- (n\y);
+	};
+	\foreach \x in {#4} {
+		\draw[line width=0.8pt] (n\x) circle (0.15);
+	};
+	\end{tikzpicture}%
+}
+
+\begin{document}
+
+\matching{4}{1/2, 2/3, 3/4, 4/1}{}
+
+\matching{4}{2/3, 3/4, 4/2}{1}
+
+\matching{4}{1/3, 3/4, 1/4}{2}
+
+\matching{4}{1/2, 2/4, 4/1}{3}
+
+\matching{4}{1/2, 2/3, 1/3}{4}
+
+\matching{4}{1/2, 3/4}{}
+
+\matching{4}{1/4, 2/3}{}
+
+\matching{4}{1/2}{3,4}
+
+\matching{4}{1/3}{2,4}
+
+\matching{4}{1/4}{2,3}
+
+\matching{4}{2/3}{1,4}
+
+\matching{4}{2/4}{1,3}
+
+\matching{4}{3/4}{1,2}
+
+\matching{4}{}{1,2,3,4}
+
+\end{document}

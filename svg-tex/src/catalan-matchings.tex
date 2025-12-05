@@ -1,0 +1,34 @@
+\documentclass[tikz, border=0mm]{standalone}
+
+
+% For drawing matchings with optional styling
+\newcommand{\matching}[4][]{%
+	\begin{tikzpicture}[anchor=base, baseline, #1]
+	\draw[line width=1pt] (0,0) circle (0.8);
+	\foreach \x in {1,...,#2} {
+		\node[shape=circle, fill=black, inner sep=2pt,
+		      label={{((-\x+1)*360/#2)+90}:$\scriptstyle{\x}$}] (n\x)
+		      at ({((-\x+1)*360/#2)+90}:0.8) {};
+	};
+	\foreach \x/\y in {#3} {
+		\draw[line width=2pt, line cap=round] (n\x) -- (n\y);
+	};
+	\foreach \x in {#4} {
+		\draw[line width=0.8pt] (n\x) circle (0.15);
+	};
+	\end{tikzpicture}%
+}
+
+\begin{document}
+
+\matching{6}{1/2, 3/4, 5/6}{}
+
+\matching{6}{1/2, 3/6, 4/5}{}
+
+\matching{6}{1/4, 2/3,5/6}{}
+
+\matching{6}{1/6,2/3,4/5}{}
+
+\matching{6}{1/6,2/5,3/4}{}
+
+\end{document}

@@ -8,7 +8,11 @@ The $q$-analog of the Catalan numbers here is defined as $\catalan(n,q) = \frac{
 
 \section[cspCatalan]{Catalan objects}
 
-\subsection[cspCatalanTriangulations]{Triangulations of $(n+2)$-gons}
+There are numerous combinatorial models for the Catalan numbers, see for example the extensive
+survey by \name{Richard Stanley} \cite{StanleyCatalan}.
+
+
+\section[cspCatalanTriangulations]{Triangulations of $(n+2)$-gons}
 
 Let $\mathrm{TRI}(n)$ be the set of triangulations on an $n$-gon.
 Note that $|\mathrm{TRI}(n)| = \catalan(n-2)$.
@@ -21,10 +25,10 @@ exhibits the CSP, see \cite{ReinerStantonWhite2004}.
 
 
 
-
 In \cite[Thm. 8.2]{AlexanderssonLinussonPotkaUhlin2021}, we refine this result.
 We let $\mathrm{TRI}_{\mathrm{ear}}(n,k)$ denote the set of triangulations 
-of an $n$-gon with $k$ ears. An ear is a triangle with at most one side in the interior.
+of an $n$-gon with $k$ ears. 
+An ear is a triangle with at most one side in the interior.
 \begin{theorem}
 Let $2 \leq k \leq \frac{n}{2}$ and let
 \begin{equation*}
@@ -43,10 +47,10 @@ exhibits the cyclic sieving phenomenon.
 
 
 
-\subsection[cspNonCrossingMatchingsI]{Non-crossing matchings}
+\section[cspNonCrossingMatchingsI]{Non-crossing matchings}
 
-Let $X_n$ be the set of non-crossing matchings, on $2n$ vertices. It is well-known
-that $|X_n| =\catalan(n)$.
+Let $X_n$ be the set of non-crossing matchings, on $2n$ vertices. 
+It is well-known that $|X_n| =\catalan(n)$.
 We let the generator of $\grpc_n$ act on $X_n$ by a $2\pi/n$ rotation.
 Then 
 \[
@@ -60,36 +64,33 @@ Then
 \[
 \left( X_{n}, \grpc_{2n},  \frac{1}{[n+1]_q}\qbinom{2n}{n}_q \right)
 \]
-exhibits the CSP, see \cite{PetersenPylyavskyyRhoades2008}.
+exhibits the CSP, see \cite{PetersenPylyavskyyRhoades2008}. 
+A combinatorial proof is provided \href{https://math.stackexchange.com/questions/2913242/computing-fixpoints-of-noncrossing-matchings-of-2n-points-under-rotation}{by Mike Earnest on math.stackexchange}.
 
-\todo{
-A direct combinatorial proof:
-https://math.stackexchange.com/questions/2913242/computing-fixpoints-of-noncrossing-matchings-of-2n-points-under-rotation
-}
 
-\begin{example}
+\begin{example*}[Non-crossing matchings]
 For $n=3$, there are five non-crossing matchings:
 \begin{figure}
-    \svgimg[width=0.17\textwidth]{./svg-images/nonCrossingMatching000.svg}{Non-crossing matching 1.}
-    \svgimg[width=0.17\textwidth]{./svg-images/nonCrossingMatching010.svg}{Non-crossing matching 2.}
-    \svgimg[width=0.17\textwidth]{./svg-images/nonCrossingMatching100.svg}{Non-crossing matching 3.}
-    \svgimg[width=0.17\textwidth]{./svg-images/nonCrossingMatching110.svg}{Non-crossing matching 4.}
-    \svgimg[width=0.17\textwidth]{./svg-images/nonCrossingMatching210.svg}{Non-crossing matching 5.}
+    \svgimg[width=0.10\textwidth]{./svg-images/nonCrossingMatching000.svg}{Non-crossing matching 1.}
+    \svgimg[width=0.10\textwidth]{./svg-images/nonCrossingMatching010.svg}{Non-crossing matching 2.}
+    \svgimg[width=0.10\textwidth]{./svg-images/nonCrossingMatching100.svg}{Non-crossing matching 3.}
+    \svgimg[width=0.10\textwidth]{./svg-images/nonCrossingMatching110.svg}{Non-crossing matching 4.}
+    \svgimg[width=0.10\textwidth]{./svg-images/nonCrossingMatching210.svg}{Non-crossing matching 5.}
 \end{figure}
 
-These are in bijection with north-east lattice paths from $(0,0)$ to $(n,n)$ which are never below the main diagonal.
-The bijection is given by parenthesis matching, where a north-step is a left parenthesis, and an east step is a right parenthesis.
+These are in bijection with North-East lattice paths from $(0,0)$ to $(n,n)$ which are never below the main diagonal.
+The bijection is given by parenthesis matching, where a North-step is a left parenthesis, and an East step is a right parenthesis.
 \begin{figure}
-    \svgimg[width=0.17\textwidth]{./svg-images/dyckPath000.svg}{Dyck path 1.}
-    \svgimg[width=0.17\textwidth]{./svg-images/dyckPath010.svg}{Dyck path 2.}
-    \svgimg[width=0.17\textwidth]{./svg-images/dyckPath100.svg}{Dyck path 3.}
-    \svgimg[width=0.17\textwidth]{./svg-images/dyckPath110.svg}{Dyck path 4.}
-    \svgimg[width=0.17\textwidth]{./svg-images/dyckPath210.svg}{Dyck path 5.}
-\end{figure}    
+    \svgimg[width=0.10\textwidth]{./svg-images/dyckPath000.svg}{Dyck path 1.}
+    \svgimg[width=0.10\textwidth]{./svg-images/dyckPath010.svg}{Dyck path 2.}
+    \svgimg[width=0.10\textwidth]{./svg-images/dyckPath100.svg}{Dyck path 3.}
+    \svgimg[width=0.10\textwidth]{./svg-images/dyckPath110.svg}{Dyck path 4.}
+    \svgimg[width=0.10\textwidth]{./svg-images/dyckPath210.svg}{Dyck path 5.}
+\end{figure}
 
 The lattice paths are now in bijection with $2\times n$ standard Young tableaux.
 The bijection is given by making the number $k$ appear in the first row of the SYT if step $k$
-in the path is a north-step.
+in the path is a North-step.
 
 \begin{figure}
 \begin{ytableau}
@@ -113,7 +114,7 @@ in the path is a north-step.
 4 & 5 & 6
 \end{ytableau}
 \end{figure}
-\end{example}
+\end{example*}
 
 
 
@@ -140,7 +141,7 @@ exhibit the cyclic sieving phenomenon.
 
 
 
-\subsection[csp12]{Non-crossing (1,2)-configurations}
+\section[csp12]{Non-crossing (1,2)-configurations}
 
 Let $\mathrm{NCC}_n$ be the set non-crossing $(1,2)$-configurations of $[n-1]$.
 That is, elements are partitioned into sets of size $1$ or $2$
@@ -183,7 +184,7 @@ $
 is a CSP-triple.
 
 
-\subsection[cspNonCrossingPartitions]{Non-crossing partitions (Narayana)}
+\section[cspNonCrossingPartitions]{Non-crossing partitions (Narayana)}
 
 A non-crossing partition is a set-partition of the vertices in an $n$-gon,
 so that the convex hulls of the sets do not intersect.
@@ -198,7 +199,7 @@ exhibits the CSP, see \cite{ReinerStantonWhite2004}.
 
 \subsection[cspWCatalan]{Non-crossing partitions II}
 
-D. Bessis and V. Reiner \cite{BessisReiner2011} study \emph{well-generated complex reflection groups}.
+\name{D. Bessis} and \name{V. Reiner} \cite{BessisReiner2011} study \emph{well-generated complex reflection groups}.
 For such groups $W$, one can define a generalization of the $q$-Catalan numbers, $\catalan(W,q)$
 as well as the notion of non-crossing partitions.
 The set of non-crossing partitions, $NC(W)$ are identified with a certain set of reflections in $W$.
@@ -236,7 +237,7 @@ The authors also prove CSP in the case of \defin{$q$-Kreweras numbers}.
 Let $\lambda \vdash n$ and $\length(\lambda)=k$. The $q$-analogue 
 of the Kreweras numbers is defined as 
 \[
-Krew(\lambda;q) \coloneqq \frac{q^{k(n-1)-c(\lambda)}}{[n+1]_q} \qbinom{n+1}{m(\lambda),n-k+1}
+\mathrm{Krew}(\lambda;q) \coloneqq \frac{q^{k(n-1)-c(\lambda)}}{[n+1]_q} \qbinom{n+1}{m(\lambda),n-k+1}
 \]
 where $c(\lambda) = \sum_{i} \lambda'_i \lambda'_{i+1}$
 and $m(\lambda)$ is the type of $\lambda$.
@@ -244,24 +245,36 @@ Then $Krew(\lambda;1)$ is the number of non-crossing partitions where the part s
 are given by $\lambda$. 
 The cyclic group action still gives a cyclic sieving phenomenon.
 
-The authors generalize this to other classical types of 
-Weyl groups ($A$,$B$,$C$,$D$).
+The authors generalize this to other classical types of \hyperref[weyl-lie-groups]{Weyl groups} ($A$,$B$,$C$,$D$).
 
 
-\begin{example}[Non-crossing partitions]
-Here is a list of the non-crossing partitions for $n=4$:
-
+\begin{example*}[Non-crossing partitions for $n=4$]
+Here are all the non-crossing partitions for $n=4$. 
+There are 14 of them, a Catalan number \oeis{A000108}.
 \begin{figure}
-  \svgimg[width=0.95\textwidth]{./svg-images/nonCrossingPartitions.svg}{Non-crossing partitions for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-1.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-2.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-3.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-4.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-5.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-6.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-7.svg}{Non-crossing partition for n=4.}
 \end{figure}
-
-\end{example}
+\begin{figure}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-8.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-9.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-10.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-11.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-12.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-13.svg}{Non-crossing partition for n=4.}
+  \svgimg[width=0.11\textwidth]{./svg-images/nonCrossingPartitions-14.svg}{Non-crossing partition for n=4.}
+\end{figure}
+\end{example*}
 
 
 \subsection[cspNonCrossingPartitionsFuss]{Non-crossing partitions IV (Fuß--Catalan)}
 
-In \cite{KrattenthalerMuller2013}, the authors consider 
-$m$-divisible non-crossing partitions.
+In \cite{KrattenthalerMuller2013}, the authors consider $m$-divisible non-crossing partitions.
 Let $X_{n,m}$ be the number of non-crossing partitions of $[nm]$
 where each part has a size which is a multiple of $m$.
 Consider the $q$-analogue $q$-analogue of the Fuß--Catalan numbers:
@@ -286,17 +299,16 @@ which reduce to the Fuß--Catalan numbers in type $A$.
 See also \cite{ReinerSommers2018}.
 
 
+\section[cspRationalCatalan]{Rational Catalan and Kreweras}
 
-\subsection[cspRationalCatalan]{Rational Catalan and Kreweras}
-
-In \cite{BodnarRhoades2016} M. Bodnar and B. Rhoades prove that the 
+In \cite{BodnarRhoades2016} \name{M. Bodnar} and \name{B. Rhoades} prove that the 
 rational $q$-Catalan numbers,
 \[
 \catalan_{a/b}(q) = \frac{1}{[a+b]_q} \qbinom{a+b}{a}_q,
 \]
 admits a cyclic sieving phenomenon. They require that $a\lt b$ and $a$, $b$ are coprime.
 Then $\grpc_{b-1}$ act on the set of $(a,b)$-non-crossing 
-partitions of $[b-1]$ by rotation, and this gives a CSP.
+partitions of $[b-1]$ by rotation, and this gives a cyclic sieving phenomenon.
 This settles a conjecture stated in \cite{Armstrong2012}.
 
 They also prove the corresponding refined rational $q$-Narayana and $q$-Kreweras version of this.

@@ -7,7 +7,7 @@
    ========================================================================== */
 
   :root {
-    /* --- COLORS (Unchanged) --- */
+    /* --- COLORS --- */
     --c-brand:       rgb(225, 120,  65);
     --c-brand-light: rgb(245, 140,  85);
     --c-link:        rgb( 37, 134, 221);
@@ -23,6 +23,7 @@
     --c-text-muted:  rgb(134, 142, 150);
     --c-rating-from: rgb(255, 193,   7);
     --c-rating-to:   rgb(230, 230, 230);
+    --c-nav-subsec:  rgb(91, 102, 113);
     --math-env-bar:  rgb(200,200,200);
     --math-accent:   rgb(37,134,221);
     --header-border: 1px solid var(--c-border);
@@ -37,7 +38,7 @@
     /* DEFAULT SPANS (Standard Page) */
     /* Content lives in the middle 4 columns (Cols 3, 4, 5, 6) */
     --col-main-start: 3;
-    --col-main-end:   7; /* Ends before line 7 */
+    --col-main-end:   7;
 
     --toc-display: block;
     color-scheme: light;
@@ -52,6 +53,7 @@
         --c-text-main:   rgb(225, 225, 225);
         --c-text-sub:    rgb(176, 176, 176);
         --c-text-muted:  rgb(119, 119, 119);
+        --c-nav-subsec:  rgb(168, 156, 156);
         --c-rule:        rgb(213, 199, 199);
         --c-link:        rgb(100, 181, 246);
         --math-env-bar:  rgb( 59,  66,  82);
@@ -143,12 +145,14 @@
     border-bottom: 1px solid var(--c-border); 
     padding: 2rem 0;
     align-items: center; 
+    background-color: var(--c-bg-header);
   }
 
   #doc-footer { 
     border-top: 1px solid var(--c-border); 
     padding: 2.5rem 0; 
     margin-top: auto;
+    background-color: var(--c-bg-header);
   }
 
   /* Header/Footer content respects the variable span */
@@ -248,7 +252,7 @@
   }
   #tocContainer .subsection {
     font-weight: 400; font-size: 0.85rem; padding-left: 0.8em;
-    color: var(--c-text-muted); border-left: 2px solid transparent;
+    color: var(--c-nav-subsec); border-left: 2px solid transparent;
   }
   #tocContainer .subsection:hover {
     border-left-color: var(--c-brand-light); color: var(--c-text-main);
@@ -408,6 +412,10 @@
       transition: background-color 0.1s ease-in; cursor: pointer;
   }
   .family-index tbody tr a { text-decoration: none; color: inherit; display: block; }
+
+  .family-index th::after {
+       content: "    \21C5"; /* ⇅ */
+  }
 
   /* ==========================================================================
       RESPONSIVENESS

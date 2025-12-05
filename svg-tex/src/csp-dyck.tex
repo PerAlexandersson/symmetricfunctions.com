@@ -1,0 +1,83 @@
+\documentclass[tikz, border=0.2mm]{standalone}
+\usepackage{amsmath,xparse}
+\newcommand{\tikzsetnextfilename}[1]{}
+
+
+\ExplSyntaxOn
+% 1. Create a variable to hold the path construction
+\tl_new:N \l_lattice_path_tl
+% 2. Define the main command
+\NewDocumentCommand{\latticePath}{ O{} m m }
+ {
+  % Clear the variable for the new path
+  \tl_clear:N \l_lattice_path_tl
+  % Loop through the input string (#3)
+  \str_map_inline:nn { #3 }
+   {
+    % Append the TikZ code to the variable based on the character
+    \str_case:nnF { ##1 }
+     {
+       % Numpad
+       {1}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(-1,-1) } } % SW
+       {2}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(0,-1)  } } % S
+       {3}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(1,-1)  } } % SE
+       {4}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(-1,0)  } } % W
+       {6}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(1,0)   } } % E
+       {7}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(-1,1)  } } % NW
+       {8}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(0,1)   } } % N
+       {9}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(1,1)   } } % NE
+       % Cardinals
+       {n}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(0,1)   } }
+       {s}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(0,-1)  } }
+       {e}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(1,0)   } }
+       {w}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(-1,0)  } }
+       % Relatives
+       {u}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(0,1)   } }
+       {d}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(0,-1)  } }
+       {l}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(-1,0)  } }
+       {r}{ \tl_put_right:Nn \l_lattice_path_tl { --~++(1,0)   } }
+     }
+     {
+       % Fallback (ignore unknown characters)
+     }
+   }
+   % 3. Execute the Draw Command using the constructed path
+   % Note: We use ~ for spaces inside ExplSyntax
+   \draw[line~width=4.0pt, line~cap=round, line~join=round, #1] (#2) \l_lattice_path_tl ;
+ }
+\ExplSyntaxOff
+
+
+\begin{document}
+\tikzsetnextfilename{dyckPath000}
+\begin{tikzpicture}
+    \draw[gray!30, thin] (0,0) grid (3,3);
+    \latticePath{0,0}{nenene}
+\end{tikzpicture}
+
+\tikzsetnextfilename{dyckPath010}
+\begin{tikzpicture}
+    \draw[gray!30, thin] (0,0) grid (3,3);
+    \latticePath{0,0}{nennee}
+\end{tikzpicture}
+
+\tikzsetnextfilename{dyckPath100}
+\begin{tikzpicture}
+    \draw[gray!30, thin] (0,0) grid (3,3);
+    \latticePath{0,0}{nneene}
+\end{tikzpicture}
+
+\tikzsetnextfilename{dyckPath110}
+\begin{tikzpicture}
+    \draw[gray!30, thin] (0,0) grid (3,3);
+    \latticePath{0,0}{nnenee}
+\end{tikzpicture}
+
+\tikzsetnextfilename{dyckPath210}
+\begin{tikzpicture}
+    \draw[gray!30, thin] (0,0) grid (3,3);
+    \latticePath{0,0}{nnneee}
+\end{tikzpicture}
+
+
+\end{document}
