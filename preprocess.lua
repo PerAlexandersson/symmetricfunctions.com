@@ -264,6 +264,28 @@ input = input
     :gsub("\\subsection%s*%[(.-)%]%s*(%b{})", "\\subsection%2\\label{%1}")
     :gsub("\\subsubsection%s*%[(.-)%]%s*(%b{})", "\\subsubsection%2\\label{%1}")
 
+
+-- ============================================================================
+-- STEP 4: Typographical Fixes (Math Punctuation)
+-- ============================================================================
+
+-- Rewrite $stuff$. to $stuff.$ (and , :)
+-- assumption: $ is exclusively used for math delimiters.
+input = input:gsub("(%b$$)([%.,:])", function(math_seq, punct)
+  -- If it is display math ($$ ... $$), do nothing.
+  if math_seq:sub(2,2) == "$" then
+    return math_seq .. punct
+  else
+    -- It is inline math ($ ... $). Move punctuation inside.
+    -- Chop off the last '$', add punct, add '$' back.
+    return math_seq:sub(1, -2) .. punct .. "$"
+  end
+end)
+
+-- Rewrite \(stuff\). to \(stuff.\) (and , :)
+-- Matches: \( ... \) followed optionally by whitespace, then . , or :
+input = input:gsub("\\%((.-)\\%)%s*([%.,:])", "\\(%1%2\\)")
+
 -- ============================================================================
 -- Output
 -- ============================================================================
