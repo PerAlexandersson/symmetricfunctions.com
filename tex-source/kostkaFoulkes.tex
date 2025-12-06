@@ -86,7 +86,7 @@ See also the \hyperref[kostkaIdentities]{recursion for Kostka--Foulkes polynomia
 
 
 In \cite[p.327]{Macdonald1995}, the following recursion is 
-described. In fact, it generalizes to Jack polynomials.
+described. In fact, it generalizes to \hyperref[jack]{Jack polynomials}.
 \begin{theorem}
 First, let $d(\lambda)\coloneqq \partitionN(\lambda')-\partitionN(\lambda)$.
 Let $\mu$ be a partition of length $\ell$. 
@@ -105,7 +105,7 @@ obtained from $\mu$ by decreasing entry $i$ by $r$,
 and increasing entry $j$ by $r$, and
 rearrange in decreasing fashion.
 The initial conditions are given by $K_{\mu, \mu}=1$,
-and $K_{\lambda, \mu}=0$ unless $\lambda \geq \mu$ in dominance order.
+and $K_{\lambda, \mu}=0$ unless $\lambda \geq \mu$ in \hyperref[partialOrderingsOnPartitions]{dominance order}.
 \end{theorem}
 
 
@@ -163,7 +163,7 @@ https://link.springer.com/content/pdf/10.1007/s10468-016-9640-5.pdf
 
 \section[kostantPartitionFunction]{The Kostant partition function}
 
-See Harris, Insko and Omar \cite{HarrisInskoOmar2018} for a short introduction.
+See \name{P. Harris}, \name{E. Insko} and \name{M. Omar} \cite{HarrisInskoOmar2018} for a short introduction.
 
 Let $\evec_{ij}$ denote the vector with $1$ at index $i$ 
 and $-1$ at index $j$ and remaining entries equal to $0$. 
@@ -193,7 +193,7 @@ From the definition above, we have that
 \]
 
 
-This has a close relationship with the Jacobi--Trudi identity, see
+This has a close relationship with the \hyperref[schurJacobiTrudi]{Jacobi--Trudi identity}, see
 the excellent introduction in \cite{DesarmenienLeclercThibon1994}.
 
 
@@ -252,7 +252,7 @@ The $q$-analogue is then defined via
 Thus, the coefficient $[q^j]\kostantP_q(w)$ count the number of ways to express $w$
 as a sum of exactly $j$ positive roots.
 
-In \cite{RassartThesis}, a different $q$-analogue, defined via
+In \cite{RassartThesis}, a different $q$-analog, defined via
 \begin{equation*}
 \prod_{\alpha \in \Phi^+}  \frac{1+(q-1)e^\alpha}{1- e^\alpha} = \sum_{w} \kostantP^*(w;q) e^w,
 \end{equation*}
@@ -397,13 +397,13 @@ LittlewoodRichardson[{2, 1, 1}, {3, 1}, {4, 2, 1, 1}]
 \end{lstlisting}
 
 
-A similar expression for the Schur P structure 
+A similar expression for the \hyperref[schurP]{Schur P} structure 
 coefficients can be found in \cite[Thm. 6.2.5]{RassartThesis}.
 This can perhaps be seen as a type $B$ analog of Steinbergs formula.
 
 
 In \cite{BerensteinZelevinsky1988} the authors
-attributes the following formula to B. Kostant:
+attributes the following formula to \name{B. Kostant}:
 \begin{theorem}[Kostant]
 Let $\lambda,\mu,\nu$ be partitions of length at most $\ell$, such that $|\nu|=|\lambda|+|\mu|$. Then
 \begin{equation}
@@ -426,9 +426,9 @@ By using the \hyperref[gtKoskta]{Gelfand--Tsetlin polytope model for semistandar
 we can obtain the Kostka coefficients $K_{\lambda,\mu}$ as the number of lattice points 
 in certain non-integral (some vertices might not have integer coordinates) polytopes.
 This implies that the map $k \mapsto K_{k\lambda,k\mu}$ is a quasi-polynomial in $k$.
-However, we have the stronger statement, due to Derksen and Weyman \cite{DerksenWeyman2002}:
+However, we have the stronger statement, due to \name{Derksen} and \name{Weyman} \cite{DerksenWeyman2002}:
 \begin{theorem}
-The map  $k \mapsto K_{k\lambda,k\mu}$ is a polynomial in $k$.
+The map $k \mapsto K_{k\lambda,k\mu}$ is a polynomial in $k$.
 \end{theorem}
 In fact, this follows from the analogous statement for Littlewood--Richardson coefficients.
 
@@ -445,9 +445,8 @@ Unimodularity for the matrix corresponding to Kostant's partition function
 follows easily from \cite[Appendix]{HellerTompkins1957}.
 
 
-Flagged skew Kostka coefficients can be expressed using contingency tables.
+\hyperref[schurFlagged]{Flagged skew Kostka coefficients} can be expressed using contingency tables.
 From this expression, polynomiality also follows, see \cite{AlexanderssonOguz2023x}.
-
 
 
 
@@ -559,9 +558,6 @@ We have the relation
 We shall now compute $K_{421,3211}(q)$. 
 There are four tableaux in $\SSYT(421,3211)$:
 
-
-
-
 \begin{figure}
 \ytableaushort{1114,22,3}
 \ytableaushort{1113,22,4}
@@ -639,7 +635,6 @@ act via \hyperref[crystal-operators]{Lascoux--Schützenberger involutions},
 \end{theorem}
 This is stated as above in \cite[p.54]{Nelsen2005}.
 
-
 One can also obtain the charge via crystal operators \cite{Patimo2021x}.
 
 
@@ -657,16 +652,14 @@ K_{\lambda/\mu,\nu}(q) =  \sum_{T \in \SSYT(\lambda/\mu,\nu)} q^{\charge(T)}.
 \]
 
 
-
 One can also use \hyperref[riggedConfigurations]{rigged configurations}
 to compute Kostka--Foulkes polynomials in an efficient manner.
  
  
-  
-\subsection[cyclage]{Cyclage}
+  \subsection[cyclage]{Cyclage}
  
 
-In \cite{LascouxSchutzenberger1981}, Lascoux and Schützenberger introduce 
+In \cite{LascouxSchutzenberger1981},  \name{Lascoux} and \name{Schützenberger} introduce 
 the notion of \defin{cyclage}. Let $\mu$ be a partition,
 and consider the set $\SSYT(\cdot,\mu) \coloneqq \bigcup_\lambda \SSYT(\lambda,\mu)$.
 That is, the set of all semistandard Young tableaux with content $\mu$.
@@ -720,10 +713,10 @@ The final tableau is the result of catabolism.
 This procedure is equivalent with the one described above.
 \end{example*}
 
-\begin{example*}[Figure of catabolism (poset)]
+\begin{example*}[Catabolism poset]
 The charge is displayed on the right hand side of each tableau.
 \begin{figure}
-  \svgimg[width=0.9\textwidth]{svg-images/catabolism.svg}{Catabolism poset}
+  \svgimg[width=0.4\textwidth]{svg-images/catabolism.svg}{Catabolism poset}
 \end{figure} 
 \end{example*}
  
@@ -853,12 +846,11 @@ https://doi.org/10.1016/0001-8708(92)90034-I
 }
 
 
-
-
 \subsection[kostkaFoulkesAtoms]{Atomic decomposition}
 
 
-\url{http://fpsac2019.fmf.uni-lj.si/resources/Posters/76poster.pdf}
+\href{http://fpsac2019.fmf.uni-lj.si/resources/Posters/76poster.pdf}{See this poster.}
+
 
 
 \section[quantumKostka]{Quantum Kostka coefficients}
