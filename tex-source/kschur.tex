@@ -1,6 +1,8 @@
 \metatitle{Catalan and Katalan symmetric functions, and k-Schur polynomials}
-\metadescription{An introduction to Catalan symmetric functions, Katalan symmetric functions, and k-Schur polynomials, including their definitions, properties, and connections to Schur functions and Macdonald polynomials.}
-\metakeywords{Catalan symmetric functions,Katalan symmetric functions,k-Schur polynomials,Schur functions,Macdonald polynomials,operators,recurrence relations,Pieri rule,Murnaghan-Nakayama rule,Littlewood-Richardson rule}
+\metadescription{An introduction to Catalan symmetric functions, Katalan symmetric functions, and k-Schur polynomials, including their definitions, 
+properties, and connections to Schur functions and Macdonald polynomials.}
+\metakeywords{Catalan symmetric functions,Katalan symmetric functions,k-Schur polynomials,
+Schur functions,Macdonald polynomials,operators,recurrence relations,Pieri rule,Murnaghan-Nakayama rule,Littlewood-Richardson rule}
 
 \section[catalanSymmetric]{Catalan symmetric functions}
 
@@ -46,8 +48,8 @@ For example $\{ 15, 25, 35, 14, 24 \}$ is an order ideal,
 as they are entries above a Dyck path in the diagram:
 \begin{figure}
 \begin{ytableau}
-*(gold) \mathbf{15} & *(gold) \mathbf{25} & *(gold) \mathbf{35} & 45  & 5 \\
-*(gold) \mathbf{14} & *(gold) \mathbf{24} & 34 & 4 \\
+*(gray) 15 & *(gray) 25 & *(gray) 35 & 45  & 5 \\
+*(gray) 14 & *(gray) 24 & 34 & 4 \\
 13 & 23  & 3  \\
 12 &  2 \\
 1
@@ -71,8 +73,8 @@ but one only has to apply a finite number of these as $(R_{ij})^k$
 kills any Schur function for sufficiently large $k$.
 By construction, $\catalanH_{\Phi,\gamma}(\xvec;t)$ is a symmetric function.
 
-The Catalan symmetric 
-functions generalize the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials.}
+The Catalan symmetric functions generalize 
+the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials}.
 We have that if $\mu$ is a partition of $n$, then we use the full set of roots and have
 \[
 \hallLittlewoodT_{\mu}(\xvec;q) = \catalanH_{\Delta_n^+,\mu}(\xvec;q).
@@ -90,7 +92,7 @@ and $\gamma=(4,2,1,1,0)$ gives
 
 In \cite{ChenLiChungThesis}, it was conjectured that 
 $\catalanH_{\Phi,\mu}(\xvec;t)$ is Schur-positive for any $\Phi$
-and partition $\mu$. This conjecture is resolved by J. Blasiak, J. Morse and A. Pun in
+and partition $\mu$. This conjecture is resolved by \name[Jonah Blasiak]{J. Blasiak}, \name[Jennifer Morse]{J. Morse} and \name[Anna Pun]{A. Pun} in
 \cite{BlasiakMorsePun2020x}.
 They introduce a larger family of non-symmetric Catalan functions,
 the \defin{tame non-symmetric Catalan functions}, $\catalanH_{\Phi,\mu,w}(\xvec;t)$,
@@ -124,10 +126,9 @@ and show that this family includes the $K$-$k$-Schur functions, and the usual Ca
 
 \todo{Add definition of Katalan symmetric functions}
 
-A nice conjecture regarding the Katalan symmetric functions is solved here: \cite{IkedaIwaoNaito2024}.
+A nice conjecture regarding the Katalan symmetric functions is solved in \cite{IkedaIwaoNaito2024}.
 
-
-\section[kSchur]{$k$-Schur polynomials}
+\section[kSchur]{$k$-Schur polynomials} 
 
 
 \begin{polydata}{kSchur}
@@ -223,7 +224,7 @@ Here, $\mu^{(k)}$ denotes the $k$-conjugate of $\mu$.
 
 \subsection[kSchurMurnaghanNakayama]{Murnaghan--Nakayama rule}
 
-J. Bandlow, A. Schilling and M. Zabrocki
+\name{J. Bandlow}, \name[Anne Schilling]{A. Schilling} and \name[Mike Zabrocki]{M. Zabrocki}
 prove the following analog of the \hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama rule}.
 
 \begin{theorem}[See \cite{BandlowSchillingZabrocki2011}]
@@ -238,7 +239,7 @@ see \cite{BandlowSchillingZabrocki2011} for details.
 \end{theorem}
 
 An alternative proof is given by Lee in \cite[Thm. 10.1]{Lee2015},
-and in 2022, D.-K. Nguyen \cite{Nguyen2022x} gave a proof in the more general setting,
+and in 2022, \name{D.-K. Nguyen} \cite{Nguyen2022x} gave a proof in the more general setting,
 where a Murnaghan--Nakayama rule for $K\text{-}k$-Schur functions is also provided.
 
 
@@ -264,7 +265,7 @@ is given.
 
 \subsection[kSchurMacdonald]{Relation to modified Macdonald polynomials}
 
-Syu Kato \cite{Kato2025x} shows that Garcia--Haiman modules can be decomposed into certain modules 
+\name{Syu Kato} \cite{Kato2025x} shows that Garcia--Haiman modules can be decomposed into certain modules 
 whose characters are $k$-Schur functions. This implies that a modified Macdonald polynomial 
 indexed by $k$-bounded partitions expand positively into $k$-Schur functions.
 That is, can be expressed as a linear combination of  $\kSchur^{(k)}_\lambda$ with coefficients in $\setN[q,t]$,

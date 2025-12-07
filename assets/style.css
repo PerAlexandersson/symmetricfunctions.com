@@ -7,62 +7,101 @@
    ========================================================================== */
 
   :root {
-    /* --- COLORS --- */
-    --c-brand:       rgb(225, 120,  65);
-    --c-brand-light: rgb(245, 140,  85);
-    --c-link:        rgb( 37, 134, 221);
-    --c-link-dark:   rgb( 29,  91, 191);
+ /* --- 1. CORE PALETTE (The DNA) --- */
+  --hue-brand:   28;   /* Professional Orange */
+  --hue-link:    212;  /* Science Blue */
+  --hue-neutral: 215;  /* Slate Grey tone */
 
-    --c-bg-body:     rgb(237, 237, 237);
-    --c-bg-surface:  rgb(248, 249, 250);
-    --c-bg-nav:      rgb(248, 249, 250);
-
-    --c-bg-header:   rgb(216, 216, 216);
-    --c-border:      rgb(104, 104, 104);
-    --c-bg-gray:     rgb(136, 136, 136);
-    --c-rule:        rgb(  0,   0,   0);
-    --c-text-main:   rgb( 33,  37,  41);
-    --c-text-sub:    rgb( 73,  80,  87);
-    --c-text-muted:  rgb(134, 142, 150);
-    --c-rating-from: rgb(255, 193,   7);
-    --c-rating-to:   rgb(230, 230, 230);
-    --c-nav-subsec:  rgb(91, 102, 113);
-    --c-defin:       rgb( 29,  91, 191);
-    --math-env-bar:  rgb(200,200,200);
-    --math-accent:   rgb(37,134,221);
-    --header-border: 1px solid var(--c-border);
+  /* --- 2. SEMANTIC COLORS (Light Mode) --- */
   
-    /* --- DIMENSIONS (8-Column Logic) --- */
-    /* We have 6 central columns (N + CCCC + P). */
-    --w-col: 14rem; 
-    --w-sidebar: 20rem;
-    
+  /* Brand: Orange */
+  --c-brand:       hsl(var(--hue-brand), 90%, 55%);
+  --c-brand-light: hsl(var(--hue-brand), 90%, 75%); /* Fades/Accents */
+  
+  /* Links & Highlights: Blue */
+  --c-link:        hsl(var(--hue-link), 90%, 48%);
+  --c-link-dark:   hsl(var(--hue-link), 90%, 35%);
+  --c-defin:       hsl(var(--hue-link), 80%, 45%); /* Definition terms */
+  
+  /* Math / Diagram Specifics */
+  --math-env-bar:  hsl(var(--hue-neutral), 20%, 85%);
+  --math-accent:   hsl(var(--hue-link), 80%, 50%);
+  
+  /* Diagram Data Colors (Matches your uploaded image) */
+  --c-data-red:    hsl(0, 85%, 60%);    /* The Red Dots */
+  --c-data-black:  hsl(215, 20%, 20%);  /* The Black Squares (softened) */
+  --c-data-blue:   hsl(220, 90%, 55%);  /* The Blue Triangles */
 
-    /* DEFAULT SPANS (Standard Page) */
-    /* Content lives in the middle 4 columns (Cols 3, 4, 5, 6) */
-    --col-main-start: 3;
-    --col-main-end:   7;
+  /* Backgrounds */
+  --c-bg-body:     hsl(var(--hue-neutral), 15%, 94%); /* Light Grey/Slate */
+  --c-bg-surface:  hsl(0, 0%, 100%);                  /* Pure White cards */
+  --c-bg-nav:      hsl(0, 0%, 100%);
+  --c-bg-header:   hsl(var(--hue-neutral), 15%, 97%); /* Slight contrast to body */
+  
+  /* Borders & Rules */
+  --c-border:      hsl(var(--hue-neutral), 15%, 82%);
+  --c-bg-gray:     hsl(var(--hue-neutral), 10%, 90%); /* Table rows hover */
+  --c-rule:        hsl(var(--hue-neutral), 15%, 20%); /* Strong lines */
+  --header-border: 1px solid var(--c-border);
 
-    --toc-display: block;
-    color-scheme: light;
+  /* Typography */
+  --c-text-main:   hsl(var(--hue-neutral), 20%, 20%); /* Deep Charcoal, not black */
+  --c-text-sub:    hsl(var(--hue-neutral), 15%, 40%);
+  --c-text-muted:  hsl(var(--hue-neutral), 10%, 60%);
+  
+  /* Navigation */
+  --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 50%);
+
+  /* Ratings */
+  --c-rating-from: hsl(45, 100%, 50%);
+  --c-rating-to:   hsl(var(--hue-neutral), 10%, 85%);
+
+  /* --- DIMENSIONS (Kept from your original) --- */
+  --w-col: 14rem; 
+  --w-sidebar: 20rem;
+  --col-main-start: 3;
+  --col-main-end:   7;
+  --toc-display: block;
+  color-scheme: light;
   }
   
   @media (prefers-color-scheme: dark) {
     :root {
-        --c-bg-body:     rgb( 40,  40,  40);
-        --c-bg-surface:  rgb( 60,  60,  60);
-        --c-bg-nav:      rgb( 60,  60,  60);
-        --c-bg-header:   rgb( 26,  26,  26);
-        --c-border:      rgb( 81,  81,  81);
-        --c-text-main:   rgb(225, 225, 225);
-        --c-text-sub:    rgb(176, 176, 176);
-        --c-text-muted:  rgb(119, 119, 119);
-        --c-nav-subsec:  rgb(168, 156, 156);
-        --c-rule:        rgb(213, 199, 199);
-        --c-link:        rgb(100, 181, 246);
-        --math-env-bar:  rgb( 59,  66,  82);
-        --math-accent:   rgb(122, 162, 255);
-      color-scheme: dark;
+      /* --- DARK MODE OVERRIDES --- */
+    
+    /* Backgrounds: Dark Slate/Navy tones */
+    --c-bg-body:     hsl(var(--hue-neutral), 20%, 10%); 
+    --c-bg-surface:  hsl(var(--hue-neutral), 20%, 14%); 
+    --c-bg-nav:      hsl(var(--hue-neutral), 20%, 14%); 
+    --c-bg-header:   hsl(var(--hue-neutral), 20%, 12%);
+    
+    /* Borders */
+    --c-border:      hsl(var(--hue-neutral), 15%, 25%);
+    --c-bg-gray:     hsl(var(--hue-neutral), 15%, 18%);
+    --c-rule:        hsl(var(--hue-neutral), 10%, 60%); /* Lighten rules for dark mode */
+
+    /* Typography: Inverted Lightness */
+    --c-text-main:   hsl(var(--hue-neutral), 10%, 90%);
+    --c-text-sub:    hsl(var(--hue-neutral), 10%, 70%);
+    --c-text-muted:  hsl(var(--hue-neutral), 10%, 50%);
+    --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 60%);
+
+    /* Colors: Brighten/Desaturate slightly for contrast on dark */
+    --c-brand:       hsl(var(--hue-brand), 90%, 60%); 
+    --c-brand-light: hsl(var(--hue-brand), 80%, 30%); /* Darker accent for bg */
+    
+    --c-link:        hsl(var(--hue-link), 80%, 65%); /* Lighter blue for readability */
+    --c-defin:       hsl(var(--hue-link), 80%, 70%);
+
+    --math-env-bar:  hsl(var(--hue-neutral), 20%, 30%);
+    --math-accent:   hsl(var(--hue-link), 80%, 70%);
+
+    /* Diagram Colors (Adjusted for Dark Background) */
+    --c-data-red:    hsl(0, 85%, 65%);
+    --c-data-black:  hsl(var(--hue-neutral), 10%, 80%); /* Black squares become Light Grey */
+    --c-data-blue:   hsl(220, 90%, 65%);
+
+    color-scheme: dark;
     }
   }
   
