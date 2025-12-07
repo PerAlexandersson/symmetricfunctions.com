@@ -364,7 +364,6 @@ local function get_bibliography_label(id)
 end
 
 
-
 local function get_bibliography_tooltop(id)
   local bibliography = load_bibliography_json()
   local entry = bibliography and bibliography[id]

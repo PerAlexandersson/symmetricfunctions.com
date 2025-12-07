@@ -341,20 +341,36 @@ function RawInline(el)
     end
   end
 
--- \name{...} → Span(class=author-name)
+  -- \name{...} → Span(class=author-name)
   do
-    local b = s:match("^%s*\\name(%b{})%s*$")
-    if b then
-      local name = b:sub(2, -2)
+    -- Try to match pattern with optional argument first: \name[Full Name]{Display Text}
+    local opt_part, main_part = s:match("^%s*\\name(%b[])(%b{})%s*$")
 
-      local search_query = name:gsub(" ", "+").."+mathematics"
-      local url = "https://scholar.google.com/scholar?q=" .. search_query
+    -- If not found, fall back to pattern with only mandatory argument: \name{Display Text}
+    if not opt_part then
+      main_part = s:match("^%s*\\name(%b{})%s*$")
+    end
+
+    if main_part then
+      -- Remove surrounding curly braces for the display text
+      local display_text = main_part:sub(2, -2)
       
-      -- Return a Link object with class "author-name"
+      -- Default the full name (for search) to the display text
+      local full_name = display_text
+
+      -- If optional argument exists, remove brackets and use it for search/tooltip
+      if opt_part then
+        full_name = opt_part:sub(2, -2)
+      end
+
+      -- Construct the search query using the full name
+      local search_query = full_name:gsub(" ", "+") .. "+mathematics"
+      local url = "https://scholar.google.com/scholar?q=" .. search_query
+
       return pandoc.Link(
-        { pandoc.Str(name) }, -- Link Text
-        url,                  -- URL
-        "Search for " .. name,-- Tooltip title
+        { pandoc.Str(display_text) },                -- Visible text (e.g., "Stanley")
+        url,                                         -- URL (e.g., search for "R.P Stanley")
+        "Search for " .. full_name,                  -- Tooltip title
         { class = "author-name", target = "_blank" } -- Attributes
       )
     end

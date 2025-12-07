@@ -112,7 +112,7 @@ Note that these operations are not commutative, but they are associative.
 
 \section[namedPermutationSets]{Named sets of permutation}
 
-\todo{Organize this section better - or better yet, extract to separate wide page}
+\todo{Organize this section better - or better yet, extract to separate wide page.}
 
 \begin{itemize}
 
@@ -180,7 +180,8 @@ k_1 & k_1-1 & \dotsc,   1		 & k_1+k_2 & k_1+k_2-1 & \dotsc & k_1+1 & k_1+k_2+k_3
 Basically, we take the unique longest permutation in each of the sets $\symS_{k_1},\dotsc,\symS_{k_m}$,
 and produce the \emph{direct sum} of these.
 
-\item \defin{Wachs permutations} --- \oeis{A359039}. These are the permutations in $\symS_n$ defined as
+\item \defin{Wachs permutations} --- \oeis{A359039}. 
+These are the permutations in $\symS_n$ defined as
 \[
  W_n \coloneqq \{ \sigma \in \symS_n : |\sigma^{-1}(i)-\sigma^{-1}(i^*)|\leq 1 \text{ for all } i \in [n-1] \},
 \]
@@ -205,13 +206,13 @@ other types.
 The set of permutations of type $B$, is defined as the permutations on $B_n \coloneqq \{\pm 1, \pm 2,\dotsc, \pm n\}$
 with the property that $\pi(-i)=-\pi(i)$. This is also known as the \hyperref[weyl-lie-groups]{hyperoctahedral group}.
 
-\todo{Add colored permutations}
+\todo{Add colored permutations. See Danai's thesis}
 %\section[permutationsColored]{Colored permutations}
 
 
 \section[permutationsStirling]{Stirling permutations}
 
-In \cite{GesselStanley1978}, Gessel and Stanley introduced the set of \defin{Stirling permutations, $Q_n$}.
+In \cite{GesselStanley1978}, \name[Ira Gessel]{Gessel} and \name[Richard P. Stanley]{Stanley} introduced the set of \defin{Stirling permutations, $Q_n$}.
 These are permutations of the multiset $\{1,1,2,2,3,3,\dotsc,n,n\}$ with the additional property
 that for between the two entries equal to $i \in [n]$, only entries larger than $i$ may appear.
 For example, $12234431$ is an element in $Q_n$.

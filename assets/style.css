@@ -252,6 +252,7 @@
     margin: 0;
     line-height: 1.1;
     background: linear-gradient(135deg, var(--c-brand), var(--c-brand-light));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
