@@ -376,6 +376,7 @@ function RawInline(el)
     end
   end
 
+  --TODO-Convert to HTML entity
   -- \icon{...} → Span(class=icon)
   do
     local b = s:match("^%s*\\icon(%b{})%s*$")
