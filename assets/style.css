@@ -167,7 +167,31 @@
   .figure > img {
     flex-shrink: 0; min-width: 60px; max-width: 90%; height: auto; object-fit: contain;
   }
-  
+
+  /* No bullets if we have icons */
+  ul li:has(img.icon) {
+    list-style-type: none;
+    margin-left: -1em;
+  }
+
+  img.icon, img.topnav-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em; /* Adjust to align baseline nicely */
+    margin: 0 0.0em;
+    line-height: 1;
+  }
+
+  /* img.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    margin: 0 0.0em;
+    line-height: 1;
+  } */
+
   @media (prefers-color-scheme: dark) {
     img { filter: invert(1) hue-rotate(180deg); }
   }
