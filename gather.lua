@@ -224,6 +224,26 @@ end
 
 
 
+local function parse_icon(s)
+  local ico = s:match("^%s*\\icon%s*(%b{})%s*$")
+  if not ico then
+    return nil
+  end
+
+  ico = ico:sub(2, -2) or ""
+
+  path = "icons/icon-" .. ico .. ".svg"
+
+  local attr = pandoc.Attr(
+    "", -- id
+    {"icon"}, -- classes
+    { } -- style
+  )
+
+  return pandoc.Image(pandoc.Str("Icon: " .. ico), path, "", attr)
+end
+
+
 --\topiccard{ID}{Title}{Body}
 -- <a href="ID" class="topic-card">
 --   <p>Body</p>
@@ -376,20 +396,11 @@ function RawInline(el)
     end
   end
 
-  --TODO-Convert to HTML entity
-  -- \icon{...} → Span(class=icon)
+  -- \icon{...} → Image(class=icon)
   do
-    local b = s:match("^%s*\\icon(%b{})%s*$")
-    if b then
-      local inner = b:sub(2, -2)
-      return pandoc.Span(
-        {},                       -- no visible content
-        pandoc.Attr(
-          "",                     -- no id
-          { "icon" },             -- classes
-          { ["data-icon"] = inner } -- attributes
-        )
-      )
+    local ico = parse_icon(s)
+    if ico then
+      return ico
     end
   end
 
