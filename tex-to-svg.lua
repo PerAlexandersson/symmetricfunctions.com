@@ -36,7 +36,8 @@ local CONFIG = {
   LIB_DIR  = "svg-tex/lib",
   TEMP_DIR = "temp/svg-tex",
   NAV_OUT  = "assets/nav-images",
-  SVG_OUT  = "assets/svg-images"
+  SVG_OUT  = "assets/svg-images",
+  ICO_OUT  = "assets/icons"
 }
 
 -- =============================================================================
@@ -120,12 +121,13 @@ local function extract_figure_names(content)
 end
 
 --- Determine output directory based on filename pattern.
---- Files starting with "card-" go to NAV_OUT, others to SVG_OUT.
 --- @param name string Output filename
 --- @return string Output directory path
 local function get_output_dir(name)
   if name:match("^card%-") then
     return CONFIG.NAV_OUT
+  elseif name:match("^icon%-") then
+    return CONFIG.ICO_OUT
   end
   return CONFIG.SVG_OUT
 end
@@ -240,6 +242,7 @@ print_info("Setting up directories...")
 exec("mkdir -p " .. CONFIG.TEMP_DIR)
 exec("mkdir -p " .. CONFIG.NAV_OUT)
 exec("mkdir -p " .. CONFIG.SVG_OUT)
+exec("mkdir -p " .. CONFIG.ICO_OUT)
 
 print_info("Searching for TeX sources in: %s", CONFIG.SRC_DIR)
 local tex_sources = get_files(CONFIG.SRC_DIR, "tex")

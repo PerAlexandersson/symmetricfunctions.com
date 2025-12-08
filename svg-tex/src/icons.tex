@@ -1,0 +1,42 @@
+\documentclass[tikz, border=0mm]{standalone}
+\usepackage{fontawesome5}
+\usetikzlibrary{calc,positioning}
+\newcommand{\tikzsetnextfilename}[1]{}
+
+
+
+\definecolor{icontext}{RGB}{0,0,0}
+\tikzset{
+icon/.style={
+        baseline={(0,0)},
+        font=\huge\bfseries, 
+        scale=2,
+        text=icontext
+    }
+}
+\newcommand{\tikzicon}[1]{%
+\begin{tikzpicture}
+    \useasboundingbox (-1,-1) rectangle (1,1);
+    \node[icon] (main) at (0, 0) {\faIcon{#1}};
+\end{tikzpicture}%
+}
+
+
+\begin{document}
+
+\tikzsetnextfilename{icon-atom}
+\tikzicon{atom}
+\tikzsetnextfilename{icon-bars}
+\tikzicon{bars}
+\tikzsetnextfilename{icon-book}
+\tikzicon{book}
+
+% chalkboard-teacher
+% check-circle
+clipboard
+clone 
+cog
+cogs
+compass
+comment
+\end{document}
