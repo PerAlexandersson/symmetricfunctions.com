@@ -19,7 +19,7 @@ https://arxiv.org/pdf/1903.05548.pdf
 \section[gtpatterns]{Gelfand--Tsetlin patterns}
 
 Gelfand--Tsetlin (sometimes spelled Cetlin or Zetlin) patterns
-were introduced by I. Gelfand and M. Tsetlin in \cite{GelfandTsetlin1950},
+were introduced by \name{I. Gelfand} and \name{M. Tsetlin} in \cite{GelfandTsetlin1950},
 motivated by the close relationship with representation theory of $GL_n$.
 A short introduction to GT-patterns can be found in \cite[p.103]{StanleyEC2}.
 
@@ -151,7 +151,7 @@ Let $\rho = (n-1,n-2,\dotsc,1,0)$. Then (see \cite{Tokuyama1988})
 \sum_{G \in SGT(\lambda + \rho)} (1+t)^{S(G)} t^{L(G)}\xvec^{w(G)}.
 \end{equation*}
 
-Note that this interpolates between the Weyl character formula, and the SSYT definition of Schur polynomials.
+Note that this interpolates between the \hyperref[schurWeylformula]{Weyl character formula}, and the SSYT definition of Schur polynomials.
 
 
 See also \cite{Stanley1986} for some special cases, and connection with plane partitions
@@ -177,13 +177,13 @@ This means that the polytopes can be decomposed into simplices with integer vert
 normalized volume $1$. For a short proof, see \cite{Alexandersson2019CounterExamples}.
 
 As a consequence, Gelfand--Tsetlin polytopes have integer vertices,
-and have the \emph{integer decomposition property} (IDP). This means that 
+and have the \hyperref[polytopeIDP]{integer decomposition property} (IDP). This means that 
 if $p$ is a lattice point in $k \gtp_{\lambda\mu}$ for some integer $k\geq 1$,
 then $p$ can be expressed as $p_1 + \dotsb + p_k$ where each $p_i$ is a lattice point in $\gtp_{\lambda\mu}$.
 This can be proved directly by bijecting to semi-standard tableaux,
 see \cite[Subsection 2.3]{Alexandersson2016GTPoly}.
 
-A. Tsuchiya generalize the notion of IDP to $k$-tuples of 
+\name{A. Tsuchiya} generalize the notion of IDP to $k$-tuples of 
 polytopes (the $k=2$ case was introduced in \cite{HaaseHofmann2017}).
 The following theorem follows very easy from the bijection with SSYT.
 
@@ -205,11 +205,11 @@ This theorem does not generalize to skew shapes. The pair $\gtp_{3}$
 and $\gtp_{2/1}$ yields a counter-example.
 
 
-Gelfand--Tsetlin polytopes are special cases of so called \emph{marked order polytopes},
-which generalizes order polytopes considered by R. Stanley, \cite{Stanley86TwoPosetPolytopes}.
+Gelfand--Tsetlin polytopes are special cases of so-called \hyperref[orderPolytopes]{marked order polytopes},
+which generalizes order polytopes considered by \name[Richard Stanley]{R. Stanley}, \cite{Stanley86TwoPosetPolytopes}.
 In \cite{ArdilaBliemSalazar2011}, the authors generalize the bijection 
 between order polytopes and chain polytopes and give a marked chain polytope analogue of GT-polytopes.
-In type $A$ these analogues are so called \defin{Feigin--Fourier--Littelmann polytopes}.
+In type $A$ these analogs are so called \defin{Feigin--Fourier--Littelmann polytopes}.
 
 The Gelfand--Tsetlin polytopes are also special cases of so called \emph{flow polytopes},
 see \cite{LiuMeszarosDizier2019flow}.
@@ -222,7 +222,7 @@ By definition, it follows that for a partition of length $m$,
  \prod_{1 \leq i \lt j \leq m } \frac{\lambda_i - \lambda_j + j-i}{j-i},
 \]
 where the last identity is due to Stanley's hook-content formula.
-Furthermore, the Ehrhart polynomial of $\gtp_{\lambda}$ is given by
+Furthermore, the \hyperref[ehrhart]{Ehrhart polynomial} of $\gtp_{\lambda}$ is given by
 \[
 Ehr(\gtp_{\lambda};k) = \prod_{1 \leq i \lt j \leq m } \frac{k(\lambda_i - \lambda_j) + j-i}{j-i}.
 \]
@@ -264,7 +264,7 @@ The idea is that one can freely fill the shape $\lambda/\mu$,
 and in a unique way fill the remaining boxes in the added row,
 so that the weight becomes $m^n$.
 A similar construction works for flagged skew Schur 
-functions and flagged skew Kostka coefficients.
+functions and \hyperref[schurFlagged]{flagged skew Kostka coefficients}.
 
 
 
@@ -311,9 +311,9 @@ F_k(z_1,\dotsc,z_k;t) \coloneqq
 where $f_d$ is the number of $d$-dimensional faces of $\gtp_{\lambda}$.
 
 
-\subsection[gtpolytopesTypeBCD]{Type B and C}
+\subsection[gtpolytopesTypeBCD]{Type $B$ and $C$}
 
-There are analogues of GT-polytopes for type $B$ and $C$, see \cite{ArdilaBliemSalazar2011}.
+There are analogs of GT-polytopes for type $B$ and $C$, see \cite{ArdilaBliemSalazar2011}.
 
 
 \section[gtKoskta]{Weight-restricted Gelfand--Tsetlin polytopes}
@@ -342,7 +342,7 @@ the polytope $\gtp_{\lambda,1^n}$ is non-integral unless $\lambda=(2,2)$ or a ho
 \subsection[gtKostkaSaturation]{Saturation theorem}
 
 The following theorem is a GT-polytope analogue of the celebrated Saturation theorem,
-proved by A. Knutson and T. Tau, \cite{KnutsonTau1999,KnutsonTaoWoodward2004}.
+proved by \name{A. Knutson} and \name{T. Tau} \cite{KnutsonTau1999,KnutsonTaoWoodward2004}.
 They proved a similar statement for so called \emph{Berenstein--Zelevinsky polytopes}.
 
 \begin{theorem}[See \cite{Alexandersson2015KSaturation}]
