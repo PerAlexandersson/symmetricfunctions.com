@@ -46,14 +46,6 @@ local SITE_LABELS_MAP = file_reading.load_json_file(LABELS_JSON, "site-labels")
 local EM_DASH = utf8.char(0x2014)  -- —
 local EN_DASH = utf8.char(0x2013)  -- –
 
--- Font Awesome style mappings
-local ICON_STYLES = {
-  solid = "fas",
-  light = "fal",
-  duotone = "fad",
-  regular = "far"
-}
-
 
 -- ========== UTILITY FUNCTIONS ==========
 
@@ -113,7 +105,7 @@ end
 local render_inlines_html
 local render_blocks_html
 
---- Renders an icon span as Font Awesome element.
+--- DEPRECATED: Renders an icon span as Font Awesome element.
 local function render_icon(kvs)
   local kv_map = extract_keyvals(kvs)
   local icon_name = kv_map["data-icon"]
@@ -121,6 +113,8 @@ local function render_icon(kvs)
   
   if not icon_name then return nil end
   
+  print_error("Font Awesome is not supported! %s", icon_name)
+
   local fa_style = ICON_STYLES[icon_style] or "fas"
   return string.format('<i class="%s fa-%s" aria-hidden="true"></i>', fa_style, icon_name)
 end

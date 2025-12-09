@@ -183,15 +183,6 @@
     line-height: 1;
   }
 
-  /* img.icon {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
-    margin: 0 0.0em;
-    line-height: 1;
-  } */
-
   @media (prefers-color-scheme: dark) {
     img { filter: invert(1) hue-rotate(180deg); }
   }

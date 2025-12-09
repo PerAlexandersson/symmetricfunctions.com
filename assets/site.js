@@ -90,8 +90,8 @@
         // 2. Create the button
         var button = document.createElement('button');
         button.className = 'copy-btn';
-        // Using your FontAwesome icon
-        button.innerHTML = '<i class="far fa-copy"></i>'; 
+        
+        button.innerHTML = '<img src="icons/icon-clone.svg" class="copy icon" />'; 
         button.setAttribute('aria-label', 'Copy to clipboard');
 
         // 3. Add Click Logic
@@ -102,13 +102,13 @@
             // The modern clipboard API
             navigator.clipboard.writeText(text).then(function() {
                 // Success Feedback
-                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.innerHTML = '<img src="icons/icon-heart.svg" class="heart icon" />';
                 button.style.color = 'green';
                 button.style.borderColor = 'green';
                 
                 // Reset after 2 seconds
                 setTimeout(function() {
-                    button.innerHTML = '<i class="far fa-copy"></i>';
+                    button.innerHTML = '<img src="icons/icon-clone.svg" class="heart icon" />';
                     button.style.color = '';
                     button.style.borderColor = '';
                 }, 2000);
