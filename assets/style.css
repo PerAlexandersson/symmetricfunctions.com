@@ -137,12 +137,18 @@
   h1, h2, h3 { 
     font-family: system-ui, -apple-system, sans-serif; 
     color: var(--c-text-main);
-    margin-top: 1.8em; margin-bottom: 0.5em;
+    margin-top: 1.8em; 
+    margin-bottom: 0.5em;
+    scroll-margin-top: 5em; /* So that we scroll down slightly*/
   }
   h2 {
     color: var(--c-brand);
     padding-bottom: 0.3em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  #doc-section h2:first-of-type {
+    scroll-margin-top: 15em;
   }
 
   h3 {
@@ -379,11 +385,15 @@
   }
 
   #tocContainer .subsection {
-    font-weight: 400; font-size: 0.85rem; padding-left: 0.8em;
-    color: var(--c-nav-subsec); border-left: 2px solid transparent;
+    font-weight: 400;
+    font-size: 0.85rem; 
+    padding-left: 0.8em;
+    color: var(--c-nav-subsec); 
+    border-left: 2px solid transparent;
+    margin-left: 1em;
   }
   #tocContainer .subsection:hover {
-    border-left-color: var(--c-brand-light); 
+    /* border-left-color: var(--c-brand-light); */
     color: var(--c-brand);
   }
   
