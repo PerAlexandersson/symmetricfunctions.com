@@ -1,8 +1,7 @@
 # CHANGELOG
 
-## [Unreleased]
 
-- Make into private github repository (2025-11-16)
+- Make into publiv github repository (2025-12-10)
 - Change to KaTeX (2025-11-14)
 - Support for LaTeX style comments (2025-11-14)
 - Use Pandoc + Lua backend (2025-11-14)
