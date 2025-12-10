@@ -44,23 +44,38 @@
   function toggleSideBar() {
     var toc = document.getElementById("tocContainer");
     var btn = document.getElementById("tocButton");
+    var body = document.body;
+    
     if (!toc || !btn) return;
+    
     var expanded = btn.getAttribute("aria-expanded") === "true";
+    
+    // Toggle the visible class
     toc.classList.toggle("sideBarShowHide");
+    
+    // Toggle body scroll lock & overlay visibility
+    body.classList.toggle("menu-open");
+    
+    // Update ARIA
     btn.setAttribute("aria-expanded", String(!expanded));
     toc.setAttribute("aria-hidden", String(expanded));
   }
 
   // Wire up TOC list items to close sidebar on click (delegation safe)
   function initTOCListeners() {
-    var tocList = document.getElementById("tocLinkList");
+    var tocList = document.getElementById("tocLinkList"); // Ensure your UL has this ID or use "#tocContainer"
+    // Fallback if specific list ID isn't found, attach to the whole container
+    if (!tocList) tocList = document.getElementById("tocContainer");
     if (!tocList) return;
     tocList.addEventListener('click', function (ev) {
-      // only close on link clicks (keeps behaviour conservative)
       var target = ev.target;
       while (target && target !== tocList) {
         if (target.tagName === 'A' || target.tagName === 'BUTTON') {
-          toggleSideBar();
+          // If we are on mobile (check if the toggle button is visible), close the menu
+          var btn = document.getElementById("tocButton");
+          if (btn && getComputedStyle(btn).display !== 'none') {
+             toggleSideBar();
+          }
           return;
         }
         target = target.parentElement;
@@ -68,16 +83,41 @@
     });
   }
 
-  // Hide/show floating tocButton on scroll
   function initScrollBehavior() {
-    var prev = window.pageYOffset;
     var tocButton = document.getElementById("tocButton");
     if (!tocButton) return;
+    
+    var lastScrollY = window.pageYOffset;
+    var ticking = false;
+
     window.addEventListener('scroll', function () {
-      var cur = window.pageYOffset;
-      tocButton.style.bottom = (prev > cur) ? '0' : '-50px';
-      prev = cur;
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          var currentScrollY = window.pageYOffset;
+          
+          //  If we are near the top (within 100px), ALWAYS show the button
+          if (currentScrollY < 100) {
+            tocButton.style.transform = 'translateY(0)';
+          }
+          // If scrolling DOWN, hide it
+          else if (currentScrollY > lastScrollY) {
+            tocButton.style.transform = 'translateY(110%)';
+          }
+          // If scrolling UP, show it
+          else {
+            tocButton.style.transform = 'translateY(0)';
+          }
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
     }, { passive: true });
+    
+    // SAFETY: Ensure button is visible if the user resizes the window
+    window.addEventListener('resize', function() {
+        tocButton.style.transform = 'translateY(0)';
+    });
   }
 
 
@@ -225,15 +265,9 @@
     initCopyButtons();
     initFamilyIndexTable();
 
-    // Small accessibility improvement: keyboard to toggle sidebar
-    var tocButton = document.getElementById("tocButton");
-    if (tocButton) {
-      tocButton.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleSideBar();
-        }
-      });
+    var btn = document.getElementById("tocButton");
+    if (btn) {
+        btn.addEventListener('click', toggleSideBar);
     }
   });
 

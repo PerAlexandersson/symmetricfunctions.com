@@ -182,11 +182,12 @@
 
   img.icon, img.topnav-icon {
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 1.4em;
+    height: 1.4em;
     vertical-align: -0.15em; /* Adjust to align baseline nicely */
     margin: 0 0.0em;
     line-height: 1;
+    opacity: 0.6;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -256,7 +257,6 @@
   #doc-all {
     flex: 1 0 auto;
     padding-top: 2.5rem;
-    padding-bottom: 4rem;
     align-items: start;
   }
 
@@ -446,8 +446,14 @@
     font-weight: 600; font-size: 0.9rem; color: var(--c-brand); line-height: 1.25; margin: 0;
   }
   .topic-card img {
-    width: 20%; min-width: 3rem; height: 100%; max-height: 4rem;
-    object-fit: contain; object-position: center right; margin-left: 0.8rem;
+    width: 20%; 
+    min-width: 3rem; 
+    height: 100%; 
+    max-height: 4rem;
+    object-fit: contain; 
+    object-position: center right; 
+    margin-left: 0.8rem;
+    opacity: 0.8;
   }
   @media (prefers-color-scheme: dark) {
     .topic-card img { filter: invert(1) hue-rotate(180deg); }
@@ -579,36 +585,211 @@
   @media (max-width: 1100px) {
     .topic-card-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  
-  @media (max-width: 600px) {
-    /* RESET GRID to Block on Mobile */
-    #doc-title, #doc-footer, #doc-all {
-        display: block; padding-left: 1.5rem; padding-right: 1.5rem;
-    }
-    #doc-title > *, #doc-footer > *, #doc-main { grid-column: auto; }
     
-    .topic-card-grid { grid-template-columns: 1fr; }
-  
-    /* Off-canvas Sidebar */
+  /* ==========================================================================
+   MOBILE & TABLET OPTIMIZATION
+   ========================================================================== */
+  @media(max-width: 900px) {
+
+    /* --- Flatten the Grid Layout --- */
+    #doc-title, #doc-footer, #doc-all {
+      display: block; 
+      width: 100%;
+      padding-left: 1.25rem; 
+      padding-right: 1.25rem;
+      grid-template-columns: none;
+    }
+
+    /* Reset grid items */
+    #doc-title > *, #doc-footer > *, #doc-main { 
+      grid-column: auto; 
+      width: 100%;
+      margin: 0;
+      border: none;
+      box-shadow: none;
+      padding: 0.5rem 0.5rem; 
+    }
+
+    
+    /*  Off-Canvas Sidebar */
     #tocContainer {
-      grid-column: auto; position: fixed; z-index: 1000;
-      top: 0; left: 0; bottom: 0; width: 260px;
-      background: var(--c-bg-body); border-right: 1px solid var(--c-border);
-      transform: translateX(-100%); transition: transform 0.3s ease;
-      padding: 1.5rem; box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 85%; max-width: 320px;
+      z-index: 2000;
+      
+      background: var(--c-bg-surface);
+      border-right: 1px solid var(--c-border);
+      box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+      
+      /* Hidden state */
+      transform: translateX(-105%);
+      transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+      border-radius: 0; 
     }
-    .sideBarShowHide { transform: translateX(0) !important; }
-  
+    /*Toggled by Javascript */
+    #tocContainer.sideBarShowHide {
+      transform: translateX(0);
+    }
+
+    #topnav {
+    display: flex;
+    flex-wrap: nowrap;       /* Force single row */
+    gap: 0.6rem;
+    
+    overflow-x: auto;        /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling on iOS */
+    
+    /* Hide scrollbars for a clean look */
+    scrollbar-width: none;   
+    -ms-overflow-style: none;
+    
+    /* VISUAL TRICK: Bleed to edges
+       This pulls the container 1.25rem to the left/right (undoing the body padding),
+       then adds the padding back inside the scroll container.
+       Result: The buttons start aligned with text, but scroll off-screen to the edge.
+    */
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    
+    /* Add breathing room below for the scroll gesture */
+    padding-bottom: 0.5rem;
+  }
+
+  /* Hide Chrome/Safari Scrollbar */
+  #topnav::-webkit-scrollbar { display: none; }
+
+  /* Adjust the buttons themselves */
+  #topnav .toplink {
+    flex-shrink: 0;          /* Prevent them from squishing */
+    white-space: nowrap;     /* Force text to stay on one line */
+    font-size: 0.85rem;      /* Slightly smaller */
+    padding: 0.4em 0.8em;    /* Tighter padding */
+  }
+
+
+    /* --- The Backdrop Overlay --- */
+    #menuOverlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1999;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(2px);
+    }
+    /* Show overlay when body has this class */
+    body.menu-open #menuOverlay {
+      opacity: 1; visibility: visible;
+    }
+    /* Lock scrolling when menu is open */
+    body.menu-open { overflow: hidden; }
+
+    /*  The Full-Width Bottom Bar */
     #tocButton {
-      display: flex; align-items: center; justify-content: center;
-      position: fixed; bottom: 1.5rem; right: 1.5rem;
-      width: 3.5rem; height: 3.5rem; background: var(--c-brand); color: #fff;
-      border: none; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 1001; cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100vw;
+      
+      /* Auto height to accommodate safe areas */
+      height: auto; 
+      min-height: 3.5rem;
+      
+      /* VITAL: Add padding for the "Safe Area" (iPhone Home Bar) */
+      padding: 1rem;
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+      
+      background: var(--c-brand); 
+      color: #fff;
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      border-radius: 0;
+      
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+      z-index: 2001; 
+      cursor: pointer;
+      
+      font-family: system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      
+      /* Start visible */
+      transform: translateY(0);
+      transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1); /* Smoother pop-up */
     }
-    .toc-label { display: none; }
+
+    #tocButton:active {
+      background: var(--c-brand-light);
+    }
+
+    .dateMod {
+      visibility: hidden;
+    }
+    
+    /* --- 5. Content Safety --- */
+    /* Prevent math/tables from overflowing horizontally */
+    .ytableau, .array, .tabular, table, .math-scroll {
+      display: grid;
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      
+      /*  IMPORTANT: Add padding so the scrollbar doesn't cover the bottom row */
+      padding-bottom: 1rem; 
+      padding-top: 2px;
+      padding-left: 2px;
+      padding-right: 2px;
+      
+      /*  Align start so the left side isn't cut off if it was centered */
+      justify-content: start; 
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    /* --- 6. KaTeX Equation Scrolling --- */
+    .katex-display {
+      /* Force the container to respect screen width */
+      max-width: 100%;
+      
+      /* Enable horizontal scroll */
+      overflow-x: auto;
+      overflow-y: hidden;
+      
+      /* Add padding for the scrollbar so it doesn't clip the bottom of symbols */
+      padding-bottom: 0.5rem;
+      
+      /* Optional: formatting adjustments for mobile */
+      margin: 1em 0;
+      text-align: center; 
+      
+      /* Mobile fix: In rare cases, KaTeX needs this to calculate width correctly */
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* Ensure the inner math block doesn't force width */
+    .katex-display > .katex {
+      white-space: nowrap;
+      max-width: none; /* Let it grow as wide as needed */
+    }
+
+
   }
   
+ 
   /* Landing page overrides */
   body.landing-page h2 { border-bottom: none; padding-bottom: 0; }
 
