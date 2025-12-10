@@ -526,7 +526,7 @@
   }
   .figure p, .ytabs p { display: contents; margin: 0; }
 
-  /* Theorem/Details */
+  /* Theorem env Details */
   div.env, details.env {
     border-left: 4px solid var(--math-env-bar); padding: 0.5em 0.5em 0.5em 1em;
     background: var(--c-bg-surface, transparent); margin: 1.5em 0;

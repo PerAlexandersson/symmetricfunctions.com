@@ -123,18 +123,18 @@
 
 // Initialize Copy-to-Clipboard buttons on all <pre> blocks
   function initCopyButtons() {
-    // 1. Find all <pre> tags
+    // Find all <pre> tags
     var blocks = document.querySelectorAll('pre');
     
     blocks.forEach(function(pre) {
-        // 2. Create the button
+        // Create the button
         var button = document.createElement('button');
         button.className = 'copy-btn';
         
         button.innerHTML = '<img src="icons/icon-clone.svg" class="copy icon" />'; 
         button.setAttribute('aria-label', 'Copy to clipboard');
 
-        // 3. Add Click Logic
+        // Add Click Logic
         button.addEventListener('click', function() {
             var code = pre.querySelector('code');
             var text = code ? code.innerText : pre.innerText;
@@ -143,8 +143,8 @@
             navigator.clipboard.writeText(text).then(function() {
                 // Success Feedback
                 button.innerHTML = '<img src="icons/icon-heart.svg" class="heart icon" />';
-                button.style.color = 'green';
-                button.style.borderColor = 'green';
+                button.style.color = 'red';
+                button.style.borderColor = 'red';
                 
                 // Reset after 2 seconds
                 setTimeout(function() {
@@ -157,7 +157,7 @@
             });
         });
 
-        // 4. Append button to the <pre> block
+        // Append button to the <pre> block
         pre.appendChild(button);
     });
   }
