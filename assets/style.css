@@ -184,7 +184,7 @@
     display: inline-block;
     width: 1.4em;
     height: 1.4em;
-    vertical-align: -0.15em; /* Adjust to align baseline nicely */
+    vertical-align: -0.3em; /* Adjust to align baseline nicely */
     margin: 0 0.0em;
     line-height: 1;
     opacity: 0.6;
@@ -383,6 +383,11 @@
     text-transform: uppercase;
     letter-spacing: 0.07em;
   }
+  #tocContainer .section .katex {
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
 
   #tocContainer .subsection {
     font-weight: 400;
@@ -481,11 +486,17 @@
 
   .defin { font-weight: 600; color: var(--c-defin); }
   .author-name {
-      white-space: nowrap; letter-spacing: -0.01em; font-weight: 500;
+      white-space: nowrap; 
+      letter-spacing: -0.01em; 
+      font-weight: 500;
       color: var(--c-text-main); text-decoration: none;
       border-bottom: 1px dotted var(--c-text-muted); transition: color 0.1s;
   }
-  .author-name:hover { color: var(--c-brand); border-bottom-style: solid; }
+  .author-name:hover { 
+    color: var(--c-brand); 
+    border-bottom-style: solid;
+    text-decoration: none;
+  }
 
   /* Tableaux */
   .ytableau, .array, .tabular {
@@ -564,17 +575,42 @@
   .family-index th, .family-index td { text-align: left; padding: 10px 15px; }
   .family-index thead { border-bottom: 3px solid var(--c-rule); }
   .family-index th:first-child, .family-index td:first-child { width: auto; }
-  .family-index th:not(:first-child), .family-index td:not(:first-child) { width: 1%; white-space: nowrap; }
+  .family-index th:not(:first-child), 
+  .family-index td:not(:first-child) { 
+    width: 1%; white-space: nowrap;
+  }
   .family-index th { cursor: pointer; user-select: none; }
   .family-index th:hover { background-color: var(--c-bg-surface); }
+  
   .family-index tbody tr:hover {
       background-color: color-mix(in srgb, var(--c-bg-gray) 20%, var(--c-bg-body));
-      transition: background-color 0.1s ease-in; cursor: pointer;
+      transition: background-color 0.1s ease-in; 
+      cursor: pointer;
   }
   .family-index tbody tr a { text-decoration: none; color: inherit; display: block; }
 
   .family-index th::after {
        content: "    \21C5"; /* ⇅ */
+  } 
+
+  .family-index th::after {
+    content: "    \21C5"; /* ⇅ */
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.5em;
+    vertical-align: -0.15em; /* Fine-tune vertical position */
+    
+    /*  Set the color (uses your variables) */
+    color: var(--c-text-muted);
+    
+    /* Animation */
+    transition: background-color 0.2s ease;
+  }
+
+  /* Optional: Make the arrows light up when hovering the header */
+  .family-index th:hover::after {
+     color: var(--c-brand);
   }
 
   /* ==========================================================================
@@ -636,29 +672,32 @@
       transform: translateX(0);
     }
 
-    #topnav {
+   /* --- Top Navigation: Horizontal Scroll (Chips) --- */
+  #topnav {
     display: flex;
-    flex-wrap: nowrap;       /* Force single row */
+    flex-wrap: nowrap;
     gap: 0.6rem;
     
-    overflow-x: auto;        /* Enable horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling on iOS */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     
-    /* Hide scrollbars for a clean look */
+    /* Hide scrollbars */
     scrollbar-width: none;   
     -ms-overflow-style: none;
     
-    /* VISUAL TRICK: Bleed to edges
-       This pulls the container 1.25rem to the left/right (undoing the body padding),
-       then adds the padding back inside the scroll container.
-       Result: The buttons start aligned with text, but scroll off-screen to the edge.
-    */
+    /* 1. Layout: Bleed to edges */
     margin-left: -1.25rem;
     margin-right: -1.25rem;
     padding-left: 1.25rem;
-    padding-right: 1.25rem;
     
-    /* Add breathing room below for the scroll gesture */
+    /* 2. THE VISUAL CUE: Fade the right edge */
+    /* This creates a gradient from Black (Visible) to Transparent (Invisible) */
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    
+    /* 3. Important: Extra padding at the end */
+    /* This ensures the last button isn't hidden under the fade when you reach the end */
+    padding-right: 2.5rem; 
     padding-bottom: 0.5rem;
   }
 
