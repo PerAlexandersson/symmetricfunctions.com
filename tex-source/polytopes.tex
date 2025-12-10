@@ -7,34 +7,50 @@
 \section[polytope]{Polytopes}
 
 
+A polytope is called \defin{integral} if all its vertices have integer coordinates.
+
+
+
 \section[polytope-families]{Families of polytopes}
-
-
-See \hyperref[gtpolytopes]{Geltand--Tsetlin polytopes} for the main page.
 
 
 \subsection[orderPolytope]{Order polytopes}
 
+Given a partial order $P$ on the set $[n]$, we associate a polytope $\mathcal{O}(P)$, 
+called the \defin{order polytope} of $P$.
+It is the polytope in $\setR^n$ defined via the inequalities
+\begin{align}
+x_i \leq x_j \text{ if } i <_P j \qquad \text{and} \qquad 0 \leq x_i \leq 1 \text{ for } 1\leq i \leq n.
+\end{align}
 
-\todo{Define marked order polytopes and GT-polytopes}
+There are order polytopes with negative Ehrhart coefficients, see \cite[Figure 3.87]{StanleyEC1} and \cite{Alexandersson2019CounterExamples}.
+
+
+\subsection[markedOrderPolytope]{Order polytopes}
+
+There is a slight generalization of order polytopes called \defin{marked order polytopes}, see \cite{ArdilaBS11},
+where we replace the conditions $0 \leq x_i \leq 1$ with $a_i \leq x_i \leq b_i$ for $1\leq i \leq n$,
+where the $a_i$ and $b_i$ are constants.
+
+The \hyperref[gtpolytopes]{Geltand--Tsetlin polytopes} are marked order polytopes.
+
 
 \todo{Cross polytope: https://arxiv.org/pdf/2512.08669 and Ehrhart coeffs.}
 
-\subsection[flowPolytope]{Flow polytopes}
-
+% \subsection[flowPolytope]{Flow polytopes}
 \todo{Define flow polytopes}
 
-\subsection[permutohedron]{The permutohedron}
-
+%\subsection[permutohedron]{The permutohedron}
 \todo{Define permutohedron}
+
 
 \section[ehrhart]{The Ehrhart polynomial and $h^*$-vector}
 
-Let $P$ be a lattice polytope. The number of lattice points in the dilation $nP$ is a polynomial in $n$.
+Let $P$ be a lattice polytope. The number of lattice points in the dilation $n\cdot P$ is a polynomial in $n$.
 The \defin{Ehrhart polynomial of $P$} is the polynomial $E_P(t) \coloneqq |n P|$.
 The \defin{Ehrhart series} is 
 \[
-	\sum_{n \geq 0} |n P| t^n = \frac{H(t)}{(1-t)^{d+1}
+	\sum_{n \geq 0} |n P| t^n = \frac{H(t)}{(1-t)^{d+1}}
 \]
 where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the \defin{$h^*$-polynomial} of $P$.
 The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the \defin{$h^*$-vector} and one can show that all entries of this are non-negative integers.
@@ -48,10 +64,20 @@ There is a similar relation to express $H_P(t)$ in terms of the Ehrhart polynomi
 
 \section[polytopeIDP]{The integer decomposition property}
 
-\todo{Define IDP for polytopes}
+An integral polytope $\mathcal{P} \subset \setR^d$ is said to have the \defin{integer decomposition property} (IDP) 
+if for every positive integer $k$ and $\xvec \in k \mathcal{P} \cap \setZ^d$,
+we can find $\xvec_1,\xvec_2,\dots,\xvec_k \in \mathcal{P} \cap \setZ^d$ such that $\xvec_1 + \dots + \xvec_k = \xvec$.
+
+In the following list, each entry implies the next:
+\begin{itemize}
+	\item $\mathcal{P}$ has a unimodular triangulation.
+	\item $\mathcal{P}$ has the integer decomposition property.
+	\item $\mathcal{P}$ is integral.
+\end{itemize}
+
+
 
 \section[polytope-papers]{Further reading}
-
 
 Here we mainly discuss polytopes that arises in the area of algebraic combinatorics.
 

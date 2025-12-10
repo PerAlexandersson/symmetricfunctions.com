@@ -1,0 +1,66 @@
+\metatitle{Families of permutations}
+\metadescription{Here are several named families of permutations}
+
+\begin{cssvars}
+    --col-main-start: 2;
+    --col-main-end:   8;
+    --toc-display: none;
+    --header-border: none;
+\end{cssvars}
+
+
+\todo{Work in progress page. Needs more from the back-end.}
+
+\section[namedPermutations]{Named families of permutation}
+
+
+\begin{tabular}{lll}
+\toprule
+\textbf{Name} & \textbf{Definition} & \textbf{Ref.} \\
+\midrule
+
+\defin{Up-down} & $\pi_1 \lt \pi_2 \gt \pi_3 \lt \pi_4 \dotsb$. & \oeis{A000111} \\
+\defin{Down-up} & $\pi_1 \gt \pi_2 \lt \pi_3 \gt \pi_4 \dotsb$. & \oeis{A000111} \\
+\defin{André} & Either up-down or down-up. & \oeis{A001250} \\
+\defin{Derangements} & Permutations with no fixed point. & \oeis{A000166} \\
+\defin{Dominant} & 132-avoiding. & \oeis{A000108} \\
+\defin{Baxter} & Avoids $2-14-3$ and $3-14-2$. & \href{https://doi.org/10.1016/S0012-365X(97)00112-X}{Link} \\
+\defin{Boolean} & 123-avoiding and 3412-avoiding. See \cite{Tenner2007}. & \oeis{A001519} \\
+\defin{Fireworks} & Same as 3-12 avoiding (initial terms of decreasing runs are increasing). & \href{https://arxiv.org/pdf/2508.09107}{arXiv} \\
+\defin{Fully commutative} & 123-avoiding. & \oeis{A000108} \\
+\defin{Simsun} & Restricting to entries $1,\dots,k$ has no double descent. & \oeis{A000111} \\
+\defin{King} & No two adjacent entries differ by $1$ in one-line notation. & \oeis{A002464} \\
+\defin{Vexillary} & Avoids the pattern $2143$. & \oeis{A005802} \\
+\defin{Grassmann} & At most one descent. ($2^n-n$ such permutations). & \oeis{A000325} \\
+\defin{Bi-Grassmann} & Both $\pi$ and $\pi^{-1}$ are Grassmann (avoids 2413). & - \\
+\defin{Separable} & Avoids $2413$ and $3142$. & \oeis{A006318} \\
+\defin{Skew-merged} & Avoids $2143$ and $3412$ (Union of increasing and decreasing seq). & \oeis{A029759} \\
+\defin{Flattened} & Runs are in lexicographical order. & \oeis{A000110} \\
+\defin{Parity-alternating} & Maps odd to odd, even to even. & - \\
+\bottomrule
+\end{tabular}
+
+
+\subsection*{Complex Definitions}
+
+\begin{itemize}
+    \item \defin{Richardson permutation}.
+    With parameters $(k_1,k_2,\dotsc,k_m)$, it is the direct sum of the longest permutations in $\symS_{k_i}$:
+    \[
+        \begin{pmatrix}
+        1 & 2 & \dotsc & k_1 & k_1+1 & \dots & k_1 + k_2 & \dots \\
+        k_1 & k_1-1 & \dots & 1 & k_1+k_2 & \dots & k_1+1 & \dots \\
+        \end{pmatrix}
+    \]
+
+    \item \defin{Wachs permutations} \oeis{A359039}.
+    Defined as $W_n \coloneqq \{ \sigma \in \symS_n : |\sigma^{-1}(i)-\sigma^{-1}(i^*)|\leq 1 \}$, where:
+    \[
+     i^* \coloneqq \begin{cases}
+     i-1 &\text{if $i$ is even}  \\
+     i+1 &\text{if $i$ is odd and $i+1 \leq n$}  \\
+     n & \text{otherwise.}
+     \end{cases}
+    \]
+\end{itemize}
+
