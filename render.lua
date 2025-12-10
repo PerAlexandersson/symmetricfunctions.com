@@ -106,18 +106,18 @@ local render_inlines_html
 local render_blocks_html
 
 --- DEPRECATED: Renders an icon span as Font Awesome element.
-local function render_icon(kvs)
-  local kv_map = extract_keyvals(kvs)
-  local icon_name = kv_map["data-icon"]
-  local icon_style = kv_map["data-style"] or "solid"
+-- local function render_icon(kvs)
+--   local kv_map = extract_keyvals(kvs)
+--   local icon_name = kv_map["data-icon"]
+--   local icon_style = kv_map["data-style"] or "solid"
   
-  if not icon_name then return nil end
+--   if not icon_name then return nil end
   
-  print_error("Font Awesome is not supported! %s", icon_name)
+--   print_error("Font Awesome is not supported! %s", icon_name)
 
-  local fa_style = ICON_STYLES[icon_style] or "fas"
-  return string.format('<i class="%s fa-%s" aria-hidden="true"></i>', fa_style, icon_name)
-end
+--   local fa_style = ICON_STYLES[icon_style] or "fas"
+--   return string.format('<i class="%s fa-%s" aria-hidden="true"></i>', fa_style, icon_name)
+-- end
 
 
 --- Renders a link element, handling internal cross-references.

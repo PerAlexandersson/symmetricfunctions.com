@@ -54,6 +54,53 @@
 
 \begin{document}
 
+\tikzsetnextfilename{card-polytope}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Coordinates for Tesseract Projection
+  % Outer square
+  \coordinate (O_TL) at (-0.65, 0.65);
+  \coordinate (O_TR) at (0.65, 0.65);
+  \coordinate (O_BR) at (0.65, -0.65);
+  \coordinate (O_BL) at (-0.65, -0.65);
+
+  % Inner square
+  \coordinate (I_TL) at (-0.25, 0.25);
+  \coordinate (I_TR) at (0.25, 0.25);
+  \coordinate (I_BR) at (0.25, -0.25);
+  \coordinate (I_BL) at (-0.25, -0.25);
+
+  % --- Fills (Depth cues similar to card-planePartitions) ---
+  % Top face (Lightest)
+  \fill[iconblue!20] (O_TL) -- (O_TR) -- (I_TR) -- (I_TL) -- cycle;
+  % Left face (Medium)
+  \fill[iconblue!35] (O_TL) -- (O_BL) -- (I_BL) -- (I_TL) -- cycle;
+  % Right face (Medium)
+  \fill[iconblue!35] (O_TR) -- (O_BR) -- (I_BR) -- (I_TR) -- cycle;
+  % Bottom face (Darkest)
+  \fill[iconblue!60] (O_BL) -- (O_BR) -- (I_BR) -- (I_BL) -- cycle;
+
+  % --- Wireframe Lines ---
+  % Outer Square
+  \draw[black] (O_TL) -- (O_TR) -- (O_BR) -- (O_BL) -- cycle;
+  % Inner Square
+  \draw[black] (I_TL) -- (I_TR) -- (I_BR) -- (I_BL) -- cycle;
+  % Connecting Edges
+  \draw[black] (O_TL) -- (I_TL);
+  \draw[black] (O_TR) -- (I_TR);
+  \draw[black] (O_BR) -- (I_BR);
+  \draw[black] (O_BL) -- (I_BL);
+
+  % --- Vertices (Optional, following card-matroid style) ---
+  % Inner vertices (Blue)
+  \node[node-blue] at (I_TL) {};
+  \node[node-blue] at (I_TR) {};
+  \node[node-blue] at (I_BR) {};
+  \node[node-blue] at (I_BL) {};
+
+\end{tikzpicture}
+
 \tikzsetnextfilename{card-preliminaries}
 \begin{tikzpicture}[icon]
   \cardframe

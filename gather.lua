@@ -232,7 +232,7 @@ local function parse_icon(s)
 
   ico = ico:sub(2, -2) or ""
 
-  path = "icons/icon-" .. ico .. ".svg"
+  local path = "icons/icon-" .. ico .. ".svg"
 
   local attr = pandoc.Attr(
     "", -- id

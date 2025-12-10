@@ -74,6 +74,7 @@ The \defin{dominance order} is defined as
 \]
 Dominance order is defined in the same manner for compositions and weak compositions.
 
+
 \subsection[skewShapes]{Skew shapes and ribbons}
 
 If $\lambda \supseteq \mu$, we let $\lambda/\mu$ denote the set of boxes 
@@ -114,7 +115,7 @@ That is,
 \[
 z_\lambda = |\{ \sigma \in \symS_n : \sigma g_\lambda \sigma^{-1} = g_\lambda \}|.
 \]
-The $z_\lambda$ often shows up as a normalizing factor when dealing with power-sum symmetric functions,
+The $z_\lambda$ often shows up as a normalizing factor when dealing with \hyperref[powerSum]{power-sum symmetric functions},
 and in particular, in the \hyperref[hallInnerProduct]{Hall inner product}.
 
 
@@ -147,8 +148,8 @@ where $h(\square)$ denotes the hook length of the box.
 There is a \hyperref[prelimQHook]{$q$-analog} of this identity.
 
 There is a more complicated formula for skew diagrams, due to \name{H. Naruse} \cite{Naruse2014slides}.
-For a proof, see Morales--Pak--Panova \cite{MoralesPakPanova2018}.
-An extension to cylindric diagrams is conjectured in \cite{SuzukiToyosawa2021x}.
+For a proof, see \name[Alejandro Morales]{Morales}--\name[Igor Pak]{Pak}--\name[Greta Panova]{Panova} \cite{MoralesPakPanova2018}.
+An extension to \hyperref[schurCylindric]{cylindric diagrams} is conjectured in \cite{SuzukiToyosawa2021x}.
 
 
 \section[weakCompositions]{Compositions and weak compositions}
@@ -293,7 +294,10 @@ We then let $\maj(T)  \coloneqq \sum_{i \in \DES(T)} i$.
 Thus, $\maj(T) = \maj(\rw(T)^{-1})$.
 
 
+\subsection[ssytAsLatticePaths]{Semistandard tableaux as lattice paths}
 
+See the main section about the \hyperref[LGVssyt]{Lindström--Gessel--Viennot lemma}
+applied to count semistandad Young tableaux using a determinant.
 
 
 \subsection[prelimTableauxSmartMap]{SYT as Yamanouchi words}
@@ -336,111 +340,10 @@ The standard Young tableaux are
 \end{example}
 
 
-
-
-\subsection[prelimTableauxAsLattice]{SSYT as lattice paths}
-
-Semistandard Young tableaux can be put in correspondence with sets of non-intersecting lattice paths,
-and this allows us to prove the two \hyperref[schurJacobiTrudi]{Jacobi--Trudi identities},
-by using the Lindström--Gessel--Viennot lemma \cite{Lindstrom1973,GesselViennot1989}.
-
-Let $T \in \SSYT(\lambda/\mu)$ where the entries are bounded by $m$.
-
-\emph{Row bijection}: 
-Each row $i$ of $T$ is mapped to a lattice path $P_i$, with steps in the set $\{ (0,1), (1,0)\}$.
-The starting vertex of $P_i$ is $(-i + \mu_i,1)$,
-the ending vertex is $(-i + \lambda_i, m)$,
-and its number of horizontal steps on $y$-coordinate $j$ is given by the number of entries in
-row $i$ equal to $j$. The length of path $P_i$ is $m-1 + \lambda_i-\mu_i$.
-This bijection can be used to prove the first \hyperref[skewJacobiTrudi]{Jacobi--Trudi identity}.
-
-
-\emph{Column bijection}: 
-Each column of $T$ is mapped to a path $P'_i$,
-with steps in the set $\{ (-1,1), (1,1)\}$.
-The starting vertex of $P'_i$ is given by $(2i - 2\mu'_i, 0)$,
-the ending vertex is $(2i - 2\lambda'_i + m, m)$
-and the $j$th step of $P'_i$ is $(-1,1)$ if $j$ is present in column $i$,
-otherwise it is $(1,1)$. Each path has length $m$.
-This bijection can be used to prove the second Jacobi--Trudi identity.
-
-
-\begin{example}[Bijection to lattice paths]
-
-Consider the following skew semistandad Young tableau $T$.
-\begin{figure}
-\ytableaushort{{\none}{\none}{\none}1122346,{\none}{\none}1223455,{\none}{\none}2344566,113556,2346,456,6}
-\end{figure}
-
-The rows give rise to the following set of non-intersecting lattice paths,
-where the topmost row in $T$ corresponds to the rightmost path.
-\begin{figure}
-\svgimg[width=0.75\textwidth]{./svg-images/ssyt-lattice-paths-1.svg}{SSYT rows as lattice paths.}  
-\end{figure}
-
-The columns in $T$ give rise to the following set of non-intersecting lattice paths,
-where the leftmost column corresponds to the leftmost path.
-
-\begin{figure}
-  \svgimg[width=0.95\textwidth]{./svg-images/ssyt-lattice-paths-2.svg}{SSYT columns as lattice paths.}
-\end{figure}
-\end{example}
-
-
-
-The following appears in \url{https://arxiv.org/pdf/2003.04957.pdf},
-and is proved using lattice paths.
-\begin{theorem}
-Let $A,B$ be subsets of $\{0,1,\dotsc,n\}$ of equal size and let $A^c$, $B^c$ be their complements.
-Then
-\[
-\det \left[ \completeH_{b-a}( x_1,x_2,\dotsc,x_{a+1} ) \right]_{a \in A, b \in B} =
-\det \left[ \elementaryE_{a'-b'}( x_1,x_2,\dotsc,x_{a'} ) \right]_{a' \in A^c, b' \in B^c}.
-\]
-Moreover, this is related to C. A. Aitken's identity;
-\[
-\det \left[ \completeH_{b-a}(\xvec ) \right]_{a \in A, b \in B} =
-\det \left[ \elementaryE_{a'-b'}( \xvec ) \right]_{a' \in A^c, b' \in B^c}.
-\]
-\end{theorem}
-
-
-
-See also \cite{Stembridge1990} for background on counting lattice paths with pfaffians.
-
-One can also prove the Weyl alternant formula by LGV, see \cite{Xiong2020x}.
-
-See \href{https://www.youtube.com/watch?v=H1wEiEIznaA}{this GOCC talk from 2023} on a generalization of the LGV lemma.
-
-
-
-\subsection[prelimPPAsLattice]{Plane partitions as lattice paths}
-
-
-See \cite[Thm. 10.7.1]{Krattenthaler2015} and \cite[Eq. (6)]{StanleyPitman2002} for the following
-application of the Lindström--Gessel--Viennot lemma.
-
-\begin{theorem}
-Let $\lambda$ and $\mu$ be partitions with at most $\ell$ parts such that 
-$\lambda/\mu$ defines a skew shape.
-Then the number of lattice paths contained in $\lambda / \mu$ equals
-\[
-  \det \left[ \binom{\lambda_i - \mu_j+1}{i-j+1} \right]_{1\leq i,j \leq \ell.}
-\]
-\end{theorem}
-For non-skew shapes, we can also interpret such partitions $\nu$ as lattice
-points in Stanley--Pitman polytopes \cite{StanleyPitman2002}.
-This is also the number of plane partitions of skew shape $\lambda/\mu$, with binary entries,
-or the number of non-nesting rook placements on the Ferrers board of shape $\lambda / \mu$.
-There is also an interpretation of these quantities using certain linear extensions, see \cite{AlexanderssonJal2024x}.
-
-
-
 \subsection[prelimTableauxAsPolytope]{SSYT as lattice points in a polytope}
 
 Semistandard Young tableaux are in bijection with \hyperref[gtpatternsAsSSYT]{Geltand--Tsetlin patterns},
 which are lattice points in Gelfand--Tsetlin polytopes.
-
 
 
 \subsection[companionMap]{The companion map}
