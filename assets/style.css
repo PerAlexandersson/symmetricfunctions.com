@@ -825,11 +825,17 @@
       max-width: none; /* Let it grow as wide as needed */
     }
 
-
   }
   
  
   /* Landing page overrides */
   body.landing-page h2 { border-bottom: none; padding-bottom: 0; }
+
+
+  @media print {
+    #topnav, #tocContainer, #tocButton, #cookie-dialog, footer { display: none !important; }
+    body, #doc-main { background: white !important; color: black !important; margin: 0; padding: 0; }
+    a { text-decoration: none; color: black; }
+  }
 
 } /* End base */

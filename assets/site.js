@@ -30,13 +30,38 @@
   }
 
   // Cookie dialog
+  // Helper: Tell Google to start tracking
+  function updateConsent(state) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        'analytics_storage': state,
+        'ad_storage': state,
+        'ad_user_data': state,
+        'ad_personalization': state
+      });
+    }
+  }
+
+  // Cookie dialog
   function initCookieDialog() {
-    if (document.cookie.indexOf("cookieaccepted=") >= 0) return;
+    // 1. Check if the user ALREADY accepted in a previous session
+    if (document.cookie.indexOf("cookieaccepted=") >= 0) {
+      // If the cookie exists, grant permission immediately
+      updateConsent('granted'); 
+      return;
+    }
+
+    // 2. If no cookie, show the dialog
     var dlg = document.getElementById("cookie-dialog");
     if (!dlg || !dlg.showModal) return;
+    
     dlg.showModal();
+    // 3. Listen for the "Got it!" click
     dlg.addEventListener('close', function () {
-      if (dlg.returnValue === "accept") setCookieAccepted();
+      if (dlg.returnValue === "accept") {
+        setCookieAccepted();       // Save cookie for next time
+        updateConsent('granted');  // Tell Google to start tracking NOW
+      }
     });
   }
 

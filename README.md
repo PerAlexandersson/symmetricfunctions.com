@@ -30,16 +30,16 @@ AI tools have been extensively used to generate and refactor the code.
 │   └── sitemap.xml      # Site sitemap
 ├── README.md            # This file
 ├── config.mk            # Build configuration
-├── config-test.mk       # Test configuration
+├── config_test.mk       # Test configuration
 ├── Makefile             # Build orchestration
 ├── template.htm         # HTML template
 ├── preprocess.lua       # LaTeX preprocessor
-├── families_to_html.lua # Module for generating index
 ├── gather.lua           # Metadata gathering filter
 ├── merge_meta.lua       # Site-wide metadata merger
 ├── render.lua           # HTML renderer
 ├── bibhandler.lua       # Bibliography handler
 ├── figure_to_html.lua   # LaTeX → HTML converter
+├── polydata_to_html.lua # Creates the big index of symmetric functions
 ├── file_reading.lua     # File I/O utilities
 └── utils.lua            # Utility functions
 ```
@@ -182,7 +182,7 @@ This deletes `temp/` and `www/` directories.
 All Lua dependencies are included in the repository:
 - `bibhandler.lua` - Bibliography processing
 - `figure_to_html.lua` - LaTeX figure conversion
-- `families_to_html.lua` - Creates index of all families of polynomials
+- `polydata_to_html.lua` - Creates index of all families of polynomials
 - `file_reading.lua` - File I/O utilities
 - `utils.lua` - Common utilities
 
