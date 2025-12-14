@@ -362,7 +362,7 @@ local function generate_sitemap_xml(pages)
   
   for _, page in ipairs(sorted_pages) do
     table.insert(lines, "  <url>")
-    table.insert(lines, "    <loc>" .. html_escape(page.slug) .. "</loc>")
+    table.insert(lines, "    <loc>https://www.symmetricfunctions.com/" .. html_escape(page.slug) .. "</loc>")
     table.insert(lines, "    <lastmod>" .. today .. "</lastmod>")
     table.insert(lines, "  </url>")
   end
@@ -391,7 +391,7 @@ local function write_json_file(path, data, description)
   return true
 end
 
-
+--TODO PUT THIS IN UTILS
 --- Writes XML data to file with error handling.
 -- @param path string Output file path
 -- @param content string XML content

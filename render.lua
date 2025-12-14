@@ -105,20 +105,6 @@ end
 local render_inlines_html
 local render_blocks_html
 
---- DEPRECATED: Renders an icon span as Font Awesome element.
--- local function render_icon(kvs)
---   local kv_map = extract_keyvals(kvs)
---   local icon_name = kv_map["data-icon"]
---   local icon_style = kv_map["data-style"] or "solid"
-  
---   if not icon_name then return nil end
-  
---   print_error("Font Awesome is not supported! %s", icon_name)
-
---   local fa_style = ICON_STYLES[icon_style] or "fas"
---   return string.format('<i class="%s fa-%s" aria-hidden="true"></i>', fa_style, icon_name)
--- end
-
 
 --- Renders a link element, handling internal cross-references.
 local function render_link(attr, inlines, target)
@@ -133,7 +119,7 @@ local function render_link(attr, inlines, target)
   
   local link_inner_html = render_inlines_html(inlines)
   local classes = attr[2] or {}
-  
+
   -- Handle internal cross-references with .hyperref class
   if array_contains(classes, "hyperref") then
     local label = tostring(url or ""):gsub("^#", "")
@@ -208,7 +194,7 @@ function render_inlines_html(inlines)
 
   for _, el in ipairs(inlines) do
     local t, c = el.t, el.c
-    
+
     if t == "Str" then
       local s = c:gsub("%-%-%-", EM_DASH):gsub("%-%-", EN_DASH)
       table.insert(buffer, html_escape(s))
@@ -224,28 +210,16 @@ function render_inlines_html(inlines)
       
     elseif t == "Strong" then
       table.insert(buffer, "<strong>" .. render_inlines_html(c) .. "</strong>")
-   
---   --TODO: make expandable.
---     <details class="code-details">
---   <summary>script.py</summary>
-  
---   <pre><code>def hello():
---     print("Hello World")</code></pre>
--- </details>
     elseif t == "Code" then
       local code = c[2] or c.code or ""
       table.insert(buffer, "<code>" .. html_escape(code) .. "</code>")
-      
-
     elseif t == "Math" then
       local kind = c[1].t
       local body = c[2] or ""
       local delim = (kind == "DisplayMath") and {"\\[", "\\]"} or {"\\(", "\\)"}
       table.insert(buffer, delim[1] .. body .. delim[2])
-      
     elseif t == "Link" then
       table.insert(buffer, render_link(c[1], c[2], c[3]))
-      
     elseif t == "RawInline" then
       if type(c) == "table" then
         local fmt, body = c[1], c[2]
@@ -259,24 +233,11 @@ function render_inlines_html(inlines)
       else
         table.insert(buffer, c or "")
       end
-      
+
     elseif t == "Span" then
       local attr = c[1] or { "", {}, {} }
       local inl  = c[2] or {}
-      local classes = attr[2] or {}
-      local kvs = attr[3] or {}
-      
-      if array_contains(classes, "icon") then
-        local icon_html = render_icon(kvs)
-        if icon_html then
-          table.insert(buffer, icon_html)
-        else
-          table.insert(buffer, "<span" .. render_attr(attr) .. ">" .. render_inlines_html(inl) .. "</span>")
-        end
-      else
-        table.insert(buffer, "<span" .. render_attr(attr) .. ">" .. render_inlines_html(inl) .. "</span>")
-      end
-      
+      table.insert(buffer, "<span" .. render_attr(attr) .. ">" .. render_inlines_html(inl) .. "</span>")
     elseif t == "Quoted" then
       table.insert(buffer, "<q>" .. render_inlines_html(c[2] or {}) .. "</q>")
       
@@ -290,7 +251,7 @@ function render_inlines_html(inlines)
       print_error("Unhandled inline type: %s", t)
     end
   end
-  
+
   return table.concat(buffer)
 end
 

@@ -62,7 +62,7 @@ K_{\lambda/\mu,\nu} = \langle \schurS_{\mu} \cdot \completeH_{\nu} ,  \schurS_\l
 \langle \schurS_{\mu} \cdot \schurS_{(\nu_1)} \dotsm \cdot \schurS_{(\nu_\ell)} ,  \schurS_\lambda \rangle
 \]
 and the latter is a \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficient} $c^{\tau}_{\sigma\lambda}$
-where $\tau/\sigma$ is the skew shape obtained by "concatenating"
+where $\tau/\sigma$ is the skew shape obtained by \enquote{concatenating}
 $\ell$ horizontal strips of sizes given by $\nu$, and the shape $\mu$.
 See \cite[p.338]{StanleyEC2} for proof.
 \end{proposition}
@@ -109,10 +109,13 @@ and $K_{\lambda, \mu}=0$ unless $\lambda \geq \mu$ in \hyperref[partialOrderings
 \end{theorem}
 
 
+
 \subsection[kostkaInverseRecursion]{Recursions for inverse Kostka coefficients}
 
 A convenient recursive formula for the entries in $(K_{\lambda\mu})^{-1}$
-is given in \cite{EgeciogluRemmel1990}.
+is given in \cite{EgeciogluRemmel1990}. This is based on the combinatorial model using 
+\hyperref[kostkaInverseModel]{special rim hook tabloids.}
+
 \begin{theorem}[Eğecioğlu--Remmel, 1990]
 Let $\lambda = (r_1^{j_1}, r_2^{j_2},\dotsc,r_k^{j_k})$ where $r_1 \lt r_2 \lt \dotsb$.
 Let $\mu = (\mu_1,\dotsc,\mu_\ell)$ in \emph{increasing} order.
@@ -125,6 +128,7 @@ where $\lambda[j]$ denotes the partition obtained from $\lambda$ with one part e
 \end{theorem}
 An implementation of this recursion in Mathematica can be found in
 this \href{https://github.com/PerAlexandersson/Mathematica-packages}{github repository}.
+
 
 In \cite{Carbonara1998}, a $t$-version of the Eğecioğlu--Remmel result is proved, 
 where $(K_{\lambda\mu}(t))^{-1}$ is given a combinatorial interpretation.
@@ -145,12 +149,13 @@ and the inner sum is taken over all $\nu$ such that $\mu/\nu$ is a vertical stri
 \end{theorem}
 
 
-
 See also \cite{WheelerZinnJustin2018}, where the coefficients appearing in 
 \[
 \schurS_\mu \hallLittlewoodP_\nu(t) = \sum_\lambda \bar{K}^\lambda_{\mu\nu}(t) \schurS_{\nu}
 \]
 are studied.
+
+
 
 
 \todo{
@@ -160,21 +165,20 @@ https://link.springer.com/content/pdf/10.1007/s10468-016-9640-5.pdf
 
 
 
-
 \section[kostantPartitionFunction]{The Kostant partition function}
 
 See \name{P. Harris}, \name{E. Insko} and \name{M. Omar} \cite{HarrisInskoOmar2018} for a short introduction.
 
 Let $\evec_{ij}$ denote the vector with $1$ at index $i$ 
 and $-1$ at index $j$ and remaining entries equal to $0$. 
-We refer to this collection of vectors as \hyperref[root-systems]{positive roots} or just roots for short.
+We refer to this collection of vectors as \hyperref[root-system]{positive roots} or just roots for short.
 Given an integer vector $w$ of length $n$, 
 let \defin{Kostant's partition function} $\kostantP(w)$ be the number of solutions to
 \[
 w = \sum_{(i,j) \in \binom{[n]}{2}} a_{ij} \evec_{ij}
 \]
 with $a_{ij}\geq 0$ being non-negative integers.
-This is the definition in root system type $A_n$ --- there are analogs of 
+This is the definition in \hyperref[root-system]{root system} type $A_n$ --- there are analogs of 
 the partition function in other types.
 Clearly $\kostantP(w)=0$ unless $w_1+w_2+\dotsb+w_n=0$.
 

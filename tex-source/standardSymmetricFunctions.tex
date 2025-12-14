@@ -453,8 +453,8 @@ If $F(t)$ is a polynomial with constant term $1$, then
 
 \section[symmetricTransisionMatrices]{Transition matrices}
 
-There are combinatorial interpretations of the coefficients in the transition 
-matrices between these bases. 
+There are combinatorial interpretations of the coefficients 
+in the transition matrices between these bases. 
 The reference \cite{EgeciogluRemmel1991} gives a comprehensive overview.
 
 In the table below, we show the coefficients in the expansion 
@@ -487,25 +487,31 @@ The coefficient $\chi_{\lambda,\mu}$ is a character value, and can be computed
 using the \hyperref[schurMurnaghanNakaygama]{Murnaghan--Nakayama rule}.
 
 
-The coefficient $K_{\lambda,\mu}$ is a \hyperref[kostkaCoefficients]{Kostka coefficient}.
-Moreover, the entries in the \defin{inverse Kostka matrix}, $(K_{\lambda,\mu})^{-1}$,
-have a combinatorial formula, see \cite{EgeciogluRemmel1990}.
-\begin{theorem}[Eğecioğlu, Remmel (1990)]
-A \defin{special rim hook tabloid} of shape $\lambda$ and type $\mu$
-is a filling of $\lambda$ with rim hooks, such that each rim hook has at least one box in
-the first column. The sign of a rim hook is $(-1)^{r-1}$ where $r$ is the number of rows it spans,
-and the sign $\sign(T)$ of a special rim hook tabloid $T$ is the product of the signs of the rim hooks.
-We have that
-\[
-  (K_{\lambda,\mu})^{-1} = \sum_{T \in \mathrm{RHT}(\lambda,\mu) } \sign(t)
-\]
-where $\mathrm{RHT}(\lambda,\mu)$ is the set of special rim hook tabloids with shape $\lambda$ and type $\mu$.
-\end{theorem}
-
-
 The coefficients $B_{\mu,\lambda}$ and $OB_{\mu,\lambda}$ may be computed by
 counting certain \defin{brick tabloids}, see \cite{EgeciogluRemmel1991}.
 
+
+\subsection[kostkaInverseModel]{Model for inverse Kostka coefficients}
+
+The coefficient $K_{\lambda,\mu}$ is a \hyperref[kostkaCoefficients]{Kostka coefficient}.
+Moreover, the entries in the \defin{inverse Kostka matrix}, $(K_{\lambda,\mu})^{-1}$,
+have a combinatorial formula, see \cite{EgeciogluRemmel1990}.
+A \defin{special rim hook tabloid} of type $\lambda$ and shape $\mu$
+is a filling of $\mu$ with rim hooks, such that each rim hook has at least one box in
+the first column. In other words, a special rim hook tabloid is a \hyperref[borderStripTableauxDefinition]{border strip tableau},
+where every border-strip contains a box from the first column.
+
+The height of a rim hook tableau is defined as for a border strip tableau.
+
+\begin{theorem}[Eğecioğlu, Remmel (1990)]
+We have that
+\[
+  (K_{\lambda,\mu})^{-1} = \sum_{T \in \mathrm{SRHT}(\lambda,\mu) } (-1)^{\ht(T)}
+\]
+where $\mathrm{SRHT}(\lambda,\mu)$ is the set of special rim hook tabloids of type $\lambda$ and shape $\mu$.
+\end{theorem}
+
+\todo{Add example here, and inv. Kostka matrix.}
 
 
 

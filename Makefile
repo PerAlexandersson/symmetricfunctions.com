@@ -6,7 +6,7 @@ MAKEFLAGS += -j8
 
 # === LOAD CONFIGURATION ===
 include config.mk
-include config-test.mk
+include config_test.mk
 
 .PHONY: all gather meta bib render copy-assets clean unittest
 .DELETE_ON_ERROR:
@@ -61,8 +61,7 @@ endif
 
 $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
 	@echo "Gathering $< → $@"
-	@$(PANDOC) "$<" --from=latex+raw_tex --to=json \
-	        --lua-filter=$(GATHER_LUA) --fail-if-warnings -o "$@"
+	@$(PANDOC) "$<" --from=latex+raw_tex --to=json --lua-filter=$(GATHER_LUA) --fail-if-warnings | jq '.' > "$@"
 
 # Test file gathering
 $(TEST_JSON): $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)

@@ -284,9 +284,9 @@ local function topic_card(s)
     -- Content: [Text Wrapper] + [Image]
     -- Title Attribute: desc_text
     local link = pandoc.Link(
-      {text_wrapper, img}, 
+      {text_wrapper, img},
       '#' .. id_inner, 
-      desc_text, -- <--- Description goes here as title
+      desc_text,
       pandoc.Attr("", { "topic-card", "hyperref" }, {})
     )
 
