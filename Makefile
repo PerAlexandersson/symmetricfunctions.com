@@ -59,6 +59,7 @@ gather: $(TEMP_DIR)/$(basename $(FILE)).json
 	@echo "Gathered $(FILE) → $(TEMP_DIR)/$(basename $(FILE)).json"
 endif
 
+# Here we use jq to format the json nicer
 $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
 	@echo "Gathering $< → $@"
 	@$(PANDOC) "$<" --from=latex+raw_tex --to=json --lua-filter=$(GATHER_LUA) --fail-if-warnings | jq '.' > "$@"
@@ -69,7 +70,7 @@ $(TEST_JSON): $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSO
 	@$(PANDOC) "$<" --from=latex+raw_tex --to=json \
 	        --lua-filter=$(GATHER_LUA) --fail-if-warnings -o "$@"
 
-# === 3) METADATA: Generate site-wide metadata ===
+# === METADATA: Generate site-wide metadata ===
 .PHONY: meta
 meta: $(LABELS_JSON)
 
@@ -85,7 +86,7 @@ $(TEMP_DIR)/site-meta.stamp: $(JSON_FILES) $(MERGE_META_LUA) | $(WWW_DIR)/.creat
 $(LABELS_JSON) $(POLYDATA_JSON) $(SITEMAP_XML): $(TEMP_DIR)/site-meta.stamp
 	@:
 
-# === 4) RENDER: Generate HTML ===
+# === RENDER: Generate HTML ===
 FILE ?=
 .PHONY: render
 ifeq ($(strip $(FILE)),)

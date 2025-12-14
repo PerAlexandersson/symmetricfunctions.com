@@ -92,10 +92,14 @@ local function split_yshort_row(row)
   return toks
 end
 
-local function is_cell_none(content)
-  if not content or content == "" then return true end
-  if content:find("\\none") then return true end
-  return false
+-- Helper to determine if a neighbor exists and is "solid" (not \none)
+local function is_solid_cell(content)
+  if not content or content == "" then return false end
+  -- If it's a rule row (table), it's not a solid cell
+  if type(content) == "table" then return false end
+  -- If it contains \none, it acts as empty space for border calculations
+  if content:find("\\none") then return false end
+  return true
 end
 
 -- ========== CORE RENDERER ==========
@@ -106,6 +110,12 @@ local function format_cell(content, row, col, opts)
   local delimiter = opts.delimiter or ""
   local align = opts.align or ""
   
+  -- Neighbor flags for border logic
+  local has_north = opts.has_north
+  local has_south  = opts.has_south
+  local has_east = opts.has_east
+  local has_west  = opts.has_west
+  
   local ent = content or ""
   local classes = {}
   local styles = {}
@@ -113,25 +123,43 @@ local function format_cell(content, row, col, opts)
   -- Grid position
   table.insert(styles, string.format("grid-row: %d", row))
   table.insert(styles, string.format("grid-column: %d", col))
-  
+
   -- Extract color
   local color
   color, ent = extract_color(ent)
   if color ~= "" then 
-    table.insert(styles, "background-color: " .. color) 
+    table.insert(styles, "background-color: " .. color)
   end
-  
+
   -- Handle \none
-  if ent:find("\\none", 1, true) then
-    ent = ent:gsub("\\none", "")
-    table.insert(classes, "none")
-  end
-  
+    local is_none = false
+    if ent:find("\\none", 1, true) then
+      ent = ent:gsub("\\none", "")
+      is_none = true
+      table.insert(classes, "cell-none")
+    end
+
+    if row == 1 and not is_none then
+      table.insert(classes, "border-n")
+    end
+    if col == 1 and not is_none then
+      table.insert(classes, "border-w")
+    end
+
+    if not is_none or has_south then
+      table.insert(classes, "border-s")
+    end
+
+    if not is_none or has_east then
+      table.insert(classes, "border-e")
+    end
+
+
   -- Alignment
   if align == "l" or align == "c" or align == "r" then
     table.insert(classes, "align-" .. align)
   end
-  
+
   -- Empty handling
   if trim(ent) == "" then
     ent = "&nbsp;"
@@ -158,19 +186,13 @@ local function render_matrix(matrix, specList, opts, col_count)
   
   -- Count actual rows (including rules)
   local total_rows = #matrix
-  local rule_count = 0
-  for _, row in ipairs(matrix) do
-    if row[1] == "__RULE__" then
-      rule_count = rule_count + 1
-    end
-  end
   
   -- Grid dimensions
   local grid_style = string.format("grid-template-rows: repeat(%d, auto); grid-template-columns: repeat(%d, auto)", 
                                    total_rows, col_count)
   
   local html = {}
-  table.insert(html, string.format('<span class="%s" style="%s">', 
+  table.insert(html, string.format('<span class="%s" style="%s">',
                                     table.concat(classes, " "), grid_style))
   
   -- Render cells with explicit positions
@@ -183,19 +205,35 @@ local function render_matrix(matrix, specList, opts, col_count)
       local rule_class = "rule rule-" .. rule_type
       local rule_style = string.format("grid-row: %d; grid-column: 1 / %d", 
                                        current_row, col_count + 1)
-      table.insert(html, string.format('<span class="%s" style="%s"></span>', 
+      table.insert(html, string.format('<span class="%s" style="%s"></span>',
                                        rule_class, rule_style))
     else
       current_row = current_row + 1
       for c, cell in ipairs(row) do
-        if not is_cell_none(cell) then
-          local align = specList[c] or ""
-          local cell_html = format_cell(cell, current_row, c, {
-            delimiter = delimiter,
-            align = align
-          })
-          table.insert(html, cell_html)
-        end
+        -- We render ALL cells, even empty/\none ones, to maintain grid structure
+
+        -- Determine neighbors for border logic
+        -- Note: We check the raw matrix. matrix[r-1] might be a rule or nil.
+        local neighbor_n = (r > 1) and matrix[r-1][c] or nil
+        local neighbor_w = (c > 1) and matrix[r][c-1] or nil
+        local neighbor_s = (matrix[r+1] and matrix[r+1][c]) or nil
+        local neighbor_e = matrix[r][c+1] or nil
+        
+        local has_north = is_solid_cell(neighbor_n)
+        local has_west  = is_solid_cell(neighbor_w)
+        local has_south  = is_solid_cell(neighbor_s)
+        local has_east  = is_solid_cell(neighbor_e)
+        
+        local align = specList[c] or ""
+        local cell_html = format_cell(cell, current_row, c, {
+          delimiter = delimiter,
+          align = align,
+          has_north = has_north,
+          has_west = has_west,
+          has_south = has_south,
+          has_east = has_east
+        })
+        table.insert(html, cell_html)
       end
     end
   end
@@ -240,6 +278,10 @@ local function tex_tabular_to_span(s, type_, spec)
     end
   end
   
+  -- Pad with empty strings for tabulars, or \none? 
+  -- Arrays usually expect empty cells to be empty, not \none holes.
+  -- using \none for consistency with the padding function, 
+  -- but is_solid_cell handles \none checks.
   local width = pad_matrix_to_rectangle(matrix, "\\none")
   
   local delim = (type_ == "array") and "$" or ""
