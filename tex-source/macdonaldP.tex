@@ -112,9 +112,9 @@ set of boxes both in $\mu$ and in $R_{\lambda/\mu} \setminus C_{\lambda/\mu}$.
 Here there are three such boxes, $(1,2)$, $(1,6)$ and $(3,2)$, marked in the figure.
 \begin{figure}
 \begin{ytableau}
-*(pink) & \ast & *(pink) & *(pink) & *(pink) & \ast & *(gray) & *(gray)\\
-*(pink) & *(pink) & *(pink) & *(pink) & *(pink) \\
-*(pink) & \ast &  *(gray) & *(gray)& *(gray) \\
+*(lightblue) & \ast & *(lightblue) & *(lightblue) & *(lightblue) & \ast & *(gray) & *(gray)\\
+*(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) & *(lightblue) \\
+*(lightblue) & \ast &  *(gray) & *(gray)& *(gray) \\
 *(gray)
 \end{ytableau}
 \end{figure}
@@ -142,7 +142,7 @@ In total, $\psi_{\lambda/\mu}(q,t)$ is given by
 \]
 \end{example*}
 
-Now, if $T$ is a semi-standard Young tableau,
+Now, if $T$ is a \hyperref[ssyt]{semi-standard Young tableau},
 we let 
 \[
 \psi_{T}(q,t) \coloneqq \prod_{j=1}^n \psi_{\lambda^{j}/\lambda^{j-1}}(q,t)
@@ -159,7 +159,7 @@ Finally, we have that for $\mu \vdash n$
 Note that if $q=t$, this formula does indeed give the Schur polynomial $\schurS_\mu(\xvec)$.
 
 
-\subsection[macdonaldPFromE]{From non-symmetric Macdonald E polynomials}
+\subsection[macdonaldPFromE]{From non-symmetric Macdonald $E$ polynomials}
 
 
 In \cite[Prop. 5.3.1]{HaglundHaimanLoehr2008}, the following expansion is obtained:
@@ -240,7 +240,7 @@ and we use \hyperref[plethysm]{plethystic notation} in the last expression.
 
 
 
-\subsection[macdonaldJqtKostka]{qt-Koskta polynomials}
+\subsection[macdonaldJqtKostka]{$qt$-Koskta polynomials}
 
 Macdonald \cite[p.354]{Macdonald1987} introduces the \defin{$qt$-Kostka polynomials} $K_{\lambda\mu}(q,t)$
 via the relation
@@ -264,7 +264,7 @@ It is still an open problem to find a combinatorial interpretation of $K_{\lambd
 
 \subsection[macdonaldJHaglundsConjecture]{Haglund's conjecture}
 
-In \cite{Haglund2010}, Jim Haglund conjectures that 
+In \cite{Haglund2010}, \name[Jim Haglund]{Jim Haglund} conjectures that 
 \[
 \left\langle  \frac{\macdonaldJ_\lambda(\xvec;q,q^k)}{(1-q)^{|\lambda|}} , \schurS_\mu(\xvec)  \right\rangle \in \setN[q]
 \]
@@ -273,11 +273,10 @@ In \cite{HaglundHaimanLoehr2005}, it is proved that the expression $\frac{\macdo
 when expanded in the $\monomial_\mu$-basis has coefficients in $\setN[q]$.
 Haglunds conjecture states that the expression is actually Schur positive.
 
-Arun Ram suggests that Haglund's conjecture can be made stronger: there is some type of positivity when $\macdonaldJ_\lambda(\xvec;q,q^k)$
+\name{Arun Ram} suggests that Haglund's conjecture can be made stronger: there is some type of positivity when $\macdonaldJ_\lambda(\xvec;q,q^k)$
 is expanded in the $\macdonaldJ_\lambda(\xvec;q,q^{k-1})$-basis. Note that $\macdonaldJ_\lambda(\xvec;q,q)=\schurS_\lambda$.
 
-Haglund's conjecture has been shown to be true in some special cases,
-see \cite{Yoo2012,Yoo2015,Bhattacharya2022x}.
+Haglund's conjecture has been shown to be true in some special cases, see \cite{Yoo2012,Yoo2015,Bhattacharya2022x}.
 
 
 
@@ -297,7 +296,7 @@ see \cite{Yoo2012,Yoo2015,Bhattacharya2022x}.
   Category & Schur \\
 \end{polydata}
 
-A quasisymmetric refinement of $\macdonaldJ_\lambda(\xvec;q,t)$
+A \hyperref[quasiSymmetricFunctions]{quasisymmetric} refinement of $\macdonaldJ_\lambda(\xvec;q,t)$
 is introduced in \cite{CorteelMandelshtamMasonWilliams2022}.
 The \defin{quasisymmetric Macdonald polynomials} $G_{\alpha}(\xvec;q,t)$,
 as a sum over certain non-symmetric Macdonald polynomials,
@@ -324,10 +323,10 @@ such that the following properties hold:
   Category & Schur \\
 \end{polydata}
 
-In \cite{GonzalesLapointe2019}, C. González and L. Lapointe introduce the multi-Macdonald polynomials,
+In \cite{GonzalesLapointe2019}, \name{C. González} and \name{L. Lapointe} introduce the multi-Macdonald polynomials,
 which are indexed by $r$-tuples of partitions.
 They are defined via triangularity relations, similar to the definition of \hyperref[macdonaldP]{Macdonald P polynomials}.
-When $r=1$, the usual Macdonald P polynomials are recovered, and when $r=2$, the family coincide with the double Macdonald polynomials,
+When $r=1$, the usual Macdonald-P polynomials are recovered, and when $r=2$, the family coincide with the double Macdonald polynomials,
 previously defined in \cite{BlondeauFournierLapointeMathieu2014}.
 
 The multi-Macdonald polynomials can be expressed as a product of Macdonald-P polynomials,
@@ -353,7 +352,7 @@ The authors show that the multi-$qt$-Kostka polynomials are in $\setN[q,t]$.
 \end{polydata}
 
 The wreath Macdonald P polynomials, $\macdonaldP_{\lambdavec^\bullet}(\xvec;q,t)$,
-were conjectured to exist in M. Haiman's seminal article \cite[7.2.19]{Haiman2002hilbertSchemes}.
+were conjectured to exist in \name[Mark Haiman]{M. Haiman's} seminal article \cite[7.2.19]{Haiman2002hilbertSchemes}.
 This conjecture was later proved in \cite{BezrukavnikovFinkelbergVologodsky2014}.
 See \cite{OrrShimozono2023x} for a survey on wreath Macdonald P polynomials.
 
