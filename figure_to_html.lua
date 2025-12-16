@@ -94,11 +94,15 @@ end
 
 -- Helper to determine if a neighbor exists and is "solid" (not \none)
 local function is_solid_cell(content)
-  if not content or content == "" then return false end
+  
+  if content == nil then return false end
+
   -- If it's a rule row (table), it's not a solid cell
   if type(content) == "table" then return false end
+
   -- If it contains \none, it acts as empty space for border calculations
-  if content:find("\\none") then return false end
+  if tostring(content):find("\\none") then return false end
+
   return true
 end
 
@@ -139,12 +143,14 @@ local function format_cell(content, row, col, opts)
       table.insert(classes, "cell-none")
     end
 
-    if row == 1 and not is_none then
+    -- The only cells with north/west borders are those in the first row/column that are not \none
+    if not is_none and row == 1 then
       table.insert(classes, "border-n")
     end
-    if col == 1 and not is_none then
+    if not is_none and col == 1 then
       table.insert(classes, "border-w")
     end
+
 
     if not is_none or has_south then
       table.insert(classes, "border-s")
@@ -221,7 +227,7 @@ local function render_matrix(matrix, specList, opts, col_count)
         
         local has_north = is_solid_cell(neighbor_n)
         local has_west  = is_solid_cell(neighbor_w)
-        local has_south  = is_solid_cell(neighbor_s)
+        local has_south = is_solid_cell(neighbor_s)
         local has_east  = is_solid_cell(neighbor_e)
         
         local align = specList[c] or ""
@@ -278,10 +284,8 @@ local function tex_tabular_to_span(s, type_, spec)
     end
   end
   
-  -- Pad with empty strings for tabulars, or \none? 
-  -- Arrays usually expect empty cells to be empty, not \none holes.
-  -- using \none for consistency with the padding function, 
-  -- but is_solid_cell handles \none checks.
+  -- Pad with \none
+  -- is_solid_cell handles \none checks.
   local width = pad_matrix_to_rectangle(matrix, "\\none")
   
   local delim = (type_ == "array") and "$" or ""
