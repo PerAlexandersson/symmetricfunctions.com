@@ -24,12 +24,11 @@ generating functions of $P$-partitions --- are indexed by labeled posets.
 These functions, $\pPartition_{(P,w)}(\xvec)$, 
 are \hyperref[quasiSymmetricFunctions]{quasisymmetric}
 and positive in the \hyperref[gessel]{fundamental quasisymmetric basis}.
-It is a rich family, and includes the skew Schur functions,
+It is a rich family, and includes the \hyperref[schurSkew]{skew Schur functions},
 the elementary and complete homogeneous symmetric functions 
 as well as the fundamental quasisymmetric functions.
 
-For a historical overview of the 
-theory of $P$-partitions, see Ira Gessel's survey, \cite{Gessel2016}.
+For a historical overview of the theory of $P$-partitions, see \name{Ira Gessel}'s survey, \cite{Gessel2016}.
 
 
 \subsection[pPartitionDefinition]{Definition}
@@ -68,11 +67,10 @@ See \cite[Statement 3.11]{McNamara2006} for possible generalizations of this con
 
 \subsection[pPartitionInGessel]{Fundamental quasisymmetric expansion}
 
-Let $(P,w)$ be a labeled poset on $n$ elements. The \defin{Jordan--Hölder set} 
-of a labeled poset is defined as
+Let $(P,w)$ be a labeled poset on $n$ elements. 
+The \defin{Jordan--Hölder set} of a labeled poset is defined as
 \begin{equation*}
-\mathcal{L}(P,w)
-\coloneqq\{\sigma\in\symS_n:\sigma^{-1}\circ w\text{ is order-preserving}\}.
+\mathcal{L}(P,w) \coloneqq\{\sigma\in\symS_n:\sigma^{-1}\circ w\text{ is order-preserving}\}.
 \end{equation*}
 
 The expansion of $\pPartition_{(P,w)}(\xvec)$ in the \hyperref[gessel]{fundamental quasisymmetric basis} is given by
@@ -87,7 +85,7 @@ For a reference of this result, see \cite[Eq. (7.95)]{StanleyEC2}.
 \subsection[pPartitionPsiExp]{Quasisymmetric powersum expansion}
 
 
-Alexandersson and Sulzgruber \cite{AlexanderssonSulzgruber2019} 
+\name[Per Alexandersson]{Alexandersson} and \name[Robin Sulzgruber]{Sulzgruber} \cite{AlexanderssonSulzgruber2019} 
 show that $\pPartition_P(x)$ is positive 
 in the \hyperref[qPsi]{quasisymmetric powersum basis}. 
 
@@ -104,9 +102,6 @@ Then
 \[
 \pPartition_P(\xvec)
 =
-% \sum_{\alpha\vDash n}
-% \frac{\qPsi_{\alpha}(\xvec)}{z_{\alpha}}\left| \mathcal{L}_{\alpha}^{\ast}(P,w) \right|
-% =
 \sum_{\alpha\vDash n}
 \frac{\qPsi_{\alpha}(\xvec)}{z_{\alpha}}\left| \opsurj_{\alpha}^{\ast}(P) \right|.
 \]
@@ -124,12 +119,10 @@ In hindsight, it is rather remarkable that this property was not discovered earl
 
 The result by Alexandersson and Sulzgruber is 
 later generalized to all $(P,w)$-partition 
-by R. Liu and M. Weselcouch \cite[Thm. 6.9]{LiuWeselcouch2020}, 
+by \name{R. Liu} and \name{M. Weselcouch} \cite[Thm. 6.9]{LiuWeselcouch2020}, 
 where a signed rule is proved. 
-This rule coincides with the 
-\hyperref[skewSchurMurnaghanNakaygama]{classical Murnaghan--Nakayama rule} 
+This rule coincides with the \hyperref[skewSchurMurnaghanNakaygama]{classical Murnaghan--Nakayama rule} 
 for (skew) Schur functions whenever $(P,w)$ is a skew diagram.
-
 
 
 \begin{question}[See \cite{LiuWeselcouch2020}]
@@ -150,6 +143,6 @@ is not normalized Lorentzian.
 
 \section[pPartitionsFlagged]{Flagged $(P,w)$-partitions}
 
-S. Assaf and N. Bergeron \cite{AssafBergeron2019} consider a flagged version of $(P,w)$-partitions.
-They show that these are positive in the fundamental slide basis.
-\todo{Add ref to fund. slide basis.}
+\name{S. Assaf} and \name{N. Bergeron} \cite{AssafBergeron2019} consider a flagged version of $(P,w)$-partitions.
+They show that these are positive in the \hyperref[slideF]{fundamental slide basis}.
+
