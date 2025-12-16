@@ -35,7 +35,7 @@ bib: $(REFS_JSON)
 
 $(REFS_JSON): $(BIBFILE) | $(TEMP_DIR)/.created
 	@echo "Generating $@"
-	@$(PANDOC) -f biblatex -t csljson $< --fail-if-warnings -o $@.tmp && mv $@.tmp $@
+	@$(PANDOC) -f biblatex -t csljson $< --lua-filter=bib_math_filter.lua --fail-if-warnings -o $@.tmp && mv $@.tmp $@
 
 # === 1) PREPROCESS: tex → pre.tex ===
 # Order-only dependency on directory ensures it exists without triggering rebuilds
