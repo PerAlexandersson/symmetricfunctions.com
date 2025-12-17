@@ -5,7 +5,52 @@
 
 \section[lgvLemma]{The Lindström--Gessel--Viennot lemma}
 
-See \cite{Lindstrom1973,GesselViennot1989}.
+The following result was first proved by \name{Bengt Lindström} \cite{Lindstrom1973}
+and later rediscovered by \name{Ira Gessel} and \name{Xavier Viennot} \cite{GesselViennot1989}.
+It gives a combinatorial interpretation of certain determinants as weighted sums over
+sets of non-intersecting lattice paths.
+
+
+
+Let $R$ be a commutative ring, $G=(V,E)$ be a graph, and let $w : E \to R$ be a weight function.
+
+Given two vertices $u, v \in V$, a path in $G$ from $u$ to $v$ is a 
+sequence of distinct vertices $\omega = (u = v_0, v_1, \dotsc, v_k = v)$ such 
+that $(v_i, v_{i+1}) \in E$ for all $0 \le i < k$. We denote this by $\omega : u \to v$.
+The \defin{weight of the path} $\omega$ is defined to be:
+\[
+w(\omega) = \prod_{i=0}^{k-1} w(v_i, v_{i+1}).
+\]
+
+\begin{definition}[Crossing paths and crossing condition]
+Two paths $\omega = (u_0, \dotsc, u_k)$ and $\eta = (v_0, \dots, v_l)$ are said to \defin{cross} 
+if they share a vertex, that is, if $u_i = v_j$ for some indices $i, j$.
+
+Given a graph $G=(V,E)$, a weight function $w$, 
+and subsets of vertices $\{A_1, \dots, A_n\}$ and $\{B_1, \dots, B_n\}$, 
+we say that the \defin{crossing condition} is satisfied if, for 
+any indices $1 \le i \lt j \le n$ and $1 \le i' \lt j' \le n$, 
+any path $\omega : A_i \to B_{j'}$ and any path $\eta : A_j \to B_{i'}$ must cross.
+\end{definition}
+
+Fix sets of vertices $\{A_1, \dots, A_n\}$ and $\{B_1, \dots, B_n\}$ in $V$, 
+and define an $n \times n$ matrix $M = (m_{ij})$ by
+\[
+m_{ij} \coloneqq \sum_{\omega : A_i \to B_j} w(\omega),
+\]
+where the sum runs over all paths from $A_i$ to $B_j$.
+
+\begin{theorem}[Lindström--Gessel-Viennot lemma]
+Assume that the crossing condition holds. 
+Then the determinant of the matrix $M$ is given by
+\[
+\det(M) = \sum_{(\omega_1, \dots, \omega_n)} \text{sgn}(\sigma) w(\omega_1) \cdots w(\omega_n),
+\]
+where the sum runs over all $n$-tuples $(\omega_1, \dots, \omega_n)$ of 
+pairwise non-crossing paths such that $\omega_i : A_i \to B_i$.
+\end{theorem}
+
+
 
 \todo{https://xavierviennot.org/xavier/articles_files/determinant_89.pdf}
 
@@ -17,7 +62,6 @@ See \cite{Lindstrom1973,GesselViennot1989}.
 
 
 \subsection[LGVssyt]{Semistandard tableaux}
-
 
 Semistandard Young tableaux can be put in correspondence with sets of non-intersecting lattice paths,
 and this allows us to prove the two \hyperref[schurJacobiTrudi]{Jacobi--Trudi identities},
@@ -54,20 +98,20 @@ Consider the following skew semistandad Young tableau $T$.
 The rows give rise to the following set of non-intersecting lattice paths,
 where the topmost row in $T$ corresponds to the rightmost path.
 \begin{figure}
-\svgimg[width=0.75\textwidth]{./svg-images/ssyt-lattice-paths-1.svg}{SSYT rows as lattice paths.}  
+\svgimg[width=0.65\textwidth]{./svg-images/ssyt-lattice-paths-1.svg}{SSYT rows as lattice paths.}  
 \end{figure}
 
 The columns in $T$ give rise to the following set of non-intersecting lattice paths,
 where the leftmost column corresponds to the leftmost path.
 
 \begin{figure}
-  \svgimg[width=0.95\textwidth]{./svg-images/ssyt-lattice-paths-2.svg}{SSYT columns as lattice paths.}
+  \svgimg[width=0.75\textwidth]{./svg-images/ssyt-lattice-paths-2.svg}{SSYT columns as lattice paths.}
 \end{figure}
 \end{example}
 
 
-The following theorem appears in \cite{McDowell2023} and is proved using lattice paths.
-\begin{theorem}
+The following theorem is proved using lattice paths.
+\begin{theorem}[See {\cite{McDowell2023}}]
 Let $A$ and $B$ be subsets of $\{0,1,\dotsc,n\}$ of equal size and let $A^c$, $B^c$ be their complements.
 Then
 \[
@@ -82,9 +126,8 @@ Moreover, this is related to \name{C. A. Aitken}'s identity;
 \end{theorem}
 
 
-
 See also \cite{Stembridge1990} for background on counting lattice paths with Pfaffians.
-One can also prove the Weyl alternant formula by LGV, see \cite{Xiong2020x}.
+One can also prove the Weyl alternant formula by the Lindström--Gessel--Viennot lemma, see \cite{Xiong2020x}.
 
 See \href{https://www.youtube.com/watch?v=H1wEiEIznaA}{this GOCC talk from 2023} on a generalization of the LGV lemma.
 
