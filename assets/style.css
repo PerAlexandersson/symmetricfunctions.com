@@ -525,35 +525,35 @@
       
       width: 1.6em; 
       height: 1.6em; 
+      aspect-ratio: 1/1;
+      min-width: 0;
+      min-height: 0;
       font-weight: 600; 
       margin: 0;
-      border: none;
-      padding: 0.15em;
-
-
-      --bw: 0.15em; /* Border width */
+      
+      --bw: 0.1em; /* Border width */
       --bc: var(--c-tableau-border, black); /* Border color */
       
+      border-width: var(--bw);
+
       /* Default all sides to transparent */
       --bs-n: transparent;
       --bs-s: transparent;
       --bs-e: transparent;
       --bs-w: transparent;
 
-      /* Inset shadows paint inside the box, covering the padding area.
-        They stack squarely, removing the 45-degree cut. */
-      box-shadow: 
-        inset 0 var(--bw) 0 0 var(--bs-n),          /* Top */
-        inset 0 calc(var(--bw)*-1) 0 0 var(--bs-s), /* Bottom */
-        inset var(--bw) 0 0 0 var(--bs-w),          /* Left */
-        inset calc(var(--bw)*-1) 0 0 0 var(--bs-e); /* Right */
-    }
+      padding: 0.1;
 
-    .border-n { --bs-n: var(--bc) !important;}
-    .border-s { --bs-s: var(--bc) !important;}
-    .border-e { --bs-e: var(--bc) !important;}
-    .border-w { --bs-w: var(--bc) !important;}
+      border-right: var(--bw) solid var(--bs-e);
+      border-left: var(--bw) solid var(--bs-w);
+      border-top: var(--bw) solid var(--bs-n);
+      border-bottom: var(--bw) solid var(--bs-s);
+  }
 
+  .border-n { --bs-n: var(--bc) !important;}
+  .border-s { --bs-s: var(--bc) !important;}
+  .border-e { --bs-e: var(--bc) !important;}
+  .border-w { --bs-w: var(--bc) !important;}
 
   .array > span, .tabular > span {
     display: flex; align-items: center; min-width: 2em;
@@ -667,16 +667,16 @@
   @media (max-width: 1100px) {
     .topic-card-grid { grid-template-columns: repeat(2, 1fr); }
   }
-    
+   
+  @media(max-width: 600px) {
+    .topic-card-grid { grid-template-columns: 1fr; }
+  }
   /* ==========================================================================
    MOBILE & TABLET OPTIMIZATION
    ========================================================================== */
   @media(max-width: 900px) {
 
-    .topic-card-grid {
-      grid-template-columns: 1fr;
-    }
-
+  
     /* --- Flatten the Grid Layout --- */
     #doc-title, #doc-footer, #doc-all {
       display: block; 

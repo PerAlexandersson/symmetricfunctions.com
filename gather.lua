@@ -441,7 +441,6 @@ function RawInline(el)
     if b then
       local id = b:sub(2, -2)
       set_add(labels, id)
-      print_info("label: %s", id)
       -- Empty span with id; content left empty on purpose
       return pandoc.Span({}, pandoc.Attr(id, { "label" }))
     end
