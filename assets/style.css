@@ -673,6 +673,10 @@
    ========================================================================== */
   @media(max-width: 900px) {
 
+    .topic-card-grid {
+      grid-template-columns: 1fr;
+    }
+
     /* --- Flatten the Grid Layout --- */
     #doc-title, #doc-footer, #doc-all {
       display: block; 
@@ -814,6 +818,11 @@
       /* Start visible */
       transform: translateY(0);
       transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1); /* Smoother pop-up */
+    }
+
+    /* Hide the mobile TOC button if the list has no items */
+    body:not(:has(#tocLinkList li)) #tocButton {
+      display: none !important;
     }
 
     #tocButton:active {
