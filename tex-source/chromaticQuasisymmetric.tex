@@ -57,13 +57,14 @@ R. Stanley introduced the \defin{chromatic symmetric function} of a graph $G$ in
 This definition was later refined by J. Shareshian and M. Wachs in \cite{ShareshianWachs2012} and \cite{ShareshianWachs2016},
 where the graph $G$ is labeled and a parameter $q$ is introduced.
 
-In Spring 2016, \name{B. Ellzey} \cite{Ellzey2017} presented a generalization where labeled graphs are replaced with \emph{oriented graphs}.
+In Spring 2016, \name{Brittney Ellzey} \cite{Ellzey2017} presented a generalization where labeled graphs are replaced with \emph{oriented graphs}.
 This new model is equivalent to the Shareshian--Wachs model when the orientation of the edges has no directed cycle.
-See also  \name{G. Panova}, \name{P. Alexandersson} \cite{AlexanderssonPanova2018}, who considered the same model from a different perspective.
+See also  \name{Greta Panova}, \name{Per Alexandersson} \cite{AlexanderssonPanova2018}, who considered the same model from a different perspective.
 
 The main open problem in this area concerns the conjectured positive 
 expansion of chromatic symmetric functions in the elementary symmetric function basis,
-and later the refined conjecture by \name{J. Shareshian} and \name{M. Wachs} in \cite{ShareshianWachs2012,ShareshianWachs2016}.
+and later the refined conjecture by \name{John Shareshian} 
+and \name{Michelle Wachs} in \cite{ShareshianWachs2012,ShareshianWachs2016}.
 These conjectures are referred to 
 the \hyperref[chromaticQuasisymmetricElementaryExpansion]{Stanley--Stembridge conjecture and Shareshian--Wachs conjecture}, respectively.
 Shareshian and Wachs also conjectured that $\omega \chrom_G(\xvec;q)$ is 
@@ -72,10 +73,14 @@ the equivariant cohomology of regular semisimple Hessenberg varieties}.
 
 
 
-In \cite{Hwang2022x}, \name{Byung-Hak Hwang} introduces an additional refinement on the chromatic quasisymmetric functions.
-He defines a \enquote{flip} operator on colorings and show that connected components under such flips
-are Schur-positive. The ascent parameter introduced by Shareshian--Wachs is preserved by such flips.
-It is conjectured that each such component is positive in the elementary symmetric function basis.
+In \cite{Hwang2022x}, \name[B.-H. Hwang]{Byung-Hak Hwang} introduces an 
+additional refinement on the chromatic quasisymmetric functions.
+He defines a \enquote{flip} operator on colorings and show that connected 
+components under such flips
+are Schur-positive. The ascent parameter introduced by Shareshian--Wachs 
+is preserved by such flips.
+It is conjectured that each such component is positive in the elementary 
+symmetric function basis.
 See also \cite{Hwang2023x} for a connection with non-commutative functions.
 A proof for Schur-positivity of the flip-components is also given in \cite{BlasiakErikssonPylyavskyySiegl2022x}.
 
@@ -86,7 +91,8 @@ where connections with immanents and characters is studied.
 
 \subsection[chromaticQuasisymmetricDefinition]{Definition}
 
-Let $G$ be an \emph{oriented graph} with $n$ vertices. Given a vertex-coloring $\kappa:G\to \setP$,
+Let $G$ be an \emph{oriented graph} with $n$ vertices. 
+Given a vertex-coloring $\kappa:G\to \setP$,
 let $\asc(\kappa)$ denote the number of directed edges $(u,v)$ in $G$ such that $\kappa(u) \lt \kappa(v)$.
 
 The \defin{chromatic quasisymmetric function} of $G$ is defined as 
@@ -112,7 +118,7 @@ This labeled model is what was introduced in \cite{ShareshianWachs2012,Shareshia
 
 \subsection[chromaticClawFree]{Claw-free graphs}
 
-If $G$ is a claw-free graph, \name{Gasharov} (see \cite{Stanley1998}) conjecture that $\chrom_G(\xvec;1)$ is Schur-positive.
+If $G$ is a claw-free graph, \name{Vesselin Gasharov} (see \cite{Stanley1998}) conjecture that $\chrom_G(\xvec;1)$ is Schur-positive.
 There is no known $q$-analog of this conjecture.
 
 Some progress in this direction has been made in \cite{ShelburneWilligenburg2024x},
@@ -204,7 +210,7 @@ where $|\avec|$ denotes the sum $a_1+a_2+\dotsb + a_n$.
 \subsection[chromaticQuasisymmetricReciprocity]{Reciprocity}
 
 Let $\chi_G(k)$ be the chromatic polynomial associated with the graph $G$ on the vertex set $[n]$.
-\name{O. Bernardi} and \name{P. Nadeau} \cite{BernardiNadeau2020} gave the following interpretation of
+\name{Olivier Bernardi} and \name{Philippe Nadeau} \cite{BernardiNadeau2020} gave the following interpretation of
 the specialization $(-1)^{n-i}\chi^{(i)}_G(-j)$.
 \begin{theorem}
 Let $i,j \geq 0$. Then $(-1)^{n-i}\chi^{(i)}_G(-j)$ counts the number of tuples
@@ -232,10 +238,12 @@ on $n$ vertices:
 (q-1)^{-n} \LLT_\avec[\xvec(q-1);q] =  \chrom_\avec(\xvec;q).
 \]
 This relationship is not always true in the circular case, that is, for area sequences where $a_1 \gt 0$.
-The relationship is reminiscent of the technique introduced by \name{Haglund}, \name{Haiman} and \name{Loehr} \cite{HaglundHaimanLoehr2005}.
+The relationship is reminiscent of the technique 
+introduced by \name{Jim Haglund}, \name{Mark Haiman} 
+and \name{Nicholas Loehr} \cite{HaglundHaimanLoehr2005}.
 
 This plethystic relationship is generalized in \cite[Thm. 6.2]{NovelliThibon2019},
-where a non-commutative lift is given. \name{J.-C. Novelli} and \name{J.-Y. Thibon} also introduce 
+where a non-commutative lift is given. \name[J.-C. Novelli]{Jean-Christophe Novelli} and \name[J.-Y. Thibon]{Jean-Yves Thibon} also introduce 
 a non-commutative lift of the unicellular LLT polynomials.
 
 
@@ -293,7 +301,7 @@ to give
 \end{align}
 where $\type(\theta)$ is given by the \emph{source-components}
 of $\theta$, see \cite{BernardiNadeau2020}.
-This formula is very similar to the stronger result by \name{C. Athanasiadis} \cite{Athanasiadis2015},
+This formula is very similar to the stronger result by \name[C. A. Athanasiadis]{Christos Athanasiadis} \cite{Athanasiadis2015},
 which treats the case with general $q$.
 
 
@@ -316,7 +324,8 @@ which treats the case with general $q$.
 
 \subsection[chromaticQuasisymmetricSchurExpansion]{Schur positivity}
 
-In \cite{Gasharov1996}, Gasharov proved that the $\chrom_G(\xvec;1)$ are Schur-positive with an explicit expansion,
+In \cite{Gasharov1996}, \name[Gasharov]{Vesselin Gasharov} proved that the $\chrom_G(\xvec;1)$ 
+are Schur-positive with an explicit expansion,
 whenever $G$ is the incomparability graph of a $3+1$-free poset.
 In particular, this implies the unit-interval case, as those are given as the incomparability graphs
 of $3+1$ and $2+2$-free posets. Gasharov's proof uses a kind of sign-reversing involution.
@@ -481,7 +490,7 @@ In particular, some new results in the Abelian case using $q$-hit numbers are gi
 \section[treesChomaticQuasisymmetric]{Chromatic symmetric functions of trees}
 
 
-\name{R. Stanley} conjectures \cite{Stanley1995} that the chromatic symmetric function of a tree, 
+\name{Richard Stanley} conjectures \cite{Stanley1995} that the chromatic symmetric function of a tree, 
 uniquely determines the tree. In \cite{WangYubZhang2023x} it is shown that trees with exactly 
 two vertices of degree greater than 2, are distinguished by their chromatic symmetric functions.
 
@@ -493,7 +502,7 @@ Certain $q$-caterpillar trees can be reconstructed from their CSF, \cite{Arunkum
 In \cite[Thm. 1.3]{HasebeTsujie2017}, it is proved that \emph{ordered trees} are distinguished by
 their order quasisymmetric function (where the rooted tree is viewed as a poset, colors are increasing away from the root).
 Both the weakly increasing, or strictly increasing version of the quasisymmetric function does the job.
-The work by \name{Hasabe} and \name{Tsujie} is continued in \cite{Zhou2020x},
+The work by \name{Takahiro Hasebe} and \name{Shuhei Tsujie} is continued in \cite{Zhou2020x},
 where one is interested in reconstructing the tree from the quasisymmetric function.
 
 It is still an open problem (posed by Hasabe and Tsujie) to prove that 
@@ -534,7 +543,8 @@ The approach uses non-commutative ideas.
 
 In \cite[Conj. 5.3]{ShareshianWachs2012}, a connection with cohomology of regular semisimple Hessenberg varieties 
 was conjectures.
-This conjecture was resolved in in 2015, where \name{Brosnan} and \name{Chow} proved that for unit-interval graphs $\avec$, 
+This conjecture was resolved in in 2015, where \name{Patrick Brosnan} 
+and \name{Timothy Chow} proved that for unit-interval graphs $\avec$, 
 the symmetric function $\omega \chrom_\avec(\xvec;q)$ 
 is the \hyperref[frobeniusCharacteristic]{Frobenius characteristic} of 
 a symmetric group action on the cohomology of regular semisimple Hessenberg varieties.
@@ -542,13 +552,14 @@ This was also proved independently by Guay-Paquet \cite{GuayPaquet2016x}.
 Note that their result implies Schur positivity.
 
 There is a bijection between acyclic orientations of a unit interval graph, and 
-the \name{Tymoczko} cells of the corresponding regular nilpotent Hessenberg variety, see \cite{NovelliThibon2024x}.
+the \name{Julianna Tymoczko} cells of the corresponding 
+regular nilpotent Hessenberg variety, see \cite{NovelliThibon2024x}.
 
 
 \subsection[hessenbergVarieties]{Hessenberg varieties}
 
 This section uses information from \href{https://math.dartmouth.edu/~orellana/wachs.pdf}{these slides}.
-See also the PhD thesis by \name{N. Teff} \cite{Teff2013}.
+See also the PhD thesis by \name{Nicholas Teff} \cite{Teff2013}.
 
 \todo{Add more from https://math.dartmouth.edu/~orellana/wachs.pdf}
 

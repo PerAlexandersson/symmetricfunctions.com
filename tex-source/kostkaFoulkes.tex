@@ -167,11 +167,13 @@ https://link.springer.com/content/pdf/10.1007/s10468-016-9640-5.pdf
 
 \section[kostantPartitionFunction]{The Kostant partition function}
 
-See \name{P. Harris}, \name{E. Insko} and \name{M. Omar} \cite{HarrisInskoOmar2018} for a short introduction.
+See \name[P. Harris]{Pamela E. Harri}, \name{Erik Insko} 
+and \name{Mohamed Omar} \cite{HarrisInskoOmar2018} for a short introduction.
 
 Let $\evec_{ij}$ denote the vector with $1$ at index $i$ 
 and $-1$ at index $j$ and remaining entries equal to $0$. 
-We refer to this collection of vectors as \hyperref[root-system]{positive roots} or just roots for short.
+We refer to this collection of vectors as \hyperref[root-system]{positive roots} 
+or just roots for short.
 Given an integer vector $w$ of length $n$, 
 let \defin{Kostant's partition function} $\kostantP(w)$ be the number of solutions to
 \[
@@ -407,7 +409,7 @@ This can perhaps be seen as a type $B$ analog of Steinbergs formula.
 
 
 In \cite{BerensteinZelevinsky1988} the authors
-attributes the following formula to \name{B. Kostant}:
+attributes the following formula to \name{Bertram Kostant}:
 \begin{theorem}[Kostant]
 Let $\lambda,\mu,\nu$ be partitions of length at most $\ell$, such that $|\nu|=|\lambda|+|\mu|$. Then
 \begin{equation}
@@ -415,9 +417,10 @@ c^{\nu}_{\lambda \mu} = \sum_{\sigma \in \symS_\ell} \varepsilon(\sigma) K_{\mu,
 \end{equation}
 where $\rho = \tfrac12 (\ell-1,\ell-3,\dotsc,1-\ell)$.
 \end{theorem}
-Shrivastava \cite{Shrivastava2022x} provides a modern proof of this formula.
+\name{Sagar Shrivastava} \cite{Shrivastava2022x} provides a modern proof of this formula.
 
-A generalization of this formula exists for \hyperref[toricSchurIntoSchur]{Gromow--Witten invariants},
+A generalization of this formula exists 
+for \hyperref[toricSchurIntoSchur]{Gromow--Witten invariants},
 which show up in the study of \hyperref[schurToric]{toric Schur functions}.
 
 
@@ -430,7 +433,8 @@ By using the \hyperref[gtKoskta]{Gelfand--Tsetlin polytope model for semistandar
 we can obtain the Kostka coefficients $K_{\lambda,\mu}$ as the number of lattice points 
 in certain non-integral (some vertices might not have integer coordinates) polytopes.
 This implies that the map $k \mapsto K_{k\lambda,k\mu}$ is a quasi-polynomial in $k$.
-However, we have the stronger statement, due to \name{Derksen} and \name{Weyman} \cite{DerksenWeyman2002}:
+However, we have the stronger statement, due to \name{Harm Derksen} 
+and \name{Jerzy Weyman} \cite{DerksenWeyman2002}:
 \begin{theorem}
 The map $k \mapsto K_{k\lambda,k\mu}$ is a polynomial in $k$.
 \end{theorem}
@@ -453,7 +457,6 @@ follows easily from \cite[Appendix]{HellerTompkins1957}.
 From this expression, polynomiality also follows, see \cite{AlexanderssonOguz2023x}.
 
 
-
 \section[kostkaFoulkes]{Kostka--Foulkes polynomials from charge}
 
 For an excellent background on charge, see \cite[Chapter 2.4]{Butler1994}.
@@ -462,8 +465,8 @@ Here is a longer explanation on how to compute the coefficients $K_{\lambda,\mu}
 the Kostka--Foulkes polynomials by using charge.
 These coefficients appear in the expansion of Schur polynomials into 
 \hyperref[hallLittlewoodP]{Hall--Littlewood polynomials}.
-The combinatorial model using charge was first described by Lascoux and Schützenberger
-in \cite{LascouxSchutzenberger78}. 
+The combinatorial model using charge was first described by \name{Alain Lascoux} and 
+\name[M. P. Schützenberger]{Marcel-Paul Schützenberger} in \cite{LascouxSchutzenberger78}. 
 
 First we need to introduce the \defin{charge} of a permutation.
 For $\sigma \in \symS_k$, we let 
@@ -569,8 +572,6 @@ There are four tableaux in $\SSYT(421,3211)$:
 \ytableaushort{1112,23,4}
 \end{figure}
 
-
-
 The corresponding standard subwords and charge values are given by
 \begin{equation*}
  \underset{1+0+0}{ 3214,\; 21,\; 1 }
@@ -667,8 +668,9 @@ to compute Kostka--Foulkes polynomials in an efficient manner.
 \todo{Reference \url{http://www.math.drexel.edu/~jblasiak/catabJun10-Blasiak.pdf}}
 
 
-In \cite{LascouxSchutzenberger1981},  \name{Lascoux} and \name{Schützenberger} introduce 
-the notion of \defin{cyclage}. Let $\mu$ be a partition,
+In \cite{LascouxSchutzenberger1981}, \name{Alain Lascoux} 
+and \name[M.P. Schützenberger]{Marcel-Paul Schützenberger} introduce the notion 
+of \defin{cyclage}. Let $\mu$ be a partition,
 and consider the set $\SSYT(\cdot,\mu) \coloneqq \bigcup_\lambda \SSYT(\lambda,\mu)$.
 That is, the set of all semistandard Young tableaux with content $\mu$.
 They define a poset structure on $\SSYT(\cdot,\mu)$ via the covering relations
@@ -846,7 +848,7 @@ and the top layer is just $\lambda$. Counting paths from bottom to top in this g
 can then be done efficiently with built-in functions in Mathematica.
 }
 
-\todo{For Sn-modules with grade Frob series, see \name{Garsia}--\name{Procesi}, 
+\todo{For Sn-modules with grade Frob series, see \name{Adriano Garsia}--\name{Claudio Procesi}, 
 https://doi.org/10.1016/0001-8708(92)90034-I
 }
 
