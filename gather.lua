@@ -191,9 +191,6 @@ function parse_name(s)
     return nil
   end
 
-
-  print_info("name is %s", main_part)
-
   if main_part then
     -- The mandatory argument is now the Full Name
     local full_name = trim(main_part:sub(2, -2))
@@ -219,8 +216,6 @@ function parse_name(s)
     -- Construct the search query using the Full Name
     local search_query = full_name:gsub(" ", "+") .. "+mathematics"
     local url = "https://scholar.google.com/scholar?q=" .. search_query
-
-    print_info("query is %s", search_query)
 
     return pandoc.Link(
       { pandoc.Str(display_text) },                -- Visible text (Short or Auto-short)
