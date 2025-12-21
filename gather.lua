@@ -178,6 +178,58 @@ local function parse_polydata_body(body)
   return map
 end
 
+function parse_name(s)
+  -- Try to match pattern with optional argument first: \name[Short Name]{Full Name}
+  local opt_part, main_part = s:match("^%s*\\name%s*(%b[])%s*(%b{})%s*$")
+
+  -- If not found, fall back to pattern with only mandatory argument: \name{Full Name}
+  if not opt_part then
+    main_part = s:match("^%s*\\name%s*(%b{})%s*$")
+  end
+
+  if main_part == nil then
+    return nil
+  end
+
+
+  print_info("name is %s", main_part)
+
+  if main_part then
+    -- The mandatory argument is now the Full Name
+    local full_name = trim(main_part:sub(2, -2))
+    local display_text = ""
+
+    if opt_part then
+      -- If optional argument exists, use it directly for display
+      display_text = trim(opt_part:sub(2, -2))
+    else
+      -- Auto-generate "F. Lastname"
+      -- Split string at the last space to handle middle names correctly
+      local first_part, last_part = full_name:match("^(.*)%s+(.-)$")
+
+      if first_part and last_part then
+        local initial = first_part:sub(1, 1)
+        display_text = initial .. ". " .. last_part
+      else
+        -- Fallback for mononyms (e.g., "Euclid") or single word inputs
+        display_text = full_name
+      end
+    end
+
+    -- Construct the search query using the Full Name
+    local search_query = full_name:gsub(" ", "+") .. "+mathematics"
+    local url = "https://scholar.google.com/scholar?q=" .. search_query
+
+    print_info("query is %s", search_query)
+
+    return pandoc.Link(
+      { pandoc.Str(display_text) },                -- Visible text (Short or Auto-short)
+      url,                                         -- URL (Search using Full Name)
+      "Search for " .. full_name,                  -- Tooltip title
+      { class = "author-name", target = "_blank" } -- Attributes
+    )
+  end
+end
 
 local function parse_svgimg(s)
   -- \svgimg
@@ -363,36 +415,9 @@ function RawInline(el)
 
   -- \name{...} → Span(class=author-name)
   do
-    -- Try to match pattern with optional argument first: \name[Full Name]{Display Text}
-    local opt_part, main_part = s:match("^%s*\\name(%b[])(%b{})%s*$")
-
-    -- If not found, fall back to pattern with only mandatory argument: \name{Display Text}
-    if not opt_part then
-      main_part = s:match("^%s*\\name(%b{})%s*$")
-    end
-
-    if main_part then
-      -- Remove surrounding curly braces for the display text
-      local display_text = main_part:sub(2, -2)
-      
-      -- Default the full name (for search) to the display text
-      local full_name = display_text
-
-      -- If optional argument exists, remove brackets and use it for search/tooltip
-      if opt_part then
-        full_name = opt_part:sub(2, -2)
-      end
-
-      -- Construct the search query using the full name
-      local search_query = full_name:gsub(" ", "+") .. "+mathematics"
-      local url = "https://scholar.google.com/scholar?q=" .. search_query
-
-      return pandoc.Link(
-        { pandoc.Str(display_text) },                -- Visible text (e.g., "Stanley")
-        url,                                         -- URL (e.g., search for "R.P Stanley")
-        "Search for " .. full_name,                  -- Tooltip title
-        { class = "author-name", target = "_blank" } -- Attributes
-      )
+    local n = parse_name(s)
+    if n then
+      return n
     end
   end
 
