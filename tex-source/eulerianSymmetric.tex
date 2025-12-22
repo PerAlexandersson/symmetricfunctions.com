@@ -25,7 +25,7 @@ They were introduced in \cite{ShareshianWachs2010}.
 \subsection[eulerianSymmetricDefinition]{Definition}
 
 Let $\bar{1} \lt \bar{2} \lt \dotsb \lt \bar{n} \lt 1 \lt 2 \lt \dotsb \lt n$.
-For $\sigma \in \symS_n$, let $\overline{\sigma}$ be define as the word 
+For $\sigma \in \symS_n$, let $\overline{\sigma}$ be defined as the word 
 obtained from $\sigma$ by replacing $\sigma_i$ with $\overline{\sigma}_i$ whenever $\sigma_i \gt i$.
 Let
 \[
@@ -72,7 +72,7 @@ Then
 \subsection[eulerianSymmetricSchurPositivity]{Schur positivity}
 
 In \cite{HendersonWachs2012} it is proved that $\eulerianQ_{\lambda,j} = \frobChar V_{\lambda,j}$,
-that is, it is the \hyperref[frobeniusCharacteristic]{Frobenous characteristic} of a 
+that is, it is the \hyperref[frobeniusCharacteristic]{Frobenus characteristic} of a 
 certain vector space $V_{\lambda,j}$ spanned by forests of marked trees.
 This implies Schur positivity.
 
@@ -84,7 +84,7 @@ In \cite{SaganShareshianWachs2011}, it is proved that $\eulerianQ_{(n),j}$ expan
  It seems like all $\eulerianQ_{\lambda,j}$ are $\powerSum_\mu$-positive.
 \end{conjecture}
 
-The stronger statement, being positive in the complete homogenous basis, is not true.
+The stronger statement, positivity in the complete homogenous basis, is not true.
 For example, 
 \[
 \eulerianQ_{(6),3} = \completeH_{321} - \completeH_{411}+2\completeH_{42} + \completeH_{51}.
@@ -93,11 +93,12 @@ For example,
 \subsection[eulerianSymmetricCSP]{Cyclic sieving phenomena}
 
 Let $\symS_{\lambda,j}$ be the subset of permutations in $\symS_n$ with cycle type $\lambda$
-and exactly $j$ excedances. In \cite{SaganShareshianWachs2011}, it is shown that
+and exactly $j$ excedances. 
+In \cite{SaganShareshianWachs2011}, it is shown that
 \[
 \left(\symS_{\lambda,j}, C_n, \sum_{\sigma \in \symS_{\lambda,j}} q^{\maj(\sigma) - \exc(\sigma)} \right)
 \]
-exhibit the cyclic sieving phenomena, where $C_n$ act by conjugation.
+exhibits the \hyperref[cyclicSieving]{cyclic sieving phenomenon}, where $C_n$ act by conjugation.
 
 
 \begin{conjecture}[Alexandersson (2018)]
@@ -106,7 +107,7 @@ Let $\lambda$ be a partition of $n$. Then
 \eulerianQ_{\lambda,j}(1,q,q^2,\dotsc,q^{n-1})
 \]
 evaluates to non-negative integers at $q = e^{2 \pi i k/n}$, and there should be some action $C_n$
-that completes this to a cyclic sieving phenomena.
+that completes this to a cyclic sieving phenomenon.
 \end{conjecture}
 
 
@@ -133,12 +134,10 @@ and thus allow for a definition of \emph{colored Eulerian quasisymmetric functio
 
 A special case would be to choose the cyclic group to be $\setZ_2$, which can then be 
 called a \defin{type $B$ Eulerian quasisymmetric function}.
+In \cite{Lin2013}, the author shows that these are symmetric functions.
+These are believed to satisfy a cyclic sieving phenomena as above.
 
-In \href{https://arxiv.org/abs/1309.6368}{this preprint they are shown to be symmetric}.
-These are believed to be symmetric and satisfy a cyclic sieving phenomena as above.
 
-
-\todo{Wreath product Schur polys}
-% There is a notion of Wreath product Schur polys. Are these WS-positive? 
-% http://www.m-hikari.com/ija/ija-password-2009/ija-password1-4-2009/jingIJA1-4-2009.pdf 
-
+\begin{question}
+Can the above be generalized to \hyperref[schurWreath]{wreath product symmetric functions}?
+\end{question}

@@ -9,12 +9,10 @@ Whenever you encounter a family of polynomials, you
 might want to study properties such as \emph{unimodality},
 \emph{real-rootedness}, \emph{stability} or \emph{interlacing roots}.
 
-I highly recommend \cite{Branden2015} and other works of Petter Brändén.
+I highly recommend \cite{Branden2015} and other works of \name{Petter Brändén}.
 See also this \href{https://www.youtube.com/watch?v=wuQN0xaTkxE}{OPAC seminar}
 about unimodality, real-rootedness and stable polynomials.
 
-
-\todo{This preprint by Petter and Leonardo has lots of powerful results: https://arxiv.org/pdf/2412.06595}
 
 \section[polynomialUnimodality]{Unimodality, log-concavity and real roots}
 
@@ -60,7 +58,7 @@ Then the matrix $(a_{ij})$ is totally non-negative.
 Totally non-negative matrices are closed under taking products.
 
 See \cite{BrandenLeite2024x} for some applications related to chains in posets.
-
+This source also has several new methods for proving real-rootedness.
 
 \begin{theorem}[Stanley, \cite{Stanley1998}]
 A polynomial $Q(x)=1+a_1x+a_2x^2+\dotsb+a_n x^n$ has only 
@@ -97,7 +95,6 @@ a positive leading coefficient.
 \end{definition}
 
 
-
 \begin{lemma}[Folklore]
     Let $f, g$ be monic polynomials with $\deg(f) = \deg(g)+1$ and all real, non-positive roots.
     If $g \interl f$, then $f-tg$ is real-rooted and $g \interl f- tg \interl f$.
@@ -116,8 +113,8 @@ Then
 \end{itemize}
 \end{lemma}
 
-Wagner also shows that $f \interl g$ implies that $f \interl \lambda f + \mu g \interl g$
-for all $\lambda, \mu \geq 0$.
+\name[D.G. Wagner]{David Wagner} also shows that $f \interl g$ implies 
+that $f \interl \lambda f + \mu g \interl g$ for all $\lambda, \mu \geq 0$.
 
 
 As an example, if $f$ is real-rooted, then $f' \interl f$.
@@ -130,7 +127,7 @@ and this is same as  https://doi.org/10.1016/j.laa.2021.09.019
 
 
 
-A more recent result is the following theorem by Ma and Wang, \cite{MaWang2008}.
+A more recent result is the following theorem by \name{Shi-Mei Ma} and \name{Yi Wang} \cite{MaWang2008}.
 \begin{theorem}[Ma and Wang, 2008]
 Suppose $f$ and $F$ are polynomials with positive leading coefficients,
 such that
@@ -213,9 +210,9 @@ and from this recurrence, one can prove that $A_j(t) \interl A_{j+1}(t)$ for all
 However, it is probably not possible to show this by only using Wagner's lemma above, 
 as the size of the coefficient $(n-1)$ has an impact.
 
-This result goes back to Frobenius, \cite{Frobenius1910}.
+This result goes back to \name{Frobenius}, \cite{Frobenius1910}.
 
-The proof goes as follows. Introduce $\tilde{A}_n(x) \coloneqq x A_n(x)$.
+The proof proceeds as follows. Introduce $\tilde{A}_n(x) \coloneqq x A_n(x)$.
 The recursion then becomes
 \[
 \tilde{A}_n(x) = x(1-x)\tilde{A}'_{n-1}(x) + nx \tilde{A}_{n-1}(x).
@@ -246,8 +243,9 @@ The polynomials $A_M(x;1)$ are then real-rooted, see \cite[Section 2]{Simion1984
 Ma and Pan \cite[Thm. 1.11]{MaPan2023} gives a proof of this using interlacing polynomials.
 For stability in a multivariate version, see \cite[Eq. (4.7)]{BrandenHaglundVisontaiWagner2011}.
 
-One can also consider a colored version, see Deligeorgaki, Han, Solus,
-and obtain real-rooted results. MacMahon's formula above generalizes to their setting.
+One can also consider a colored version, see \name{Danai Deligeorgaki}, \name{Bin Han}, \name{Liam Solus},
+and obtain real-rooted results. 
+MacMahon's formula above generalizes to their setting.
 \end{example*}
 
 
@@ -289,7 +287,7 @@ The polynomials $P_n(t) = \sum_{\sigma \in B_n} t^{\des(t)}$ then satisfy the re
 \end{equation}
 from which one can prove the interlacing property, see \cite{Chow2022}.
 They in fact show that the corresponding operator preserves
-real-rootedness, using the Borcea--Bränden method on stable polynomials.
+real-rootedness, using the method of \name{Julius Borcea} and \name{Petter Brändén} on stable polynomials.
 
 The analogous polynomials for type $D$, are proved to be real-rooted, but it is only conjectured
 to form interlacing pairs, see \cite[Section 5]{Chow2022}.
@@ -322,7 +320,8 @@ D'_{n-1} + (n-1)D_{n-2} \interl D_{n-1} \implies D_{n-1} \interl t \left( D'_{n-
 and this is precisely  $D_{n-1} \interl D_{n}$, which completes the induction step.
 
 This result also follows from the general machinery in \cite[Subsection 3.4]{Hitczenko2024x}.
-A recursion for set partitions into blocks of size at least $s$ is also mentioned there (originally due to Comtet),
+A recursion for set partitions into blocks of size at least $s$ is also mentioned 
+there (originally due to \name{Louis Comtet})
 but it does not immediately imply real-rootedness.
 
 \end{example*}
@@ -369,12 +368,13 @@ order polytope defined by the inequalities
 It is worth pointing out that for $n=20$, the linear term of the Ehrhart polynomial (of degree 40)
 has a negative coefficient: $-22354369153/6983776800$.
 
-M. Bóna proved that these have only real zeros, \cite{Bona2009}.
+\name{Miklós Bóna} proved that these have only real zeros, \cite{Bona2009}.
 We may also show real-rootedness and the interlacing property using the Ma--Wang theorem.
 
 \todo{Add H.K Dey's result on interlacing, from Archiv der Mathematik}
 
-J. Haglund and M. Visontai \cite[Thm. 3.3]{HaglundVisontai2012} show that a multivariate generalization 
+\name{Jim Haglund} and \name{Mirko Visontai} \cite[Thm. 3.3]{HaglundVisontai2012} show 
+that a multivariate generalization 
 results in stable polynomials.
 \end{example*}
 
@@ -562,7 +562,7 @@ and they use a fairly general recurrence relation to obtain interlacing roots.
 
 \begin{example*}[NNE instances in Dyck paths with fixed number of peaks]
 
-In \cite{WangZhang2023x}, the authors consider the polynomials
+In \cite{WangZhang2024}, the authors consider the polynomials
 \[
  W_{n,k}(t) \coloneqq [x^k] \sum_{\pi \in Dyck(n)} x^{\mathrm{peaks}(\pi)} t^{\mathrm{nne}(\pi)},
 \] 
@@ -587,7 +587,6 @@ and that for fixed $n$, $\{W_{n,k}\}_{1 \leq k\leq n}$ is \hyperref[sturmSequenc
 These conjectures were later proved in \cite{WangZhang2024}.
 The authors there finds a two-term recurrence, expression $W_{n,k}(t)$ in terms of $W_{n-1,k}(t)$ and $W_{n,k}(t)$.
 Alternatively, $W_{n,k}(t)$ can be expressed in terms of $W_{n,k-1}(t)$ and its derivative.
-
 \end{example*}
 
 
@@ -710,7 +709,7 @@ This is a very powerful theorem, but it follows
 from the more general Chudnovsky--Seymour theorem on independence polynomials below.
 
 A hypergraph generalization (including multigraphs) 
-is considered by N. Amini in \cite{Amini2019x}.
+is considered by \name{Nima Amini} in \cite{Amini2019x}.
 
 
 \begin{example*}[Fibonacci tilings via matchings]
@@ -863,16 +862,15 @@ Chudnovsky--Seymour then use the notion of \emph{compatible polynomials}
 to obtain their result.
 \end{proof*}
 
-This result conjectured by R. Stanley in \cite{Stanley1998},
-a vertex-weighted version is given by A. Engström \cite{Engstrom2007}
+This result conjectured by \name{Richard Stanley} in \cite{Stanley1998},
+a vertex-weighted version is given by \name{Alexander Engström} \cite{Engstrom2007}
 and an alternative (non-vertex-deletion-recursive) 
-proof is given by B. Lass \cite{Lass2012}.
+proof is given by \name{Bodo Lass} \cite{Lass2012}.
 Finally, a multivariate refinement is given by \cite{LeakeRyder2019} where 
 one obtains \hyperref[stablePolynomial]{stable polynomials}.
 
-Alexander Engström proved the following weighted generalization 
-of the Chudnovsky--Seymour theorem. 
-\begin{theorem*}[Alexander Engström, \cite[Thm. 2.5]{Engstrom2007}]
+\name{Alexander Engström} proved the following weighted generalization of the Chudnovsky--Seymour theorem:
+\begin{theorem*}[A. Engström, \cite[Thm. 2.5]{Engstrom2007}]
 Let $G = (V,E)$ be a graph, and $w : V \to \setR$ be vertex weights.
 The \defin{weighted independence polynomial} $I(G,w,x)$ is defined as
 \[
@@ -884,7 +882,8 @@ If $G$ is claw-free and all weights are non-negative, then $I(G,w,x)$ is real-ro
 
 \subsection[realRootsChow]{Chow polynomials}
 
-In \cite{BrandenVecchi2025x}, the authors show various real-rootedness results regarding Chow polynomials.
+In \cite{BrandenVecchi2025x}, the authors show various 
+real-rootedness results regarding Chow polynomials.
 
 
 \section[interlacingSequences]{Interlacing sequences}
@@ -977,12 +976,11 @@ The \defin{binomial Eulerian polynomials} can be defined as
  \tilde{A}_n(t) \coloneqq \sum_{\sigma \in \symS_n} (1+t)^{\fix(\sigma)} t^{\exc(\sigma)}.
 \]
 Athanasiadis conjectured that these are real-rooted, 
-and it was later shown by Haglund and Zhang \cite{HaglundZhang2019} that this is indeed the case,
+and it was later shown by \name{Jim Haglund} and \name[P.B. Zhang]{Philip B. Zhang} \cite{HaglundZhang2019} that this is indeed the case,
 by means of interlacing polynomials.
 
 It seems that $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$, but this does not follow immediately from 
 the reference above. See also the binomial $\svec$-Eulerian polynomials.
-
 \end{example*}
 
 
