@@ -4,7 +4,9 @@
 
   // Utility
   function setCookieAccepted() {
-    document.cookie = "cookieaccepted=1; expires=Thu, 18 Dec 2030 12:00:00 UTC; path=/";
+    // Check if we are on a secure connection (HTTPS)
+    var secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = "cookieaccepted=1; expires=Thu, 18 Dec 2030 12:00:00 UTC; path=/; SameSite=Lax" + secure;
   }
 
   // KaTeX initialization (macros expected from katex-macros.js in window.KATEX_MACROS)
@@ -42,25 +44,20 @@
     }
   }
 
-  // Cookie dialog
   function initCookieDialog() {
-    // 1. Check if the user ALREADY accepted in a previous session
     if (document.cookie.indexOf("cookieaccepted=") >= 0) {
-      // If the cookie exists, grant permission immediately
-      updateConsent('granted'); 
-      return;
+      return; // Already accepted, do nothing
     }
 
-    // 2. If no cookie, show the dialog
     var dlg = document.getElementById("cookie-dialog");
     if (!dlg || !dlg.showModal) return;
     
     dlg.showModal();
-    // 3. Listen for the "Got it!" click
+
     dlg.addEventListener('close', function () {
       if (dlg.returnValue === "accept") {
-        setCookieAccepted();       // Save cookie for next time
-        updateConsent('granted');  // Tell Google to start tracking NOW
+        setCookieAccepted();
+        updateConsent('granted');
       }
     });
   }

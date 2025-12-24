@@ -45,8 +45,26 @@ is real-rooted. The proof uses an interpretation via lattice paths.
 This solves \cite[Problem 12]{ForgcsTran2016}.
 \end{example*}
 
-
-
+\begin{example*}[P-Eulerian polynomials for series-parallel posets]
+Let $E(P,t)$ denote the Eulerian polynomial associated with the naturally labeled poset $P$.
+The \emph{ordinal sum} $P \oplus Q$ of two posets is the poset 
+where 
+\[
+x \prec y \iff x \prec_P y \text { or } x \prec_Q y \text{ or } x \in P, y \in Q.
+\]
+The Eulerian polynomial then has the property that
+\[
+E(P \oplus Q, t) = E(P,t) \cdot E(Q,t).
+\]
+Moreover, for the \emph{disjoint union} of posets, we have
+\[
+E(P \sqcup Q, t) = E(P,t) \diamond E(Q,t),
+\]
+where $\diamond$ is the diamond product.
+These operations preserve real-rootedness, so all series-parallel posets have real-rooted Eulerian polynomials,
+see \cite{Wagner1992,Wagner1992en}.
+This result extends to labeled posets, see \cite{Branden2004operators}.
+\end{example*}
 
 \subsection[totallyNonnegative]{Totally non-negative matrices}
 
@@ -614,17 +632,18 @@ those of $M_{n}(x)$. In particular, these polynomials are real-rooted.
 
 
 
-
 \begin{example*}[Descents in standard Young tableaux]
 
 Brenti \cite[Thm. 5.2.3]{Brenti1989} showed that the $(P,w)$-Eulerian polynomial associated with
 a column-strict Ferrers diagram is real-rooted. This is a special case of the (now disproved in general)
-Neggers--Stanley conjecture. The descent-generating polynomial ($i$ is a descent if $i+1$ appears in a lower row):
+Neggers--Stanley conjecture. 
+The descent-generating polynomial ($i$ is a descent if $i+1$ appears in a lower row):
 \[
    W_\lambda(t) \coloneqq \sum_{T \in \SYT(\lambda)} t^{\des(T)}
 \]
 is real-rooted. Note that \cite[Thm. 4.6.1]{Brenti1989} proves a more general statement.
-It can be interpreted as being a Polya frequency sequence of the Ehrhart polynomial implies real-rootedness of the $h^*$-polynomial (of a polytope).
+It can be interpreted as being a Polya frequency sequence of the Ehrhart polynomial 
+implies real-rootedness of the \hyperref[ehrhart]{$h^*$-polynomial} (of a polytope).
 To be precise, \cite[Eq. (7.96)]{StanleyEC2} states that for a skew shape $\lambda/\mu$ with $n$ boxes,
 \[
   \sum_{m \geq 0} \schurS_{\lambda/\mu}(1^m)z^m = \frac{\sum_{T \in \SYT(\lambda/\mu)} t^{\des(T)} }{(1-z)^{n+1}}.
@@ -886,6 +905,8 @@ In \cite{BrandenVecchi2025x}, the authors show various
 real-rootedness results regarding Chow polynomials.
 
 
+
+
 \section[interlacingSequences]{Interlacing sequences}
 
 
@@ -1048,6 +1069,33 @@ coefficients (with negative leading coefficients), see \cite{LeakeRyder2024x}.
 \todo{For polynomials arranged in a tree, with
 interlacing relations along edges: https://cs.uwaterloo.ca/~lapchi/cs860-2022/notes/12-interlacing-family.pdf}
 
+
+
+\subsection[realRootedPreservers]{Operators preserving real-rootedness}
+
+In \cite{Wagner1992}, the following is proved.
+\begin{theorem}
+Suppose $f,g$ are polynomials, expressed as
+\[
+ \sum_{n \geq 0} f(n) z^n = \frac{W(f)(z)}{(1-z)^{1+\deg f}}, \quad 
+ \sum_{n \geq 0} g(n) z^n = \frac{W(g)(z)}{(1-z)^{1+\deg g}},
+\]
+with $W(f)(z)$ and $W(g)(z)$ being real-rooted with non-positive roots, then $W(fg)(z)$ 
+also have real and non-positive roots.
+\end{theorem}
+This, in particular, shows that if $f$ and $g$ are \hyperref[ehrhart]{Ehrhart functions} of two polytopes $P_f$ and $P_g$
+with real-rooted $h^*$-polynomials, then the $h^*$-polynomial of the polytope product $P_f * P_g$
+is also real-rooted.
+
+
+From \cite[Thm. 7]{Branden2004operators}
+\begin{theorem}
+If $\phi : \setR[x] \to \setR[x]$ is a linear operator that preserves real-rootedness,
+then $\phi$ preserves the interleaving property:
+\[
+  f \interl g \implies \phi(f) \interl \phi(g).
+\]
+\end{theorem}
 
 
 
