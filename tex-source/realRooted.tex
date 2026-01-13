@@ -138,6 +138,9 @@ that $f \interl \lambda f + \mu g \interl g$ for all $\lambda, \mu \geq 0$.
 As an example, if $f$ is real-rooted, then $f' \interl f$.
 Hence, recursions involving the derivative play well with interlacing roots.
 
+
+
+
 \todo{Cauchy interlace theorem: https://arxiv.org/pdf/math/0502408
 and this is same as  https://doi.org/10.1016/j.laa.2021.09.019
 }
@@ -926,6 +929,13 @@ sequences can be used to prove real-rootedness.
 In particular, rook polynomials associated with
 Ferrers diagrams can be proved to be real-rooted using this method.
 
+
+\begin{proposition}[\cite{Wagner1992}]
+Suppose $f_1 \interl f_2 \interl \dotsb \interl f_n$ and $f_1 \interl f_n$.
+Then $\{f_1,\dotsc,f_n\}$ is an interlacing sequence.
+\end{proposition}
+
+
 \subsection[realMatrixRecursion]{Matrices preserving interlacing sequences}
 
 
@@ -1088,8 +1098,8 @@ with real-rooted $h^*$-polynomials, then the $h^*$-polynomial of the polytope pr
 is also real-rooted.
 
 
-From \cite[Thm. 7]{Branden2004operators}
-\begin{theorem}
+
+\begin{theorem}[See \cite[Thm. 7]{Branden2004operators}]
 If $\phi : \setR[x] \to \setR[x]$ is a linear operator that preserves real-rootedness,
 then $\phi$ preserves the interleaving property:
 \[
