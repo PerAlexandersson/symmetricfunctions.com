@@ -40,6 +40,14 @@ local CONFIG = {
   ICO_OUT  = "assets/icons"
 }
 
+-- Parse command line arguments
+local FORCE_REBUILD = false
+for i = 1, #arg do
+  if arg[i] == "--force" then
+    FORCE_REBUILD = true
+  end
+end
+
 -- =============================================================================
 -- ENVIRONMENT SETUP
 -- =============================================================================
@@ -89,6 +97,48 @@ end
 --- @return string Filename without directory
 local function basename(path)
   return path:match("^.+/(.+)$") or path
+end
+
+--- Get the modification time of a file.
+--- @param filepath string Path to file
+--- @return number|nil Modification time in seconds since epoch, or nil if file doesn't exist
+local function get_mtime(filepath)
+  local handle = io.popen('stat -c %Y "' .. filepath .. '" 2>/dev/null')
+  if not handle then
+    return nil
+  end
+  
+  local result = handle:read("*a")
+  handle:close()
+  
+  if result == "" then
+    return nil
+  end
+  
+  return tonumber(result)
+end
+
+--- Check if SVG needs to be regenerated based on timestamps.
+--- @param tex_path string Path to source .tex file
+--- @param svg_path string Path to output .svg file
+--- @return boolean true if SVG needs regeneration
+local function needs_regeneration(tex_path, svg_path)
+  if FORCE_REBUILD then
+    return true
+  end
+  
+  if not file_exists(svg_path) then
+    return true
+  end
+  
+  local tex_mtime = get_mtime(tex_path)
+  local svg_mtime = get_mtime(svg_path)
+  
+  if not tex_mtime or not svg_mtime then
+    return true
+  end
+  
+  return tex_mtime > svg_mtime
 end
 
 --- Get the number of pages in a PDF file.
@@ -155,6 +205,56 @@ local function pdf_page_to_svg(pdf_path, page_num, output_path)
   return exec("mv " .. temp_svg .. " " .. output_path)
 end
 
+--- Get all expected output SVG paths for a TeX file.
+--- This requires compiling the PDF first to know the page count for auto-named files.
+--- @param tex_path string Path to .tex file
+--- @param figure_names table Array of named figures from TeX source
+--- @param fname string Base filename of TeX file
+--- @return table Array of expected SVG output paths, or nil if PDF compilation needed
+local function get_expected_outputs(tex_path, figure_names, fname)
+  local expected_outputs = {}
+  
+  -- Strategy A: Named figures - we know exactly what outputs to expect
+  if #figure_names > 0 then
+    for _, fig_name in ipairs(figure_names) do
+      local output_dir = get_output_dir(fig_name)
+      table.insert(expected_outputs, output_dir .. "/" .. fig_name .. ".svg")
+    end
+    return expected_outputs
+  end
+  
+  -- Strategy B: Auto-named - need to check existing files or compile
+  -- First check if there are existing SVG files matching this pattern
+  local base_name = fname:gsub("%.tex$", "")
+  local output_dir = get_output_dir(base_name)
+  
+  -- Check for single-page output
+  local single_output = output_dir .. "/" .. base_name .. ".svg"
+  if file_exists(single_output) then
+    table.insert(expected_outputs, single_output)
+  end
+  
+  -- Check for multi-page outputs
+  local page_num = 1
+  while true do
+    local multi_output = output_dir .. "/" .. base_name .. "-" .. page_num .. ".svg"
+    if file_exists(multi_output) then
+      table.insert(expected_outputs, multi_output)
+      page_num = page_num + 1
+    else
+      break
+    end
+  end
+  
+  -- If we found existing outputs, use those
+  if #expected_outputs > 0 then
+    return expected_outputs
+  end
+  
+  -- No existing outputs found - we'll need to compile to determine page count
+  return nil
+end
+
 -- =============================================================================
 -- MAIN PROCESSING
 -- =============================================================================
@@ -163,7 +263,6 @@ end
 --- @param tex_path string Path to .tex file
 local function process_tex_file(tex_path)
   local fname = basename(tex_path)
-  print_info("Processing: %s", fname)
   
   -- Read source and extract figure names
   local source_content = read_file(tex_path, "TeX source", false)
@@ -173,6 +272,32 @@ local function process_tex_file(tex_path)
   end
   
   local figure_names = extract_figure_names(source_content)
+  
+  -- Try to determine expected outputs without compiling
+  local expected_outputs = get_expected_outputs(tex_path, figure_names, fname)
+  
+  -- Check if any output needs regeneration
+  local needs_rebuild = false
+  
+  if expected_outputs then
+    -- We know what outputs to expect, check timestamps
+    for _, output_path in ipairs(expected_outputs) do
+      if needs_regeneration(tex_path, output_path) then
+        needs_rebuild = true
+        break
+      end
+    end
+    
+    if not needs_rebuild then
+      print_info("Skipping (up to date): %s", tex_path)
+      return
+    end
+  else
+    -- No existing outputs found, need to compile
+    needs_rebuild = true
+  end
+  
+  print_info("Processing: %s", tex_path)
   
   -- Compile TeX to PDF
   exec("rm -f " .. CONFIG.TEMP_DIR .. "/*.pdf")
@@ -184,7 +309,7 @@ local function process_tex_file(tex_path)
   )
   
   if not exec(compile_cmd) then
-    print_error("Compilation failed: %s", fname)
+    print_error("Compilation failed: %s", tex_path)
     return
   end
   
@@ -237,6 +362,10 @@ end
 -- =============================================================================
 -- MAIN EXECUTION
 -- =============================================================================
+
+if FORCE_REBUILD then
+  print_info("Force rebuild enabled (--force)")
+end
 
 print_info("Setting up directories...")
 exec("mkdir -p " .. CONFIG.TEMP_DIR)

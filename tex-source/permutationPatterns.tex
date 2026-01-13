@@ -1,5 +1,5 @@
-\metatitle{Permutation patterns}
-\metadescription{Permutation matrices and permutation patterns}
+\metatitle{Permutations and patterns}
+\metadescription{Permutations, matrices and patterns}
 
 
 
@@ -53,6 +53,19 @@ $
 \end{ytableau}
 \end{figure}
 \end{example*}
+
+The \defin{Rothe diagram} (named after \name[H. A. Rothe]{Heinrich August Rothe}) of a permutation $\pi \in \symS_n$,
+denoted $D(\pi)$, is defined as the set 
+\[
+D(\pi) \coloneqq \{(\pi_j,i) : i < j \text{ and } \pi_i > \pi_j \}.
+\]
+That is, we draw the permutation matrix for $\pi$ and strike out the boxes appearing somewhere to the right or above a dot (using our convention).
+This is illustrated in the figure below.
+\begin{figure}
+  \svgimg[width=0.25\textwidth]{svg-images/rothe-diagram.svg}{The Rothe diagram for the permutation $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$.}
+\end{figure}
+
+
 
 \subsection[permPatterns]{Permutation patterns}
 

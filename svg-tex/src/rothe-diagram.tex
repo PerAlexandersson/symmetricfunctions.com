@@ -1,0 +1,128 @@
+\documentclass[tikz, border=2mm]{standalone}
+\usepackage{xparse}
+
+% For drawing Rothe diagrams, given a permutation as input
+\NewDocumentCommand{\rotheDiagram}{O{} m}{%
+\begin{tikzpicture}[anchor=base, baseline, #1]
+  % Parse the permutation
+  \def\perm{#2}
+  
+  % Count the length of the permutation
+  \foreach \val [count=\i] in \perm {
+    \global\let\n\i
+  }
+  
+  % Draw the faint grid
+  \draw[thin, gray!30] (0,0) grid (\n,\n);
+  
+  % First pass: mark which cells are covered (by dots or lines)
+  \foreach \row in {1,...,\n} {
+    \foreach \col in {1,...,\n} {
+      \expandafter\gdef\csname covered@\row @\col\endcsname{0}
+    }
+  }
+  
+  % Mark cells with dots and lines as covered
+  \foreach \val [count=\col] in \perm {
+    \pgfmathtruncatemacro{\row}{\val}
+    
+    % Mark the dot position as covered
+    \expandafter\xdef\csname covered@\row @\col\endcsname{1}
+    
+    % Mark line cells to the right (until blocked by another dot)
+    \foreach \c in {1,...,\n} {
+      \ifnum\c>\col
+        \pgfmathtruncatemacro{\blocked}{0}
+        \foreach \v [count=\cc] in \perm {
+          \pgfmathtruncatemacro{\testrow}{\v}
+          \ifnum\testrow=\row
+            \ifnum\cc<\c
+              \ifnum\cc>\col
+                \pgfmathtruncatemacro{\blocked}{1}
+              \fi
+            \fi
+          \fi
+        }
+        \ifnum\blocked=0
+          \expandafter\xdef\csname covered@\row @\c\endcsname{1}
+        \fi
+      \fi
+    }
+    
+    % Mark line cells above (until blocked by another dot)
+    \foreach \r in {1,...,\n} {
+      \ifnum\r>\row
+        \pgfmathtruncatemacro{\blocked}{0}
+        \foreach \v [count=\cc] in \perm {
+          \pgfmathtruncatemacro{\testrow}{\v}
+          \ifnum\cc=\col
+            \ifnum\testrow>\row
+              \ifnum\testrow<\r
+                \pgfmathtruncatemacro{\blocked}{1}
+              \fi
+            \fi
+          \fi
+        }
+        \ifnum\blocked=0
+          \expandafter\xdef\csname covered@\r @\col\endcsname{1}
+        \fi
+      \fi
+    }
+  }
+  
+  % Draw borders around uncovered cells
+  \foreach \row in {1,...,\n} {
+    \foreach \col in {1,...,\n} {
+      \pgfmathtruncatemacro{\iscovered}{\csname covered@\row @\col\endcsname}
+      \ifnum\iscovered=0
+        \draw[thick,fill=lightgray] (\col-1,\row-1) rectangle (\col,\row);
+      \fi
+    }
+  }
+  
+  % Draw the lines and dots
+  \foreach \val [count=\col] in \perm {
+    \pgfmathtruncatemacro{\row}{\val}
+    
+    % Find the rightmost extent (next dot in same row or edge)
+    \pgfmathtruncatemacro{\rightend}{\n + 1}
+    \foreach \v [count=\cc] in \perm {
+      \pgfmathtruncatemacro{\testrow}{\v}
+      \ifnum\testrow=\row
+        \ifnum\cc>\col
+          \ifnum\cc<\rightend
+            \pgfmathtruncatemacro{\rightend}{\cc}
+          \fi
+        \fi
+      \fi
+    }
+    % Draw line to the right (to edge or to blocking dot)
+    \draw[line width=1.2pt] (\col - 0.5, \row - 0.5) -- (\rightend - 1, \row - 0.5);
+    
+    % Find the highest extent (next dot in same column or edge)
+    \pgfmathtruncatemacro{\upend}{\n + 1}
+    \foreach \v [count=\cc] in \perm {
+      \pgfmathtruncatemacro{\testrow}{\v}
+      \ifnum\cc=\col
+        \ifnum\testrow>\row
+          \ifnum\testrow<\upend
+            \pgfmathtruncatemacro{\upend}{\testrow}
+          \fi
+        \fi
+      \fi
+    }
+    % Draw line up (to edge or to blocking dot)
+    \draw[line width=1.2pt] (\col - 0.5, \row - 0.5) -- (\col - 0.5, \upend - 1);
+    
+    % Draw the permutation dot on top
+    \fill (\col - 0.5, \row - 0.5) circle (0.15);
+  }
+  
+  % Draw the outer border
+  \draw[very thick] (0,0) rectangle (\n,\n);
+\end{tikzpicture}%
+}
+
+\begin{document}
+\rotheDiagram{1,8,5,3,7,4,6,2}
+\end{document}
