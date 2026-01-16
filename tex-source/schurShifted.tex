@@ -151,20 +151,21 @@ classical \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficie
 \todo{I think BL defined what is now known as shifted Schur functions, and factorial ones are Molev-Sagan.}
 
 The \defin{factorial Schur functions} $\schurFactorial_\lambda(\xvec)$ is a family of non-homogeneous symmetric polynomials, indexed by partitions.
-They were introduced by Biedenharn and Louck in \cite{BiedenharnLouck1989}.
-The top-degree component is the classical Schur polynomial 
+They were introduced by \name{Lawrence Biedenharn} and \name{James Louck} in \cite{BiedenharnLouck1989}.
+The top-degree component is the classical \hyperref[schurS]{Schur polynomial} $\schurS_\lambda$. 
+They form a $\setZ$-basis for the space of symmetric polynomials (in $n$ variables).
 $\schurS_\lambda$. They form a $\setZ$-basis for the space of symmetric polynomials (in $n$ variables).
 
 
 The factorial Schur functions can be defined using \hyperref[gtpatterns]{Gelfand--Tsetlin patterns}.
 We sum over all GT-patterns with $n$ rows and top row $\lambda$ (note that this set is in bijection with 
-semi-standard Young tableaux of shape $\lambda$ and maximal entry at most $n$):
+\hyperref[ssyt]{semi-standard Young tableaux} of shape $\lambda$ and maximal entry at most $n$):
 \[
  \schurFactorial_\lambda(x_1,\dotsc,x_n) \coloneqq \sum_{(m_{ij}) \in GT(\lambda)} \prod_{j=1}^n \prod_{i=1}^j
  \left( x_j - m_{i,j-1} + i-j \right)_{m_{i,j}-m_{i,j-1}}
 \]
 where we are using the falling factorial notation $(a)_k = a(a-1)\dotsm (a-k+1)$.
-Under the GT-pattern to SSYT bijection, the quantity $m_{i,j}-m_{i,j-1}$ is sent 
+Under the \hyperref[gtpatternsAsSSYT]{GT-pattern to SSYT bijection}, the quantity $m_{i,j}-m_{i,j-1}$ is sent 
 to the number of times $j$ appears in row $i$ (in the SSYT).
 
 From this definition, we can see that 

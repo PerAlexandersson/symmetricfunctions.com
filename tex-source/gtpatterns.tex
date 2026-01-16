@@ -271,8 +271,7 @@ functions and \hyperref[schurFlagged]{flagged skew Kostka coefficients}.
 Do all Kogan faces of Gelfand--Tsetlin polytopes have non-negative Ehrhart polynomial?
 There is an example (see \cite{Alexandersson2019CounterExamples}) 
 of a (non-Kogan) face where the Ehrhart polynomial 
-has a negative coefficient. 
-However, this polynomial is of degree 20.
+has a negative coefficient. However, this polynomial is of degree 20.
 \end{question}
 
 
@@ -328,6 +327,16 @@ given by the \hyperref[schurCombinatorialFormula]{Kostka coefficient} $K_{\lambd
 
 We do the analogous definitions for parallelogram GT-patterns and skew shapes.
 
+
+\begin{theorem}[See \cite[p.179]{Kirillov2001}]
+The dimension of the polytope $\gtp_{\lambda,\mu}$ (assuming non-empty) 
+where $\lambda$ has $r$ parts and $\mu$ has $s$ parts is given by
+\[
+ \dim \gtp_{\lambda,\mu} = (r-1)(s-1) - \binom{r}{2} - \sum_{i=1}^{r} \binom{\lambda'_i - \lambda'_{i+1}}{2}.
+\]
+\end{theorem}
+
+
 \subsection[gtKostkaVertices]{Non-integrality and vertices}
 
 Contrary to $\gtp_{\lambda}$, the polytopes (also called Gelfand--Tsetlin polytopes) $\gtp_{\lambda,w}$
@@ -358,10 +367,11 @@ contains at least one vertex with integer coordinates.
 Since the $\gtp_{\lambda/\mu,w}$ are not lattice \hyperref[polytope]{polytopes}, 
 one does not expect the \hyperref[ehrhart]{Ehrhart function} to be a polynomial. 
 However, these polytopes exhibit a \defin{period collapse} \cite{HaaseMcAllister2007}
-and they do have a polynomial Ehrhart function.
+and they do have a polynomial \hyperref[ehrhart]{Ehrhart function}. 
 See \cite{Rassart2004} for a proof of this statement.
 
-\begin{conjecture}[King, Tollu, Toumazet (2004), \cite{KingTolluToumazet2004}]
+
+\begin{conjecture}[See \cite[p.170]{Kirillov2001} and later \cite{KingTolluToumazet2004}]
 The coefficients of the Ehrhart polynomial of $\gtp_{\lambda/\mu,w}$ are non-negative.
 \end{conjecture}
 
