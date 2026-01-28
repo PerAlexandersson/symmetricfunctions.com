@@ -90,7 +90,7 @@ We continue the calculation by applying $\pi_2$ and get
  \pi_2 \pi_3 (z_2 z_1^2+z_3 z_1^2+z_2^2 z_1+z_3^2 z_1+z_2 z_3 z_1).
  \end{align*}
  Applying $\pi_2 \pi_3$ then finally gives
-\begin{equation*}\label{eq:keyExample}
+\begin{equation*}
 \begin{split}
 \key_{\lambda,\sigma}(z) &=
 z_1^2 z_2  + 
@@ -139,7 +139,7 @@ That is, $\GT(\lambda,\sigma)$ is the union of all reduced Kogan faces of type $
 in the polytope $\GT(\lambda)$.
 
 The key polynomial $\key_{\lambda,\sigma}(z)$ can be computed as
-\begin{align}\label{eq:keyGTFormula}
+\begin{align}
  \key_{\lambda,\sigma}(z_1,\dotsc,z_n) = \sum_{G \in \GT(\lambda,\sigma) \cap \setZ^{\tfrac{n(n+1)}{2}} } z_1^{w_1(G)} \dotsm z_n^{w_n(G)}
 \end{align}
 \end{theorem}
@@ -177,7 +177,7 @@ It is relatively straightforward to see that setting $q=t=0$ in a non-symmetric 
 $\macdonaldE_{\alpha}(\xvec,q,t)$, we recover the key polynomial $\key_\alpha(\xvec)$.
 
 
-From the work of S. Mason \cite{Mason2009}, 
+From the work of \name{Sarah Mason} \cite{Mason2009}, 
 we in fact get two combinatorial models for key polynomials 
 as special cases of the \hyperref[macdonaldEperm]{permuted basement Macdonald polynomials}.
 In the below definition, we assume that the reader is familiar with 
@@ -293,7 +293,7 @@ See \cite{Pun2016Thesis} for special cases of this result (she verifies the conj
 \subsection[keyPieri]{Pieri rule for key polynomials}
 
 A Pieri rule for key polynomials is described via 
-an \hyperref[rsk]{Robinson--Schensted--Knuth}-type algorithm is given by S. Assaf and D. Quijada in \cite{AssafQuijada2019x}.
+an \hyperref[rsk]{Robinson--Schensted--Knuth}-type algorithm is given by \name{Sami Assaf} and \name{Danjoseph Quijada} in \cite{AssafQuijada2019x}.
 
 
 \todo{Write more about key polynomial pieri rule.}
@@ -303,9 +303,9 @@ an \hyperref[rsk]{Robinson--Schensted--Knuth}-type algorithm is given by S. Assa
 \subsection[keySkew]{Skew key polynomials}
 
 In \cite{AssafvanWilligenburg2019}, the authors introduce skew key polynomials,
-and show that these are positive in the key basis. They use weak dual equivalence 
+and show that these are positive in the key basis. They use weak \hyperref[dualEquivalence]{dual equivalence} 
 to obtain their result. 
-This generalizes an earlier result by Reiner and Shimozono, \cite{ReinerShimozono1995}.
+This generalizes an earlier result by \name{Vic Reiner} and \name{Mark Shimozono}, \cite{ReinerShimozono1995}.
 
 
 
@@ -319,7 +319,7 @@ This generalizes an earlier result by Reiner and Shimozono, \cite{ReinerShimozon
   Bib      & Lascoux1990Keys \\
   Year     & 1990 \\
   Symbol   & $\atom_{\lambda,\sigma}(z)$ \\
-  Keywords & divided-difference, fillings, polytopes \\
+  Keywords & divided-difference, fillings, polytopes, vertex model \\
   Category & Schur \\
 \end{polydata}
 
@@ -395,8 +395,7 @@ and
 \]
 \end{example*}
 
-See Anna Pun's thesis for a good 
-overview of Demazure atoms, key polynomials and recent results \cite{Pun2016Thesis}.
+See \name{AnnaPun}s PhD thesis for a good overview of Demazure atoms and key polynomials \cite{Pun2016Thesis}.
 
 
 \subsection[atomCauchyKernel]{Cauchy kernel}
@@ -416,14 +415,14 @@ In \cite{FuLascoux2009}, the authors prove this formula and several other Cauchy
 identities involving key polynomials and Demazure atoms in other types.
 
 A generalization to \emph{truncated staircase shapes} is provided 
-by O. Azenhas and A. Emami in \cite{AzenhasEmami2015}. 
-They use a version of RSK introduced by S. Mason in \cite{Mason2008}.
+by \name{Olga Azenhas} and \name{Aram Emami} in \cite{AzenhasEmami2015}. 
+They use a version of RSK introduced by \name{Sarah Mason} in \cite{Mason2008}.
 
 An alternative proof also appear in \cite{ChoiKwon2017} where the 
 authors use $U_q(\mathfrak{g})$ \hyperref[crystals]{crystals}.
 
 See also \cite{AzenhasGobetLecouvey2022x} for the connection between the Cauchy kernel, 
-RSK, crystals and last passage percolation.
+\hyperref[RSK]{RSK}, \hyperref[crystals]{crystals} and last passage percolation.
 
 
 \begin{example}[Personal communication, Vasu Tewari 2019]
@@ -444,7 +443,7 @@ are key-positive.
 \section[keysAndAtomsTypeBCD]{Demazure keys and Demazure atoms in type $B$, $C$ and $D$}
 
 
-In \cite{FuLascoux2009}, A. Fu and A. Lascoux define divided difference operators
+In \cite{FuLascoux2009}, \name{Amy Fu} and \name{Alain Lascoux} define divided difference operators
 that allow us to define key polynomials and Demazure atoms in types $B$, $C$ and $D$.
 
 \todo{Write down the operators.}
@@ -452,10 +451,6 @@ that allow us to define key polynomials and Demazure atoms in types $B$, $C$ and
 See \href{http://www.mat.uc.pt/~oazenhas/KC.pdf}{these slides} for a nice overview.
 In particular, the type $C$ key polynomials contain the \hyperref[schurSymplectic]{symplectic Schur functions}.
 There is an operator definition, crystal graph definition and a key-tableau definition of these.
-
-They end with an open question about how to characterize type $B$ Demazure atoms
-as a sum over fillings.  This question is perhaps answered in the recent preprint
-\url{https://arxiv.org/pdf/1910.14115.pdf}.
 
 See also \cite{RamYip2011}, as key polynomials are specializations of non-symmetric Macdonald polynomials.
 
@@ -472,11 +467,8 @@ See also \cite{RamYip2011}, as key polynomials are specializations of non-symmet
   Category & Schur \\
 \end{polydata}
 
-\todo{Add type BC keys and atoms}
-
-
-In \cite{Santos2021}, J. M. Santos gives combinatorial formulas 
-for the type $C$ key polynomials and Demazure atom polynomials.
+In \cite{Santos2021}, \name[J. M. Santos]{João Miguel Santos} gives 
+combinatorial formulas for the type $C$ key polynomials and Demazure atom polynomials.
 The type $C$ key polynomials expand positively into type $C$ Demazure atoms,
 by summing over an ideal in the Bruhat poset, see \cite[Prop. 53]{Santos2021}.
 This is analogous to the type $A$ setting.
@@ -498,7 +490,7 @@ A crystal characterization is also given, as well as analogs of key tableaux.
 
 
 See \cite{FuLascoux2009} for definitions of key polynomials in other types.
-These are related to the  \hyperref[schurOrthogonal]{orthogonal} 
+These are related to the \hyperref[schurOrthogonal]{orthogonal} 
 and \hyperref[schurSymplectic]{symplectic} Schur functions.
 
 
