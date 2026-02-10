@@ -3,6 +3,8 @@ temp/
 www/
 untracked/
 
+# Work in progress
+arxiv/
 
 # LaTeX build artefacts
 *.aux
@@ -25,3 +27,7 @@ Thumbs.db
 # IDE settings
 .vscode/
 .idea/
+
+
+# Local environment variables 
+.env
