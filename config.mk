@@ -8,8 +8,7 @@ WWW_DIR    = www
 
 # === SOURCE FILES ===
 TEMPLATE   := template.htm
-# === THIS BIB FILE IS LOCAL AT THE MOMENT! ===
-BIBFILE    := ~/Dropbox/latex/bibliography.bib
+BIBFILE    := bibliography.bib
 
 # ======================================================
 

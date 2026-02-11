@@ -194,4 +194,4 @@ Edit `config.mk` to customize:
 - `TEMP_DIR` - Temporary files (default: `temp`)
 - `WWW_DIR` - Output directory (default: `www`)
 - `TEMPLATE` - HTML template file (default: `template.htm`)
-- `BIBFILE` - Bibliography file (default: `references.bib`)
+- `BIBFILE` - Bibliography file (default: `bibliography.bib`)

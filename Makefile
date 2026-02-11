@@ -12,7 +12,7 @@ include config_test.mk
 .DELETE_ON_ERROR:
 .SECONDARY: $(PRE_TEX)
 
-# Supress file deletion messages
+# Suppress file deletion messages
 .SILENT:
 
 
