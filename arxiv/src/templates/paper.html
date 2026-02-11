@@ -64,19 +64,13 @@
 
 {% block extra_js %}
 <script>
-// Fetch BibTeX on page load
-fetch('/api/bibtex/{{ paper.arxiv_id }}')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('bibtex').textContent = data;
-    })
-    .catch(error => {
-        document.getElementById('bibtex').textContent = 'Error loading BibTeX';
-    });
+// Fetch BibTeX on page load using utility function
+fetchBibtex('{{ paper.arxiv_id }}', 'bibtex');
 
+// Copy function for this page's BibTeX display
 function copyBibtex() {
     const bibtex = document.getElementById('bibtex').textContent;
-    navigator.clipboard.writeText(bibtex).then(() => {
+    copyToClipboard(bibtex).then(() => {
         alert('BibTeX copied to clipboard!');
     }).catch(err => {
         alert('Failed to copy: ' + err);

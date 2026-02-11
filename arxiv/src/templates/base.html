@@ -51,6 +51,9 @@
         {% endraw %}
     </script>
 
+    <!-- Utility functions -->
+    <script src="{{ url_for('static', filename='utils.js') }}"></script>
+
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -86,127 +89,7 @@
         </div>
     </footer>
 
-    <script>
-        // Copy BibTeX to clipboard
-        async function copyBibtex(arxivId) {
-            try {
-                const response = await fetch(`/api/bibtex/${arxivId}`);
-                const bibtex = await response.text();
-                await navigator.clipboard.writeText(bibtex);
-                alert('arXiv BibTeX copied to clipboard!');
-            } catch (err) {
-                alert('Failed to copy BibTeX: ' + err);
-            }
-        }
-
-        // Copy DOI BibTeX to clipboard
-        async function copyDoiBibtex(arxivId) {
-            try {
-                const response = await fetch(`/api/doi-bibtex/${arxivId}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                const bibtex = await response.text();
-                await navigator.clipboard.writeText(bibtex);
-                alert('DOI BibTeX copied to clipboard!');
-            } catch (err) {
-                alert('Failed to copy DOI BibTeX: ' + err);
-            }
-        }
-
-        // Copy shareable link to clipboard
-        function copyShareLink(arxivId) {
-            const url = `${window.location.origin}/paper/${arxivId}`;
-            navigator.clipboard.writeText(url).then(() => {
-                alert('Link copied to clipboard!');
-            }).catch(err => {
-                alert('Failed to copy link: ' + err);
-            });
-        }
-
-        // Persistent abstract state using localStorage
-        document.addEventListener('DOMContentLoaded', function() {
-            const details = document.querySelectorAll('.abstract-details');
-
-            // Restore state from localStorage
-            details.forEach(detail => {
-                const arxivId = detail.getAttribute('data-arxiv-id');
-                if (arxivId) {
-                    const isOpen = localStorage.getItem(`abstract-${arxivId}`) === 'open';
-                    if (isOpen) {
-                        detail.open = true;
-                    }
-                }
-            });
-
-            // Save state on toggle
-            details.forEach(detail => {
-                detail.addEventListener('toggle', function() {
-                    const arxivId = this.getAttribute('data-arxiv-id');
-                    if (arxivId) {
-                        localStorage.setItem(`abstract-${arxivId}`, this.open ? 'open' : 'closed');
-                    }
-                });
-            });
-        });
-
-        // Keyboard shortcuts: j/k for navigation, Enter to expand
-        document.addEventListener('keydown', function(e) {
-            // Ignore if user is typing in an input/textarea
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-                return;
-            }
-
-            const papers = Array.from(document.querySelectorAll('.paper'));
-            if (papers.length === 0) return;
-
-            let currentIndex = -1;
-            const focused = document.activeElement;
-
-            // Find current paper
-            if (focused && focused.classList.contains('paper-title')) {
-                const paper = focused.closest('.paper');
-                currentIndex = papers.indexOf(paper);
-            }
-
-            if (e.key === 'j') {
-                // Next paper
-                e.preventDefault();
-                const nextIndex = currentIndex + 1;
-                if (nextIndex < papers.length) {
-                    const summary = papers[nextIndex].querySelector('.paper-title');
-                    if (summary) {
-                        summary.focus();
-                        summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }
-            } else if (e.key === 'k') {
-                // Previous paper
-                e.preventDefault();
-                const prevIndex = currentIndex - 1;
-                if (prevIndex >= 0) {
-                    const summary = papers[prevIndex].querySelector('.paper-title');
-                    if (summary) {
-                        summary.focus();
-                        summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                } else if (currentIndex === -1 && papers.length > 0) {
-                    // If nothing focused, focus first paper
-                    const summary = papers[0].querySelector('.paper-title');
-                    if (summary) {
-                        summary.focus();
-                        summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }
-            } else if (e.key === 'Enter') {
-                // Toggle current paper's abstract
-                if (focused && focused.classList.contains('paper-title')) {
-                    e.preventDefault();
-                    focused.click();
-                }
-            }
-        });
-    </script>
+    <!-- All JavaScript utilities moved to static/utils.js -->
 
     {% block extra_js %}{% endblock %}
 </body>
