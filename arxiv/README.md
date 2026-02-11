@@ -1,11 +1,17 @@
-# arXiv Combinatorics Frontend - Setup & Usage
+# arXiv Combinatorics Frontend
 
-## Quick Start (Local Development)
+A web interface for browsing arXiv papers in combinatorics (math.CO category).
 
-### 1. Install Dependencies
+**Features:** Browse papers, search by author/title, one-click BibTeX export, KaTeX math rendering.
+
+---
+
+## Quick Setup
+
+### 1. Install Python Dependencies
 
 ```bash
-# Use a virtual environment (recommended)
+cd arxiv
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -13,7 +19,7 @@ pip install -r requirements.txt
 
 ### 2. Create Environment File
 
-**CRITICAL FOR SECURITY:** Never commit passwords to git!
+**IMPORTANT:** Never commit passwords to git!
 
 ```bash
 # Copy the example file
@@ -23,7 +29,7 @@ cp .env.example .env
 nano .env  # or use your preferred editor
 ```
 
-Your `.env` file should look like:
+Your `.env` file should contain:
 ```
 DB_HOST=localhost
 DB_USER=arxiv_user
@@ -36,70 +42,72 @@ The `.env` file is in `.gitignore` and will NOT be committed to git.
 
 ### 3. Setup Database
 
-The setup script now reads from your `.env` file!
-
 ```bash
+cd database
 chmod +x setup_database.sh
 ./setup_database.sh
 ```
 
 This will:
-- Install MariaDB
+- Install MariaDB (if needed)
 - Create database `arxiv_frontend`
-- Create user `arxiv_user` (with password from `.env`)
+- Create user `arxiv_user` with password from `.env`
 - Import schema from `schema.sql`
 
-### 4. Test Configuration
+### 4. Fetch Papers
 
 ```bash
-# Verify your config is loaded correctly
-python3 config.py
-```
+cd ../src
+source ../venv/bin/activate
 
-Fetch a single paper to test:
-
-```bash
+# Test with a single paper
 python3 fetch_arxiv.py --arxiv-id 2401.12345
+
+# Fetch recent papers (last 7 days)
+python3 fetch_arxiv.py --recent --days 7
+
+# Backfill historical data (optional)
+python3 fetch_arxiv.py --backfill --start-date 2024-01-01 --end-date 2024-12-31
 ```
 
-Fetch recent papers (last 2 days):
+### 5. Run the Web Interface
 
 ```bash
-python3 fetch_arxiv.py --recent --days 2
+cd ../src
+source ../venv/bin/activate
+python3 app.py
 ```
 
-### 5. Backfill Historical Data (Optional)
+Then visit **http://localhost:5000** in your browser.
 
-To populate the database with papers from 2000 to present:
+---
 
-```bash
-chmod +x backfill_all.sh
-./backfill_all.sh
-```
+## Web Interface Features
 
-This will take 30-60 minutes. You can also backfill specific date ranges:
-
-```bash
-python3 fetch_arxiv.py --backfill --start-date 2020-01-01 --end-date 2020-12-31
-```
+- **Browse papers** - Paginated list sorted by publication date
+- **Search** - Search by title, author, or abstract
+- **Author pages** - View all papers by a specific author
+- **BibTeX export** - One-click copy/download for citations
+- **Math rendering** - KaTeX support for LaTeX in titles and abstracts
 
 ---
 
 ## Daily Updates (Cron Job)
 
-To automatically fetch new papers daily, add this to your crontab:
+To automatically fetch new papers daily:
 
 ```bash
-# Edit crontab
 crontab -e
+```
 
-# Add this line (runs at 2 AM daily)
-0 2 * * * cd /path/to/arxiv-frontend && /usr/bin/python3 fetch_arxiv.py --recent --days 2 >> /var/log/arxiv_fetch.log 2>&1
+Add this line (adjust the path to match your setup):
+```
+0 2 * * * cd ~/Dropbox/symmetricfunctions.com/arxiv/src && source ../venv/bin/activate && python3 fetch_arxiv.py --recent --days 2 >> ~/arxiv_fetch.log 2>&1
 ```
 
 ---
 
-## Verify Database
+## Database Access
 
 Connect to the database:
 
@@ -107,19 +115,16 @@ Connect to the database:
 mysql -u arxiv_user -p arxiv_frontend
 ```
 
-Check some statistics:
+Useful queries:
 
 ```sql
 -- Count total papers
 SELECT COUNT(*) FROM papers;
 
--- Count total authors
-SELECT COUNT(*) FROM authors;
-
--- Show recent papers
-SELECT arxiv_id, title, published_date 
-FROM papers 
-ORDER BY published_date DESC 
+-- Recent papers
+SELECT arxiv_id, title, published_date
+FROM papers
+ORDER BY published_date DESC
 LIMIT 10;
 
 -- Papers by year
@@ -127,49 +132,75 @@ SELECT YEAR(published_date) as year, COUNT(*) as count
 FROM papers
 GROUP BY YEAR(published_date)
 ORDER BY year DESC;
+
+-- Most prolific authors
+SELECT a.name, COUNT(*) as paper_count
+FROM authors a
+JOIN paper_authors pa ON a.id = pa.author_id
+GROUP BY a.name
+ORDER BY paper_count DESC
+LIMIT 10;
 ```
 
 ---
 
-## File Structure
+## Project Structure
 
 ```
-arxiv-frontend/
+arxiv/
+├── .env                      # Database credentials (NOT in git!)
 ├── .env.example              # Template for environment variables
-├── .env                      # Your actual config (NOT in git!)
-├── .gitignore                # Prevents committing secrets
-├── config.py                 # Configuration loader
-├── SPEC.md                   # Project specification
-├── README.md                 # This file
+├── venv/                     # Python virtual environment (local, not synced)
 ├── requirements.txt          # Python dependencies
-├── schema.sql                # Database schema
-├── setup_database.sh         # Database setup script
-├── reset_database.sh         # Database reset script
-├── fetch_arxiv.py            # Main fetch script
-├── backfill_all.sh          # Backfill helper script
-└── (Flask app coming soon)
+├── README.md                 # This file
+├── SPEC.md                   # Project specification
+├── database/
+│   ├── schema.sql            # Database schema
+│   └── setup_database.sh     # Database setup script
+└── src/
+    ├── config.py             # Configuration loader
+    ├── fetch_arxiv.py        # arXiv scraping script
+    ├── app.py                # Flask web application
+    ├── static/
+    │   └── style.css         # Styles matching symmetricfunctions.com
+    └── templates/            # HTML templates
+        ├── base.html         # Base template with KaTeX
+        ├── index.html        # Homepage
+        ├── paper.html        # Paper details
+        ├── author.html       # Author page
+        └── search.html       # Search results
 ```
+
+**Note:** The `venv/` directory and database are local to each machine and not synced via Dropbox.
 
 ---
 
 ## Troubleshooting
 
 **"DB_PASSWORD not set in environment variables"**
-- Create a `.env` file: `cp .env.example .env`
-- Edit `.env` and set your actual password
-- Test: `python3 config.py`
+- Create `.env` file: `cp .env.example .env`
+- Edit `.env` and set your password
+- Test: `cd src && python3 config.py`
 
 **"Access denied for user"**
-- Check that the password in `.env` matches the one you set in `setup_database.sh`
-- Try connecting manually: `mysql -u arxiv_user -p`
+- Verify password in `.env` matches database setup
+- Test connection: `mysql -u arxiv_user -p arxiv_frontend`
 
 **"No module named 'arxiv'"**
-- Install dependencies: `pip3 install -r requirements.txt`
-
-**"Too many results"**
-- The arXiv API has rate limits. The scripts include delays.
-- If backfilling fails, try smaller date ranges (month by month instead of year by year)
+- Activate virtual environment: `source venv/bin/activate`
+- Install dependencies: `pip install -r requirements.txt`
 
 **"Connection refused"**
-- Make sure MariaDB is running: `sudo systemctl status mariadb`
-- Start it if needed: `sudo systemctl start mariadb`
+- Check MariaDB is running: `systemctl status mariadb`
+- Start if needed: `sudo systemctl start mariadb`
+
+**"Port 5000 already in use"**
+- Stop other Flask apps or change port in `src/app.py`
+
+**Different paper counts on different machines**
+- Each machine has its own local database (not synced)
+- Run fetch scripts on each machine to sync data
+
+---
+
+For more details, see [SPEC.md](SPEC.md) for project architecture and features.
