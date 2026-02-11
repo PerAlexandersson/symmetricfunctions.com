@@ -1,0 +1,61 @@
+{% macro render_paper(paper, latest_date=None) %}
+<div class="paper" id="paper-{{ paper.arxiv_id }}">
+    <div class="paper-authors-row">
+        <div class="paper-date{% if latest_date and paper.published_date == latest_date %} latest-date{% endif %}">
+            {{ paper.published_date }}
+            {% if 'v' in paper.arxiv_id and paper.arxiv_id.split('v')[-1].isdigit() %}
+                {% set version_num = paper.arxiv_id.split('v')[-1] %}
+                {% if version_num|int > 1 %}
+                    <span class="version-indicator" title="Updated version {{ version_num }}">v{{ version_num }}</span>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="paper-authors">
+            {% for author in paper.authors %}
+                <a href="/author/{{ author }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </div>
+        <div class="paper-links">
+            <a href="#paper-{{ paper.arxiv_id }}" class="share-link" onclick="copyShareLink('{{ paper.arxiv_id }}'); return false;" title="Copy shareable link">
+                #
+            </a>
+            <a href="#" onclick="copyBibtex('{{ paper.arxiv_id }}'); return false;" title="Copy arXiv BibTeX entry">
+                🏷️
+            </a>
+            {% if paper.doi %}
+            <a href="#" onclick="copyDoiBibtex('{{ paper.arxiv_id }}'); return false;" title="Copy DOI BibTeX entry">
+                📚
+            </a>
+            {% endif %}
+            <a href="https://arxiv.org/pdf/{{ paper.arxiv_id }}.pdf" target="_blank" rel="noopener" title="Download PDF">
+                📄
+            </a>
+            <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}" target="_blank" rel="noopener" title="View on arXiv">
+                🔗
+            </a>
+            <a href="/paper/{{ paper.arxiv_id }}" title="View details">
+                ⓘ
+            </a>
+        </div>
+    </div>
+
+    <details class="abstract-details" data-arxiv-id="{{ paper.arxiv_id }}">
+        <summary class="paper-title">{{ paper.title }}</summary>
+
+        {% if paper.journal_ref or paper.doi %}
+        <div class="paper-publication">
+            📰 Published in {{ paper.journal_ref }}
+            {% if paper.doi %}
+                • <a href="https://doi.org/{{ paper.doi }}" target="_blank" rel="noopener">DOI</a>
+            {% elif paper.journal_ref %}
+                • <a href="https://scholar.google.com/scholar?q={{ (paper.title + ' ' + paper.journal_ref) | urlencode }}" target="_blank" rel="noopener">Search</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="paper-abstract">
+            {{ paper.abstract }}
+        </div>
+    </details>
+</div>
+{% endmacro %}

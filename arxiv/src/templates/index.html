@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from '_macros.html' import render_paper %}
+
+{% block title %}arXiv Combinatorics - Recent Papers{% endblock %}
+
+{% block content %}
+<div class="stats">
+    Showing {{ papers|length }} papers (Total: {{ total }} papers, {{ total_authors }} authors in database)
+</div>
+
+{% if papers %}
+    {% for paper in papers %}
+        {{ render_paper(paper, latest_date) }}
+    {% endfor %}
+
+    {% if total_pages > 1 %}
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/?page={{ page - 1 }}">« Previous</a>
+        {% endif %}
+
+        {% for p in range(1, total_pages + 1) %}
+            {% if p == page %}
+                <span class="current">{{ p }}</span>
+            {% elif p == 1 or p == total_pages or (p >= page - 2 and p <= page + 2) %}
+                <a href="/?page={{ p }}">{{ p }}</a>
+            {% elif p == page - 3 or p == page + 3 %}
+                <span>...</span>
+            {% endif %}
+        {% endfor %}
+
+        {% if page < total_pages %}
+            <a href="/?page={{ page + 1 }}">Next »</a>
+        {% endif %}
+    </div>
+    {% endif %}
+{% else %}
+    <p>No papers found. Run the fetch script to populate the database.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from '_macros.html' import render_paper %}
+
+{% block title %}Papers from {{ date }} - arXiv Combinatorics{% endblock %}
+
+{% block content %}
+<h2>Papers from {{ date.strftime('%B %d, %Y') }}</h2>
+
+<div class="stats">
+    {{ papers|length }} paper(s) published on this date
+</div>
+
+{% if papers %}
+    {% for paper in papers %}
+        {{ render_paper(paper) }}
+    {% endfor %}
+{% else %}
+    <p>No papers found for this date.</p>
+{% endif %}
+
+<div style="margin-top: 2rem;">
+    <a href="/browse?year={{ date.year }}" style="color: var(--c-link);">← Back to calendar</a>
+</div>
+{% endblock %}

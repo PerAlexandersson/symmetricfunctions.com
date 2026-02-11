@@ -1,0 +1,600 @@
+/* arXiv Combinatorics Browser - Adapted from SymCat design system */
+
+@layer base {
+  :root {
+    /* Color Palette */
+    --hue-brand:   28;
+    --hue-link:    212;
+    --hue-neutral: 215;
+
+    /* Semantic Colors */
+    --c-brand:       hsl(var(--hue-brand), 90%, 55%);
+    --c-brand-light: hsl(var(--hue-brand), 90%, 75%);
+    --c-link:        hsl(var(--hue-link), 90%, 48%);
+    --c-link-dark:   hsl(var(--hue-link), 90%, 35%);
+
+    /* Backgrounds */
+    --c-bg-body:     hsl(var(--hue-neutral), 15%, 94%);
+    --c-bg-surface:  hsl(0, 0%, 100%);
+    --c-bg-header:   hsl(var(--hue-neutral), 15%, 97%);
+
+    /* Borders */
+    --c-border:      hsl(var(--hue-neutral), 15%, 82%);
+    --c-bg-gray:     hsl(var(--hue-neutral), 10%, 90%);
+
+    /* Typography */
+    --c-text-main:   hsl(var(--hue-neutral), 20%, 20%);
+    --c-text-sub:    hsl(var(--hue-neutral), 15%, 40%);
+    --c-text-muted:  hsl(var(--hue-neutral), 10%, 60%);
+
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg-body:     hsl(var(--hue-neutral), 20%, 10%);
+      --c-bg-surface:  hsl(var(--hue-neutral), 20%, 14%);
+      --c-bg-header:   hsl(var(--hue-neutral), 20%, 12%);
+      --c-border:      hsl(var(--hue-neutral), 15%, 25%);
+      --c-bg-gray:     hsl(var(--hue-neutral), 15%, 18%);
+      --c-text-main:   hsl(var(--hue-neutral), 10%, 90%);
+      --c-text-sub:    hsl(var(--hue-neutral), 10%, 70%);
+      --c-text-muted:  hsl(var(--hue-neutral), 10%, 50%);
+      --c-brand:       hsl(var(--hue-brand), 90%, 60%);
+      --c-brand-light: hsl(var(--hue-brand), 80%, 30%);
+      --c-link:        hsl(var(--hue-link), 80%, 65%);
+      color-scheme: dark;
+    }
+  }
+
+  /* Reset */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    height: 100%;
+    background-color: var(--c-bg-header);
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    background: var(--c-bg-body);
+    color: var(--c-text-main);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    color: var(--c-link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: var(--c-brand);
+  }
+
+  h1, h2, h3 {
+    font-family: system-ui, -apple-system, sans-serif;
+    color: var(--c-text-main);
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+  }
+
+  h2 {
+    color: var(--c-brand);
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    color: var(--c-text-sub);
+    margin-top: 1.4em;
+  }
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Wider container for browse page content only */
+body:has(.calendar-grid) main {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Header */
+header {
+  background-color: var(--c-bg-header);
+  border-bottom: 2px solid var(--c-border);
+  padding: 2rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.site-title {
+  font-family: 'Raleway', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--c-brand), var(--c-brand-light));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.site-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-subtitle {
+  font-family: 'Raleway', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: var(--c-text-sub);
+  margin: 0.5rem 0 1.2rem 0;
+}
+
+/* Search Form */
+.search-form {
+  margin: 2rem 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-form input[type="text"] {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--c-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  background: var(--c-bg-surface);
+  color: var(--c-text-main);
+}
+
+.search-form button {
+  padding: 0.6rem 1.5rem;
+  background: var(--c-brand);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.search-form button:hover {
+  background: var(--c-link);
+  transform: translateY(-1px);
+}
+
+/* Main Content */
+main {
+  background: var(--c-bg-surface);
+  padding: 2rem 2.4rem;
+  margin: 2rem 0;
+  border-radius: 8px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  width: 100%;
+  max-width: 100%;
+}
+
+.stats {
+  font-size: 0.9rem;
+  color: var(--c-text-muted);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--c-border);
+}
+
+/* Paper Entries */
+.paper {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.paper:last-child {
+  border-bottom: none;
+}
+
+.paper-authors-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.paper-date {
+  font-size: 0.75rem;
+  color: var(--c-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.paper-date.latest-date {
+  font-weight: 700;
+  color: #ff6b35;
+}
+
+.version-indicator {
+  display: inline-block;
+  margin-left: 0.25rem;
+  padding: 0.1rem 0.3rem;
+  font-size: 0.65rem;
+  background: var(--c-bg-gray);
+  color: var(--c-text-sub);
+  border-radius: 3px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.paper-authors {
+  font-size: 0.85rem;
+  color: var(--c-text-sub);
+  flex: 1;
+}
+
+.paper-authors a {
+  color: var(--c-text-sub);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--c-text-muted);
+}
+
+.paper-authors a:hover {
+  color: var(--c-brand);
+  border-bottom-color: var(--c-brand);
+}
+
+.paper-publication {
+  font-size: 0.8rem;
+  color: var(--c-text-sub);
+  margin-bottom: 0.4rem;
+}
+
+.paper-publication a {
+  color: var(--c-link);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--c-link);
+}
+
+.paper-publication a:hover {
+  color: var(--c-brand);
+  border-bottom-color: var(--c-brand);
+}
+
+.paper-meta {
+  font-size: 0.85rem;
+  color: var(--c-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.paper-links {
+  font-size: 0.85rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.paper-links a {
+  color: var(--c-link);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.paper-links a:hover {
+  color: var(--c-brand);
+}
+
+/* Abstract details/summary */
+details.abstract-details {
+  margin-top: 0.15rem;
+}
+
+details.abstract-details summary {
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+details.abstract-details summary::-webkit-details-marker {
+  display: none;
+}
+
+details.abstract-details summary::before {
+  content: "▸ ";
+  color: var(--c-link);
+  font-size: 0.85rem;
+  margin-right: 0.25rem;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+details.abstract-details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+summary.paper-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--c-link);
+}
+
+details.abstract-details summary.paper-title:hover {
+  color: var(--c-brand);
+}
+
+.paper-abstract {
+  font-size: 0.9rem;
+  color: var(--c-text-main);
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: var(--c-bg-header);
+  border-radius: 4px;
+  border-left: 3px solid var(--c-brand-light);
+}
+
+/* BibTeX Display */
+.bibtex {
+  background: var(--c-bg-header);
+  padding: 1.5rem;
+  border-radius: 4px;
+  border-left: 4px solid var(--c-brand);
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  margin-top: 1.5rem;
+  color: var(--c-text-main);
+}
+
+.copy-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--c-brand);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  background: var(--c-link);
+  transform: translateY(-1px);
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.pagination a, .pagination .current {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.pagination a {
+  color: var(--c-link);
+  border: 1px solid var(--c-border);
+}
+
+.pagination a:hover {
+  background: var(--c-bg-gray);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.pagination .current {
+  background: var(--c-brand);
+  color: white;
+  border: 1px solid var(--c-brand);
+  font-weight: 600;
+}
+
+/* Footer */
+footer {
+  background-color: var(--c-bg-header);
+  border-top: 1px solid var(--c-border);
+  padding: 2rem 0;
+  margin-top: auto;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--c-text-muted);
+}
+
+footer a {
+  color: var(--c-link);
+}
+
+/* KaTeX adjustments */
+.katex {
+  font-size: 1.1em;
+}
+
+/* Calendar Browse View */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.month-widget {
+  background: var(--c-bg-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.month-header {
+  background: var(--c-brand);
+  color: white;
+  padding: 0.6rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: system-ui, sans-serif;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  background: var(--c-border);
+  padding: 2px;
+}
+
+.weekday-header {
+  background: var(--c-bg-header);
+  padding: 0.4rem 0.2rem;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--c-text-sub);
+  font-family: system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calendar-day {
+  background: var(--c-bg-surface);
+  padding: 0.4rem 0.2rem;
+  min-height: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 0.85rem;
+  transition: all 0.15s;
+  color: var(--c-text-sub);
+}
+
+.calendar-day.empty {
+  background: var(--c-bg-header);
+  opacity: 0.5;
+}
+
+.calendar-day.has-papers {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--c-text-main);
+  font-weight: 600;
+}
+
+.calendar-day.has-papers:hover {
+  background: var(--c-bg-hover);
+}
+
+.day-number {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--c-link);
+  line-height: 1;
+}
+
+.paper-count {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--c-text-main);
+  line-height: 1;
+  font-family: system-ui, sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .site-title {
+    font-size: 1.8rem;
+  }
+
+  .site-subtitle {
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+
+  .paper-links {
+    flex-wrap: wrap;
+  }
+
+  .calendar-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .month-grid {
+    gap: 1px;
+  }
+
+  .calendar-day {
+    min-height: 2.2rem;
+    padding: 0.3rem 0.15rem;
+    font-size: 0.8rem;
+  }
+
+  .day-number {
+    font-size: 0.65rem;
+    top: 0.1rem;
+    left: 0.15rem;
+  }
+
+  .paper-count {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1000px) {
+  .calendar-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1300px) {
+  .calendar-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}

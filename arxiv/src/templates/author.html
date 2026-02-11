@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% from '_macros.html' import render_paper %}
+
+{% block title %}{{ author.name }} - arXiv Combinatorics{% endblock %}
+
+{% block content %}
+<h2>Papers by {{ author.name }}</h2>
+
+<div class="stats">
+    {{ total }} paper(s) by this author
+</div>
+
+{% if papers %}
+    {% for paper in papers %}
+        {{ render_paper(paper, latest_date) }}
+    {% endfor %}
+
+    {% if total_pages > 1 %}
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/author/{{ author.name }}?page={{ page - 1 }}">« Previous</a>
+        {% endif %}
+
+        {% for p in range(1, total_pages + 1) %}
+            {% if p == page %}
+                <span class="current">{{ p }}</span>
+            {% elif p == 1 or p == total_pages or (p >= page - 2 and p <= page + 2) %}
+                <a href="/author/{{ author.name }}?page={{ p }}">{{ p }}</a>
+            {% elif p == page - 3 or p == page + 3 %}
+                <span>...</span>
+            {% endif %}
+        {% endfor %}
+
+        {% if page < total_pages %}
+            <a href="/author/{{ author.name }}?page={{ page + 1 }}">Next »</a>
+        {% endif %}
+    </div>
+    {% endif %}
+{% else %}
+    <p>No papers found for this author.</p>
+{% endif %}
+{% endblock %}

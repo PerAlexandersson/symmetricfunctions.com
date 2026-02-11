@@ -1,0 +1,15 @@
+
+# Python dependencies for arXiv frontend
+
+# arXiv API client
+arxiv==2.1.3
+
+# MySQL database connector
+pymysql==1.1.0
+
+# Flask web framework
+Flask==3.0.0
+
+# Python dotenv for configuration
+python-dotenv==1.0.0
+requests

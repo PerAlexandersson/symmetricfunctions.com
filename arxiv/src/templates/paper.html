@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}{{ paper.title }} - arXiv Combinatorics{% endblock %}
+
+{% block content %}
+<div class="paper">
+    <h2 class="paper-title" style="margin-top: 0;">
+        {{ paper.title }}
+    </h2>
+
+    <div class="paper-authors">
+        {% for author in paper.authors %}
+            <a href="/author/{{ author }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="paper-meta">
+        📅 Published: {{ paper.published_date }}
+        {% if paper.updated_date and paper.updated_date != paper.published_date %}
+            | Updated: {{ paper.updated_date }}
+        {% endif %}
+    </div>
+
+    {% if paper.comment %}
+    <div class="paper-meta">
+        <strong>Comments:</strong> {{ paper.comment }}
+    </div>
+    {% endif %}
+
+    {% if paper.journal_ref %}
+    <div class="paper-meta">
+        <strong>Journal:</strong> {{ paper.journal_ref }}
+    </div>
+    {% endif %}
+
+    {% if paper.doi %}
+    <div class="paper-meta">
+        <strong>DOI:</strong> <a href="https://doi.org/{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi }}</a>
+    </div>
+    {% endif %}
+
+    <div class="paper-links" style="margin-top: 1.5rem;">
+        <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}" target="_blank" rel="noopener">
+            🔗 View on arXiv
+        </a>
+        <a href="https://arxiv.org/pdf/{{ paper.arxiv_id }}.pdf" target="_blank" rel="noopener">
+            📄 Download PDF
+        </a>
+        <a href="#" onclick="copyBibtex(); return false;">
+            📋 Copy BibTeX
+        </a>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Abstract</h3>
+    <div class="paper-abstract">
+        {{ paper.abstract }}
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">BibTeX</h3>
+    <div class="bibtex" id="bibtex">Loading...</div>
+    <button class="copy-btn" onclick="copyBibtex()">Copy to Clipboard</button>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Fetch BibTeX on page load
+fetch('/api/bibtex/{{ paper.arxiv_id }}')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('bibtex').textContent = data;
+    })
+    .catch(error => {
+        document.getElementById('bibtex').textContent = 'Error loading BibTeX';
+    });
+
+function copyBibtex() {
+    const bibtex = document.getElementById('bibtex').textContent;
+    navigator.clipboard.writeText(bibtex).then(() => {
+        alert('BibTeX copied to clipboard!');
+    }).catch(err => {
+        alert('Failed to copy: ' + err);
+    });
+}
+</script>
+{% endblock %}

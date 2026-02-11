@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Browse by Date - {{ year }} - arXiv Combinatorics{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2 style="margin: 0;">Browse Papers by Date - {{ year }}</h2>
+    <div>
+        <label for="year-select" style="margin-right: 0.5rem; color: var(--c-text-sub);">Year:</label>
+        <select id="year-select" onchange="window.location.href='/browse?year=' + this.value"
+                style="padding: 0.4rem 0.8rem; border: 1px solid var(--c-border); border-radius: 4px; background: var(--c-bg-surface); color: var(--c-text-main); font-size: 0.95rem;">
+            {% for y, count in available_years %}
+                <option value="{{ y }}" {% if y == year %}selected{% endif %}>{{ y }} ({{ count }} entries)</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<div class="calendar-grid">
+    {% for month in month_data %}
+        <div class="month-widget">
+            <div class="month-header">{{ month.name }}</div>
+            <div class="month-grid">
+                <div class="weekday-header">Sun</div>
+                <div class="weekday-header">Mon</div>
+                <div class="weekday-header">Tue</div>
+                <div class="weekday-header">Wed</div>
+                <div class="weekday-header">Thu</div>
+                <div class="weekday-header">Fri</div>
+                <div class="weekday-header">Sat</div>
+
+                {% for day_data in month.days %}
+                    {% if day_data.day == 0 %}
+                        <div class="calendar-day empty"></div>
+                    {% elif day_data.count > 0 %}
+                        <a href="/date/{{ day_data.date_str }}" class="calendar-day has-papers" title="{{ day_data.count }} paper(s)">
+                            <span class="day-number">{{ day_data.day }}</span>
+                            <span class="paper-count">{{ day_data.count }}</span>
+                        </a>
+                    {% else %}
+                        <div class="calendar-day">
+                            <span class="day-number">{{ day_data.day }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

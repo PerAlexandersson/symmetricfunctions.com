@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}arXiv Combinatorics Browser{% endblock %}</title>
+    <meta name="author" content="Per Alexandersson" />
+    <meta name="description" content="Browse arXiv papers in combinatorics (math.CO category)" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap" rel="stylesheet">
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+    <style>.katex{font-size: 1.1em}</style>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js"></script>
+    <script>
+        {% raw %}
+        // KaTeX macros matching symmetricfunctions.com
+        window.KATEX_MACROS = {
+            "\\spaceSym": "{\\Lambda}",
+            "\\schurS": "{\\mathrm{s}}",
+            "\\powerSum": "{\\mathrm{p}}",
+            "\\elementaryE": "{\\mathrm{e}}",
+            "\\completeH": "{\\mathrm{h}}",
+            "\\monomial": "{\\mathrm{m}}",
+            "\\setN": "{\\mathbb{N}}",
+            "\\setZ": "{\\mathbb{Z}}",
+            "\\setQ": "{\\mathbb{Q}}",
+            "\\setR": "{\\mathbb{R}}",
+            "\\setC": "{\\mathbb{C}}"
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\[", right: "\\]", display: true},
+                        {left: "\\(", right: "\\)", display: false}
+                    ],
+                    macros: window.KATEX_MACROS,
+                    throwOnError: false
+                });
+            }
+        });
+        {% endraw %}
+    </script>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">
+                <a href="/">arXiv Combinatorics Browser</a>
+            </h1>
+            <p class="site-subtitle">
+                Browse math.CO papers from arXiv ·
+                <a href="/browse" style="color: var(--c-link); text-decoration: none; border-bottom: 1px dotted var(--c-link);">Browse by date</a>
+            </p>
+
+            <form action="/search" method="get" class="search-form">
+                <input type="text" name="q" placeholder="Search by title, author, or abstract..." value="{{ request.args.get('q', '') }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>
+                Maintained by <a href="https://alexandersson.symmetricfunctions.com">Per Alexandersson</a>,
+                <a href="mailto:per@symmetricfunctions.com">per@symmetricfunctions.com</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Copy BibTeX to clipboard
+        async function copyBibtex(arxivId) {
+            try {
+                const response = await fetch(`/api/bibtex/${arxivId}`);
+                const bibtex = await response.text();
+                await navigator.clipboard.writeText(bibtex);
+                alert('arXiv BibTeX copied to clipboard!');
+            } catch (err) {
+                alert('Failed to copy BibTeX: ' + err);
+            }
+        }
+
+        // Copy DOI BibTeX to clipboard
+        async function copyDoiBibtex(arxivId) {
+            try {
+                const response = await fetch(`/api/doi-bibtex/${arxivId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const bibtex = await response.text();
+                await navigator.clipboard.writeText(bibtex);
+                alert('DOI BibTeX copied to clipboard!');
+            } catch (err) {
+                alert('Failed to copy DOI BibTeX: ' + err);
+            }
+        }
+
+        // Copy shareable link to clipboard
+        function copyShareLink(arxivId) {
+            const url = `${window.location.origin}/paper/${arxivId}`;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy link: ' + err);
+            });
+        }
+
+        // Persistent abstract state using localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const details = document.querySelectorAll('.abstract-details');
+
+            // Restore state from localStorage
+            details.forEach(detail => {
+                const arxivId = detail.getAttribute('data-arxiv-id');
+                if (arxivId) {
+                    const isOpen = localStorage.getItem(`abstract-${arxivId}`) === 'open';
+                    if (isOpen) {
+                        detail.open = true;
+                    }
+                }
+            });
+
+            // Save state on toggle
+            details.forEach(detail => {
+                detail.addEventListener('toggle', function() {
+                    const arxivId = this.getAttribute('data-arxiv-id');
+                    if (arxivId) {
+                        localStorage.setItem(`abstract-${arxivId}`, this.open ? 'open' : 'closed');
+                    }
+                });
+            });
+        });
+
+        // Keyboard shortcuts: j/k for navigation, Enter to expand
+        document.addEventListener('keydown', function(e) {
+            // Ignore if user is typing in an input/textarea
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                return;
+            }
+
+            const papers = Array.from(document.querySelectorAll('.paper'));
+            if (papers.length === 0) return;
+
+            let currentIndex = -1;
+            const focused = document.activeElement;
+
+            // Find current paper
+            if (focused && focused.classList.contains('paper-title')) {
+                const paper = focused.closest('.paper');
+                currentIndex = papers.indexOf(paper);
+            }
+
+            if (e.key === 'j') {
+                // Next paper
+                e.preventDefault();
+                const nextIndex = currentIndex + 1;
+                if (nextIndex < papers.length) {
+                    const summary = papers[nextIndex].querySelector('.paper-title');
+                    if (summary) {
+                        summary.focus();
+                        summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            } else if (e.key === 'k') {
+                // Previous paper
+                e.preventDefault();
+                const prevIndex = currentIndex - 1;
+                if (prevIndex >= 0) {
+                    const summary = papers[prevIndex].querySelector('.paper-title');
+                    if (summary) {
+                        summary.focus();
+                        summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (currentIndex === -1 && papers.length > 0) {
+                    // If nothing focused, focus first paper
+                    const summary = papers[0].querySelector('.paper-title');
+                    if (summary) {
+                        summary.focus();
+                        summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            } else if (e.key === 'Enter') {
+                // Toggle current paper's abstract
+                if (focused && focused.classList.contains('paper-title')) {
+                    e.preventDefault();
+                    focused.click();
+                }
+            }
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
