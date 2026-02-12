@@ -200,16 +200,41 @@ function parse_name(s)
       -- If optional argument exists, use it directly for display
       display_text = trim(opt_part:sub(2, -2))
     else
-      -- Auto-generate "F. Lastname"
-      -- Split string at the last space to handle middle names correctly
-      local first_part, last_part = full_name:match("^(.*)%s+(.-)$")
+      -- Auto-generate abbreviated form
+      -- Split by spaces to get name parts
+      local parts = {}
+      for part in full_name:gmatch("%S+") do
+        table.insert(parts, part)
+      end
 
-      if first_part and last_part then
-        local initial = first_part:sub(1, 1)
-        display_text = initial .. ". " .. last_part
-      else
-        -- Fallback for mononyms (e.g., "Euclid") or single word inputs
+      if #parts < 2 then
+        -- Single name (e.g., "Euclid") - use as-is
         display_text = full_name
+      else
+        -- Last part is the last name
+        local last_name = parts[#parts]
+
+        -- All other parts are first/middle names - abbreviate them
+        local first_abbrevs = {}
+        for i = 1, #parts - 1 do
+          local name_part = parts[i]
+
+          -- Check if this part is hyphenated (e.g., "Marcel-Paul" or "Augustin-Louis")
+          if name_part:find("-") then
+            -- Split by hyphen and abbreviate each part
+            local hyphen_parts = {}
+            for hp in name_part:gmatch("[^-]+") do
+              table.insert(hyphen_parts, hp:sub(1, 1) .. ".")
+            end
+            table.insert(first_abbrevs, table.concat(hyphen_parts, "-"))
+          else
+            -- Simple first/middle name - just take first letter
+            table.insert(first_abbrevs, name_part:sub(1, 1) .. ".")
+          end
+        end
+
+        -- Join abbreviated first names with spaces, then add last name
+        display_text = table.concat(first_abbrevs, " ") .. " " .. last_name
       end
     end
 
