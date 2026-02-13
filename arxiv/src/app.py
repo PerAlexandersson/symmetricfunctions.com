@@ -9,12 +9,37 @@ from flask import Flask, render_template, request, jsonify, abort
 import pymysql
 from config import DB_CONFIG, FLASK_CONFIG, validate_config
 from datetime import datetime
+import re
 
 # Validate configuration on startup
 validate_config()
 
 app = Flask(__name__)
 app.config.update(FLASK_CONFIG)
+
+
+def protect_capitals_for_bibtex(title):
+    """
+    Protect capital letters in a title for BibTeX by wrapping them in braces.
+    This ensures BibTeX won't lowercase them.
+
+    Example: "RNA-Binding Proteins" -> "{RNA}-{B}inding {P}roteins"
+    """
+    # Protect sequences of capitals (acronyms like RNA, DNA, etc.)
+    def protect_match(match):
+        text = match.group(0)
+        return f"{{{text}}}"
+
+    # Match sequences of 2+ capitals (acronyms): RNA, DNA, KaTeX, etc.
+    result = re.sub(r'[A-Z]{2,}', protect_match, title)
+
+    # Match single capitals that appear mid-word (after lowercase)
+    result = re.sub(r'(?<=[a-z])[A-Z]', protect_match, result)
+
+    # Match capitals after hyphens or slashes
+    result = re.sub(r'(?<=[-/])[A-Z]', protect_match, result)
+
+    return result
 
 
 def get_db_connection():
@@ -154,9 +179,12 @@ def bibtex(arxiv_id):
     if 'v' in clean_arxiv_id:
         clean_arxiv_id = clean_arxiv_id.split('v')[0]
 
+    # Protect capital letters in title for BibTeX
+    protected_title = protect_capitals_for_bibtex(paper['title'])
+
     bibtex = f"""@article{{{bibtex_key},
 Author = {{{author_str}}},
-Title = {{{paper['title']}}},
+Title = {{{protected_title}}},
 Year = {{{year}}},
 Eprint = {{{clean_arxiv_id}}},
   url = {{https://arxiv.org/abs/{clean_arxiv_id}}},
