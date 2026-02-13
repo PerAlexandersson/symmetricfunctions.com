@@ -10,6 +10,19 @@ A web interface for browsing arXiv papers in combinatorics (math.CO category).
 
 ### 1. Install Python Dependencies
 
+**IMPORTANT for Dropbox users:** If you use this directory on multiple computers via Dropbox, run the setup script below on **each machine separately**. The virtual environment is machine-specific and should not be synced.
+
+```bash
+cd arxiv
+./setup_venv.sh
+```
+
+This script will:
+- Create a machine-local virtual environment
+- Install all required Python dependencies
+- Skip setup if already configured and working
+
+**Manual setup (alternative):**
 ```bash
 cd arxiv
 python3 -m venv venv
@@ -172,6 +185,23 @@ arxiv/
 ```
 
 **Note:** The `venv/` directory and database are local to each machine and not synced via Dropbox.
+
+## Multi-Machine Setup (Dropbox)
+
+If you sync this project via Dropbox across multiple computers:
+
+1. **On this machine (already done):**
+   - `venv/` is excluded from Dropbox sync
+   - Virtual environment is set up locally
+
+2. **On your other computer:**
+   ```bash
+   cd ~/Dropbox/symmetricfunctions.com/arxiv
+   dropbox exclude add venv  # Exclude from sync
+   ./setup_venv.sh           # Create local venv
+   ```
+
+3. **Database note:** Each machine has its own local MariaDB database (not synced). Run `./setup_venv.sh` and the database setup on each machine to maintain separate data stores.
 
 ---
 
