@@ -5,6 +5,7 @@ untracked/
 
 # Python local env
 venv/
+.local/
 __pycache__
 
 # LaTeX build artefacts

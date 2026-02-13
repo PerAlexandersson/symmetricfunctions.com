@@ -592,11 +592,15 @@ and they use a fairly general recurrence relation to obtain interlacing roots.
 \begin{example*}[Boolean--Narayana numbers]
 
 A family similar to the  Narayana numbers, named the \defin{Boolean--Narayana numbers}
-is introduced by \name{Miklós Bóna} in \cite{Bona2026x}. 
+is introduced by \name{Miklós Bóna} in \cite{Bona2026x}.
 The corresponding polynomials are proved to be real-rooted.
-
-
-
+\[
+ BoNa(n,k) = \frac{1}{n}\binom{n}{k-1}\sum_{j=0}^{k-1}2^j\binom{k-1}{j}\binom{n-k+1}{j+1}.
+\]
+If we define $P_n(x) \coloneqq \sum_{k} BoNa(n,k)x^k$ then these satisfy the recursion
+\[
+ (n+1) P_n(x) = (2n-1)(1+x) P_{n-1}(x) - (n-2)(1-6x+x^2) P_{n-2}(x).
+\]
 \end{example*}
 
 

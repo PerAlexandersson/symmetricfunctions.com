@@ -6,8 +6,11 @@ set -e  # Exit on error
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
+# Use .local/venv to avoid Dropbox sync conflicts
+VENV_DIR=".local/venv"
+
 # Check if venv exists and works, set it up if needed
-if [ ! -d "venv" ] || ! source venv/bin/activate 2>/dev/null || ! python3 -c "import arxiv" 2>/dev/null; then
+if [ ! -d "$VENV_DIR" ] || ! source "$VENV_DIR/bin/activate" 2>/dev/null || ! python3 -c "import arxiv" 2>/dev/null; then
     echo "Virtual environment not found or broken, setting up..."
     ./setup_venv.sh
     echo ""
@@ -15,7 +18,7 @@ fi
 
 # Activate virtual environment (if not already activated)
 if [ -z "$VIRTUAL_ENV" ]; then
-    source venv/bin/activate
+    source "$VENV_DIR/bin/activate"
 fi
 
 # Default to fetching last 7 days if no arguments provided

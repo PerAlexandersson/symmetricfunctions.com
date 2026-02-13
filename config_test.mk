@@ -16,7 +16,7 @@ RENDER_LUA  = render.lua
 
 # === SOURCE FILES ===
 TEMPLATE   := template.htm
-BIBFILE    := ~/Dropbox/latex/bibliography.bib
+BIBFILE    := bibliography.bib
 TEST_TEX   := $(wildcard $(TEST_DIR)/*.tex)
 TEST_PRE   := $(patsubst $(TEST_DIR)/%.tex,$(TEMP_DIR)/%.pre.tex,$(TEST_TEX))
 TEST_JSON  := $(patsubst $(TEST_DIR)/%.tex,$(TEMP_DIR)/%.json,$(TEST_TEX))
