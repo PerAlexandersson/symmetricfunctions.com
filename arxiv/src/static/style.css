@@ -285,9 +285,9 @@ main {
 }
 
 .paper-links {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.35rem;
   align-items: center;
   flex-shrink: 0;
 }
@@ -301,6 +301,12 @@ main {
 
 .paper-links a:hover {
   color: var(--c-brand);
+  text-decoration: underline;
+}
+
+.paper-links .bullet {
+  color: var(--c-text-muted);
+  font-size: 0.7rem;
 }
 
 /* Abstract details/summary */
@@ -336,6 +342,11 @@ summary.paper-title {
   font-weight: 600;
   line-height: 1.3;
   color: var(--c-link);
+}
+
+summary.paper-title.published-paper {
+  color: var(--c-brand);
+  font-weight: 700;
 }
 
 details.abstract-details summary.paper-title:hover {

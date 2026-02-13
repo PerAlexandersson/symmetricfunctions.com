@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}BibTeX Tools - arXiv Combinatorics Browser{% endblock %}
+
+{% block content %}
+<h2>BibTeX Generation Tools</h2>
+
+<p>Generate BibTeX entries from arXiv IDs or DOIs. Paste either:</p>
+<ul>
+    <li>arXiv ID (e.g., <code>2401.12345</code>)</li>
+    <li>arXiv URL (e.g., <code>https://arxiv.org/abs/2401.12345</code>)</li>
+    <li>DOI (e.g., <code>10.1016/j.jcta.2024.105123</code>)</li>
+    <li>DOI URL (e.g., <code>https://doi.org/10.1016/j.jcta.2024.105123</code>)</li>
+</ul>
+
+<div class="tools-container">
+    <form id="bibtex-form" onsubmit="generateBibtex(event)" style="margin-top: 2rem;">
+        <input type="text"
+               id="input-field"
+               placeholder="Enter arXiv ID/URL or DOI/DOI URL..."
+               style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid var(--c-border); border-radius: 4px;">
+        <button type="submit"
+                style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--c-link); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;">
+            Generate BibTeX
+        </button>
+    </form>
+
+    <div id="result-container" style="margin-top: 2rem; display: none;">
+        <div id="tabs" style="border-bottom: 2px solid var(--c-border); margin-bottom: 1rem;">
+            <button class="tab-button active" onclick="showTab('arxiv-tab')" id="arxiv-tab-btn"
+                    style="padding: 0.5rem 1rem; margin-right: 0.5rem; background: none; border: none; border-bottom: 3px solid var(--c-link); cursor: pointer; font-weight: 600; color: var(--c-link);">
+                arXiv BibTeX
+            </button>
+            <button class="tab-button" onclick="showTab('published-tab')" id="published-tab-btn"
+                    style="padding: 0.5rem 1rem; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--c-text-sub);">
+                Published BibTeX
+            </button>
+        </div>
+
+        <div id="arxiv-tab" class="tab-content">
+            <pre id="arxiv-bibtex" style="background: var(--c-bg-gray); padding: 1rem; border-radius: 4px; overflow-x: auto; font-size: 0.9rem;"></pre>
+            <button onclick="copyText('arxiv-bibtex')"
+                    style="margin-top: 0.5rem; padding: 0.5rem 1rem; background: var(--c-bg-gray); border: 1px solid var(--c-border); border-radius: 4px; cursor: pointer;">
+                Copy to Clipboard
+            </button>
+        </div>
+
+        <div id="published-tab" class="tab-content" style="display: none;">
+            <pre id="published-bibtex" style="background: var(--c-bg-gray); padding: 1rem; border-radius: 4px; overflow-x: auto; font-size: 0.9rem;"></pre>
+            <button onclick="copyText('published-bibtex')"
+                    style="margin-top: 0.5rem; padding: 0.5rem 1rem; background: var(--c-bg-gray); border: 1px solid var(--c-border); border-radius: 4px; cursor: pointer;">
+                Copy to Clipboard
+            </button>
+        </div>
+    </div>
+
+    <div id="error-message" style="margin-top: 1rem; padding: 1rem; background: #fee; border: 1px solid #fcc; border-radius: 4px; display: none; color: #c00;"></div>
+</div>
+
+<script>
+async function generateBibtex(event) {
+    event.preventDefault();
+
+    const input = document.getElementById('input-field').value.trim();
+    const resultContainer = document.getElementById('result-container');
+    const errorMessage = document.getElementById('error-message');
+    const arxivBibtex = document.getElementById('arxiv-bibtex');
+    const publishedBibtex = document.getElementById('published-bibtex');
+    const publishedTabBtn = document.getElementById('published-tab-btn');
+
+    // Hide previous results
+    resultContainer.style.display = 'none';
+    errorMessage.style.display = 'none';
+
+    try {
+        const response = await fetch('/api/generate-bibtex', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({input: input})
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Failed to generate BibTeX');
+        }
+
+        // Show results
+        if (data.arxiv) {
+            arxivBibtex.textContent = data.arxiv;
+            showTab('arxiv-tab');
+        }
+
+        if (data.published) {
+            publishedBibtex.textContent = data.published;
+            publishedTabBtn.style.display = 'inline-block';
+        } else {
+            publishedTabBtn.style.display = 'none';
+        }
+
+        resultContainer.style.display = 'block';
+
+    } catch (error) {
+        errorMessage.textContent = error.message;
+        errorMessage.style.display = 'block';
+    }
+}
+
+function showTab(tabId) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+    });
+
+    // Remove active class from all buttons
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.style.borderBottomColor = 'transparent';
+        btn.style.color = 'var(--c-text-sub)';
+        btn.style.fontWeight = 'normal';
+    });
+
+    // Show selected tab
+    document.getElementById(tabId).style.display = 'block';
+
+    // Activate button
+    const btnId = tabId + '-btn';
+    const btn = document.getElementById(btnId);
+    btn.style.borderBottomColor = 'var(--c-link)';
+    btn.style.color = 'var(--c-link)';
+    btn.style.fontWeight = '600';
+}
+
+async function copyText(elementId) {
+    const text = document.getElementById(elementId).textContent;
+    try {
+        await navigator.clipboard.writeText(text);
+        alert('Copied to clipboard!');
+    } catch (err) {
+        alert('Failed to copy: ' + err);
+    }
+}
+</script>
+
+<style>
+.tools-container {
+    max-width: 800px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.tab-button:hover {
+    background: var(--c-bg-gray) !important;
+}
+
+code {
+    background: var(--c-bg-gray);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: monospace;
+}
+</style>
+{% endblock %}

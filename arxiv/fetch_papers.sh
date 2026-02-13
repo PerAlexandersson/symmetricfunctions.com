@@ -6,8 +6,9 @@ set -e  # Exit on error
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# Use .local/venv to avoid Dropbox sync conflicts
-VENV_DIR=".local/venv"
+# Store venv outside Dropbox in user's cache directory
+PROJECT_HASH=$(echo -n "$SCRIPT_DIR" | md5sum | cut -d' ' -f1 | cut -c1-8)
+VENV_DIR="$HOME/.cache/arxiv-venv-$PROJECT_HASH"
 
 # Check if venv exists and works, set it up if needed
 if [ ! -d "$VENV_DIR" ] || ! source "$VENV_DIR/bin/activate" 2>/dev/null || ! python3 -c "import arxiv" 2>/dev/null; then

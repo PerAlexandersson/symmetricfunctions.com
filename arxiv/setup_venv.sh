@@ -5,10 +5,13 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# Use .local/venv to avoid Dropbox sync conflicts
-VENV_DIR=".local/venv"
+# Store venv outside Dropbox in user's cache directory (machine-local)
+# Use a hash of the project path to allow multiple arxiv projects
+PROJECT_HASH=$(echo -n "$SCRIPT_DIR" | md5sum | cut -d' ' -f1 | cut -c1-8)
+VENV_DIR="$HOME/.cache/arxiv-venv-$PROJECT_HASH"
 
 echo "Setting up virtual environment for arXiv project..."
+echo "Virtual environment location: $VENV_DIR"
 
 # Check if venv exists and is working
 if [ -d "$VENV_DIR" ]; then
@@ -22,9 +25,6 @@ if [ -d "$VENV_DIR" ]; then
         rm -rf "$VENV_DIR"
     fi
 fi
-
-# Create .local directory if it doesn't exist
-mkdir -p .local
 
 # Create new virtual environment
 echo "Creating new virtual environment in $VENV_DIR..."

@@ -57,19 +57,86 @@
     </div>
 
     <h3 style="margin-top: 2rem; margin-bottom: 1rem;">BibTeX</h3>
-    <div class="bibtex" id="bibtex">Loading...</div>
-    <button class="copy-btn" onclick="copyBibtex()">Copy to Clipboard</button>
+
+    {% if paper.doi %}
+    <div id="tabs" style="border-bottom: 2px solid var(--c-border); margin-bottom: 1rem;">
+        <button class="tab-button active" onclick="showBibtexTab('arxiv-tab')" id="arxiv-tab-btn"
+                style="padding: 0.5rem 1rem; margin-right: 0.5rem; background: none; border: none; border-bottom: 3px solid var(--c-link); cursor: pointer; font-weight: 600; color: var(--c-link);">
+            arXiv BibTeX
+        </button>
+        <button class="tab-button" onclick="showBibtexTab('published-tab')" id="published-tab-btn"
+                style="padding: 0.5rem 1rem; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--c-text-sub);">
+            Published BibTeX
+        </button>
+    </div>
+
+    <div id="arxiv-tab" class="tab-content">
+        <div class="bibtex" id="arxiv-bibtex">Loading...</div>
+        <button class="copy-btn" onclick="copyBibtexContent('arxiv-bibtex')">Copy to Clipboard</button>
+    </div>
+
+    <div id="published-tab" class="tab-content" style="display: none;">
+        <div class="bibtex" id="published-bibtex">Loading...</div>
+        <button class="copy-btn" onclick="copyBibtexContent('published-bibtex')">Copy to Clipboard</button>
+    </div>
+    {% else %}
+    <div class="bibtex" id="arxiv-bibtex">Loading...</div>
+    <button class="copy-btn" onclick="copyBibtexContent('arxiv-bibtex')">Copy to Clipboard</button>
+    {% endif %}
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-// Fetch BibTeX on page load using utility function
-fetchBibtex('{{ paper.arxiv_id }}', 'bibtex');
+// Fetch BibTeX on page load
+async function loadBibtex() {
+    try {
+        const response = await fetch('/api/bibtex/{{ paper.arxiv_id }}');
+        const bibtex = await response.text();
+        document.getElementById('arxiv-bibtex').textContent = bibtex;
+    } catch (error) {
+        document.getElementById('arxiv-bibtex').textContent = 'Error loading BibTeX';
+    }
 
-// Copy function for this page's BibTeX display
-function copyBibtex() {
-    const bibtex = document.getElementById('bibtex').textContent;
+    {% if paper.doi %}
+    try {
+        const response = await fetch('/api/doi-bibtex/{{ paper.arxiv_id }}');
+        const bibtex = await response.text();
+        document.getElementById('published-bibtex').textContent = bibtex;
+    } catch (error) {
+        document.getElementById('published-bibtex').textContent = 'Error loading published BibTeX';
+    }
+    {% endif %}
+}
+
+loadBibtex();
+
+function showBibtexTab(tabId) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+    });
+
+    // Remove active class from all buttons
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.style.borderBottomColor = 'transparent';
+        btn.style.color = 'var(--c-text-sub)';
+        btn.style.fontWeight = 'normal';
+    });
+
+    // Show selected tab
+    document.getElementById(tabId).style.display = 'block';
+
+    // Activate button
+    const btnId = tabId + '-btn';
+    const btn = document.getElementById(btnId);
+    btn.style.borderBottomColor = 'var(--c-link)';
+    btn.style.color = 'var(--c-link)';
+    btn.style.fontWeight = '600';
+}
+
+function copyBibtexContent(elementId) {
+    const bibtex = document.getElementById(elementId).textContent;
     copyToClipboard(bibtex).then(() => {
         alert('BibTeX copied to clipboard!');
     }).catch(err => {

@@ -16,39 +16,30 @@
             {% endfor %}
         </div>
         <div class="paper-links">
-            <a href="#paper-{{ paper.arxiv_id }}" class="share-link" onclick="copyShareLink('{{ paper.arxiv_id }}'); return false;" title="Copy shareable link">
-                #
-            </a>
-            <a href="#" onclick="copyBibtex('{{ paper.arxiv_id }}'); return false;" title="Copy arXiv BibTeX entry">
-                🏷️
-            </a>
-            {% if paper.doi %}
-            <a href="#" onclick="copyDoiBibtex('{{ paper.arxiv_id }}'); return false;" title="Copy DOI BibTeX entry">
-                📚
-            </a>
-            {% endif %}
-            <a href="https://arxiv.org/pdf/{{ paper.arxiv_id }}.pdf" target="_blank" rel="noopener" title="Download PDF">
-                📄
-            </a>
-            <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}" target="_blank" rel="noopener" title="View on arXiv">
-                🔗
-            </a>
-            <a href="/paper/{{ paper.arxiv_id }}" title="View details">
-                ⓘ
-            </a>
+            <a href="#paper-{{ paper.arxiv_id }}" onclick="copyShareLink('{{ paper.arxiv_id }}'); return false;" title="Copy shareable link">#</a>
+            <span class="bullet">•</span>
+            <a href="/paper/{{ paper.arxiv_id }}" title="View details">INFO</a>
+            <span class="bullet">•</span>
+            <a href="#" onclick="copyBibtex('{{ paper.arxiv_id }}'); return false;" title="Copy arXiv BibTeX entry">BIB</a>
+            <span class="bullet">•</span>
+            <a href="https://arxiv.org/pdf/{{ paper.arxiv_id }}.pdf" target="_blank" rel="noopener" title="Download PDF">PDF</a>
+            <span class="bullet">•</span>
+            <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}" target="_blank" rel="noopener" title="View on arXiv">ARXIV</a>
         </div>
     </div>
 
     <details class="abstract-details" data-arxiv-id="{{ paper.arxiv_id }}">
-        <summary class="paper-title">{{ paper.title }}</summary>
+        <summary class="paper-title{% if paper.journal_ref or paper.doi %} published-paper{% endif %}">{{ paper.title }}</summary>
 
         {% if paper.journal_ref or paper.doi %}
         <div class="paper-publication">
-            📰 Published in {{ paper.journal_ref }}
+            Published in {{ paper.journal_ref }}
             {% if paper.doi %}
                 • <a href="https://doi.org/{{ paper.doi }}" target="_blank" rel="noopener">DOI</a>
+                • <a href="https://doi.org/{{ paper.doi }}" target="_blank" rel="noopener">View Publication</a>
+                • <a href="#" onclick="copyDoiBibtex('{{ paper.arxiv_id }}'); return false;" title="Copy published BibTeX entry">BIB</a>
             {% elif paper.journal_ref %}
-                • <a href="https://scholar.google.com/scholar?q={{ (paper.title + ' ' + paper.journal_ref) | urlencode }}" target="_blank" rel="noopener">Search</a>
+                • <a href="https://scholar.google.com/scholar?q={{ (paper.title + ' ' + paper.journal_ref) | urlencode }}" target="_blank" rel="noopener">Search Publication</a>
             {% endif %}
         </div>
         {% endif %}

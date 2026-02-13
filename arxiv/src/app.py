@@ -42,6 +42,111 @@ def protect_capitals_for_bibtex(title):
     return result
 
 
+def generate_bibtex_key(authors, year, published=False):
+    """
+    Generate BibTeX key from authors and year.
+
+    Args:
+        authors: List of author names
+        year: Publication year
+        published: If True, omit the 'x' suffix for published papers
+
+    Returns:
+        BibTeX key string (e.g., "Smith2024x" or "Smith2024")
+    """
+    if authors:
+        first_author = authors[0]
+        last_name = first_author.split()[-1]
+        last_name = ''.join(c for c in last_name if c.isalnum())
+        suffix = '' if published else 'x'
+        return f"{last_name}{year}{suffix}"
+    else:
+        suffix = '' if published else 'x'
+        return f"arxiv{year}{suffix}"
+
+
+def arxiv2bib(paper_data):
+    """
+    Generate arXiv BibTeX entry from paper data.
+
+    Args:
+        paper_data: Dict with keys: arxiv_id, title, authors, published_date, journal_ref, doi
+
+    Returns:
+        BibTeX string
+    """
+    year = paper_data['published_date'].year if hasattr(paper_data['published_date'], 'year') else paper_data['published_date']
+    bibtex_key = generate_bibtex_key(paper_data.get('authors', []), year, published=False)
+
+    author_str = ' and '.join(paper_data.get('authors', [])) if paper_data.get('authors') else 'Unknown'
+
+    clean_arxiv_id = paper_data['arxiv_id']
+    if 'v' in clean_arxiv_id:
+        clean_arxiv_id = clean_arxiv_id.split('v')[0]
+
+    protected_title = protect_capitals_for_bibtex(paper_data['title'])
+
+    bibtex = f"""@article{{{bibtex_key},
+Author = {{{author_str}}},
+Title = {{{protected_title}}},
+Year = {{{year}}},
+Eprint = {{{clean_arxiv_id}}},
+  url = {{https://arxiv.org/abs/{clean_arxiv_id}}},
+journal = {{arXiv e-prints}}"""
+
+    if paper_data.get('journal_ref'):
+        bibtex += f",\njournalref = {{{paper_data['journal_ref']}}}"
+
+    if paper_data.get('doi'):
+        bibtex += f",\ndoi = {{{paper_data['doi']}}}"
+
+    bibtex += "\n}"
+    return bibtex
+
+
+def doi2bib(doi, paper_data=None):
+    """
+    Generate BibTeX entry from DOI using content negotiation,
+    or create a custom entry if paper_data is provided.
+
+    Args:
+        doi: DOI string
+        paper_data: Optional dict with paper metadata for custom formatting
+
+    Returns:
+        BibTeX string or None on error
+    """
+    import requests
+
+    if paper_data:
+        # Generate custom BibTeX with user's preferred format
+        year = paper_data['published_date'].year if hasattr(paper_data['published_date'], 'year') else paper_data['published_date']
+        bibtex_key = generate_bibtex_key(paper_data.get('authors', []), year, published=True)
+
+        author_str = ' and '.join(paper_data.get('authors', [])) if paper_data.get('authors') else 'Unknown'
+        protected_title = protect_capitals_for_bibtex(paper_data['title'])
+
+        bibtex = f"""@article{{{bibtex_key},
+Author = {{{author_str}}},
+Title = {{{protected_title}}},
+Year = {{{year}}},
+journal = {{{paper_data.get('journal_ref', '')}}},
+doi = {{{doi}}},
+  url = {{https://doi.org/{doi}}}
+}}"""
+        return bibtex
+    else:
+        # Fetch from DOI.org
+        try:
+            doi_url = f"https://doi.org/{doi}"
+            headers = {'Accept': 'application/x-bibtex'}
+            response = requests.get(doi_url, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response.text
+        except requests.RequestException:
+            return None
+
+
 def get_db_connection():
     """Create and return a database connection."""
     return pymysql.connect(**DB_CONFIG, cursorclass=pymysql.cursors.DictCursor)
@@ -137,7 +242,7 @@ def paper_detail(arxiv_id):
 
 @app.route('/api/bibtex/<arxiv_id>')
 def bibtex(arxiv_id):
-    """Generate BibTeX entry for a paper."""
+    """Generate arXiv BibTeX entry for a paper."""
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -153,85 +258,121 @@ def bibtex(arxiv_id):
         abort(404)
 
     paper['authors'] = get_paper_authors(cursor, paper['id'])
-
     cursor.close()
     conn.close()
 
-    # Generate BibTeX key: FirstAuthorLastName + Year + x
-    year = paper['published_date'].year
-    if paper['authors']:
-        # Get last name of first author
-        first_author = paper['authors'][0]
-        # Split by spaces and take the last part as last name
-        last_name = first_author.split()[-1]
-        # Remove any non-alphanumeric characters
-        last_name = ''.join(c for c in last_name if c.isalnum())
-        bibtex_key = f"{last_name}{year}x"
-    else:
-        # Fallback if no authors
-        bibtex_key = f"arxiv{year}x"
-
-    # Format authors
-    author_str = ' and '.join(paper['authors']) if paper['authors'] else 'Unknown'
-
-    # Clean arXiv ID (remove version number like v1, v2, etc.)
-    clean_arxiv_id = paper['arxiv_id']
-    if 'v' in clean_arxiv_id:
-        clean_arxiv_id = clean_arxiv_id.split('v')[0]
-
-    # Protect capital letters in title for BibTeX
-    protected_title = protect_capitals_for_bibtex(paper['title'])
-
-    bibtex = f"""@article{{{bibtex_key},
-Author = {{{author_str}}},
-Title = {{{protected_title}}},
-Year = {{{year}}},
-Eprint = {{{clean_arxiv_id}}},
-  url = {{https://arxiv.org/abs/{clean_arxiv_id}}},
-journal = {{arXiv e-prints}}"""
-
-    if paper['journal_ref']:
-        bibtex += f",\njournalref = {{{paper['journal_ref']}}}"
-
-    if paper['doi']:
-        bibtex += f",\ndoi = {{{paper['doi']}}}"
-
-    bibtex += "\n}"
-
+    bibtex = arxiv2bib(paper)
     return bibtex, 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 
 @app.route('/api/doi-bibtex/<arxiv_id>')
 def doi_bibtex(arxiv_id):
-    """Fetch BibTeX from DOI for a paper."""
-    import requests
-
+    """Generate published BibTeX entry for a paper with DOI."""
     conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT doi
+        SELECT id, arxiv_id, title, published_date, journal_ref, doi
         FROM papers
         WHERE arxiv_id = %s
     """, (arxiv_id,))
 
     paper = cursor.fetchone()
-    cursor.close()
-    conn.close()
 
     if not paper or not paper['doi']:
         abort(404)
 
-    # Fetch BibTeX from DOI content negotiation API
-    doi_url = f"https://doi.org/{paper['doi']}"
-    headers = {'Accept': 'application/x-bibtex'}
+    paper['authors'] = get_paper_authors(cursor, paper['id'])
+    cursor.close()
+    conn.close()
 
-    try:
-        response = requests.get(doi_url, headers=headers, timeout=10)
-        response.raise_for_status()
-        return response.text, 200, {'Content-Type': 'text/plain; charset=utf-8'}
-    except requests.RequestException as e:
-        return f"Error fetching DOI BibTeX: {str(e)}", 500, {'Content-Type': 'text/plain; charset=utf-8'}
+    # Generate custom BibTeX with user's preferred format
+    bibtex = doi2bib(paper['doi'], paper)
+    if bibtex:
+        return bibtex, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+    else:
+        return "Error generating DOI BibTeX", 500, {'Content-Type': 'text/plain; charset=utf-8'}
+
+
+@app.route('/tools')
+def tools():
+    """Tools page for BibTeX generation."""
+    return render_template('tools.html')
+
+
+@app.route('/api/generate-bibtex', methods=['POST'])
+def generate_bibtex_api():
+    """API endpoint to generate BibTeX from arXiv ID or DOI."""
+    data = request.get_json()
+    input_text = data.get('input', '').strip()
+
+    if not input_text:
+        return jsonify({'error': 'Please provide an arXiv ID or DOI'}), 400
+
+    # Try to parse as arXiv ID or URL
+    arxiv_id = None
+    doi = None
+
+    # Check if it's an arXiv URL or ID
+    if 'arxiv.org' in input_text.lower():
+        # Extract ID from URL
+        match = re.search(r'arxiv\.org/(?:abs|pdf)/([0-9]+\.[0-9]+(?:v[0-9]+)?)', input_text, re.IGNORECASE)
+        if match:
+            arxiv_id = match.group(1)
+    elif re.match(r'^[0-9]+\.[0-9]+(?:v[0-9]+)?$', input_text):
+        # Direct arXiv ID
+        arxiv_id = input_text
+
+    # Check if it's a DOI or DOI URL
+    if not arxiv_id:
+        if 'doi.org/' in input_text.lower():
+            # Extract DOI from URL
+            doi = input_text.split('doi.org/')[-1]
+        elif re.match(r'^10\.\d+/', input_text):
+            # Direct DOI
+            doi = input_text
+
+    if arxiv_id:
+        # Fetch from our database
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT id, arxiv_id, title, published_date, journal_ref, doi
+            FROM papers
+            WHERE arxiv_id LIKE %s
+        """, (f"{arxiv_id}%",))
+
+        paper = cursor.fetchone()
+
+        if paper:
+            paper['authors'] = get_paper_authors(cursor, paper['id'])
+            cursor.close()
+            conn.close()
+
+            arxiv_bib = arxiv2bib(paper)
+            result = {'arxiv': arxiv_bib}
+
+            if paper['doi']:
+                published_bib = doi2bib(paper['doi'], paper)
+                if published_bib:
+                    result['published'] = published_bib
+
+            return jsonify(result)
+        else:
+            cursor.close()
+            conn.close()
+            return jsonify({'error': 'arXiv paper not found in database'}), 404
+
+    elif doi:
+        # Fetch directly from DOI
+        bibtex = doi2bib(doi)
+        if bibtex:
+            return jsonify({'published': bibtex})
+        else:
+            return jsonify({'error': 'Failed to fetch BibTeX from DOI'}), 500
+
+    return jsonify({'error': 'Could not parse input as arXiv ID or DOI'}), 400
 
 
 @app.route('/search')
