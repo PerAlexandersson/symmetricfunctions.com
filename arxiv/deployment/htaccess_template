@@ -1,0 +1,31 @@
+# .htaccess for Passenger WSGI
+# Place this file in the public_html/ directory as .htaccess
+
+# Enable Passenger
+PassengerEnabled on
+
+# Python 3 WSGI
+PassengerAppType wsgi
+PassengerStartupFile passenger_wsgi.py
+
+# Set application root (one level up from public_html/)
+PassengerAppRoot /home/symmetricf/domains/arxiv.symmetricfunctions.com
+
+# Python interpreter (use cPanel virtualenv)
+PassengerPython /home/symmetricf/virtualenv/domains/arxiv.symmetricfunctions.com/3.9/bin/python3
+
+# Environment
+PassengerAppEnv production
+
+# Friendly error pages (disable in production)
+# PassengerFriendlyErrorPages on
+
+# Force HTTPS (if you have SSL)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Handle static files directly (bypass Python)
+<FilesMatch "\.(jpg|jpeg|png|gif|css|js|ico|svg|woff|woff2|ttf|eot)$">
+    PassengerEnabled off
+</FilesMatch>

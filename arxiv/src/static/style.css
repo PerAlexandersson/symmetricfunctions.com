@@ -30,22 +30,6 @@
     color-scheme: light;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --c-bg-body:     hsl(var(--hue-neutral), 20%, 10%);
-      --c-bg-surface:  hsl(var(--hue-neutral), 20%, 14%);
-      --c-bg-header:   hsl(var(--hue-neutral), 20%, 12%);
-      --c-border:      hsl(var(--hue-neutral), 15%, 25%);
-      --c-bg-gray:     hsl(var(--hue-neutral), 15%, 18%);
-      --c-text-main:   hsl(var(--hue-neutral), 10%, 90%);
-      --c-text-sub:    hsl(var(--hue-neutral), 10%, 70%);
-      --c-text-muted:  hsl(var(--hue-neutral), 10%, 50%);
-      --c-brand:       hsl(var(--hue-brand), 90%, 60%);
-      --c-brand-light: hsl(var(--hue-brand), 80%, 30%);
-      --c-link:        hsl(var(--hue-link), 80%, 65%);
-      color-scheme: dark;
-    }
-  }
 
   /* Reset */
   *, *::before, *::after { box-sizing: border-box; }

@@ -12,4 +12,9 @@ Flask==3.0.0
 
 # Python dotenv for configuration
 python-dotenv==1.0.0
+
+# HTTP requests
 requests
+
+# Production WSGI server
+gunicorn==21.2.0

@@ -64,16 +64,93 @@ CREATE TABLE paper_authors (
     paper_id INT NOT NULL,
     author_id INT NOT NULL,
     author_order INT NOT NULL,    -- Position in author list (1, 2, 3, ...)
-    
+
     PRIMARY KEY (paper_id, author_id),
-    
+
     -- Foreign key constraints
     FOREIGN KEY (paper_id) REFERENCES papers(id) ON DELETE CASCADE,
     FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE,
-    
+
     -- Indexes for common queries
     INDEX idx_author_id (author_id),
     INDEX idx_paper_id (paper_id),
     INDEX idx_author_order (paper_id, author_order)
-    
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================================
+-- Tags Table
+-- Stores all tags (MSC codes, personal tags, arXiv categories, etc.)
+-- ============================================================================
+CREATE TABLE tags (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+
+    -- Tag type: 'msc' for MSC 2020 codes, 'personal' for custom tags,
+    -- 'arxiv' for arXiv categories, 'other' for miscellaneous
+    tag_type ENUM('msc', 'personal', 'arxiv', 'other') DEFAULT 'personal',
+
+    -- Optional description
+    description TEXT,
+
+    -- For hierarchical tags (e.g., MSC 05A is parent of 05A15)
+    parent_tag_id INT,
+
+    -- Ensure unique name per type
+    UNIQUE KEY idx_unique_tag (name, tag_type),
+    INDEX idx_tag_name (name),
+    INDEX idx_tag_type (tag_type),
+
+    FOREIGN KEY (parent_tag_id) REFERENCES tags(id) ON DELETE SET NULL
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================================
+-- Paper-Tags Junction Table
+-- Many-to-many relationship: papers can have multiple tags,
+-- tags can be applied to multiple papers
+-- ============================================================================
+CREATE TABLE paper_tags (
+    paper_id INT NOT NULL,
+    tag_id INT NOT NULL,
+
+    -- Track when tag was added (useful for personal tags)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (paper_id, tag_id),
+
+    -- Foreign key constraints
+    FOREIGN KEY (paper_id) REFERENCES papers(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE,
+
+    -- Indexes for common queries
+    INDEX idx_paper_id (paper_id),
+    INDEX idx_tag_id (tag_id)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================================
+-- Full-Text Search Index
+-- Enable fast searching in title and abstract
+-- ============================================================================
+ALTER TABLE papers ADD FULLTEXT INDEX idx_fulltext_search (title, abstract);
+
+-- ============================================================================
+-- Pre-populate Common MSC 2020 Codes for Combinatorics
+-- ============================================================================
+INSERT INTO tags (name, tag_type, description) VALUES
+    ('05A05', 'msc', 'Permutations, words, matrices'),
+    ('05A10', 'msc', 'Factorials, binomial coefficients, combinatorial functions'),
+    ('05A15', 'msc', 'Exact enumeration problems, generating functions'),
+    ('05A16', 'msc', 'Asymptotic enumeration'),
+    ('05A17', 'msc', 'Combinatorial aspects of partitions of integers'),
+    ('05A18', 'msc', 'Partitions of sets'),
+    ('05A19', 'msc', 'Combinatorial identities, bijective combinatorics'),
+    ('05A20', 'msc', 'Combinatorial inequalities'),
+    ('05A30', 'msc', 'q-calculus and related topics'),
+    ('05A40', 'msc', 'Umbral calculus'),
+    ('05E05', 'msc', 'Symmetric functions and generalizations'),
+    ('05E10', 'msc', 'Combinatorial aspects of representation theory'),
+    ('05E14', 'msc', 'Combinatorial aspects of algebraic geometry'),
+    ('05E16', 'msc', 'Combinatorial structures in finite geometry'),
+    ('05E18', 'msc', 'Group actions on combinatorial structures');

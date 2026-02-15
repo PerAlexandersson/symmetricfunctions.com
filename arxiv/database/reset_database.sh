@@ -4,17 +4,18 @@
 
 set -e
 
-# Load configuration from .env file
-if [ ! -f ".env" ]; then
-    echo "Error: .env file not found!"
-    echo "Please create .env file from .env.example:"
+# Load configuration from .env file (in parent directory)
+if [ ! -f "../.env" ]; then
+    echo "Error: .env file not found in parent directory!"
+    echo "Please create .env file in the project root:"
+    echo "  cd .."
     echo "  cp .env.example .env"
     echo "  nano .env  # Edit and set your password"
     exit 1
 fi
 
 # Source the .env file
-export $(grep -v '^#' .env | xargs)
+export $(grep -v '^#' ../.env | xargs)
 
 # Validate required variables
 if [ -z "$DB_PASSWORD" ]; then
