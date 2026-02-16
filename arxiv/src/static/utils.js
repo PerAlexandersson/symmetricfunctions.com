@@ -109,6 +109,22 @@ async function fetchBibtex(arxivId, elementId) {
 }
 
 // ============================================================================
+// BULK BIBTEX FUNCTIONS
+// ============================================================================
+
+/**
+ * Fetch and copy all BibTeX entries for an author
+ * @param {string} authorName - The author's name
+ */
+async function copyAuthorBibtex(authorSlug) {
+    await fetchAndCopy(
+        `/api/author-bibtex/${authorSlug}`,
+        'All BibTeX entries copied to clipboard!',
+        'Failed to copy BibTeX'
+    );
+}
+
+// ============================================================================
 // SHARING FUNCTIONS
 // ============================================================================
 
@@ -227,6 +243,41 @@ function initKeyboardShortcuts() {
 }
 
 // ============================================================================
+// UI FEATURES - Dark Mode
+// ============================================================================
+
+/**
+ * Toggle dark mode and persist preference
+ */
+function toggleDarkMode() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('dark-mode', isDark ? 'on' : 'off');
+    updateDarkModeLabel();
+}
+
+/**
+ * Update the toggle link text
+ */
+function updateDarkModeLabel() {
+    const toggle = document.getElementById('dark-mode-toggle');
+    if (toggle) {
+        const isDark = document.documentElement.classList.contains('dark');
+        toggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+    }
+}
+
+/**
+ * Initialize dark mode from saved preference
+ */
+function initDarkMode() {
+    const saved = localStorage.getItem('dark-mode');
+    if (saved === 'on') {
+        document.documentElement.classList.add('dark');
+    }
+    updateDarkModeLabel();
+}
+
+// ============================================================================
 // INITIALIZATION
 // ============================================================================
 
@@ -234,6 +285,7 @@ function initKeyboardShortcuts() {
  * Initialize all UI features on page load
  */
 document.addEventListener('DOMContentLoaded', function() {
+    initDarkMode();
     initAbstractPersistence();
     initKeyboardShortcuts();
 });

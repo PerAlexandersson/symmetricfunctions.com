@@ -5,17 +5,21 @@ app.py - Flask web application for arXiv combinatorics frontend
 Main web interface for browsing arXiv papers.
 """
 
-from flask import Flask, render_template, request, jsonify, abort
+from flask import Flask, render_template, request, jsonify, abort, redirect, url_for, Response
 import pymysql
 from config import DB_CONFIG, FLASK_CONFIG, validate_config
 from datetime import datetime
 import re
+import unicodedata
 
 # Validate configuration on startup
 validate_config()
 
 app = Flask(__name__)
 app.config.update(FLASK_CONFIG)
+
+# Register slugify as a Jinja filter
+app.jinja_env.filters['slugify'] = lambda name: slugify(name) if name else ''
 
 
 def protect_capitals_for_bibtex(title):
@@ -46,6 +50,21 @@ def protect_capitals_for_bibtex(title):
     return first_char + rest
 
 
+def strip_accents(text):
+    """Strip diacritics/accents from text: Erdős -> Erdos, García -> Garcia."""
+    nfkd = unicodedata.normalize('NFKD', text)
+    return ''.join(c for c in nfkd if not unicodedata.combining(c))
+
+
+def slugify(name):
+    """Convert a name to a URL-friendly slug: 'Per Alexandersson' -> 'per-alexandersson'."""
+    s = strip_accents(name).lower()
+    s = re.sub(r"[^a-z0-9\s-]", '', s)   # remove non-alphanumeric (keep spaces and hyphens)
+    s = re.sub(r'[\s]+', '-', s.strip())  # spaces to hyphens
+    s = re.sub(r'-+', '-', s)             # collapse multiple hyphens
+    return s
+
+
 def generate_bibtex_key(authors, year, published=False):
     """
     Generate BibTeX key from authors and year.
@@ -63,6 +82,7 @@ def generate_bibtex_key(authors, year, published=False):
         last_names = []
         for author in authors:
             last_name = author.split()[-1]
+            last_name = strip_accents(last_name)
             last_name = ''.join(c for c in last_name if c.isalnum())
             last_names.append(last_name)
         return f"{''.join(last_names)}{year}{suffix}"
@@ -153,6 +173,38 @@ doi = {{{doi}}},
 def get_db_connection():
     """Create and return a database connection."""
     return pymysql.connect(**DB_CONFIG, cursorclass=pymysql.cursors.DictCursor)
+
+
+def ensure_author_slugs():
+    """Add slug column if missing and populate any NULL slugs."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        # Add slug column if it doesn't exist
+        cursor.execute("SHOW COLUMNS FROM authors LIKE 'slug'")
+        if not cursor.fetchone():
+            cursor.execute("ALTER TABLE authors ADD COLUMN slug VARCHAR(255)")
+            cursor.execute("CREATE INDEX idx_author_slug ON authors(slug)")
+            conn.commit()
+
+        # Populate missing slugs
+        cursor.execute("SELECT id, name FROM authors WHERE slug IS NULL")
+        authors = cursor.fetchall()
+        if authors:
+            for author in authors:
+                cursor.execute("UPDATE authors SET slug = %s WHERE id = %s",
+                               (slugify(author['name']), author['id']))
+            conn.commit()
+    finally:
+        cursor.close()
+        conn.close()
+
+
+# Populate slugs on startup
+try:
+    ensure_author_slugs()
+except Exception:
+    pass  # DB may not be available during development
 
 
 def get_paper_authors(cursor, paper_id):
@@ -445,9 +497,9 @@ def search():
                          latest_date=latest_date)
 
 
-@app.route('/author/<author_name>')
-def author_papers(author_name):
-    """List all papers by a specific author."""
+@app.route('/author/<author_slug>')
+def author_papers(author_slug):
+    """List all papers by a specific author (looked up by slug)."""
     page = request.args.get('page', 1, type=int)
     per_page = 20
     offset = (page - 1) * per_page
@@ -455,12 +507,19 @@ def author_papers(author_name):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Get author
-    cursor.execute("SELECT id, name FROM authors WHERE name = %s", (author_name,))
+    # Look up by slug first, fall back to name (for old-format URLs)
+    cursor.execute("SELECT id, name, slug FROM authors WHERE slug = %s", (author_slug,))
     author = cursor.fetchone()
-
+    if not author:
+        # Fall back: try matching by exact name (old URLs with spaces)
+        cursor.execute("SELECT id, name, slug FROM authors WHERE name = %s", (author_slug,))
+        author = cursor.fetchone()
     if not author:
         abort(404)
+
+    # Redirect old-format URLs to the slug URL
+    if author.get('slug') and author_slug != author['slug']:
+        return redirect(url_for('author_papers', author_slug=author['slug'], page=page), code=301)
 
     # Get latest published date
     cursor.execute("SELECT MAX(published_date) as latest FROM papers")
@@ -604,6 +663,61 @@ def papers_by_date(date_str):
     return render_template('date.html',
                          date=date,
                          papers=papers)
+
+
+@app.route('/random')
+def random_paper():
+    """Redirect to a random paper."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT arxiv_id FROM papers ORDER BY RAND() LIMIT 1")
+    paper = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    if not paper:
+        abort(404)
+    return redirect(url_for('paper_detail', arxiv_id=paper['arxiv_id']))
+
+
+@app.route('/api/author-bibtex/<author_slug>')
+def author_bibtex(author_slug):
+    """Generate BibTeX for all papers by an author."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT id, name FROM authors WHERE slug = %s", (author_slug,))
+    author = cursor.fetchone()
+    if not author:
+        cursor.execute("SELECT id, name FROM authors WHERE name = %s", (author_slug,))
+        author = cursor.fetchone()
+    if not author:
+        abort(404)
+
+    cursor.execute("""
+        SELECT p.id, p.arxiv_id, p.title, p.published_date, p.journal_ref, p.doi
+        FROM papers p
+        JOIN paper_authors pa ON p.id = pa.paper_id
+        WHERE pa.author_id = %s
+        ORDER BY p.published_date DESC
+    """, (author['id'],))
+
+    papers = cursor.fetchall()
+    entries = []
+    for paper in papers:
+        paper['authors'] = get_paper_authors(cursor, paper['id'])
+        # Always include arXiv entry
+        entries.append(arxiv2bib(paper))
+        # If published, also include the published entry
+        if paper.get('doi'):
+            pub_bib = doi2bib(paper['doi'], paper)
+            if pub_bib:
+                entries.append(pub_bib)
+
+    cursor.close()
+    conn.close()
+
+    bibtex_all = '\n\n'.join(entries)
+    return bibtex_all, 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 
 if __name__ == '__main__':

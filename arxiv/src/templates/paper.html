@@ -10,7 +10,7 @@
 
     <div class="paper-authors">
         {% for author in paper.authors %}
-            <a href="/author/{{ author }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
+            <a href="/author/{{ author | slugify }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
         {% endfor %}
     </div>
 

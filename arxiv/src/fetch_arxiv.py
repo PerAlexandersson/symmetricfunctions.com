@@ -18,7 +18,24 @@ import arxiv
 import pymysql
 from datetime import datetime, timedelta
 import sys
+import re
+import unicodedata
 from config import DB_CONFIG, validate_config
+
+
+def strip_accents(text):
+    """Strip diacritics/accents from text."""
+    nfkd = unicodedata.normalize('NFKD', text)
+    return ''.join(c for c in nfkd if not unicodedata.combining(c))
+
+
+def slugify(name):
+    """Convert a name to a URL-friendly slug."""
+    s = strip_accents(name).lower()
+    s = re.sub(r"[^a-z0-9\s-]", '', s)
+    s = re.sub(r'[\s]+', '-', s.strip())
+    s = re.sub(r'-+', '-', s)
+    return s
 
 # Validate configuration on startup
 validate_config()
@@ -92,12 +109,13 @@ def insert_or_update_paper(cursor, paper):
     # Handle authors
     for order, author in enumerate(paper.authors, start=1):
         author_name = str(author)
-        
+        author_slug = slugify(author_name)
+
         # Insert author if not exists (or get existing ID)
         cursor.execute("""
-            INSERT INTO authors (name) VALUES (%s)
-            ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)
-        """, (author_name,))
+            INSERT INTO authors (name, slug) VALUES (%s, %s)
+            ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), slug=COALESCE(slug, VALUES(slug))
+        """, (author_name, author_slug))
         author_id = cursor.lastrowid
         
         # Link paper to author (ignore if duplicate)

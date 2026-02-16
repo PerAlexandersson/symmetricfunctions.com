@@ -56,11 +56,13 @@ CREATE TABLE papers (
 CREATE TABLE authors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    
+    slug VARCHAR(255),                    -- URL-friendly version of name
+
     -- Ensure uniqueness (same author name stored only once)
     UNIQUE KEY idx_unique_name (name),
-    INDEX idx_name (name)
-    
+    INDEX idx_name (name),
+    INDEX idx_author_slug (slug)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================================

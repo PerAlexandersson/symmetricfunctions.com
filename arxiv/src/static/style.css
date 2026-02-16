@@ -33,6 +33,29 @@
     color-scheme: light;
   }
 
+  /* Dark mode */
+  :root.dark {
+    --c-brand:       hsl(var(--hue-brand), 80%, 60%);
+    --c-brand-light: hsl(var(--hue-brand), 70%, 45%);
+    --c-link:        hsl(var(--hue-link), 80%, 65%);
+    --c-link-dark:   hsl(var(--hue-link), 80%, 50%);
+
+    --c-bg-body:     hsl(var(--hue-neutral), 15%, 10%);
+    --c-bg-surface:  hsl(var(--hue-neutral), 15%, 14%);
+    --c-bg-header:   hsl(var(--hue-neutral), 15%, 12%);
+
+    --c-border:      hsl(var(--hue-neutral), 10%, 25%);
+    --c-bg-gray:     hsl(var(--hue-neutral), 10%, 20%);
+
+    --c-text-main:   hsl(var(--hue-neutral), 10%, 88%);
+    --c-text-sub:    hsl(var(--hue-neutral), 10%, 68%);
+    --c-text-muted:  hsl(var(--hue-neutral), 8%, 55%);
+
+    --c-focus:       hsl(var(--hue-link), 80%, 65%);
+
+    color-scheme: dark;
+  }
+
 
   /* Reset */
   *, *::before, *::after { box-sizing: border-box; }
@@ -43,26 +66,6 @@
     outline-offset: 2px;
   }
 
-  /* Skip-to-content link */
-  .skip-link {
-    position: absolute;
-    top: -100%;
-    left: 1rem;
-    z-index: 1000;
-    padding: 0.75rem 1.5rem;
-    background: var(--c-brand);
-    color: white;
-    font-weight: 600;
-    border-radius: 0 0 4px 4px;
-    text-decoration: none;
-    transition: top 0.2s;
-  }
-
-  .skip-link:focus {
-    top: 0;
-    outline: 2px solid var(--c-focus);
-    outline-offset: 2px;
-  }
 
   html {
     height: 100%;
