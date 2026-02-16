@@ -444,38 +444,71 @@ def search():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    search_term = f"%{query}%"
+    author_term = f"%{query}%"
 
     # Get latest published date
     cursor.execute("SELECT MAX(published_date) as latest FROM papers")
     latest_date = cursor.fetchone()['latest']
 
-    # Search in titles and authors
-    cursor.execute("""
-        SELECT COUNT(DISTINCT p.id) as count
-        FROM papers p
-        LEFT JOIN paper_authors pa ON p.id = pa.paper_id
-        LEFT JOIN authors a ON pa.author_id = a.id
-        WHERE p.title LIKE %s
-           OR p.abstract LIKE %s
-           OR a.name LIKE %s
-    """, (search_term, search_term, search_term))
+    # Use FULLTEXT for title/abstract when words are long enough (min 3 chars),
+    # fall back to LIKE for very short queries
+    words = query.split()
+    use_fulltext = all(len(w) >= 3 for w in words) and len(words) > 0
 
-    total = cursor.fetchone()['count']
+    if use_fulltext:
+        ft_query = '+' + ' +'.join(words)  # boolean mode: require all words
 
-    cursor.execute("""
-        SELECT DISTINCT p.id, p.arxiv_id, p.title, p.abstract,
-               p.published_date, p.updated_date, p.journal_ref, p.doi,
-               p.comment, p.primary_category
-        FROM papers p
-        LEFT JOIN paper_authors pa ON p.id = pa.paper_id
-        LEFT JOIN authors a ON pa.author_id = a.id
-        WHERE p.title LIKE %s
-           OR p.abstract LIKE %s
-           OR a.name LIKE %s
-        ORDER BY p.published_date DESC, p.id DESC
-        LIMIT %s OFFSET %s
-    """, (search_term, search_term, search_term, per_page, offset))
+        cursor.execute("""
+            SELECT COUNT(DISTINCT p.id) as count
+            FROM papers p
+            LEFT JOIN paper_authors pa ON p.id = pa.paper_id
+            LEFT JOIN authors a ON pa.author_id = a.id
+            WHERE MATCH(p.title, p.abstract) AGAINST(%s IN BOOLEAN MODE)
+               OR a.name LIKE %s
+        """, (ft_query, author_term))
+
+        total = cursor.fetchone()['count']
+
+        cursor.execute("""
+            SELECT DISTINCT p.id, p.arxiv_id, p.title, p.abstract,
+                   p.published_date, p.updated_date, p.journal_ref, p.doi,
+                   p.comment, p.primary_category
+            FROM papers p
+            LEFT JOIN paper_authors pa ON p.id = pa.paper_id
+            LEFT JOIN authors a ON pa.author_id = a.id
+            WHERE MATCH(p.title, p.abstract) AGAINST(%s IN BOOLEAN MODE)
+               OR a.name LIKE %s
+            ORDER BY p.published_date DESC, p.id DESC
+            LIMIT %s OFFSET %s
+        """, (ft_query, author_term, per_page, offset))
+    else:
+        like_term = f"%{query}%"
+
+        cursor.execute("""
+            SELECT COUNT(DISTINCT p.id) as count
+            FROM papers p
+            LEFT JOIN paper_authors pa ON p.id = pa.paper_id
+            LEFT JOIN authors a ON pa.author_id = a.id
+            WHERE p.title LIKE %s
+               OR p.abstract LIKE %s
+               OR a.name LIKE %s
+        """, (like_term, like_term, like_term))
+
+        total = cursor.fetchone()['count']
+
+        cursor.execute("""
+            SELECT DISTINCT p.id, p.arxiv_id, p.title, p.abstract,
+                   p.published_date, p.updated_date, p.journal_ref, p.doi,
+                   p.comment, p.primary_category
+            FROM papers p
+            LEFT JOIN paper_authors pa ON p.id = pa.paper_id
+            LEFT JOIN authors a ON pa.author_id = a.id
+            WHERE p.title LIKE %s
+               OR p.abstract LIKE %s
+               OR a.name LIKE %s
+            ORDER BY p.published_date DESC, p.id DESC
+            LIMIT %s OFFSET %s
+        """, (like_term, like_term, like_term, per_page, offset))
 
     papers = cursor.fetchall()
 
