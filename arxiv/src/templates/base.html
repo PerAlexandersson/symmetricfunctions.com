@@ -57,6 +57,8 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
     <header>
         <div class="container">
             <h1 class="site-title">
@@ -68,15 +70,16 @@
                 <a href="/tools" style="color: var(--c-link); text-decoration: none; border-bottom: 1px dotted var(--c-link);">Tools</a>
             </p>
 
-            <form action="/search" method="get" class="search-form">
-                <input type="text" name="q" placeholder="Search by title, author, or abstract..." value="{{ request.args.get('q', '') }}">
+            <form action="/search" method="get" class="search-form" role="search" aria-label="Search papers">
+                <label for="search-input" class="skip-link" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0);">Search papers</label>
+                <input type="text" id="search-input" name="q" placeholder="Search by title, author, or abstract..." value="{{ request.args.get('q', '') }}" aria-label="Search by title, author, or abstract">
                 <button type="submit">Search</button>
             </form>
         </div>
     </header>
 
     <div class="container">
-        <main>
+        <main id="main-content">
             {% block content %}{% endblock %}
         </main>
     </div>
