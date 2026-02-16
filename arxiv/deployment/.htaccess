@@ -1,5 +1,5 @@
 # .htaccess for Passenger WSGI
-# This file goes in the public_html/ directory
+# Place this file in the public_html/ directory as .htaccess
 
 # Enable Passenger
 PassengerEnabled on
@@ -17,16 +17,15 @@ PassengerPython /home/symmetricf/virtualenv/domains/arxiv.symmetricfunctions.com
 # Environment
 PassengerAppEnv production
 
-# Friendly error pages (enable for debugging, disable in production)
-PassengerFriendlyErrorPages on
+# Friendly error pages (disable in production)
+# PassengerFriendlyErrorPages on
 
-# Force HTTPS (uncomment after SSL is set up)
-# RewriteEngine On
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Handle static files directly (bypass Python for better performance)
-# COMMENTED OUT - Security filter blocking CSS content, let Flask serve instead
-# <FilesMatch "\.(jpg|jpeg|png|gif|css|js|ico|svg|woff|woff2|ttf|eot)$">
-#     PassengerEnabled off
-# </FilesMatch>
+# Handle static files directly (bypass Python)
+<FilesMatch "\.(jpg|jpeg|png|gif|css|js|ico|svg|woff|woff2|ttf|eot)$">
+    PassengerEnabled off
+</FilesMatch>

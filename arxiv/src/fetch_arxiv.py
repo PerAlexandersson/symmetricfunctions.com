@@ -258,18 +258,74 @@ def fetch_by_arxiv_id(arxiv_id):
         conn.close()
 
 
+def fill_gap():
+    """
+    Find the first month (from 1991-01 onward) with no papers and backfill it.
+    Scans forward from arXiv founding to the present, finds the earliest
+    gap, and fills it. Run repeatedly to gradually fill all months.
+    """
+    from calendar import monthrange
+
+    ARXIV_START_YEAR = 1991
+    ARXIV_START_MONTH = 1
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Get all months that have at least one paper
+    cursor.execute("""
+        SELECT DISTINCT YEAR(published_date) as y, MONTH(published_date) as m
+        FROM papers
+        ORDER BY y, m
+    """)
+    filled_months = {(row[0], row[1]) for row in cursor.fetchall()}
+
+    cursor.close()
+    conn.close()
+
+    now = datetime.now()
+    current_year, current_month = now.year, now.month
+
+    # Scan backward from current month to find most recent unfilled month
+    y, m = current_year, current_month
+    target = None
+    while (y, m) >= (ARXIV_START_YEAR, ARXIV_START_MONTH):
+        if (y, m) not in filled_months:
+            target = (y, m)
+            break
+        m -= 1
+        if m < 1:
+            m = 12
+            y -= 1
+
+    if target is None:
+        print("All months from 1991-01 to present are filled!")
+        print("Nothing to do.")
+        return
+
+    target_year, target_month = target
+    _, last_day = monthrange(target_year, target_month)
+    start_date = f"{target_year}-{target_month:02d}-01"
+    end_date = f"{target_year}-{target_month:02d}-{last_day:02d}"
+
+    print(f"Filling gap: {start_date} to {end_date}")
+    fetch_date_range(start_date, end_date)
+
+
 def main():
     parser = argparse.ArgumentParser(description='Fetch arXiv papers and store in database')
-    
+
     # Mode selection (mutually exclusive)
     mode_group = parser.add_mutually_exclusive_group(required=True)
-    mode_group.add_argument('--recent', action='store_true', 
+    mode_group.add_argument('--recent', action='store_true',
                            help='Fetch recent papers')
     mode_group.add_argument('--backfill', action='store_true',
                            help='Backfill papers from a date range')
     mode_group.add_argument('--arxiv-id', type=str,
                            help='Fetch a specific paper by arXiv ID')
-    
+    mode_group.add_argument('--fill-gap', action='store_true',
+                           help='Auto-fill the month before the earliest data')
+
     # Options for different modes
     parser.add_argument('--days', type=int, default=2,
                        help='Number of days to look back (for --recent mode)')
@@ -277,9 +333,9 @@ def main():
                        help='Start date in YYYY-MM-DD format (for --backfill mode)')
     parser.add_argument('--end-date', type=str,
                        help='End date in YYYY-MM-DD format (for --backfill mode)')
-    
+
     args = parser.parse_args()
-    
+
     try:
         if args.recent:
             fetch_recent_papers(args.days)
@@ -290,6 +346,8 @@ def main():
             fetch_date_range(args.start_date, args.end_date)
         elif args.arxiv_id:
             fetch_by_arxiv_id(args.arxiv_id)
+        elif args.fill_gap:
+            fill_gap()
     except Exception as e:
         print(f"Fatal error: {e}")
         sys.exit(1)
