@@ -15,7 +15,7 @@
     </div>
 
     <div class="paper-meta">
-        📅 Published: {{ paper.published_date }}
+        Published: {{ paper.published_date }}
         {% if paper.updated_date and paper.updated_date != paper.published_date %}
             | Updated: {{ paper.updated_date }}
         {% endif %}
@@ -39,16 +39,12 @@
     </div>
     {% endif %}
 
-    <div class="paper-links" style="margin-top: 1.5rem;">
-        <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}" target="_blank" rel="noopener">
-            🔗 View on arXiv
-        </a>
-        <a href="https://arxiv.org/pdf/{{ paper.arxiv_id }}.pdf" target="_blank" rel="noopener">
-            📄 Download PDF
-        </a>
-        <a href="#" onclick="copyBibtex(); return false;">
-            📋 Copy BibTeX
-        </a>
+    <div class="paper-links paper-detail-links" style="margin-top: 1.5rem;">
+        <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}" target="_blank" rel="noopener">View on arXiv</a>
+        <span class="bullet">•</span>
+        <a href="https://arxiv.org/pdf/{{ paper.arxiv_id }}" target="_blank" rel="noopener">Download PDF</a>
+        <span class="bullet">•</span>
+        <a href="#" onclick="copyBibtex(); return false;">Copy BibTeX</a>
     </div>
 
     <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Abstract</h3>

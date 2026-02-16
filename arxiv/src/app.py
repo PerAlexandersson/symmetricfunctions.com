@@ -21,25 +21,29 @@ app.config.update(FLASK_CONFIG)
 def protect_capitals_for_bibtex(title):
     """
     Protect capital letters in a title for BibTeX by wrapping them in braces.
-    This ensures BibTeX won't lowercase them.
+    This ensures BibTeX won't lowercase them. The very first character of the
+    title is left unprotected (BibTeX preserves it regardless).
 
-    Example: "RNA-Binding Proteins" -> "{RNA}-{B}inding {P}roteins"
+    Example: "A new formula for Macdonald polynomials using LLT polynomials"
+          -> "A new formula for {M}acdonald polynomials using {LLT} polynomials"
     """
-    # Protect sequences of capitals (acronyms like RNA, DNA, etc.)
+    if not title:
+        return title
+
     def protect_match(match):
-        text = match.group(0)
-        return f"{{{text}}}"
+        return f"{{{match.group(0)}}}"
 
-    # Match sequences of 2+ capitals (acronyms): RNA, DNA, KaTeX, etc.
-    result = re.sub(r'[A-Z]{2,}', protect_match, title)
+    # Protect the title after the first character (BibTeX keeps the first letter)
+    first_char = title[0]
+    rest = title[1:]
 
-    # Match single capitals that appear mid-word (after lowercase)
-    result = re.sub(r'(?<=[a-z])[A-Z]', protect_match, result)
+    # Protect sequences of 2+ capitals (acronyms: LLT, RNA, DNA, etc.)
+    rest = re.sub(r'[A-Z]{2,}', protect_match, rest)
 
-    # Match capitals after hyphens or slashes
-    result = re.sub(r'(?<=[-/])[A-Z]', protect_match, result)
+    # Protect remaining single capitals
+    rest = re.sub(r'[A-Z]', protect_match, rest)
 
-    return result
+    return first_char + rest
 
 
 def generate_bibtex_key(authors, year, published=False):
@@ -52,16 +56,17 @@ def generate_bibtex_key(authors, year, published=False):
         published: If True, omit the 'x' suffix for published papers
 
     Returns:
-        BibTeX key string (e.g., "Smith2024x" or "Smith2024")
+        BibTeX key string (e.g., "SmithJones2024x" or "SmithJones2024")
     """
+    suffix = '' if published else 'x'
     if authors:
-        first_author = authors[0]
-        last_name = first_author.split()[-1]
-        last_name = ''.join(c for c in last_name if c.isalnum())
-        suffix = '' if published else 'x'
-        return f"{last_name}{year}{suffix}"
+        last_names = []
+        for author in authors:
+            last_name = author.split()[-1]
+            last_name = ''.join(c for c in last_name if c.isalnum())
+            last_names.append(last_name)
+        return f"{''.join(last_names)}{year}{suffix}"
     else:
-        suffix = '' if published else 'x'
         return f"arxiv{year}{suffix}"
 
 
@@ -80,9 +85,7 @@ def arxiv2bib(paper_data):
 
     author_str = ' and '.join(paper_data.get('authors', [])) if paper_data.get('authors') else 'Unknown'
 
-    clean_arxiv_id = paper_data['arxiv_id']
-    if 'v' in clean_arxiv_id:
-        clean_arxiv_id = clean_arxiv_id.split('v')[0]
+    clean_arxiv_id = re.sub(r'v\d+$', '', paper_data['arxiv_id'])
 
     protected_title = protect_capitals_for_bibtex(paper_data['title'])
 
@@ -214,7 +217,7 @@ def index():
                          latest_date=latest_date)
 
 
-@app.route('/paper/<arxiv_id>')
+@app.route('/paper/<path:arxiv_id>')
 def paper_detail(arxiv_id):
     """Paper detail page."""
     conn = get_db_connection()
@@ -240,7 +243,7 @@ def paper_detail(arxiv_id):
     return render_template('paper.html', paper=paper)
 
 
-@app.route('/api/bibtex/<arxiv_id>')
+@app.route('/api/bibtex/<path:arxiv_id>')
 def bibtex(arxiv_id):
     """Generate arXiv BibTeX entry for a paper."""
     conn = get_db_connection()
@@ -265,7 +268,7 @@ def bibtex(arxiv_id):
     return bibtex, 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 
-@app.route('/api/doi-bibtex/<arxiv_id>')
+@app.route('/api/doi-bibtex/<path:arxiv_id>')
 def doi_bibtex(arxiv_id):
     """Generate published BibTeX entry for a paper with DOI."""
     conn = get_db_connection()

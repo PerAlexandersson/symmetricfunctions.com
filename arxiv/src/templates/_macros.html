@@ -16,15 +16,15 @@
             {% endfor %}
         </div>
         <div class="paper-links">
-            <a href="#paper-{{ paper.arxiv_id }}" onclick="copyShareLink('{{ paper.arxiv_id }}'); return false;" title="Copy shareable link">#</a>
-            <span class="bullet">•</span>
-            <a href="/paper/{{ paper.arxiv_id }}" title="View details">INFO</a>
-            <span class="bullet">•</span>
-            <a href="#" onclick="copyBibtex('{{ paper.arxiv_id }}'); return false;" title="Copy arXiv BibTeX entry">BIB</a>
-            <span class="bullet">•</span>
-            <a href="https://arxiv.org/pdf/{{ paper.arxiv_id }}.pdf" target="_blank" rel="noopener" title="Download PDF">PDF</a>
-            <span class="bullet">•</span>
-            <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}" target="_blank" rel="noopener" title="View on arXiv">ARXIV</a>
+            <a href="#paper-{{ paper.arxiv_id }}" onclick="copyShareLink('{{ paper.arxiv_id }}'); return false;" title="Copy shareable link" aria-label="Copy link">#</a>
+            <span class="bullet" aria-hidden="true">•</span>
+            <a href="/paper/{{ paper.arxiv_id }}" title="View details" aria-label="Paper details">INFO</a>
+            <span class="bullet" aria-hidden="true">•</span>
+            <a href="#" onclick="copyBibtex('{{ paper.arxiv_id }}'); return false;" title="Copy arXiv BibTeX entry" aria-label="Copy BibTeX">BIB</a>
+            <span class="bullet" aria-hidden="true">•</span>
+            <a href="https://arxiv.org/pdf/{{ paper.arxiv_id }}" target="_blank" rel="noopener" title="Download PDF" aria-label="Download PDF">PDF</a>
+            <span class="bullet" aria-hidden="true">•</span>
+            <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}" target="_blank" rel="noopener" title="View on arXiv" aria-label="View on arXiv">ARXIV</a>
         </div>
     </div>
 
