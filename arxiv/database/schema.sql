@@ -1,10 +1,18 @@
 -- arXiv Combinatorics Frontend Database Schema
 -- MariaDB/MySQL compatible
 
+-- Disable foreign key checks temporarily to allow dropping tables
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- Drop tables if they exist (for clean reinstall)
 DROP TABLE IF EXISTS paper_authors;
+DROP TABLE IF EXISTS paper_tags;
 DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS papers;
+DROP TABLE IF EXISTS tags;
+
+-- Re-enable foreign key checks
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- ============================================================================
 -- Papers Table

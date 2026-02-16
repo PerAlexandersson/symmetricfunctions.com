@@ -59,6 +59,15 @@ rsync -avizL -e "ssh -p $REMOTE_PORT" \
     src/templates/ \
     $REMOTE_HOST:$REMOTE_PATH/src/templates/
 
+# Sync database schema
+echo -e "${YELLOW}Step 3.5: Syncing database schema...${NC}"
+rsync -avizL -e "ssh -p $REMOTE_PORT" \
+    --exclude='*~' \
+    --exclude='*.db' \
+    --exclude='*.sqlite' \
+    database/ \
+    $REMOTE_HOST:$REMOTE_PATH/database/
+
 echo -e "${YELLOW}Step 4: Syncing configuration files...${NC}"
 
 # Upload Passenger WSGI file
