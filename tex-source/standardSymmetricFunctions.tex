@@ -345,6 +345,13 @@ If $F(t)$ is a polynomial with constant term $1$, then
 \end{lemma}
 
 
+\begin{lemma}
+Let $f(t)$ be a formal power series with $f(0)=1$.
+Then 
+\[
+\omega \left( f(x_1)f(x_2) \dotsm \right) = \frac{1}{f(-x_1)f(-x_2) \dotsm}.
+\]
+\end{lemma}
 
 
 \subsection[mapsOnSymmetricFunctions]{Other maps on symmetric functions}
@@ -388,6 +395,40 @@ is the operator that adds a new top row of length $r$.
 
 
 
+
+\begin{definition}[The hook filter]\label{def:hookFilter}
+We define the linear map $\phi$ on the ring of quasisymmetric functions
+by its action on the \hyperref[gesselDefinitionSubsets]{Gessel fundamental basis}.
+For $S \subseteq [n]$,
+\[
+\phi(\gessel_{n+1,S}(\xvec)) =
+\begin{cases}
+t(t-1)^i & \text{if } S = \{i+1, i+2, \dotsc, n\}, \\
+0 & \text{otherwise.}
+\end{cases}
+\]
+\end{definition}
+
+\begin{proposition}
+For a partition $\lambda \vdash (n+1)$, the map $\phi$ acts as an exact filter
+for hook shapes on \hyperref[schurS]{Schur functions}:
+\[
+\phi(\schurS_\lambda(\xvec)) =
+\begin{cases}
+t(t-1)^i & \text{if } \lambda = (i+1, 1^{n-i}), \\
+0 & \text{otherwise.}
+\end{cases}
+\]
+\end{proposition}
+
+This map has an important role for the \hyperref[chromaticQuasisymmetric]{chromatic symmetric functions}, see \cite{Stanley1995}.
+In particular, it has the property that $\phi(\elementaryE_mu) = t^{\length(\mu)}$.
+
+
+
+
+
+
 \subsection[hopfAlgebra]{Hopf algebra}
 
 The algebra of symmetric functions admits a Hopf algebra structure,
@@ -399,6 +440,13 @@ See \href{https://pdfs.semanticscholar.org/2e2c/db9605de96fc71b4539bf8d40192fa0f
 by \name{Raymond Cheng} 
 and \href{http://www-users.math.umn.edu/~reiner/Classes/HopfComb.pdf}{Hopf algebras in combinatorics}, \name{Darij Grinberg} and \name{Vic Reiner}.
 
+
+
+The Hopf algebra \defin{antipode} on symmetric functions has the property that 
+\[
+S( \schurS_{\lambda/\mu} ) = (-1)^{|\lambda/\mu|} \schurS_{\lambda'/\mu'}.
+\]
+For a combinatorial proof of this, see \cite{ChoHwangLee2026x}.
 
 
 
