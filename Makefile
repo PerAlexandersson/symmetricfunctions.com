@@ -8,7 +8,7 @@ MAKEFLAGS += -j8
 include config.mk
 include config_test.mk
 
-.PHONY: all gather meta bib render copy-assets clean unittest
+.PHONY: all gather meta bib render copy-assets clean unittest deploy
 .DELETE_ON_ERROR:
 .SECONDARY: $(PRE_TEX)
 
@@ -131,3 +131,9 @@ unittest: $(TEST_HTML)
 .PHONY: clean
 clean:
 	@rm -rf $(TEMP_DIR) $(WWW_DIR)
+
+# === DEPLOY ===
+DESTPATH := symmetricf@ns12.inleed.net:domains/symmetricfunctions.com/public_html
+deploy:
+	@chmod -R u+rw,go+r,go-w $(WWW_DIR)/
+	rsync -avizL -e "ssh -p 2020" --exclude='*~' $(WWW_DIR)/ $(DESTPATH)
