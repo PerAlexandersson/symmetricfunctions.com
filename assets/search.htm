@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Search | SymCat</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Per Alexandersson" />
+	<meta name="description" content="Search the symmetric functions catalog." />
+	<meta name="robots" content="noindex, follow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/svg+xml" href="svg-images/logo.svg">
+	<link rel="apple-touch-icon" href="icons/icon.png">
+	<link rel="alternate icon" href="icons/favicon.png">
+	<link rel="stylesheet" href="./style.css">
+	<link href="./_pagefind/pagefind-ui.css" rel="stylesheet">
+	<script src="./_pagefind/pagefind-ui.js"></script>
+	<script>
+	  window.addEventListener('DOMContentLoaded', function() {
+	    new PagefindUI({ element: "#search", showImages: false, resetStyles: false });
+	  });
+	</script>
+	<style>
+	  #search {
+	    --pagefind-ui-scale: 0.9;
+	    --pagefind-ui-primary: var(--c-brand);
+	    max-width: 48rem;
+	    margin: 2rem auto;
+	  }
+	</style>
+</head>
+<body>
+
+<header id="doc-title" role="banner">
+    <h1 id="symcatTitle">The symmetric functions catalog</h1>
+    <p id="symcatSubtitle">An overview of symmetric functions and related topics</p>
+    <nav id="topnav" aria-label="Main navigation">
+      <a href="index.htm" class="toplink"><img src="icons/icon-home.svg" alt="Home" class="topnav-icon"/> Index</a>
+      <a href="polynomialList.htm" class="toplink"><img src="icons/icon-database.svg" alt="Symmetric functions" class="topnav-icon"/> Symmetric functions</a>
+      <a href="about.htm" class="toplink"><img src="icons/icon-atom.svg" alt="About" class="topnav-icon"/> About</a>
+      <a href="search.htm" class="toplink"><img src="icons/icon-search.svg" alt="Search" class="topnav-icon"/> Search</a>
+      <a href="https://ko-fi.com/W7W41VN3WK" class="toplink" target="_blank" rel="noopener" style="background-color:#f48525;color:#fff;">&#9749; Support</a>
+    </nav>
+</header>
+
+<div id="doc-all">
+  <main id="doc-main" data-pagefind-ignore>
+    <section id="doc-section">
+      <h2>Search</h2>
+      <div id="search"></div>
+    </section>
+  </main>
+</div>
+
+<footer id="doc-footer" aria-label="Contact">
+	<address>
+	Maintained by <a href="https://alexandersson.symmetricfunctions.com">Per Alexandersson</a>,
+	<a href="mailto:per@symmetricfunctions.com">per@symmetricfunctions.com</a>.
+	&nbsp;
+	<a href="https://www.facebook.com/groups/SymmetricFunctions/">Symmetric functions on Facebook</a>.
+	&nbsp;
+	Contributions welcome via <a href="https://github.com/PerAlexandersson/symmetricfunctions.com">GitHub</a>.
+	</address>
+</footer>
+
+</body>
+</html>

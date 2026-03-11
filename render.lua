@@ -514,6 +514,7 @@ end
 -- ========== MAIN EXECUTION ==========
 
 local filename = arg[1];
+local filestem = filename:match("([^/\\]+)%.json$") or "unknown"
 local pandoc_doc = file_reading.load_json_file(filename, "json pandoc document")
 
 -- Extract metadata
@@ -537,6 +538,10 @@ local document_content = {
   DESCRIPTION = html_escape(desc),
   CANONICAL   = html_escape(canonical),
   LASTMOD     = format_lastmod_html(SOURCE_TS),
+  EDITLINK    = string.format(
+    '<a class="editLink" href="https://github.com/PerAlexandersson/symmetricfunctions.com/blob/master/tex-source/%s.tex" target="_blank" rel="noopener">Improve this page</a>',
+    html_escape(filestem)
+  ),
   MAIN        = html_body,
   
   SIDELINKS = lazy(function()

@@ -17,7 +17,7 @@ include config_test.mk
 
 
 # Default target
-all: gather meta render copy-assets
+all: gather meta render copy-assets search
 
 # === CREATE BUILD DIRECTORIES ===
 # Use stamp files to ensure directories are created exactly once
@@ -131,6 +131,13 @@ unittest: $(TEST_HTML)
 .PHONY: clean
 clean:
 	@rm -rf $(TEMP_DIR) $(WWW_DIR)
+
+# === SEARCH INDEX (pagefind) ===
+# Requires: npm install -g pagefind
+.PHONY: search
+search: render copy-assets
+	@echo "Building search index with pagefind..."
+	@npx pagefind --site $(WWW_DIR) --output-path $(WWW_DIR)/_pagefind --glob "**/*.htm"
 
 # === DEPLOY ===
 DESTPATH := symmetricf@ns12.inleed.net:domains/symmetricfunctions.com/public_html
