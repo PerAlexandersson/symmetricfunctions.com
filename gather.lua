@@ -21,7 +21,7 @@ local print_error = utils.print_error
 
 local bib = dofile("bibhandler.lua")
 local get_bibliography_label = bib.get_bibliography_label
-local get_bibliography_tooltop = bib.get_bibliography_tooltop
+local get_bibliography_tooltip = bib.get_bibliography_tooltip
 
 -- Derive current input filename/stem
 local _INPUT = (PANDOC_STATE and PANDOC_STATE.input_files and PANDOC_STATE.input_files[1]) or "(stdin)"
@@ -148,15 +148,6 @@ local TEXTABLES = {
   { name = "rawtabular",    pat = "^%s*(\\begin%s*%{rawtabular%}%s*%b{}%s*[%s%S]-%s*\\end%s*%{rawtabular%})%s*$" },
   { name = "ytableaushort", pat = "^%s*(\\ytableaushort%b{})%s*$" }
 }
-
-local function match_textable(s)
-  for _, m in ipairs(TEXTABLES) do
-    local b = s:match(m.pat)
-    if b then return m.name, b end
-  end
-  return nil, nil
-end
-
 
 local function match_textable(s)
   for _, m in ipairs(TEXTABLES) do
@@ -518,7 +509,7 @@ function RawInline(el)
           any_missing = true
         else
           set_add(citations, key)
-          local tooltip = get_bibliography_tooltop(key) or "" -- Ensure it's not nil
+          local tooltip = get_bibliography_tooltip(key) or "" -- Ensure it's not nil
           parts[#parts + 1] = pandoc.Link(
               { pandoc.Str(lbl) }, 
               "#" .. key, 
@@ -623,12 +614,10 @@ function RawBlock(el)
     end
   end
 
-  -- These are not relevant, so throw away
-  -- \metakeywords{...}
+  -- \metakeywords{...} — not used, discard
   do
     local md = s:match("^%s*\\metakeywords(%b{})%s*$")
     if md then
-      metadesc = md:sub(2, -2);
       return {}
     end
   end

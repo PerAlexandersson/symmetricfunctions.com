@@ -195,7 +195,7 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    img { filter: invert(1) hue-rotate(180deg); }
+    img:not(.topnav-icon):not(.no-invert) { filter: invert(1) hue-rotate(180deg); }
   }
   
   /* ==========================================================================
@@ -465,7 +465,7 @@
     opacity: 0.8;
   }
   @media (prefers-color-scheme: dark) {
-    .topic-card img { filter: invert(1) hue-rotate(180deg); }
+    .topic-card img:not(.no-invert) { filter: invert(1) hue-rotate(180deg); }
   }
 
   /* ==========================================================================

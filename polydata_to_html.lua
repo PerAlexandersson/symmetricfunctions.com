@@ -5,7 +5,6 @@ local file_reading   = dofile("file_reading.lua")
 
 local trim         = utils.trim
 local html_escape  = utils.html_escape
-local slugify      = utils.slugify
 local print_error  = utils.print_error
 local load_json    = file_reading.load_json_file
 
@@ -60,7 +59,6 @@ local function render_row(entry)
 
   local space_html, basis_attr = space_with_basis(entry)
 
-  local slug  = slugify(key)
   local href  = ""
   if page ~= "" then
     href = string.format("%s.htm#%s", page, key)

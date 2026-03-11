@@ -290,7 +290,9 @@ local function format_bibliography_entry(item, key, label)
   table.insert(parts, '<li id="' .. html_escape(entry_id) .. '">')
   table.insert(parts, '<span class="citeKey">[' .. html_escape(bib_label) .. ']</span> ')
   if author_string ~= "" then
-    table.insert(parts, '<span class="citeAuthor">' .. html_escape(author_string) .. '</span>. ')
+    local scholar_url = "https://scholar.google.com/search?q=" .. author_string:gsub(" ", "+")
+    local author_linked = '<a class="citeAuthorLink" href="' .. html_escape(scholar_url) .. '" target="_blank" rel="noopener">' .. html_escape(author_string) .. '</a>'
+    table.insert(parts, '<span class="citeAuthor">' .. author_linked .. '</span>. ')
   end
   table.insert(parts, format_title_with_link(item) .. ". ")
   table.insert(parts, format_venue_info(item))
@@ -364,7 +366,7 @@ local function get_bibliography_label(id)
 end
 
 
-local function get_bibliography_tooltop(id)
+local function get_bibliography_tooltip(id)
   local bibliography = load_bibliography_json()
   local entry = bibliography and bibliography[id]
   if not entry then return nil end
@@ -394,7 +396,7 @@ end
 local M = {
   build_bibliography_HTML = build_bibliography_HTML,
   get_bibliography_label = get_bibliography_label,
-  get_bibliography_tooltop = get_bibliography_tooltop
+  get_bibliography_tooltip = get_bibliography_tooltip
 }
 
 return M

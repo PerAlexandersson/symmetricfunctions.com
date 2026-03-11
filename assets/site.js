@@ -106,40 +106,7 @@
   }
 
   function initScrollBehavior() {
-    var tocButton = document.getElementById("tocButton");
-    if (!tocButton) return;
-    
-    var lastScrollY = window.pageYOffset;
-    var ticking = false;
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        window.requestAnimationFrame(function () {
-          var currentScrollY = window.pageYOffset;
-          
-          //  If we are near the top (within 100px), ALWAYS show the button
-          if (currentScrollY < 100) {
-            tocButton.style.transform = 'translateY(0)';
-          }
-          // If scrolling DOWN, hide it
-          else if (currentScrollY > lastScrollY) {
-            tocButton.style.transform = 'translateY(110%)';
-          }
-          // If scrolling UP, show it
-          else {
-            tocButton.style.transform = 'translateY(0)';
-          }
-          lastScrollY = currentScrollY;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-    
-    // SAFETY: Ensure button is visible if the user resizes the window
-    window.addEventListener('resize', function() {
-        tocButton.style.transform = 'translateY(0)';
-    });
+    // TOC button is always visible — no scroll-hide behaviour
   }
 
 
@@ -170,7 +137,7 @@
                 
                 // Reset after 2 seconds
                 setTimeout(function() {
-                    button.innerHTML = '<img src="icons/icon-clone.svg" class="heart icon" />';
+                    button.innerHTML = '<img src="icons/icon-clone.svg" class="copy icon" />';
                     button.style.color = '';
                     button.style.borderColor = '';
                 }, 2000);
