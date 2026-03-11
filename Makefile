@@ -35,7 +35,7 @@ bib: $(REFS_JSON)
 
 $(REFS_JSON): $(BIBFILE) | $(TEMP_DIR)/.created
 	@echo "Generating $@"
-	@sed -E 's/[Ee]print[[:space:]]*=[[:space:]]*\{([^}]*)\}/note = {arXiv:\1}/g' $(BIBFILE) > $(TEMP_DIR)/bibfile_processed.bib
+	@sed -E 's/[Ee][Pp][Rr][Ii][Nn][Tt][[:space:]]*=[[:space:]]*\{([Aa][Rr][Xx][Ii][Vv]:)?([^}]*)\}/url = {https:\/\/arxiv.org\/abs\/\2}/g' $(BIBFILE) > $(TEMP_DIR)/bibfile_processed.bib
 	@$(PANDOC) -f biblatex -t csljson $(TEMP_DIR)/bibfile_processed.bib \
 	  --lua-filter=bib_math_filter.lua --fail-if-warnings -o $@.tmp && mv $@.tmp $@
 
