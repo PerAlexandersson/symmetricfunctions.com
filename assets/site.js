@@ -151,6 +151,20 @@
     });
   }
 
+  // Header anchor: copy permalink to clipboard on click
+  function initHeaderAnchors() {
+    document.addEventListener('click', function (e) {
+      var anchor = e.target.closest('.header-anchor');
+      if (!anchor) return;
+      e.preventDefault();
+      var url = anchor.href;
+      navigator.clipboard.writeText(url).then(function () {
+        anchor.textContent = '\u2713';
+        setTimeout(function () { anchor.textContent = '#'; }, 1500);
+      });
+    });
+  }
+
   // Family Index Table Sorting & Row Linking
   function initFamilyIndexTable() {
     var table = document.getElementById("family-index");
@@ -252,6 +266,7 @@
     initTOCListeners();
     initScrollBehavior();
     initCopyButtons();
+    initHeaderAnchors();
     initFamilyIndexTable();
 
     var btn = document.getElementById("tocButton");

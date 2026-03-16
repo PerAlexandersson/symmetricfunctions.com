@@ -391,6 +391,231 @@ which is a quasipolynomial of degree 3 with period 2.
 
 
 
+
+
+\subsection[gtKostkaInterior]{Interior lattice points and strict inequalities}
+
+The \defin{interior} of a Gelfand--Tsetlin polytope consists of
+all points satisfying the interlacing inequalities strictly:
+\[
+x_{i+1,j} > x_{ij} > x_{i+1,j+1}.
+\]
+Integer points in the interior are \defin{strict GT-patterns},
+where every interlacing condition holds with strict inequality
+(cf.\ $SGT(\lambda)$ in \hyperref[gtpatternsTokuyama]{Tokuyama's formula}).
+
+By \hyperref[ehrhartMacdonaldReciprocity]{Ehrhart--Macdonald reciprocity},
+the number of interior lattice points in the $t$-th dilate satisfies
+\[
+\left| t \cdot \gtp^{\circ} \cap \setZ^d \right| = (-1)^d \cdot Ehr(\gtp; -t),
+\]
+where $d = \dim \gtp$.
+This provides a method for computing the Ehrhart polynomial by
+evaluating lattice-point counts at both positive dilates (regular GT-patterns)
+and negative dilates (strict GT-patterns, via reciprocity).
+
+For weight-restricted polytopes $\gtp_{\lambda/\mu,w}$,
+the interior lattice points satisfy strict interlacing
+together with the weight equalities (which are unchanged),
+and their count is again governed by Ehrhart--Macdonald reciprocity.
+
+
+\begin{example*}[Reciprocity]
+Consider $\lambda = (5,3,0)$ with the triangular GT-pattern
+\[
+\begin{matrix}
+5 && 3 && 0 \\
+& a && b \\
+&& c
+\end{matrix}
+\qquad
+5 \geq a \geq 3,\; 3 \geq b \geq 0,\; a \geq c \geq b.
+\]
+This polytope has dimension $3$ and contains $\schurS_{(5,3)}(1,1,1) = 42$ lattice points.
+For the interior, the strict conditions
+$5 > a > 3$, $3 > b > 0$, $a > c > b$
+force $a = 4$ and $b \in \{1, 2\}$:
+\begin{itemize}
+\item $b=1$: $c \in \{2, 3\}$;
+\item $b=2$: $c = 3$;
+\end{itemize}
+giving $3$ interior lattice points.
+The Ehrhart polynomial is
+\[
+Ehr(\gtp_{(5,3,0)};t) = \frac{(2t+1)(5t+2)(3t+1)}{2},
+\]
+and one verifies $(-1)^3 \cdot Ehr(\gtp_{(5,3,0)};-1) = -\frac{(-1)(-3)(-2)}{2} = 3$.
+\end{example*}
+
+
+\begin{example*}[Reciprocity in the Kostka case]
+Consider instead the weight-restricted polytope
+$\gtp_{(3,2,1),(2,2,2)}$, whose lattice points are
+GT-patterns with top row $(3,2,1)$ and weight $(2,2,2)$:
+\[
+\begin{matrix}
+3 && 2 && 1 \\
+& a && b \\
+&& c
+\end{matrix}
+\qquad
+\begin{aligned}
+& 3 \geq a \geq 2,\; 2 \geq b \geq 1,\; a \geq c \geq b, \\
+& a + b = 4,\; c = 2.
+\end{aligned}
+\]
+The weight conditions fix $c=2$ and $a+b=4$.
+Combined with $3 \geq a \geq 2$ and $2 \geq b \geq 1$,
+there are two solutions: $(a,b,c) \in \{(3,1,2),\; (2,2,2)\}$,
+confirming $K_{(3,2,1),(2,2,2)} = 2$.
+The strict conditions $3 > a > 2$, $2 > b > 1$, $a > c > b$
+have no integer solutions, so there are no interior lattice points.
+This reflects that the polytope, after intersecting with the weight hyperplanes,
+is zero-dimensional.
+\end{example*}
+
+
+
+\section[gtLR]{Littlewood--Richardson coefficients}
+
+The \hyperref[lrTableaux]{Littlewood--Richardson coefficient} $c^\lambda_{\mu\nu}$
+counts skew semistandard Young tableaux of shape $\lambda/\mu$
+and content $\nu$ whose reverse reading word
+(read right to left across each row, from top to bottom)
+is a \defin{lattice word}:
+at every position in the word, the number of occurrences of letter $i$
+weakly exceeds the number of occurrences of letter $i+1$, for all $i$.
+
+In terms of GT-patterns, a skew tableau of shape $\lambda/\mu$ and content $\nu$
+corresponds to a chain of partitions
+$\mu = \alpha^{(0)} \subseteq \alpha^{(1)} \subseteq \dotsb \subseteq \alpha^{(n)} = \lambda$,
+where each $\alpha^{(k)}/\alpha^{(k-1)}$ is a horizontal strip of size $\nu_k$.
+The quantity $\alpha^{(k)}_j - \alpha^{(k-1)}_j$ counts the cells with
+letter $k$ in row $j$ of the tableau.
+
+
+\subsection[gtLRInequalities]{Yamanouchi inequalities on GT-patterns}
+
+The lattice word condition on the reverse reading word translates to
+the following linear inequalities on the GT-pattern entries.
+
+\begin{proposition}
+A skew semistandard Young tableau with GT-pattern
+$\alpha^{(0)} \subseteq \alpha^{(1)} \subseteq \dotsb \subseteq \alpha^{(n)}$
+is a Littlewood--Richardson tableau if and only if
+\begin{equation*}
+\sum_{l=1}^{j} \bigl(\alpha^{(k+1)}_l - \alpha^{(k)}_l\bigr)
+\;\leq\;
+\sum_{l=1}^{j-1} \bigl(\alpha^{(k)}_l - \alpha^{(k-1)}_l\bigr)
+\end{equation*}
+for all $k = 1, \dotsc, n-1$ and $j = 1, \dotsc, m$,
+where $m$ is the number of parts of $\lambda$.
+\end{proposition}
+
+Setting $j=1$ gives $\alpha^{(k+1)}_1 \leq \alpha^{(k)}_1$ for $k \geq 1$,
+which combined with the interlacing condition
+$\alpha^{(k+1)}_1 \geq \alpha^{(k)}_1$
+forces $\alpha^{(k+1)}_1 = \alpha^{(k)}_1$ for all $k \geq 1$.
+This recovers the well-known fact that the first row of a
+Littlewood--Richardson tableau is filled entirely with letter $1$.
+
+These additional linear constraints, imposed on $\gtp_{\lambda/\mu,\nu}$,
+cut out a polytope whose integer lattice points are in bijection with
+Littlewood--Richardson tableaux. In fact, we obtain the 
+description of \hyperref[bzPatterns]{Berenstein--Zelevinsky patterns}.
+
+
+\begin{example*}[A Littlewood--Richardson case]
+Consider $c^{(3,2,1)}_{(2,1),(2,1)}$.
+The skew shape $(3,2,1)/(2,1)$ has three cells,
+at positions $(1,3)$, $(2,2)$, and $(3,1)$:
+\begin{figure}
+\begin{ytableau}
+\none & \none & {} \\
+\none & {} \\
+{}
+\end{ytableau}
+\end{figure}
+Since each row and column has at most one cell,
+every filling is semistandard.
+With content $(2,1)$ (two $1$s and one $2$), there are three fillings:
+\begin{figure}
+\begin{ytableau}
+\none & \none & 1 \\
+\none & 1 \\
+2
+\end{ytableau}
+%
+\begin{ytableau}
+\none & \none & 1 \\
+\none & 2 \\
+1
+\end{ytableau}
+%
+\begin{ytableau}
+\none & \none & 2 \\
+\none & 1 \\
+1
+\end{ytableau}
+\end{figure}
+so $K_{(3,2,1)/(2,1), (2,1)} = 3$.
+The corresponding GT-patterns have
+$\alpha^{(0)} = (2,1,0)$, $\alpha^{(2)} = (3,2,1)$,
+and the three possibilities for the middle row $\alpha^{(1)}$
+are $(3,2,0)$, $(3,1,1)$, and $(2,2,1)$.
+
+Applying the Yamanouchi inequality with $k=1$, $j=1$
+gives $\alpha^{(2)}_1 - \alpha^{(1)}_1 \leq 0$:
+\begin{itemize}
+\item $\alpha^{(1)} = (3,2,0)$: $3 - 3 = 0 \leq 0$. Satisfied.
+\item $\alpha^{(1)} = (3,1,1)$: $3 - 3 = 0 \leq 0$. Satisfied.
+\item $\alpha^{(1)} = (2,2,1)$: $3 - 2 = 1 > 0$. Violated.
+\end{itemize}
+The third pattern is eliminated: it corresponds to the tableau
+with reverse reading word $2, 1, 1$,
+which fails the lattice word condition at the first letter.
+The remaining inequalities (with $j=2,3$) are satisfied
+for the first two patterns,
+confirming $c^{(3,2,1)}_{(2,1),(2,1)} = 2$.
+One can verify this agrees with the product decomposition
+\[
+\schurS_{(2,1)} \cdot \schurS_{(2,1)}
+= \schurS_{(4,2)} + \schurS_{(4,1,1)} + \schurS_{(3,3)}
+ + 2\,\schurS_{(3,2,1)} + \schurS_{(3,1,1,1)}
+ + \schurS_{(2,2,2)} + \schurS_{(2,2,1,1)}.
+\]
+\end{example*}
+
+
+\begin{example*}[A larger example]
+For a larger example, consider $c^{(4,3,2)}_{(2,1),(3,2,1)}$,
+where the skew shape $(4,3,2)/(2,1)$ has six cells and content $\nu = (3,2,1)$.
+The GT-pattern has four rows:
+\[
+\alpha^{(0)} = (2,1,0) \subseteq \alpha^{(1)} \subseteq \alpha^{(2)} \subseteq \alpha^{(3)} = (4,3,2).
+\]
+\begin{itemize}
+\item At step $0 \to 1$ (letter $1$, strip size $3$), there are three extensions:
+\[
+\alpha^{(1)} \in \{(4,2,0),\; (4,1,1),\; (3,2,1)\}.
+\]
+\item At step $1 \to 2$ (letter $2$, strip size $2$),
+the Yamanouchi condition $\alpha^{(2)}_1 \leq \alpha^{(1)}_1$ eliminates
+extensions that place letter $2$ in the first row.
+\item At step $2 \to 3$ (letter $3$, strip size $1$),
+the Yamanouchi condition is checked against the cumulative
+row differences from the previous step.
+\end{itemize}
+After applying all constraints, one finds
+$c^{(4,3,2)}_{(2,1),(3,2,1)} = 2$,
+compared to the skew Kostka number
+$K_{(4,3,2)/(2,1),(3,2,1)} = 6$.
+The Yamanouchi conditions eliminate four of the six GT-patterns.
+\end{example*}
+
+
+
+
 \section[gtASM]{Monotone triangles and alternating sign matrices}\label{alternatingSignMatrix}
 
 \defin{Monotone triangles} are special types of triangular GT-patterns with additional constraints.

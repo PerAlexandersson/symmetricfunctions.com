@@ -141,6 +141,13 @@ search: render copy-assets
 
 # === DEPLOY ===
 DESTPATH := symmetricf@ns12.inleed.net:domains/symmetricfunctions.com/public_html
-deploy:
+deploy: copy-assets
 	@chmod -R u+rw,go+r,go-w $(WWW_DIR)/
 	rsync -avizL -e "ssh -p 2020" --exclude='*~' $(WWW_DIR)/ $(DESTPATH)
+
+# === SHIP: clean → build → deploy (parallel-safe) ===
+.PHONY: ship
+ship:
+	$(MAKE) clean
+	$(MAKE) all
+	$(MAKE) deploy

@@ -14,10 +14,10 @@ icon/.style={
         text=icontext
     }
 }
-\newcommand{\tikzicon}[1]{%
+\newcommand{\tikzicon}[2][]{%
 \begin{tikzpicture}
     \useasboundingbox (-1,-1) rectangle (1,1);
-    \node[icon] (main) at (0, 0) {\faIcon{#1}};
+    \node[icon] (main) at (0, 0) {\ifx&#1&\faIcon{#2}\else\faIcon[#1]{#2}\fi};
 \end{tikzpicture}%
 }
 
@@ -96,8 +96,9 @@ icon/.style={
 \tikzsetnextfilename{icon-gem}
 \tikzicon{gem}
 
-\tikzsetnextfilename{icon-github}
-\tikzicon{github}
+% Brand icons: dvisvgm can't extract these; hand-maintained SVGs in assets/icons/
+%\tikzsetnextfilename{icon-github}
+%\tikzicon[brands]{github}
 
 \tikzsetnextfilename{icon-heart}
 \tikzicon{heart}
@@ -111,8 +112,8 @@ icon/.style={
 \tikzsetnextfilename{icon-list}
 \tikzicon{list}
 
-\tikzsetnextfilename{icon-orcid}
-\tikzicon{orcid}
+%\tikzsetnextfilename{icon-orcid}
+%\tikzicon[brands]{orcid}
 
 \tikzsetnextfilename{icon-search}
 \tikzicon{search}
@@ -156,7 +157,7 @@ icon/.style={
 \tikzsetnextfilename{icon-video}
 \tikzicon{video}
 
-\tikzsetnextfilename{icon-youtube}
-\tikzicon{youtube}
+%\tikzsetnextfilename{icon-youtube}
+%\tikzicon[brands]{youtube}
 
 \end{document}

@@ -322,7 +322,11 @@ local function render_header(level, attr, inlines, header_collector)
   end
   
   local tag = "h" .. tostring(level)
-  return "<" .. tag .. render_attr(attr) .. ">" .. render_inlines_html(inlines) .. "</" .. tag .. ">\n"
+  local anchor = ""
+  if level == 2 or level == 3 then
+    anchor = '<a class="header-anchor" href="#' .. html_escape(id) .. '">#</a>'
+  end
+  return "<" .. tag .. render_attr(attr) .. ">" .. anchor .. render_inlines_html(inlines) .. "</" .. tag .. ">\n"
 end
 
 

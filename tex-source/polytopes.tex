@@ -11,6 +11,7 @@ A polytope is called \defin{integral} if all its vertices have integer coordinat
 
 
 
+
 \section[polytope-families]{Families of polytopes}
 
 
@@ -61,6 +62,21 @@ For a $d$-dimensional polytope, we have the following relation between entries i
  E_P(t) = \sum_{j=0}^d \binom{t+d-j}{d} h^*_j.
 \]
 There is a similar relation to express $H_P(t)$ in terms of the Ehrhart polynomial coefficients involving the Eulerian polynomials.
+
+
+
+\subsection[ehrhartMacdonaldReciprocity]{Ehrhart--Macdonald reciprocity}
+
+Let $P$ be a $d$-dimensional lattice polytope with Ehrhart polynomial $E_P(t)$.
+The \defin{Ehrhart--Macdonald reciprocity} states that
+\[
+	E_P(-t) = (-1)^d E_{P^\circ}(t)
+\]
+where $E_{P^\circ}(t) = |t P^\circ \cap \setZ^d|$ counts the lattice points in the \emph{interior} of $tP$.
+In terms of the Ehrhart series, this is equivalent to the relation $H_P(t) = t^{d+1} H_P(1/t)$,
+meaning the $h^*$-vector is palindromic if and only if the polytope is Gorenstein.
+The reciprocity can be seen as a discrete analogue of Poincar\'e duality.
+
 
 
 \section[polytopeIDP]{The integer decomposition property}

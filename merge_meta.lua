@@ -411,33 +411,79 @@ local function write_xml_file(path, content, count, description)
 end
 
 
+--- Generates a goto.htm redirect page from label data.
+-- URLs of the form goto.htm#label redirect to the correct page#anchor.
+-- @param labels table Label map from site data
+-- @return string HTML content
+local function generate_goto_html(labels)
+  -- Build sorted JS object literal
+  local entries = {}
+  for label, info in pairs(labels) do
+    table.insert(entries, string.format('"%s":"%s"', label, info.href))
+  end
+  table.sort(entries)
+
+  return [[<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting… | SymCat</title>
+</head>
+<body>
+<p>Redirecting…</p>
+<script>
+var defined_labels = {]] .. table.concat(entries, ",") .. [[};
+var id = location.hash.slice(1);
+var target = defined_labels[id];
+if (target) { location.replace(target); }
+else { document.body.textContent = "Unknown label: " + id; }
+</script>
+<noscript><p>JavaScript is required for redirection.</p></noscript>
+</body>
+</html>
+]]
+end
+
+
 --- Generates all output files from collected site data.
 -- @param data SiteData Collected and validated site data
 -- @return boolean True if all outputs written successfully
 local function generate_outputs(data)
   local all_success = true
-  
+
   -- Write labels index
   if not write_json_file(LABELS_JSON, data.labels, "labels") then
     all_success = false
   end
-  
+
   -- Write polydata index
   if not write_json_file(POLYDATA_JSON, data.polydata, "poly items") then
     all_success = false
   end
-  
+
   -- Write TODOs
   if not write_json_file(TODOS_JSON, data.todos, "todo notes") then
     all_success = false
   end
-  
+
   -- Write sitemap XML
   local sitemap_content = generate_sitemap_xml(data.pages)
   if not write_xml_file(SITEMAP_XML, sitemap_content, #data.pages, "pages") then
     all_success = false
   end
-  
+
+  -- Write goto.htm redirect page
+  local www_dir = os.getenv("WWW_DIR") or "www"
+  local goto_path = www_dir .. "/goto.htm"
+  local goto_content = generate_goto_html(data.labels)
+  local ok, err = write_file(goto_path, goto_content)
+  if ok then
+    print_info("Generated %s (%d labels)", goto_path, table_size(data.labels))
+  else
+    print_error("Failed to write %s: %s", goto_path, err)
+    all_success = false
+  end
+
   return all_success
 end
 
