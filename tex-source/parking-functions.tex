@@ -18,9 +18,9 @@ rules:
 If all cars can park successfully, then the sequence \( (a_1, \dots, a_n) \) is a  \defin{parking function}.
 \end{definition}
 
-There are $(n+1)^{n-1}$ parking functions in total, Pyke (1956) and Konheim and Weiss (1966).
-Pollak (1966) has a neat proof for this formula by adding an extra $(n+1)$th spot.
-
+There are $(n+1)^{n-1}$ parking functions in total, see \name{Pyke} (1956) and \name{Alan Konheim} and \name{Benjamin Weiss} \cite{KonheimWeiss1966}.
+\name{Pollak} (1966) has a neat proof for this formula by adding an extra $(n+1)$th spot.
+\todo{Add proper name and cite for pollak}
 
 \begin{theorem}
 The sequence $(a_1, \dots, a_n)$ of positive integers is a 
@@ -30,7 +30,7 @@ in non-decreasing order $(b_1 \le b_2 \le \dots \le b_n)$, it satisfies
 b_i \le i \quad \text{for all } i = 1, \dots, n.
 \]
 \end{theorem}
-\begin{proof}
+\begin{proof*}
 \textbf{First direction:} 
 If $(a_1, \dots, a_n)$ is a parking function, then $b_i \leq i$ for all $i$.
 
@@ -50,12 +50,67 @@ cars that want to park at spot at least $j$.
 
 But then, only (the remaining) $j-2$ cars want to park at spots $\{1,2,\dotsc,j-1\}$.
 This implies that $b_{j-1} > j-1$, violating our assumption.
-\end{proof}
+\end{proof*}
 
 
 The number of \emph{weakly increasing} parking functions is given by the Catalan numbers.
 See \url{https://arxiv.org/pdf/2511.20796} for a Pollak-style proof of this.
 
+
+\section[parking-functions-labeled-dyck]{Bijection with labeled Dyck paths}
+
+There is a classical bijection between parking functions of length $n$ and
+labeled Dyck paths of order $n$.
+A \defin{labeled Dyck path} is a Dyck path from $(0,0)$ to $(n,n)$
+where the $n$ North steps are labeled with $1,2,\dotsc,n$,
+and labels within each column are arranged in strictly decreasing order from top to bottom.
+
+Given a parking function $(a_1, \dotsc, a_n)$, place label $i$ in column $a_i$.
+Within each column, arrange labels in decreasing order, then connect them with
+east steps to form a Dyck path.
+Conversely, reading which column each label appears in recovers the parking function---see \cite{Yan2015} and \cite{qtCatalanBook} for details.
+
+
+\section[parking-functions-labeled-trees]{Bijection with rooted labeled trees}
+
+Since both parking functions and rooted labeled trees on $n+1$ vertices
+(with root labeled $0$) are counted by $(n+1)^{n-1}$,
+there exist natural bijections between them.
+
+One such bijection goes via the labeled Dyck path:
+the root $0$ connects to all cars in the first column,
+and from each car $i$, one traces a $45^\circ$ diagonal northeast
+to find children in subsequent columns, see \cite{qtCatalanBook} for this construction.
+
+A more direct bijection is as follows.
+Given a rooted labeled tree $T$ with vertices $0,1,\dotsc,n$ (root $0$),
+draw the children of each vertex in increasing order left to right.
+Read vertices level by level (BFS order) to produce a permutation
+$\pi$ of $\{1,\dotsc,n\}$.
+Orient edges from child to parent. Then define $p_i = 1$ if $i \to 0$,
+and $p_i = 1+j$ if $i \to \pi_j$.
+This gives a parking function, and the map is invertible.
+
+
+
+\section[parking-functions-hyperplanes]{Connection with hyperplane arrangements}
+
+The \defin{Shi arrangement} $\mathcal{S}_n$ consists of the hyperplanes
+\[
+x_i - x_j = 0 \quad \text{and} \quad x_i - x_j = 1
+\qquad \text{for all } 1 \leq i < j \leq n,
+\]
+introduced by \name{Jian-Yi Shi} in the study of the affine Weyl group of type $A_{n-1}$.
+
+\begin{theorem}[{\cite{AthanasiadisLinusson1999}}]
+The number of regions of $\mathcal{S}_n$ is $(n+1)^{n-1}$.
+Moreover, there is an explicit bijection between regions of $\mathcal{S}_n$
+and parking functions on $[n]$.
+\end{theorem}
+
+Each parking function $f$ determines a partition of $[n]$ into chains
+(grouping $i,j$ whenever $f(i)=f(j)$), and these chains are braided into a
+permutation diagram that encodes a unique Shi region; see \cite{AthanasiadisLinusson1999} for the full construction.
 
 
 \section[parking-function-variations]{Variations of parking functions}

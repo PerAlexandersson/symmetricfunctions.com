@@ -472,7 +472,7 @@ local function generate_outputs(data)
     all_success = false
   end
 
-  -- Write goto.htm redirect page
+  -- Write goto.htm redirect page and public site-labels.json
   local www_dir = os.getenv("WWW_DIR") or "www"
   local goto_path = www_dir .. "/goto.htm"
   local goto_content = generate_goto_html(data.labels)
@@ -481,6 +481,11 @@ local function generate_outputs(data)
     print_info("Generated %s (%d labels)", goto_path, table_size(data.labels))
   else
     print_error("Failed to write %s: %s", goto_path, err)
+    all_success = false
+  end
+
+  -- Public copy of labels for cross-site use (e.g. arxiv.symmetricfunctions.com)
+  if not write_json_file(www_dir .. "/site-labels.json", data.labels, "labels (public)") then
     all_success = false
   end
 

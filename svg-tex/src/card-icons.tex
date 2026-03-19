@@ -1,4 +1,5 @@
 \documentclass[tikz, border=0mm]{standalone}
+\usepackage{fontawesome5}
 \usetikzlibrary{calc}
 \newcommand{\tikzsetnextfilename}[1]{}
 
@@ -819,6 +820,13 @@
 \end{tikzpicture}
 
 
+
+
+\tikzsetnextfilename{card-parking-functions}
+\begin{tikzpicture}[icon]
+  \cardframe
+  \node[font=\fontsize{28}{28}\selectfont, iconblue] at (0,0) {\faIcon{parking}};
+\end{tikzpicture}
 
 
 \end{document}

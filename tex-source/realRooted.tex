@@ -148,7 +148,6 @@ Hence, recursions involving the derivative play well with interlacing roots.
 
 
 
-
 \todo{Cauchy interlace theorem: https://arxiv.org/pdf/math/0502408
 and this is same as  https://doi.org/10.1016/j.laa.2021.09.019
 }
@@ -181,8 +180,24 @@ If we drop the degree condition, the sequence is called a \defin{generalized Stu
 
 The notion of \defin{Sturm-unimodality} is defined in the analogous manner.
 
-
 \todo{Add general thm from \cite{Liu2007} }
+
+
+\subsection[bezoutMatrix]{Bézout matrices}
+
+For arbitrary polynomials $f(t)$ and $g(t)$ with $\deg(f) = \deg(g)+1$,
+let $B(f,g)$ be the \defin{Bézout matrix}, whose $(i,j)$ entry is equal to the coefficient of $x^{i-1} y^{j-1}$ in the polynomial
+\[
+ \frac{f(x)g(y) - f(y)g(x)}{x-y}.
+\]
+
+\begin{theorem}[Bézout’s theorem, {\cite[Cor. 9.145]{Fisk2006x}}]
+Let $f(t)$ be a polynomial of degree $d$ and $g(t)$ a polynomial of degree $d-1$.
+Then $f(t)$ and $g(t)$ are both real-rooted and $g$ strictly interlaces $f$
+if and only if $B(f,g)$ is positive definite.
+\end{theorem}
+
+
 
 \subsection[limits]{Normality in the limit}
 
