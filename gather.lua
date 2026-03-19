@@ -68,9 +68,7 @@ local function record_link(url, text)
   url       = url or ""
   text      = text or ""
   local key = url .. "||" .. text
-  if not urls_seen[key] then
-    urls_seen[key] = true
-  end
+  urls_seen[key] = true
 end
 
 -- To lazily define the custom handling.
@@ -182,64 +180,62 @@ function parse_name(s)
     return nil
   end
 
-  if main_part then
-    -- The mandatory argument is now the Full Name
-    local full_name = trim(main_part:sub(2, -2))
-    local display_text = ""
+  -- The mandatory argument is now the Full Name
+  local full_name = trim(main_part:sub(2, -2))
+  local display_text = ""
 
-    if opt_part then
-      -- If optional argument exists, use it directly for display
-      display_text = trim(opt_part:sub(2, -2))
-    else
-      -- Auto-generate abbreviated form
-      -- Split by spaces to get name parts
-      local parts = {}
-      for part in full_name:gmatch("%S+") do
-        table.insert(parts, part)
-      end
-
-      if #parts < 2 then
-        -- Single name (e.g., "Euclid") - use as-is
-        display_text = full_name
-      else
-        -- Last part is the last name
-        local last_name = parts[#parts]
-
-        -- All other parts are first/middle names - abbreviate them
-        local first_abbrevs = {}
-        for i = 1, #parts - 1 do
-          local name_part = parts[i]
-
-          -- Check if this part is hyphenated (e.g., "Marcel-Paul" or "Augustin-Louis")
-          if name_part:find("-") then
-            -- Split by hyphen and abbreviate each part
-            local hyphen_parts = {}
-            for hp in name_part:gmatch("[^-]+") do
-              table.insert(hyphen_parts, hp:sub(1, 1) .. ".")
-            end
-            table.insert(first_abbrevs, table.concat(hyphen_parts, "-"))
-          else
-            -- Simple first/middle name - just take first letter
-            table.insert(first_abbrevs, name_part:sub(1, 1) .. ".")
-          end
-        end
-
-        -- Join abbreviated first names with spaces, then add last name
-        display_text = table.concat(first_abbrevs, " ") .. " " .. last_name
-      end
+  if opt_part then
+    -- If optional argument exists, use it directly for display
+    display_text = trim(opt_part:sub(2, -2))
+  else
+    -- Auto-generate abbreviated form
+    -- Split by spaces to get name parts
+    local parts = {}
+    for part in full_name:gmatch("%S+") do
+      table.insert(parts, part)
     end
 
-    -- Construct the search query using the Full Name
-    local search_query = full_name:gsub(" ", "+") .. "+mathematics"
-    local url = "https://scholar.google.com/scholar?q=" .. search_query
+    if #parts < 2 then
+      -- Single name (e.g., "Euclid") - use as-is
+      display_text = full_name
+    else
+      -- Last part is the last name
+      local last_name = parts[#parts]
 
-    return pandoc.Link(
-      { pandoc.Str(display_text) },                -- Visible text (Short or Auto-short)
-      url,                                         -- URL (Search using Full Name)
-      "Search for " .. full_name,                  -- Tooltip title
-      { class = "author-name", target = "_blank" } -- Attributes
-    )
+      -- All other parts are first/middle names - abbreviate them
+      local first_abbrevs = {}
+      for i = 1, #parts - 1 do
+        local name_part = parts[i]
+
+        -- Check if this part is hyphenated (e.g., "Marcel-Paul" or "Augustin-Louis")
+        if name_part:find("-") then
+          -- Split by hyphen and abbreviate each part
+          local hyphen_parts = {}
+          for hp in name_part:gmatch("[^-]+") do
+            table.insert(hyphen_parts, hp:sub(1, 1) .. ".")
+          end
+          table.insert(first_abbrevs, table.concat(hyphen_parts, "-"))
+        else
+          -- Simple first/middle name - just take first letter
+          table.insert(first_abbrevs, name_part:sub(1, 1) .. ".")
+        end
+      end
+
+      -- Join abbreviated first names with spaces, then add last name
+      display_text = table.concat(first_abbrevs, " ") .. " " .. last_name
+    end
   end
+
+  -- Construct the search query using the Full Name
+  local search_query = full_name:gsub(" ", "+") .. "+mathematics"
+  local url = "https://scholar.google.com/scholar?q=" .. search_query
+
+  return pandoc.Link(
+    { pandoc.Str(display_text) },                -- Visible text (Short or Auto-short)
+    url,                                         -- URL (Search using Full Name)
+    "Search for " .. full_name,                  -- Tooltip title
+    { class = "author-name", target = "_blank" } -- Attributes
+  )
 end
 
 local function parse_svgimg(s)
@@ -324,7 +320,7 @@ local function topic_card(s)
     --  Create the Image
     local img_path  = string.format("nav-images/card-%s.svg", id_inner)
     -- We set intrinsic dimensions, but CSS will handle the actual layout
-    local img_attr  = pandoc.Attr("", {}, {style="height: 4rem; width: auto; max-width: 100%;"})
+    local img_attr  = pandoc.Attr("", {}, { { "style", "height: 4rem; width: auto; max-width: 100%;" } })
     local img       = pandoc.Image(pandoc.Str(title_inner), img_path, "", img_attr)
 
     --  Process Text
@@ -569,11 +565,8 @@ function RawInline(el)
   end
 
   -- \todo inline -- record & drop
-  do
-    local t = record_todo(s)
-    if t then
-      return {}
-    end
+  if record_todo(s) then
+    return {}
   end
 
   print_warn("Tex Inline string %s is unparsed", s)
@@ -705,8 +698,9 @@ end
       local name = trim(N:sub(2, -2))
       local map = parse_polydata_body(B)
       polydata[name] = map
-      --print_info("polydata: %s (%d keys)", name, (function(n) local c=0 for _ in pairs(n) do c=c+1 end return c end)(map))
-      return {}
+      set_add(labels, name)
+      -- Emit an anchor so the #name fragment resolves on the page
+      return pandoc.Div({}, pandoc.Attr(name, { "polydata-anchor" }))
     end
   end
 

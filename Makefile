@@ -8,7 +8,7 @@ MAKEFLAGS += -j8
 include config.mk
 include config_test.mk
 
-.PHONY: all gather meta bib render copy-assets clean unittest deploy
+.PHONY: all gather meta bib render copy-assets clean unittest deploy search
 .DELETE_ON_ERROR:
 .SECONDARY: $(PRE_TEX)
 
@@ -33,7 +33,7 @@ $(WWW_DIR)/.created:
 .PHONY: bib
 bib: $(REFS_JSON)
 
-$(REFS_JSON): $(BIBFILE) | $(TEMP_DIR)/.created
+$(REFS_JSON): $(BIBFILE) $(BIB_MATH_FILTER) | $(TEMP_DIR)/.created
 	@echo "Generating $@"
 	@sed -E 's/[Ee][Pp][Rr][Ii][Nn][Tt][[:space:]]*=[[:space:]]*\{([Aa][Rr][Xx][Ii][Vv]:)?([^}]*)\}/url = {https:\/\/arxiv.org\/abs\/\2}/g' $(BIBFILE) > $(TEMP_DIR)/bibfile_processed.bib
 	@$(PANDOC) -f biblatex -t csljson $(TEMP_DIR)/bibfile_processed.bib \
@@ -42,12 +42,12 @@ $(REFS_JSON): $(BIBFILE) | $(TEMP_DIR)/.created
 
 # === 1) PREPROCESS: tex → pre.tex ===
 # Order-only dependency on directory ensures it exists without triggering rebuilds
-$(TEMP_DIR)/%.pre.tex: $(SRC_DIR)/%.tex $(PREPROC_LUA) | $(TEMP_DIR)/.created
+$(TEMP_DIR)/%.pre.tex: $(SRC_DIR)/%.tex $(PREPROC_DEPS) | $(TEMP_DIR)/.created
 	@echo "Preprocessing $< → $@"
 	@$(LUA) $(PREPROC_LUA) "$<" < "$<" > "$@"
 
 # Test file preprocessing
-$(TEST_PRE): $(TEMP_DIR)/%.pre.tex: $(TEST_DIR)/%.tex $(PREPROC_LUA) | $(TEMP_DIR)/.created
+$(TEST_PRE): $(TEMP_DIR)/%.pre.tex: $(TEST_DIR)/%.tex $(PREPROC_DEPS) | $(TEMP_DIR)/.created
 	@echo "Preprocessing $< → $@"
 	@$(LUA) $(PREPROC_LUA) < "$<" > "$@"
 
@@ -63,12 +63,12 @@ gather: $(TEMP_DIR)/$(basename $(FILE)).json
 endif
 
 # Here we use jq to format the json nicer
-$(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
+$(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_DEPS) $(REFS_JSON)
 	@echo "Gathering $< → $@"
 	@$(PANDOC) "$<" --from=latex+raw_tex --to=json --lua-filter=$(GATHER_LUA) --fail-if-warnings | jq '.' > "$@"
 
 # Test file gathering
-$(TEST_JSON): $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_LUA) $(REFS_JSON)
+$(TEST_JSON): $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_DEPS) $(REFS_JSON)
 	@echo "Gathering $< → $@"
 	@$(PANDOC) "$<" --from=latex+raw_tex --to=json \
 	        --lua-filter=$(GATHER_LUA) --fail-if-warnings -o "$@"
@@ -79,7 +79,7 @@ meta: $(LABELS_JSON)
 
 # Synchronization barrier: All JSON files must be gathered before metadata generation
 # The stamp file runs the merge script and produces all metadata outputs
-$(TEMP_DIR)/site-meta.stamp: $(JSON_FILES) $(MERGE_META_LUA) | $(WWW_DIR)/.created
+$(TEMP_DIR)/site-meta.stamp: $(JSON_FILES) $(MERGE_META_DEPS) | $(WWW_DIR)/.created
 	@echo "Generating site metadata ..."
 	@$(LUA) $(MERGE_META_LUA) $(JSON_FILES)
 	@touch $@
@@ -106,13 +106,13 @@ endif
 $(TEMP_DIR)/%.timestamp: $(SRC_DIR)/%.tex | $(TEMP_DIR)/.created
 	@stat -c '%Y' "$<" > "$@"
 
-$(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(TEMP_DIR)/%.timestamp $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) | $(WWW_DIR)/.created
+$(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(TEMP_DIR)/%.timestamp $(RENDER_DEPS) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) | $(WWW_DIR)/.created
 	@echo "Rendering $< → $@"
 	@SOURCE_TS=$$(cat $(TEMP_DIR)/$*.timestamp) \
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
 
 # Test file rendering
-$(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_LUA) $(TEMPLATE) $(REFS_JSON) | $(WWW_DIR)/.created
+$(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_DEPS) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) | $(WWW_DIR)/.created
 	@echo "Rendering test $< → $@"
 	@SOURCE_TS=$$(stat -c '%Y' "$(TEST_DIR)/$*.tex") \
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
@@ -133,8 +133,6 @@ clean:
 	@rm -rf $(TEMP_DIR) $(WWW_DIR)
 
 # === SEARCH INDEX (pagefind) ===
-# Requires: npm install -g pagefind
-.PHONY: search
 search: render copy-assets
 	@echo "Building search index with pagefind..."
 	@npx pagefind --site $(WWW_DIR) --output-path $(WWW_DIR)/_pagefind --glob "**/*.htm"

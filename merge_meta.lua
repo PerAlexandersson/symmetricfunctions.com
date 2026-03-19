@@ -391,7 +391,6 @@ local function write_json_file(path, data, description)
   return true
 end
 
---TODO PUT THIS IN UTILS
 --- Writes XML data to file with error handling.
 -- @param path string Output file path
 -- @param content string XML content

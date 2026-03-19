@@ -11,12 +11,14 @@ tex-source/*.tex
   → merge_meta.lua          aggregate → site-labels.json, site-polydata.json, sitemap.xml
   → render.lua              .json + template.htm → www/*.htm
   → copy assets             www/ (deployed via rsync to ns12.inleed.net)
+  → pagefind                build search index (www/_pagefind/)
 ```
 
 ```bash
 make              # full build (8 parallel jobs)
 make FILE=foo.tex # single-file rebuild (uses stale metadata)
 make bib          # regenerate bibliography JSON only
+make search       # rebuild pagefind search index
 make deploy       # rsync www/ to server
 make clean        # rm temp/ www/
 make unittest     # run tests/unittest.tex through pipeline
@@ -34,13 +36,18 @@ temp/               Generated intermediates (gitignored)
   *.pre.tex         preprocessed TeX
   *.json            Pandoc AST + metadata
   bibliography.json CSL-JSON bibliography
-  site-labels.json  842 cross-reference labels (id → href, title, page)
+  site-labels.json  855+ cross-reference labels (id → href, title, page)
   site-polydata.json structured metadata per polynomial family
 www/                Final HTML output (gitignored)
 untracked/          Notes, drafts, assets not in git
 template.htm        Shared HTML shell (header/nav/footer)
-bibliography.bib    BibLaTeX references (~1200 entries)
+docs/               CHANGELOG, LICENCE, CONTRIBUTING
+bibliography.bib    BibLaTeX references (~1360 entries)
 ```
+
+## Prerequisites
+
+`lua`, `pandoc`, `jq`, `npx pagefind`, `rsync` (for deploy).
 
 ## Key Lua files
 
@@ -56,6 +63,7 @@ bibliography.bib    BibLaTeX references (~1200 entries)
 | `tex_to_svg.lua` | Standalone: TeX → PDF → SVG (TikZ figures) |
 | `utils.lua` | Shared: slugify, html_escape, ascii_fold, print_color |
 | `file_reading.lua` | JSON I/O abstraction (detects available library) |
+| `bib_math_filter.lua` | Pandoc filter: preserves math in bibliography entries |
 
 ## Conventions
 

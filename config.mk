@@ -22,6 +22,20 @@ GATHER_LUA     = gather.lua
 RENDER_LUA     = render.lua
 MERGE_META_LUA = merge_meta.lua
 
+# === LUA LIBRARY DEPENDENCIES ===
+# Utility modules loaded via dofile() — tracked so edits trigger rebuilds
+UTILS_LUA          = utils.lua
+FILE_READING_LUA   = file_reading.lua
+BIBHANDLER_LUA     = bibhandler.lua
+BIB_MATH_FILTER    = bib_math_filter.lua
+FIG_TO_HTML_LUA    = figure_to_html.lua
+POLY_TO_HTML_LUA   = polydata_to_html.lua
+
+PREPROC_DEPS    = $(PREPROC_LUA) $(UTILS_LUA)
+GATHER_DEPS     = $(GATHER_LUA) $(UTILS_LUA) $(BIBHANDLER_LUA)
+RENDER_DEPS     = $(RENDER_LUA) $(UTILS_LUA) $(BIBHANDLER_LUA) $(FILE_READING_LUA) $(FIG_TO_HTML_LUA) $(POLY_TO_HTML_LUA)
+MERGE_META_DEPS = $(MERGE_META_LUA) $(UTILS_LUA) $(FILE_READING_LUA)
+
 # === SOURCE FILES AND INTERMEDIATE FILES ===
 TEX_FILES  := $(wildcard $(SRC_DIR)/*.tex)
 PRE_TEX    := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.pre.tex,$(TEX_FILES))

@@ -106,7 +106,7 @@ end
 -- Read file contents
 -- @param path: file path
 -- @param what: description for error messages (optional)
--- @param strict: if true, error/exit on failure; if false, return nil (default: true)
+-- @param strict: if true, error on failure; if false, return nil (default: true)
 -- @return file contents or nil on error
 local function read_file(path, what, strict)
   if strict == nil then strict = true end
@@ -115,8 +115,7 @@ local function read_file(path, what, strict)
   if not f then
     local msg = string.format("Could not open %s '%s': %s", what or "file", path, err or "")
     if strict then
-      print_error(msg)
-      os.exit(1)
+      error(msg)
     else
       print_warn(msg)
     end
@@ -147,7 +146,7 @@ end
 
 -- Read JSON from file argument or stdin
 -- @param args: argument table (optional, defaults to global arg)
--- @param strict: if true, exit on error; if false, return nil (default: true)
+-- @param strict: if true, error on failure; if false, return nil (default: true)
 -- @return decoded JSON table
 local function read_json_input(args, strict)
   args = args or arg
@@ -158,8 +157,7 @@ local function read_json_input(args, strict)
     local doc = load_json_file(args[1], "JSON data", false)
     if not doc or next(doc) == nil then
       if strict then
-        print_error("JSON decode error reading %s", args[1])
-        os.exit(1)
+        error(string.format("JSON decode error reading %s", args[1]))
       else
         return nil
       end
@@ -172,8 +170,7 @@ local function read_json_input(args, strict)
   local doc = json_decode(contents, "stdin JSON", false)
   if not doc or type(doc) ~= "table" then
     if strict then
-      print_error("JSON decode error reading from stdin")
-      os.exit(1)
+      error("JSON decode error reading from stdin")
     else
       return nil
     end

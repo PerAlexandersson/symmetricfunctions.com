@@ -218,13 +218,6 @@ input = table.concat(norm_lines, "\n")
 -- STEP 3: Global Substitutions and Rewrites
 -- ============================================================================
 
---- Escape special Lua pattern characters in a string for literal matching.
---- @param s string String to escape
---- @return string Escaped string safe for Lua patterns
-local function escape_pattern(s)
-  return (s:gsub("[%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%1"))
-end
-
 -- Freeze figures: \begin{figure}...\end{figure} → symfig
 -- This prevents Pandoc from moving/reordering figure environments
 input = input
