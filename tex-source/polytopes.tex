@@ -7,9 +7,83 @@
 \section[polytope]{Polytopes}
 
 
-A polytope is called \defin{integral} if all its vertices have integer coordinates.
+A polytope is called a \defin{lattice polytope} or \defin{integral polytope} 
+if all its vertices have integer coordinates.
+If vertices have rational coordinates, we call it a \defin{rational polytope}.
 
 
+
+\section[ehrhart]{The Ehrhart polynomial and $h^*$-vector}
+
+Let $P$ be a lattice polytope. The number of lattice points in the dilation $n\cdot P$ is a polynomial in $n$.
+The \defin{Ehrhart polynomial of $P$} is the polynomial $E_P(n) \coloneqq |n P \cap \setZ^d|$.
+The \defin{Ehrhart series} is 
+\[
+	\sum_{n \geq 0} |n P| t^n = \frac{H_P(t)}{(1-t)^{d+1}}
+\]
+where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the \defin{$h^*$-polynomial} of $P$.
+The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the \defin{$h^*$-vector} 
+and one can show that all entries of this are non-negative integers, see \cite{Stanley1993} and \cite{Beck2007}.
+
+For a $d$-dimensional polytope, we have the following relation between 
+entries in the $h^*$-vector and the Ehrhart polynomial:
+\[
+ E_P(t) = \sum_{j=0}^d \binom{t+d-j}{d} h^*_j.
+\]
+There is a similar relation to express $H_P(t)$ in terms of the 
+Ehrhart polynomial coefficients involving the Eulerian polynomials.
+
+
+
+For a \emph{rational} polytope $P$ with denominator $q$
+(the smallest positive integer such that $qP$ is a lattice polytope),
+the lattice-point counting function $E_P(t) = |tP \cap \setZ^d|$ is a
+\defin{quasi-polynomial} of degree $d$ and period dividing $q$.
+The Ehrhart series then satisfies
+\[
+ \sum_{n \geq 0} E_P(n) z^n = \frac{h^*(P;z)}{(1-z^q)^{d+1}},
+\]
+where $h^*(P;z)$ is a polynomial of degree at most $q(d+1)-1$
+with non-negative integer coefficients, see \cite{Beck2007} and \cite{Stanley1993}.
+
+Some rational polytopes exhibit \defin{period collapse},
+meaning the Ehrhart quasi-polynomial is in fact a polynomial.
+Certain \hyperref[gtKostkaEhrhart]{Gelfand--Tsetlin polytopes} have this property.
+However, not every such polynomial arises as the Ehrhart polynomial of a lattice polytope.
+For example, \cite{HaaseMcAllister2007} construct a rational polygon $Q$
+whose Ehrhart function is a polynomial with linear coefficient $1$,
+but no integral polygon has this property.
+
+\subsection[ehrhartMacdonaldReciprocity]{Ehrhart--Macdonald reciprocity}
+
+Let $P$ be a $d$-dimensional rational polytope with Ehrhart polynomial $E_P(t)$.
+The \defin{Ehrhart--Macdonald reciprocity} states that
+\[
+	E_P(-t) = (-1)^d E_{P^\circ}(t)
+\]
+where $E_{P^\circ}(t) = |t P^\circ \cap \setZ^d|$ counts the lattice points in the \emph{interior} of $tP$.
+In terms of the Ehrhart series, this is equivalent to the relation $H_P(t) = t^{d+1} H_P(1/t)$,
+meaning the $h^*$-vector is palindromic if and only if the polytope is Gorenstein.
+The reciprocity can be seen as a discrete analogue of Poincar\'e duality.
+This was first proved by \name{Ian G. Macdonald} \cite{Macdonald1971} for lattice polytopes;
+see \cite{Beck2007} for an alternative proof in the rational case.
+
+
+
+\subsection[stanleyMonotonicity]{Stanley's monotonicity theorem}
+
+\begin{theorem}[Stanley Monotonicity, {\cite{Stanley1993}}]
+Suppose that $P \subseteq Q$ are rational polytopes with $qP$
+and $qQ$ integral (for minimal possible $q \in \setZ_{>0}$).
+Define the $h^*$-polynomials via
+\[
+ \operatorname{Ehr}(P;z) = \frac{h^*(P;z)}{(1-z^q)^{\dim(P)+1}}
+ \qquad \text{and} \qquad
+ \operatorname{Ehr}(Q;z) = \frac{h^*(Q;z)}{(1-z^q)^{\dim(Q)+1}}.
+\]
+Then $h^*_i(P;z) \leq h^*_i(Q;z)$ coefficient-wise.
+\end{theorem}
+See \cite{Beck2007} for an alternative proof.
 
 
 \section[polytope-families]{Families of polytopes}
@@ -24,16 +98,20 @@ It is the polytope in $\setR^n$ defined via the inequalities
 x_i \leq x_j \text{ if } i <_P j \qquad \text{and} \qquad 0 \leq x_i \leq 1 \text{ for } 1\leq i \leq n.
 \end{align}
 
-There are order polytopes with negative Ehrhart coefficients, see \cite[Figure 3.87]{StanleyEC1} and \cite{Alexandersson2019CounterExamples}.
+There are order polytopes with negative Ehrhart coefficients, 
+see \cite[Figure 3.87]{StanleyEC1} and \cite{Alexandersson2019CounterExamples}.
 
 
-\subsection[markedOrderPolytope]{Order polytopes}
+\subsection[markedOrderPolytope]{Marked order polytopes}
 
-There is a slight generalization of order polytopes called \defin{marked order polytopes}, see \cite{ArdilaBliemSalazar2011},
+There is a slight generalization of order polytopes 
+called \defin{marked order polytopes}, see \cite{ArdilaBliemSalazar2011},
 where we replace the conditions $0 \leq x_i \leq 1$ with $a_i \leq x_i \leq b_i$ for $1\leq i \leq n$,
 where the $a_i$ and $b_i$ are constants.
 
-The \hyperref[gtpolytopes]{Geltand--Tsetlin polytopes} are marked order polytopes.
+
+The \hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes} are marked order polytopes.
+
 
 
 \todo{Cross polytope: https://arxiv.org/pdf/2512.08669 and Ehrhart coeffs.}
@@ -45,38 +123,6 @@ The \hyperref[gtpolytopes]{Geltand--Tsetlin polytopes} are marked order polytope
 \todo{Define permutohedron}
 
 \todo{Parking function polytope: https://arxiv.org/pdf/2512.14199}
-
-\section[ehrhart]{The Ehrhart polynomial and $h^*$-vector}
-
-Let $P$ be a lattice polytope. The number of lattice points in the dilation $n\cdot P$ is a polynomial in $n$.
-The \defin{Ehrhart polynomial of $P$} is the polynomial $E_P(t) \coloneqq |n P|$.
-The \defin{Ehrhart series} is 
-\[
-	\sum_{n \geq 0} |n P| t^n = \frac{H(t)}{(1-t)^{d+1}}
-\]
-where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the \defin{$h^*$-polynomial} of $P$.
-The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the \defin{$h^*$-vector} and one can show that all entries of this are non-negative integers.
-
-For a $d$-dimensional polytope, we have the following relation between entries in the $h^*$-vector and the Ehrhart polynomial:
-\[
- E_P(t) = \sum_{j=0}^d \binom{t+d-j}{d} h^*_j.
-\]
-There is a similar relation to express $H_P(t)$ in terms of the Ehrhart polynomial coefficients involving the Eulerian polynomials.
-
-
-
-\subsection[ehrhartMacdonaldReciprocity]{Ehrhart--Macdonald reciprocity}
-
-Let $P$ be a $d$-dimensional lattice polytope with Ehrhart polynomial $E_P(t)$.
-The \defin{Ehrhart--Macdonald reciprocity} states that
-\[
-	E_P(-t) = (-1)^d E_{P^\circ}(t)
-\]
-where $E_{P^\circ}(t) = |t P^\circ \cap \setZ^d|$ counts the lattice points in the \emph{interior} of $tP$.
-In terms of the Ehrhart series, this is equivalent to the relation $H_P(t) = t^{d+1} H_P(1/t)$,
-meaning the $h^*$-vector is palindromic if and only if the polytope is Gorenstein.
-The reciprocity can be seen as a discrete analogue of Poincar\'e duality.
-
 
 
 \section[polytopeIDP]{The integer decomposition property}
@@ -96,7 +142,7 @@ In the following list, each entry implies the next:
 
 \section[polytope-papers]{Further reading}
 
-Here we mainly discuss polytopes that arises in the area of algebraic combinatorics.
+Here we mainly discuss polytopes that arise in the area of algebraic combinatorics.
 
 \begin{itemize}
 
@@ -110,6 +156,6 @@ Here we mainly discuss polytopes that arises in the area of algebraic combinator
 
 \item \url{https://arxiv.org/pdf/2404.02136.pdf} Symmetric Edge polytopes, and Ehrhart roots interlacing on the canonical line:
 
-\item \url{https://arxiv.org/pdf/2504.07505} Birkhoff polytope, and some unimodular equivalence with another.
+\item \url{https://arxiv.org/pdf/2504.07505} \hyperref[birkhoff-polytope-as-gelfand-tsetlin]{Birkhoff polytope}, and some unimodular equivalence with another.
 
 \end{itemize}

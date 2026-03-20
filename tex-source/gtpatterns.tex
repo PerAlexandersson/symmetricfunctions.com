@@ -161,7 +161,7 @@ and \hyperref[alternatingSignMatrix]{alternating sign matrices}.
 
 By specifying the top row in a triangular GT-pattern as $\lambda$
 and imposing the inequalities above we get a convex polytope. 
-This is a \defin{Geltand--Tsetlin polytope}, $\gtp_{\lambda} \subset \setR^{n(n+1)/2}$.
+This is a \defin{Gelfand--Tsetlin polytope}, $\gtp_{\lambda} \subset \setR^{n(n+1)/2}$.
 By construction, the integer lattice points in $\gtp_{\lambda}$
 is in bijection with $\SSYT(\lambda)$.
 The analogous statement holds for parallelogram GT-patterns where 
@@ -185,12 +185,12 @@ see \cite[Subsection 2.3]{Alexandersson2016GTPoly}.
 
 \name{Akiyoshi Tsuchiya} generalize the notion of IDP to $k$-tuples of 
 polytopes (the $k=2$ case was introduced in \cite{HaaseHofmann2017}).
-The following theorem follows very easy from the bijection with SSYT.
+The following theorem follows very easily from the bijection with SSYT.
 
 \begin{theorem}[Alexandersson, 2018]
 Let $\gtp_{\lambda^1},\dotsc,\gtp_{\lambda^k}$ 
 be GT-polytopes, embedded in the same ambient space 
-by padding the partitions with zeros of needed.
+by padding the partitions with zeros if needed.
 Then
 \[
 \setZ^d \cap \left( \gtp_{\lambda^1} + \dotsb + \gtp_{\lambda^k} \right)
@@ -212,6 +212,33 @@ In type $A$ these analogs are so called \defin{Feigin--Fourier--Littelmann polyt
 
 The Gelfand--Tsetlin polytopes are also special cases of so called \emph{flow polytopes},
 see \cite{LiuMeszarosDizier2019flow}.
+
+
+\subsection[birkhoff-polytope-as-gelfand-tsetlin]{Birkhoff polytope as a GT-polytope}
+
+There is a natural correspondence between \defin{contingency matrices}
+and certain GT-polytopes \cite{Alexandersson2016GTPoly}.
+A contingency matrix is a matrix of non-negative integers with specified row sums and column sums.
+
+Given a skew shape $\lambda/\mu$ and the GT-polytope for weight $\onevec = (1,1,\dotsc,1)$,
+each lattice point corresponds to a semi-standard Young tableau.
+Let $a_{ij}$ denote the number of boxes with entry $j$ in row $i$ of the tableau.
+This gives an $m \times n$ matrix $A = (a_{ij})$ where each column sums to $1$
+and row $i$ sums to $\lambda_i - \mu_i$.
+The change of variables between GT-patterns and these matrices is an integral affine transformation,
+so lattice points in the GT-polytope are in bijection with contingency matrices
+with column sums $1$ and row sums $\lambda_i - \mu_i$.
+
+The special case $\lambda_i - \mu_i = 1$ with $n = m$ recovers the
+\defin{Birkhoff polytope}, which is the convex hull of all $n \times n$ permutation matrices.
+Since GT-polytopes are compressed (have the \hyperref[polytopeIDP]{IDP}),
+it follows that the Birkhoff polytope is also compressed,
+a fact proved independently in \cite{StanleyDecompositions80}.
+There are several open questions about Birkhoff polytopes,
+such as how to compute their volumes; see \cite{Pak2000}.
+
+
+
 
 \subsection[gtEhrhart]{Ehrhart polynomials}
 
@@ -277,7 +304,7 @@ has a negative coefficient. However, this polynomial is of degree 20.
 
 \subsection[gtpolytopesFVectors]{Vertices, $f$-vectors and differential equations}
 
-Ther has been some effort in counting the number of vertices of GT-polytopes.
+There has been some effort in counting the number of vertices of GT-polytopes.
 In \cite{GusevKiritchenkoTimorin2013}, the authors 
 describe a generating function that enumerates the vertices of $\gtp_{\lambda}$.
 
@@ -393,7 +420,7 @@ which is a quasipolynomial of degree 3 with period 2.
 
 
 
-\subsection[gtKostkaInterior]{Interior lattice points and strict inequalities}
+\subsection[gt-Kostka-Interior]{Interior lattice points and strict inequalities}
 
 The \defin{interior} of a Gelfand--Tsetlin polytope consists of
 all points satisfying the interlacing inequalities strictly:
