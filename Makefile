@@ -15,9 +15,23 @@ include config_test.mk
 # Suppress file deletion messages
 .SILENT:
 
+# Quiet mode: only show errors/warnings (no progress messages)
+# Usage: make Q=1  or  make quiet
+Q ?= 0
+ifneq ($(Q),0)
+  LOG = @true
+  export QUIET_BUILD=1
+else
+  LOG = @echo
+endif
 
 # Default target
 all: gather meta render copy-assets search
+
+# Quiet build alias
+.PHONY: quiet
+quiet:
+	$(MAKE) all Q=1
 
 # === CREATE BUILD DIRECTORIES ===
 # Use stamp files to ensure directories are created exactly once
@@ -34,7 +48,7 @@ $(WWW_DIR)/.created:
 bib: $(REFS_JSON)
 
 $(REFS_JSON): $(BIBFILE) $(BIB_MATH_FILTER) | $(TEMP_DIR)/.created
-	@echo "Generating $@"
+	$(LOG) "Generating $@"
 	@sed -E 's/[Ee][Pp][Rr][Ii][Nn][Tt][[:space:]]*=[[:space:]]*\{([Aa][Rr][Xx][Ii][Vv]:)?([^}]*)\}/url = {https:\/\/arxiv.org\/abs\/\2}/g' $(BIBFILE) > $(TEMP_DIR)/bibfile_processed.bib
 	@$(PANDOC) -f biblatex -t csljson $(TEMP_DIR)/bibfile_processed.bib \
 	  --lua-filter=bib_math_filter.lua --fail-if-warnings -o $@.tmp && mv $@.tmp $@
@@ -43,12 +57,12 @@ $(REFS_JSON): $(BIBFILE) $(BIB_MATH_FILTER) | $(TEMP_DIR)/.created
 # === 1) PREPROCESS: tex → pre.tex ===
 # Order-only dependency on directory ensures it exists without triggering rebuilds
 $(TEMP_DIR)/%.pre.tex: $(SRC_DIR)/%.tex $(PREPROC_DEPS) | $(TEMP_DIR)/.created
-	@echo "Preprocessing $< → $@"
+	$(LOG) "Preprocessing $< → $@"
 	@$(LUA) $(PREPROC_LUA) "$<" < "$<" > "$@"
 
 # Test file preprocessing
 $(TEST_PRE): $(TEMP_DIR)/%.pre.tex: $(TEST_DIR)/%.tex $(PREPROC_DEPS) | $(TEMP_DIR)/.created
-	@echo "Preprocessing $< → $@"
+	$(LOG) "Preprocessing $< → $@"
 	@$(LUA) $(PREPROC_LUA) < "$<" > "$@"
 
 # === 2) GATHER: Collect metadata to JSON ===
@@ -56,20 +70,20 @@ FILE ?=
 .PHONY: gather
 ifeq ($(strip $(FILE)),)
 gather: $(JSON_FILES)
-	@echo "Gathered ALL → $(TEMP_DIR)/*.json"
+	$(LOG) "Gathered ALL → $(TEMP_DIR)/*.json"
 else
 gather: $(TEMP_DIR)/$(basename $(FILE)).json
-	@echo "Gathered $(FILE) → $(TEMP_DIR)/$(basename $(FILE)).json"
+	$(LOG) "Gathered $(FILE) → $(TEMP_DIR)/$(basename $(FILE)).json"
 endif
 
 # Here we use jq to format the json nicer
 $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_DEPS) $(REFS_JSON)
-	@echo "Gathering $< → $@"
+	$(LOG) "Gathering $< → $@"
 	@$(PANDOC) "$<" --from=latex+raw_tex --to=json --lua-filter=$(GATHER_LUA) --fail-if-warnings | jq '.' > "$@"
 
 # Test file gathering
 $(TEST_JSON): $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_DEPS) $(REFS_JSON)
-	@echo "Gathering $< → $@"
+	$(LOG) "Gathering $< → $@"
 	@$(PANDOC) "$<" --from=latex+raw_tex --to=json \
 	        --lua-filter=$(GATHER_LUA) --fail-if-warnings -o "$@"
 
@@ -80,7 +94,7 @@ meta: $(LABELS_JSON)
 # Synchronization barrier: All JSON files must be gathered before metadata generation
 # The stamp file runs the merge script and produces all metadata outputs
 $(TEMP_DIR)/site-meta.stamp: $(JSON_FILES) $(MERGE_META_DEPS) | $(WWW_DIR)/.created
-	@echo "Generating site metadata ..."
+	$(LOG) "Generating site metadata ..."
 	@$(LUA) $(MERGE_META_LUA) $(JSON_FILES)
 	@touch $@
 
@@ -95,11 +109,11 @@ FILE ?=
 ifeq ($(strip $(FILE)),)
 # Full build: require site metadata
 render: $(HTML_FILES)
-	@echo "Rendered ALL → $(WWW_DIR)/*.htm"
+	$(LOG) "Rendered ALL → $(WWW_DIR)/*.htm"
 else
 # Single file build - use stale metadata if available
 render: $(WWW_DIR)/$(basename $(FILE)).htm
-	@echo "Rendered $(SRC_DIR)/$(basename $(FILE)).tex → $(WWW_DIR)/$(basename $(FILE)).htm"
+	$(LOG) "Rendered $(SRC_DIR)/$(basename $(FILE)).tex → $(WWW_DIR)/$(basename $(FILE)).htm"
 endif
 
 # Cache source timestamps
@@ -107,13 +121,13 @@ $(TEMP_DIR)/%.timestamp: $(SRC_DIR)/%.tex | $(TEMP_DIR)/.created
 	@stat -c '%Y' "$<" > "$@"
 
 $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(TEMP_DIR)/%.timestamp $(RENDER_DEPS) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) | $(WWW_DIR)/.created
-	@echo "Rendering $< → $@"
+	$(LOG) "Rendering $< → $@"
 	@SOURCE_TS=$$(cat $(TEMP_DIR)/$*.timestamp) \
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
 
 # Test file rendering
 $(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_DEPS) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) | $(WWW_DIR)/.created
-	@echo "Rendering test $< → $@"
+	$(LOG) "Rendering test $< → $@"
 	@SOURCE_TS=$$(stat -c '%Y' "$(TEST_DIR)/$*.tex") \
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
 
@@ -125,7 +139,7 @@ copy-assets: | $(WWW_DIR)/.created
 # === UNITTEST ===
 .PHONY: unittest
 unittest: $(TEST_HTML)
-	@echo "Unittest pipeline finished — processed $(words $(TEST_TEX)) test file(s)"
+	$(LOG) "Unittest pipeline finished — processed $(words $(TEST_TEX)) test file(s)"
 
 # === CLEAN ===
 .PHONY: clean
@@ -134,8 +148,12 @@ clean:
 
 # === SEARCH INDEX (pagefind) ===
 search: render copy-assets
-	@echo "Building search index with pagefind..."
+	$(LOG) "Building search index with pagefind..."
+ifneq ($(Q),0)
+	@npx pagefind --site $(WWW_DIR) --output-path $(WWW_DIR)/_pagefind --glob "**/*.htm" > /dev/null 2>&1
+else
 	@npx pagefind --site $(WWW_DIR) --output-path $(WWW_DIR)/_pagefind --glob "**/*.htm"
+endif
 
 # === DEPLOY ===
 DESTPATH := symmetricf@ns12.inleed.net:domains/symmetricfunctions.com/public_html

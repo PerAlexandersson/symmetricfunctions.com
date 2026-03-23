@@ -232,11 +232,16 @@ local function _fmt(fmt, ...)
   return (select("#", ...) > 0) and string.format(fmt, ...) or tostring(fmt)
 end
 
+-- Quiet mode: suppress info and todo messages (errors/warnings always print)
+local _quiet = os.getenv("QUIET_BUILD") == "1"
+
 --- Print a TODO message to stderr with optional location highlighting.
 --- Automatically truncates long messages and highlights file:line locations.
+--- Suppressed in quiet mode (QUIET_BUILD=1).
 --- @param fmt string Format string or message
 --- @param ... any Format arguments
 local function print_todo(fmt, ...)
+  if _quiet then return end
   local m = _fmt(fmt, ...)
   -- Keep a reasonably short line in the log
   m = m:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
@@ -286,9 +291,11 @@ local function print_warn(fmt, ...)
 end
 
 --- Print an informational message to stderr.
+--- Suppressed in quiet mode (QUIET_BUILD=1).
 --- @param fmt string Format string or message
 --- @param ... any Format arguments
 local function print_info(fmt, ...)
+  if _quiet then return end
   local m = _fmt(fmt, ...)
   if _use_color then
     io.stderr:write(CONSOLE.bold, " ℹ️ ", CONSOLE.reset, " ", m, "\n")
