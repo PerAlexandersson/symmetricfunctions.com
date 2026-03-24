@@ -124,38 +124,246 @@ in some places, one needs to reverse the indexing composition $\alpha$.
 
 
 
-\subsection[keyDefinitionGT]{Definition (GT-patterns)}
 
-A formula for the key polynomials 
-as a sum over lattice points in a union of faces 
+
+\subsection[keyDefinitionGT]{Kogan faces and key polynomials via GT-polytopes}
+
+A formula for the key polynomials
+as a sum over lattice points in a union of faces
 of Gelfand--Tsetlin polytopes was proved in \cite{KiritchenkoSmirnovTimorin2010}.
+This subsection describes the construction in detail,
+following \cite{KiritchenkoSmirnovTimorin2010} and \cite{Kogan2000schubertgeometry}.
 
-\begin{theorem}[See \cite{KiritchenkoSmirnovTimorin2010}]
-Let $\GT(\lambda,\sigma)$ be defined as the polytopal complex
+Recall that the \hyperref[gtpolytopes]{GT-polytope} $\GT(\lambda)$
+is defined by the interlacing inequalities
+$x_{i+1,j} \geq x_{i,j} \geq x_{i+1,j+1}$
+together with the boundary condition $x_{n,j} = \lambda_j$.
+Its integer points are in bijection with semi-standard Young tableaux of shape $\lambda$.
+The \hyperref[gtpatterns]{weight} of a GT-pattern $G$ is
+$w(G) = (w_1, \dotsc, w_n)$ where
+$w_k = \sum_j x_{k,j} - \sum_j x_{k-1,j}$
+(row sum differences, with $\sum_j x_{0,j} = 0$).
+
+\begin{definition}[Kogan face]\label{def:koganFace}
+A \defin{Kogan face} of $\GT(\lambda)$ is obtained by forcing
+a subset of the \emph{left-interlacing} inequalities to equalities:
+$x_{i+1,j} = x_{i,j}$
+for some collection of pairs $(i,j)$ with $1 \leq j \leq i \lt n$.
+To each equality $x_{i+1,j} = x_{i,j}$,  we associate the simple transposition $s_{n-i+j-1}$.
+\end{definition}
+
+\begin{example*}[Equalities and transpositions in a GT-pattern]
+For $n = 4$, the six left-interlacing positions and their transpositions
+($s_{4-i+j-1} = s_{3-i+j}$) are:
+\begin{figure}
+\svgimg[width=0.2\textwidth]{svg-images/koganFacesGT-1.svg}{Left-interlacing inequalities in a GT-pattern for $n=4$, 
+with transposition labels.}
+\end{figure}
+The blue arrows show the left-interlacing inequalities $x_{i+1,j} \geq x_{i,j}$,
+labeled with the transposition $s_{n-i+j-1}$ that is activated when the
+inequality is forced to equality.
+\end{example*}
+
+
+\begin{definition}[Reduced Kogan face and type]\label{def:reducedKogan}
+Given a Kogan face, we read the associated transpositions row by row from bottom to top.
+Within each row, we read from left to right.
+If the resulting word $s_{a_1} s_{a_2} \dotsm s_{a_\ell}$
+is a \hyperref[reducedWord]{reduced word} the Kogan face is called \defin{reduced}.
+Its \defin{type} is the permutation $\sigma = s_{a_1} s_{a_2} \dotsm s_{a_\ell} \in \symS_n$.
+\end{definition}
+
+\begin{remark}
+The same permutation may arise as the type of several
+different reduced Kogan faces, since a permutation may have multiple reduced words.
+\end{remark}
+
+
+\begin{example*}[Worked example: $n = 3$, $\lambda = (2,1,0)$]
+For $n = 3$, the GT-pattern has three left-interlacing positions, which we refer to as $L_1$, $L_2$, and $L_3$ in reading order:
+\begin{figure}
+\svgimg[width=0.2\textwidth]{svg-images/koganFacesGT-2.svg}{Left-interlacing inequalities in 
+a GT-pattern for $n=3$, with transposition labels.}
+\end{figure}
+
+For $\lambda = (2,1,0)$, the free variables satisfy $2 \geq a \geq 1$, $1 \geq b \geq 0$,
+$a \geq b$, $a \geq c \geq b$
+(where $a = x_{2,1}$, $b = x_{2,2}$, $c = x_{1,1}$).
+
+The eight integer GT-patterns, their monomials,
+and the Kogan faces they belong to are:
+
+\begin{center}
+\begin{tabular}{ccccll}
+\toprule
+$a$ & $b$ & $c$ & Monomial & Faces & Active equalities \\
+\midrule
+$1$ & $0$ & $0$ & $z_2 z_3^2$ & --- & (none) \\
+$1$ & $0$ & $1$ & $z_1 z_3^2$ & $L_3$ & $c = a$ \\
+$1$ & $1$ & $1$ & $z_1 z_2 z_3$ & $L_2, L_3$ & $b = 1$, $c = a$ \\
+$2$ & $0$ & $0$ & $z_2^2 z_3$ & $L_1$ & $a = 2$ \\
+$2$ & $0$ & $1$ & $z_1 z_2 z_3$ & $L_1$ & $a = 2$ \\
+$2$ & $0$ & $2$ & $z_1^2 z_3$ & $L_1, L_3$ & $a = 2$, $c = a$ \\
+$2$ & $1$ & $1$ & $z_1 z_2^2$ & $L_1, L_2$ & $a = 2$, $b = 1$ \\
+$2$ & $1$ & $2$ & $z_1^2 z_2$ & $L_1, L_2, L_3$ & all \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The reduced Kogan faces and their types:
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Equalities & Word (reading order) & Reduced? & Type \\
+\midrule
+(none) & $\varepsilon$ & yes & $\id = [1,2,3]$ \\
+$L_1$ & $s_1$ & yes & $s_1 = [2,1,3]$ \\
+$L_2$ & $s_2$ & yes & $s_2 = [1,3,2]$ \\
+$L_3$ & $s_2$ & yes & $s_2 = [1,3,2]$ \\
+$L_1 + L_2$ & $s_1 s_2$ & yes & $s_1 s_2 = [3,1,2]$ \\
+$L_1 + L_3$ & $s_2 s_1$ & yes & $s_2 s_1 = [2,3,1]$ \\
+$L_2 + L_3$ & $s_2 s_2$ & \textbf{no} & --- \\
+$L_1 + L_2 + L_3$ & $s_2 s_1 s_2$ & yes & $w_0 = [3,2,1]$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Note that $s_2$ appears as the type of two different faces ($L_2$ and $L_3$).
+\end{example*}
+
+
+\subsubsection{Key polynomials from Kogan faces}
+
+The key polynomial $\key_{\lambda,\sigma}$ is indexed by a partition $\lambda$
+and a permutation $\sigma \in \symS_n$.
+The connection to Kogan faces uses $w_0 \sigma$
+(where $w_0 \sigma$ denotes the group product with the convention
+$(w_0 \sigma)(i) = \sigma(w_0(i))$, i.e., $w_0$ acts first).
+
+\begin{theorem}[Kiritchenko--Smirnov--Timorin {\cite[Thm.~2.2]{KiritchenkoSmirnovTimorin2010}}]
+\label{thm:keyGT}
+Define
 \[
- \GT(\lambda,\sigma) \coloneqq  \bigcup_{\substack{\mathcal{F} \in \GT(\lambda) \\ \type(\mathcal{F}) = w_0\sigma}} \mathcal{F}.
+  \GT(\lambda, \sigma) \coloneqq
+  \bigcup_{\substack{\mathcal{F} \subseteq \GT(\lambda) \\
+    \mathcal{F} \text{ reduced Kogan face} \\
+    \type(\mathcal{F}) = w_0 \sigma}} \mathcal{F}.
 \]
-That is, $\GT(\lambda,\sigma)$ is the union of all reduced Kogan faces of type $w_0\sigma$
-in the polytope $\GT(\lambda)$.
-
-The key polynomial $\key_{\lambda,\sigma}(z)$ can be computed as
-\begin{align}
- \key_{\lambda,\sigma}(z_1,\dotsc,z_n) = \sum_{G \in \GT(\lambda,\sigma) \cap \setZ^{\tfrac{n(n+1)}{2}} } z_1^{w_1(G)} \dotsm z_n^{w_n(G)}
-\end{align}
+Then
+\[
+  \key_{\lambda,\sigma}(\mathbf{z}) =
+  \sum_{G \in \GT(\lambda,\sigma) \cap \setZ^{n(n-1)/2}}
+  z_1^{w_1(G)} \dotsm z_n^{w_n(G)}.
+\]
 \end{theorem}
 
+\begin{remark}
+Integer points lying in multiple reduced Kogan faces
+of the same type are counted \emph{once} (the definition uses a union, not a sum).
+\end{remark}
 
-Fix $\lambda$, $\sigma \in \symS_n$. 
-With the above theorem, it follows that for the map 
+\begin{example}
+Continuing with $n = 3$, $\lambda = (2,1,0)$:
+\begin{itemize}
+\item $\sigma = \id = [1,2,3]$:
+  $w_0 \sigma = w_0 = [3,2,1]$.
+  Unique face of type $w_0$: $\{L_1, L_2, L_3\}$.
+  One pattern: $(a,b,c) = (2,1,2)$ giving $z_1^2 z_2$.
+  So $\key_{\lambda, \id} = z_1^2 z_2$.
+
+\item $\sigma = s_1 = [2,1,3]$:
+  $w_0 \sigma = [3,1,2] = s_1 s_2$.
+  Unique face of type $s_1 s_2$: $\{L_1, L_2\}$.
+  Patterns: $a=2, b=1$, $c \in \{1,2\}$
+  giving $z_1 z_2^2 + z_1^2 z_2$.
+  So $\key_{\lambda, s_1} = z_1^2 z_2 + z_1 z_2^2$.
+
+\item $\sigma = s_2 = [1,3,2]$:
+  $w_0 \sigma = [2,3,1] = s_2 s_1$.
+  Unique face of type $s_2 s_1$: $\{L_1, L_3\}$.
+  Patterns: $a=2, c=2$, $b \in \{0,1\}$
+  giving $z_1^2 z_3 + z_1^2 z_2$.
+  So $\key_{\lambda, s_2} = z_1^2 z_2 + z_1^2 z_3$.
+
+\item $\sigma = w_0 = [3,2,1]$:
+  $w_0 \sigma = \id$.
+  The full GT-polytope (type $\id$, no equalities).
+  All 8 patterns.
+  $\key_{\lambda, w_0} = \schurS_{(2,1)}(z_1, z_2, z_3)$.
+\end{itemize}
+All four results match the operator definition
+$\key_{\lambda,\sigma} = \pi_\sigma(z_1^{\lambda_1} \dotsm z_n^{\lambda_n})$.
+\end{example}
+
+\begin{remark}[Convention note]
+Some references define the product $w_0 \sigma$ using the opposite convention
+$w_0 \circ \sigma$ (i.e., $\sigma$ acts first).
+This interchanges key polynomials for $\sigma$ and $\sigma^{-1}$
+(or equivalently, left and right keys in the tableaux model).
+The convention used here---$(w_0 \sigma)(i) = \sigma(w_0(i))$---matches
+the standard Demazure operator definition
+$\key_{\lambda,\sigma} = \pi_\sigma(z^\lambda)$
+when $\pi_\sigma = \pi_{i_1} \circ \dotsb \circ \pi_{i_\ell}$
+for a reduced word $\sigma = s_{i_1} \dotsm s_{i_\ell}$.
+\end{remark}
+
+
+\subsubsection{Kempf permutations and flagged Schur polynomials}
+
+\begin{proposition}[Kogan {\cite{Kogan2000schubertgeometry}}]\label{prop:kempfCase}
+If $\sigma \in \symS_n$ avoids the permutation pattern $132$,
+then there is a \emph{unique} reduced Kogan face of type $w_0 \sigma$.
+In this case $\GT(\lambda, \sigma)$ is a single polytope face,
+and the key polynomial is a \hyperref[schurFlagged]{flagged Schur polynomial}.
+\end{proposition}
+
+When $w_0\sigma$ avoids $132$, the Ehrhart theory applies directly
+to a single face (no union needed), making computations especially clean.
+
+
+\subsubsection{Computational approach}
+
+The $\binom{n}{2}$ left-interlacing positions in the GT diagram
+form a word vector $\mathbf{w} = (w_1, \dotsc, w_{\binom{n}{2}})$
+(in reading order), where each $w_k \in \{s_1, \dotsc, s_{n-1}\}$.
+A Kogan face corresponds to a subset $S \subseteq \{1, \dotsc, \binom{n}{2}\}$.
+
+\begin{enumerate}
+\item \textbf{Enumerate all $2^{\binom{n}{2}}$ subsets} $S$.
+\item For each $S$, extract the subword $(w_k)_{k \in S}$
+  and compute the permutation $\sigma_S$ it represents.
+\item \textbf{Check reducedness:} the face is reduced if and only if
+  $\ell(\sigma_S) = |S|$ (the number of inversions of $\sigma_S$
+  equals the length of the subword).
+\item Collect all reduced faces whose type $\sigma_S$ equals $w_0 \sigma$.
+\item \textbf{Enumerate integer points} in each face
+  (a standard GT-pattern enumeration with forced equalities).
+\item \textbf{Take the union} over all faces (remove duplicate lattice points).
+\end{enumerate}
+This brute-force approach is practical for $n \leq 8$ or so
+($2^{\binom{8}{2}} = 2^{28} \approx 2.7 \times 10^8$);
+for larger $n$, more sophisticated methods (pipe dreams, RC-graphs) are needed.
+
+\subsubsection{Ehrhart polynomial}
+
+Fix $\lambda$, $\sigma \in \symS_n$.
+With the above theorem, it follows that the map
 \[
 k \mapsto \key_{k \lambda,\sigma}(1^n)
 \]
-is a polynomial in $k$. 
+is a polynomial in $k$.
 This is in fact an Ehrhart polynomial of a union of faces in a GT-polytope.
 Let $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$ denote this polynomial.
 From the definition via divided difference operators,
 one can see that $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$
 is a polynomial in $\setQ[\lambda_1,\dotsc,\lambda_n,k]$.
+
+For the Ehrhart polynomial approach: dilate $\lambda \to k\lambda$
+and observe that $|\GT(k\lambda, \sigma) \cap \setZ^{n(n-1)/2}|$
+is a polynomial in $k$.
+Macdonald reciprocity provides values at negative dilations
+(via strict GT-patterns with reversed inequalities),
+reducing the number of evaluations needed for interpolation.
 
 See \cite{AlexanderssonAlhajjar2018} for the following conjecture.
 \begin{conjecture}[Alexandersson--Alhajjar (2018)]

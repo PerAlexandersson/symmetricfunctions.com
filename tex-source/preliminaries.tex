@@ -213,6 +213,17 @@ A word $w_1,\dotsc,w_n$ is called \defin{Yamanouchi} if the number of occurrence
 as the number of occurrences of $i+1$ in every prefix $w_1,\dotsc,w_k$.
 Such words are also known as \defin{Ballot words}, see \oeis{A000085}.
 
+\subsection[reducedWord]{Reduced words}
+
+The \defin{simple transpositions} $s_1, s_2, \dotsc, s_{n-1}$
+are the generators of $\symS_n$, where $s_i$ swaps positions $i$ and $i+1$.
+Every permutation $\sigma \in \symS_n$ can be written as a product
+$\sigma = s_{i_1} s_{i_2} \dotsm s_{i_\ell}$.
+The minimum such $\ell$ is the \defin{length} of $\sigma$,
+denoted $\ell(\sigma)$, and equals the number of inversions $|\INV(\sigma)|$.
+A product $s_{i_1} s_{i_2} \dotsm s_{i_\ell}$ achieving this minimum
+is called a \defin{reduced word} (or \defin{reduced expression}) for $\sigma$.
+
 
 \subsection[bruhatOrder]{Bruhat order and weak order}
 
