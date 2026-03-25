@@ -505,13 +505,61 @@ function Header(el)
 end
 
 function Cite(el)
+  -- Pandoc natively parses \cite → Cite node containing RawInline children.
+  -- We handle citations here and return a Span so the walker does not
+  -- descend into the RawInline children (which would double-process).
+  local cite_parts = {}
+  local any_missing = false
+  local cite_loc_first = ""
+  local extra = ""
+
+  -- Check for optional extra text in citation suffix (e.g., \cite[Thm.~3]{key})
+  if el.citations and #el.citations > 0 then
+    local suf = pandoc.utils.stringify(el.citations[1].suffix or {})
+    if suf ~= "" then extra = suf end
+  end
+
   for _, c in ipairs(el.citations or {}) do
     if c.id and c.id ~= "" then
-      set_add(citations, c.id)
-      --print_color(CONSOLE.bright_cyan, "--- cite %s", c.id)
+      -- Strip source location annotation (@@file:line) injected by preprocess
+      local cite_loc = c.id:match("@@([%w%.%-_/]+:%d+)$") or ""
+      local key = c.id:gsub("@@[%w%.%-_/]+:%d+$", "")
+      if cite_loc_first == "" then cite_loc_first = cite_loc end
+      local lbl = get_bibliography_label(key)
+      if not lbl then
+        if cite_loc ~= "" then
+          print_error("%s: Missing citation key: %s", cite_loc, key)
+        else
+          print_error("Missing citation key: %s", key)
+        end
+        cite_parts[#cite_parts + 1] = pandoc.Str("UNDEF:" .. key)
+        any_missing = true
+      else
+        set_add(citations, key)
+        local tooltip = get_bibliography_tooltip(key) or ""
+        cite_parts[#cite_parts + 1] = pandoc.Link(
+            { pandoc.Str(lbl) },
+            "#" .. key,
+            tooltip,
+            { class = "cite" }
+        )
+      end
     end
   end
-  return nil
+
+  local inlines = { pandoc.Str("[") }
+  if extra ~= "" then
+    inlines[#inlines + 1] = pandoc.Str(extra)
+    inlines[#inlines + 1] = pandoc.Str(", ")
+  end
+  for i, node in ipairs(cite_parts) do
+    if i > 1 then inlines[#inlines + 1] = pandoc.Str(", ") end
+    inlines[#inlines + 1] = node
+  end
+  inlines[#inlines + 1] = pandoc.Str("]")
+
+  local classes = any_missing and { "citeSpan", "missing" } or { "citeSpan" }
+  return pandoc.Span(inlines, pandoc.Attr("", classes))
 end
 
 function Quoted(el)
@@ -623,48 +671,12 @@ function RawInline(el)
     end
   end
 
-  -- \cite[extra]{K} and \cite{K1,K2,...}
+  -- \cite — handled by the Cite() filter (Pandoc parses \cite natively).
+  -- RawInline fires before Cite in the bottom-up walk, so we suppress it here
+  -- to avoid double-processing.
   do
-    local opt, braced = s:match("^%s*\\cite%s*(%b[])%s*(%b{})%s*$")
-    if not braced then
-      braced = s:match("^%s*\\cite%s*(%b{})%s*$")
-    end
-    if braced then
-      local extra              = opt and opt:sub(2, -2) or ""
-      local body               = braced:sub(2, -2)
-
-      local parts, any_missing = {}, false
-      for key in body:gmatch("[^,%s]+") do
-        local lbl = get_bibliography_label(key)
-        if not lbl then
-          print_error("Missing citation key: %s", key)
-          parts[#parts + 1] = pandoc.Str("UNDEF:" .. key)
-          any_missing = true
-        else
-          set_add(citations, key)
-          local tooltip = get_bibliography_tooltip(key) or "" -- Ensure it's not nil
-          parts[#parts + 1] = pandoc.Link(
-              { pandoc.Str(lbl) }, 
-              "#" .. key, 
-              tooltip,
-              { class = "cite" }
-          )
-        end
-      end
-
-      local inlines = { pandoc.Str("[") }
-      if extra ~= "" then
-        inlines[#inlines + 1] = pandoc.Str(extra)
-        inlines[#inlines + 1] = pandoc.Str(", ")
-      end
-      for i, node in ipairs(parts) do
-        if i > 1 then inlines[#inlines + 1] = pandoc.Str(", ") end
-        inlines[#inlines + 1] = node
-      end
-      inlines[#inlines + 1] = pandoc.Str("]")
-
-      local classes = any_missing and { "citeSpan", "missing" } or { "citeSpan" }
-      return pandoc.Span(inlines, pandoc.Attr("", classes))
+    if s:match("^%s*\\cite") then
+      return pandoc.Str("")
     end
   end
 

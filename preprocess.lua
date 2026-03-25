@@ -91,8 +91,90 @@ local function annotate_todos(text, fname)
   return table.concat(out)
 end
 
+--- Annotate all \cite{} commands with source filename and line number.
+--- Rewrites \cite{keys} → \cite{keys@@file:line} and
+--- \cite[opt]{keys} → \cite[opt]{keys@@file:line}.
+--- The @@file:line suffix is stripped in gather.lua and used for error messages.
+--- @param text string Input LaTeX text
+--- @param fname string Source filename to use in annotations
+--- @return string Text with annotated \cite commands
+local function annotate_cites(text, fname)
+  local out = {}
+  local i = 1
+  local line = 1
+  local n = #text
+
+  while i <= n do
+    local cite_start, cite_end = text:find("\\cite", i, true)
+    if not cite_start then
+      table.insert(out, text:sub(i))
+      break
+    end
+
+    -- Chunk before this \cite
+    local chunk = text:sub(i, cite_start - 1)
+    table.insert(out, chunk)
+    for _ in chunk:gmatch("\n") do line = line + 1 end
+
+    -- Copy \cite
+    table.insert(out, "\\cite")
+    local j = cite_end + 1
+
+    -- Skip optional whitespace
+    while j <= n and text:sub(j, j):match("%s") do
+      if text:sub(j, j) == "\n" then line = line + 1 end
+      table.insert(out, text:sub(j, j))
+      j = j + 1
+    end
+
+    -- Skip optional [...]
+    if j <= n and text:sub(j, j) == "[" then
+      local depth = 1
+      table.insert(out, "[")
+      j = j + 1
+      while j <= n and depth > 0 do
+        local ch = text:sub(j, j)
+        if ch == "[" then depth = depth + 1
+        elseif ch == "]" then depth = depth - 1
+        elseif ch == "\n" then line = line + 1 end
+        table.insert(out, ch)
+        j = j + 1
+      end
+      -- Skip whitespace between [...] and {
+      while j <= n and text:sub(j, j):match("%s") do
+        if text:sub(j, j) == "\n" then line = line + 1 end
+        table.insert(out, text:sub(j, j))
+        j = j + 1
+      end
+    end
+
+    -- Now expect {keys} — inject @@file:line before closing }
+    if j <= n and text:sub(j, j) == "{" then
+      local depth = 1
+      local brace_start = j
+      j = j + 1
+      while j <= n and depth > 0 do
+        local ch = text:sub(j, j)
+        if ch == "{" then depth = depth + 1
+        elseif ch == "}" then depth = depth - 1
+        elseif ch == "\n" then line = line + 1 end
+        j = j + 1
+      end
+      -- brace_start .. j-1 is the full {keys}
+      local body = text:sub(brace_start + 1, j - 2) -- without braces
+      local loc = string.format("@@%s:%d", fname, line)
+      table.insert(out, "{" .. body .. loc .. "}")
+    end
+
+    i = j
+  end
+
+  return table.concat(out)
+end
+
 -- The full input text as one big string
 input = annotate_todos(input, source_filename)
+input = annotate_cites(input, source_filename)
 
 -- ============================================================================
 -- STEP 2: Line-based Normalization (Block-level Macros)
