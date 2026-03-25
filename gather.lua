@@ -156,6 +156,143 @@ local function match_textable(s)
 end
 
 
+--- Render a single inline TeX fragment to HTML via Pandoc.
+--- Preserves special markers (\none, color *(...)  ) that figure_to_html needs.
+--- @param tex string  Raw TeX cell content
+--- @return string     HTML fragment (or original string if trivial)
+local function render_cell_tex_to_html(tex)
+  local s = trim(tex)
+  if s == "" then return tex end
+
+  -- Preserve markers that figure_to_html.lua handles structurally
+  if s == "\\none" then return tex end
+  if s:match("^\\[a-z]*rule$") then return tex end
+
+  -- Extract color prefix *(color) if present — preserve it, process the rest
+  local color_prefix = ""
+  local rest = s
+  local color_match = s:match("^(%*%b())")
+  if color_match then
+    color_prefix = color_match
+    rest = trim(s:sub(#color_match + 1))
+    if rest == "" then return tex end
+  end
+
+  -- Skip cells that are pure math (already handled by MathJax client-side)
+  if rest:match("^%$.*%$$") then
+    return tex
+  end
+
+  -- Skip cells that are plain text (no backslashes at all)
+  if not rest:find("\\") then
+    return tex
+  end
+
+  -- Process through Pandoc + our filter
+  local inlines = parse_inlines_walk(rest)
+  if not inlines or #inlines == 0 then return tex end
+
+  -- Render inlines to HTML
+  local doc = pandoc.Pandoc({ pandoc.Plain(inlines) })
+  local html = pandoc.write(doc, "html")
+
+  -- pandoc.write wraps in <p>...</p> — strip that
+  html = html:gsub("^%s*<p>", ""):gsub("</p>%s*$", "")
+
+  -- Trim trailing whitespace/newlines
+  html = html:gsub("%s+$", "")
+
+  if html == "" then return tex end
+
+  return color_prefix .. html
+end
+
+
+--- Process all cell contents in a tabular/array body string.
+--- Splits on \\ and &, processes each cell, reassembles.
+--- @param body string  The full \begin{rawtabular}{spec}...\end{rawtabular} string
+--- @return string      Same structure but with cell contents converted to HTML
+local function process_tabular_cells(body)
+  -- Extract environment wrapper and inner content
+  local env_begin, inner, env_end =
+    body:match("^(\\begin%s*%{[^}]+%}%s*%b{})(.-)(%s*\\end%s*%{[^}]+%})$")
+  if not env_begin then
+    -- Try without column spec (shouldn't happen for rawtabular/array, but be safe)
+    env_begin, inner, env_end =
+      body:match("^(\\begin%s*%{[^}]+%})(.-)(%s*\\end%s*%{[^}]+%})$")
+  end
+  if not inner then return body end
+
+  -- Normalize: add \\ after rule markers (same as figure_to_html.lua)
+  -- so that splitting on \\ gives clean rows
+  inner = inner:gsub("\\toprule", "\\toprule\\\\")
+               :gsub("\\midrule", "\\midrule\\\\")
+               :gsub("\\bottomrule", "\\bottomrule\\\\")
+  if not inner:find("\\\\%s*$") then inner = inner .. "\\\\" end
+
+  -- Process row by row: split on \\
+  local result = {}
+  local pos = 1
+  local inner_len = #inner
+
+  while pos <= inner_len do
+    -- Find next \\
+    local bs_start, bs_end = inner:find("\\\\", pos, true)
+    local row_text
+    if bs_start then
+      row_text = inner:sub(pos, bs_start - 1)
+      pos = bs_end + 1
+    else
+      row_text = inner:sub(pos)
+      pos = inner_len + 1
+    end
+
+    local trimmed = trim(row_text)
+
+    -- Skip structural markers and empty rows — pass through as-is
+    if trimmed == "\\toprule" or trimmed == "\\midrule" or trimmed == "\\bottomrule"
+       or trimmed == "" then
+      table.insert(result, row_text)
+    else
+      -- Split cells on & (respecting brace depth)
+      local cells = {}
+      local buf = {}
+      local depth = 0
+      for i = 1, #row_text do
+        local ch = row_text:sub(i, i)
+        if ch == "{" then
+          depth = depth + 1
+          table.insert(buf, ch)
+        elseif ch == "}" then
+          depth = math.max(0, depth - 1)
+          table.insert(buf, ch)
+        elseif ch == "&" and depth == 0 then
+          table.insert(cells, table.concat(buf))
+          buf = {}
+        else
+          table.insert(buf, ch)
+        end
+      end
+      table.insert(cells, table.concat(buf))
+
+      -- Process each cell
+      for i, cell in ipairs(cells) do
+        cells[i] = render_cell_tex_to_html(cell)
+      end
+
+      table.insert(result, table.concat(cells, "&"))
+    end
+
+    -- Re-add the \\ delimiter if we consumed one
+    if bs_start then
+      table.insert(result, "\\\\")
+    end
+  end
+
+  return env_begin .. table.concat(result) .. env_end
+end
+
+
 -- Parse polydata body "Key & Value \\" lines → table
 local function parse_polydata_body(body)
   local map = {}
@@ -549,6 +686,9 @@ function RawInline(el)
   do
     local name, body = match_textable(s)
     if name and body then
+      if name == "rawtabular" then
+        body = process_tabular_cells(body)
+      end
       return pandoc.Span(
         { pandoc.RawInline("latextable", body) },
         pandoc.Attr("", { "latextable-inline", name })
@@ -749,6 +889,10 @@ end
   do
     local name, body = match_textable(s)
     if name and body then
+      -- Process cell contents for tabular (not array/ytableau: their cells are math)
+      if name == "rawtabular" then
+        body = process_tabular_cells(body)
+      end
       return pandoc.RawBlock("latextable", body)
     end
   end

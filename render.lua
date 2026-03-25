@@ -323,7 +323,7 @@ local function render_header(level, attr, inlines, header_collector)
   
   local tag = "h" .. tostring(level)
   local anchor = ""
-  if level == 2 or level == 3 then
+  if level >= 2 and level <= 4 then
     anchor = '<a class="header-anchor" href="#' .. html_escape(id) .. '">#</a>'
   end
   return "<" .. tag .. render_attr(attr) .. ">" .. anchor .. render_inlines_html(inlines) .. "</" .. tag .. ">\n"
@@ -438,6 +438,8 @@ local function create_toc_collector()
   local toc_items = {}
   local function collector(level, id, text)
     if not id or id == "" then return end
+    -- Only include sections (h2) and subsections (h3) in the TOC
+    if level >= 4 then return end
     local css_class = ""
     if level == 2 then css_class = "section"
     elseif level == 3 then css_class = "subsection" end

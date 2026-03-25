@@ -61,6 +61,7 @@ window.KATEX_MACROS = {
         "\\fix": "{\\mathrm{fix}}",
         "\\ht": "{\\mathrm{ht}}",
         "\\ins": "{\\mathrm{ins}}",
+        "\\id": "{\\mathrm{id}}",
         "\\inv": "{\\mathrm{inv}}",
         "\\jdt": "{\\mathrm{jdt}}",
         "\\leg": "{\\mathrm{leg}}",
