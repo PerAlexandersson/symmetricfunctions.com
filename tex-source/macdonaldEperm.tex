@@ -22,7 +22,7 @@ The \defin{permuted-basement Macdonald polynomials}
 (also called \emph{relative Macdonald polynomials}, \cite{GuoRam2021x}) generalize the 
 non-symmetric Macdonald polynomials, by introducing an additional parameter $\sigma \in \symS_n$,
 the \emph{basement}.
-They were introduced in \cite{Ferreira2011} by J. Ferreira, as eigenpolynomials of certain operators.
+They were introduced in \cite{Ferreira2011} by \name{J. Ferreira}, as eigenpolynomials of certain operators.
 Later in \cite{Alexandersson2015gbMacdonald}, a combinatorial model was introduced. 
 For some properties of these formulas, see \cite{AlexanderssonSawhney2017,AlexanderssonSawhney2019}.
 
@@ -58,6 +58,7 @@ used in the right diagram.
 In the skyline convention, the basement appears in the bottom of the diagram,
 thus explaining the peculiar choice of terminology.
 
+\todo{Use https://arxiv.org/pdf/2503.06051 Olyas paper, and clear up notation.}
 
 \begin{definition}
 Let $F$ be an augmented filling. Two boxes $a$, $b$, are \defin{attacking}
@@ -172,8 +173,8 @@ $\macdonaldE^\sigma_\alpha(\xvec;q,t)$ is defined as
 \xvec^F q^{\maj(F)} t^{\coinv(F)} 
 \prod_{ \substack{ u \in F \\ u \text{ is in the basement or} \\ F(d(u))\neq F(u) }}  \frac{1-t}{1-q^{1+\leg(u)} t^{1+\arm(u)}}.
 \end{equation}
-The product is over all boxes $u$ in $F$ 
-such that either $u$ is in the basement or $F(d(u))\neq F(u)$.
+The product is over all boxes $u$ in $F$ not in the basement,
+satisfying $F(d(u))\neq F(u)$.
 \end{definition}
 
 When $\sigma = \omega_0$, we recover
