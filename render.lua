@@ -167,9 +167,9 @@ local function render_image(attr, caption, target)
 
   return string.format(
     '<img src="%s" title="%s" alt="%s" %s/>',
-    src,
-    captionHTML,
-    captionHTML,
+    html_escape(src),
+    html_escape(captionHTML),
+    html_escape(captionHTML),
     attr_html
   )
 end

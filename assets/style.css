@@ -359,8 +359,6 @@
   .toplink {
     font-family: system-ui, sans-serif;
     font-size: 0.9rem;
-    padding: 0.4em 0.9em;
-    border-radius: 4px;
     color: var(--c-text-sub);
     transition: all 0.15s ease;
     background-color: var(--c-bg-surface);
@@ -567,7 +565,7 @@
       --bs-e: transparent;
       --bs-w: transparent;
 
-      padding: 0.1;
+      padding: 0.1em;
 
       border-right: var(--bw) solid var(--bs-e);
       border-left: var(--bw) solid var(--bs-w);
@@ -659,10 +657,6 @@
       cursor: pointer;
   }
   .family-index tbody tr a { text-decoration: none; color: inherit; display: block; }
-
-  .family-index th::after {
-       content: "    \21C5"; /* ⇅ */
-  } 
 
   .family-index th::after {
     content: "    \21C5"; /* ⇅ */

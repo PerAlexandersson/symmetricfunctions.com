@@ -159,7 +159,14 @@ local function make_bibliography_label(authors, year)
   end
   
   if utf8_length(author_key) >= 5 then
-    author_key = author_key:sub(1, MAX_LABEL_LENGTH) .. "+"
+    local truncated = {}
+    local count = 0
+    for char in author_key:gmatch("[%z\1-\127\194-\244][\128-\191]*") do
+      count = count + 1
+      if count > MAX_LABEL_LENGTH then break end
+      truncated[#truncated + 1] = char
+    end
+    author_key = table.concat(truncated) .. "+"
   end
   
   local year_suffix = ""
@@ -289,10 +296,23 @@ local function format_bibliography_entry(item, key, label)
   local parts = {}
   table.insert(parts, '<li id="' .. html_escape(entry_id) .. '">')
   table.insert(parts, '<span class="citeKey">[' .. html_escape(bib_label) .. ']</span> ')
-  if author_string ~= "" then
-    local scholar_url = "https://scholar.google.com/search?q=" .. author_string:gsub(" ", "+")
-    local author_linked = '<a class="citeAuthorLink" href="' .. html_escape(scholar_url) .. '" target="_blank" rel="noopener">' .. html_escape(author_string) .. '</a>'
-    table.insert(parts, '<span class="citeAuthor">' .. author_linked .. '</span>. ')
+  if #authors > 0 then
+    local linked_names = {}
+    for _, author in ipairs(authors) do
+      local name = format_author_name(author)
+      local scholar_url = "https://scholar.google.com/search?q=" .. name:gsub(" ", "+")
+      table.insert(linked_names, '<a class="citeAuthorLink" href="' .. html_escape(scholar_url) .. '" target="_blank" rel="noopener">' .. html_escape(name) .. '</a>')
+    end
+    local author_html
+    if #linked_names == 1 then
+      author_html = linked_names[1]
+    elseif #linked_names == 2 then
+      author_html = linked_names[1] .. " and " .. linked_names[2]
+    else
+      local last = table.remove(linked_names)
+      author_html = table.concat(linked_names, ", ") .. " and " .. last
+    end
+    table.insert(parts, '<span class="citeAuthor">' .. author_html .. '</span>. ')
   end
   table.insert(parts, format_title_with_link(item) .. ". ")
   table.insert(parts, format_venue_info(item))

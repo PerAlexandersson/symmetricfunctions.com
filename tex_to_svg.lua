@@ -164,8 +164,14 @@ end
 --- @return table Array of figure names
 local function extract_figure_names(content)
   local names = {}
-  for name in content:gmatch("\\tikzsetnextfilename%s*{([^{}]+)}") do
-    table.insert(names, name)
+  for line in content:gmatch("[^\n]+") do
+    -- Skip TeX comment lines
+    if not line:match("^%s*%%") then
+      local name = line:match("\\tikzsetnextfilename%s*{([^{}]+)}")
+      if name then
+        table.insert(names, name)
+      end
+    end
   end
   return names
 end

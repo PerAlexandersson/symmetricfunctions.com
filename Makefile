@@ -63,7 +63,7 @@ $(TEMP_DIR)/%.pre.tex: $(SRC_DIR)/%.tex $(PREPROC_DEPS) | $(TEMP_DIR)/.created
 # Test file preprocessing
 $(TEST_PRE): $(TEMP_DIR)/%.pre.tex: $(TEST_DIR)/%.tex $(PREPROC_DEPS) | $(TEMP_DIR)/.created
 	$(LOG) "Preprocessing $< → $@"
-	@$(LUA) $(PREPROC_LUA) < "$<" > "$@"
+	@$(LUA) $(PREPROC_LUA) "$<" < "$<" > "$@"
 
 # === 2) GATHER: Collect metadata to JSON ===
 FILE ?=
