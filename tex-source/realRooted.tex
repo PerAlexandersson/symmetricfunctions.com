@@ -77,18 +77,68 @@ for any $\ell \geq 1$.
 
 \subsection[totallyNonnegative]{Totally non-negative matrices}
 
-A matrix is \defin{totally non-negative} if every minor is non-negative.
-One important class of such matrices arise from networks. Let $s_1,\dotsc,s_k$ 
-and $e_1,\dotsc,e_k$ be vertices in a graph (or network),
-and  let $a_{ij}$ count the number of paths from $s_i$ to $b_j$.
-Then the matrix $(a_{ij})$ is totally non-negative.
-Totally non-negative matrices are closed under taking products.
+A matrix $M = (m_{ij})$ is \defin{totally non-negative} (TNN)
+if every minor (determinant of every square submatrix) is non-negative.
+It is \defin{totally positive} (TP) if every minor is strictly positive.
 
+TNN matrices arise naturally from path-counting in directed graphs
+via the Lindström--Gessel--Viennot (LGV) lemma.
+
+\begin{theorem}[LGV lemma, {\cite{Lindstrom1973,GesselViennot1985}}]
+Let $G$ be a weighted acyclic directed graph with sources
+$A_1,\dotsc,A_k$ and sinks $B_1,\dotsc,B_k$.
+Let $m_{ij}$ be the total weight of paths from $A_i$ to $B_j$.
+Then
+\[
+\det(m_{ij}) = \sum_{\sigma\in S_k} \mathrm{sgn}(\sigma)
+\cdot (\text{weight of non-intersecting path systems } A_i \to B_{\sigma(i)}).
+\]
+In particular, if the only permutation admitting non-intersecting
+paths is $\sigma = \mathrm{id}$, then $\det(m_{ij})\geq 0$
+for all choices of sources and sinks, and $M$ is TNN.
+\end{theorem}
+
+A common sufficient condition is that $G$ is \emph{planar}
+with sources and sinks on the boundary in a compatible order,
+but planarity is not necessary---one only needs that
+non-identity matchings force path intersections.
+
+\begin{example*}[Pascal's triangle is TNN]
+The matrix $M_{n,j} = \binom{n}{j}$ is TNN.
+Take sources $A_n = (n,0)$ and sinks $B_j = (0,j)$
+on a grid with West and North steps.
+The number of paths is $\binom{n}{j}$.
+For $n_1 < n_2$ and $j_1 < j_2$, a path from $A_{n_1}$
+to $B_{j_2}$ (reaching a higher sink from a closer source)
+must cross any path from $A_{n_2}$ to $B_{j_1}$,
+since the first starts lower and ends higher.
+By the LGV lemma, all minors are non-negative.
+\end{example*}
+
+\emph{Connection to real-rootedness.}
+If $M_{n,j}$ is TNN and we define
+$P_n(t) = \sum_j M_{n,j}\, t^j$,
+then each $P_n$ is real-rooted and consecutive
+polynomials form an interlacing sequence
+$P_n \interl P_{n+1}$.
+This follows from the theory of Pólya frequency sequences,
+see \cite{Karlin1968}.
+
+\emph{Checking TNN.}
+Total non-negativity can be checked efficiently via \emph{Neville elimination}
+(a variant of Gaussian elimination using adjacent-row operations):
+a matrix is TNN if and only if Neville elimination completes
+with all multipliers non-negative and no entry becoming negative.
+This gives an $O(n^2 m)$ algorithm for an $n\times m$ matrix,
+compared to the exponential cost of checking all minors directly.
+
+TNN matrices are closed under products and under
+Hadamard (entry-wise) products, see \cite{Wagner1992}.
 See \cite{BrandenLeite2024x} for some applications related to chains in posets.
-This source also has several new methods for proving real-rootedness.
+See also \cite{FallatJohnson2011} for a comprehensive treatment.
 
 \begin{theorem}[Stanley, \cite{Stanley1998}]
-A polynomial $Q(x)=1+a_1x+a_2x^2+\dotsb+a_n x^n$ has only 
+A polynomial $Q(x)=1+a_1x+a_2x^2+\dotsb+a_n x^n$ has only
 negative real roots if and only if the product
 \[
  \prod_{i \geq 1} Q(x_i)
@@ -97,6 +147,40 @@ is Schur-positive.
 \end{theorem}
 
 \todo{Planar networks: https://arxiv.org/pdf/2512.08369}
+
+
+\subsection[hadamardProduct]{Hadamard product of polynomials}
+
+The \defin{Hadamard product} (or \emph{coefficient-wise product})
+of two polynomials $f(t)=\sum a_j t^j$ and $g(t)=\sum b_j t^j$ is
+\[
+  f \odot g \coloneqq \sum_j a_j b_j \, t^j.
+\]
+
+\begin{theorem}[Schur--Pólya; see {\cite[Thm.~3.4]{Wagner1992}}]
+If $f$ and $g$ are real-rooted with non-negative coefficients,
+then $f\odot g$ is also real-rooted with non-negative coefficients.
+\end{theorem}
+
+This follows from the fact that the class of polynomials
+with only real non-positive zeros and non-negative coefficients
+is a cone of \emph{multiplier sequences},
+closed under the Hadamard product.
+See \cite{Karlin1968} or the exposition in \cite{Branden2015}.
+
+\begin{example*}[Type $B$ Narayana polynomials via Hadamard product]
+The type $B$ Narayana polynomials $\sum_{k=0}^n \binom{n}{k}^2 t^k$
+are the Hadamard product of $(1+t)^n$ with itself.
+Since $(1+t)^n$ is real-rooted, the Hadamard product theorem
+immediately gives real-rootedness.
+\end{example*}
+
+The Hadamard product theorem is useful whenever a polynomial's
+coefficients factor as a product of two sequences that are each
+the coefficient sequence of a real-rooted polynomial.
+A more general \emph{composition theorem} involving
+the Schur--Szeg\H{o} composition is given in \cite{RahmanSchmeisser2002}.
+
 
 \section[interlacingPolynomials]{Interlacing and interleaving roots}
 
@@ -591,6 +675,23 @@ P_n(t) = \sum_{k=0}^n \binom{n}{k}^2 t^k.
 \]
 Since these are produced by the Hadamard product of $(1+t)^n$ with itself, it
 follows that the $P_n(t)$ are also real-rooted.
+See the \hyperref[hadamardProduct]{Hadamard product subsection} for a general statement.
+\end{example*}
+
+
+\begin{example*}[TNN for generalized tiling polynomials via LGV]
+The matrix $M$ defined by
+\[
+M_{n,j} = \binom{d(n-j\ell)}{j}
+\]
+admits a lattice path interpretation:
+$M_{n,j}$ counts West--North paths from $A_n=(dn,0)$
+to $B_j=((d\ell{+}1)j,\,j)$.
+Since sources lie on the $x$-axis with spacing $d$
+and sinks lie on the line $y = x/(d\ell{+}1)$,
+any non-identity matching forces a path crossing.
+By the \hyperref[totallyNonnegative]{LGV lemma}, the matrix $(M_{n,j})$ is TNN,
+proving that $P_n(t) = \sum_j M_{n,j} t^j$ is real-rooted and $P_n \interl P_{n+1}$.
 \end{example*}
 
 
@@ -1145,6 +1246,23 @@ then $\phi$ preserves the interleaving property:
 \]
 \end{theorem}
 
+
+\begin{remark*}[Pólya frequency sequences and TNN]
+A sequence $(a_n)_{n\geq 0}$ of non-negative reals
+is a \defin{Pólya frequency sequence} (PF) if the
+infinite Toeplitz matrix $T_{i,j}=a_{i-j}$ (with $a_k=0$ for $k<0$)
+is totally non-negative.
+By the Edrei--Thoma theorem, a sequence is PF if and only if
+its generating function has the form
+\[
+  \sum_{n\geq 0} a_n x^n = C e^{\gamma x}
+  \prod_{i} \frac{1+\alpha_i x}{1-\beta_i x}
+\]
+with $C,\gamma,\alpha_i,\beta_i \geq 0$ and $\sum(\alpha_i+\beta_i)<\infty$.
+In particular, the coefficients of any such generating function
+form a log-concave and unimodal sequence.
+See \cite{Karlin1968} for a full treatment.
+\end{remark*}
 
 
 \section[stablePolynomial]{Stable polynomials}
