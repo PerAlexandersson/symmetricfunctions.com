@@ -1,0 +1,101 @@
+\metatitle{Real-rooted polynomials: tableaux and polytopes}
+
+\metadescription{Real-rootedness for descent polynomials of standard Young tableaux, Ehrhart polynomials from Schur functions, and related combinatorial families.}
+
+
+\section[realRootedTableaux]{Sturm sequences: tableaux and polytopes}
+
+
+\begin{example*}[Descents in standard Young tableaux]
+
+For a non-skew shape $\lambda$ with $n$ boxes, the descent-generating polynomial
+($i$ is a descent if $i+1$ appears in a strictly lower row)
+\[
+   W_\lambda(t) \coloneqq \sum_{T \in \SYT(\lambda)} t^{\des(T)}
+\]
+is real-rooted \cite[Thm. 5.2.3]{Brenti1989}.
+The argument proceeds in two steps.
+First, \cite[Eq. (7.96)]{StanleyEC2} gives the identity
+\[
+  \sum_{m \geq 0} \schurS_{\lambda}(1^m)\,z^m = \frac{W_\lambda(z)}{(1-z)^{n+1}},
+\]
+which identifies $W_\lambda(z)$ as the \hyperref[ehrhart]{$h^*$-polynomial} of the
+associated order polytope, and $m \mapsto \schurS_\lambda(1^m)$ as its Ehrhart polynomial.
+Second, the hook-content formula gives
+\[
+  \schurS_\lambda(1^m) = \prod_{u \in \lambda} \frac{m + c(u)}{h(u)},
+\]
+where $c(u)$ is the content and $h(u)$ the hook length of cell $u$.
+Each factor is linear in $m$ with a non-positive root, so the Ehrhart polynomial is real-rooted.
+By \cite[Thm. 4.6.1]{Brenti1989}, a real-rooted Ehrhart polynomial implies a real-rooted $h^*$-polynomial,
+giving real-rootedness of $W_\lambda(t)$.
+
+This argument does not extend to skew shapes: the Ehrhart polynomial of $\lambda/\mu$
+need not be real-rooted, so Brenti's criterion does not apply (see the remark below).
+
+\cite{Branden2004operators} shows moreover that $W_\lambda(t)$ \hyperref[interlacingPolynomials]{interlaces}
+$W_{\lambda^+}(t)$ whenever $\lambda^+$ is obtained from $\lambda$ by adding a box.
+In particular, for $\lambda=(n,n)$, $W_\lambda(t)$ is the \hyperref[realRootedCatalan]{Narayana polynomial} $N_n(t)$.
+\end{example*}
+
+
+\begin{remark*}[Skew shapes]
+For skew shapes $\lambda/\mu$, the identity $\sum_{m\geq 0} \schurS_{\lambda/\mu}(1^m)\,z^m = W_{\lambda/\mu}(z)/(1-z)^{n+1}$
+still holds, but the Ehrhart polynomial $m \mapsto \schurS_{\lambda/\mu}(1^m)$ need not be real-rooted,
+so Brenti's criterion does not apply.
+Whether $W_{\lambda/\mu}(t)$ is nevertheless real-rooted for all skew shapes is open.
+\end{remark*}
+
+
+\begin{example*}[Ehrhart polynomials from Schur functions]
+
+Let $k = \ell(\lambda)$ be the number of parts of $\lambda$.
+The map
+\[
+ n \mapsto |\SSYT(n \lambda, k)|,
+\]
+counting semi-standard Young tableaux of shape $n\lambda$ with entries in $\{1,\dotsc,k\}$,
+is a polynomial in $n$. The Weyl character formula gives
+\[
+  P_\lambda(n) \coloneqq  \prod_{1 \leq i \lt j \leq k} \frac{n(\lambda_i - \lambda_j)+j-i}{j-i}.
+\]
+Since $\lambda_i \geq \lambda_j$ for $i < j$, each factor is linear in $n$ with a non-positive root,
+so $P_\lambda(n)$ is real-rooted as a product of such factors.
+By \cite[Thm. 4.6.1]{Brenti1989}, this implies that the corresponding $h^*$-polynomial is also real-rooted.
+Brändén \cite{Branden2004operators} showed moreover that $P_\lambda(n)$
+\hyperref[interlacingPolynomials]{interlaces} $P_\mu(n)$ whenever $\mu$ covers $\lambda$ in Young's lattice.
+The above map is the Ehrhart polynomial of the \hyperref[gtpatterns]{Gelfand--Tsetlin polytope} associated with $\lambda$ and $k$.
+
+
+We note that the map
+\[
+ n \mapsto |\SSYT(n \lambda/ n\mu, k)|
+\]
+for skew shapes is not real-rooted in general: $\lambda =(3,2)$, $\mu = (1)$ gives for $k=3$
+the polynomial $\frac{1}{4} (n+1)^2 \left(7 n^2+10 n+4\right)$ which has non-real roots.
+
+It does look like the corresponding $h^*$-polynomials are real-rooted even for skew shapes.
+For non-skew shapes, this is proved by Brenti \cite{Brenti1989}.
+\end{example*}
+
+
+
+\begin{example*}[Type $B$ Set partitions]
+
+In \cite{Wang2014}, a type $B$ version (and in general, a colored version)
+of counting blocks in set partitions is considered.
+The polynomials considered satisfy the (general) recursion
+\[
+  T_n(x) = (x+c) \cdot  T_{n-1}(x) + mx\cdot T'_{n-1}(x),
+\]
+where $m$ and $c$ are positive integers.
+
+\end{example*}
+
+
+\begin{example*}[Ordered partitions]
+In \cite{Simion1984}, one takes any multiset $M$, and considers the number of compositions into exactly $k$
+parts, $O(M,k)$. The polynomial $\sum_k O(M,k)x^k$ is shown to be real-rooted.
+
+In particular, this implies the real-rootedness of the Touchard polynomials.
+\end{example*}

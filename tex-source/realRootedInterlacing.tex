@@ -1,0 +1,330 @@
+\metatitle{Interlacing polynomials}
+
+\metadescription{Theory of interlacing and interleaving roots, Sturm sequences, compatible polynomials, and operators preserving real-rootedness.}
+
+
+\section[interlacingPolynomials]{Interlacing and interleaving roots}
+
+
+The following definitions are from \cite{Wagner1992}. See also \cite{Branden2015}
+
+\begin{definition}[Interleaving polynomials]
+Let $f$ and $g$ be polynomials with positive leading coefficients and
+with real roots $\{f_{i}\}$ and $\{g_{i}\}$, respectively.
+We say that $f$ \defin{interlaces} $g$ if $\deg(f)+1=\deg(g)=d$ and
+\[
+g_1 \leq f_1 \leq g_2 \leq f_2 \leq \dotsm \leq  f_{d-1}\leq g_{d}.
+\]
+Moreover, we say that $f$ \defin{alternates left of} $g$ if $\deg(f)=\deg(g)=d$ and
+\[
+f_1 \leq g_1 \leq f_2 \leq \dotsm \leq f_{d}\leq g_{d}.
+\]
+We say that $f$ \defin{interleaves} $g$ if either $f$ interlaces $g$ or
+$f$ alternates left of $g$. We write this as $f \interl g$.
+By convention, $0 \interl 0$, $0 \interl h$ and $h \interl 0$ whenever $h$ is a polynomial with
+a positive leading coefficient.
+\end{definition}
+
+
+\begin{lemma}[Folklore]
+    Let $f, g$ be monic polynomials with $\deg(f) = \deg(g)+1$ and all real, non-positive roots.
+    If $g \interl f$, then $f-tg$ is real-rooted and $g \interl f- tg \interl f$.
+\end{lemma}
+
+
+The following very useful lemma is from \cite[Sec. 3]{Wagner1992}.
+\begin{lemma}[Wagner's lemma]
+Let $f, g, h \in \setR[t]$ be real-rooted polynomials with
+only real, non-positive roots and positive leading coefficients.
+Then
+\begin{itemize}
+\item if $f \interl h$ and $g \interl h$ then $f+g \interl h$.
+\item if $h \interl f$ and $h \interl g$ then $h \interl f+g$.
+\item $g \interl f$ if and only if $f \interl tg$.
+\end{itemize}
+\end{lemma}
+
+\name[D.G. Wagner]{David Wagner} also shows that $f \interl g$ implies
+that $f \interl \lambda f + \mu g \interl g$ for all $\lambda, \mu \geq 0$.
+
+
+As an example, if $f$ is real-rooted, then $f' \interl f$.
+Hence, recursions involving the derivative play well with interlacing roots.
+
+
+
+\todo{Cauchy interlace theorem: https://arxiv.org/pdf/math/0502408
+and this is same as  https://doi.org/10.1016/j.laa.2021.09.019
+}
+\todo{Binomial transform: https://doi.org/10.1112/jlms.70083 see also https://doi.org/10.1016/j.aam.2024.102776}
+
+
+
+A more recent result is the following theorem by \name{Shi-Mei Ma} and \name{Yi Wang} \cite{MaWang2008}.
+\begin{theorem}[Ma and Wang, 2008]
+Suppose $f$ and $F$ are polynomials with positive leading coefficients,
+such that
+\[
+ F(x) = u(x) f(x) + v(x) f'(x), \qquad  \deg(f) \leq \deg(F) \leq \deg(f) + 1
+ \]
+with $u(x),v(x)$ having real coefficients.
+If $f$ is real-rooted and $v(r) \neq 0$ whenever $f(r)=0$,
+then $F$ is real-rooted and $f \interl F$.
+\end{theorem}
+The theorem states more regarding root placements and multiplicities.
+
+
+\subsection[sturmSequence]{Sturm sequences}
+
+
+It is fairly common to see sequences of polynomials, $\{ P_n(t) \}_{n \geq 0}$
+with the property that $P_j(t) \interl P_{j+1}(t)$ for all $j$.
+If the leading coefficient is always positive and $\deg(P_n)=n$,
+this is called a \defin{Sturm sequence}, see \cite{Liu2007}.
+If we drop the degree condition, the sequence is called a \defin{generalized Sturm sequence}.
+
+The notion of \defin{Sturm-unimodality} is defined in the analogous manner.
+
+\todo{Add general thm from \cite{Liu2007} }
+
+
+\subsection[bezoutMatrix]{Bézout matrices}
+
+For arbitrary polynomials $f(t)$ and $g(t)$ with $\deg(f) = \deg(g)+1$,
+let $B(f,g)$ be the \defin{Bézout matrix}, whose $(i,j)$ entry is equal to the coefficient of $x^{i-1} y^{j-1}$ in the polynomial
+\[
+ \frac{f(x)g(y) - f(y)g(x)}{x-y}.
+\]
+
+\begin{theorem}[Bézout's theorem, {\cite[Cor. 9.145]{Fisk2006x}}]
+Let $f(t)$ be a polynomial of degree $d$ and $g(t)$ a polynomial of degree $d-1$.
+Then $f(t)$ and $g(t)$ are both real-rooted and $g$ strictly interlaces $f$
+if and only if $B(f,g)$ is positive definite.
+\end{theorem}
+
+
+
+
+
+
+
+\section[interlacingSequences]{Interlacing sequences}
+
+
+The following definitions are from \cite{Branden2015}.
+
+\begin{definition}[Interlacing sequences of polynomials]
+A sequence $\{f_1,f_2,\dotsc,f_n\}$ of polynomials with positive leading coefficients
+is said to be an \defin{interlacing sequence}
+if $f_i \interl f_j$  for all $1\leq i \lt j \leq n$.
+
+We let \defin{$\mathscr{F}_n^+$} denote the family of interlacing
+sequences of length $n$ with \emph{non-negative} coefficients.
+\end{definition}
+
+In \cite{Branden2015}, there are nice examples of how interlacing
+sequences can be used to prove real-rootedness.
+In particular, \hyperref[realRootedMatching]{rook polynomials} associated with
+Ferrers diagrams can be proved to be real-rooted using this method.
+
+
+\begin{proposition}[\cite{Wagner1992}]
+Suppose $f_1 \interl f_2 \interl \dotsb \interl f_n$ and $f_1 \interl f_n$.
+Then $\{f_1,\dotsc,f_n\}$ is an interlacing sequence.
+\end{proposition}
+
+
+\subsection[realMatrixRecursion]{Matrices preserving interlacing sequences}
+
+
+The following very useful theorem is proved in \cite[Thm. 7.8.5]{Branden2015}.
+
+\begin{theorem}[Matrices preserving interlacing sequences]
+Let $G$ be an $m \times n$ matrix of polynomials in $t$.
+Then $G : \mathscr{F}_n^+ \to \mathscr{F}_m^+$ if and only if
+\begin{enumerate}
+\item All entries of $G$ have nonnegative coefficients, and
+\item For every $2{\times}2$ sub-matrix
+$\begin{bmatrix}
+ a(t) & b(t) \\
+ c(t) & d(t)
+\end{bmatrix}$ of $G$ and real numbers
+$\lambda, \mu > 0$, we have
+\[
+ (\lambda t + \mu) b(t) + d(t) \interl (\lambda x + \mu) a(t) + c(t).
+\]
+\end{enumerate}
+\end{theorem}
+
+
+
+\begin{example*}[Minors preserving interleaving sequences]
+
+There are 81 matrices with entries in $\{0,1,t\}$.
+Remove those where first and last row are equal and those where one of the rows is $(0,0)$.
+There are 56 such matrices left, and among these, the following 21
+satisfies the conditions in the theorem above.
+\begin{equation*}
+\begin{pmatrix}0 & 1 \\ 0 & t\end{pmatrix}, \quad
+\begin{pmatrix}0 & 1 \\ t & 0\end{pmatrix}, \quad
+\begin{pmatrix}0 & t \\ 0 & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 0 \\ t & 0\end{pmatrix}, \quad
+\begin{pmatrix}t & 0 \\ 0 & t\end{pmatrix}, \quad
+\begin{pmatrix}t & 0 \\ 1 & 0\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+\begin{pmatrix}0 & 1 \\ t & 1\end{pmatrix}, \quad
+\begin{pmatrix}0 & 1 \\ t & t\end{pmatrix}, \quad
+\begin{pmatrix}1 & 0 \\ 1 & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 0 \\ t & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 1 \\ 0 & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 1 \\ t & 0\end{pmatrix}, \quad
+\begin{pmatrix}t & 0 \\ t & t\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+\begin{pmatrix}t & 1 \\ 0 & t\end{pmatrix}, \quad
+\begin{pmatrix}t & 1 \\ t & 0\end{pmatrix}, \quad
+\begin{pmatrix}t & t \\ 0 & t\end{pmatrix}, \quad
+\begin{pmatrix}1 & 1 \\ t & 1\end{pmatrix}, \quad
+\begin{pmatrix}1 & 1 \\ t & t\end{pmatrix}, \quad
+\begin{pmatrix}t & 1 \\ t & t\end{pmatrix}, \quad
+\begin{pmatrix}t & t \\ 1 & 1\end{pmatrix}
+\end{equation*}
+\end{example*}
+
+
+Below are some examples where the proofs uses interlacing sequences.
+
+\begin{example*}[Binomial Eulerian polynomials]
+
+The \defin{binomial Eulerian polynomials} can be defined as
+\[
+ \tilde{A}_n(t) \coloneqq \sum_{\sigma \in \symS_n} (1+t)^{\fix(\sigma)} t^{\exc(\sigma)}.
+\]
+Athanasiadis conjectured that these are real-rooted,
+and it was later shown by \name{Jim Haglund} and \name[P.B. Zhang]{Philip B. Zhang} \cite{HaglundZhang2019} that this is indeed the case,
+by means of interlacing polynomials.
+
+It seems that $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$, but this does not follow immediately from
+the reference above. See also the binomial $\svec$-Eulerian polynomials.
+\end{example*}
+
+
+\begin{example*}[Ascents and descents in inversion sequences]
+Fix $\svec = (s_1,\dotsc,s_n)$ and define
+\[
+\mathcal{I}_n^\svec \coloneqq \{ (e_1,\dotsc,e_n) \in \setZ^n : 0 \leq e_i \lt s_i, \; 0 \leq i \leq n \}
+\]
+with the conventions that $e_0 = e_{n+1} =0$ and $s_0 = s_{n+1}=1$.
+This is the set of \defin{inversion sequences} associated with $\svec$.
+
+An index $0 \leq i \leq n$ is an \defin{ascent}, \defin{collision}, or \defin{descent}
+of an inversion sequence $\evec$ if
+\[
+ \frac{e_i}{s_i} \lt \frac{e_{i+1}}{s_{i+1}}, \qquad
+ \frac{e_i}{s_i} = \frac{e_{i+1}}{s_{i+1}}, \qquad
+ \frac{e_i}{s_i} \gt \frac{e_{i+1}}{s_{i+1}},
+\]
+respectively. Moreover, let $\mathcal{D}_n^\svec \subset \mathcal{I}_n^\svec$
+be the set of inversion sequences without collisions.
+
+It was proved in \cite{SavageVisontai2015} and \cite{GustafssonSolus2020}, respectively,
+that
+\[
+E^\svec_n(t) = \sum_{\evec \in \mathcal{I}_n^\svec} t^{\asc(\evec)} \quad \text{and} \quad
+D^\svec_n(t) = \sum_{\evec \in \mathcal{D}_n^\svec} t^{\asc(\evec)}
+\]
+are real-rooted. The methods use theory of interlacing sequences of polynomials.
+In particular, if $\svec$ is a fixed \emph{sequence} of positive integers,
+then $E^\svec_n(t) \interl E^\svec_{n+1}(t)$.
+
+The proof by Savage and Visontai also shows that the $s$-Eulerian polynomials
+are real-rooted. See also the proof in \cite[Sec. 8.2]{Branden2015}.
+
+
+See \cite{HaglundZhang2019} for the binomial Eulerian polynomial analog of the above results.
+\end{example*}
+
+
+
+\subsection[compatiblePolynomials]{Compatible polynomials}
+
+Chudnovsky and Seymour introduced a concept closely related to interleaving sequences
+of polynomials. The polynomials $f_1,\dotsc,f_k \in \setR[z]$ have a \defin{common interlacing}
+if there is some $h \in \setR[z]$ with $h \interl f_j$ for all $j$.
+
+\begin{theorem}[Chudnovsky--Seymour, 2007, \cite{ChudnovskySeymour2007}]
+
+Let $\{f_1,f_2,\dotsc,f_n\}$ be a set of real-rooted polynomials with \emph{positive} leading coefficients.
+Such a set is said to be \defin{compatible} if for all
+choices $\lambda_j$, the sum $\sum_{j=1}^n \lambda_j f_j$ is real-rooted.
+
+Then the following are equivalent:
+\begin{itemize}
+\item $f_1,\dotsc,f_k$ are pairwise compatible;
+\item $f_1,\dotsc,f_k$ are compatible;
+\item $f_i,f_j$ have a common interlacing for all $1\leq i \lt j \leq n$;
+\item $f_1,\dotsc,f_k$ have a common interlacing.
+\end{itemize}
+\end{theorem}
+This theorem can be generalized to polynomials with arbitary real
+coefficients (with negative leading coefficients), see \cite{LeakeRyder2024x}.
+
+
+\todo{For polynomials arranged in a tree, with
+interlacing relations along edges: https://cs.uwaterloo.ca/~lapchi/cs860-2022/notes/12-interlacing-family.pdf}
+
+
+
+\subsection[realRootedPreservers]{Operators preserving real-rootedness}
+
+A multivariate approach to preserving real-rootedness is provided by
+\hyperref[stablePolynomial]{stable polynomials},
+where linear operators preserving stability imply real-rootedness of specializations.
+
+In \cite{Wagner1992}, the following is proved.
+\begin{theorem}
+Suppose $f,g$ are polynomials, expressed as
+\[
+ \sum_{n \geq 0} f(n) z^n = \frac{W(f)(z)}{(1-z)^{1+\deg f}}, \quad
+ \sum_{n \geq 0} g(n) z^n = \frac{W(g)(z)}{(1-z)^{1+\deg g}},
+\]
+with $W(f)(z)$ and $W(g)(z)$ being real-rooted with non-positive roots, then $W(fg)(z)$
+also have real and non-positive roots.
+\end{theorem}
+This, in particular, shows that if $f$ and $g$ are \hyperref[ehrhart]{Ehrhart functions} of two polytopes $P_f$ and $P_g$
+with real-rooted $h^*$-polynomials, then the $h^*$-polynomial of the polytope product $P_f * P_g$
+is also real-rooted.
+For examples of polytopes with real-rooted $h^*$-polynomials, see
+\hyperref[realRootedTableaux]{tableaux and polytopes}.
+
+
+
+\begin{theorem}[See \cite[Thm. 7]{Branden2004operators}]
+If $\phi : \setR[x] \to \setR[x]$ is a linear operator that preserves real-rootedness,
+then $\phi$ preserves the interleaving property:
+\[
+  f \interl g \implies \phi(f) \interl \phi(g).
+\]
+\end{theorem}
+
+
+\begin{remark*}[Pólya frequency sequences and TNN]
+A sequence $(a_n)_{n\geq 0}$ of non-negative reals
+is a \defin{Pólya frequency sequence} (PF) if the
+infinite Toeplitz matrix $T_{i,j}=a_{i-j}$ (with $a_k=0$ for $k<0$)
+is totally non-negative.
+By the Edrei--Thoma theorem, a sequence is PF if and only if
+its generating function has the form
+\[
+  \sum_{n\geq 0} a_n x^n = C e^{\gamma x}
+  \prod_{i} \frac{1+\alpha_i x}{1-\beta_i x}
+\]
+with $C,\gamma,\alpha_i,\beta_i \geq 0$ and $\sum(\alpha_i+\beta_i)<\infty$.
+In particular, the coefficients of any such generating function
+form a log-concave and unimodal sequence.
+See \cite{Karlin1968} for a full treatment.
+\end{remark*}

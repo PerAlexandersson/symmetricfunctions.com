@@ -1,0 +1,160 @@
+\metatitle{Real-rooted polynomials: Catalan families}
+
+\metadescription{Real-rootedness and interlacing for Narayana polynomials, Motzkin polynomials, Dyck path statistics, and related Catalan families.}
+
+
+\section[realRootedCatalan]{Sturm sequences: Catalan families}
+
+This page collects examples of \hyperref[sturmSequence]{Sturm sequences} arising from Catalan combinatorics:
+Dyck paths, ballot sequences, Motzkin paths, and related families.
+Each sequence is a \hyperref[sturmSequence]{Sturm sequence}, satisfying $P_j \interl P_{j+1}$;
+in particular every polynomial in the sequence is real-rooted.
+For background on interlacing and the proof techniques,
+see \hyperref[interlacingPolynomials]{interlacing polynomials}.
+For the broader context,
+see \hyperref[polynomialRootIntro]{unimodality and real-rootedness}.
+
+\begin{example*}[Narayana polynomials]
+
+Let $P_n(t)\coloneqq \sum_{\pi \in Dyck(n)} t^{peaks(\pi)}$,
+where $Dyck(n)$ Dyck paths of size $n$, and $peaks(\pi)$ count the number of peaks.
+Equivalently, this is the same as counting descents in binary words with $n$ 0s and $n$ 1s,
+where in each prefix of the word, there are at least as many $0$s as $1$s, see \oeis{A001263}.
+A closed-form formula is
+\[
+P_n(t) = \frac{1}{n} \sum_{k=1}^n \binom{n}{k} \binom{n}{k-1} t^k
+\]
+These satisfy the recursion (see \cite[Eq. (2)]{Sulanke2002}, \cite[Eq. (3.3)]{Liu2007})
+\[
+(n+1) P_n(t) = (2n-1)(1+t)P_{n-1}(t) - (n-2)(1-t)^2 P_{n-2}(t),
+\]
+with initial conditions  $P_1(t)=t$, $P_2(t)=t(1+t)$, which is used to prove
+the interlacing property.
+
+Real-rootedness and the interlacing property was first proved in \cite{Branden2006}.
+See also \cite[Eq (31)]{Agapito2014}, where a different recursive formula (involving derivatives)
+is listed:
+\[
+ (n+1)(n+2) P_{n+1} = t((1-t)^2 P''_{n} + 2(1+2n)(1-t)P'_{n} + (1+2n)(2+2n)P_n).
+\]
+Another approach is given in \cite{KostovFinkelshteinShapiro2009}.
+
+\begin{lstlisting}
+
+NN[1] := t;
+NN[2] := t (1 + t);
+NN[n_] := NN[n] = Expand[
+	(
+		(2 n - 1) (1 + t) NN[n - 1] -
+		(n - 2) (1 - t)^2 NN[n - 2]
+)/(n + 1)];
+\end{lstlisting}
+
+One can also prove real-rootedness by observing that the Narayana polynomials
+are a simple transformation of Jacobi polynomials, or Gegenbauer polynomials
+(which are orthogonal polynomials on an interval).
+We have that the Narayana polynomials are given by the Hypergeometric series:
+\[
+P_n(t) = {}_2F_1(-n, -n-1;2;x)
+\]
+or, \texttt{HypergeometricPFQ[{-n, -n - 1}, {2}, x]}, see \cite[Sec. 12]{BarryHennessy2011}.
+
+
+Yet another recurrence is
+\[
+(1 + n)P_n=(3nt + n - t - 1) P_{n-1} - 2 t(t-1) P'_{n-1}
+\]
+which can be proved using the first theorem in \cite{Dung2022x}.
+\end{example*}
+
+
+\begin{example*}[Type $B$ Narayana polynomials]
+The type $B$ Narayana polynomials can be defined as
+\[
+P_n(t) = \sum_{k=0}^n \binom{n}{k}^2 t^k.
+\]
+Since these are produced by the Hadamard product of $(1+t)^n$ with itself, it
+follows that the $P_n(t)$ are also real-rooted.
+See the \hyperref[hadamardProduct]{Hadamard product subsection} for a general statement.
+\end{example*}
+
+
+
+\begin{example*}[Generalized Narayana polynomials]
+A two-parameter family of Narayana-type polynomials
+\[
+P_{n,m}(t) = \sum_{k=0}^n \left(\binom{n}{k}\binom{m}{k} -\binom{n}{k+1}\binom{m}{k-1} \right)t^k.
+\]
+is considered in \cite[Thm. 1.4]{ChenYangZhang2018},
+and they use a fairly general recurrence relation to obtain interlacing roots.
+\end{example*}
+
+
+\begin{example*}[Boolean--Narayana numbers]
+
+A family similar to the  Narayana numbers, named the \defin{Boolean--Narayana numbers}
+is introduced by \name{Miklós Bóna} in \cite{Bona2026x}.
+The corresponding polynomials are proved to be real-rooted.
+\[
+ BoNa(n,k) = \frac{1}{n}\binom{n}{k-1}\sum_{j=0}^{k-1}2^j\binom{k-1}{j}\binom{n-k+1}{j+1}.
+\]
+If we define $P_n(x) \coloneqq \sum_{k} BoNa(n,k)x^k$ then these satisfy the recursion
+\[
+ (n+1) P_n(x) = (2n-1)(1+x) P_{n-1}(x) - (n-2)(1-6x+x^2) P_{n-2}(x).
+\]
+\end{example*}
+
+
+\begin{example*}[NNE instances in Dyck paths with fixed number of peaks]
+
+In \cite{WangZhang2024}, the authors consider the polynomials
+\[
+ W_{n,k}(t) \coloneqq [x^k] \sum_{\pi \in Dyck(n)} x^{\mathrm{peaks}(\pi)} t^{\mathrm{nne}(\pi)},
+\]
+where $\mathrm{nne}(\pi)$ count the number of North-North-East instances in the path.
+The authors show that $\{ W_{n,k}(t) \}_{n \geq k}$ for fixed $k$ form a \hyperref[sturmSequence]{Sturm sequence},
+and that $\{ W_{n,k}(t) \}_{1\leq k \leq n}$ is \hyperref[sturmSequence]{Sturm-unimodal}.
+
+\begin{conjecture}[\name{Per Alexandersson}, 2023]
+The generalization to Fuss--Catalan paths (in an $n \times nm$ rectangle)
+seem to be real-rooted as well.
+\end{conjecture}
+
+
+The following appears in \cite{BonaDimitrovLabelleLiPappeVindasMelendezZhuang2025}.
+
+Let $w_{n,k,m}$ be the number of Dyck paths of size $n$, with $k$
+instances of $NE$ and $m$ instances of $NNE$. Then the polynomials defined via
+\[
+W_{n,k}(t) = \sum_{m\geq 0} w_{n,k,m}t^m = \frac{1}{k} \binom{n}{k-1} \sum_{m \geq 1}^{\min(k,n-k)}  \binom{n-k-1}{m-1}\binom{k}{m} t^m
+\]
+are real-rooted. The formula above is valid for $n \gt k$, and for $n \leq k$ the polynomials are constant.
+The authors conjectured that for fixed $k$, $\{W_{n,k}\}_{n\geq k}$ form a \hyperref[sturmSequence]{Sturm sequence},
+and that for fixed $n$, $\{W_{n,k}\}_{1 \leq k\leq n}$ is \hyperref[sturmSequence]{Sturm-unimodal}.
+These conjectures were later proved in \cite{WangZhang2024}.
+The authors there finds a two-term recurrence, expression $W_{n,k}(t)$ in terms of $W_{n-1,k}(t)$ and $W_{n,k}(t)$.
+Alternatively, $W_{n,k}(t)$ can be expressed in terms of $W_{n,k-1}(t)$ and its derivative.
+\end{example*}
+
+
+\begin{example*}[Motzkin polynomials]
+
+The non-crossing matching polynomial of the complete
+graph $K_n$ is the Motzkin polynomial, see \oeis{A055151}.
+These polynomials satisfy the recursion
+\[
+ (n+2)M_n(x) = (2n+1)M_{n-1}(x) - (n-1)(1-4x)M_{n-2}(x), \text{ with } M_1(x)=1, \;
+ M_2(x)=x+1.
+\]
+By using the methods in \cite[Section 3]{Wagner1992},
+it is now easy to use induction to show that the roots of $M_{n-1}(x)$ interlaces
+those of $M_{n}(x)$. In particular, these polynomials are real-rooted.
+
+% M[1] = 1;
+% M[2] = 1 + x;
+% M[n_] :=
+%   Together[
+%     1/(n + 2) ((2 n + 1) M[n - 1] - (n - 1) (1 - 4 x) M[n - 2])] //
+%    Expand;
+
+\end{example*}

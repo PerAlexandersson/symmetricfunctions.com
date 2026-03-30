@@ -1,0 +1,196 @@
+\metatitle{Real-rooted polynomials: graphs and combinatorics}
+
+\metadescription{Matching polynomials, rook polynomials, independence polynomials of claw-free graphs, Touchard polynomials, and Chow polynomials.}
+
+
+\section[realRootedMatching]{Matching and independence polynomials}
+
+Let $G = (V,E)$ be any graph.
+The \defin{matching polynomial} $\mu_G(x)$ is defined as
+\[
+\mu_G(x) \coloneqq \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}} x^{|M|}
+\]
+where $|M|$ is the number of edges in the matching.
+
+In \cite[Thm. 4.2]{HeilmannLieb1972}, it was shown that $\mu_G(x)$
+is real-rooted. Moreover, $\mu_G(x)$ interlaces $\mu_{G'}(x)$, where $G'$
+is any graph obtained from $G$ by removing a vertex.
+This is a very powerful theorem, but it follows
+from the more general Chudnovsky--Seymour theorem on independence polynomials below.
+
+A hypergraph generalization (including multigraphs)
+is considered by \name{Nima Amini} in \cite{Amini2019x}.
+
+
+\begin{example*}[Fibonacci tilings via matchings]
+Recall that the number of ways to tile the  one-row Young diagram $(n)$
+with tiles of shape $(1)$ and $(2)$ is given by the $(n+1)th$ Fibonacci number.
+If we then define
+\[
+ F_0(x) \coloneqq 1 \quad F_1(x) \coloneqq 1, \quad F_n(x) \coloneqq F_{n-1}(x) + x\cdot F_{n-2}(x)
+\]
+we see that $[x^k] F_n(x)$ is the number of ways to tile $(n)$ using exactly $k$ (2)-tiles.
+
+By the Heilmann--Lieb theorem, we can see that for all $n$, $F_n(x)$ is real-rooted,
+since we can see that $\mu_G(x) = F_n(x)$ for the path graph with $n$ vertices.
+\end{example*}
+
+
+
+
+\begin{example*}[Touchard polynomials (blocks in set partitions), with proof]
+
+The \defin{Touchard polynomials} may be defined via
+\[
+T_n(x) \coloneqq \sum_{P \in SP(n)} x^{blocks(P)} = \sum_{k=1}^n S(n,k) x^k,
+\]
+where $SP(n)$ are the set partitions of $n$, and we count the number of blocks.
+Note that the coefficients are Stirling numbers of the second type.
+
+One can show (see \cite[p. 20, p. 139]{Wilf1994}) that
+\[
+  T_n(x) = x \cdot  T_{n-1}(x) + x\cdot T'_{n-1}(x).
+\]
+We know $T_{n-1} \interl x T_{n-1}$. Moreover, $T_{n-1} \interl x T'_{n-1}$,
+so by \cite{Wagner1992}, we have $T_{n-1} \interl x T_{n-1} +  x T'_{n-1}$.
+But this is exactly $T_{n-1} \interl T_n$.
+
+
+\emph{The matching approach:} \cite[Lem. 5.1]{Godsil2017}, states
+that the Stirling number $S(n,k)$ is equal to the number
+of size $n-k$ matchings in the bipartite graph $G_n$ on vertex set
+\[
+ \{1,2,\dotsc,n\} \cup \{1',2',\dotsc,n'\}
+\]
+where $i$ has an edge with $j'$ if and only if $i \lt j$.
+
+For example, the graph $G_4 = \{ \{1,2'\}, \{1,3'\}, \{1,4'\}, \{2,3'\}, \{2,4'\}, \{3,4'\} \}$
+has $7=S(4,4-2)$ matchings of size $2$,
+and $6=S(4,4-1)$ matchings of size $1$.
+We then have that $x^n T_n(x^{-1}) = \mu_{G_n}(x)$ where
+$\mu_{G_n}(x)$ is the matching polynomial of $G_n$.
+Since removal of vertices gives interlacing, we have that
+$\mu_{G_{n-1}}(x) \interl \mu_{G_n}(x)$
+from which interlacing for Touchard polynomials follows.
+
+
+\emph{The rook placement approach:}
+The matching polynomial $\mu_{G_n}(x)$ for the bipartite graph above, is the rook polynomial
+of the staircase board of size $n-1$.
+
+\end{example*}
+
+
+\begin{example*}[r-Lah number polynomials and $r$-Touchard polynomials]
+
+An interpretation of $r$-Lah polynomials and $r$-Stirling numbers as
+matching polynomials is given in \cite{NyulRacz2021}.
+\end{example*}
+
+
+
+\todo{
+Independence polynomials sometimes have only real roots.
+https://www.emis.de/journals/JACO/Volume19_3/pn5l8gh2q7025747.fulltext.pdf
+https://ajc.maths.uq.edu.au/pdf/38/ajc_v38_p027.pdf (Caterpillars)
+https://ajc.maths.uq.edu.au/pdf/71/ajc_v71_p104.pdf
+}
+
+\todo{Eigenvalues of Hermitian matrices and its principal minor}
+
+
+\subsection[rookPolynomials]{Rook polynomials}
+
+The \defin{rook polynomial} of a board $B$ is defined as
+\[
+  R_B(z) \coloneqq \sum_k r_k(B) z^k
+\]
+where $r_k(B)$ is the number of ways to place $k$ non-attacking rooks on the board.
+Here, the board can be any subset of some $n {\times} n$-board.
+Note that $R_B(x)$ is exactly a matching polynomial, $\mu_G(x)$ for a bipartite
+graph $G$ on vertex set $\{v_1,\dotsc,v_n,v'_1,\dotsc,v'_n\}$
+where  $(v_i,v'_j)$ is an edge if and only if $(i,j)$ is a cell of the board $B$.
+
+Nijenhuis \cite{Nijenhuis1976} proved that the rook polynomials are always real-rooted.
+In fact, Nijenhuis shows a weighted result involving permanents.
+\begin{theorem}[Nijenhuis, 1976]
+Let $A = (a_{ij})$ be a non-negative $m\times n$-matrix.
+Then
+\[
+ R_{A}(z) \coloneqq \sum_{\rho} (-z)^{\length(\rho)} \prod_{j=1}^{\length(\rho)}
+  a(\rho_j)
+\]
+where we sum over all ways to place rooks on the $m\times n$-board,
+and $a(\rho_j)$ is the value of the matrix at position given by the $j$th rook.
+\end{theorem}
+
+
+The \defin{hit polynomial} of a board can also be defined in terms of the $r_k(B)$.
+Let $B$ be a subset of the $n\times n$-board.
+The hit polynomial is then defined as
+\[
+ T_B(z) \coloneqq \sum_{k =0}^n k! r_{n-k}(B)(z-1)^{n-k} = \sum_{j=0}^n h_j(B) z^j.
+\]
+Here, $h_j(B)$ is the number of ways to place $n$ rooks on the $n \times n$-board,
+with exactly $j$ rooks in $B$, see \cite{KaplanskyRiordan1946,Haglund2000}.
+
+A theorem by Haglund--Ono--Wagner \cite{HaglundOnoWagner1999}
+states that if $B$ is a Ferrers board (same as a Young diagram),
+then $T_B(z)$ is real-rooted.
+
+
+
+
+\subsection[realRootedIndependence]{Independence polynomials for claw-free graphs}
+
+Let $G = (V,E)$ be any graph. The \defin{independence polynomial} $I(G,x)$ is defined
+as
+\[
+I(G,x) \coloneqq \sum_{\substack{A \subseteq V(G) \\ \text{$A$ independent}}} x^{|A|}
+\]
+where $|A|$ is the number of edges in the matching.
+
+A graph called \defin{claw-free} if no induced subgraph is isomorphic
+to the graph with edges $\{\{1,2\},\{1,3\},\{1,4\}\}$.
+
+If $G$ is any simple graph, its \emph{line graph} $L(G)$ is also simple.
+Moreover, $L(G)$  is claw-free. Finally, we have that $I(L(G),x) = \mu_G(x)$.
+
+\begin{theorem}[Chudnovsky--Seymour 2007, \cite{ChudnovskySeymour2007},]
+Suppose $G$ is claw-free. Then $I(G,x)$ is real-rooted.
+As a corollary, we get the Heilmann--Lieb theorem on matching polynomials.
+\end{theorem}
+\begin{proof*}
+This very briefly illustrates the ideas. Note that if $v \in V(G)$ and $nbh(v)$
+is $v$ and all vertices adjacent to $v$, then
+\[
+ I(G,x) = I(G \setminus \{v\} ,x) + x \cdot  I(G \setminus nbh(v),x).
+\]
+Essentially, the above sum is broken down into the cases where $v \notin A$, and when $v \in A$.
+Observe that if $G$ is claw-free, then any induced subgraph is also claw-free.
+Chudnovsky--Seymour then use the notion of \hyperref[compatiblePolynomials]{compatible polynomials}
+to obtain their result.
+\end{proof*}
+
+This result conjectured by \name{Richard Stanley} in \cite{Stanley1998},
+a vertex-weighted version is given by \name{Alexander Engström} \cite{Engstrom2007}
+and an alternative (non-vertex-deletion-recursive)
+proof is given by \name{Bodo Lass} \cite{Lass2012}.
+Finally, a multivariate refinement is given by \cite{LeakeRyder2019} where
+one obtains \hyperref[stablePolynomial]{stable polynomials}.
+
+\name{Alexander Engström} proved the following weighted generalization of the Chudnovsky--Seymour theorem:
+\begin{theorem*}[A. Engström, \cite[Thm. 2.5]{Engstrom2007}]
+Let $G = (V,E)$ be a graph, and $w : V \to \setR$ be vertex weights.
+The \defin{weighted independence polynomial} $I(G,w,x)$ is defined as
+\[
+I(G,w,x) \coloneqq \sum_{\substack{A \subseteq V(G) \\ \text{$A$ independent}}} x^{|A|} \prod_{v\in A} w(v).
+\]
+If $G$ is claw-free and all weights are non-negative, then $I(G,w,x)$ is real-rooted.
+\end{theorem*}
+
+
+\subsection[realRootsChow]{Chow polynomials}
+
+In \cite{BrandenVecchi2025x}, the authors show various
+real-rootedness results regarding Chow polynomials.

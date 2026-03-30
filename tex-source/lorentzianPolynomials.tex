@@ -1,0 +1,111 @@
+\metatitle{Lorentzian polynomials}
+
+\metadescription{Lorentzian polynomials, their properties and examples including Schur polynomials, chromatic symmetric polynomials, and connections to matroids.}
+
+
+\section[lorentzianPolynomial]{Lorentzian polynomials}
+
+Petter Brändén and June Huh introduced the notion of \defin{Lorentzian polynomials}.
+All stable polynomials are Lorentzian, but the converse is not true for polynomials
+of degree three or more.
+For an introduction to the topic, see \href{https://www2.math.upenn.edu/~jhaglund/IPAC/2022.html}{these lectures by Brändén}.
+
+
+\begin{definition}[Lorentzian polynomial]
+
+A homogeneous polynomial $h(x_1,\dotsc,x_n)$ of degree $d$ is \defin{strictly Lorentzian} if
+\begin{itemize}
+ \item All coefficients of $h$ are positive, and
+ \item The signature of (the degree $2$ polynomial)
+ \[
+   \frac{\partial}{\partial x_{i_1}}\frac{\partial}{\partial x_{i_2}} \dotsm \frac{\partial}{\partial x_{i_e}} h(x_1,\dotsc,x_n)
+ \]
+ is $(+,-,-,\dotsc,-)$ for any $i_1,\dotsc,i_e \in [n]$ where $e = d-2$.
+
+ To compute the signature of a homogeneous polynomial $P(x_1,\dotsc,x_n)$ of degree 2,
+ consider the symmetric matrix
+ \[
+  \left(  \frac{\partial}{\partial x_{i}}\frac{\partial}{\partial x_{j}} P \right)_{ij} \in \setR^{n \times n}.
+ \]
+ If it has only one positive eigenvalue, while the remaining are negative, then it has signature $(+,-,-,\dotsc,-)$.
+
+\end{itemize}
+
+A polynomial is called \defin{Lorentzian} if it is the limit of strictly Lorentzian polynomials.
+There are two other equivalent conditions listed in \cite{HuhMatherneMezarosDizier2022}.
+
+An equivalent definition for Lorentzian is:
+
+\begin{itemize}
+ \item All coefficients are non-negative.
+ \item The support of the polynomial forms an \hyperref[MConvexity]{M-convex set}.
+ \item All quadratic forms (as above) has at most one positive eigenvalue.
+\end{itemize}
+
+\end{definition}
+
+The basis generating function of a matroid is Lorentzian.
+
+Determining if polynomials are Lorentzian can be done efficiently, see \cite{Chin2024x}.
+This is in contrast with checking for real stability which is coNP-complete, see \cite{Chin2024x}.
+
+
+The following operations preserve the Lorentzian property:
+\begin{itemize}
+\item Taking the multi-affine part of a Lorentzian polynomial.
+\item Products of Lorentzian polynomials are Lorentzian.
+\item Specializing variables in a multiaffine Lorentzian polynomial.
+\end{itemize}
+
+
+
+In \cite{HuhMatherneMezarosDizier2022}, several generalizations of \hyperref[schurS]{Schur polynomials}
+are either proved or conjectured to be Lorentzian.
+\begin{theorem}[See \cite{HuhMatherneMezarosDizier2022}]
+For any integer partition $\lambda$, the normalized \hyperref[schurS]{Schur polynomial}
+\[
+   \sum_{ \mu } K_{\lambda \mu} \frac{\monomial_\mu}{\mu_1! \mu_2 ! \dotsm \mu_\ell !}
+\]
+is Lorentzian. Here, $K_{\lambda \mu}$ are the Kostka coefficients.
+\end{theorem}
+Another proof of this is given in \cite{RossToma2023}.
+
+
+It is conjectured that the corresponding statement holds also for skew Schur polynomials, \hyperref[key]{key polynomials}
+and \hyperref[schubert]{Schubert polynomials}.
+In \cite{ChenFanYe2024x}, 0-1-Grothendieck polynomials are shown to be Lorentzian.
+
+
+In \cite{ChinQin2025x}, the authors study the set of symmetric polynomials which are also Lorentzian.
+This set is homeomorphic to a closed Euclidean ball.
+
+
+
+\begin{example}[Chromatic symmetric polynomials]
+
+For \emph{abelian Dyck paths}, the \hyperref[chromaticQuasisymmetricHistory]{chromatic symmetric polynomial}
+(in any number of variables) is Lorentzian, see \cite{MatherneMoralesSelover2022x}.
+
+In contrast, there is a (non-abelian) unit interval graph for which
+the chromatic symmetric polynomial is not Lorentzian, or normalized Lorentzian.
+The area sequence for when this fails is $01121121$ --- this example was found by
+Ricky Liu and Cynthia Vinzant.
+\end{example}
+
+
+In \cite{RossSussWannerer2023x}, the authors describe a way to construct operators preserving
+the Lorentzian property.
+
+See \cite{BrandenLeake2023x,Ross2023x} for Lorentzian polynomials on fans.
+See \cite{HuXiao2023x} for Lorentzian polynomials and intersection theory.
+
+
+For Lorentzian polynomials from independence sets in graphs,
+see \cite{BendjeddouHardiman2025}.
+
+
+
+\section[symmetricDecomposition]{Symmetric decomposition}
+
+See \cite{BrandenSolus2019} for the symmetric decomposition
+and relationship with real-rootedness.
