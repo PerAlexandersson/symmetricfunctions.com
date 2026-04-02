@@ -752,6 +752,89 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-realRootedWords}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Baseline positions for a permutation statistic.
+  \draw[black!45, thinner] (-0.72,-0.62) -- (0.72,-0.62);
+  \foreach \x in {-0.72,-0.36,0,0.36,0.72} {
+    \draw[black!45, thinner] (\x,-0.69) -- (\x,-0.55);
+  }
+
+  % Permutation graph for 3,1,4,2,5 with descents emphasized in blue.
+  \coordinate (A) at (-0.72, 0.10);
+  \coordinate (B) at (-0.36,-0.26);
+  \coordinate (C) at ( 0.00, 0.44);
+  \coordinate (D) at ( 0.36,-0.02);
+  \coordinate (E) at ( 0.72, 0.62);
+
+  \draw[iconblue] (A) -- (B);
+  \draw[black]    (B) -- (C);
+  \draw[iconblue] (C) -- (D);
+  \draw[black]    (D) -- (E);
+
+  \node[node-blue]  at (A) {};
+  \node[node-black] at (B) {};
+  \node[node-blue]  at (C) {};
+  \node[node-black] at (D) {};
+  \node[node-black] at (E) {};
+
+  % Descent positions along the word.
+  \node[node-blue, minimum size=4.5pt] at (-0.72,-0.62) {};
+  \node[node-blue, minimum size=4.5pt] at (0,-0.62) {};
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-realRootedTableaux}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A Ferrers diagram extruded into a simple polytope silhouette.
+  \begin{scope}[line width=0.85mm]
+    % Front tableau vertices
+    \coordinate (P1) at (-0.72, 0.46);
+    \coordinate (P2) at ( 0.12, 0.46);
+    \coordinate (P3) at ( 0.12, 0.18);
+    \coordinate (P4) at (-0.16, 0.18);
+    \coordinate (P5) at (-0.16,-0.10);
+    \coordinate (P6) at (-0.44,-0.10);
+    \coordinate (P7) at (-0.44,-0.38);
+    \coordinate (P8) at (-0.72,-0.38);
+
+    % Back polytope face
+    \coordinate (Q1) at (-0.46, 0.66);
+    \coordinate (Q2) at ( 0.38, 0.66);
+    \coordinate (Q3) at ( 0.38, 0.38);
+    \coordinate (Q4) at ( 0.10, 0.38);
+    \coordinate (Q5) at ( 0.10, 0.10);
+    \coordinate (Q6) at (-0.18, 0.10);
+    \coordinate (Q7) at (-0.18,-0.18);
+    \coordinate (Q8) at (-0.46,-0.18);
+
+    \path[fill=iconblue!18, draw=black]
+      (Q1) -- (Q2) -- (Q3) -- (Q4) -- (Q5) -- (Q6) -- (Q7) -- (Q8) -- cycle;
+
+    \foreach \A/\B in {P1/Q1,P2/Q2,P3/Q3,P4/Q4,P5/Q5,P6/Q6,P7/Q7,P8/Q8}{
+      \draw[black] (\A) -- (\B);
+    }
+
+    % Highlight a short descent chain inside the tableau.
+    \fill[iconblue!35] (-0.72, 0.46) rectangle (-0.44, 0.18);
+    \fill[iconblue!55] (-0.44, 0.18) rectangle (-0.16,-0.10);
+
+    \draw[black]
+      (P1) -- (P2) -- (P3) -- (P4) -- (P5) -- (P6) -- (P7) -- (P8) -- cycle;
+
+    % Cell structure of the Ferrers diagram.
+    \draw[black] (-0.44, 0.46) -- (-0.44,-0.10);
+    \draw[black] (-0.16, 0.46) -- (-0.16, 0.18);
+    \draw[black] (-0.72, 0.18) -- ( 0.12, 0.18);
+    \draw[black] (-0.72,-0.10) -- (-0.16,-0.10);
+  \end{scope}
+\end{tikzpicture}
+
+
 \tikzsetnextfilename{card-unitIntervalAO}
 \begin{tikzpicture}[icon]
   \cardframe

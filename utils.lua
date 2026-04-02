@@ -69,11 +69,17 @@ local function trim(s)
   return rtrim(ltrim(s))
 end
 
---- Escape HTML special characters (&, <, >).
+--- Escape HTML special characters for safe insertion into text or attributes.
 --- @param s string Input string
 --- @return string HTML-escaped string
 local function html_escape(s)
-  return (s:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"))
+  s = tostring(s or "")
+  return (s
+    :gsub("&", "&amp;")
+    :gsub("<", "&lt;")
+    :gsub(">", "&gt;")
+    :gsub('"', "&quot;")
+    :gsub("'", "&#39;"))
 end
 
 --- Capitalize the first letter of a string, preserving leading whitespace.
@@ -109,8 +115,15 @@ end
 --- @param s string|nil Input string
 --- @return string URL-safe slug
 local function slugify(s)
-  s = ascii_fold_string(s or "")
-  s = s:lower():gsub("%s+", "-"):gsub("%-+", "-"):gsub("^%-", ""):gsub("%-$", "")
+  s = tostring(s or "")
+  local UTF8_CP = "[%z\1-\127\194-\244][\128-\191]*"
+  s = s:gsub(UTF8_CP, function(cp) return ACCENT_MAP[cp] or cp end)
+  s = s:lower()
+       :gsub("[^A-Za-z0-9%s_-]", "")
+       :gsub("[%s_]+", "-")
+       :gsub("%-+", "-")
+       :gsub("^%-", "")
+       :gsub("%-$", "")
   return s
 end
 

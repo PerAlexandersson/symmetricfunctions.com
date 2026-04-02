@@ -33,6 +33,7 @@ local REFS_JSON     = os.getenv("REFS_JSON") or (TEMP_DIR .. "/bibliography.json
 local LABELS_JSON   = os.getenv("LABELS_JSON") or (TEMP_DIR .. "/site-labels.json")
 local POLYDATA_JSON = os.getenv("POLYDATA_JSON") or (TEMP_DIR .. "/site-polydata.json")
 local TEMPLATE      = os.getenv("TEMPLATE") or "template.htm"
+local ASSETS_DIR    = os.getenv("ASSETS_DIR") or "assets"
 local WWW_DIR       = os.getenv("WWW_DIR") or "www"
 local SOURCE_TS     = os.getenv("SOURCE_TS") or tostring(os.time())
 
@@ -100,6 +101,34 @@ local function array_contains(arr, val)
 end
 
 
+--- Returns true when src points to a non-local resource that should not be file-validated.
+local function is_external_resource(src)
+  src = tostring(src or "")
+  return src:match("^[a-z][a-z0-9+.-]*://") ~= nil
+      or src:match("^//") ~= nil
+      or src:match("^data:") ~= nil
+end
+
+
+--- Validates a site-local image path against the source assets tree.
+local function image_source_exists(src)
+  if src == "" or is_external_resource(src) then
+    return true
+  end
+
+  local normalized = tostring(src)
+    :gsub("[?#].*$", "")
+    :gsub("^%./", "")
+    :gsub("^/", "")
+
+  if normalized == "" then
+    return false
+  end
+
+  return file_reading.file_exists(ASSETS_DIR .. "/" .. normalized)
+end
+
+
 -- ========== INLINE ELEMENT RENDERERS ==========
 
 local render_inlines_html
@@ -164,7 +193,7 @@ local function render_image(attr, caption, target)
   local source_loc = kv_map["data-source-loc"] or ""
   
   if src ~= "" then
-    if not file_reading.file_exists(WWW_DIR .. "/" .. src) then
+    if not image_source_exists(src) then
       if source_loc ~= "" then
         print_error("%s: Image file not found: %s", source_loc, src)
       else

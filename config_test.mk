@@ -27,4 +27,5 @@ REFS_JSON := $(TEMP_DIR)/bibliography.json
 
 # === EXPORTS FOR SCRIPTS ===
 export TEST_DIR TEMP_DIR WWW_DIR
+export ASSETS_DIR
 export TEMPLATE REFS_JSON
