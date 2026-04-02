@@ -1,11 +1,13 @@
-\metatitle{Real-rooted polynomials: permutation statistics}
+\metatitle{Real-rooted polynomials: permutations, set partitions and Stirling permutations}
 
-\metadescription{Examples of Sturm sequences and interlacing from permutation statistics: Eulerian polynomials, peaks, descents, derangements, and more.}
+\metadescription{Examples of Sturm sequences and interlacing from permutation statistics, set partitions, and Stirling permutations: Eulerian polynomials, peaks, descents, derangements, and more.}
 
 
-\section[interlacingExamples]{Sturm sequences: permutation statistics}
+\section[realRootedWords]{Sturm sequences: permutations, set partitions and more}
 
-This page collects examples of \hyperref[sturmSequence]{Sturm sequences} arising from permutation statistics.
+This page collects examples of \hyperref[sturmSequence]{Sturm sequences} arising from combinatorial statistics
+on classes of permutations, words and types of partitions.
+
 Recall that a sequence of polynomials $\{P_n(t)\}$ is a \hyperref[sturmSequence]{Sturm sequence} if
 $P_j \interl P_{j+1}$ for all $j$;
 in particular each $P_n$ is real-rooted.
@@ -14,12 +16,17 @@ see \hyperref[interlacingPolynomials]{interlacing polynomials}.
 For the broader context of real-rootedness and unimodality,
 see \hyperref[polynomialRootIntro]{unimodality and real-rootedness}.
 
+
+
+\subsection[sturmEulerian]{Variations of Eulerian polynomials}
+
+
 \begin{example*}[Eulerian polynomials, descents in permutations]
 
 The \defin{Eulerian polynomials}, $A_n(t) \coloneqq \sum_{\sigma \in \symS_n} t^{\des(\sigma)}$.
 These satisfy
 \[
-A_n(t) = (1+t(n-1))A_{n-1}(t) +  t(1-t) A'_{n-1}(t),
+A_n(t) = (1+t(n-1))A_{n-1}(t) +  t(1-t) A'_{n-1}(t), \quad A_1(t)=1
 \]
 and from this recurrence, one can prove that $A_j(t) \interl A_{j+1}(t)$ for all $j$.
 However, it is probably not possible to show this by only using Wagner's lemma above,
@@ -110,36 +117,61 @@ to form interlacing pairs, see \cite[Section 5]{Chow2022}.
 
 
 
-\begin{example*}[Set partitions without singleton blocks]
 
-Let us define $D_n(t) = \sum_{\pi \in SP_2(n)} t^{blocks(\pi)}$,
-where $SP_2(n)$ are the set-partitions of $[n]$ where all blocks have size at least $2$.
-Then
+\begin{example*}[Binomial Eulerian polynomials]
+
+The \defin{binomial Eulerian polynomials} can be defined as
 \[
- D_n(t) = t\left( D'_{n-1}(t) + (n-1) D_{n-2}(t) \right)
+ \tilde{A}_n(t) \coloneqq \sum_{\sigma \in \symS_n} (1+t)^{\fix(\sigma)} t^{\exc(\sigma)}.
 \]
-and $D_{n-1}(t)$ and $D_{n}$ have interlacing roots, see \cite[Thm. 1]{BonaHezo2016}.
-Note that the degree of $D_n(t)$ is $\lfloor n/2 \rfloor$.
+Athanasiadis conjectured that these are real-rooted,
+and it was later shown by \name{Jim Haglund} and \name[P.B. Zhang]{Philip B. Zhang} \cite{HaglundZhang2019} that this is indeed the case,
+by means of interlacing polynomials.
 
-
-The proof is easy by using Wagner's lemma and induction.
-Prove the base case and assume $D_{n-2} \interl D_{n-1}$ for some $n \geq 2$.
-We then know that
-\[
-D'_{n-1} \interl D_{n-1} \text{ and } (n-1)D_{n-2} \interl D_{n-1}.
-\]
-Wagner's lemma now gives that
-\[
-D'_{n-1} + (n-1)D_{n-2} \interl D_{n-1} \implies D_{n-1} \interl t \left( D'_{n-1} + (n-1)D_{n-2} \right),
-\]
-and this is precisely  $D_{n-1} \interl D_{n}$, which completes the induction step.
-
-This result also follows from the general machinery in \cite[Subsection 3.4]{Hitczenko2024x}.
-A recursion for set partitions into blocks of size at least $s$ is also mentioned
-there (originally due to \name{Louis Comtet})
-but it does not immediately imply real-rootedness.
-
+It seems that $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$, but this does not follow immediately from
+the reference above. See also the binomial $\svec$-Eulerian polynomials.
 \end{example*}
+
+
+\begin{example*}[Ascents and descents in inversion sequences]
+Fix $\svec = (s_1,\dotsc,s_n)$ and define
+\[
+\mathcal{I}_n^\svec \coloneqq \{ (e_1,\dotsc,e_n) \in \setZ^n : 0 \leq e_i \lt s_i, \; 0 \leq i \leq n \}
+\]
+with the conventions that $e_0 = e_{n+1} =0$ and $s_0 = s_{n+1}=1$.
+This is the set of \defin{inversion sequences} associated with $\svec$.
+
+An index $0 \leq i \leq n$ is an \defin{ascent}, \defin{collision}, or \defin{descent}
+of an inversion sequence $\evec$ if
+\[
+ \frac{e_i}{s_i} \lt \frac{e_{i+1}}{s_{i+1}}, \qquad
+ \frac{e_i}{s_i} = \frac{e_{i+1}}{s_{i+1}}, \qquad
+ \frac{e_i}{s_i} \gt \frac{e_{i+1}}{s_{i+1}},
+\]
+respectively. Moreover, let $\mathcal{D}_n^\svec \subset \mathcal{I}_n^\svec$
+be the set of inversion sequences without collisions.
+
+It was proved in \cite{SavageVisontai2015} and \cite{GustafssonSolus2020}, respectively,
+that
+\[
+E^\svec_n(t) = \sum_{\evec \in \mathcal{I}_n^\svec} t^{\asc(\evec)} \quad \text{and} \quad
+D^\svec_n(t) = \sum_{\evec \in \mathcal{D}_n^\svec} t^{\asc(\evec)}
+\]
+are real-rooted. The methods use theory of interlacing sequences of polynomials.
+In particular, if $\svec$ is a fixed \emph{sequence} of positive integers,
+then $E^\svec_n(t) \interl E^\svec_{n+1}(t)$.
+
+The proof by Savage and Visontai also shows that the $s$-Eulerian polynomials
+are real-rooted. See also the proof in \cite[Sec. 8.2]{Branden2015}.
+
+
+See \cite{HaglundZhang2019} for the binomial Eulerian polynomial analog of the above results.
+\end{example*}
+
+
+
+\subsection[sturmPermutations]{Permutation statistics}
+
 
 \begin{example*}[Type 1 Stirling numbers (cycles, left to right minima)]
 
@@ -151,53 +183,13 @@ t(t+1)(t+2)\dotsm (t+n-1) = \sum_{k=1}^n |s(n,k)|t^k
 where $|s(n,k)|$ are the unsigned Stirling numbers of the first kind, see \oeis{A132393}.
 \end{example*}
 
-\begin{example*}[Stirling permutations]
 
-The descent of a \hyperref[permutationsStirling]{Stirling permutation} $\pi \in Q_n$
-is defined as the cardinality of
-\[
- \{ i : \pi_i \gt \pi_{i+1} \} \cup \{2n\}.
-\]
-The descent-generating polynomials then satisfy the recurrence
-\begin{equation}
- P_n(t) = (2n+1)t \cdot P_{n-1}(t) + t(1-t) P'_{n-1}(t),
-\end{equation}
-see \cite[Eq. 13]{Carlitz1965} and \cite[Thm. 2.1]{GesselStanley1978}.
-The coefficients can be found in \oeis{A008517}, the first few values are presented below.
-\begin{array}{rrrrrr}
-\toprule
- 1  \\
- 1 & 2  \\
- 1 & 8 & 6 \\
- 1 & 22 & 58 & 24 \\
- 1 & 52 & 328 & 444 & 120 \\
- 1 & 114 & 1452 & 4400 & 3708 & 720 \\
-\bottomrule
-\end{array}
-These numbers shows up when studying the Hilbert series of the Whitehouse complex,
-see \cite{Readdy2005}. These polynomials are the $h^*$-polynomials of the
-order polytope defined by the inequalities
-\[
- y_1 \leq y_2 \leq \dotsb \leq y_n \qquad 0 \leq y_j \leq x_j \leq 1 \text{ for } j=1,\dotsc,n.
-\]
-It is worth pointing out that for $n=20$, the linear term of the Ehrhart polynomial (of degree 40)
-has a negative coefficient: $-22354369153/6983776800$.
-
-\name{Miklós Bóna} proved that these have only real zeros, \cite{Bona2009}.
-We may also show real-rootedness and the interlacing property using the Ma--Wang theorem.
-
-\todo{Add H.K Dey's result on interlacing, from Archiv der Mathematik}
-
-\name{Jim Haglund} and \name{Mirko Visontai} \cite[Thm. 3.3]{HaglundVisontai2012} show
-that a multivariate generalization
-results in stable polynomials.
-\end{example*}
 
 
 \begin{example*}[Peak polynomials, peaks in permutations]
 
 Peak-generating polynomials, $P_n(x) = \sum_{\sigma \in \symS_n} x^{\text{peaks}(\sigma)}$, see \oeis{A008303}.
-Real-rootednesss was proved in \cite{WarrenSeneta1996}, by using the recursion
+Real-rootedness was proved in \cite{WarrenSeneta1996}, by using the recursion
 \begin{equation}
  P_n(x) = (2+x(n-2)) P_{n-1}(x) + 2x(1-x) P'_{n-1}(x).
 \end{equation}
@@ -231,6 +223,7 @@ interlacing relation $P_n \interl P_{n+1}$ here as well.
 However, note that there is a root at $x=-1$ with multiplicity $\lfloor n/2 \rfloor -1$.
 See \cite{MaWang2008} for more references---real-rootedness was observed earlier.
 \end{example*}
+
 
 \begin{example*}[Descents and left peaks in simsun permutations]
 Define the polynomials $P_n(t) = \sum_{\sigma \in \mathrm{RS}_n} t^{\des(\sigma)}$,
@@ -273,7 +266,7 @@ where $D(n)$ are the derangements (fixed-point-free permutations) of size $n$.
 Then $P_{n-1} \interl P_n$.
 
 The proof is as follows.
-From \cite{MantaciRakotondrajao2003}, we can show that $P_1 =1$, $P_2 =t$ and for $n \geq 3$,
+From \cite{MantaciRakotondrajao2003}, we can show that $P_1 =0$, $P_2 =t$ and for $n \geq 3$,
 \[
  P_n = t \left( (n - 1) P_{n - 2} + (n-1)  P_{n - 1} + (1-t) P'_{n - 1} \right).
 \]
@@ -296,29 +289,130 @@ By using \cite{Wagner1992}, we have that
 \end{align*}
 From here, we can conclude that $P_{n-1} \interl P_n$.
 
-See also \cite{Liu2007} where this is proved using a different recursion.
+See also \cite{LiuWang2007} where this is proved using a different recursion.
 \end{example*}
 
 
-\section[posetRealRooted]{Poset operations preserving real-rootedness}
+\section[sturmSetPartitions]{Set partitions}
 
-\begin{example*}[P-Eulerian polynomials for series-parallel posets]
-Let $E(P,t)$ denote the Eulerian polynomial associated with the naturally labeled poset $P$.
-The \defin{ordinal sum} $P \oplus Q$ of two posets is the poset
-where
+
+
+\begin{example*}[Touchard polynomials (blocks in set partitions), with proof]\label{touchardPolynomial}
+
+The \defin{Touchard polynomials} may be defined via
 \[
-x \prec y \iff x \prec_P y \text{ or } x \prec_Q y \text{ or } x \in P, y \in Q.
+T_n(x) \coloneqq \sum_{P \in SP(n)} x^{blocks(P)} = \sum_{k=1}^n S(n,k) x^k,
 \]
-The Eulerian polynomial then has the property that
+where $SP(n)$ are the set partitions of $n$, and we count the number of blocks.
+Note that the coefficients are Stirling numbers of the second type.
+
+One can show (see \cite[p. 20, p. 139]{Wilf1994}) that
 \[
-E(P \oplus Q, t) = E(P,t) \cdot E(Q,t).
+  T_n(x) = x \cdot  T_{n-1}(x) + x\cdot T'_{n-1}(x).
 \]
-Moreover, for the \defin{disjoint union} of posets, we have
+We know $T_{n-1} \interl x T_{n-1}$. Moreover, $T_{n-1} \interl x T'_{n-1}$,
+so by \cite{Wagner1992}, we have $T_{n-1} \interl x T_{n-1} +  x T'_{n-1}$.
+But this is exactly $T_{n-1} \interl T_n$.
+
+Another way to prove realrootedness is by interpreting $T_n(x)$ as a \hyperref[touchardAsMatching]{matching polynomial}.
+\end{example*}
+
+
+\begin{example*}[Set partitions without singleton blocks]
+
+Let us define $D_n(t) = \sum_{\pi \in SP_2(n)} t^{blocks(\pi)}$,
+where $SP_2(n)$ are the set-partitions of $[n]$ where all blocks have size at least $2$.
+Then
 \[
-E(P \sqcup Q, t) = E(P,t) \diamond E(Q,t),
+ D_n(t) = t\left( D'_{n-1}(t) + (n-1) D_{n-2}(t) \right)
 \]
-where $\diamond$ is the diamond product.
-These operations preserve real-rootedness, so all series-parallel posets have real-rooted Eulerian polynomials,
-see \cite{Wagner1992,Wagner1992en}.
-This result extends to labeled posets, see \cite{Branden2004operators}.
+and $D_{n-1}(t)$ and $D_{n}$ have interlacing roots, see \cite[Thm. 1]{BonaHezo2016}.
+Note that the degree of $D_n(t)$ is $\lfloor n/2 \rfloor$.
+
+
+The proof is easy by using Wagner's lemma and induction.
+Prove the base case and assume $D_{n-2} \interl D_{n-1}$ for some $n \geq 2$.
+We then know that
+\[
+D'_{n-1} \interl D_{n-1} \text{ and } (n-1)D_{n-2} \interl D_{n-1}.
+\]
+Wagner's lemma now gives that
+\[
+D'_{n-1} + (n-1)D_{n-2} \interl D_{n-1} \implies D_{n-1} \interl t \left( D'_{n-1} + (n-1)D_{n-2} \right),
+\]
+and this is precisely  $D_{n-1} \interl D_{n}$, which completes the induction step.
+
+This result also follows from the general machinery in \cite[Subsection 3.4]{Hitczenko2024x}.
+A recursion for set partitions into blocks of size at least $s$ is also mentioned
+there (originally due to \name{Louis Comtet})
+but it does not immediately imply real-rootedness.
+
+\end{example*}
+
+
+
+\begin{example*}[Type $B$ Set partitions]
+
+In \cite{Wang2014}, a type $B$ version (and in general, a colored version)
+of counting blocks in set partitions is considered.
+The polynomials considered satisfy the (general) recursion
+\[
+  T_n(x) = (x+c) \cdot  T_{n-1}(x) + mx\cdot T'_{n-1}(x),
+\]
+where $m$ and $c$ are positive integers.
+
+\end{example*}
+
+
+\begin{example*}[Ordered partitions]
+In \cite{Simion1984}, one takes any multiset $M$, and considers the number of compositions into exactly $k$
+parts, $O(M,k)$. The polynomial $\sum_k O(M,k)x^k$ is shown to be real-rooted.
+
+In particular, this implies the real-rootedness of the Touchard polynomials.
+\end{example*}
+
+
+\subsection[sturmOther]{Miscellaneous}
+
+
+\begin{example*}[Stirling permutations]
+
+The descent of a \hyperref[permutationsStirling]{Stirling permutation} $\pi \in Q_n$
+is defined as the cardinality of
+\[
+ \{ i : \pi_i \gt \pi_{i+1} \} \cup \{2n\}.
+\]
+The descent-generating polynomials then satisfy the recurrence
+\begin{equation}
+ P_n(t) = (2n+1)t \cdot P_{n-1}(t) + t(1-t) P'_{n-1}(t),
+\end{equation}
+see \cite[Eq. 13]{Carlitz1965} and \cite[Thm. 2.1]{GesselStanley1978}.
+The coefficients can be found in \oeis{A008517}, the first few values are presented below.
+\begin{array}{rrrrrr}
+\toprule
+ 1  \\
+ 1 & 2  \\
+ 1 & 8 & 6 \\
+ 1 & 22 & 58 & 24 \\
+ 1 & 52 & 328 & 444 & 120 \\
+ 1 & 114 & 1452 & 4400 & 3708 & 720 \\
+\bottomrule
+\end{array}
+These numbers shows up when studying the Hilbert series of the Whitehouse complex,
+see \cite{Readdy2005}. These polynomials are the $h^*$-polynomials of the
+order polytope defined by the inequalities
+\[
+ y_1 \leq y_2 \leq \dotsb \leq y_n \qquad 0 \leq y_j \leq x_j \leq 1 \text{ for } j=1,\dotsc,n.
+\]
+It is worth pointing out that for $n=20$, the linear term of the Ehrhart polynomial (of degree 40)
+has a negative coefficient: $-22354369153/6983776800$.
+
+\name{Miklós Bóna} proved that these have only real zeros, \cite{Bona2009}.
+We may also show real-rootedness and the interlacing property using the Ma--Wang theorem.
+
+\todo{Add H.K Dey's result on interlacing, from Archiv der Mathematik}
+
+\name{Jim Haglund} and \name{Mirko Visontai} \cite[Thm. 3.3]{HaglundVisontai2012} show
+that a multivariate generalization
+results in stable polynomials.
 \end{example*}

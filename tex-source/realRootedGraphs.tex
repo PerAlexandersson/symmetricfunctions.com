@@ -38,24 +38,12 @@ since we can see that $\mu_G(x) = F_n(x)$ for the path graph with $n$ vertices.
 
 
 
-\begin{example*}[Touchard polynomials (blocks in set partitions), with proof]
+\begin{example*}[Touchard polynomials (blocks in set partitions)]\label{touchardAsMatching}
 
-The \defin{Touchard polynomials} may be defined via
+The \hyperref[touchardPolynomial]{Touchard polynomials} may be defined via
 \[
-T_n(x) \coloneqq \sum_{P \in SP(n)} x^{blocks(P)} = \sum_{k=1}^n S(n,k) x^k,
+T_n(x) \coloneqq \sum_{P \in SP(n)} x^{blocks(P)} = \sum_{k=1}^n S(n,k) x^k.
 \]
-where $SP(n)$ are the set partitions of $n$, and we count the number of blocks.
-Note that the coefficients are Stirling numbers of the second type.
-
-One can show (see \cite[p. 20, p. 139]{Wilf1994}) that
-\[
-  T_n(x) = x \cdot  T_{n-1}(x) + x\cdot T'_{n-1}(x).
-\]
-We know $T_{n-1} \interl x T_{n-1}$. Moreover, $T_{n-1} \interl x T'_{n-1}$,
-so by \cite{Wagner1992}, we have $T_{n-1} \interl x T_{n-1} +  x T'_{n-1}$.
-But this is exactly $T_{n-1} \interl T_n$.
-
-
 \emph{The matching approach:} \cite[Lem. 5.1]{Godsil2017}, states
 that the Stirling number $S(n,k)$ is equal to the number
 of size $n-k$ matchings in the bipartite graph $G_n$ on vertex set

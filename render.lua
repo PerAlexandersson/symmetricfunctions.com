@@ -119,6 +119,8 @@ local function render_link(attr, inlines, target)
   
   local link_inner_html = render_inlines_html(inlines)
   local classes = attr[2] or {}
+  local kv_map = extract_keyvals(attr[3] or {})
+  local source_loc = kv_map["data-source-loc"] or ""
 
   -- Handle internal cross-references with .hyperref class
   if array_contains(classes, "hyperref") then
@@ -126,7 +128,11 @@ local function render_link(attr, inlines, target)
     local entry = SITE_LABELS_MAP[label]
     
     if not entry then
-      print_error("hyperref to unknown label '%s' (text: %s)", label, link_inner_html)
+      if source_loc ~= "" then
+        print_error("%s: hyperref to unknown label '%s' (text: %s)", source_loc, label, link_inner_html)
+      else
+        print_error("hyperref to unknown label '%s' (text: %s)", label, link_inner_html)
+      end
       url = "#" .. label
     else
       url = entry.href or ("#" .. label)
@@ -154,13 +160,23 @@ local function render_image(attr, caption, target)
   end
   
   local captionHTML = render_inlines_html(caption)
+  local kv_map = extract_keyvals(attr[3] or {})
+  local source_loc = kv_map["data-source-loc"] or ""
   
   if src ~= "" then
     if not file_reading.file_exists(WWW_DIR .. "/" .. src) then
-      print_error("Image file not found: %s", src)
+      if source_loc ~= "" then
+        print_error("%s: Image file not found: %s", source_loc, src)
+      else
+        print_error("Image file not found: %s", src)
+      end
     end
   else
-    print_error("Image missing src (caption: %s)", captionHTML)
+    if source_loc ~= "" then
+      print_error("%s: Image missing src (caption: %s)", source_loc, captionHTML)
+    else
+      print_error("Image missing src (caption: %s)", captionHTML)
+    end
   end
   
   local attr_html = render_attr(attr)

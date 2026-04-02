@@ -62,7 +62,7 @@ has non-negative, non-decreasing coefficients, then the polynomial $f(1+t+t^2+\d
 for any $\ell \geq 1$.
 
 
-\subsection[totallyNonnegative]{Totally non-negative matrices}
+\section[totallyNonnegative]{Totally non-negative matrices}
 
 A matrix $M = (m_{ij})$ is \defin{totally non-negative} (TNN)
 if every minor (determinant of every square submatrix) is non-negative.
@@ -134,15 +134,6 @@ See \cite{BrandenLeite2024x} for some applications related to chains in posets.
 See also \cite{FallatJohnson2011} for a comprehensive treatment.
 
 
-\todo{Is this statement below even true?}
-%\emph{Connection to real-rootedness.}
-%If $M_{n,j}$ is TNN and we define
-%$P_n(t) = \sum_j M_{n,j}\, t^j$,
-%then each $P_n$ is real-rooted and consecutive
-%polynomials form a \hyperref[interlacingSequences]{interlacing sequence}
-%$P_n \interl P_{n+1}$.
-%This follows from the theory of Pólya frequency sequences, see \cite{Karlin1968}.
-
 
 \begin{example*}[Ray through Pascal's triangle]
 The following is proved in \cite{Yu2009}.
@@ -163,6 +154,20 @@ so the row-generating polynomials $\sum_k D(n,k) t^k$ are real-rooted for all $n
 \end{example*}
 
 
+
+\begin{theorem}[Brenti~\cite{Brenti1995}]\label{thm:brenti}
+Let $D$ be a locally finite digraph on $\setN \times\setN$ with nonnegative edge weights.
+Assume that $D$ is planar and weakly $y$-invariant
+(i.e., the edges from $(m,k)$ are independent of~$m$).
+Let $M_{n,j}\coloneqq P_D\bigl((0,0),(n,j)\bigr)$
+be the weighted path count from $(0,0)$ to $(n,j)$.
+Then $M=(M_{n,j})$ is totally positive
+and every row is a P\'olya frequency sequence.
+In particular, every row polynomial $\sum_j M_{n,j}\,t^j$
+has only real nonpositive zeros.
+\end{theorem}
+
+
 \begin{theorem}[Stanley, \cite{Stanley1998}]
 A polynomial $Q(x)=1+a_1x+a_2x^2+\dotsb+a_n x^n$ has only
 negative real roots if and only if the product
@@ -174,7 +179,7 @@ is Schur-positive.
 
 
 
-\subsection[hadamardProduct]{Hadamard product of polynomials}
+\section[hadamardProduct]{Hadamard product of polynomials}
 
 The \defin{Hadamard product} (or \emph{coefficient-wise product})
 of two polynomials $f(t)=\sum a_j t^j$ and $g(t)=\sum b_j t^j$ is
@@ -184,7 +189,7 @@ of two polynomials $f(t)=\sum a_j t^j$ and $g(t)=\sum b_j t^j$ is
 
 \begin{theorem}[Schur--Pólya; see {\cite[Thm.~3.4]{Wagner1992}}]
 If $f$ and $g$ are real-rooted with non-negative coefficients,
-then $f\odot g$ is also real-rooted with non-negative coefficients.
+then $f\odot g$ is also real-rooted with non-negative coefficients. 
 \end{theorem}
 
 This follows from the fact that the class of polynomials
@@ -205,6 +210,32 @@ coefficients factor as a product of two sequences that are each
 the coefficient sequence of a real-rooted polynomial.
 A more general \emph{composition theorem} involving
 the Schur--Szeg\H{o} composition is given in \cite{RahmanSchmeisser2002}.
+
+
+
+\section[posetRealRooted]{Poset operations preserving real-rootedness}
+
+\begin{example*}[P-Eulerian polynomials for series-parallel posets]
+Let $E(P,t)$ denote the Eulerian polynomial associated with the naturally labeled poset $P$.
+The \defin{ordinal sum} $P \oplus Q$ of two posets is the poset
+where
+\[
+x \prec y \iff x \prec_P y \text{ or } x \prec_Q y \text{ or } x \in P, y \in Q.
+\]
+The Eulerian polynomial then has the property that
+\[
+E(P \oplus Q, t) = E(P,t) \cdot E(Q,t).
+\]
+Moreover, for the \defin{disjoint union} of posets, we have
+\[
+E(P \sqcup Q, t) = E(P,t) \diamond E(Q,t),
+\]
+where $\diamond$ is the diamond product.
+These operations preserve real-rootedness, so all series-parallel posets have real-rooted Eulerian polynomials,
+see \cite{Wagner1992,Wagner1992en}.
+This result extends to labeled posets, see \cite{Branden2004operators}.
+\end{example*}
+
 
 
 \section[realRootedNormality]{Normality in the limit}

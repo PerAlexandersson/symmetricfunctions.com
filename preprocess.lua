@@ -3,8 +3,9 @@
 -- ============================================================================
 -- Performs preprocessing on LaTeX files before passing to Pandoc:
 -- 1. Annotates \todo{} commands with filename:lineno
--- 2. Normalizes block-level macros (bigskip, ytableaushort) with blank lines
--- 3. Rewrites various LaTeX commands for better Pandoc compatibility
+-- 2. Annotates \cite{} and \hyperref[] commands with filename:lineno
+-- 3. Normalizes block-level macros (bigskip, ytableaushort) with blank lines
+-- 4. Rewrites various LaTeX commands for better Pandoc compatibility
 --
 -- Usage: lua preprocess.lua [source.tex] [--no-url-rewrite] < in.tex > out.pre.tex
 -- ============================================================================
@@ -172,9 +173,164 @@ local function annotate_cites(text, fname)
   return table.concat(out)
 end
 
+--- Annotate all \hyperref[label]{text} commands with source filename and line number.
+--- Rewrites \hyperref[label]{text} → \hyperref[label@@file:line]{text}.
+--- The @@file:line suffix is stripped in gather.lua and used for error messages.
+--- @param text string Input LaTeX text
+--- @param fname string Source filename to use in annotations
+--- @return string Text with annotated \hyperref commands
+local function annotate_hyperrefs(text, fname)
+  local out = {}
+  local i = 1
+  local line = 1
+  local n = #text
+
+  while i <= n do
+    local ref_start, ref_end = text:find("\\hyperref", i, true)
+    if not ref_start then
+      table.insert(out, text:sub(i))
+      break
+    end
+
+    local chunk = text:sub(i, ref_start - 1)
+    table.insert(out, chunk)
+    for _ in chunk:gmatch("\n") do line = line + 1 end
+
+    table.insert(out, "\\hyperref")
+    local j = ref_end + 1
+
+    while j <= n and text:sub(j, j):match("%s") do
+      if text:sub(j, j) == "\n" then line = line + 1 end
+      table.insert(out, text:sub(j, j))
+      j = j + 1
+    end
+
+    if j <= n and text:sub(j, j) == "[" then
+      local depth = 1
+      local bracket_start = j
+      j = j + 1
+      while j <= n and depth > 0 do
+        local ch = text:sub(j, j)
+        if ch == "[" then depth = depth + 1
+        elseif ch == "]" then depth = depth - 1
+        elseif ch == "\n" then line = line + 1 end
+        j = j + 1
+      end
+      local body = text:sub(bracket_start + 1, j - 2)
+      local loc = string.format("@@%s:%d", fname, line)
+      table.insert(out, "[" .. body .. loc .. "]")
+    end
+
+    while j <= n and text:sub(j, j):match("%s") do
+      if text:sub(j, j) == "\n" then line = line + 1 end
+      table.insert(out, text:sub(j, j))
+      j = j + 1
+    end
+
+    if j <= n and text:sub(j, j) == "{" then
+      local depth = 1
+      local brace_start = j
+      j = j + 1
+      while j <= n and depth > 0 do
+        local ch = text:sub(j, j)
+        if ch == "{" then depth = depth + 1
+        elseif ch == "}" then depth = depth - 1
+        elseif ch == "\n" then line = line + 1 end
+        j = j + 1
+      end
+      table.insert(out, text:sub(brace_start, j - 1))
+    end
+
+    i = j
+  end
+
+  return table.concat(out)
+end
+
+--- Annotate the first braced argument of a command, optionally after an optional [...] block.
+--- Rewrites \command[opt]{arg}... → \command[opt]{arg@@file:line}...
+--- @param text string Input LaTeX text
+--- @param fname string Source filename to use in annotations
+--- @param command string Command name without leading backslash
+--- @param has_optional boolean Whether the command may have an initial optional [...] argument
+--- @return string
+local function annotate_first_braced_arg(text, fname, command, has_optional)
+  local needle = "\\" .. command
+  local out = {}
+  local i = 1
+  local line = 1
+  local n = #text
+
+  while i <= n do
+    local cmd_start, cmd_end = text:find(needle, i, true)
+    if not cmd_start then
+      table.insert(out, text:sub(i))
+      break
+    end
+
+    local chunk = text:sub(i, cmd_start - 1)
+    table.insert(out, chunk)
+    for _ in chunk:gmatch("\n") do line = line + 1 end
+
+    table.insert(out, needle)
+    local j = cmd_end + 1
+
+    while j <= n and text:sub(j, j):match("%s") do
+      if text:sub(j, j) == "\n" then line = line + 1 end
+      table.insert(out, text:sub(j, j))
+      j = j + 1
+    end
+
+    if has_optional and j <= n and text:sub(j, j) == "[" then
+      local depth = 1
+      local opt_start = j
+      j = j + 1
+      while j <= n and depth > 0 do
+        local ch = text:sub(j, j)
+        if ch == "[" then depth = depth + 1
+        elseif ch == "]" then depth = depth - 1
+        elseif ch == "\n" then line = line + 1 end
+        j = j + 1
+      end
+      table.insert(out, text:sub(opt_start, j - 1))
+
+      while j <= n and text:sub(j, j):match("%s") do
+        if text:sub(j, j) == "\n" then line = line + 1 end
+        table.insert(out, text:sub(j, j))
+        j = j + 1
+      end
+    end
+
+    if j <= n and text:sub(j, j) == "{" then
+      local depth = 1
+      local brace_start = j
+      j = j + 1
+      while j <= n and depth > 0 do
+        local ch = text:sub(j, j)
+        if ch == "{" then depth = depth + 1
+        elseif ch == "}" then depth = depth - 1
+        elseif ch == "\n" then line = line + 1 end
+        j = j + 1
+      end
+      local body = text:sub(brace_start + 1, j - 2)
+      local loc = string.format("@@%s:%d", fname, line)
+      table.insert(out, "{" .. body .. loc .. "}")
+    end
+
+    i = j
+  end
+
+  return table.concat(out)
+end
+
 -- The full input text as one big string
 input = annotate_todos(input, source_filename)
 input = annotate_cites(input, source_filename)
+input = annotate_hyperrefs(input, source_filename)
+input = annotate_first_braced_arg(input, source_filename, "svgimg", true)
+input = annotate_first_braced_arg(input, source_filename, "includegraphics", true)
+input = annotate_first_braced_arg(input, source_filename, "icon", false)
+input = annotate_first_braced_arg(input, source_filename, "topiccard", false)
 
 -- ============================================================================
 -- STEP 2: Line-based Normalization (Block-level Macros)

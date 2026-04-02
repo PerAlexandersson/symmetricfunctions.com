@@ -63,6 +63,15 @@ local function record_todo(s)
   end
 end
 
+local function strip_source_loc(value)
+  local s = tostring(value or "")
+  local loc = s:match("@@([%w%.%-_/]+:%d+)$") or ""
+  if loc ~= "" then
+    s = s:gsub("@@[%w%.%-_/]+:%d+$", "")
+  end
+  return s, loc
+end
+
 -- ---- Unified link logging, in order to look for broken links perhaps -----------------------------------------
 local function record_link(url, text)
   url       = url or ""
@@ -77,6 +86,7 @@ local function make_filter()
     RawInline = RawInline,
     RawBlock  = RawBlock,
     Header    = Header,
+    Image     = Image,
     Link      = Link,
     Cite      = Cite,
     Quoted    = Quoted
@@ -392,6 +402,8 @@ local function parse_svgimg(s)
   path              = path:sub(2, -2) or ""
   alt               = alt:sub(2, -2) or ""
   opt               = opt:sub(2, -2) or ""
+  local source_loc
+  path, source_loc = strip_source_loc(path)
 
   local styleVal    = ""
   local widthString = "auto"
@@ -409,11 +421,12 @@ local function parse_svgimg(s)
     styleVal = "width:" .. widthString .. ";"
   end
 
-  local attr = pandoc.Attr(
-    "", -- id
-    {}, -- classes
-    { { "style", styleVal } }
-  )
+  local kvs = { { "style", styleVal } }
+  if source_loc ~= "" then
+    kvs[#kvs + 1] = { "data-source-loc", source_loc }
+  end
+
+  local attr = pandoc.Attr("", {}, kvs)
 
   return pandoc.Image(pandoc.Str(alt), path, "", attr)
 end
@@ -427,14 +440,17 @@ local function parse_icon(s)
   end
 
   ico = ico:sub(2, -2) or ""
+  local source_loc
+  ico, source_loc = strip_source_loc(ico)
 
   local path = "icons/icon-" .. ico .. ".svg"
 
-  local attr = pandoc.Attr(
-    "", -- id
-    {"icon"}, -- classes
-    { } -- style
-  )
+  local kvs = {}
+  if source_loc ~= "" then
+    kvs[#kvs + 1] = { "data-source-loc", source_loc }
+  end
+
+  local attr = pandoc.Attr("", {"icon"}, kvs)
 
   return pandoc.Image(pandoc.Str("Icon: " .. ico), path, "", attr)
 end
@@ -453,11 +469,17 @@ local function topic_card(s)
     local id_inner    = trim(id:sub(2, -2))
     local title_inner = trim(title:sub(2, -2))
     local descr_inner = trim(description:sub(2, -2))
+    local source_loc
+    id_inner, source_loc = strip_source_loc(id_inner)
 
     --  Create the Image
     local img_path  = string.format("nav-images/card-%s.svg", id_inner)
     -- We set intrinsic dimensions, but CSS will handle the actual layout
-    local img_attr  = pandoc.Attr("", {}, { { "style", "height: 4rem; width: auto; max-width: 100%;" } })
+    local img_kvs   = { { "style", "height: 4rem; width: auto; max-width: 100%;" } }
+    if source_loc ~= "" then
+      img_kvs[#img_kvs + 1] = { "data-source-loc", source_loc }
+    end
+    local img_attr  = pandoc.Attr("", {}, img_kvs)
     local img       = pandoc.Image(pandoc.Str(title_inner), img_path, "", img_attr)
 
     --  Process Text
@@ -500,6 +522,17 @@ function Header(el)
   el.level = math.min((el.level or 1) + 1, 6)
   if el.identifier and el.identifier ~= "" then
     set_add(labels, el.identifier)
+  end
+  return el
+end
+
+function Image(el)
+  local src, source_loc = strip_source_loc(el.src or "")
+  if source_loc ~= "" then
+    el.src = src
+    el.attr = el.attr or pandoc.Attr("", {}, {})
+    el.attr.attributes = el.attr.attributes or {}
+    el.attr.attributes["data-source-loc"] = source_loc
   end
   return el
 end
@@ -578,6 +611,23 @@ function Link(el)
       or el.target or ""
 
   el.classes = el.classes or {}
+  el.attributes = el.attributes or {}
+
+  local link_loc = ""
+  if type(url) == "string" then
+    link_loc = url:match("^#.-@@([%w%.%-_/]+:%d+)$") or ""
+    if link_loc ~= "" then
+      url = url:gsub("@@[%w%.%-_/]+:%d+$", "")
+      if type(el.target) == "string" then
+        el.target = url
+      elseif type(el.target) == "table" then
+        el.target[1] = url
+      else
+        el.target = url
+      end
+      el.attributes["data-source-loc"] = link_loc
+    end
+  end
 
   if url:match("^https?://oeis%.org/") then
     table.insert(el.classes, "oeis")

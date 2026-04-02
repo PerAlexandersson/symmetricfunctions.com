@@ -5,6 +5,15 @@
 
 \section[realRootedTableaux]{Sturm sequences: tableaux and polytopes}
 
+This page collects examples of \hyperref[sturmSequence]{Sturm sequences} arising from tableaux and polytope combinatorics:
+descent polynomials of standard Young tableaux, Ehrhart polynomials from Schur functions,
+and related families.
+Each sequence is a \hyperref[sturmSequence]{Sturm sequence}, satisfying $P_j \interl P_{j+1}$;
+in particular every polynomial in the sequence is real-rooted.
+For background on interlacing and the proof techniques,
+see \hyperref[interlacingPolynomials]{interlacing polynomials}.
+For the broader context,
+see \hyperref[polynomialRootIntro]{unimodality and real-rootedness}.
 
 \begin{example*}[Descents in standard Young tableaux]
 
@@ -79,23 +88,3 @@ For non-skew shapes, this is proved by Brenti \cite{Brenti1989}.
 \end{example*}
 
 
-
-\begin{example*}[Type $B$ Set partitions]
-
-In \cite{Wang2014}, a type $B$ version (and in general, a colored version)
-of counting blocks in set partitions is considered.
-The polynomials considered satisfy the (general) recursion
-\[
-  T_n(x) = (x+c) \cdot  T_{n-1}(x) + mx\cdot T'_{n-1}(x),
-\]
-where $m$ and $c$ are positive integers.
-
-\end{example*}
-
-
-\begin{example*}[Ordered partitions]
-In \cite{Simion1984}, one takes any multiset $M$, and considers the number of compositions into exactly $k$
-parts, $O(M,k)$. The polynomial $\sum_k O(M,k)x^k$ is shown to be real-rooted.
-
-In particular, this implies the real-rootedness of the Touchard polynomials.
-\end{example*}

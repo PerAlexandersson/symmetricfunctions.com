@@ -74,18 +74,34 @@ then $F$ is real-rooted and $f \interl F$.
 The theorem states more regarding root placements and multiplicities.
 
 
+The following criterion from \cite[Thm. 2.1]{LiuWang2007} is often useful.
+\begin{theorem}[Liu--Wang, 2007]
+Let $F,f,g \in \setR[t]$ satisfy
+\[
+ F(x) = a(x)f(x) + b(x)g(x), \qquad \deg(F) \in \{\deg(f), \deg(f)+1\},
+\]
+where $a(x),b(x) \in \setR[t]$.
+Assume that $f$ and $g$ are real-rooted, that $g \interl f$, and that $F$ and $g$ have leading coefficients of the same sign.
+If $b(r) \leq 0$ whenever $f(r)=0$, then $F$ is real-rooted and $f \interl F$.
+In particular, if $g$ strictly interlaces $f$ and $b(r) \lt 0$ whenever $f(r)=0$, then $f$ strictly interlaces $F$.
+\end{theorem}
+
+
+
 \subsection[sturmSequence]{Sturm sequences}
 
 
 It is fairly common to see sequences of polynomials, $\{ P_n(t) \}_{n \geq 0}$
 with the property that $P_j(t) \interl P_{j+1}(t)$ for all $j$.
 If the leading coefficient is always positive and $\deg(P_n)=n$,
-this is called a \defin{Sturm sequence}, see \cite{Liu2007}.
+this is called a \defin{Sturm sequence}, see \cite{LiuWang2007}.
 If we drop the degree condition, the sequence is called a \defin{generalized Sturm sequence}.
 
 The notion of \defin{Sturm-unimodality} is defined in the analogous manner.
 
-\todo{Add general thm from \cite{Liu2007} }
+
+
+There are many Sturm sequences on \hyperref[realRootedWords]{permutations} and \hyperref[realRootedCatalan]{Catalan objects}.
 
 
 \subsection[bezoutMatrix]{Bézout matrices}
@@ -101,8 +117,6 @@ Let $f(t)$ be a polynomial of degree $d$ and $g(t)$ a polynomial of degree $d-1$
 Then $f(t)$ and $g(t)$ are both real-rooted and $g$ strictly interlaces $f$
 if and only if $B(f,g)$ is positive definite.
 \end{theorem}
-
-
 
 
 
@@ -193,59 +207,6 @@ satisfies the conditions in the theorem above.
 \begin{pmatrix}t & 1 \\ t & t\end{pmatrix}, \quad
 \begin{pmatrix}t & t \\ 1 & 1\end{pmatrix}
 \end{equation*}
-\end{example*}
-
-
-Below are some examples where the proofs uses interlacing sequences.
-
-\begin{example*}[Binomial Eulerian polynomials]
-
-The \defin{binomial Eulerian polynomials} can be defined as
-\[
- \tilde{A}_n(t) \coloneqq \sum_{\sigma \in \symS_n} (1+t)^{\fix(\sigma)} t^{\exc(\sigma)}.
-\]
-Athanasiadis conjectured that these are real-rooted,
-and it was later shown by \name{Jim Haglund} and \name[P.B. Zhang]{Philip B. Zhang} \cite{HaglundZhang2019} that this is indeed the case,
-by means of interlacing polynomials.
-
-It seems that $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$, but this does not follow immediately from
-the reference above. See also the binomial $\svec$-Eulerian polynomials.
-\end{example*}
-
-
-\begin{example*}[Ascents and descents in inversion sequences]
-Fix $\svec = (s_1,\dotsc,s_n)$ and define
-\[
-\mathcal{I}_n^\svec \coloneqq \{ (e_1,\dotsc,e_n) \in \setZ^n : 0 \leq e_i \lt s_i, \; 0 \leq i \leq n \}
-\]
-with the conventions that $e_0 = e_{n+1} =0$ and $s_0 = s_{n+1}=1$.
-This is the set of \defin{inversion sequences} associated with $\svec$.
-
-An index $0 \leq i \leq n$ is an \defin{ascent}, \defin{collision}, or \defin{descent}
-of an inversion sequence $\evec$ if
-\[
- \frac{e_i}{s_i} \lt \frac{e_{i+1}}{s_{i+1}}, \qquad
- \frac{e_i}{s_i} = \frac{e_{i+1}}{s_{i+1}}, \qquad
- \frac{e_i}{s_i} \gt \frac{e_{i+1}}{s_{i+1}},
-\]
-respectively. Moreover, let $\mathcal{D}_n^\svec \subset \mathcal{I}_n^\svec$
-be the set of inversion sequences without collisions.
-
-It was proved in \cite{SavageVisontai2015} and \cite{GustafssonSolus2020}, respectively,
-that
-\[
-E^\svec_n(t) = \sum_{\evec \in \mathcal{I}_n^\svec} t^{\asc(\evec)} \quad \text{and} \quad
-D^\svec_n(t) = \sum_{\evec \in \mathcal{D}_n^\svec} t^{\asc(\evec)}
-\]
-are real-rooted. The methods use theory of interlacing sequences of polynomials.
-In particular, if $\svec$ is a fixed \emph{sequence} of positive integers,
-then $E^\svec_n(t) \interl E^\svec_{n+1}(t)$.
-
-The proof by Savage and Visontai also shows that the $s$-Eulerian polynomials
-are real-rooted. See also the proof in \cite[Sec. 8.2]{Branden2015}.
-
-
-See \cite{HaglundZhang2019} for the binomial Eulerian polynomial analog of the above results.
 \end{example*}
 
 
