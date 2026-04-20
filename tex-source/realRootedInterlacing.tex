@@ -165,7 +165,7 @@ $\begin{bmatrix}
 \end{bmatrix}$ of $G$ and real numbers
 $\lambda, \mu > 0$, we have
 \[
- (\lambda t + \mu) b(t) + d(t) \interl (\lambda x + \mu) a(t) + c(t).
+ (\lambda t + \mu) b(t) + d(t) \interl (\lambda t + \mu) a(t) + c(t).
 \]
 \end{enumerate}
 \end{theorem}
@@ -176,20 +176,18 @@ $\lambda, \mu > 0$, we have
 
 There are 81 matrices with entries in $\{0,1,t\}$.
 Remove those where first and last row are equal and those where one of the rows is $(0,0)$.
-There are 56 such matrices left, and among these, the following 21
+There are 56 such matrices left, and among these, the following 
 satisfies the conditions in the theorem above.
 \begin{equation*}
 \begin{pmatrix}0 & 1 \\ 0 & t\end{pmatrix}, \quad
 \begin{pmatrix}0 & 1 \\ t & 0\end{pmatrix}, \quad
-\begin{pmatrix}0 & t \\ 0 & 1\end{pmatrix}, \quad
 \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}, \quad
 \begin{pmatrix}1 & 0 \\ t & 0\end{pmatrix}, \quad
 \begin{pmatrix}t & 0 \\ 0 & t\end{pmatrix}, \quad
-\begin{pmatrix}t & 0 \\ 1 & 0\end{pmatrix}
+\begin{pmatrix}0 & 1 \\ t & 1\end{pmatrix}
 \end{equation*}
 
 \begin{equation*}
-\begin{pmatrix}0 & 1 \\ t & 1\end{pmatrix}, \quad
 \begin{pmatrix}0 & 1 \\ t & t\end{pmatrix}, \quad
 \begin{pmatrix}1 & 0 \\ 1 & 1\end{pmatrix}, \quad
 \begin{pmatrix}1 & 0 \\ t & 1\end{pmatrix}, \quad
@@ -204,8 +202,7 @@ satisfies the conditions in the theorem above.
 \begin{pmatrix}t & t \\ 0 & t\end{pmatrix}, \quad
 \begin{pmatrix}1 & 1 \\ t & 1\end{pmatrix}, \quad
 \begin{pmatrix}1 & 1 \\ t & t\end{pmatrix}, \quad
-\begin{pmatrix}t & 1 \\ t & t\end{pmatrix}, \quad
-\begin{pmatrix}t & t \\ 1 & 1\end{pmatrix}
+\begin{pmatrix}t & 1 \\ t & t\end{pmatrix}
 \end{equation*}
 \end{example*}
 
@@ -237,6 +234,57 @@ coefficients (with negative leading coefficients), see \cite{LeakeRyder2024x}.
 
 \todo{For polynomials arranged in a tree, with
 interlacing relations along edges: https://cs.uwaterloo.ca/~lapchi/cs860-2022/notes/12-interlacing-family.pdf}
+
+
+\section[interlacingTransforms]{Symmetric decompositions and preserving operators}
+
+
+\subsection[symmetricDecompInterlacing]{Symmetric decompositions}
+
+The following setup from \cite{BrandenSolus2018} is especially useful for
+$h$-polynomials arising in \hyperref[ehrhart]{Ehrhart theory}.
+
+Given $p \in \setR[x]$ with $\deg(p) \leq d$, define
+\[
+ I_d(p)(x) \coloneqq x^d p(1/x).
+\]
+Then there are unique polynomials $a,b \in \setR[x]$ such that
+\[
+ p(x) = a(x) + x b(x), \qquad I_d(a)=a, \qquad I_{d-1}(b)=b.
+\]
+This is the \defin{symmetric $I_d$-decomposition} of $p$, and it is given explicitly by
+\[
+ a = \frac{p - x I_d(p)}{1-x}, \qquad b = \frac{I_d(p)-p}{1-x}.
+\]
+
+It is also convenient to associate to $p$ the polynomial
+\[
+ f(x) \coloneqq (1+x)^d p\!\left( \frac{x}{1+x}\right),
+\]
+and to define
+\[
+ R_d(f)(x) \coloneqq (-1)^d f(-1-x).
+\]
+The paper uses the proper-position relation $\prec$; in the present non-negative coefficient
+setting, this can be read as an interlacing relation.
+
+\begin{theorem}[Brändén--Solus, \cite[Thm. 2.7]{BrandenSolus2018}]
+Let $p \in \setR[x]$ have degree at most $d$, and let $(a,b)$ be its symmetric $I_d$-decomposition.
+Assume that both $a$ and $b$ have non-negative coefficients. Then the following are equivalent:
+\begin{itemize}
+\item $b \prec a$;
+\item $a \prec p$;
+\item $b \prec p$;
+\item $I_d(p) \prec p$;
+\item $R_d(f) \prec f$.
+\end{itemize}
+In particular, these conditions imply that $p$, $a$, and $b$ are all real-rooted.
+\end{theorem}
+
+Thus, an interlacing statement between a polynomial and its reciprocal
+forces the symmetric pieces of the decomposition to be real-rooted as well.
+This is one reason the theorem shows up naturally for reflexive
+$h^*$-polynomials; see \hyperref[magicPositiveEhrhart]{magic positivity} on the polytope page.
 
 
 
@@ -271,6 +319,43 @@ then $\phi$ preserves the interleaving property:
   f \interl g \implies \phi(f) \interl \phi(g).
 \]
 \end{theorem}
+
+
+
+
+
+\subsection[derangedMap]{The deranged map}
+
+Another operator with strong interlacing properties is the following.
+Let $d_n(x)$ denote the classical derangement polynomial, and define the linear map
+$D : \setR[x] \to \setR[x]$ by
+\[
+ D(x^n) \coloneqq d_n(x).
+\]
+If $p$ and $q$ are degree-$n$ polynomials with roots
+$\alpha_1 \leq \dotsb \leq \alpha_n$ and $\beta_1 \leq \dotsb \leq \beta_n$
+in $[-1,0]$, write $p \leq_{\mathrm{root}} q$ if $\alpha_k \leq \beta_k$ for all $k$.
+
+\begin{theorem}[Brändén--Solus, \cite[Thm. 3.6]{BrandenSolus2018}]
+If $p$ and $q$ have all roots in $[-1,0]$ and $p \leq_{\mathrm{root}} q$, then
+$D(p) \prec D(q)$.
+\end{theorem}
+
+In particular, $D(p)$ and $D(q)$ are real-rooted and have interlacing zeros.
+As a consequence, if
+\[
+ p(x)=\sum_{k=0}^n c_k x^k (x+1)^{n-k}, \qquad c_k \geq 0,
+\]
+then \cite[Cor. 3.7]{BrandenSolus2018} gives
+\[
+ A_n \prec D(p) \prec d_n.
+\]
+This is one route to the interlacing results for colored Eulerian and colored derangement
+polynomials on \hyperref[realRootedWords]{the permutation page}.
+
+
+
+
 
 
 \begin{remark*}[Pólya frequency sequences and TNN]

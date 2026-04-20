@@ -90,7 +90,7 @@ This bijection can be used to prove the second Jacobi--Trudi identity.
 
 \begin{example}[Bijection to lattice paths]
 
-Consider the following skew semistandad Young tableau $T$.
+Consider the following skew semistandard Young tableau $T$.
 \begin{figure}
 \ytableaushort{{\none}{\none}{\none}1122346,{\none}{\none}1223455,{\none}{\none}2344566,113556,2346,456,6}
 \end{figure}
@@ -133,6 +133,7 @@ See \href{https://www.youtube.com/watch?v=H1wEiEIznaA}{this GOCC talk from 2023}
 
 
 
+
 \section[LGVplanePartitions]{Plane partitions as lattice paths}
 
 
@@ -140,11 +141,11 @@ See \cite[Thm. 10.7.1]{Krattenthaler2015} and \cite[Eq. (6)]{StanleyPitman2002} 
 application of the Lindström--Gessel--Viennot lemma.
 
 \begin{theorem}
-Let $\lambda$ and $\mu$ be partitions with at most $\ell$ parts such that 
-$\lambda/\mu$ defines a skew shape.
+Let $\lambda$ and $\mu$ be partitions with at most $r$ parts such that
+$\lambda/\mu$ defines a skew shape, and let $c \geq \lambda_1$.
 Then the number of lattice paths contained in $\lambda / \mu$ equals
 \[
-  \det \left[ \binom{\lambda_i - \mu_j+1}{i-j+1} \right]_{1\leq i,j \leq \ell.}
+  \det \left[ \binom{\lambda_i - \mu_j+1}{i-j+1} \right]_{1\leq i,j \leq r}.
 \]
 \end{theorem}
 For non-skew shapes, we can also interpret such partitions $\nu$ as lattice
@@ -152,6 +153,76 @@ points in Stanley--Pitman \hyperref[polytope]{polytopes} \cite{StanleyPitman2002
 This is also the number of plane partitions of skew shape $\lambda/\mu$, with binary entries,
 or the number of non-nesting rook placements on the Ferrers board of shape $\lambda / \mu$.
 There is also an interpretation of these quantities using certain linear extensions, see \cite{AlexanderssonJal2024x}.
+
+With a weighted count, this determinant has a natural refinement.
+
+\subsection[LGVLatticePathsInSkewShape]{Lattice paths and matroid bases}
+
+Let $\lambda/\mu$ be as above, contained in an $r \times c$ rectangle.
+We use the conventional labeling where the path corresponding to a partition
+$\nu$ with $\mu \subseteq \nu \subseteq \lambda$ has North-step labels
+\[
+  p_i = i+c-\nu_i,\qquad 1 \leq i \leq r.
+\]
+Equivalently, these labels satisfy
+\[
+  i+c-\lambda_i \leq p_i \leq i+c-\mu_i,\qquad
+  p_1 \lt p_2 \lt \dotsb \lt p_r.
+\]
+We then define
+\[
+  F_{\lambda/\mu}(\xvec) \coloneqq \sum_{P} \prod_{i \in N(P)} x_i,
+\]
+where the sum is over all paths contained in $\lambda/\mu$ and $N(P)$ is the set of North-step labels of $P$.
+Equivalently, $F_{\lambda/\mu}(\xvec)$ is the basis-generating polynomial of the corresponding
+lattice path matroid.
+
+The weighted version of the determinant above is
+\[
+  F_{\lambda/\mu}(\xvec)
+  =
+  \det\left[
+    \completeH_{i-j+1}
+    \bigl(x_{i+c-\lambda_i},x_{i+c-\lambda_i+1},\dotsc,x_{j+c-\mu_j}\bigr)
+  \right]_{1\leq i,j \leq r},
+\]
+where $\completeH_k$ denotes the
+\hyperref[completeH]{complete homogeneous symmetric function}, with
+$\completeH_0=1$ and $\completeH_k=0$ for $k \lt 0$.
+The matrix entry has degree $i-j+1$, and
+\[
+  \completeH_{i-j+1}(1^{\lambda_i-\mu_j-i+j+1})
+  =
+  \binom{\lambda_i-\mu_j+1}{i-j+1}.
+\]
+This is the one-column case of the
+\hyperref[flaggedSchurPolynomialJacobiTrudi]{flagged Jacobi--Trudi identity}.
+Indeed, the column entries of a flagged semistandard tableau of shape $1^r$
+record precisely the North-step labels of the path.
+
+In particular,
+\[
+  F_{\lambda/\mu}(1,1,\dotsc)
+  =
+  \det \left[
+    \binom{\lambda_i-\mu_j+1}{i-j+1}
+  \right]_{1\leq i,j \leq r}.
+\]
+The principal specialization also has a closed form:
+\[
+  F_{\lambda/\mu}(1,q,q^2,\dotsc)
+  =
+  \det\left[
+    q^{(i-j+1)(i+c-\lambda_i-1)}
+    \qbinom{\lambda_i-\mu_j+1}{i-j+1}_q
+  \right]_{1\leq i,j \leq r}.
+\]
+Here the entries with $i-j+1 \lt 0$ are again interpreted as zero.
+This specialization records the sum of the North-step labels, shifted by
+$-1$ on each North step.
+
+
+
 
 
 \todo{https://www.mat.univie.ac.at/~kratt/artikel/generat.pdf}

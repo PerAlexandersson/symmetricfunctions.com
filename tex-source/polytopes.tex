@@ -54,6 +54,7 @@ For example, \cite{HaaseMcAllister2007} construct a rational polygon $Q$
 whose Ehrhart function is a polynomial with linear coefficient $1$,
 but no integral polygon has this property.
 
+
 \subsection[ehrhartMacdonaldReciprocity]{Ehrhart--Macdonald reciprocity}
 
 Let $P$ be a $d$-dimensional rational polytope with Ehrhart polynomial $E_P(t)$.
@@ -63,7 +64,7 @@ The \defin{Ehrhart--Macdonald reciprocity} states that
 \]
 where $E_{P^\circ}(t) = |t P^\circ \cap \setZ^d|$ counts the lattice points in the \emph{interior} of $tP$.
 In terms of the Ehrhart series, this is equivalent to the relation $H_P(t) = t^{d+1} H_P(1/t)$,
-meaning the $h^*$-vector is palindromic if and only if the polytope is Gorenstein.
+meaning the $h^*$-vector is palindromic if and only if the polytope is \hyperref[gorenstein]{Gorenstein}.
 The reciprocity can be seen as a discrete analogue of Poincar\'e duality.
 This was first proved by \name{Ian G. Macdonald} \cite{Macdonald1971} for lattice polytopes;
 see \cite{Beck2007} for an alternative proof in the rational case.
@@ -127,8 +128,12 @@ The \hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes} are marked order polytope
 % \subsection[flowPolytope]{Flow polytopes}
 \todo{Define flow polytopes}
 
+
 %\subsection[permutohedron]{The permutohedron}
 \todo{Define permutohedron}
+
+
+
 
 \todo{Parking function polytope: https://arxiv.org/pdf/2512.14199}
 
@@ -145,6 +150,79 @@ In the following list, each entry implies the next:
 	\item $\mathcal{P}$ has the integer decomposition property.
 	\item $\mathcal{P}$ is integral.
 \end{itemize}
+
+
+
+
+
+\section[gorenstein]{Reflexive and Gorenstein polytopes}\label{reflexivePolytope}
+
+A lattice polytope $P \subset \setR^d$ containing the origin in its interior is called \defin{reflexive}
+if the dual polytope
+\[
+ P^* \coloneqq \left\{ y \in \setR^d : \langle x, y \rangle \leq 1 \text{ for all } x \in P \right\}
+\]
+is again a lattice polytope.
+Equivalently, $h^*_P(t)$ is palindromic of degree $d$, see \cite{Hibi92}.
+
+A polytope $P$ is called \defin{Gorenstein} (of index $r$) if for some $r \in 1,2,\dotsc$, the dilation $rP$
+contains a unique lattice point $m$, and the translation $r P-m$ is reflexive.
+
+
+
+\section[magicPositiveEhrhart]{Magic positivity and reflexive polytopes}
+
+Following \cite{FerroniHigashitani2024}, a degree-$d$ polynomial $f(n)$ is called
+\defin{magic positive} if it can be written in the form
+\[
+ f(n) = \sum_{i=0}^d a_i n^i (n+1)^{d-i}
+\]
+with $a_i \geq 0$ for all $i$.
+For Ehrhart polynomials, this basis is useful because it links coefficient positivity
+to real-rootedness of the corresponding $h^*$-polynomial.
+
+\begin{theorem}[Brändén; see \cite[Thm. 4.19]{FerroniHigashitani2024}]
+If the Ehrhart polynomial $E_P(n)$ of a lattice polytope is magic positive,
+then $E_P(n)$ has non-negative coefficients and $h^*_P(t)$ is real-rooted.
+\end{theorem}
+
+If $W$ denotes Wagner's transformation characterized by
+\[
+ \sum_{n \geq 0} p(n) z^n = \frac{W(p)(z)}{(1-z)^{1+\deg p}},
+\]
+then magic positivity implies that $W(p)$ is real-rooted, see \cite[Rem. 4.21]{FerroniHigashitani2024}.
+For Ehrhart polynomials, $W(E_P)$ is exactly the $h^*$-polynomial.
+This is the same transformation discussed on the page about
+\hyperref[interlacingPolynomials]{interlacing polynomials}.
+
+\begin{example*}[Stasheff and symmetric edge polytopes]
+In \cite{Konoike2024x}, \name{Masato Konoike} studies two reflexive families.
+Let
+\[
+ \operatorname{St}_d \coloneqq \operatorname{conv}\left(
+ \{\pm e_i : 1\leq i \leq d\} \cup
+ \{e_i+\dotsb+e_j : 1\leq i \lt j \leq d\}
+ \right).
+\]
+Then $\operatorname{St}_d$ is the dual of the $d$-dimensional Stasheff polytope,
+and Konoike proves that the Ehrhart polynomial of the Stasheff polytope $\operatorname{St}_d^*$
+is magic positive.
+
+For the cycle graph $C_{d+1}$, the \defin{symmetric edge polytope} is
+\[
+ P_{C_{d+1}} \coloneqq
+ \operatorname{conv}\left(
+ \{\pm(e_i-e_{i+1}) : 1\leq i \leq d-1\} \cup \{\pm(e_d-e_1)\}
+ \right).
+\]
+Writing the Ehrhart polynomial of the dual polytope as
+\[
+ E_{P_{C_{d+1}}^*}(n) = \sum_{j=0}^d a_j n^j (n+1)^{d-j},
+\]
+the same paper proves that $a_i > 0$ and $a_{d-i} > 0$ for $i=0,1,2$.
+\end{example*}
+
+
 
 
 

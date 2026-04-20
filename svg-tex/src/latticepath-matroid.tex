@@ -8,16 +8,16 @@
 \begin{document}
 \begin{tikzpicture}
     % Draw the grid
-    \foreach \x in {0,1,...,8} {
-        \foreach \y in {0,1,...,8} {
-            \draw[line width=0.7mm,gray] (\x,0) -- (\x,8); % Vertical lines
-            \draw[line width=0.7mm,gray] (0,\y) -- (8,\y); % Horizontal lines
+    \foreach \x in {0,1,...,7} {
+        \foreach \y in {0,1,...,7} {
+            \draw[line width=0.7mm,gray] (\x,0) -- (\x,7); % Vertical lines
+            \draw[line width=0.7mm,gray] (0,\y) -- (7,\y); % Horizontal lines
         }
     }
-    % Label the East unit segments
+    % Label the North unit segments
     \foreach \x in {0,1,...,7} {
-        \foreach \y in {0,1,...,8} {
-            \node[below] at (\x+0.5,\y) {\small \the\numexpr\x+\y+1\relax};
+        \foreach \y in {0,1,...,6} {
+            \node[left] at (\x,\y+0.5) {\small \the\numexpr\x+\y+1\relax};
         }
     }
      % Blue Path (more southern)

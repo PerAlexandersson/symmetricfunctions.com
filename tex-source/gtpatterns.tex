@@ -1,5 +1,5 @@
-\metatitle{Gelfand-Tsetlin patterns and polytopes}
-\metadescription{Definition of Gelfand-Tsetlin patterns and Gelfand-Tsetlin polytopes. Bijection with semi-standard Young tableaux. Related results.}
+\metatitle{Gelfand--Tsetlin patterns and polytopes}
+\metadescription{Definition of Gelfand--Tsetlin patterns and Gelfand--Tsetlin polytopes. Bijection with semi-standard Young tableaux. Related results.}
 
 
 \todo{
@@ -247,25 +247,11 @@ By definition, it follows that for a partition of length $m$,
  \left| \setZ^d \cap \gtp_{\lambda} \right| = \schurS_{\lambda}(1^m)  = 
  \prod_{1 \leq i \lt j \leq m } \frac{\lambda_i - \lambda_j + j-i}{j-i},
 \]
-where the last identity is due to Stanley's hook-content formula.
+where the last identity is due to \name{Richard Stanley}'s hook-content formula.
 Furthermore, the \hyperref[ehrhart]{Ehrhart polynomial} of $\gtp_{\lambda}$ is given by
 \[
 Ehr(\gtp_{\lambda};k) = \prod_{1 \leq i \lt j \leq m } \frac{k(\lambda_i - \lambda_j) + j-i}{j-i}.
 \]
-
-\begin{proposition}
-We have that
- \[
- 1 + \sum_{n\geq 1} t^n |\schurS_{\lambda/\mu}(1^m)| = 
-  \frac{ \sum_{T \in \SYT(\lambda/\mu)} z^{\des(T)} }{(1-t)^{1+|\lambda/\mu|}}.
- \]
-In particular, the $h^*$-polynomial of $\gtp_{a^b}$ is the descent-generating polynomial
-of rectangular standard Young tableaux; $\sum_{T \in \SYT(a^b)} z^{\des(T)}$.
-\end{proposition}
-\begin{proof}
-Use \cite[Eqs. (7.96), (7.108)]{StanleyEC2}, where one needs to note that 
-GT-patterns for rectangular SSYTs can be made in bijection with rectangular plane partitions.
-\end{proof}
 
 
 \begin{conjecture}[Alexandersson, Alhajjar \cite{AlexanderssonAlhajjar2018}]

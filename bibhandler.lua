@@ -300,7 +300,7 @@ local function format_bibliography_entry(item, key, label)
     local linked_names = {}
     for _, author in ipairs(authors) do
       local name = format_author_name(author)
-      local scholar_url = "https://scholar.google.com/search?q=" .. name:gsub(" ", "+")
+      local scholar_url = "https://scholar.google.com/scholar?q=" .. name:gsub(" ", "+")
       table.insert(linked_names, '<a class="citeAuthorLink" href="' .. html_escape(scholar_url) .. '" target="_blank" rel="noopener">' .. html_escape(name) .. '</a>')
     end
     local author_html

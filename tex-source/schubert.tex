@@ -54,9 +54,9 @@ form an integral basis for $\setZ[x_1,x_2,\dotsc]$.
 
 Consider the ring $\setR[x_1,\dotsc,x_n]$ and let $s_i$ act by permuting $x_i$ and $x_{i+1}$.
 Define $\partial_i(f)$ as $\frac{f-s_i(f)}{x_i - x_{i+1}}$ for $i=1,\dotsc,n-1$.
-These divided difference operators satisfy the braid relations, 
+These \defin{divided difference operators} satisfy the \hyperref[braidRelations]{braid relations}, 
 and we let $\partial_\omega = \partial_{a_1} \partial_{a_2} \dotsm \partial_{a_k}$
-where $(a_1,a_2,\dotsc,a_k)$ is a reduced word for $\omega$.
+where $(a_1,a_2,\dotsc,a_k)$ is a \hyperref[reducedWord]{reduced word} for $\omega$.
 
 The \defin{Schubert polynomials} are then defined as
 \begin{equation*}
@@ -86,7 +86,7 @@ Then
 
 
 
-\subsection[schubertPipeDreamFormula]{Pipe dream formula}
+\subsection[schubertPipeDream]{Pipe dream formula}
 
 The set of reduced words and compatible sequences can be 
 described in a more combinatorial manner using rc-graphs.
@@ -134,7 +134,7 @@ They prove the following formula for the \hyperref[schubertDouble]{double Schube
 \schubert_\omega(\xvec,\yvec) = \sum_{P \in RBPD(\omega)} \prod_{(i,j)\in D(P)} (x_i - y_j )
 \]
 where the sum runs over \emph{reduced bumpless pipe dreams}.
-This formula can be lifted to a formula for \hyperref[grothendieck]{the doubble Grothendieck polynomials.}
+This formula can be lifted to a formula for \hyperref[grothendieck]{the double Grothendieck polynomials.}
 
 
 
@@ -166,7 +166,7 @@ Given a diagram $D$, the \defin{flagged Weyl module} $\mathcal{M}_D$ is a $B$-mo
 \[
   \mathcal{M}_D \coloneqq \mathrm{Span} \left\{   \prod_{j=1}^n \det( Y_{D_j}^{C_j} ) : C \leq D  \right\} \subseteq \setC[Y],
 \]
-where $ Y_{D_j}^{C_j}$ denotes the submatrix of $Y$ with row-indices from $C_j$ and colum-indices from $D_j$.
+where $ Y_{D_j}^{C_j}$ denotes the submatrix of $Y$ with row-indices from $C_j$ and column-indices from $D_j$.
 
 The character, $char(M_D)(x_1,\dotsc,x_n)$ of $\mathcal{M}_D$ is defined as the trace of the map $X : \mathcal{M}_D \to \mathcal{M}_D$,
 where $X = (x_1,\dotsc,x_n)$ is a diagonal matrix acting on $\setC[Y]$.
@@ -225,9 +225,9 @@ Furthermore, the \hyperref[stanleySym]{Stanley symmetric functions}
 are obtained as a stable limit of the Schubert polynomial.
 
 
-\subsection[schubertMurnaghanNakaygama]{Murnaghan--Nakaygama rule}
+\subsection[schubertMurnaghanNakayama]{Murnaghan--Nakayama rule}
 
-In \cite{MorrisonSotille2018} a Murnaghan--Nakaygama rule is proved:
+In \cite{MorrisonSotille2018} a Murnaghan--Nakayama rule is proved:
 \begin{equation*}
 \powerSum_r(x_1,\dotsc,x_k) \schubert_\omega(\xvec) = \sum (-1)^{\epsilon_k(\sigma)} \schubert_{\omega \cdot \sigma}(\xvec)
 \end{equation*} 
@@ -239,7 +239,7 @@ In \cite{MorrisonSotille2018} a Murnaghan--Nakaygama rule is proved:
 
 \subsection[schubertMonksRule]{Monks rule}
 
-The geometric version of this result was given by D. Monk in \cite{Monk1959}.
+The geometric version of this result was given by \name{David Monk} in \cite{Monk1959}.
 (\href{http://www.wfnmc.org/erdmonk.html}{David Monk} is a prolific IMO problem constructor.)
 
 Let $s_r$ be a simple transposition. Then
@@ -259,7 +259,7 @@ Huang also proves Monk's rule for the double Schubert polynomials with this mode
 
 \subsection[schubertPieriRule]{Pieri rule}
 
-F. Sotille \cite{Sottile1996} provides the following Pieri-type formulas for Schubert polynomials.
+\name{Frank Sottile} \cite{Sottile1996} provides the following Pieri-type formulas for Schubert polynomials.
 Let $\omega \in \symS_n$, then
 \[
 \completeH_{m}(x_1,\dotsc,x_k) \schubert_\omega(\xvec) = \sum_{\omega'} \schubert_{\omega'}(\xvec)
@@ -315,7 +315,7 @@ one particular case is treated in \cite{Huang2022},
 regarding products of two permutations with separated descents.
 
 
-Matthew J. Samuel has a python \href{https://pypi.org/project/schubmult/}{package for computing products of Schubert polynomials}.
+\name{Matthew Samuel} has a python \href{https://pypi.org/project/schubmult/}{package for computing products of Schubert polynomials}.
 
 
 \begin{problem}
@@ -329,7 +329,7 @@ that (assuming GRH) that this problem lies in $AM \cap coAM$,
 
 \subsection[schubertKeyExpansion]{Expansion in key polynomials}
 
-There are several proofs of the fact that Schubert polynomials expand positively into key polynomials,
+There are several proofs of the fact that Schubert polynomials expand positively into \hyperref[key]{key polynomials},
 the first proof appearing in \cite{LascouxSchutzenberger1990}.
 
 One recent proof is by using crystal bases, see Assaf and Schilling \cite{AssafSchilling2018}.
@@ -384,7 +384,7 @@ for a Youtube video on this topic.
 
 
 In type $B$, there are combinatorial analogs of Schubert polynomials introduced in \cite{FominKirillov1996}.
-They also introduce \hyperref[stanleySymBC]{type $B$ Stanely symmetric functions}.
+They also introduce \hyperref[stanleySymBC]{type $B$ Stanley symmetric functions}.
 
 Divided difference formulas for Schubert polynomials in types $B$, $C$ and $D$ were 
 introduced by \name{Billey} and \name{Haiman} \cite{BilleyHaiman1995}.
@@ -438,11 +438,11 @@ By letting $y_i=0$, we get the usual Schubert polynomials.
 The double Schubert polynomials generalize the double Schur polynomials.
 
 There is a pipe-dream formula, expressing $\schubert_\omega(\xvec,\yvec) $
-as a sum over \hyperref[schubertPipeDreamFormula]{pipe dreams}:
+as a sum over \hyperref[schubertPipeDream]{pipe dreams}:
 \begin{equation*}
  \schubert_\omega(\xvec,\yvec) = \sum_{D \in RC(\omega) } \prod_{(i,j) \in D} \left(x_{i} - y_{j} \right).
 \end{equation*}
-See also the survey by N. Bergeron and S. Billey \cite{BergeronBilley1993}.
+See also the survey by \name{Nantel Bergeron} and \name{Sara Billey} \cite{BergeronBilley1993}.
 
 In a recent paper, \name{Allen Knutson} \cite{Knutson2019} provides new proofs that 
 several combinatorial formulas for the double Schubert polynomials.
@@ -602,7 +602,7 @@ Here, $q_{cd} = q_c q_{c+1} \dotsm q_d$.
 
 \todo{This is by BBCSS, 2017}
 
-\subsection[schubertQuantumMurnaghanNakayama]{Quantum Murnaghan--Nakaygama}
+\subsection[schubertQuantumMurnaghanNakayama]{Quantum Murnaghan--Nakayama}
 
 This is work in progress (2018), by authors BBCSS.
 

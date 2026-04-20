@@ -1,0 +1,30 @@
+\metatitle{Generalizations of permutations}
+\metadescription{Affine permutations, signed permutations, colored permutations, and Stirling permutations.}
+
+
+\section[notationAffinePermutations]{Affine permutations}
+
+The set of \defin{affine permutations} $\symAff_n$ is the set of bijections $\pi: \setZ \to \setZ$
+satisfying $\pi(i+n)=\pi(i)+n$ for all $i\in \setZ$ and $\pi(1)+\pi(2)+\dotsb+\pi(n)=1+2+\dotsb+n$.
+
+
+\section[permutationsTypeB]{Permutations of type $B$}
+
+The set of permutations of type $B$, is defined as the permutations on $B_n \coloneqq \{\pm 1, \pm 2,\dotsc, \pm n\}$
+with the property that $\pi(-i)=-\pi(i)$. This is also known as the \hyperref[weylLieGroups]{hyperoctahedral group}.
+
+
+\section[permutationsColored]{Colored permutations}
+
+\todo{Add colored permutations. See Danai's thesis}
+
+
+\section[permutationsStirling]{Stirling permutations}
+
+In \cite{GesselStanley1978}, \name[Ira Gessel]{Gessel} and \name[Richard P. Stanley]{Stanley}
+introduced the set of \defin{Stirling permutations, $Q_n$}.
+These are permutations of the multiset $\{1,1,2,2,3,3,\dotsc,n,n\}$ with the additional property
+that for between the two entries equal to $i \in [n]$, only entries larger than $i$ may appear.
+For example, $12234431$ is an element in $Q_n$.
+
+We have that $|Q_n| = (2n-1)!!$.

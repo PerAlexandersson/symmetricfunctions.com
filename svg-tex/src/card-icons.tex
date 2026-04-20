@@ -912,4 +912,68 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-permutationPattern}
+\begin{tikzpicture}[icon]
+  \cardframe
+  % 4x4 grid of small dots (background)
+  \foreach \i in {0,...,3} {
+    \foreach \j in {0,...,3} {
+      \node[node-dot] at (-0.75 + 0.5*\i, -0.75 + 0.5*\j) {};
+    }
+  }
+  % Highlight a 231 pattern occurrence (positions 2,3,4 rows 3,4,1)
+  \node[node-blue] at (-0.25, 0.25) {};
+  \node[node-blue] at (0.25, 0.75) {};
+  \node[node-blue] at (0.75, -0.75) {};
+  % Connect them to show the pattern
+  \draw[iconblue, line width=0.8mm, dashed] (-0.25,0.25) -- (0.25,0.75) -- (0.75,-0.75);
+\end{tikzpicture}
+
+\tikzsetnextfilename{card-namedPermutations}
+\begin{tikzpicture}[icon]
+  \cardframe
+  % Three permutation "types" as short dot sequences
+  % Top row: up-down pattern
+  \foreach \x/\y in {-0.6/-0.1, -0.2/0.3, 0.2/-0.1, 0.6/0.3} {
+    \node[node-blue] at (\x, \y + 0.45) {};
+  }
+  \draw[iconblue, line width=0.6mm] (-0.6,0.35) -- (-0.2,0.75) -- (0.2,0.35) -- (0.6,0.75);
+  % Middle row: increasing (Grassmannian, one descent)
+  \foreach \x/\y in {-0.6/-0.3, -0.2/-0.1, 0.2/0.1, 0.6/0.3} {
+    \node[node-black] at (\x, \y) {};
+  }
+  \draw[black, line width=0.6mm] (-0.6,-0.3) -- (-0.2,-0.1) -- (0.2,0.1) -- (0.6,0.3);
+  % Bottom row: 132-avoiding (decreasing then up)
+  \foreach \x/\y in {-0.6/0.2, -0.2/0.0, 0.2/-0.2, 0.6/0.3} {
+    \node[node-blue] at (\x, \y - 0.65) {};
+  }
+  \draw[iconblue, line width=0.6mm] (-0.6,-0.45) -- (-0.2,-0.65) -- (0.2,-0.85) -- (0.6,-0.35);
+\end{tikzpicture}
+
+\tikzsetnextfilename{card-notationAffinePermutations}
+\begin{tikzpicture}[icon]
+  \cardframe
+  % Circle representing the affine/cyclic structure
+  \def\rad{0.6}
+  \draw[black, line width=0.8mm] (0,0) circle (\rad);
+  % 8 nodes around the circle
+  \foreach \i in {0,...,7} {
+    \pgfmathsetmacro{\ang}{90 + \i*45}
+    \coordinate (n\i) at (\ang:\rad);
+  }
+  % Arrows showing a signed/affine permutation action
+  \draw[iconblue, ->, >=stealth, line width=0.8mm] (n0) to[bend left=20] (n2);
+  \draw[iconblue, ->, >=stealth, line width=0.8mm] (n2) to[bend left=20] (n4);
+  \draw[iconblue, ->, >=stealth, line width=0.8mm] (n4) to[bend left=20] (n6);
+  \draw[iconblue, ->, >=stealth, line width=0.8mm] (n6) to[bend left=20] (n0);
+  % Nodes on top
+  \foreach \i in {0,2,4,6} {
+    \node[node-blue] at (n\i) {};
+  }
+  \foreach \i in {1,3,5,7} {
+    \node[node-black] at (n\i) {};
+  }
+\end{tikzpicture}
+
+
 \end{document}

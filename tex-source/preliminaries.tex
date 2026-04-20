@@ -213,55 +213,10 @@ A word $w_1,\dotsc,w_n$ is called \defin{Yamanouchi} if the number of occurrence
 as the number of occurrences of $i+1$ in every prefix $w_1,\dotsc,w_k$.
 Such words are also known as \defin{Ballot words}, see \oeis{A000085}.
 
-\subsection[reducedWord]{Reduced words}
-
-The \defin{simple transpositions} $s_1, s_2, \dotsc, s_{n-1}$
-are the generators of $\symS_n$, where $s_i$ swaps positions $i$ and $i+1$.
-Every permutation $\sigma \in \symS_n$ can be written as a product
-$\sigma = s_{i_1} s_{i_2} \dotsm s_{i_\ell}$.
-The minimum such $\ell$ is the \defin{length} of $\sigma$,
-denoted $\ell(\sigma)$, and equals the number of inversions $|\INV(\sigma)|$.
-A product $s_{i_1} s_{i_2} \dotsm s_{i_\ell}$ achieving this minimum
-is called a \defin{reduced word} (or \defin{reduced expression}) for $\sigma$.
-
-
-\subsection[bruhatOrder]{Bruhat order and weak order}
-
-The \defin{Bruhat order} (or \defin{strong order}) on 
-permutations is a partial order $\leq$ on $\symS_n$.
-We have that $\sigma \leq \tau$ if 
-$\tau$ can obtained from $\sigma$ via a sequence of transpositions, 
-which increase the number of inversions in each step.
-Alternatively, we have that $\sigma \leq \tau$ if and only if 
-there are reduced words $w_\sigma$, $w_\tau$ for $\sigma$ and $\tau$ 
-such that $w_\sigma$ is a subword of $w_\tau$.
-
-The Bruhat order is a ranked poset, with rank given by the number of inversions.
-
-The (right) \defin{weak order} is a subposet of the Bruhat order,
-where only \emph{simple transpositions} are allowed, when multiplying on the right.
-This corresponds to swapping adjacent entries.
-Let us write $\leq_R$ for this relation.
-Alternatively, we have that $\sigma \leq_R \tau$ if and only if 
-there are reduced words $w_\sigma$, $w_\tau$ for $\sigma$ and $\tau$ 
-such that $w_\sigma$ is a \emph{prefix} of $w_\tau$.
-
- 
-\begin{figure}
-  \svgimg[width=0.5\textwidth]{svg-images/bruhatGraph.svg}{Bruhat poset for $n=4$.}
-\end{figure}
-
-In this figure, we show the Hasse diagram of the Bruhat order for $\symS_4$.
-The solid edges indicate covering relations in the (right) weak order.
-See \cite[Ch. 10.5]{Fulton1997}, \cite[Ex. 183, 185]{StanleyEC1} 
-and \cite[Ch.2-Ch.3]{Bjorner2005} for more properties
-and alternative definitions.
-
-
-\subsection[notationAffinePermutations]{Affine permutations}
-
-The set of \defin{affine permutations} $\symAff_n$ is the set of bijections $\pi: \setZ \to \setZ$
-satisfying $\pi(i+n)=\pi(i)+n$ for all $i\in \setZ$ and $\pi(1)+\pi(2)+\dotsb+\pi(n)=1+2+\dotsb+n$.
+For \hyperref[reducedWord]{reduced words} and the \hyperref[bruhatOrder]{Bruhat order},
+see the \hyperref[permutationMatrix]{permutations page}.
+For \hyperref[notationAffinePermutations]{affine permutations} and other generalizations,
+see the \hyperref[notationAffinePermutations]{generalizations page}.
 
 
 \section[prelimTableaux]{Tableaux}
@@ -308,7 +263,7 @@ Thus, $\maj(T) = \maj(\rw(T)^{-1})$.
 \subsection[ssytAsLatticePaths]{Semistandard tableaux as lattice paths}
 
 See the main section about the \hyperref[LGVssyt]{Lindström--Gessel--Viennot lemma}
-applied to count semistandad Young tableaux using a determinant.
+applied to count semistandard Young tableaux using a determinant.
 
 
 \subsection[prelimTableauxSmartMap]{SYT as Yamanouchi words}
@@ -353,12 +308,12 @@ The standard Young tableaux are
 
 \subsection[prelimTableauxAsPolytope]{SSYT as lattice points in a polytope}
 
-Semistandard Young tableaux are in bijection with \hyperref[gtpatternsAsSSYT]{Geltand--Tsetlin patterns},
+Semistandard Young tableaux are in bijection with \hyperref[gtpatternsAsSSYT]{Gelfand--Tsetlin patterns},
 which are lattice points in Gelfand--Tsetlin polytopes.
 
 
 \subsection[companionMap]{The companion map}
 
-In \cite[Def. 15]{KaliszewskiMorse2019}, the authors describes a \defin{companion map},
+In \cite[Def. 15]{KaliszewskiMorse2019}, the authors describe a \defin{companion map},
 which interchanges the role of shape and weight of fillings.
 

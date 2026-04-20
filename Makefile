@@ -8,7 +8,7 @@ MAKEFLAGS += -j8
 include config.mk
 include config_test.mk
 
-.PHONY: all gather meta bib render copy-assets clean unittest deploy search
+.PHONY: all gather meta bib render copy-assets svg clean unittest deploy search
 .DELETE_ON_ERROR:
 .SECONDARY: $(PRE_TEX)
 
@@ -135,6 +135,13 @@ $(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_DEPS) $(TEMPLATE) $(
 .PHONY: copy-assets
 copy-assets: | $(WWW_DIR)/.created
 	@cp -r $(ASSETS_DIR)/* $(WWW_DIR)/
+
+# === SVG ASSETS ===
+.PHONY: svg
+svg:
+	$(LOG) "Generating SVG assets..."
+	@$(LUA) tex_to_svg.lua
+	$(MAKE) copy-assets Q=$(Q)
 
 # === UNITTEST ===
 .PHONY: unittest

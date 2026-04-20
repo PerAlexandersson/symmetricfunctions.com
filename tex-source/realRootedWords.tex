@@ -227,7 +227,7 @@ See \cite{MaWang2008} for more references---real-rootedness was observed earlier
 
 \begin{example*}[Descents and left peaks in simsun permutations]
 Define the polynomials $P_n(t) = \sum_{\sigma \in \mathrm{RS}_n} t^{\des(\sigma)}$,
-where we sum over all \hyperref[namedPermutationSets]{simsun permutations}.
+where we sum over all \hyperref[namedPermutations]{simsun permutations}.
 It was shown in \cite{ChowShiu2011} that
 \begin{equation}
  P_n(t) = ((n-1)t + 1) P_{n-1}(t) + t(1-2t) P'_{n-1}(t), \qquad P_0(t)=1.
@@ -261,9 +261,8 @@ These are therefore fairly similar to Eulerian polynomials.
 
 
 \begin{example*}[Excedances and derangements, with proof]
-Let $P_n(t)\coloneqq \sum_{\pi \in D(n)} t^{\exc(\pi)}$,
-where $D(n)$ are the derangements (fixed-point-free permutations) of size $n$.
-Then $P_{n-1} \interl P_n$.
+Let $P_n(t)\coloneqq \sum_{\pi \in D(n)} t^{\exc(\pi)}$, where $D(n)$ are the derangements (fixed-point-free permutations) of size $n$,
+see \oeis{A046739}. Then $P_{n-1} \interl P_n$.
 
 The proof is as follows.
 From \cite{MantaciRakotondrajao2003}, we can show that $P_1 =0$, $P_2 =t$ and for $n \geq 3$,
