@@ -231,6 +231,18 @@ Then the following are equivalent:
 This theorem can be generalized to polynomials with arbitary real
 coefficients (with negative leading coefficients), see \cite{LeakeRyder2024x}.
 
+Another very interesting technique is presented in \cite{Bencs2014},
+where Christoffel--Darboux type identities are used to show interlacing.
+This exploits an idea similar to \hyperref[bezoutMatrix]{Bézout matrices}.
+By taking the limit,
+\[
+\lim_{y\to x} \frac{f(x)g(y)-f(y)g(x)}{x-y} = f'(x)g(x) - g'(x)f(x)
+\]
+which is the Wronskian of $f$ and $g$. The idea is to show that the right hand side (or, left hand side)
+is positive for all real $x$ (perhaps by showing that it is a sum of squares).
+By plugging in any root of $f$ in this expression, we have that $f'(r)g(r) \gt 0$ for all zeros $r$ of $f$.
+By chasing signs a bit, it follows that $f$ and $g$ have interlacing roots.
+
 
 \todo{For polynomials arranged in a tree, with
 interlacing relations along edges: https://cs.uwaterloo.ca/~lapchi/cs860-2022/notes/12-interlacing-family.pdf}

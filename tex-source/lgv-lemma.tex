@@ -200,6 +200,14 @@ This is the one-column case of the
 Indeed, the column entries of a flagged semistandard tableau of shape $1^r$
 record precisely the North-step labels of the path.
 
+\begin{remark}[Caveat]
+The appearance of $\completeH$ may look slightly unnatural at first, since
+$F_{\lambda/\mu}(\xvec)$ is square-free. The point is that the single-path
+generating functions in the LGV matrix are complete homogeneous functions;
+the determinant cancels the monomials with repeated North-step labels and
+leaves only the strictly increasing choices.
+\end{remark}
+
 In particular,
 \[
   F_{\lambda/\mu}(1,1,\dotsc)
@@ -220,6 +228,30 @@ The principal specialization also has a closed form:
 Here the entries with $i-j+1 \lt 0$ are again interpreted as zero.
 This specialization records the sum of the North-step labels, shifted by
 $-1$ on each North step.
+
+There is also a shape-dependent specialization to the $W$-Eulerian polynomial
+of a width-two poset. Suppose that the spine-path bijection applies to
+$\lambda/\mu$; this includes straight shapes, and more generally connected
+$332/1$-avoiding skew shapes \cite{AlexanderssonJal2024x}. Let
+$S_{\lambda/\mu}\subseteq [r+c]$ be the set of North-step labels which,
+under this bijection, correspond to rooks. Equivalently, if $L_\rho$ is
+the path corresponding to the non-nesting rook placement $\rho$, then
+\[
+  |N(L_\rho)\cap S_{\lambda/\mu}|=|\rho|.
+\]
+The set $S_{\lambda/\mu}$ depends only on the shape. Hence
+\[
+  \left.
+  F_{\lambda/\mu}(\xvec)
+  \right|_{x_i=t\text{ for }i\in S_{\lambda/\mu},\,
+           x_i=1\text{ otherwise}}
+  =
+  \sum_{\rho\in \mathrm{NN}(\lambda/\mu)} t^{|\rho|}
+  =
+  \sum_{\sigma\in \mathcal{L}(P_{\lambda/\mu})} t^{\des(\sigma)}.
+\]
+Here $P_{\lambda/\mu}$ is the naturally labeled width-two poset associated
+with the shape.
 
 
 
