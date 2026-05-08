@@ -98,6 +98,41 @@ meaning the semi-infinite Toeplitz matrix $T_{i,j} = a_{i-j}$ (with $a_k=0$ for 
 See \cite{Karlin1968} for a full treatment.
 \end{theorem}
 
+\begin{theorem}[Veronese sections preserve real-rootedness]
+Let $r\geq 1$ and $0\leq i<r$. Define the \defin{Veronese section}
+\[
+  \mathcal{S}^r_i\left(\sum_{m\geq 0} a_m t^m\right)
+  =
+  \sum_{m\geq 0} a_{i+rm} t^m.
+\]
+If $f(t)$ is real-rooted with non-negative coefficients, then
+$\mathcal{S}^r_i(f)$ is also real-rooted with non-negative coefficients.
+See also the more general interlacing framework in \cite{AthanasiadisWagner2024}.
+\end{theorem}
+
+\begin{proof}
+The roots of $f$ are necessarily non-positive. Hence, by the
+Aissen--Schoenberg--Whitney theorem, the coefficient sequence
+$(a_0,a_1,\dotsc)$ is PF, so its Toeplitz matrix
+$T_{p,q}=a_{p-q}$ is TNN. The Toeplitz matrix for the subsequence
+$(a_i,a_{i+r},a_{i+2r},\dotsc)$ is the submatrix
+\[
+  T_{i+rp,rq}=a_{i+r(p-q)}.
+\]
+It is therefore TNN as well. Applying Aissen--Schoenberg--Whitney again
+shows that $\mathcal{S}^r_i(f)$ is real-rooted.
+\end{proof}
+
+\begin{example*}[Rows of Pascal's triangle]
+The polynomial
+\[
+  \sum_{m=0}^{n}\binom{kn}{km}t^m
+\]
+is the Veronese section $\mathcal{S}^k_0((1+t)^{kn})$.
+Since $(1+t)^{kn}$ is real-rooted, the theorem above immediately gives
+that this polynomial is real-rooted.
+\end{example*}
+
 
 
 \begin{theorem}[Characterization of TNN matrices, \cite[Thm. 3.1]{Brenti1995}.]
@@ -275,5 +310,3 @@ and \hyperref[realRootedMatching]{matchings on the $2\times n$ grid graph}.
 For Baxter permutations, see \cite{Zhao2024x}.
 For P-recursively defined polynomials, see \cite{Li2025x}.
 Several further examples are provided in \cite{Hitczenko2024x}.
-
-

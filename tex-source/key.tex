@@ -29,11 +29,14 @@ Key polynomials are also given as a specialization of \hyperref[macdonaldE]{non-
 see \cite{HaglundHaimanLoehr2008}, and this gives several combinatorial 
 models for the key polynomials, see the works of \name{Sarah Mason} \cite{Mason2009},
 and also \cite{Kurland2016,AlexanderssonSawhney2019}.
+Another positive model is given by \hyperref[kohnertTableaux]{Kohnert tableaux},
+which label the Kohnert diagrams for the key diagram.
 
 Key polynomials are closely related to \hyperref[atom]{Demazure atoms}.
 
+The $K$-theoretic version of key polynomials are the \hyperref[lascoux]{Lascoux polynomials}.
 
-The K-theoretic version of key polynomials are the \hyperref[lascoux]{Lascoux polynomials}.
+
 
 \subsection[keyDefinitionOperators]{Definition (Operators)}
 
@@ -430,6 +433,52 @@ Similarly, the Demazure atoms are given as the sum over semi-standard tableaux w
 
 
 
+\subsection[keyFromKostant]{Keys via Kostant partition function}
+
+Let $\Phi^+=\{ \evec_i-\evec_j : 1\leq i<j\leq n\}$ be the positive roots of the
+\hyperref[rootSystem]{root system} of type $A_{n-1}$.
+For a multiset $\Gamma$ of roots in $\Phi^+$, let $\kostantP_\Gamma(\nu)$ be the
+corresponding \hyperref[kostantPartitionFunction]{Kostant partition function},
+defined by
+\[
+\prod_{\gamma \in \Gamma} \frac{1}{1-\xvec^{-\gamma}}
+= \sum_{\nu} \kostantP_\Gamma(\nu)\xvec^{-\nu}.
+\]
+This is a vector partition function in the sense of \cite{Sturmfels1995}.
+
+Fix a word $i_1,\dotsc,i_\ell$ such that
+\[
+ \key_\alpha(\xvec)=\pi_{i_\ell}\dotsm\pi_{i_1}(\xvec^\lambda),
+\]
+where $\lambda=\sort(\alpha)$.
+Writing $\delta_i=\evec_i-\evec_{i+1}$, the operator identity
+\[
+\pi_i(F)= \frac{F}{1-\xvec^{-\delta_i}} - \frac{\xvec^{-\delta_i}s_i(F)}{1-\xvec^{-\delta_i}}
+\]
+lets us expand one Demazure operator at a time. 
+If a reflected denominator root becomes negative, rewrite it using
+\[
+\frac{1}{1-\xvec^\gamma} = -\frac{\xvec^{-\gamma}}{1-\xvec^{-\gamma}}.
+\]
+After all roots are made positive, this gives a finite signed list of triples
+$(c,\beta,\Gamma)$ with
+\[
+\key_\alpha(\xvec) = \sum_{(c,\beta,\Gamma)} c\,\xvec^\beta \prod_{\gamma \in \Gamma}\frac{1}{1-\xvec^{-\gamma}}.
+\]
+
+\begin{example}[Key polynomial from root system]
+The key polynomial $\key_{02}=\pi_1(x_1^2)$ gives
+\[
+\key_{02}
+=
+\frac{x_1^2}{1-x_2/x_1}
+-
+\frac{x_1^{-1}x_2^3}{1-x_2/x_1}
+=x_1^2+x_1x_2+x_2^2.
+\]
+\end{example}
+
+
 
 \subsection[keyRepresentation]{Representation theory of $GL_n$}
 
@@ -504,14 +553,14 @@ whenever $|i-j| \geq 2$. However, note that $\theta_i^2 = 0$,
 so we must now pay extra attention to choices of permutations.
 
 Let $\lambda$ be a partition with at most $n$ parts, and let $\sigma \in \symS_n$
-be a minimal coset representatative in $\symS_n / Stab_n(\lambda)$.
+be a minimal coset representative in $\symS_n / Stab_n(\lambda)$.
 The \defin{Demazure atom} $\atom_{\lambda,\sigma}(z)$ is defined as
 \begin{equation*}
  \atom_{\lambda,\sigma}(z) \coloneqq \theta_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
 \end{equation*}
 Again, instead of using $(\lambda,\sigma)$ as index, we simply use $\sigma(\lambda)$
 as index. 
-Here, we must must choose $\sigma$ to be the \hyperref[reducedWord]{shortest permutation} $\sigma$
+Here, we must choose $\sigma$ to be the \hyperref[reducedWord]{shortest permutation} $\sigma$
 which sends $\lambda$ to $\alpha = \sigma(\lambda)$.
 
 For example, if $\alpha = 1113$, then $\lambda=3111$, 
@@ -525,7 +574,7 @@ z_1^2 z_2 z_3 z_4^2.
 \]
 Similarly,
 \[
- \atom_{103}(z) = = \atom_{310,312}(z)  z_1^3 z_2  + z_1^3 z_3  + z_1^2 z_2^2 +  z_1^2 z_3^2 +  z_1^2 z_2 z_3 + 
+ \atom_{103}(z) = \atom_{310,312}(z) = z_1^3 z_2  + z_1^3 z_3  + z_1^2 z_2^2 +  z_1^2 z_3^2 +  z_1^2 z_2 z_3 +
   z_1 z_2^3 + z_1 z_3^3 + z_1 z_2 z_3^2 + z_1 z_2^2 z_3.   
 \]
 
@@ -561,7 +610,7 @@ and
 \]
 \end{example*}
 
-See \name{AnnaPun}s PhD thesis for a good overview of Demazure atoms and key polynomials \cite{Pun2016Thesis}.
+See \name{Anna Pun}'s PhD thesis for a good overview of Demazure atoms and key polynomials \cite{Pun2016Thesis}.
 
 
 \subsection[atomCauchyKernel]{Cauchy kernel}
@@ -658,6 +707,5 @@ A crystal characterization is also given, as well as analogs of key tableaux.
 See \cite{FuLascoux2009} for definitions of key polynomials in other types.
 These are related to the \hyperref[schurOrthogonal]{orthogonal} 
 and \hyperref[schurSymplectic]{symplectic} Schur functions.
-
 
 

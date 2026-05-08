@@ -25,6 +25,164 @@ and \hyperref[key]{key polynomials}.
 All Kohnert polynomials are \hyperref[slideM]{monomial slide positive}, \cite[Thm. 3.7]{AssafSearles2019},
 and they were later proved to be key positive in \cite{Assaf2021}.
 
-
-
 See \cite{ArmonAssafBowlingEhrhard2023} for a representation-theoretical interpretation of Kohnert polynomials.
+
+
+\subsection[kohnertDefinition]{Definition}
+
+We use French coordinates for diagrams: rows are indexed from bottom to top,
+starting with row \(1\). A \defin{diagram} is a finite set of cells in
+\(\setN \times \setN\). Its \defin{weight} is the weak composition
+\[
+ \operatorname{wt}(D)_i
+ \coloneqq
+ \#\{ \text{cells of } D \text{ in row } i\}.
+\]
+
+\begin{definition}[Kohnert move]
+A \defin{Kohnert move} selects the rightmost cell in a row and moves it
+downward in its column to the first empty position below it, jumping over
+occupied cells if necessary.  Let \(\mathrm{KD}(D)\) be the set of diagrams
+obtained from \(D\) by a sequence of Kohnert moves.
+\end{definition}
+
+\begin{definition}
+The \defin{Kohnert polynomial} of a diagram \(D\) is
+\[
+ \kohnert_D(\xvec)
+ \coloneqq
+ \sum_{T \in \mathrm{KD}(D)}
+ \xvec^{\operatorname{wt}(T)}.
+\]
+\end{definition}
+
+For a weak composition \(a=(a_1,\dotsc,a_n)\), the \defin{key diagram}
+\(D(a)\) is the left-justified diagram with \(a_i\) cells in row \(i\).
+For a permutation \(w\), let \(D(w)\) denote its \hyperref[rotheDiagram]{Rothe diagram}.
+
+\begin{theorem}[Kohnert, Winkel, Assaf--Searles {\cite[Thms. 2.6 and 2.10]{AssafSearles2019}}]
+For every weak composition \(a\),
+\[
+ \kohnert_{D(a)}(\xvec)=\key_a(\xvec).
+\]
+For every permutation \(w\),
+\[
+ \kohnert_{D(w)}(\xvec)=\schubertS_w(\xvec).
+\]
+\end{theorem}
+That is, we can produce both \hyperref[key]{key polynomials} and \hyperref[schubert]{Schubert polynomials} via Kohnert diagrams.
+
+
+
+\subsection[kohnertTableaux]{Kohnert tableaux}
+
+\defin{Kohnert tableaux} were introduced by
+\name{Sami Assaf} and \name{Dominic Searles}
+in \cite{AssafSearles2018}.  They are a labeled version of Kohnert diagrams
+for key diagrams. The labels record which row of the initial key diagram a
+cell came from.
+
+\begin{definition}[Kohnert tableau {\cite[Def. 2.3]{AssafSearles2018}}]
+Let \(a=(a_1,\dotsc,a_n)\) be a weak composition.  A
+\defin{Kohnert tableau} of content \(a\) is a filled diagram using entries
+\[
+ 1^{a_1},2^{a_2},\dotsc,n^{a_n},
+\]
+one entry per cell, satisfying the following conditions.
+\begin{enumerate}[(i)]
+\item There is exactly one \(i\) in each column \(1,\dotsc,a_i\).
+\item If a cell with entry \(i\) lies in row \(r\), then \(i\geq r\).
+\item The cells with entry \(i\) weakly descend from left to right.
+\item If \(i<j\) appear in the same column with \(i\) above \(j\), then
+there is an \(i\) in the column immediately to the right and strictly
+above \(j\).
+\end{enumerate}
+Let \(\mathrm{KT}(a)\) be the set of Kohnert tableaux of content \(a\).
+The weight \(\operatorname{wt}(T)\) is the weak composition counting cells
+of \(T\) by row.
+\end{definition}
+
+\begin{theorem}[Assaf--Searles {\cite[Thm. 2.8]{AssafSearles2018}}]
+There is a weight-preserving bijection between Kohnert diagrams in
+\(\mathrm{KD}(D(a))\) and Kohnert tableaux in \(\mathrm{KT}(a)\).  Hence
+\[
+ \key_a(\xvec) = \sum_{T \in \mathrm{KT}(a)} \xvec^{\operatorname{wt}(T)}.
+\]
+\end{theorem}
+
+
+\begin{definition}[Quasi-Yamanouchi Kohnert tableau {\cite[Def. 2.10]{AssafSearles2018}}]
+A Kohnert tableau is \defin{quasi-Yamanouchi} if, for each nonempty row
+\(i\), either row \(i\) contains an entry \(i\), or row \(i+1\) contains a
+cell weakly to the right of a cell in row \(i\).  Let
+\(\mathrm{QKT}(a)\) denote the set of quasi-Yamanouchi Kohnert tableaux of
+content \(a\).
+\end{definition}
+
+The quasi-Yamanouchi condition gives the compact expansion of key
+polynomials in the \hyperref[slideF]{fundamental slide basis}.
+
+\begin{theorem}[Assaf--Searles {\cite[Thm. 2.13]{AssafSearles2018}}]
+For every weak composition \(a\),
+\[
+ \key_a(\xvec) = \sum_{T \in \mathrm{QKT}(a)} \slideF_{\operatorname{wt}(T)}(\xvec).
+\]
+\end{theorem}
+
+
+\subsection[kohnertQuasiKey]{Quasi-key polynomials}
+
+\name{Sami Assaf} and \name{Dominic Searles} also use Kohnert tableaux to define
+\defin{quasi-key polynomials}, which lift quasi-Schur functions from the
+quasisymmetric setting to the full polynomial ring.
+
+\begin{definition}[Quasi-key polynomial {\cite[Def. 3.2]{AssafSearles2018}}]
+A \defin{quasi-Kohnert tableau} is a Kohnert tableau satisfying two
+additional conditions from \cite[Def. 3.1]{AssafSearles2018}.  Let
+\(\mathrm{qKT}(a)\) be the set of quasi-Kohnert tableaux of content \(a\).
+The \defin{quasi-key polynomial} indexed by \(a\) is
+\[
+ Q_a(\xvec)
+ \coloneqq
+ \sum_{T \in \mathrm{qKT}(a)}
+ \xvec^{\operatorname{wt}(T)}.
+\]
+\end{definition}
+
+\begin{theorem}[Assaf--Searles {\cite[Thms. 3.3, 3.4, and 3.7]{AssafSearles2018}}]
+The quasi-key polynomials \(Q_a\) form a \(\setZ\)-basis of the polynomial
+ring. 
+They have a positive fundamental slide expansion
+\[
+ Q_a(\xvec)
+ =
+ \sum_{T \in \mathrm{QqKT}(a)}
+ \slideF_{\operatorname{wt}(T)}(\xvec),
+\]
+where the sum is over quasi-Yamanouchi quasi-Kohnert tableaux.
+Moreover, each key polynomial expands positively in the quasi-key basis:
+\[
+ \key_a(\xvec)
+ =
+ \sum_{b\in \mathrm{Qlswap}(a)}
+ Q_b(\xvec).
+\]
+\end{theorem}
+
+\begin{theorem}[Assaf--Searles {\cite[Thms. 4.15 and 4.16]{AssafSearles2018}}]
+If the nonzero entries of \(a\) occur in an interval ending in position
+\(k\), then
+\[
+ Q_a(x_1,\dotsc,x_k)
+ =
+ \mathrm{QS}_{\operatorname{flat}(a)}(x_1,\dotsc,x_k),
+\]
+where \(\mathrm{QS}_{\alpha}\) is the quasi-Schur function.
+In general,
+\[
+ \lim_{m\to\infty} Q_{0^m\times a}(X)
+ =
+ \mathrm{QS}_{\operatorname{flat}(a)}(X).
+\]
+\end{theorem}
+

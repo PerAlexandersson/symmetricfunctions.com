@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Projects Snapshot</title>
+  <style>
+    :root {
+      --paper: #f6f0df;
+      --paper-2: #efe4c8;
+      --ink: #1f2b22;
+      --muted: #5b645b;
+      --green: #305b46;
+      --green-2: #7ba37d;
+      --gold: #c38c2f;
+      --line: rgba(31, 43, 34, 0.12);
+      --shadow: 0 18px 50px rgba(31, 43, 34, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(195, 140, 47, 0.16), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(123, 163, 125, 0.18), transparent 36%),
+        linear-gradient(180deg, #fbf7eb 0%, var(--paper) 100%);
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 34px 28px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(48, 91, 70, 0.96), rgba(24, 39, 31, 0.96)),
+        linear-gradient(135deg, #2f5a45, #24382d);
+      color: #f8f2df;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -80px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(195, 140, 47, 0.34), transparent 70%);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font: 700 0.86rem/1.2 ui-monospace, "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d7d0b8;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.6;
+      color: #efe6cf;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      padding: 14px 16px;
+      border: 1px solid rgba(248, 242, 223, 0.16);
+      border-radius: 16px;
+      background: rgba(248, 242, 223, 0.08);
+      backdrop-filter: blur(5px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 6px;
+      color: #ddd2b0;
+      font-size: 0.92rem;
+    }
+
+    .section {
+      margin-top: 28px;
+      padding: 22px 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 251, 241, 0.78);
+      box-shadow: 0 10px 32px rgba(31, 43, 34, 0.06);
+    }
+
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+      color: var(--green);
+    }
+
+    .section p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      padding: 16px 16px 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(244, 236, 216, 0.94));
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+      color: #183226;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(48, 91, 70, 0.16);
+      background: rgba(48, 91, 70, 0.07);
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .date {
+      font: 700 0.9rem/1.2 ui-monospace, "SFMono-Regular", Consolas, monospace;
+      color: var(--gold);
+    }
+
+    .footer {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 26px 22px 22px;
+      }
+
+      .section {
+        padding: 18px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Workspace Scan · AI Projects · May 6, 2026</p>
+      <h1>What I am working on right now</h1>
+      <p class="lede">
+        This is a fast snapshot of the active projects inside my <code>AI-projects</code>
+        workspace: Lean formalization, Rust combinatorics tooling, paper drafts,
+        infrastructure, and one father-son game project.
+      </p>
+      <div class="stats">
+        <div class="stat"><strong>6</strong><span>Lean proof projects</span></div>
+        <div class="stat"><strong>7</strong><span>Rust/computation tracks</span></div>
+        <div class="stat"><strong>12+</strong><span>writing projects in motion</span></div>
+        <div class="stat"><strong>1</strong><span>game project</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Lean formalization</h2>
+      <p>The proof side is centered on real-rootedness, interlacing, Ferrers-board combinatorics, and tableaux-flavored projects.</p>
+      <div class="cards">
+        <article class="card"><h3>NonNestingRooks</h3><p>Current front-line proof work on real-rooted non-nesting rook polynomials.</p></article>
+        <article class="card"><h3>RealRooted</h3><p>Core Lean library for real-rootedness, interlacing, and related polynomial machinery.</p></article>
+        <article class="card"><h3>FerrersHits</h3><p>Lean project tied to Ferrers hit polynomials and related enumerative structures.</p></article>
+        <article class="card"><h3>SYTNaturalDescents</h3><p>Standard Young tableau work, centered around natural descent statistics.</p></article>
+        <article class="card"><h3>BigBlocksInSetPartitions</h3><p>Formalization track connected to block-structure questions in set partitions.</p></article>
+        <article class="card"><h3>PeakPolynomials</h3><p>Formalized recursion and interlacing framework around peak polynomials.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Rust and computation</h2>
+      <p>The coding side is mostly combinatorics infrastructure: polynomial tools, symmetric-function code, and experiment crates that feed the mathematics.</p>
+      <div class="cards">
+        <article class="card"><h3>polynomial-tools</h3><p>Fast univariate polynomial toolkit, especially for real-rootedness and interlacing experiments.</p></article>
+        <article class="card"><h3>sym-poly</h3><p>Symmetric, quasisymmetric, and multivariate polynomial crates.</p></article>
+        <article class="card"><h3>combinatoric-core</h3><p>Graphs, posets, chromatic functions, and reusable combinatorial data structures.</p></article>
+        <article class="card"><h3>combpoly</h3><p>Permutation statistics and generating-polynomial command-line tooling.</p></article>
+        <article class="card"><h3>kostka</h3><p>Kostka and Littlewood-Richardson computation, plus Gelfand-Tsetlin polytope work.</p></article>
+        <article class="card"><h3>KTT-search</h3><p>Focused experiment track inside the Rust workspace.</p></article>
+        <article class="card"><h3>cylindric-mn-check</h3><p>Checker and experiment project for cylindric symmetric-function questions.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Writing projects and drafts</h2>
+      <p>These are the paper and exposition directories that look especially active right now from recent edits in <code>documents/</code>.</p>
+      <div class="chips">
+        <span class="chip">symcat-posters</span>
+        <span class="chip">key-schubert-kostka</span>
+        <span class="chip">Real-rooted-non-nesting-rooks</span>
+        <span class="chip">elementary-combinatorics</span>
+        <span class="chip">Fast-Ehrhart-via-Macdonald-Reciprocity</span>
+        <span class="chip">Backtrack-Permutations</span>
+        <span class="chip">k-Veronese-and-gamma</span>
+        <span class="chip">Lorentzian-Skew-Schur-Flow</span>
+        <span class="chip">Ferrers-hit-polynomials</span>
+        <span class="chip">Alternating-Eulerian-Real-Rooted</span>
+        <span class="chip">Big-blocks-in-set-partitions</span>
+        <span class="chip">Stembridge-hstar</span>
+        <span class="chip">Line-graph-chromatics</span>
+        <span class="chip">Line-graphs-of-trees</span>
+        <span class="chip">Sink-generating-polynomials-for-line-graphs</span>
+        <span class="chip">Key-Ehrhart</span>
+        <span class="chip">Zig-zag-poset</span>
+        <span class="chip">Gelfand-Tsetlin-Ehrhart-Survey</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Other active tracks</h2>
+      <div class="cards">
+        <article class="card"><h3>space-idle-game</h3><p>A Godot 4 father-son project: a grid-based idle space mining and fleet-building game.</p></article>
+        <article class="card"><h3>docker-setup</h3><p>The Codex and Docker workflow layer for opening project-focused sessions quickly.</p></article>
+        <article class="card"><h3>work-in-progress-ideas</h3><p>Early mathematical ideas, conjectures, and background notes before they become full projects.</p></article>
+        <article class="card"><h3>claude-md / workspaces</h3><p>Assistant-facing notes, handoffs, and temporary working surfaces that support the main projects.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Very recent activity</h2>
+      <p>This is the quick “what moved most recently” view from the workspace scan.</p>
+      <div class="timeline">
+        <div class="timeline-item"><div class="date">May 6</div><div><strong>NonNestingRooks</strong>, <strong>symcat-posters</strong>, and <strong>key-schubert-kostka</strong> all show fresh activity.</div></div>
+        <div class="timeline-item"><div class="date">May 5</div><div><strong>kostka</strong> and <strong>Real-rooted-non-nesting-rooks</strong> were both touched, alongside more writing work.</div></div>
+        <div class="timeline-item"><div class="date">May 3</div><div><strong>Rust workspace</strong> activity includes <strong>KTT-search</strong>, <strong>cylindric-mn-check</strong>, and related experiments.</div></div>
+        <div class="timeline-item"><div class="date">Apr 24–29</div><div><strong>FerrersHits</strong>, <strong>RealRooted</strong>, <strong>SYTNaturalDescents</strong>, and the game project all saw recent attention.</div></div>
+      </div>
+      <p class="footer">Built as a one-file static page for a live presentation. Snapshot based on the current local <code>AI-projects</code> directory tree and recent modification times.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -257,99 +257,16 @@ since $G$ has the (maximal) matchings
 
 
 
-\subsection[latticePathMatroids]{Lattice path matroids}
+\subsection[matroidLatticePathSummary]{Lattice path matroids}
 
-The family of lattice path matroids were 
-introduced by \name{Joseph Bonin}, \name[A. de Mier]{Anna de Mier} and \name{Marc Noy} \cite{BoninMierNoy2003}.
-This family is closed under all matrix minors (deletions and contraction) and 
-also under matrix duality. All lattice path matroids are transversal matroids.
+The family of \hyperref[latticePathMatroids]{lattice path matroids} was
+introduced by \name{Joseph Bonin}, \name[A. de Mier]{Anna de Mier} and
+\name{Marc Noy} \cite{BoninMierNoy2003}. This family is closed under all
+matroid minors (deletions and contractions) and also under matroid duality.
+All lattice path matroids are transversal matroids.
 
-\begin{example}
-
-\begin{figure}
- \svgimg[width=0.3\textwidth]{./svg-images/latticepath-matroid.svg}{A skew Ferrers shape and labeling of the East steps.} 
-\end{figure}
-
-\end{example}
-
-
-The \hyperref[tuttePolynomial]{Tutte polynomial} for a lattice path matroid can be computed efficiently, 
-see \cite{BoninMierNoy2003}. Moreover, there is a nice combinatorial
-description on the internal and external activity for the bases.
-
-For an introduction to lattice path matroids, 
-see \href{https://maa.org/sites/default/files/pdf/shortcourse/2011/TransversalNotes.pdf}{these lecture notes} 
-by \name{Joseph Bonin}.
-
-
-
-\begin{example}[Lattice path matroid from a Dyck path]
-Consider the interval family
-\[
-A_1 = \{1,2,3,4,5,6\},\qquad
-A_2 = \{3,4,5,6,7,8\},\qquad
-A_3 = \{5,6,7,8,9,10\},\qquad
-A_4 = \{6,7,8,9,10,11\},\qquad
-A_5 = \{10,11,12\}.
-\]
-The corresponding skew shape is the Young diagram $\lambda/\mu$ with
-\(
-\lambda = (7,7,7,7,6),\qquad \mu = (5,2,2,1).
-\)
-Numbering the skew boxes by the elements of $A_5,\dots,A_1$ gives
-\begin{figure}
-\svgimg[width=0.3\textwidth]{./svg-images/latticepath-matroid2.svg}{The skew Ferrers shape and labeling of the North steps.} 
-\end{figure}
-
-
-The upper boundary has North-step set $\{1,3,5,6,10\}$ and East-step set $\{2,4,7,8,9,11,12\}$.
-
-The corresponding naturally labeled width-two permutation poset has chains
-\[
-  C_N = \{1 \lt 3 \lt 5 \lt 6 \lt 10\},\qquad
-  C_E = \{2 \lt 4 \lt 7 \lt 8 \lt 9 \lt 11 \lt 12\},
-\]
-together with the cover relations $2\lt 3$, $4 \lt 5$, $9 \lt 10$ and $1 \lt 12$.
-\begin{figure}
- \svgimg{./svg-images/latticepath-width-two-poset.svg}{The width-two poset associated with the lattice path matroid example.}
-\end{figure}
-The permutation $\pi = [2,4,7,8,9,11,1,12,3,5,6,10]$ defines a permutation poset,
-and all linear extensions of the width-2-poset above are precisely the permutations below $\pi$
-in the \hyperref[weakOrder]{weak order}. Note that $\pi$ is 321-avoiding.
-Thus, for an ordinary Ferrers shape, the determinant in
-\hyperref[LGVLatticePathsInSkewShape]{the LGV section on lattice paths in skew shapes}
-computes the number of linear extensions of the associated width-two permutation poset.
-
-
-
-We can also model set systems using a Dyck path. 
-Each set in the set system corresponds to a peak.
-The peaks are marked with the corresponding set and the shaded boxes are those below and to the right of each peak.
-\begin{figure}
-\begin{ytableau}
- &  &  &  &  &  &  &  &  & *(lightgray)A_5 & *(lightgray) & *(lightblue)12 \\
- &  &  &  &  & *(lightgray)A_4 & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)11 \\
- &  &  &  & *(lightgray)A_3 & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)10 \\
- &  &  &  & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)9 \\
- &  & *(lightgray)A_2 & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)8 \\
- &  & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)7 \\
-*(lightgray)A_1 & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)6 \\
-*(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)5 \\
-*(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)4 \\
-*(lightgray) & *(lightgray) & *(lightblue)3 \\
-*(lightgray) & *(lightblue)2 \\
-*(lightblue)1
-\end{ytableau}
-\end{figure}
-A basis of the lattice path matroid is then a selection of squares on the diagonal, $d_1,d_2,\dotsc,d_k$
-such that peak $i$ "can see" the square $d_i$. Here, $k$ is the number of peaks.
-
-
-%If the Dyck path contains $N^2 E N^2 E^2 N E^2$ as a subsequence, then we have Q6.
-\end{example}
-
-The corresponding determinant formula for the lattice-path-matroid basis generating 
-function is given in \hyperref[LGVLatticePathsInSkewShape]{the LGV section on lattice paths in skew shapes}.
+For examples, Dyck path models and the connection with width-two posets, see
+\hyperref[latticePathMatroids]{the separate page on lattice path matroids}.
 
 
 
@@ -505,7 +422,7 @@ This notion generalizes the basis exchange axiom for matroids.
 
 \begin{theorem}[See \cite{DizierPhDThesis}]
 A homogeneous polynomial $f$ is $M$-convex if and only if $f$ 
-has a saturated Newton polytope and this Newton polytope a generalized permutahedron.
+has a saturated Newton polytope and this Newton polytope is a generalized permutahedron.
 \end{theorem}
 
 \hyperref[key]{Key polynomials} are M-convex (conjectured earlier by \name{Monical}, \name{Tokcan} and \name{Yong} \cite{MonicalTokcanYong2019}) see \cite{FanGuoPengSun2020}.

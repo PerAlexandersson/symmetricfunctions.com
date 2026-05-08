@@ -54,8 +54,8 @@ is determined by the \defin{Horn inequalities}, see \cite{Klyachko1998,KnutsonTa
 
 \subsection[lrTableaux]{Littlewood--Richardson tableaux}
 
-The Littlewood--Richardson rule states that $c^{\lambda}_{\mu\nu}$ count the number of 
-skew semi-standard Young tableaux of shape $\lambda/\mu$ with content $\nu$,
+The Littlewood--Richardson rule states that $c^{\lambda}_{\mu\nu}$ counts the number of
+skew semistandard Young tableaux of shape $\lambda/\mu$ with content $\nu$,
 with the additional restriction that the concatenation of the reversed rows is a \defin{lattice word}.
 A word $w_1,\dotsc,w_\ell$ is a lattice word if every prefix has the property that its content is a partition.
 That is, the number of times $i$ appears in the prefix is at least as many as $i+1$, for every $i$.
@@ -95,7 +95,7 @@ one can show that this is equivalent to the following model.
 
 \subsection[lrMolevSagan]{Semistandard Young tableaux II}
 
-In \cite{FominGreene1993,MolevSagan1999}, the following model us described.
+In \cite{FominGreene1993,MolevSagan1999}, the following model is described.
 $c^{\lambda}_{\mu\nu}$ is the number of semistandard 
 Young tableaux $T$ with shape $\mu$, with the property that 
 the column index reading word of $T$, \defin{fits} the skew shape $\lambda/\mu$.
@@ -229,7 +229,7 @@ Berenstein and Zelevinsky \cite{BerensteinZelevinsky1992}
 gave a combinatorial model for the Littlewood--Richardson
 coefficients that uses certain triangular arrays,
 reminiscent of \hyperref[gtpatterns]{Gelfand--Tsetlin patterns}.
-The exact definition is written in an accessible mannar in \cite[Def. A1.3.10]{StanleyEC2}.
+The exact definition is written in an accessible manner in \cite[Def. A1.3.10]{StanleyEC2}.
 
 
 \subsection[knutsonTaoHoneycomb]{Knutson--Tao honeycombs}
@@ -277,14 +277,14 @@ where the terms include a product of three Schur functions, evaluated at certain
 
 \section[newellLittlewood]{Newell--Littlewood numbers}
 
-The \defin{Newel--Littlewood numbers} may be defined as
+The \defin{Newell--Littlewood numbers} may be defined as
 \[
  N_{\mu,\nu,\lambda} = \sum_{\alpha,\beta,\gamma} c^{\mu}_{\alpha\beta} c^{\nu}_{\alpha\gamma} c^{\lambda}_{\beta\gamma}.
 \]
 For recent papers on these coefficients, see \cite{GaoOrelowitzYong2020x,GaoOrelowitzYong2020IIx}.
 
 The Littlewood--Richardson coefficients arise as tensor product multiplicities of irreducible representations of $\GL(V)$.
-The Newel--Littlewood numbers arise in the same manner, where $\GL(V)$ is replaced by a Lie group of type $B$, $C$ or $D$.
+The Newell--Littlewood numbers arise in the same manner, where $\GL(V)$ is replaced by a Lie group of type $B$, $C$ or $D$.
 
 There is a symmetric function basis, the \defin{Koike--Terada basis}, $\{\schurS_{[\lambda]}\}_\lambda$
 for which the $N_{\mu,\nu,\lambda}$ serve as multiplication structure constants.
@@ -315,7 +315,7 @@ t \to c^{t \nu}_{t\lambda,t\mu}
 for fixed partitions, is a polynomial in $t$. 
 Note that this is the Ehrhart polynomial of the corresponding BZ-polytope (where lattice points are BZ-patterns).
 
-Computer experiments, see \cite{KingTolluToumazet2004}, suggests that the Ehrhart polynomial above has non-negative coefficients.
+Computer experiments, see \cite{KingTolluToumazet2004}, suggest that the Ehrhart polynomial above has non-negative coefficients.
 This conjecture is still open. 
 A special case of this conjecture is to consider the map $t \to K_{t\lambda,t\mu}$,
 of so called \emph{stretched Kostka coefficients}.
@@ -326,7 +326,7 @@ Various aspects of this problem has been considered in
 Fulton's conjecture stated that $c^{\nu}_{\lambda,\mu}=1$ implies that
 $c^{t \nu}_{t\lambda,t\mu}=1$ for all $t \geq 1$. This was later proved in \cite{KnutsonTaoWoodward2004}.
 The next natural case is, $c^{\nu}_{\lambda,\mu}=2$ and 
-it is proved by \name{Christian Ikenmenyer} \cite{Ikenmeyer2016} and later \name{Cass Sherman} \cite{Sherman2015x,Sherman2017} that
+it is proved by \name{Christian Ikenmeyer} \cite{Ikenmeyer2016} and later \name{Cass Sherman} \cite{Sherman2015x,Sherman2017} that
 \[
 c^{\nu}_{\lambda,\mu}=2 \implies c^{t \nu}_{t\lambda,t\mu}=t+1.
 \]
@@ -340,7 +340,7 @@ with the convention that $\lambda(s,t) \coloneqq s (t \lambda')'$ (i.e., we stre
 
 
 Stretching of Newell--Littlewood coefficients is studied in \cite{King2021x}.
-This preprint conttains lots of interesting conjectures analogous to results/conjectures about the Littlewood--Richardson
+This preprint contains lots of interesting conjectures analogous to results/conjectures about the Littlewood--Richardson
 coefficients. \name{Ronald C. King} proves that the map $t \to n^{t \nu}_{t\lambda,t\mu}$
 is a quasipolynomial with period at most 2.
 
@@ -387,11 +387,11 @@ see e.g. \cite[p. 338, Eq. 7.61]{StanleyEC2}.
 Kostka coefficients is in general $\#P$-complete, see \cite{Narayanan2006}.
 This implies that there are no efficient
 algorithms for computing these quantities 
-(assuming wildly believed conjectures regarding complexity theory).
+(assuming widely believed conjectures regarding complexity theory).
 
 \name{Anders Buch} has a fast C program, \href{https://sites.math.rutgers.edu/~asbuch/lrcalc/}{lrcalc}, for computing
 Littlewood--Richardson coefficients.
 
-See also \name{Matthew J. Samuel}s \href{https://pypi.org/project/schubmult/}{python package for computing products of Schubert polynomials} which, 
+See also \name{Matthew J. Samuel}'s \href{https://pypi.org/project/schubmult/}{Python package for computing products of Schubert polynomials} which,
 in particular, can compute Littlewood--Richardson coefficients.
 

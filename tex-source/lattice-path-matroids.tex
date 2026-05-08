@@ -1,0 +1,302 @@
+\metatitle{Lattice path matroids}
+\metadescription{Introduction to lattice path matroids, including their relation to transversal matroids, Tutte polynomials, skew Ferrers shapes, Dyck paths, and width-two posets.}
+
+\section[latticePathMatroids]{Lattice path matroids}
+
+
+The family of \defin{lattice path matroids} was introduced by
+\name{Joseph Bonin}, \name[A. de Mier]{Anna de Mier} and \name{Marc Noy}
+\cite{BoninMierNoy2003}. This family is closed under all \hyperref[matroidMinors]{matroid minors}
+(deletions and contractions) and also under \hyperref[matroidDuality]{matroid duality}.
+All lattice path matroids are \hyperref[transversalMatroids]{transversal matroids}.
+They are also positroids, see \cite{Oh2011}.
+
+The \hyperref[tuttePolynomial]{Tutte polynomial} for a lattice path matroid
+can be computed efficiently, see \cite{BoninMierNoy2003}.
+Moreover, there is a nice combinatorial description of
+the internal and external activity for the bases.
+
+
+\begin{example}
+\begin{figure}
+ \svgimg[width=0.3\textwidth]{./svg-images/latticepath-matroid.svg}{A skew Ferrers shape and labeling of the East steps.}
+\end{figure}
+\end{example}
+
+
+For an introduction to lattice path matroids,
+see \href{https://maa.org/sites/default/files/pdf/shortcourse/2011/TransversalNotes.pdf}{these lecture notes}
+by \name{Joseph Bonin}.
+
+
+\begin{example}[Lattice path matroid from a Dyck path]
+Consider the interval family
+\[
+A_1 = \{1,2,3,4,5,6\},\qquad
+A_2 = \{3,4,5,6,7,8\},\qquad
+A_3 = \{5,6,7,8,9,10\},\qquad
+A_4 = \{6,7,8,9,10,11\},\qquad
+A_5 = \{10,11,12\}.
+\]
+The corresponding skew shape is the Young diagram $\lambda/\mu$ with
+\(
+\lambda = (7,7,7,7,6),\qquad \mu = (5,2,2,1).
+\)
+Numbering the skew boxes by the elements of $A_5,\dots,A_1$ gives
+\begin{figure}
+\svgimg[width=0.3\textwidth]{./svg-images/latticepath-matroid2.svg}{The skew Ferrers shape and labeling of the North steps.}
+\end{figure}
+
+
+The upper boundary has North-step set $\{1,3,5,6,10\}$ and East-step set $\{2,4,7,8,9,11,12\}$.
+
+The corresponding naturally labeled width-two permutation poset has chains
+\[
+  C_N = \{1 \lt 3 \lt 5 \lt 6 \lt 10\},\qquad
+  C_E = \{2 \lt 4 \lt 7 \lt 8 \lt 9 \lt 11 \lt 12\},
+\]
+together with the cover relations $2\lt 3$, $4 \lt 5$, $9 \lt 10$ and $1 \lt 12$.
+\begin{figure}
+ \svgimg{./svg-images/latticepath-width-two-poset.svg}{The width-two poset associated with the lattice path matroid example.}
+\end{figure}
+The permutation $\pi = [2,4,7,8,9,11,1,12,3,5,6,10]$ defines a permutation poset,
+and all linear extensions of the width-2-poset above are precisely the permutations below $\pi$
+in the \hyperref[weakOrder]{weak order}. Note that $\pi$ is 321-avoiding.
+Thus, for an ordinary Ferrers shape, the determinant in
+\hyperref[LGVLatticePathsInSkewShape]{the LGV section on lattice paths in skew shapes}
+computes the number of linear extensions of the associated width-two permutation poset.
+
+
+We can also model set systems using a Dyck path.
+Each set in the set system corresponds to a peak.
+The peaks are marked with the corresponding set and the shaded boxes are those below and to the right of each peak.
+\begin{figure}
+\begin{ytableau}
+ &  &  &  &  &  &  &  &  & *(lightgray)A_5 & *(lightgray) & *(lightblue)12 \\
+ &  &  &  &  & *(lightgray)A_4 & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)11 \\
+ &  &  &  & *(lightgray)A_3 & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)10 \\
+ &  &  &  & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)9 \\
+ &  & *(lightgray)A_2 & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)8 \\
+ &  & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)7 \\
+*(lightgray)A_1 & *(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)6 \\
+*(lightgray) & *(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)5 \\
+*(lightgray) & *(lightgray) & *(lightgray) & *(lightblue)4 \\
+*(lightgray) & *(lightgray) & *(lightblue)3 \\
+*(lightgray) & *(lightblue)2 \\
+*(lightblue)1
+\end{ytableau}
+\end{figure}
+A basis of the lattice path matroid is then a selection of squares on the diagonal, $d_1,d_2,\dotsc,d_k$
+such that peak $i$ "can see" the square $d_i$. Here, $k$ is the number of peaks.
+
+
+%If the Dyck path contains $N^2 E N^2 E^2 N E^2$ as a subsequence, then we have Q6.
+\end{example}
+
+The corresponding determinant formula for the lattice-path-matroid basis generating
+function is given in \hyperref[LGVLatticePathsInSkewShape]{the LGV section on lattice paths in skew shapes}.
+
+
+\section[rookMatroids]{Rook matroids}
+
+Rook matroids, introduced in \cite{AlexanderssonJal2024x}, give another
+matroidal structure on the same skew Ferrers shapes. They form a family of
+\hyperref[transversalMatroids]{transversal matroids} that is compatible with
+\hyperref[matroidDuality]{duality}, but whose behavior under
+\hyperref[matroidMinors]{minors} is subtler than for lattice path matroids.
+They also have the same \hyperref[tuttePolynomial]{Tutte polynomial} as the
+corresponding lattice path matroid.
+
+Let $\lambda/\mu$ be a skew Ferrers board with $r$ rows and $c$ columns.
+Label the rows by $1,\dotsc,r$ from top to bottom, and label the columns by
+$r+1,\dotsc,r+c$ from left to right. A rook placement is
+\defin{non-attacking} if no two rooks share a row or a column. Two rooks form a
+\defin{nesting} if one lies strictly southeast of the other. A
+\defin{non-nesting rook placement} is a non-attacking placement with no nesting.
+Let
+\[
+  \mathrm{NN}_{\lambda/\mu}
+\]
+denote the set of non-nesting rook placements on $\lambda/\mu$.
+The corresponding \defin{non-nesting rook polynomial} is
+\[
+  M_{\lambda/\mu}(t) = \sum_k r_k(\lambda/\mu)t^k,
+\]
+where $r_k(\lambda/\mu)$ is the number of non-nesting rook placements with $k$
+rooks.
+
+For a placement $\rho \in \mathrm{NN}_{\lambda/\mu}$, let $R(\rho)$ be the set
+of unoccupied row labels and let $C(\rho)$ be the set of occupied column labels.
+The \defin{rook matroid} of $\lambda/\mu$ has bases
+\[
+  \mathcal{R}_{\lambda/\mu}
+  =
+  \{ R(\rho) \cup C(\rho) : \rho \in \mathrm{NN}_{\lambda/\mu} \}.
+\]
+Every such set has size $r$.
+
+\begin{theorem}[Alexandersson--Jal, \cite{AlexanderssonJal2024x}]
+For every skew shape $\lambda/\mu$, the collection
+$\mathcal{R}_{\lambda/\mu}$ is the set of bases of a
+\hyperref[transversalMatroids]{transversal matroid}.
+\end{theorem}
+
+\begin{example}
+For the skew shape $\lambda/\mu = (4,3,2)/(1)$, the rows are labeled
+$1,2,3$ and the columns are labeled $4,5,6,7$. The placement below is
+non-nesting:
+\[
+\begin{ytableau}
+\none & \none[4] & \none[5] & \none[6] & \none[7] \\
+\none[1] & \none &  &  & \bullet \\
+\none[2] &  &  &  \\
+\none[3] & \bullet &
+\end{ytableau}
+\]
+Here row $2$ is unoccupied and columns $4$ and $7$ are occupied, so this
+placement gives the basis
+\[
+  R(\rho)\cup C(\rho) = \{2,4,7\}.
+\]
+\end{example}
+
+\begin{example}
+With the row-labeling convention above, the rook matroid of a
+$k\times(n-k)$ rectangle is the uniform matroid $U_{k,n}$. Equivalently, an
+$(n-k)\times k$ rectangle gives $U_{n-k,n}$.
+\end{example}
+
+\begin{theorem}[Alexandersson--Jal, \cite{AlexanderssonJal2024x}]
+Rook matroids are closed under direct sums and under \hyperref[matroidDuality]{matroid duality}. More
+precisely,
+\[
+  \mathcal{R}_{\lambda/\mu}^{*}\cong
+  \mathcal{R}_{\lambda'/\mu'}.
+\]
+However, the class of rook matroids is not closed under all minors.
+\end{theorem}
+
+\begin{theorem}[Alexandersson--Jal, \cite{AlexanderssonJal2024x}]
+Every rook matroid is a positroid.
+\end{theorem}
+Thus both lattice path matroids and rook matroids belong to the class of
+positroids, even though the two matroid structures on a skew shape are not
+always isomorphic.
+
+\subsection[rookLatticePathMatroids]{Relation with lattice path matroids}
+
+Write $\mathcal{P}_{\lambda/\mu}$ for the lattice path matroid whose upper and
+lower boundary paths bound the skew shape $\lambda/\mu$. There is always a
+bijection between lattice paths in $\lambda/\mu$ and non-nesting rook
+placements in $\lambda/\mu$: place a rook in each valley of the path that lies
+strictly inside the shape. The bijection is not always a matroid isomorphism.
+
+\begin{theorem}[Alexandersson--Jal, \cite{AlexanderssonJal2024x}]
+The rook matroid $\mathcal{R}_{\lambda/\mu}$ is isomorphic to the lattice path
+matroid $\mathcal{P}_{\lambda/\mu}$ if and only if the skew shape
+$\lambda/\mu$ avoids the subshape $332/1$.
+\end{theorem}
+
+Equivalently, the obstruction is the matroid $Q_6$: one has
+$\mathcal{R}_{332/1}\cong Q_6$, and $Q_6$ is an excluded minor for lattice path
+matroids \cite{Bonin2010}. Thus the rook and lattice-path structures agree for
+many shapes, but not for all skew shapes.
+
+Under the skew-shape--poset correspondence described below, the same condition
+can be read as avoidance of an induced cycle poset. Namely, the associated
+width-two poset has no induced subposet on two three-element chains
+\[
+  a_1 \lt a_2 \lt a_3,\qquad b_1 \lt b_2 \lt b_3
+\]
+whose only cross-chain cover relations are
+\[
+  a_1 \lt b_3,\qquad b_1 \lt a_3.
+\]
+Equivalently, the forbidden induced poset is the subdivision of the
+four-element crown $C_2$ obtained by inserting one element on two opposite
+covers. The two crossing cover relations correspond to the outer and inner
+corners of the $332/1$ subshape.
+
+In the other direction, every lattice path matroid is obtained as a deletion of
+a sufficiently enlarged rook matroid. If $\lambda$ has $r$ rows, define
+\[
+  \lambda^\ast =
+  (\lambda_1+r,\lambda_2+r-1,\dotsc,\lambda_r+1),
+\]
+and similarly add the staircase $(r-1,r-2,\dotsc)$ to $\mu$ to obtain
+$\mu^\ast$. Then
+\[
+  \mathcal{P}_{\lambda/\mu}
+  \cong
+  \mathcal{R}_{\lambda^\ast/\mu^\ast}\setminus [r].
+\]
+
+Even when the two matroids are not isomorphic, their Tutte polynomials agree:
+\[
+  T(\mathcal{R}_{\lambda/\mu};x,y)
+  =
+  T(\mathcal{P}_{\lambda/\mu};x,y).
+\]
+
+\subsection[rookLatticePathPolytopes]{Base polytopes and valuative invariants}
+
+For any matroid $M$, the \hyperref[matroidPolytopes]{matroid base polytope}
+is the convex hull of the indicator vectors of its bases. Thus the rook
+matroid base polytope is
+\[
+  \operatorname{conv}
+  \{ \mathbf{e}_{R(\rho)\cup C(\rho)} :
+     \rho\in \mathrm{NN}_{\lambda/\mu} \}.
+\]
+The base polytopes of lattice path matroids have an alcoved description and
+snake decompositions, see \cite{BenedettiKnauerValencia2023x}.
+
+The rook polytope also has a description in row-column coordinates. Besides
+the inequalities $0\leq x_i,y_j\leq 1$ and the rank equation
+\[
+  x_1+\dotsb+x_r+y_1+\dotsb+y_c = r,
+\]
+the nontrivial inequalities are indexed by the inner and outer corners of the
+skew shape. If the first $i$ rows occupy the consecutive columns
+$a_i,\dotsc,b_i$, an inner corner gives an inequality of the form
+\[
+  (x_1+\dotsb+x_i) + (y_{a_i}+\dotsb+y_{b_i}) \leq b_i-a_i+1.
+\]
+Similarly, if rows $j,j+1,\dotsc,r$ occupy the consecutive columns
+$a'_j,\dotsc,b'_j$, an outer corner gives
+\[
+  (x_j+\dotsb+x_r) + (y_{a'_j}+\dotsb+y_{b'_j}) \leq b'_j-a'_j+1.
+\]
+
+Bonin and de Mier proved a stronger relation between the two matroids:
+$\mathcal{P}_{\lambda/\mu}$ and $\mathcal{R}_{\lambda/\mu}$ have the same
+configuration \cite{BoninMier2026}. Consequently they have the same
+Derksen--Fink $\mathcal{G}$-invariant, and every valuative matroid invariant
+takes the same value on them. This implies, in particular, that the Tutte
+polynomials agree and that the \hyperref[ehrhart]{Ehrhart polynomials} of the two matroid base
+polytopes agree, even when the matroids are not isomorphic.
+
+\subsection[rookMatroidPolynomials]{Rook polynomials and width-two posets}
+
+The basis-generating polynomial of a rook matroid is
+\hyperref[lorentzianPolynomial]{Lorentzian}. Consequently, the coefficient
+sequence of $M_{\lambda/\mu}(t)$ is ultra-log-concave with no internal zeros
+\cite{BrandenHuh2020,AlexanderssonJal2024x}. Real-rootedness can still fail.
+
+The same paper gives a stability application: there is a generalized Catalan
+matroid, hence a lattice path matroid, whose basis-generating polynomial is not
+\hyperref[stablePolynomial]{stable}. Equivalently, this lattice path matroid
+does not have the half-plane property, answering a natural question about
+stability for this family of transversal matroids
+\cite{ChoeOxleySokalWagner2004,ChoeWagner2006}.
+
+The poset here is the same naturally labeled width-two poset associated with
+the lattice paths above. Under the bijection between lattice paths and
+non-nesting rook placements, the rook placements correspond to linear
+extensions of this poset $P$, and
+\[
+  M_{\lambda/\mu}(t) = W_P(t),
+\]
+where $W_P(t)$ is the $P$-Eulerian polynomial. This refines the width-two
+poset example above and is compatible with the \hyperref[weakOrder]{weak order}
+description for ordinary Ferrers shapes.
