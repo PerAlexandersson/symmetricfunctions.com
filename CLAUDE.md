@@ -72,9 +72,15 @@ Standard theorem-like environments: `definition`, `theorem`, `proposition`, `lem
   Name    & Display name \\
   Symbol  & $\schurS_\lambda$ \\
   Year    & 1900 \\
+  PositiveIn  & schur | SomeBibKey \\
+  Contains    & otherFamily \\
+  Generalizes & schur \\
+  Generalizes & hallLittlewoodP | SomeBibKey \\
   ...
 \end{polydata}
 ```
+
+Relation targets are other `polydata` ids. References are optional bibliography keys, written after `|` or in trailing brackets. Multiple relation rows with the same key are allowed, and multiple targets can also be separated by semicolons.
 
 ## Bibliography
 

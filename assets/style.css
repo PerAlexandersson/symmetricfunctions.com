@@ -648,6 +648,12 @@
   .family-index td:not(:first-child) { 
     width: 1%; white-space: nowrap;
   }
+  .family-index th.fi-relations,
+  .family-index td.fam-relations {
+    width: auto;
+    min-width: 16rem;
+    white-space: normal;
+  }
   .family-index th { cursor: pointer; user-select: none; }
   .family-index th:hover { background-color: var(--c-bg-surface); }
   
@@ -657,6 +663,33 @@
       cursor: pointer;
   }
   .family-index tbody tr a { text-decoration: none; color: inherit; display: block; }
+  .fam-relations-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .fam-relation {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    background: var(--c-bg-surface);
+    font-size: 0.9rem;
+  }
+  .family-index .fam-relation a {
+    display: inline;
+    color: var(--c-brand);
+    font-weight: 600;
+  }
+  .fam-relation-label,
+  .fam-relation-ref {
+    color: var(--c-text-muted);
+  }
+  .fam-relation-ref {
+    font-size: 0.85em;
+  }
 
   .family-index th::after {
     content: "    \21C5"; /* ⇅ */

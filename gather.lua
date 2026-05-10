@@ -303,13 +303,101 @@ local function process_tabular_cells(body)
 end
 
 
+local POLYDATA_RELATION_FIELDS = {
+  ["positivein"] = {
+    type = "positive_in",
+    label = "PositiveIn"
+  },
+  ["expands positively into"] = {
+    type = "positive_in",
+    label = "PositiveIn"
+  },
+  ["contains"] = {
+    type = "contains",
+    label = "Contains"
+  },
+  ["is superset of"] = {
+    type = "contains",
+    label = "Contains"
+  },
+  ["superset of"] = {
+    type = "contains",
+    label = "Contains"
+  },
+  ["generalizes"] = {
+    type = "generalizes",
+    label = "Generalizes"
+  },
+  ["specializes to"] = {
+    type = "generalizes",
+    label = "Generalizes"
+  },
+}
+
+local function normalize_polydata_key(key)
+  return trim(key):lower():gsub("%s+", " ")
+end
+
+local function normalize_relation_ref(ref)
+  ref = trim(ref or "")
+  if ref == "" then return "" end
+
+  local cite_body = ref:match("^\\cite%s*(%b{})%s*$")
+                 or ref:match("^\\cite%s*%b[]%s*(%b{})%s*$")
+  if cite_body then
+    ref = cite_body:sub(2, -2)
+  end
+
+  return trim((ref:gsub("@@[%w%.%-_/]+:%d+", "")))
+end
+
+local function parse_relation_items(value)
+  local items = {}
+
+  for item in (value .. ";"):gmatch("(.-)%s*;") do
+    item = trim(item)
+    if item ~= "" then
+      local target, ref = item:match("^(.-)%s*|%s*(.-)%s*$")
+      if not target then
+        target, ref = item:match("^(.-)%s*%[(.-)%]%s*$")
+      end
+
+      target = trim(target or item)
+      ref = normalize_relation_ref(ref)
+
+      if target ~= "" then
+        local record = { target = target }
+        if ref ~= "" then record.ref = ref end
+        items[#items + 1] = record
+      end
+    end
+  end
+
+  return items
+end
+
 -- Parse polydata body "Key & Value \\" lines → table
 local function parse_polydata_body(body)
   local map = {}
   for line in (body .. "\n"):gmatch("([^\n\r]+)\n") do
     local clean = line:gsub("%%.*$", ""):gsub("\\\\%s*$", "")
     local k, v = clean:match("^%s*([^&]-)%s*&%s*(.-)%s*$")
-    if k and v and k ~= "" and v ~= "" then map[trim(k)] = trim(v) end
+    if k and v and k ~= "" and v ~= "" then
+      local key = trim(k)
+      local value = trim(v)
+      local relation_spec = POLYDATA_RELATION_FIELDS[normalize_polydata_key(key)]
+
+      if relation_spec then
+        map.Relations = map.Relations or {}
+        for _, relation in ipairs(parse_relation_items(value)) do
+          relation.type = relation_spec.type
+          relation.label = relation_spec.label
+          map.Relations[#map.Relations + 1] = relation
+        end
+      else
+        map[key] = value
+      end
+    end
   end
   return map
 end

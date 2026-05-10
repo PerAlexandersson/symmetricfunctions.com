@@ -51,6 +51,15 @@ local SITEMAP_XML    = os.getenv("SITEMAP_XML") or (OUT_DIR .. "/sitemap.xml")
 -- Required fields for polydata entries
 local REQUIRED_POLYDATA_FIELDS = { "Name", "Space", "Year", "Rating" }
 
+local VALID_POLYDATA_RELATION_TYPES = {
+  positive_in = true,
+  contains = true,
+  generalizes = true,
+  expands_positively_into = true,
+  is_superset_of = true,
+  specializes_to = true,
+}
+
 
 -- ========== FILE UTILITIES ==========
 
@@ -126,8 +135,45 @@ local function extract_meta_string_list(meta, key)
 end
 
 
+--- Converts Pandoc metadata nodes to plain Lua values.
+-- Handles nested MetaMaps, MetaLists, and scalar metadata nodes.
+-- @param node any Pandoc metadata node
+-- @return any Plain Lua value
+local function meta_to_plain(node)
+  if type(node) ~= "table" then
+    return node
+  end
+
+  local node_type = node.t
+  if node_type == "MetaString" then
+    return node.c
+  elseif node_type == "MetaBool" then
+    return node.c and true or false
+  elseif node_type == "MetaList" then
+    local result = {}
+    for _, item in ipairs(node.c or {}) do
+      local value = meta_to_plain(item)
+      if value ~= nil then
+        result[#result + 1] = value
+      end
+    end
+    return result
+  elseif node_type == "MetaMap" then
+    local result = {}
+    for k, v in pairs(node.c or {}) do
+      local value = meta_to_plain(v)
+      if value ~= nil then
+        result[k] = value
+      end
+    end
+    return result
+  end
+
+  return nil
+end
+
+
 --- Extracts a map from Pandoc MetaMap, converting to plain Lua table.
--- Handles nested MetaMaps and MetaStrings.
 -- @param meta table Pandoc metadata object
 -- @param key string Field key
 -- @return table Map of strings to strings or nested maps
@@ -137,24 +183,12 @@ local function extract_meta_map(meta, key)
   if not node or node.t ~= "MetaMap" then
     return {}
   end
-  
-  local result = {}
-  
-  for k, v in pairs(node.c or {}) do
-    if type(v) == "table" and v.t == "MetaMap" then
-      -- Nested map: convert to plain table
-      local inner = {}
-      for kk, vv in pairs(v.c or {}) do
-        if type(vv) == "table" and vv.t == "MetaString" then
-          inner[kk] = vv.c
-        end
-      end
-      result[k] = inner
-    elseif type(v) == "table" and v.t == "MetaString" then
-      result[k] = v.c
-    end
+
+  local result = meta_to_plain(node)
+  if type(result) ~= "table" then
+    return {}
   end
-  
+
   return result
 end
 
@@ -313,6 +347,43 @@ local function validate_polydata(data)
         print_error("Polydata '%s' on page '%s' is missing required field '%s'", 
                     poly_id, page_id, field)
         is_valid = false
+      end
+    end
+
+    -- Check relation metadata, if present.
+    local relations = poly_entry.Relations
+    if relations ~= nil then
+      if type(relations) ~= "table" then
+        print_error("Polydata '%s' on page '%s' has malformed Relations data", 
+                    poly_id, page_id)
+        is_valid = false
+      else
+        for index, relation in ipairs(relations) do
+          if type(relation) ~= "table" then
+            print_error("Polydata '%s' on page '%s' has malformed relation #%d",
+                        poly_id, page_id, index)
+            is_valid = false
+          else
+            local relation_type = relation.type or ""
+            local target = trim(tostring(relation.target or ""))
+
+            if not VALID_POLYDATA_RELATION_TYPES[relation_type] then
+              print_error("Polydata '%s' on page '%s' has unknown relation type '%s'",
+                          poly_id, page_id, tostring(relation_type))
+              is_valid = false
+            end
+
+            if target == "" then
+              print_error("Polydata '%s' on page '%s' has relation #%d with no target",
+                          poly_id, page_id, index)
+              is_valid = false
+            elseif not data.polydata[target] then
+              print_error("Polydata '%s' on page '%s' relation '%s' points to unknown polydata '%s'",
+                          poly_id, page_id, relation_type, target)
+              is_valid = false
+            end
+          end
+        end
       end
     end
   end

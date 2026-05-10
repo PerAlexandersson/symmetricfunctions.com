@@ -175,8 +175,8 @@
     
     // Map column index to data-attribute. 
     // We use null for index 0 because we will special-case it to use textContent.
-    var columnDataMap = [null, 'space', 'category', 'year', 'rating'];
-    var directions = [1, 1, 1, 1, 1];
+    var columnDataMap = [null, 'space', 'category', 'year', 'rating', 'relations'];
+    var directions = [1, 1, 1, 1, 1, 1];
 
     var rows = Array.prototype.slice.call(tableBody.querySelectorAll('tr'));
 
