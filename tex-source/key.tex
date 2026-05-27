@@ -16,9 +16,9 @@
 \end{polydata}
 
 The \defin{key polynomials},  also known as  \defin{Demazure characters},
-is a family of non-symmetric polynomials, indexed by weak compositions, or alternatively, an integer partition and a 
+is a family of non-symmetric polynomials, indexed by \hyperref[weakCompositions]{weak compositions}, or alternatively, an integer partition and a
 permutation. The set $\{ \key_\alpha(x_1,\dotsc,x_n) \}_\alpha$ where $\alpha$
-ranges over all compositions of length $n$, is a basis for $\setC[x_1,\dotsc,x_n]$.
+ranges over all \hyperref[weakCompositions]{compositions} of length $n$, is a basis for $\setC[x_1,\dotsc,x_n]$.
 
 The key polynomials generalize the \hyperref[schurS]{Schur polynomials}.
 
@@ -112,7 +112,7 @@ In general, some monomials may appear multiple times.
 \end{example}
 
 
-Alternatively, key polynomials are also commonly indexed by weak compositions. 
+Alternatively, key polynomials are also commonly indexed by \hyperref[weakCompositions]{weak compositions}.
 If $\alpha = (\alpha_1,\dotsc,\alpha_n)$ is a weak composition,
 we let $\key_{\alpha}(z)$ be the key polynomial $\key_{\lambda,\sigma}(z)$,
 where $\lambda$ is the partition obtained from $\alpha$ by sorting the elements in decreasing order,
@@ -140,7 +140,7 @@ Recall that the \hyperref[gtpolytopes]{GT-polytope} $\GT(\lambda)$
 is defined by the interlacing inequalities
 $x_{i+1,j} \geq x_{i,j} \geq x_{i+1,j+1}$
 together with the boundary condition $x_{n,j} = \lambda_j$.
-Its integer points are in bijection with semi-standard Young tableaux of shape $\lambda$.
+Its integer points are in bijection with \hyperref[prelimTableaux]{semi-standard Young tableaux} of shape $\lambda$.
 The \hyperref[gtpatterns]{weight} of a GT-pattern $G$ is
 $w(G) = (w_1, \dotsc, w_n)$ where
 $w_k = \sum_j x_{k,j} - \sum_j x_{k-1,j}$
@@ -424,9 +424,9 @@ The key polynomial can then be computed by
 \[
   \key_\alpha(\xvec) = \sum_{\substack{T \in \SSYT(\sort(\alpha) \\ K_+(T) \leq \mathrm{key}(\alpha)}} \xvec^T
 \]
-where we sum over all semi-standard tableaux $T$ whose right key, $K_+(T)$, are entry-wise weakly smaller than $\mathrm{key}(\alpha)$.
+where we sum over all \hyperref[prelimTableaux]{semi-standard tableaux} $T$ whose right key, $K_+(T)$, are entry-wise weakly smaller than $\mathrm{key}(\alpha)$.
 
-Similarly, the Demazure atoms are given as the sum over semi-standard tableaux with a given right key:
+Similarly, the Demazure atoms are given as the sum over \hyperref[prelimTableaux]{semi-standard tableaux} with a given right key:
 \[
   \atom_\alpha(\xvec) = \sum_{\substack{T \in \SSYT(\sort(\alpha) \\ K_+(T) = \mathrm{key}(\alpha)}} \xvec^T
 \]
@@ -707,5 +707,3 @@ A crystal characterization is also given, as well as analogs of key tableaux.
 See \cite{FuLascoux2009} for definitions of key polynomials in other types.
 These are related to the \hyperref[schurOrthogonal]{orthogonal} 
 and \hyperref[schurSymplectic]{symplectic} Schur functions.
-
-

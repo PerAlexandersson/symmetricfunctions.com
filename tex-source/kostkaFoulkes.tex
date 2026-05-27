@@ -390,7 +390,7 @@ LittlewoodRichardson[lam_List, mu_List, nu_List] :=
         -
         (nnu + 2 delta)},
      (-1)^Inversions[sigma[[tau]]]
-      Length[KonstantPartitionFunction[vec]]
+      Length[KostantPartitionFunction[vec]]
      ]
     , {sigma, perms}, {tau, perms}]
    ];
@@ -420,7 +420,7 @@ where $\rho = \tfrac12 (\ell-1,\ell-3,\dotsc,1-\ell)$.
 \name{Sagar Shrivastava} \cite{Shrivastava2022x} provides a modern proof of this formula.
 
 A generalization of this formula exists 
-for \hyperref[toricSchurIntoSchur]{Gromow--Witten invariants},
+for \hyperref[toricSchurIntoSchur]{Gromov--Witten invariants},
 which show up in the study of \hyperref[schurToric]{toric Schur functions}.
 
 
@@ -519,7 +519,7 @@ Given a word $w$ with content $\mu \vdash n$,
 partition its entries into \defin{standard subwords} as follows.
 Start from the right of $w$ and mark the first occurrence of $1$.
 Proceed to the left and mark the first occurrence of $2$,
-then $3$ and so on, wrapping around the end if nessecary,
+then $3$ and so on, wrapping around the end if necessary,
 until $\mu'_1$ entries have been marked.
 This subword is the first standard subword of $w$.
 Remove this subword, and repeat the process to find the second standard subword,
@@ -743,7 +743,7 @@ Using the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}, one can sho
 where $N_{\mu\nu}$ is the number of $n \times n$-matrices with entries in $\setN$,
 row sums are determined by $\mu$ and column-sums are determined by $\nu$.
 
-There is a $q$-analogue of this in the case $\nu=1^n$, see \cite[Corolloary 1.3]{Kirillov2000}.
+There is a $q$-analogue of this in the case $\nu=1^n$, see \cite[Corollary 1.3]{Kirillov2000}.
 \[
 \sum_{\lambda \vdash n}  K_{\lambda \mu} K_{\lambda, 1^n}(q) = q^{n(\mu')} \qbinom{n}{\mu_1,\dotsc,\mu_\ell}_q.
 \]
@@ -829,7 +829,7 @@ Several conjecture regarding this special case appear in \href{https://www.aimat
 In particular, there is a connection with \hyperref[LLT]{LLT polynomials}.
 
 When the part sizes in the rectangles $R^j$ are weakly decreasing, we have a \defin{dominant sequence of rectangles}.
-In this case, it is knonw that $K_{\lambda,R}(q) \in \setN[q]$, via a rigged configuration proof.
+In this case, it is known that $K_{\lambda,R}(q) \in \setN[q]$, via a rigged configuration proof.
 A charge formula is conjectured in \cite[Conj. 27]{ShimozonoWeyman2000},
 and later proved by \name{Mark Shimozono} \cite[Thm. 11]{Shimozono2001}.
 There,

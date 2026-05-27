@@ -177,6 +177,78 @@ Then $\{f_1,\dotsc,f_n\}$ is an interlacing sequence.
 \end{proposition}
 
 
+\subsection[fullyInterlacingLace]{Fully interlacing sequences and the $\operatorname{Lace}$ matrix}
+
+A stronger coefficient-level version of interlacing was introduced by
+\name{Christos A. Athanasiadis} and \name{David G. Wagner}
+\cite{AthanasiadisWagner2024}.
+
+\begin{definition}[The $\operatorname{Lace}$ matrix]
+Let $A=(A_{ij}(x))$ be a $p \times q$ matrix of formal power series, indexed by
+$0 \leq i \lt p$ and $0 \leq j \lt q$, and write
+\[
+ A_{ij}(x)=\sum_{n\geq 0} a_{ij}(n)x^n,
+\]
+with $a_{ij}(n)=0$ for $n \lt 0$.
+The infinite matrix $\operatorname{Lace}(A)$ has integer rows and columns.
+If
+\[
+ u=pu' + i,\qquad v=qv' + j,\qquad 0\leq i \lt p,\quad 0\leq j \lt q,
+\]
+then
+\[
+ \operatorname{Lace}(A)_{u,v}=a_{ij}(v'-u').
+\]
+Equivalently, $\operatorname{Lace}(A)$ is the block Toeplitz
+coefficient-convolution matrix associated to multiplication by $A$.
+\end{definition}
+
+For a column vector $A=(A_0,A_1,\dotsc,A_{p-1})^T$, Athanasiadis--Wagner call
+the sequence \defin{fully interlacing} if $\operatorname{Lace}(A)$ is
+\hyperref[totallyNonnegative]{totally non-negative}.  Thus every finite minor
+of this infinite coefficient-convolution matrix is non-negative.
+
+Full interlacing implies ordinary pairwise interlacing, but the converse is
+false. The distinction is useful: pairwise interlacing is a root-level
+condition, whereas full interlacing is a total-nonnegativity condition on a
+structured coefficient matrix.
+
+
+Whenever the product $AB$ is defined,
+\[
+ \operatorname{Lace}(AB)=\operatorname{Lace}(A)\operatorname{Lace}(B).
+\]
+This is convenient, since totally non-negative matrices are closed under multiplication.
+
+
+\begin{example*}[Pairwise interlacing need not be fully interlacing]
+The following example is from \cite[Ex.~3.4]{AthanasiadisWagner2024}.  Let
+\[
+ P(x)=t+x,\qquad Q(x)=(b+x)(d+x),\qquad R(x)=(a+x)(c+x).
+\]
+If
+\[
+ a \leq b \leq t \leq c \leq d,
+\]
+then $P,Q,R$ are pairwise interlacing.  However, the $3\times 3$ minor
+\[
+ \begin{pmatrix}
+ t   & 1   & 0 \\
+ bd  & b+d & 1 \\
+ ac  & a+c & 1
+ \end{pmatrix}
+\]
+of $\operatorname{Lace}((P,Q,R)^T)$ has determinant
+\[
+ t(b+d-a-c)-(bd-ac),
+\]
+which can be negative.  For example, with
+$a=1$, $b=2$, $t=2$, $c=3$, and $d=4$, this determinant is $-1$.
+Thus ordinary pairwise interlacing does not imply full interlacing.
+\end{example*}
+
+
+
 \subsection[realMatrixRecursion]{Matrices preserving interlacing sequences}
 
 
@@ -198,7 +270,6 @@ $\lambda, \mu > 0$, we have
 \]
 \end{enumerate}
 \end{theorem}
-
 
 
 \begin{example*}[Minors preserving interleaving sequences]
@@ -257,7 +328,7 @@ Then the following are equivalent:
 \item $f_1,\dotsc,f_k$ have a common interlacing.
 \end{itemize}
 \end{theorem}
-This theorem can be generalized to polynomials with arbitary real
+This theorem can be generalized to polynomials with arbitrary real
 coefficients (with negative leading coefficients), see \cite{LeakeRyder2024x}.
 
 Another very interesting technique is presented in \cite{Bencs2014},

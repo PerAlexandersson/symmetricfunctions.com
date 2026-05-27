@@ -87,14 +87,14 @@ These are indexed by $k$-tuples $\nuvec$ of skew Young diagrams. When $k=1$,
 we recover a single skew Schur function.
 The Bylund--Haiman model is described in \cite{HaglundHaimanLoehr2005} where it is proved that 
 the two models are equivalent. The proof uses a version of the \hyperref[littlewoodMap]{Littlewood map},
-which sends ribbon tableaux to tuples of semistandard Young tableaux.
+which sends ribbon tableaux to tuples of \hyperref[prelimTableaux]{semistandard Young tableaux}.
 
 
 Given a $k$-tuple of skew-shapes $\nuvec$, let 
 \[
 \SSYT(\nuvec) = \SSYT(\nuvec^1) \times \SSYT(\nuvec^2)\times \dotsm \times \SSYT(\nuvec^k)
 \]
-where $\SSYT(\lambda)$ is the set of skew semistandard Young tableaux of shape $\lambda$.
+where $\SSYT(\lambda)$ is the set of skew \hyperref[prelimTableaux]{semistandard Young tableaux} of shape $\lambda$.
 For $T = (T^1,T^2,\dotsc,T^k) \in \SSYT(\nuvec)$,
 let $\xvec^T$ denote the product $\xvec_{T^1}\dotsm \xvec_{T^k}$ where $\xvec_{T^i}$
 is the usual weight of the semistandard Young tableau $T^i$.
@@ -204,7 +204,7 @@ The proof uses the \hyperref[fockSpace]{Fock space} representation of $U_q(\wide
 
 \name{Ian Grojnowski} and \name{Mark Haiman} prove in an unpublished preprint, \cite{GrojnowskiHaiman2006},
 that all LLT polynomials $\LLT_\nuvec(\xvec;q)$ for arbitrary tuples of skew shapes, are Schur-positive.
-They use Hecke algebras and deep representation theory --- their proof does not give a 
+They use \hyperref[heckeAlgebra]{Hecke algebras} and deep representation theory --- their proof does not give a
 combinatorial formula for the Schur coefficients.
 
 Some partial progress on a combinatorial proof of Schur positivity is given in \cite{Roberts2013}.
@@ -330,7 +330,7 @@ In particular, the Hilbert series is given by
  \langle \LLT_{\avec}(\xvec;q), \completeH_{1^n} \rangle = \sum_{\sigma \in \symS_n} q^{\asc(\sigma)}.
 \]
 
-The unicellular LLT polynomials are also evaluations of certain traces of Hecke algebras,
+The unicellular LLT polynomials are also evaluations of certain traces of \hyperref[heckeAlgebra]{Hecke algebras},
 see \cite{MoralesSkanderaWang2024}. There is a close connection with Kazhdan--Lusztig polynomials.
 
 
@@ -370,7 +370,7 @@ it is straightforward to see that in the special case of unicellular LLT polynom
 
 \begin{conjecture}[See \cite{LeclercThibon2000}]
 
-There is a statistic $c_\avec(T)$ on standard Young tableaux depending on $\avec$, such that
+There is a statistic $c_\avec(T)$ on \hyperref[prelimTableaux]{standard Young tableaux} depending on $\avec$, such that
 \[
 \LLT_{\avec}(\xvec;q) = \sum_{T \in \SYT(n)} q^{c_\avec(T)} \schurS_{\lambda(T)}.
 \]
@@ -382,7 +382,7 @@ it follows that we must have the following relationship
 \]
 where in the left hand side we sum over all vertex-colorings of $\Gamma_\avec$
 using the $n$ different colors $1,\dotsc,n$ and $f^\lambda$ is the number of
-standard Young tableaux of shape $\lambda$.
+\hyperref[prelimTableaux]{standard Young tableaux} of shape $\lambda$.
 \end{conjecture}
 
 
@@ -604,4 +604,3 @@ See also \cite{BrubakerBuciumasBumpGustafsson2020} where \defin{metaplectic symm
 \section[lltFactorial]{Factorial LLT polynomials}
 
 In \cite{AggarwalBorodinWheeler2023}, the authors introduce the notion of \defin{factorial LLT polynomials}.
-

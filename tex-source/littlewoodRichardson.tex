@@ -55,7 +55,7 @@ is determined by the \defin{Horn inequalities}, see \cite{Klyachko1998,KnutsonTa
 \subsection[lrTableaux]{Littlewood--Richardson tableaux}
 
 The Littlewood--Richardson rule states that $c^{\lambda}_{\mu\nu}$ counts the number of
-skew semistandard Young tableaux of shape $\lambda/\mu$ with content $\nu$,
+skew \hyperref[prelimTableaux]{semistandard Young tableaux} of shape $\lambda/\mu$ with content $\nu$,
 with the additional restriction that the concatenation of the reversed rows is a \defin{lattice word}.
 A word $w_1,\dotsc,w_\ell$ is a lattice word if every prefix has the property that its content is a partition.
 That is, the number of times $i$ appears in the prefix is at least as many as $i+1$, for every $i$.
@@ -85,7 +85,7 @@ Consequently, $c^{542}_{32,321}=2$.
 
 In \cite[Cor. 5.4.8 ]{Lothaire2002}, they give the following 
 characterization of Littlewood--Richardson coefficients: 
-$c^{\lambda}_{\mu\nu}$ is the number of semistandard Young tableaux $T$
+$c^{\lambda}_{\mu\nu}$ is the number of \hyperref[prelimTableaux]{semistandard Young tableaux} $T$
 with shape $\nu$, and content $\lambda-\mu$ such that
 $\rw(t) \cdot \ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{\mu_1}$ is a Yamanouchi word.
 
@@ -96,8 +96,8 @@ one can show that this is equivalent to the following model.
 \subsection[lrMolevSagan]{Semistandard Young tableaux II}
 
 In \cite{FominGreene1993,MolevSagan1999}, the following model is described.
-$c^{\lambda}_{\mu\nu}$ is the number of semistandard 
-Young tableaux $T$ with shape $\mu$, with the property that 
+$c^{\lambda}_{\mu\nu}$ is the number of \hyperref[prelimTableaux]{semistandard Young tableaux} $T$
+with shape $\mu$, with the property that
 the column index reading word of $T$, \defin{fits} the skew shape $\lambda/\mu$.
 That is, we take the column reading word of $T$, reading columns right to left.
 This gives a word $w$. For each entry $w_i$, we put an entry $i$ in row $w_i$,
@@ -154,7 +154,7 @@ c^{\lambda}_{\mu\nu} = \left|  T \in \SSYT(\nu, \lambda - \mu) : \charge( \rw(T)
 \right|.
 \]
 That is, $c^{\lambda}_{\mu\nu}$ is equal 
-to the number of semistandard Young tableaux
+to the number of \hyperref[prelimTableaux]{semistandard Young tableaux}
 of shape $\nu$ and content $\lambda - \mu$ such that the reading word postfixed with
 $\ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{\mu_1}$ has \hyperref[kostkaFoulkes]{charge} equal to zero.
 
@@ -394,4 +394,3 @@ Littlewood--Richardson coefficients.
 
 See also \name{Matthew J. Samuel}'s \href{https://pypi.org/project/schubmult/}{Python package for computing products of Schubert polynomials} which,
 in particular, can compute Littlewood--Richardson coefficients.
-
