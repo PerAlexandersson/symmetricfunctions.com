@@ -38,7 +38,6 @@ and the bases being all $r$-element subsets of $[n]$.
 
 
 
-
 \subsection[matroidRank]{Rank functions}
 
 A matroid can also be defined via a \emph{rank function}.
@@ -193,6 +192,7 @@ All graphic matroids are regular.
 A \defin{partition matroid} is a direct sum of uniform matroids. This family is closed under minors and duality.
 All partition matroids are \hyperref[latticePathMatroids]{lattice path matroids}.
 
+
 \subsection[transversalMatroids]{Transversal matroids}
 
 \begin{definition}
@@ -263,10 +263,26 @@ The family of \hyperref[latticePathMatroids]{lattice path matroids} was
 introduced by \name{Joseph Bonin}, \name[A. de Mier]{Anna de Mier} and
 \name{Marc Noy} \cite{BoninMierNoy2003}. This family is closed under all
 matroid minors (deletions and contractions) and also under matroid duality.
-All lattice path matroids are transversal matroids.
+All lattice path matroids are transversal matroids, and they are also
+\hyperref[positroid]{positroids} \cite{Oh2011}.
 
 For examples, Dyck path models and the connection with width-two posets, see
 \hyperref[latticePathMatroids]{the separate page on lattice path matroids}.
+
+
+\subsection[matroidPositroidSummary]{Positroids}
+
+A \defin{positroid} is a matroid on a cyclically ordered ground set that is
+represented by a totally nonnegative matrix. Positroids were introduced by
+\name{Alexander Postnikov} in the study of the totally nonnegative
+Grassmannian \cite{Postnikov2006x}.
+
+They form a minor-closed family of representable matroids, closed also under
+duality and cyclic shifts of the ground set. Important examples include
+Schubert matroids, \hyperref[latticePathMatroids]{lattice path matroids} and
+\hyperref[rookMatroids]{rook matroids}. For the Grassmann-necklace,
+network and polytope descriptions, see \hyperref[positroid]{the page on
+positroids}.
 
 
 
@@ -355,7 +371,7 @@ is the convex hull of
 We let $\xvec(S) \coloneqq \sum_{i \in S} x_i$.
 
 \begin{theorem}
-The matroid base polytope is precicely the polytope defined by the following set of inequalities:
+The matroid base polytope is precisely the polytope defined by the following set of inequalities:
 \begin{equation}
   \xvec(S) \leq r(S) \text{ for all $S \subseteq E$}, \qquad x_i \geq 0 \text{ for all $i \in [n]$},
 \end{equation}
@@ -366,6 +382,10 @@ The matroid base polytope is a \defin{generalized permutohedron}.
 Every matroid base polytope has a \defin{regular unimodular triangulation}, see \cite{BackmanLiu2023x}.
 This implies that the base polytope satisfies the integer decomposition property,
 which was known before, see \cite{GijswijtRegts2012}.
+
+For \hyperref[positroid]{positroids}, the matroid base polytope has a
+particularly simple description using only cyclic intervals in the ground
+set; see \hyperref[positroidPolytopes]{positroid polytopes}.
 
 
 \section[matroidCharacteristicPolynomial]{The characteristic polynomial of a matroid}

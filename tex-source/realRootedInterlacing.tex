@@ -104,7 +104,7 @@ The notion of \defin{Sturm-unimodality} is defined in the analogous manner.
 There are many Sturm sequences on \hyperref[realRootedWords]{permutations} and \hyperref[realRootedCatalan]{Catalan objects}.
 
 
-\subsection[bezoutMatrix]{Bézout matrices}
+\subsection[bezoutMatrix]{Bézout matrices and Hurwitz--Lace}
 
 For arbitrary polynomials $f(t)$ and $g(t)$ with $\deg(f) = \deg(g)+1$,
 let $B(f,g)$ be the \defin{Bézout matrix}, whose $(i,j)$ entry is equal to the coefficient of $x^{i-1} y^{j-1}$ in the polynomial
@@ -119,6 +119,35 @@ if and only if $B(f,g)$ is positive definite.
 \end{theorem}
 
 
+
+\begin{theorem}[Hurwitz--Lace criterion]
+Let
+\[
+p_0(t)=a_0+a_1t+a_2t^2+\dotsb,\qquad
+p_1(t)=b_0+b_1t+b_2t^2+\dotsb
+\]
+have non-negative coefficients. Form the Hurwitz matrix
+\[
+H(p_0,p_1)=
+\begin{pmatrix}
+b_0 & b_1 & b_2 & b_3 & \dotsb \\
+a_0 & a_1 & a_2 & a_3 & \dotsb \\
+0   & b_0 & b_1 & b_2 & \dotsb \\
+0   & a_0 & a_1 & a_2 & \dotsb \\
+0   & 0   & b_0 & b_1 & \dotsb \\
+0   & 0   & a_0 & a_1 & \dotsb \\
+\vdots & \vdots & \vdots & \vdots & \ddots
+\end{pmatrix}.
+\]
+Then \(H(p_0,p_1)\) is \hyperref[totallyNonnegative]{totally non-negative} if and only if \(p_1 \interl p_0\).
+\end{theorem}
+
+This criterion packages interlacing roots as total non-negativity of a
+structured Hurwitz matrix.  It is closely related to the
+\name{Hermite--Biehler} and \name{Routh--Hurwitz} criteria; see
+\cite{Holtz2003}.  The block-Toeplitz and network viewpoint is discussed in
+\cite[Sec.~4]{Angarone2023x}, and weak/quasi-stable boundary cases are treated
+in \cite{AdmGarloffTyaglov2017}.
 
 
 

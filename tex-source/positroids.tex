@@ -1,0 +1,228 @@
+\metatitle{Positroids}
+\metadescription{Background on positroids, including the totally nonnegative Grassmannian, Grassmann necklaces, planar networks, lattice path matroids, and rook matroids.}
+
+
+\section[positroid]{Positroids}
+
+A \defin{positroid} is a \hyperref[matroid]{matroid} that is represented by
+a point in the totally nonnegative Grassmannian. Positroids were introduced by
+\name{Alexander Postnikov} in his study of total positivity, Grassmannians and
+planar networks \cite{Postnikov2006x}.
+
+The cyclic order on the ground set is part of the structure. Thus one usually
+works with matroids on $[n]$ with its standard cyclic order
+\[
+  1,2,\dotsc,n,1,\dotsc .
+\]
+An arbitrary relabeling of a positroid need not preserve the positroid
+property.
+
+Let $A$ be a real $k\times n$ matrix of rank $k$, with columns labeled by
+$[n]$. For $I\in \binom{[n]}{k}$, let $\Delta_I(A)$ be the maximal minor using
+the columns indexed by $I$. The row span of $A$ is a point in the Grassmannian
+$\mathrm{Gr}(k,n)$, and it is \defin{totally nonnegative} if $A$ can be chosen
+so that
+\[
+  \Delta_I(A) \geq 0
+  \qquad \text{for all } I\in \binom{[n]}{k}.
+\]
+The nonzero Pl{\"u}cker coordinates then define a matroid:
+\[
+  \mathcal{B}(A)
+  =
+  \{ I\in \binom{[n]}{k} : \Delta_I(A) > 0 \}.
+\]
+A rank $k$ matroid on $[n]$ is a \defin{positroid} if it is of the form
+$([n],\mathcal{B}(A))$ for such a totally nonnegative matrix $A$.
+
+Equivalently, positroids index the cells in the totally nonnegative
+Grassmannian:
+\[
+  \Pi_M =
+  \left\{
+    X\in \mathrm{Gr}(k,n)_{\geq 0} :
+    \Delta_I(X) > 0 \text{ if and only if } I\in \mathcal{B}(M)
+  \right\}.
+\]
+Postnikov proved that these cells are nonempty precisely for positroids
+\cite{Postnikov2006x}.
+
+
+\subsection[positroidGrassmannNecklace]{Grassmann necklaces}
+
+There are several useful combinatorial encodings of positroids, including
+decorated permutations, Grassmann necklaces, Le-diagrams and reduced plabic
+graphs. The Grassmann-necklace description is close to the language of
+Schubert matroids.
+
+For $a\in [n]$, let $\leq_a$ be the cyclic order
+\[
+  a \lt_a a+1 \lt_a \dotsb \lt_a n \lt_a 1 \lt_a \dotsb \lt_a a-1.
+\]
+If $I=\{i_1\lt_a \dotsb \lt_a i_k\}$ and
+$J=\{j_1\lt_a \dotsb \lt_a j_k\}$, write $I\leq_a J$ if
+$i_s\leq_a j_s$ for every $s$.
+
+A \defin{Grassmann necklace} of type $(k,n)$ is a sequence
+\[
+  \mathcal{I}=(I_1,I_2,\dotsc,I_n),
+  \qquad I_a\in \binom{[n]}{k},
+\]
+such that, with indices taken modulo $n$,
+\[
+  I_{a+1}=I_a \quad \text{if } a\notin I_a,
+\]
+and
+\[
+  I_{a+1}=(I_a\setminus \{a\})\cup \{b\}
+  \quad \text{for some } b\in [n] \text{ if } a\in I_a.
+\]
+
+Given a Grassmann necklace $\mathcal{I}$, define
+\[
+  \mathcal{B}(\mathcal{I})
+  =
+  \left\{
+    J\in \binom{[n]}{k} :
+    I_a \leq_a J \text{ for all } a\in [n]
+  \right\}.
+\]
+The condition $I_a\leq_a J$ says that $J$ is a basis in a Schubert matroid
+with respect to the cyclic order $\leq_a$. Hence
+$\mathcal{B}(\mathcal{I})$ is an intersection of cyclically shifted Schubert
+conditions.
+
+\begin{theorem}[Postnikov; Oh, \cite{Postnikov2006x,Oh2011}]
+The collection $\mathcal{B}(\mathcal{I})$ is the set of bases of a positroid.
+Conversely, every positroid arises uniquely in this way from its Grassmann
+necklace.
+\end{theorem}
+
+For a positroid $M$, the set $I_a$ in the corresponding Grassmann necklace is
+the lexicographically minimal basis of $M$ with respect to the cyclic order
+$\leq_a$.
+
+
+\subsection[positroidNetworks]{Planar networks and plabic graphs}
+
+Planar networks give a concrete source of totally nonnegative matrices.
+Consider an acyclic directed planar network with boundary vertices labeled by
+$[n]$, and put nonnegative weights on the edges. A boundary measurement matrix
+records weighted sums of paths from boundary sources to boundary sinks. By the
+\hyperref[lgvLemma]{Lindstr\"om--Gessel--Viennot lemma}, its maximal minors are
+sums of weights of non-intersecting path families, and hence are nonnegative.
+The sets of boundary vertices that occur as nonzero maximal minors form a
+positroid.
+
+Postnikov showed that every positroid can be obtained from such planar
+network data, equivalently from a reduced plabic graph
+\cite{Postnikov2006x}. This is one reason positroids occur naturally in
+families built from lattice paths and planar placements.
+
+
+\section[positroidExamples]{Examples of positroids}
+
+\begin{example}[Uniform matroids]
+Every uniform matroid $U_{k,n}$ is a positroid. Choose real numbers
+$t_1\lt t_2\lt \dotsb \lt t_n$ and let
+\[
+  A =
+  \begin{bmatrix}
+    1 & 1 & \dotsb & 1 \\
+    t_1 & t_2 & \dotsb & t_n \\
+    \vdots & \vdots & & \vdots \\
+    t_1^{k-1} & t_2^{k-1} & \dotsb & t_n^{k-1}
+  \end{bmatrix}.
+\]
+For $I=\{i_1\lt \dotsb \lt i_k\}$, the minor $\Delta_I(A)$ is the Vandermonde
+determinant
+\[
+  \prod_{1\leq p\lt q\leq k} (t_{i_q}-t_{i_p}),
+\]
+which is positive. Thus every $k$-subset of $[n]$ is a basis.
+\end{example}
+
+\begin{example}[Schubert matroids]
+Let $I=\{i_1\lt \dotsb \lt i_k\}\subseteq [n]$. The corresponding Schubert
+matroid has bases
+\[
+  \{j_1\lt \dotsb \lt j_k\}
+  \qquad \text{with} \qquad
+  i_s\leq j_s \text{ for all } s.
+\]
+Schubert matroids, and their cyclic shifts, are positroids. More generally,
+positroids are exactly the compatible intersections of these cyclic Schubert
+matroids described by Grassmann necklaces \cite{Oh2011}.
+\end{example}
+
+\begin{example}[Lattice path matroids]
+Every lattice path matroid is a positroid \cite{Oh2011}. In particular, the
+Catalan matroids obtained from Dyck paths are positroids. For the definition
+and examples, see \hyperref[latticePathMatroids]{the page on lattice path
+matroids}.
+\end{example}
+
+\begin{example}[Rook matroids]
+Alexandersson and Jal proved that every rook matroid is a positroid
+\cite{AlexanderssonJal2024x}. For the construction from non-nesting rook
+placements on skew Ferrers boards, see \hyperref[rookMatroids]{the rook
+matroids section}.
+\end{example}
+
+
+\section[positroidProperties]{Basic properties}
+
+Positroids inherit many of the usual features of representable matroids, but
+with extra compatibility with the cyclic order on $[n]$.
+
+\subsection[positroidOperations]{Operations preserving positroids}
+
+Positroids are closed under cyclic shifts of the ground-set order,
+\hyperref[matroidDuality]{matroid duality}, restriction, deletion and
+contraction. In particular, every \hyperref[matroidMinors]{minor} of a
+positroid is again a positroid \cite{ArdilaRinconWilliams2014}.
+
+In the Grassmannian picture, duality corresponds to passing from a subspace
+to its orthogonal complement, while deletion and contraction correspond to
+removing or forcing a boundary element.
+
+Direct sums require some compatibility with the cyclic order. If the summands
+occupy cyclic intervals, or more generally the blocks of a non-crossing
+partition of the ground set, then the direct sum of positroids is again a
+positroid \cite{ArdilaRinconWilliams2014}.
+
+
+\subsection[positroidPolytopes]{Positroid polytopes}
+
+Let $M$ be a rank $k$ positroid on $[n]$. Its
+\hyperref[matroidPolytopes]{matroid base polytope} is
+\[
+  P_M = \operatorname{conv}\{\mathbf{e}_B : B\in \mathcal{B}(M)\}
+  \subseteq \setR^n.
+\]
+For a cyclic interval $[i,j]$, write
+\[
+  x_{[i,j]} \coloneqq \sum_{a\in [i,j]} x_a.
+\]
+Then $P_M$ can be described by the hypersimplex equation
+\[
+  x_1+x_2+\dotsb+x_n = k,
+\]
+the inequalities $x_i\geq 0$, and inequalities of the form
+\[
+  x_{[i,j]} \leq r_M([i,j])
+\]
+for cyclic intervals $[i,j]\subseteq [n]$. Conversely, a matroid on $[n]$ is
+a positroid if and only if its base polytope admits such a cyclic-interval
+description \cite{ArdilaRinconWilliams2014}.
+
+Thus positroid polytopes form a distinguished subclass of matroid base
+polytopes with far fewer defining rank inequalities than a general matroid
+base polytope. Moreover, every face of a positroid polytope is again a
+positroid polytope, and the face poset embeds naturally into a poset of
+weighted non-crossing partitions \cite{ArdilaRinconWilliams2014}.
+
+The closure of a positroid cell in the ordinary Grassmannian is called a
+\defin{positroid variety}. These varieties include Schubert varieties and are
+one of the geometric reasons that Schubert matroids and their cyclic shifts
+appear in the combinatorics of positroids.
