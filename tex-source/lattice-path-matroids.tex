@@ -19,7 +19,7 @@ the internal and external activity for the bases.
 
 \begin{example}
 \begin{figure}
- \svgimg[width=0.3\textwidth]{./svg-images/latticepath-matroid.svg}{A skew Ferrers shape and labeling of the East steps.}
+ \svgimg[width=0.2\textwidth]{./svg-images/latticepath-matroid.svg}{A skew Ferrers shape and labeling of the East steps.}
 \end{figure}
 \end{example}
 
@@ -44,7 +44,7 @@ The corresponding skew shape is the Young diagram $\lambda/\mu$ with
 \)
 Numbering the skew boxes by the elements of $A_5,\dots,A_1$ gives
 \begin{figure}
-\svgimg[width=0.3\textwidth]{./svg-images/latticepath-matroid2.svg}{The skew Ferrers shape and labeling of the North steps.}
+\svgimg[width=0.2\textwidth]{./svg-images/latticepath-matroid2.svg}{The skew Ferrers shape and labeling of the North steps.}
 \end{figure}
 
 
@@ -88,6 +88,12 @@ The peaks are marked with the corresponding set and the shaded boxes are those b
 \end{figure}
 A basis of the lattice path matroid is then a selection of squares on the diagonal, $d_1,d_2,\dotsc,d_k$
 such that peak $i$ "can see" the square $d_i$. Here, $k$ is the number of peaks.
+
+
+In this model, the rank of the lattice path matroid is the number of peaks of the Dyck path,
+and the dimension of its base polytope is the number of non-zero entries in the area sequence.
+Area sequences of the form $[0,1,2,\dotsc,k,k,\dotsc,k]$ correspond to uniform matroids.
+A combinatorial formula for the $h^*$-vector is provided in \cite{Kim2020}, see also \cite{Li2012}.
 
 
 %If the Dyck path contains $N^2 E N^2 E^2 N E^2$ as a subsequence, then we have Q6.
@@ -145,19 +151,15 @@ $\mathcal{R}_{\lambda/\mu}$ is the set of bases of a
 For the skew shape $\lambda/\mu = (4,3,2)/(1)$, the rows are labeled
 $1,2,3$ and the columns are labeled $4,5,6,7$. The placement below is
 non-nesting:
-\[
 \begin{ytableau}
-\none & \none[4] & \none[5] & \none[6] & \none[7] \\
-\none[1] & \none &  &  & \bullet \\
-\none[2] &  &  &  \\
-\none[3] & \bullet &
+\none & \none 4 & \none 5 & \none 6 & \none 7 \\
+\none 1 & \none &  &  & \bullet \\
+\none 2 &  &  &  \\
+\none 3 & \bullet &
 \end{ytableau}
-\]
+
 Here row $2$ is unoccupied and columns $4$ and $7$ are occupied, so this
-placement gives the basis
-\[
-  R(\rho)\cup C(\rho) = \{2,4,7\}.
-\]
+placement gives the basis $R(\rho)\cup C(\rho) = \{2,4,7\}.$
 \end{example}
 
 \begin{example}
@@ -278,19 +280,9 @@ takes the same value on them. This implies, in particular, that the Tutte
 polynomials agree and that the \hyperref[ehrhart]{Ehrhart polynomials} of the two matroid base
 polytopes agree, even when the matroids are not isomorphic.
 
+The base polytopes of lattice path matroids have positive Ehrhart coefficients, see \cite{FerroniMoralesPanova2026x}.
 
 
-\todo{
-  This paper shows Ehrhart positivity.
-@article{FerroniMoralesPanova2026x,
-  author = {Luis Ferroni and Alejandro H. Morales and Greta Panova},
-  title = {Ehrhart positivity for lattice path matroids},
-  year = {2026},
-  eprint = {2605.22673},
-  url = {https://arxiv.org/abs/2605.22673},
-  journal = {arXiv e-prints}
-}
-}
 
 
 \subsection[rookMatroidPolynomials]{Rook polynomials and width-two posets}
