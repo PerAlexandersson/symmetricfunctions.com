@@ -1,0 +1,271 @@
+\metatitle{Dot action and Hessenberg varieties}
+\metadescription{A computational and representation-theoretic guide to Tymoczko's dot action on regular semisimple Hessenberg varieties, its GKM description, and its connection with chromatic quasisymmetric functions.}
+
+
+\section[dotAction]{The dot action}
+
+The \defin{dot action} is a representation of $\symS_n$ on the cohomology
+of certain \hyperref[hessenbergVarieties]{Hessenberg varieties}.
+It was introduced by \name{Julianna Tymoczko} in the setting of equivariant
+cohomology \cite{Tymoczko2008,Tymoczko2008b}.
+For regular semisimple Hessenberg varieties, this action gives the
+representation-theoretic side of the Shareshian--Wachs conjecture.
+The conjecture was proved by \name{Patrick Brosnan} and \name{Timothy Chow}
+\cite{BrosnanChow2018}, and independently by \name{Mathieu Guay-Paquet}
+\cite{GuayPaquet2016x}.
+
+The broader chromatic symmetric function background is discussed on the
+\hyperref[chromaticQuasisymmetricHessenberg]{chromatic quasisymmetric
+function page}.  Here we isolate the representation-theoretic mechanism:
+start with a Hessenberg sequence, build the GKM (\name{Mark Goresky}, \name{Robert Kottwitz}, and \name{Robert MacPherson}) model for equivariant
+cohomology, descend the dot action to ordinary cohomology, and finally convert
+the resulting graded characters into a
+\hyperref[frobeniusCharacteristic]{Frobenius characteristic}.
+
+
+\subsection[dotActionHessenbergSequence]{Hessenberg sequences and varieties}
+
+A \defin{Hessenberg sequence} is a weakly increasing sequence
+$m=(m_1,\dotsc,m_n)$ such that
+\[
+i\leq m_i\leq n
+\qquad\text{for all } i.
+\]
+Equivalently, it is a Hessenberg function $m:[n]\to[n]$ with
+$m(i)\geq i$.  This is the same data that appears in the area-sequence
+description of \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graphs},
+although the indexing convention depends on whether one starts from the
+Hessenberg function or from the Dyck-diagram picture.  In the diagram convention
+used on the chromatic quasisymmetric function page, the Hessenberg sequence
+records the number of non-square boxes in each row of the extended
+$n\times n$ diagram; for instance the area sequence
+$(0,1,2,1,1)$ corresponds to $m=(2,3,5,5,5)$.  We write $\avec$ for the
+corresponding area sequence and $\Gamma_\avec$ for the associated graph.
+
+Let $F(n)$ be the set of all flags
+\[
+F_1\subset F_2\subset \dotsb \subset F_n=\setC^n,
+\qquad
+\dim F_i=i.
+\]
+Let $D$ be a diagonal $n\times n$ matrix with distinct diagonal entries.
+The \defin{type $A$ regular semisimple Hessenberg variety} associated with
+$m$ is
+\[
+H(m)
+\coloneqq
+\{F\in F(n):D F_i\subseteq F_{m_i}\text{ for all }i\}.
+\]
+For background on this construction, see the thesis of \name{Nicholas Teff}
+\cite{Teff2013} and \href{https://math.dartmouth.edu/~orellana/wachs.pdf}{these
+slides}.
+
+The same sequence also determines a natural unit interval graph
+$\Gamma_\avec$ on vertex set $[n]$.  In the standard Hessenberg-function
+convention, we place an edge $\{i,j\}$, with $i \lt j$, whenever
+\[
+j\leq m_i.
+\]
+For this graph, the Shareshian--Wachs chromatic quasisymmetric function is
+\[
+\chrom_{\Gamma_\avec}(\xvec;q)
+ =
+\sum_{\substack{\kappa:[n]\to\setP\\ \kappa \text{ proper}}}
+x_{\kappa(1)}\dotsm x_{\kappa(n)}q^{\asc(\kappa)},
+\]
+where the orientation is the increasing orientation $i\to j$ for $i \lt j$.
+
+The original Shareshian--Wachs conjecture \cite[Conj.~5.3]{ShareshianWachs2012}
+predicts that the cohomology of $H(m)$ carries a graded $\symS_n$-action whose
+Frobenius characteristic is
+$\omega\chrom_{\Gamma_\avec}(\xvec;q)$.  This was proved by
+\name{Patrick Brosnan} and \name{Timothy Chow} \cite{BrosnanChow2018}, and
+independently by \name{Mathieu Guay-Paquet} \cite{GuayPaquet2016x}.
+There is also a closely related regular nilpotent story involving acyclic
+orientations and Tymoczko cells; see \cite{NovelliThibon2024x}.
+
+
+\subsection[dotActionGKMModel]{The GKM model}
+
+Let $T=(\setC^\ast)^n$ be the diagonal torus.  We write
+\[
+H_T^\ast(\mathrm{pt})=\setC[t_1,\dotsc,t_n].
+\]
+The $T$-fixed points of $H(m)$ are naturally indexed by
+permutations $w\in\symS_n$.
+The moment graph records the zero- and one-dimensional $T$-orbits in $H(m)$.
+The corresponding moment graph, denoted $MG(\avec)$ on
+\hyperref[chromaticQuasisymmetricMomentGraph]{the chromatic quasisymmetric
+function page}, has these permutations as vertices.
+In the right-multiplication convention used below, the edges are
+\[
+w\longleftrightarrow w s_{ij}
+\qquad
+\text{for }\{i,j\}\in E(\Gamma_\avec).
+\]
+
+The GKM description realizes the equivariant cohomology as a ring of tuples
+\[
+p=(p_w)_{w\in\symS_n},
+\qquad
+p_w\in \setC[t_1,\dotsc,t_n],
+\]
+satisfying one divisibility condition for each edge of the moment graph.
+For every edge $\{i,j\}$ of $\Gamma_\avec$ and every $w\in\symS_n$, we require
+\[
+p_w-p_{w s_{ij}}
+\quad\text{is divisible by}\quad
+t_{w(i)}-t_{w(j)}.
+\]
+Here $s_{ij}$ is the transposition swapping $i$ and $j$.
+Thus
+\[
+H_T^\ast(H(m))
+=
+\left\{
+(p_w)_{w\in\symS_n}
+:
+p_w-p_{w s_{ij}}\in \langle t_{w(i)}-t_{w(j)} \rangle
+\text{ for all } w \text{ and } \{i,j\}\in E(\Gamma_\avec)
+\right\}.
+\]
+
+The ordinary cohomology is obtained by setting the equivariant parameters to
+zero:
+\[
+H^\ast(H(m))
+\cong
+H_T^\ast(H(m))
+\otimes_{\setC[t_1,\dotsc,t_n]}\setC,
+\]
+where $t_1,\dotsc,t_n$ act as zero on $\setC$.
+Equivalently, we quotient by the ideal generated by the positive-degree
+polynomial variables.
+
+
+\subsection[dotActionDefinition]{Definition of the dot action}
+
+The group $\symS_n$ acts on $\setC[t_1,\dotsc,t_n]$ by permuting the indices:
+\(\sigma(t_i)\coloneqq t_{\sigma(i)}\).
+Tymoczko's \defin{dot action} on a GKM tuple is
+\[
+(\sigma\cdot p)_w
+\coloneqq
+\sigma\left(p_{\sigma^{-1}w}\right).
+\]
+The subscript $\sigma^{-1}w$ moves the fixed-point label, and the outer
+$\sigma$ permutes the polynomial variables. The GKM divisibility relations are
+preserved, so this gives an action on equivariant cohomology.  Since the ideal
+$(t_1,\dotsc,t_n)$ is $\symS_n$-stable, the action descends to ordinary
+cohomology.
+
+The grading convention used in the chromatic formula is that polynomial degree
+$d$ corresponds to cohomological degree $2d$.
+
+
+\subsection[dotActionFrobeniusPipeline]{From the action to a symmetric function}
+
+We now describe the steps needed to do computations with Tymoczko's dot action.
+\begin{enumerate}
+\item
+Fix a Hessenberg sequence $m$, form the corresponding area sequence $\avec$,
+and form the graph $\Gamma_\avec$.
+
+\item
+For each degree $d$, consider the vector space of all assignments
+\[
+\symS_n \to \setC[t_1,\dotsc,t_n]_d.
+\]
+This vector space has dimension
+\[
+n!\binom{n+d-1}{n-1},
+\]
+since each of the $n!$ tuple entries carries an independent copy of
+\(\setC[t_1,\dotsc,t_n]_d\).
+
+\item
+Translate each GKM divisibility relation into linear equations in the
+coefficients of the homogeneous polynomials;
+the edges of $\Gamma_\avec$ determine which equations occur.
+The solution space $M_d$ is the degree $d$ part of the equivariant GKM module.
+
+
+\item
+To pass to ordinary cohomology in degree $d$, quotient $M_d$ by
+\[
+R_d=\sum_{i=1}^n t_i M_{d-1}.
+\]
+Equivalently, $R_d$ is the degree $d$ part of
+$(t_1,\dotsc,t_n)H_T^\ast(H(m))$.
+
+\item
+For each partition $\mu\vdash n$, choose a representative $\sigma_\mu$ of the
+corresponding conjugacy class and compute the trace
+\[
+\chi_d(\mu)
+=
+\mathrm{tr}\left(
+\sigma_\mu:
+H^{2d}(H(m))\to H^{2d}(H(m))
+\right).
+\]
+Since characters are class functions, the trace only needs to be computed on
+one representative of each conjugacy class.
+In practice, choose a basis for the quotient $M_d/R_d$, compute the matrix of
+$\sigma_\mu$ on this quotient, and take its trace.  The trace is independent
+of the chosen quotient basis.
+
+\item
+These trace values determine the
+\hyperref[computingSnCharacters]{Frobenius characteristic}:
+\[
+\frobChar_d
+=
+\sum_{\mu\vdash n}\chi_d(\mu)\frac{\powerSum_\mu}{z_\mu}.
+\]
+The full graded Frobenius characteristic is
+\[
+\sum_d q^d \frobChar_d.
+\]
+\end{enumerate}
+
+
+\subsection[dotActionShareshianWachsTheorem]{The Shareshian--Wachs theorem}
+
+The main theorem connecting the above representation to symmetric functions is
+the following.
+
+\begin{theorem}[Brosnan--Chow, Guay-Paquet]
+Let $m$ be a Hessenberg sequence, and let $\Gamma_\avec$ be the corresponding
+natural unit interval graph.  Then
+\[
+\sum_{d\geq 0}
+q^d
+\frobChar\left(H^{2d}(H(m))\right)
+=
+\omega \chrom_{\Gamma_\avec}(\xvec;q).
+\]
+\end{theorem}
+
+The right-hand side is the chromatic quasisymmetric function with the
+\hyperref[standardInvolution]{$\omega$ involution} applied.  Consequently,
+the theorem implies Schur positivity of
+$\omega\chrom_{\Gamma_\avec}(\xvec;q)$.
+
+
+
+
+
+\subsection[dotActionTypeBC]{Types B and C}
+
+Recent work of \name{Nathan R. T. Lesnevich} extends the same GKM/spline
+viewpoint to types $B$ and $C$ \cite{Lesnevich2025x}.  The vertices are the
+signed permutations $\symB_n$, and an order ideal $H$ in the positive roots
+determines the signed transpositions and edge relations.  The resulting spline
+module $\mathcal M_H$ carries a dot action and has two natural quotients: a
+left quotient giving the ordinary-cohomology representation for regular
+semisimple Hessenberg varieties in types $B$ and $C$, and a right quotient
+related to the corresponding isospectral-matrix manifolds and unicellular LLT
+polynomials.  Lesnevich computes the degree-one pieces of both dot-action
+representations for all such $H$ directly from the combinatorics of these signed
+transpositions.

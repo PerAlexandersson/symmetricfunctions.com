@@ -17,8 +17,6 @@ Some Lie algebra connection
 https://arxiv.org/pdf/1908.08198.pdf
 }
 
-\todo{Hessenberg dot action: https://arxiv.org/pdf/2511.13913}
-
 \todo{
  Chromatic quasisymmetric functions under group action:
 \url{https://arxiv.org/pdf/2112.09109.pdf}
@@ -69,7 +67,7 @@ and \name{Michelle Wachs} in \cite{ShareshianWachs2012,ShareshianWachs2016}.
 These conjectures are referred to 
 the \hyperref[chromaticQuasisymmetricElementaryExpansion]{Stanley--Stembridge conjecture and Shareshian--Wachs conjecture}, respectively.
 Shareshian and Wachs also conjectured that $\omega \chrom_G(\xvec;q)$ is 
-\hyperref[chromaticQuasisymmetricHessenberg]{related to 
+\hyperref[dotAction]{related to 
 the equivariant cohomology of regular semisimple Hessenberg varieties}.
 
 
@@ -552,78 +550,20 @@ The approach uses non-commutative ideas.
 
 \section[chromaticQuasisymmetricHessenberg]{Connection with Hessenberg varieties}
 
-In \cite[Conj. 5.3]{ShareshianWachs2012}, a connection with cohomology of regular semisimple Hessenberg varieties 
-was conjectures.
+In \cite[Conj. 5.3]{ShareshianWachs2012}, a connection with 
+cohomology of regular semisimple Hessenberg varieties was conjectures.
 This conjecture was resolved in 2015, where \name{Patrick Brosnan} 
 and \name{Timothy Chow} proved that for unit-interval graphs $\avec$, 
 the symmetric function $\omega \chrom_\avec(\xvec;q)$ 
 is the \hyperref[frobeniusCharacteristic]{Frobenius characteristic} of 
 a symmetric group action on the cohomology of regular semisimple Hessenberg varieties.
 This was also proved independently by Guay-Paquet \cite{GuayPaquet2016x}.
-Note that their result implies Schur positivity.
 
-There is a bijection between acyclic orientations of a unit interval graph, and 
-the \name{Julianna Tymoczko} cells of the corresponding 
-regular nilpotent Hessenberg variety, see \cite{NovelliThibon2024x}.
-
-
-\subsection[hessenbergVarieties]{Hessenberg varieties}
-
-This section uses information from \href{https://math.dartmouth.edu/~orellana/wachs.pdf}{these slides}.
-See also the PhD thesis by \name{Nicholas Teff} \cite{Teff2013}.
-
-\todo{Add more from https://math.dartmouth.edu/~orellana/wachs.pdf}
-
-
-
-A \defin{Hessenberg sequence} is a sequence of natural numbers $(m_1,\dotsc,m_n)$
-such that $i \leq m_i \leq n$. These are in bijection with area sequences of unit interval graphs, via $a_i = m_i - i$.
-
-Let $F(n)$ be the set of all flags, $F_1 \subset F_2 \subset \dotsb \subset F_n = \setC^n$,
-where $F_i$ has dimension $i$.
-Let $D$ be a diagonal $n\times n$-matrix with distinct diagonal entries.
-
-Then the \defin{type $A$ Hessenberg variety} associated with $m$ is defined as
-\[
-H(m) \coloneqq \{ F \in F(n) : DF_i \subseteq F_{m_i} \text{ for all $i$} \}.
-\]
-
-\begin{example}
-The area sequence $(0,1,2,1,1)$ corresponds to the Hessenberg sequence $(2,3,5,5,5)$.
-Note that the Hessenberg sequence is simply the number of 
-non-$\square$ boxes in each row in the extended $n\times n$-diagram.
-
-\begin{figure}
-\begin{ytableau}
-\square & \square & \square &  &  \\
-\square & \square &   & & \\
- &   &   &  & \\
- &   &   &  & \\
- &   &   &  &
-\end{ytableau}
-\end{figure}
-
-\end{example}
-
-There is a torus action on $H(m)$, by left multiplication of invertible $n\times n$-matrices.
-We consider $0$-dimensional and $1$-dimensional fixed-points under this torus action.
-This is what is called the \defin{moment graph}, associated with $H(m)$.
-
-The combinatorial description of the moment graph is easier to define using 
-the corresponding unit-interval graph $\Gamma_\avec$,
-with edge set $E$. The vertices are the permutations in $\symS_n$,
-and the edge set is 
-\[
-\{ (\sigma, (i,j)\sigma : \sigma \in \symS_n \text{ and } \{i,j\} \in E \}.
-\]
-Let us denote this graph by $MG(\avec)$.
-
-One can then define the so-called \defin{Tymoczko’s representation} \cite{Tymoczko2008}
-where $\symS_n$ acts on a certain polynomial ring defined via $MG(\avec)$.
+For more details on this symmetric group action, see the \hyperref[dotAction]{dot action page}.
 
 
 \section[chromaticQuasisymmetricMisc]{Other results related to chromatic symmetric functions}
 
-In \cite{LinPierson2025x}, the authors study a different multiplicative structure (Hopf algebra)
-on chromatic symmetric functions and show that graph complement (of unweighted, triangle-free graphs)
-corresponds naturally to a Hopf algebra operation.
+In \cite{LinPierson2025x}, the authors study a different multiplicative 
+structure (Hopf algebra) on chromatic symmetric functions and show that graph
+complement (of unweighted, triangle-free graphs) corresponds naturally to a Hopf algebra operation.

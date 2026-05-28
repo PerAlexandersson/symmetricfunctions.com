@@ -8,7 +8,7 @@ In the \hyperref[chromaticQuasisymmetricGesselExpansion]{expansion of chromatic 
 in the \hyperref[gessel]{Gessel quasisymmetric fundamental basis}, the following expression shows up,
 where $\avec$ is the area sequence of a \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graph}.
 The number of area sequences of length $n$ is given by the $n$th Catalan number, and
-there is a natural correspondence between area sequences and Dyck paths of size $\DP(n)$.
+there is a natural correspondence between area sequences and Dyck paths in $\DP(n)$.
 
 Let $\avec$ be an area sequence of length $n$ and let $X_{\avec}(q) \coloneqq \prod_{i=1}^n [a_i+1]_q$,
 where we use the $q$-analogue $[n]_q = 1+q+q^2+\dotsb+q^{n-1}$.
@@ -20,8 +20,8 @@ By using \cite[Thm. 1]{Flajolet2006}, we immediately get the following continued
 \sum_{n\geq 0} z^n \sum_{\avec \in \DP(n) } X_{\avec}(q) = 
 \cfrac{1}{
 1 - \cfrac{z[1]_q}{
-1 - \cfrac{z^2[2]_q}{
-1 - \cfrac{z^3[3]_q}{
+1 - \cfrac{z[2]_q}{
+1 - \cfrac{z[3]_q}{
 \cdots
 }}}}
 \]
@@ -191,4 +191,3 @@ This formula appear as a conjecture in \cite{Uhlin2019}.
 \section[aoOther]{Other references}
 
 See \cite{CiglerZeng2011} for connection with Hermite polynomials and $q$-Fibonacci numbers.
-

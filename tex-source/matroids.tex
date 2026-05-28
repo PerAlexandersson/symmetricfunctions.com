@@ -31,7 +31,7 @@ The cardinality, $r$, of each set in $\mathcal{B}$ is called the \defin{rank}
 of the matroid, and the set $\mathcal{B}$ are the \defin{bases} of $M$.
 
 
-\begin{example}[Uniform matroid]
+\begin{example}[Uniform matroid]\label{matroidUniform}
 The \defin{uniform matroid} $U_{r,n}$ is the matroid on ground set $[n]$
 and the bases being all $r$-element subsets of $[n]$.
 \end{example}
@@ -180,6 +180,7 @@ If $M$ is representable over $\mathbb{F}$ then so is $M^*$.
 The matroid $M$ is representable over every $\mathbb{F}$ if and only if
 it is the vector matroid for some totally unimodular matrix (every minor has determinant $\pm 1$ or $0$).
 \end{theorem}
+\label{matroidRegular}
 Matroids representable over every field are called \defin{regular matroids}.
 
 \begin{theorem}

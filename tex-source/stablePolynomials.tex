@@ -26,6 +26,9 @@ is stable if and only if all its roots are real.
 \end{definition}
 
 
+
+
+
 \begin{definition}[Strongly Rayleigh]
 A measure $\mu$ on the set of subsets of $[n]$, is called
 \defin{strongly Rayleigh} if
@@ -34,6 +37,9 @@ A measure $\mu$ on the set of subsets of $[n]$, is called
 \]
 is real stable.
 \end{definition}
+
+
+\subsection[stabilityOperators]{Operators preserving stability}
 
 \begin{theorem}[Stability preserving operators]
 The following operations on polynomials preserve stability.
@@ -51,21 +57,34 @@ Here, $d$ is the degree of $z_j$ in $p$.
 \end{theorem}
 
 
+\begin{theorem}[Borcea--Brändén, see \cite{BorceaBranden2009I}]
+Let $\mathbf{d}=(d_1,\dotsc,d_n) \in \setN^n$, and let
+$\setR_{\leq \mathbf{d}}[z_1,\dotsc,z_n]$ denote the polynomials whose degree
+in $z_j$ is at most $d_j$.
+For a linear operator
+\[
+ T:\setR_{\leq \mathbf{d}}[z_1,\dotsc,z_n]\to \setR[x_1,\dotsc,x_m],
+\]
+define the \defin{algebraic symbol} of $T$ by
+\[
+ G_T(\xvec,\mathbf{w})
+ \coloneqq
+ T\left( \prod_{j=1}^n (z_j+w_j)^{d_j} \right).
+\]
+Here $T$ acts on the $z$-variables and the $w_j$'s are auxiliary variables.
+If $G_T$ is real stable, then $T$ sends every real stable polynomial in
+$\setR_{\leq \mathbf{d}}[z_1,\dotsc,z_n]$ to a real stable polynomial or to zero.
+Conversely, if $T$ preserves real stability, then either $G_T$ is real stable,
+or the range of $T$ has dimension at most two and consists of real stable
+polynomials and zero.
+\end{theorem}
+
+
+
+\subsection[stabilitymultiaffine]{Multi-affine stability}
+
 A polynomial $P(z_1,\dotsc,z_n)$ is \defin{multi-affine} if the degree in each variable is at most $1$.
 
-
-\begin{theorem}[See \cite{ChoeOxleySokalWagner2004}]
-If $P$ is a homogeneous and multi-affine stable polynomial,
-then its support is the set of bases of a \hyperref[matroid]{matroid}.
-See also  \cite[Cor. 3.4]{Branden2007}.
-\end{theorem}
-The converse is in general not true but some classes of \hyperref[matroid]{matroids}
-always have a basis generating polynomial which is stable.
-For example, regular matroids (which include graphic matroids), uniform matroids and
-a subclass of transversal matroids (see \cite{ChoeOxleySokalWagner2004}).
-
-\hyperref[matroidOperations]{Deletion and contraction} on matroids preserve stability of the
-basis generating polynomial.
 
 
 \begin{theorem}[See \cite{Branden2007}]
@@ -79,6 +98,80 @@ whenever $x_1,x_2,\dotsc,x_n \in \setR$.
 To satisfy this inequality is called to have the \defin{strongly Rayleigh property}.
 The \defin{weak Rayleigh property} holds if the above inequality is true whenever
 the variable are positive real numbers.
+
+
+\begin{theorem}[Grace--Walsh--Szeg\H{o}, see \cite{Grace1902,Szego1922,Walsh1922,RahmanSchmeisser2002}]
+Let $P(z_1,\dotsc,z_n)$ be a \emph{symmetric} multi-affine polynomial.
+Then $P$ is stable if and only if the univariate diagonal specialization
+$P(t,\dotsc,t)$ is stable.
+If $P$ has real coefficients, this is equivalent to the univariate specialization $P(t,\dotsc,t)$ being real-rooted.
+\end{theorem}
+
+A useful way to reduce questions to the multi-affine case is
+\defin{polarization}.  If $0 \leq k \leq d_j$, set
+\[
+ \operatorname{Pol}_{d_j}(z_j^k)
+ \coloneqq \binom{d_j}{k}^{-1}
+ \elementaryE_k(z_{j,1},\dotsc,z_{j,d_j}).
+\]
+For monomials, define
+\[
+ \operatorname{Pol}_{\mathbf{d}}(\zvec^\alpha)
+ \coloneqq
+ \prod_{j=1}^n \operatorname{Pol}_{d_j}(z_j^{\alpha_j}),
+\]
+and extend linearly to polynomials.  This gives the polarization
+$\operatorname{Pol}_{\mathbf{d}}(P)$ of a polynomial whose degree in $z_j$ is at most $d_j$.
+
+\begin{theorem}[Polarization, see \cite{BorceaBranden2009II}]
+Let $P \in \setC[z_1,\dotsc,z_n]$ have degree at most $d_j$ in the variable $z_j$.
+Then $P$ is stable if and only if $\operatorname{Pol}_{\mathbf{d}}(P)$ is stable.
+\end{theorem}
+
+
+\section[stabilityConnections]{Jump systems and matroids}
+
+
+For $P = \sum_{\alpha} c_\alpha \zvec^\alpha$, let
+$\supp(P) \coloneqq \{\alpha : c_\alpha \neq 0\}$.
+
+\begin{theorem}[See \cite{Branden2007}]
+If $P$ is stable, then $\supp(P)$ is a jump system.
+\end{theorem}
+
+
+\begin{theorem}[See \cite{ChoeOxleySokalWagner2004}]
+If $P$ is a homogeneous and multi-affine stable polynomial,
+then its support is the set of bases of a \hyperref[matroid]{matroid}.
+See also  \cite[Cor. 3.4]{Branden2007}.
+\end{theorem}
+The converse is in general not true but some classes of \hyperref[matroid]{matroids}
+always have a basis generating polynomial which is stable.
+For example, \hyperref[matroidRegular]{regular matroids}
+(which include \hyperref[matroidGraphic]{graphic matroids}),
+\hyperref[matroidUniform]{uniform matroids} and
+a subclass of \hyperref[transversalMatroids]{transversal matroids}
+(see \cite{ChoeOxleySokalWagner2004}).
+
+
+\hyperref[matroidOperations]{Deletion and contraction} on matroids preserve stability of the
+basis generating polynomial.
+
+
+\begin{theorem}[See \cite{BrandenHuh2020}]
+Let $P \in \setR[z_1,\dotsc,z_n]$ be homogeneous, real stable, and have
+non-negative coefficients.  Then $P$ is \hyperref[lorentzianPolynomial]{Lorentzian}.
+\end{theorem}
+
+
+\begin{theorem}[Determinantal stability, see \cite[Prop. 2.4]{BorceaBranden2008MixedDeterminants}]
+Let $A_0,A_1,\dotsc,A_n$ be real symmetric matrices, and suppose that
+$A_1,\dotsc,A_n$ are positive semidefinite.  Then
+\[
+ \det(A_0+z_1A_1+\dotsb+z_nA_n)
+\]
+is real stable or identically zero.
+\end{theorem}
 
 
 \begin{theorem}[See \cite{BorceaBranden2010}]
