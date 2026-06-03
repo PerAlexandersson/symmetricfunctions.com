@@ -484,9 +484,7 @@ if not args["--no-url-rewrite"] then
     end)
 end
 
--- Rewrite \filelink{path}{label} to \href{path}{label}
--- CSS will style these differently from regular links
-input = input:gsub("\\filelink", "\\href")
+-- Keep \filelink intact; gather.lua lowers it to a link with class="dataFile".
 
 -- Fix section commands with labels: \section[label]{Title} → \section{Title}\label{label}
 -- This provides better Pandoc compatibility

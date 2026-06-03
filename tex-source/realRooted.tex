@@ -62,6 +62,21 @@ has non-negative, non-decreasing coefficients, then the polynomial $f(1+t+t^2+\d
 for any $\ell \geq 1$.
 
 
+
+\subsection[kurtzTheorem]{Kurtz theorem}
+
+\begin{theorem}[Kurtz sufficiency theorem, \cite{Hutchinson1923,Kurtz1992}]
+\name{David Kurtz} proved that a polynomial 
+$a_n t^n + a_{n-1}t^{n-1} + \dotsb + a_1 t + a_0$ 
+with positive coefficients (and degree at least two) that satisifies 
+\[
+ a_i^2 \gt 4a_{i-1}a_{i+1}  \text{ for all } i,
+\]
+is real rooted. 
+\end{theorem}
+This result was proved earlier in the context of entire functions, see \cite{Hutchinson1923}.
+
+
 \section[totallyNonnegative]{Totally non-negative matrices}
 
 A matrix $M = (m_{ij})$ is \defin{totally non-negative} (TNN)
@@ -98,7 +113,8 @@ See \cite{Karlin1968} for a full treatment.
 \end{theorem}
 
 \begin{theorem}[Veronese sections preserve real-rootedness]
-Let $r\geq 1$ and $0\leq i<r$. Define the \defin{Veronese section}
+Let $r\geq 1$ and $0\leq i \lt r$. 
+Define the \defin{Veronese section}
 \[
   \mathcal{S}^r_i\left(\sum_{m\geq 0} a_m t^m\right)
   =

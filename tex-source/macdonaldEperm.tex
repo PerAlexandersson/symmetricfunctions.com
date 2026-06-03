@@ -219,6 +219,58 @@ one can more or less find the expansion
 see also \cite[Eq. 5.7.8]{Macdonald1996}.
 
 
+\subsection[macdonaldEPermShape]{Shape changing identities}
+
+In \cite{MouraMandelshtam2026x,MouraMandelshtam2025x}, the authors extend
+the row-swapping identities for the $q=0$ specialization
+in \cite[Prop. 5.5]{AlexanderssonSawhney2019} to the full two-parameter family.
+Here $s_i\cdot\alpha$ is obtained from $\alpha$ by swapping $\alpha_i$ and
+$\alpha_{i+1}$, while $\sigma s_i$ is obtained from $\sigma$ by swapping
+$\sigma_i$ and $\sigma_{i+1}$.
+
+\begin{theorem}[{\cite[Thm. 1.1]{MouraMandelshtam2026x}}]
+Let $\alpha$ be a weak composition with $n$ parts, and suppose that
+$\alpha_i=\alpha_{i+1}$ for some $i\in[n-1]$. Then, for every
+$\sigma\in\symS_n$,
+\[
+\macdonaldE^\sigma_\alpha(\xvec;q,t)
+=
+\macdonaldE^{\sigma s_i}_\alpha(\xvec;q,t).
+\]
+\end{theorem}
+
+\begin{theorem}[{\cite[Thm. 1.3]{MouraMandelshtam2026x}}]
+Let $\alpha$ be a weak composition with $n$ parts, and suppose that
+$\alpha_i>\alpha_{i+1}$ for some $i\in[n-1]$. Then, for every
+$\sigma\in\symS_n$,
+\[
+\macdonaldE^\sigma_\alpha(\xvec;q,t)
+=
+\macdonaldE^{\sigma s_i}_{s_i\cdot\alpha}(\xvec;q,t)
++ c_{i,\alpha,\sigma}(q,t)
+\macdonaldE^\sigma_{s_i\cdot\alpha}(\xvec;q,t),
+\]
+where
+\[
+c_{i,\alpha,\sigma}(q,t)
+\coloneqq
+t^{\mathrm{twinv}(s_i\cdot\alpha,\sigma)-\mathrm{twinv}(\alpha,\sigma)}
+\frac{1-t}{1-q^{\leg(u)+1}t^{\arm(u)}}
+\begin{cases}
+1, & \text{if } \sigma_i>\sigma_{i+1},\\
+q^{\leg(u)+1}t^{\arm(u)}, & \text{if } \sigma_i<\sigma_{i+1},
+\end{cases}
+\]
+in which $u=(i+1,\alpha_{i+1}+1)$ is viewed as a box in the diagram
+$s_i\cdot\alpha$, and $\leg(u)$ and $\arm(u)$ are computed in that diagram.
+Furthermore,
+\[
+\mathrm{twinv}(\alpha,\sigma)
+\coloneqq
+\left|\{(k,l): k\lt l,\ \alpha_k\geq \alpha_l,\ \sigma_k\lt\sigma_l\}\right|.
+\]
+\end{theorem}
+
 
 \section[macdonaldEQuasi]{Quasisymmetric Macdonald E polynomials}
 

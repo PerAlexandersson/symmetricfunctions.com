@@ -775,7 +775,12 @@ function RawInline(el)
       local id  = b:sub(2, -2)
       local url = "https://oeis.org/" .. id
       record_link(url, id)
-      return pandoc.Link({ pandoc.Str(id) }, url, "The On-Line Encyclopedia of Integer Sequences", { "oeis" })
+      return pandoc.Link(
+        { pandoc.Str(id) },
+        url,
+        "The On-Line Encyclopedia of Integer Sequences",
+        pandoc.Attr("", { "oeis" }, {})
+      )
     end
   end
 
@@ -786,7 +791,12 @@ function RawInline(el)
       local path_inner = path:sub(2, -2)
       local label_inner = label:sub(2, -2)
       record_link(path_inner, label_inner)
-      return pandoc.Link(parse_inlines_walk(label_inner), path_inner, "", { "dataFile" })
+      return pandoc.Link(
+        parse_inlines_walk(label_inner),
+        path_inner,
+        "",
+        pandoc.Attr("", { "dataFile" }, {})
+      )
     end
   end
 
