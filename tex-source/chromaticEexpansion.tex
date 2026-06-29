@@ -1,0 +1,341 @@
+\metatitle{Chromatic symmetric functions in the elementary basis}
+\metadescription{A guide to elementary-basis expansions of chromatic symmetric and chromatic quasisymmetric functions, 
+including the Stanley--Stembridge and Shareshian--Wachs conjectures, q-refined results, 
+recursive methods, and known negative examples.}
+\metakeywords{chromatic symmetric functions,e-positivity,Stanley--Stembridge conjecture,
+Shareshian--Wachs conjecture,unit interval graphs}
+
+\section[chromaticEexpansion]{Chromatic symmetric functions in the elementary basis}
+
+Let $G$ be a graph and let $\chrom_G(\xvec)$ denote its
+\hyperref[chromaticQuasisymmetricDefinition]{chromatic symmetric function}.
+An \defin{$\elementaryE$-expansion} is an expression
+\[
+\chrom_G(\xvec) = \sum_{\lambda} c_\lambda \elementaryE_\lambda(\xvec).
+\]
+We say that $\chrom_G(\xvec)$ is \defin{$\elementaryE$-positive} if all
+$c_\lambda$ are non-negative integers. If $G$ is naturally labeled and
+$\chrom_G(\xvec;q)$ is symmetric, then the stronger $q$-refined question asks
+whether
+\[
+\chrom_G(\xvec;q) = \sum_{\lambda} c_\lambda(q) \elementaryE_\lambda(\xvec)
+\qquad\text{with}\qquad c_\lambda(q) \in \setN[q].
+\]
+
+The $q$-refined question is only available in families where
+$\chrom_G(\xvec;q)$ is symmetric, most importantly for
+\hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graphs} or circular unit arc digraphs.
+For general graphs, the default question is the specialization $q=1$.
+
+
+\subsection[chromaticEExpansionConjectures]{The two main conjectures}
+
+The original conjecture was formulated by \name{Richard Stanley}
+and \name{John Stembridge} \cite{StanleyStembridge1993}, and then in the
+language of chromatic symmetric functions by Stanley \cite{Stanley1995}.
+
+\begin{theorem}[Hikita, \cite{Hikita2024x}]
+Let $P$ be a $(3+1)$-free poset. Then the chromatic symmetric function of
+the incomparability graph of $P$ is $\elementaryE$-positive.
+\end{theorem}
+
+By work of \name{Mathieu Guay-Paquet} \cite{GuayPaquet2013}, it is enough to
+prove the result for unit interval graphs. Hikita's proof gives a formula for
+the elementary coefficients of the Shareshian--Wachs
+$q$-chromatic refinement, and this formula specializes positively at $q=1$.
+Thus the theorem settles the Stanley--Stembridge conjecture, but it does not
+settle the following refinement.
+
+\begin{conjecture}[Shareshian--Wachs, \cite[Conj. 4.9]{ShareshianWachs2012}]
+If $G$ is a unit interval graph with its natural labeling, then
+\[
+\chrom_G(\xvec;q) = \sum_{\lambda} c_\lambda(q)\elementaryE_\lambda(\xvec)
+\qquad\text{has}\qquad c_\lambda(q) \in \setN[q].
+\]
+\end{conjecture}
+
+A desirable combinatorial proof would give a statistic $\mu$ on acyclic
+orientations of $G$ such that
+\[
+\chrom_G(\xvec;q)
+= \sum_{\theta \in AO(G)} q^{\asc(\theta)}
+\elementaryE_{\mu(\theta)}(\xvec).
+\]
+This is the form in which one can see both the $q$-grading and the
+elementary-basis positivity at the same time.
+The conjecture extends to proper circular unit arc digraphs; see
+\cite{Ellzey2017,AlexanderssonPanova2018}.
+
+
+\begin{conjecture}[See \cite[Conj. 5.1]{ShareshianWachs2016}]
+Write
+\[
+\chrom_G(\xvec;q) = \sum_{j=0}^m q^j a_j(\xvec),
+\]
+where $m$ is the number of edges of a unit interval graph $G$.
+Then $a_{j+1}(\xvec)-a_j(\xvec)$ is $\elementaryE$-positive for
+all $0 \leq j \lt (m-1)/2$.
+\end{conjecture}
+
+This unimodality conjecture also extends to the circular 
+unit arc digraph setting.
+
+\subsection[chromaticEExpansionMethods]{Kinds of elementary expansions}
+
+It is useful to distinguish the following kinds of results.
+
+\begin{itemize}
+\item
+A \emph{combinatorial} formula gives the coefficient of
+$\elementaryE_\lambda$ as the cardinality or weight-enumerator of a set of
+objects. This is the strongest kind of evidence for an eventual
+Shareshian--Wachs proof.
+
+\item
+A \emph{sign-reversing involution} starts from a signed
+$\elementaryE$-expansion and cancels all negative terms. Several proofs for
+special unit interval families have this form.
+
+\item
+A \emph{recursive} or generating-function proof shows that the chromatic
+symmetric functions satisfy an $\elementaryE$-positive recurrence with
+$\elementaryE$-positive initial data. This proves positivity, but does not
+always identify a natural coefficient statistic.
+
+\item
+A \emph{noncommutative} proof establishes the stronger
+$(\elementaryE)$-positivity of the chromatic symmetric function in
+noncommuting variables, as in \cite{GebhardSagan2001}. This implies ordinary
+$\elementaryE$-positivity.
+
+\item
+A \emph{negative} result usually means that one graph in the stated family has
+a negative elementary coefficient. It does not mean that every graph in that
+family is non-positive.
+\end{itemize}
+
+\subsection[chromaticEExpansionChronology]{Chronological guide}
+
+The following list is a compact guide to the main families and methods.
+
+\begin{itemize}
+\item
+\emph{1993--1995.}
+Stanley and Stembridge introduce the conjectural positivity problem
+\cite{StanleyStembridge1993}. Stanley proves $\elementaryE$-positivity for
+paths and cycles, and obtains positive formulas for complete graphs and
+co-triangle-free graphs \cite{Stanley1995}.
+
+\item
+\emph{2001.}
+\name{David Gebhard} and \name{Bruce Sagan} introduce a chromatic symmetric
+function in noncommuting variables and prove noncommutative
+$(\elementaryE)$-positivity for $K_\alpha$-chains and for diamond and path
+chains \cite{GebhardSagan2001}.
+
+\item
+\emph{2012--2016.}
+\name{John Shareshian} and \name{Michelle Wachs} introduce the
+$q$-refinement and the Shareshian--Wachs conjecture
+\cite{ShareshianWachs2012,ShareshianWachs2016}. The $q$-refinement is
+symmetric for unit interval graphs and specializes to the ordinary chromatic
+symmetric function at $q=1$.
+
+\item
+\emph{2017--2022.}
+Several special cases for unit interval graphs are proved: triangular ladders
+\cite{Dahlberg2018x}, lollipops and lariats \cite{DahlbergWilligenburg2018},
+the Abelian and bounce-number-two cases
+\cite{HaradaPrecup2019,ChoHuh2019,NadeauTewari2022x,LeeSoh2022x}, and
+melting lollipop families \cite{HuhNamYoo2020}.
+
+\item
+\emph{2018--2021.}
+For graph classes outside the unit interval setting, positive and negative
+families are sorted in work on $H$-free graphs
+\cite{Tsujie2018,HamelHoangTuero2019,FoleyHoangMerkel2019}, on
+claw-contractible-free graphs \cite{DahlbergFoleyWilligenburg2020}, and on
+$(claw,2K_2)$-free graphs \cite{LiYang2021}.
+
+\item
+\emph{2021--2023.}
+Certain cycle-chord and tadpole-type families are treated using
+noncommutative and recursive methods \cite{WangWang2022}. \name{Foster Tom} gives a signed
+$\elementaryE$-expansion which yields new positive graph families
+\cite{Tom2023x}. Coefficient-level positivity for partitions with at most two
+parts is proved in \cite{AbreuNigro2023x,RokSzenes2023x}.
+
+\item
+\emph{2024--2026.}
+Recent results include the $2+1+1$-avoiding unit interval orders
+\cite{McDonoughPylyavskyyWang2024x}, twinned paths and cycles
+\cite{BanaianCelanoChangLeeColmenarejoGoffKimbleKimpelLentferLiangSundaram2025},
+all cycle-chord graphs \cite{Wang2025}, clocks \cite{ChenHeWang2026},
+conjoined graphs \cite{QiTangWang2025}, gluing graphs at a single vertex
+\cite{TomVailaya2025x}, adjacent cycle-chains \cite{TomVailayaAdjacent2026},
+twinned lollipops and kayak paddle graphs \cite{TangWang2024x}, and
+refinements of Hikita's proof
+\cite{HuhHwangKimKimOh2025x,GriffinMellitRomeroWeiglWen2025x}.
+\end{itemize}
+
+
+\subsection[chromaticEExpansionQRefined]{Unit interval and $q$-refined results}
+
+When the graph is a unit interval graph, one should record whether the result
+proves the full $q$-refined statement or only the specialization $q=1$.
+The following families are among the main cases where the refinement is known
+or where the proof is naturally stated in the chromatic quasisymmetric setting.
+
+\begin{itemize}
+\item
+Complete graphs, paths, cycles, and the directed-cycle analogues have explicit
+formulas in the Shareshian--Wachs/Ellzey setting
+\cite{ShareshianWachs2012,Ellzey2017,AlexanderssonPanova2018}.
+
+\item
+If both a unit interval graph and its complement are unit interval graphs, then
+$\chrom_G(\xvec)$ is $\elementaryE$-positive
+\cite{FoleyHoangMerkel2019}.
+
+\item
+For Abelian area sequences and related bounce-number-two families, the
+literature contains recursive, cohomological, and sign-reversing-involution
+proofs \cite{HaradaPrecup2019,ChoHuh2019,NadeauTewari2022x,LeeSoh2022x}.
+
+\item
+For area sequences with bounce number three, some coefficients are treated in
+\cite{ChoHong2019}, and this is extended in \cite{Wang2022x}.
+
+\item
+All elementary coefficients indexed by partitions with at most two parts are
+non-negative, by \cite{AbreuNigro2023x} using the cohomology of
+\hyperref[hessenbergVarieties]{Hessenberg varieties}, and independently by
+\cite{RokSzenes2023x}.
+
+\item
+The $2+1+1$-avoiding unit interval orders, equivalently the area sequences
+with $i-2 \leq a_i$, are treated in
+\cite{McDonoughPylyavskyyWang2024x} using strand diagrams and
+\hyperref[representationTheory]{representation theory}.
+\end{itemize}
+
+
+
+\subsection[chromaticEExpansionOrdinaryFamilies]{Further positive families}
+
+The following examples are useful landmarks for the ordinary $q=1$ problem.
+
+\begin{itemize}
+\item
+Noncommutative $(\elementaryE)$-positive families include $K_\alpha$-chains,
+diamond and path chains, and several later families proved by adapting the
+Gebhard--Sagan framework \cite{GebhardSagan2001,WangWang2022,WangZhou2024x}.
+
+\item
+Lollipops, lariats, triangular ladders, and generalized pyramid graphs give
+some of the standard small graph families where direct signed expansions can
+be made positive \cite{Dahlberg2018x,DahlbergWilligenburg2018,LiYang2021}.
+
+\item
+Twinning preserves $\elementaryE$-positivity for paths and cycles, with both
+positive generating functions and positive recurrences
+\cite{BanaianCelanoChangLeeColmenarejoGoffKimbleKimpelLentferLiangSundaram2025}.
+Twinning does not preserve $\elementaryE$-positivity for arbitrary graphs
+\cite{LiLiWangYang2021}.
+
+\item
+Cycle-chord graphs are $\elementaryE$-positive
+\cite{WangWang2022,Wang2025}. The proof of the general case uses the
+composition method of \cite{WangZhou2024x}.
+
+\item
+Graphs obtained by gluing at a single vertex give a flexible source of
+new examples. In particular, gluing sequences of unit interval graphs and
+cycles gives $\elementaryE$-positive graphs \cite{TomVailaya2025x}.
+
+\item
+Adjacent cycle-chains are $\elementaryE$-positive, and the same methods
+extend to graphs formed by connecting a sequence of cycles and cliques
+\cite{TomVailayaAdjacent2026}.
+
+\item
+Positive $\elementaryE$-expansions are known for KPKP graphs, twinned
+lollipops, and kayak paddle graphs \cite{TangWang2024x}. This refines the
+earlier $\elementaryE$-positivity of kayak paddle graphs from
+\cite{AliniaeifardWangWilligenburg2024}.
+
+\item
+Several tree families are now classified. For example, \cite{WangWang2023}
+classifies positivity for all broom graphs and most double broom graphs,
+and \cite{TangWangWang2024x} proves $\elementaryE$-positivity for the
+spiders $S(4m+2,2m,1)$.
+\end{itemize}
+
+
+\subsection[chromaticEExpansionNegative]{Negative results and obstructions}
+
+Negative results are important: they indicate which graph-theoretic hypotheses
+are doing real work.
+
+\begin{itemize}
+\item
+The star $K_{1,3}$ is already not $\elementaryE$-positive. More generally,
+large-degree cut vertices and several families of trees obstruct
+$\elementaryE$-positivity \cite{DahlbergSheWilligenburg2020}.
+
+\item
+The saltire, augmented saltire, and triangular tower families give negative
+examples in the study of claw-contractible-free graphs
+\cite{DahlbergFoleyWilligenburg2020}.
+
+\item
+For $H$-free graph classes, some families are positive and some contain
+counterexamples. See \cite{HamelHoangTuero2019,FoleyHoangMerkel2019} for a
+systematic treatment.
+
+\item
+Some spider and related families are not $\elementaryE$-positive; see
+\cite{FoleyKazdanKrollAlbergaMelnykTenenbaum2018x} and the later work on
+trees and connected partitions \cite{Tom2026}.
+
+\item
+Tom proves that trees with a vertex of degree at least $5$, trees with a
+degree-$4$ vertex not adjacent to a leaf, and four-legged spiders are not
+$\elementaryE$-positive \cite{Tom2026}. A quantitative connected-partition
+approach to further tree obstructions is developed in \cite{EthanLi2025x}.
+
+\item
+Twinning an $\elementaryE$-positive graph at a vertex can destroy even Schur
+positivity, and hence can destroy $\elementaryE$-positivity
+\cite{LiLiWangYang2021}.
+\end{itemize}
+
+\begin{example}[The smallest star obstruction]
+For the star graph $K_{1,3}$,
+\[
+\chrom_{K_{1,3}}(\xvec)
+= \elementaryE_{211} + 5\elementaryE_{31}
+-2\elementaryE_{22} + 4\elementaryE_4.
+\]
+The coefficient of $\elementaryE_{22}$ is negative, so this graph is not
+$\elementaryE$-positive.
+\end{example}
+
+
+\subsection[chromaticEExpansionCoefficientTests]{Coefficient-level tests}
+
+Several papers study individual elementary coefficients rather than a whole
+family of graphs. For example, \cite{ChoHongLee2020x} gives explicit
+conditions for when a coefficient in the $\elementaryE$-expansion is positive,
+and \cite{CrewZhang2022x} studies elementary-basis coefficients in relation to
+acyclic orientations and sinks. The change-of-basis perspective in
+\cite{SaganTom2026} gives another way to turn information about particular
+partitions into graph-theoretic positivity statements.
+
+After Hikita's proof, several papers have focused on making the coefficients
+more explicit. The Macdonald expansion of
+\cite{GriffinMellitRomeroWeiglWen2025x} rederives Hikita's formula, while
+\cite{Siegl2025x} studies upper and lower combinatorial bounds for elementary
+coefficients. Finally, \cite{Kravitz2026x} proves that the partitions which
+always have non-negative elementary coefficients for every finite graph are
+precisely the hook partitions.
