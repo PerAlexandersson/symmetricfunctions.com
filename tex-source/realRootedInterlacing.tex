@@ -52,10 +52,24 @@ As an example, if $f$ is real-rooted, then $f' \interl f$.
 Hence, recursions involving the derivative play well with interlacing roots.
 
 
+\begin{theorem}[Cauchy interlacing theorem, see \cite{Godsil2017}]
+Let $A$ be a real symmetric $n \times n$ matrix with eigenvalues
+\[
+ \lambda_1 \leq \lambda_2 \leq \dotsb \leq \lambda_n,
+\]
+and let $B$ be a principal $(n-1)\times(n-1)$ submatrix of $A$ with eigenvalues
+\[
+ \mu_1 \leq \mu_2 \leq \dotsb \leq \mu_{n-1}.
+\]
+Then
+\[
+ \lambda_1 \leq \mu_1 \leq \lambda_2 \leq \mu_2 \leq \dotsb
+ \leq \mu_{n-1} \leq \lambda_n.
+\]
+Equivalently, the characteristic polynomial of $B$ interlaces the
+characteristic polynomial of $A$.
+\end{theorem}
 
-\todo{Cauchy interlace theorem: https://arxiv.org/pdf/math/0502408
-and this is same as  https://doi.org/10.1016/j.laa.2021.09.019
-}
 \todo{Binomial transform: https://doi.org/10.1112/jlms.70083 see also https://doi.org/10.1016/j.aam.2024.102776}
 
 
@@ -143,11 +157,30 @@ Then \(H(p_0,p_1)\) is \hyperref[totallyNonnegative]{totally non-negative} if an
 \end{theorem}
 
 This criterion packages interlacing roots as total non-negativity of a
-structured Hurwitz matrix.  It is closely related to the
-\name{Hermite--Biehler} and \name{Routh--Hurwitz} criteria; see
-\cite{Holtz2003}.  The block-Toeplitz and network viewpoint is discussed in
-\cite[Sec.~4]{Angarone2023x}, and weak/quasi-stable boundary cases are treated
-in \cite{AdmGarloffTyaglov2017}.
+structured Hurwitz matrix.
+
+\begin{theorem}[Hermite--Biehler, see \cite{Holtz2003}]
+Let
+\[
+  P(z)=a_0+a_1z+\dotsb+a_nz^n
+\]
+be a real polynomial, and define its even and odd parts by
+\[
+  P_E(t)=\sum_{k\geq 0} a_{2k}t^k,
+  \qquad
+  P_O(t)=\sum_{k\geq 0} a_{2k+1}t^k.
+\]
+Assume that $P_E P_O\not\equiv 0$ and that $P_E$ and $P_O$ have
+positive leading coefficients. Then $P$ has all zeros in the closed
+left half-plane if and only if $P_E$ and $P_O$ have only real
+non-positive zeros and $P_O \interl P_E$.
+\end{theorem}
+
+Thus the \name{Hermite--Biehler} and \name{Routh--Hurwitz} criteria
+also translate root-location questions into interlacing and total
+non-negativity.  The block-Toeplitz and network viewpoint is discussed
+in \cite[Sec.~4]{Angarone2023x}, and weak/quasi-stable boundary cases
+are treated in \cite{AdmGarloffTyaglov2017}.
 
 
 
@@ -314,18 +347,32 @@ Chudnovsky and Seymour introduced a concept closely related to interleaving sequ
 of polynomials. The polynomials $f_1,\dotsc,f_k \in \setR[z]$ have a \defin{common interlacing}
 if there is some $h \in \setR[z]$ with $h \interl f_j$ for all $j$.
 
+\begin{theorem}[Obreschkoff--Dedieu, see
+{\cite{Obreschkoff1963,Dedieu1992} and \cite[Thm.~8]{Branden2004operators}}]
+Let $f,g \in \setR[x]$ have positive leading coefficients. Then every
+polynomial in the real pencil
+\[
+  \{ \alpha f+\beta g : \alpha,\beta\in\setR\}
+\]
+is real-rooted or zero if and only if $f$ and $g$ are real-rooted and
+one of $f \interl g$ or $g \interl f$ holds.
+\end{theorem}
+
+This signed pencil criterion is the two-polynomial counterpart of the
+non-negative compatibility theorem below.
+
 \begin{theorem}[Chudnovsky--Seymour, 2007, \cite{ChudnovskySeymour2007}]
 
 Let $\{f_1,f_2,\dotsc,f_n\}$ be a set of real-rooted polynomials with \emph{positive} leading coefficients.
 Such a set is said to be \defin{compatible} if for all
-choices $\lambda_j$, the sum $\sum_{j=1}^n \lambda_j f_j$ is real-rooted.
+choices $\lambda_j\geq 0$, the sum $\sum_{j=1}^n \lambda_j f_j$ is real-rooted.
 
 Then the following are equivalent:
 \begin{itemize}
-\item $f_1,\dotsc,f_k$ are pairwise compatible;
-\item $f_1,\dotsc,f_k$ are compatible;
+\item $f_1,\dotsc,f_n$ are pairwise compatible;
+\item $f_1,\dotsc,f_n$ are compatible;
 \item $f_i,f_j$ have a common interlacing for all $1\leq i \lt j \leq n$;
-\item $f_1,\dotsc,f_k$ have a common interlacing.
+\item $f_1,\dotsc,f_n$ have a common interlacing.
 \end{itemize}
 \end{theorem}
 This theorem can be generalized to polynomials with arbitrary real
@@ -338,10 +385,21 @@ By taking the limit,
 \[
 \lim_{y\to x} \frac{f(x)g(y)-f(y)g(x)}{x-y} = f'(x)g(x) - g'(x)f(x)
 \]
-which is the Wronskian of $f$ and $g$. The idea is to show that the right hand side (or, left hand side)
-is positive for all real $x$ (perhaps by showing that it is a sum of squares).
-By plugging in any root of $f$ in this expression, we have that $f'(r)g(r) \gt 0$ for all zeros $r$ of $f$.
-By chasing signs a bit, it follows that $f$ and $g$ have interlacing roots.
+which is the Wronskian of $f$ and $g$.
+
+\begin{proposition}[Wronskian criterion]
+Let $f$ and $g$ be real-rooted polynomials with positive leading
+coefficients. Then $g \interl f$ if and only if
+\[
+  f'(x)g(x)-f(x)g'(x)\geq 0
+\]
+for all $x\in\setR$.
+\end{proposition}
+
+Thus one way to prove an interlacing statement is to show that this
+Wronskian is non-negative, perhaps by rewriting it as a sum of squares.
+This is especially useful when a Christoffel--Darboux identity gives a
+closed form for the difference quotient above.
 
 
 \todo{For polynomials arranged in a tree, with
@@ -406,6 +464,22 @@ A multivariate approach to preserving real-rootedness is provided by
 \hyperref[stablePolynomial]{stable polynomials},
 where linear operators preserving stability imply real-rootedness of specializations.
 
+\begin{theorem}[Hermite--Poulain, see
+{\cite{Levin1964,Obreschkoff1963,Schur1914} and
+\cite[Thm.~11]{Branden2004operators}}]
+Let
+\[
+  f(x)=a_0+a_1x+\dotsb+a_nx^n
+\]
+and $g(x)$ be real-rooted polynomials. Then
+\[
+  f\!\left(\frac{d}{dx}\right)g
+  \coloneqq
+  a_0g(x)+a_1g'(x)+\dotsb+a_ng^{(n)}(x)
+\]
+is real-rooted.
+\end{theorem}
+
 In \cite{Wagner1992}, the following is proved.
 \begin{theorem}
 Suppose $f,g$ are polynomials, expressed as
@@ -424,7 +498,7 @@ For examples of polytopes with real-rooted $h^*$-polynomials, see
 
 
 
-\begin{theorem}[See \cite[Thm. 7]{Branden2004operators}]
+\begin{theorem}[See \cite[Thm.~9]{Branden2004operators}]
 If $\phi : \setR[x] \to \setR[x]$ is a linear operator that preserves real-rootedness,
 then $\phi$ preserves the interleaving property:
 \[

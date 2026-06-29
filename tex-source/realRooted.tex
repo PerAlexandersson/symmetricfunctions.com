@@ -237,16 +237,69 @@ of two polynomials $f(t)=\sum a_j t^j$ and $g(t)=\sum b_j t^j$ is
   f \odot g \coloneqq \sum_j a_j b_j \, t^j.
 \]
 
+\begin{definition}[Multiplier sequence]
+A sequence $\gamma=(\gamma_0,\gamma_1,\dotsc)$ is a
+\defin{multiplier sequence} if the diagonal operator
+\[
+  T_\gamma\!\left(\sum_{k\geq 0} a_k x^k\right)
+  \coloneqq
+  \sum_{k\geq 0} \gamma_k a_k x^k
+\]
+sends every real-rooted polynomial to a real-rooted polynomial or to zero.
+\end{definition}
+
+\begin{theorem}[Pólya--Schur, see \cite{SchurPolya1914,Karlin1968}]
+A real sequence $\gamma=(\gamma_0,\gamma_1,\dotsc)$ is a multiplier
+sequence if and only if the exponential generating function
+\[
+  \Phi_\gamma(x)=\sum_{k\geq 0}\gamma_k\frac{x^k}{k!}
+\]
+or $\Phi_\gamma(-x)$ has the form
+\[
+  Cx^m e^{ax}\prod_{j\geq 1}(1+\alpha_jx),
+\]
+where $C\in\setR$, $m\geq 0$, $a\geq 0$, $\alpha_j\geq 0$, and
+$\sum_j\alpha_j<\infty$.
+\end{theorem}
+
 \begin{theorem}[Schur--Pólya; see {\cite[Thm.~3.4]{Wagner1992}}]
 If $f$ and $g$ are real-rooted with non-negative coefficients,
 then $f\odot g$ is also real-rooted with non-negative coefficients. 
 \end{theorem}
 
-This follows from the fact that the class of polynomials
-with only real non-positive zeros and non-negative coefficients
-is a cone of \emph{multiplier sequences},
-closed under the Hadamard product.
-See \cite{Karlin1968} or the exposition in \cite{Branden2015}.
+\begin{theorem}[Schur, see {\cite{Schur1914} and \cite[Thm.~1]{Branden2004operators}}]
+Let
+\[
+  f(x)=a_0+a_1x+\dotsb+a_nx^n,
+  \qquad
+  g(x)=b_0+b_1x+\dotsb+b_mx^m
+\]
+be real-rooted polynomials.  Suppose that all zeros of $g$ have the
+same sign.  Then
+\[
+  \sum_{k\geq 0} k!\,a_kb_kx^k
+\]
+is real-rooted, where missing coefficients are interpreted as zero.
+If $a_0b_0\neq 0$, then all zeros are distinct.
+\end{theorem}
+
+\begin{theorem}[Laguerre, see \cite[Thm.~12]{Branden2004operators}]
+If
+\[
+  f(x)=a_0+a_1x+a_2x^2+\dotsb+a_nx^n
+\]
+is real-rooted, then
+\[
+  a_0+a_1x+\frac{a_2}{2!}x^2+\dotsb+\frac{a_n}{n!}x^n
+\]
+is real-rooted.
+\end{theorem}
+
+The Schur--Pólya theorem follows from the fact that the class of
+polynomials with only real non-positive zeros and non-negative
+coefficients is a cone of multiplier sequences, closed under the
+Hadamard product.  See \cite{Karlin1968} or the exposition in
+\cite{Branden2015}.
 
 \begin{example*}[Type $B$ Narayana polynomials via Hadamard product]
 The type $B$ Narayana polynomials $\sum_{k=0}^n \binom{n}{k}^2 t^k$
@@ -260,6 +313,24 @@ coefficients factor as a product of two sequences that are each
 the coefficient sequence of a real-rooted polynomial.
 A more general \emph{composition theorem} involving
 the Schur--Szeg\H{o} composition is given in \cite{RahmanSchmeisser2002}.
+
+\begin{theorem}[Wagner--Brändén, {\cite[Thm.~2 and Thm.~13]{Branden2004operators}}]
+For polynomials $f,h\in \setR[x]$, define the \defin{diamond product} by
+\[
+  f\diamond h
+  \coloneqq
+  \sum_{n\geq 0}
+  \frac{f^{(n)}(x)h^{(n)}(x)}{n!\,n!}x^n(x+1)^n.
+\]
+If $h$ has all its zeros in the interval $[-1,0]$ and $f$ is
+real-rooted, then $f\diamond h$ is real-rooted.  Moreover, if
+$g \interl f$, then
+\[
+  g\diamond h \interl f\diamond h.
+\]
+In the special case where both $f$ and $h$ have all zeros in $[-1,0]$,
+the polynomial $f\diamond h$ also has all zeros in $[-1,0]$.
+\end{theorem}
 
 
 
@@ -280,7 +351,7 @@ Moreover, for the \defin{disjoint union} of posets, we have
 \[
 E(P \sqcup Q, t) = E(P,t) \diamond E(Q,t),
 \]
-where $\diamond$ is the diamond product.
+where $\diamond$ is the diamond product above.
 These operations preserve real-rootedness, so all series-parallel posets have real-rooted Eulerian polynomials,
 see \cite{Wagner1992,Wagner1992en}.
 This result extends to labeled posets, see \cite{Branden2004operators}.
@@ -325,6 +396,3 @@ and \hyperref[realRootedMatching]{matchings on the $2\times n$ grid graph}.
 For Baxter permutations, see \cite{Zhao2024x}.
 For P-recursively defined polynomials, see \cite{Li2025x}.
 Several further examples are provided in \cite{Hitczenko2024x}.
-
-
-
