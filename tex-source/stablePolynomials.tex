@@ -229,10 +229,22 @@ either by recording vertex labels or edge labels in the matchings, respectively;
 The \defin{multi-affine vertex matching polynomial}
 $\mu_V(G;x_1,\dotsc,x_n)$ is real stable, see \cite{BorceaBranden2009I}.
 
+\name[D.G. Wagner]{David Wagner}'s survey \cite{Wagner2009StableSurvey}
+is a useful reference for the theory and applications of multivariate
+stable polynomials, including the Borcea--Brändén classification of
+stability preservers, matrix applications, and probabilistic applications.
 
-\todo{
-https://arxiv.org/pdf/0911.3569.pdf
-}
+\begin{theorem}[Strong Rayleigh measures are negatively associated, see
+\cite{Wagner2009StableSurvey}]
+Let $\mu$ be a probability measure on subsets of $[n]$ whose generating
+polynomial
+\[
+  \sum_{S\subseteq[n]}\mu(S)\prod_{i\in S}x_i
+\]
+is real stable. Then every measure obtained from $\mu$ by applying
+positive external fields is negatively associated: increasing functions
+depending on disjoint coordinate sets have non-positive covariance.
+\end{theorem}
 
 
 

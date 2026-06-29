@@ -70,8 +70,6 @@ Equivalently, the characteristic polynomial of $B$ interlaces the
 characteristic polynomial of $A$.
 \end{theorem}
 
-\todo{Binomial transform: https://doi.org/10.1112/jlms.70083 see also https://doi.org/10.1016/j.aam.2024.102776}
-
 
 
 A more recent result is the following theorem by \name{Shi-Mei Ma} and \name{Yi Wang} \cite{MaWang2008}.
@@ -401,9 +399,27 @@ Wronskian is non-negative, perhaps by rewriting it as a sum of squares.
 This is especially useful when a Christoffel--Darboux identity gives a
 closed form for the difference quotient above.
 
+\begin{theorem}[Interlacing families, see \cite{Lau2022InterlacingFamilies}]
+Let $T$ be a rooted tree whose leaves are labelled by real-rooted
+polynomials of the same degree and with positive leading coefficients.
+Label every internal vertex by the sum of the polynomials labelling its
+children. Suppose that the children of every internal vertex have a
+common interlacing. Then, for each root index $j$, there are leaves
+$a$ and $b$ such that
+\[
+  \lambda_j(p_a)\leq \lambda_j(p_{\emptyset})\leq \lambda_j(p_b),
+\]
+where $\lambda_j$ denotes the $j$th largest zero. In particular, some
+leaf has largest zero at most the largest zero of the root polynomial.
+\end{theorem}
 
-\todo{For polynomials arranged in a tree, with
-interlacing relations along edges: https://cs.uwaterloo.ca/~lapchi/cs860-2022/notes/12-interlacing-family.pdf}
+For example, if $A$ is a real symmetric matrix and $A_S$ denotes the
+principal submatrix obtained by deleting the rows and columns indexed by
+$S$, then the characteristic polynomials $\{\det(xI-A_S): |S|=k\}$
+form an interlacing family. The root polynomial is the $k$th derivative
+of the characteristic polynomial of $A$. This refines the Cauchy
+interlacing theorem from a single principal submatrix to a whole tree of
+principal submatrices.
 
 
 \section[interlacingTransforms]{Symmetric decompositions and preserving operators}
@@ -538,6 +554,26 @@ then \cite[Cor. 3.7]{BrandenSolus2018} gives
 \]
 This is one route to the interlacing results for colored Eulerian and colored derangement
 polynomials on \hyperref[realRootedWords]{the permutation page}.
+
+\name{Lily Li Liu} and \name{Xue Yan}
+\cite{LiuYan2025InterlacingEulerianDerangement} refine this picture by
+studying the triangular matrices arising from binomial-type transforms.
+For the derangement transformation, if
+\[
+  D(t^k(1+t)^{n-k})=d_{n,k}(t),
+\]
+then, for every fixed $k$, the column
+\[
+  d_{k,k}(t),\,d_{k+1,k}(t),\,d_{k+2,k}(t),\dotsc
+\]
+is a generalized Sturm sequence, and for every fixed $n$ the row
+\[
+  d_{n,0}(t),\,d_{n,1}(t),\,\dotsc,\,d_{n,n}(t)
+\]
+is an interlacing sequence of real-rooted polynomials. They prove
+analogous statements for the type $B$ and $r$-colored derangement
+transformations, and obtain sufficient conditions for such row and
+column interlacing in a more general recurrence setup.
 
 
 

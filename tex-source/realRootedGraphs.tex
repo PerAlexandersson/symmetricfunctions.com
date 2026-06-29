@@ -107,16 +107,6 @@ matching polynomials is given in \cite{NyulRacz2021}.
 
 
 
-\todo{
-Independence polynomials sometimes have only real roots.
-https://www.emis.de/journals/JACO/Volume19_3/pn5l8gh2q7025747.fulltext.pdf
-https://ajc.maths.uq.edu.au/pdf/38/ajc_v38_p027.pdf (Caterpillars)
-https://ajc.maths.uq.edu.au/pdf/71/ajc_v71_p104.pdf
-}
-
-\todo{Eigenvalues of Hermitian matrices and its principal minor}
-
-
 \subsection[rookPolynomials]{Rook polynomials}
 
 The \defin{rook polynomial} of a board $B$ is defined as
@@ -196,6 +186,29 @@ and an alternative (non-vertex-deletion-recursive)
 proof is given by \name{Bodo Lass} \cite{Lass2012}.
 Finally, a multivariate refinement is given by \cite{LeakeRyder2019} where
 one obtains \hyperref[stablePolynomial]{stable polynomials}.
+
+For general graphs, independence polynomials need not be real-rooted.
+Nevertheless, there are useful partial results.
+
+\begin{theorem}[Brown--Dilcher--Nowakowski, \cite{BrownDilcherNowakowski2000}]
+For any graph $G$, a zero of $I(G,x)$ of smallest modulus is real.
+Moreover, if $G$ is well-covered with independence number $\beta(G)$,
+then all zeros of $I(G,x)$ lie in the annulus
+\[
+  \frac{1}{|V(G)|}\leq |z|\leq \beta(G),
+\]
+with equality on the boundary only when $G$ is complete.
+Finally, every well-covered graph $G$ is an induced subgraph of a
+well-covered graph $H$ with $\beta(H)=\beta(G)$ such that $I(H,x)$ has
+only simple real zeros.
+\end{theorem}
+
+The last statement shows that real-rooted independence polynomials are
+plentiful among well-covered graph expansions, even though well-covered
+graphs themselves may have non-real zeros. For caterpillar trees, there
+are also broad unimodality results for independence polynomials, see
+\cite{BahlsEthridgeSzabo2018}; these are unimodality results rather than
+real-rootedness theorems.
 
 \name{Alexander Engström} proved the following weighted generalization of the Chudnovsky--Seymour theorem:
 \begin{theorem*}[A. Engström, \cite[Thm. 2.5]{Engstrom2007}]

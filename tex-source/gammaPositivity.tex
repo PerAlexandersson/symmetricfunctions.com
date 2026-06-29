@@ -43,9 +43,43 @@ The converse does not hold.
 
 \end{itemize}
 
-\todo{Add https://arxiv.org/pdf/2302.00754.pdf }
-\todo{https://arxiv.org/pdf/2202.08984.pdf}
-\todo{https://arxiv.org/pdf/2306.15785.pdf}
+\begin{theorem}[Eulerian transformation, \cite{Athanasiadis2025EulerianTransformation}]
+Let $\mathcal{P}_n[x]$ be the cone spanned by the polynomials
+$x^{n-k}(1+x)^k$, for $0\leq k\leq n$, with non-negative coefficients.
+Define the \defin{Eulerian transformation} $A^\circ:\setR[x]\to\setR[x]$ by
+\[
+  A^\circ(1)=1,\qquad A^\circ(x^m)=xA_m(x) \quad \text{for } m\geq 1.
+\]
+For every $p(x)\in \mathcal{P}_n[x]$, the polynomial $A^\circ(p(x))$
+is real-rooted. Moreover, it fits into an interlacing chain between
+$xA_n(x)$ and $A^\circ((1+x)^n)$, and has a real-rooted interlacing
+symmetric decomposition. In particular, $A^\circ(p(x))$ is unimodal
+and gamma-positive.
+\end{theorem}
+
+
+\subsection[alternatingGammaPositivity]{Alternating gamma-positivity}
+
+A polynomial is \defin{alternatingly gamma-positive} if it can be written as
+\[
+  f(x)=\sum_k \gamma_k(-x)^k(1+x)^{n-2k}, \qquad \gamma_k\geq 0.
+\]
+This is useful when a polynomial becomes naturally expressed in powers of
+$x^2$ or through Hermite--Biehler decompositions. For example,
+\name{Shi-Mei Ma}, \name{Hao Qi}, \name{Jean Yeh} and
+\name{Yeong-Nan Yeh} prove \cite{MaQiYehYeh2022} that the product of two
+alternatingly gamma-positive polynomials is alternatingly gamma-positive,
+and that if $f(x)$ is gamma-positive, then $f(x^{2m})$ is alternatingly
+gamma-positive for every $m\geq 1$.
+
+They also show that $A_n(x^2)$ and the type $B$ Eulerian polynomial
+$B_n(x^2)$ are alternatingly gamma-positive, and that
+\[
+  N(B_n,x^2)+(n+1)xN(A_{n-1},x^2)
+\]
+is alternatingly gamma-positive and Hurwitz stable. A general result from
+\cite{MaQiYehYeh2022} is that every gamma-positive polynomial is
+alternatingly semi-gamma-positive.
 
 
 \subsection[gammaPositiveExamples]{Examples of gamma-positivity}
@@ -153,6 +187,21 @@ The authors prove this statement for one-point Hurwitz numbers.
 
 Gal's conjecture \cite{Gal2005} that $h$-polynomials of flag simplicial spheres are gamma-positive
 remains open in general.
+
+\name{Ira Gessel} and \name{Yan Zhuang} \cite{GesselZhuang2024TwoSided}
+give symmetric-function formulas for two-sided permutation statistics and
+pose several real-rootedness and gamma-positivity conjectures. In particular,
+they conjecture that the inverse peak and inverse left-peak distributions over
+permutations with a fixed value of the corresponding peak statistic are
+real-rooted, and that the polynomial
+\[
+  \widehat{A}_{n,k}(t)
+  \coloneqq
+  \sum_{\substack{\pi\in\symS_n\\ \operatorname{pk}(\pi)=k}}
+  t^{\operatorname{ides}(\pi)+1}
+\]
+is gamma-positive with center of symmetry $(n+1)/2$. They also propose a
+stronger refinement by fixed pinnacle set.
 
 
 

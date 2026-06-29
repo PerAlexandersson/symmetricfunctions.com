@@ -409,7 +409,29 @@ has a negative coefficient: $-22354369153/6983776800$.
 \name{Miklós Bóna} proved that these have only real zeros, \cite{Bona2009}.
 We may also show real-rootedness and the interlacing property using the Ma--Wang theorem.
 
-\todo{Add H.K Dey's result on interlacing, from Archiv der Mathematik}
+\begin{theorem*}[Dey's interlacing criterion, \cite{Dey2023InterlacingZeroes}]
+Let $(F_n(x))_{n\geq 0}$ be a sequence of polynomials satisfying
+\[
+  F_n(x)=\bigl(\alpha_1(n)x+\alpha_2\bigr)F_{n-1}(x)
+  +\alpha_3x(1-x)F'_{n-1}(x),
+\]
+where $\alpha_2,\alpha_3\in\setN\cup\{0\}$. Suppose that each
+$F_n(x)$ is real-rooted with distinct non-positive zeros, and that
+there is an integer $k$ such that, for all $n\geq k$,
+\[
+  2\alpha_1(n)-n\alpha_3>0,
+  \qquad
+  n\alpha_1(n)\alpha_3+3n\alpha_2\alpha_3
+  -4\alpha_1(n)\alpha_2>0.
+\]
+Then $F_{n-1}(x)\interl F_n(x)$ for all $n\geq k$.
+\end{theorem*}
+
+Dey applies this criterion to the type $A$ and type $B$ Eulerian
+polynomials, to the Stirling permutation polynomials above, and to
+restricted Eulerian polynomials. Thus it is a useful way to upgrade an
+already known real-rootedness proof to a consecutive interlacing
+statement when the recurrence has the form above.
 
 \name{Jim Haglund} and \name{Mirko Visontai} \cite[Thm. 3.3]{HaglundVisontai2012} show
 that a multivariate generalization
