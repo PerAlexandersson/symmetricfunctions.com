@@ -22,6 +22,36 @@ A hypergraph generalization (including multigraphs)
 is considered by \name{Nima Amini} in \cite{Amini2019x}.
 
 
+\begin{example*}[Laplacian matching polynomial]
+Let $d_G(v)$ denote the degree of $v$ in $G$.
+The \defin{Laplacian matching polynomial} is the matching-theoretic Laplacian analogue
+\[
+ \operatorname{LM}(G,x) \coloneqq
+ \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}}
+ (-1)^{|M|}
+ \prod_{v\in V(G)\setminus V(M)} (x-d_G(v)).
+\]
+It is real-rooted with nonnegative roots, see \cite{WanWangMohammadian2022}.
+One way to see why this belongs with matching polynomials is the subdivision identity
+\[
+ \mathsf{M}(S(G),x)=x^{|E(G)|-|V(G)|}\operatorname{LM}(G,x^2),
+\]
+where $S(G)$ is the subdivision graph and
+\[
+ \mathsf{M}(H,x) \coloneqq
+ \sum_{\substack{M \subseteq E(H) \\ \text{$M$ matching}}}
+ (-1)^{|M|}x^{|V(H)\setminus V(M)|}
+\]
+is the usual Heilmann--Lieb normalization of the matching polynomial.
+
+For connected $G$, \name{Jiang-Chao Wan}, \name{Yi Wang} and \name{Ali Mohammadian} also show that $0$ is a root of
+$\operatorname{LM}(G,x)$ if and only if $G$ is a tree; that the number of distinct
+positive roots is at least the length of the longest path in $G$; and that
+$\operatorname{LM}(G,x)$ and $\operatorname{LM}(G-e,x)$ have interlacing roots for each
+edge $e$ of $G$.
+\end{example*}
+
+
 \begin{example*}[Fibonacci tilings via matchings]
 Recall that the number of ways to tile the  one-row Young diagram $(n)$
 with tiles of shape $(1)$ and $(2)$ is given by the $(n+1)th$ Fibonacci number.

@@ -40,13 +40,6 @@ https://arxiv.org/pdf/2003.12123.pdf
 }
 
 
-\todo{
-2-cycle chord graphs are e-positive (non-commutative)
-https://arxiv.org/pdf/2112.06679.pdf
-Same authors:
-Spiders, brooms: 
-https://arxiv.org/pdf/2112.06619.pdf
-}
 
 
 \subsection[chromaticQuasisymmetricHistory]{Historical overview}
@@ -377,115 +370,23 @@ The authors also characterize all Schur positive complete tripartite graphs.
 \subsection[chromaticQuasisymmetricElementaryExpansion]{Elementary symmetric expansion}
 
 The Stanley--Stembridge conjecture (1993) is a long-standing open problem in 
-algebraic combinatorics, first formulated in \cite{StanleyStembridge1993} and \cite{Stanley1995} (for $q=1$).
-A refinement using the general $q$-parameter was presented in \cite[Conj. 4.9]{ShareshianWachs2012},
-which we now state.
+algebraic combinatorics, first formulated in \cite{StanleyStembridge1993} 
+and \cite{Stanley1995} (for $q=1$). A refinement using the general $q$-parameter was presented 
+in \cite[Conj. 4.9]{ShareshianWachs2012}. 
+Positivity in the elementary symmetric function basis (for $q=1$) was recently proved 
+by \name{Tatsuyuki Hikita}.
+For a survey on expansions in the elementary symmetric function basis, see \hyperref[chromaticEexpansion]{this page}.
 
 
 \todo{Add relation with \ref{def:hookFilter} }
-
-
-
-\todo{Add Hikita's result}
-
-\begin{conjecture}[Shareshian--Wachs (2012)]
-Let $G$ be a unit interval graph. 
-Find a statistic $\mu$ on acyclic orientations of $G$,
-such that
-\[
-\chrom_G(\xvec;q) = \sum_{\theta \in AO(G)} q^{\asc(\theta)} \elementaryE_{\mu(\theta)}(\xvec).
-\]
-That is, prove that $\chrom_G(\xvec;q)$ are $\elementaryE$-positive.
-\end{conjecture}
-See \hyperref[unitIntervalAO]{the weighed Dyck path enumeration page} for more info.
-
-This conjecture extends to the circular unit arc digraph case,
-see \cite{Ellzey2017,AlexanderssonPanova2018}.
-According to \name{Anton Mellit} (personal communication), 
-this would imply Conjecture 5.4 in \url{https://arxiv.org/pdf/1506.08188.pdf}.
-
-Positivity has been proved for several families of unit-interval graphs,
-see the \hyperref[chromaticEExpansionCurrentStatus]{separate subsection on the current status}.
-
-
-\begin{conjecture}[See \cite[Conj. 5.1]{ShareshianWachs2016}]
-The following unimodality conjecture is posed:
-Write 
-\[
-\chrom_{G}(\xvec;q) = \sum_{j=0}^m q^j a_j(\xvec),
-\]
-where $m$ is the number of edges of $G$.
-Then $a_{j+1}(\xvec) - a_{j}(\xvec)$ is $\elementaryE$-positive for all $0 \leq j \lt (m-1)/2$.
-\end{conjecture}
-This conjecture extends to the circular unit arc digraphs.
-
-
-The main theorem of \cite{ChoHongLee2020x}, gives an explicit condition
-for when a coefficient in the $\elementaryE$-expansion is positive.
-
-
-\subsection[chromaticEExpansionCurrentStatus]{Current status of the Stanley--Stembridge/Shareshian--Wachs conjecture}
-
-The following references give proofs of $\elementaryE$-positivity for some families of graphs.
-
-\begin{itemize}
-\item 
-Combinatorial interpretation of line graph, 
-complete graph and cycle graph, \cite{Ellzey2017,AlexanderssonPanova2018}.
-\item 
-When the complement graph is also a unit-interval graph, \cite{FoleyHoangMerkel2019}.
-\item
-Triangular ladders, \cite{Dahlberg2018x}. 
-This corresponds to area sequences of the form $(0,1,2,2,\dotsc,2)$.
-\item 
-Lollipop graphs for $q=1$, \cite{DahlbergWilligenburg2018}.
-\item 
-Melting lollipop graphs, \cite{HuhNamYoo2020}.
-\item 
-Abelian area sequences with bounce number 2, using a recursive method, \cite{HaradaPrecup2019}.
-See also the alternative proof in \cite{ChoHuh2019}, using a sign-reversing involution.
-Yet another proof is given in \cite{NadeauTewari2022x}. 
-See also \cite{LeeSoh2022x} for a proof.
-
-
-\item 
-For area sequences with bounce number 3, some coefficients considered in \cite{ChoHong2019}. 
-This is extended further in \cite{Wang2022x}.
-
-\item Generalized pyramid graphs, and $(claw, 2K_2)$-free unit interval graphs, \cite{LiYang2021}.
-
-\item A generalization of melting lollipop graphs, \cite{Tom2023x}.
-This paper includes a signed $\elementaryE$-expansion derived from the $\elementaryE$-expansion
-of unicellular LLT polynomials.
-
-\item All $e$-coefficients with at most 2 parts are non-negative,
-see \cite{AbreuNigro2023x} 
-(using the cohomology of \hyperref[hessenbergVarieties]{Hessenberg varieties}) 
-and also \cite{RokSzenes2023x}.
-
-\item The case for $2+1+1$-avoiding unit interval orders. \cite{McDonoughPylyavskyyWang2024x}.
-This corresponds to the case when $i-2 \leq a_i$ for all $i$ in the area sequence.
-The authors use a novel idea using \emph{strand diagrams} and \hyperref[representationTheory]{representation theory}.
-
-
-\item Twinning operation applied to several families of graphs, \cite{BanaianCelanoChangLeeColmenarejoGoffKimbleKimpelLentferLiangSundaram2024x}.
-Page 7 in this reference has a nice overview of $e$-positivity results.
-
-\item Certain conjoined graphs, \cite{QiTangWang2024x}.
-
-\end{itemize}
-
-
-Moreover, some larger families of graphs are shown not to be $e$-positive,
-see \cite{DahlbergFoleyWilligenburg2017x,FoleyKazdanKrollAlbergaMelnykTenenbaum2018x}.
-
-
 
 
 \subsection[chromaticDeletionContraction]{Deletion contraction property}
 
 There is an extension to \hyperref[extendedChromatic]{extended chromatic symmetric functions}
 which admits a deletion-contraction recurrence.
+
+\todo{10.1016/j.disc.2013.12.006 has a triangle-deletion recurrence.}
 
 
 \subsection[rookTheory]{Connection with rook placements}

@@ -333,6 +333,174 @@ input = annotate_first_braced_arg(input, source_filename, "icon", false)
 input = annotate_first_braced_arg(input, source_filename, "topiccard", false)
 
 -- ============================================================================
+-- STEP 1B: Normalize raw angle brackets in math
+-- ============================================================================
+
+local math_envs = {
+  ["align"] = true,
+  ["align*"] = true,
+  ["aligned"] = true,
+  ["array"] = true,
+  ["bmatrix"] = true,
+  ["cases"] = true,
+  ["equation"] = true,
+  ["equation*"] = true,
+  ["gather"] = true,
+  ["gather*"] = true,
+  ["matrix"] = true,
+  ["multline"] = true,
+  ["multline*"] = true,
+  ["pmatrix"] = true,
+  ["smallmatrix"] = true,
+  ["vmatrix"] = true,
+}
+
+local verbatim_envs = {
+  ["lstlisting"] = true,
+  ["verbatim"] = true,
+  ["verbatim*"] = true,
+}
+
+local function starts_with(text, pos, needle)
+  return text:sub(pos, pos + #needle - 1) == needle
+end
+
+local function is_escaped(text, pos)
+  local count = 0
+  local i = pos - 1
+  while i >= 1 and text:sub(i, i) == "\\" do
+    count = count + 1
+    i = i - 1
+  end
+  return count % 2 == 1
+end
+
+local function parse_begin_env(text, pos)
+  local prefix = "\\begin{"
+  if not starts_with(text, pos, prefix) then
+    return nil, nil
+  end
+
+  local name_start = pos + #prefix
+  local close = text:find("}", name_start, true)
+  if not close then
+    return nil, nil
+  end
+
+  return text:sub(name_start, close - 1), close
+end
+
+local function rewrite_angle_math_body(text, pos, close_len_at)
+  local out = {}
+  local i = pos
+  local n = #text
+
+  while i <= n do
+    local close_len = close_len_at(text, i)
+    if close_len then
+      return table.concat(out), i, close_len
+    end
+
+    local ch = text:sub(i, i)
+    if ch == "<" then
+      table.insert(out, "\\lt{}")
+    elseif ch == ">" then
+      table.insert(out, "\\gt{}")
+    else
+      table.insert(out, ch)
+    end
+    i = i + 1
+  end
+
+  return table.concat(out), n + 1, 0
+end
+
+local function rewrite_angle_brackets_in_math(text)
+  local out = {}
+  local i = 1
+  local n = #text
+
+  while i <= n do
+    if starts_with(text, i, "\\(") then
+      table.insert(out, "\\(")
+      local body, close_pos, close_len = rewrite_angle_math_body(text, i + 2, function(s, pos)
+        return starts_with(s, pos, "\\)") and 2 or nil
+      end)
+      table.insert(out, body)
+      if close_len > 0 then
+        table.insert(out, text:sub(close_pos, close_pos + close_len - 1))
+      end
+      i = close_pos + close_len
+
+    elseif starts_with(text, i, "\\[") then
+      table.insert(out, "\\[")
+      local body, close_pos, close_len = rewrite_angle_math_body(text, i + 2, function(s, pos)
+        return starts_with(s, pos, "\\]") and 2 or nil
+      end)
+      table.insert(out, body)
+      if close_len > 0 then
+        table.insert(out, text:sub(close_pos, close_pos + close_len - 1))
+      end
+      i = close_pos + close_len
+
+    elseif starts_with(text, i, "$$") and not is_escaped(text, i) then
+      table.insert(out, "$$")
+      local body, close_pos, close_len = rewrite_angle_math_body(text, i + 2, function(s, pos)
+        return starts_with(s, pos, "$$") and not is_escaped(s, pos) and 2 or nil
+      end)
+      table.insert(out, body)
+      if close_len > 0 then
+        table.insert(out, "$$")
+      end
+      i = close_pos + close_len
+
+    elseif text:sub(i, i) == "$" and not is_escaped(text, i) then
+      table.insert(out, "$")
+      local body, close_pos, close_len = rewrite_angle_math_body(text, i + 1, function(s, pos)
+        return s:sub(pos, pos) == "$" and not is_escaped(s, pos) and 1 or nil
+      end)
+      table.insert(out, body)
+      if close_len > 0 then
+        table.insert(out, "$")
+      end
+      i = close_pos + close_len
+
+    else
+      local env, begin_close = parse_begin_env(text, i)
+      if env and verbatim_envs[env] then
+        local end_delim = "\\end{" .. env .. "}"
+        local close_start = text:find(end_delim, begin_close + 1, true)
+        if close_start then
+          table.insert(out, text:sub(i, close_start + #end_delim - 1))
+          i = close_start + #end_delim
+        else
+          table.insert(out, text:sub(i))
+          i = n + 1
+        end
+      elseif env and math_envs[env] then
+        table.insert(out, text:sub(i, begin_close))
+        local end_delim = "\\end{" .. env .. "}"
+        local body, close_pos, close_len = rewrite_angle_math_body(text, begin_close + 1, function(s, pos)
+          return starts_with(s, pos, end_delim) and #end_delim or nil
+        end)
+        table.insert(out, body)
+        if close_len > 0 then
+          table.insert(out, end_delim)
+        end
+        i = close_pos + close_len
+      else
+        table.insert(out, text:sub(i, i))
+        i = i + 1
+      end
+    end
+  end
+
+  return table.concat(out)
+end
+
+input = rewrite_angle_brackets_in_math(input)
+
+-- ============================================================================
 -- STEP 2: Line-based Normalization (Block-level Macros)
 -- ============================================================================
 

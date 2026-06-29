@@ -86,6 +86,11 @@ Relation targets are other `polydata` ids. References are optional bibliography 
 
 References go in `bibliography.bib` in BibLaTeX format. The build converts `eprint` fields to arXiv URLs automatically. Use `\cite{Key}` or `\cite[Thm.~3.1]{Key}` in .tex files.
 
+The bibliography entries can be easily obtained via the following arxiv-id or doi API (examples):
+https://arxiv.symmetricfunctions.com/api/bibtex.json?id=2001.00092
+https://arxiv.symmetricfunctions.com/api/bibtex.json?doi=10.1002/jgt.22704
+
+
 ## Build pipeline (7 stages)
 
 1. **Preprocess** (`preprocess.lua`): Rewrites section labels, annotates todos with file:line, normalizes macros

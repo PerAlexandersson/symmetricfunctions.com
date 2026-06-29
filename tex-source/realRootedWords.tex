@@ -415,3 +415,28 @@ We may also show real-rootedness and the interlacing property using the Ma--Wang
 that a multivariate generalization
 results in stable polynomials.
 \end{example*}
+
+
+\begin{example*}[Quasi-Stirling permutations]
+A \defin{quasi-Stirling permutation} of size $n$ is a permutation of the multiset
+$\{1,1,2,2,\dotsc,n,n\}$ avoiding the patterns $1212$ and $2121$.
+Let $\widetilde{Q}_n$ be the set of quasi-Stirling permutations of size $n$, and set
+\[
+ \widetilde{Q}_n(t) \coloneqq \sum_{\pi \in \widetilde{Q}_n} t^{\des(\pi)},
+\]
+where the final position is counted as a descent, as above.
+
+\name{Sergi Elizalde} \cite[Thm.~3.2]{Elizalde2021} proved that
+$\widetilde{Q}_n(t)$ has real, distinct, and nonpositive roots.
+More generally, for $1 \leq r \leq n$, let
+\[
+ A_{n,r}(t) \coloneqq \sum_{\pi \in \symS_n} t^{\exc_r(\pi)}, \qquad
+ J_{n,r}(t) \coloneqq \sum_{\pi \in \operatorname{Inj}([n-r],[n])} t^{\exc(\pi)},
+\]
+where $\exc_r(\pi) \coloneqq |\{i:\pi_i \geq i+r\}|$.
+Then $A_{n,r}(t)$ and $J_{n,r}(t)$ also have real, distinct, and nonpositive roots.
+The quasi-Stirling case follows from the relation
+\[
+ \widetilde{Q}_n(t)=t J_{2n,n+1}(t).
+\]
+\end{example*}
