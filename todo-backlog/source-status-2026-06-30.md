@@ -102,6 +102,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Pierson--Samanta's counterexamples to graph-distinguishing by the kromatic
   symmetric function, and the published source for the original definition.
 
+- `tex-source/todo-list.tex:569--570`, `tex-source/todo-list.tex:697`,
+  `tex-source/todo-list.tex:701`, and `tex-source/todo-list.tex:703`,
+  arXiv:2410.22813, arXiv:2407.06965, arXiv:2208.08458,
+  arXiv:2011.06063, and arXiv:2208.12282.
+  Accessible.  Added notes to `weightedChromatic.tex` on universal
+  graph-series/vertex-weighted chromatic functions, generalized chromatic
+  functions of edge-coloured digraphs, and $H$-chromatic symmetric functions.
+  Added `chromaticQuasisymmetric.tex` notes on $\alpha$-chromatic symmetric
+  functions and generalized Hessenberg varieties.
+
 ## Access Needed
 
 None from this pass.
