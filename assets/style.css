@@ -1087,6 +1087,11 @@
     color: var(--c-text-main);
   }
 
+  .relation-graph-conjecture {
+    color: var(--c-data-red);
+    font-weight: 700;
+  }
+
   .relation-graph-edge-summary {
     display: flex;
     flex-wrap: wrap;

@@ -648,8 +648,7 @@
       var label = ref.label || ref.key;
       var title = ref.tooltip ? ' title="' + escapeHtml(ref.tooltip) + '"' : '';
       return '<a href="' + escapeHtml(ref.href || ('#' + ref.key)) + '"' + title + '>'
-        + '[' + escapeHtml(label) + ']</a> '
-        + '<code>' + escapeHtml(ref.key) + '</code>';
+        + '[' + escapeHtml(label) + ']</a>';
     }).join(' ') + '</span>';
   }
 
@@ -665,14 +664,16 @@
   function renderDetails(panel, edge, nodeMap) {
     var source = nodeMap[edge.source] || { id: edge.source, name: edge.source };
     var target = nodeMap[edge.target] || { id: edge.target, name: edge.target };
+    var conjecture = edge.status === 'conjecture'
+      ? '<span class="relation-graph-conjecture">(Conjecture)</span>'
+      : '';
     panel.innerHTML = [
       '<div class="relation-graph-details-row">',
       '<strong class="relation-graph-detail-label">',
       escapeHtml(edge.label || edge.type),
-      '</strong>',
+      '</strong>', conjecture,
       '<span class="relation-graph-edge-summary">',
       nodeLink(source), ' <span>to</span> ', nodeLink(target), '</span>',
-      '<span><strong>Status:</strong> ', escapeHtml(edge.status || 'theorem'), '</span>',
       '<span><strong>Refs:</strong> ', renderRefs(edge.refs), '</span>',
       renderAttrs(edge.attrs),
       '</div>'
