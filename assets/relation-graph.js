@@ -75,8 +75,7 @@
   function activeValues(selector, root) {
     var values = Object.create(null);
     $all(selector, root).forEach(function (input) {
-      var value = input.getAttribute('data-status-filter') || input.value;
-      if (input.checked) values[value] = true;
+      if (input.checked) values[input.value] = true;
     });
     return values;
   }
@@ -171,7 +170,6 @@
 
   function filteredGraph(graph, root) {
     var activeTypes = activeValues('[data-relation-type-filter]', root);
-    var activeStatuses = activeValues('[data-status-filter]', root);
     var query = ($('#relationGraphSearch', root).value || '').trim().toLowerCase();
     var nodeMap = makeNodeMap(graph.nodes);
     var visibleNodes = Object.create(null);
@@ -187,7 +185,6 @@
 
     var edges = graph.edges.filter(function (edge) {
       if (!activeTypes[edge.type]) return false;
-      if (!activeStatuses[edge.status]) return false;
       if (!nodeMatches(edge)) return false;
       visibleNodes[edge.source] = true;
       visibleNodes[edge.target] = true;
@@ -631,9 +628,6 @@
     $('#relationGraphSearch', root).value = '';
     $all('[data-relation-type-filter]', root).forEach(function (input) {
       input.checked = !useDefaults || !!defaults[input.value];
-    });
-    $all('[data-status-filter]', root).forEach(function (input) {
-      input.checked = true;
     });
   }
 
