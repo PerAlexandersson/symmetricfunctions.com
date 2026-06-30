@@ -982,13 +982,15 @@
   .relation-edge-path {
     fill: none;
     stroke: color-mix(in srgb, var(--c-text-muted) 70%, transparent);
-    stroke-width: 1.7;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .relation-edge-hit {
     fill: none;
     stroke: transparent;
-    stroke-width: 14;
+    stroke-width: 24;
     cursor: pointer;
   }
 
@@ -996,23 +998,11 @@
   .relation-edge:hover .relation-edge-path,
   .relation-edge:focus-within .relation-edge-path {
     stroke: var(--c-brand);
-    stroke-width: 2.6;
+    stroke-width: 3.6;
   }
 
   .relation-edge-status-conjecture .relation-edge-path {
     stroke-dasharray: 6 5;
-  }
-
-  .relation-edge-positive_in .relation-edge-path {
-    stroke: color-mix(in srgb, var(--c-link) 72%, var(--c-text-muted));
-  }
-
-  .relation-edge-specializes_to .relation-edge-path {
-    stroke: color-mix(in srgb, var(--c-brand) 78%, var(--c-text-muted));
-  }
-
-  .relation-edge-contains .relation-edge-path {
-    stroke: color-mix(in srgb, var(--c-data-red) 70%, var(--c-text-muted));
   }
 
   #relationGraphArrow path {

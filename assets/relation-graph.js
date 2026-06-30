@@ -58,7 +58,6 @@
   function nodeSortKey(node) {
     return [
       node.space || '',
-      node.category || '',
       node.name || '',
       node.id || ''
     ].join('\t');
@@ -140,6 +139,14 @@
     refines: 'Refinement'
   };
 
+  var MENU_RELATION_TYPES = [
+    'positive_in',
+    'specializes_to',
+    'contains',
+    'k_theoretic_analogue_of',
+    'stable_limit'
+  ];
+
   function relationLabel(type) {
     var key = typeof type === 'string' ? type : type.type;
     if (RELATION_LABELS[key]) return RELATION_LABELS[key];
@@ -151,18 +158,14 @@
       .replace(/\b\w/g, function (letter) { return letter.toUpperCase(); });
   }
 
-  function posetTypes(graph) {
-    var types = Object.create(null);
-    (graph.relation_types || []).forEach(function (type) {
-      if (type.count > 0 && type.poset) types[type.type] = true;
-    });
-    return types;
+  function edgeLabel(edge) {
+    return relationLabel(edge.type) || edge.label || edge.type;
   }
 
-  function allRelationTypes(graph) {
+  function typeSetForNames(typeMap, names) {
     var types = Object.create(null);
-    (graph.relation_types || []).forEach(function (type) {
-      if (type.count > 0) types[type.type] = true;
+    names.forEach(function (name) {
+      if (typeMap[name]) types[name] = true;
     });
     return types;
   }
@@ -172,33 +175,33 @@
     var seen = Object.create(null);
     var presets = [];
 
-    function addSingle(typeName) {
-      if (!typeMap[typeName] || seen[typeName]) return;
-      seen[typeName] = true;
-      presets.push({
-        id: typeName,
-        label: relationLabel(typeMap[typeName]),
-        types: singletonTypeSet(typeName)
-      });
+    function addPreset(id, label, types) {
+      if (seen[id] || !hasSelectedTypes(types)) return;
+      seen[id] = true;
+      presets.push({ id: id, label: label, types: types });
     }
 
-    ['positive_in', 'specializes_to', 'contains'].forEach(addSingle);
-    (graph.relation_types || [])
-      .filter(function (type) {
-        return type.count > 0 && !seen[type.type];
-      })
-      .sort(function (a, b) {
-        return relationLabel(a).localeCompare(relationLabel(b));
-      })
-      .forEach(function (type) {
-        addSingle(type.type);
-      });
+    function addSingle(typeName) {
+      if (!typeMap[typeName]) return;
+      addPreset(typeName, relationLabel(typeMap[typeName]), singletonTypeSet(typeName));
+    }
 
-    presets.push({ id: 'all_poset', label: 'Poset relations', types: posetTypes(graph) });
-    presets.push({ id: 'all_relations', label: 'All relations', types: allRelationTypes(graph) });
-    return presets.filter(function (preset) {
-      return hasSelectedTypes(preset.types);
+    addPreset(
+      'positive_in',
+      'Positive expansion',
+      typeSetForNames(typeMap, ['positive_in', 'refines'])
+    );
+    MENU_RELATION_TYPES.forEach(function (typeName) {
+      if (typeName !== 'positive_in') addSingle(typeName);
     });
+    return presets;
+  }
+
+  function initialTypeSet(graph, root) {
+    var defaults = defaultTypes(root);
+    if (hasSelectedTypes(defaults)) return defaults;
+    var presets = presetDefinitions(graph);
+    return presets.length > 0 ? presets[0].types : Object.create(null);
   }
 
   function textForNode(node) {
@@ -206,7 +209,6 @@
       node.id,
       node.name,
       node.space,
-      node.category,
       node.symbol
     ].join(' ').toLowerCase();
   }
@@ -223,7 +225,8 @@
       var target = nodeMap[edge.target];
       return (source && textForNode(source).indexOf(query) >= 0)
         || (target && textForNode(target).indexOf(query) >= 0)
-        || String(edge.label || '').toLowerCase().indexOf(query) >= 0;
+        || String(edge.label || '').toLowerCase().indexOf(query) >= 0
+        || edgeLabel(edge).toLowerCase().indexOf(query) >= 0;
     }
 
     var edges = graph.edges.filter(function (edge) {
@@ -510,7 +513,7 @@
     title.textContent = node.name || node.id;
     label.appendChild(title);
 
-    var metaText = [node.space, node.category].filter(Boolean).join(' - ');
+    var metaText = node.space || '';
     var meta = htmlEl('div', { class: 'relation-node-meta' });
     meta.textContent = metaText || node.id;
     label.appendChild(meta);
@@ -519,7 +522,15 @@
     group.appendChild(foreign);
   }
 
-  function drawEdges(svg, edges, positions, onSelect) {
+  function edgeTitle(edge, nodeMap) {
+    var source = nodeMap[edge.source] || { id: edge.source, name: edge.source };
+    var target = nodeMap[edge.target] || { id: edge.target, name: edge.target };
+    var conjecture = edge.status === 'conjecture' ? ' (Conjecture)' : '';
+    return edgeLabel(edge) + conjecture + ': '
+      + (source.name || source.id) + ' to ' + (target.name || target.id);
+  }
+
+  function drawEdges(svg, edges, positions, nodeMap, onPreview, onSelect) {
     var edgeLayer = svgEl('g', { class: 'relation-edge-layer' });
     svg.appendChild(edgeLayer);
 
@@ -533,6 +544,8 @@
           + ' relation-edge-status-' + classPart(edge.status)
       });
       var path = pathForEdge(source, target, index);
+      var title = svgEl('title');
+      title.textContent = edgeTitle(edge, nodeMap);
       var visible = svgEl('path', {
         d: path,
         class: 'relation-edge-path',
@@ -543,8 +556,10 @@
         class: 'relation-edge-hit',
         tabindex: '0',
         role: 'button',
-        'aria-label': edge.label + ': ' + edge.source + ' to ' + edge.target
+        'aria-label': edgeTitle(edge, nodeMap)
       });
+      hit.addEventListener('mouseenter', function () { onPreview(edge); });
+      hit.addEventListener('focus', function () { onPreview(edge); });
       hit.addEventListener('click', function () { onSelect(edge, group); });
       hit.addEventListener('keydown', function (event) {
         if (event.key === 'Enter' || event.key === ' ') {
@@ -552,6 +567,7 @@
           onSelect(edge, group);
         }
       });
+      group.appendChild(title);
       group.appendChild(visible);
       group.appendChild(hit);
       edgeLayer.appendChild(group);
@@ -592,7 +608,7 @@
     renderNodeMath(nodeLayer);
   }
 
-  function renderSvg(svg, graph, view, onSelect) {
+  function renderSvg(svg, graph, view, nodeMap, onPreview, onSelect) {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
 
     var layout = layoutGraph(view.nodes, view.edges);
@@ -601,7 +617,7 @@
     svg.style.minHeight = Math.max(480, layout.height) + 'px';
 
     var defs = svgEl('defs');
-    defs.innerHTML = '<marker id="relationGraphArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>';
+    defs.innerHTML = '<marker id="relationGraphArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>';
     svg.appendChild(defs);
 
     if (view.nodes.length === 0) {
@@ -611,7 +627,7 @@
       return;
     }
 
-    drawEdges(svg, view.edges, layout.positions, onSelect);
+    drawEdges(svg, view.edges, layout.positions, nodeMap, onPreview, onSelect);
     drawNodes(svg, view.nodes, layout.positions);
   }
 
@@ -684,7 +700,7 @@
     panel.innerHTML = [
       '<div class="relation-graph-details-row">',
       '<strong class="relation-graph-detail-label">',
-      escapeHtml(edge.label || edge.type),
+      escapeHtml(edgeLabel(edge)),
       '</strong>', conjecture,
       '<span class="relation-graph-edge-summary">',
       nodeLink(source), ' <span>to</span> ', nodeLink(target), '</span>',
@@ -719,14 +735,15 @@
     loadGraph(root, src)
       .then(function (graph) {
         var nodeMap = makeNodeMap(graph.nodes);
-        var defaults = defaultTypes(root);
-        setTypeSelection(root, hasSelectedTypes(defaults) ? defaults : posetTypes(graph));
+        setTypeSelection(root, initialTypeSet(graph, root));
         renderRelationChoices(graph, root);
 
         function update() {
           var view = filteredGraph(graph, root);
           syncPresetButtons(graph, root);
-          renderSvg(svg, graph, view, function (edge, edgeGroup) {
+          renderSvg(svg, graph, view, nodeMap, function (edge) {
+            renderDetails(details, edge, nodeMap);
+          }, function (edge, edgeGroup) {
             $all('.relation-edge-selected', svg).forEach(function (item) {
               item.classList.remove('relation-edge-selected');
             });
