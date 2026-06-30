@@ -104,6 +104,10 @@ the image of Fermionic creation operators acting on the Bosonic space.
   PositiveIn & qmonom | Gessel1984 \\
 \end{polydata}
 
+\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
+- PositiveIn augmentedMonomial -> monomial (current guess: monomial -> monomial); from polynomialData.m, tikzdataPositivity.txt.
+}
+
 Given a partition $\lambda$, we define the monomial symmetric functions as
 \[
 \monomial_\lambda(\xvec) = \sum_{\alpha \sim \lambda} \xvec^{\alpha}
@@ -131,6 +135,11 @@ See \cite{Merca2015} for more background.
   PositiveIn & monomial | Macdonald1995 \\
   PositiveIn & schurS | Sagan2001 \\
 \end{polydata}
+
+\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
+- Contains nonSymElem -> elementaryE (current guess: elementaryE -> elementaryE); from polynomialData.m, tikzdataRelations.txt.
+- PositiveIn nonSymElem -> key (current guess: elementaryE -> key); from polynomialData.m, tikzdataPositivity.txt.
+}
 
 
 The elementary symmetric functions are defined as follows:

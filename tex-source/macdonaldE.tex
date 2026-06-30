@@ -19,6 +19,10 @@
   StableLimit & macdonaldP | Macdonald1987 | scope=symmetric limit \\
 \end{polydata}
 
+\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
+- SpecializesTo macdonaldE -> atom; from polynomialData.m, tikzdataRelations.txt.
+}
+
 
 The non-symmetric Macdonald polynomials were introduced in \cite{Opdam1995},
 \cite{Macdonald1996} and \cite{Cherednik1995nonsymmetric}.
@@ -87,6 +91,12 @@ Halverson--Ram uses a different method based on intertwiners.
   Contains & qWhittaker | Opdam1995 | scope=symmetric/partition case \\
   PositiveIn & key | AlexanderssonSawhney2017,Assaf2018Kostka,AssafGonzalez2018 | semiring=NN[q] \\
 \end{polydata}
+
+\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
+- Misc nonSymqElem -> hallLittlewoodH (current guess: macdonaldEspec -> hallLittlewoodH); from polynomialData.m.
+- Misc nonSymqElem -> modHL (current guess: macdonaldEspec -> hallLittlewoodH); from tikzdataRelations.txt.
+- SpecializesTo nonSymqElem -> nonSymElem (current guess: macdonaldEspec -> elementaryE); from polynomialData.m, tikzdataRelations.txt.
+}
 
 The \defin{non-symmetric $q$-Whittaker polynomials} are obtained by letting $t=0$ in $\macdonaldE_\mu(\xvec;q,t)$.
 The result can be thought of as a non-symmetric analogue of the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials},
