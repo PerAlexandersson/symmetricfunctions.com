@@ -716,24 +716,6 @@
     margin: 1.5rem 0 2.5rem;
   }
 
-  .relation-graph-summary {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin: 0 0 1rem;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-
-  .relation-graph-summary span {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.35rem;
-    padding: 0.25rem 0.55rem;
-    border: 1px solid var(--c-border);
-    border-radius: 6px;
-    background: var(--c-bg-surface);
-  }
-
   .relation-graph-toolbar {
     display: grid;
     grid-template-columns: minmax(13rem, 1fr) minmax(18rem, 2fr) minmax(12rem, 1fr) auto auto;

@@ -263,12 +263,6 @@ metadata. Direct formal relations are shown as directed edges.
     data-relation-graph
     data-graph-src="%s"
     aria-labelledby="relationGraph">
-  <div class="relation-graph-summary" aria-label="Relation graph summary">
-    <span><strong>%d</strong> polynomials</span>
-    <span><strong>%d</strong> relations</span>
-    <span><strong>%d</strong> references</span>
-  </div>
-
   <div class="relation-graph-toolbar" aria-label="Relation graph controls">
     <label class="relation-graph-search">
       <span>Search</span>
@@ -314,8 +308,7 @@ The browser view above is backed by
 <a href="%s">the generated relation JSON</a>.
 </p>
 <script src="./relation-graph.js"></script>
-]], GRAPH_JSON, graph.stats.node_count, graph.stats.edge_count,
-      graph.stats.reference_count, GRAPH_JSON)
+]], GRAPH_JSON, GRAPH_JSON)
 end
 
 function M.render_page(graph, options)
