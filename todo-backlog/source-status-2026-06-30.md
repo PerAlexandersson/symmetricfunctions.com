@@ -94,6 +94,14 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   constants.  Published bibliography entries were used where available; the
   product and double-orthodontia papers remain arXiv entries.
 
+- `tex-source/todo-list.tex:555--557`, `tex-source/todo-list.tex:659`, and
+  `tex-source/todo-list.tex:704`, arXiv:2508.17682, arXiv:2502.21285,
+  arXiv:2408.01395, arXiv:2312.16474, and arXiv:2301.02177.
+  Accessible.  Updated `kromaticSymmetric.tex` with Marberg's kromatic
+  quasisymmetric functions, Pierson's power-sum and Lyndon-heap expansions,
+  Pierson--Samanta's counterexamples to graph-distinguishing by the kromatic
+  symmetric function, and the published source for the original definition.
+
 ## Access Needed
 
 None from this pass.
