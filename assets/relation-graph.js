@@ -2,6 +2,7 @@
   'use strict';
 
   var SVG_NS = 'http://www.w3.org/2000/svg';
+  var HTML_NS = 'http://www.w3.org/1999/xhtml';
   var NODE_W = 190;
   var NODE_H = 54;
   var X_STEP = 285;
@@ -19,6 +20,14 @@
 
   function svgEl(name, attrs) {
     var el = document.createElementNS(SVG_NS, name);
+    Object.keys(attrs || {}).forEach(function (key) {
+      el.setAttribute(key, attrs[key]);
+    });
+    return el;
+  }
+
+  function htmlEl(name, attrs) {
+    var el = document.createElementNS(HTML_NS, name);
     Object.keys(attrs || {}).forEach(function (key) {
       el.setAttribute(key, attrs[key]);
     });
@@ -44,12 +53,6 @@
       .replace(/\*/g, 'star')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') || 'unknown';
-  }
-
-  function truncate(value, limit) {
-    value = String(value || '');
-    if (value.length <= limit) return value;
-    return value.slice(0, Math.max(0, limit - 3)) + '...';
   }
 
   function nodeSortKey(node) {
@@ -434,23 +437,46 @@
     return ['M', sx, sy, 'C', sx + dx, sy, tx - dx, ty, tx, ty].join(' ');
   }
 
-  function appendNodeText(group, node) {
-    var title = svgEl('text', {
-      x: 14,
-      y: 23,
-      class: 'relation-node-title'
-    });
-    title.textContent = truncate(node.name || node.id, 28);
-    group.appendChild(title);
+  function renderNodeMath(root) {
+    if (typeof renderMathInElement !== 'function') return;
+    try {
+      renderMathInElement(root, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false}
+        ],
+        output: 'html',
+        throwOnError: false,
+        macros: window.KATEX_MACROS || {}
+      });
+    } catch (error) {
+      console.warn('KaTeX render failed for relation graph labels:', error);
+    }
+  }
 
-    var meta = svgEl('text', {
-      x: 14,
-      y: 41,
-      class: 'relation-node-meta'
+  function appendNodeLabel(group, node) {
+    var foreign = svgEl('foreignObject', {
+      x: 0,
+      y: 0,
+      width: NODE_W,
+      height: NODE_H,
+      class: 'relation-node-label-object'
     });
+    var label = htmlEl('div', { class: 'relation-node-label' });
+    var title = htmlEl('div', { class: 'relation-node-title' });
+
+    title.textContent = node.name || node.id;
+    label.appendChild(title);
+
     var metaText = [node.space, node.category].filter(Boolean).join(' - ');
-    meta.textContent = truncate(metaText || node.id, 30);
-    group.appendChild(meta);
+    var meta = htmlEl('div', { class: 'relation-node-meta' });
+    meta.textContent = metaText || node.id;
+    label.appendChild(meta);
+
+    foreign.appendChild(label);
+    group.appendChild(foreign);
   }
 
   function drawEdges(svg, edges, positions, onSelect) {
@@ -516,22 +542,14 @@
         rx: 7,
         ry: 7
       });
-      var textClip = svgEl('svg', {
-        x: 0,
-        y: 0,
-        width: NODE_W,
-        height: NODE_H,
-        class: 'relation-node-text-clip',
-        'aria-hidden': 'true',
-        focusable: 'false'
-      });
       group.appendChild(title);
       group.appendChild(rect);
-      appendNodeText(textClip, node);
+      appendNodeLabel(group, node);
       link.appendChild(group);
-      group.appendChild(textClip);
       nodeLayer.appendChild(link);
     });
+
+    renderNodeMath(nodeLayer);
   }
 
   function renderSvg(svg, graph, view, onSelect) {

@@ -11,7 +11,7 @@ local M = {}
 
 local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
-local GRAPH_JS = "relation-graph.js?v=5"
+local GRAPH_JS = "relation-graph.js?v=6"
 
 local function attr_is_false(value)
   if value == false then return true end

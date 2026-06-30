@@ -950,7 +950,7 @@
     --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 88%, var(--c-text-muted));
   }
 
-  .relation-node-text-clip {
+  .relation-node-label-object {
     overflow: hidden;
   }
 
@@ -960,15 +960,41 @@
     stroke-width: 2;
   }
 
+  .relation-node-label {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0.55rem 0.8rem 0.45rem;
+    color: var(--c-text-main);
+    font-family: system-ui, -apple-system, sans-serif;
+    pointer-events: none;
+  }
+
   .relation-node-title {
-    fill: var(--c-text-main);
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 13px;
+    line-height: 1.25;
     font-weight: 700;
   }
 
   .relation-node-meta {
-    fill: var(--c-text-muted);
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--c-text-muted);
     font-size: 11px;
+    line-height: 1.25;
+    margin-top: 0.2rem;
+  }
+
+  .relation-node-label .katex {
+    font-size: 1em;
   }
 
   .relation-edge-path {
