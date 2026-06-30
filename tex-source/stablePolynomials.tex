@@ -107,6 +107,25 @@ $P(t,\dotsc,t)$ is stable.
 If $P$ has real coefficients, this is equivalent to the univariate specialization $P(t,\dotsc,t)$ being real-rooted.
 \end{theorem}
 
+\begin{definition}[Apolar polynomials]
+Let
+\[
+  F(z)=\sum_{k=0}^n \binom{n}{k} a_k z^k
+  \qquad\text{and}\qquad
+  G(z)=\sum_{k=0}^n \binom{n}{k} b_k z^k.
+\]
+The polynomials $F$ and $G$ are \defin{apolar} if
+\[
+  \sum_{k=0}^n (-1)^k \binom{n}{k} a_k b_{n-k}=0.
+\]
+\end{definition}
+
+\begin{theorem}[Grace's apolarity theorem, see \cite{Grace1902,Szego1922,RahmanSchmeisser2002}]
+Let $C$ be a circular domain, and let $F$ and $G$ be apolar
+polynomials of degree $n$.  If all zeros of $F$ lie in $C$, then $G$
+has at least one zero in $C$.
+\end{theorem}
+
 A useful way to reduce questions to the multi-affine case is
 \defin{polarization}.  If $0 \leq k \leq d_j$, set
 \[

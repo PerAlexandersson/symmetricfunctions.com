@@ -267,6 +267,22 @@ If $f$ and $g$ are real-rooted with non-negative coefficients,
 then $f\odot g$ is also real-rooted with non-negative coefficients. 
 \end{theorem}
 
+\begin{theorem}[Garloff--Wagner, see \cite[Thm.~4]{GarloffWagner1996}]
+Let $f,g,p,q \in \setR[t]$ have non-negative coefficients and only
+real non-positive zeros.  If
+\[
+  f \interl g
+  \qquad\text{and}\qquad
+  p \interl q,
+\]
+then
+\[
+  f\odot p \interl g\odot q.
+\]
+Here we use the zero convention for interleaving, so the conclusion also
+covers the case where one of the Hadamard products is zero.
+\end{theorem}
+
 \begin{theorem}[Schur, see {\cite{Schur1914} and \cite[Thm.~1]{Branden2004operators}}]
 Let
 \[
@@ -311,8 +327,23 @@ immediately gives real-rootedness.
 The Hadamard product theorem is useful whenever a polynomial's
 coefficients factor as a product of two sequences that are each
 the coefficient sequence of a real-rooted polynomial.
-A more general \emph{composition theorem} involving
-the Schur--Szeg\H{o} composition is given in \cite{RahmanSchmeisser2002}.
+
+\begin{theorem}[Schur--Szeg\H{o} composition theorem, see \cite{RahmanSchmeisser2002}]
+Let
+\[
+  F(x)=\sum_{k=0}^n \binom{n}{k} a_k x^k
+  \qquad\text{and}\qquad
+  G(x)=\sum_{k=0}^n \binom{n}{k} b_k x^k.
+\]
+Their \defin{Schur--Szeg\H{o} composition} is
+\[
+  (F*G)(x)
+  \coloneqq
+  \sum_{k=0}^n \binom{n}{k} a_k b_k x^k.
+\]
+If $F$ and $G$ have only real non-positive zeros, then $F*G$ also has
+only real non-positive zeros.
+\end{theorem}
 
 \begin{theorem}[Wagner--Brändén, {\cite[Thm.~2 and Thm.~13]{Branden2004operators}}]
 For polynomials $f,h\in \setR[x]$, define the \defin{diamond product} by
