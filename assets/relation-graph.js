@@ -70,6 +70,18 @@
     return values;
   }
 
+  function relationTypeMap(graph) {
+    var map = Object.create(null);
+    (graph.relation_types || []).forEach(function (type) {
+      if (type.count > 0) map[type.type] = type;
+    });
+    return map;
+  }
+
+  function selectedTypeSet(root) {
+    return activeValues('[data-relation-type-filter]', root);
+  }
+
   function defaultTypes(root) {
     var value = root.getAttribute('data-default-types') || '';
     var selected = Object.create(null);
@@ -81,6 +93,59 @@
 
   function hasSelectedTypes(types) {
     return Object.keys(types).length > 0;
+  }
+
+  function typeSetEquals(a, b) {
+    var aKeys = Object.keys(a).sort();
+    var bKeys = Object.keys(b).sort();
+    if (aKeys.length !== bKeys.length) return false;
+    for (var i = 0; i < aKeys.length; i += 1) {
+      if (aKeys[i] !== bKeys[i]) return false;
+    }
+    return true;
+  }
+
+  function setTypeSelection(root, types) {
+    $all('[data-relation-type-filter]', root).forEach(function (input) {
+      input.checked = !!types[input.value];
+    });
+  }
+
+  function posetTypes(graph) {
+    var types = Object.create(null);
+    (graph.relation_types || []).forEach(function (type) {
+      if (type.count > 0 && type.poset) types[type.type] = true;
+    });
+    return types;
+  }
+
+  function allRelationTypes(graph) {
+    var types = Object.create(null);
+    (graph.relation_types || []).forEach(function (type) {
+      if (type.count > 0) types[type.type] = true;
+    });
+    return types;
+  }
+
+  function presetDefinitions(graph) {
+    var typeMap = relationTypeMap(graph);
+    var presets = [];
+    [
+      ['positive_in', 'PositiveIn'],
+      ['specializes_to', 'SpecializesTo'],
+      ['contains', 'Contains']
+    ].forEach(function (pair) {
+      if (typeMap[pair[0]]) {
+        var types = Object.create(null);
+        types[pair[0]] = true;
+        presets.push({ id: pair[0], label: pair[1], types: types });
+      }
+    });
+    presets.push({ id: 'all_poset', label: 'All poset', types: posetTypes(graph) });
+    presets.push({ id: 'all_relations', label: 'All relations', types: allRelationTypes(graph) });
+    return presets.filter(function (preset) {
+      return hasSelectedTypes(preset.types);
+    });
   }
 
   function textForNode(node) {
@@ -495,6 +560,38 @@
       });
   }
 
+  function renderPresets(graph, root) {
+    var container = $('#relationGraphPresets', root);
+    if (!container) return;
+    container.innerHTML = '';
+    presetDefinitions(graph).forEach(function (preset) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'relation-graph-preset';
+      button.setAttribute('data-relation-preset', preset.id);
+      button.textContent = preset.label;
+      button.addEventListener('click', function () {
+        setTypeSelection(root, preset.types);
+        $('#relationGraphPosetOnly', root).checked = preset.id === 'all_poset';
+        root.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      container.appendChild(button);
+    });
+  }
+
+  function syncPresetButtons(graph, root) {
+    var selected = selectedTypeSet(root);
+    var presets = presetDefinitions(graph);
+    $all('[data-relation-preset]', root).forEach(function (button) {
+      var preset = presets.find(function (item) {
+        return item.id === button.getAttribute('data-relation-preset');
+      });
+      var isActive = preset && typeSetEquals(selected, preset.types);
+      button.classList.toggle('is-active', !!isActive);
+      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
   function resetFilters(root) {
     var defaults = defaultTypes(root);
     var useDefaults = hasSelectedTypes(defaults);
@@ -574,10 +671,12 @@
     loadGraph(root, src)
       .then(function (graph) {
         var nodeMap = makeNodeMap(graph.nodes);
+        renderPresets(graph, root);
         renderFilters(graph, root);
 
         function update() {
           var view = filteredGraph(graph, root);
+          syncPresetButtons(graph, root);
           renderSvg(svg, graph, view, function (edge, edgeGroup) {
             $all('.relation-edge-selected', svg).forEach(function (item) {
               item.classList.remove('relation-edge-selected');
