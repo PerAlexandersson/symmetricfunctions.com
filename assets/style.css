@@ -712,6 +712,36 @@
   }
 
   /* Relation graph */
+  .relation-graph-document {
+    --col-main-start: 2;
+    --col-main-end: 8;
+    --toc-display: none;
+  }
+
+  .relation-graph-document #doc-title > *,
+  .relation-graph-document #doc-footer > * {
+    grid-column: 2 / 8;
+  }
+
+  .relation-graph-document #doc-all {
+    padding-top: 1.4rem;
+  }
+
+  .relation-graph-document #doc-main {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0 1rem 2.5rem;
+  }
+
+  .relation-graph-document #page-meta {
+    margin-bottom: 0.9rem;
+  }
+
+  .relation-graph-document #doc-section > h2:first-child {
+    margin-top: 0;
+  }
+
   .relation-graph-page {
     margin: 1.5rem 0 2.5rem;
   }
@@ -723,6 +753,18 @@
     gap: 0.8rem;
     margin: 1rem 0;
     font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .relation-graph-document .relation-graph-toolbar {
+    position: sticky;
+    top: 0.6rem;
+    z-index: 20;
+    padding: 0.65rem;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--c-bg-body) 78%, var(--c-bg-surface));
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(8px);
   }
 
   .relation-graph-search,
@@ -808,6 +850,10 @@
     align-items: stretch;
   }
 
+  .relation-graph-document .relation-graph-shell {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 20rem);
+  }
+
   .relation-graph-stage {
     min-height: 34rem;
     border: 1px solid var(--c-border);
@@ -821,6 +867,10 @@
       ),
       var(--c-bg-surface);
     overflow: auto;
+  }
+
+  .relation-graph-document .relation-graph-stage {
+    min-height: calc(100vh - 18rem);
   }
 
   .relation-graph-svg {
@@ -908,6 +958,14 @@
     font-family: system-ui, -apple-system, sans-serif;
   }
 
+  .relation-graph-document .relation-graph-details {
+    align-self: start;
+    position: sticky;
+    top: 7rem;
+    max-height: calc(100vh - 8rem);
+    overflow: auto;
+  }
+
   .relation-graph-details h3 {
     margin-top: 0;
     color: var(--c-text-main);
@@ -977,6 +1035,14 @@
     }
     .relation-graph-stage {
       min-height: 28rem;
+    }
+    .relation-graph-document .relation-graph-toolbar,
+    .relation-graph-document .relation-graph-details {
+      position: static;
+      max-height: none;
+    }
+    .relation-graph-document .relation-graph-stage {
+      min-height: 70vh;
     }
   }
    

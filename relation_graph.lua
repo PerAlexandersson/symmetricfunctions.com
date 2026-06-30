@@ -11,7 +11,7 @@ local M = {}
 
 local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
-local GRAPH_JS = "relation-graph.js?v=2"
+local GRAPH_JS = "relation-graph.js?v=3"
 
 local function attr_is_false(value)
   if value == false then return true end
@@ -266,11 +266,12 @@ local function render_main(graph)
 <h2 id="relationGraph">Polynomial relation graph</h2>
 <p>
 This graph is generated from the structured relation rows in the polynomial
-metadata. Direct formal relations are shown as directed edges.
+metadata. The positive-expansion relation is shown by default.
 </p>
 <section class="relation-graph-page"
     data-relation-graph
     data-graph-src="%s"
+    data-default-types="positive_in"
     aria-labelledby="relationGraph">
   <div class="relation-graph-toolbar" aria-label="Relation graph controls">
     <label class="relation-graph-search">
@@ -333,7 +334,7 @@ function M.render_page(graph, options)
     references_html = bibhandler.build_bibliography_HTML(refs_json, graph.references)
   end
 
-  return render_template(template, {
+  local html = render_template(template, {
     TITLE = "Polynomial relation graph",
     DESCRIPTION = "Interactive graph of structured relations between polynomial families.",
     CANONICAL = GRAPH_HTML,
@@ -344,6 +345,8 @@ function M.render_page(graph, options)
     SIDELINKS = render_side_links(#graph.references > 0),
     REFERENCES = references_html
   })
+
+  return html:gsub("<body>", '<body class="relation-graph-document">', 1)
 end
 
 return M

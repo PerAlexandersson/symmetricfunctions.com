@@ -2,12 +2,12 @@
   'use strict';
 
   var SVG_NS = 'http://www.w3.org/2000/svg';
-  var NODE_W = 178;
+  var NODE_W = 190;
   var NODE_H = 54;
-  var X_STEP = 260;
-  var Y_STEP = 84;
-  var PAD_X = 54;
-  var PAD_Y = 48;
+  var X_STEP = 285;
+  var Y_STEP = 76;
+  var PAD_X = 64;
+  var PAD_Y = 56;
 
   function $(selector, root) {
     return (root || document).querySelector(selector);
@@ -44,8 +44,13 @@
     return value.slice(0, Math.max(0, limit - 3)) + '...';
   }
 
-  function sortByName(a, b) {
-    return (a.name || a.id).localeCompare(b.name || b.id) || a.id.localeCompare(b.id);
+  function nodeSortKey(node) {
+    return [
+      node.space || '',
+      node.category || '',
+      node.name || '',
+      node.id || ''
+    ].join('\t');
   }
 
   function makeNodeMap(nodes) {
@@ -63,6 +68,19 @@
       if (input.checked) values[value] = true;
     });
     return values;
+  }
+
+  function defaultTypes(root) {
+    var value = root.getAttribute('data-default-types') || '';
+    var selected = Object.create(null);
+    value.split(/\s*,\s*/).forEach(function (type) {
+      if (type) selected[type] = true;
+    });
+    return selected;
+  }
+
+  function hasSelectedTypes(types) {
+    return Object.keys(types).length > 0;
   }
 
   function textForNode(node) {
@@ -110,85 +128,211 @@
   }
 
   function computeRanks(nodes, edges) {
-    var ids = Object.create(null);
-    var rank = Object.create(null);
-    var indeg = Object.create(null);
-    var outgoing = Object.create(null);
+    var adjacency = Object.create(null);
+    var index = 0;
+    var stack = [];
+    var onStack = Object.create(null);
+    var indexOf = Object.create(null);
+    var lowlink = Object.create(null);
+    var compOf = Object.create(null);
+    var comps = [];
 
     nodes.forEach(function (node) {
-      ids[node.id] = true;
-      rank[node.id] = 0;
-      indeg[node.id] = 0;
-      outgoing[node.id] = [];
+      adjacency[node.id] = [];
     });
 
     edges.forEach(function (edge) {
-      if (!ids[edge.source] || !ids[edge.target]) return;
-      outgoing[edge.source].push(edge.target);
-      if (edge.source !== edge.target) indeg[edge.target] += 1;
+      if (!adjacency[edge.source] || !adjacency[edge.target]) return;
+      if (edge.source !== edge.target) adjacency[edge.source].push(edge.target);
     });
 
-    var queue = nodes
-      .filter(function (node) { return indeg[node.id] === 0; })
-      .sort(sortByName)
-      .map(function (node) { return node.id; });
-    var seen = Object.create(null);
+    function strongConnect(id) {
+      indexOf[id] = index;
+      lowlink[id] = index;
+      index += 1;
+      stack.push(id);
+      onStack[id] = true;
 
-    while (queue.length > 0) {
-      var id = queue.shift();
-      seen[id] = true;
-      outgoing[id].forEach(function (target) {
-        if (target !== id) rank[target] = Math.max(rank[target], rank[id] + 1);
-        indeg[target] -= 1;
-        if (indeg[target] === 0) queue.push(target);
+      adjacency[id].forEach(function (target) {
+        if (indexOf[target] == null) {
+          strongConnect(target);
+          lowlink[id] = Math.min(lowlink[id], lowlink[target]);
+        } else if (onStack[target]) {
+          lowlink[id] = Math.min(lowlink[id], indexOf[target]);
+        }
       });
-      queue.sort(function (a, b) { return a.localeCompare(b); });
+
+      if (lowlink[id] === indexOf[id]) {
+        var comp = [];
+        var current;
+        do {
+          current = stack.pop();
+          onStack[current] = false;
+          compOf[current] = comps.length;
+          comp.push(current);
+        } while (current !== id);
+        comps.push(comp);
+      }
     }
 
     nodes.forEach(function (node) {
-      if (!seen[node.id]) {
-        var incident = edges.some(function (edge) {
-          return edge.source === node.id || edge.target === node.id;
-        });
-        if (incident) rank[node.id] = Math.max(rank[node.id], 0);
+      if (indexOf[node.id] == null) strongConnect(node.id);
+    });
+
+    var compOut = [];
+    var compInDegree = [];
+    var compRank = [];
+    comps.forEach(function () {
+      compOut.push(Object.create(null));
+      compInDegree.push(0);
+      compRank.push(0);
+    });
+
+    edges.forEach(function (edge) {
+      var sourceComp = compOf[edge.source];
+      var targetComp = compOf[edge.target];
+      if (sourceComp == null || targetComp == null || sourceComp === targetComp) return;
+      if (!compOut[sourceComp][targetComp]) {
+        compOut[sourceComp][targetComp] = true;
+        compInDegree[targetComp] += 1;
       }
     });
 
+    var queue = comps
+      .map(function (_, compId) { return compId; })
+      .filter(function (compId) { return compInDegree[compId] === 0; });
+    queue.sort(function (a, b) {
+      return comps[a].join('\t').localeCompare(comps[b].join('\t'));
+    });
+
+    while (queue.length > 0) {
+      var compId = queue.shift();
+      Object.keys(compOut[compId]).forEach(function (targetKey) {
+        var targetComp = Number(targetKey);
+        compRank[targetComp] = Math.max(compRank[targetComp], compRank[compId] + 1);
+        compInDegree[targetComp] -= 1;
+        if (compInDegree[targetComp] === 0) queue.push(targetComp);
+      });
+      queue.sort(function (a, b) {
+        return comps[a].join('\t').localeCompare(comps[b].join('\t'));
+      });
+    }
+
+    var rank = Object.create(null);
+    nodes.forEach(function (node) {
+      rank[node.id] = compRank[compOf[node.id]] || 0;
+    });
     return rank;
+  }
+
+  function rowIndexes(columns) {
+    var rows = Object.create(null);
+    Object.keys(columns).forEach(function (rankKey) {
+      columns[rankKey].forEach(function (node, index) {
+        rows[node.id] = index;
+      });
+    });
+    return rows;
+  }
+
+  function orderLayers(columns, edges) {
+    var rankKeys = Object.keys(columns)
+      .map(Number)
+      .sort(function (a, b) { return a - b; });
+    var rankOf = Object.create(null);
+
+    rankKeys.forEach(function (rankKey) {
+      columns[rankKey].sort(function (a, b) {
+        return nodeSortKey(a).localeCompare(nodeSortKey(b));
+      });
+      columns[rankKey].forEach(function (node) {
+        rankOf[node.id] = rankKey;
+      });
+    });
+
+    function reorder(rankKey, rows, forward) {
+      columns[rankKey].sort(function (a, b) {
+        var baryA = barycenter(a.id, rows, forward);
+        var baryB = barycenter(b.id, rows, forward);
+        if (baryA != null && baryB != null && baryA !== baryB) return baryA - baryB;
+        if (baryA != null && baryB == null) return -1;
+        if (baryA == null && baryB != null) return 1;
+        return nodeSortKey(a).localeCompare(nodeSortKey(b));
+      });
+    }
+
+    function barycenter(nodeId, rows, forward) {
+      var sum = 0;
+      var count = 0;
+      edges.forEach(function (edge) {
+        var neighbor = null;
+        if (forward && edge.target === nodeId && rankOf[edge.source] < rankOf[nodeId]) {
+          neighbor = edge.source;
+        } else if (!forward && edge.source === nodeId && rankOf[edge.target] > rankOf[nodeId]) {
+          neighbor = edge.target;
+        }
+        if (neighbor != null && rows[neighbor] != null) {
+          sum += rows[neighbor];
+          count += 1;
+        }
+      });
+      return count > 0 ? sum / count : null;
+    }
+
+    for (var sweep = 0; sweep < 8; sweep += 1) {
+      var rowsForward = rowIndexes(columns);
+      rankKeys.forEach(function (rankKey) {
+        if (rankKey !== rankKeys[0]) reorder(rankKey, rowsForward, true);
+      });
+
+      var rowsBackward = rowIndexes(columns);
+      rankKeys.slice().reverse().forEach(function (rankKey) {
+        if (rankKey !== rankKeys[rankKeys.length - 1]) {
+          reorder(rankKey, rowsBackward, false);
+        }
+      });
+    }
+
+    return rankKeys;
   }
 
   function layoutGraph(nodes, edges) {
     var ranks = computeRanks(nodes, edges);
     var columns = Object.create(null);
-    var maxRank = 0;
 
     nodes.forEach(function (node) {
       var r = ranks[node.id] || 0;
-      maxRank = Math.max(maxRank, r);
       columns[r] = columns[r] || [];
       columns[r].push(node);
     });
 
+    var rankKeys = orderLayers(columns, edges);
+    var rankIndex = Object.create(null);
+    rankKeys.forEach(function (rankKey, index) {
+      rankIndex[rankKey] = index;
+    });
+
     var positions = Object.create(null);
     var maxRows = 1;
-    Object.keys(columns).forEach(function (rankKey) {
-      var column = columns[rankKey].sort(function (a, b) {
-        var ak = [a.space || '', a.category || '', a.name || '', a.id].join('\t');
-        var bk = [b.space || '', b.category || '', b.name || '', b.id].join('\t');
-        return ak.localeCompare(bk);
-      });
+    rankKeys.forEach(function (rankKey) {
+      var column = columns[rankKey];
       maxRows = Math.max(maxRows, column.length);
+    });
+
+    rankKeys.forEach(function (rankKey) {
+      var column = columns[rankKey];
+      var yOffset = Math.max(0, (maxRows - column.length) * Y_STEP * 0.5);
       column.forEach(function (node, row) {
         positions[node.id] = {
-          x: PAD_X + Number(rankKey) * X_STEP,
-          y: PAD_Y + row * Y_STEP
+          x: PAD_X + rankIndex[rankKey] * X_STEP,
+          y: PAD_Y + yOffset + row * Y_STEP
         };
       });
     });
 
     return {
       positions: positions,
-      width: Math.max(920, PAD_X * 2 + NODE_W + maxRank * X_STEP),
+      width: Math.max(1120, PAD_X * 2 + NODE_W + (rankKeys.length - 1) * X_STEP),
       height: Math.max(520, PAD_Y * 2 + NODE_H + (maxRows - 1) * Y_STEP)
     };
   }
@@ -334,18 +478,34 @@
 
   function renderFilters(graph, root) {
     var container = $('#relationGraphTypeFilters', root);
+    var defaults = defaultTypes(root);
+    var useDefaults = hasSelectedTypes(defaults);
     container.innerHTML = '';
     graph.relation_types
       .filter(function (type) { return type.count > 0; })
       .forEach(function (type) {
         var label = document.createElement('label');
+        var checked = (!useDefaults || defaults[type.type]) ? ' checked' : '';
         label.className = 'relation-graph-filter';
         label.innerHTML = '<input type="checkbox" data-relation-type-filter value="'
-          + escapeHtml(type.type) + '" checked> '
+          + escapeHtml(type.type) + '"' + checked + '> '
           + '<span>' + escapeHtml(type.label) + '</span>'
           + '<small>' + String(type.count) + '</small>';
         container.appendChild(label);
       });
+  }
+
+  function resetFilters(root) {
+    var defaults = defaultTypes(root);
+    var useDefaults = hasSelectedTypes(defaults);
+    $('#relationGraphSearch', root).value = '';
+    $('#relationGraphPosetOnly', root).checked = false;
+    $all('[data-relation-type-filter]', root).forEach(function (input) {
+      input.checked = !useDefaults || !!defaults[input.value];
+    });
+    $all('[data-status-filter]', root).forEach(function (input) {
+      input.checked = true;
+    });
   }
 
   function nodeLink(node) {
@@ -430,11 +590,7 @@
         root.addEventListener('change', update);
         $('#relationGraphSearch', root).addEventListener('input', update);
         $('#relationGraphReset', root).addEventListener('click', function () {
-          $('#relationGraphSearch', root).value = '';
-          $('#relationGraphPosetOnly', root).checked = false;
-          $all('[data-relation-type-filter], [data-status-filter]', root).forEach(function (input) {
-            input.checked = true;
-          });
+          resetFilters(root);
           details.innerHTML = '<h3>Relation details</h3><p>No relation selected.</p>';
           update();
         });
