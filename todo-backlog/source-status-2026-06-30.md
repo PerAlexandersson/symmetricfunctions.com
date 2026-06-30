@@ -12,6 +12,11 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `NN[q]` in Corollary 4.7.  Added `PositiveIn & atom` metadata to
   `macdonaldEperm` and `macdonaldEspec`.
 
+- `tex-source/todo-list.tex:590`, arXiv:2406.01166.
+  Accessible.  Added bibliography key `GrinbergVassilieva2024x` and a short
+  `hallLittlewood.tex` subsection on Hall--Littlewood `S`-functions, enriched
+  `P`-partitions, and the q-fundamental quasisymmetric expansion.
+
 ## Accessible, Deferred
 
 - `tex-source/todo-list.tex:328`, arXiv:2506.09015.
@@ -26,12 +31,6 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Grothendieck polynomials.  The formula has K-theoretic signs, so this should
   be treated as prose or a signed relation after a more careful page pass, not
   as an ordinary positive-expansion edge.
-
-- `tex-source/todo-list.tex:590`, arXiv:2406.01166.
-  Accessible.  The paper concerns Hall--Littlewood `S`-symmetric functions
-  with parameter `t=-q`, enriched `P`-partitions, and q-fundamental
-  quasisymmetric expansions.  This is useful content, but it is not the old
-  metadata hint that ordinary Hall--Littlewood `P` is positive in atoms.
 
 - `tex-source/todo-list.tex:798`, DOI `10.1016/j.ejc.2023.103688`.
   Metadata is already in `bibliography.bib` as

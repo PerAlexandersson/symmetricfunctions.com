@@ -107,6 +107,36 @@ We have the Cauchy identity (see \cite[Chapter III, Eq. (4.4)]{Macdonald1995}),
 \sum_{\mu} \hallLittlewoodP_\mu(x_1,\dotsc,x_n;t) \hallLittlewoodQ_\mu(y_1,\dotsc,y_n;t).
 \]
 
+\subsection[hallLittlewoodSFunctions]{Hall--Littlewood $S$-functions}
+
+A related Jacobi--Trudi family is obtained by replacing the complete
+homogeneous functions by the one-row Hall--Littlewood functions.  Let
+$q_n(X;t)$ be defined by
+\[
+\sum_{n\geq 0} q_n(X;t)u^n =
+\prod_i \frac{1-tx_i u}{1-x_i u},
+\]
+and let $\theta_t$ be the algebra homomorphism determined by
+$\theta_t(h_n)=q_n(X;t)$.  The \defin{Hall--Littlewood $S$-symmetric
+functions} are
+\[
+S_{\lambda/\mu}(X;t) \coloneqq \theta_t(s_{\lambda/\mu}).
+\]
+Thus $S_{\lambda/\mu}(X;0)=s_{\lambda/\mu}(X)$.
+
+\name{Darij Grinberg} and \name{Ekaterina Vassilieva}
+\cite{GrinbergVassilieva2024x} relate this family to
+\hyperref[enrichedPPartitions]{enriched $P$-partitions}.  If
+$P_{\lambda/\mu}$ is the poset of cells in the skew shape $\lambda/\mu$, then
+they prove that
+\[
+S_{\lambda/\mu}(X;-q)=\Gamma^{(q)}(P_{\lambda/\mu}),
+\]
+where the right-hand side is the $q$-deformed generating function for enriched
+$P$-partitions of $P_{\lambda/\mu}$.  They also give a
+$q$-fundamental quasisymmetric expansion indexed by standard Young tableaux of
+shape $\lambda/\mu$.
+
 \subsection[hallLittlewoodGT]{Gelfand--Tsetlin patterns}
 
 
