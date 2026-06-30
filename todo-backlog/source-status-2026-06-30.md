@@ -70,6 +70,12 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   positivity results.  Added positive-expansion metadata from quasisymmetric
   Schur $Q$-functions to peak Young quasisymmetric Schur functions.
 
+- `tex-source/todo-list.tex:592--593`, arXiv:2406.01510 and
+  arXiv:2406.02420.
+  Accessible.  Added short `assaf.tex` and `hivert.tex` paragraphs on
+  quasisymmetric divided differences, forest polynomials, Hivert operators,
+  fundamental slide polynomials, and the fundamental particle basis.
+
 ## Access Needed
 
 None from this pass.
