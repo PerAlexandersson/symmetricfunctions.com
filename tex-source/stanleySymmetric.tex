@@ -238,7 +238,7 @@ are Schur-positive for all $\omega \in A_n$, by a version of the Edelman--Greene
   Bib      & Lam2006 \\
   Year     & 2006 \\
   Keywords & affine \\
-  Symbol   & $\stanleySymAffine_{w/v}(\xvec)$ \\
+  Symbol   & $\stanleySymAffine_w(\xvec)$ \\
   Category & Schubert \\
   Contains & schurAffine | Lam2006 | scope=affine Grassmannian permutations \\
   Contains & schurCylindric | Lam2006 \\
@@ -254,11 +254,27 @@ The family $\stanleySymAffine_\omega(\xvec)$ are indexed by affine permutations 
 Whenever $\omega \in \symS_n$, they agree with the classical
 Stanley symmetric function $\stanleySym_\omega(\xvec)$.
 
-There is a "skew" version of affine Stanley symmetric functions, where
+\subsection[stanleySymAffineSkew]{Skew affine Stanley symmetric functions}
+
+\begin{polydata}{stanleySymAffineSkew}
+  Name     & Skew affine Stanley symmetric functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 2 \\
+  Bib      & Lam2006 \\
+  Year     & 2006 \\
+  Keywords & affine \\
+  Symbol   & $\stanleySymAffine_{w/v}(\xvec)$ \\
+  Category & Schubert \\
+  Contains & stanleySymAffine | Lam2006 | scope=$v=e$ \\
+\end{polydata}
+
+There is a skew version of affine Stanley symmetric functions, where
 \[
 \stanleySymAffine_{w/v}(\xvec) = \stanleySymAffine_{wv^{-1}}(\xvec).
 \]
-In other words, the family of affine Stanley symmetric functions contain these skew versions.
+Thus the skew affine Stanley symmetric functions contain the ordinary affine
+Stanley symmetric functions as the special case $v=e$.
 
 The family of affine Stanley symmetric functions contains the \hyperref[schurCylindric]{cylindrical Schur functions}.
 
