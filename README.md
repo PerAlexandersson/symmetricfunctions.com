@@ -74,7 +74,7 @@ bibliography.bib    BibLaTeX references (~1360 entries)
   - `\name{Person}` — wrap proper names
   - `\defin{term}` — definition markup
   - `\polydata{...}` — structured metadata block for a polynomial family
-    - Relation rows inside `polydata` support `PositiveIn`, `Contains`, and `Generalizes`; write targets as `polydata` ids, with optional references as `target | BibKey` or `target [BibKey]`. Repeating the same relation row is allowed.
+    - Relation rows inside `polydata` use targets that are other `polydata` ids. Preferred form: `RelationKey & target | BibKey[,BibKey...] | attr=value; attr=value \\`. Existing short forms `target | BibKey` and `target [BibKey]` are still supported.
   - `\todo{...}` content is collected but excluded from output prose
   - `\section[label]{Title}` — label is used for cross-references
 - **Math:** rendered client-side by KaTeX via `tex-init.js` macros

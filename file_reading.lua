@@ -154,15 +154,15 @@ local function read_json_input(args, strict)
 
   -- Try to read from file argument
   if args and args[1] and args[1] ~= "-" then
-    local doc = load_json_file(args[1], "JSON data", false)
-    if not doc or next(doc) == nil then
-      if strict then
-        error(string.format("JSON decode error reading %s", args[1]))
-      else
-        return nil
-      end
+    if strict then
+      return load_json_file(args[1], "JSON data", true)
     end
-    return doc
+
+    local contents = read_file(args[1], "JSON data", false)
+    if not contents then
+      return nil
+    end
+    return json_decode(contents, args[1], false)
   end
 
   -- Read from stdin

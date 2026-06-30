@@ -17,11 +17,13 @@ local print_todo = utils.print_todo
 local print_warn = utils.print_warn
 local print_info = utils.print_info
 local print_error = utils.print_error
+local has_errors = utils.has_errors
 
 
 local bib = dofile("bibhandler.lua")
 local get_bibliography_label = bib.get_bibliography_label
 local get_bibliography_tooltip = bib.get_bibliography_tooltip
+local relation_registry = dofile("relation_registry.lua")
 
 -- Derive current input filename/stem
 local _INPUT = (PANDOC_STATE and PANDOC_STATE.input_files and PANDOC_STATE.input_files[1]) or "(stdin)"
@@ -303,37 +305,6 @@ local function process_tabular_cells(body)
 end
 
 
-local POLYDATA_RELATION_FIELDS = {
-  ["positivein"] = {
-    type = "positive_in",
-    label = "PositiveIn"
-  },
-  ["expands positively into"] = {
-    type = "positive_in",
-    label = "PositiveIn"
-  },
-  ["contains"] = {
-    type = "contains",
-    label = "Contains"
-  },
-  ["is superset of"] = {
-    type = "contains",
-    label = "Contains"
-  },
-  ["superset of"] = {
-    type = "contains",
-    label = "Contains"
-  },
-  ["generalizes"] = {
-    type = "generalizes",
-    label = "Generalizes"
-  },
-  ["specializes to"] = {
-    type = "generalizes",
-    label = "Generalizes"
-  },
-}
-
 local function normalize_polydata_key(key)
   return trim(key):lower():gsub("%s+", " ")
 end
@@ -351,8 +322,127 @@ local function normalize_relation_ref(ref)
   return trim((ref:gsub("@@[%w%.%-_/]+:%d+", "")))
 end
 
+local function split_trimmed(value, delimiter)
+  local items = {}
+  local pattern = "([^" .. delimiter .. "]*)"
+  for item in (tostring(value or "") .. delimiter):gmatch(pattern .. delimiter) do
+    item = trim(item)
+    if item ~= "" then
+      items[#items + 1] = item
+    end
+  end
+  return items
+end
+
+local function split_pipe_fields(value)
+  local fields = {}
+  for field in (tostring(value or "") .. "|"):gmatch("(.-)|") do
+    fields[#fields + 1] = trim(field)
+  end
+  return fields
+end
+
+local function parse_relation_refs(ref_text)
+  local refs = {}
+  ref_text = normalize_relation_ref(ref_text)
+  if ref_text == "" then
+    return refs
+  end
+
+  for ref in (ref_text .. ","):gmatch("(.-)%s*,") do
+    ref = normalize_relation_ref(ref)
+    if ref ~= "" then
+      refs[#refs + 1] = ref
+    end
+  end
+
+  return refs
+end
+
+local function parse_relation_attrs(attr_text)
+  local attrs = {}
+  local status = nil
+
+  for item in (tostring(attr_text or "") .. ";"):gmatch("(.-)%s*;") do
+    item = trim(item)
+    if item ~= "" then
+      local key, value = item:match("^([^=]-)%s*=%s*(.-)%s*$")
+      key = relation_registry.normalize_attr_key(key or item)
+      if value == nil or value == "" then
+        value = true
+      else
+        value = trim(value)
+      end
+
+      if key == "status" then
+        status = relation_registry.normalize_status(value)
+      else
+        attrs[key] = value
+      end
+    end
+  end
+
+  return attrs, status
+end
+
+local function table_is_empty(t)
+  return next(t) == nil
+end
+
+local function relation_record(target, refs, attrs, status)
+  target = trim(target or "")
+  if target == "" then
+    return nil
+  end
+
+  local record = {
+    target = target,
+    status = relation_registry.normalize_status(status)
+  }
+
+  if refs and #refs > 0 then
+    record.refs = refs
+    record.ref = table.concat(refs, ",")
+  end
+
+  if attrs and not table_is_empty(attrs) then
+    record.attrs = attrs
+  end
+
+  return record
+end
+
 local function parse_relation_items(value)
   local items = {}
+  local fields = split_pipe_fields(value)
+
+  local attr_text = ""
+  if #fields >= 3 then
+    local attr_parts = {}
+    for i = 3, #fields do
+      attr_parts[#attr_parts + 1] = fields[i]
+    end
+    attr_text = table.concat(attr_parts, "|")
+  end
+
+  -- Structured rows use "target | refs | key=value; ...".
+  -- If the part after the second pipe has no key-value attribute, keep the
+  -- older semicolon-separated parser so rows like "A | RefA; B | RefB" remain
+  -- two separate legacy relations.
+  if #fields >= 3 and attr_text:match("[^=;%s]+%s*=") then
+    local targets = split_trimmed(fields[1], ";")
+    local refs = parse_relation_refs(fields[2])
+    local attrs, status = parse_relation_attrs(attr_text)
+
+    for _, target in ipairs(targets) do
+      local record = relation_record(target, refs, attrs, status)
+      if record then
+        items[#items + 1] = record
+      end
+    end
+
+    return items
+  end
 
   for item in (value .. ";"):gmatch("(.-)%s*;") do
     item = trim(item)
@@ -363,12 +453,13 @@ local function parse_relation_items(value)
       end
 
       target = trim(target or item)
-      ref = normalize_relation_ref(ref)
+      local refs = parse_relation_refs(ref)
 
       if target ~= "" then
-        local record = { target = target }
-        if ref ~= "" then record.ref = ref end
-        items[#items + 1] = record
+        local record = relation_record(target, refs, nil, nil)
+        if record then
+          items[#items + 1] = record
+        end
       end
     end
   end
@@ -385,7 +476,7 @@ local function parse_polydata_body(body)
     if k and v and k ~= "" and v ~= "" then
       local key = trim(k)
       local value = trim(v)
-      local relation_spec = POLYDATA_RELATION_FIELDS[normalize_polydata_key(key)]
+      local relation_spec = relation_registry.lookup_by_key(normalize_polydata_key(key))
 
       if relation_spec then
         map.Relations = map.Relations or {}
@@ -1160,6 +1251,10 @@ function Pandoc(doc)
   for u, _ in pairs(urls_seen) do urls[#urls + 1] = u end
   table.sort(urls)
   m.urls = urls
+
+  if has_errors() then
+    error("gather.lua reported " .. tostring(utils.get_error_count()) .. " error(s)")
+  end
 
   return pandoc.Pandoc(doc.blocks, m)
 end

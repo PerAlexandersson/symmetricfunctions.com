@@ -330,16 +330,37 @@ local function print_color(col, fmt, ...)
   end
 end
 
+local DIAGNOSTIC_STATE = _G.__SYMFUN_DIAGNOSTIC_STATE or { error_count = 0 }
+_G.__SYMFUN_DIAGNOSTIC_STATE = DIAGNOSTIC_STATE
+
 --- Print an error message to stderr with red highlighting.
 --- @param fmt string Format string or message
 --- @param ... any Format arguments
 local function print_error(fmt, ...)
+  DIAGNOSTIC_STATE.error_count = DIAGNOSTIC_STATE.error_count + 1
   local m = _fmt(fmt, ...)
   if _use_color then
     io.stderr:write(CONSOLE.bg_red, CONSOLE.black, " ✖ ", CONSOLE.reset, " ", CONSOLE.red, m, CONSOLE.reset, "\n")
   else
     io.stderr:write("[ERROR] ", m, "\n")
   end
+end
+
+--- Return the number of errors reported via print_error.
+--- @return number Number of errors recorded in this Lua process
+local function get_error_count()
+  return DIAGNOSTIC_STATE.error_count
+end
+
+--- Return true if print_error has been called in this Lua process.
+--- @return boolean Whether any errors were recorded
+local function has_errors()
+  return DIAGNOSTIC_STATE.error_count > 0
+end
+
+--- Reset the process-local error counter.
+local function reset_errors()
+  DIAGNOSTIC_STATE.error_count = 0
 end
 
 -- ============================================================================
@@ -364,6 +385,9 @@ end
 ---@field print_warn fun(fmt: string, ...: any): nil
 ---@field print_info fun(fmt: string, ...: any): nil
 ---@field print_color fun(col: string, fmt: string, ...: any): nil
+---@field get_error_count fun(): number
+---@field has_errors fun(): boolean
+---@field reset_errors fun(): nil
 
 return {
   -- String utilities
@@ -388,4 +412,7 @@ return {
   print_warn = print_warn,
   print_info = print_info,
   print_color = print_color,
+  get_error_count = get_error_count,
+  has_errors = has_errors,
+  reset_errors = reset_errors,
 }

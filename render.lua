@@ -22,6 +22,8 @@ local slugify      = utils.slugify
 local print_warn   = utils.print_warn
 local print_info   = utils.print_info
 local print_error  = utils.print_error
+local has_errors   = utils.has_errors
+local get_error_count = utils.get_error_count
 
 local transform_tex_snippet = fig_to_html.transform_tex_snippet
 
@@ -109,6 +111,31 @@ local function is_external_resource(src)
       or src:match("^data:") ~= nil
 end
 
+--- Returns true when a link URL is safe to emit in an href attribute.
+local function is_safe_href(url)
+  url = tostring(url or ""):match("^%s*(.-)%s*$")
+  if url == "" then return true end
+  if url:match("^#") or url:match("^/") then return true end
+  if url:match("^%.?/") then return true end
+  if not url:match("^[A-Za-z][A-Za-z0-9+.-]*:") then return true end
+
+  local scheme = url:match("^([A-Za-z][A-Za-z0-9+.-]*):"):lower()
+  return scheme == "http" or scheme == "https" or scheme == "mailto"
+end
+
+local function sanitize_href(url, source_loc)
+  if is_safe_href(url) then
+    return url
+  end
+
+  if source_loc and source_loc ~= "" then
+    print_error("%s: Unsafe link URL rejected: %s", source_loc, url)
+  else
+    print_error("Unsafe link URL rejected: %s", url)
+  end
+  return "#"
+end
+
 
 --- Validates a site-local image path against the source assets tree.
 local function image_source_exists(src)
@@ -122,6 +149,13 @@ local function image_source_exists(src)
     :gsub("^/", "")
 
   if normalized == "" then
+    return false
+  end
+
+  if normalized == ".."
+      or normalized:match("^%.%./")
+      or normalized:match("/%.%./")
+      or normalized:match("/%.%.$") then
     return false
   end
 
@@ -173,6 +207,7 @@ local function render_link(attr, inlines, target)
     attr_html = attr_html .. ' title="' .. html_escape(title) .. '"'
   end
   
+  url = sanitize_href(url, source_loc)
   return '<a href="' .. html_escape(url) .. '"' .. attr_html .. '>' .. link_inner_html .. '</a>'
 end
 
@@ -615,4 +650,8 @@ local document_content = {
 
 -- Render and output
 local final_html = render_template(template, document_content)
+if has_errors() then
+  print_error("Render failed with %d error(s)", get_error_count())
+  os.exit(1)
+end
 print(final_html)

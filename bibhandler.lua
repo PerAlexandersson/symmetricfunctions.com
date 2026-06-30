@@ -187,6 +187,15 @@ local function format_page_span(pages)
   return '<span class="citePages">:' .. html_escape(formatted) .. '</span>'
 end
 
+local function is_safe_bibliography_url(url)
+  url = tostring(url or ""):match("^%s*(.-)%s*$")
+  if url == "" then return false end
+  local scheme = url:match("^([A-Za-z][A-Za-z0-9+.-]*):")
+  if not scheme then return false end
+  scheme = scheme:lower()
+  return scheme == "http" or scheme == "https"
+end
+
 --- Scans item fields to find an arXiv ID.
 -- Priority: item.eprint > item.arxivid > regex in URL > regex in note
 local function find_arxiv_id(item)
@@ -225,7 +234,11 @@ local function format_title_with_link(item)
   elseif arxivid then
     href = "https://arxiv.org/abs/" .. arxivid
   elseif url and url ~= "" then
-    href = url
+    if is_safe_bibliography_url(url) then
+      href = url
+    else
+      print_error("Unsafe bibliography URL rejected for '%s': %s", title, url)
+    end
   end
 
   if href then

@@ -6,7 +6,6 @@ local bibhandler     = dofile("bibhandler.lua")
 
 local trim         = utils.trim
 local html_escape  = utils.html_escape
-local print_error  = utils.print_error
 local load_json    = file_reading.load_json_file
 local get_bib_label = bibhandler.get_bibliography_label
 local get_bib_tooltip = bibhandler.get_bibliography_tooltip
@@ -15,9 +14,40 @@ local get_bib_tooltip = bibhandler.get_bibliography_tooltip
 -- Helpers
 ----------------------------------------------------------------------
 
+local function normalize_boolean(value)
+  if value == true then return true end
+  if value == false or value == nil then return false end
+  local text = trim(tostring(value)):lower()
+  return text == "yes" or text == "true" or text == "1"
+end
+
+local function normalize_rating(value)
+  local rating = tonumber(value)
+  if not rating then return 0 end
+  if rating < 0 then return 0 end
+  if rating > 10 then return 10 end
+  return rating
+end
+
+local function attr_is_false(value)
+  if value == false then return true end
+  if value == nil then return false end
+  local text = trim(tostring(value)):lower()
+  return text == "false" or text == "no" or text == "0"
+end
+
+local function relation_is_visible(relation)
+  if type(relation) ~= "table" then return false end
+  if relation.status == "question" then return false end
+  if type(relation.attrs) == "table" and attr_is_false(relation.attrs.include) then
+    return false
+  end
+  return true
+end
+
 local function space_with_basis(entry)
   local space = entry.Space or ""
-  local is_basis = entry.Basis
+  local is_basis = normalize_boolean(entry.Basis)
 
   if space == "" then
     return "", "", ""
@@ -57,11 +87,16 @@ local function relation_text(relations)
 
   local parts = {}
   for _, relation in ipairs(relations) do
-    if type(relation) == "table" then
+    if relation_is_visible(relation) then
+      local refs = relation.ref or ""
+      if refs == "" and type(relation.refs) == "table" then
+        refs = table.concat(relation.refs, " ")
+      end
       parts[#parts + 1] = table.concat({
         relation.label or relation.type or "",
         relation.target or "",
-        relation.ref or ""
+        refs,
+        relation.status or ""
       }, " ")
     end
   end
@@ -69,26 +104,47 @@ local function relation_text(relations)
   return table.concat(parts, " ")
 end
 
-local function render_relation_ref(ref)
-  ref = trim(ref or "")
-  if ref == "" then return "" end
+local function relation_refs(relation)
+  local refs = {}
+  local seen = {}
 
-  local parts = {}
-  for bib_key in (ref .. ","):gmatch("(.-)%s*,") do
-    bib_key = trim(bib_key)
-    if bib_key ~= "" then
-      local label = get_bib_label(bib_key) or bib_key
-      local tooltip = get_bib_tooltip(bib_key)
-      local title_attr = tooltip and string.format(' title="%s"', html_escape(tooltip)) or ""
-      parts[#parts + 1] = string.format(
-        '<span class="fam-relation-ref"%s>[%s]</span>',
-        title_attr,
-        html_escape(label)
-      )
+  local function add_ref(ref)
+    ref = trim(ref or "")
+    if ref ~= "" and not seen[ref] then
+      refs[#refs + 1] = ref
+      seen[ref] = true
     end
   end
 
-  if #parts == 0 then return "" end
+  if type(relation.refs) == "table" then
+    for _, ref in ipairs(relation.refs) do
+      add_ref(ref)
+    end
+  end
+
+  for ref in (tostring(relation.ref or "") .. ","):gmatch("(.-)%s*,") do
+    add_ref(ref)
+  end
+
+  return refs
+end
+
+local function render_relation_refs(relation)
+  local refs = relation_refs(relation or {})
+  if #refs == 0 then return "" end
+  local parts = {}
+
+  for _, bib_key in ipairs(refs) do
+    local label = get_bib_label(bib_key) or bib_key
+    local tooltip = get_bib_tooltip(bib_key)
+    local title_attr = tooltip and string.format(' title="%s"', html_escape(tooltip)) or ""
+    parts[#parts + 1] = string.format(
+      '<span class="fam-relation-ref"%s>[%s]</span>',
+      title_attr,
+      html_escape(label)
+    )
+  end
+
   return " " .. table.concat(parts, " ")
 end
 
@@ -100,12 +156,13 @@ local function render_relation_cell(entry, families)
 
   local parts = {}
   for _, relation in ipairs(relations) do
-    if type(relation) == "table" then
+    if relation_is_visible(relation) then
       local label = relation.label or relation.type or "Relation"
       local target = relation.target or ""
       local target_entry = families[target]
       local target_name = (target_entry and target_entry.Name) or target
       local target_html
+      local status = relation.status or "theorem"
 
       if target ~= "" then
         target_html = string.format(
@@ -118,10 +175,11 @@ local function render_relation_cell(entry, families)
       end
 
       parts[#parts + 1] = string.format(
-        '<span class="fam-relation"><span class="fam-relation-label">%s</span> %s%s</span>',
+        '<span class="fam-relation fam-relation-%s"><span class="fam-relation-label">%s</span> %s%s</span>',
+        html_escape(status),
         html_escape(label),
         target_html,
-        render_relation_ref(relation.ref)
+        render_relation_refs(relation)
       )
     end
   end
@@ -144,10 +202,10 @@ local function render_row(entry, families)
   local key      = entry._key or ""
   local name     = entry.Name or key
   local space    = entry.Space or ""
-  local is_basis = entry.Basis or ""
+  local is_basis = normalize_boolean(entry.Basis)
   local category = entry.Category or ""
   local year     = entry.Year or ""
-  local rating   = entry.Rating or ""
+  local rating   = normalize_rating(entry.Rating)
   local bib      = entry.Bib or ""
   local symbol   = entry.Symbol or ""
   local keywords = entry.Keywords or ""
@@ -160,13 +218,13 @@ local function render_row(entry, families)
   local pct = (tonumber(rating) or 0) * 10
 
   local data_attrs = string.format(
-    'data-key="%s" data-space="%s" data-category="%s" data-year="%s" data-rating="%s" data-basis="%s" data-relations="%s" style="--percent: %d%%;"',
+    'data-key="%s" data-space="%s" data-category="%s" data-year="%s" data-rating="%s" data-basis="%s" data-relations="%s" style="--percent: %g%%;"',
     html_escape(key),
     html_escape(space),
     html_escape(category),
     html_escape(tostring(year)),
-    rating,
-    is_basis,
+    html_escape(tostring(rating)),
+    is_basis and "true" or "false",
     html_escape(relation_text(entry.Relations)),
     pct
   )
@@ -194,7 +252,7 @@ local function render_row(entry, families)
 
   local rating_cell = string.format(
     '<td class="fam-rating" data-rating="%s">★★★★★</td>',
-    rating
+    html_escape(tostring(rating))
   )
 
   local relations_cell = render_relation_cell(entry, families)

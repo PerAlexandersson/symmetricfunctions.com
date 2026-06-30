@@ -4,6 +4,8 @@
 local utils = dofile("utils.lua")
 local trim = utils.trim
 local rtrim = utils.rtrim
+local html_escape = utils.html_escape
+local print_error = utils.print_error
 
 -- ========== UTILITY FUNCTIONS ==========
 
@@ -46,6 +48,14 @@ local function extract_color(ent)
   local color = ent:match("%*%((.-)%)")
   local cleaned = ent:gsub("%*%((.-)%)", "")
   return color or "", cleaned
+end
+
+local function is_safe_color(color)
+  color = trim(color or "")
+  return color:match("^#%x%x%x$")
+      or color:match("^#%x%x%x%x%x%x$")
+      or color:match("^#%x%x%x%x%x%x%x%x$")
+      or color:match("^[A-Za-z][A-Za-z0-9_-]*$")
 end
 
 local function split_cells_preserve_empties(s, sep)
@@ -131,8 +141,12 @@ local function format_cell(content, row, col, opts)
   -- Extract color
   local color
   color, ent = extract_color(ent)
-  if color ~= "" then 
-    table.insert(styles, "background-color: " .. color)
+  if color ~= "" then
+    if is_safe_color(color) then
+      table.insert(styles, "background-color: " .. color)
+    else
+      print_error("Unsafe table cell color rejected: %s", color)
+    end
   end
 
   -- Handle \none
@@ -170,6 +184,8 @@ local function format_cell(content, row, col, opts)
   if trim(ent) == "" then
     ent = "&nbsp;"
     delimiter = ""
+  else
+    ent = html_escape(ent)
   end
   
   local cls_attr = (#classes > 0) and (' class="' .. table.concat(classes, " ") .. '"') or ""

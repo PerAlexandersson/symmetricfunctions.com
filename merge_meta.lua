@@ -29,12 +29,15 @@ local trim           = utils.trim
 local print_info     = utils.print_info
 local print_warn     = utils.print_warn
 local print_error    = utils.print_error
+local has_errors     = utils.has_errors
 local table_size     = utils.table_size
 local html_escape    = utils.html_escape
 
 local file_reading   = dofile("file_reading.lua")
 local json_encode    = file_reading.json_encode
 local load_json_file = file_reading.load_json_file
+local bibhandler     = dofile("bibhandler.lua")
+local relation_registry = dofile("relation_registry.lua")
 
 
 -- ========== CONFIGURATION ==========
@@ -50,16 +53,6 @@ local SITEMAP_XML    = os.getenv("SITEMAP_XML") or (OUT_DIR .. "/sitemap.xml")
 
 -- Required fields for polydata entries
 local REQUIRED_POLYDATA_FIELDS = { "Name", "Space", "Year", "Rating" }
-
-local VALID_POLYDATA_RELATION_TYPES = {
-  positive_in = true,
-  contains = true,
-  generalizes = true,
-  expands_positively_into = true,
-  is_superset_of = true,
-  specializes_to = true,
-}
-
 
 -- ========== FILE UTILITIES ==========
 
@@ -217,6 +210,7 @@ end
 -- @field polydata table Map of polydata ID to fields
 -- @field todos table Array of {page, text}
 -- @field label_duplicates table Map of duplicate labels to pages array
+-- @field polydata_duplicates table Map of duplicate polydata ids to pages array
 
 
 --- Creates a new site data collector.
@@ -227,7 +221,8 @@ local function create_site_data()
     labels = {},
     polydata = {},
     todos = {},
-    label_duplicates = {}
+    label_duplicates = {},
+    polydata_duplicates = {}
   }
 end
 
@@ -259,6 +254,13 @@ end
 -- @param page_id string Page identifier
 local function process_polydata(data, polydata_map, page_id)
   for poly_id, fields in pairs(polydata_map) do
+    if data.polydata[poly_id] then
+      data.polydata_duplicates[poly_id] =
+        data.polydata_duplicates[poly_id] or { data.polydata[poly_id].page }
+      table.insert(data.polydata_duplicates[poly_id], page_id)
+      goto continue
+    end
+
     local record = { page = page_id }
     
     -- Copy all fields
@@ -267,6 +269,8 @@ local function process_polydata(data, polydata_map, page_id)
     end
     
     data.polydata[poly_id] = record
+
+    ::continue::
   end
 end
 
@@ -325,6 +329,142 @@ end
 
 -- ========== VALIDATION ==========
 
+local function split_refs(ref)
+  local refs = {}
+  for item in (tostring(ref or "") .. ","):gmatch("(.-)%s*,") do
+    item = trim(item)
+    if item ~= "" then
+      refs[#refs + 1] = item
+    end
+  end
+  return refs
+end
+
+local function normalize_relation_refs(relation)
+  local refs = {}
+  local seen = {}
+
+  local function add_ref(ref)
+    ref = trim(ref or "")
+    if ref ~= "" and not seen[ref] then
+      refs[#refs + 1] = ref
+      seen[ref] = true
+    end
+  end
+
+  if type(relation.refs) == "table" then
+    for _, ref in ipairs(relation.refs) do
+      add_ref(ref)
+    end
+  elseif relation.refs ~= nil then
+    add_ref(tostring(relation.refs))
+  end
+
+  for _, ref in ipairs(split_refs(relation.ref)) do
+    add_ref(ref)
+  end
+
+  relation.refs = refs
+  if #refs > 0 then
+    relation.ref = table.concat(refs, ",")
+  else
+    relation.ref = nil
+  end
+
+  return refs
+end
+
+local function validate_relation_refs(poly_id, page_id, relation, index)
+  local refs = normalize_relation_refs(relation)
+  if #refs == 0 then
+    print_warn("Polydata '%s' on page '%s' relation #%d has no bibliography key",
+               poly_id, page_id, index)
+    return
+  end
+
+  for _, ref in ipairs(refs) do
+    if not bibhandler.get_bibliography_label(ref) then
+      print_error("Polydata '%s' on page '%s' relation #%d has unknown bibliography key '%s'",
+                  poly_id, page_id, index, ref)
+    end
+  end
+end
+
+local function validate_relation_status(poly_id, page_id, relation, index)
+  local status = relation_registry.normalize_status(relation.status)
+  relation.status = status
+
+  if not relation_registry.is_valid_status(status) then
+    print_error("Polydata '%s' on page '%s' relation #%d has invalid status '%s'",
+                poly_id, page_id, index, tostring(relation.status))
+    return false
+  end
+
+  return true
+end
+
+local function validate_relation_attrs(poly_id, page_id, relation, index)
+  if relation.attrs == nil then
+    return true
+  end
+
+  if type(relation.attrs) ~= "table" then
+    print_error("Polydata '%s' on page '%s' relation #%d has malformed attrs",
+                poly_id, page_id, index)
+    return false
+  end
+
+  local relation_type = relation.type or ""
+  local is_valid = true
+  local normalized_attrs = {}
+
+  for key, value in pairs(relation.attrs) do
+    local normalized_key = relation_registry.normalize_attr_key(key)
+    normalized_attrs[normalized_key] = value
+
+    if not relation_registry.is_allowed_attr(relation_type, normalized_key) then
+      print_error("Polydata '%s' on page '%s' relation #%d has unexpected attribute '%s'",
+                  poly_id, page_id, index, normalized_key)
+      is_valid = false
+    end
+  end
+
+  relation.attrs = normalized_attrs
+
+  return is_valid
+end
+
+local function validate_rating(poly_id, page_id, value)
+  local rating = tonumber(value)
+  if not rating then
+    print_error("Polydata '%s' on page '%s' has non-numeric Rating '%s'",
+                poly_id, page_id, tostring(value))
+    return false
+  end
+  if rating < 0 or rating > 10 then
+    print_error("Polydata '%s' on page '%s' has Rating outside 0..10: %s",
+                poly_id, page_id, tostring(value))
+    return false
+  end
+  return true
+end
+
+local function validate_basis(poly_id, page_id, value)
+  if value == nil or value == "" then
+    return true
+  end
+  local text = trim(tostring(value)):lower()
+  if text == "yes" or text == "no"
+      or text == "true" or text == "false"
+      or text == "1" or text == "0"
+      or text == "?" or text == "unknown" then
+    return true
+  end
+  print_error("Polydata '%s' on page '%s' has invalid Basis value '%s'",
+              poly_id, page_id, tostring(value))
+  return false
+end
+
 --- Validates that polydata entries have required fields and matching labels.
 -- @param data SiteData Site data to validate
 -- @return boolean True if all validation passes
@@ -350,6 +490,16 @@ local function validate_polydata(data)
       end
     end
 
+    if poly_entry.Rating ~= nil
+        and not validate_rating(poly_id, page_id, poly_entry.Rating) then
+      is_valid = false
+    end
+
+    if poly_entry.Basis ~= nil
+        and not validate_basis(poly_id, page_id, poly_entry.Basis) then
+      is_valid = false
+    end
+
     -- Check relation metadata, if present.
     local relations = poly_entry.Relations
     if relations ~= nil then
@@ -367,11 +517,21 @@ local function validate_polydata(data)
             local relation_type = relation.type or ""
             local target = trim(tostring(relation.target or ""))
 
-            if not VALID_POLYDATA_RELATION_TYPES[relation_type] then
+            if not relation_registry.is_valid_type(relation_type) then
               print_error("Polydata '%s' on page '%s' has unknown relation type '%s'",
                           poly_id, page_id, tostring(relation_type))
               is_valid = false
             end
+
+            if not validate_relation_status(poly_id, page_id, relation, index) then
+              is_valid = false
+            end
+
+            if not validate_relation_attrs(poly_id, page_id, relation, index) then
+              is_valid = false
+            end
+
+            validate_relation_refs(poly_id, page_id, relation, index)
 
             if target == "" then
               print_error("Polydata '%s' on page '%s' has relation #%d with no target",
@@ -395,10 +555,25 @@ end
 --- Reports duplicate labels found during processing.
 -- @param duplicates table Map of label to pages array
 local function report_duplicate_labels(duplicates)
+  local is_valid = true
   for label, pages in pairs(duplicates) do
     print_error("Label '%s' defined in multiple pages: %s", 
                 label, table.concat(pages, ", "))
+    is_valid = false
   end
+  return is_valid
+end
+
+--- Reports duplicate polydata ids found during processing.
+-- @param duplicates table Map of polydata id to pages array
+local function report_duplicate_polydata(duplicates)
+  local is_valid = true
+  for poly_id, pages in pairs(duplicates) do
+    print_error("Polydata '%s' defined in multiple pages: %s",
+                poly_id, table.concat(pages, ", "))
+    is_valid = false
+  end
+  return is_valid
 end
 
 
@@ -583,16 +758,23 @@ local function main()
   end
   
   -- Report issues
-  report_duplicate_labels(site_data.label_duplicates)
+  local labels_unique = report_duplicate_labels(site_data.label_duplicates)
+  local polydata_unique = report_duplicate_polydata(site_data.polydata_duplicates)
   
   -- Validate collected data
   local validation_passed = validate_polydata(site_data)
+
+  if not (labels_unique and polydata_unique and validation_passed)
+      or has_errors() then
+    print_error("Metadata merge completed with errors")
+    return 1
+  end
   
   -- Generate outputs
   local outputs_written = generate_outputs(site_data)
   
   -- Determine exit code
-  if validation_passed and outputs_written then
+  if outputs_written and not has_errors() then
     return 0
   else
     print_error("Metadata merge completed with errors")

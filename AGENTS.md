@@ -80,7 +80,16 @@ Standard theorem-like environments: `definition`, `theorem`, `proposition`, `lem
 \end{polydata}
 ```
 
-Relation targets are other `polydata` ids. References are optional bibliography keys, written after `|` or in trailing brackets. Multiple relation rows with the same key are allowed, and multiple targets can also be separated by semicolons.
+Relation targets are other `polydata` ids. Preferred relation rows use:
+
+```tex
+RelationKey & target | BibKey[,BibKey...] | attr=value; attr=value \\
+```
+
+The older forms `target | BibKey` and `target [BibKey]` are still supported.
+Multiple relation rows with the same key are allowed. Multiple targets can also
+be separated by semicolons, but rows with attributes should use one target per
+row.
 
 ## Bibliography
 
