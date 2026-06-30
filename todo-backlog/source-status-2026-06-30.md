@@ -54,6 +54,15 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Demazure crystals, including the warning that this is not a general
   key-product positivity theorem.
 
+- `tex-source/todo-list.tex:717--722`, arXiv:2401.07481, arXiv:2309.06401,
+  arXiv:2106.11913, arXiv:2106.11922, arXiv:2204.06166, and
+  arXiv:2109.12908.
+  Accessible.  Added a `whittaker.tex` subsection on $q$-Whittaker Cauchy
+  identities, skew RSK dynamics, type A Whittaker formula compression, spin
+  $q$-Whittaker interpolation models, and bijections with modified
+  Hall--Littlewood formulas.  Also added a diagonal-operator paragraph using
+  published key `RamSchlosser2026`.
+
 ## Access Needed
 
 None from this pass.
