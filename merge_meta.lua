@@ -38,6 +38,7 @@ local json_encode    = file_reading.json_encode
 local load_json_file = file_reading.load_json_file
 local bibhandler     = dofile("bibhandler.lua")
 local relation_registry = dofile("relation_registry.lua")
+local relation_graph = dofile("relation_graph.lua")
 
 
 -- ========== CONFIGURATION ==========
@@ -47,6 +48,8 @@ local LABELS_JSON    = os.getenv("LABELS_JSON") or (OUT_DIR .. "/site-labels.jso
 local POLYDATA_JSON  = os.getenv("POLYDATA_JSON") or (OUT_DIR .. "/site-polydata.json")
 local TODOS_JSON     = os.getenv("TODOS_JSON") or (OUT_DIR .. "/site-todo.json")
 local SITEMAP_XML    = os.getenv("SITEMAP_XML") or (OUT_DIR .. "/sitemap.xml")
+local RELATION_GRAPH_HTML = os.getenv("RELATION_GRAPH_HTML") or "www/polynomial-relations.htm"
+local RELATION_GRAPH_JSON = os.getenv("RELATION_GRAPH_JSON") or "www/polynomial-relations.json"
 
 
 -- ========== CONSTANTS ==========
@@ -695,6 +698,7 @@ end
 -- @return boolean True if all outputs written successfully
 local function generate_outputs(data)
   local all_success = true
+  local graph = relation_graph.build_graph(data.polydata)
 
   -- Write labels index
   if not write_json_file(LABELS_JSON, data.labels, "labels") then
@@ -712,8 +716,23 @@ local function generate_outputs(data)
   end
 
   -- Write sitemap XML
-  local sitemap_content = generate_sitemap_xml(data.pages)
-  if not write_xml_file(SITEMAP_XML, sitemap_content, #data.pages, "pages") then
+  local sitemap_pages = {}
+  local has_relation_page = false
+  for _, page in ipairs(data.pages) do
+    sitemap_pages[#sitemap_pages + 1] = page
+    if page.slug == "polynomial-relations.htm" then
+      has_relation_page = true
+    end
+  end
+  if not has_relation_page then
+    sitemap_pages[#sitemap_pages + 1] = {
+      id = "polynomial-relations",
+      slug = "polynomial-relations.htm"
+    }
+  end
+
+  local sitemap_content = generate_sitemap_xml(sitemap_pages)
+  if not write_xml_file(SITEMAP_XML, sitemap_content, #sitemap_pages, "pages") then
     all_success = false
   end
 
@@ -731,6 +750,20 @@ local function generate_outputs(data)
 
   -- Public copy of labels for cross-site use (e.g. arxiv.symmetricfunctions.com)
   if not write_json_file(www_dir .. "/site-labels.json", data.labels, "labels (public)") then
+    all_success = false
+  end
+
+  if not write_json_file(RELATION_GRAPH_JSON, graph, "relation graph items") then
+    all_success = false
+  end
+
+  local graph_html = relation_graph.render_page(graph)
+  local graph_ok, graph_err = write_file(RELATION_GRAPH_HTML, graph_html)
+  if graph_ok then
+    print_info("Generated %s (%d relations)",
+               RELATION_GRAPH_HTML, graph.stats.edge_count)
+  else
+    print_error("Failed to write %s: %s", RELATION_GRAPH_HTML, graph_err)
     all_success = false
   end
 

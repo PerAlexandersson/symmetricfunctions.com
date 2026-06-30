@@ -89,11 +89,11 @@ $(TEST_JSON): $(TEMP_DIR)/%.json: $(TEMP_DIR)/%.pre.tex $(GATHER_DEPS) $(REFS_JS
 
 # === METADATA: Generate site-wide metadata ===
 .PHONY: meta
-meta: $(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON)
+meta: $(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON)
 
 # All site metadata outputs are produced by one merge pass. Grouped targets make
 # Make regenerate the whole set when any one output is missing or stale.
-$(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) &: $(JSON_FILES) $(MERGE_META_DEPS) | $(TEMP_DIR)/.created $(WWW_DIR)/.created
+$(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON) &: $(JSON_FILES) $(MERGE_META_DEPS) | $(TEMP_DIR)/.created $(WWW_DIR)/.created
 	$(LOG) "Generating site metadata ..."
 	@$(LUA) $(MERGE_META_LUA) $(JSON_FILES)
 
@@ -129,6 +129,8 @@ $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_TODOS_JSON) $(TEST_SITEMAP_XML)
 	  TODOS_JSON=$(TEST_TODOS_JSON) \
 	  SITEMAP_XML=$(TEST_SITEMAP_XML) \
 	  WWW_DIR=$(TEST_WWW_DIR) \
+	  RELATION_GRAPH_HTML=$(TEST_WWW_DIR)/polynomial-relations.htm \
+	  RELATION_GRAPH_JSON=$(TEST_WWW_DIR)/polynomial-relations.json \
 	  $(LUA) $(MERGE_META_LUA) $(TEST_JSON)
 
 # Test file rendering

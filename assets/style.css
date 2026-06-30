@@ -711,6 +711,266 @@
      color: var(--c-brand);
   }
 
+  /* Relation graph */
+  .relation-graph-page {
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .relation-graph-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .relation-graph-summary span {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    background: var(--c-bg-surface);
+  }
+
+  .relation-graph-toolbar {
+    display: grid;
+    grid-template-columns: minmax(13rem, 1fr) minmax(18rem, 2fr) minmax(12rem, 1fr) auto auto;
+    align-items: end;
+    gap: 0.8rem;
+    margin: 1rem 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .relation-graph-search,
+  .relation-graph-toggle,
+  .relation-graph-filter,
+  .relation-graph-fieldset label {
+    font-size: 0.88rem;
+    color: var(--c-text-sub);
+  }
+
+  .relation-graph-search {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .relation-graph-search input {
+    width: 100%;
+    min-height: 2.2rem;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 0.35rem 0.55rem;
+    background: var(--c-bg-surface);
+    color: var(--c-text-main);
+    font: inherit;
+  }
+
+  .relation-graph-fieldset {
+    min-width: 0;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 0.45rem 0.6rem 0.55rem;
+    margin: 0;
+  }
+
+  .relation-graph-fieldset legend {
+    padding: 0 0.3rem;
+    color: var(--c-text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .relation-graph-filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.55rem;
+  }
+
+  .relation-graph-filter,
+  .relation-graph-fieldset label,
+  .relation-graph-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    white-space: nowrap;
+  }
+
+  .relation-graph-filter small {
+    color: var(--c-text-muted);
+  }
+
+  .relation-graph-toolbar button {
+    min-height: 2.2rem;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 0.35rem 0.75rem;
+    background: var(--c-bg-surface);
+    color: var(--c-text-main);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .relation-graph-toolbar button:hover,
+  .relation-graph-toolbar button:focus-visible {
+    border-color: var(--c-brand);
+    color: var(--c-brand);
+  }
+
+  .relation-graph-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .relation-graph-stage {
+    min-height: 34rem;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 39px,
+        color-mix(in srgb, var(--c-border) 38%, transparent) 40px
+      ),
+      var(--c-bg-surface);
+    overflow: auto;
+  }
+
+  .relation-graph-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .relation-node rect {
+    fill: var(--c-bg-surface);
+    stroke: var(--c-border);
+    stroke-width: 1.4;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
+  }
+
+  .relation-node-link:hover .relation-node rect,
+  .relation-node-link:focus-visible .relation-node rect {
+    stroke: var(--c-brand);
+    stroke-width: 2;
+  }
+
+  .relation-node-title {
+    fill: var(--c-text-main);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .relation-node-meta {
+    fill: var(--c-text-muted);
+    font-size: 11px;
+  }
+
+  .relation-edge-path {
+    fill: none;
+    stroke: color-mix(in srgb, var(--c-text-muted) 70%, transparent);
+    stroke-width: 1.7;
+  }
+
+  .relation-edge-hit {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 14;
+    cursor: pointer;
+  }
+
+  .relation-edge-selected .relation-edge-path,
+  .relation-edge:hover .relation-edge-path,
+  .relation-edge:focus-within .relation-edge-path {
+    stroke: var(--c-brand);
+    stroke-width: 2.6;
+  }
+
+  .relation-edge-status-conjecture .relation-edge-path {
+    stroke-dasharray: 6 5;
+  }
+
+  .relation-edge-positive_in .relation-edge-path {
+    stroke: color-mix(in srgb, var(--c-link) 72%, var(--c-text-muted));
+  }
+
+  .relation-edge-specializes_to .relation-edge-path {
+    stroke: color-mix(in srgb, var(--c-brand) 78%, var(--c-text-muted));
+  }
+
+  .relation-edge-contains .relation-edge-path {
+    stroke: color-mix(in srgb, var(--c-data-red) 70%, var(--c-text-muted));
+  }
+
+  #relationGraphArrow path {
+    fill: var(--c-text-muted);
+  }
+
+  .relation-graph-empty {
+    fill: var(--c-text-muted);
+    font: 700 1rem system-ui, -apple-system, sans-serif;
+  }
+
+  .relation-graph-details {
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    background: var(--c-bg-surface);
+    padding: 0.9rem 1rem;
+    min-height: 18rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .relation-graph-details h3 {
+    margin-top: 0;
+    color: var(--c-text-main);
+  }
+
+  .relation-graph-details h3::before {
+    content: none;
+  }
+
+  .relation-graph-details h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .relation-graph-edge-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: baseline;
+  }
+
+  .relation-graph-details dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.25rem 0.7rem;
+    margin: 0.8rem 0 0;
+  }
+
+  .relation-graph-details dt {
+    color: var(--c-text-muted);
+    font-weight: 700;
+  }
+
+  .relation-graph-details dd {
+    margin: 0;
+  }
+
+  .relation-graph-details ul {
+    padding-left: 1.2rem;
+  }
+
+  .relation-graph-muted {
+    color: var(--c-text-muted);
+  }
+
   /* ==========================================================================
       RESPONSIVENESS
      ========================================================================== */
@@ -726,6 +986,16 @@
 
   @media (max-width: 1100px) {
     .topic-card-grid { grid-template-columns: repeat(2, 1fr); }
+    .relation-graph-toolbar {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+    .relation-graph-shell {
+      grid-template-columns: 1fr;
+    }
+    .relation-graph-stage {
+      min-height: 28rem;
+    }
   }
    
   @media(max-width: 600px) {
