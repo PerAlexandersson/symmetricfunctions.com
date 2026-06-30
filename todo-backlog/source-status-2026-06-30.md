@@ -38,27 +38,21 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   homogeneous family node in `key.tex`, its stable limit to `completeH`, its
   key/atom positivity, and the signed expansion of keys in this basis.
 
-## Accessible, Deferred
-
 - `tex-source/todo-list.tex:463`, arXiv:2411.03117.
-  Accessible.  Proposed key from the API: `FeiginKhoroshkinMakedonskyi2024x`.
-  This is about Cauchy identities for staircase-shaped matrices and filtrations
-  with Demazure/opposite van der Kallen modules.  It is useful background for a
-  Cauchy-identity or Demazure-module page pass, but it is not currently a clean
-  relation edge.
+  Accessible.  Added bibliography key `FeiginKhoroshkinMakedonskyi2024x` and a
+  short Cauchy-kernel paragraph in `key.tex` on staircase-shaped matrix
+  identities involving keys and Demazure atoms.
 
 - `tex-source/todo-list.tex:798`, DOI `10.1016/j.ejc.2023.103688`.
-  Metadata is already in `bibliography.bib` as
-  `AliniaeifardWangWilligenburg2023`, with the arXiv version also present as
-  `AliniaeifardWangWilligenburg2021x`.  No university access needed for a first
-  pass.
+  Accessible.  Existing bibliography key `AliniaeifardWangWilligenburg2023`
+  was used for a short `pPartitions.tex` paragraph on combinatorial power sum
+  bases from weighted labeled $P$-partitions.
 
 - `tex-source/todo-list.tex:921`, arXiv:2210.10236.
-  Accessible.  Published DOI metadata is available from the API under proposed
-  key `AssafDranowskiGonzalez2023`.  The source gives a local criterion for
-  tensor products of Demazure crystals to decompose as Demazure crystals.  This
-  should not be treated as a proof of general key-product or key-square
-  atom-positivity without a separate representation-theoretic check.
+  Accessible.  Added published bibliography key `AssafDranowskiGonzalez2023`
+  and a short `crystals.tex` paragraph on the tensor-product criterion for
+  Demazure crystals, including the warning that this is not a general
+  key-product positivity theorem.
 
 ## Access Needed
 
