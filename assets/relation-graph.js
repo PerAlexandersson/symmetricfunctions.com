@@ -389,16 +389,29 @@
     ].join('');
   }
 
+  function loadGraph(root, src) {
+    var embedded = $('#relationGraphData', root) || document.getElementById('relationGraphData');
+    if (embedded && embedded.textContent.trim()) {
+      try {
+        return Promise.resolve(JSON.parse(embedded.textContent));
+      } catch (error) {
+        console.warn('Could not parse embedded relation graph data:', error);
+      }
+    }
+
+    return fetch(src, { credentials: 'same-origin' })
+      .then(function (response) {
+        if (!response.ok) throw new Error('Could not load ' + src);
+        return response.json();
+      });
+  }
+
   function initRelationGraph(root) {
     var src = root.getAttribute('data-graph-src') || 'polynomial-relations.json';
     var svg = $('#relationGraphSvg', root);
     var details = $('#relationGraphDetails', root);
 
-    fetch(src, { credentials: 'same-origin' })
-      .then(function (response) {
-        if (!response.ok) throw new Error('Could not load ' + src);
-        return response.json();
-      })
+    loadGraph(root, src)
       .then(function (graph) {
         var nodeMap = makeNodeMap(graph.nodes);
         renderFilters(graph, root);

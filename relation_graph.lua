@@ -11,6 +11,7 @@ local M = {}
 
 local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
+local GRAPH_JS = "relation-graph.js?v=2"
 
 local function attr_is_false(value)
   if value == false then return true end
@@ -252,7 +253,15 @@ local function render_side_links(has_references)
   return table.concat(links, "\n")
 end
 
+local function escape_json_for_script(json)
+  return tostring(json or "")
+    :gsub("<", "\\u003c")
+    :gsub(">", "\\u003e")
+    :gsub("&", "\\u0026")
+end
+
 local function render_main(graph)
+  local graph_json = escape_json_for_script(file_reading.json_encode(graph))
   return string.format([[
 <h2 id="relationGraph">Polynomial relation graph</h2>
 <p>
@@ -307,8 +316,11 @@ metadata. Direct formal relations are shown as directed edges.
 The browser view above is backed by
 <a href="%s">the generated relation JSON</a>.
 </p>
-<script src="./relation-graph.js"></script>
-]], GRAPH_JSON, GRAPH_JSON)
+<script id="relationGraphData" type="application/json">
+%s
+</script>
+<script src="./%s"></script>
+]], GRAPH_JSON, GRAPH_JSON, graph_json, GRAPH_JS)
 end
 
 function M.render_page(graph, options)
