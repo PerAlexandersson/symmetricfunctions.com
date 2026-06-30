@@ -174,11 +174,11 @@ local relation_types = {
       "proof"
     }
   },
-  refines = {
-    label = "Refines",
+  refined_by = {
+    label = "RefinedBy",
     aliases = {
-      "Refines",
-      "refines"
+      "RefinedBy",
+      "refined by"
     },
     transitive = true,
     poset = false,

@@ -136,7 +136,7 @@
     transforms_to: 'Transform',
     dual_to: 'Duality',
     signed_in: 'Signed expansion',
-    refines: 'Refinement'
+    refined_by: 'Refinement'
   };
 
   var MENU_RELATION_TYPES = [
@@ -189,7 +189,7 @@
     addPreset(
       'positive_in',
       'Positive expansion',
-      typeSetForNames(typeMap, ['positive_in', 'refines'])
+      typeSetForNames(typeMap, ['positive_in', 'refined_by'])
     );
     MENU_RELATION_TYPES.forEach(function (typeName) {
       if (typeName !== 'positive_in') addSingle(typeName);

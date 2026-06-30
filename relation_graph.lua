@@ -11,7 +11,7 @@ local M = {}
 
 local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
-local GRAPH_JS = "relation-graph.js?v=11"
+local GRAPH_JS = "relation-graph.js?v=12"
 
 local function attr_is_false(value)
   if value == false then return true end
@@ -272,7 +272,7 @@ layered directed graph.
 <section class="relation-graph-page"
     data-relation-graph
     data-graph-src="%s"
-    data-default-types="positive_in,refines"
+    data-default-types="positive_in,refined_by"
     aria-labelledby="relationGraph">
   <div class="relation-graph-toolbar" aria-label="Relation graph controls">
     <label class="relation-graph-search">
