@@ -872,13 +872,13 @@
 
   .relation-graph-shell {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
     align-items: stretch;
   }
 
   .relation-graph-document .relation-graph-shell {
-    grid-template-columns: minmax(0, 1fr) minmax(16rem, 20rem);
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .relation-graph-stage {
@@ -1046,22 +1046,25 @@
     border: 1px solid var(--c-border);
     border-radius: 8px;
     background: var(--c-bg-surface);
-    padding: 0.9rem 1rem;
-    min-height: 18rem;
+    padding: 0.6rem 0.8rem;
+    min-height: 3.25rem;
     font-family: system-ui, -apple-system, sans-serif;
+    overflow-x: auto;
   }
 
   .relation-graph-document .relation-graph-details {
-    align-self: start;
     position: sticky;
-    top: 7rem;
-    max-height: calc(100vh - 8rem);
+    top: 6.25rem;
+    z-index: 10;
+    max-height: 8rem;
     overflow: auto;
   }
 
   .relation-graph-details h3 {
-    margin-top: 0;
+    display: inline;
+    margin: 0 0.8rem 0 0;
     color: var(--c-text-main);
+    font-size: 0.9rem;
   }
 
   .relation-graph-details h3::before {
@@ -1073,6 +1076,17 @@
     margin-bottom: 0.35rem;
   }
 
+  .relation-graph-details-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.75rem;
+  }
+
+  .relation-graph-detail-label {
+    color: var(--c-text-main);
+  }
+
   .relation-graph-edge-summary {
     display: flex;
     flex-wrap: wrap;
@@ -1080,24 +1094,12 @@
     align-items: baseline;
   }
 
-  .relation-graph-details dl {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 0.25rem 0.7rem;
-    margin: 0.8rem 0 0;
-  }
-
-  .relation-graph-details dt {
-    color: var(--c-text-muted);
-    font-weight: 700;
-  }
-
-  .relation-graph-details dd {
-    margin: 0;
-  }
-
-  .relation-graph-details ul {
-    padding-left: 1.2rem;
+  .relation-graph-ref-list,
+  .relation-graph-attr-list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.55rem;
+    align-items: baseline;
   }
 
   .relation-graph-muted {

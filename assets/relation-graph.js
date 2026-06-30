@@ -643,37 +643,39 @@
   }
 
   function renderRefs(refs) {
-    if (!refs || refs.length === 0) return '<p class="relation-graph-muted">No reference recorded.</p>';
-    return '<ul>' + refs.map(function (ref) {
+    if (!refs || refs.length === 0) return '<span class="relation-graph-muted">No reference recorded.</span>';
+    return '<span class="relation-graph-ref-list">' + refs.map(function (ref) {
       var label = ref.label || ref.key;
       var title = ref.tooltip ? ' title="' + escapeHtml(ref.tooltip) + '"' : '';
-      return '<li><a href="' + escapeHtml(ref.href || ('#' + ref.key)) + '"' + title + '>'
+      return '<a href="' + escapeHtml(ref.href || ('#' + ref.key)) + '"' + title + '>'
         + '[' + escapeHtml(label) + ']</a> '
-        + '<code>' + escapeHtml(ref.key) + '</code></li>';
-    }).join('') + '</ul>';
+        + '<code>' + escapeHtml(ref.key) + '</code>';
+    }).join(' ') + '</span>';
   }
 
   function renderAttrs(attrs) {
     var keys = Object.keys(attrs || {}).sort();
     if (keys.length === 0) return '';
-    return '<dl>' + keys.map(function (key) {
-      return '<dt>' + escapeHtml(key.replace(/_/g, ' ')) + '</dt>'
-        + '<dd>' + escapeHtml(attrs[key]) + '</dd>';
-    }).join('') + '</dl>';
+    return '<span class="relation-graph-attr-list">' + keys.map(function (key) {
+      return '<span><strong>' + escapeHtml(key.replace(/_/g, ' ')) + ':</strong> '
+        + escapeHtml(attrs[key]) + '</span>';
+    }).join(' ') + '</span>';
   }
 
   function renderDetails(panel, edge, nodeMap) {
     var source = nodeMap[edge.source] || { id: edge.source, name: edge.source };
     var target = nodeMap[edge.target] || { id: edge.target, name: edge.target };
     panel.innerHTML = [
-      '<h3>' + escapeHtml(edge.label || edge.type) + '</h3>',
-      '<p class="relation-graph-edge-summary">',
-      nodeLink(source), ' <span>to</span> ', nodeLink(target),
-      '</p>',
-      '<p><strong>Status:</strong> ', escapeHtml(edge.status || 'theorem'), '</p>',
-      '<h4>References</h4>',
-      renderRefs(edge.refs),
-      renderAttrs(edge.attrs)
+      '<div class="relation-graph-details-row">',
+      '<strong class="relation-graph-detail-label">',
+      escapeHtml(edge.label || edge.type),
+      '</strong>',
+      '<span class="relation-graph-edge-summary">',
+      nodeLink(source), ' <span>to</span> ', nodeLink(target), '</span>',
+      '<span><strong>Status:</strong> ', escapeHtml(edge.status || 'theorem'), '</span>',
+      '<span><strong>Refs:</strong> ', renderRefs(edge.refs), '</span>',
+      renderAttrs(edge.attrs),
+      '</div>'
     ].join('');
   }
 

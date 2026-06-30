@@ -11,7 +11,7 @@ local M = {}
 
 local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
-local GRAPH_JS = "relation-graph.js?v=6"
+local GRAPH_JS = "relation-graph.js?v=7"
 
 local function attr_is_false(value)
   if value == false then return true end
@@ -298,18 +298,18 @@ and containment are also available as layered poset views.
   </div>
 
   <div class="relation-graph-shell">
+    <section id="relationGraphDetails"
+        class="relation-graph-details"
+        aria-live="polite">
+      <h3>Relation details</h3>
+      <p>No relation selected.</p>
+    </section>
     <div class="relation-graph-stage" tabindex="0">
       <svg id="relationGraphSvg"
           class="relation-graph-svg"
           role="img"
           aria-label="Polynomial relation graph"></svg>
     </div>
-    <aside id="relationGraphDetails"
-        class="relation-graph-details"
-        aria-live="polite">
-      <h3>Relation details</h3>
-      <p>No relation selected.</p>
-    </aside>
   </div>
 </section>
 
