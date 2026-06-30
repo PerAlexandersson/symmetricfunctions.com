@@ -112,6 +112,19 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Added `chromaticQuasisymmetric.tex` notes on $\alpha$-chromatic symmetric
   functions and generalized Hessenberg varieties.
 
+- `tex-source/todo-list.tex:685` and `tex-source/todo-list.tex:710--715`,
+  arXiv:2311.09685, arXiv:2211.06981, arXiv:2205.14835,
+  arXiv:2307.01130, arXiv:2112.12676, arXiv:2309.05970, and
+  arXiv:2110.07984.
+  Accessible.  Added notes to `chromaticQuasisymmetric.tex` on increasing
+  spanning forests, interval-graph LLT quasisymmetric functions, and Gagnon's
+  unipotent realization of chromatic quasisymmetric functions.  Added
+  `unicellular-llt.tex` notes on the Kiem--Lee twin-manifold proof and the
+  vertical-strip LLT character interpretation.  Added compact `llt.tex` notes
+  on Hecke-character geometry, horizontal-strip LLT weighted graphs, and
+  LLT asymptotic corner processes.  Upgraded `DolegaKowalski2021x` to its
+  published Electronic Journal of Combinatorics entry.
+
 ## Access Needed
 
 None from this pass.
