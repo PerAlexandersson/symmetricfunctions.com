@@ -63,6 +63,13 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Hall--Littlewood formulas.  Also added a diagonal-operator paragraph using
   published key `RamSchlosser2026`.
 
+- `tex-source/todo-list.tex:32` and `tex-source/todo-list.tex:586`,
+  arXiv:2405.05867 and arXiv:2406.12751.
+  Accessible.  Added `qSchurQ` and `peakYqSchur` family nodes to
+  `qsymSchur.tex`, with published bibliography keys for the definition and
+  positivity results.  Added positive-expansion metadata from quasisymmetric
+  Schur $Q$-functions to peak Young quasisymmetric Schur functions.
+
 ## Access Needed
 
 None from this pass.
