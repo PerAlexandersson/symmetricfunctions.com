@@ -11,7 +11,7 @@ local M = {}
 
 local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
-local GRAPH_JS = "relation-graph.js?v=4"
+local GRAPH_JS = "relation-graph.js?v=5"
 
 local function attr_is_false(value)
   if value == false then return true end
@@ -294,10 +294,6 @@ and containment are also available as layered poset views.
       <label><input type="checkbox" data-status-filter="theorem" checked> Theorem</label>
       <label><input type="checkbox" data-status-filter="conjecture" checked> Conjecture</label>
     </fieldset>
-    <label class="relation-graph-toggle">
-      <input id="relationGraphPosetOnly" type="checkbox">
-      Poset edges only
-    </label>
     <button id="relationGraphReset" type="button">Reset</button>
   </div>
 

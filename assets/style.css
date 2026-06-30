@@ -774,7 +774,6 @@
   }
 
   .relation-graph-search,
-  .relation-graph-toggle,
   .relation-graph-filter,
   .relation-graph-fieldset label {
     font-size: 0.88rem;
@@ -826,8 +825,7 @@
   }
 
   .relation-graph-filter,
-  .relation-graph-fieldset label,
-  .relation-graph-toggle {
+  .relation-graph-fieldset label {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
@@ -910,10 +908,50 @@
   }
 
   .relation-node rect {
-    fill: var(--c-bg-surface);
-    stroke: var(--c-border);
+    fill: var(--relation-node-fill, var(--c-bg-surface));
+    stroke: var(--relation-node-border, var(--c-border));
     stroke-width: 1.4;
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
+  }
+
+  .relation-node-space-all {
+    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 82%, hsl(45, 90%, 72%));
+    --relation-node-border: color-mix(in srgb, var(--c-border) 65%, hsl(45, 80%, 45%));
+  }
+
+  .relation-node-space-sym {
+    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(205, 85%, 76%));
+    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(205, 80%, 42%));
+  }
+
+  .relation-node-space-qsym {
+    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(150, 65%, 72%));
+    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(150, 65%, 35%));
+  }
+
+  .relation-node-space-shiftedsym,
+  .relation-node-space-symstar {
+    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(276, 75%, 78%));
+    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(276, 60%, 46%));
+  }
+
+  .relation-node-space-supersym {
+    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(338, 80%, 80%));
+    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(338, 70%, 48%));
+  }
+
+  .relation-node-space-pqsym,
+  .relation-node-space-lsym {
+    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(184, 68%, 75%));
+    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(184, 65%, 37%));
+  }
+
+  .relation-node-space-other {
+    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 88%, var(--c-text-muted));
+  }
+
+  .relation-node-text-clip {
+    overflow: hidden;
   }
 
   .relation-node-link:hover .relation-node rect,

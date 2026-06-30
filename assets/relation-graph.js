@@ -35,7 +35,15 @@
   }
 
   function classPart(value) {
-    return String(value || 'unknown').replace(/[^a-zA-Z0-9_-]/g, '-');
+    return String(value || 'unknown').toLowerCase().replace(/[^a-z0-9_-]/g, '-');
+  }
+
+  function spaceClassPart(value) {
+    return String(value || 'unknown')
+      .toLowerCase()
+      .replace(/\*/g, 'star')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'unknown';
   }
 
   function truncate(value, limit) {
@@ -161,7 +169,6 @@
   function filteredGraph(graph, root) {
     var activeTypes = activeValues('[data-relation-type-filter]', root);
     var activeStatuses = activeValues('[data-status-filter]', root);
-    var posetOnly = $('#relationGraphPosetOnly', root).checked;
     var query = ($('#relationGraphSearch', root).value || '').trim().toLowerCase();
     var nodeMap = makeNodeMap(graph.nodes);
     var visibleNodes = Object.create(null);
@@ -178,7 +185,6 @@
     var edges = graph.edges.filter(function (edge) {
       if (!activeTypes[edge.type]) return false;
       if (!activeStatuses[edge.status]) return false;
-      if (posetOnly && !edge.poset) return false;
       if (!nodeMatches(edge)) return false;
       visibleNodes[edge.source] = true;
       visibleNodes[edge.target] = true;
@@ -499,7 +505,7 @@
         'aria-label': node.name || node.id
       });
       var group = svgEl('g', {
-        class: 'relation-node',
+        class: 'relation-node relation-node-space-' + spaceClassPart(node.space),
         transform: 'translate(' + pos.x + ',' + pos.y + ')'
       });
       var title = svgEl('title');
@@ -510,10 +516,20 @@
         rx: 7,
         ry: 7
       });
+      var textClip = svgEl('svg', {
+        x: 0,
+        y: 0,
+        width: NODE_W,
+        height: NODE_H,
+        class: 'relation-node-text-clip',
+        'aria-hidden': 'true',
+        focusable: 'false'
+      });
       group.appendChild(title);
       group.appendChild(rect);
-      appendNodeText(group, node);
+      appendNodeText(textClip, node);
       link.appendChild(group);
+      group.appendChild(textClip);
       nodeLayer.appendChild(link);
     });
   }
@@ -572,7 +588,6 @@
       button.textContent = preset.label;
       button.addEventListener('click', function () {
         setTypeSelection(root, preset.types);
-        $('#relationGraphPosetOnly', root).checked = preset.id === 'all_poset';
         root.dispatchEvent(new Event('change', { bubbles: true }));
       });
       container.appendChild(button);
@@ -596,7 +611,6 @@
     var defaults = defaultTypes(root);
     var useDefaults = hasSelectedTypes(defaults);
     $('#relationGraphSearch', root).value = '';
-    $('#relationGraphPosetOnly', root).checked = false;
     $all('[data-relation-type-filter]', root).forEach(function (input) {
       input.checked = !useDefaults || !!defaults[input.value];
     });
@@ -639,7 +653,6 @@
       nodeLink(source), ' <span>to</span> ', nodeLink(target),
       '</p>',
       '<p><strong>Status:</strong> ', escapeHtml(edge.status || 'theorem'), '</p>',
-      edge.poset ? '<p><strong>Poset edge:</strong> yes</p>' : '',
       '<h4>References</h4>',
       renderRefs(edge.refs),
       renderAttrs(edge.attrs)
