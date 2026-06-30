@@ -18,6 +18,7 @@
   PositiveIn & atom | Lascoux1990Keys \\
   PositiveIn & generalizedDemazureAtoms | Lascoux1990Keys \\
   PositiveIn & slideF | AssafSearles2018 | proof=Thm. 2.13 \\
+  SignedIn & completeFlaggedHomogeneous | Ehrhard2023x | proof=Thm. 7.6 \\
 \end{polydata}
 
 \todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
@@ -533,6 +534,39 @@ and show that these are positive in the key basis. They use weak \hyperref[schur
 to obtain their result. 
 This generalizes an earlier result by \name{Vic Reiner} and \name{Mark Shimozono} \cite{ReinerShimozono1995}.
 
+
+\section[completeFlaggedHomogeneous]{Complete flagged homogeneous polynomials}
+
+\begin{polydata}{completeFlaggedHomogeneous}
+  Name     & Complete flagged homogeneous polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & Ehrhard2023x \\
+  Year     & 2023 \\
+  Symbol   & $h_a(\xvec)$ \\
+  Category & Schur \\
+  StableLimit & completeH | Ehrhard2023x | proof=Prop. 2.3 \\
+  PositiveIn & key | Ehrhard2023x | proof=Thm. 4.12 \\
+  PositiveIn & atom | Ehrhard2023x | proof=Thm. 4.13 \\
+\end{polydata}
+
+\name{Henry Ehrhard} \cite{Ehrhard2023x} introduces
+\defin{complete flagged homogeneous polynomials}.  For a weak composition
+$a=(a_1,a_2,\dotsc)$, they are defined by
+\[
+h_a(\xvec) \coloneqq \prod_{i\geq 1} \completeH_{a_i}(x_1,\dotsc,x_i).
+\]
+They form a $\setZ$-basis for the polynomial ring, and their stable limit is
+the usual \hyperref[completeH]{complete homogeneous symmetric function}
+$\completeH_{\sort(a)}$.
+
+Ehrhard gives a nonnegative expansion of these polynomials in
+\hyperref[key]{key polynomials} using a flagged version of the
+\hyperref[rsk]{RSK correspondence}.  Since keys are atom-positive, the complete
+flagged homogeneous polynomials are also \hyperref[atom]{Demazure
+atom}-positive.  Conversely, key polynomials have a signed expansion in the
+complete flagged homogeneous basis.
 
 
 \section[atom]{Demazure atoms}

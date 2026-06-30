@@ -28,6 +28,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   stable Grothendieck polynomials.  This was not added as graph metadata
   because the displayed expansion has K-theoretic signs.
 
+- `tex-source/todo-list.tex:787`, arXiv:2306.10939.
+  Accessible.  Added bibliography key `NadeauTewari2023x`, a forest polynomial
+  family node in `assaf.tex`, the forest-to-slide relation, and the Schubert
+  to forest positive-expansion relation.
+
+- `tex-source/todo-list.tex:796`, arXiv:2305.03241.
+  Accessible.  Added bibliography key `Ehrhard2023x`, a complete flagged
+  homogeneous family node in `key.tex`, its stable limit to `completeH`, its
+  key/atom positivity, and the signed expansion of keys in this basis.
+
 ## Accessible, Deferred
 
 - `tex-source/todo-list.tex:463`, arXiv:2411.03117.
@@ -36,18 +46,6 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   with Demazure/opposite van der Kallen modules.  It is useful background for a
   Cauchy-identity or Demazure-module page pass, but it is not currently a clean
   relation edge.
-
-- `tex-source/todo-list.tex:787`, arXiv:2306.10939.
-  Accessible.  Proposed key from the API: `NadeauTewari2023x`.  This source
-  introduces forest polynomials, proves slide-positivity for them, and proves
-  Schubert polynomials are forest-positive.  This should become a new forest
-  polynomial family node before adding graph metadata.
-
-- `tex-source/todo-list.tex:796`, arXiv:2305.03241.
-  Accessible.  Proposed key from the API: `Ehrhard2023x`.  This source
-  introduces complete flagged homogeneous polynomials and gives a nonnegative
-  key expansion.  This also needs a new family node before the relation graph
-  can represent it cleanly.
 
 - `tex-source/todo-list.tex:798`, DOI `10.1016/j.ejc.2023.103688`.
   Metadata is already in `bibliography.bib` as
