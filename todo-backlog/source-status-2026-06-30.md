@@ -125,6 +125,32 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   LLT asymptotic corner processes.  Upgraded `DolegaKowalski2021x` to its
   published Electronic Journal of Combinatorics entry.
 
+- `tex-source/todo-list.tex:458--459` and `tex-source/todo-list.tex:480`,
+  `tex-source/todo-list.tex:482--483`, arXiv:2507.05614,
+  arXiv:2411.05096, arXiv:2503.23597, arXiv:2410.12231, and
+  arXiv:2410.08366.
+  Accessible.  Added `dot-action.tex` notes on Guay-Paquet's divided
+  difference decomposition of Hessenberg GKM modules, Kato's affine
+  Grassmannian realization of chromatic symmetric functions, and Salois's
+  higher Specht/permutation bases for special Hessenberg cohomology rings.
+  Added `chromaticQuasisymmetric.tex` notes on Abreu--Nigro--Ram finite-field
+  point-counting formulas for Hessenberg varieties.  Added
+  `chromaticEexpansion.tex` notes on Hikita's $(q,t)$-chromatic symmetric
+  functions.
+
+- `tex-source/todo-list.tex:476--477` and `tex-source/todo-list.tex:481`,
+  arXiv:2504.09123, arXiv:2504.06936, and arXiv:2410.12758.
+  Already covered in `chromaticEexpansion.tex` by the Hikita theorem and the
+  post-Hikita refinement paragraph using keys `Hikita2024x`,
+  `HuhHwangKimKimOh2025x`, and `GriffinMellitRomeroWeiglWen2025x`.
+
+- `tex-source/todo-list.tex:478--479`, arXiv:2410.13642 and
+  arXiv:2410.19189.
+  Accessible.  Inspected but left without TeX edits in this pass: the first is
+  primarily about stable-limit partially symmetric Macdonald functions and
+  parabolic flag Hilbert schemes, and the second is a machine-learning-guided
+  conjectural counting formula for Stanley coefficients.
+
 ## Access Needed
 
 None from this pass.
