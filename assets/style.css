@@ -748,13 +748,7 @@
 
   .relation-graph-toolbar {
     display: grid;
-    grid-template-columns:
-      minmax(12rem, 1.1fr)
-      minmax(18rem, 1.4fr)
-      minmax(18rem, 1.7fr)
-      minmax(11rem, 0.8fr)
-      auto
-      auto;
+    grid-template-columns: minmax(12rem, 0.9fr) minmax(24rem, 2.4fr) auto;
     align-items: end;
     gap: 0.8rem;
     margin: 1rem 0;
@@ -774,7 +768,6 @@
   }
 
   .relation-graph-search,
-  .relation-graph-filter,
   .relation-graph-fieldset label {
     font-size: 0.88rem;
     color: var(--c-text-sub);
@@ -812,28 +805,17 @@
     letter-spacing: 0.04em;
   }
 
-  .relation-graph-filter-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.55rem;
-  }
-
   .relation-graph-preset-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
   }
 
-  .relation-graph-filter,
   .relation-graph-fieldset label {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
     white-space: nowrap;
-  }
-
-  .relation-graph-filter small {
-    color: var(--c-text-muted);
   }
 
   .relation-graph-toolbar button {

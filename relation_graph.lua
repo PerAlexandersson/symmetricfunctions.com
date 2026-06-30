@@ -11,7 +11,7 @@ local M = {}
 
 local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
-local GRAPH_JS = "relation-graph.js?v=9"
+local GRAPH_JS = "relation-graph.js?v=10"
 
 local function attr_is_false(value)
   if value == false then return true end
@@ -266,8 +266,8 @@ local function render_main(graph)
 <h2 id="relationGraph">Polynomial relation graph</h2>
 <p>
 This graph is generated from the structured relation rows in the polynomial
-metadata. The positive-expansion relation is shown by default; specialization
-and containment are also available as layered poset views.
+metadata. Choose a relation below; the graph is redrawn automatically as a
+layered directed graph.
 </p>
 <section class="relation-graph-page"
     data-relation-graph
@@ -281,13 +281,9 @@ and containment are also available as layered poset views.
           placeholder="Schur, Macdonald, key..."
           autocomplete="off">
     </label>
-    <fieldset class="relation-graph-fieldset relation-graph-view-fieldset">
-      <legend>View</legend>
-      <div id="relationGraphPresets" class="relation-graph-preset-list"></div>
-    </fieldset>
-    <fieldset class="relation-graph-fieldset">
-      <legend>Types</legend>
-      <div id="relationGraphTypeFilters" class="relation-graph-filter-list"></div>
+    <fieldset class="relation-graph-fieldset relation-graph-relation-fieldset">
+      <legend>Relation</legend>
+      <div id="relationGraphRelationChoices" class="relation-graph-preset-list"></div>
     </fieldset>
     <button id="relationGraphReset" type="button">Reset</button>
   </div>

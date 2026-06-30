@@ -72,14 +72,6 @@
     return map;
   }
 
-  function activeValues(selector, root) {
-    var values = Object.create(null);
-    $all(selector, root).forEach(function (input) {
-      if (input.checked) values[input.value] = true;
-    });
-    return values;
-  }
-
   function relationTypeMap(graph) {
     var map = Object.create(null);
     (graph.relation_types || []).forEach(function (type) {
@@ -88,8 +80,19 @@
     return map;
   }
 
+  function copyTypeSet(types) {
+    var copied = Object.create(null);
+    Object.keys(types || {}).forEach(function (key) {
+      if (types[key]) copied[key] = true;
+    });
+    return copied;
+  }
+
   function selectedTypeSet(root) {
-    return activeValues('[data-relation-type-filter]', root);
+    if (!root._relationGraphSelectedTypes) {
+      root._relationGraphSelectedTypes = copyTypeSet(defaultTypes(root));
+    }
+    return root._relationGraphSelectedTypes;
   }
 
   function defaultTypes(root) {
@@ -116,9 +119,36 @@
   }
 
   function setTypeSelection(root, types) {
-    $all('[data-relation-type-filter]', root).forEach(function (input) {
-      input.checked = !!types[input.value];
-    });
+    root._relationGraphSelectedTypes = copyTypeSet(types);
+  }
+
+  function singletonTypeSet(typeName) {
+    var types = Object.create(null);
+    if (typeName) types[typeName] = true;
+    return types;
+  }
+
+  var RELATION_LABELS = {
+    positive_in: 'Positive expansion',
+    specializes_to: 'Specialization',
+    contains: 'Containment',
+    k_theoretic_analogue_of: 'K-theoretic analogue',
+    stable_limit: 'Stable limit',
+    transforms_to: 'Transform',
+    dual_to: 'Duality',
+    signed_in: 'Signed expansion',
+    refines: 'Refinement'
+  };
+
+  function relationLabel(type) {
+    var key = typeof type === 'string' ? type : type.type;
+    if (RELATION_LABELS[key]) return RELATION_LABELS[key];
+    if (type && type.label) {
+      return String(type.label).replace(/([a-z])([A-Z])/g, '$1 $2');
+    }
+    return String(key || 'Relation')
+      .replace(/_/g, ' ')
+      .replace(/\b\w/g, function (letter) { return letter.toUpperCase(); });
   }
 
   function posetTypes(graph) {
@@ -139,19 +169,32 @@
 
   function presetDefinitions(graph) {
     var typeMap = relationTypeMap(graph);
+    var seen = Object.create(null);
     var presets = [];
-    [
-      ['positive_in', 'PositiveIn'],
-      ['specializes_to', 'SpecializesTo'],
-      ['contains', 'Contains']
-    ].forEach(function (pair) {
-      if (typeMap[pair[0]]) {
-        var types = Object.create(null);
-        types[pair[0]] = true;
-        presets.push({ id: pair[0], label: pair[1], types: types });
-      }
-    });
-    presets.push({ id: 'all_poset', label: 'All poset', types: posetTypes(graph) });
+
+    function addSingle(typeName) {
+      if (!typeMap[typeName] || seen[typeName]) return;
+      seen[typeName] = true;
+      presets.push({
+        id: typeName,
+        label: relationLabel(typeMap[typeName]),
+        types: singletonTypeSet(typeName)
+      });
+    }
+
+    ['positive_in', 'specializes_to', 'contains'].forEach(addSingle);
+    (graph.relation_types || [])
+      .filter(function (type) {
+        return type.count > 0 && !seen[type.type];
+      })
+      .sort(function (a, b) {
+        return relationLabel(a).localeCompare(relationLabel(b));
+      })
+      .forEach(function (type) {
+        addSingle(type.type);
+      });
+
+    presets.push({ id: 'all_poset', label: 'Poset relations', types: posetTypes(graph) });
     presets.push({ id: 'all_relations', label: 'All relations', types: allRelationTypes(graph) });
     return presets.filter(function (preset) {
       return hasSelectedTypes(preset.types);
@@ -169,7 +212,7 @@
   }
 
   function filteredGraph(graph, root) {
-    var activeTypes = activeValues('[data-relation-type-filter]', root);
+    var activeTypes = selectedTypeSet(root);
     var query = ($('#relationGraphSearch', root).value || '').trim().toLowerCase();
     var nodeMap = makeNodeMap(graph.nodes);
     var visibleNodes = Object.create(null);
@@ -572,34 +615,15 @@
     drawNodes(svg, view.nodes, layout.positions);
   }
 
-  function renderFilters(graph, root) {
-    var container = $('#relationGraphTypeFilters', root);
-    var defaults = defaultTypes(root);
-    var useDefaults = hasSelectedTypes(defaults);
-    container.innerHTML = '';
-    graph.relation_types
-      .filter(function (type) { return type.count > 0; })
-      .forEach(function (type) {
-        var label = document.createElement('label');
-        var checked = (!useDefaults || defaults[type.type]) ? ' checked' : '';
-        label.className = 'relation-graph-filter';
-        label.innerHTML = '<input type="checkbox" data-relation-type-filter value="'
-          + escapeHtml(type.type) + '"' + checked + '> '
-          + '<span>' + escapeHtml(type.label) + '</span>'
-          + '<small>' + String(type.count) + '</small>';
-        container.appendChild(label);
-      });
-  }
-
-  function renderPresets(graph, root) {
-    var container = $('#relationGraphPresets', root);
+  function renderRelationChoices(graph, root) {
+    var container = $('#relationGraphRelationChoices', root);
     if (!container) return;
     container.innerHTML = '';
     presetDefinitions(graph).forEach(function (preset) {
       var button = document.createElement('button');
       button.type = 'button';
       button.className = 'relation-graph-preset';
-      button.setAttribute('data-relation-preset', preset.id);
+      button.setAttribute('data-relation-choice', preset.id);
       button.textContent = preset.label;
       button.addEventListener('click', function () {
         setTypeSelection(root, preset.types);
@@ -612,9 +636,9 @@
   function syncPresetButtons(graph, root) {
     var selected = selectedTypeSet(root);
     var presets = presetDefinitions(graph);
-    $all('[data-relation-preset]', root).forEach(function (button) {
+    $all('[data-relation-choice]', root).forEach(function (button) {
       var preset = presets.find(function (item) {
-        return item.id === button.getAttribute('data-relation-preset');
+        return item.id === button.getAttribute('data-relation-choice');
       });
       var isActive = preset && typeSetEquals(selected, preset.types);
       button.classList.toggle('is-active', !!isActive);
@@ -623,12 +647,8 @@
   }
 
   function resetFilters(root) {
-    var defaults = defaultTypes(root);
-    var useDefaults = hasSelectedTypes(defaults);
     $('#relationGraphSearch', root).value = '';
-    $all('[data-relation-type-filter]', root).forEach(function (input) {
-      input.checked = !useDefaults || !!defaults[input.value];
-    });
+    setTypeSelection(root, defaultTypes(root));
   }
 
   function nodeLink(node) {
@@ -699,8 +719,9 @@
     loadGraph(root, src)
       .then(function (graph) {
         var nodeMap = makeNodeMap(graph.nodes);
-        renderPresets(graph, root);
-        renderFilters(graph, root);
+        var defaults = defaultTypes(root);
+        setTypeSelection(root, hasSelectedTypes(defaults) ? defaults : posetTypes(graph));
+        renderRelationChoices(graph, root);
 
         function update() {
           var view = filteredGraph(graph, root);
