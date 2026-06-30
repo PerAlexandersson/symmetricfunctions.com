@@ -82,6 +82,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   expansions of dual immaculate and extended Schur functions, with published
   bibliography key `ChoiKimOh2024`.
 
+- `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
+  arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
+  arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
+  arXiv:2312.01417.
+  Accessible.  Added a `grothendieck -> lascoux` positive-expansion relation,
+  a `lascoux.tex` cluster on $K$-Kohnert diagrams, top Lascoux polynomials,
+  Lascoux times stable Grothendieck products, double orthodontia positivity,
+  Gelfand--Zetlin subdivisions, and shifted orbit-closure analogues.  Added a
+  short `schubert.tex` cross-reference for top Lascoux/Schubert structure
+  constants.  Published bibliography entries were used where available; the
+  product and double-orthodontia papers remain arXiv entries.
+
 ## Access Needed
 
 None from this pass.
