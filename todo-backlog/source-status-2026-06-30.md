@@ -76,6 +76,12 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   quasisymmetric divided differences, forest polynomials, Hivert operators,
   fundamental slide polynomials, and the fundamental particle basis.
 
+- `tex-source/todo-list.tex:754`, arXiv:2308.10456.
+  Accessible.  Added a `standardQuasiSymmetricFunctions.tex` paragraph on
+  poset modules for $0$-Hecke algebras and quasisymmetric power-sum
+  expansions of dual immaculate and extended Schur functions, with published
+  bibliography key `ChoiKimOh2024`.
+
 ## Access Needed
 
 None from this pass.
