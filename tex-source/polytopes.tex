@@ -103,11 +103,11 @@ There are order polytopes with negative Ehrhart coefficients,
 see \cite[Figure 3.87]{StanleyEC1} and \cite{Alexandersson2019CounterExamples}.
 
 
-\todo{add https://doi.org/10.37236/11526	
-for hstar of zig-zag order polytopes.}
-
-
-
+Let $Z_n$ be the zig-zag poset with cover relations
+$z_1<z_2>z_3<z_4>\dotsb$.  The $h^*$-polynomial of the order polytope
+$\mathcal{O}(Z_n)$ has a combinatorial interpretation in terms of the swap
+statistic on alternating permutations.  This also gives another proof that
+its coefficients are symmetric and unimodal; see \cite{CoonsSullivant2023}.
 
 
 
@@ -122,20 +122,62 @@ where the $a_i$ and $b_i$ are constants.
 The \hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes} are marked order polytopes.
 
 
+\subsection[crossPolytope]{Cross-polytopes}
 
-\todo{Cross polytope: https://arxiv.org/pdf/2512.08669 and Ehrhart coeffs.}
+The \defin{cross-polytope} in dimension $d$ is
+\[
+  \left\{ x\in\setR^d : |x_1|+\dotsb+|x_d|\leq 1 \right\}.
+\]
+\name{Krishna Menon} and \name{Emil Verkama} give a combinatorial
+interpretation for scaled Ehrhart coefficients of cross-polytopes, and more
+generally for pyramids over cross-polytopes, in terms of colored permutations
+\cite{MenonVerkama2025x}.  In particular, this gives a combinatorial proof
+that these Ehrhart coefficients are positive.
 
-% \subsection[flowPolytope]{Flow polytopes}
-\todo{Define flow polytopes}
+\subsection[flowPolytope]{Flow polytopes}
+
+Let $G=(V,E)$ be a directed graph and let $a\in\setR^V$ satisfy
+\[
+  \sum_{v\in V} a_v=0.
+\]
+The \defin{flow polytope} $\mathcal{F}_G(a)$ is the set of non-negative
+flows $f:E\to\setR_{\geq 0}$ such that, for every vertex $v$,
+\[
+  \sum_{e=(v,w)} f(e)-\sum_{e=(u,v)} f(e)=a_v.
+\]
+Thus the vector $a$ records the netflow at each vertex. Flow polytopes are
+closely related to root polytopes, Kostant partition functions, and
+Gelfand--Tsetlin polytopes; see for example \cite{LiuMeszarosDizier2019flow}.
 
 
-%\subsection[permutohedron]{The permutohedron}
-\todo{Define permutohedron}
+\subsection[permutohedron]{The permutohedron}
+
+The \defin{permutohedron} is the polytope
+\[
+  \operatorname{Perm}_n
+  \coloneqq
+  \operatorname{conv}
+  \left\{ (w(1),w(2),\dotsc,w(n)) : w\in\symS_n \right\}.
+\]
+Equivalently, it is the convex hull of all coordinate permutations of
+$(1,2,\dotsc,n)$.  Its face structure is governed by ordered set partitions
+of $[n]$, and it is a basic example of a generalized permutohedron; see
+\cite{ZieglerLecturesOnPolytopes95}.
 
 
+\subsection[parkingFunctionPolytope]{Parking function polytopes}
 
+Let $u=(u_1,\dotsc,u_n)\in\setR_{\geq 0}^n$ satisfy
+$u_1\leq\dotsb\leq u_n$.  A vector
+$a=(a_1,\dotsc,a_n)\in\setR_{\geq 0}^n$ is a \defin{$u$-parking function}
+if its non-decreasing rearrangement $b_1\leq\dotsb\leq b_n$ satisfies
+$b_i\leq u_i$ for all $i$.  The \defin{parking function polytope}
+$\operatorname{PF}(u)$ is the convex hull of all $u$-parking functions.
 
-\todo{Parking function polytope: https://arxiv.org/pdf/2512.14199}
+\name{Fu Liu} and \name{Warut Thawinrak} study these polytopes, including
+their normal fans, face posets, $h$-polynomials, volumes, and Ehrhart
+polynomials \cite{LiuThawinrak2025x}.  In this non-negative convention,
+the classical parking functions correspond to $u=(0,1,\dotsc,n-1)$.
 
 
 \section[polytopeIDP]{The integer decomposition property}
@@ -194,6 +236,71 @@ then magic positivity implies that $W(p)$ is real-rooted, see \cite[Rem. 4.21]{F
 For Ehrhart polynomials, $W(E_P)$ is exactly the $h^*$-polynomial.
 This is the same transformation discussed on the page about
 \hyperref[interlacingPolynomials]{interlacing polynomials}.
+
+\begin{example*}[Pitman--Stanley polytopes]
+Let $y=(y_1,\dotsc,y_n)\in \setZ_{>0}^n$. The
+\defin{Pitman--Stanley polytope} is
+\[
+  \Pi_n(y)
+  \coloneqq
+  \left\{
+    x\in \setR_{\geq 0}^n :
+    x_1+\dotsb+x_k \leq y_1+\dotsb+y_k
+    \text{ for } k=1,\dotsc,n
+  \right\}.
+\]
+\name{Nicolas Avila}, \name{Luis Ferroni}, and
+\name{Alejandro H. Morales} prove that the Ehrhart polynomial
+$E_{\Pi_n(y)}(m)$ is magic positive \cite{AvilaFerroniMorales2026}.
+More precisely, if
+\[
+  E_{\Pi_n(y)}(m)
+  =
+  \sum_{i=0}^n c_i m^i(1+m)^{n-i},
+\]
+then $n!c_i$ counts $y$-parking functions with exactly $i$ lucky cars
+in a modified parking protocol.
+
+It follows from Br\"anden's theorem that the $h^*$-polynomial
+$h^*_{\Pi_n(y)}(z)$ is real-rooted. In particular, its coefficients are
+log-concave and unimodal.
+
+For computations, one may use the lattice-point function
+\[
+  L_y(m)
+  =
+  \#\left\{
+    x\in\setZ_{\geq 0}^n :
+    x_1+\dotsb+x_k
+    \leq
+    m(y_1+\dotsb+y_k)
+    \text{ for } k=1,\dotsc,n
+  \right\}.
+\]
+The corresponding $h^*$-coefficients are
+\[
+  h^*_j
+  =
+  \sum_{i=0}^j
+  (-1)^{j-i}
+  \binom{n+1}{j-i}
+  L_y(i).
+\]
+For example,
+\[
+\begin{array}{c|c}
+ y & h^*_{\Pi_n(y)}(z) \\ \hline
+ (1) & 1 \\
+ (2) & 1+z \\
+ (1,1) & 1+2z \\
+ (2,1) & 1+6z+z^2 \\
+ (1,1,1) & 1+10z+5z^2 \\
+ (2,1,1) & 1+24z+24z^2+z^3 .
+\end{array}
+\]
+See the page on \hyperref[parkingFunctions]{parking functions} for the
+classical parking function interpretation.
+\end{example*}
 
 \begin{example*}[Stasheff and symmetric edge polytopes]
 In \cite{Konoike2024x}, \name{Masato Konoike} studies two reflexive families.

@@ -1,0 +1,181 @@
+\metatitle{Transfer matrix method}
+\metadescription{The transfer matrix method for finite-state enumeration and rational generating functions.}
+
+
+
+\section[transferMatrixMethod]{The transfer matrix method}
+
+The \defin{transfer matrix method} turns a finite-state enumeration problem
+into matrix multiplication.  It is especially useful when objects are built
+from left to right and only a bounded amount of boundary data is needed to
+continue the construction.  See \cite[Sec.~4.7]{StanleyEC1} for the classical
+presentation.
+
+Let $\mathcal{S}$ be a finite set of states, and let $A=(a_{st})_{s,t\in\mathcal{S}}$
+be a matrix with entries in a commutative ring $R$.  We interpret $a_{st}$ as
+the weight of a transition from state $s$ to state $t$.
+
+\begin{proposition}[Transfer matrix method]
+Let $\alpha$ and $\beta$ be column vectors indexed by $\mathcal{S}$, and define
+\[
+  f_n \coloneqq \alpha^\top A^n \beta .
+\]
+Then the ordinary generating function of the sequence $(f_n)_{n\geq 0}$ is
+\[
+  \sum_{n\geq 0} f_n z^n
+  =
+  \alpha^\top (I-zA)^{-1}\beta .
+\]
+In particular, if $R$ is a field, then this generating function is rational.
+\end{proposition}
+
+\begin{proof}
+The identity follows by summing the geometric series
+\[
+  I+zA+z^2A^2+\dotsb=(I-zA)^{-1}.
+\]
+The claim follows.
+\end{proof}
+
+The method also applies with extra variables in the entries of $A$.  In that
+case the matrix records a weighted enumeration, and specializations of the
+variables recover ordinary counts.
+
+
+\subsection[transferMatrixFibonacciWords]{Binary words with no consecutive ones}
+
+Let $a_n$ be the number of binary words of length $n$ with no consecutive ones.
+We use two states, recording whether the last letter is $0$ or $1$.  If
+\[
+  b_n =
+  \begin{pmatrix}
+  b_n^{(0)}\\
+  b_n^{(1)}
+  \end{pmatrix}
+\]
+records the number of valid words ending in $0$ and $1$, then
+\[
+  b_{n+1}
+  =
+  \begin{pmatrix}
+  1 & 1\\
+  1 & 0
+  \end{pmatrix}
+  b_n .
+\]
+Thus $a_n=b_n^{(0)}+b_n^{(1)}$, and one obtains
+\[
+  \sum_{n\geq 0} a_n z^n
+  =
+  \frac{1}{1-z-z^2}.
+\]
+Equivalently, $a_n=F_{n+2}$, where $F_n$ is the Fibonacci sequence.
+
+
+\subsection[transferMatrixGraphColorings]{Proper colorings of paths and cycles}
+
+Let $B$ be the $q\times q$ matrix with $0$ on the diagonal and $1$ off the
+diagonal.  A product of entries in $B$ records whether adjacent vertices have
+distinct colors.
+
+For the path graph on $n$ vertices, the number of proper $q$-colorings is
+\[
+  \mathbf{1}^\top B^{n-1}\mathbf{1}
+  =
+  q(q-1)^{n-1}.
+\]
+For the cycle graph $C_n$, the first and last colors must also be adjacent,
+so the transfer matrix expression is a trace:
+\[
+  \chi_{C_n}(q)
+  =
+  \operatorname{tr}(B^n)
+  =
+  (q-1)^n + (q-1)(-1)^n .
+\]
+This is the usual chromatic polynomial of a cycle.
+
+
+\subsection[transferMatrixDominoTilings]{Domino tilings of a strip}
+
+The number of domino tilings of a $2\times n$ rectangle can be computed by
+recording which cells in the next column are already occupied by horizontal
+dominoes.  The possible boundary states are the four subsets of the two cells,
+which we encode by $0,1,2,3$.  With rows and columns ordered in this way, the
+transfer matrix is
+\[
+  A=
+  \begin{pmatrix}
+  1 & 0 & 0 & 1\\
+  0 & 0 & 1 & 0\\
+  0 & 1 & 0 & 0\\
+  1 & 0 & 0 & 0
+  \end{pmatrix}.
+\]
+The entry $(A^n)_{0,0}$ counts tilings which start and end with an empty
+boundary.  This gives the Fibonacci recurrence for the number of domino
+tilings of a $2\times n$ rectangle.
+
+Weighted versions of the same matrix give bivariate generating functions
+recording, for example, the number of vertical and horizontal dominoes.
+
+
+\subsection[transferMatrixWeightedTilings]{Weighted tilings by larger tiles}
+
+Let $P_n(t)$ be the generating polynomial for tilings of a $4\times n$
+rectangle using unit squares and $2\times 2$ squares, where each $2\times 2$
+square contributes a factor of $t$. Thus the coefficient of $t^k$ counts
+tilings using exactly $k$ large squares.
+This is the rectangular big-tile case $\mu=(2,2)$ in the tiling polynomials
+studied by \name{John Ahlberg} and \name{Per Alexandersson}
+\cite{AhlbergAlexandersson2026}.
+
+Process the board column by column. A boundary state records which cells in
+the next column have already been occupied by $2\times 2$ squares started in
+the previous column. For height $4$, starting from the empty boundary, only
+the five states
+\[
+  \emptyset,\quad 12,\quad 23,\quad 34,\quad 1234
+\]
+can occur, where for instance $23$ means that rows $2$ and $3$ are already
+occupied.
+
+Using column vectors, with rows indexed by the next state and columns indexed
+by the current state in the order above, the transfer matrix is
+\[
+  A(t)=
+  \begin{pmatrix}
+  1 & 1 & 1 & 1 & 1 \\
+  t & 0 & 0 & t & 0 \\
+  t & 0 & 0 & 0 & 0 \\
+  t & t & 0 & 0 & 0 \\
+  t^2 & 0 & 0 & 0 & 0
+  \end{pmatrix}.
+\]
+For example, from the empty state one may start no large square, one large
+square in rows $12$, $23$, or $34$, or two large squares in rows $12$ and
+$34$. This explains the first column of $A(t)$.
+
+The desired polynomial is the empty-to-empty entry
+\[
+  P_n(t)=\bigl(A(t)^n\bigr)_{\emptyset,\emptyset}.
+\]
+Consequently,
+\[
+  \sum_{n\geq 0} P_n(t) z^n
+  =
+  \frac{1-tz}
+  {1-(1+t)z-(2t+t^2)z^2+(t^2+t^3)z^3}.
+\]
+The first few polynomials are
+\[
+\begin{array}{c|l}
+n & P_n(t) \\ \hline
+0 & 1\\
+1 & 1\\
+2 & 1+3t+t^2\\
+3 & 1+6t+4t^2\\
+4 & 1+9t+16t^2+8t^3+t^4\\
+5 & 1+12t+37t^2+34t^3+9t^4 .
+\end{array}
+\]

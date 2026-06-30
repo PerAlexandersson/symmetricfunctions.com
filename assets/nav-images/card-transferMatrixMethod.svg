@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="85.0395pt" height="85.0395pt" viewBox="0 0 56.693 56.693">
+  <path d="M2.836 9.922V46.77c0 3.914 3.172 7.09 7.086 7.09H46.77c3.914 0 7.09-3.176 7.09-7.09V9.922c0-3.914-3.176-7.086-7.09-7.086H9.922c-3.914 0-7.086 3.172-7.086 7.086Z" fill="none" stroke="#000" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M13.2 14.2h10.4v10.4H13.2Zm19.9 0h10.4v10.4H33.1ZM13.2 32.1h10.4v10.4H13.2Zm19.9 0h10.4v10.4H33.1Z" fill="#468cff" stroke="#000" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M23.6 19.4h9.5M23.6 37.3h9.5M18.4 24.6v7.5M38.3 24.6v7.5M22.2 22.2l12.3 12.3M34.5 22.2 22.2 34.5" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="18.4" cy="19.4" r="2.3" fill="#fff" stroke="#000" stroke-width="1.2"/>
+  <circle cx="38.3" cy="19.4" r="2.3" fill="#fff" stroke="#000" stroke-width="1.2"/>
+  <circle cx="18.4" cy="37.3" r="2.3" fill="#fff" stroke="#000" stroke-width="1.2"/>
+  <circle cx="38.3" cy="37.3" r="2.3" fill="#fff" stroke="#000" stroke-width="1.2"/>
+</svg>

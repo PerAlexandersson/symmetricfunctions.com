@@ -4,15 +4,6 @@
 
 
 
-\todo{Add generating functions?}
-
-\todo{Add newton identities, and other stuff - see intro in \url{https://mysite.science.uottawa.ca/hsalmasi/report/thesis-evans.pdf }}
-
-\todo{A recent paper with skew elementary symmetric functions and skew complete homogeneous sym-funcs.
-\url{https://arxiv.org/pdf/1804.05647.pdf}}
-
-\todo{Colored versions (Wreath prod.) of these. \url{https://arxiv.org/abs/0809.2439}}
-
 \section[symmetricFunctions]{Symmetric functions}
 
 
@@ -32,6 +23,18 @@ Here are a few great resources:
 \item \name{Mike Zabrocki}'s introduction to symmetric functions, \cite{Zabrocki2003}.
 \item \name{Amritanshu Prasad}'s introduction to Schur polynomials, published in \cite{Prasad2019}.
 \end{itemize}
+
+There are also colored analogues attached to wreath products.  In
+\cite{IngramJingStitzinger2008x}, \name{Frank Ingram}, \name{Naihuan Jing},
+and \name{Ernie Stitzinger} study wreath product Schur functions using colored
+partitions and tableaux, including analogues of the Pieri and
+Littlewood--Richardson rules.
+
+Cylindric analogues of complete and elementary symmetric functions appear in
+the work of \name{Christian Korff} and \name{David Palazzo}
+\cite{KorffPalazzo2020}.  They define cylindric symmetric functions using
+cylindric reverse plane partitions and prove positivity properties for the
+resulting families.
 
 
 \subsection[fockSpace]{Fock space}
@@ -133,6 +136,12 @@ The elementary symmetric functions are defined as follows:
 \qquad 
 \elementaryE_\lambda(\xvec) = \elementaryE_{\lambda_1} \elementaryE_{\lambda_2} \dotsm \elementaryE_{\lambda_\ell}
 \]
+Their generating function is
+\[
+  \sum_{k\geq 0} \elementaryE_k(\xvec) z^k
+  =
+  \prod_i (1+x_i z).
+\]
 
 
 \section[completeH]{Complete homogeneous symmetric functions}
@@ -155,6 +164,12 @@ Similar to the elementary symmetric functions, the complete homogeneous function
 \qquad 
 \completeH_\lambda(\xvec) = \completeH_{\lambda_1} \completeH_{\lambda_2} \dotsm \completeH_{\lambda_\ell}
 \]
+Their generating function is
+\[
+  \sum_{k\geq 0} \completeH_k(\xvec) z^k
+  =
+  \prod_i \frac{1}{1-x_i z}.
+\]
 
 \section[powerSum]{Powersum symmetric functions}
 
@@ -175,6 +190,12 @@ The powersum symmetric functions are defined as
 \powerSum_k(\xvec) =  x_{1}^k +  x_2^k + x_3^k + \dotsb = \monomial_{(k)}(\xvec),
 \qquad 
 \powerSum_\lambda(\xvec) = \powerSum_{\lambda_1} \powerSum_{\lambda_2} \dotsm \powerSum_{\lambda_\ell}.
+\]
+The ordinary generating function for the individual power sums is
+\[
+  \sum_{k\geq 1} \powerSum_k(\xvec) z^{k-1}
+  =
+  \sum_i \frac{x_i}{1-x_i z}.
 \]
 
 
