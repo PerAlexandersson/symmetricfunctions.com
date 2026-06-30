@@ -17,20 +17,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `hallLittlewood.tex` subsection on Hall--Littlewood `S`-functions, enriched
   `P`-partitions, and the q-fundamental quasisymmetric expansion.
 
-## Accessible, Deferred
-
 - `tex-source/todo-list.tex:328`, arXiv:2506.09015.
-  Accessible.  The abstract and introduction state that flagged LLT
-  polynomials are conjectured to expand positively in Demazure atoms, and that
-  modified nonsymmetric Macdonald polynomials are positive sums of flagged LLT
-  polynomials.  This needs a flagged-LLT family node before relation metadata
-  can be represented cleanly.
+  Accessible.  Added bibliography key `BlasiakHaimanMorsePunSeelinger2025x`
+  and a short `llt.tex` subsection on flagged LLT polynomials, nonsymmetric
+  plethysm, and the conjectural Demazure-atom positivity statement.
 
 - `tex-source/todo-list.tex:524`, arXiv:2408.17375.
-  Accessible.  The paper gives a key expansion of flagged refined skew stable
-  Grothendieck polynomials.  The formula has K-theoretic signs, so this should
-  be treated as prose or a signed relation after a more careful page pass, not
-  as an ordinary positive-expansion edge.
+  Accessible.  Added bibliography key `Kundu2024x` and a short
+  `grothendieck.tex` paragraph on the key expansion of flagged refined skew
+  stable Grothendieck polynomials.  This was not added as graph metadata
+  because the displayed expansion has K-theoretic signs.
+
+## Accessible, Deferred
 
 - `tex-source/todo-list.tex:798`, DOI `10.1016/j.ejc.2023.103688`.
   Metadata is already in `bibliography.bib` as
