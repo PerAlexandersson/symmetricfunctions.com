@@ -30,11 +30,37 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Accessible, Deferred
 
+- `tex-source/todo-list.tex:463`, arXiv:2411.03117.
+  Accessible.  Proposed key from the API: `FeiginKhoroshkinMakedonskyi2024x`.
+  This is about Cauchy identities for staircase-shaped matrices and filtrations
+  with Demazure/opposite van der Kallen modules.  It is useful background for a
+  Cauchy-identity or Demazure-module page pass, but it is not currently a clean
+  relation edge.
+
+- `tex-source/todo-list.tex:787`, arXiv:2306.10939.
+  Accessible.  Proposed key from the API: `NadeauTewari2023x`.  This source
+  introduces forest polynomials, proves slide-positivity for them, and proves
+  Schubert polynomials are forest-positive.  This should become a new forest
+  polynomial family node before adding graph metadata.
+
+- `tex-source/todo-list.tex:796`, arXiv:2305.03241.
+  Accessible.  Proposed key from the API: `Ehrhard2023x`.  This source
+  introduces complete flagged homogeneous polynomials and gives a nonnegative
+  key expansion.  This also needs a new family node before the relation graph
+  can represent it cleanly.
+
 - `tex-source/todo-list.tex:798`, DOI `10.1016/j.ejc.2023.103688`.
   Metadata is already in `bibliography.bib` as
   `AliniaeifardWangWilligenburg2023`, with the arXiv version also present as
   `AliniaeifardWangWilligenburg2021x`.  No university access needed for a first
   pass.
+
+- `tex-source/todo-list.tex:921`, arXiv:2210.10236.
+  Accessible.  Published DOI metadata is available from the API under proposed
+  key `AssafDranowskiGonzalez2023`.  The source gives a local criterion for
+  tensor products of Demazure crystals to decompose as Demazure crystals.  This
+  should not be treated as a proof of general key-product or key-square
+  atom-positivity without a separate representation-theoretic check.
 
 ## Access Needed
 
