@@ -5,6 +5,22 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:991--1010`, arXiv:2206.03054,
+  arXiv:2105.09964, arXiv:2206.05177, arXiv:2311.12625,
+  arXiv:2311.12216, arXiv:2206.02065, arXiv:2206.00131,
+  arXiv:2206.00075, arXiv:2205.13949, arXiv:2205.11813, and
+  arXiv:math/0703479.
+  Accessible.  The Chaput--Ressayre LR item and Barcelo--Reiner--Stanton
+  flag-major/bimahonian CSP item were already present.  Added `ncSchur.tex`
+  on Schur functions in noncommuting variables, `macdonaldP.tex` on
+  $m$-symmetric and partially symmetric Macdonald polynomials,
+  `standardQuasiSymmetricFunctions.tex` on WQSym self-duality and
+  anticommuting quasisymmetric harmonics, `diagonalHarmonics.tex` on
+  rectangular shuffle/Delta conjectures and torus-link symmetric functions,
+  and `nonCommutativeFunctions.tex` on noncommutative symmetric functions in
+  superspace.  The related Fishel--Gatica--Lapointe--Pinto superspace
+  quasisymmetric item was already present in `superSymmetricSchur.tex`.
+
 - `tex-source/todo-list.tex:971--989`, arXiv:2206.14351,
   arXiv:2207.00523, arXiv:2206.13409, arXiv:2112.13333,
   arXiv:2206.11406, arXiv:2206.10017, arXiv:2206.08993, SLC B86a,
