@@ -128,6 +128,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   functions for classical Lie group characters, and the super nabla operator.
   Used published bibliography entries where available.
 
+- `tex-source/todo-list.tex:818--838`, arXiv:2302.09454, arXiv:2302.08211,
+  arXiv:2302.08279, arXiv:2302.07694, arXiv:2302.07239, arXiv:2302.05903,
+  arXiv:2302.04164, arXiv:2312.16824, arXiv:2312.03956, arXiv:2302.04136,
+  arXiv:2206.11760, and arXiv:2302.03761.
+  Accessible.  Added notes on realizable combinatorial sequences, stable-limit
+  nonsymmetric Macdonald functions, left and right keys, quasicrystals,
+  Jacobi--Trudi determinants over finite fields, averaging Cauchy identities,
+  $(-1)$-enumerations of arrowed Gelfand--Tsetlin patterns, nabla of monomial
+  symmetric functions, Delta conjecture specializations, and weighted
+  $q$-enumeration of lattice points.  Reused existing keys `MaasGariepy2023x`
+  and `DAdderioIraci2023`.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
