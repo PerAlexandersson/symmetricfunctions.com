@@ -211,6 +211,14 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   file; `LiuMeszarosDizier2019flow` was upgraded to the published SIAM
   Journal on Discrete Mathematics entry.
 
+- `tex-source/todo-list.tex:931--935`, arXiv:2209.12632,
+  arXiv:2209.10075, and arXiv:2209.09859.
+  Accessible.  Added `schur.tex` on Jacobi--Trudi identities via BGG category
+  $\mathcal{O}$, `resources.tex` on the Goulden--Jackson survey, and
+  `macdonaldH.tex` on the multispecies zero-range process and the modified
+  Macdonald partition function.  Used published entries for the
+  Goulden--Jackson survey and the zero-range process paper.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
