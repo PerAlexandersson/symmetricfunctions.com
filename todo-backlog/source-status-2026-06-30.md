@@ -181,6 +181,22 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   skew Schur CSP item was already covered in `cspTableau.tex`,
   `schurFlagged.tex`, and `q-analogs.tex`.
 
+- `tex-source/todo-list.tex:897--913`, arXiv:1204.2484,
+  arXiv:2211.01578, arXiv:2211.00699, arXiv:2210.17476,
+  arXiv:2207.05119, arXiv:2209.09277, arXiv:2206.15451,
+  arXiv:2204.05259, arXiv:2204.06751, arXiv:2210.14839, and
+  arXiv:2210.14668.
+  Accessible.  Added `littlewoodRichardson.tex` on positivity testing for
+  Littlewood--Richardson coefficients, `grothendieck.tex` on the Pieri rule
+  for quantum Grothendieck polynomials, `weightedChromatic.tex` on
+  chromatic symmetric homology for vertex-weighted graphs,
+  `standardQuasiSymmetricFunctions.tex` on Lazzeroni's powersum basis,
+  `rsk.tex` on Boolean permutations, box-ball systems, super RSK, and Burge
+  correspondence variants, `q-analogs.tex` on cyclic descent extensions, and
+  `schur.tex` on reduced Kronecker coefficient conjectures.  Used published
+  entries where available and upgraded `BloomSaracino2022x` to the published
+  European Journal of Combinatorics version.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
