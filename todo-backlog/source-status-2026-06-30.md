@@ -937,6 +937,17 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   citation was upgraded to its published form.  Non-arXiv lines 118--119 are
   still open for clarification about the intended theorem statements.
 
+- `tex-source/todo-list.tex:122--134`, FPSAC 2019 article 159,
+  arXiv:1403.0607, Stanley's `pubfiles/98.pdf`, arXiv:2007.10886, and
+  arXiv:2010.03363.
+  Accessible.  Enriched `schurPositivity.tex` with the type $B$
+  q-Cauchy/Chow-quasisymmetric content of Mayorova--Vassilieva, expanded the
+  noncommutative Murnaghan--Nakayama note in `nonCommutativeFunctions.tex`,
+  added Stanley's flag-symmetric poset functions to `pPartitions.tex`, added
+  Petrov's refined Cauchy identity for spin Hall--Littlewood rational functions
+  to `hallLittlewood.tex`, and added Fel's numerical-semigroup symmetric
+  polynomials to `standardSymmetricFunctions.tex`.
+
 ## Access Needed
 
 None from this pass.
