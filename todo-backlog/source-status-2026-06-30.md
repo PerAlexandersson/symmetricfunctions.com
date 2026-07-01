@@ -151,6 +151,13 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   parabolic flag Hilbert schemes, and the second is a machine-learning-guided
   conjectural counting formula for Stanley coefficients.
 
+- `tex-source/todo-list.tex:438--440`, arXiv:2412.09929,
+  arXiv:2412.00116, and arXiv:2411.16485.
+  Accessible.  Added `whittaker.tex` notes on inv/quinv formulas for
+  $q$-Whittaker and modified Hall--Littlewood functions, bases and branching
+  for $q$-Whittaker local Weyl modules, and the power-sum expansion/simple
+  operator subspace-counting interpretation.
+
 ## Access Needed
 
 None from this pass.
