@@ -5,6 +5,25 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:360--384`, arXiv:2504.01623,
+  2503.19344, 2510.11322, 2503.19621, 2503.19694, 2503.17552,
+  2503.09240, 2503.06051, 2503.03903, 2502.15586, 2502.08738,
+  2507.00766, 2504.08187, and 2502.09072.
+  Accessible.  Added notes on Lorentzian characters of parabolic Verma
+  modules and restricted Kostant partition functions, valuative invariants and
+  Ehrhart positivity for Catalan matroids, equivariant inverse
+  Kazhdan--Lusztig polynomials of thagomizer matroids, contingency-table
+  quotient rings and orbit harmonics, character evaluations on partial
+  permutations, permuted-basement atom times Schur product rules, single-SEM
+  Schubert polynomials, skew odd orthogonal characters and interpolating
+  Schur polynomials, multi-symmetric Schur functions, $q$-rook numbers and
+  $q$-Whittaker expansions of unicellular LLT functions, ribbon-Schur
+  expansions for two-headed melting lollipop LLTs, and noncommutative
+  chromatic quasisymmetric/Macdonald polynomials.  The gluing-at-one-vertex
+  chromatic symmetric function paper was already present with its published
+  DOI under key `TomVailaya2025x`; the permuted-basement Macdonald fillings
+  paper arXiv:2503.06051 was already represented on `macdonaldEperm.tex`.
+
 - `tex-source/todo-list.tex:1287--1324`, arXiv:1909.09520,
   1907.09681, 1909.00327, 1911.08732, 1911.07152, 1911.07799,
   1911.06732, 1910.08302, 1910.05848, 1909.00081, 1908.11224,
