@@ -188,6 +188,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `rsk.tex` note on type $C$ RSK for King tableaux via Berele insertion.  Used
   published entries for arXiv:2411.02897 and arXiv:2506.06951.
 
+- `tex-source/todo-list.tex:471`, `tex-source/todo-list.tex:473`,
+  `tex-source/todo-list.tex:485`, and `tex-source/todo-list.tex:487`,
+  arXiv:2410.18343, arXiv:2410.15739, arXiv:2410.08075, and
+  arXiv:2410.07960.
+  Accessible.  Added `grothendieck.tex` notes on hook-valued-tableau
+  uncrowding/tableau switching for refined canonical stable Grothendieck
+  polynomials and on Kirillov's Hecke--Grothendieck positivity via solvable
+  lattice models, a `schurKP.tex` note on special values of $K$-theoretic
+  Schur $P$- and $Q$-functions, and a `hallLittlewood.tex` subsection on
+  Hall--Littlewood--Schubert series.  Used published entries for
+  arXiv:2410.18343 and arXiv:2410.07960.
+
 ## Access Needed
 
 None from this pass.
