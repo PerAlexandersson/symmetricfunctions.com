@@ -200,6 +200,14 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Hall--Littlewood--Schubert series.  Used published entries for
   arXiv:2410.18343 and arXiv:2410.07960.
 
+- `tex-source/todo-list.tex:489`, `tex-source/todo-list.tex:505`, and
+  `tex-source/todo-list.tex:506`, arXiv:2410.04669, arXiv:2505.07623, and
+  arXiv:2410.03245.
+  Accessible.  Added a `nonCommutativeFunctions.tex` note on Campbell's
+  $\mathrm{NSym}$ lift of chromatic symmetric functions, and
+  `gammaPositivity.tex` notes on equivariant gamma-effectiveness for order
+  polytopes of graded posets and on canon permutation posets.
+
 ## Access Needed
 
 None from this pass.
