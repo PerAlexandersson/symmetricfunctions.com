@@ -1142,6 +1142,19 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `whittaker.tex`, `unicellular-llt.tex`, `nonCommutativeFunctions.tex`,
   `schurShifted.tex`, `schurMisc.tex`, and `grothendieck.tex`.
 
+- `tex-source/todo-list.tex:392--420`, arXiv:2501.11304,
+  arXiv:2501.15667, arXiv:2412.18984, arXiv:2412.19721,
+  arXiv:2112.09633, arXiv:2501.16640, arXiv:2010.10493,
+  arXiv:2412.20615, arXiv:2405.01166, arXiv:2501.04245,
+  arXiv:2501.01947, arXiv:2501.00275, arXiv:2501.04432,
+  arXiv:2501.04200, and arXiv:2412.10556.
+  Accessible and already covered.  These appear respectively on
+  `qsymSchur.tex`, `standardQuasiSymmetricFunctions.tex`, `schubert.tex`,
+  `schurMisc.tex`, `rsk.tex`, `grothendieck.tex`, `grothendieck.tex`,
+  `grothendieck.tex`, `chromaticEexpansion.tex`, `realRooted.tex`,
+  `littlewoodRichardson.tex`, `schurMisc.tex`, `schurMisc.tex`,
+  `kschur.tex`, and `chromaticQuasisymmetric.tex`.
+
 ## Access Needed
 
 None from this pass.
