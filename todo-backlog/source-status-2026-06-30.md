@@ -143,6 +143,21 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   metadata.  The line 1069 increasing-tableaux item was already present on
   `cspTableau.tex`; only its bibliography metadata was upgraded.
 
+- `tex-source/todo-list.tex:1087--1119`, arXiv:2111.14657, 2110.10273,
+  2109.14597, 2108.08657, 2108.08370, 2108.11438, 2108.03188, 2107.10205,
+  2106.16189, 2107.00453, EJC DOI `10.37236/9621`, arXiv:2109.06718,
+  2106.12557, 2106.06872, and 2106.03828.
+  Accessible.  Added short notes for orthosymplectic Cauchy identities,
+  supersymmetric LLT vertex models, RSK reverse-recording tableaux, bumpless
+  pipe-dream Groebner geometry, the canonical pipe-dream/bumpless-pipe-dream
+  bijection, chromatic/Tutte plethysms, shifted Schur quantum immanants,
+  multivariate Eulerian/Stirling e-positivity, Schur and symmetric
+  Grothendieck Newton polytopes, free-fermion six-vertex Schur variants, spin
+  Hall--Littlewood identities, generalized Grothendieck Cauchy formulas, and
+  the q-Klyachko algebra.  The Hardt lattice-model item was already cited on
+  `latticeModel.tex`; the skew-Jack item was already cited on `jack.tex`, and
+  its bibliography entry was upgraded to published DOI metadata.
+
 - `tex-source/todo-list.tex:921`, arXiv:2210.10236.
   Accessible.  Added published bibliography key `AssafDranowskiGonzalez2023`
   and a short `crystals.tex` paragraph on the tensor-product criterion for
