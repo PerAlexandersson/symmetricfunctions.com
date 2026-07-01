@@ -1073,6 +1073,24 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   noncommuting variables; the todo wording mentions Rosas--Sagan and should be
   clarified before adding anything further.
 
+- `tex-source/todo-list.tex:293--315`, arXiv:2508.05759,
+  arXiv:2508.06188, arXiv:2508.03568, arXiv:2508.00157,
+  arXiv:2507.23222, arXiv:2508.00336, arXiv:2507.22528,
+  arXiv:2507.18959, arXiv:2507.11516, arXiv:2507.09304,
+  arXiv:2507.08560, and arXiv:2507.08083.
+  Accessible.  Added generalized Jack-binomial monotonicity and positivity to
+  `jack.tex`, CJT-refined Fock-space/Jucys--Murphy theory to
+  `standardSymmetricFunctions.tex`, the plethystic chain rule to
+  `plethysm.tex`, chromatic MacMahon symmetric functions to
+  `weightedChromatic.tex`, weighted $K$-$k$-Schur functions to `kschur.tex`,
+  nonsymmetric Macdonald saturated Newton polytopes to `macdonaldE.tex`,
+  supersymmetric Schur saturated Newton polytopes to
+  `superSymmetricSchur.tex`, higher-order Stirling triangle real-rootedness
+  questions to `realRootedWords.tex`, inversion tableaux to `schubert.tex`,
+  Cayley permutations to `permutationGeneralizations.tex`, Schur generating
+  functions for random Aztec-diamond tilings to `schur.tex`, and symmetry
+  classifications for quasisymmetric Schur-like functions to `qsymSchur.tex`.
+
 ## Access Needed
 
 None from this pass.
