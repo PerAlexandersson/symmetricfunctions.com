@@ -168,6 +168,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   formulas, and back stable Schubert/Heisenberg algebra, plus a `key.tex` note
   on key-polynomial generating series.
 
+- `tex-source/todo-list.tex:444`, `tex-source/todo-list.tex:446`, and
+  `tex-source/todo-list.tex:454`, arXiv:2411.13371, arXiv:2411.13411, and
+  arXiv:2411.11447.
+  Accessible.  Added a `superSymmetricSchur.tex` note on fundamental
+  quasisymmetric functions in superspace, a `chromaticQuasisymmetric.tex`
+  note on computing chromatic symmetric functions in forest bases, and
+  `murnaghanNakayama.tex`/`schurMisc.tex` notes on Murnaghan--Nakayama rules
+  for symplectic, orthogonal, and orthosymplectic Schur functions.  Used
+  published entries for arXiv:2411.13371 and arXiv:2411.11447.
+
 ## Access Needed
 
 None from this pass.
