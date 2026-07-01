@@ -1048,6 +1048,31 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   canonical stable Grothendieck Murnaghan--Nakayama rule to
   `grothendieck.tex` and `murnaghanNakayama.tex`.
 
+- `tex-source/todo-list.tex:262--291`, arXiv:2511.00713,
+  arXiv:2511.00009, arXiv:2510.27209, arXiv:2510.12723,
+  arXiv:2510.10377, arXiv:2510.02587, arXiv:2509.17312,
+  arXiv:2508.20337, arXiv:2508.20200, arXiv:2508.15538,
+  arXiv:2508.13810, arXiv:2508.12467, arXiv:2508.11879, and
+  arXiv:2508.09107.
+  Accessible.  Added lexical-tableau quasisymmetric bases to `qsymSchur.tex`,
+  LIS asymptotics/RSK survey context to `rsk.tex`, the tableaux algebra and
+  Gelfand--Tsetlin semigroup-ring connection to `gtpatterns.tex`,
+  polysymmetric-function transition and stack-partition notes to
+  `standardSymmetricFunctions.tex`, interpolation Macdonald multiline queues
+  to `macdonaldPinterpolation.tex`, double Whittaker lattice models to
+  `whittaker.tex`, the permuted-basement identity to `macdonaldEperm.tex`,
+  signed chromatic quasisymmetric functions to
+  `chromaticQuasisymmetric.tex`, Chow and chain-polynomial real-rootedness
+  results to `realRootedGraphs.tex`, super-recurrence log-concavity to
+  `realRootedWords.tex`, padded Schubert differential-operator positivity to
+  `schubert.tex`, and fireworks Grothendieck support/Newton-polytope results
+  to `grothendieck.tex` and `permutationFamilies.tex`.
+  The Combinatorial Theory issue link at line 273 is a broad collection link
+  and needs selected target papers before promotion.  The arXiv:2105.09964
+  todo at line 275 is already covered elsewhere as Schur functions in
+  noncommuting variables; the todo wording mentions Rosas--Sagan and should be
+  clarified before adding anything further.
+
 ## Access Needed
 
 None from this pass.
