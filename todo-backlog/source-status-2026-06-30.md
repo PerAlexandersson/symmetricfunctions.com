@@ -1000,6 +1000,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Diaz--Mainar total positivity via Schur functions to `schur.tex`, and
   Chen--Lu--Ruan double Hall--Littlewood functions to `hallLittlewood.tex`.
 
+- `tex-source/todo-list.tex:216--224`, arXiv:2601.03293,
+  arXiv:2601.05471, arXiv:2601.05007, arXiv:2601.04409, and
+  arXiv:2601.04182.
+  Accessible.  Added Pandey's generalized Petersen graph independence-polynomial
+  real-rootedness conjecture to `realRootedGraphs.tex`, Shimazaki's staircase
+  hook-length and Jacobi-special-value identities to `combinatorialObjects.tex`,
+  Speyer's proof of the Lam--Postnikov--Pylyavskyy conjecture and skeps model
+  to `littlewoodRichardson.tex`, Mandelshtam--Niergarth--Singh's $t=0$
+  permuted-basement Macdonald atom-positivity result to `macdonaldEperm.tex`,
+  and Pak--Robichaux's failure of Schubert coefficient saturation to
+  `schubert.tex`.
+
 ## Access Needed
 
 None from this pass.
