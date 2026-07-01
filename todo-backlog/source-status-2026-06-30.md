@@ -1175,6 +1175,25 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   paper is already covered in `llt.tex` using key
   `CorteelGitlinKeatingMeza2021`.
 
+- `tex-source/todo-list.tex:12--13`, `tex-source/todo-list.tex:18`,
+  `tex-source/todo-list.tex:78`, `tex-source/todo-list.tex:101`, and
+  `tex-source/todo-list.tex:103`.
+  Partly accessible.  The Delta/Theta note and Stanley EC2 supplement are
+  resource links rather than page-sized additions in this pass.  Petrie
+  symmetric functions are already covered in `petrie.tex`.  The Drexel
+  factorial-Schur dissertation link was stale, and factorial Schur functions
+  are already covered in `schurShifted.tex`.  The FPSAC 2019
+  Monical--Pechenik--Searles poster is represented by the later
+  `lascoux.tex` note on Pierson's proof of their K-theoretic polynomial
+  conjecture.  Added a `kschur.tex` note on Takigiku's Pieri and
+  factorization formulas for sums of $K$-$k$-Schur functions.
+
 ## Access Needed
 
-None from this pass.
+- `tex-source/todo-list.tex:61`, Noumi's elliptic-Schur presentation:
+  the recorded Lorentz Center link now returns 404.  Need a replacement
+  source or a decision that elliptic Schur functions should be treated via
+  another paper instead.
+- `tex-source/todo-list.tex:63`, Thom-polynomial note:
+  the IMPAN link redirects in a loop here, and the note is too broad to
+  migrate without knowing which Thom-polynomial connection was intended.
