@@ -5,6 +5,17 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:34--44`, arXiv:2202.00706,
+  2111.08993, 2508.10772, 2505.01732, 2110.08808, 1904.05015,
+  2105.09964, and 2312.00574.
+  Accessible.  Added the published row-strict dual immaculate citation and
+  details in `qsymSchur.tex`, added Chiu--Marberg's $K$-theoretic Schur
+  $Q$-to-$P$ expansion in `schurKP.tex`, and added wreath Macdonald
+  eigenstate, difference-operator, Tesler, and Ext-operator sources in
+  `macdonaldP.tex`.  The noncommuting-variable Schur item and the
+  noncommuting superspace item were already covered in `ncSchur.tex` and
+  `nonCommutativeFunctions.tex`.
+
 - `tex-source/todo-list.tex:340--358`, arXiv:2505.09275,
   2504.21395, 2504.20975, 2504.19205, 2504.18825, 2506.09421,
   2504.17734, 2504.12583, 2504.15234, and 2504.05123.
