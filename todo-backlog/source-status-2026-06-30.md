@@ -158,6 +158,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   for $q$-Whittaker local Weyl modules, and the power-sum expansion/simple
   operator subspace-counting interpretation.
 
+- `tex-source/todo-list.tex:442`, `tex-source/todo-list.tex:448`,
+  `tex-source/todo-list.tex:450--452`, and `tex-source/todo-list.tex:456`,
+  arXiv:2411.16654, arXiv:2411.10933, arXiv:2506.07306,
+  arXiv:2411.11208, arXiv:2409.20389, and arXiv:2411.08465.
+  Accessible.  Added `matroids.tex` notes on $M$-convex Newton polytopes of
+  dual Schubert polynomials, `schubert.tex` notes on flagged Weyl zero-one
+  characters, generic pipe dreams, bumpless pipe dream change-of-basis
+  formulas, and back stable Schubert/Heisenberg algebra, plus a `key.tex` note
+  on key-polynomial generating series.
+
 ## Access Needed
 
 None from this pass.
