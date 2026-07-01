@@ -117,6 +117,17 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   functions.  Used the published bibliography entry for the shifted-key
   crystals paper.
 
+- `tex-source/todo-list.tex:800--814`, arXiv:2304.11508, arXiv:2102.00935,
+  arXiv:2304.07439, arXiv:2303.10664, arXiv:2210.10158, arXiv:2303.11392,
+  arXiv:2303.09019, arXiv:2303.00241, arXiv:2303.00576, and arXiv:2303.00560.
+  Accessible.  Added notes on double monomial quasisymmetric functions, the
+  Kostka semigroup and cone, $Q$-Kostka/spin Green/spin Kostka polynomials,
+  degrees of stretched Kostka quasi-polynomials, Rothe-diagram
+  characterizations, back stable quasisymmetric functions from flagged
+  $P$-partitions, nonsymmetric $q$-Cauchy identities, Cauchy-type generating
+  functions for classical Lie group characters, and the super nabla operator.
+  Used published bibliography entries where available.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
