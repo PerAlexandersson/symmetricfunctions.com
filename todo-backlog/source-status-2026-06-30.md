@@ -985,6 +985,21 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Hamaker--Pechenik--Weigandt's Groebner geometry through ice to
   `schubert.tex`.  Vague lines 166 and 185 are still open for clarification.
 
+- `tex-source/todo-list.tex:198--214`, arXiv:2602.09365,
+  arXiv:2602.04036, arXiv:2602.04767, arXiv:2602.02448,
+  arXiv:2601.22926, arXiv:2601.23170, arXiv:2601.19998,
+  arXiv:2601.17603, and arXiv:2601.13497.
+  Accessible.  Added Paten--Woodruff key positivity for Temperley--Lieb
+  immanants and flagged skew Schur products to `key.tex`, Guo--Woodruff's
+  forest-polynomial pattern-avoidance criterion to `assaf.tex`, Menon--Singh
+  descent-restricted subsequences and Kobayashi--Matsumura--Sugimoto
+  semistandard oscillating tableaux to `rsk.tex`, Hafner's
+  Castelnuovo--Mumford support results to `grothendieck.tex`, Kim--Searles
+  type $B$ 0-Hecke poset modules to `gessel.tex`, Colmenarejo--Klein total
+  chromatic quasisymmetric functions to `chromaticQuasisymmetric.tex`,
+  Diaz--Mainar total positivity via Schur functions to `schur.tex`, and
+  Chen--Lu--Ruan double Hall--Littlewood functions to `hallLittlewood.tex`.
+
 ## Access Needed
 
 None from this pass.
