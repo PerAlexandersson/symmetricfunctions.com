@@ -165,6 +165,22 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   published entries for arXiv:2301.02203, arXiv:2301.00175, and
   arXiv:2301.00225.
 
+- `tex-source/todo-list.tex:873--893`, arXiv:2212.09419,
+  arXiv:2212.06885, arXiv:2212.05665, arXiv:2212.04932,
+  arXiv:2211.06575, DOI 10.37236/10941, arXiv:2404.02483,
+  arXiv:2211.05002, arXiv:2211.03851, and arXiv:2211.03499.
+  Accessible.  Added `macdonaldH.tex` on Butler's conjecture for modified
+  Macdonald polynomials, `polytopes.tex` on generalized parking-function
+  polytopes, `jack.tex` on 3-Jack polynomials, `qsymSchur.tex` on 0-Hecke
+  modules for genomic Schur functions, `grothendieck.tex` on refined canonical
+  stable Grothendieck polynomials and their free-fermion presentation,
+  `macdonaldP.tex` on wreath Macdonald operators, and `gtpatterns.tex` on
+  chain-order polytopes and toric degenerations.  The Wachs-permutation item
+  was already covered in `permutationFamilies.tex`; its bibliography entry was
+  upgraded to the published European Journal of Combinatorics version.  The
+  skew Schur CSP item was already covered in `cspTableau.tex`,
+  `schurFlagged.tex`, and `q-analogs.tex`.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
