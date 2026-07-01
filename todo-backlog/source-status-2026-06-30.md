@@ -253,6 +253,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `macdonaldP.tex` note on creation operators and Macdonald characters.  Used
   published entries for arXiv:2405.13137 and arXiv:2404.04512.
 
+- `tex-source/todo-list.tex:607--608`, `tex-source/todo-list.tex:610`,
+  `tex-source/todo-list.tex:612`, `tex-source/todo-list.tex:614`,
+  `tex-source/todo-list.tex:616`, and `tex-source/todo-list.tex:618`,
+  arXiv:2510.11054, arXiv:2404.04014, arXiv:2404.03142,
+  arXiv:2404.03649, arXiv:2404.01971, arXiv:2404.01450, and
+  arXiv:2403.19573.
+  Accessible.  Added `schur.tex` notes on bounded and growth-diagram
+  Littlewood identities, `matroids.tex` notes on matricubes, superspace
+  Tutte polynomials, and affine Demazure weight polytopes, a
+  `cyclic-sieving.tex` note on toric promotion with reflections/refractions,
+  and a `chromaticQuasisymmetric.tex` note on $q$-chromatic polynomials.
+
 - `tex-source/todo-list.tex:529`, `tex-source/todo-list.tex:530`,
   `tex-source/todo-list.tex:532`, `tex-source/todo-list.tex:534`,
   `tex-source/todo-list.tex:536`, `tex-source/todo-list.tex:537`,
