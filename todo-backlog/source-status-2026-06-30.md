@@ -140,6 +140,20 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   $q$-enumeration of lattice points.  Reused existing keys `MaasGariepy2023x`
   and `DAdderioIraci2023`.
 
+- `tex-source/todo-list.tex:841--859`, FPSAC 2021 article 52,
+  arXiv:2301.12110, arXiv:2301.12741, DOI 10.1016/j.jalgebra.2020.05.030,
+  arXiv:2301.09260, arXiv:2301.06500, EJC v30i1p5, and SIGMA 2020/130.
+  Accessible.  Added `littlewoodRichardson.tex` on refined
+  Littlewood--Richardson coefficients from key polynomials and saturation,
+  `superSymmetricSchur.tex` on free fermionic Schur functions,
+  `schurKP.tex` on the boson--fermion correspondence for dual
+  $K$-theoretic $P$- and $Q$-functions, `kostkaFoulkes.tex` on symplectic
+  Kostka--Foulkes polynomials, `latticeModel.tex` on stochastic six-vertex
+  models and Hall--Littlewood positivity, and `macdonaldP.tex` on Macdonald
+  Littlewood--Richardson coefficient factorization.  The flagged Schur
+  polynomial duality and plane-partition CSP items were already covered in
+  `schurFlagged.tex`, `lgv-lemma.tex`, `cspTableau.tex`, and `cspMisc.tex`.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
