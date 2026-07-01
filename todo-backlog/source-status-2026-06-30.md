@@ -921,6 +921,22 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   sequence were already covered in `polytopes.tex` and
   `realRootedCatalan.tex`, respectively.
 
+- `tex-source/todo-list.tex:105--120`, arXiv:2407.05904,
+  arXiv:2403.12186, arXiv:2010.10493, arXiv:2009.00592,
+  arXiv:1906.01286, arXiv:1907.11415, arXiv:2003.00540,
+  arXiv:2008.12000, arXiv:2406.14800, arXiv:1905.00047, and
+  arXiv:2009.14120.
+  Accessible.  Added `schubert.tex` notes on bumpless pipe dreams as Bruhat
+  chains, weighted Bruhat-chain enumeration, and pipe dreams for Schubert
+  polynomials of classical groups.  Added `grothendieck.tex` notes on inverse
+  fireworks permutations, symplectic Grothendieck polynomials,
+  higher-dimensional analogues of dual Grothendieck polynomials, and refined
+  dual stable Jacobi--Trudi formulas.  Added `standardQuasiSymmetricFunctions.tex`
+  on multi-quasisymmetric functions with semigroup exponents.  Hawkes's double
+  Grothendieck paper was already covered, and the Hawkes--Scrimshaw crystal
+  citation was upgraded to its published form.  Non-arXiv lines 118--119 are
+  still open for clarification about the intended theorem statements.
+
 ## Access Needed
 
 None from this pass.
