@@ -1160,6 +1160,14 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   power-sum identity over $\operatorname{Ev}(\lambda)$ and its application to
   vanishing sums of irreducible symmetric-group characters.
 
+- `tex-source/todo-list.tex:6` and `tex-source/todo-list.tex:11`,
+  arXiv:2007.03361 and arXiv:2004.03928.
+  Accessible.  Added a `superSymmetricSchur.tex` note on Khovanov's
+  overlapping-theta-foam interpretation of the Sergeev--Pragacz formula.  The
+  polynomial-induction paper is already covered in
+  `characterSymmetricFunctions.tex` using its published DOI entry
+  `NarayananPaulPrasadSrivastava2021polynomial`.
+
 ## Access Needed
 
 None from this pass.
