@@ -1160,13 +1160,20 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   power-sum identity over $\operatorname{Ev}(\lambda)$ and its application to
   vanishing sums of irreducible symmetric-group characters.
 
-- `tex-source/todo-list.tex:6` and `tex-source/todo-list.tex:11`,
-  arXiv:2007.03361 and arXiv:2004.03928.
+- `tex-source/todo-list.tex:6--11` and `tex-source/todo-list.tex:17`,
+  arXiv:2007.03361, DOI `10.1007/s13226-021-00185-7`, DOI
+  `10.1134/S0016266321030023`, DOI `10.1016/j.aam.2021.102309`, DOI
+  `10.1093/imrn/rnab165`, and arXiv:2004.03928.
   Accessible.  Added a `superSymmetricSchur.tex` note on Khovanov's
-  overlapping-theta-foam interpretation of the Sergeev--Pragacz formula.  The
-  polynomial-induction paper is already covered in
+  overlapping-theta-foam interpretation of the Sergeev--Pragacz formula, a
+  `representationTheory.tex` note on the Schur--Weyl graph and Thoma's
+  theorem, and a `parking-functions.tex` note on $U$-parking functions and
+  $(p,q)$-parking functions.  The polynomial-induction paper is already
+  covered in
   `characterSymmetricFunctions.tex` using its published DOI entry
-  `NarayananPaulPrasadSrivastava2021polynomial`.
+  `NarayananPaulPrasadSrivastava2021polynomial`, and the LLT vertex-model
+  paper is already covered in `llt.tex` using key
+  `CorteelGitlinKeatingMeza2021`.
 
 ## Access Needed
 
