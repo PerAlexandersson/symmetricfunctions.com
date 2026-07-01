@@ -1123,6 +1123,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `realRooted.tex` to record the arXiv caveat that Sokal's conjecture remains
   open.
 
+- `tex-source/todo-list.tex:356--380`, arXiv:2504.15234,
+  arXiv:2504.05123, arXiv:2504.01623, arXiv:2503.19344,
+  arXiv:2510.11322, arXiv:2503.19621, arXiv:2503.19694,
+  arXiv:2503.17552, arXiv:2503.09240, arXiv:2503.06051,
+  arXiv:2503.03903, arXiv:2502.15586, and arXiv:2502.08738.
+  Accessible and already covered.  These appear respectively on
+  `standardQuasiSymmetricFunctions.tex`, `polytopes.tex`,
+  `lorentzianPolynomials.tex`, `chromaticEexpansion.tex`, `matroids.tex`,
+  `lattice-path-matroids.tex`, `representationTheory.tex`,
+  `murnaghanNakayama.tex`, `key.tex`, `macdonaldEperm.tex`, `schubert.tex`,
+  `schurMisc.tex`, and `standardSymmetricFunctions.tex`.
+
 ## Access Needed
 
 None from this pass.
