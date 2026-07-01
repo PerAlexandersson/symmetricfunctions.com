@@ -408,6 +408,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   generalized/H/set-valued/kromatic chromatic items, the LLT/chromatic block,
   and the q-Whittaker block had already been covered in earlier passes.
 
+- `tex-source/todo-list.tex:725`, `tex-source/todo-list.tex:726`,
+  `tex-source/todo-list.tex:728`, and `tex-source/todo-list.tex:730`,
+  arXiv:2403.10485, arXiv:2311.12673, arXiv:2310.17756, and
+  arXiv:2310.18275.
+  Accessible.  Added `macdonaldE.tex` notes on inhomogeneous
+  $t$-PushTASEP/Macdonald polynomials and parasymmetric Macdonald
+  polynomials, `jack.tex` on power-sum/map expansions of Jack polynomials,
+  and `combinatorialObjects.tex` on the Pak--Postnikov and Naruse skew
+  hook-length formulas.
+
 ## Access Needed
 
 None from this pass.
