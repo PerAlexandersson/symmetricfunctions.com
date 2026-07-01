@@ -1188,12 +1188,15 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   conjecture.  Added a `kschur.tex` note on Takigiku's Pieri and
   factorization formulas for sums of $K$-$k$-Schur functions.
 
+- `tex-source/todo-list.tex:63`, Thom-polynomial note.
+  Accessible after clarifying the intended topic.  Added a new
+  `thomPolynomials.tex` family page, with a `SuperSym` polydata block, links
+  to supersymmetric Schur functions, and references to Thom, Pragacz, and
+  Pragacz--Weber positivity.
+
 ## Access Needed
 
 - `tex-source/todo-list.tex:61`, Noumi's elliptic-Schur presentation:
   the recorded Lorentz Center link now returns 404.  Need a replacement
   source or a decision that elliptic Schur functions should be treated via
   another paper instead.
-- `tex-source/todo-list.tex:63`, Thom-polynomial note:
-  the IMPAN link redirects in a loop here, and the note is too broad to
-  migrate without knowing which Thom-polynomial connection was intended.

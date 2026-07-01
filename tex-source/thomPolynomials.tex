@@ -1,0 +1,46 @@
+\metatitle{Thom polynomials}
+\metadescription{An introduction to Thom polynomials, their expression in Chern classes, and their Schur function expansions.}
+\metakeywords{Thom polynomials,Schur functions,supersymmetric Schur functions,Chern classes,singularity theory}
+
+\section[thomPolynomials]{Thom polynomials}
+
+\begin{polydata}{thomPolynomial}
+  Name   & Thom polynomials \\
+  Space  & SuperSym \\
+  Basis  & False \\
+  Rating & 1 \\
+  Bib    & Thom1956 \\
+  Year   & 1956 \\
+  Keywords & schur-positive,chern-classes,singularity \\
+  Symbol & $\mathcal{T}^{\eta}$ \\
+  Category & Other \\
+  PositiveIn & hookSchur | PragaczWeber2007 | scope=stable singularities with positive sum \\
+\end{polydata}
+
+The \defin{Thom polynomial} of a singularity class $\eta$ is a universal
+polynomial in Chern classes whose value gives the cohomology class of the
+$\eta$-locus of a sufficiently generic map.  The subject goes back to
+\name{René Thom}'s work on singularities of differentiable maps
+\cite{Thom1956}.
+
+For maps $f : M \to N$ of complex manifolds, the relevant Chern classes are
+usually the Chern classes of the virtual bundle $f^\ast TN - TM$.  If we pass
+to Chern roots, this means that Thom polynomials are naturally symmetric
+polynomials in a \hyperref[hookSchur]{difference of alphabets}.  This is why
+\hyperref[hookSchur]{supersymmetric Schur functions}, also called Schur
+functions in a difference of alphabets, are a natural basis for them.
+
+\name{Piotr Pragacz} used Schur and supersymmetric Schur functions to compute
+and organize Thom polynomials for several singularity classes
+\cite{Pragacz2005x,Pragacz2007,Pragacz2008x}.  One advantage of the Schur
+basis is that it can reveal structural restrictions and recurrences in the
+partitions that occur, which are much harder to see from monomials in Chern
+classes.
+
+\name{Piotr Pragacz} and \name{Andrzej Weber} proved positivity results for
+Schur function expansions of Thom polynomials \cite{PragaczWeber2007}.  In
+particular, for stable singularities satisfying their positivity hypotheses,
+the Schur expansion has non-negative coefficients.  This places Thom
+polynomials in the same general circle of geometric Schur-positivity
+phenomena as degeneracy-locus formulas and Schubert calculus.
+
