@@ -239,6 +239,20 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   The items at `tex-source/todo-list.tex:586` and `tex-source/todo-list.tex:590`
   were already processed earlier in this batch.
 
+- `tex-source/todo-list.tex:595`, `tex-source/todo-list.tex:597`,
+  `tex-source/todo-list.tex:599`, `tex-source/todo-list.tex:601`,
+  `tex-source/todo-list.tex:603`, and `tex-source/todo-list.tex:605`,
+  arXiv:2405.13137, arXiv:2405.01049, arXiv:2404.06320,
+  arXiv:2404.04512, arXiv:2404.04961, and arXiv:2404.03904.
+  Accessible.  Added `schurMisc.tex` notes on the Pfaffian formulation of
+  Schur $Q$-functions and type-$B$ shifted domino/$Q$ analogues, an
+  `almostSymmetricSchur` family node in `key.tex`, a
+  `littlewoodRichardson.tex` note on polygonal Schubert puzzles, a
+  `schurPositivity.tex` note on the quasi-Kostka method for extracting Schur
+  expansions from fundamental quasisymmetric expansions, and a
+  `macdonaldP.tex` note on creation operators and Macdonald characters.  Used
+  published entries for arXiv:2405.13137 and arXiv:2404.04512.
+
 - `tex-source/todo-list.tex:529`, `tex-source/todo-list.tex:530`,
   `tex-source/todo-list.tex:532`, `tex-source/todo-list.tex:534`,
   `tex-source/todo-list.tex:536`, `tex-source/todo-list.tex:537`,
