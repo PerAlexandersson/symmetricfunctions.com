@@ -5,6 +5,21 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:1012--1035`, arXiv:2205.07322,
+  arXiv:2205.06375, arXiv:2202.05706, arXiv:2205.03796,
+  arXiv:2204.06059, arXiv:2204.03386, DOI
+  `10.1007/s00026-021-00563-2`, arXiv:math/0612679,
+  arXiv:2510.25106, arXiv:2204.04566, DOI `10.4153/CMB-2011-105-7`,
+  arXiv:2203.15942, and arXiv:2203.16461.
+  Accessible.  Added notes on symplectic/orthogonal hook-content formulae and
+  hook/content partition identities, the Dyck-path zeta map, tiered trees and
+  Theta operators, fermionic diagonal coinvariants, Rhoades' Delta-operator
+  survey, positivity among $P$-partition generating functions, generalized
+  cluster-complex CSP, orbit harmonics for two orbits and rook-placement
+  loci, triangular partitions, and hook formulae from Segre--MacPherson
+  classes.  The chain-polynomial real-rootedness item was already present and
+  its bibliography entry was upgraded to published data.
+
 - `tex-source/todo-list.tex:991--1010`, arXiv:2206.03054,
   arXiv:2105.09964, arXiv:2206.05177, arXiv:2311.12625,
   arXiv:2311.12216, arXiv:2206.02065, arXiv:2206.00131,
