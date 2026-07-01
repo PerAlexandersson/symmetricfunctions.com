@@ -1022,6 +1022,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   transition equations and $K$-Stanley positivity to `grothendieck.tex` and
   `schurKP.tex`.
 
+- `tex-source/todo-list.tex:234--244`, published DOI `10.1090/mcom/4166`,
+  arXiv:2512.04078, arXiv:2512.02267, arXiv:2511.20966,
+  arXiv:2511.18156, and arXiv:2511.17034.
+  Accessible.  Upgraded the FindStat cyclic-sieving citation in
+  `cyclic-sieving.tex` to its published Math. Comp. entry, and added
+  permutation flows to `polytopes.tex`, free-boundary $q$-Whittaker and
+  Hall--Littlewood processes to `whittaker.tex`, dual affine Schur
+  $P$-functions to `stanleySymmetric.tex`, the Allen--Celano--Mason proof of
+  the inverse Kostka formula to `kostkaFoulkes.tex`, and Warnaar's affine
+  Jacobi--Trudi formulas for Hall--Littlewood rectangles to
+  `hallLittlewood.tex`.
+
 ## Access Needed
 
 None from this pass.
