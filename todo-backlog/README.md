@@ -41,6 +41,10 @@ For page or prose work:
 1. Pick one cluster from `triage-2026-06-30.md`.
 2. Verify the papers and theorem statements for 5--15 related entries.
 3. Add or update bibliography entries.
+   Use `https://arxiv.symmetricfunctions.com/api/bibtex.json?id=<arxiv-id>`
+   to check whether older arXiv references have published DOI data; prefer
+   the published data while keeping existing citation keys unless a key rename
+   is part of the task.
 4. Add the smallest useful `polydata` or prose changes.
 5. Run the normal site checks.
 6. Commit the batch.
