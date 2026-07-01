@@ -265,6 +265,19 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `cyclic-sieving.tex` note on toric promotion with reflections/refractions,
   and a `chromaticQuasisymmetric.tex` note on $q$-chromatic polynomials.
 
+- `tex-source/todo-list.tex:621`, `tex-source/todo-list.tex:623`,
+  `tex-source/todo-list.tex:625`, `tex-source/todo-list.tex:627`,
+  `tex-source/todo-list.tex:629`, and `tex-source/todo-list.tex:631`,
+  arXiv:2403.15058, arXiv:2403.14538, arXiv:2403.06468,
+  arXiv:2403.04101, arXiv:2403.01843, and arXiv:2403.02490.
+  Accessible.  Added notes to `realRootedCatalan.tex` on stable multivariate
+  Narayana polynomials, `grothendieck.tex` on the Grothendieck K-Kohnert
+  counterexample/revised rule, `standardSymmetricFunctions.tex` on criteria
+  for algebraically independent generating families, `schur.tex` on derived
+  Schur polynomials and thickened-ribbon skew Schur equivalence classes, and
+  `jackF.tex` on interpolation-polynomial binomial and
+  Littlewood--Richardson coefficients.
+
 - `tex-source/todo-list.tex:529`, `tex-source/todo-list.tex:530`,
   `tex-source/todo-list.tex:532`, `tex-source/todo-list.tex:534`,
   `tex-source/todo-list.tex:536`, `tex-source/todo-list.tex:537`,
