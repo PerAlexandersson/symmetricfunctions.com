@@ -948,6 +948,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   to `hallLittlewood.tex`, and added Fel's numerical-semigroup symmetric
   polynomials to `standardSymmetricFunctions.tex`.
 
+- `tex-source/todo-list.tex:144--154`, arXiv:2111.09359,
+  arXiv:2106.12176, arXiv:2104.13512, arXiv:2010.15333,
+  arXiv:2010.14332, and arXiv:2010.14312.
+  Accessible.  Added Goltsblat's type $A$--$D$ ninth-variation characters to
+  `superSymmetricSchur.tex`, Ding--Zhu's stability survey/applications to
+  `stablePolynomials.tex`, Marciniak's Goulden--Rattan character-polynomial
+  result to `characterSymmetricFunctions.tex`, Tetreault's Foulkes-related
+  partition order to `plethysm.tex`, and St.~Dizier--Yong's generalized
+  permutahedra/Schubert-vanishing criteria to `schubert.tex`.  The twinning
+  counterexample to preservation of $e$-positivity was already covered in
+  `chromaticEexpansion.tex`.
+
 ## Access Needed
 
 None from this pass.
