@@ -5,6 +5,23 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:1138--1157`, arXiv:2101.08907,
+  2012.15011, 2012.14986, 2012.14975, 2012.12568, 2012.08076,
+  2012.08741, EJC DOI `10.37236/1560`, arXiv:2012.06412,
+  2407.05362, and 2011.06117.
+  Accessible.  Added `key.tex` on type $B/C$ Demazure atom and character
+  lattice models, upgraded the refined dual stable Grothendieck vertex-model
+  citation to the published Selecta Mathematica version, added
+  `gtpatterns.tex` on skew Schur Gelfand--Tsetlin-type weight bases,
+  `grothendieck.tex` on hook-valued-tableau uncrowding,
+  `cspMisc.tex` on $q$-Kreweras numbers for coincidental Coxeter groups,
+  `schur.tex` on Bazin determinant identities and bijective Schur determinant
+  identities, `permutationGeneralizations.tex` on Schur positivity for fully
+  commutative type $B$ elements, and Macdonald multiline-queue notes in
+  `macdonaldE.tex` and `macdonaldH.tex`.  The Young row-strict
+  quasisymmetric Schur $0$-Hecke module item was already covered in
+  `qsymSchur.tex`.
+
 - `tex-source/todo-list.tex:1012--1035`, arXiv:2205.07322,
   arXiv:2205.06375, arXiv:2202.05706, arXiv:2205.03796,
   arXiv:2204.06059, arXiv:2204.03386, DOI
