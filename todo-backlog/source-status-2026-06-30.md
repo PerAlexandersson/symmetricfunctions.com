@@ -5,6 +5,20 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:340--358`, arXiv:2505.09275,
+  2504.21395, 2504.20975, 2504.19205, 2504.18825, 2506.09421,
+  2504.17734, 2504.12583, 2504.15234, and 2504.05123.
+  Accessible.  Added notes on Robbins-polynomial Littlewood identities,
+  magic positivity of Ehrhart polynomials under dilation, poset symmetric
+  functions from a Hopf algebra, spin Hall--Littlewood structure constants
+  via lattice models and generalized honeycombs, a cyclotomic Hecke
+  Murnaghan--Nakayama rule, Graham positivity in triple Schubert calculus,
+  signed puzzles for Schubert coefficients, total positivity for Hadamard
+  products of Jacobi--Trudi matrices, equivariant quasisymmetry and double
+  forest/fundamental polynomials, and order polytopes of crown posets.  Used
+  the published entry for arXiv:2504.05123 and custom keys for the two
+  generated-key collisions.
+
 - `tex-source/todo-list.tex:386--435`, arXiv:2502.02841,
   2501.18520, 2501.14691, 2501.11304, 2501.15667, 2412.18984,
   2412.19721, 2112.09633, 2501.16640, 2010.10493, 2412.20615,
