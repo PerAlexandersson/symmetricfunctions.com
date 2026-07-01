@@ -1,8 +1,7 @@
 \metatitle{Root systems}
 \metadescription{Introduction to root systems}
 
-
-\todo{Reflection groups->Root systems.  https://www.mat.univie.ac.at/~schlosse/pdf/ChristianStumpDissertation.pdf}
+\todo{Add reflection-groups-to-root-systems background; C. Stump's dissertation is a possible source.}
 
 \section[rootSystem]{Root systems}
 
@@ -41,9 +40,6 @@ $A_{n \geq 1}$, $B_{n \geq 2}$, $C_{n \geq 3}$, $D_{n \geq 4}$, $E_6$, $E_7$, $E
 
 \section[weylLieGroups]{Weyl groups and Lie groups}
 
-\todo{Billey has a nice background in her thesis: https://sites.math.washington.edu/~billey/papers/thesis.pdf}
-
-
 \begin{array}{lll}
 \toprule
 \text{Root system} & \text{Weyl group} & \text{Lie group} \\
@@ -67,6 +63,9 @@ The group $\symD_n \subset \symB_n$ is the subgroup of the signed permutation
 matrices where the number of negative entries is even.
 
 The groups $\symS_n$, $\symB_n$ and $\symD_n$ act on vectors via matrix multiplication.
+
+For a compact background discussion of root systems and Weyl groups in the
+classical Schubert-polynomial setting, see \cite{BilleyHaiman1995}.
  
 Let $W$ be a reflection group. The ring of polynomials in $\setR[x_1,\dotsc,x_n]$
 invariant under $W$, can be spanned by homogeneous polynomials.
@@ -83,13 +82,21 @@ The order of the reflection group is the product of the degrees.
  \bottomrule
 \end{array}
 
- 
+The \defin{exponents} of a finite Coxeter group are the degrees minus one.
+For the classical Weyl groups above, the exponent multisets are
+\[
+\begin{array}{ll}
+\toprule
+ \text{Type} & \text{Exponents}\\
+\midrule
+ A_{n-1} & 1,2,\dotsc,n-1\\
+ B_n/C_n & 1,3,5,\dotsc,2n-1\\
+ D_n & 1,3,5,\dotsc,2n-3,n-1\\
+\bottomrule
+\end{array}
+\]
+These exponents enter the definition of the generalized Catalan numbers of
+finite Coxeter groups.  For identities involving power sums of Coxeter
+exponents, see \cite{BurnsSuter2012}.
 
 \section[coxeterGroups]{Coxeter groups}
-
-\todo{
-Add list of exponents for coxeter groups.
-These are used to define general Catalan numbers.
-\url{https://arxiv.org/pdf/1101.5082.pdf}
-\url{https://math.stackexchange.com/questions/1080402/exponents-of-the-coxeter-group-an}
-}
