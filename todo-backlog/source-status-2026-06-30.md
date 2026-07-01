@@ -16,6 +16,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   noncommuting superspace item were already covered in `ncSchur.tex` and
   `nonCommutativeFunctions.tex`.
 
+- `tex-source/todo-list.tex:47--59`, arXiv:2105.02604,
+  2104.12336, 2102.05731, 2105.11404, 2009.14141, 1904.10602,
+  1805.07250, and 1203.4465.
+  Accessible.  Added multi-Schur and Littlewood--Schur notes to
+  `superSymmetricSchur.tex`, $\imath$ Hall--Littlewood notes to
+  `hallLittlewood.tex`, enriched and infinite-flag Schubert notes to
+  `schubert.tex`, a fuller complete multipartite basis note to
+  `weightedChromatic.tex`, bounded lecture hall tableaux in `schurMisc.tex`,
+  and affine-nilCoxeter/strong Schur context in `stanleySymmetric.tex`.
+  Upgraded the complete multipartite bibliography entry to its published
+  form under the existing key.
+
 - `tex-source/todo-list.tex:340--358`, arXiv:2505.09275,
   2504.21395, 2504.20975, 2504.19205, 2504.18825, 2506.09421,
   2504.17734, 2504.12583, 2504.15234, and 2504.05123.
