@@ -3,6 +3,21 @@
 This file records source checks from the first backlog pass.  It is especially
 for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
+## Deferred Follow-Up Passes
+
+- After the source backlog is mostly processed, do a dedicated `polydata`
+  relation pass.  Recent prose-only additions should be revisited for
+  `PositiveIn`, `Contains`, `SpecializesTo`, `Generalizes`,
+  `KTheoreticAnalogueOf`, and related poset metadata.  Some of these will
+  require new family nodes before the relation can be recorded cleanly.
+- Add explicit examples and tableaux where they help the page.  For tableau
+  families, prefer small `ytableau` examples; for families with many variants,
+  consider first writing Rust generators/checkers so the examples are correct
+  and reproducible.
+- If a source is inaccessible or needs user credentials, leave a short
+  `\todo{...}` marker near the relevant page location and record the reference
+  here, rather than guessing from secondary descriptions.
+
 ## Processed in This Batch
 
 - `tex-source/todo-list.tex:34--44`, arXiv:2202.00706,
