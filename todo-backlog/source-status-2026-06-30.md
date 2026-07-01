@@ -972,6 +972,19 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `cspTableau.tex`.  The Heaton--Shankar symmetric-function inequality
   counterexample was already covered in `standardSymmetricFunctions.tex`.
 
+- `tex-source/todo-list.tex:168--183`, arXiv:1907.03881,
+  arXiv:1907.10691, arXiv:1701.01182, Wheeler's Cauchy/Littlewood identity
+  slides, arXiv:2003.01211, and arXiv:2003.13719.
+  Accessible.  Added Krishnan--Neville's Kostka/LIS connections to
+  `kostkaFoulkes.tex`, Lewis--Marberg enriched set-valued $P$-partitions to
+  `pPartitions.tex`, Proctor--Willis row-bound refinements to
+  `schurFlagged.tex`, resource links for OEIS, FindStat, DOI/arXiv BibTeX
+  tools, \LaTeX{} tips, and Viennot videos to `resources.tex`, refined the
+  Betea--Wheeler Cauchy/Littlewood identity note in `schur.tex`, added
+  Assaf's bijective proof of Kohnert's rule to `kohnert.tex`, and added
+  Hamaker--Pechenik--Weigandt's Groebner geometry through ice to
+  `schubert.tex`.  Vague lines 166 and 185 are still open for clarification.
+
 ## Access Needed
 
 None from this pass.
