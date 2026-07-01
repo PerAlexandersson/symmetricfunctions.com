@@ -60,6 +60,19 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   sources to the factorial/supersymmetric Schur section of
   `superSymmetricSchur.tex`.
 
+- `tex-source/todo-list.tex:81--99`, arXiv:1908.11531,
+  1811.05440, 1907.09975, 2105.03895, 1702.06666, 2003.07879,
+  1904.01358, 2004.02947, and 1906.00907.
+  Accessible.  Added type $C$ vexillary Schubert/flagged factorial Schur
+  $Q$ notes to `schubert.tex`, cyclic quasisymmetric functions to
+  `standardQuasiSymmetricFunctions.tex`, quasisymmetric functions in
+  superspace to `superSymmetricSchur.tex`, dual-immaculate polynomial lifts
+  and the Young/reverse dichotomy to `qsymSchur.tex`, Eulerian
+  gamma-positivity to `gammaPositivity.tex`, colored fundamental
+  quasisymmetric functions to `eulerianSymmetric.tex`, the asymmetric
+  function survey to `assaf.tex`, and orthogonal/symplectic orbit-closure
+  $K$-theory formulas to `schurKP.tex`.
+
 - `tex-source/todo-list.tex:340--358`, arXiv:2505.09275,
   2504.21395, 2504.20975, 2504.19205, 2504.18825, 2506.09421,
   2504.17734, 2504.12583, 2504.15234, and 2504.05123.
