@@ -5,6 +5,32 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:386--435`, arXiv:2502.02841,
+  2501.18520, 2501.14691, 2501.11304, 2501.15667, 2412.18984,
+  2412.19721, 2112.09633, 2501.16640, 2010.10493, 2412.20615,
+  2405.01166, 2501.04245, 2501.01947, 2501.00275, 2501.04432,
+  2501.04200, 2412.10556, 2412.03971, 2412.03463, 2412.02932,
+  2412.02064, 2506.13659, 2412.02051, 2411.19521, and
+  2411.17619.
+  Accessible.  Added notes on factorial Schur functions via the
+  boson--fermion correspondence, root-of-unity character factorizations and
+  plethysm, product stability for double Grothendieck polynomials, dual
+  immaculate $0$-Hecke filtrations, quasi-immanants, conditional positivity
+  and GRH-dependent vanishing tests for Schubert coefficients, flagged-hive
+  branching models, a super Littlewood--Richardson rule, normal square root
+  crystals for Grothendieck positivity, Hawkes' double Grothendieck
+  combinatorics, vexillary double Edelman--Greene coefficients,
+  log-concavity of independence polynomials via chromatic symmetric
+  functions, uniform LR symmetries, wreath-product character values, closed
+  $k$-Schur Katalan functions, symmetry criteria for chromatic
+  quasisymmetric functions, $P$-partitions extended by two-rowed plane
+  partitions, zero-forcing characterizations of claw-free graphs, Schubert
+  support bounds via pattern occurrences, Lorentzian Postnikov--Stanley
+  polynomials and antiferromagnetic graph homomorphism inequalities, the
+  matroid $\omega$-invariant, and the shifted plactic monoid.  The
+  cycle-chord $e$-positivity item arXiv:2405.01166 was already present under
+  the published key `Wang2025`.
+
 - `tex-source/todo-list.tex:360--384`, arXiv:2504.01623,
   2503.19344, 2510.11322, 2503.19621, 2503.19694, 2503.17552,
   2503.09240, 2503.06051, 2503.03903, 2502.15586, 2502.08738,
