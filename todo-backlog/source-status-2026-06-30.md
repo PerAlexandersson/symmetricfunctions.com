@@ -208,6 +208,26 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `gammaPositivity.tex` notes on equivariant gamma-effectiveness for order
   polytopes of graded posets and on canon permutation posets.
 
+- `tex-source/todo-list.tex:510`, `tex-source/todo-list.tex:512`,
+  `tex-source/todo-list.tex:514`, `tex-source/todo-list.tex:516`,
+  `tex-source/todo-list.tex:518`, `tex-source/todo-list.tex:520`,
+  `tex-source/todo-list.tex:522`, and `tex-source/todo-list.tex:526`,
+  arXiv:2409.20478, arXiv:2409.17842, arXiv:2409.16648,
+  arXiv:2409.09643, arXiv:2409.04621, arXiv:2409.06175,
+  arXiv:2408.16694, and arXiv:2408.15111.
+  Accessible.  Added notes on Kneser chromatic functions
+  (`chromaticQuasisymmetric.tex`), skew hook-length formulas via contour
+  integrals and vertex models (`schur.tex`), Artin symmetric functions
+  (`standardSymmetricFunctions.tex`), asymptotics of Macdonald and Jack
+  polynomials (`macdonaldP.tex`), involution matrix loci and orbit harmonics
+  (`representationTheory.tex`), Schubert-module filtrations and the
+  Nadeau--Spink--Tewari recursion (`schubert.tex`), and big descents in
+  pattern-avoiding permutations (`realRootedWords.tex`).  The
+  magic-positive Ehrhart item was already covered by the Stasheff and
+  symmetric-edge polytope example in `polytopes.tex`.  Used published entries
+  for arXiv:2409.20478, arXiv:2409.17842, arXiv:2409.04621,
+  arXiv:2409.06175, and arXiv:2408.15111.
+
 ## Access Needed
 
 None from this pass.
