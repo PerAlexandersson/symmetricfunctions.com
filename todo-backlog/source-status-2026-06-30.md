@@ -5,6 +5,28 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:1287--1324`, arXiv:1909.09520,
+  1907.09681, 1909.00327, 1911.08732, 1911.07152, 1911.07799,
+  1911.06732, 1910.08302, 1910.05848, 1909.00081, 1908.11224,
+  1908.10934, 1812.01864, ALCO DOI `10.5802/alco.150`, EJC DOI
+  `10.37236/11136`, arXiv:1907.06985, ALCO DOI `10.5802/alco.102`,
+  ALCO DOI `10.5802/alco.178`, and EJC DOI `10.37236/10939`.
+  Accessible.  Added notes on Kac--Moody Demazure keys, product monomial
+  crystals, alcove paths and Gelfand--Tsetlin patterns, $0$-Hecke crystals
+  for decreasing factorizations, quotient bases for symmetric polynomials,
+  Hecke insertion for stack polyominoes, intrinsic hyperplane arrangements in
+  irreducible symmetric-group representations, level-two Demazure modules and
+  Macdonald polynomials, complete-homogeneous nonnegativity counterexamples,
+  edge-labeled tableaux in equivariant Schubert calculus, divided
+  symmetrization and quasisymmetric functions, Wronskian Appell polynomials,
+  plethysms and $\mathrm{SL}_2(\mathbb C)$, spanning configurations and
+  representation stability, positive specializations of symmetric
+  Grothendieck polynomials, set-partition tableaux for diagram algebras,
+  affine Demazure crystals for specialized nonsymmetric Macdonald
+  polynomials, and signed-chromatic-polynomial categorification.  The
+  symplectic Kostka--Foulkes row-case item was already present on
+  `kostkaFoulkes.tex` with key `DolegaGerberTorres2020`.
+
 - `tex-source/todo-list.tex:1246--1284`, DOI
   `10.1023/A:1008662732304`, arXiv:2004.00285, 1911.10703,
   2001.01449, 2008.03025, 2010.13930, 2102.09982, 2006.01568,
