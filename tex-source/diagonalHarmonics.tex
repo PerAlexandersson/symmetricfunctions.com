@@ -9,11 +9,11 @@ However, there has been a lot of exciting new development since the writing of t
 \name{Brendon Rhoades} surveys symmetric-function identities tied to Delta
 operators and their representation-theoretic and geometric realizations
 \cite{Rhoades2022Delta}.
-
-
-\todo{add https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2020/129-Griffin.pdf }
-
-\todo{ Lots of nice identities in \cite{GarsiaHaglundRomero2018} }
+\name{Adriano Garsia}, \name{Jim Haglund}, and \name{Marino Romero} introduce
+several symmetric-function tools for Delta operators in
+\cite{GarsiaHaglundRomero2018}.  For generalized coinvariant algebras and
+ordered set partitions related to the Delta conjecture, see
+\cite{HaglundRhoadesShimozono2018,Griffin2021}.
 
 \section[diagonalHarmonics]{Introduction}
 
@@ -22,8 +22,10 @@ such that for all $a+b \ge 0$ following partial differential equations hold:
 \[
  \sum_{1\leq j \leq n} \partial^{a}_{x_j} \partial^{b}_{y_j} f(X,Y) = 0.
 \]
-We have that $\symS_n$ act diagonally by permuting the variables in each alphabet,
-making the space of diagonal harmonics into a bigraded $\symS_n$-module $\mathcal{DH}_n$.
+The \hyperref[SnRepresentationTheory]{symmetric group} $\symS_n$ acts
+diagonally by permuting the variables in each alphabet, making the space of
+diagonal harmonics into a bigraded
+\hyperref[SnRepresentationTheory]{$\symS_n$-module} $\mathcal{DH}_n$.
 One can show that $\mathcal{DH}_n$ is also the \defin{ring of diagonal coinvariants}
 \[
 \mathcal{DH}_n  = \setC[X,Y]/I, \quad I = (\xvec,\yvec) \cap \setC[X,Y]^{\symS_n}.
@@ -164,6 +166,16 @@ setting \cite{IraciRhoadesRomero2023FermionicTheta}.  This confirms the
 Theta-operator prediction for the corresponding quadruply graded
 $\symS_n$-module after setting the commuting variables to zero.
 
+\name{Nancy Wallace} gives explicit combinatorial formulas for some
+irreducible characters of the $\GL_k\times \symS_n$-module of multivariate
+diagonal harmonics \cite{Wallace2019x}.  For related generalized coinvariant
+algebras, see \name{Brendon Rhoades}, \name{Tianyi Yu}, and
+\name{Zehong Zhao} on harmonic bases \cite{RhoadesYuZhao2020},
+\name{Maria Gillespie} and \name{Brendon Rhoades} on higher Specht bases
+\cite{GillespieRhoades2021}, and \name{Matja{\v{z}} Konvalinka} and
+\name{Vasu Tewari} on natural extensions of the parking space
+\cite{KonvalinkaTewari2021}.
+
 \begin{example*}[Example of $\nabla \elementaryE_n$ in the Schur basis]
 For $n=1,2,3$ we have the following Schur expansions
 \begin{array}{ll}
@@ -177,13 +189,14 @@ n & \nabla \elementaryE_n \\
 \end{array}
 \end{example*}
 
-\todo{Source? These are conjectured by Haiman, but much has happened since then}
 Some special values of $DH_n(q,t)$ are given as
 \[
 DH_n(q,0) = [n]_q!, \qquad 
 q^{\binom{n}{2}}DH_n(q,q^{-1}) = ([n+1]_q)^{n-1}
 \]
-The latter formula was originally conjectured by \name{Richard Stanley}.
+These formulas are part of the specialization picture around Haiman's
+$n!$ theorem \cite{Haiman1994,Haiman2002}; the latter formula was originally
+conjectured by \name{Richard Stanley}.
 
 Also, by summing over spanning trees of $\{0,1,\dotsc,n\}$,
 and weighting them by inversions, we have
@@ -262,8 +275,8 @@ We then have the identity
 where the sum is taken over word parking functions with $\alpha$ specifying the touch-points.
 \end{theorem}
 
-For more background and references on the Shuffle theorem see S. van Willigenburg's 
-survey, \url{http://de.arxiv.org/pdf/1905.06970.pdf}.
+For more background and references on the Shuffle theorem see the survey by
+\name{Stephanie van Willigenburg} \cite{vanWilligenburg2019}.
 
 \subsection[dhShuffleTheoremGen]{A generalized shuffle theorem}
 
@@ -296,6 +309,11 @@ The authors show in \cite[Thm. 6.1]{AvalDAdderioDukesHicksBorgne2014} that
 N_{a,b}(q,t) = 
 (qt)^{a} \langle \nabla \elementaryE_{a-1}, \completeH_{b-1} \completeH_{a-b} \rangle.
 \]
+\name{Eugene Gorsky}, \name{Mikhail Mazin}, and \name{Monica Vazirani}
+study recursions for rational $q,t$-Catalan numbers
+\cite{GorskyMazinVazirani2020}.  \name{François Bergeron} gives a broad list of
+open questions for operators connected with rectangular Catalan combinatorics
+\cite{Bergeron2017}.
 
 
 
@@ -535,18 +553,29 @@ Also \cite[Lem. 3.1]{Sergel2017} is same as column-area-seq-set = row-area-seq-s
 \section[dhDelta]{The Delta conjecture, $\Delta'_{\elementaryE_k} \elementaryE_n$}
 
 The Delta conjecture generalizes the Shuffle theorem, and was stated by
-\name{James Haglund}, \name{Jeffrey Remmel}, \name{Andrew Wilson} \cite{HaglundRemmelWilson2018}.
+\name{James Haglund}, \name{Jeffrey Remmel}, \name{Andrew Wilson}
+\cite{HaglundRemmelWilson2018}.  It has two versions, the \defin{rise version}
+and the \defin{valley version}.  The rise version is now a theorem: it follows
+from the compositional Delta theorem of \name{Michele D'Adderio} and
+\name{Anton Mellit} \cite{DAdderioMellit2022}, and also from the extended Delta
+theorem of \name{Jonah Blasiak}, \name{Mark Haiman}, \name{Jennifer Morse},
+\name{Anna Pun}, and \name{George H. Seelinger}
+\cite{BlasiakHaimanMorsePunSeelinger2023}.
 
-There are two versions of the Delta conjecture, the \defin{rise version}
-and the \defin{valley version}:
-\begin{conjecture}[Delta conjecture, J. Haglund, J. Remmel, A. Wilson]
-The rise version:
+\begin{theorem}[Rise Delta theorem]
 \[
 \Delta'_{\elementaryE_k} \elementaryE_n = [z^{n-k-1}]
 \sum_{w \in WPF(n)} t^{\area(F)}q^{\dinv(F)} \xvec_w 
 \prod_{i \in Rise(w)} \left(1 + z/t^{a_i(w)}\right) 
 \]
-The valley version:
+\end{theorem}
+
+The valley version remains open in full generality; in particular, symmetry of
+the combinatorial side is still part of the problem.
+\name{James Haglund} and \name{Emily Sergel} introduce schedule formulas for
+the valley side and use them to prove several special cases
+\cite{HaglundSergel2020}.
+\begin{conjecture}[Valley Delta conjecture, J. Haglund, J. Remmel, A. Wilson]
 \[
 \Delta'_{\elementaryE_k} \elementaryE_n = 
 [z^{n-k-1}]
@@ -555,8 +584,8 @@ The valley version:
 \]
 \end{conjecture}
 
-The rise version has a compositional generalization, 
-and this has recently been proved in \url{https://arxiv.org/pdf/2011.11467.pdf}.
+The rise version has a compositional generalization, which is the result proved
+in \cite{DAdderioMellit2022}.
 
 \name{Alessandro Iraci} and \name{Anna Vanden Wyngaerd} use a pushing
 operation to pass from the valley Delta conjecture to the generalized valley
@@ -600,28 +629,35 @@ square version.
 $\Delta_{\completeH_m}  \Delta'_{\elementaryE_{n-k-1}} \elementaryE_n$
 }
 
-Also Conj 4.2, 4.3 \url{https://arxiv.org/pdf/2003.12048.pdf}
+The generalized valley Delta conjecture is equivalent to the original valley
+Delta conjecture, by work of \name{Alessandro Iraci} and
+\name{Anna Vanden Wyngaerd} \cite{IraciWyngaerd2022}.  Their work also relates
+the valley Delta conjecture to the corresponding valley Delta square
+conjectures.
 
 \subsection[dhExtendedDelta]{The extended Delta conjecture, $\Delta'_{\elementaryE_k} \Delta_{\completeH_r} \elementaryE_n$}
 
-\name{James Haglund}, \name{Jeffrey Remmel}, \name{Andrew Wilson} \cite{HaglundRemmelWilson2018}
+\name{James Haglund}, \name{Jeffrey Remmel}, \name{Andrew Wilson}
+\cite{HaglundRemmelWilson2018}
 also formulated the \defin{extended Delta conjecture},
 which gives a combinatorial formula for
 \[
 \Delta'_{\elementaryE_k} \Delta_{\completeH_r} \elementaryE_n, \quad k \lt n.
 \]
 
-\name{Dun Qiu} and \name{Andrew Wilson} \cite{QiuWilson2020} gave the valley version of the extended Delta conjecture.
-
-\begin{conjecture}[Extended Delta conjecture, J. Haglund, J. Remmel, A. Wilson]
-The rise version:
+\begin{theorem}[Extended Delta theorem]
 \[
 \Delta'_{\elementaryE_k} \Delta_{\completeH_r} \elementaryE_n
 = [z^{n-k-1}]
 \sum_{w \in WPF(n,r)} t^{\area(F)}q^{\dinv(F)} \xvec_w 
 \prod_{i \in Rise(w)} \left(1 + z/t^{a_i(w)}\right) 
 \]
-Valley version:
+\end{theorem}
+This was proved in \cite{BlasiakHaimanMorsePunSeelinger2023}.
+
+\name{Dun Qiu} and \name{Andrew Wilson} \cite{QiuWilson2020} formulated the
+valley version of the extended Delta conjecture.
+\begin{conjecture}[Valley extended Delta conjecture]
 \[
 \Delta'_{\elementaryE_k} \Delta_{\completeH_r} \elementaryE_n 
 =
@@ -638,15 +674,17 @@ For some recent results see \cite{DAdderioIraci2023}.
 
 \section[dhDeltaSquare]{Generalized Delta square conjecture}
 
-The \defin{Generalized delta square conjecture} (stated in \cite{DAdderioIraciWyngaerd2019}) 
-is about a combinatorial interpretation of 
+The \defin{Generalized delta square conjecture} (stated in
+\cite{DAdderioIraciWyngaerd2019})
+is about a combinatorial interpretation of
 \[
   \frac{[n-k]_t}{[n]_t} \Delta_{\completeH_m} \Delta_{\elementaryE_{n-k}} \omega(\powerSum_n).
 \]
 Remark 3.14 shows that this (if the conjecture is true) can be expressed as a sum of LLT polynomials.
 
-See conj. 4.5, 4.6:
-Valley version stated in \cite{IraciWyngaerd2021}.
+The full Delta square conjectures remain open in general.  The valley version
+was formulated in \cite{IraciWyngaerd2021}, and the implications from the
+original valley Delta conjecture are discussed in \cite{IraciWyngaerd2022}.
 
 Some questions solved in \cite{Romero2022}.
 
@@ -669,6 +707,12 @@ candidate basis interpolates between the Kim--Rhoades modified Motzkin-path
 basis and the super-Artin basis, has Zabrocki's conjectured cardinality
 $2^{n-1}n!$, and gives conjectural Hilbert and Frobenius series equivalent
 to the segmented-Smirnov-word formulas of Iraci--Nadeau--Vanden Wyngaerd.
+\name{Mike Zabrocki} conjectures a module for the Delta conjecture
+\cite{Zabrocki2019x}; \name{Nolan Wallach} studies consequences of this
+conjectural module for the action of $\symS_n$ on polynomial differential forms
+\cite{Wallach2019x}.  See also \name{François Bergeron}'s
+bosonic--fermionic diagonal coinvariant modules conjecture
+\cite{Bergeron2020BosonicFermionic}.
 
 
 \section[dhSchur]{Conjecture on $\nabla^m \schurS_\lambda$}
@@ -682,6 +726,11 @@ was proved by \name{Jonah Blasiak}, \name{Mark Haiman}, \name{Jennifer Morse},
 in \cite{BlasiakHaimanMorsePunSeelinger2021xLWConj,BlasiakHaimanMorsePunSeelinger2021xLLT}.
 Their work also gives a new proof of the Shuffle theorem and similar other 
 identities.
+\name{Donghyun Kim} and \name{Jaeseong Oh} introduce Macdonald piece
+polynomials and obtain the Loehr--Warrington conjecture as a corollary of a
+more general framework \cite{KimOh2024x}.
+\name{François Bergeron} studies related $\GL_k\times\symS_n$-modules and
+nabla applied to hook-indexed Schur functions \cite{Bergeron2019HooksNabla}.
 
 
 \section[dhMonomial]{Conjecture on $\nabla \monomial_\lambda$}
@@ -694,6 +743,7 @@ We have for every pair of partitions $\lambda$, $\mu$,
 \]
 \end{conjecture}
 This also appears in \cite[Conj. 11]{LoehrWarrington2007}.
+The conjecture remains open in full generality.
 
 \name{Menghao Qu} and \name{Guoce Xin} prove Schur positivity of
 $(-1)^k\nabla \monomial_{2^k1^\ell}$ and give a parking-function
@@ -707,16 +757,9 @@ theorem.
 \section[dhOther]{Other conjectures}
 
 
-\begin{conjecture}[Bergeron--Garsia--Haiman--Tesler (1999), \cite[Conj. I]{BergeronGarsiaHaimanTesler1999}]
-We have for every pair of partitions $\lambda$, $\mu$ and positive integer $m$,
-\[
-(-1)^{\iota(\lambda)} \langle \nabla^m \schurS_\lambda, \schurS_\mu \rangle \in \setN[q,t],
-\]
-where
-\[
-\iota(\lambda) \coloneqq \binom{\length(\lambda)}{2} + \sum_{\lambda_i < (i-1)} (i-1-\lambda_i).
-\]
-\end{conjecture}
+The first Bergeron--Garsia--Haiman--Tesler conjecture in this group concerns
+signed Schur positivity of $\nabla^m\schurS_\lambda$.  This is now a theorem,
+following from the proof of the Loehr--Warrington conjecture discussed above.
 
 \begin{conjecture}[Bergeron--Garsia--Haiman--Tesler (1999), \cite[Conj. II]{BergeronGarsiaHaimanTesler1999}]
 We have for every pair of partitions $\lambda$, $\mu$,
@@ -729,6 +772,10 @@ where
 \]
 \end{conjecture}
 
+\name{Menghao Qu} proves the two-column cases of this conjecture and the
+adjacent Bergeron--Garsia--Haiman--Tesler dominance conjecture for modified
+Hall--Littlewood polynomials \cite{Qu2026xHallLittlewood}.
+
 
 
 In \cite{BergeronGarsiaHaimanTesler1999} and later \cite[Conj. 3.20]{Haiman2002}, 
@@ -740,56 +787,3 @@ The expression
 \]
 is $(q,t)$-Schur positive polynomial for all $\nu$ and $n$.
 \end{conjecture}
-
-
-
-
-
-\section[dhPapers]{List of papers and preprints}
-
-\begin{itemize}
-
-\item 
-\name{Stephanie van Willigenburg}, Overview of shuffle conjecture \url{http://de.arxiv.org/pdf/1905.06970.pdf}
-
-\item Nancy Wallace : \url{https://arxiv.org/pdf/1906.08740.pdf}
-
-\item Poster: \url{http://fpsac2019.fmf.uni-lj.si/resources/Posters/115poster.pdf}
-
-\item Zabrocki \url{http://de.arxiv.org/pdf/1902.08966.pdf} 
-
-\item Wallach, on Zabrocki conjecture. \url{http://de.arxiv.org/pdf/1906.11787.pdf}
-
-\item Qiu, Wilson, Valley version of Delta conj, \url{https://arxiv.org/pdf/1907.00268.pdf}
-
-\item Haglund, Rhoades, Shimozono 
-ORDERED SET PARTITIONS, GENERALIZED COINVARIANT ALGEBRAS, AND THE DELTA CONJECTURE
-\url{http://de.arxiv.org/pdf/1609.07575.pdf} 
-
-\item Shuffle conj and Hikita polynomials:
-\url{http://www.combinatorics.org/ojs/index.php/eljc/article/view/v25i1p21/pdf}
-
-\item Natural extensions of parking space, \url{https://arxiv.org/pdf/2003.04134.pdf}
-
-\item Harmonic bases for generalized coinvariant algebras
-\name{Brendon Rhoades}, \name{Tianyi Yu}, \name{Zehong Zhao}, \url{https://arxiv.org/abs/2004.00767} 
-
-\item Haglund and Sergel, New conjectures, \url{http://de.arxiv.org/pdf/1908.04732.pdf}
-
-\item Rational qt-Catalan \url{https://arxiv.org/pdf/1908.11763.pdf}
-
-\item Valley version of the Delta Square conjecture, \url{https://arxiv.org/pdf/2003.12048.pdf}
-
-\item \name{François Bergeron}, Rational qt-catalan, lots of nice conjectures \url{https://arxiv.org/pdf/1603.04476.pdf} 
-
-\item \name{François Bergeron}, more e-positivity \url{https://arxiv.org/pdf/1909.03531.pdf} and 
- \url{https://arxiv.org/pdf/2003.07402.pdf}
-
-\item  Multialphabet bosonic-fermionic conjecture: \url{https://arxiv.org/pdf/2005.00924.pdf}.
-
-\item Gillespie, Rhoades: \url{https://arxiv.org/pdf/2005.02110.pdf}
-
-\item In \cite{KimOh2024x} the authors prove the Loehr--Warrington conjecture, $\nabla \schurS_\lambda$,
-and introduce the \defin{Macdonald piece polynomials}.
- 
-\end{itemize}
