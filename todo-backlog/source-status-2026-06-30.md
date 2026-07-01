@@ -5,6 +5,19 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:954--968`, arXiv:1108.2007,
+  arXiv:2208.11156, arXiv:2208.10464, arXiv:2208.07258,
+  arXiv:2207.05903, arXiv:2207.02905, and arXiv:2207.03354.
+  Accessible.  The Jack vertex-operator item was already cited by published
+  key `CaiJing2013`; added a fuller `jack.tex` note.  Added `cspCatalan.tex`
+  and `cspMisc.tex` notes on rational Tamari/biCambrian rowmotion and
+  noncommutative birational rowmotion, `plethysm.tex` detail on the s-perp
+  computation method, `nonCommutativeFunctions.tex` on the noncommutative
+  inverse Kostka matrix, `grothendieck.tex` on type ABCD skew Grothendieck
+  tableau formulas, and `symplecticQ.tex` on intermediate symplectic
+  $Q$-functions.  Upgraded the existing plethysm bibliography entry to its
+  published PSPUM data.
+
 - `tex-source/todo-list.tex:937--952`, arXiv:2209.06142,
   arXiv:2209.04413, arXiv:2209.03503, arXiv:2209.03551,
   DOI `10.1006/jabr.1994.1064`, arXiv:2208.04521, arXiv:2208.05526,
