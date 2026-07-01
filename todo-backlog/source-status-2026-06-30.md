@@ -418,6 +418,25 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   and `combinatorialObjects.tex` on the Pak--Postnikov and Naruse skew
   hook-length formulas.
 
+- `tex-source/todo-list.tex:732`, `tex-source/todo-list.tex:734`,
+  `tex-source/todo-list.tex:736--738`,
+  `tex-source/todo-list.tex:740`, `tex-source/todo-list.tex:742`,
+  `tex-source/todo-list.tex:744`, `tex-source/todo-list.tex:746`, and
+  `tex-source/todo-list.tex:748`, arXiv:2310.14584, arXiv:2310.09371,
+  arXiv:2307.10852, arXiv:2303.09614, arXiv:1711.09962,
+  arXiv:2310.15730, arXiv:2310.17362, arXiv:2310.01786,
+  arXiv:2309.11203, and arXiv:2309.05903.
+  Accessible.  Added `key.tex` on extremal subsets and atom-positivity,
+  `standardQuasiSymmetricFunctions.tex` on shuffle bases and quasisymmetric
+  power sums, `polytopes.tex` on weighted Ehrhart theory and Fu Liu's
+  Ehrhart-positivity survey, `murnaghanNakayama.tex` on the Macdonald
+  Murnaghan--Nakayama rule, `macdonaldP.tex` on intermediate Macdonald
+  polynomials, `booleanProductPolynomials.tex` on special Chern plethysm
+  cases, and `schurPositivity.tex` on transitive/Gallai colorings.  The
+  Ferroni--Higashitani magic-positivity implication and the Dyck-path Sturm
+  sequence were already covered in `polytopes.tex` and
+  `realRootedCatalan.tex`, respectively.
+
 ## Access Needed
 
 None from this pass.
