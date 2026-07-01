@@ -73,3 +73,12 @@ possibly separate pages where a cluster becomes large enough.
   subsection.
 - Promoted the Dowling-polynomial-conjecture and arboricity-polynomial links
   to cited prose in the matroid links section.
+
+### 2026-07-01: Polymatroids
+
+- Added a polymatroid section with the rank-function definition, base
+  polytope, and examples.
+- Connected integral polymatroid bases with $M$-convex sets and normalized
+  Lorentzian support polynomials.
+- Promoted the finite-group realization and polymatroid Tutte polynomial links
+  to cited prose.

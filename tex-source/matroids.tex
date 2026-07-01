@@ -534,6 +534,101 @@ are generalized permutahedra \cite[Cor.~1.3]{AnTungZhang2024x}.  They also
 give a combinatorial description of the vertices of these Newton polytopes.
 
 
+\section[polymatroids]{Polymatroids}
+
+Polymatroids are a weighted version of matroids, where the rank of a subset
+does not have to be bounded by its cardinality.  Let $E$ be a finite set.  A
+\defin{polymatroid rank function} is a function
+$r:2^E\to \setR_{\geq 0}$ such that
+\[
+  r(\emptyset)=0, \qquad
+  r(A) \leq r(B) \text{ whenever } A\subseteq B,
+\]
+and
+\[
+  r(A)+r(B) \geq r(A\cup B)+r(A\cap B)
+  \qquad \text{for all } A,B\subseteq E.
+\]
+Thus $r$ is normalized, increasing, and submodular.  The associated
+polymatroid polytope is
+\[
+  P(r)=\{x\in \setR_{\geq 0}^E : x(A)\leq r(A)
+  \text{ for all } A\subseteq E\},
+\]
+where $x(A)\coloneqq \sum_{i\in A} x_i$.  Its base polytope is obtained by
+adding the equation $x(E)=r(E)$.  This is the polyhedral point of view of
+\name{Jack Edmonds} \cite{Edmonds1970}.
+
+If $r$ is integer-valued, the integer points in the base polytope are called
+the \defin{bases} of the integral polymatroid.  These bases form an
+\hyperref[MConvexity]{$M$-convex} subset of $\setN^E$, and conversely
+finite $M$-convex subsets of $\setN^E$ are the base sets of integral
+polymatroids; see also \name{Kazuo Murota}'s discrete convex analysis
+\cite{Murota2003}.  This makes polymatroids the natural non-multiaffine
+extension of matroids.
+
+The connection with \hyperref[lorentzianPolynomial]{Lorentzian polynomials}
+is especially clean.  If $B\subseteq \setN^E$ is the set of bases of an
+integral polymatroid, then
+\[
+  F_B(\xvec)\coloneqq
+  \sum_{\alpha\in B}
+  \frac{\xvec^\alpha}{\alpha_1!\alpha_2!\dotsm \alpha_n!}
+\]
+is Lorentzian \cite{BrandenHuh2020}.  Conversely, the support of every
+Lorentzian polynomial is $M$-convex, so it is the support of an integral
+polymatroid base family.  In the multiaffine case $B\subseteq\{0,1\}^E$,
+this recovers matroid bases and their basis-generating polynomials.
+
+\begin{example}[Matroids as polymatroids]
+If $M$ is a matroid with rank function $r_M$, then $r_M$ is a polymatroid
+rank function.  The polymatroid base polytope is exactly the matroid base
+polytope.  Its integer bases are the vectors $\evec_B$ for the bases $B$ of
+$M$, and the normalized support polynomial above is the ordinary basis
+generating polynomial of $M$.
+\end{example}
+
+\begin{example}[A truncated box polymatroid]
+Fix non-negative integers $u_1,\dotsc,u_n$ and an integer
+$0\leq d\leq u_1+\dotsb+u_n$.  The function
+\[
+  r(A)=\min\left(d,\sum_{i\in A} u_i\right)
+\]
+is a polymatroid rank function.  Its integral bases are the vectors
+$\alpha\in\setN^n$ such that
+\[
+  0\leq \alpha_i\leq u_i
+  \qquad \text{and} \qquad
+  \alpha_1+\dotsb+\alpha_n=d.
+\]
+For instance, with $u=(2,2,1)$ and $d=2$, the bases are
+\[
+  (2,0,0), (1,1,0), (1,0,1), (0,2,0), (0,1,1).
+\]
+The corresponding Lorentzian polynomial is
+\[
+  \frac{x_1^2}{2}+x_1x_2+x_1x_3+\frac{x_2^2}{2}+x_2x_3.
+\]
+When all $u_i=1$, this example is the uniform matroid.
+\end{example}
+
+\begin{example}[Linear polymatroids]
+Let $V_1,\dotsc,V_n$ be subspaces of a vector space.  Then
+\[
+  r(A)=\dim\left(\sum_{i\in A} V_i\right)
+\]
+is a polymatroid rank function.  If each $V_i$ is one-dimensional and no
+$V_i$ is zero, this recovers a linear matroid.  Higher-dimensional subspaces
+give genuine polymatroids.
+\end{example}
+
+\name{Ed Swartz}, \name{Prairie Wentworth-Nice}, and \name{Alexander Xue}
+study realizations of polymatroids from finite groups, in analogy with
+realizations of matroids over finite fields \cite{SwartzWentworthNiceXue2024x}.
+\name{Xiaxia Guan} and \name{Xian'an Jin} give a direct proof that the
+polymatroid Tutte polynomial is well defined \cite{GuanJin2024x}.
+
+
 \section[matroidLinks]{More on matroids}
 
 \name{Shiqi Cao}, \name{Keyi Chen}, \name{Yitian Li}, and \name{Yuxin Wu}
@@ -569,8 +664,6 @@ all coefficients of $g_M(t)$ under connectivity hypotheses.
 
 \url{https://arxiv.org/pdf/2509.02832} Matroid bingo, nice way of characterizing matroids.
 
-\url{https://arxiv.org/pdf/2403.05825.pdf} Tutte polynomials for polymatroids
-
 \url{https://arxiv.org/pdf/2311.08332.pdf}
 
 \url{https://arxiv.org/pdf/2311.01640.pdf}
@@ -590,8 +683,6 @@ all coefficients of $g_M(t)$ under connectivity hypotheses.
 \url{https://arxiv.org/pdf/2402.01272.pdf} Matroid counterexample thing
 
 \url{https://arxiv.org/pdf/1912.08318.pdf} Dyck paths, unit intervals and positroids
-
-\url{https://arxiv.org/pdf/2402.17582.pdf} Polymatroids
 
 \url{https://arxiv.org/pdf/2407.05808} Log-concavity stuff
 
