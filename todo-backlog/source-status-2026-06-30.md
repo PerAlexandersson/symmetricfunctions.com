@@ -351,6 +351,27 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   formula for double Schubert polynomials.  Used the published entry for
   arXiv:2401.11060.
 
+- `tex-source/todo-list.tex:651`, `tex-source/todo-list.tex:653`,
+  `tex-source/todo-list.tex:655`, `tex-source/todo-list.tex:657`,
+  `tex-source/todo-list.tex:659`, `tex-source/todo-list.tex:662`,
+  `tex-source/todo-list.tex:663`, `tex-source/todo-list.tex:665`,
+  `tex-source/todo-list.tex:666`, `tex-source/todo-list.tex:667`,
+  `tex-source/todo-list.tex:669`, and `tex-source/todo-list.tex:671`,
+  arXiv:2401.07492, arXiv:2401.01723, DOI 10.1017/fmp.2023.23,
+  arXiv:2312.17469, arXiv:2312.16474, arXiv:2312.15409,
+  arXiv:2312.16776, arXiv:2312.13675, arXiv:2312.02958,
+  arXiv:2212.08412, arXiv:2312.13681, and arXiv:2312.14348.
+  Accessible.  Added `polytopes.tex` on Stricker's Ehrhart formula for
+  marked order polytopes, `schurMisc.tex` on Kumari's determinant for
+  orthosymplectic Schur functions, `macdonaldP.tex` on Koornwinder/type
+  $\tilde C$ Macdonald formulas, `crystals.tex` on shifted set-valued and
+  queer crystals, `murnaghanNakayama.tex` on plethystic/spin/q-rook
+  Murnaghan--Nakayama results, and `latticeModel.tex` on half-space
+  six-vertex symmetric functions.  The skew RSK dynamics item was already
+  covered in `whittaker.tex`, and its bibliography entry was upgraded to the
+  published Forum of Mathematics, Pi version.  The Kromatic quasisymmetric
+  item was already covered in `kromaticSymmetric.tex`.
+
 ## Access Needed
 
 None from this pass.
