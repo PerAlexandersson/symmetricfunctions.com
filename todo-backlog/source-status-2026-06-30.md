@@ -37,6 +37,14 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   arXiv:2405.05867 was already covered in `qsymSchur.tex` with the published
   bibliography key `ChoiNamOh2025`.
 
+- `tex-source/todo-list.tex:65--76`, arXiv:1907.04631,
+  2002.11796, 2508.03150, 1904.03386, and 1906.05966.
+  Accessible.  Added vector-valued/highest-weight Jack--Macdonald context and
+  the symplectic-forms finite-field characteristic map to `macdonaldP.tex`.
+  Added ninth-variation Schur, $P$/$Q$, Pfaffian, and Schur multiple-zeta
+  sources to the factorial/supersymmetric Schur section of
+  `superSymmetricSchur.tex`.
+
 - `tex-source/todo-list.tex:340--358`, arXiv:2505.09275,
   2504.21395, 2504.20975, 2504.19205, 2504.18825, 2506.09421,
   2504.17734, 2504.12583, 2504.15234, and 2504.05123.
