@@ -5,6 +5,24 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:1246--1284`, DOI
+  `10.1023/A:1008662732304`, arXiv:2004.00285, 1911.10703,
+  2001.01449, 2008.03025, 2010.13930, 2102.09982, 2006.01568,
+  2002.04810, 2001.00743, FPSAC 2019 article 96, arXiv:2001.04607,
+  1912.12692, 1912.12721, 1912.04477, and 1911.10430.
+  Accessible.  Added notes on Doran's plethysm formula for
+  `p_mu[s_(a)]`, caracol flow polytopes, roots of Poupard and Kreweras
+  polynomials, crystal and Macdonald cyclic sieving phenomena,
+  rectangular `delta`-semistandard tableaux, Hopkins' poset-dynamics
+  conjectures, rowmotion on trapezoid posets, Rush's global-basis proof of
+  Rhoades' CSP, Stucky's necklaces/bracelets and double-coset CSP,
+  periodic Macdonald processes, symmetric Gelfand--Tsetlin patterns,
+  Hopf algebras of signed permutations and weak quasisymmetric functions,
+  degrees of symmetric Grothendieck polynomials, and domino/bi-tableau
+  generating functions.  The shifted-tableau cactus-group source
+  arXiv:2004.00285 was already represented on `crystals.tex` by
+  `Rodrigues2023`.
+
 - `tex-source/todo-list.tex:1216--1244`, arXiv:2007.06261,
   2007.06362, 2007.05381, 2006.02089, 2005.12194, 2005.08329,
   2003.14236, 2003.00062, 2002.11999, 2001.11599, 2001.00654,
