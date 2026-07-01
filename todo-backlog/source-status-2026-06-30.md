@@ -197,6 +197,20 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   entries where available and upgraded `BloomSaracino2022x` to the published
   European Journal of Combinatorics version.
 
+- `tex-source/todo-list.tex:915--929`, arXiv:2210.14464,
+  arXiv:2210.13862, arXiv:2210.11286, arXiv:2210.10236,
+  arXiv:1903.08275, arXiv:2209.14942, and arXiv:2209.13317.
+  Accessible.  Added `macdonaldP.tex` on arbitrary-type Macdonald polynomial
+  path models, `schurMisc.tex` on 2-reduced Schur functions and Schur
+  $Q$-functions, `macdonaldH.tex` on bijective coinversion identities for the
+  multiline-queue formula, `gtpatterns.tex` on the marked order/flow-polytope
+  viewpoint on GT-polytopes, `plethysm.tex` on 3-plethysms, and
+  `standardQuasiSymmetricFunctions.tex` on new qsym bases from deformed
+  quasi-shuffles.  The Demazure-crystal tensor-product item at
+  `tex-source/todo-list.tex:921` was already processed earlier in this status
+  file; `LiuMeszarosDizier2019flow` was upgraded to the published SIAM
+  Journal on Discrete Mathematics entry.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
