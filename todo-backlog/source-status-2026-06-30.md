@@ -178,6 +178,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   for symplectic, orthogonal, and orthosymplectic Schur functions.  Used
   published entries for arXiv:2411.13371 and arXiv:2411.11447.
 
+- `tex-source/todo-list.tex:461`, `tex-source/todo-list.tex:465`, and
+  `tex-source/todo-list.tex:467`, arXiv:2411.04123, arXiv:2411.02897, and
+  arXiv:2506.06951.
+  Accessible.  Added a `realRooted.tex` note on the equivalence between
+  totally positive formal power series and rank-generating functions of
+  Schur-positive upho posets, a `realRootedWords.tex` example on the
+  generalized Sturm sequence for multi-dimensional permutations, and an
+  `rsk.tex` note on type $C$ RSK for King tableaux via Berele insertion.  Used
+  published entries for arXiv:2411.02897 and arXiv:2506.06951.
+
 ## Access Needed
 
 None from this pass.
