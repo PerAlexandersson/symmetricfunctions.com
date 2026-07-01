@@ -43,6 +43,22 @@ The characters $\chi^{\lambda}_{\mu}$ also show up in the Schur expansion of pow
 This is a consequence of the fact that the characters are orthogonal (so that inverting a transition matrix 
 is more or less a transposition).
 
+\name{Karlee J. Westrem} studies character sums over the multiset
+$\operatorname{Ev}(\lambda)$ obtained from a partition $\lambda$ by replacing
+each part $\lambda_i$ either by $2\lambda_i$ or by two copies of $\lambda_i$
+\cite{Westrem2024x}.  If $\lambda=(\lambda_1,\dotsc,\lambda_r)$, then
+\[
+  \sum_{\widetilde{\lambda}\in \operatorname{Ev}(\lambda)}
+  (-1)^{\length(\widetilde{\lambda})}
+  \powerSum_{\widetilde{\lambda}}(\xvec)
+  =
+  2^r \prod_{i=1}^r \monomial_{(\lambda_i,\lambda_i)}(\xvec).
+\]
+Together with the identity
+$\chi^\mu_\lambda=\langle \powerSum_\lambda,\schurS_\mu\rangle$,
+this gives vanishing results for alternating sums of irreducible
+symmetric-group characters.
+
 \name{Sarah Peluse} and \name{Kannan Soundararajan} prove that for any fixed
 prime power $p^a$, almost all entries in the character table of $\symS_n$ are
 divisible by $p^a$ as $n \to \infty$ \cite{PeluseSoundararajan2025}.  This

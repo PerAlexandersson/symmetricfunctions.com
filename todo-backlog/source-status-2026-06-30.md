@@ -1155,6 +1155,11 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `littlewoodRichardson.tex`, `schurMisc.tex`, `schurMisc.tex`,
   `kschur.tex`, and `chromaticQuasisymmetric.tex`.
 
+- `tex-source/todo-list.tex:491`, arXiv:2410.04644.
+  Accessible.  Added a `murnaghanNakayama.tex` note on Westrem's alternating
+  power-sum identity over $\operatorname{Ev}(\lambda)$ and its application to
+  vanishing sums of irreducible symmetric-group characters.
+
 ## Access Needed
 
 None from this pass.
