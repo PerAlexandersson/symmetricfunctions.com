@@ -300,6 +300,11 @@ Schubert matroids, \hyperref[latticePathMatroids]{lattice path matroids} and
 network and polytope descriptions, see \hyperref[positroid]{the page on
 positroids}.
 
+Unit interval positroids admit a Catalan recursion for externally ordered bases
+\cite{CamachoChavez2021}.  Positroid envelopes give another way to group
+positroids: \name{Jeremy Quail} and \name{Puck Rombach} prove that every
+positroid envelope class contains a graphic positroid \cite{QuailRombach2024x}.
+
 
 
 \section[matroidOptimization]{Matroids in optimization}
@@ -413,6 +418,27 @@ normalization \cite{ChavezDorpalenBarryFerroniLiuRinconVindasMelendez2025x}.
 For \hyperref[positroid]{positroids}, the matroid base polytope has a
 particularly simple description using only cyclic intervals in the ground
 set; see \hyperref[positroidPolytopes]{positroid polytopes}.
+
+\name{Jesús A. De Loera}, \name{David C. Haws}, and
+\name{Matthias Köppe} study Ehrhart polynomials of matroid polytopes and
+polymatroids \cite{DeLoera2008}.  For fixed rank, their methods compute these
+Ehrhart polynomials in polynomial time; their examples also show that the
+Ehrhart polynomial of a matroid base polytope is not a deletion-contraction
+invariant.
+
+Several special families are now understood in more detail.
+\name{Neil J. Y. Fan} and \name{Yao Li} study Ehrhart polynomials of Schubert
+matroids, including positivity results and Kohnert-diagram formulas
+\cite{FanLi2023}.  \name{Derek Hanely}, \name{Jeremy L. Martin},
+\name{Daniel McGinnis}, \name{Dane Miyata}, \name{George D. Nasr},
+\name{Andrés R. Vindas-Meléndez}, and \name{Mei Yin} treat paving and
+panhandle matroids \cite{HanelyMartinMcGinnisMiyataNasrVindasMelendezYin2023},
+while \name{Danai Deligeorgaki}, \name{Daniel McGinnis}, and
+\name{Andrés R. Vindas-Meléndez} give Ehrhart bounds for these families using
+chain forests \cite{DeligeorgakiMcGinnisVindasMelendez2023x}.
+\name{Yuhan Jiang} studies Ehrhart $h^*$-polynomials of positroid polytopes
+\cite{Jiang2024x}, and \name{Andy Hsiao}, \name{Kalle Karu}, and
+\name{Jonathan Yang} study mixed volumes of matroids \cite{HsiaoKaruYang2024x}.
 
 
 \section[matroidCharacteristicPolynomial]{The characteristic polynomial of a matroid}
@@ -646,47 +672,35 @@ $g$-polynomial \cite{FinkShawSpeyer2024x}.  They give simplified formulas and
 show how nonnegativity of this invariant for minors can imply nonnegativity of
 all coefficients of $g_M(t)$ under connectivity hypotheses.
 
-\href{https://en.wikipedia.org/wiki/Rota%27s_basis_conjecture}{Rota basis conjecture}
+\name{Luis Ferroni} and \name{Benjamin Schröter} characterize Tutte
+polynomials of matroids as universal valuative invariants
+\cite{FerroniSchroter2024x}.  \name{Jeffrey Giansiracusa},
+\name{Felipe Rincón}, \name{Victoria Schleis}, and \name{Martin Ulirsch}
+extend log-concavity results to independent sets of valuated matroids
+\cite{GiansiracusaRinconSchleisUlirsch2024x}.  \name{Matthew Baker},
+\name{Hope Dobbelaere}, \name{Brennan Fullmer}, and \name{Patrik Gajdoš}
+introduce matroid bingo as a characterization of matroids
+\cite{BakerDobbelaereFullmerGajdos2025x}.
 
-\url{https://arxiv.org/pdf/2408.07810} Shifted and threshold matroids
+There are several useful recent variants and adjacent classes.
+\name{Ethan Partida} studies shifted and threshold matroids \cite{Partida2026}.
+\name{Sebastian Degen} and \name{Lukas Kühne} show that most $q$-matroids are
+not representable \cite{DegenKuhne2024x}.  \name{Michela Ceria},
+\name{Trygve Johnsen}, and \name{Relinde Jurrius} develop a $q$-analogue of
+delta-matroids \cite{CeriaJohnsenJurrius2024x}, while
+\name{Douglas M. Chen}, \name{Mario Sanchez}, \name{John Veliz}, and
+\name{Zhiyan Ying} study lattice path delta-matroids
+\cite{ChenSanchezVelizYing2023x}.  \name{Jon Pål Hamre} connects sparse paving
+matroids with Schubert coefficients \cite{Hamre2024x}.
 
-\url{https://arxiv.org/pdf/2408.06795} q-matroids stuff
+\name{Marc Hellmuth} and \name{Carsten R. Seemann} show that minimal
+representative triple sets for phylogenetic trees form the bases of a matroid
+\cite{SeemannHellmuth2018}.  \name{Alheydis Geiger}, \name{Kevin Kuehn}, and
+\name{Raluca Vlad} study graph curve matroids \cite{GeigerKuehnVlad2023x}.
+\name{E. Yu. Lerner} gives a matroid variant of the Matiyasevich formula
+\cite{Lerner2024x}.  \name{Jagdeep Singh} and \name{Vaidy Sivaraman} study
+extensions of matroid classes closed under flats \cite{SinghSivaraman2024x}.
+\name{Mario Kummer} and \name{David Sawall} give three results related to the
+half-plane property of matroids \cite{KummerSawall2025}.
 
-\url{https://arxiv.org/pdf/2406.14944} q-Delta-matroids
-
-\url{https://arxiv.org/pdf/2404.09347.pdf}
-
-\url{https://www.sciencedirect.com/science/article/pii/S019566981830026X} Matroids from trees (Carsten Seeman and Marc Helmuth)
-
-\url{https://arxiv.org/pdf/2201.12442.pdf} Ehrhart for panhandle and Lattice paths
-
-\url{https://www.math.ucdavis.edu/~deloera/RECENT_WORK/matroidpolys.pdf} Ehrhart poly is not computable via deletion-contraction.
-
-\url{https://arxiv.org/pdf/2509.02832} Matroid bingo, nice way of characterizing matroids.
-
-\url{https://arxiv.org/pdf/2311.08332.pdf}
-
-\url{https://arxiv.org/pdf/2311.01640.pdf}
-
-\url{https://arxiv.org/pdf/2404.11837.pdf}
-
-\url{https://arxiv.org/pdf/2403.15496.pdf}
-
-\url{https://arxiv.org/pdf/2410.01743}
-
-\url{https://arxiv.org/pdf/2311.15441.pdf} Symmetric lattice path matroids
-
-\url{https://arxiv.org/pdf/2406.05384} Schubert calculus and sparse paving matroids
-
-\url{https://arxiv.org/pdf/2311.01640.pdf} Matroids, Ehrhart stuff (looks nice)
-\url{https://arxiv.org/pdf/2110.11549.pdf} Matroids (Schubert matroids) Ehrhart positivity, Kohnert diagrams
-\url{https://arxiv.org/pdf/2402.01272.pdf} Matroid counterexample thing
-
-\url{https://arxiv.org/pdf/1912.08318.pdf} Dyck paths, unit intervals and positroids
-
-\url{https://arxiv.org/pdf/2407.05808} Log-concavity stuff
-
-\url{https://arxiv.org/pdf/2402.17841.pdf} Every positroid envelope class contains at least one graphic matroid, by
-explicitly constructing a planar graph whose cycle matroid lies in the desired positroid envelope.
-
-\url{https://arxiv.org/pdf/2403.17696.pdf} Tutte polynomials and valuations, Ferroni, Schröter
+\todo{Add Rota's basis conjecture with a standard reference.}

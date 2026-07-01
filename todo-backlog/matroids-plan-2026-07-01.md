@@ -82,3 +82,16 @@ possibly separate pages where a cluster becomes large enough.
   Lorentzian support polynomials.
 - Promoted the finite-group realization and polymatroid Tutte polynomial links
   to cited prose.
+
+### 2026-07-01: Family, Positroid, and Ehrhart Tail
+
+- Promoted shifted/threshold matroids, q-matroids, q-delta-matroids, lattice
+  path delta-matroids, sparse paving Schubert coefficients, tree/triple-set
+  matroids, graph curve matroids, and flat-closed class extensions.
+- Promoted positroid-envelope, unit-interval-positroid, and positroid-polytope
+  Ehrhart links.
+- Promoted general and special-family Ehrhart references for matroid base
+  polytopes, including paving and panhandle matroids, Schubert matroids, mixed
+  volumes, and the old De Loera--Haws--Köppe deletion-contraction observation.
+- Promoted valuative Tutte-polynomial, valuated-matroid log-concavity,
+  half-plane-property, and matroid-bingo links.
