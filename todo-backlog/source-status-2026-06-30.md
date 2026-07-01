@@ -1091,6 +1091,22 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   functions for random Aztec-diamond tilings to `schur.tex`, and symmetry
   classifications for quasisymmetric Schur-like functions to `qsymSchur.tex`.
 
+- `tex-source/todo-list.tex:318--333`, arXiv:2508.11587,
+  arXiv:2507.07243, arXiv:2507.00433, arXiv:2507.00580,
+  arXiv:2506.21052, arXiv:2506.20792, DOI:10.5070/C65365563,
+  arXiv:2506.09015, arXiv:2506.07727, and arXiv:2506.00349.
+  Accessible.  Added inversion and interval statistics for parking functions
+  to `parking-functions.tex`, Stanton's Rogers--Ramanujan proof via the
+  Schur Cauchy identity to `schur.tex`, lacunary RSK/Cauchy identities and
+  Richardson tableaux from Springer geometry to `rsk.tex`, Grothendieck
+  Cauchy identities and pipe-dream rectification to `grothendieck.tex`,
+  Keating's LLT lattice-path equivalences to `llt.tex`, Weising's wreath
+  generalization of Littlewood reciprocity to `plethysm.tex`, and
+  shuffle/peelable-tableau Littlewood--Richardson rules to
+  `littlewoodRichardson.tex`.  The flagged LLT/nonsymmetric Macdonald item
+  arXiv:2506.09015 was already covered in `llt.tex` with existing citation
+  `BlasiakHaimanMorsePunSeelinger2025x`.
+
 ## Access Needed
 
 None from this pass.
