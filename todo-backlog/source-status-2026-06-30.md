@@ -102,6 +102,14 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   modified Macdonald polynomials.  Used published bibliography entries for the
   two immaculate papers.
 
+- `tex-source/todo-list.tex:778--785`, arXiv:2403.10817, arXiv:2307.06678,
+  arXiv:2212.07343, arXiv:2212.12477, and arXiv:2307.00767.
+  Accessible.  Added notes on Schur functions at primitive roots of unity,
+  Mitchell Lee's Frobenius transform and Lyndon factorizations, root-of-unity
+  twists of universal and classical characters, and ribbon tilings of strips.
+  The repeated twisted-character item at `tex-source/todo-list.tex:782` is
+  covered by the same Albion entry as `tex-source/todo-list.tex:780`.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
