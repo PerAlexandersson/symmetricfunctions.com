@@ -123,6 +123,26 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   was used for a short `pPartitions.tex` paragraph on combinatorial power sum
   bases from weighted labeled $P$-partitions.
 
+- `tex-source/todo-list.tex:1037--1085`, arXiv:2203.14422, 2203.12492,
+  2203.10342, 2202.11185, 2202.04170, 2202.03066, 2202.02897, 2201.12432,
+  2201.13142, FPSAC 2021 entries 58 and 37, arXiv:2201.00240, 2112.13909,
+  2112.09800, 2112.09799, 2112.10604, 2112.09228, 2112.07063, 2112.07070,
+  2112.06843, 2112.03780, 2112.02848, 2112.02147, 2112.00479, and
+  2112.00524.
+  Accessible.  Added short page-local notes for root-of-unity monomial
+  specializations, balanced shifted tableaux, Delta/Theta expansions,
+  fermionic Theta coinvariants, inverse Grassmannian LR rules, Kronecker
+  square splittings, Grothendieck Mobius inversion, vexillary Grothendieck
+  pipe dreams, plane-partition symmetric functions, enriched monomial QSym,
+  descent-refined Murnaghan--Nakayama, iterated plethysm symmetries,
+  party-algebra plethysm, Bergeron Macdonald/Catalan notes, wreath Macdonald
+  characters at `q=t`, toric promotion, RSK/box-ball systems, Schur-Q
+  crystals, Hall--Littlewood boundaries, set-partition profile polynomials,
+  and geometric RSK.  Upgraded the existing increasing-tableaux CSP and the
+  two Loehr--Warrington companion-paper bibliography entries to published DOI
+  metadata.  The line 1069 increasing-tableaux item was already present on
+  `cspTableau.tex`; only its bibliography metadata was upgraded.
+
 - `tex-source/todo-list.tex:921`, arXiv:2210.10236.
   Accessible.  Added published bibliography key `AssafDranowskiGonzalez2023`
   and a short `crystals.tex` paragraph on the tensor-product criterion for
