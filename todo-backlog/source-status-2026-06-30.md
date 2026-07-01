@@ -5,6 +5,20 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:1183--1214`, arXiv:2108.10202,
+  2010.08074, 2010.04241, 2009.14037, 2009.07344, 2401.02502,
+  2008.06830, 2008.07034, 2007.11721, 2007.11042, 2007.09229,
+  1701.01182, 2007.09238, q-alg/9512027, and 2007.07078.
+  Accessible.  Added notes on back stable $K$-theory Schubert calculus,
+  Jack Pieri formulas, intermediate symplectic characters, cuspidal ribbon
+  tableaux, extended Schur functions and $0$-Hecke modules, skew Schubert
+  tableaux formulas, perforated tableaux and type $A$ crystals,
+  multiplicity-free key polynomials, flagged Schur determinant row bounds,
+  Kostka polynomials in solvable lattice models, and cactus-group actions on
+  shifted tableau crystals.  The orbit-harmonics CSP item was already covered
+  in `cyclic-sieving.tex`, and the vertex-weighted Tutte item was already
+  covered in `weightedChromatic.tex` and `tutteSymmetric.tex`.
+
 - `tex-source/todo-list.tex:1161--1181`, arXiv:2012.01885,
   2012.01627, 2012.06402, 2101.02600, 2012.02376, 2011.15080,
   2011.13855, 2109.10299, 2109.06373, 2109.00639, 2011.12493, and
