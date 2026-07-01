@@ -257,6 +257,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `gammaPositivity.tex` note on equivariant gamma-positivity for matroid Chow
   rings.  Used the published entry for arXiv:2408.07863.
 
+- `tex-source/todo-list.tex:559`, `tex-source/todo-list.tex:561`, and
+  `tex-source/todo-list.tex:563`, arXiv:2408.01390, arXiv:2408.01385, and
+  arXiv:2407.12076.
+  Accessible.  Added a `lascoux.tex` note on Pierson's proof of the
+  Monical--Pechenik--Searles K-theoretic polynomial conjecture and a
+  `realRootedWords.tex` note on colored multiset Eulerian polynomials.  The
+  e-expansion paper arXiv:2408.01385 was already covered in
+  `chromaticEexpansion.tex` with bibliography key `TangWang2024x`.  Used the
+  published entry for arXiv:2408.01390.
+
 ## Access Needed
 
 None from this pass.
