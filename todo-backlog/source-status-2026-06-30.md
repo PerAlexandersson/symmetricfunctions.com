@@ -82,6 +82,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   expansions of dual immaculate and extended Schur functions, with published
   bibliography key `ChoiKimOh2024`.
 
+- `tex-source/todo-list.tex:751--752`, `tex-source/todo-list.tex:756`,
+  `tex-source/todo-list.tex:758`, `tex-source/todo-list.tex:762--763`,
+  `tex-source/todo-list.tex:765`, and `tex-source/todo-list.tex:767`,
+  arXiv:2303.09605, arXiv:2212.13588, arXiv:2308.10469, arXiv:2307.02385,
+  arXiv:2312.00355, arXiv:2304.06889, arXiv:2304.06629, and arXiv:2303.15694.
+  Accessible.  Added notes on symplectic-tableaux CSP, promotion on $r$-fans
+  of Dyck paths, dual flagged Weyl character upper bounds, bisymmetric
+  Macdonald polynomials, Schubert RSK and growth diagrams, Jack derangements,
+  and higher-rank Hikita/rational Catalan polynomials.  The neighboring
+  qsym power-sum item at `tex-source/todo-list.tex:754` was already processed
+  above.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
