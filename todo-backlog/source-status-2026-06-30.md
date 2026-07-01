@@ -154,6 +154,17 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   polynomial duality and plane-partition CSP items were already covered in
   `schurFlagged.tex`, `lgv-lemma.tex`, `cspTableau.tex`, and `cspMisc.tex`.
 
+- `tex-source/todo-list.tex:862--870`, arXiv:2301.02203,
+  arXiv:2301.00175, arXiv:2301.00225, arXiv:2301.00309, and
+  arXiv:2212.13241.
+  Accessible.  Added `murnaghanNakayama.tex` notes on divisibility of
+  symmetric-group character values and generalized characters for wreath
+  products, `schur.tex` on bounded Littlewood identities related to
+  alternating sign matrices, `key.tex` on geometric mitosis for Kogan faces,
+  and `peakQuasisymmetric.tex` on the algebra of extended peaks.  Used
+  published entries for arXiv:2301.02203, arXiv:2301.00175, and
+  arXiv:2301.00225.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
