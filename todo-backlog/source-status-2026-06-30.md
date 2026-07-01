@@ -1107,6 +1107,22 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   arXiv:2506.09015 was already covered in `llt.tex` with existing citation
   `BlasiakHaimanMorsePunSeelinger2025x`.
 
+- `tex-source/todo-list.tex:334--354`, arXiv:2505.18504,
+  arXiv:2505.19072, arXiv:2505.14885, arXiv:2505.09275,
+  arXiv:2504.21395, arXiv:2504.20975, arXiv:2504.19205,
+  arXiv:2504.18825, arXiv:2506.09421, arXiv:2504.17734,
+  arXiv:2504.12583, and arXiv:2504.15234.
+  Accessible.  Added higher-order Bell symmetric functions to
+  `standardSymmetricFunctions.tex`, hybrid Grothendieck polynomials to
+  `grothendieck.tex`, and diagonal supersymmetry for coinvariant rings to
+  `superSymmetricSchur.tex`.  The Robbins/Littlewood identity, magic-positive
+  Ehrhart dilation, poset symmetric-function, spin Hall--Littlewood structure
+  constant, cyclotomic Hecke Murnaghan--Nakayama, triple Schubert positivity,
+  signed-puzzle Schubert-coefficient, and equivariant quasisymmetry items were
+  already covered in the relevant pages.  Updated the Hadamard-product note in
+  `realRooted.tex` to record the arXiv caveat that Sokal's conjecture remains
+  open.
+
 ## Access Needed
 
 None from this pass.
