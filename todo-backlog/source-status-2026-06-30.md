@@ -1135,6 +1135,13 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `murnaghanNakayama.tex`, `key.tex`, `macdonaldEperm.tex`, `schubert.tex`,
   `schurMisc.tex`, and `standardSymmetricFunctions.tex`.
 
+- `tex-source/todo-list.tex:382--390`, arXiv:2507.00766,
+  arXiv:2504.08187, arXiv:2502.09072, arXiv:2502.02841,
+  arXiv:2501.18520, and arXiv:2501.14691.
+  Accessible and already covered.  These appear respectively on
+  `whittaker.tex`, `unicellular-llt.tex`, `nonCommutativeFunctions.tex`,
+  `schurShifted.tex`, `schurMisc.tex`, and `grothendieck.tex`.
+
 ## Access Needed
 
 None from this pass.
