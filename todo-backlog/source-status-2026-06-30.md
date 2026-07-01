@@ -94,6 +94,14 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   qsym power-sum item at `tex-source/todo-list.tex:754` was already processed
   above.
 
+- `tex-source/todo-list.tex:771--775`, arXiv:2402.04219,
+  arXiv:2309.08518, and arXiv:2307.06517.
+  Accessible.  Added `qsymSchur.tex` notes on nonzero skew immaculate
+  functions and colored dual immaculate functions, and a `macdonaldH.tex` note
+  on the Blasiak--Haiman--Morse--Pun--Seelinger raising-operator formula for
+  modified Macdonald polynomials.  Used published bibliography entries for the
+  two immaculate papers.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
