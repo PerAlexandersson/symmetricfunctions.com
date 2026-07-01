@@ -245,6 +245,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   contratableau model for $K$-theoretic Littlewood--Richardson coefficients;
   and a `kschur.tex` note on $K$-theoretic double $k$-Schur functions.
 
+- `tex-source/todo-list.tex:546`, `tex-source/todo-list.tex:547`,
+  `tex-source/todo-list.tex:549`, `tex-source/todo-list.tex:551`, and
+  `tex-source/todo-list.tex:553`, arXiv:2508.12521, arXiv:2408.10640,
+  arXiv:2408.09152, arXiv:2408.07863, and arXiv:2408.00745.
+  Accessible.  Added `diagonalHarmonics.tex` notes on Jiang's basis for the
+  alternating diagonal coinvariants and on decorated square paths at $q=-1$;
+  a `realRootedGraphs.tex` note on ultra-log-concavity and real-rootedness of
+  dependence polynomials; a `littlewoodRichardson.tex` note on interlacing
+  triangular arrays, Schubert puzzles, and structure constants; and a
+  `gammaPositivity.tex` note on equivariant gamma-positivity for matroid Chow
+  rings.  Used the published entry for arXiv:2408.07863.
+
 ## Access Needed
 
 None from this pass.
