@@ -158,6 +158,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `latticeModel.tex`; the skew-Jack item was already cited on `jack.tex`, and
   its bibliography entry was upgraded to published DOI metadata.
 
+- `tex-source/todo-list.tex:1121--1135`, arXiv:2106.02564, 2106.02534,
+  2104.10101, 2104.01415, 2104.00710, 2103.14195, 2102.11179, and
+  arXiv:math/0608446.
+  Accessible.  Upgraded the existing Patimo charge bibliography entry to
+  published DOI metadata, and added short notes for cyclic pattern avoidance,
+  Levi-spherical Schubert varieties and key polynomials, inhomogeneous spin
+  q-Whittaker polynomials, nonsymmetric Macdonald superpolynomial evaluations,
+  Kronecker powers of harmonics, inclusion--exclusion formulas for Schubert
+  polynomials, and skew diagrams with identical skew Schur functions.
+
 - `tex-source/todo-list.tex:921`, arXiv:2210.10236.
   Accessible.  Added published bibliography key `AssafDranowskiGonzalez2023`
   and a short `crystals.tex` paragraph on the tensor-product criterion for
