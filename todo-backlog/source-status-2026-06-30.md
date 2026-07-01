@@ -5,6 +5,21 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:937--952`, arXiv:2209.06142,
+  arXiv:2209.04413, arXiv:2209.03503, arXiv:2209.03551,
+  DOI `10.1006/jabr.1994.1064`, arXiv:2208.04521, arXiv:2208.05526,
+  arXiv:2209.00767, and arXiv:2209.00687.
+  Accessible.  Added `resources.tex` on Pak's combinatorial-interpretation
+  survey, `stablePolynomials.tex` on stability of spanning-tree degree
+  enumerators, `hallLittlewood.tex` on Delta-Springer varieties and
+  Hall--Littlewood polynomials, `schurKP.tex` on shifted dual stable
+  Grothendieck functions, `grothendieck.tex` on Grothendieck degree/rajcode,
+  `schurMisc.tex` on Proctor's classical-group Gelfand patterns and on
+  skew/universal symplectic and orthogonal Schur functions, and
+  `gtpatterns.tex` on combinatorial mutations of GT, FFLV, and matching-field
+  polytopes.  The duplicate `tex-source/todo-list.tex:950` is covered by the
+  same Jing--Li--Wang entry as line 947.
+
 - `tex-source/todo-list.tex:222`, arXiv:2601.04409.
   Accessible.  Added bibliography key `MandelshtamNiergarthSingh2026x`.
   The source proves that permuted-basement Macdonald polynomials

@@ -176,6 +176,14 @@ a subclass of \hyperref[transversalMatroids]{transversal matroids}
 \hyperref[matroidOperations]{Deletion and contraction} on matroids preserve stability of the
 basis generating polynomial.
 
+For a connected graph $G$ on vertex set $V$, the spanning-tree degree
+enumerator
+\[
+  \sum_T \prod_{v \in V} x_v^{\deg_T(v)},
+\]
+where the sum is over all spanning trees $T$ of $G$, is real stable if and
+only if $G$ is distance-hereditary \cite{CherkashinPetrovProzorov2023}.
+
 
 \begin{theorem}[See \cite{BrandenHuh2020}]
 Let $P \in \setR[z_1,\dotsc,z_n]$ be homogeneous, real stable, and have
