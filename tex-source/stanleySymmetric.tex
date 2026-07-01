@@ -18,26 +18,12 @@
   PositiveIn & schurS | MorseSchilling2015 \\
 \end{polydata}
 
-\todo{
-\name{Thomas Lam}: nice overview
-https://pdfs.semanticscholar.org/d6fc/62f1d0edaf0a7c79ffceee1211da9e18d2ce.pdf
-There are Affine Stanley Sym functions, which expand positively into affine Schur functions.
-}
-
-\todo{
-Affine in type B/C/D
-https://arxiv.org/pdf/1111.3312.pdf 
-}
-
-\todo{
-Bialgebra connection, type A and other types
-https://arxiv.org/pdf/1809.09857.pdf
-}
-
 The Stanley symmetric functions were introduced by \name{Richard Stanley} in \cite{Stanley1984}.
 They are used for studying the number of \hyperref[reducedWord]{reduced words} of permutations.
 It was later proved that these symmetric 
 functions are Schur positive --- and now there are many different proofs of this result.
+\name{Eric Marberg} constructs bialgebras for Stanley symmetric functions and
+several analogues in other types \cite{Marberg2020}.
 
 
 \subsection[stanleySymReducedWordDefinition]{Reduced word definition}
@@ -57,9 +43,9 @@ From this definition, it is fairly easy to obtain the expansion in the \hyperref
 where $a = s_{i_\ell} s_{i_{\ell-1}}\dotsb s_{i_1}$.
 Using the \hyperref[gesselSlinkyRule]{slinky rule}, this formula provides a 
 way to compute the Schur expansion of these symmetric functions.
-\todo{
-https://arxiv.org/pdf/1603.09744.pdf
-}
+\name{Sami Assaf} and \name{Dominic Searles} relate Schubert polynomials,
+slide polynomials, Stanley symmetric functions, and quasi-Yamanouchi pipe
+dreams \cite{AssafSearles2017}.
 
 \subsection[stanleyDecreasingFactorizationDefinition]{Decreasing factorization definition}
 
@@ -122,11 +108,8 @@ Schur expansion of $\schurS_D$ are the same as certain coefficients appearing wh
 cohomology classes of Schubert varieties defined by $D$.
 
 
-\todo{
-This should be related to Foulkes characters. 
-Yes, adding up a bunch of skew shapes (whose Frobenius img is skew Schur), gives the Foulkes characters.
-https://arxiv.org/pdf/1102.5159.pdf
-}
+\name{Persi Diaconis} and \name{Jason Fulman} study Foulkes characters,
+Eulerian idempotents, and related transition matrices \cite{DiaconisFulman2012}.
 
 
 \subsection[stanleySymSchurExpansion]{Schur expansion}
@@ -250,6 +233,8 @@ The affine Stanley symmetric functions were introduced by \name{Thomas Lam} in \
 The family $\stanleySymAffine_\omega(\xvec)$ are indexed by affine permutations $\omega \in \asymS_n$.
 Whenever $\omega \in \symS_n$, they agree with the classical
 Stanley symmetric function $\stanleySym_\omega(\xvec)$.
+\name{Steven Pon} extends affine Stanley symmetric functions to the other
+classical affine types \cite{Pon2012}.
 
 \subsection[stanleySymAffineSkew]{Skew affine Stanley symmetric functions}
 
