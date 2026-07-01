@@ -228,6 +228,23 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   for arXiv:2409.20478, arXiv:2409.17842, arXiv:2409.04621,
   arXiv:2409.06175, and arXiv:2408.15111.
 
+- `tex-source/todo-list.tex:529`, `tex-source/todo-list.tex:530`,
+  `tex-source/todo-list.tex:532`, `tex-source/todo-list.tex:534`,
+  `tex-source/todo-list.tex:536`, `tex-source/todo-list.tex:537`,
+  `tex-source/todo-list.tex:539`, `tex-source/todo-list.tex:541`, and
+  `tex-source/todo-list.tex:543`, arXiv:2510.03116, arXiv:2408.15074,
+  arXiv:2408.13127, arXiv:2408.12092, arXiv:2509.24040,
+  arXiv:2508.20935, arXiv:2408.12543, arXiv:2504.02290, and
+  arXiv:2408.10956.
+  Accessible.  Added `chromaticQuasisymmetric.tex` notes on strong niceness,
+  claw-free graphs, and non-Schur-positive distributive lattices; a
+  `latticeModel.tex` note on the strange five-vertex model for multispecies
+  ASEP; `diagonalHarmonics.tex` notes on the nonsymmetric shuffle theorem,
+  Schur-skewing from Rational Shuffle to Rise Delta, and the fall-decorated
+  rational shuffle theorem; a `grothendieck.tex` note on Kundu's
+  contratableau model for $K$-theoretic Littlewood--Richardson coefficients;
+  and a `kschur.tex` note on $K$-theoretic double $k$-Schur functions.
+
 ## Access Needed
 
 None from this pass.
