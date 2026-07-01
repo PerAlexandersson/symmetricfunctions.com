@@ -960,6 +960,18 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   counterexample to preservation of $e$-positivity was already covered in
   `chromaticEexpansion.tex`.
 
+- `tex-source/todo-list.tex:156--164`, arXiv:2508.13709,
+  arXiv:2506.14996, arXiv:2010.13930, arXiv:2508.13988,
+  arXiv:2010.13918, arXiv:2509.22648, and arXiv:1909.00081.
+  Accessible.  Added Deb's continued-fraction approach to CSPs to
+  `cyclic-sieving.tex`, Krattenthaler--Stump positive $m$-divisible
+  non-crossing partitions to `cspCatalan.tex`, Nguyen--Vulakh--Woodruff and
+  Singh RSK variants to `rsk.tex`, and Gutierrez--Krattenthaler's Schur
+  log-concavity results to `schur.tex`.  Enriched the existing
+  Akhmejanov--Elek rectangular $\delta$-semistandard tableaux note in
+  `cspTableau.tex`.  The Heaton--Shankar symmetric-function inequality
+  counterexample was already covered in `standardSymmetricFunctions.tex`.
+
 ## Access Needed
 
 None from this pass.
