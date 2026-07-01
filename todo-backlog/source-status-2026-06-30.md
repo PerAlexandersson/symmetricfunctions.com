@@ -5,6 +5,22 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:971--989`, arXiv:2206.14351,
+  arXiv:2207.00523, arXiv:2206.13409, arXiv:2112.13333,
+  arXiv:2206.11406, arXiv:2206.10017, arXiv:2206.08993, SLC B86a,
+  arXiv:2206.07728, and arXiv:2206.06567.
+  Accessible.  Added `schubert.tex` notes on bumpless-pipe-dream RSK/growth
+  diagrams, the Gao--Huang bijection via bumpless pipe dreams, and pattern
+  bounds for principal specializations of Schubert and Grothendieck
+  polynomials; added `cyclic-sieving.tex` on FindStat homomesies,
+  `representationTheory.tex` on free left-regular-band invariant theory,
+  `schur.tex` on Jacobi--Trudi formulas and determinantal varieties,
+  `murnaghanNakayama.tex` on path power sums, and `rsk.tex` on reverses with
+  the same Robinson--Schensted recording tableau.  The Lazzeroni qsym/NCQSym
+  power-sum item and Pan--Yu $K$-Kohnert item were already present; the
+  Huang--Pylyavskyy later Knuth-move citation was upgraded to published DOI
+  data.
+
 - `tex-source/todo-list.tex:954--968`, arXiv:1108.2007,
   arXiv:2208.11156, arXiv:2208.10464, arXiv:2208.07258,
   arXiv:2207.05903, arXiv:2207.02905, and arXiv:2207.03354.
