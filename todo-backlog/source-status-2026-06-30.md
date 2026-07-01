@@ -5,6 +5,22 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:1161--1181`, arXiv:2012.01885,
+  2012.01627, 2012.06402, 2101.02600, 2012.02376, 2011.15080,
+  2011.13855, 2109.10299, 2109.06373, 2109.00639, 2011.12493, and
+  2011.08374.
+  Accessible.  Added `schurPositivity.tex` on type $B$ Schur positivity via
+  domino tableaux, `diagonalHarmonics.tex` notes on the nabla formula, Theta
+  identities, fermionic set-partition modules, the generalized valley Delta
+  conjecture, and Delta Springer fibers at $t=0$, `grothendieck.tex` on the
+  orthodontia formula for Grothendieck polynomials, `schubert.tex` on
+  saturated Newton polytopes for double Schubert polynomials,
+  `borderStripTableaux.tex` on set-valued domino tableaux, and
+  `representationTheory.tex` on Springer representations and symmetric
+  functions.  The LLT vertex-model entry was already covered in `llt.tex` and
+  its bibliography entry was upgraded to the published IMRN version.  The LLT
+  cumulants item was already covered in `unicellular-llt.tex`.
+
 - `tex-source/todo-list.tex:1138--1157`, arXiv:2101.08907,
   2012.15011, 2012.14986, 2012.14975, 2012.12568, 2012.08076,
   2012.08741, EJC DOI `10.37236/1560`, arXiv:2012.06412,
