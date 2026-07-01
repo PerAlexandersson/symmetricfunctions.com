@@ -334,6 +334,23 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   and ordinary-family list, using keys `TomVailaya2025x`, `ChenHeWang2026`,
   and `Wang2025`.
 
+- `tex-source/todo-list.tex:633`, `tex-source/todo-list.tex:635`,
+  `tex-source/todo-list.tex:637`, `tex-source/todo-list.tex:639`,
+  `tex-source/todo-list.tex:641`, `tex-source/todo-list.tex:643`,
+  `tex-source/todo-list.tex:644`, `tex-source/todo-list.tex:646`, and
+  `tex-source/todo-list.tex:648`, arXiv:2402.18716, arXiv:2402.16251,
+  arXiv:2402.14217, arXiv:2402.11328, arXiv:2402.11994,
+  arXiv:2505.07098, arXiv:2402.05221, arXiv:2401.17223, and
+  arXiv:2401.11060.
+  Accessible.  Added `crystals.tex` on Temperley--Lieb crystals,
+  `cyclic-sieving.tex` on permutation CSP searches from FindStat, `schur.tex`
+  on the diagonal derivative of skew Schur polynomials, `polytopes.tex` on
+  weight-lifted lattice-point enumeration, `specht-modules.tex` on web bases
+  and higher Specht polynomials, `macdonaldP.tex` on Mandelshtam's compact
+  Macdonald $P$ formula, and `schubert.tex` on Samuel's Molev--Sagan type
+  formula for double Schubert polynomials.  Used the published entry for
+  arXiv:2401.11060.
+
 ## Access Needed
 
 None from this pass.
