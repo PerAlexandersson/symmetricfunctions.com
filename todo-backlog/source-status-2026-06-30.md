@@ -1034,6 +1034,20 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Jacobi--Trudi formulas for Hall--Littlewood rectangles to
   `hallLittlewood.tex`.
 
+- `tex-source/todo-list.tex:246--259`, arXiv:2511.15920,
+  arXiv:2511.15094, arXiv:2511.08665, arXiv:2511.02649,
+  arXiv:2511.02312, arXiv:2511.01711, arXiv:2511.01114, and
+  arXiv:2511.00830.
+  Accessible.  Added Schubert polynomial factorizations into elementary
+  symmetric products to `schubert.tex`, Richardson tableaux from RSK insertion
+  tableaux of noncrossing partial matchings to `rsk.tex`, $H$-chromatic
+  distinguishability and basis results to `weightedChromatic.tex`, two recent
+  plethysm-coefficient approaches to `plethysm.tex`, matroid Chow classes and
+  lattice path matroid volume formulas to `lgv-lemma.tex`, Graf's
+  Bernstein-operator deformation to `hallLittlewood.tex`, and Kundu's
+  canonical stable Grothendieck Murnaghan--Nakayama rule to
+  `grothendieck.tex` and `murnaghanNakayama.tex`.
+
 ## Access Needed
 
 None from this pass.
