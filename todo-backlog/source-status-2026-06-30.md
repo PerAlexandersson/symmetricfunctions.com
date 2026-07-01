@@ -1012,6 +1012,16 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   and Pak--Robichaux's failure of Schubert coefficient saturation to
   `schubert.tex`.
 
+- `tex-source/todo-list.tex:226--232`, arXiv:2512.20442,
+  arXiv:2512.19814, arXiv:2512.18656, and arXiv:2512.19045.
+  Accessible.  Added Kahane's zig-zag-poset Ehrhart proof of the
+  Watanabe--Yoshida conjecture to `gammaPositivity.tex`, Assaf--Gonzalez's
+  local characterization of unions of Demazure crystals to `crystals.tex`,
+  Bousquet-Melou--Krattenthaler's CSPs for rooted plane trees and tree-rooted
+  maps to `cyclic-sieving.tex`, and Marberg's classical double Grothendieck
+  transition equations and $K$-Stanley positivity to `grothendieck.tex` and
+  `schurKP.tex`.
+
 ## Access Needed
 
 None from this pass.
