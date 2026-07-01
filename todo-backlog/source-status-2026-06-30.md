@@ -372,6 +372,23 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   published Forum of Mathematics, Pi version.  The Kromatic quasisymmetric
   item was already covered in `kromaticSymmetric.tex`.
 
+- `tex-source/todo-list.tex:675`, `tex-source/todo-list.tex:676`,
+  `tex-source/todo-list.tex:678`, `tex-source/todo-list.tex:681`,
+  `tex-source/todo-list.tex:683`, `tex-source/todo-list.tex:685`,
+  `tex-source/todo-list.tex:689`, and `tex-source/todo-list.tex:690`,
+  arXiv:2312.02830, arXiv:2312.02383, arXiv:2312.01250,
+  arXiv:2311.18099, arXiv:2311.16979, arXiv:2311.09685,
+  arXiv:2311.10276, and arXiv:2311.10659.
+  Accessible.  Added `realRootedCatalan.tex` on context-free grammars for
+  Narayana and related polynomial families, `cyclic-sieving.tex` on
+  permutation homomesy from toggling actions, `grothendieck.tex` on maximal
+  pipe dreams for double Grothendieck polynomials, `schubert.tex` on dual
+  Schubert polynomials via a Cauchy identity, `matroids.tex` on
+  Mirković--Vilonen polytopes and Kronecker saturated Newton polytopes, and
+  `tableauOperators.tex` on type $B$ and type $C$ Bender--Knuth
+  involutions.  The LLT/chromatic powersum item was already covered in
+  `chromaticQuasisymmetric.tex`.
+
 ## Access Needed
 
 None from this pass.
