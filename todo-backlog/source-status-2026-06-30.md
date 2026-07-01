@@ -110,6 +110,13 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   The repeated twisted-character item at `tex-source/todo-list.tex:782` is
   covered by the same Albion entry as `tex-source/todo-list.tex:780`.
 
+- `tex-source/todo-list.tex:790--794`, arXiv:2306.00304,
+  arXiv:2306.00336, and arXiv:2305.07620.
+  Accessible.  Added notes on flagged skew Grothendieck polynomials, crystals
+  for shifted $P$- and $Q$-key polynomials, and cyclotomic generating
+  functions.  Used the published bibliography entry for the shifted-key
+  crystals paper.
+
 - `tex-source/todo-list.tex:494--501`, arXiv:2410.08038,
   arXiv:2410.03916, arXiv:2211.02993, arXiv:2302.04226,
   arXiv:2306.04159, arXiv:2302.03643, arXiv:2312.01647, and
