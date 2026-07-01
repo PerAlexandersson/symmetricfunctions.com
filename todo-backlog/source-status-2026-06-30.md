@@ -28,6 +28,15 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   Upgraded the complete multipartite bibliography entry to its published
   form under the existing key.
 
+- `tex-source/todo-list.tex:26--32`, arXiv:2602.12623,
+  2510.25524, 2510.17116, and 2405.05867.
+  Accessible.  Added orbit-harmonic/Foulkes plethysm context in
+  `plethysm.tex`, substring-compatible statistic notes in
+  `standardQuasiSymmetricFunctions.tex`, and pattern-avoiding peak functions
+  in `peakQuasisymmetric.tex`.  The peak quasisymmetric Schur item
+  arXiv:2405.05867 was already covered in `qsymSchur.tex` with the published
+  bibliography key `ChoiNamOh2025`.
+
 - `tex-source/todo-list.tex:340--358`, arXiv:2505.09275,
   2504.21395, 2504.20975, 2504.19205, 2504.18825, 2506.09421,
   2504.17734, 2504.12583, 2504.15234, and 2504.05123.
