@@ -267,6 +267,23 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   `chromaticEexpansion.tex` with bibliography key `TangWang2024x`.  Used the
   published entry for arXiv:2408.01390.
 
+- `tex-source/todo-list.tex:565`, `tex-source/todo-list.tex:566`,
+  `tex-source/todo-list.tex:572`, `tex-source/todo-list.tex:574`, and
+  `tex-source/todo-list.tex:580`, arXiv:2505.24027, arXiv:2407.10792,
+  arXiv:2407.06511, arXiv:2407.04810, and arXiv:2406.19715.
+  Accessible.  Added `diagonalHarmonics.tex` notes on the Fields conjectures,
+  two-row Delta Springer varieties, and Lentfer's conjectural
+  $(1,2)$-bosonic--fermionic coinvariant basis; a `polytopes.tex` note on
+  graded Ehrhart theory; and a `superSymmetricSchur.tex` note on
+  super-Macdonald polynomials.  Used published entries for arXiv:2407.10792
+  and arXiv:2407.04810.
+
+- `tex-source/todo-list.tex:576--578`, arXiv:2410.22329, arXiv:2410.07581,
+  and arXiv:2407.06155.
+  Already covered in `chromaticEexpansion.tex` by the 2024--2026 chronology
+  and ordinary-family list, using keys `TomVailaya2025x`, `ChenHeWang2026`,
+  and `Wang2025`.
+
 ## Access Needed
 
 None from this pass.
