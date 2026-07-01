@@ -389,6 +389,25 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   involutions.  The LLT/chromatic powersum item was already covered in
   `chromaticQuasisymmetric.tex`.
 
+- `tex-source/todo-list.tex:695`, `tex-source/todo-list.tex:697`,
+  `tex-source/todo-list.tex:699--704`,
+  `tex-source/todo-list.tex:706--708`, and
+  `tex-source/todo-list.tex:710--722`, arXiv:2310.16235,
+  arXiv:2208.08458, arXiv:2209.14176, arXiv:2108.04850,
+  arXiv:2011.06063, arXiv:2208.12282, arXiv:2301.02177,
+  arXiv:2211.03953, arXiv:2212.13497, arXiv:2304.05285,
+  arXiv:2211.06981, arXiv:2205.14835, arXiv:2110.07984,
+  arXiv:2307.01130, arXiv:2112.12676, arXiv:2309.05970,
+  arXiv:2401.07481, arXiv:2309.06401, arXiv:2106.11913,
+  arXiv:2106.11922, arXiv:2204.06166, and arXiv:2109.12908.
+  Accessible.  Added `dot-action.tex` on GKM proofs of the modular law,
+  `chromaticQuasisymmetric.tex` on chromatic multisymmetric functions,
+  centered chromatic symmetric functions, and parabolic Lusztig varieties,
+  `cylindricSchur.tex` on cylindric $P$-tableaux, and
+  `chromaticEexpansion.tex` on hook-shape immanant characters.  The
+  generalized/H/set-valued/kromatic chromatic items, the LLT/chromatic block,
+  and the q-Whittaker block had already been covered in earlier passes.
+
 ## Access Needed
 
 None from this pass.
