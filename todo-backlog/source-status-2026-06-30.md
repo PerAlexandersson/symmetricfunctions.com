@@ -5,6 +5,19 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
 
 ## Processed in This Batch
 
+- `tex-source/todo-list.tex:1216--1244`, arXiv:2007.06261,
+  2007.06362, 2007.05381, 2006.02089, 2005.12194, 2005.08329,
+  2003.14236, 2003.00062, 2002.11999, 2001.11599, 2001.00654,
+  and 2001.08763.
+  Accessible.  Added notes on Macdonald polynomials and the extended
+  Gelfand--Tsetlin graph, symplectic PBW tableaux, shifted double-staircase
+  plane partitions, noncommutative probability Hopf algebras, principal
+  specializations and differential operators for Schubert polynomials,
+  weighted lozenge tilings, Schurifications of parking-function formulas,
+  Lusztig and FFLV polytopes, zonal-polynomial computation, and two
+  plethysm items.  The Woit Weyl-character note in this range is general
+  expository background and was not promoted to page text.
+
 - `tex-source/todo-list.tex:1183--1214`, arXiv:2108.10202,
   2010.08074, 2010.04241, 2009.14037, 2009.07344, 2401.02502,
   2008.06830, 2008.07034, 2007.11721, 2007.11042, 2007.09229,
