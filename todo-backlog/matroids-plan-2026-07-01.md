@@ -59,3 +59,17 @@ possibly separate pages where a cluster becomes large enough.
    `lattice-path-matroids.tex` when they are not genuinely general matroid
    material.
 5. Delete or archive raw links only after the corresponding cited prose exists.
+
+## Processed Batches
+
+### 2026-07-01: KL, Chow, and Invariant Links
+
+- Promoted inverse Kazhdan--Lusztig and braid-matroid leading-coefficient
+  links to the Kazhdan--Lusztig section.
+- Added a Chow-polynomial section for uniform matroids, including the Hoster
+  formulas and Brändén--Vecchi real-rootedness result.
+- Added the beta-invariant/Ehrhart-polynomial relation near base polytopes.
+- Moved Bastida's single-element contraction result to the transversal-matroid
+  subsection.
+- Promoted the Dowling-polynomial-conjecture and arboricity-polynomial links
+  to cited prose in the matroid links section.

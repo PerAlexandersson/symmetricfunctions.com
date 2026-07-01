@@ -235,6 +235,10 @@ The vertex $e \in E$ is connected to $A_j$ iff $e \in A_j$.
 A partial transversal is then a matching, and transversals are maximal matchings.
 
 The family of transversal matroids is closed under deletion/restriction, but not under contraction in general.
+\name{Samuel Bastida} gives a polynomial-time algorithm deciding whether a
+single-element contraction of a transversal matroid is again transversal
+\cite{Bastida2024x}.  When the contraction is transversal, the algorithm also
+produces a transversal representation.
 
 
 Transversal matroids coincide with the class of \hyperref[matroidMatching]{matching matroids}.
@@ -400,6 +404,11 @@ The matroid base polytope is a \defin{generalized permutohedron}.
 Every matroid base polytope has a \defin{regular unimodular triangulation}, see \cite{BackmanLiu2023x}.
 This implies that the base polytope satisfies the integer decomposition property,
 which was known before, see \cite{GijswijtRegts2012}.
+\name{Anastasia Chavez}, \name{Galen Dorpalen-Barry}, \name{Luis Ferroni},
+\name{Fu Liu}, \name{Felipe Rincón}, and \name{Andrés R. Vindas-Meléndez}
+show that the linear coefficient of the Ehrhart polynomial of a matroid base
+polytope, after evaluating at $t-1$, recovers the beta invariant up to
+normalization \cite{ChavezDorpalenBarryFerroniLiuRinconVindasMelendez2025x}.
 
 For \hyperref[positroid]{positroids}, the matroid base polytope has a
 particularly simple description using only cyclic intervals in the ground
@@ -417,9 +426,16 @@ volume-polynomial approach to this result via Lorentzian polynomials
 
 \section[KazhdanLusztig]{Kazhdan--Lusztig polynomials}
 
-\url{https://arxiv.org/pdf/2007.15349.pdf} Inverse Kazhdan--Lusztig polynomials for matroids.
-
-\url{https://arxiv.org/pdf/2311.06929.pdf}
+\name{Alice L. L. Gao} and \name{Matthew H. Y. Xie} define inverse
+Kazhdan--Lusztig polynomials for matroids through the inverse
+Kazhdan--Lusztig--Stanley functions \cite{GaoXie2021}.  They compute them
+for boolean and uniform matroids, and derive a formula for the ordinary
+Kazhdan--Lusztig polynomials of uniform matroids from the inverse theory.
+\name{Alice L. L. Gao}, \name{Nicholas Proudfoot},
+\name{Arthur L. B. Yang}, and \name{Zhong-Xue Zhang} study leading
+Kazhdan--Lusztig coefficients for braid matroids
+\cite{GaoProudfootYangZhang2023x}.  Their formulas also include leading
+coefficients of inverse Kazhdan--Lusztig polynomials for braid matroids.
 
 \name{Alice L. L. Gao}, \name{Yun Li}, and \name{Matthew H. Y. Xie}
 compute equivariant inverse Kazhdan--Lusztig polynomials for thagomizer
@@ -428,6 +444,19 @@ the complete tripartite graphs $K_{1,1,n}$.  Their formulas give the
 corresponding non-equivariant inverse Kazhdan--Lusztig polynomials and imply
 log-concavity for this family.
 
+
+
+\section[matroidChowPolynomials]{Chow polynomials}
+
+Chow polynomials and augmented Chow polynomials encode Hilbert--Poincaré
+series of the Chow ring and augmented Chow ring associated with a matroid.
+\name{Elena Hoster} gives explicit combinatorial formulas for both
+polynomials for uniform matroids, proving a conjecture of Ferroni and
+interpreting the coefficients through Schubert matroids \cite{Hoster2024x}.
+\name{Petter Brändén} and \name{Lorenzo Vecchi} prove the Huh--Stevens
+real-rootedness conjecture for the Chow polynomials of uniform matroids, and
+also prove real-rootedness for Chow and augmented Chow polynomials of
+maximally ranked posets \cite{BrandenVecchi2025Uniform}.
 
 
 \section[SNP]{Saturated Newton polytopes}
@@ -507,14 +536,14 @@ give a combinatorial description of the vertices of these Newton polytopes.
 
 \section[matroidLinks]{More on matroids}
 
-\url{https://arxiv.org/pdf/2601.03809} Resolution of Dowling's conjecture using Lorentzian polynomials
-
-\url{https://arxiv.org/pdf/2505.02822} New matroid invariant
-
-\url{https://arxiv.org/pdf/2504.15518} The beta invariant is obtained from the base polytope Ehrhart polynomial.
-
-\url{https://arxiv.org/pdf/2501.07364} Chow polynomials of uniform matroids are real-rooted.
-\url{https://arxiv.org/pdf/2410.22329} Chow polynomials, Schubert matroids
+\name{Shiqi Cao}, \name{Keyi Chen}, \name{Yitian Li}, and \name{Yuxin Wu}
+settle Dowling's polynomial conjecture for independent sets of matroids using
+Lorentzian polynomials \cite{CaoChenLiWu2026x}.
+\name{Felix Breuer} and \name{Caroline J. Klivans} introduce the
+\defin{arboricity polynomial}, which counts covers of the ground set by
+disjoint independent sets \cite{BreuerKlivans2025x}.  They realize it through
+quasisymmetric functions and Ehrhart theory of the normal fan of the matroid
+base polytope, and show that it is not a Tutte invariant.
 
 \name{Alex Fink}, \name{Kris Shaw}, and \name{David E. Speyer} introduce the
 $\omega$-invariant of a matroid as the top coefficient of Speyer's
@@ -530,8 +559,6 @@ all coefficients of $g_M(t)$ under connectivity hypotheses.
 
 \url{https://arxiv.org/pdf/2406.14944} q-Delta-matroids
 
-\url{https://arxiv.org/pdf/2405.09088} Determining if contraction of element in transversal matroid is again transversal, can be done in polynomial time.
-
 \url{https://arxiv.org/pdf/2404.09347.pdf}
 
 \url{https://www.sciencedirect.com/science/article/pii/S019566981830026X} Matroids from trees (Carsten Seeman and Marc Helmuth)
@@ -543,8 +570,6 @@ all coefficients of $g_M(t)$ under connectivity hypotheses.
 \url{https://arxiv.org/pdf/2509.02832} Matroid bingo, nice way of characterizing matroids.
 
 \url{https://arxiv.org/pdf/2403.05825.pdf} Tutte polynomials for polymatroids
-
-\url{https://arxiv.org/pdf/2311.06929.pdf}
 
 \url{https://arxiv.org/pdf/2311.08332.pdf}
 
