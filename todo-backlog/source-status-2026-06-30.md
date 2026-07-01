@@ -228,6 +228,17 @@ for papers that are inaccessible, ambiguous, or not yet ready for TeX edits.
   for arXiv:2409.20478, arXiv:2409.17842, arXiv:2409.04621,
   arXiv:2409.06175, and arXiv:2408.15111.
 
+- `tex-source/todo-list.tex:582`, `tex-source/todo-list.tex:584`, and
+  `tex-source/todo-list.tex:588`, arXiv:2406.13902, arXiv:2406.13728, and
+  arXiv:2406.05311.
+  Accessible.  Added a `standardSymmetricFunctions.tex` note on signed
+  combinatorial interpretations, a `nonCommutativeFunctions.tex` note on
+  concrete $\mathrm{NSym}$ change-of-basis formulas, and
+  `murnaghanNakayama.tex`/`schubert.tex` notes replacing the stale quantum
+  Murnaghan--Nakayama placeholder with the published flag-manifold result.
+  The items at `tex-source/todo-list.tex:586` and `tex-source/todo-list.tex:590`
+  were already processed earlier in this batch.
+
 - `tex-source/todo-list.tex:529`, `tex-source/todo-list.tex:530`,
   `tex-source/todo-list.tex:532`, `tex-source/todo-list.tex:534`,
   `tex-source/todo-list.tex:536`, `tex-source/todo-list.tex:537`,
