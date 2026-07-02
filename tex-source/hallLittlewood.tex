@@ -24,27 +24,26 @@
 - PositiveIn hallLittlewoodP -> tatom (current guess: hallLittlewoodP -> atom); from polynomialData.m.
 }
 
-\todo{
-Add info in \cite{WheelerZinnJustin2018}
-}
-
-\todo{
-Non-symmetric : https://arxiv.org/pdf/math/0609512.pdf
-}
-
-
-\todo{
-Carbonara: A combinatorial interpretation of the inverse t-Kostka matrix
-}
-
-\todo{
-Via GT-patterns, Tokuyamas formula:https://www.combinatorics.org/ojs/index.php/eljc/article/view/v22i2p11/pdf
-
-}
-
 The Hall--Littlewood $P$ polynomials interpolate between
 the Schur polynomials and the monomial symmetric functions.
 They were introduced by \name{Philip Hall} (implicitly) and later by \name{Dudley Ernest Littlewood} in \cite{Littlewood1961}.
+\name{Francois Descouens} and \name{Alain Lascoux} define nonsymmetric
+Hall--Littlewood polynomial bases using Yang--Baxter elements of the Hecke
+algebra \cite{DescouensLascoux2006x}.  The ordinary Hall--Littlewood
+polynomials occur as a subfamily of one basis, and the specialization $q=0$
+recovers the two classical families of key polynomials.
+\name{Michael Wheeler} and \name{Paul Zinn-Justin} study Hall polynomials
+and generalized inverse Kostka polynomials using integrable lattice models
+and puzzle-like tilings \cite{WheelerZinnJustin2018}.  Their formulas express
+Hall structure constants and the mixed coefficients in
+$\schurS_\mu\hallLittlewoodP_\nu$ through divided-difference operators and
+weighted puzzle sums; a related specialization recovers Knutson--Tao puzzles
+for Littlewood--Richardson coefficients.
+\name{Kohei Motegi} studies a related finite-lattice vertex-model
+construction based on the $U_q(\mathfrak{sl}_2)$ $R$-matrix
+\cite{Motegi2017}.  The resulting wavefunctions are symmetric polynomials
+that specialize to Grothendieck-type polynomials, and the Yang--Baxter
+formalism gives determinant pairing and branching formulas.
 \name{Kailun Chen} and \name{Xiangmao Ding} give a combinatorial definition of
 stable spin Hall--Littlewood symmetric functions
 \cite{ChenDing2021SpinHL}.  They prove skew Littlewood, refined Cauchy, and
@@ -129,6 +128,14 @@ We have the Cauchy identity (see \cite[Chapter III, Eq. (4.4)]{Macdonald1995}),
 \prod_{i=1}^n \prod_{j=1}^n \left( \frac{1-tx_i y_j}{1-x_iy_j } \right) = 
 \sum_{\mu} \hallLittlewoodP_\mu(x_1,\dotsc,x_n;t) \hallLittlewoodQ_\mu(y_1,\dotsc,y_n;t).
 \]
+\name{Dan Betea} and \name{Michael Wheeler} refine Hall--Littlewood Cauchy
+and Littlewood identities by inserting simple multiplicity factors depending
+on the parts of $\lambda$ \cite{BeteaWheeler2016}.  These refinements have
+plane-partition interpretations, while their closed forms are six-vertex
+model partition functions with domain-wall, off-diagonally symmetric, and
+reflecting boundary conditions.  One refined Hall--Littlewood Cauchy identity
+also includes an extra parameter attached to the zero parts of $\lambda$ and
+evaluates to an Izergin-type determinant.
 \name[S. Ole Warnaar]{S.~Ole Warnaar} proves affine Jacobi--Trudi formulas
 for Hall--Littlewood polynomials indexed by rectangles
 \cite{Warnaar2025x}.  The identities are used to derive $q,t$-Rogers--Ramanujan
@@ -249,6 +256,11 @@ It was shown by \name{Alain Lascoux} and \name{Marcel-Paul Schützenberger} \cit
 K_{\lambda\mu}(t) = \sum_{T \in \mathrm{SSYT}(\lambda,\mu)} t^{\charge(T)},
 \]
 where the sum is over semi-standard Young tableaux and \hyperref[kostkaFoulkes]{charge} is a certain statistic on SSYTs.
+\name{Joaquin Carbonara} gives a combinatorial interpretation for the inverse
+$t$-Kostka matrix, the transition matrix from Hall--Littlewood polynomials
+back to Schur functions \cite{Carbonara1998}.  The model uses tournament
+matrices and gives a $t$-analogue of the inverse Kostka interpretation by
+special rim hook tabloids.
 There is an alternative way to define Kostka--Foulkes polynomials 
 using \hyperref[riggedConfigurations]{rigged configurations},
 introduced by \name{Anatoly Kirillov} and \name{Nicolai Reshetikhin} \cite{KirillovReshetikhin1988thebethe}.
@@ -539,13 +551,20 @@ indexed by a Schroder path $P_\mu$.
 - Misc modHL -> hallLittlewoodQ (current guess: hallLittlewoodH -> hallLittlewoodQ); from tikzdataRelations.txt.
 }
 
-\todo{  State uniqueness properties }
-
 The \defin{modified Hall--Littlewood polynomials} are related to 
 the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials} via
 \[
 \hallLittlewoodH_\lambda(\xvec;t) = t^{\partitionN(\lambda)} \hallLittlewoodT_\lambda(\xvec;t^{-1}). 
 \]
+Equivalently,
+\[
+\hallLittlewoodH_\mu(\xvec;t)
+=\sum_{\lambda}\tilde{K}_{\lambda\mu}(t)\schurS_\lambda(\xvec).
+\]
+Since $\tilde{K}_{\mu\mu}(t)=1$ and
+$\tilde{K}_{\lambda\mu}(t)=0$ unless $\lambda$ dominates $\mu$, this gives a
+unitriangular Schur expansion.  Thus the modified Hall--Littlewood basis is
+uniquely determined by these coefficients.
 The modified Hall--Littlewood polynomials are more combinatorial in nature.
 They are Schur-positive and are in fact 
 the \hyperref[frobeniusCharacteristic]{Frobenius image} of a certain graded vector space.
@@ -563,20 +582,23 @@ The \defin{modified Kostka--Foulkes polynomials} are defined as
 where the sum is over semi-standard Young tableaux and \hyperref[notationPermutations]{cocharge} is 
 defined via the \hyperref[computingKostkaFoulkes]{charge statistic}.
 
-We then have that
-\[
-\hallLittlewoodH_\mu(\xvec;t) = \sum_{\lambda} \tilde{K}_{\lambda\mu}(t) \schurS_{\lambda}(\xvec). 
-\]
+These are precisely the Schur expansion coefficients for
+$\hallLittlewoodH_\mu(\xvec;t)$ in the formula above.
 
 
 
 \section[hallLittlewoodOtherRootSystems]{In other root systems}
 
-\todo{Add more info}
+The symmetric functions above are the type $A$ Hall--Littlewood polynomials.
+There are analogous Hall--Littlewood polynomials for other reduced root
+systems, where partitions are replaced by dominant weights and the Weyl-group
+symmetrization uses the positive roots of the root system; see
+\cite[Ch.~V, \S5]{Macdonald1995}.  From the Macdonald-polynomial point of
+view, these are the $q=0$ specialization of the root-system
+\hyperref[macdonaldP]{Macdonald polynomials}.
 
-Hall--Littlewood polynomials can be defined in general for 
-symmetrizable Kac--Moody algebras, see \url{http://www.kurims.kyoto-u.ac.jp/EMIS/journals/SLC/wpapers/s58viswa.pdf}
-
-
-
-\todo{Spin Hall-Littlewood and Yang-Baxter: https://doi.org/10.1063/1.5001687}
+There are also Kac--Moody analogues.  In this setting the same kind of
+Weyl-symmetrized expression has to be interpreted with care because the root
+system is infinite; for a short introduction, see
+\href{http://www.kurims.kyoto-u.ac.jp/EMIS/journals/SLC/wpapers/s58viswa.pdf}{notes
+of S.~Viswanath}.

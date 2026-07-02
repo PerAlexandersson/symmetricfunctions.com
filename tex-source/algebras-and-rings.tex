@@ -7,7 +7,36 @@
 
 \subsection[heckeAlgebra]{The Hecke algebra}
 
-The Iwahori--Hecke algebra
+Let $(W,S)$ be a \hyperref[coxeterGroups]{Coxeter system}, with length
+function $\ell$ and identity element $e$.  The \defin{Iwahori--Hecke algebra}
+$\mathcal{H}_W$ is a deformation of the group algebra $\setZ[W]$.  One
+common normalization defines $\mathcal{H}_W$ over $\setZ[v,v^{-1}]$ with
+generators $H_s$, $s\in S$, satisfying the braid relations of $W$ and the
+quadratic relation
+\[
+  (H_s-v)(H_s+v^{-1})=0.
+\]
+For each $w\in W$, the products along reduced words define a standard basis
+$\{H_w : w\in W\}$.  At $v=1$, this specializes back to the group algebra.
+
+\subsection[kazhdanLusztigPolynomials]{Kazhdan--Lusztig polynomials}
+
+\name{David Kazhdan} and \name{George Lusztig} introduced
+\defin{Kazhdan--Lusztig polynomials} in their study of Coxeter groups and
+Hecke algebras \cite{KazhdanLusztig1979}.  They are polynomials
+$P_{u,w}(q)$ indexed by pairs $u,w\in W$, with $P_{u,w}(q)=0$ unless
+$u\leq w$ in \hyperref[bruhatOrder]{Bruhat order} and $P_{w,w}(q)=1$.
+
+The polynomials arise as transition coefficients between the standard basis of
+$\mathcal{H}_W$ and the self-dual Kazhdan--Lusztig basis.  They encode deep
+geometric and representation-theoretic information; for Weyl groups they are
+closely related to intersection cohomology of Schubert varieties and to
+characters in category $\mathcal{O}$.
+
+Several variants occur elsewhere on this site, including parabolic
+Kazhdan--Lusztig polynomials in the Schur expansion of
+\hyperref[LLT]{LLT polynomials}, and matroid Kazhdan--Lusztig polynomials in
+\hyperref[KazhdanLusztig]{matroid theory}.
 
 \subsection[klyachkoAlgebra]{The $q$-Klyachko algebra}
 

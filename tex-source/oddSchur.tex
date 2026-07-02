@@ -19,7 +19,31 @@
 The odd Schur functions are introduced in \cite{EllisKhovanovLauda2012,EllisKhovanov2012}.
 They constitute a basis for the space of \defin{odd symmetric functions}.
 
-\todo{define odd symmetric functions}
+For fixed $n$, the algebra of odd symmetric functions $O\Lambda_n$ may be
+presented with generators $\oddElementaryE_1,\dotsc,\oddElementaryE_n$,
+where $\oddElementaryE_0=1$ and $\oddElementaryE_i=0$ for $i\notin[0,n]$.
+The defining relations are
+\[
+  \oddElementaryE_i\oddElementaryE_j
+  =
+  \oddElementaryE_j\oddElementaryE_i
+  \quad\text{if } i+j \text{ is even},
+\]
+and
+\[
+  \oddElementaryE_i\oddElementaryE_j
+  +(-1)^i\oddElementaryE_j\oddElementaryE_i
+  =
+  \oddElementaryE_{j-1}\oddElementaryE_{i+1}
+  +(-1)^i\oddElementaryE_{i+1}\oddElementaryE_{j-1}
+  \quad\text{if } i+j \text{ is odd}.
+\]
+The stable algebra $O\Lambda=\varinjlim O\Lambda_n$ is the $q=-1$
+specialization of the $q$-Hopf algebra construction of
+\name{Alexander Ellis} and \name{Mikhail Khovanov}, and is a
+$\setZ$-graded Hopf superalgebra \cite{EllisKhovanov2012}.  It contains odd
+analogues of the elementary, complete homogeneous, power-sum, monomial, and
+Schur bases.
 
 
 There are several definitions of the \defin{odd Schur functions},  $\{\oddSchur_\lambda\}$,

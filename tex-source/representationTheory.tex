@@ -47,7 +47,8 @@ Here, one needs to be a bit more formal and restrict the maps in an appropriate 
 \subsection[representationTensorProduct]{Tensor products}
 
 If $\rho_1$ and $\rho_2$ are two representations of $G$, sending group elements to elements in $GL(V)$ and $GL(W)$,
-then we define the tensor product of representations as the map sending $g$ to the tensor product of the individual images:
+then we define the \defin{tensor product of representations} as the map
+sending $g$ to the tensor product of the individual images:
 \[
 (\rho_1 \otimes \rho_2)(g) \coloneqq (\rho_1(g) \otimes \rho_2(g))
 \]
@@ -57,7 +58,8 @@ then we define the tensor product of representations as the map sending $g$ to t
 Let $\rho: G \to GL(V)$ be a representation of $G$. 
 Then the \defin{character} is the map $\chi_{\rho}:G \to \setC$, defined as $\chi_{\rho}(g) \coloneqq tr( \rho(g))$.
 
-A character is irreducible if it is the character of an irreducible representation.
+A character is irreducible if it is the character of an
+\hyperref[representationIrreducible]{irreducible representation}.
 
 
 \section[SnRepresentationTheory]{Representation theory of $\symS_n$}
@@ -116,7 +118,9 @@ symmetric group.
 
 \subsection[computingSnCharacters]{Computing characters of $\symS_n$}
 
-You have an $\symS_n$-module $M$ and wish to compute its Frobenius characteristic $\frobChar_M(\xvec)$.
+You have an $\symS_n$-module $M$ and wish to compute its
+\hyperref[frobeniusCharacteristic]{Frobenius characteristic}
+$\frobChar_M(\xvec)$.
 This is the step-by-step guide (inspired by lecture notes by \name{Mike Zabrocki}).
 
 The same method can be adapted to compute characters for arbitrary finite groups.
@@ -262,6 +266,14 @@ to contingency tables with fixed row and column sums
 \cite{OhRhoades2025x}.  Their standard monomial bases are described by the
 matrix-ball avatar of \hyperref[rsk]{RSK}, and their Hilbert series are
 expressed using a zigzag statistic on contingency tables.
+\name{Nantel Bergeron}, \name{Xavier Mootoo}, and \name{Vedarth Vyas}
+compute the reduced Gr{\"o}bner basis of a Catalan path ideal
+\href{https://arxiv.org/abs/2201.04006}{in arXiv:2201.04006}.
+For their quotient ring, the \hyperref[frobeniusCharacteristic]{graded
+Frobenius characteristic} is explicitly
+\[
+\sum_{k=0}^{\lfloor n/2 \rfloor} \schurS_{(n-k,k)} q^k.
+\]
 \end{example}
 
 
@@ -275,6 +287,15 @@ such as the group of invertible $n\times n$-matrices with complex entries.
 This is the \defin{general linear group}, $\GL_n(\setC)$.
 For a brief introduction to representation 
 theory of $\GL_n(\setC)$, see for example \cite[Chap. 7, App. 2]{StanleyEC2}.
+For more detailed introductory accounts, see
+\href{https://arxiv.org/abs/0912.0569}{Kamnitzer's geometric lecture notes}
+and
+\href{https://sbseminar.wordpress.com/2008/07/08/how-to-write-down-the-representations-of-gl_n/}{Speyer's
+blog post on writing down representations of $\GL_n$}.
+For broader lecture notes on representation theory, see
+\href{https://www.math.upenn.edu/~zvihr/courses/RTNotes.pdf}{Rosen's notes}
+and
+\href{http://math.cmu.edu/~cnewstea/notes/reptheory.pdf}{Newstead's notes}.
 
 
 A \defin{representation} of $\GL_n(\setC)$ is 
@@ -346,28 +367,15 @@ study representation stability for spanning configurations of subspaces in a
 fixed complex vector space \cite{PawlowskiRamosRhoades2023}.  The spanning
 line-configuration case is tied to modules arising in the Delta conjecture.
 
+\name{Victor Reiner} and \name{Mark Shimozono} define
+\defin{generalized flagged Schur modules} and \defin{key modules} in their
+work on \hyperref[key]{key polynomials} and a flagged
+\hyperref[schurLittlewoodRichardson]{Littlewood--Richardson rule}
+\cite{ReinerShimozono1995}.  In this sense the key and
+\hyperref[schurFlagged]{flagged Schur} families also have a
+representation-theoretic model as characters of modules for a Borel subgroup.
+
 In \cite{Szendroi2026x}, the author considers 
 the coordinate rings of general Segre embeddings of products of projective spaces.
 Their bigraded Hilbert polynomials get expressed in terms of major-descent generating functions 
 of words in multisets. Also, quantum cohomology and Garsia--Stanton-style bases are mentioned.
-
-
-
-\todo{
-Generalized flagged Schur modules, and Key modules
-https://core.ac.uk/download/pdf/82753652.pdf
-}
-
-\todo{
-
-\url{https://arxiv.org/pdf/0912.0569.pdf}
-
-\url{https://sbseminar.wordpress.com/2008/07/08/how-to-write-down-the-representations-of-gl_n/}
-
-\url{https://www.math.upenn.edu/~zvihr/courses/RTNotes.pdf}
-
-\url{http://math.cmu.edu/~cnewstea/notes/reptheory.pdf}
-
-\url{https://arxiv.org/pdf/2201.04006.pdf} Explicit Frobenius characteristic of an ideal.
-
-}

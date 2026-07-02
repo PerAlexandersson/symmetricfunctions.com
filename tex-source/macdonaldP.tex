@@ -26,8 +26,6 @@
 }
 
 
-\todo{https://www.mat.univie.ac.at/~slc/opapers/s20macdonald.pdf}
-
 Macdonald polynomials, $\{\macdonaldP_\lambda(\xvec;q,t) \}_{\lambda}$ 
 were introduced by \name{Ian Macdonald} in \cite{Macdonald1987}. It is a two-parameter extension of the Schur functions,
 and unify the \hyperref[jackP]{Jack polynomials} and \hyperref[hallLittlewoodP]{Hall--Littlewood polynomials}.
@@ -106,7 +104,7 @@ such that
 \macdonaldP_\lambda(\xvec;q,t) = \monomial_\lambda(\xvec) + \sum_{\mu \prec \lambda} \eta_{\lambda\mu} \monomial_\mu(\xvec)
 \end{equation*}
 and $\langle \macdonaldP_\lambda, \macdonaldP_\mu \rangle_{q,r}=0$ whenever $\lambda \neq \mu$.
-Here, $\prec$ denotes the dominance order on partitions.
+Here, $\prec$ denotes the \hyperref[dominanceOrder]{dominance order on partitions}.
 
 \begin{example*}[Macdonald polynomials for $\lambda \vdash 3$]
 We have the following Macdonald polynomials:
@@ -153,6 +151,12 @@ and Cauchy-type formulas \cite{ConchaLapointe2023Macdonald}.  \name{Ben
 Goodberry} studies the same family as type $A$ partially symmetric Macdonald
 polynomials and proves stability, an integral form, and Pieri-type rules
 \cite{Goodberry2025}.
+\name{Daniel Orr} and \name[Milo B. Weising]{Milo Bechtloff Weising}
+identify normalized fixed-point classes in parabolic flag Hilbert schemes
+with modified partially symmetric Macdonald polynomials
+\cite{OrrWeising2024x}.  This confirms the Goodberry--Orr conjectural
+geometric interpretation and gives an explicit formula for the induced
+involution on the polynomial representation.
 
 \name{Manuel Concha} and \name{Luc Lapointe} study bisymmetric Macdonald
 polynomials \cite{ConchaLapointe2023x}.  These are built from nonsymmetric

@@ -174,10 +174,11 @@ are studied.
 
 
 
-\todo{
-Quantum Kostka and inverse
-https://link.springer.com/content/pdf/10.1007/s10468-016-9640-5.pdf
-}
+\name{Zoran Z. Petrovi{\'c}} and \name{Marko Radovanovi{\'c}} use a
+Groebner basis for the small quantum cohomology ring of the Grassmannian to
+derive recurrence relations for Kostka numbers and inverse Kostka numbers
+\cite{PetrovicRadovanovic2016}.  This is related to the
+\hyperref[quantumKostka]{quantum Kostka coefficients} discussed below.
 
 
 
@@ -281,11 +282,12 @@ In \cite{RassartThesis}, a different $q$-analog, defined via
 is considered. Then $[q^j]\kostantP^*(w;q)$ is the number ways to express $w$
 as a sum of positive roots, where exactly $j$ roots appear with a positive multiplicity.
 
-
-
-See \url{http://de.arxiv.org/pdf/1111.6648.pdf} for a connection with Fibonacci numbers.
-
-\todo{Expand this}
+\name{Kevin Chang}, \name[P. Harris]{Pamela E. Harris}, and
+\name{Erik Insko} study the nonzero terms in Kostant's weight multiplicity
+formula when the highest weight is the sum of all simple roots
+\cite{ChangHarrisInsko2020}.  For the zero weight, the number of contributing
+terms is a Fibonacci number in types $A$ and $B$, and a multiple of a Lucas
+number in types $C$ and $D$.
 
 
 \subsection[kostkaFromKostant]{Kostka coefficients from Kostant's partition function}
@@ -695,10 +697,14 @@ to compute Kostka--Foulkes polynomials in an efficient manner.
  
  
  \subsection[cyclage]{Cyclage}
- 
 
-
-\todo{Reference \url{http://www.math.drexel.edu/~jblasiak/catabJun10-Blasiak.pdf}}
+\name{Jonah Blasiak} relates cyclage and catabolism to cellular subquotients
+of the extended affine Hecke algebra and to $q$-analogues of
+Garsia--Procesi modules \cite{Blasiak2011Cyclage}.  In related work, he gives
+an insertion algorithm that computes catabolizability of the insertion tableau
+of a standard word and characterizes catabolizability using Knuth
+transformations, rotations, and catabolism transformations
+\cite{Blasiak2012Catabolizability}.
 
 
 In \cite{LascouxSchutzenberger1981}, \name{Alain Lascoux} 
@@ -762,8 +768,12 @@ The charge is displayed on the right hand side of each tableau.
   \svgimg[width=0.75\textwidth]{svg-images/catabolism.svg}{Catabolism poset}
 \end{figure} 
 \end{example*}
- 
-\todo{See \url{https://math.berkeley.edu/~mhaiman/ftp/cdm/cdm.pdf}}
+
+For a broader account of why the charge and cocharge machinery is central,
+see \name{Mark Haiman}'s survey \cite{Haiman2002CDM}.  The survey reviews the
+Lascoux--Sch{\"u}tzenberger charge formula for Kostka--Foulkes positivity and
+explains its role in the development of the Macdonald positivity problem and
+the Hilbert-scheme proof.
  
  
 \subsection[kostkaIdentities]{Identities}
@@ -880,18 +890,29 @@ where $\charge_R$ is a generalization of charge, and $LRT(\lambda,R)$ is the set
 See \cite{KirillovShimozono2002,KirillovSchillingShimozono2001,SchillingWarnaar1999} 
 for more background.
  
+For a representation-theoretic realization of $q$-Kostka polynomials,
+\name{Adriano M. Garsia} and \name{Claudio Procesi} construct graded
+$\symS_n$-modules whose graded multiplicities are governed by these
+polynomials \cite{GarsiaProcesi1992}.  This connects the Kostka--Foulkes
+theory with Springer fibers and Tanisaki-type quotient rings.
 
-\todo{
-The algorithm I use to compute $K_{\lambda,\mu}$
-is to count chains in the partition poset, where layer $j$
-consist of partitions of size $\mu_1+\mu_2+\dotsb+\mu_j$,
-and the top layer is just $\lambda$. Counting paths from bottom to top in this graph
-can then be done efficiently with built-in functions in Mathematica.
-}
+\name{Pasquale Petrullo} and \name{Domenico Senato} introduce a monoid of
+admissible Kostka--Foulkes polynomials \cite{PetrulloSenato2020}.  These
+polynomials are stable under uniform translation of partitions, and every
+Kostka--Foulkes polynomial can be written as a signed linear combination of
+admissible ones.
 
-\todo{For Sn-modules with grade Frob series, see \name{Adriano Garsia}--\name{Claudio Procesi}, 
-https://doi.org/10.1016/0001-8708(92)90034-I
-}
+A convenient dynamic program for ordinary Kostka coefficients is obtained from
+the Pieri recursion.  Let $\mu=(\mu_1,\dotsc,\mu_\ell)$.  We count chains
+\[
+\emptyset=\lambda^{(0)}\subseteq \lambda^{(1)}\subseteq \dotsb
+\subseteq \lambda^{(\ell)}=\lambda
+\]
+such that each difference $\lambda^{(j)}/\lambda^{(j-1)}$ is a horizontal
+strip of size $\mu_j$.  Equivalently, layer $j$ consists of partitions of size
+$\mu_1+\dotsb+\mu_j$, and the edge relation is adding a horizontal strip of the
+prescribed size.  Counting directed paths from $\emptyset$ to $\lambda$ in this
+layered graph gives $K_{\lambda,\mu}$.
 
 
 \subsection[kostkaFoulkesAtoms]{Atomic decomposition}
@@ -921,21 +942,27 @@ for all ribbons $r_j$ where the width is the number of columns the ribbon occupi
 
 
 
-\todo{
 \section[kostkaFoulkesGeneralizations]{Generalizations}
-See https://arxiv.org/pdf/math/9803006.pdf
-This has charge in other types.
-https://www.albany.edu/faculty/lenart/articles/charge.pdf
-}
 
-\todo{
-Monoid of KF-polys:
-https://doi.org/10.1007/s10801-019-00878-7
-}
+\name{Anatol N. Kirillov} gives new combinatorial formulas for modified
+Hall--Littlewood polynomials, for transition coefficients between elementary
+and Hall--Littlewood bases, and for point counts on unipotent partial flag
+varieties \cite{Kirillov2000}.  The same paper reviews $q$-analogues of
+Littlewood--Richardson coefficients and formulates conjectures for
+one-dimensional sums and generalized Kostka--Foulkes polynomials.
 
+\name{Cristian Lenart} studies how charge may be extended beyond type $A$ by
+using the Ram--Yip formula for Macdonald polynomials and the quantum Bruhat
+order \cite{Lenart2011x}.  In type $A$ this recovers the usual charge, while in
+type $C$ it gives a new charge-like statistic.
 
-\todo{
-Overview of q-identities.
-https://www.emis.de/journals/SLC/opapers/s32leclerc.pdf
-https://hal.archives-ouvertes.fr/hal-00123035v2/document
-}
+For a compact catalogue of related $q$-identities, see
+\cite{DesarmenienLeclercThibon1994}.  Their survey places
+Kostka--Foulkes polynomials alongside Hall--Littlewood functions,
+Kostant's partition function, plethysm, and the representation theory of
+finite linear groups and symmetric groups.  For the roots-of-unity direction,
+\name{Francois Descouens} gives a combinatorial proof that rectangular
+Hall--Littlewood functions specialized at primitive roots of unity can be
+expressed as plethysms, using Schilling's bijection between ribbon tableaux and
+ribbon rigged configurations \cite{Descouens2008}.  See also the
+\hyperref[prelimEvalAtRootsOfUnity]{overview of evaluations at roots of unity}.

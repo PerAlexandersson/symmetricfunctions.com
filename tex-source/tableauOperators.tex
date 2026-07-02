@@ -170,7 +170,24 @@ Then $\jdt(T)$ is the same as the insertion tableau $\ins(w)$.
 \end{theorem}
 
 In fact, \hyperref[rowInsertion]{row-insertion} can be emulated via jeu-de-taquin.
-\todo{Give example on how row-insertion can be done via jdt.}
+
+\begin{example*}[Row insertion as jeu-de-taquin]
+For the word $w=213$, ordinary row insertion gives
+\[
+\emptyset \leftarrow 2 = \ytableaushort{2},
+\qquad
+\ytableaushort{2}\leftarrow 1 = \ytableaushort{1,2},
+\qquad
+\ytableaushort{1,2}\leftarrow 3 = \ytableaushort{13,2}.
+\]
+The same tableau is obtained by placing the letters of $w$ on the
+anti-diagonal skew shape from the theorem above and rectifying:
+\[
+\ytableaushort{{\none}{\none}3,{\none}1,2}
+\xrightarrow{\jdt}
+\ytableaushort{13,2}.
+\]
+\end{example*}
 
 For a skew SSYT $T$, $\ins(\rw(T)) = \jdt(T)$. In other words, 
 performing jeu-de-taquin gives the same result as row insertion of the reading word of $T$.
@@ -341,6 +358,11 @@ Furthermore, $\evac_d : \SSYT(\lambda,d) \to \SSYT(\lambda,d)$ is also defined v
 There is also the notion of \defin{dual evacuation}, $\evac^*$,
 which can be defined via promotion and ordinary evacuation as
 $\evac^*(T) \coloneqq \promotion^n \circ \evac(T)$, see \cite{Stanley2009} for details.
+\name{Michael Chmutov}, \name{Gabriel Frieden}, \name{Dongkwan Kim},
+\name[Joel B. Lewis]{Joel Brewster Lewis}, and \name{Elena Yudovina}
+construct an affine analogue of evacuation on tabloids
+\cite{ChmutovFriedenKimLewisYudovina2022}.  The fixed points of the affine
+evacuation involution are counted by a Green polynomial evaluated at $q=-1$.
 
 As a map $\evac_d^* : \SSYT(\lambda,d) \to \SSYT(\lambda,d)$, it
 can be defined via Bender--Knuth operators:
@@ -475,10 +497,14 @@ with distinct entries.
 
 \section[tableauOpRelations]{Relation with crystal operators}
 
-\todo{Add relations among all the operators --- RSK, crystals, etc}
+The operators above interact well with the type $A$ crystal operators on words
+and tableaux.  The basic principle is that \hyperref[rsk]{RSK} transports
+crystal operators on one row of a biword to crystal operators on one of the two
+tableaux, while the other tableau is unchanged.  Evacuation reverses the
+crystal arrows, exchanging $\cryse_i$ with $\crysf_{n-i}$.
 
 
-\subsection[crystalsRSK]{Crystals and with RSK}
+\subsection[crystalsRSK]{Crystals and RSK}
 
 \name{David Rush} uses promotion, evacuation, and cyclic sieving in his study of
 plethysm coefficients \cite{Rush2018}.

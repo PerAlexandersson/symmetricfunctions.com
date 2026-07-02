@@ -3,13 +3,6 @@
 \metadescription{Various models for Littlewood--Richardson coefficients}
 
 
-\todo{See \url{https://www.math.ucla.edu/~pak/papers/liri91.pdf}}
-
-\todo{
-There is a set of SYT which also give LR-coeffs
-https://www.cmi.ac.in/~ksutar/reptheory/LRrule.pdf
-}
-
 \section[littlewoodRichardsonModels]{Combinatorial models for Littlewood--Richardson coefficients}
 
 The \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients} are defined as the structure constants
@@ -24,6 +17,18 @@ A simple recursion for computing $c^{\lambda}_{\nu\mu}$
 can be obtained from the \hyperref[schurShiftedLittlewoodRichardson]{shifted Schur functions}.
 
 The Littlewood--Richardson coefficients \hyperref[kostkaFromLR]{generalize the skew Kostka coefficients}.
+\name{Igor Pak} and \name{Ernesto Vallejo} compare several standard models
+for these coefficients as integer points in Littlewood--Richardson cones
+\cite{PakVallejo2005}.  They give explicit linear bijections between
+Littlewood--Richardson tableaux, Knutson--Tao hives, and
+Berenstein--Zelevinsky triangles, showing that these models have the same
+underlying combinatorial structure.
+
+There is also a jeu-de-taquin formulation using standard tableaux.  If $U$ is
+a fixed standard Young tableau of shape $\nu$, then $c^\lambda_{\mu\nu}$ is the
+number of standard tableaux of skew shape $\lambda/\mu$ whose rectification is
+$U$ \cite[Sec.~5]{Fulton1997}.  This count is independent of the chosen
+standard tableau $U$ of shape $\nu$.
 
 
 In \cite{Azenhas1999}, it is proved that for fixed $\lambda$ and $\mu$, the set

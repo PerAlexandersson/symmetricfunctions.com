@@ -2,20 +2,6 @@
 \metadescription{Definition of Gelfand--Tsetlin patterns and Gelfand--Tsetlin polytopes. Bijection with semi-standard Young tableaux. Related results.}
 
 
-\todo{
-http://www.kurims.kyoto-u.ac.jp/EMIS/journals/SLC/wpapers/s73vortrag/alexand.pdf 
-}
-
-\todo{Tokoyamas formula:
-http://www-users.math.umn.edu/~reiner/REU/AlexandrComminsEmbryFrankLiVetter2018.pdf
-}
-
-\todo{
-Describe it as projection of integer pt transform:
-https://arxiv.org/pdf/1903.05548.pdf
-}
-
-
 \section[gtpatterns]{Gelfand--Tsetlin patterns}
 
 Gelfand--Tsetlin (sometimes spelled Cetlin or Zetlin) patterns
@@ -162,6 +148,12 @@ Note that this interpolates between the \hyperref[schurWeylformula]{Weyl charact
 
 See also \cite{Stanley1986} for some special cases, and connection with plane partitions
 and \hyperref[alternatingSignMatrix]{alternating sign matrices}.
+\name{Yulia Alexandr}, \name{Patricia Commins}, \name{Alexandra Embry},
+\name{Sylvia Frank}, \name{Yutong Li}, and \name{Alexander Vetter} study
+type $B$ analogues via ice models \cite{AlexandrComminsEmbryFrankLiVetter2018x}.
+They construct models in bijection with Gelfand--Tsetlin-type patterns and
+shifted tableaux for the Sundaram rules, obtaining partition functions that
+deform the Weyl character formula for $SO(2n+1,\setC)$.
 
 \section[gtpolytopes]{Gelfand--Tsetlin polytopes}
 
@@ -187,7 +179,10 @@ and have the \hyperref[polytopeIDP]{integer decomposition property} (IDP). This 
 if $p$ is a lattice point in $k \gtp_{\lambda\mu}$ for some integer $k\geq 1$,
 then $p$ can be expressed as $p_1 + \dotsb + p_k$ where each $p_i$ is a lattice point in $\gtp_{\lambda\mu}$.
 This can be proved directly by bijecting to semi-standard tableaux,
-see \cite[Subsection 2.3]{Alexandersson2016GTPoly}.
+see \cite[Subsection 2.3]{Alexandersson2016GTPoly}.  Under this bijection,
+elementwise addition of GT-patterns corresponds to concatenating tableaux:
+a tableau of shape $k\lambda/k\mu$ decomposes into $k$ tableaux of shape
+$\lambda/\mu$.
 
 \name{Akiyoshi Tsuchiya} generalizes the notion of IDP to $k$-tuples of
 polytopes (the $k=2$ case was introduced in \cite{HaaseHofmann2017}).
@@ -781,6 +776,12 @@ see \hyperref[keyDefinitionGT]{key polynomials from GT-patterns} for details.
 
 \subsection[gtSchubert]{Schubert polynomials}
 
-It was recently proved in \cite{LiuMeszarosDizier2019} 
-that \hyperref[schubertGTFormula]{Schubert polynomials}
-can be expressed as a sum over lattice points in a Minkowski-sum of GT-polytopes.
+\name{Ricky Ini Liu}, \name{Karola Mészáros}, and \name{Avery St. Dizier}
+prove that many \hyperref[schubertGTFormula]{Schubert polynomials} can be
+obtained by projecting integer point transforms of Minkowski sums of
+GT-polytopes \cite{LiuMeszarosDizier2019}.  More precisely, if $D$ is a
+column-convex diagram, then the character of the flagged Schur module of $D$
+is obtained from the integer point transform of a convex polytope
+$P_D=GT(\lambda^{(1)})+\dotsb+GT(\lambda^{(n)})$ by a monomial
+specialization.  When $D$ is the Rothe diagram of a column-convex permutation,
+this character is the corresponding Schubert polynomial.

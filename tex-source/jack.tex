@@ -23,16 +23,6 @@
 - Misc jackP -> jackJ; from polynomialData.m.
 }
 
-\todo{
-https://arxiv.org/pdf/2004.07824.pdf
-}
-
-\todo{
-Add info about CMS operators: and super jack functions
-https://arxiv.org/pdf/0712.1496.pdf
-https://mysite.science.uottawa.ca/hsalmasi/report/thesis-evans.pdf
-}
-
 The Jack polynomials are a family of symmetric functions which extends the Schur polynomials.
 They were introduced by \name{Henry Jack} in \cite{Jack1970}.
 They are indexed by integer partitions and constitute a basis for the space of symmetric functions.
@@ -91,6 +81,12 @@ power-sum basis through decorated bipartite maps \cite{Dali2023x}.  The paper
 proposes an injectively decorated variant of the Dołęga--Ben Dali map
 expansion and proves it for Jack polynomials indexed by two-column
 partitions.
+\name{Guillaume Chapuy} and \name{Maciej Dołęga} deform Schur functions to
+Jack functions inside the $2$-Toda tau-function for weighted Hurwitz numbers
+\cite{ChapuyDolega2022}.  They prove that the resulting coefficients are
+polynomials in the deformation parameter $b$ with non-negative integer
+coefficients, interpreted through generalized branched coverings by
+orientable and non-orientable surfaces.
 
 
 \begin{example*}[Example of $\psi_{\lambda/\mu}(a)$ ]
@@ -268,8 +264,13 @@ so that
 \mathcal{H} \jackJ_\lambda = \sum_{i=1}^n \left( \frac{\alpha}{2} \lambda_i^2 + \frac{n+1-2i}{2} \right) \jackJ_\lambda.
 \]
 See \cite{Sutherland1971} for the physics background of $\mathcal{H}$.
+\name{Martin Hallnäs} constructs a basis for the polynomial eigenfunctions of
+deformed Calogero--Moser--Sutherland operators \cite{Hallnas2007x}.  The
+eigenfunctions are linear combinations of polynomials generalizing super Schur
+polynomials, and this gives explicit series representations for super Jack
+polynomials.
 
-The are also eigenpolynomials for the (quasi) \defin{Laplace--Beltrami} operator,
+They are also eigenpolynomials for the (quasi) \defin{Laplace--Beltrami} operator,
 \[
 \frac{\alpha}{2} \sum_{i=1}^n \left(x_i\frac{\partial}{\partial x_i}\right)^2 + 
 \frac{1}{2} \sum_{i\neq j} \left( \frac{x_i^2}{ x_i - x_j } \right) \frac{\partial}{\partial x_i}.
@@ -537,14 +538,25 @@ a^{|\lambda|}\jackJ_\lambda(x;1/a) = \sum_{\pi,\tau \in \symS_n} \binom{a+n-1-\d
 \end{equation*}
 \end{conjecture}
 
-\todo{
-Affine Jack polynomials:  https://arxiv.org/pdf/hep-th/9403168.pdf
-}
+\subsection[jackDouble]{Double Jack polynomials}
 
+\name{Luc Lapointe} and \name{Pierre Mathieu} define double Jack polynomials
+through the stable sector of Jack superpolynomials \cite{LapointeMathieu2015}.
+After the fermionic variables are stripped off, the stabilized
+superpolynomials factor into a product of two ordinary Jack polynomials,
+with plethystic transformations and different effective parameters.  They
+also derive a Hamiltonian for the double Jack family, involving
+Calogero--Sutherland terms and generators of an affine $\widehat{\mathfrak{sl}}_2$
+algebra.
 
-\todo{
-Add stuff on Double Jack, see \url{http://www.emis.de/journals/SIGMA/2015/051/sigma15-051.pdf}
-}
+\subsection[jackAffineAnalogues]{Affine analogues}
+
+\name{Pavel Etingof} and \name{Alexander Kirillov Jr.} define affine
+analogues of Jack polynomials as eigenfunctions of an affine Sutherland
+operator for the affine root system $\hat{A}_{n-1}$ \cite{EtingofKirillov1994x}.
+They construct these polynomials explicitly as traces of intertwiners for an
+affine Lie algebra.  Their $q$-analogue gives affine analogues of Macdonald
+polynomials.
 
 
 \section[jackCharacters]{Jack characters}

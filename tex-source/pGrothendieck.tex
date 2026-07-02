@@ -17,14 +17,20 @@
   PositiveIn & schurP | Hawkes2023 | scope=weak P-Grothendieck polynomials \\
 \end{polydata}
 
-\todo{Expand definition.}
+The $P$-Grothendieck polynomials are symmetric, non-homogeneous symmetric
+functions attached to strict partitions.  In \cite{Hawkes2023},
+\name{Graham Hawkes} introduces weak $P$-Grothendieck polynomials, which play
+the same role for \hyperref[schurP]{Schur $P$ functions} as
+\hyperref[grothendieckDualStable]{dual stable Grothendieck polynomials} play
+for Schur functions.  The combinatorial model uses \defin{shifted multiset
+tableaux}: shifted tableaux whose boxes contain nonempty multisets in the
+alphabet $1'\lt 1\lt 2'\lt 2\lt \dotsb$, with primed entries appearing with
+multiplicity at most one in each box and with shifted row and column
+semistandard conditions.
 
-The $P$-Grothendieck polynomials are symmetric, non-homogeneous symmetric functions,
-defined via shifted, set-valued tableaux.
-In \cite{Hawkes2023} the author introduces the weak $P$-Grothendieck polynomials,
-which plays the role of \hyperref[grothendieckDualStable]{dual stable Grothendieck polynomials}.
-The author show that these are \hyperref[schurP]{Schur-P} positive.
-This is analogous to the dual stable Grothendieck polynomials being Schur-positive.
+Hawkes proves that these functions are \hyperref[schurP]{Schur $P$}-positive
+by homogeneous degree.  This is analogous to the Schur-positivity of weak
+stable Grothendieck polynomials.
 
 
 Suppose $\mu$ is a strict partition with $m$ parts.
@@ -36,7 +42,7 @@ in $n \geq m$ variables is defined as
 \sum_{\sigma \in \symS_n / \symS_{n-m}}
 \sign(\sigma)
 \left(
-\prod_i
+\prod_{i=1}^m
 \left(
 \frac{x_{\sigma_i}}{1-x_{\sigma_i}}
 \right)^{\mu_i}

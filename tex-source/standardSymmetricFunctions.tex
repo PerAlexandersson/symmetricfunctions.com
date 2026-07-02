@@ -328,6 +328,40 @@ For some partial progress on \name{Sheila Sundaram}'s conjecture, see \cite{Sund
 For a $q$-analog of the power-sum symmetric functions, see \cite{Brugidou2023x}.
 
 
+\section[wittSymmetric]{Witt symmetric functions}
+
+\begin{polydata}{wittSymmetric}
+  Name     & Witt symmetric functions \\
+  Space    & Sym \\
+  Basis    & Yes \\
+  Rating   & 1 \\
+  Bib      & DoranIV1996 \\
+  Year     & 1996 \\
+  Symbol   & $w_\lambda(\xvec)$ \\
+  Category & Elementary \\
+\end{polydata}
+
+The \defin{Witt symmetric functions} form a multiplicative basis
+$w_\lambda=w_{\lambda_1}w_{\lambda_2}\dotsm$ of $\spaceSym$
+\cite{DoranIV1996}.  They may be defined recursively by
+\[
+  \prod_{d\geq 1}(1-w_d t^d)^{-1}
+  =
+  \sum_{n\geq 0}\completeH_n t^n.
+\]
+Equivalently,
+\[
+  \completeH_n=\sum_{\lambda\vdash n} w_\lambda,
+  \qquad
+  \powerSum_n=\sum_{d\mid n} d\,w_d^{n/d}.
+\]
+The name comes from the interpretation of $\spaceSym$ as the coordinate ring
+of the group scheme of Witt vectors.  In this interpretation the Witt
+symmetric functions record the Witt components, while the
+\hyperref[powerSum]{power-sum symmetric functions} record the ghost
+components; see \cite[Sec.~3.2]{BorgerWieland2005}.
+
+
 \section[forgotten]{Forgotten symmetric functions}
 
 \begin{polydata}{forgotten}

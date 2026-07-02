@@ -1,35 +1,6 @@
 \metatitle{Grothendieck polynomials}
 \metadescription{An introduction to Grothendieck polynomials, including their definitions via divided difference operators and pipe dreams, stable Grothendieck polynomials and their properties such as Jacobi--Trudi identities, Pieri rules, Murnaghan--Nakayama rules, Schur expansions, and skew versions, as well as double Grothendieck polynomials and canonical stable Grothendieck polynomials.}  
 
-\todo{ Set-valued Rothe diagram formula for other classes of permutations
-https://arxiv.org/pdf/1908.04164.pdf
-
-Gustavsson--Milne formula for Factorial Grothendieck:
-http://de.arxiv.org/pdf/1812.04390.pdf
-
-Crystal for Lascoux polynomials and Grothendiecks
-https://arxiv.org/pdf/1807.03294.pdf
-
-Affine Grothendieck
-https://arxiv.org/pdf/math/0501335.pdf
-
-Info about double grothendieck:
-http://de.arxiv.org/pdf/1711.00147.pdf
-http://de.arxiv.org/pdf/math/0502144.pdf (Knutson)
-
-
-Skew Grothendieck and Cauchy identity
-https://doi.org/10.1016/j.jcta.2018.09.006
-
-Mod-HL in dual Stable grothendieck (signed)
-https://hal.inria.fr/hal-01186288/document
-
-Dual stable Grothendieck sums:
-http://de.arxiv.org/pdf/1806.06369.pdf
-}
-
-
-
 \section[grothendieck]{Grothendieck polynomials}
 
 
@@ -52,6 +23,11 @@ http://de.arxiv.org/pdf/1806.06369.pdf
 The Grothendieck polynomials are closely related to the \hyperref[schubertOperatorformula]{Schubert polynomials}.
 They were introduced by \name{Alain Lascoux}, 1990 in \cite{Lascoux1990Grothendieck}.
 
+\name{Neil J. Y. Fan} and \name{Peter L. Guo} give formulas for
+Grothendieck polynomials as generating functions of set-valued Rothe tableaux
+\cite{FanGuo2021Rothe}.  Their tableaux extend the usual Rothe-diagram
+description of Schubert polynomials and include specializations for
+vexillary, dominant, and Grassmannian permutations.
 
 
 In \cite{BrubakerFrechetteHardtTiborWeber2020x}, the authors 
@@ -454,23 +430,24 @@ Jacobi--Trudi type formula.
 
 See \href{https://arxiv.org/pdf/math/0601514.pdf}{this paper} for 
 the expansion of stable Grothendieck polynomials into Grassmann Grothendieck polynomials.
-In \url{https://arxiv.org/pdf/1701.03561.pdf}, a flagged version is considered.
+\name{Tomoo Matsumura} expresses flagged Grothendieck polynomials, defined by
+flagged set-valued tableaux, by a Jacobi--Trudi type determinant
+\cite{Matsumura2018}.  The same paper introduces flagged skew Grothendieck
+polynomials and shows that the tableau and determinant definitions coincide.
 See \url{https://arxiv.org/pdf/1711.09544.pdf} for several Cauchy identities,
 and skew versions.
-
-\todo{
-flagged version 
-https://arxiv.org/pdf/1701.03561.pdf
-}
 
 
 \todo{
 http://reu.dimacs.rutgers.edu/~fsalazar/paper.pdf
 }
 
-\todo{ 
-https://www.degruyter.com/downloadpdf/j/crll.ahead-of-print/crelle-2017-0033/crelle-2017-0033.pdf
-}
+\name{Michael Wheeler} and \name{Paul Zinn-Justin} compute
+Littlewood--Richardson coefficients for double Grothendieck polynomials of
+Grassmannian permutations using an integrable vertex model
+\cite{WheelerZinnJustin2017}.  The Yang--Baxter equation gives product rules
+for these polynomials and their duals, and the resulting coefficients are
+expressed by puzzles without gashes.
 
 \begin{problem}[See \cite{MonicalPechenikScrimshaw2018}]
 Describe a \hyperref[crystals]{crystal structure}, whose connected components give stable Grothendieck polynomials.
@@ -534,6 +511,18 @@ products of double Grothendieck polynomials \cite{HardtWallach2025x}.  The
 back- and forward-stability numbers agree with the corresponding Schubert
 product stability numbers, and their work gives another proof of a finiteness
 conjecture for products of back stable Grothendieck polynomials.
+\name{Allen Knutson}, \name{Ezra Miller}, and \name{Alexander Yong} obtain a
+formula for double Grothendieck polynomials of vexillary permutations using
+flagged set-valued tableaux \cite{KnutsonMillerYong2009}.  The proof gives
+a geometric interpretation through Gröbner degenerations of vexillary matrix
+Schubert varieties and geometric vertex decompositions.
+\name{Tomoo Matsumura} gives a tableau formula for double Grothendieck
+polynomials attached to $321$-avoiding permutations \cite{Matsumura2020}.
+The proof checks compatibility with the $K$-theoretic divided difference
+operators.
+\name{Damir Yeliussizov} proves skew Cauchy identities for symmetric
+Grothendieck polynomials and studies the associated dual filtered Young
+graphs \cite{Yeliussizov2019SkewGrothendieck}.
 
 
 
@@ -712,6 +701,10 @@ In \cite{MatsumuraSugimoto2019}, the authors give a Jacobi--Trudi type identity
 for flagged factorial Grothendieck polynomials, and 
 show that these are equal to \hyperref[grothendieckDouble]{double Grothendieck polynomials}
 for vexillary ($2143$-avoiding) permutations.
+\name{Peter L. Guo} and \name{Sophie C. C. Sun} prove Gustafson--Milne and
+Fehér--Némethi--Rimányi type identities for factorial Grothendieck
+polynomials \cite{GuoSun2018x}.  Specializing to Schur functions gives a
+combinatorial proof of the Fehér--Némethi--Rimányi identity.
 
 
 \section[grothendieckDualStable]{Dual stable Grothendieck polynomials}
@@ -752,6 +745,11 @@ The skew version $\grothendieckDual_{\lambda/\mu}(\xvec)$ is defined in a simila
 One can prove that $\grothendieckDual_{\lambda/\mu}(\xvec)$ is symmetric by using a  version
 of the Bender--Knuth involutions, see \cite{GalashinGrinbergLiu2016}.
 
+\name{Jason Bandlow} and \name{Jennifer Morse} expand modified
+Hall--Littlewood functions in the dual stable Grothendieck basis
+\cite{BandlowMorse2010}.  They extend the charge statistic to set-valued
+tableaux, giving a signed combinatorial expansion in this basis.
+
 
 In \cite{LiMorseShields2016}, it is shown that the constants appearing in the expansion
 \[
@@ -760,6 +758,10 @@ In \cite{LiMorseShields2016}, it is shown that the constants appearing in the ex
 \]
 agree with the coefficients $c_{\lambda\mu}^{\nu}$ in 
 the \hyperref[grothendieckStableLittlewoodRichardson]{Littlewood--Richardson rule for stable Grothendieck polynomials}.
+\name{Motoki Takigiku} explains Pieri coefficients for stable and dual
+stable Grothendieck polynomials \cite{Takigiku2018x}.  In this description,
+the lower-degree terms are obtained from the leading terms by alternating
+sums of meets or joins.
 
 
 \subsection[grothendieckDualStableBialternant]{Bialternant formula}
@@ -810,7 +812,11 @@ Alternatively, \cite{Yeliussizov2017,AmanovYeliussizov2020}, we have
 \right]_{1\leq i,j \leq \lambda_1}.
 \end{align}
 
-\todo{More dual Grothendieck stuff here + applications https://arxiv.org/pdf/1910.13378.pdf}
+\name{Damir Yeliussizov} applies dual stable Grothendieck polynomials and
+normalized Schur functions to random lozenge tilings and plane partitions
+\cite{Yeliussizov2021}.  In particular, the paper determines certain corner
+distributions and introduces related distributions connected with the corner
+growth model.
 
 There is also a Jacobi--Trudi identity for the \defin{skew dual stable Grothendieck polynomials},
 originally conjectured by \name{Darij Grinberg} \href{http://www.cip.ifi.lmu.de/~grinberg/algebra/chicago2015.pdf}{(see these slides)}.

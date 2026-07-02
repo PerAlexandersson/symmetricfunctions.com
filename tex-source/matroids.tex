@@ -309,7 +309,18 @@ positroid envelope class contains a graphic positroid \cite{QuailRombach2024x}.
 
 \section[matroidOptimization]{Matroids in optimization}
 
-\todo{Matroid optimization.}
+Matroids are one of the basic settings where the greedy algorithm is exact.
+Given weights on the ground set, the maximum-weight basis can be found by
+considering elements in decreasing weight order and adding an element whenever
+it preserves independence.  Conversely, among hereditary set systems, the
+validity of this greedy algorithm for all weight functions characterizes
+matroids.  Edmonds' polyhedral viewpoint realizes the independent-set
+polytope of a matroid by the inequalities
+\[
+  x(A) \leq r(A) \qquad (A\subseteq E),
+  \qquad x_e\geq 0 \qquad (e\in E),
+\]
+where $r$ is the rank function \cite{Edmonds1970}.
 
 
 \section[tuttePolynomial]{Tutte polynomial}
@@ -451,6 +462,9 @@ volume-polynomial approach to this result via Lorentzian polynomials
 
 
 \section[KazhdanLusztig]{Kazhdan--Lusztig polynomials}
+
+For the classical Hecke-algebra version, see
+\hyperref[kazhdanLusztigPolynomials]{Kazhdan--Lusztig polynomials}.
 
 \name{Alice L. L. Gao} and \name{Matthew H. Y. Xie} define inverse
 Kazhdan--Lusztig polynomials for matroids through the inverse
@@ -703,4 +717,9 @@ extensions of matroid classes closed under flats \cite{SinghSivaraman2024x}.
 \name{Mario Kummer} and \name{David Sawall} give three results related to the
 half-plane property of matroids \cite{KummerSawall2025}.
 
-\todo{Add Rota's basis conjecture with a standard reference.}
+\name{Rosa Huang} and \name[G.-C. Rota]{Gian-Carlo Rota} formulate Rota's
+basis conjecture in connection with Latin squares and straightening
+coefficients \cite[Conj.~4]{HuangRota1994}.  In matroid language, it says
+that if $B_1,\dotsc,B_n$ are bases of a rank $n$ matroid, then the multiset
+union $B_1\cup\dotsb\cup B_n$ can be partitioned into $n$ disjoint
+\defin{rainbow bases}, each containing exactly one element from each $B_i$.

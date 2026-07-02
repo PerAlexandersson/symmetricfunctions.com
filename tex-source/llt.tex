@@ -37,21 +37,6 @@ fundamental quasisymmetric expansion, Schur positivity, and the special case of 
 \url{http://www-igm.univ-mlv.fr/~fpsac/FPSAC04/ARTICLES/Lam.pdf}
 }
 
-\todo{
-Lam's stuff:
-\url{https://arxiv.org/pdf/math/0507341.pdf}
-\url{https://arxiv.org/pdf/math/0310250.pdf}
-}
-\todo{Nice intro:  \url{https://www.aimath.org/WWN/kostka/lam.pdf}}
-
-\todo{
-Connection with Kazhdan-Lusztig polys:
-\url{https://www.ams.org/journals/ert/2019-23-05/S1088-4165-2019-00524-4/
-}}
-
-\todo{Type B: \url{https://arxiv.org/pdf/1701.07497.pdf}}
-
-
 LLT polynomials were originally introduced by \name{Alain Lascoux}, \name{Bernard Leclerc} and \name[J.Y. Thibon]{Jean-Yves Thibon} in \cite{Lascoux97ribbontableaux}.
 It is a large family of symmetric functions, and can be seen as a $q$-deformation of products of \hyperref[schurSkew]{skew Schur functions}.
 This family contains the usual Schur polynomials, the skew Schur functions
@@ -60,10 +45,20 @@ The original motivation for LLT polynomials was to study certain \hyperref[pleth
 and a relationship with the \hyperref[fockSpace]{Fock space} representation of the quantum affine algebra $U_q(\widehat{\mathfrak{sl}_n})$.
 There are generalizations to other types, for example by \name{Cédric Lecouvey} \cite{Lecouvey2009},
 and by \name{Ian Grojnowski} and \name{Mark Haiman} \cite{GrojnowskiHaiman2006}.
+For an accessible entry point to the affine-Hecke and ribbon-tableau side of
+the subject, see \name{Thomas Lam}'s work on ribbon tableaux and affine
+Stanley symmetric functions \cite{Lam2005,Lam2006}, as well as
+\href{https://www.aimath.org/WWN/kostka/lam.pdf}{Lam's AIM notes}.
 
 The original definition expresses the LLT polynomials (called \defin{spin LLT polynomials})
 as a sum over so called \hyperref[borderStripTableauxDefinition]{ribbon tableaux}, weighted with a \emph{spin} statistic.
 The authors originally named them \defin{ribbon Schur functions}, but they are now referred to as LLT polynomials.
+\name{Ezgi Kantarc{\i} O{\u{g}}uz} gives a type-$B$ analogue in terms of
+shifted $k$-ribbon tableaux \cite{Oguz2020}.  The paper constructs a
+bijection from shifted $k$-ribbon fillings to ordinary fillings of a
+$\lfloor k/2\rfloor$-tuple of shapes, called the $k$-quotient, and proves
+that the associated generating functions are symmetric, Schur-positive, and
+Schur $Q$-positive.
 A supersymmetric version of LLT polynomials, (akin to \hyperref[hookSchur]{supersymmetric Schur functions}) has 
 also been considered, see e.g., \cite{CurranFrechetteYostWolffZhangZhang2021x} for a \hyperref[latticeModel]{lattice model} generating 
 such \defin{supersymmetric LLT polynomials}.
@@ -76,8 +71,9 @@ lattice-path partition functions \cite{Keating2025LLTx}.  The result gives a
 path-model explanation for when different LLT data produce the same symmetric
 function.
 
-In \cite{LeclercThibon2000} it is proved that the coefficients in the Schur basis of spin LLT polynomials 
-are \emph{parabolic Kazhdan--Lusztig polynomials}.
+In \cite{LeclercThibon2000} it is proved that the coefficients in the Schur
+basis of spin LLT polynomials are \emph{parabolic}
+\hyperref[kazhdanLusztigPolynomials]{Kazhdan--Lusztig polynomials}.
 For the connection with Kazhdan--Lusztig polynomials and the more representation-theoretical
 connection, see \cite{LaniniRam2019}.
 
@@ -276,7 +272,11 @@ This generalizes an earlier result by \name{Per Alexandersson} and \name{Joakim 
 \name{Foster Tom} also proves that a horizontal-strip LLT polynomial is
 determined by its weighted graph \cite{Tom2023}.
 
-\todo{Expand this section a bit.}
+\todo{Later examples pass: add a worked LLT example from a tuple of two or
+three ribbons or skew shapes, compute the inversion statistic and the resulting
+polynomial, and include the weighted graph/unit-interval graph picture when
+applicable.  Verify the polynomial and Schur expansion with Rust
+symmetric-function code.}
 
 
 

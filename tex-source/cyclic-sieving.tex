@@ -2,11 +2,6 @@
 \metadescription{Index over topics concerning the cyclic sieving phenomenon.}
 
 
-
-\todo{
-Mention \cite[Sec. 2.5]{BessisReiner2011}, where a \emph{non-faithful action} is described
-}
-
 \section[cyclicSieving]{The cyclic sieving phenomenon}
 
 See below for the \hyperref[cspDefinition]{definition of the cyclic sieving phenomenon}, (CSP).
@@ -36,6 +31,10 @@ Then the triple $(X,\grpc_n,f(q))$ is said to \emph{exhibit the cyclic sieving p
 In words, $f(q)$ evaluated at certain roots of unity gives the number of elements in $X$ fixed by powers of $g$.
 Note that $f(1) = |X|$, so in many instances, $f(q)$
 is a \hyperref[qAnalogs]{$q$-analog}(or $q$-enumeration) of the set $X$.
+The cyclic action need not be faithful.  If $\grpc_h$ acts with a kernel of
+order $d$, then the CSP is equivalent to the faithful quotient action of
+$\grpc_{h/d}$ together with a polynomial $f'(q)$ satisfying
+$f(q)=f'(q^d)$; see \cite[Sec.~2.5]{BessisReiner2011}.
 
 \name[Geng-Rui Zhang]{Geng-Rui Zhang} studies realizable and almost realizable
 integer sequences, where $a_n$ counts periodic points of period dividing $n$
@@ -272,8 +271,6 @@ as it should in principle behave as a type of cyclic shift on words.
 
 \section[lyndonCSPII]{q-Gauß congruences}
 
-\todo{Add the CSP-phenomena that appear in Gorodetsky2019}
-
 In \cite{Gorodetsky2019}, \name{Ofir Gorodetsky} introduces the notion of $q$-Gauß congruences.
 A sequence of polynomials $\{ a_n(q) \}_{n=1}^\infty$ is said to 
 satisfy \defin{$q$-Gauß congruences} if for every $n \in \setP$, we have 
@@ -283,6 +280,12 @@ satisfy \defin{$q$-Gauß congruences} if for every $n \in \setP$, we have
 It can be verified that this condition on the family is equivalent with being \hyperref[lyndonCSP]{Lyndon-like},
 that is $a_{n/m}(1) = a_n(\xi)$ where $\xi$ is an $n$th root of unity with order $m$,
 see \cite[Cor. 2.5]{Gorodetsky2019}.
+\name{Ofir Gorodetsky} also uses this criterion to prove cyclic sieving
+phenomena for rotation on two word families \cite[Thm.~1.2]{Gorodetsky2019}.
+The first family consists of words on $\{0,1,2\}$ with prescribed difference
+between the numbers of $0$'s and $2$'s.  The second consists of binary words
+with a prescribed number of $1$'s and no adjacent $1$'s cyclically; the
+sieving polynomial is a refinement of the $q$-Lucas numbers.
 
 
 

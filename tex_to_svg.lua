@@ -200,15 +200,22 @@ local function pdf_page_to_svg(pdf_path, page_num, output_path)
     page_num, temp_svg, pdf_path
   )
   
-  if not exec(cmd) then
-    return false
+  if exec(cmd) and file_exists(temp_svg) then
+    return exec("mv " .. temp_svg .. " " .. output_path)
   end
   
-  if not file_exists(temp_svg) then
-    return false
+  -- Some lightweight containers have poppler but not dvisvgm.  The fallback
+  -- keeps TikZ-sourced SVG assets reproducible in that environment.
+  cmd = string.format(
+    "pdftocairo -svg -f %d -l %d %s %s > /dev/null 2>&1",
+    page_num, page_num, pdf_path, temp_svg
+  )
+
+  if exec(cmd) and file_exists(temp_svg) then
+    return exec("mv " .. temp_svg .. " " .. output_path)
   end
-  
-  return exec("mv " .. temp_svg .. " " .. output_path)
+
+  return false
 end
 
 --- Get all expected output SVG paths for a TeX file.

@@ -24,10 +24,11 @@ Definitions and formulas, the Murnaghan--Nakayama rule and Hamel--Goulden formul
 - PositiveIn schurS -> hallLittlewoodP; from polynomialData.m, tikzdataPositivity.txt.
 }
 
-Schur functions were first studied by \name{Augustin-Louis Cauchy} in \cite{Cauchy1815},
+\defin{Schur functions} were first studied by \name{Augustin-Louis Cauchy} in \cite{Cauchy1815},
 where he defined the Schur functions as a ratio of alternants, and proving that these are symmetric.
-Later, \name{Carl Jacobi} \cite{Jacobi1841} gave the definition of Schur polynomials via Cauchy's bialternant formula
-and proved the Jacobi--Trudi identity.
+Later, \name{Carl Jacobi} \cite{Jacobi1841} gave the definition of Schur
+polynomials via \hyperref[schurWeylformula]{Cauchy's bialternant formula}
+and proved the \hyperref[schurJacobiTrudi]{Jacobi--Trudi identity}.
 The main application of Schur polynomials
 in \hyperref[frobeniusCharacteristic]{representation theory}
 of the symmetric group and $\GL_n$ came much later when \name{Issai Schur} studied
@@ -130,8 +131,10 @@ The first few monomials arise from the semi-standard Young tableaux below.
 \end{example}
 
 
-\hyperref[gtpatternsTokuyama]{Tokuyama} provides an interpolation between the Weyl character formula,
-and the SSYT definition of Schur functions, by using Gelfand--Tsetlin patterns.
+\hyperref[gtpatternsTokuyama]{Tokuyama} provides an interpolation between
+the \hyperref[schurWeylformula]{Weyl character formula},
+and the \hyperref[schurCombinatorialFormula]{SSYT definition of Schur functions},
+by using Gelfand--Tsetlin patterns.
 
 
 \subsection[schurSpecializations]{Specializations}
@@ -192,6 +195,33 @@ particle systems via Schur generating functions and identify different
 fluctuation regimes for the domino height function.
 
 
+\subsection[ellipticSchur]{Elliptic Schur functions}
+
+\begin{polydata}{ellipticSchur}
+  Name     & Elliptic Schur functions \\
+  Space    & Other \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Schlosser2007EllipticPaths \\
+  Year     & 2007 \\
+  Symbol   & $s^{\mathrm{ell}}_\lambda(\xvec)$ \\
+  Category & Schur \\
+\end{polydata}
+
+\defin{Elliptic Schur functions} are elliptic analogues of Schur functions
+obtained by replacing the ordinary lattice-path or tableau weights by
+theta-function weights.  \name{Michael Schlosser} gives such a construction
+from elliptically weighted non-intersecting lattice paths
+\cite{Schlosser2007EllipticPaths}.  The resulting functions have a closed
+product formula under principal specialization, but they are not known to be
+orthogonal with respect to a natural elliptic scalar product.
+
+\name{Kohei Motegi} derives a Cauchy formula for elliptic Schur functions from
+scalar products in the elliptic Felderhof model \cite{Motegi2018Elliptic}.
+This places elliptic Schur functions closer to elliptic hypergeometric and
+integrable-model constructions than to the ordinary bases of $\spaceSym$.
+
+
 \subsection[schurHallInnerProduct]{Hall inner product}
 
 The Schur functions form an orthonormal basis under the \hyperref[hallInnerProduct]{Hall inner product}.
@@ -220,7 +250,7 @@ as a determinant of \hyperref[completeH]{complete homogeneous symmetric function
  \schurS_\lambda(\xvec) = \det[ \completeH_{\lambda_i + j - i}(\xvec) ]_{1\leq i,j \leq n}
 \end{equation*} 
 By applying the $\omega$-involution, we recover the dual Jacobi--Trudi identity,
-also known as the \defin{Nägelsbach--Kostka} identity:
+also known as the \defin{Nägelsbach--Kostka identity}:
 \begin{equation*}
  \schurS_{\lambda'}(\xvec) = \det[ \elementaryE_{\lambda_i + j - i}(\xvec) ]_{1\leq i,j \leq n}
 \end{equation*} 
@@ -230,7 +260,7 @@ also known as the \defin{Nägelsbach--Kostka} identity:
 families of Jacobi--Trudi and skew Jacobi--Trudi determinants, including
 arithmetic-progression shapes and ribbon skew shapes.
 \name{Tao Gui} and \name{Arthur L. B. Yang} give a proof of the classical
-Jacobi--Trudi identities for skew Schur polynomials from the BGG category
+\hyperref[skewJacobiTrudi]{Jacobi--Trudi identities for skew Schur polynomials} from the BGG category
 $\mathcal{O}$ and the Weyl character formula \cite{GuiYang2022x}.  They also
 interpret Schur coefficients of certain Jacobi--Trudi truncations as tensor
 product multiplicities in category $\mathcal{O}$.
@@ -263,8 +293,9 @@ In other words, it expresses an arbitrary Schur function as a determinant of Sch
 indexed by hook shapes.
 A combinatorial proof of this formula can be found in \cite{EgeciogluRemmel1988}.
 
-A similar result expressing Schur functions as determinants of skew Schur functions indexed by border strips,
-is proved in \cite{LascouxPragacz1988}. 
+A similar result expressing Schur functions as determinants of
+\hyperref[schurSkew]{skew Schur functions} indexed by border strips,
+is proved in \cite{LascouxPragacz1988}.
 This is later generalized in the \hyperref[schurStripDecompFormula]{Hamel--Goulden identities}.
 
 
@@ -348,8 +379,22 @@ where the sum is over all partitions with at most $m$ parts.
 See also \cite{BeteaWheeler2016}, where refined Cauchy and Littlewood
 identities are proved and related to plane partitions and symmetry classes of
 alternating sign matrices.
-Another generalization is given in \cite{Bedratyuk2022x}.
-\todo{Add the explicit formula in Bedratyuk2022x}
+Another generalization is given by \name{Leonid Bedratyuk}
+\cite{Bedratyuk2022x}.  Let $f_0,f_1,\dotsc$ be a family of polynomials in
+$\yvec$, set $f_r=0$ for $r\lt 0$, and write
+\[
+  F(\yvec,z)\coloneqq \sum_{r\geq 0} f_r z^r.
+\]
+Then
+\[
+  \sum_{\lambda}
+  \schurS_\lambda(\xvec)\det\left[f_{\lambda_i-i+j}\right]_{i,j=1}^n
+  =
+  \prod_{i=1}^n F(\yvec,x_i),
+\]
+where the sum is over partitions $\lambda$ with at most $n$ parts.  Taking
+$f_r=\completeH_r(\yvec)$ recovers the ordinary Cauchy identity by the
+Jacobi--Trudi identity, and the paper also proves bounded variants.
 
 \name{A. Mironov} and \name{A. Morozov} study averaging procedures for Cauchy
 identities in symmetric functions \cite{MironovMorozov2023}.  Their approach
@@ -491,9 +536,6 @@ is given by \hyperref[schubertMonksRule]{Monks rule}.
 
 \subsection[schurKroneckerCoefficients]{Kronecker Coefficients}
 
-
-\todo{Add https://arxiv.org/pdf/1209.2018.pdf }
-
 The \defin{Kronecker coefficients} $g_{\lambda\mu\nu}$ can be defined via the relation
 \[
 \prod_{i,j,k} \frac{1}{1-x_i y_j z_k} = 
@@ -505,6 +547,13 @@ see \cite[pp.68--69]{Schur1901}.
 g_{\lambda\mu\nu} =\frac{1}{n!} 
 \sum_{\sigma \in \symS_n} \chi^{\lambda}(\sigma)\chi^{\mu}(\sigma)\chi^{\nu}(\sigma).
 \]
+
+\name{Jonah Blasiak} gives a positive combinatorial formula for the hook-shape
+case \cite{Blasiak2012x}.  If $\mu(d)=(n-d,1^d)$, then
+$g_{\lambda,\mu(d),\nu}$ counts colored Yamanouchi tableaux of content
+$\lambda$, total color $d$, and shape $\nu$ whose southwest corner is
+unbarred.  The construction uses \name{Mark Haiman}'s mixed insertion for
+colored words.
 
 
 They show up as multiplicities in tensor products of irreducible $\symS_n$-modules, and 
@@ -602,7 +651,7 @@ $S^{\nu}$ appears in the tensor product $S^\rho \otimes S^\rho \otimes S^\rho$.
 \end{polydata}
 
 
-The skew Schur polynomials are defined via the property 
+The \defin{skew Schur polynomials} are defined via the property
 \[
  \langle \schurS_\mu  \schurS_\nu, \schurS_{\lambda} \rangle = \langle \schurS_{\lambda/\mu}, \schurS_\nu \rangle.
 \]
@@ -611,7 +660,8 @@ This map has an adjoint under the \hyperref[hallInnerProduct]{Hall inner product
 The adjoint, which is called \defin{skewing by $\mu$}
 produces $\schurS_{\lambda/\mu}$ when acting on $\schurS_{\lambda}$.
 
-In other words, the skew Schur functions may be defined via the Littlewood--Richardson coefficients:
+In other words, the skew Schur functions may be defined via the
+\hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients}:
 \[
 \schurS_\mu  \schurS_\nu = \sum_{\lambda} c^{\lambda}_{\mu \nu} \schurS_\lambda
 \qquad \iff \qquad
@@ -694,24 +744,39 @@ of skew shape $\lambda/\mu$ and weight $\nu$.
 
 \subsection[schurStripDecompFormula]{Hamel--Goulden identities}
 
-\todo{hamel-goulden: add definitions}
-
-In \cite{HamelGoulden1995}, \name{Angèle Hamel} and \name{Ian Goulden} describes a
+In \cite{HamelGoulden1995}, \name{Angèle Hamel} and \name{Ian Goulden} describe a
 uniform framework, unifying the Jacobi--Trudi identities, the Giambelli formula and
 the result by \name{Alain Lascoux} and \name{Piotr Pragacz} \cite{LascouxPragacz1988}.
 
-Given any \emph{outside decomposition} $(\theta_1,\dotsc,\theta_m)$ of $\lambda/\mu$,
+An \defin{outside decomposition} of a skew diagram $\lambda/\mu$ is a
+decomposition into border strips, each of which starts on the left or lower
+boundary of $\lambda/\mu$ and ends on the upper or right boundary.  Such a
+decomposition determines a common \defin{cutting strip}: after translating the
+border strips so that cells of equal content lie on the same diagonal, each
+border strip appears as a segment of this cutting strip.
+
+Given an outside decomposition $(\theta_1,\dotsc,\theta_m)$ of $\lambda/\mu$,
+let $\theta_i\#\theta_j$ denote the segment of the cutting strip that starts on
+the initial diagonal of $\theta_i$ and ends on the terminal diagonal of
+$\theta_j$, with the usual empty and zero conventions from
+\cite{HamelGoulden1995}.  Then
 one has
 \[
 \schurS_{\lambda/\mu}(\xvec) = \det\left[ \schurS_{\theta_i \# \theta_j}(\xvec) \right]_{1\leq i,j \leq m}.
 \]
-See the reference \cite{HamelGoulden1995} for exact definitions and notation.
+See \cite{HamelGoulden1995} for the full notation and conventions.
 
+\todo{Add detailed Hamel--Goulden examples.  In particular, include an
+outside decomposition, the associated cutting strip, and the resulting
+determinant.  Do not hand-draw TikZ diagrams unless they have been checked
+against the paper or generated from a reliable diagram routine.}
 
-\todo{
-There is a determinant formula for skew Schur functions, (Goulden + ?)
-https://link.springer.com/content/pdf/10.1007/s10801-005-3018-9.pdf
-}
+\name{William Y. C. Chen}, \name{Guo-Guang Yan}, and
+\name{Arthur L. B. Yang} study the cutting strips associated with outside
+decompositions and prove transformation identities between the resulting
+Hamel--Goulden determinants \cite{ChenYanYang2005}.  Their twist
+transformations include the Lascoux--Pragacz transformation between the
+Giambelli determinant and the rim-ribbon determinant as a special case.
 
 
 \subsection[skewSchurGesselExpansion]{Fundamental quasi-symmetric expansion}
@@ -798,6 +863,10 @@ Prove that $\kappa( X_{\lambda^1}, \dotsc, X_{\lambda^k} )$ is Schur-positive.
 
 There is a generalization of this to \hyperref[macdonaldHCumulants]{modified Macdonald polynomials}.
 
-
-
-\todo{Schur polys, cut-and-join and symplectic filed theory. https://people.sissa.it/~dubrovin/Papers/2015/Dubrovin_2015.pdf}
+\name{Boris Dubrovin} relates Schur polynomials to the quantization of the
+Hopf hierarchy and to symplectic field theory of a disk
+\href{https://people.sissa.it/~dubrovin/Papers/2015/Dubrovin_2015.pdf}{in
+this paper}.  In this setting the first nontrivial Hamiltonian is the
+cut-and-join operator, and Schur polynomials form a common eigenbasis for the
+commuting quantum Hamiltonians.  The total SFT potential of a disk is then
+expanded explicitly in the Schur basis.

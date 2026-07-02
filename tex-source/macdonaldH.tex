@@ -29,17 +29,6 @@ equivalence, give a positive monomial expansion for the divided difference,
 and prove Butler's Schur-positivity conjecture in several special cases.
 
 
-\todo{
-http://www.sciencedirect.com/science/article/pii/0012365X94001345
-}
-
-\todo{
-This paper defines an interpolation between J and H, and also a "better" formula for the monomial expansion.
-https://arxiv.org/pdf/1810.12905.pdf
-}
-
-
-
 The modified (or transformed) Macdonald polynomials $\macdonaldH_{\lambda}(\xvec;q,t)$ appear as a combinatorial 
 version of the \hyperref[macdonaldP]{Macdonald $P$ polynomials}.
 The family is indexed by partitions $\lambda$ and they are symmetric in $\xvec$.
@@ -51,6 +40,13 @@ For details on this story, see \href{https://www.jpswanson.org/notes/n_factorial
 A combinatorial formula for the modified Macdonald polynomials was proved in \cite{HaglundHaimanLoehr2005},
 where the connection with \hyperref[LLT]{LLT polynomials} gives an LLT-positive expansion.
 The canonical reference on modified Macdonald polynomials is the book by \name{Jim Haglund}, \cite{qtCatalanBook}.
+\name{Alexandr Garbali} and \name{Michael Wheeler} construct a two-alphabet
+family $W_\lambda(x;q,t;z)$ using integrable lattice models
+\cite{GarbaliWheeler2020}.  Under specializations this family reduces to the
+integral form $\macdonaldJ_\lambda$, to modified Macdonald polynomials, and
+to dual counterparts; the same lattice construction gives manifestly positive
+monomial formulas for $\macdonaldH_\lambda$, with symmetry following from
+the Yang--Baxter equation.
 \name{Jonah Blasiak}, \name{Mark Haiman}, \name{Jennifer Morse},
 \name{Anna Pun}, and \name{George Seelinger} give an explicit
 raising-operator formula for the modified Macdonald polynomials
@@ -59,6 +55,11 @@ from a formula for $\nabla$ on LLT polynomials together with the
 Haglund--Haiman--Loehr expansion.  The same method produces
 $1,n$-Macdonald polynomials, conjecturally Schur-positive with coefficients in
 $\setN[q,t]$.
+\name{Adriano M. Garsia} and \name{Mark D. Haiman} factor the
+Stanley--Macdonald Pieri rules by embedding Macdonald polynomials into
+polynomials indexed by lattice square diagrams \cite{GarsiaHaiman1995Pieri}.
+The resulting recursions give partial results for the Macdonald--Kostka
+coefficients, including special cases for two-row shapes.
 It is a major open problem in algebraic combinatorics to give a combinatorial 
 proof (\hyperref[schurPositivity]{by using RSK, dual equivalence or crystals})
 that the $\macdonaldH_{\lambda}(\xvec;q,t)$ are Schur-positive.
@@ -100,13 +101,39 @@ A combinatorial formula for the modified Macdonald
 polynomials was obtained in \cite{HaglundHaimanLoehr2005}. 
 It is given by
 \[
-\macdonaldH_{\lambda}(\xvec;q,t) = \sum_{T:\lambda \to \setN} q^{\inv_\lambda(T)} t^{\maj_\lambda(T)} \xvec^T,
+\macdonaldH_{\lambda}(\xvec;q,t) = \sum_{T:\lambda \to \setP} q^{\inv_\lambda(T)} t^{\maj_\lambda(T)} \xvec^T,
 \]
 where $\inv_\lambda(T)$ and $\maj_\lambda(T)$ are certain combinatorial statistics.
 
 I highly recommend reading \href{https://www.emis.de/journals/SLC/wpapers/s54Ahaglund.pdf}{The genesis of the Macdonald polynomial statistic} by \name{Jim Haglund}.
 
-\todo{Describe the macdonald statistics.}
+We recall the statistics in the Haglund--Haiman--Loehr convention.  Draw
+$\lambda$ in French notation and let $T$ be a positive-integer filling of its
+cells.  A \defin{descent} is a vertical adjacent pair with the upper entry
+larger than the lower entry; the upper cell is recorded in
+$\mathrm{Des}(T)$.  The \defin{major index} is
+\[
+  \maj_\lambda(T)
+  =
+  \sum_{u\in \mathrm{Des}(T)}(\leg(u)+1),
+\]
+where $\leg(u)$ is the number of cells strictly above $u$ in its column.
+
+Two cells are \defin{attacking} if they are in the same row, or if they are in
+adjacent rows and the cell in the upper row is strictly to the right of the
+cell in the lower row.  Reading cells row by row from top to bottom and left
+to right, let $\mathrm{Inv}(T)$ be the set of attacking pairs whose earlier
+entry is larger than the later entry.  Then
+\[
+  \inv_\lambda(T)
+  =
+  |\mathrm{Inv}(T)|
+  -
+  \sum_{u\in \mathrm{Des}(T)}\arm(u),
+\]
+where $\arm(u)$ is the number of cells strictly to the right of $u$ in its
+row.  This subtraction is nonnegative; equivalently, it counts certain
+inversion triples together with the row inversions in the bottom row.
 
 
 \begin{example*}[Macdonald polynomials for $|\lambda|=4$.]
@@ -298,6 +325,6 @@ generalizing the Schur positivity of the modified Macdonald polynomials.
 
 In \cite{BergeronZabrocki2005}, the authors introduce a non-commutative family of symmetric functions
 with properties similar to those of the modified Macdonald polynomials.
-
-\todo{cite preprint properly.}
-There is also an analog defined in \href{https://www.newton.ac.uk/files/preprints/ni01035.pdf}{this preprint}.
+Their construction gives $q$- and $(q,t)$-analogues of noncommutative
+symmetric functions, with triangularity and specialization properties
+parallel to the commutative Hall--Littlewood and Macdonald settings.

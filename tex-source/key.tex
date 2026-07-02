@@ -440,11 +440,19 @@ It amounts to prove that interchanging two adjacent rows (including the basement
 an augmented diagram in such a way that a longer row is moved upwards,
 preserves the weighted sum of SSAF's with corresponding shape and basement.
 
+\todo{Later examples pass: add a small nonpartition composition example showing
+the SSAF/permuted-basement model and the right-key tableau model producing the
+same key polynomial.  Generate or verify the fillings, weights, and polynomial
+with the Rust tableau/polynomial code.}
 
 
-\todo{
-Reference Proctor's papers, and Postnikov-Stanley paper.
-}
+
+For classical background on tableaux, Gelfand--Tsetlin patterns, and branching
+rules around key-tableau combinatorics, see \cite{Proctor1994}.  The
+Bruhat-order side of the divided-difference formulas and the standard
+elementary monomials below is closely related to the chain constructions of
+\name{Alexander Postnikov} and \name{Richard P. Stanley}
+\cite{PostnikovStanley2008}.
 
 
 \subsection[keyDefinitionSSYT]{Definition (SSYT)}
@@ -576,6 +584,11 @@ polynomials, and prove a related log-concavity result using Demazure crystals.
 
 A Pieri rule for key polynomials is described via 
 an \hyperref[rsk]{Robinson--Schensted--Knuth}-type algorithm is given by \name{Sami Assaf} and \name{Danjoseph Quijada} in \cite{AssafQuijada2019x}.
+Their rule expands the product of an arbitrary key polynomial with a
+single-part key polynomial in the key basis.  Unlike general key products,
+this Pieri case admits a cancellation-free, multiplicity-free formula.  The
+proof replaces ordinary row insertion with an insertion algorithm on
+\hyperref[kohnert]{Kohnert diagrams}.
 
 \name{Noah Cape} and \name{Shaul Zemel} study generating series of key
 polynomials in a modified Demazure algebra \cite{CapeZemel2024x}.  For a
@@ -586,12 +599,19 @@ sequences determined by the first values of $w$ \cite[Thm.~3.9]{CapeZemel2024x}.
 The numerator has structured quadratic terms governed by multisets with
 multiple presentations as sums of such bounded sequences.
 
-
-\todo{Write more about key polynomial pieri rule.}
-
-\todo{Add skew key family}
-
 \subsection[keySkew]{Skew key polynomials}
+
+\begin{polydata}{keySkew}
+  Name       & Skew key polynomials \\
+  Space      & All \\
+  Basis      & False \\
+  Rating     & 2 \\
+  Bib        & AssafvanWilligenburg2019 \\
+  Year       & 2019 \\
+  Category   & Schur \\
+  Contains   & key | AssafvanWilligenburg2019 | scope=ordinary shapes \\
+  PositiveIn & key | AssafvanWilligenburg2019 | proof=generalized Littlewood--Richardson rule \\
+\end{polydata}
 
 In \cite{AssafvanWilligenburg2019}, the authors introduce skew key polynomials,
 and show that these are positive in the key basis. They use weak \hyperref[schurPositivityDualEquivalence]{dual equivalence} 

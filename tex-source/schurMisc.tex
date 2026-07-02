@@ -18,28 +18,13 @@
 \end{polydata}
 
 
-\todo{
-Combinatorial def: https://pdfs.semanticscholar.org/f1e7/d5a08b9ff7745473403237f170795f1b32e2.pdf 
-}
-\todo{http://de.arxiv.org/pdf/1804.08495.pdf}
-
-
-\todo{
-Orthosymplectic pieri rule
-https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=22&ved=2ahUKEwjJ1-28vtvdAhWkiaYKHd7pDks4FBAWMAF6BAgIEAI&url=http%3A%2F%2Fwww.combinatorics.org%2Fojs%2Findex.php%2Feljc%2Farticle%2Fdownload%2Fv25i3p37%2Fpdf&usg=AOvVaw2KLWUbv88cUcV-wRPc4FQI
-}
-
-
-\todo{
-Operator and Giambelli formulas
-http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.11.6964&rep=rep1&type=pdf
-}
-
-
 The \emph{even symplectic Schur polynomials} were explicitly described combinatorially in \cite{King1976},
 and are characters for the lie group $Sp(2n)$. See also \cite{Krattenthaler1998} for a good reference.
 \name{Robert Proctor} gives Young-tableau and Gelfand-pattern models, together
 with branching rules, for characters of the classical groups \cite{Proctor1994}.
+\name{Markus Fulmek} and \name{Christian Krattenthaler} give nonintersecting
+lattice-path proofs of Jacobi--Trudi and Giambelli-type identities for
+symplectic and orthogonal characters \cite{FulmekKrattenthaler1997}.
 \name{Peter S. Campbell} and \name{Anna Stokke} prove hook-content formulae
 for symplectic and orthogonal tableaux \cite{CampbellStokke2012}.  These
 formulae give product evaluations for the corresponding tableau generating
@@ -135,6 +120,17 @@ coefficients coming from Weyl group actions.
 orthosymplectic analogues of the Cauchy and dual Cauchy identities
 \cite{PatelPatelStokke2022}.  Their proofs are bijective and use insertion
 algorithms modeled on \name{Allan Berele}'s symplectic insertion.
+
+\name{Anna Stokke} gives a Pieri rule for multiplying an orthosymplectic
+character by an orthosymplectic character indexed by a one-row partition
+\cite{Stokke2018}.  The resulting product rule agrees with
+\name{Sheila Sundaram}'s Pieri rule for symplectic characters.
+
+\name{Dan Betea} studies symplectic and orthogonal analogues of
+\name{Andrei Okounkov}'s Schur measure \cite{Betea2018x}.  He proves that
+these measures have determinantal correlation functions with double-contour
+kernels, and relates them to Toeplitz-plus-Hankel determinants and asymptotic
+edge kernels.
 
 
 
@@ -323,12 +319,12 @@ Let $SO(\lambda/\mu)$ denote the set of such tableaux.
 
 We then define the \defin{even orthogonal Schur polynomials} (using the definition in \cite{Hamel1997}) as
 \[
-\schurSp_{\lambda/\mu}(\xvec) = \sum_{T \in SO(\lambda/\mu)} \xvec^{T},
+\schurOr_{\lambda/\mu}(\xvec) = \sum_{T \in SO(\lambda/\mu)} \xvec^{T},
 \]
 where entries $i$ in $T$ contribute with $x_i$ and entries $\overline{j}$ contributes with $x_j^{-1}$.
 The $\infty$-elements do not contribute.
 
-We note that $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$, where $\omega$ is the standard involution on the symmetric group.
+We note that $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$, where $\omega$ is the standard involution on symmetric functions.
 
 
 \subsection[schurOrthogonalJacobiTrudy]{Jacobi--Trudi}
@@ -348,7 +344,9 @@ Note that the functions in the right hand side are also evaluated in
 the alphabet $\xvec = (x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})$.
 
 
-There are more general identities, analogous to the Hamel--Goulden identities, see \cite{Hamel1997}.
+There are more general identities, analogous to the
+\hyperref[schurStripDecompFormula]{Hamel--Goulden identities}, see
+\cite{Hamel1997}.
 
 
 
@@ -362,7 +360,10 @@ where the sum is over all partitions $\mu$ where the rows are even.
 \end{theorem}
 
 
-\todo{Add https://core.ac.uk/download/pdf/157582001.pdf this has a great intro and correct formulas}
+\name{Naihuan Jing}, \name{Zhijun Li}, and \name{Danxia Wang} give a modern
+vertex-operator treatment of skew symplectic and orthogonal Schur functions
+\cite{JingLiWang2024}.  Their formulas include Jacobi--Trudi identities,
+Gelfand--Tsetlin-pattern models, branching rules, and Cauchy-type identities.
 % 
 % \subsection[schurOrthogonalBialternant]{Bialternant formula}
 % 
@@ -419,13 +420,26 @@ including the empty partition.
 - Misc schurP -> schurQ; from polynomialData.m, tikzdataRelations.txt.
 }
 
-\todo{ add this http://math.sfsu.edu/federico/Articles/staircaseschur.pdf }
-\todo{ Add this rule: \url{https://mathoverflow.net/questions/337891/pieri-type-rule-for-schur-p-functions} }
-
 Schur's $P$ functions were introduced by \name{Issai Schur} in \cite{Schur1911},
 to study projective representations of the symmetric and alternating groups.
 Schur's $P$ functions $\schurP_\lambda(\xvec)$ are indexed by partitions with \emph{distinct parts} and are given 
 as the specialization of the \hyperref[hallLittlewoodP]{Hall--Littlewood $P$ functions} at $t=-1$.
+\name{Federico Ardila} and \name{Luis G. Serrano} prove Stanley's conjecture
+that, for the staircase shape $\delta_n$, every skew Schur function
+$\schurS_{\delta_n/\mu}$ expands nonnegatively in Schur's $P$ functions
+\cite{ArdilaSerrano2012}.  Their coefficients count fillings of shifted
+shapes; the special case $\schurS_{\delta_n/\delta_{n-2}}$ is related to
+Eulerian numbers and alternating permutations.
+\name{Matthew Fayers} proves a Pieri-type rule for Schur's $P$ functions in
+\cite[Prop.~3.6]{Fayers2020}.  For the reduction operators
+$\partial_{(a)}$ and $\partial_{(1^a)}$, one has
+\[
+\partial_{(a)}\schurP_\lambda=\partial_{(1^a)}\schurP_\lambda
+=\sum_\mu Hs_{\lambda/\mu}\schurP_\mu,
+\]
+where $Hs_{\lambda/\mu}=2^N$ if $\lambda/\mu$ is a horizontal strip and $N$
+counts columns $c+1$ containing a box of $\lambda/\mu$ such that column $c$
+contains none; otherwise $Hs_{\lambda/\mu}=0$.
 
 
 \subsection[schursPPfaffian]{Pfaffian formula}
@@ -479,9 +493,12 @@ For $\lambda=9531$ we have the shifted diagram with an element in $ShSSYT(\lambd
 \]
 where $\xvec^T$ is the product over all entries in $T$ and $i$ and $i'$ both contribute with $x_i$.
 
-\todo{
-For other Lie types, see http://igm.univ-mlv.fr/~fpsac/FPSAC07/SITE07/PDF-Proceedings/Posters/75.pdf 
-}
+\name{Ronald C. King} and \name{A. M. Hamel} study Hall--Littlewood
+polynomials $P_\lambda(x;t)$ attached to arbitrary simple Lie algebras at
+$t=-1$ \cite{KingHamel2007}.  In type $A$, the case of partitions with
+distinct parts recovers Schur's $P$ functions.  For type $C$, they give
+analogous $Q$-functions using primed symplectic shifted tableaux, together
+with Weyl-group symmetry and lattice-path determinant interpretations.
 
 An alternative combinatorial model uses semi-standard decomposition tableaux, introduced in \cite{Serrano2010}.
 See \cite{Cho2012} for additional results.
@@ -672,18 +689,32 @@ where the sum is over all strict partitions.
 The bottom Schur functions were introduced by \name{Peter Clifford} and \name{Richard Stanley} in \cite{CliffordStanley2004}.
 
 Let the degree of the power-sum symmetric functions be $1$, so that $deg(\powerSum_i)=1$
-and $deg(\powerSum_\nu) = \length(\nu)$. The Murnaghan--Nakayama rule states that
+and $deg(\powerSum_\nu) = \length(\nu)$. The
+\hyperref[schurMurnaghanNakayama]{Murnaghan--Nakayama rule} states that
 \[
 \schurS_\lambda = \sum_{\mu} \frac{\chi^\lambda(\mu)}{z_\mu} \powerSum_\mu
 \]
 The \defin{bottom Schur function} $\hat{\schurS}_\lambda$ is defined as
 \[
-\schurS_\lambda = \sum_{\mu : \length(\mu)=\text{lowest}} \frac{\chi^\lambda(\mu)}{z_\mu} \powerSum_\mu,
+\hat{\schurS}_\lambda = \sum_{\mu : \length(\mu)=\text{lowest}} \frac{\chi^\lambda(\mu)}{z_\mu} \powerSum_\mu,
 \]
 where we only sum over partitions contributing to the lowest-degree part in the power-sum expansion.
 
-The bottom Schur functions can be expressed as the lowest-degree term in a Jacobi--Trudi type 
-determinant of power-sum symmetric functions.
+The bottom Schur functions can be expressed as the lowest-degree term in a
+\hyperref[schurJacobiTrudi]{Jacobi--Trudi} type determinant of power-sum
+symmetric functions.
+\name{Peter Clifford} and \name{Richard P. Stanley} prove this by deleting
+from the Jacobi--Trudi matrix every row and column containing a $1$, and then
+replacing each $\completeH_i$ by $\powerSum_i/i$ \cite[Sec.~3]{CliffordStanley2004}.
+They also prove that the span of the bottom Schur functions of degree $n$ has
+a basis indexed by partitions $\lambda \vdash n$ with
+$\length(\lambda)=\mathrm{rank}(\lambda)$ \cite[Thm.~4.3]{CliffordStanley2004}.
+Consequently its dimension is the number of partitions of $n$ into parts
+differing by at least $2$, equivalently by the Rogers--Ramanujan identity,
+into parts congruent to $\pm1$ modulo $5$.
+For a related variant of $\hat{\schurS}_\lambda$, they show that the same
+coefficients occur in the power-sum expansion and in the augmented monomial
+symmetric-function expansion \cite[Thm.~7.4]{CliffordStanley2004}.
 
 
 \begin{conjecture}[Alexandersson, 2019]
@@ -708,11 +739,6 @@ The sequence $a(n)$ is defined as follows:
 
 \end{conjecture}
 
-\todo{
-Bottom Schur functions: (not monomial positive, but has 'sort of' JT). \cite{CliffordStanley2004}
-}
-
-
 \section[schurLectureHall]{Lecture hall Schur functions}
 
 
@@ -726,18 +752,46 @@ Bottom Schur functions: (not monomial positive, but has 'sort of' JT). \cite{Cli
   Category & Schur \\
 \end{polydata}
 
-\todo{Write more about lecture hall Schur funcs}
-
-
 Introduced in \cite{CorteelKim2018}. The authors prove analogs of the Jacobi--Trudi identity and its dual.
-The lecture hall Schur functions are related to multivariate little $q$-Jacobi polynomials.
+Lecture hall tableaux generalize lecture hall partitions and anti-lecture
+hall compositions, and contain reverse \hyperref[prelimTableaux]{semistandard
+Young tableaux} as a
+limiting case.  Their generating functions appear as the Schur-expansion
+coefficients of multivariate little $q$-Jacobi polynomials, and the moments
+of these polynomials give product formulas for lecture hall tableaux of fixed
+\hyperref[prelimPartitions]{Young diagram} shape.
 \name{Sylvie Corteel} and \name[J. S. Kim]{Jang Soo Kim} enumerate bounded
 lecture hall tableaux \cite{CorteelKim2019x}.  Their formulas relate these
-tableaux to standard and semistandard Young tableaux, and identify the count
-with a coefficient in a Schur expansion of
+tableaux to \hyperref[prelimTableaux]{standard and semistandard Young
+tableaux}, and identify the count with a coefficient in a
+\hyperref[schurS]{Schur expansion} of
 $\schurS_\lambda(m+y_1,\dotsc,m+y_n)$.
 
-\todo{Later examples pass: add a small lecture hall tableau example and, if needed, write Rust code to generate/check bounded lecture hall tableaux.}
+A \defin{lecture hall tableau} of type $(n,\geq,>)$ and shape $\lambda/\mu$
+is a filling $T$ of the cells of $\lambda/\mu$ with nonnegative integers such
+that
+\[
+  \frac{T(i,j)}{n+j-i}
+  \geq
+  \frac{T(i,j+1)}{n+j+1-i}
+  \qquad\text{and}\qquad
+  \frac{T(i,j)}{n+j-i}
+  >
+  \frac{T(i+1,j)}{n+j-i-1}
+\]
+whenever the cells involved are present.
+
+\begin{example}
+For $n=3$ and $\lambda=(2,1)$, the filling
+\[
+\begin{ytableau}
+2 & 1\\
+1
+\end{ytableau}
+\]
+is a lecture hall tableau of type $(3,\geq,>)$.  Indeed,
+$2/3\geq 1/4$ along the first row, and $2/3>1/2$ in the first column.
+\end{example}
 
 For asymptotics of lecture hall tableaux, see \url{http://de.arxiv.org/pdf/1905.02881.pdf}.
 
@@ -769,14 +823,16 @@ This can be realized as a sum over $r$-tuples of semi-standard Young tableaux of
 entries from the alphabet $\xvec^{(i)}$.
 
 
-A Murnaghan--Nakayama rule is described in \cite{MendesRemmelWagner2004}.
+A \hyperref[schurMurnaghanNakayama]{Murnaghan--Nakayama rule} is described
+in \cite{MendesRemmelWagner2004}.
 \name{Rijubrata Kundu} and \name{Papi Ray} give a combinatorial relation
 between certain irreducible character values of $G\wr\symS_n$ and
 $\symS_{rn}$ when $G$ is abelian of order $r$ \cite{KunduRay2025x}.  This
 extends earlier character-value comparisons for the hyperoctahedral group and
 wreath products.
-
-\todo{
-See also 
-http://www.math.wm.edu/~vinroot/KostkaSeq.pdf
-}
+\name{James Janopaul-Naylor} and \name[C. Ryan Vinroot]{C.~Ryan Vinroot}
+study multipartition Kostka numbers $K_{[\lambda(j)]\mu}$, defined by
+sequences of semistandard Young tableaux of multipartition shape and total
+weight $\mu$ \cite{JanopaulNaylorVinroot2015x}.  These numbers occur as
+multiplicities in permutation representations of wreath products, and the
+paper characterizes when such a multiplicity is one.

@@ -59,6 +59,8 @@ $\hat{0}$ and $\hat{1}$ a quasisymmetric function $F_P$ encoding the flag
 $f$-vector, equivalently the flag $h$-vector \cite{Stanley1996FlagSymmetric}.
 When $F_P$ is symmetric, the poset is called flag-symmetric; for $q$-primary
 lattices, its Schur coefficients recover values of Kostka polynomials.
+The same paper also discusses connections with representations of the
+symmetric group and its Hecke algebra.
 \name{Joel B. Lewis} and \name{Eric Marberg} introduce enriched set-valued
 $P$-partitions \cite{LewisMarberg2021}.  As an application, they construct a
 $K$-theoretic analogue of Stembridge's Hopf algebra of peak quasisymmetric
@@ -88,6 +90,27 @@ we simply write $\pPartition_{P}(\xvec)$, as this function is then independent o
 See also \hyperref[enrichedPPartitions]{enriched P-partitions}, where peaks are used instead of descents.
 The analog of \hyperref[gessel]{fundamental quasisymmetric functions} are the 
 \hyperref[peakQSym]{peak quasisymmetric functions}.
+
+% Related Rust: /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/p_partition_site_example.rs
+\begin{example*}[A small $P$-partition]
+Let $P$ be the three-element poset with cover relations $1\lt_P 3$ and
+$2\lt_P 3$, with the natural labeling $w(i)=i$:
+\[
+\begin{array}{c}
+3\\[-2pt]
+/\quad\backslash\\[-2pt]
+1\quad 2
+\end{array}
+\]
+The two linear extensions are $123$ and $213$.  Their descent sets are
+$\emptyset$ and $\{1\}$, respectively.  Therefore the fundamental
+quasisymmetric expansion is
+\[
+\pPartition_P(\xvec)
+=\gessel_{3,\emptyset}(\xvec)+\gessel_{3,\{1\}}(\xvec)
+=\gessel_{(3)}(\xvec)+\gessel_{(1,2)}(\xvec).
+\]
+\end{example*}
 
 
 \begin{conjecture}[Stanley, \cite{Stanley1972}]
@@ -207,7 +230,14 @@ a non-negative linear combination of $\pPartition_P(x)$,
 it is necessarily positive in the \hyperref[powerSum]{powersum basis}.
 In hindsight, it is rather remarkable that this property was not discovered earlier.
 
-\todo{Link families.}
+Thus ordinary $P$-partition generating functions are one bridge between
+\hyperref[gessel]{fundamental-positive quasisymmetric functions} and
+\hyperref[qPsi]{quasisymmetric powersum positivity}.  The same definition has
+two useful nearby variants on this site: \hyperref[enrichedPPartitions]{enriched
+$P$-partitions}, where descents are replaced by peak data, and
+\hyperref[pPartitionsFlagged]{flagged $(P,w)$-partitions}, which refine the
+ordinary family and expand positively in the \hyperref[slideF]{fundamental
+slide basis}.
 
 
 \subsection[pPartitionMNrule]{Murnaghan--Nakayama rule}

@@ -25,29 +25,23 @@
 }
 
 
-\todo{Add this on Specializations
-http://de.arxiv.org/pdf/1811.11596.pdf
-}
-
-\todo{https://arxiv.org/pdf/1812.00321.pdf}
-
-
-
-
-
-\todo{
-When coeffs are 0 or 1. Permutation-patterns
-https://arxiv.org/pdf/1903.10332.pdf
-Also permutation patterns:
-https://arxiv.org/pdf/1705.02065.pdf
-Even more patterns:
-https://arxiv.org/pdf/1909.07206.pdf (this has a nice background - incorporate!)
-}
-
 Schubert polynomials were introduced by \name{Alain Lascoux} and \name{M.-P. Schützenberger} in \cite{LascouxSchutzenberger1982}.
 The Schubert polynomials generalize the \hyperref[schurS]{Schur polynomials} and
 represent Schubert cycles in flag varieties.
 The Schubert polynomials are generalized by the \hyperref[grothendieck]{Grothendieck polynomials}.
+\name[Kursat Aker]{K{\"u}r{\c{s}}at Aker} and
+\name[Nesrin Tutas]{Nesrin Tuta{\c{s}}} define rational Schubert, rational
+Grothendieck, and rational key polynomials \cite{AkerTutas2015}.  Their
+motivation is to view \name{Alexander Molev}'s dual Schur functions through
+Lascoux-style divided-difference constructions.
+\name[Neil J. Y. Fan]{Neil J.~Y.~Fan} and \name{Peter L. Guo} give an elementary
+divided-difference proof of the Buch--Rimanyi specialization formula for
+double Grothendieck polynomials \cite{FanGuo2018x}.
+\name{Zachary Hamaker}, \name{Oliver Pechenik}, \name{David E. Speyer}, and
+\name{Anna Weigandt} study a differential operator on Schubert polynomials
+\cite{HamakerPechenikSpeyerWeigandt2020}.  Their application gives a short
+proof of an identity of \name{Ian G. Macdonald} and proves a determinant
+conjecture of \name{Richard P. Stanley}.
 \name{Colleen Robichaux}, \name{Harshit Yadav}, and \name{Alexander Yong}
 survey edge-labeled Young tableaux as models for equivariant Schubert
 calculus of Grassmannians \cite{RobichauxYadavYong2022}.  They also report on
@@ -117,15 +111,7 @@ and $\alpha = 111235$ is $a$-compatible.
 We mark the corresponding entries in $D(a,\alpha)$ with a cross, $+$, in the rc-graph:
 
 \begin{figure}
-\begin{ytableau}
-\none \; & \none 1 & \none  2 & \none 3 & \none  4 & \none  5 & \none  6 \\
-\none 1 & + & + & \cdot  & \cdot  & + & \cdot  \\
-\none 2 & \cdot  & + & \cdot  & \cdot  & \cdot   \\
-\none 3 & \cdot  & + & \cdot  & \cdot  \\
-\none 4 & \cdot  & \cdot  & \cdot  \\
-\none 5 & + & \cdot  \\
-\none 6 & \cdot 
-\end{ytableau}
+\svgimg[width=0.35\textwidth]{svg-images/pipe-dream-schubert-314652.svg}{A pipe dream for the permutation 314652.}
 \end{figure}
 
 \end{example}
@@ -277,6 +263,15 @@ if it avoids the twelve multiplicitous configurations of
 \cite[Fig.~1.1]{GuoLinPeng2025}.  Since Schubert and key polynomials are
 special cases of dual flagged Weyl characters, this gives a unified proof of
 the known zero-one criteria for Schubert and key polynomials.
+For Schubert polynomials, \name{Alex Fink}, \name{Karola Mészáros}, and
+\name[Avery St. Dizier]{Avery St.~Dizier} prove that the zero-one property is
+closed under \hyperref[permutationPattern]{permutation pattern} containment
+and characterize it by avoidance of twelve patterns
+\cite{FinkMeszarosDizier2019x}.  \name{Anna Weigandt} gives a lower bound for
+the sum of coefficients in terms of $132$-pattern containment
+\cite{Weigandt2018}, while Fan and Guo characterize when Schubert polynomials
+attain the upper bound coming from the Rothe diagram by avoidance of the two
+patterns $1432$ and $1423$ \cite{FanGuo2019}.
 
 \name{David Anderson} gives a representation-theoretic interpretation of the
 \name{Philippe Nadeau}--\name{Hunter Spink}--\name{Vasu Tewari} recursion for
@@ -338,6 +333,19 @@ A Grassmannian permutation determines a partition:
 \[
 \lambda(\omega) = (\omega_k - k, \omega_{k-1} - k + 1, \dotsc, \omega_1 - 1 ).
 \] 
+The same partitions index Schubert cells in the Grassmannian
+$\mathrm{Gr}(k,n)$.  Fix a complete flag
+$0=F_0\subset F_1\subset \dotsb \subset F_n=\setC^n$.
+For $\lambda$ contained in the $k\times(n-k)$ rectangle, the Schubert variety
+$\Omega_\lambda(F_\bullet)$ is cut out by the rank conditions
+\[
+  \dim(V\cap F_{n-k+i-\lambda_i}) \geq i,\qquad 1\leq i\leq k.
+\]
+Its open cell $\Omega^\circ_\lambda(F_\bullet)$ has complex codimension
+$|\lambda|$, and these cells form the standard cell decomposition of the
+Grassmannian.  The corresponding Schubert class is represented by the Schur
+polynomial $\schurS_\lambda$ in the cohomology ring of the Grassmannian; see
+\cite[Chapter 9]{Fulton1997}.
 We then have the identity 
 \begin{equation*}
 \schurS_{\lambda(\omega)}(x_1,\dotsc,x_k) = \schubert_{\omega}(\xvec).
@@ -426,6 +434,12 @@ it is known that the coefficients $c^w_{uv}$ are non-negative integers.
 Note that the coefficients $c^w_{uv}$ generalize the classical Littlewood--Richardson 
 coefficients in \hyperref[schurLittlewoodRichardson]{the Littlewood--Richardson rule for Schur polynomials}.
 This is a major open problem in Schubert calculus and algebraic combinatorics.
+\name{Nantel Bergeron} and \name{Frank Sottile} relate these structure
+constants to the Bruhat order and the geometry of flag manifolds
+\cite{BergeronSottile1998}.  They prove identities among Schubert structure
+constants, derive formulas for several cases, obtain chain-enumeration results
+in Bruhat order, and introduce a graded partial order on the symmetric group
+containing Young's lattice.
 \name{Igor Pak} and \name{Colleen Robichaux} disprove the proposed saturation
 property for Schubert coefficients \cite{PakRobichaux2026x}.  They show that
 the failure occurs for a large family of instances, also refute saturation
@@ -684,15 +698,15 @@ degree polynomials of Richardson varieties.
 
 \subsection[schubertDoubleGiambelliFormula]{Giambelli formula}
 
-
-\todo{Explain the giambelli formula https://projecteuclid.org/download/pdf_1/euclid.em/1048516036 }
-
-
-The Giambelli formula for double Schubert polynomials state that
+The following Giambelli, or splitting, formula expresses a double Schubert
+polynomial in terms of ordinary Schubert polynomials in the two alphabets; see
+\cite{Macdonald1991}.  It states that
 \begin{equation*}
  \schubert_w(\xvec;\yvec) = \sum_{\substack{ v^{-1}u=w \\ \length(u)+\length(v) = \length(w) }}
  (-1)^{\length(v)}\schubert_u(\xvec) \schubert_v(\yvec).
 \end{equation*}
+The \hyperref[schubertCauchyFormula]{Cauchy identity} follows by applying this
+formula to the longest permutation.
 
 
 
@@ -716,7 +730,9 @@ is defined via divided difference operators after being introduced by \name{Thom
 In the \href{https://www.youtube.com/watch?v=c7aY09b7XjI}{YouTube video, Seungjin Lee introduces the affine Schubert polynomials}.
 See 47:16 for the definition.
 
-\todo{ add definition }
+\todo{Add the affine Schubert definition and a small worked example.  If a
+figure is used, prefer an affine pipe-dream or reduced-word model checked
+against Lam--Lee--Shimozono/Lee rather than an unchecked hand drawing.}
 
 In \cite[Thm. 6.1]{LamLeeShimozono2019}, the authors prove that the affine Schubert polynomials 
 expand positively in the monomial basis.
@@ -757,7 +773,9 @@ The stable limit of these yield the \hyperref[stanleySymInvolution]{involution S
 A combinatorial model using \emph{involution pipe dreams} for these polynomials
 is given by \name{Zachary Hamaker}, \name{Eric Marberg}, and \name{Brendan Pawlowski} in \cite{HamakerMarbergPawlowski2019}.
 
-\todo{Add more info}
+\todo{Later figures/examples pass: add a small involution Schubert polynomial
+example, listing the atoms/minimal factorizations and showing one involution
+pipe dream.  Verify the expansion before drawing the figure.}
 
 
 \section[schubertQuantum]{Quantum Schubert polynomials}
@@ -805,6 +823,11 @@ By letting $q_i=0$, one recovers the classical Schubert polynomials.
 
 
 There is a bumpless pipedream model for the quantum double Schubert polynomials, see \cite[Thm. 3.3]{LeOuyangTaoRestivoZhang2024x}.
+\name{Laura Colmenarejo} and \name{Nicholas Mayers} study the quantum
+$k$-Bruhat order that appears in quantum Schubert multiplication
+\cite{ColmenarejoMayers2026x}.  They encode maximal chains in intervals by
+operators from a free monoid acting on a $q$-extension of $\symS_n$, and
+formulate a completeness conjecture for the resulting operator equivalences.
 
 
 \subsection[schubertQuantumMonksRule]{Quantum Monks rule}
@@ -828,15 +851,18 @@ $\length(\omega t_{cd}) = \length(\omega)-\length(t_{cd}) =
 Here, $q_{cd} = q_c q_{c+1} \dotsm q_d$.
 
 
-\todo{https://arxiv.org/pdf/2601.03437}
-
-
 \subsection[schubertQuantumPieriRule]{Quantum Pieri rule}
 
 
 \subsection[schubertQuantumSottileRule]{Quantum Sottile rule}
 
-\todo{This is by BBCSS, 2017}
+\name{Carolina Benedetti Velásquez}, \name{Nantel Bergeron},
+\name{Laura Colmenarejo}, \name{Franco Saliola}, and \name{Frank Sottile}
+prove a quantum hook Schur multiplication rule in the small quantum
+cohomology ring of the flag manifold
+\cite[Thm.~3.2]{BenedettiVelasquezBergeronColmenarejoSaliolaSottile2025}.
+This is the quantum analogue of the hook/Sottile rule and is the main input
+for their quantum Murnaghan--Nakayama rule below.
 
 \subsection[schubertQuantumMurnaghanNakayama]{Quantum Murnaghan--Nakayama}
 

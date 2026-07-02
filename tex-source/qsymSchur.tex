@@ -1,9 +1,6 @@
 \metatitle{Quasisymmetric Schur functions and variants}
 \metadescription{An introduction to quasisymmetric Schur functions and their variants, including definitions, properties, and connections to tableaux and 0-Hecke algebras.}  
 
-
-\todo{In AssafSearles2018 there is also the quasi-Schur functions}
-
 \section[qSchur]{Quasisymmetric Schur functions}
 
 \begin{polydata}{qSchur}
@@ -33,6 +30,13 @@ These refine the classical \hyperref[schurS]{Schur functions} in the sense that
 where the sum is taken over all \hyperref[weakCompositions]{compositions} $\alpha$ whose parts rearrange to the parts of $\lambda$.
 The $\{\qSchur_\alpha \}$ constitute a basis for the 
 space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
+\name{Sami Assaf} and \name{Dominic Searles} use the name
+\defin{quasi-Schur functions} for this quasisymmetric basis and introduce
+quasi-key polynomials as a polynomial lift \cite{AssafSearles2018}.  The
+stable limits of the quasi-key polynomials are the quasi-Schur functions, and
+their Kohnert-tableau model lifts the expansion of Schur functions into
+quasi-Schur functions and then into
+\hyperref[gessel]{fundamental quasisymmetric functions}.
 
 A skew version is introduced in \cite{BessenrodtLuotoWilligenburg2011},
 and they show that the \defin{skew quasisymmetric Schur functions} 
@@ -57,23 +61,23 @@ inserting $0$s between parts of $\alpha$.
 
 We can compute the expansion of $\qSchur_\alpha$ in terms of \hyperref[gessel]{fundamental quasisymmetric functions}
 by using standard reverse composition tableaux.
-A \defin{semistandard reverse composition tableaux}, (SSRCT), of shape $\alpha \vDash n$ 
+A \defin{semistandard reverse composition tableau}, (SSRCT), of shape $\alpha \vDash n$
 is a filling of the diagram $\alpha$ \hyperref[prelimPartitions]{(English notation)}
 with positive integers such that 
 \begin{enumerate}
 \item rows are weakly decreasing;
 \item the first column is strictly increasing with the row index;
 \item for every triple $a$, $b$ $c$ arranged as 
-
-\begin{ytableau}
-b & c \\
-\none  &\none  \vdots \\
-\none  &  a
-\end{ytableau}
+\[
+\begin{array}{cc}
+b & c\\[-2pt]
+  & \vdots\\[-2pt]
+  & a
+\end{array}
+\]
 
 we have that $a \leq b$ implies that the box $c$ is present and $a\lt c$.
 \end{enumerate}
-\todo{Fix above figure}
 
 A \defin{standard reverse composition tableaux} (SRCT) uses each integer $1,2,\dotsc,n$
 exactly once in the filling.
@@ -99,7 +103,7 @@ $\{1,2,5,8,9,11\}$.
 \begin{theorem}
 We have that the fundamental quasisymmetric expansion of $\qSchur_\alpha$ is given by
 \[
-\qSchur_\alpha(\xvec) = \sum_{T \in \mathrm{SRTC}(\alpha)} \gessel_{\DES(T)}(\xvec).
+\qSchur_\alpha(\xvec) = \sum_{T \in \mathrm{SRCT}(\alpha)} \gessel_{\DES(T)}(\xvec).
 \]
 \end{theorem}
 
@@ -291,7 +295,8 @@ characteristics are the Young row-strict quasisymmetric Schur functions
 The \defin{dual immaculate Schur functions} (and their skew version), 
 $\{\diSchur_\alpha\}$, were introduced in \cite{BergBergeronSaliolaSerranoZabrocki2014}.
 They constitute a basis for the space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
-The original definition is that they are dual to the \emph{immaculate Schur functions},
+The original definition is that they are dual to
+\hyperref[immaculateSchur]{immaculate Schur functions},
 which are \hyperref[nonComFunctions]{non-commutative}.
 
 The definition is as follows:

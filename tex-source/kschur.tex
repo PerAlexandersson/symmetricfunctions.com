@@ -130,7 +130,19 @@ In \cite{BlasiakMorseSeelinger2020}, the authors consider a $K$-theoretic
 version of the Catalan symmetric functions, named \defin{Katalan symmetric functions}
 and show that this family includes the $K$-$k$-Schur functions, and the usual Catalan symmetric functions.
 
-\todo{Add definition of Katalan symmetric functions}
+The definition again uses raising operators, together with lowering operators.
+Let $\Phi \subseteq \Delta_\ell^+$ be a root ideal, let $M$ be a multiset on
+$\{1,\dotsc,\ell\}$, and let $\gamma \in \setZ^\ell$.  If $g_\gamma$ denotes
+the determinantally extended dual stable Grothendieck function, and
+$L_j g_\gamma = g_{\gamma-\varepsilon_j}$, then the Katalan symmetric
+function is
+\[
+\catalanH_{\Phi,M,\gamma}(\xvec)
+\coloneqq
+\prod_{j\in M}(1-L_j)
+\prod_{(i,j)\in \Phi}(1-R_{ij})^{-1} g_\gamma(\xvec).
+\]
+Repeated entries of $M$ contribute repeated lowering factors.
 
 A nice conjecture regarding the Katalan symmetric functions is solved in \cite{IkedaIwaoNaito2024}.
 
