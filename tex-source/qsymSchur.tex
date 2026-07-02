@@ -347,13 +347,58 @@ families into parallel Young and reverse versions.
 
 
 \begin{theorem}
-From \cite{BergBergeronSaliolaSerranoZabrocki2014}.
-The number of standard immaculate tableaux of shape $\alpha = (\alpha_1,\dotsc,\alpha_\ell)$,
-with $|\alpha|=n$, is equal to
+Let $\alpha=(\alpha_1,\dotsc,\alpha_\ell)$ be a composition of $n$.
+For a cell $c=(i,j)$ in the diagram of $\alpha$, define its
+\defin{immaculate hook} by
+\[
+  H_{i,j} \coloneqq
+  \begin{cases}
+    \{(i',j') : i \leq i' \leq \ell,\ 1 \leq j' \leq \alpha_{i'}\},
+      & \text{if } j=1,\\
+    \{(i,j') : j \leq j' \leq \alpha_i\},
+      & \text{if } j>1.
+  \end{cases}
+\]
+Let $h_{i,j}\coloneqq |H_{i,j}|$.  The number $f^\alpha$ of standard
+immaculate tableaux of shape $\alpha$ is
+\[
+  f^\alpha = \frac{n!}{\prod_{(i,j)\in\alpha} h_{i,j}}.
+\]
+This hook-length formula was proved in
+\cite[Prop.~3.13]{BergBergeronSaliolaSerranoZabrocki2014}; see also the
+bijective proof of \name{Emma L. L. Gao} and \name{Arthur L. B. Yang}
+\cite[Thm.~1.1]{GaoYang2016}.
+Equivalently,
 \[
   \frac{ (n-1)! }{ \prod_{k=1}^{\ell-1}(n-\alpha_1-\alpha_2-\dotsb - \alpha_k) \prod_{k=1}^\ell (\alpha_k - 1)! }.
 \]
 \end{theorem}
+
+\begin{example*}
+For $\alpha=(2,1,2)$, the immaculate hook lengths are
+\[
+  \begin{array}{cc}
+    5 & 1\\
+    3 & \\
+    2 & 1
+  \end{array}
+\]
+and therefore
+\[
+  f^{(2,1,2)} =
+  \frac{5!}{5\cdot 1\cdot 3\cdot 2\cdot 1}=4.
+\]
+Indeed, the four standard immaculate tableaux of this shape are
+\[
+\ytableaushort{12,3,45}
+\qquad
+\ytableaushort{13,2,45}
+\qquad
+\ytableaushort{14,2,35}
+\qquad
+\ytableaushort{15,2,34}.
+\]
+\end{example*}
 Alexandersson 2022: Can one find a q-analog of this and some nice instance of cyclic sieving?
 
 \name{Sarah Mason} and \name{Tianhao Xie} classify when skew immaculate
