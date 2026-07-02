@@ -226,7 +226,32 @@ compatibility hypothesis, the shuffle algebra and substring coalgebra combine
 to form a Hopf algebra; the paper conjectures that the descent, peak, and
 valley sets are the only nontrivial statistics satisfying both compatibilities.
 
-\todo{Later examples pass: add a small example of a substring-compatible statistic and its substring coalgebra.}
+\begin{example*}[Substring coalgebra for descents]
+The descent set is substring-compatible.  If $\pi=\pi_1\dotsm\pi_n$ and
+$\sigma=\pi_i\dotsm\pi_j$ is a consecutive substring, then $\DES(\sigma)$ is
+obtained from $\DES(\pi)\cap\{i,\dotsc,j-1\}$ by subtracting $i-1$ from each
+position.
+
+For example, in the substring coalgebra for the descent statistic,
+\[
+\begin{aligned}
+\Delta([213]_{\DES})
+&= [\,]_{\DES}\otimes [213]_{\DES}
+ + [2]_{\DES}\otimes [13]_{\DES} \\
+&\quad + [21]_{\DES}\otimes [3]_{\DES}
+ + [213]_{\DES}\otimes [\,]_{\DES}.
+\end{aligned}
+\]
+Under the Hopf isomorphism $[ \pi]_{\DES}\mapsto
+\gessel_{\operatorname{comp}(\DES(\pi))}$, this becomes the usual coproduct
+\[
+\Delta(\gessel_{(1,2)})
+= 1\otimes\gessel_{(1,2)}
+  + \gessel_{(1)}\otimes\gessel_{(2)}
+  + \gessel_{(1,1)}\otimes\gessel_{(1)}
+  + \gessel_{(1,2)}\otimes 1.
+\]
+\end{example*}
 
 \name{Olivier Bouillot}, \name{Jean-Christophe Novelli}, and
 \name{Jean-Yves Thibon} construct new bases of $\spaceQSym$ and
