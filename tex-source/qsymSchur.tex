@@ -15,11 +15,9 @@
   PositiveIn & atom | HaglundLuotoMasonWilligenburg2011 \\
   PositiveIn & gessel | HaglundLuotoMasonWilligenburg2011 \\
   PositiveIn & qmonom | HaglundLuotoMasonWilligenburg2011 \\
+  TransformsTo & yqSchur | LuotoMykytiukWilligenburg2013 | map=rho and reverse index \\
+  TransformsTo & rsqSchur | MasonRemmel2013 | map=omega \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- Misc quasiSchur -> rowStricSchur (current guess: qSchur -> rsqSchur); from polynomialData.m, tikzdataRelations.txt.
-}
 
 The \defin{quasisymmetric Schur functions}, $\{\qSchur_\alpha \}$, were introduced 
 by \name{James Haglund}, \name{Kurt Luoto}, \name{Sarah Mason} and \name{Stephanie van Willigenburg} \cite{HaglundLuotoMasonWilligenburg2011}.
@@ -151,6 +149,8 @@ where the descents are the bold entries.
   Symbol   & $\yqSchur_\alpha(\xvec)$ \\
   Category & Schur \\
   PositiveIn & gessel | LuotoMykytiukWilligenburg2013 \\
+  PositiveIn & qmonom | LuotoMykytiukWilligenburg2013 \\
+  TransformsTo & qSchur | LuotoMykytiukWilligenburg2013 | map=rho and reverse index \\
 \end{polydata}
 
 
@@ -158,6 +158,11 @@ The \defin{Young quasisymmetric Schur functions}, introduced in \cite{LuotoMykyt
 are obtained from the \hyperref[qSchur]{quasisymmetric Schur functions} via the relation
 $\yqSchur_\alpha = \rho(\qSchur_{\rev(\alpha)})$
 where $\rho$ is a certain \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}.
+They also refine Schur functions:
+\[
+  \schurS_\lambda(\xvec)
+  = \sum_{\alpha \sim \lambda} \yqSchur_\alpha(\xvec).
+\]
 
 
 \section[qSchurQ]{Quasisymmetric Schur $Q$-functions}
@@ -171,6 +176,7 @@ where $\rho$ is a certain \hyperref[standardQuasiInvolution]{involution on quasi
   Year     & 2015 \\
   Symbol   & $\widetilde{Q}_\alpha(\xvec)$ \\
   Category & Schur \\
+  Generalizes & schurQ | JingLi2015 | scope=peak-algebra lift \\
   PositiveIn & peakQSym | Oguz2019 | proof=Thm. 3.9 \\
   PositiveIn & peakYqSchur | ChoiNamOh2025,SearlesSlatteryHolmes2026 | proof=Thms. 4.5 and 4.16 \\
 \end{polydata}
@@ -200,6 +206,7 @@ quasisymmetric Schur $Q$-functions expand positively in the
   Year     & 2025 \\
   Symbol   & $\widetilde{S}_\alpha(\xvec)$ \\
   Category & Schur \\
+  Contains & schurQ | Searles2025 | scope=standard shifted tableaux \\
   PositiveIn & peakQSym | Searles2025 | proof=Thm. 5.9 \\
 \end{polydata}
 
@@ -207,7 +214,9 @@ The \defin{peak Young quasisymmetric Schur functions} were introduced by
 \name{Dominic Searles} \cite{Searles2025} through diagram supermodules for
 $0$-Hecke--Clifford algebras.  They form a basis of the
 \hyperref[peakQSym]{peak algebra} and are a peak-algebra analogue of the
-\hyperref[yqSchur]{Young quasisymmetric Schur functions}.
+\hyperref[yqSchur]{Young quasisymmetric Schur functions}.  The construction
+also contains the \hyperref[schurQ]{Schur $Q$-functions} as a distinguished
+subfamily.
 
 \todo{Later examples pass: add small peak Young composition tableau examples and check whether ytableau or a custom diagram macro is the best rendering.}
 
@@ -225,6 +234,7 @@ $0$-Hecke--Clifford algebras.  They form a basis of the
   Symbol   & $\rsqSchur_\alpha(\xvec)$ \\
   Category & Schur \\
   PositiveIn & gessel | MasonRemmel2013 \\
+  TransformsTo & qSchur | MasonRemmel2013 | map=omega \\
 \end{polydata}
 
 The \defin{row-strict quasisymmetric Schur functions} were first 
@@ -234,7 +244,7 @@ These \hyperref[quasiSymmetricFunctions]{quasisymmetric functions} are indexed b
 as $\schurS_\lambda(\xvec) = \sum_{\alpha \sim \lambda'} \rsqSchur_\alpha(\xvec)$.
 
 The relation with the \hyperref[qSchur]{quasisymmetric Schur functions} is straightforward;
-we have that $qSchur_\alpha = \omega(\rsqSchur_\alpha)$, where $\omega$
+we have that $\qSchur_\alpha = \omega(\rsqSchur_\alpha)$, where $\omega$
 is a certain \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}.
 
 
@@ -260,6 +270,7 @@ See also \cite[Thm. 10, Thm. 11]{MasonNiese2015}.
   Year     & 2013 \\
   Symbol   & $\rsyqSchur_\alpha(\xvec)$ \\
   Category & Schur \\
+  PositiveIn & gessel | MasonNiese2015 | proof=Prop. 1 \\
   TransformsTo & yqSchur | MasonNiese2015 | map=omega \\
 \end{polydata}
 
@@ -267,6 +278,12 @@ See also \cite[Thm. 10, Thm. 11]{MasonNiese2015}.
 are introduced in \cite{MasonNiese2015}.
 They can be defined via the relation with \hyperref[yqSchur]{Young quasisymmetric Schur functions}:
 $\rsyqSchur_\alpha = \omega(\yqSchur_\alpha)$, see \cite[Thm. 12]{MasonNiese2015}.
+They refine Schur functions by summing over the compositions whose parts
+rearrange to the conjugate partition:
+\[
+  \schurS_\lambda(\xvec)
+  = \sum_{\alpha \sim \lambda'} \rsyqSchur_\alpha(\xvec).
+\]
 
 \name{Joshua Bardwell} and \name{Dominic Searles} construct
 \hyperref[zeroHeckeAlgebra]{0-Hecke algebra} modules whose quasisymmetric
@@ -286,11 +303,9 @@ characteristics are the Young row-strict quasisymmetric Schur functions
   Symbol   & $\diSchur_\alpha(\xvec)$ \\
   Category & Schur \\
   PositiveIn & gessel | BergBergeronSaliolaSerranoZabrocki2014 \\
+  PositiveIn & yqSchur | AllenHallamMason2018,LeeOh2025x | proof=combinatorial formula and 0-Hecke filtration \\
+  TransformsTo & rsdiSchur | NieseSundaramWilligenburgVegaWang2023 | map=psi \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn dualImmaculateQS -> quasiSchurYoung (current guess: diSchur -> yqSchur); Link=http://www.lix.polytechnique.fr/~pilaud/FPSAC16/final_68; from polynomialData.m, tikzdataPositivity.txt.
-}
 
 The \defin{dual immaculate Schur functions} (and their skew version), 
 $\{\diSchur_\alpha\}$, were introduced in \cite{BergBergeronSaliolaSerranoZabrocki2014}.
@@ -315,6 +330,12 @@ We have \cite[Prop. 3.37]{BergBergeronSaliolaSerranoZabrocki2014} that
 \]
 where $L_{\alpha,\beta}$ are certain non-negative coefficients, and $\leq_\ell$
 denotes lexicographic ordering.
+\name{Edward Allen}, \name{Joshua Hallam}, and \name{Sarah Mason} prove that
+the dual immaculate functions expand positively in the
+\hyperref[yqSchur]{Young quasisymmetric Schur basis}
+\cite{AllenHallamMason2018}.  \name{So-Yeon Lee} and \name{Young-Tak Oh}
+later give a $0$-Hecke-module interpretation of this positivity
+\cite{LeeOh2025x}.
 
 % Related Rust:
 % /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/dual_immaculate_site_example.rs
@@ -442,6 +463,7 @@ the Young quasisymmetric Schur function itself.
   Symbol   & $\rsdiSchur_\alpha(\xvec)$ \\
   Category & Schur \\
   PositiveIn & gessel | NieseSundaramWilligenburgVegaWang2023 \\
+  TransformsTo & diSchur | NieseSundaramWilligenburgVegaWang2023 | map=psi \\
 \end{polydata}
 
 The \defin{row-strict dual immaculate Schur functions}
@@ -452,6 +474,10 @@ For an introduction, see \href{https://www.youtube.com/watch?v=6O-AuCLZUlE}{Shei
 The same paper relates this basis to the $\psi$ involution on the dual
 immaculate functions, gives Bernstein-like operators, and introduces skew and
 hook variants.
+More precisely,
+\[
+  \psi(\diSchur_\alpha)=\rsdiSchur_\alpha.
+\]
 
 
 The definition is as follows:
@@ -489,6 +515,12 @@ to the \emph{shin polynomials} (see \cite{CampbellFeldmanLightShuldinerXu2014})
 which constitute a basis for the ring of \hyperref[nonComFunctions]{non-commutative symmetric functions}.
 \name{Spencer Daugherty} studies extended Schur functions and related
 quasisymmetric bases connected by involutions \cite{Daugherty2024Extended}.
+In particular, the extended Schur functions sit in a four-family system closed
+under the $\psi$, $\rho$, and $\omega$ involutions.
+
+\todo{Later relation pass: split reverse extended, row-strict extended, and
+row-strict reverse extended Schur functions into separate polydata nodes, then
+record the Daugherty involution relations explicitly.}
 
 For a connection with the \hyperref[zeroHeckeAlgebra]{0-Hecke algebra}, see \cite{Searles2020}, where these are shown to be characters of
 certain \hyperref[zeroHeckeAlgebra]{0-Hecke modules}.
