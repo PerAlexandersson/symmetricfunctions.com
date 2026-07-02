@@ -316,6 +316,23 @@ We have \cite[Prop. 3.37]{BergBergeronSaliolaSerranoZabrocki2014} that
 where $L_{\alpha,\beta}$ are certain non-negative coefficients, and $\leq_\ell$
 denotes lexicographic ordering.
 
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/dual_immaculate_site_example.rs
+\begin{example*}[A small dual immaculate expansion]
+For $\alpha=(2,1)$, the standard immaculate tableaux are
+\[
+\ytableaushort{12,3}
+\qquad\text{and}\qquad
+\ytableaushort{13,2}.
+\]
+Their descent sets are $\{2\}$ and $\{1\}$, respectively, so their descent
+compositions are $(2,1)$ and $(1,2)$.  Hence
+\[
+\diSchur_{(2,1)}(\xvec)
+= \gessel_{(1,2)}(\xvec)+\gessel_{(2,1)}(\xvec).
+\]
+\end{example*}
+
 \emph{Note:} The \hyperref[schurS]{Schur functions} are not positive in the dual immaculate basis!
 
 \name{Sarah Mason} and \name{Dominic Searles} construct polynomial lifts of
