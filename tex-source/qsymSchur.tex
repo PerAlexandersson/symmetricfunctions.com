@@ -482,7 +482,7 @@ More precisely,
 
 The definition is as follows:
 \[
- \rsdiSchur_\alpha = \sum_{T \in IT(\alpha)} \xvec^T
+ \rsdiSchur_\alpha = \sum_{T \in \mathrm{RSIT}(\alpha)} \xvec^T
 \]
 where we sum over all \emph{row-strict immaculate tableaux} of shape $\alpha$.
 These are fillings of the diagram $\alpha$, such that the rows are strictly increasing,
@@ -490,6 +490,28 @@ and the first column is \emph{weakly increasing} with respect to the row indexin
 
 One can show that the $\rsdiSchur_\alpha$
 are positive in the \hyperref[gessel]{fundamental quasisymmetric basis}.
+
+% Related Rust: /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/src/schur_qsym.rs
+% tests test_row_strict_dual_immaculate_paper_example_310 and
+% test_row_strict_dual_immaculate_matches_psi_small_degrees.
+\begin{example*}
+For $\alpha=(1,2)$, the two packed row-strict immaculate tableaux, using
+entries $\{1,\dotsc,k\}$ for some $k$, are
+\[
+\ytableaushort{1,12}
+\qquad
+\ytableaushort{1,23}.
+\]
+They have contents $(2,1)$ and $(1,1,1)$, respectively, and hence
+\[
+  \rsdiSchur_{(1,2)}(\xvec)
+  = \qmonom_{(2,1)}(\xvec)+\qmonom_{(1,1,1)}(\xvec)
+  = \gessel_{(2,1)}(\xvec).
+\]
+This is the small example in \cite[Ex.~3.10]{NieseSundaramWilligenburgVegaWang2023}
+and is consistent with
+$\rsdiSchur_\alpha=\psi(\diSchur_\alpha)$.
+\end{example*}
 
 
 \section[extSchur]{Extended Schur functions}
