@@ -83,6 +83,41 @@ Rothe diagrams and Billey--Jockusch--Stanley compatible sequences
 \cite{Assaf2022}.  This gives a bijective proof of Kohnert's rule for
 Schubert polynomials.
 
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/multipoly/examples/kohnert_site_example.rs
+\begin{example*}[A first Kohnert computation]
+Let \(a=(0,2)\).  The key diagram \(D(a)\) has two cells in row \(2\).
+There are three Kohnert diagrams:
+\[
+\begin{array}{c|cc}
+  2 & \bullet & \bullet \\
+  1 &         &         \\ \hline
+    & 1 & 2
+\end{array}
+\qquad
+\begin{array}{c|cc}
+  2 & \bullet &         \\
+  1 &         & \bullet \\ \hline
+    & 1 & 2
+\end{array}
+\qquad
+\begin{array}{c|cc}
+  2 &         &         \\
+  1 & \bullet & \bullet \\ \hline
+    & 1 & 2
+\end{array}.
+\]
+Their weights are \((0,2)\), \((1,1)\), and \((2,0)\), respectively.
+Therefore
+\[
+ \kohnert_{D(0,2)}(x_1,x_2)
+ = x_2^2+x_1x_2+x_1^2
+ = \key_{(0,2)}(x_1,x_2).
+\]
+This is the smallest example where a Kohnert move produces more than the
+initial monomial.
+\end{example*}
+
 \subsection[kohnertQuasi]{Kohnert quasisymmetric functions}
 
 \begin{polydata}{kohnertQuasi}
