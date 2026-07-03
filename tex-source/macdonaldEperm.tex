@@ -15,15 +15,10 @@
   Keywords & fillings \\
   Category & Schur \\
   Contains & macdonaldE | Ferreira2011 | scope=identity basement \\
+  SpecializesTo & permutedBasementTAtom | AlexanderssonSawhney2019 | map=q=0 \\
+  SpecializesTo & permutedBasementAtom | AlexanderssonSawhney2019 | map=q=t=0 \\
   PositiveIn & atom | MandelshtamNiergarthSingh2026x | scope=t=0; semiring=NN[q]; proof=Cor. 4.7 \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- SpecializesTo permBasMacdonaldE -> generalAtom (current guess: macdonaldEperm -> generalizedDemazureAtoms); from polynomialData.m, tikzdataRelations.txt.
-- SpecializesTo permBasMacdonaldE -> generalTAtom (current guess: macdonaldEperm -> generalizedDemazureAtoms); from polynomialData.m.
-}
-
-
 
 The \defin{permuted-basement Macdonald polynomials} 
 (also called \emph{relative Macdonald polynomials}, \cite{GuoRam2021x}) generalize the 
@@ -38,6 +33,70 @@ A good overview and introduction to this topic is \cite{GuoRam2021x,GuoRam2021xS
 \name{Sylvie Corteel}, \name{Olya Mandelshtam}, and \name{Lauren Williams}
 connect multiline queues with Macdonald polynomials via the exclusion process
 \cite{CorteelMandelshtamWilliams2018x}.
+
+\subsection[permutedBasementTAtom]{Permuted-basement $t$-atoms}
+
+\begin{polydata}{permutedBasementTAtom}
+  Name     & Permuted-basement $t$-atoms \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & AlexanderssonSawhney2019 \\
+  Year     & 2019 \\
+  Symbol   & $\atom^\sigma_\alpha(\xvec;t)$ \\
+  Keywords & fillings, basement \\
+  Category & Schur \\
+  Contains & tAtom | AlexanderssonSawhney2019 | scope=identity basement, up to convention \\
+  SpecializesTo & permutedBasementAtom | AlexanderssonSawhney2019 | map=t=0 \\
+\end{polydata}
+
+At $q=0$, the permuted-basement Macdonald polynomials become
+\defin{permuted-basement $t$-atoms}.  Alexandersson and Sawhney study these
+polynomials using basement-permuting operators and fillings
+\cite{AlexanderssonSawhney2019}.
+
+\subsection[permutedBasementAtom]{Permuted-basement atoms}
+
+\begin{polydata}{permutedBasementAtom}
+  Name     & Permuted-basement atoms \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & AlexanderssonSawhney2019 \\
+  Year     & 2019 \\
+  Symbol   & $\atom^\sigma_\alpha(\xvec)$ \\
+  Keywords & fillings, basement \\
+  Category & Schur \\
+  Contains & atom | AlexanderssonSawhney2019 | scope=identity basement, up to convention \\
+  Contains & key | AlexanderssonSawhney2019 | scope=longest basement, up to convention \\
+\end{polydata}
+
+Setting $t=0$ in the permuted-basement $t$-atoms gives
+\defin{permuted-basement atoms}.  In the basement convention of
+\cite{AlexanderssonSawhney2019}, the identity basement gives ordinary
+\hyperref[atom]{Demazure atoms}, while the longest basement gives
+\hyperref[key]{key polynomials}.
+
+\subsection[tAtom]{Demazure $t$-atoms}
+
+\begin{polydata}{tAtom}
+  Name     & Demazure $t$-atoms \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & HaglundLuotoMasonWilligenburg2011 \\
+  Year     & 2011 \\
+  Symbol   & $\atom_\alpha(\xvec;t)$ \\
+  Keywords & fillings \\
+  Category & Schur \\
+  SpecializesTo & atom | HaglundLuotoMasonWilligenburg2011 | map=t=0 \\
+\end{polydata}
+
+The identity-basement case of the permuted-basement $t$-atoms is the family of
+\defin{Demazure $t$-atoms}.  They specialize at $t=0$ to ordinary Demazure
+atoms.  These are not the same as the
+\hyperref[generalizedDemazureAtoms]{generalized Demazure atoms} of
+\name{James Haglund}, \name{Sarah Mason}, and \name{Jeffrey B. Remmel}.
 
 
 \subsection[macdonaldEpermDefinition]{Definitions}

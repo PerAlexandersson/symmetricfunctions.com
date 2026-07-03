@@ -17,6 +17,8 @@
   SpecializesTo & monomial | Littlewood1961 | map=t=1 \\
   SpecializesTo & schurS | Littlewood1961 | map=t=0 \\
   SpecializesTo & schurP | Stembridge1989 | map=t=-1 \\
+  PositiveIn & tAtom | HaglundLuotoMasonWilligenburg2011,AlexanderssonSawhney2019 | proof=sum over rearrangements \\
+  PositiveIn & permutedBasementTAtom | Alexandersson2015gbMacdonald | semiring=NN[t]; proof=Cor. 30 \\
 \end{polydata}
 
 \begin{polydata}{imathHallLittlewoodH}
@@ -43,11 +45,6 @@
   Symbol   & $s^C_\lambda$ \\
   Category & Schur \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn hallLittlewoodP -> generalTAtom (current guess: hallLittlewoodP -> generalizedDemazureAtoms); from polynomialData.m.
-- PositiveIn hallLittlewoodP -> tatom (current guess: hallLittlewoodP -> atom); from polynomialData.m.
-}
 
 The Hall--Littlewood $P$ polynomials interpolate between
 the Schur polynomials and the monomial symmetric functions.
@@ -91,6 +88,16 @@ Jordan quiver \cite{ChenLuRuan2026x}.  These functions are indexed by
 bipartitions, reduce to ordinary Hall--Littlewood functions when one partition
 is empty, specialize to Schur Laurent symmetric functions at $t=0$, and satisfy
 Pieri rules.
+The Hall--Littlewood $P$ polynomials also have a positive expansion in
+\hyperref[tAtom]{Demazure $t$-atoms}:
+\[
+\hallLittlewoodP_\lambda(\xvec;t)
+  = \sum_{\alpha^+=\lambda} \atom_\alpha(\xvec;t),
+\]
+where $\alpha^+$ denotes the partition obtained by rearranging $\alpha$.
+Alexandersson's general-basement formula refines this to a positive expansion
+in \hyperref[permutedBasementTAtom]{permuted-basement $t$-atoms}
+\cite{Alexandersson2015gbMacdonald}.
 
 % Related Rust:
 % /home/paxinum/Dropbox/AI-projects/rust/sym-poly/sym/examples/imath_hall_littlewood_site_example.rs
