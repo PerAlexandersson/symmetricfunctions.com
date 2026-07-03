@@ -15,6 +15,7 @@
   Symbol   & $\macdonaldP_\lambda(\xvec;q,t) $ \\
   Category & Schur \\
   Contains & elementaryE | Macdonald1987 | scope=column partitions \\
+  Contains & macdonaldPqq2 | He2020 | scope=$t=q^2$ specialization \\
   SpecializesTo & hallLittlewoodP | Macdonald1987 | map=q=0 \\
   SpecializesTo & jackP | Macdonald1987 | map=Jack limit \\
   SpecializesTo & qWhittaker | Macdonald1987 | map=t=0 \\
@@ -74,7 +75,54 @@ spherical functions are sent to Macdonald polynomials with parameters
 $(q,q^2)$, and the construction gives Schur-positivity results for skew
 Macdonald polynomials at these parameters.
 
-\todo{Later relation pass: revisit vector-valued Macdonald/Jack and the $(q,q^2)$ finite-field specialization for possible family nodes, specialization metadata, and small computed examples.}
+\subsection[macdonaldPqq2]{The $(q,q^2)$ finite-field specialization}
+
+\begin{polydata}{macdonaldPqq2}
+  Name     & Macdonald P polynomials at $(q,q^2)$ \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & He2020 \\
+  Year     & 2020 \\
+  Symbol   & $\macdonaldP_\lambda(\xvec;q,q^2)$ \\
+  Keywords & finite-field,symplectic,macdonald \\
+  Category & Schur \\
+  PositiveIn & schurS | He2020 | scope=skew coefficients after evaluation at odd prime powers \\
+\end{polydata}
+
+The specialization $t=q^2$ is distinguished by He's characteristic map for
+the symmetric space of symplectic forms over a finite field.  If $q$ is an odd
+prime power, the Schur coefficient
+\[
+  \left\langle
+    \macdonaldP_{\lambda/\mu}(\xvec;q,q^2),\schurS_\nu
+  \right\rangle
+\]
+is nonnegative \cite[Thm.~0.1]{He2020}.  This is a numerical positivity
+statement at finite-field values of $q$, not a claim that the coefficients are
+polynomials in $q$ with nonnegative integer coefficients.
+
+For example, the degree-two polynomial is
+\[
+  \macdonaldP_{(2)}(\xvec;q,t)
+  =
+  \schurS_{(2)}(\xvec)
+  +
+  \frac{q-t}{1-qt}\schurS_{(1,1)}(\xvec),
+\]
+and hence
+\[
+  \macdonaldP_{(2)}(\xvec;q,q^2)
+  =
+  \schurS_{(2)}(\xvec)
+  +
+  \frac{q}{1+q+q^2}\schurS_{(1,1)}(\xvec),
+\]
+which is positive for positive real $q$, in particular for odd prime powers.
+The vector-valued Jack and Macdonald polynomials of
+\cite{ColmenarejoDunklLuque2019x} live in a representation-valued setting;
+here they are recorded as a projection and highest-weight comparison rather
+than as a separate scalar symmetric-function basis.
 
 \subsection[macdonaldPCreationCharacters]{Creation formula and Macdonald characters}
 
