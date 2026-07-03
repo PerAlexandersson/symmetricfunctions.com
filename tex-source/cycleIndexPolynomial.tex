@@ -26,6 +26,31 @@ in terms of the \hyperref[powerSum]{powersum symmetric functions} as the average
 \cyc_G(\xvec) \coloneqq \frac{1}{|G|} \sum_{\pi \in G} \powerSum_{\type(\pi)}(\xvec).
 \]
 
+\begin{example}
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/sym/examples/cycle_index_site_example.rs
+For \(G=\symS_3\), the cycle types are distributed as follows:
+one identity element of type \(1^3\), three transpositions of type \(21\),
+and two three-cycles of type \(3\).  Hence
+\[
+  \cyc_{\symS_3}(\xvec)
+  =
+  \frac{1}{6}\powerSum_{111}
+  +\frac{1}{2}\powerSum_{21}
+  +\frac{1}{3}\powerSum_{3}.
+\]
+Since
+\[
+  \schurS_3
+  =
+  \frac{1}{6}\powerSum_{111}
+  +\frac{1}{2}\powerSum_{21}
+  +\frac{1}{3}\powerSum_{3},
+\]
+we get \(\cyc_{\symS_3}=\schurS_3\).  This matches the fact that
+\(\setC[\symS_3/\symS_3]\) is the trivial representation.
+\end{example}
+
 Let $\symS_n/G$ denote the set of left cosets of $G$, and let $\symS_n$ act on $\setC[\symS_n/G]$.
 This makes $\setC[\symS_n/G]$ into an $\symS_n$-module, 
 and its \hyperref[frobeniusCharacteristic]{Frobenius characteristic} is given by $\cyc_G(\xvec)$. 
