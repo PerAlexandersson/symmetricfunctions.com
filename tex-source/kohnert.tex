@@ -24,8 +24,6 @@
 
 \todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
 - PositiveIn keyQuasi -> atom (current guess: kohnert -> atom); Link=https://arxiv.org/pdf/1707.01172.pdf; from polynomialData.m, tikzdataPositivity.txt.
-- PositiveIn keyQuasi -> fundamentalSlide (current guess: kohnert -> slideF); Link=https://arxiv.org/pdf/1707.01172.pdf; from polynomialData.m, tikzdataPositivity.txt.
-- StableLimit keyQuasi -> quasiSchur (current guess: kohnert -> qSchur); Link=https://arxiv.org/pdf/1707.01172.pdf; from polynomialData.m, tikzdataRelations.txt.
 - StableLimit kohnert -> kohnertQuasi (current guess: kohnert -> kohnert); Link=arxiv:1711.09498; from polynomialData.m, tikzdataRelations.txt.
 - PositiveIn kohnertQuasi -> fundamentalSlide (current guess: kohnert -> slideF); Link=http://de.arxiv.org/pdf/1711.09498.pdf; from polynomialData.m, tikzdataPositivity.txt.
 - Contains kohnertQuasi -> schurExtended (current guess: kohnert -> extSchur); Link=http://de.arxiv.org/pdf/1711.09498.pdf; from polynomialData.m, tikzdataRelations.txt.
@@ -150,6 +148,20 @@ For every weak composition \(a\),
 
 
 \subsection[kohnertQuasiKey]{Quasi-key polynomials}
+
+\begin{polydata}{quasiKey}
+  Name     & Quasi-key polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 2 \\
+  Bib      & AssafSearles2018 \\
+  Year     & 2018 \\
+  Symbol   & $Q_a(\xvec)$ \\
+  Keywords & fillings, kohnert-tableaux \\
+  Category & Schur \\
+  PositiveIn & slideF | AssafSearles2018 | proof=Thm. 3.7 \\
+  StableLimit & qSchur | AssafSearles2018 | proof=Thm. 4.16 \\
+\end{polydata}
 
 \name{Sami Assaf} and \name{Dominic Searles} also use Kohnert tableaux to define
 \defin{quasi-key polynomials}, which lift quasi-Schur functions from the
