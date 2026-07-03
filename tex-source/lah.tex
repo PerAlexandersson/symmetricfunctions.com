@@ -56,6 +56,8 @@ and the sum is taken over all unordered forest on increasing ordered trees,
 with $n$ vertices and exactly $k$ trees.
 By definition, the $\lah_{n,k}(\xvec)$ are positive
 in the \hyperref[elementaryE]{elementary symmetric function basis}.
+This also implies Schur positivity, since each $\elementaryE_d$ is the Schur
+function $\schurS_{1^d}$ and products of Schur functions are Schur positive.
 
 \emph{Note:} the $\lah_{n,k}(\xvec)$ is denoted $L^{(\infty)+}_{n,k}(X)$
 and $L^{(\infty)-}_{n,k}(X) = \omega \lah_{n,k}(\xvec)$ in 
@@ -77,3 +79,67 @@ For example, the three terms in $\lah_{4,1}$ count increasing ordered trees
 whose child-count partition is respectively $(3)$, $(2,1)$, and $(1,1,1)$.
 \end{example*}
 
+\subsection[lahForestBasis]{The connected Lah forest basis}
+
+There is a natural multiplicative basis obtained by taking connected Lah
+forests as generators.  Define
+\[
+  \ell_d(\xvec) \coloneqq \lah_{d+1,1}(\xvec)
+  \qquad\text{and}\qquad
+  \ell_\lambda(\xvec) \coloneqq
+  \ell_{\lambda_1}(\xvec)\ell_{\lambda_2}(\xvec)\dotsm .
+\]
+Since
+\[
+  \ell_d = d!\elementaryE_d
+  + \text{terms involving products of smaller elementary functions},
+\]
+the functions $\ell_\lambda$ form a basis of $\mathrm{Sym}_{\setQ}$.
+The multiplication rule is simply
+\[
+  \ell_\lambda \ell_\mu = \ell_{\lambda \cup \mu}.
+\]
+
+The ordinary Lah symmetric functions are positive in this basis.  If
+$m_a(\lambda)$ denotes the multiplicity of the part $a$ in $\lambda$, then
+\[
+  \lah_{n,k} =
+  \sum_{\substack{\lambda \vdash n-k \\ \ell(\lambda) \leq k}}
+  \frac{n!}
+  {(k-\ell(\lambda))!\prod_i(\lambda_i+1)!
+   \prod_{a\geq 1} m_a(\lambda)!}
+  \ell_\lambda .
+\]
+Indeed, once the non-singleton component sizes are fixed, the coefficient
+counts the ways to choose their vertex sets inside $[n]$; each component then
+contributes one connected Lah generator after standardizing its labels.
+
+\begin{example*}[Small connected Lah-basis expansions]
+% Related Rust: sym-poly/sym/src/lah.rs and
+% sym-poly/sym/examples/lah_forest_basis_site_example.rs
+In degree at most $3$, the connected generators begin
+\[
+  \ell_1=\elementaryE_1,\qquad
+  \ell_2=\elementaryE_{11}+2\elementaryE_2,\qquad
+  \ell_3=\elementaryE_{111}+8\elementaryE_{21}+6\elementaryE_3.
+\]
+For $n=4$, the Lah symmetric functions expand as
+\[
+  \lah_{4,1}=\ell_3,\qquad
+  \lah_{4,2}=4\ell_2+3\ell_{11},\qquad
+  \lah_{4,3}=6\ell_1,\qquad
+  \lah_{4,4}=1.
+\]
+\end{example*}
+
+\begin{remark*}
+The connected Lah forest basis is not a positive basis for all elementary
+positive symmetric functions.  In particular, the complete graph $K_2$ is a
+\hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graph}, but
+its chromatic symmetric function satisfies
+\[
+  \chrom_{K_2}(\xvec) = 2\elementaryE_2 = \ell_2-\ell_{11}.
+\]
+Thus unit interval graph chromatic symmetric functions are not all positive
+in the connected Lah forest basis.
+\end{remark*}
