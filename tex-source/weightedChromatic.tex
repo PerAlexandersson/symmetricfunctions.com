@@ -15,6 +15,17 @@
   Year   & 2019 \\
 \end{polydata}
 
+\begin{polydata}{completeMultipartite}
+  Name     & Complete multipartite basis \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & CrewSpirkl2020x \\
+  Year     & 2021 \\
+  Symbol   & $r_\lambda$ \\
+  Category & Other \\
+\end{polydata}
+
 
 \name{Logan Crew} and \name{Sophie Spirkl} \cite{CrewSpirkl2019x} introduce a vertex-weighted version of 
 the \hyperref[chromaticQuasisymmetric]{chromatic symmetric functions}.
@@ -33,8 +44,17 @@ In \cite{CrewSpirkl2020x}, the authors examine a new basis, the
 functions of complete multipartite graphs.  They give combinatorial
 interpretations for the change-of-basis coefficients with the monomial basis,
 and for chromatic and Tutte symmetric functions expanded in this basis.
+More explicitly, if $G_\lambda$ is the complete multipartite graph with
+stable-set sizes $\lambda$, then
+\[
+  r_\lambda \coloneqq X_{G_\lambda}.
+\]
+For each $d$, the functions $\{r_\lambda:\lambda\vdash d\}$ form a basis for
+the degree-$d$ part of the ring of symmetric functions
+\cite[Sec.~3]{CrewSpirkl2020x}.
 
-\todo{Later relation pass: add a complete multipartite basis polydata node and relation metadata to chromatic and Tutte symmetric functions. Add small graph examples; consider generating them with Rust code.}
+\todo{Later examples pass: add small complete multipartite graph examples;
+consider generating or checking them with Rust code.}
 
 The deletion-contraction relation does not extend to the $q$-weighted version with ascents.
 
