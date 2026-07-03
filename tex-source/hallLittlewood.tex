@@ -455,13 +455,7 @@ For the definition of quasisymmetric Schur functions, see \cite{HaglundLuotoMaso
   Symbol   & $\hallLittlewoodQ_\lambda(\xvec;t)$ \\
   Category & Schur \\
   SpecializesTo & schurS | Littlewood1961 | map=t=0 \\
-  SpecializesTo & completeH | Littlewood1961 | map=t=1 \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn hallLittlewoodQ -> schurS; from polynomialData.m, tikzdataPositivity.txt.
-}
-
 
 The \defin{Hall--Littlewood $Q$ polynomials} can be defined as 
 \begin{equation*}
@@ -471,6 +465,18 @@ The \defin{Hall--Littlewood $Q$ polynomials} can be defined as
 \sigma\left( \xvec^\lambda \frac{ \prod_{i \lt j} 1-tx_j/x_i }{\prod_{i \lt j} 1-x_j/x_i }  \right).
 \end{equation*}
 Thus, $\hallLittlewoodQ_\lambda(\xvec;t)$ and $\hallLittlewoodP_\lambda(\xvec;t)$ differ only by a factor in $\setZ[t]$.
+See \cite[III. \S2]{Macdonald1995} for this normalization.
+More explicitly, $\hallLittlewoodQ_\lambda=b_\lambda(t)\hallLittlewoodP_\lambda$,
+where
+\[
+b_\lambda(t)=\prod_{i\geq 1}\prod_{j=1}^{m_i(\lambda)}(1-t^j).
+\]
+In particular, $\hallLittlewoodQ_{(1)}=(1-t)\schurS_{(1)}$.
+Thus this $Q$-normalization is not Schur-positive over $\setN[t]$, and
+the specialization $t=1$ is not the complete homogeneous basis.  The
+Schur-positive Hall--Littlewood family governed by Kostka--Foulkes
+polynomials is instead the \hyperref[hallLittlewoodT]{transformed}
+or \hyperref[hallLittlewoodH]{modified} Hall--Littlewood family.
 
 
 \begin{theorem}[See \cite[Eq. (17)]{DesarmenienLeclercThibon1994} ]
