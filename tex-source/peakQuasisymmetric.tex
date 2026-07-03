@@ -87,7 +87,44 @@ pattern quasisymmetric functions indexed by subsets of $\symS_3$ are
 symmetric.  In the symmetric cases, the paper gives explicit positive
 expansions in Schur $Q$-functions.
 
-\todo{Later examples pass: add explicit pattern-avoiding peak-function examples and their Schur $Q$ expansions.}
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/pattern_avoiding_peak_site_examples.rs
+\begin{example*}[Pattern-avoiding peak functions in degree four]
+For a set $\Pi$ of permutation patterns, let $\mathrm{Av}_n(\Pi)$ be the
+set of permutations of size $n$ avoiding all patterns in $\Pi$.  The
+\defin{pattern-avoiding peak function} is
+\[
+R_n(\Pi)\coloneqq
+  \sum_{\pi\in\mathrm{Av}_n(\Pi)} \peakQSym_{\Peak(\pi)}.
+\]
+Slattery-Holmes classifies the sets $\Pi\subseteq\symS_3$ for which
+$R_n(\Pi)$ is symmetric for all $n$, and gives Schur $Q$-positive formulas
+\cite[Thm.~1.1]{SlatteryHolmes2025x}.  In degree four, some representative
+cases are
+\[
+\begin{array}{ll}
+\toprule
+\Pi & R_4(\Pi) \\
+\midrule
+\{123\}
+  & 4\schurQ_{(4)} + 5\schurQ_{(3,1)} \\
+\{132,231\}
+  & 8\schurQ_{(4)} \\
+\{123,132,312\}
+  & 2\schurQ_{(4)} + \schurQ_{(3,1)} \\
+\bottomrule
+\end{array}
+\]
+Here $\schurQ_{(4)}=\peakQSym_{\emptyset}$ and
+$\schurQ_{(3,1)}=\peakQSym_{\{2\}}+\peakQSym_{\{3\}}$, so the first line is
+equivalently
+\[
+R_4(\{123\})
+  =4\peakQSym_{\emptyset}
+   +5\peakQSym_{\{2\}}
+   +5\peakQSym_{\{3\}}.
+\]
+\end{example*}
 
 \subsection[enrichedPPartitions]{Enriched P-partitions}
 
