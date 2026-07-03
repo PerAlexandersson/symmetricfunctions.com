@@ -241,6 +241,23 @@ quasisymmetric Schur $Q$-functions expand positively in the
 \hyperref[peakYqSchur]{peak Young quasisymmetric Schur basis}.
 
 % Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/peak_tableau_site_examples.rs
+\begin{example*}[A standard peak composition tableau]
+Rows in a peak composition diagram are indexed from bottom to top.  Thus the
+following displayed tableau has peak shape $(4,3,1)$:
+\[
+\begin{ytableau}
+8 \\
+5&6&7 \\
+1&2&3&4
+\end{ytableau}
+\]
+It is a standard peak composition tableau.  Its upward descent set is
+$\{4,7\}$, so its peak composition is $(4,3,1)$.  Hence this tableau
+contributes the summand $K_{431}$ to $\widetilde{Q}_{431}$.
+\end{example*}
+
+% Related Rust:
 % /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/qsym_schur_q_degree4.rs
 Writing $K_\beta$ for the \hyperref[peakQSym]{peak function} indexed by the
 peak composition $\beta$, the degree four quasisymmetric Schur $Q$-functions
@@ -299,7 +316,9 @@ functions expand as follows.
 \end{array}
 \]
 
-\todo{Later examples pass: add small peak Young composition tableau examples and check whether ytableau or a custom diagram macro is the best rendering.}
+The filling in the preceding example is also a standard peak Young composition
+tableau of shape $(4,3,1)$.  Its left descent set is again $\{4,7\}$, so it
+contributes $K_{431}$ to $\widetilde{S}_{431}$.
 
 
 \section[rsqSchur]{Row-strict quasisymmetric Schur functions}
