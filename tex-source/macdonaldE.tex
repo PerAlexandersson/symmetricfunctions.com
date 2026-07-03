@@ -41,10 +41,36 @@ At $q=t=0$, their model reduces to the \emph{Littelmann path model}.
 
 In \cite{BorodinWheeler2019}, an integrable vertex model is used to 
 give an alternative formula for non-symmetric Macdonald polynomials.
-\todo{Later figures/examples pass: explain the Borodin--Wheeler vertex model
-with one small lattice configuration and its monomial weight.  Use a figure
-checked against the paper or generated from code rather than a hand-drawn
-guess.}
+
+\begin{example}
+% Related Rust: sym-poly/multipoly/src/borodin_wheeler.rs and
+% sym-poly/multipoly/examples/borodin_wheeler_l_matrix_site_example.rs
+The local building block in \cite[Eq.~(3.7)]{BorodinWheeler2019} is a face
+\[
+  L_x(I,j;K,\ell)
+  =
+  \begin{array}{ccc}
+      & K &  \\
+    j & \boxed{x} & \ell \\
+      & I &
+  \end{array},
+\]
+where the vertical labels $j,\ell$ are colors in $\{0,1,\dotsc,n\}$, and
+the horizontal labels $I,K$ are occupation vectors in $\setZ_{\geq 0}^n$.
+For $n=3$, one of their sample faces is
+\[
+  I=(1,1,1),\qquad j=1,\qquad K=(2,0,1),\qquad \ell=2.
+\]
+Here the conservation rule $I+e_1=K+e_2$ holds, and the corresponding
+Boltzmann weight is
+\[
+  L_x((1,1,1),1;(2,0,1),2)=x(1-t)t.
+\]
+The factor of $x$ appears because the right edge has nonzero color.  In the
+full model, these faces are concatenated into row operators and then read as
+colored lattice paths on a cylinder; the product of the local $x$-factors gives
+the monomial part of a path configuration.
+\end{example}
 
 See the book \cite{qtCatalanBook} for more background on the type $A$
 non-symmetric Macdonald polynomials.
