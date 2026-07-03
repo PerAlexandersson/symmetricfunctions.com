@@ -465,8 +465,31 @@ It follows that
 This agrees with the divided-difference definition of the same key polynomial.
 \end{example*}
 
-\todo{Later examples pass: implement a checked right-key tableau generator and
-add the parallel SSYT/right-key enumeration for the example above.}
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/multipoly/examples/key_right_key_site_example.rs
+\begin{example*}[The same key from right keys]
+For $\alpha=(1,0,2)$, the key tableau $\mathrm{key}(\alpha)$ has rows
+$[1,3]/[3]$.  The semistandard tableaux of shape $(2,1)$ with entries at
+most $3$ have the following right-key weights, computed via Mason's
+SSYT-to-SSAF bijection \cite{Mason2009}:
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c}
+T & \mathrm{wt}(K_+(T)) & K_+(T)\leq \mathrm{key}(\alpha) \\
+\hline
+[1,1]/[2] & (2,1,0) & \text{yes} \\
+[1,1]/[3] & (2,0,1) & \text{yes} \\
+[1,2]/[2] & (1,2,0) & \text{yes} \\
+[1,2]/[3] & (0,2,1) & \text{no} \\
+[1,3]/[2] & (1,0,2) & \text{yes} \\
+[1,3]/[3] & (1,0,2) & \text{yes} \\
+[2,2]/[3] & (0,2,1) & \text{no} \\
+[2,3]/[3] & (0,1,2) & \text{no}
+\end{array}
+\]
+The five tableaux marked ``yes'' have weights
+$(2,1,0)$, $(2,0,1)$, $(1,2,0)$, $(1,1,1)$, and $(1,0,2)$,
+giving the same polynomial as the SSAF computation above.
+\end{example*}
 
 
 
