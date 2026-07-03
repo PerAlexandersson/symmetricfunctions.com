@@ -109,11 +109,49 @@ $x_1^2x_2^2x_3$, matching the final term above
 \cite[Thm.~1.2]{PanYu2024}.
 \end{example*}
 
-\todo{Later figures/examples pass: add a small Lascoux example showing a
-set-valued skyline filling and its bijective image among the $K$-Kohnert
-diagrams.  Generate or check the diagrams with the Rust tableau/polynomial
-code or with examples from Pan--Yu; do not hand-draw $K$-Kohnert moves from
-memory.}
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/multipoly/examples/lascoux_k_kohnert_site_example.rs
+\begin{example*}[A small Pan--Yu bijection example]
+Pan and Yu's bijection is stated for reverse set-valued tableaux, represented
+as diagram pairs, rather than for the skyline-filling convention above.  The
+following source-backed example uses their row convention, where row $1$ is at
+the bottom \cite[Exs.~3.2 and~3.5]{PanYu2023}.
+
+Write $\bullet$ for ordinary cells and $\times$ for ghost cells.  The
+$K$-Kohnert diagram pair
+\[
+  K=\{(1,1),(1,2),(2,1)\},\qquad
+  G=\{(1,3),(2,2)\}
+\]
+is drawn as
+\[
+\begin{array}{c|cc}
+  3 & \times &        \\
+  2 & \bullet & \times \\
+  1 & \bullet & \bullet \\ \hline
+    & 1 & 2
+\end{array}.
+\]
+It has excess $2$ and weight $(2,2,1)$, so it contributes
+\[
+  \beta^2 x_1^2x_2^2x_3.
+\]
+Under Pan--Yu's map $\Psi_\alpha$, for $\alpha=(0,2,1)$, this diagram pair is
+sent to the reverse set-valued tableau diagram pair
+\[
+  L=\{(1,2),(1,3),(2,2)\},\qquad
+  E=\{(1,1),(2,1)\}.
+\]
+Equivalently, the corresponding reverse set-valued tableau is
+\[
+\begin{array}{cc}
+  \{3\} & \{2,1\}\\
+  \{2,1\} &
+\end{array}.
+\]
+The image has the same excess and weight, so it contributes the same monomial
+$\beta^2x_1^2x_2^2x_3$ on the tableau side.
+\end{example*}
 
 
 
