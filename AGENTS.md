@@ -65,6 +65,21 @@ Kebab-case labels exist in some older files (e.g., `parking-functions`) but came
 
 Standard theorem-like environments: `definition`, `theorem`, `proposition`, `lemma`, `conjecture`, `remark`, `example`, `proof`, `proof*` (unnumbered).
 
+### Computed examples
+
+When adding computed examples, tables, or expansion data, prefer backing them
+with checked code in the main Rust workspace when practical.  For
+quasisymmetric-function material, use:
+
+```text
+/home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym
+```
+
+Good breadcrumbs are durable notes in this `AGENTS.md`, the Rust crate
+`README.md`, and named Rust examples/tests.  TeX comments such as
+`% Related Rust:` are optional and should stay short; they are useful
+navigation aids, not the primary record.
+
 ### Polynomial family metadata
 
 ```tex
