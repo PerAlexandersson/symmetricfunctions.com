@@ -16,11 +16,35 @@ We have
 \[
 \sum_{\pi} q^{|\pi|} = 
 \prod_{i=1}^a \prod_{j=1}^b \prod_{k=1}^m
-\frac{1-q^{i+j+m-1}}{1-q^{i+j+m-2}}
+\frac{1-q^{i+j+k-1}}{1-q^{i+j+k-2}}
 \]
 where the sum is over all plane partitions 
 with $\leq a$ rows, $\leq b$ columns and largest entry $\leq m$.
 \end{theorem}
+
+\begin{example}
+For \(a=1\), \(b=2\), and \(m=2\), the plane partitions are weakly
+decreasing rows \((u,v)\) with \(2\geq u\geq v\geq 0\).  They are
+\[
+  (0,0),\quad (1,0),\quad (1,1),\quad
+  (2,0),\quad (2,1),\quad (2,2),
+\]
+so the generating polynomial is
+\[
+  1+q+2q^2+q^3+q^4.
+\]
+The product formula gives the same value:
+\[
+  \frac{1-q^2}{1-q}
+  \frac{1-q^3}{1-q^2}
+  \frac{1-q^3}{1-q^2}
+  \frac{1-q^4}{1-q^3}
+  =
+  \frac{(1-q^3)(1-q^4)}{(1-q)(1-q^2)}
+  =
+  1+q+2q^2+q^3+q^4.
+\]
+\end{example}
 
 
 \begin{theorem}[Kreweras, \cite{Kreweras1965}]
