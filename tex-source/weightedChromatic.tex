@@ -53,8 +53,25 @@ For each $d$, the functions $\{r_\lambda:\lambda\vdash d\}$ form a basis for
 the degree-$d$ part of the ring of symmetric functions
 \cite[Sec.~3]{CrewSpirkl2020x}.
 
-\todo{Later examples pass: add small complete multipartite graph examples;
-consider generating or checking them with Rust code.}
+\begin{example*}
+In degree $2$, the graph $G_{(2)}$ is edgeless and $G_{(1,1)}$ is the
+complete graph $K_2$.  Thus
+\[
+  r_{(2)}=\monomial_2+2\monomial_{11},
+  \qquad
+  r_{(1,1)}=2\monomial_{11}.
+\]
+In degree $3$, direct enumeration of proper colorings gives
+\[
+\begin{aligned}
+  r_{(3)} &= \monomial_3+3\monomial_{21}+6\monomial_{111},\\
+  r_{(2,1)} &= \monomial_{21}+6\monomial_{111},\\
+  r_{(1,1,1)} &= 6\monomial_{111}.
+\end{aligned}
+\]
+These triangular expansions are the first instances of the fact that the
+$r_\lambda$ form a basis.
+\end{example*}
 
 The deletion-contraction relation does not extend to the $q$-weighted version with ascents.
 
