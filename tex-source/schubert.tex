@@ -642,6 +642,32 @@ interpretation of the insertion algorithms of \name{Daoji Huang} and
   SpecializesTo & schubert | LascouxSchutzenberger1982 | map=y=0 \\
 \end{polydata}
 
+\begin{polydata}{schubertBackStableDouble}
+  Name     & Back stable double Schubert polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & LamLeeShimozono2018x \\
+  Year     & 2018 \\
+  Symbol   & $\overleftarrow{\schubert}_\omega(\xvec;\avec)$ \\
+  Keywords & back-stable,double,schubert \\
+  Category & Schubert \\
+\end{polydata}
+
+\begin{polydata}{schubertEnriched}
+  Name     & Enriched Schubert polynomials \\
+  Space    & All \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & AndersonFulton2021x \\
+  Year     & 2021 \\
+  Keywords & enriched,double,back-stable,type-C,schubert \\
+  Category & Schubert \\
+  SpecializesTo & schubertDouble | AndersonFulton2021x | map=$c_i=0$ \\
+  SpecializesTo & schubertBackStableDouble | AndersonFulton2021x | scope=$c$-variables specialized to power series \\
+  SpecializesTo & schubertBCD | AndersonFulton2021x | scope=$c$-variables specialized to Schur $Q$-polynomials, type $C$ double case \\
+\end{polydata}
+
 \todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
 - SpecializesTo doubleSchubert -> doubleSchur (current guess: schubertDouble -> schurFactorial); from polynomialData.m, tikzdataRelations.txt.
 }
@@ -668,7 +694,9 @@ polynomials through infinite-dimensional flag varieties and degeneracy loci
 \cite{Anderson2025}, including positivity in equivariant coproduct and
 back-stable/enriched Schubert expansions.
 
-\todo{Later relation pass: decide whether enriched Schubert polynomials need a separate polydata node, and record their specializations to double, back-stable double, and type $C$ double Schubert polynomials. Add a small worked specialization example.}
+\todo{Later examples pass: add a small worked enriched Schubert specialization
+example, preferably one where $c_i=0$ gives a familiar double Schubert
+polynomial.}
 
 There is a pipe-dream formula, expressing $\schubert_\omega(\xvec,\yvec) $
 as a sum over \hyperref[schubertPipeDream]{pipe dreams}:
