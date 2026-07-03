@@ -289,8 +289,30 @@ as $\schurS_\lambda(\xvec) = \sum_{\alpha \sim \lambda'} \rsqSchur_\alpha(\xvec)
 
 The relation with the \hyperref[qSchur]{quasisymmetric Schur functions} is straightforward;
 we have that $\qSchur_\alpha = \omega(\rsqSchur_\alpha)$, where $\omega$
-is a certain \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}.
+is the \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}
+which extends the usual involution on $\spaceSym$.  Equivalently,
+$\rsqSchur_\alpha=\omega(\qSchur_\alpha)$.
 
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/row_strict_qsym_schur_degree4.rs
+The degree four row-strict quasisymmetric Schur functions have the following
+\hyperref[gessel]{fundamental quasisymmetric} expansions.
+\[
+\begin{array}{ll}
+\toprule
+\alpha & \rsqSchur_\alpha(\xvec) \\
+\midrule
+1111 & \gessel_{4} \\
+112  & \gessel_{13} \\
+121  & \gessel_{22} \\
+13   & \gessel_{112}+\gessel_{121} \\
+211  & \gessel_{31} \\
+22   & \gessel_{121}+\gessel_{22} \\
+31   & \gessel_{211} \\
+4    & \gessel_{1111} \\
+\bottomrule
+\end{array}
+\]
 
 
 A product rule for multiplying a \hyperref[rsqSchur]{row-strict quasisymmetric Schur function} with a
