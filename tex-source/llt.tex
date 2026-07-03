@@ -188,6 +188,34 @@ The skew boxes have been marked with $\square$.
 
 \end{example}
 
+\begin{example*}[Three one-box shapes]
+% Related Rust: sym-poly/sym/examples/llt_site_example.rs
+Let $\nuvec$ be the tuple consisting of three single boxes, all of content
+$0$.  A filling is a word $abc$ of positive integers, and the LLT inversion
+statistic is the ordinary inversion number
+\[
+\inv(abc)=\#\{(i,j):i<j,\ a_i>a_j\}.
+\]
+Equivalently, the attacking graph is the complete graph $K_3$ on the three
+boxes.  Thus
+\[
+\LLT_\nuvec(\xvec;q)
+  = \sum_{a,b,c\geq 1} q^{\inv(abc)}x_ax_bx_c.
+\]
+Grouping the words by their color multiplicities gives the monomial expansion
+\[
+\LLT_\nuvec(\xvec;q)
+  = \monomial_3
+    +(1+q+q^2)\monomial_{21}
+    +(1+2q+2q^2+q^3)\monomial_{111}.
+\]
+In the Schur basis, this is
+\[
+\LLT_\nuvec(\xvec;q)
+  = \schurS_3+(q+q^2)\schurS_{21}+q^3\schurS_{111}.
+\]
+\end{example*}
+
 
 The original spin LLT polynomials and the modern LLT polynomials are related as follows.
 If $\nuvec$ is the $k$-tuple obtained as the $k$-quotient of $\lambda/\mu$, then 
@@ -273,12 +301,6 @@ unicellular LLT polynomials}. \name{Foster Tom} uses a generalization of cocharg
 This generalizes an earlier result by \name{Per Alexandersson} and \name{Joakim Uhlin} \cite{AlexanderssonUhlin2020}.
 \name{Foster Tom} also proves that a horizontal-strip LLT polynomial is
 determined by its weighted graph \cite{Tom2023}.
-
-\todo{Later examples pass: add a worked LLT example from a tuple of two or
-three ribbons or skew shapes, compute the inversion statistic and the resulting
-polynomial, and include the weighted graph/unit-interval graph picture when
-applicable.  Verify the polynomial and Schur expansion with Rust
-symmetric-function code.}
 
 
 
