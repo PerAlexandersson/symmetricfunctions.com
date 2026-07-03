@@ -19,6 +19,31 @@
   SpecializesTo & schurP | Stembridge1989 | map=t=-1 \\
 \end{polydata}
 
+\begin{polydata}{imathHallLittlewoodH}
+  Name     & Modified $\imath$ Hall--Littlewood functions \\
+  Space    & Sym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & LuRuanWang2025 \\
+  Year     & 2025 \\
+  Symbol   & $V^\imath_\lambda(\xvec;t,\theta)$ \\
+  Category & Schur \\
+  Generalizes & hallLittlewoodH | LuRuanWang2025 | scope=$\theta=0$ specialization \\
+  SpecializesTo & hallLittlewoodH | LuRuanWang2025 | map=$\theta=0$ \\
+  SpecializesTo & typeCUniversalCharacter | LuRuanWang2025 | map=$t=0,\theta=1$ \\
+\end{polydata}
+
+\begin{polydata}{typeCUniversalCharacter}
+  Name     & Type $C$ universal characters \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & JinJingLiWang2022x \\
+  Year     & 2022 \\
+  Symbol   & $s^C_\lambda$ \\
+  Category & Schur \\
+\end{polydata}
+
 \todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
 - PositiveIn hallLittlewoodP -> generalTAtom (current guess: hallLittlewoodP -> generalizedDemazureAtoms); from polynomialData.m.
 - PositiveIn hallLittlewoodP -> tatom (current guess: hallLittlewoodP -> atom); from polynomialData.m.
@@ -67,7 +92,8 @@ bipartitions, reduce to ordinary Hall--Littlewood functions when one partition
 is empty, specialize to Schur Laurent symmetric functions at $t=0$, and satisfy
 Pieri rules.
 
-\todo{Later relation pass: decide whether $\imath$ Hall--Littlewood functions need a family node, then record the specializations to modified Hall--Littlewood functions and type $C$ universal characters. Add a small example.}
+\todo{Later examples pass: add a small worked example for the modified
+$\imath$ Hall--Littlewood functions and their specializations.}
 
 \subsection[hallLittleWoodPWeylformula]{Definition}
 
