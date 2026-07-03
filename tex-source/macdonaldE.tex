@@ -227,14 +227,15 @@ straightening rule in the full permuted-basement family.
   PositiveIn & atom | MandelshtamNiergarthSingh2026x | semiring=NN[q]; proof=Cor. 4.7 \\
 \end{polydata}
 
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- Misc nonSymqElem -> hallLittlewoodH (current guess: macdonaldEspec -> hallLittlewoodH); from polynomialData.m.
-- Misc nonSymqElem -> modHL (current guess: macdonaldEspec -> hallLittlewoodH); from tikzdataRelations.txt.
-}
-
 The \defin{non-symmetric $q$-Whittaker polynomials} are obtained by letting $t=0$ in $\macdonaldE_\mu(\xvec;q,t)$.
 The result can be thought of as a non-symmetric analogue of the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials},
 and generalizes the \hyperref[qWhittaker]{$q$-Whittaker functions}.
+We keep this family distinct from the
+\hyperref[hallLittlewoodH]{modified Hall--Littlewood polynomials}: the former
+comes from the $t=0$ Macdonald specialization, while the latter is the $q=0$
+specialization of \hyperref[macdonaldH]{modified Macdonald polynomials}.
+There are nevertheless direct comparisons between their filling models; see
+\cite{Ratheesh2024x,Bhattacharya2025}.
 
 The polynomials $\macdonaldE_\mu(\xvec;q,0)$ expand positively in \hyperref[key]{key polynomials},
 and the coefficients are \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials},
