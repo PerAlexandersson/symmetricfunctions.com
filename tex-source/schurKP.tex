@@ -3,8 +3,8 @@
 \metadescription{K-theoretic analogs of Schur P and Schur Q functions, introduced by \name{Takeshi Ikeda} and \name{Hiroshi Naruse}, with properties and Littlewood--Richardson rules.}
 
 \section[schurKPQ]{K-theoretic Schur P/Q polynomials}
-\begin{polydata}{schurKPQ}
-  Name   & K-theoretic Schur P/Q polynomials \\
+\begin{polydata}{schurKP}
+  Name   & K-theoretic Schur P-functions \\
   Space    &  Sym   \\
   Basis    &  True   \\
   Rating   &  1      \\
@@ -14,7 +14,20 @@
   Symbol   &  $\schurKP_{\lambda}(\xvec)$ \\
   Category &  Schur \\
   KTheoreticAnalogueOf & schurP | IkedaNaruse2013 \\
+\end{polydata}
+
+\begin{polydata}{schurKQ}
+  Name   & K-theoretic Schur Q-functions \\
+  Space    &  Sym   \\
+  Basis    &  True   \\
+  Rating   &  1      \\
+  Bib      &  IkedaNaruse2013 \\
+  Year     &  2013 \\
+  Keywords &  jacobi-trudi,tableaux,pieri,littlewood-richardson \\
+  Symbol   &  $\schurKQ_{\lambda}(\xvec)$ \\
+  Category &  Schur \\
   KTheoreticAnalogueOf & schurQ | IkedaNaruse2013 \\
+  SignedIn & schurKP | ChiuMarberg2024 | sign_rule=Theorem 1.1; note=NN[beta]-positive in the cases of Corollary 1.2 \\
 \end{polydata}
 
 
@@ -48,14 +61,17 @@ and verify an Ikeda--Naruse basis conjecture for the $GQ$-functions.
 
 \name{Yu-Cheng Chiu} and \name{Eric Marberg} prove identities expanding
 $K$-theoretic Schur $Q$-functions in terms of $K$-theoretic Schur
-$P$-functions \cite{ChiuMarberg2024}.  Their formulas extend to skew and
-dual versions, and they also prove a shifted skew Cauchy identity for
-symmetric Grothendieck polynomials.
+$P$-functions \cite{ChiuMarberg2024}.  Their main formula is a signed finite
+expansion, and they characterize when its coefficients lie in
+$\setN[\beta]$; see \cite[Thm.~1.1 and Cor.~1.2]{ChiuMarberg2024}.  Their
+formulas extend to skew and dual versions, and they also prove a shifted skew
+Cauchy identity for symmetric Grothendieck polynomials.
 \name{Eric Marberg} proves that the $K$-Stanley symmetric functions of
 classical types expand positively into these $K$-theoretic Schur $P$- and
 $Q$-functions \cite{Marberg2025x}.
 
-\todo{Later relation pass: decide whether to split the $K$-theoretic Schur $P$ and $Q$ nodes, then record the Chiu--Marberg $Q$-to-$P$ positive expansion as polydata metadata. Add a small shifted-tableau example if practical.}
+\todo{Later examples pass: add a small shifted-tableau example for the
+Chiu--Marberg $Q$-to-$P$ expansion if practical.}
 
 
 \subsection[schurKPQProps]{Properties}
