@@ -118,21 +118,27 @@ Halverson--Ram uses a different method based on intertwiners.
 \subsection[macdonaldERecurrences]{Recurrence relations}
 
 The HHL filling formula is often proved by checking the
-\defin{Knop--Sahi recurrence}.  In the column convention of
-\cite{HaglundHaimanLoehr2008}, let $\mu=(\mu_1,\dotsc,\mu_n)\in\setN^n$ and
-note that this page follows the HHL/website indexing convention rather than
-the original Knop--Sahi indexing convention.  Thus comparisons with
-Knop--Sahi's formulas should first translate the indexing.
+\defin{Knop--Sahi recurrence}.  There are two common indexing
+orientations.  Haglund--Haiman--Loehr, and the skyline convention used by
+Moura--Mandelshtam, index a composition by column heights.  This website
+follows Alexandersson's English-diagram convention; when $\sigma=\omega_0$,
+our index $\alpha$ corresponds to the HHL index $\rev(\alpha)$.
+Thus the cyclic recurrence is reversed compared with the HHL display.
+In the website convention, let $\alpha=(\alpha_1,\dotsc,\alpha_n)$ and
 \[
-\widehat{\mu}\coloneqq(\mu_n+1,\mu_1,\dotsc,\mu_{n-1}),\qquad
+\widehat{\alpha}\coloneqq(\alpha_2,\dotsc,\alpha_n,\alpha_1+1),\qquad
 \Psi f\coloneqq x_1f(x_2,\dotsc,x_n,q^{-1}x_1).
 \]
 Then
 \[
-\macdonaldE_{\widehat{\mu}}(\xvec;q,t)
-  = q^{\mu_n}\Psi\macdonaldE_\mu(\xvec;q,t).
+\macdonaldE_{\widehat{\alpha}}(\xvec;q,t)
+  = q^{\alpha_1}\Psi\macdonaldE_\alpha(\xvec;q,t)
 \]
-Moreover, if $\mu_i>\mu_{i+1}$ and
+in Alexandersson's convention \cite[Sec.~3]{Alexandersson2015gbMacdonald}.
+Equivalently, after setting $\mu=\rev(\alpha)$, this is the HHL recurrence
+\cite[Sec.~2.1]{HaglundHaimanLoehr2008}.
+
+In HHL skyline indexing, if $\mu_i>\mu_{i+1}$ and
 $u=(i,\mu_{i+1}+1)$ is the corresponding cell in the column diagram, then
 \[
 \macdonaldE_{s_i\mu}(\xvec;q,t)
@@ -143,14 +149,17 @@ $u=(i,\mu_{i+1}+1)$ is the corresponding cell in the column diagram, then
   \right)
   \macdonaldE_\mu(\xvec;q,t),
 \]
-where $T_i$ is the affine Hecke operator in the HHL convention.  Together
-with $\macdonaldE_{(0,\dotsc,0)}=1$, the rotation recurrence and the special
-case of the second recurrence with $\mu_{i+1}=0$ uniquely determine all
-non-symmetric Macdonald polynomials
+where $T_i$ is the affine Hecke operator in the HHL convention.  Translating
+this adjacent-part recurrence to the website convention reverses the shape
+positions.  Together with $\macdonaldE_{(0,\dotsc,0)}=1$, the cyclic
+recurrence and the special cases of the adjacent recurrence uniquely
+determine all non-symmetric Macdonald polynomials
 \cite[Sec.~2.1]{HaglundHaimanLoehr2008}.
 
 For \hyperref[macdonaldEperm]{permuted-basement Macdonald polynomials},
 Demazure--Lusztig operators give a second recursive viewpoint.  Let
+% Related Rust: sym-poly/multipoly/src/nonsymmetric_macdonald.rs checks the
+% q=0 operator recursion against the non-attacking filling formula.
 \[
 \widetilde{\pi}_i\coloneqq (1-t)\pi_i+t s_i,\qquad
 \widetilde{\theta}_i\coloneqq (1-t)\theta_i+t s_i,
@@ -193,7 +202,7 @@ $\sigma_j=i+1$, $\sigma_{j+1}=i$, then
   \right)\macdonaldE^\sigma_\alpha,
 \]
 where $u=(j+1,\alpha_j+1)$ is computed in the diagram of
-$s_j\cdot\alpha$ \cite[Prop.~17]{Alexandersson2015gbMacdonald}.
+$\alpha$ \cite[Prop.~17]{Alexandersson2015gbMacdonald}.
 The inverse case $\alpha_j>\alpha_{j+1}$ is given in
 \cite[Prop.~18]{Alexandersson2015gbMacdonald}.  The more recent
 \hyperref[macdonaldEPermShape]{shape-changing identities} of
