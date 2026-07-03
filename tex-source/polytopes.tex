@@ -139,6 +139,14 @@ polytopes of crown posets \cite{LundstromLeite2026}.  They give formulas for
 $f$-vectors, recurrences for Ehrhart polynomials, and an $h^*$-interpretation
 using cyclically alternating permutations.
 
+\name{Benjamin Braun} and \name{Aryaman Jal} prove that order polytopes of
+generalized snake posets have real-rooted $h^*$-polynomials
+\cite{BraunJal2026x}.  These posets are width-two distributive lattices, and
+the proof uses Stanley's interpretation of the $h^*$-polynomial as a
+$P$-Eulerian polynomial, its realization as a non-nesting rook polynomial, and
+interlacing recurrences.  The ladder and regular snake cases recover the
+Narayana and Delannoy polynomials, respectively.
+
 
 
 \subsection[markedOrderPolytope]{Marked order polytopes}
@@ -205,6 +213,37 @@ Equivalently, it is the convex hull of all coordinate permutations of
 $(1,2,\dotsc,n)$.  Its face structure is governed by ordered set partitions
 of $[n]$, and it is a basic example of a generalized permutohedron; see
 \cite{ZieglerLecturesOnPolytopes95}.
+
+
+\subsection[birkhoffPolytope]{Birkhoff polytopes}
+
+The \defin{Birkhoff polytope} $\mathcal{B}_n$ is the polytope of
+$n\times n$ doubly stochastic matrices:
+\[
+  \mathcal{B}_n
+  \coloneqq
+  \left\{
+    X\in\setR_{\geq 0}^{n\times n} :
+    \sum_j X_{ij}=1 \text{ for all } i,\,
+    \sum_i X_{ij}=1 \text{ for all } j
+  \right\}.
+\]
+Equivalently, by the Birkhoff--von Neumann theorem, $\mathcal{B}_n$ is
+the convex hull of the $n\times n$ permutation matrices.  See
+\cite{Pak2000} for several combinatorial questions about this polytope.
+The Birkhoff polytope also appears as a
+\hyperref[birkhoffPolytopeAsGelfandTsetlin]{Gelfand--Tsetlin polytope}.
+
+\name{Esther Banaian}, \name{Sunita Chepuri}, \name{Emily Gunawan}, and
+\name{Jianping Pan} define $c$-Birkhoff polytopes by taking convex hulls of
+permutation matrices indexed by $c$-singletons for a Coxeter element $c$
+\cite{BanaianChepuriGunawanPan2025x}.  In type $A$, these polytopes are
+integrally equivalent to order polytopes of heap posets.  Their type $B$
+version embeds signed permutations in $B_n$ into $S_{2n}$ and gives the
+same conclusion: for every Coxeter element $c_B$ of $B_n$, the corresponding
+type $B$ $c$-Birkhoff polytope is integrally equivalent to the order
+polytope of the heap of the longest $c_B$-sorting word
+\cite[Thm.~3.16]{BanaianChepuriGunawanPan2026x}.
 
 
 \subsection[parkingFunctionPolytope]{Parking function polytopes}
@@ -411,10 +450,5 @@ polytopes, flow polytopes, and order polytopes \cite{RietschWilliams2024x}.
 
 \item \name{Max Köbl} studies roots of Ehrhart polynomials of symmetric edge
 polytopes from complete multipartite graphs \cite{Kolbl2024x}.
-
-\item \name{Esther Banaian}, \name{Sunita Chepuri}, \name{Emily Gunawan}, and
-\name{Jianping Pan} introduce $c$-Birkhoff polytopes, a family related to the
-\hyperref[birkhoffPolytopeAsGelfandTsetlin]{Birkhoff polytope}
-\cite{BanaianChepuriGunawanPan2025x}.
 
 \end{itemize}

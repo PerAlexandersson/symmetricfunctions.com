@@ -241,6 +241,84 @@ is Schur-positive.
 \end{theorem}
 
 
+\subsection[narayanaTransformations]{Narayana transformations and matrix products}
+
+\name{Jianxi Mao} and \name{Lijie Wang} study a basis transformation
+interpolating between the type $B$ and type $A$ Narayana polynomials
+\cite{MaoWang2026x}.  For $m\in \setZ_{\geq 0}$, set
+\[
+  N_{n,m}(x)
+  \coloneqq {}_2F_1(-n,-n-m;m+1;x)
+  =
+  \sum_{k=0}^n
+  \frac{(-n)_k(-n-m)_k}{(m+1)_k\,k!}x^k,
+\]
+where $(a)_k$ is the Pochhammer symbol.  Then $N_{n,0}(x)$ is the
+type $B$ Narayana polynomial and $N_{n,1}(x)$ is the type $A$
+Narayana polynomial.  The corresponding \defin{Narayana transformation}
+$T_{N_m}$ is defined by
+\[
+  T_{N_m}(x^n)=N_{n,m}(x).
+\]
+
+\begin{theorem}[Mao--Wang, \cite[Thm.~1.1]{MaoWang2026x}]
+\label{thm:narayanaTransformationMaoWang}
+Let $m\in\setZ_{\geq 0}$.  Suppose that
+\[
+  p(x)=\sum_{k=0}^n a_kx^k \in \setR_{\geq 0}[x]
+\]
+has only real roots and has degree $n$.  Then
+\[
+  T_{N_m}(p(x))=\sum_{k=0}^n a_kN_{k,m}(x)
+\]
+has only real nonpositive roots.
+\end{theorem}
+
+In particular, the type $A$ and type $B$ Narayana transformations
+preserve real-rootedness for polynomials with non-negative coefficients.
+The proof uses rectangular additive convolution, and the non-negativity
+assumption on the coefficients is essential.
+
+\begin{theorem}[Brenti, \cite[Thm.~2.4.2]{Brenti1995}]
+\label{thm:brentiFallingFactorialBasis}
+Let
+\[
+  \langle x\rangle_k\coloneqq x(x-1)\dotsm(x-k+1),
+  \qquad \langle x\rangle_0\coloneqq 1.
+\]
+If
+\[
+  f(x)=\sum_{k=0}^n a_k\langle x\rangle_k
+\]
+has only real nonpositive roots, then
+\[
+  \sum_{k=0}^n a_kx^k
+\]
+has only real nonpositive roots.
+\end{theorem}
+
+Mao and Wang use this theorem as Lemma~3.2 of \cite{MaoWang2026x} in
+their study of products of lower triangular matrices.  If
+$M=(M(n,k))_{n,k\geq 0}$ is lower triangular, write
+\[
+  M_n(x)\coloneqq \sum_{k=0}^n M(n,k)x^k
+\]
+for its \defin{row-generating function} (RGF).
+Their product criterion gives a broad class of matrices $B$ for which
+real-rootedness of all $M_n(x)$ forces real-rootedness of the RGFs of
+$MB^r$ for every $r\geq 1$ \cite[Thm.~1.3]{MaoWang2026x}.  This applies
+when $B$ is the coefficient matrix of the polynomials $N_{n,m}(x)$, and
+also to recurrence-defined triangular matrices including Pascal's
+triangle and the Stirling triangles.
+
+\begin{conjecture}[Mao--Wang, \cite[Conj.~4.1]{MaoWang2026x}]
+\label{conj:eulerianDelannoySquares}
+Let $A$ be the Eulerian triangle and let $D$ be the Delannoy triangle.
+The row-generating functions of $A^2$ and $D^2$ have only real
+nonpositive roots.
+\end{conjecture}
+
+
 
 \section[hadamardProduct]{Hadamard product of polynomials}
 
