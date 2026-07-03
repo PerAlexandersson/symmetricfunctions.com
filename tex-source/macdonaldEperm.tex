@@ -102,7 +102,9 @@ atoms.  These are not the same as the
 \subsection[macdonaldEpermDefinition]{Definitions}
 
 
-The following section is mainly from \cite{Alexandersson2015gbMacdonald}.
+The following section is mainly from \cite{Alexandersson2015gbMacdonald},
+with the filling product written in the Ferreira--Moura--Mandelshtam
+convention.
 
 Let $\sigma = (\sigma_1,\dots,\sigma_n)$ be a list of $n$ different positive integers 
 and let $\alpha=(\alpha_1,\dots,\alpha_n)$ be a weak integer composition.
@@ -237,11 +239,83 @@ $\macdonaldE^\sigma_\alpha(\xvec;q,t)$ is defined as
 \begin{equation}
 \macdonaldE^\sigma_\alpha(\xvec; q,t) = \sum_{ F \in \mathrm{NAF}_\sigma(\alpha)} 
 \xvec^F q^{\maj(F)} t^{\coinv(F)} 
-\prod_{ \substack{ u \in F \\ u \text{ is in the basement or} \\ F(d(u))\neq F(u) }}  \frac{1-t}{1-q^{1+\leg(u)} t^{1+\arm(u)}}.
+\prod_{ \substack{ u \in F \\ u \text{ is not in the basement} \\ F(d(u))\neq F(u) }}
+  \frac{1-t}{1-q^{1+\leg(u)} t^{1+\arm(u)}}.
 \end{equation}
 The product is over all boxes $u$ in $F$ not in the basement,
 satisfying $F(d(u))\neq F(u)$.
 \end{definition}
+
+\begin{remark}[Source conventions]
+The product range in the displayed formula above is the one used
+by Ferreira and by Moura--Mandelshtam
+\cite[Def.~2.1]{MouraMandelshtam2026x}.  The printed formula in
+\cite[Def.~5]{Alexandersson2015gbMacdonald} includes basement boxes in this
+product.  This should not be used literally: basement boxes may enter the arm
+sets of ordinary boxes, but they are not themselves product indices.  This is
+also the convention implemented in
+\href{https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/sf/ns_macdonald.html}{Sage's
+nonsymmetric Macdonald polynomial code}.
+
+There is a second convention issue in the operator formula.  In
+\cite[Rem.~2.7]{MouraMandelshtam2025x}, Moura--Mandelshtam note that the
+published definition of $\mathrm{twinv}(\alpha,\sigma)$ in
+\cite{Alexandersson2015gbMacdonald} has the inequality involving $\sigma$
+reversed.  The corrected convention is
+\[
+\mathrm{twinv}(\alpha,\sigma)
+\coloneqq
+\left|\{(i,j): i<j,\ \alpha_i\geq\alpha_j,\ \sigma_i<\sigma_j\}\right|.
+\]
+\end{remark}
+
+\begin{example}[A four-filling check]
+% Related Rust: sym-poly/core/src/ssaf.rs:
+% test_moura_mandelshtam_permuted_basement_example and
+% sym-poly/core/examples/permuted_basement_macdonald_site_example.rs
+Let $\alpha=(1,1,0,1)$ and let $\sigma=(2,4,1,3)$.  In the English
+convention used here, the four non-attacking fillings in
+$\mathrm{NAF}_\sigma(\alpha)$ are
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c@{\qquad}c}
+\begin{array}{c|c}2&1\\4&4\\1&{}\\3&3\end{array}
+&
+\begin{array}{c|c}2&2\\4&1\\1&{}\\3&3\end{array}
+&
+\begin{array}{c|c}2&2\\4&4\\1&{}\\3&3\end{array}
+&
+\begin{array}{c|c}2&4\\4&1\\1&{}\\3&3\end{array}.
+\end{array}
+\]
+Their data, in the order displayed, are
+\[
+\begin{array}{c|c|c|c|c}
+ & \xvec^F & \maj(F) & \coinv(F) & \text{ordinary product factors} \\ \hline
+F_1 & x_1x_3x_4 & 0 & 0 & \dfrac{1-t}{1-qt^3} \\
+F_2 & x_1x_2x_3 & 0 & 1 & \dfrac{1-t}{1-qt^2} \\
+F_3 & x_2x_3x_4 & 0 & 0 & 1 \\
+F_4 & x_1x_3x_4 & 1 & 2 &
+  \dfrac{1-t}{1-qt^3}\dfrac{1-t}{1-qt^2}.
+\end{array}
+\]
+Thus the filling formula gives
+\[
+\begin{aligned}
+\macdonaldE^{(2,4,1,3)}_{(1,1,0,1)}(\xvec;q,t)
+={}&
+x_2x_3x_4
+ + x_1x_3x_4\frac{1-t}{1-qt^3}
+ + x_1x_2x_3\,t\frac{1-t}{1-qt^2} \\
+&\quad
+ + x_1x_3x_4\,q t^2
+   \frac{(1-t)^2}{(1-qt^3)(1-qt^2)}.
+\end{aligned}
+\]
+This is the computation in \cite[Ex.~2.13]{MouraMandelshtam2025x}.
+The third filling is the useful sanity check for the corrected product range:
+all ordinary entries equal the entry immediately to their left, so its product
+factor is $1$.
+\end{example}
 
 When $\sigma = \omega_0$, we recover
 the \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}
