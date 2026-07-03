@@ -32,10 +32,23 @@ Hawkes proves that these functions are \hyperref[schurP]{Schur $P$}-positive
 by homogeneous degree.  This is analogous to the Schur-positivity of weak
 stable Grothendieck polynomials.
 
-\todo{Add a small shifted multiset-tableau example, preferably for a strict
-partition of size two or three, and back it with Rust shifted-tableau
-generation.}
-
+\begin{example*}[Shifted multiset tableaux for $\mu=21$]
+% Related Rust: sym-poly/sym/src/p_grothendieck.rs and
+% sym-poly/sym/examples/p_grothendieck_site_example.rs
+Consider Hawkes's $t$-deformation for $\mu=21$ in two variables
+$x_1,x_2$.  The degree-four part comes from shifted multiset tableaux in
+$\mathrm{SMT}_0(21)$ with exactly one extra entry beyond the three boxes of
+the shifted shape.  There are eight such tableaux, and their weights give
+\[
+\left[\deg_{\xvec}=4\right]
+\grothendieckPDual_{21}(x_1,x_2;t_1,t_2)
+= (t_1+t_2)
+\left(x_1^3x_2+2x_1^2x_2^2+x_1x_2^3\right).
+\]
+Equivalently, this degree-four piece is
+$(t_1+t_2)\schurP_{31}(x_1,x_2)$; compare \cite[Ex.~4.18]{Hawkes2023}.
+Here $t_i$ records the shifted diagonal in which the extra entry appears.
+\end{example*}
 
 Suppose $\mu$ is a strict partition with $m$ parts.
 The \defin{weak symmetric $P$-Grothendieck polynomial} $\grothendieckPDual_\mu(\xvec)$
