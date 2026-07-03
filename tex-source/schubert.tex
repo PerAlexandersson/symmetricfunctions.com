@@ -636,6 +636,7 @@ interpretation of the insertion algorithms of \name{Daoji Huang} and
   Symbol   & $\schubert_\omega(\xvec;\yvec)$ \\
   Keywords & divided-difference  \\
   Category & Schubert \\
+  Contains & schurFactorial | ChenLiLouck2002 | scope=Grassmannian permutations and coefficient specialization \\
   SpecializesTo & schubert | LascouxSchutzenberger1982 | map=y=0 \\
 \end{polydata}
 
@@ -665,11 +666,6 @@ interpretation of the insertion algorithms of \name{Daoji Huang} and
   SpecializesTo & schubertBCD | AndersonFulton2021x | scope=$c$-variables specialized to Schur $Q$-polynomials, type $C$ double case \\
 \end{polydata}
 
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- SpecializesTo doubleSchubert -> doubleSchur (current guess: schubertDouble -> schurFactorial); from polynomialData.m, tikzdataRelations.txt.
-}
-
-
 The double Schubert polynomials were introduced by
 \name{Alain Lascoux} and \name[M.-P. Schützenberger]{Marcel-Paul Schützenberger}
 \cite{LascouxSchutzenberger1982}, and by \name{Ian Macdonald} \cite{Macdonald1991}.
@@ -680,7 +676,10 @@ They are defined as
 \end{equation*}
 where the divided difference operator act on the $\xvec$-variables.
 By letting $y_i=0$, we get the usual Schubert polynomials. 
-The double Schubert polynomials generalize the double Schur polynomials.
+The double Schubert polynomials generalize the double Schur polynomials, and
+the \hyperref[schurFactorial]{factorial Schur polynomials} are obtained from
+the Grassmannian double Schur subfamily by specializing the coefficient
+alphabet \cite{ChenLiLouck2002}.
 
 \name{David Anderson} and \name{William Fulton} construct enriched type $A$
 Schubert polynomials with coefficients in a polynomial ring
