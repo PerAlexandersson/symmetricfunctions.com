@@ -14,17 +14,20 @@
   Rating & 5 \\
   Category & Schur \\
   PositiveIn & schurS | Sagan2001 \\
+  PositiveIn & gessel | Gessel1984 | proof=skew Schur fundamental expansion \\
   SignedIn & completeH | Moustakas2023x | sign_rule=coarsening parity \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- NSymQSymDual ribbonSchur -> gessel (current guess: schurRibbon -> gessel); from polynomialData.m.
-}
-
 
 The \defin{ribbon Schur polynomials} are
 the \hyperref[schurSkew]{skew Schur polynomials}
 indexed by \hyperref[skewShapes]{ribbons}.
+In particular, Gessel's fundamental expansion for skew Schur functions gives
+\[
+  \schurS_\alpha(\xvec)
+  =
+  \sum_{T \in \SYT(\alpha)} \gessel_{D(T)}(\xvec),
+\]
+where $\alpha$ is a ribbon and $D(T)$ is the descent set of $T$.
 
 There are $2^{n-1}$ different ribbons $\alpha$ with $n$ boxes,
 but the corresponding ribbon Schur functions $\schurS_\alpha$
