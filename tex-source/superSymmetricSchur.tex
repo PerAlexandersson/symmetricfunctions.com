@@ -68,9 +68,6 @@ functions \cite{Riedtmann2018x}.  These are closely related to the
 supersymmetric, or hook, Schur functions; the identities are obtained from
 the Moens--Van der Jeugt determinantal formula by Laplace expansion.
 
-\todo{Later examples pass: add small hook/tableau examples, preferably
-generated or checked by Rust code.}
-
 \subsection[superSymmetricFunctions]{Supersymmetric functions}
 
 We follow the definitions in \cite{MoensJeugt2003}. We let $\xvec = (x_1,\dotsc,x_m)$
@@ -119,6 +116,33 @@ the unprimed alphabet. We have
 \]
 where the expansion in the last sum is in terms of the 
 classical \hyperref[schurS]{schur functions}.
+
+\begin{example*}[A small hook Schur polynomial]
+% Related Rust: sym-poly/sym/examples/hook_schur_site_example.rs
+For the alphabet $1\lt2\lt1'$ and shape $(3,1)$, the two hook tableaux
+\[
+\begin{ytableau}
+1 & 1 & 1' \\
+2
+\end{ytableau}
+\qquad
+\begin{ytableau}
+1 & 1 & 2 \\
+1'
+\end{ytableau}
+\]
+both contribute the monomial $x_1^2x_2y_1$.  Enumerating all hook tableaux
+of this shape gives
+\[
+\begin{aligned}
+\schurHook_{(3,1)}(x_1,x_2/y_1)
+={}&x_1^3x_2+x_1^2x_2^2+x_1x_2^3+x_1^3y_1
+   +2x_1^2x_2y_1 \\
+&\quad +2x_1x_2^2y_1+x_2^3y_1
+   +x_1^2y_1^2+x_1x_2y_1^2+x_2^2y_1^2.
+\end{aligned}
+\]
+\end{example*}
 
 \begin{example}
 The following tableau is an element in $SST(7,6,5,2)$, contributing with 
