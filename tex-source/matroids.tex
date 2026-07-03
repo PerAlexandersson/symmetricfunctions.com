@@ -11,6 +11,9 @@ and independently by \name{Takeo Nakasawa}, see \cite{NishimuraKuroda2009}.
 This was further developed by \name{Saunders MacLane}, \name[B.L. van der Waerden]{Bartel Leendert van der Waerden} 
 \name{Richard Rado} and \name[W.T. Tutte]{William Thomas Tutte}.
 
+For systematic references on matroid theory, see \name[James Oxley]{James G. Oxley}'s
+book \cite{Oxley2011} and Tutte's introduction \cite{Tutte1971}.
+
 
 One motivating example for introducing matroids is the notion of
 \emph{bases} for a vector space. 
@@ -28,12 +31,12 @@ $x \in A \setminus B$, there is some $y \in B \setminus A$ such that
    (A \setminus \{x\}) \cup \{y\} \in \mathcal{B}.
 \]
 The cardinality, $r$, of each set in $\mathcal{B}$ is called the \defin{rank} 
-of the matroid, and the set $\mathcal{B}$ are the \defin{bases} of $M$.
+of the matroid, and the elements of $\mathcal{B}$ are the \defin{bases} of $M$.
 
 
 \begin{example}[Uniform matroid]\label{matroidUniform}
 The \defin{uniform matroid} $U_{r,n}$ is the matroid on ground set $[n]$
-and the bases being all $r$-element subsets of $[n]$.
+whose bases are all $r$-element subsets of $[n]$.
 \end{example}
 
 
@@ -68,6 +71,19 @@ there is no element we can add to $X$ from $E \setminus X$ and preserve the rank
 For representable matroids, flats correspond to the various linear subspaces spanned by the independent sets.
 
 The set of flats form a lattice under inclusion, the \defin{lattice of flats}.
+
+\begin{example}[The lattice of flats of $U_{2,3}$]
+For the uniform matroid $U_{2,3}$, the flats are
+\[
+  \emptyset,\quad \{1\},\quad \{2\},\quad \{3\},\quad \{1,2,3\}.
+\]
+The two-element subsets are not flats: for instance,
+$r(\{1,2\})=r(\{1,2,3\})=2$, so adding the missing element does not increase
+the rank.  Thus the lattice of flats is
+\begin{figure}
+  \svgimg[width=0.42\textwidth]{./svg-images/matroid-flats-u23.svg}{The lattice of flats of U23.}
+\end{figure}
+\end{example}
 
 If $W_i(M)$ denotes the number of flats of rank $i$, then the sequence
 $(W_i(M))_i$ is the sequence of \defin{Whitney numbers of the second kind}.
@@ -121,7 +137,7 @@ and the bases are
 \[
 \begin{cases}
 \{ B \in \mathcal{B} : e \notin B \} & \text{ if $e$ is not a coloop} \\
-\{ B \setminus \{e\} : B \in \mathcal{B}  \} & \text{ if $e$ a coloop}.
+\{ B \setminus \{e\} : B \in \mathcal{B}  \} & \text{ if $e$ is a coloop}.
 \end{cases}
 \]
 The deletion $M \setminus X$ is computed by iteratively deleting each element in $X$.
@@ -134,11 +150,29 @@ The \defin{contraction} $M / e$ is the matroid on
 ground set $E\setminus \{e\}$ whose bases are 
 \[
 \begin{cases}
-\{ B \setminus \{e\} : B \in \mathcal{B}  \} & \text{ if $e$ is not a loop} \\
-\{ B : B \in \mathcal{B}  \} & \text{ if $e$ a loop}.
+\{ B \setminus \{e\} : B \in \mathcal{B},\ e\in B  \}
+  & \text{ if $e$ is not a loop} \\
+\{ B : B \in \mathcal{B}  \} & \text{ if $e$ is a loop}.
 \end{cases}
 \]
 One has that deletion and contraction are dual operators: $M/e = (M^* \setminus e)^*$.
+
+\begin{example}[Deletion and contraction in $U_{2,3}$]
+Let $M=U_{2,3}$, so
+\[
+  \mathcal{B}(M)=\{12,13,23\}.
+\]
+Deleting $3$ removes the bases containing $3$, hence
+\[
+  \mathcal{B}(M\setminus 3)=\{12\},
+\]
+so $M\setminus 3$ is $U_{2,2}$ on the ground set $\{1,2\}$.  Contracting $3$
+uses the bases containing $3$ and then removes $3$:
+\[
+  \mathcal{B}(M/3)=\{1,2\}.
+\]
+Thus $M/3$ is $U_{1,2}$.
+\end{example}
 
 
 
@@ -329,6 +363,8 @@ polytope of a matroid by the inequalities
   \qquad x_e\geq 0 \qquad (e\in E),
 \]
 where $r$ is the rank function \cite{Edmonds1970}.
+Classical algorithmic background includes matroid intersection algorithms
+\cite{Lawler1975}.
 
 
 \section[tuttePolynomial]{Tutte polynomial}
@@ -337,21 +373,35 @@ The \defin{Tutte polynomial} $T_M(x,y)$ of a matroid $M$ (on ground set $E$)
 is defined via a deletion-contraction recursion.
 If $M$ is the empty matroid (on ground set $\emptyset$) then $T_M(x,y) \coloneqq 1$.
 
-If $x \in E$ is a \emph{loop} in $M$ then
+If $e \in E$ is a \emph{loop} in $M$ then
 \[
   T_M(x,y) = y \cdot T_{M/e}(x,y).
 \]
-If $x \in E$ is a \emph{coloop} in $M$ then
+If $e \in E$ is a \emph{coloop} in $M$ then
 \[
   T_M(x,y) = x \cdot T_{M/e}(x,y).
 \]
-If $x \in E$ is neither a loop or a coloop, then
+If $e \in E$ is neither a loop nor a coloop, then
 \[
   T_M(x,y) = T_{M/e}(x,y) + T_{M\setminus e}(x,y).
 \]
 
-\begin{example}
-The uniform matroid $U_{2,4}$ has Tutte polynomial $x^2 + 2x + y^2 + 2y$.
+\begin{example}[A deletion-contraction computation]
+Let $M=U_{2,3}$.  No element of $M$ is a loop or a coloop, and the computation
+above gives
+\[
+  M\setminus 3=U_{2,2},
+  \qquad
+  M/3=U_{1,2}.
+\]
+The matroid $U_{2,2}$ has two coloops, so $T_{U_{2,2}}(x,y)=x^2$.  Similarly,
+\[
+  T_{U_{1,2}}(x,y)=T_{U_{1,1}}(x,y)+T_{U_{0,1}}(x,y)=x+y.
+\]
+It follows that
+\[
+  T_{U_{2,3}}(x,y)=x^2+x+y.
+\]
 \end{example}
 
 
@@ -450,6 +500,8 @@ polymatroids \cite{DeLoera2008}.  For fixed rank, their methods compute these
 Ehrhart polynomials in polynomial time; their examples also show that the
 Ehrhart polynomial of a matroid base polytope is not a deletion-contraction
 invariant.
+\name{Luis Ferroni} constructs matroids whose base polytopes are not Ehrhart
+positive \cite{Ferroni2022}.
 
 Several special families are now understood in more detail.
 \name{Neil J. Y. Fan} and \name{Yao Li} study Ehrhart polynomials of Schubert
@@ -683,16 +735,31 @@ realizations of matroids over finite fields \cite{SwartzWentworthNiceXue2024x}.
 polymatroid Tutte polynomial is well defined \cite{GuanJin2024x}.
 
 
-\section[matroidLinks]{More on matroids}
+\section[matroidLinks]{Further reading and adjacent topics}
 
-\name{Shiqi Cao}, \name{Keyi Chen}, \name{Yitian Li}, and \name{Yuxin Wu}
-settle Dowling's polynomial conjecture for independent sets of matroids using
-Lorentzian polynomials \cite{CaoChenLiWu2026x}.
-\name{Felix Breuer} and \name{Caroline J. Klivans} introduce the
-\defin{arboricity polynomial}, which counts covers of the ground set by
-disjoint independent sets \cite{BreuerKlivans2025x}.  They realize it through
-quasisymmetric functions and Ehrhart theory of the normal fan of the matroid
-base polytope, and show that it is not a Tutte invariant.
+\subsection[matroidAdjacentPages]{Adjacent pages}
+
+Several matroid-related topics have their own pages on this site.  See
+\hyperref[latticePathMatroids]{lattice path matroids} for lattice-path,
+rook, and snake matroids, \hyperref[positroid]{positroids} for the
+totally nonnegative Grassmannian side, and
+\hyperref[stablePolynomial]{stable polynomials} for the half-plane property
+and basis-generating polynomials.  The
+\hyperref[lgvLemma]{Lindström--Gessel--Viennot lemma} also appears in several
+path models related to matroid polytopes.
+
+\subsection[matroidValuativeInvariants]{Valuative and quasisymmetric invariants}
+
+\name{Louis J. Billera}, \name{Ning Jia}, and \name{Victor Reiner} introduce
+a quasisymmetric function attached to a matroid \cite{BilleraJiaReiner2009}.
+\name{Luis Ferroni} and \name{Benjamin Schröter} characterize Tutte
+polynomials of matroids as universal valuative invariants
+\cite{FerroniSchroter2024x}.  \name{Felix Breuer} and
+\name{Caroline J. Klivans} introduce the \defin{arboricity polynomial}, which
+counts covers of the ground set by disjoint independent sets
+\cite{BreuerKlivans2025x}.  They realize it through quasisymmetric functions
+and Ehrhart theory of the normal fan of the matroid base polytope, and show
+that it is not a Tutte invariant.
 
 \name{Alex Fink}, \name{Kris Shaw}, and \name{David E. Speyer} introduce the
 $\omega$-invariant of a matroid as the top coefficient of Speyer's
@@ -700,15 +767,23 @@ $g$-polynomial \cite{FinkShawSpeyer2024x}.  They give simplified formulas and
 show how nonnegativity of this invariant for minors can imply nonnegativity of
 all coefficients of $g_M(t)$ under connectivity hypotheses.
 
-\name{Luis Ferroni} and \name{Benjamin Schröter} characterize Tutte
-polynomials of matroids as universal valuative invariants
-\cite{FerroniSchroter2024x}.  \name{Jeffrey Giansiracusa},
+\subsection[matroidLogConcavityStability]{Log-concavity and stability}
+
+\name{Shiqi Cao}, \name{Keyi Chen}, \name{Yitian Li}, and \name{Yuxin Wu}
+settle Dowling's polynomial conjecture for independent sets of matroids using
+\hyperref[lorentzianPolynomial]{Lorentzian polynomials}
+\cite{CaoChenLiWu2026x}.  \name{Jeffrey Giansiracusa},
 \name{Felipe Rincón}, \name{Victoria Schleis}, and \name{Martin Ulirsch}
 extend log-concavity results to independent sets of valuated matroids
-\cite{GiansiracusaRinconSchleisUlirsch2024x}.  \name{Matthew Baker},
-\name{Hope Dobbelaere}, \name{Brennan Fullmer}, and \name{Patrik Gajdoš}
-introduce matroid bingo as a characterization of matroids
-\cite{BakerDobbelaereFullmerGajdos2025x}.
+\cite{GiansiracusaRinconSchleisUlirsch2024x}.
+
+For the half-plane property and stability perspective, see also
+\hyperref[stablePolynomial]{stable polynomials}.  The matroid connection is
+developed in \cite{Branden2007,ChoeWagner2006}; more recent related results
+are given by \name{Mario Kummer} and \name{David Sawall}
+\cite{KummerSawall2025}.
+
+\subsection[matroidVariantsAdjacentClasses]{Variants and adjacent classes}
 
 There are several useful recent variants and adjacent classes.
 \name{Ethan Partida} studies shifted and threshold matroids \cite{Partida2026}.
@@ -726,6 +801,12 @@ tropicalizations of quadrics for the orthogonal Grassmannian
 \cite{CalvertDermenjianFinkSmith2026x}.  \name{Jon Pål Hamre} connects sparse
 paving matroids with Schubert coefficients \cite{Hamre2024x}.
 
+\name{Matthew Baker}, \name{Hope Dobbelaere}, \name{Brennan Fullmer}, and
+\name{Patrik Gajdoš} introduce matroid bingo as a characterization of matroids
+\cite{BakerDobbelaereFullmerGajdos2025x}.
+
+\subsection[matroidApplicationsMisc]{Miscellaneous appearances}
+
 \name{Marc Hellmuth} and \name{Carsten R. Seemann} show that minimal
 representative triple sets for phylogenetic trees form the bases of a matroid
 \cite{SeemannHellmuth2018}.  \name{Alheydis Geiger}, \name{Kevin Kuehn}, and
@@ -733,8 +814,6 @@ representative triple sets for phylogenetic trees form the bases of a matroid
 \name{E. Yu. Lerner} gives a matroid variant of the Matiyasevich formula
 \cite{Lerner2024x}.  \name{Jagdeep Singh} and \name{Vaidy Sivaraman} study
 extensions of matroid classes closed under flats \cite{SinghSivaraman2024x}.
-\name{Mario Kummer} and \name{David Sawall} give three results related to the
-half-plane property of matroids \cite{KummerSawall2025}.
 
 \name{Rosa Huang} and \name[G.-C. Rota]{Gian-Carlo Rota} formulate Rota's
 basis conjecture in connection with Latin squares and straightening
