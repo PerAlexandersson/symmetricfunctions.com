@@ -146,12 +146,8 @@ for the Jack J polynomials}.
   SpecializesTo & schurS | Jack1970 | map=alpha=1 \\
   SpecializesTo & zonal | Jack1970 | map=alpha=2 \\
   SpecializesTo & monomial | Jack1970 | map=alpha=infinity \\
+  PositiveIn & augmentedMonomial | KnopSahi1997 | semiring=NN[a] \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn jackJ -> augmentedMonomial (current guess: jackJ -> monomial); from polynomialData.m, tikzdataPositivity.txt.
-}
-
 
 The \defin{integral form Jack polynomials} are defined as the unique family satisfying the following relations:
 
@@ -160,8 +156,16 @@ The \defin{integral form Jack polynomials} are defined as the unique family sati
 \item  Triangularity: $\jackJ_\lambda = \sum_{\mu \lt_d \lambda } c_{\lambda \mu} \monomial_\mu$.
 \item  Normalization: $[\monomial_{1^n}]\jackJ_\lambda = n!$.
 \end{itemize}
-These symmetric functions have coefficients in $\setN[a]$, 
-see the \hyperref[jackCombinatorialFormula]{combinatorial formula} below.
+These symmetric functions have coefficients in $\setN[a]$ in the
+\hyperref[augmentedMonomial]{augmented monomial basis}.  Equivalently, if
+\[
+\jackJ_\lambda(\xvec;a) =
+\sum_{\mu} v_{\lambda\mu}(a) \monomial_\mu(\xvec)
+\quad\text{and}\quad
+u_\mu \coloneqq \prod_i m_i(\mu)!,
+\]
+then $u_\mu^{-1} v_{\lambda\mu}(a) \in \setN[a]$, by the
+\hyperref[jackCombinatorialFormula]{Knop--Sahi formula}.
 
 It is convenient to introduce the following notation:
 Let $\lambda$ be a diagram, and $\square$ a box in $\lambda$, and define the
@@ -215,6 +219,13 @@ For example,
 \[
 \jackJ_{31}(x;a) =
 (2a^2 + 4a + 2)\monomial_{31}+(6a + 10)\monomial_{211}+(4a + 4)\monomial_{22}+ 24\monomial_{1111}.
+\]
+In the augmented monomial basis this is
+\[
+(2a^2 + 4a + 2)\widetilde{\monomial}_{31}
++(3a + 5)\widetilde{\monomial}_{211}
++(2a + 2)\widetilde{\monomial}_{22}
++\widetilde{\monomial}_{1111}.
 \]
 \end{example}
 
