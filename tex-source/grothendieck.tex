@@ -254,10 +254,55 @@ These can be computed using a combinatorial formula, using set-valued tableaux:
 \begin{align}
 \grothendieckStable_\lambda(\xvec) = \sum_{T \in \mathrm{SVT}(\lambda)} (-1)^{|T|-|\lambda|} \xvec^T.
 \end{align}
+Equivalently, let
+\[
+\grothendieckStable^{(\beta)}_\lambda(\xvec)
+\coloneqq
+\sum_{T \in \mathrm{SVT}(\lambda)}
+\beta^{|T|-|\lambda|}\xvec^T.
+\]
+Thus the unadorned stable Grothendieck polynomial above is the specialization
+\(\beta=-1\).
 The set $\mathrm{SVT}(\lambda)$ consists of all set-valued tableaux of shape lambda,
 where each box is filled with a non-empty set of natural numbers.
 Rows must be weakly increasing and column must be strictly increasing.
 The sum of the sizes of the sets in $T$ is denoted $|T|$.
+
+\begin{example*}[Monical's Lascoux-atom expansion]
+Fix three variables and pad partitions with zeros to length \(3\).
+Monical's Lascoux atoms refine the beta Grothendieck polynomial by
+\[
+  \grothendieckStable^{(\beta)}_\lambda(x_1,x_2,x_3)
+  =
+  \sum_{\sort(\alpha)=\lambda}
+  \lascouxAtom^{(\beta)}_\alpha(x_1,x_2,x_3),
+\]
+where the sum is over the weak compositions obtained by permuting the parts of
+\(\lambda\), including the padded zeros \cite[Thm.~1.2]{Monical2017}.
+For example,
+\begin{align*}
+\grothendieckStable^{(\beta)}_{(1)}(x_1,x_2,x_3)
+&=
+\lascouxAtom^{(\beta)}_{100}
++\lascouxAtom^{(\beta)}_{010}
++\lascouxAtom^{(\beta)}_{001},\\
+\grothendieckStable^{(\beta)}_{(1,1)}(x_1,x_2,x_3)
+&=
+\lascouxAtom^{(\beta)}_{110}
++\lascouxAtom^{(\beta)}_{101}
++\lascouxAtom^{(\beta)}_{011},\\
+\grothendieckStable^{(\beta)}_{(2,1)}(x_1,x_2,x_3)
+&=
+\lascouxAtom^{(\beta)}_{210}
++\lascouxAtom^{(\beta)}_{201}
++\lascouxAtom^{(\beta)}_{120}
++\lascouxAtom^{(\beta)}_{102}
++\lascouxAtom^{(\beta)}_{021}
++\lascouxAtom^{(\beta)}_{012}.
+\end{align*}
+The last line is the decomposition attached to the rearrangements of
+\((2,1,0)\), the small family illustrated in Monical's examples.
+\end{example*}
 
 A \hyperref[gtpatterns]{Gelfand--Tsetlin pattern} type combinatorial formula is described in \cite{MotegiSakai2014},
 where marked GT-pattern are used to give the monomial expansion of $\grothendieckStable_\lambda$.
