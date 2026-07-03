@@ -173,6 +173,7 @@ $112$ denotes the composition $(1,1,2)$.
   PositiveIn & gessel | LuotoMykytiukWilligenburg2013 \\
   PositiveIn & qmonom | LuotoMykytiukWilligenburg2013 \\
   TransformsTo & qSchur | LuotoMykytiukWilligenburg2013 | map=rho and reverse index \\
+  TransformsTo & rsyqSchur | MasonNiese2015 | map=omega \\
 \end{polydata}
 
 
@@ -376,6 +377,30 @@ following \hyperref[gessel]{fundamental quasisymmetric} expansions.
 \hyperref[zeroHeckeAlgebra]{0-Hecke algebra} modules whose quasisymmetric
 characteristics are the Young row-strict quasisymmetric Schur functions
 \cite{BardwellSearles2022}.
+
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/src/schur_qsym.rs
+The four families
+\[
+  \qSchur_\alpha,\qquad \yqSchur_\alpha,\qquad
+  \rsqSchur_\alpha,\qquad \rsyqSchur_\alpha
+\]
+are related by the involutions $\omega$ and $\rho$.  If $\alpha^r$ denotes
+the reverse composition, then
+\[
+\begin{array}{rcl}
+\yqSchur_\alpha
+  &=& \rho(\qSchur_{\alpha^r}),\\
+\rsqSchur_\alpha
+  &=& \omega(\qSchur_\alpha),\\
+\rsyqSchur_\alpha
+  &=& \omega(\yqSchur_\alpha),\\
+\rsyqSchur_\alpha
+  &=& \rho(\rsqSchur_{\alpha^r}).
+\end{array}
+\]
+The last identity follows from $\psi=\omega\circ\rho=\rho\circ\omega$ on
+\hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
 
 
 \section[diSchur]{Dual immaculate Schur functions}
