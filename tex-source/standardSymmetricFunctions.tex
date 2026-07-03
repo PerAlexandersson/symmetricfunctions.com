@@ -102,9 +102,17 @@ separate page.
   RefinedBy & qmonom | Gessel1984 | proof=refinement \\
 \end{polydata}
 
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn augmentedMonomial -> monomial (current guess: monomial -> monomial); from polynomialData.m, tikzdataPositivity.txt.
-}
+\begin{polydata}{augmentedMonomial}
+  Name   & Augmented monomial symmetric functions \\
+  Space  & Sym \\
+  Basis  & Yes \\
+  Rating & 2 \\
+  Bib    & Merca2015 \\
+  Year   & 2015 \\
+  Symbol & $\widetilde{\monomial}_\lambda(\xvec)$ \\
+  Category & Elementary \\
+  PositiveIn & monomial | Merca2015 \\
+\end{polydata}
 
 Given a partition $\lambda$, we define the monomial symmetric functions as
 \[
@@ -113,9 +121,16 @@ Given a partition $\lambda$, we define the monomial symmetric functions as
 where $\alpha \sim \lambda$ if the parts of $\alpha$ are a rearrangement of the parts of $\lambda$.
 
 
-The \defin{augmented monomial symmetric functions} are defined 
-as $\tilde{\monomial}_\lambda \coloneqq (m_1!m_2!\dotsm ) \monomial_\lambda$
-where $\lambda = (1^{m_1},2^{m_2},\dotsc)$.
+The \defin{augmented monomial symmetric functions} are the diagonal rescaling
+defined by
+\[
+  \widetilde{\monomial}_\lambda
+  \coloneqq (m_1!m_2!\dotsm ) \monomial_\lambda,
+  \qquad
+  \lambda=(1^{m_1},2^{m_2},\dotsc).
+\]
+For example,
+$\widetilde{\monomial}_{(2,1,1)}=2\monomial_{(2,1,1)}$.
 See \cite{Merca2015} for more background.
 
 \name{Naoya Yamaguchi}, \name{Yuka Yamaguchi}, and
