@@ -639,12 +639,15 @@ multiple presentations as sums of such bounded sequences.
   Category   & Schur \\
   Contains   & key | AssafvanWilligenburg2019 | scope=ordinary shapes \\
   PositiveIn & key | AssafvanWilligenburg2019 | proof=generalized Littlewood--Richardson rule \\
+  PositiveIn & atom | AssafvanWilligenburg2019,Lascoux1990Keys | proof=key-positive expansion refined by key-to-atom expansion \\
 \end{polydata}
 
 In \cite{AssafvanWilligenburg2019}, the authors introduce skew key polynomials,
 and show that these are positive in the key basis. They use weak \hyperref[schurPositivityDualEquivalence]{dual equivalence} 
 to obtain their result. 
 This generalizes an earlier result by \name{Vic Reiner} and \name{Mark Shimozono} \cite{ReinerShimozono1995}.
+Combining this key-positive expansion with the positive expansion of keys into
+Demazure atoms gives an atom-positive expansion of skew key polynomials.
 
 
 \section[completeFlaggedHomogeneous]{Complete flagged homogeneous polynomials}
@@ -697,11 +700,6 @@ complete flagged homogeneous basis.
   PositiveIn & fundamentalParticle | Searles2019PolynomialBases,HicksNiese2024x | proof=Thm. 3.14 and Cor. 3.11 \\
 \end{polydata}
 
-\todo{Later source pass: decide whether to model skew Demazure atoms as a
-separate family.  Old migration data had straight atoms as a subfamily and a
-conjectural positive expansion of skew atoms into ordinary Demazure atoms.}
-
-
 The Demazure atoms (originally called \defin{standard bases})
 may be defined in a manner similar to \hyperref[keyDefinitionOperators]{key polynomials} using operators.
 They were introduced by \name{Alain Lascoux} and \name{Marcel-Paul Schützenberger} in \cite{Lascoux1990Keys}.
@@ -710,6 +708,9 @@ expansion \cite{Mason2009}.
 They also expand positively in the
 \hyperref[fundamentalParticle]{fundamental particle basis}
 \cite{Searles2019PolynomialBases,HicksNiese2024x}.
+The sourced skew analogue recorded here is the
+\hyperref[keySkew]{skew key polynomial}, rather than a separate skew Demazure
+atom family.
 \name{Ben Brubaker}, \name{Valentin Buciumas}, \name{Daniel Bump}, and
 \name{Henrik P. A. Gustafsson} construct solvable colored five-vertex lattice
 models whose partition functions are type $A$ Demazure atoms
