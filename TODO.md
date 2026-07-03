@@ -13,9 +13,6 @@ These are not currently broken, but they should be converted to proper
 
 | File:line | Current text | Remaining work |
 |---|---|---|
-| `tex-source/grothendieck.tex:305` | `\href{https://arxiv.org/pdf/math/0601514.pdf}{this paper}` | Replace generic link with a proper citation key following the site convention. |
-| `tex-source/grothendieck.tex:307` | `\url{https://arxiv.org/pdf/1701.03561.pdf}` | Add or locate a bib entry and cite it instead of using a raw URL. |
-| `tex-source/grothendieck.tex:308` | `\url{https://arxiv.org/pdf/1711.09544.pdf}` | Add or locate a bib entry and cite it instead of using a raw URL. |
 | `tex-source/cspWord.tex:95` | `In this preprint, \url{https://arxiv.org/pdf/2005.14031.pdf}` | Replace with a proper citation. |
 | `tex-source/whittaker.tex:21` | Lam intro raw arXiv URL | Add or locate a bib entry and cite it. |
 | `tex-source/whittaker.tex:23` | Iwahori Whittaker raw arXiv URL | Add or locate a bib entry and cite it. |
