@@ -70,9 +70,39 @@ Cauchy identity for symmetric Grothendieck polynomials.
 classical types expand positively into these $K$-theoretic Schur $P$- and
 $Q$-functions \cite{Marberg2025x}.
 
-\todo{Later examples pass: add a small shifted-tableau example for the
-Chiu--Marberg $Q$-to-$P$ expansion if practical.}
-
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/sym/examples/k_schur_pq_site_example.rs
+\begin{example*}[A $Q$-to-$P$ expansion]
+In the notation of \cite[Thm.~1.1]{ChiuMarberg2024}, the coefficient of
+$\schurKP_\lambda$ in $\schurKQ_\mu$ is obtained by summing over strict
+partitions $\lambda \supseteq \mu$ with $\ell(\lambda)=\ell(\mu)$ such that
+the shifted skew diagram $\lambda/\mu$ has at most one box in each row.
+The coefficient is
+\[
+  2^{\ell(\mu)}(-1)^{\operatorname{col}(\lambda/\mu)}
+  \left(-\frac{\beta}{2}\right)^{|\lambda/\mu|},
+\]
+where $\operatorname{col}(\lambda/\mu)$ is the number of occupied shifted
+columns.  For $\mu=(3,2)$, the only strict partitions which contribute are
+$(3,2)$, $(4,2)$, and $(4,3)$, so
+\[
+  \schurKQ_{(3,2)}
+  =4\schurKP_{(3,2)}
+   +2\beta\schurKP_{(4,2)}
+   -\beta^2\schurKP_{(4,3)}.
+\]
+The negative term occurs because the two boxes of the shifted skew diagram
+$(4,3)/(3,2)$ lie in the same shifted column.  In contrast, every part of
+$(4,2)$ differs from the next by at least two, and the same rule gives only
+nonnegative $\beta$-coefficients:
+\[
+  \schurKQ_{(4,2)}
+  =4\schurKP_{(4,2)}
+   +2\beta\schurKP_{(4,3)}
+   +2\beta\schurKP_{(5,2)}
+   +\beta^2\schurKP_{(5,3)}.
+\]
+\end{example*}
 
 \subsection[schurKPQProps]{Properties}
 
