@@ -71,10 +71,54 @@ $\mathrm{GL}$.
 
 A model using multiline queues is introduced in \cite{CorteelMandelshtamWilliams2018x},
 and further explored in \cite{CorteelMandelshtamMasonWilliams2019x}.
-\todo{Later figures/examples pass: add a small multiline-queue diagram for a
-type $A$ nonsymmetric Macdonald polynomial, including the weight contribution
-and a note on the ASEP/TASEP specialization when reliable.  Generate or verify
-the queue data with Rust code if possible.}
+
+\begin{example}
+% Related Rust: sym-poly/multipoly/src/multiline_queue.rs and
+% sym-poly/multipoly/examples/multiline_queue_site_example.rs
+The following small example fixes the row and weight conventions at $t=0$.
+In the notation of \cite[Defs.~3.1, 3.12 and Ex.~3.16]{MandelshtamValenciaPorras2024x},
+let $n=6$ and consider the multiline queue
+\[
+  M=
+  \bigl(
+    \{1,2,3,4\},
+    \{1,3,5,6\},
+    \{2,3\},
+    \{3,5\}
+  \bigr),
+\]
+where the rows are listed from bottom to top.  As a diagram, this is
+\[
+\begin{array}{c|cccccc}
+     & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+  4  &   &   & \bullet &   & \bullet &   \\
+  3  &   & \bullet & \bullet &   &   &   \\
+  2  & \bullet &   & \bullet &   & \bullet & \bullet \\
+  1  & \bullet & \bullet & \bullet & \bullet &   &
+\end{array}
+\]
+The column word is
+\[
+  21 \mid 31 \mid 4321 \mid 1 \mid 42 \mid 2.
+\]
+Running the Ferrari--Martin pairing algorithm gives the pairing data
+\[
+  (4,4,0),(4,4,1),(3,4,0),(3,4,0),
+  (2,4,0),(2,4,1),(2,2,0),(2,2,1),
+\]
+where the last coordinate records whether the pairing wraps around the ring.
+Thus the major index is
+\[
+  \operatorname{maj}(M)=1+3+1=5,
+\]
+and the queue contributes
+\[
+  \operatorname{wt}(M)=x_1^2x_2^2x_3^4x_4x_5^2x_6q^5.
+\]
+This is the Ferrari--Martin, or TASEP-side, part of the $t=0$ theory; the
+enhanced and twisted versions of multiline queues add the extra data needed
+for the Macdonald-polynomial formulas.
+\end{example}
 
 \name{Olya Mandelshtam} and \name{Jerónimo Valencia-Porras} use twisted
 multiline queues to model Macdonald polynomials at $t=0$
