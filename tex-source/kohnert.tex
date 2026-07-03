@@ -20,13 +20,11 @@
   Contains & schurS | AssafSearles2019 \\
   PositiveIn & key | Assaf2021 \\
   PositiveIn & slideM | AssafSearles2019 \\
+  StableLimit & kohnertQuasi | AssafSearles2019 | proof=Def. 3.10 \\
 \end{polydata}
 
 \todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
 - PositiveIn keyQuasi -> atom (current guess: kohnert -> atom); Link=https://arxiv.org/pdf/1707.01172.pdf; from polynomialData.m, tikzdataPositivity.txt.
-- StableLimit kohnert -> kohnertQuasi (current guess: kohnert -> kohnert); Link=arxiv:1711.09498; from polynomialData.m, tikzdataRelations.txt.
-- PositiveIn kohnertQuasi -> fundamentalSlide (current guess: kohnert -> slideF); Link=http://de.arxiv.org/pdf/1711.09498.pdf; from polynomialData.m, tikzdataPositivity.txt.
-- Contains kohnertQuasi -> schurExtended (current guess: kohnert -> extSchur); Link=http://de.arxiv.org/pdf/1711.09498.pdf; from polynomialData.m, tikzdataRelations.txt.
 }
 
 \defin{Kohnert polynomials} were introduced by \name{Sami Assaf} and \name{Dominic Searles} in \cite{AssafSearles2019}.
@@ -88,6 +86,36 @@ That is, we can produce both \hyperref[key]{key polynomials} and \hyperref[schub
 Rothe diagrams and Billey--Jockusch--Stanley compatible sequences
 \cite{Assaf2022}.  This gives a bijective proof of Kohnert's rule for
 Schubert polynomials.
+
+\subsection[kohnertQuasi]{Kohnert quasisymmetric functions}
+
+\begin{polydata}{kohnertQuasi}
+  Name     & Kohnert quasisymmetric functions \\
+  Space    & QSym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & AssafSearles2019 \\
+  Year     & 2019 \\
+  Symbol   & $\kohnert_D(\xvec)$ \\
+  Category & Schur \\
+  Contains & extSchur | AssafSearles2019 | scope=lock diagrams; proof=Cor. 6.14 \\
+  PositiveIn & gessel | AssafSearles2019 | proof=Thm. 4.17 \\
+  PositiveIn & qmonom | AssafSearles2019 | proof=Thm. 3.11 \\
+\end{polydata}
+
+The \defin{Kohnert quasisymmetric function} of a diagram \(D\) is the stable
+limit
+\[
+ \kohnert_D(\xvec)
+ \coloneqq
+ \lim_{m\to\infty} \kohnert_{0^m\times D}(\xvec),
+\]
+where \(0^m\times D\) is obtained from \(D\) by shifting all cells upward by
+\(m\) rows.  These stable limits are well-defined and expand positively in the
+\hyperref[qmonom]{monomial quasisymmetric basis} and in the
+\hyperref[gessel]{fundamental quasisymmetric basis} \cite{AssafSearles2019}.
+For lock diagrams, the stable limits are the
+\hyperref[extSchur]{extended Schur functions}.
 
 
 
