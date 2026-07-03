@@ -170,9 +170,22 @@ In \cite[Prop. 5.9]{AlexanderssonUhlin2020} \name{Joakim Uhlin} and I prove that
 \[
 [\monomial_{1^{2n}}] \macdonaldE_{(n,n)}(\xvec;q,0) = [n]_q! T_n(q).
 \]
-This formula appear as a conjecture in \cite{Uhlin2019}.
+This formula appears as a conjecture in \cite{Uhlin2019}.
 
-\todo{Add refinement and relation with modified Macdonald polys.}
+The same paper explains how this specialization sits inside the usual
+Macdonald hierarchy.  For a partition $\lambda$, the polynomial
+$\macdonaldE_\lambda(\xvec;q,0)$ agrees with
+$\omega Q'_{\lambda'}(\xvec;q)$, where $Q'_\lambda$ is the transformed
+Hall--Littlewood polynomial \cite[Prop.~2.16]{AlexanderssonUhlin2020}.
+It is also the coefficient of the highest power of $t$ in the corresponding
+modified Macdonald polynomial $\macdonaldH_\lambda(\xvec;q,t)$
+\cite[Sec.~2.8]{AlexanderssonUhlin2020}.  Thus the coefficient above can be
+viewed as a Touchard--Riordan specialization inside the modified Macdonald
+family.  The cyclic-sieving statement for these specialized nonsymmetric
+Macdonald polynomials also has a fixed-content refinement: the coefficient
+$[\monomial_\nu]\macdonaldE_{n\lambda}(\xvec;q,0)$ is itself a cyclic-sieving
+polynomial for coinversion-free fillings of shape $n\lambda$ and content
+$\nu$ \cite[Thm.~4.3]{AlexanderssonUhlin2020}.
 
 
 \todo{Add the stuff below?}
