@@ -513,6 +513,32 @@ and is consistent with
 $\rsdiSchur_\alpha=\psi(\diSchur_\alpha)$.
 \end{example*}
 
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/row_strict_dual_immaculate_degree4.rs
+The degree four functions have the following expansions in the
+\hyperref[qmonom]{monomial quasisymmetric basis}.  In this table, for instance,
+the subscript $112$ denotes the composition $(1,1,2)$.
+\[
+\begin{array}{ll}
+\toprule
+\alpha & \rsdiSchur_\alpha(\xvec) \\
+\midrule
+1111 & \qmonom_{1111}+\qmonom_{112}+\qmonom_{121}+\qmonom_{13}
+       +\qmonom_{211}+\qmonom_{22}+\qmonom_{31}+\qmonom_{4} \\
+112  & \qmonom_{1111}+\qmonom_{121}+\qmonom_{211}+\qmonom_{31} \\
+121  & 2\qmonom_{1111}+\qmonom_{112}+\qmonom_{121}
+       +2\qmonom_{211}+\qmonom_{22}+\qmonom_{31} \\
+13   & \qmonom_{1111}+\qmonom_{211} \\
+211  & 3\qmonom_{1111}+2\qmonom_{112}+2\qmonom_{121}
+       +\qmonom_{13}+2\qmonom_{211}+\qmonom_{22}+\qmonom_{31} \\
+22   & 3\qmonom_{1111}+\qmonom_{112}+\qmonom_{121}
+       +2\qmonom_{211}+\qmonom_{22} \\
+31   & 3\qmonom_{1111}+\qmonom_{112}+\qmonom_{121}+\qmonom_{211} \\
+4    & \qmonom_{1111} \\
+\bottomrule
+\end{array}
+\]
+
 
 \section[extSchur]{Extended Schur functions}
 
