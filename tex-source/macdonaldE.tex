@@ -14,15 +14,11 @@
   Keywords & fillings \\
   Category & Schur \\
   SpecializesTo & macdonaldEspec | Opdam1995 | map=t=0 \\
+  SpecializesTo & atom | Mason2009 | map=q,t -> infinity \\
   SpecializesTo & macdonaldP | Macdonald1987 | scope=symmetric case \\
   SpecializesTo & key | RamYip2011 | map=q=t=0 \\
   StableLimit & macdonaldP | Macdonald1987 | scope=symmetric limit \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- SpecializesTo macdonaldE -> atom; from polynomialData.m, tikzdataRelations.txt.
-}
-
 
 The non-symmetric Macdonald polynomials were introduced in \cite{Opdam1995},
 \cite{Macdonald1996} and \cite{Cherednik1995nonsymmetric}.
@@ -35,6 +31,9 @@ found an explicit formula for the non-symmetric Macdonald polynomials in type $A
 as a sum over \emph{non-attacking fillings}.
 This model is the basis for the \hyperref[macdonaldEperm]{permuted basement Macdonald polynomials},
 and we refer to that page for definitions.
+The specialization $q=t=0$ gives \hyperref[key]{key polynomials}, while the
+limit $q,t\to\infty$ gives \hyperref[atom]{Demazure atoms}
+\cite{Mason2009}.
 
 Later, an alternative combinatorial formula using alcove walks was
 proved by \name{Arun Ram} and \name{Martha Yip} \cite{RamYip2011}, which works for all Lie types.
