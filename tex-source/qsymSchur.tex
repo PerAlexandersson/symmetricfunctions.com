@@ -752,6 +752,42 @@ the subscript $112$ denotes the composition $(1,1,2)$.
   Category & Schur \\
   Contains & schurS | AssafSearles2019 | scope=partition compositions \\
   PositiveIn & gessel | AssafSearles2019 \\
+  TransformsTo & rsExtSchur | Daugherty2024Extended,NieseSundaramWilligenburgVegaWang2023 | map=psi \\
+  TransformsTo & flippedExtSchur | Daugherty2024Extended | map=rho and reverse index \\
+  TransformsTo & backwardExtSchur | Daugherty2024Extended | map=omega and reverse index \\
+\end{polydata}
+
+\begin{polydata}{rsExtSchur}
+  Name     & Row-strict extended Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & NieseSundaramWilligenburgVegaWang2023 \\
+  Year     & 2023 \\
+  Category & Schur \\
+  TransformsTo & extSchur | Daugherty2024Extended,NieseSundaramWilligenburgVegaWang2023 | map=psi \\
+\end{polydata}
+
+\begin{polydata}{flippedExtSchur}
+  Name     & Flipped extended Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & Daugherty2024Extended \\
+  Year     & 2024 \\
+  Category & Schur \\
+  TransformsTo & extSchur | Daugherty2024Extended | map=rho and reverse index \\
+\end{polydata}
+
+\begin{polydata}{backwardExtSchur}
+  Name     & Backward extended Schur functions \\
+  Space    & QSym \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & Daugherty2024Extended \\
+  Year     & 2024 \\
+  Category & Schur \\
+  TransformsTo & extSchur | Daugherty2024Extended | map=omega and reverse index \\
 \end{polydata}
 
 The \defin{extended Schur functions} were introduced by \name{Sami Assaf} and \name{Dominic Searles} in \cite{AssafSearles2019}.
@@ -763,10 +799,13 @@ which constitute a basis for the ring of \hyperref[nonComFunctions]{non-commutat
 quasisymmetric bases connected by involutions \cite{Daugherty2024Extended}.
 In particular, the extended Schur functions sit in a four-family system closed
 under the $\psi$, $\rho$, and $\omega$ involutions.
-
-\todo{Later relation pass: split reverse extended, row-strict extended, and
-row-strict reverse extended Schur functions into separate polydata nodes, then
-record the Daugherty involution relations explicitly.}
+The other three bases in this system are the
+\defin{row-strict extended Schur functions}, the
+\defin{flipped extended Schur functions}, and the
+\defin{backward extended Schur functions}.  The row-strict family is obtained
+from the extended Schur family by $\psi$, while Daugherty's flipped and
+backward families are obtained from it by $\rho$ and $\omega$, respectively,
+with the corresponding reversal of the indexing composition.
 
 For a connection with the \hyperref[zeroHeckeAlgebra]{0-Hecke algebra}, see \cite{Searles2020}, where these are shown to be characters of
 certain \hyperref[zeroHeckeAlgebra]{0-Hecke modules}.
