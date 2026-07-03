@@ -22,6 +22,51 @@ $\langle \completeH_\alpha,\qmonom_\beta\rangle=\delta_{\alpha,\beta}$.
 There is a forgetful morphism $\chi:\mathrm{NSym}\to\spaceSym$ sending
 $\completeH_n$ to the ordinary complete homogeneous symmetric function.
 
+\begin{polydata}{nonComHomogeneous}
+  Name   & Noncommutative complete homogeneous functions \\
+  Space    & NSym \\
+  Basis    & Yes \\
+  Rating   & 3 \\
+  Bib      & GelfandKrobLascouxLeclercRetakhThibon1995 \\
+  Symbol   & $\completeH_\alpha$ \\
+  Year     & 1995 \\
+  Category & Elementary \\
+  PositiveIn & nonComPowerPsi | BallantineDaughertyHicksMason2020 | proof=dual to the $\qPsi$ monomial expansion \\
+  PositiveIn & nonComPowerPhi | BallantineDaughertyHicksMason2020 | proof=dual to the $\qPhi$ monomial expansion \\
+  NSymQSymDual & qmonom | GelfandKrobLascouxLeclercRetakhThibon1995 | pairing=canonical NSym--QSym pairing \\
+\end{polydata}
+
+\begin{polydata}{nonComPowerPsi}
+  Name   & Noncommutative power sums (Psi) \\
+  Space    & NSym \\
+  Basis    & Yes \\
+  Rating   & 2 \\
+  Bib      & GelfandKrobLascouxLeclercRetakhThibon1995,BallantineDaughertyHicksMason2020 \\
+  Symbol   & $\Psi_\alpha$ \\
+  Year     & 1995 \\
+  Category & Elementary \\
+  NSymQSymDual & qPsi | BallantineDaughertyHicksMason2020 | pairing=canonical NSym--QSym pairing \\
+\end{polydata}
+
+\begin{polydata}{nonComPowerPhi}
+  Name   & Noncommutative power sums (Phi) \\
+  Space    & NSym \\
+  Basis    & Yes \\
+  Rating   & 2 \\
+  Bib      & GelfandKrobLascouxLeclercRetakhThibon1995,BallantineDaughertyHicksMason2020 \\
+  Symbol   & $\Phi_\alpha$ \\
+  Year     & 1995 \\
+  Category & Elementary \\
+  NSymQSymDual & qPhi | BallantineDaughertyHicksMason2020 | pairing=canonical NSym--QSym pairing \\
+\end{polydata}
+
+The two noncommutative power-sum bases above are dual to the two
+\hyperref[qPsi]{quasisymmetric power-sum bases} $\qPsi$ and $\qPhi$.
+Since $\qPsi_\alpha$ and $\qPhi_\alpha$ have positive expansions in the
+\hyperref[qmonom]{monomial quasisymmetric basis}, duality gives positive
+expansions of $\completeH_\alpha$ in the corresponding noncommutative
+power-sum bases \cite{BallantineDaughertyHicksMason2020}.
+
 \name{Angela Hicks} and \name{Robert McCloskey} give a concrete
 realization of $\mathrm{NSym}$ in noncommuting variables and derive the
 standard noncommutative elementary, complete, ribbon, and power-sum bases from
@@ -76,12 +121,6 @@ Malvenuto--Reutenauer type structures \cite{GuoThibonYu2020}.
   Year     & 1995 \\
   Category & Schur \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn nonComHomogeneous -> nonComPower1 (current guess: nonComSchur -> nonComSchur); Link=arxiv:1710.11613; from polynomialData.m, tikzdataPositivity.txt.
-- PositiveIn nonComHomogeneous -> nonComPower2 (current guess: nonComSchur -> nonComSchur); Link=arxiv:1710.11613; from polynomialData.m, tikzdataPositivity.txt.
-- NSymQSymDual nonComHomogeneous -> quasiMonomial (current guess: nonComSchur -> qmonom); from polynomialData.m.
-}
 
 There are several Schur-like bases in $\mathrm{NSym}$.  The
 \defin{noncommutative Schur functions} of
