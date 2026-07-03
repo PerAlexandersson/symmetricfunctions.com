@@ -59,12 +59,8 @@ as stable limit:
   Contains & gessel | AssafSearles2016 \\
   StableLimit & gessel | AssafSearles2016 \\
   PositiveIn & slideM | AssafSearles2016 \\
+  PositiveIn & fundamentalParticle | Searles2020,HicksNiese2024x | proof=Thm. 3.13 and Cor. 3.11 \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn fundamentalParticle -> monomialNonsymmetric (current guess: slideF -> monomial); Link=https://arxiv.org/pdf/1707.01172.pdf; from polynomialData.m, tikzdataPositivity.txt.
-- PositiveIn fundamentalSlide -> fundamentalParticle (current guess: slideF -> slideF); Link=https://arxiv.org/pdf/1707.01172.pdf; from polynomialData.m, tikzdataPositivity.txt.
-}
 
 The \emph{fundamental slide polynomials} (or sometimes just \defin{slide polynomials})
 were introduced by \name{Sami Assaf} and \name{Dominic Searles} in \cite{AssafSearles2016}.
@@ -105,6 +101,29 @@ as stable limit:
 \[
  \lim_{m \to \infty} \slideF_{0^m\times \alpha}(\xvec) = \gessel_{\mathrm{flat}(\alpha)}(\xvec).
 \]
+
+\subsection[fundamentalParticle]{Fundamental particle basis}
+
+\begin{polydata}{fundamentalParticle}
+  Name     & Fundamental particle basis \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & Searles2020 \\
+  Year     & 2020 \\
+  Symbol   & $L_\alpha(\xvec)$ \\
+  Keywords & divided-difference, 0-Hecke \\
+  Category & Schur \\
+  PositiveIn & monomial | HicksNiese2024x | scope=nonsymmetric monomials; proof=Thm. 3.9 and Cor. 3.11 \\
+\end{polydata}
+
+\name{Dominic Searles} introduced the \defin{fundamental particle basis}
+\cite{Searles2020}.  \name{Angela Hicks} and \name{Elizabeth Niese}
+identify this basis with the fundamental Demazure atoms obtained by replacing
+the usual Demazure atom operators with Hivert's quasisymmetric divided
+difference operators \cite{HicksNiese2024x}.  In this form the basis has an
+explicit monomial-positive formula, and the fundamental slide polynomials
+expand positively in the fundamental particle basis.
 
 
 \subsection[slidePositive]{Slide positive families}
