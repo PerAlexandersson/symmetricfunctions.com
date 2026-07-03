@@ -459,7 +459,6 @@ For the definition of quasisymmetric Schur functions, see \cite{HaglundLuotoMaso
 \end{polydata}
 
 \todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- SignedIn hallLittlewoodQ -> grothendieckDual (current guess: hallLittlewoodQ -> grothendieckDualStable); Link=https://hal.inria.fr/hal-01186288/document; from polynomialData.m, tikzdataPositivity.txt.
 - PositiveIn hallLittlewoodQ -> schurS; from polynomialData.m, tikzdataPositivity.txt.
 }
 
@@ -595,6 +594,7 @@ indexed by a Schroder path $P_\mu$.
   Symbol   & $\hallLittlewoodH_\lambda(\xvec;t)$ \\
   Category & Schur \\
   PositiveIn & schurS | Littlewood1961 \\
+  SignedIn & grothendieckDualStable | BandlowMorse2010 | sign_rule=$(-1)^{|\mu|-|\lambda|}$; proof=Eq. (4) \\
   TransformsTo & hallLittlewoodQ | Macdonald1995 | map=rescaling and plethystic transform \\
 \end{polydata}
 
