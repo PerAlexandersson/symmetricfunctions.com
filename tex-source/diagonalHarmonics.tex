@@ -554,10 +554,25 @@ n & (-1)^{n-1} \nabla \powerSum_n \\
 \end{array}
 \end{example*}
 
-\todo{
-Thm 2.1 in \cite{Sergel2017} is reminiscent of the q-product for acyclic orientations!
-Also \cite[Lem. 3.1]{Sergel2017} is same as column-area-seq-set = row-area-seq-set
-}
+\name{Emily Sergel}'s proof uses \defin{schedules} to enumerate preference
+functions with a fixed diagonal word.  If $\tau$ has run lengths
+$\rho_k,\dotsc,\rho_0$ and $w^{(l)}(c)$ denotes the $l$-schedule number of a
+car $c$, then \cite[Thm.~2.1]{Sergel2017} gives the product formula
+\[
+\sum_{\substack{\operatorname{diagword}(Pr)=\tau\\ l(Pr)=l}}
+  t^{\area(Pr)}q^{\dinv(Pr)}
+= t^{\operatorname{maj}(\tau)}
+  q^{\rho_0+\dotsb+\rho_{l-1}}\prod_{c=1}^n [w^{(l)}(c)]_q.
+\]
+The key shift step is that the multiset of $l$-schedule numbers differs from
+the ordinary parking-function schedule by replacing one run length:
+\[
+  \{w^{(l)}(c):1\leq c\leq n\}
+  =
+  \{w_i:1\leq i\leq n\}\cup\{\rho_l\}\setminus\{\rho_0\}.
+\]
+This is \cite[Thm.~3.1]{Sergel2017}, and its proof uses
+\cite[Lem.~3.1]{Sergel2017}, a conjugate-partition multiset identity.
 
 
 
