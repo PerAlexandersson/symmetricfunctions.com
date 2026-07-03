@@ -354,6 +354,31 @@ compositions are $(2,1)$ and $(1,2)$.  Hence
 \]
 \end{example*}
 
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/dual_immaculate_degree4.rs
+The degree four dual immaculate functions expand in the
+\hyperref[qmonom]{monomial quasisymmetric basis} as follows.  As above,
+the subscript $112$ denotes the composition $(1,1,2)$.
+\[
+\begin{array}{ll}
+\toprule
+\alpha & \diSchur_\alpha(\xvec) \\
+\midrule
+1111 & \qmonom_{1111} \\
+112  & \qmonom_{1111}+\qmonom_{112} \\
+121  & 2\qmonom_{1111}+\qmonom_{112}+\qmonom_{121} \\
+13   & \qmonom_{1111}+\qmonom_{112}+\qmonom_{121}+\qmonom_{13} \\
+211  & 3\qmonom_{1111}+\qmonom_{112}+\qmonom_{121}+\qmonom_{211} \\
+22   & 3\qmonom_{1111}+2\qmonom_{112}+2\qmonom_{121}
+       +\qmonom_{13}+\qmonom_{211}+\qmonom_{22} \\
+31   & 3\qmonom_{1111}+2\qmonom_{112}+2\qmonom_{121}
+       +\qmonom_{13}+2\qmonom_{211}+\qmonom_{22}+\qmonom_{31} \\
+4    & \qmonom_{1111}+\qmonom_{112}+\qmonom_{121}+\qmonom_{13}
+       +\qmonom_{211}+\qmonom_{22}+\qmonom_{31}+\qmonom_{4} \\
+\bottomrule
+\end{array}
+\]
+
 \emph{Note:} The \hyperref[schurS]{Schur functions} are not positive in the dual immaculate basis!
 
 \name{Sarah Mason} and \name{Dominic Searles} construct polynomial lifts of
