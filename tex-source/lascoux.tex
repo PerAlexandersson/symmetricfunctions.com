@@ -84,11 +84,34 @@ maximal-ghost problem for more general diagrams and prove the snow-diagram
 formula for several additional diagram classes
 \cite{HanserMayers2026}.
 
+\begin{example*}[A small $K$-Kohnert expansion]
+Let $\alpha=(0,2,1)$.
+Pan and Yu list the eleven $K$-Kohnert diagrams of $\alpha$ explicitly in
+\cite[Ex.~2.13]{PanYu2024}.  Translating their diagram weights gives
+\[
+\begin{split}
+\lascoux^{(\beta)}_{(0,2,1)}
+&=x_2^2x_3+x_1x_2x_3+x_1^2x_3+x_1x_2^2+x_1^2x_2\\
+&\phantom{=}
+  +\beta\left(2x_1x_2^2x_3+2x_1^2x_2x_3+x_1^2x_2^2\right)
+  +\beta^2x_1^2x_2^2x_3 .
+\end{split}
+\]
+The first line is the key-polynomial part, and the powers of $\beta$
+record how many ghost cells were left by the $K$-Kohnert moves.
+For the key diagram $D(\alpha)$, the snow-diagram algorithm places dark
+clouds at $(3,1)$ and $(2,2)$, and snowflakes at $(1,1)$ and $(1,2)$.
+Thus $\operatorname{rajcode}(\alpha)=(2,2,1)$ and
+$\operatorname{raj}(\alpha)=5$, so the top monomial is
+$x_1^2x_2^2x_3$, matching the final term above
+\cite[Thm.~1.2]{PanYu2024}.
+\end{example*}
+
 \todo{Later figures/examples pass: add a small Lascoux example showing a
-set-valued skyline filling, the corresponding $K$-Kohnert diagrams, and the
-snow diagram/top-degree reading.  Generate or check the diagrams with the Rust
-tableau/polynomial code or with examples from Pan--Yu; do not hand-draw
-$K$-Kohnert moves from memory.}
+set-valued skyline filling and its bijective image among the $K$-Kohnert
+diagrams.  Generate or check the diagrams with the Rust tableau/polynomial
+code or with examples from Pan--Yu; do not hand-draw $K$-Kohnert moves from
+memory.}
 
 
 
