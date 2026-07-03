@@ -16,6 +16,20 @@ A palindromic polynomial $p(x)$ is said to be \defin{gamma-positive} if it can b
 The \defin{gamma-polynomial} of $p(x)$ is $\gamma_p(x) \coloneqq \sum_j \gamma_j x^j$.
 If $p(x)$ is palindromic with center of symmetry $n/2$, the expansion above is unique.
 
+\begin{example}
+% Related Rust: /home/paxinum/Dropbox/AI-projects/rust/polynomial-tools/src/real_rootedness.rs
+% via `polytool gamma-expansion`
+The Eulerian polynomial
+\[
+  A_4(x)=1+11x+11x^2+x^3
+\]
+has degree \(3\), and its gamma expansion is
+\[
+  A_4(x)=(1+x)^3+8x(1+x).
+\]
+Thus \(\gamma_{A_4}(x)=1+8x\), so \(A_4(x)\) is gamma-positive.
+\end{example}
+
 Gamma-positivity immediately implies unimodality: writing $p(x) = \sum_k a_k x^k$ with
 $a_k = a_{n-k}$ and expanding the binomial coefficients, each $\gamma_i$ contributes a
 unimodal symmetric summand, so $p(x)$ is unimodal.
