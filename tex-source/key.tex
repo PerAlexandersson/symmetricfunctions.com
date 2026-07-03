@@ -848,7 +848,32 @@ are key-positive.
 In \cite{FuLascoux2009}, \name{Amy Fu} and \name{Alain Lascoux} define divided difference operators
 that allow us to define key polynomials and Demazure atoms in types $B$, $C$ and $D$.
 
-\todo{Write down the operators.}
+Let $s_i$ interchange $x_i$ and $x_{i+1}$ for $1\leq i<n$, let $s_n$
+send $x_n$ to $x_n^{-1}$, and let $\tau_n$ send
+$(x_{n-1},x_n)$ to $(x_n^{-1},x_{n-1}^{-1})$.  Fu and Lascoux write
+operators on the right.  With $f^w$ denoting the action of $w$ on $f$,
+their isobaric divided differences are
+\[
+\begin{aligned}
+f\pi_i
+  &= \frac{x_i f-x_{i+1}f^{s_i}}{x_i-x_{i+1}},
+    &&1\leq i<n,\\
+f\pi_n^C
+  &= \frac{x_n f-x_n^{-1}f^{s_n}}{x_n-x_n^{-1}},\\
+f\pi_n^B
+  &= \frac{x_n f-f^{s_n}}{x_n-1},\\
+f\pi_n^D
+  &= \frac{f-x_{n-1}^{-1}x_n^{-1}f^{\tau_n}}
+          {1-x_{n-1}^{-1}x_n^{-1}}.
+\end{aligned}
+\]
+They also use the second family
+$\widehat{\pi}_i\coloneqq\pi_i-1$ and
+$\widehat{\pi}_n^\heartsuit\coloneqq\pi_n^\heartsuit-1$, for
+$\heartsuit=B,C,D$.  The $\pi$-operators give the type $B$, $C$, and
+$D$ Demazure characters by applying products of operators to dominant
+monomials, while the hatted operators give the corresponding atom-like
+family \cite[Sec.~3]{FuLascoux2009}.
 
 See \href{http://www.mat.uc.pt/~oazenhas/KC.pdf}{these slides} for a nice overview.
 In particular, the type $C$ key polynomials contain the \hyperref[schurSymplectic]{symplectic Schur functions}.
