@@ -14,13 +14,10 @@
   Symbol   & $\macdonaldH_\lambda(\xvec;q,t)$ \\
   Category & Schur \\
   PositiveIn & LLT | HaglundHaimanLoehr2005 | semiring=NN[t] \\
+  PositiveIn & kSchur | Kato2025x | scope=k-bounded partitions; semiring=NN[q,t]; proof=Cor. 9.4 \\
   PositiveIn & schurS | Haiman2001 | semiring=NN[q,t] \\
   SpecializesTo & hallLittlewoodH | Macdonald1987 | map=q=0 \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn macdonaldH -> kSchur; from polynomialData.m, tikzdataPositivity.txt.
-}
 
 \name{Donghyun Kim}, \name{Seung Jin Lee}, and \name{Jaeseong Oh} study
 Butler's conjecture on divided differences of modified Macdonald polynomials
@@ -63,6 +60,9 @@ coefficients, including special cases for two-row shapes.
 It is a major open problem in algebraic combinatorics to give a combinatorial 
 proof (\hyperref[schurPositivity]{by using RSK, dual equivalence or crystals})
 that the $\macdonaldH_{\lambda}(\xvec;q,t)$ are Schur-positive.
+Kato's categorification gives the stronger refinement that
+$\macdonaldH_\lambda(\xvec;q,t)$ is $k$-Schur-positive when $\lambda$ is
+$k$-bounded \cite[Cor.~9.4]{Kato2025x}.
 
 
 \subsection[macdonaldHDefinitionViaMacdonaldJ]{Definition}
