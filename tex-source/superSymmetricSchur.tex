@@ -18,6 +18,31 @@
   SpecializesTo & bigSchur | Shigechi2017x | map=y=x \\
 \end{polydata}
 
+\begin{polydata}{multiSchur}
+  Name     & Multi-Schur functions \\
+  Space    & All \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Iwao2023 \\
+  Year     & 2023 \\
+  Symbol   & $S_{\lambda/\mu}^{\alpha/\beta}(\xvec)$ \\
+  Category & Schur \\
+  Generalizes & hookSchur | Iwao2023 \\
+  Generalizes & schurFlagged | Iwao2023 \\
+\end{polydata}
+
+\begin{polydata}{littlewoodSchur}
+  Name     & Littlewood--Schur functions \\
+  Space    & SuperSym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Riedtmann2018x \\
+  Year     & 2018 \\
+  Symbol   & $\schurS_{\lambda/\mu}(\xvec/\yvec)$ \\
+  Category & Schur \\
+  Generalizes & hookSchur | Riedtmann2018x \\
+\end{polydata}
+
 
 The \emph{hook Schur functions} also known as \emph{supersymmetric Schur functions},
 are characters of the Lie superalgebra $\mathrm{gl}(m/n)$, see \cite{Kac1977}.
@@ -43,7 +68,8 @@ functions \cite{Riedtmann2018x}.  These are closely related to the
 supersymmetric, or hook, Schur functions; the identities are obtained from
 the Moens--Van der Jeugt determinantal formula by Laplace expansion.
 
-\todo{Later relation and examples pass: decide whether multi-Schur and Littlewood--Schur functions need separate polydata nodes. Add small hook/tableau examples, preferably generated or checked by Rust code.}
+\todo{Later examples pass: add small hook/tableau examples, preferably
+generated or checked by Rust code.}
 
 \subsection[superSymmetricFunctions]{Supersymmetric functions}
 
