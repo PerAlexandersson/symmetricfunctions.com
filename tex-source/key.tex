@@ -693,19 +693,20 @@ complete flagged homogeneous basis.
   Symbol   & $\atom_{\lambda,\sigma}(z)$ \\
   Keywords & divided-difference, fillings, polytopes, vertex model \\
   Category & Schur \\
+  PositiveIn & monomial | Mason2009 | scope=nonsymmetric monomials; proof=semi-standard augmented fillings \\
   PositiveIn & fundamentalParticle | Searles2019PolynomialBases,HicksNiese2024x | proof=Thm. 3.14 and Cor. 3.11 \\
 \end{polydata}
 
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- PositiveIn atom -> monomialNonsymmetric (current guess: atom -> monomial); from polynomialData.m.
-- PositiveIn skewAtom -> atom (current guess: atom -> atom); Status=Conjecture; from polynomialData.m.
-- Contains skewAtom -> atom (current guess: atom -> atom); from polynomialData.m.
-}
+\todo{Later source pass: decide whether to model skew Demazure atoms as a
+separate family.  Old migration data had straight atoms as a subfamily and a
+conjectural positive expansion of skew atoms into ordinary Demazure atoms.}
 
 
 The Demazure atoms (originally called \defin{standard bases})
 may be defined in a manner similar to \hyperref[keyDefinitionOperators]{key polynomials} using operators.
 They were introduced by \name{Alain Lascoux} and \name{Marcel-Paul Schützenberger} in \cite{Lascoux1990Keys}.
+Mason's semi-standard augmented filling model gives a positive monomial
+expansion \cite{Mason2009}.
 They also expand positively in the
 \hyperref[fundamentalParticle]{fundamental particle basis}
 \cite{Searles2019PolynomialBases,HicksNiese2024x}.
