@@ -28,26 +28,51 @@ alphabet $1'\lt 1\lt 2'\lt 2\lt \dotsb$, with primed entries appearing with
 multiplicity at most one in each box and with shifted row and column
 semistandard conditions.
 
+Following \cite[Def.~4.5]{Hawkes2023}, write $a\lt_u z$ if $a\lt z$, or if
+$a=z$ and both entries are unprimed.  Similarly, write $a\lt_p z$ if
+$a\lt z$, or if $a=z$ and both entries are primed.  If a box $b'$ is directly
+to the right of a box $b$, then every entry $a\in b$ must satisfy
+$a\lt_u z$ for every $z\in b'$.  If $b'$ is directly below $b$, then for
+every $z\in b'$ there must exist some $a\in b$ with $a\lt_p z$.  The set
+$\mathrm{SMT}_0(\mu)$ consists of those shifted multiset tableaux for which
+the smallest entry in each row is unprimed.
+
 Hawkes proves that these functions are \hyperref[schurP]{Schur $P$}-positive
 by homogeneous degree.  This is analogous to the Schur-positivity of weak
 stable Grothendieck polynomials.
+The combinatorial definition is
+\[
+  \grothendieckPDual_\mu(\xvec;\tvec)
+  =
+  \sum_{P\in \mathrm{SMT}_0(\mu)}
+  \tvec^{\mathrm{dw}(P)}\xvec^{\mathrm{wt}(P)},
+\]
+where $\mathrm{wt}(P)$ counts the values in $P$, ignoring primes, and
+$\mathrm{dw}(P)$ records how many extra entries lie on each shifted diagonal;
+see \cite[Thm.~4.17]{Hawkes2023}.
 
 \begin{example*}[Shifted multiset tableaux for $\mu=21$]
 % Related Rust: sym-poly/sym/src/p_grothendieck.rs and
 % sym-poly/sym/examples/p_grothendieck_site_example.rs
 Consider Hawkes's $t$-deformation for $\mu=21$ in two variables
-$x_1,x_2$.  The degree-four part comes from shifted multiset tableaux in
-$\mathrm{SMT}_0(21)$ with exactly one extra entry beyond the three boxes of
-the shifted shape.  There are eight such tableaux, and their weights give
-\[
-\left[\deg_{\xvec}=4\right]
-\grothendieckPDual_{21}(x_1,x_2;t_1,t_2)
-= (t_1+t_2)
-\left(x_1^3x_2+2x_1^2x_2^2+x_1x_2^3\right).
-\]
+$x_1,x_2$.  The first three homogeneous pieces are
+\begin{align*}
+\left[\deg_{\xvec}=3\right]\grothendieckPDual_{21}
+&= x_1^2x_2+x_1x_2^2, \\
+\left[\deg_{\xvec}=4\right]\grothendieckPDual_{21}
+&= (t_1+t_2)
+\left(x_1^3x_2+2x_1^2x_2^2+x_1x_2^3\right), \\
+\left[\deg_{\xvec}=5\right]\grothendieckPDual_{21}
+&= (t_1^2+t_2^2)
+\left(x_1^4x_2+2x_1^3x_2^2+2x_1^2x_2^3+x_1x_2^4\right) \\
+&\quad
++ t_1t_2
+\left(x_1^4x_2+3x_1^3x_2^2+3x_1^2x_2^3+x_1x_2^4\right).
+\end{align*}
+The degree-four part comes from the eight tableaux in $\mathrm{SMT}_0(21)$
+with exactly one extra entry beyond the three boxes of the shifted shape.
 Equivalently, this degree-four piece is
 $(t_1+t_2)\schurP_{31}(x_1,x_2)$; compare \cite[Ex.~4.18]{Hawkes2023}.
-Here $t_i$ records the shifted diagonal in which the extra entry appears.
 \end{example*}
 
 Suppose $\mu$ is a strict partition with $m$ parts.
