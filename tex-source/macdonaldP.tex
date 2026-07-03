@@ -14,6 +14,7 @@
   Year     & 1987 \\
   Symbol   & $\macdonaldP_\lambda(\xvec;q,t) $ \\
   Category & Schur \\
+  Contains & elementaryE | Macdonald1987 | scope=column partitions \\
   SpecializesTo & hallLittlewoodP | Macdonald1987 | map=q=0 \\
   SpecializesTo & jackP | Macdonald1987 | map=Jack limit \\
   SpecializesTo & qWhittaker | Macdonald1987 | map=t=0 \\
@@ -21,14 +22,12 @@
   TransformsTo & macdonaldJ | Macdonald1987 | map=integral-form rescaling \\
 \end{polydata}
 
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- SpecializesTo macdonaldP -> elementaryE; from polynomialData.m, tikzdataRelations.txt.
-}
-
 
 Macdonald polynomials, $\{\macdonaldP_\lambda(\xvec;q,t) \}_{\lambda}$ 
 were introduced by \name{Ian Macdonald} in \cite{Macdonald1987}. It is a two-parameter extension of the Schur functions,
 and unify the \hyperref[jackP]{Jack polynomials} and \hyperref[hallLittlewoodP]{Hall--Littlewood polynomials}.
+For column partitions one has
+$\macdonaldP_{(1^r)}(\xvec;q,t)=\elementaryE_r(\xvec)$.
 
 The masters thesis by \name{Robin Langer} \cite{Langer2009} from 2009 gives a nice overview.
 Colmenarejo--Ram suggests the term \defin{bosonic Macdonald polynomials}
