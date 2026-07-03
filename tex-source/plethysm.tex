@@ -287,4 +287,33 @@ and $\completeH_2[\completeH_a]$.  The paper also formulates a
 Foulkes-type conjecture from the pair $\Pi_{(b^a)}$, $\Pi_{(a^b)}$ and proves
 the case $b=2$.
 
-\todo{Later examples pass: add a small orbit-harmonics/plethysm example for $a=2$ or $3$; consider Rust code to verify the Schur expansions before writing them.}
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/sym/src/symmetric_function.rs
+% test_plethysm_complete_h_orbit_harmonics_small_cases
+\begin{example*}[A small orbit-harmonics refinement]
+For $a=3$, Zhu's graded Frobenius formulas
+\cite[Thms.~3.3 and 3.5]{Zhu2026x} give
+\[
+  \operatorname{grFrob}(R(\Pi_{(2^3)});q)
+  = \schurS_{6}+q\schurS_{42}+q^2\schurS_{222}
+\]
+and
+\[
+  \operatorname{grFrob}(R(\Pi_{(3^2)});q)
+  = \schurS_{6}+q\schurS_{42}.
+\]
+After forgetting the grading by setting $q=1$, these become the plethysms
+\[
+  \completeH_3[\completeH_2]
+  = \schurS_{6}+\schurS_{42}+\schurS_{222}
+  \quad\text{and}\quad
+  \completeH_2[\completeH_3]
+  = \schurS_{6}+\schurS_{42}.
+\]
+Thus in this first nontrivial case of Foulkes' conjecture, the difference is
+the single Schur-positive term
+\[
+  \completeH_3[\completeH_2]-\completeH_2[\completeH_3]
+  = \schurS_{222}.
+\]
+\end{example*}
