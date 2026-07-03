@@ -329,19 +329,28 @@ The following table shows the monomial expansion of $\qRho_\alpha$.
 The authors also give formulas for computing product and coproduct.
 
 
-\section[standardQuasiInvolution]{Involution on symmetric functions}
+\section[standardQuasiInvolution]{Involutions on quasisymmetric functions}
 
 The \hyperref[standardInvolution]{standard involution on symmetric functions} 
 that sends $\schurS_\lambda$ to $\schurS_{\lambda'}$ 
-can be extended to quasisymmetric functions in two ways,
-here defined via the \hyperref[gessel]{Gessel quasisymmetric functions}.
+can be extended to quasisymmetric functions by $\omega$.
+Two other useful involutions, $\rho$ and $\psi$, are also defined via the
+\hyperref[gessel]{Gessel quasisymmetric functions}
+\cite{LuotoMykytiukWilligenburg2013}:
 \[
-\omega \gessel_{n,S}(x) = \gessel_{n,[n-1]\setminus (n-S)}(x) \qquad \text{ or }  \qquad
-\psi \gessel_{n,S}(x) = \gessel_{n, [n-1]\setminus S}(x).
+\omega \gessel_{n,S}(x)
+  = \gessel_{n,[n-1]\setminus (n-S)}(x), \qquad
+\rho \gessel_{n,S}(x)
+  = \gessel_{n,n-S}(x), \qquad
+\psi \gessel_{n,S}(x)
+  = \gessel_{n, [n-1]\setminus S}(x).
 \]
 Here, $n-S$ is the set $\{n-s : s \in S\}$.
-The first map is the extension that restricts to the usual involution on
-$\spaceSym$, while the second is the complementary descent-set involution.
+Equivalently, $\rho\gessel_\alpha=\gessel_{\alpha^r}$, where $\alpha^r$
+is the reverse composition.
+The map $\omega$ restricts to the usual involution on $\spaceSym$, while
+$\psi$ is the complementary descent-set involution.  These maps satisfy
+$\psi=\rho\circ\omega=\omega\circ\rho$.
 
 In \cite{BallantineDaughertyHicksMason2020}, it is shown that
 $

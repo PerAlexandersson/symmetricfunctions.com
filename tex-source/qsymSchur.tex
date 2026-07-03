@@ -179,11 +179,33 @@ $112$ denotes the composition $(1,1,2)$.
 The \defin{Young quasisymmetric Schur functions}, introduced in \cite{LuotoMykytiukWilligenburg2013},
 are obtained from the \hyperref[qSchur]{quasisymmetric Schur functions} via the relation
 $\yqSchur_\alpha = \rho(\qSchur_{\rev(\alpha)})$
-where $\rho$ is a certain \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}.
+where $\rho$ is the \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}
+given by $\rho\gessel_\beta=\gessel_{\beta^r}$.
 They also refine Schur functions:
 \[
   \schurS_\lambda(\xvec)
   = \sum_{\alpha \sim \lambda} \yqSchur_\alpha(\xvec).
+\]
+
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/young_qsym_schur_degree4.rs
+The degree four Young quasisymmetric Schur functions have the following
+\hyperref[gessel]{fundamental quasisymmetric} expansions.
+\[
+\begin{array}{ll}
+\toprule
+\alpha & \yqSchur_\alpha(\xvec) \\
+\midrule
+1111 & \gessel_{1111} \\
+112  & \gessel_{112} \\
+121  & \gessel_{121} \\
+13   & \gessel_{13} \\
+211  & \gessel_{211} \\
+22   & \gessel_{121}+\gessel_{22} \\
+31   & \gessel_{22}+\gessel_{31} \\
+4    & \gessel_{4} \\
+\bottomrule
+\end{array}
 \]
 
 
