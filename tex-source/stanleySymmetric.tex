@@ -330,8 +330,57 @@ homology of the symplectic affine Grassmannian \cite{IkedaIwaoShimozono2025x}.
 These functions play the type $C$ analogue of the dual affine Schur functions
 in the affine Grassmannian Schur-basis story.
 
-\todo{Later examples pass: add a small affine nilCoxeter/Pieri-operator
-example for the Berg--Saliola--Serrano strong Schur construction.}
+\subsection[schurAffinePieriOperators]{Pieri operators}
+
+We recall one useful operator model.  Set $k=n-1$ and let $\mathcal{A}_k$
+be the affine nilCoxeter algebra with generators $u_0,u_1,\dotsc,u_k$.
+For a proper subset $D\subset \{0,1,\dotsc,k\}$, let $u_D$ denote the
+nilCoxeter element corresponding to the cyclically decreasing word with
+letter set $D$, and define
+\[
+h_r \coloneqq
+  \sum_{\substack{D\subsetneq \{0,1,\dotsc,k\}\\ |D|=r}} u_D.
+\]
+The elements $h_0,h_1,\dotsc,h_k$ commute and generate the affine
+Fomin--Stanley subalgebra.  Under the isomorphism
+$\completeH_r\mapsto h_r$, the image of the $k$-Schur function
+$\kSchur^{(k)}_\lambda$ is the noncommutative $k$-Schur element
+$\mathbf{s}^{(k)}_\lambda$.
+
+Let $D_i$ be the down operator obtained by summing over strong strips of
+length $i$ in the marked strong-order graph.  Berg--Saliola--Serrano prove
+\cite[Thm.~4.7]{BergSaliolaSerrano2013} that
+\[
+D_i\bigl(\mathbf{s}^{(k)}_\lambda\bigr)
+  = \sum_{\substack{\mu\\ \operatorname{size}(w_\lambda \rightsquigarrow w_\mu)=i}}
+      \mathbf{s}^{(k)}_\mu,
+\]
+where $w_\lambda$ is the $0$-Grassmannian affine permutation corresponding
+to $\lambda$, and the sum is over strong strips from $w_\lambda$ to
+$w_\mu$.  More generally, for a composition $J$, the restriction of the
+operator $D_J$ to the affine Fomin--Stanley subalgebra is the adjoint
+$\schurS_J^\perp$ of multiplication by the ribbon Schur function
+$\schurS_J$ \cite[Thm.~4.9]{BergSaliolaSerrano2013}.
+
+\begin{example}
+For $k=2$, the affine nilCoxeter algebra has generators $u_0,u_1,u_2$,
+with indices read modulo $3$.  The first two affine homogeneous elements are
+\[
+h_1=u_0+u_1+u_2,
+\qquad
+h_2=u_1u_0+u_2u_1+u_0u_2.
+\]
+Thus left multiplication by $h_r$ gives
+\[
+U_1(u_0)=h_1u_0=u_2u_0+u_1u_0
+\]
+and
+\[
+U_2(u_0)=h_2u_0=u_0u_2u_0+u_2u_1u_0,
+\]
+using $u_i^2=0$.  This is the small computation in
+\cite[Ex.~3.1]{BergSaliolaSerrano2013}.
+\end{example}
 
 Let $Par^n$ denote the set of partitions with $\lambda_1 \leq n-1$.
 \[
@@ -363,12 +412,21 @@ form a basis for the space $\spaceSym^{(n)}$ where
 \end{polydata}
 
 
-\todo{
+Following Lam's definition \cite[Sec.~5]{Lam2006}, let $h_r(u)$ be the
+affine homogeneous operator acting on the set of $n$-cores by the
+nilCoxeter action.  For two $n$-cores $\mu\subseteq \lambda$, the skew
+affine Schur function is
 \[
-\stanleySymAffine_{\lambda/\mu}(\xvec) = \sum_{a=(a_1,\dotsc,a_r)} 
-\langle \completeHomogeneous_{a_1} \dotsm \completeHomogeneous_{a_r} \cdot \mu , \lambda \rangle \xvec^a 
+\stanleySymAffine_{\lambda/\mu}(\xvec)
+  = \sum_{a=(a_1,\dotsc,a_t)}
+      \bigl\langle h_{a_t}(u)\dotsm h_{a_1}(u)\cdot\mu,\lambda\bigr\rangle
+      x_1^{a_1}\dotsm x_t^{a_t},
 \]
-}
+where the sum is over weak compositions with finite support, written
+without trailing zero parts, and with $0\leq a_i<n$.
+Here the inner product is the standard one on the free vector space spanned
+by $n$-cores, so the coefficient counts the ways to obtain $\lambda$ from
+$\mu$ by applying the indicated affine Pieri operators.
 
 Let $\mu \subseteq \lambda$ be two $n$-cores such that there is some $w \in \asymS_n$
 such that $u_w \cdot \mu = \lambda$. This means that $\lambda$ can be obtained from $\mu$
