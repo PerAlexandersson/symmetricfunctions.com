@@ -11,9 +11,7 @@ writing.
 These are not currently broken, but they should be converted to proper
 `bibliography.bib` entries or existing citation keys after verifying metadata.
 
-| File:line | Current text | Remaining work |
-|---|---|---|
-| `tex-source/lattice-path-matroids.tex:27` | Bonin lecture notes linked directly | Add a lecture-notes bib entry or keep the direct link. Existing `Bonin2010` appears to be a different article. |
+No current citation cleanup items.
 
 ## Content additions
 
