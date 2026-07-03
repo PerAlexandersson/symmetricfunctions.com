@@ -13,11 +13,6 @@ These are not currently broken, but they should be converted to proper
 
 | File:line | Current text | Remaining work |
 |---|---|---|
-| `tex-source/whittaker.tex:21` | Lam intro raw arXiv URL | Add or locate a bib entry and cite it. |
-| `tex-source/whittaker.tex:23` | Iwahori Whittaker raw arXiv URL | Add or locate a bib entry and cite it. |
-| `tex-source/whittaker.tex:25` | Spin q-Whittaker raw arXiv URL | Add or locate a bib entry and cite it. |
-| `tex-source/whittaker.tex:27` | `(p,q)-Whittaker` raw arXiv URL | Add or locate a bib entry and cite it. |
-| `tex-source/whittaker.tex:29` | Metaplectic Whittaker raw arXiv URL | Add or locate a bib entry and cite it. |
 | `tex-source/lattice-path-matroids.tex:27` | Bonin lecture notes linked directly | Add a lecture-notes bib entry or keep the direct link. Existing `Bonin2010` appears to be a different article. |
 
 ## Content additions
