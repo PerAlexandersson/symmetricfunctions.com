@@ -661,7 +661,7 @@ interpretation of the insertion algorithms of \name{Daoji Huang} and
   Year     & 2021 \\
   Keywords & enriched,double,back-stable,type-C,schubert \\
   Category & Schubert \\
-  SpecializesTo & schubertDouble | AndersonFulton2021x | map=$c_i=0$ \\
+  SpecializesTo & schubertDouble | AndersonFulton2021x | map=$c_i=0$ and Anderson--Fulton $\eta_j=-y_j$ \\
   SpecializesTo & schubertBackStableDouble | AndersonFulton2021x | scope=$c$-variables specialized to power series \\
   SpecializesTo & schubertBCD | AndersonFulton2021x | scope=$c$-variables specialized to Schur $Q$-polynomials, type $C$ double case \\
 \end{polydata}
@@ -690,9 +690,29 @@ polynomials through infinite-dimensional flag varieties and degeneracy loci
 \cite{Anderson2025}, including positivity in equivariant coproduct and
 back-stable/enriched Schubert expansions.
 
-\todo{Later examples pass: add a small worked enriched Schubert specialization
-example, preferably one where $c_i=0$ gives a familiar double Schubert
-polynomial.}
+\begin{example}
+Anderson and Fulton use the convention
+$\schubert^{\mathrm{en}}_w(0,x,\eta)=\schubert_w(x,-\eta)$ for the double
+Schubert specialization \cite[Thm.~1.1]{AndersonFulton2021x}.  Thus, to match
+the double Schubert convention of this page, we set $\eta_j=-y_j$ after
+specializing the enriched variables $c_i$ to zero.  For instance, their
+Examples~1 give
+\[
+  \schubert^{\mathrm{en}}_{s_k}(c,x,\eta)
+  =
+  c_1+\sum_{i=1}^k (x_i+\eta_i),
+  \qquad k>0.
+\]
+Hence
+\[
+  \schubert^{\mathrm{en}}_{s_k}(0,x,-y)
+  =
+  \sum_{i=1}^k (x_i-y_i)
+  =
+  \schubert_{s_k}(x,y),
+\]
+the familiar double Schubert polynomial for a simple transposition.
+\end{example}
 
 There is a pipe-dream formula, expressing $\schubert_\omega(\xvec,\yvec) $
 as a sum over \hyperref[schubertPipeDream]{pipe dreams}:
