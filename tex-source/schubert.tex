@@ -797,9 +797,22 @@ The stable limit of these yield the \hyperref[stanleySymInvolution]{involution S
 A combinatorial model using \emph{involution pipe dreams} for these polynomials
 is given by \name{Zachary Hamaker}, \name{Eric Marberg}, and \name{Brendan Pawlowski} in \cite{HamakerMarbergPawlowski2019}.
 
-\todo{Later figures/examples pass: add a small involution Schubert polynomial
-example, listing the atoms/minimal factorizations and showing one involution
-pipe dream.  Verify the expansion before drawing the figure.}
+\begin{example}[A small involution Schubert polynomial]
+For the involution $321 \in \symS_3$, Hamaker--Marberg--Pawlowski give
+\[
+\hat{R}(321)=\{(s_1,s_2),(s_2,s_1)\},
+\qquad
+A(321)=\{231,312\}
+\]
+\cite[Ex.~2.7]{HamakerMarbergPawlowski2018}.  Hence
+\[
+\ischubert_{321}
+  = \schubert_{231}+\schubert_{312}
+  = x_1x_2+x_1^2.
+\]
+The involution pipe-dream model gives a graphical refinement of the same
+positive expansion.
+\end{example}
 
 
 \section[schubertQuantum]{Quantum Schubert polynomials}
