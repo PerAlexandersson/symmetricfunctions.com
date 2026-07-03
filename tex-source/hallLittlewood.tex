@@ -92,8 +92,33 @@ bipartitions, reduce to ordinary Hall--Littlewood functions when one partition
 is empty, specialize to Schur Laurent symmetric functions at $t=0$, and satisfy
 Pieri rules.
 
-\todo{Later examples pass: add a small worked example for the modified
-$\imath$ Hall--Littlewood functions and their specializations.}
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/sym/examples/imath_hall_littlewood_site_example.rs
+\begin{example*}[A small modified $\imath$ Hall--Littlewood example]
+Lu--Ruan--Wang first define Giambelli-type polynomials
+$V^\imath_\lambda$ in auxiliary generators $v_r$.  Their two-row formula
+\cite[Lem.~2.2]{LuRuanWang2025} gives, for instance,
+\[
+  V^\imath_{(2,1)}
+  = V_{(2,1)} + (t-1)\theta V_{(1)}.
+\]
+After specializing $v_r$ to the complete homogeneous function
+$\completeH_r$, this becomes the modified $\imath$ Hall--Littlewood identity
+\[
+  H^\imath_{(2,1)}(\xvec;t,\theta)
+  = \hallLittlewoodH_{(2,1)}(\xvec;t)
+    +(t-1)\theta\completeH_1(\xvec).
+\]
+Thus setting $\theta=0$ recovers the modified Hall--Littlewood function
+$\hallLittlewoodH_{(2,1)}$.  Setting $t=0$ gives the $\imath$ Schur
+specialization
+\[
+  H^\imath_{(2,1)}(\xvec;0,\theta)
+  =\schurS_{(2,1)}(\xvec)-\theta\completeH_1(\xvec),
+\]
+and the further specialization $\theta=1$ gives the corresponding type $C$
+universal character in the notation used here.
+\end{example*}
 
 \subsection[hallLittleWoodPWeylformula]{Definition}
 
