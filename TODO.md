@@ -15,6 +15,4 @@ No current citation cleanup items.
 
 ## Content additions
 
-| File:line | Remaining work |
-|---|---|
-| `tex-source/realRooted.tex:101` | The `AthanasiadisWagner2024` citation for Veronese sections is already present. Expand this section if you want an explicit explanation of how the k-Veronese framework gives interlacing polynomial families. |
+No current content addition items.
