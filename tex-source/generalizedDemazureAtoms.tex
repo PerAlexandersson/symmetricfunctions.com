@@ -15,17 +15,9 @@
   Keywords & fillings, rsk \\
   Category & Schur \\
   Contains & atom | HaglundMasonRemmel2012 | scope=identity basement \\
+  Contains & schurS | HaglundMasonRemmel2012 | scope=reverse-identity basement \\
   PositiveIn & atom | HaglundMasonRemmel2012 \\
 \end{polydata}
-
-\todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
-- Contains generalAtom -> key (current guess: generalizedDemazureAtoms -> key); from polynomialData.m, tikzdataRelations.txt.
-- SpecializesTo generalTAtom -> generalAtom (current guess: generalizedDemazureAtoms -> generalizedDemazureAtoms); from polynomialData.m.
-- PositiveIn skewGenAtom -> generalAtom (current guess: generalizedDemazureAtoms -> generalizedDemazureAtoms); Status=Conjecture; from polynomialData.m.
-- Contains skewGenAtom -> generalAtom (current guess: generalizedDemazureAtoms -> generalizedDemazureAtoms); from polynomialData.m.
-}
-
-
 
 The family of polynomials referred to as \emph{generalized Demazure atoms}
 were introduced in \cite{HaglundMasonRemmel2012} and further studied in \cite{RemmelTiefenbruck2013}.
@@ -40,6 +32,17 @@ generalized Demazure atoms.
 
 The generalized Demazure atoms have nice properties with respect to insertion algorithms and \hyperref[rsk]{RSK},
 while the permuted-basement atoms are compatible with Demazure--Lusztig operators and representation theory.
+For a fixed basement $\sigma$, Haglund--Mason--Remmel's generalized
+Demazure atoms $\widehat{E}^{\sigma}_\gamma$ refine Schur functions:
+\[
+\schurS_\beta(\xvec)=\sum_{\lambda(\gamma)=\beta}
+  \widehat{E}^{\sigma}_\gamma(\xvec).
+\]
+Here, $\lambda(\gamma)$ is the decreasing rearrangement of $\gamma$.
+For the reverse-identity basement this sum has a single nonzero term, so
+Schur functions occur as a subfamily.  For the identity basement one recovers
+Mason's Demazure atoms.  The $t$-deformed basement families are recorded here
+as \hyperref[permutedBasementTAtom]{permuted-basement $t$-atoms}.
 
 \name{Janine LoBue Tiefenbruck} and \name{Jeffrey B. Remmel} prove a
 Murnaghan--Nakayama rule for generalized Demazure atoms
