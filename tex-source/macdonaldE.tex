@@ -223,6 +223,7 @@ straightening rule in the full permuted-basement family.
   Keywords & fillings, key-positive \\
   Category & Schur \\
   Contains & qWhittaker | Opdam1995 | scope=symmetric/partition case \\
+  SpecializesTo & nonSymmetricElementary | AlexanderssonSawhney2019 | map=q=1 \\
   PositiveIn & key | AlexanderssonSawhney2017,Assaf2018Kostka,AssafGonzalez2018 | semiring=NN[q] \\
   PositiveIn & atom | MandelshtamNiergarthSingh2026x | semiring=NN[q]; proof=Cor. 4.7 \\
 \end{polydata}
@@ -230,7 +231,6 @@ straightening rule in the full permuted-basement family.
 \todo{Legacy relation hints from old polynomialData.m/tikzdata*.txt to verify or migrate:
 - Misc nonSymqElem -> hallLittlewoodH (current guess: macdonaldEspec -> hallLittlewoodH); from polynomialData.m.
 - Misc nonSymqElem -> modHL (current guess: macdonaldEspec -> hallLittlewoodH); from tikzdataRelations.txt.
-- SpecializesTo nonSymqElem -> nonSymElem (current guess: macdonaldEspec -> elementaryE); from polynomialData.m, tikzdataRelations.txt.
 }
 
 The \defin{non-symmetric $q$-Whittaker polynomials} are obtained by letting $t=0$ in $\macdonaldE_\mu(\xvec;q,t)$.
@@ -247,3 +247,36 @@ Removing the affine edges recovers their finite Demazure crystals.
 
 Models using \emph{quantum alcove walks} and \emph{quantum Lakshmibai--Seshadri path} 
 are considered in \cite{LenartNaitoSagakiSchillingShimozono2017}.
+
+
+\subsection[nonSymmetricElementary]{Non-symmetric elementary polynomials}
+
+\begin{polydata}{nonSymmetricElementary}
+  Name     & Non-symmetric elementary polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & AlexanderssonSawhney2019 \\
+  Year     & 2019 \\
+  Symbol   & $\macdonaldE_\lambda(\xvec;1,0)$ \\
+  Keywords & fillings, key-positive \\
+  Category & Elementary \\
+  Generalizes & elementaryE | AlexanderssonSawhney2019 | scope=partition shapes \\
+  PositiveIn & key | Assaf2018Kostka,AlexanderssonSawhney2019 | proof=Kostka numbers \\
+\end{polydata}
+
+The \defin{non-symmetric elementary polynomials} are the specialization
+$\macdonaldE_\lambda(\xvec;1,0)$, where $\lambda$ ranges over weak
+compositions.  For a fixed number of variables, these polynomials form a basis
+of the polynomial ring and naturally extend the ordinary
+\hyperref[elementaryE]{elementary symmetric functions}
+\cite[Sec.~4.1]{AlexanderssonSawhney2019}.
+More precisely, if $\lambda$ is a partition, then the corresponding
+permuted-basement polynomial $\macdonaldE^\sigma_\lambda(\xvec;1,t)$ is
+independent of $\sigma$ and $t$, and is equal to
+$\elementaryE_{\lambda'}(\xvec)$ \cite[Thm.~18]{AlexanderssonSawhney2019}.
+
+They expand positively in \hyperref[key]{key polynomials}, with coefficients
+given by ordinary Kostka numbers \cite{Assaf2018Kostka}.  This is the
+$q=1$ specialization of the key-positive expansion of
+$\macdonaldE_\lambda(\xvec;q,0)$ by Kostka--Foulkes polynomials.
