@@ -755,8 +755,8 @@ border strip appears as a segment of this cutting strip.
 
 Given an outside decomposition $(\theta_1,\dotsc,\theta_m)$ of $\lambda/\mu$,
 let $\theta_i\#\theta_j$ denote the segment of the cutting strip that starts on
-the initial diagonal of $\theta_i$ and ends on the terminal diagonal of
-$\theta_j$, with the usual empty and zero conventions from
+the initial diagonal of $\theta_j$ and ends on the terminal diagonal of
+$\theta_i$, with the usual empty and zero conventions from
 \cite{HamelGoulden1995}.  Then
 one has
 \[
@@ -764,10 +764,37 @@ one has
 \]
 See \cite{HamelGoulden1995} for the full notation and conventions.
 
-\todo{Add detailed Hamel--Goulden examples.  In particular, include an
-outside decomposition, the associated cutting strip, and the resulting
-determinant.  Do not hand-draw TikZ diagrams unless they have been checked
-against the paper or generated from a reliable diagram routine.}
+\begin{example}
+Let $D=(3,3,3,1)/(1)$, and take the outside decomposition
+$\Pi=(\theta_1,\theta_2)$ used in
+\cite[Ex.~2.2]{McNamaraWilligenburg2009}.  The cutting strip
+$\theta=\theta(\Pi)$ has contents from $-3$ to $2$, with
+\[
+  \theta_1=\theta[-3,2],
+  \qquad
+  \theta_2=\theta[-1,1].
+\]
+Thus $p(\theta_1)=-3$, $q(\theta_1)=2$, $p(\theta_2)=-1$, and
+$q(\theta_2)=1$.  The Hamel--Goulden matrix is
+\[
+  \begin{pmatrix}
+    \schurS_{\theta[-3,2]} & \schurS_{\theta[-1,2]} \\
+    \schurS_{\theta[-3,1]} & \schurS_{\theta[-1,1]}
+  \end{pmatrix},
+\]
+and hence
+\[
+  \schurS_D
+  =
+  \det
+  \begin{pmatrix}
+    \schurS_{\theta[-3,2]} & \schurS_{\theta[-1,2]} \\
+    \schurS_{\theta[-3,1]} & \schurS_{\theta[-1,1]}
+  \end{pmatrix}.
+\]
+Here every entry is a ribbon Schur function for a content interval in the same
+cutting strip $\theta$.
+\end{example}
 
 \name{William Y. C. Chen}, \name{Guo-Guang Yan}, and
 \name{Arthur L. B. Yang} study the cutting strips associated with outside
