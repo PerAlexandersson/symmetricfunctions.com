@@ -47,6 +47,27 @@ $\peakQSym_\Lambda(x)$, $\Lambda\in \mathcal{P}_n $ is defined as
 Here, $\triangle$ denotes symmetric difference.
 The definition of $\peakQSym_\Lambda(\xvec)$ is also given in \cite[Prop. 3.5]{Stembridge1997}.
 
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/peak_quasisymmetric_degree4.rs
+In degree four, the peak sets are $\emptyset$, $\{2\}$, and $\{3\}$.
+The corresponding peak functions expand in the
+\hyperref[gessel]{fundamental quasisymmetric basis} as
+\[
+\begin{array}{ll}
+\toprule
+\Lambda & \peakQSym_\Lambda(\xvec) \\
+\midrule
+\emptyset
+  & 2\gessel_{1111}+2\gessel_{112}+2\gessel_{121}+2\gessel_{13}
+    +2\gessel_{211}+2\gessel_{22}+2\gessel_{31}+2\gessel_{4} \\
+\{2\}
+  & 4\gessel_{121}+4\gessel_{13}+4\gessel_{211}+4\gessel_{22} \\
+\{3\}
+  & 4\gessel_{112}+4\gessel_{121}+4\gessel_{22}+4\gessel_{31} \\
+\bottomrule
+\end{array}
+\]
+
 See also \cite{GesselZhuang2018}.
 
 \name{Darij Grinberg} and \name{Ekaterina A. Vassilieva} introduce algebras
