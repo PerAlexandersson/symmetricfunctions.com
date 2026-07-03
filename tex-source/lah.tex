@@ -62,15 +62,18 @@ and $L^{(\infty)-}_{n,k}(X) = \omega \lah_{n,k}(\xvec)$ in
 \cite{PetreolleSokal2019x}.
 
 \begin{example*}[Lah symmetric functions for $n=4$]
+% Related Rust: sym-poly/sym/src/lah.rs and
+% sym-poly/sym/examples/lah_site_example.rs
 We have that
 \begin{align*}
-\lah_{4,1} &= 6 \elementaryE_3 + 8 \elementaryE_{21} + \elementaryE_{3} = 
+\lah_{4,1} &= 6 \elementaryE_3 + 8 \elementaryE_{21} + \elementaryE_{111} =
 \monomial_{3} + 11\monomial_{21}+36\monomial_{111}, \\
 \lah_{4,2} &= 8 \elementaryE_2 + 7 \elementaryE_{11} = 
 7\monomial_{2} + 22\monomial_{11} \\
 \lah_{4,3} &= 6 \elementaryE_{1}= 6\monomial_{1} \\
 \lah_{4,4} &= 1.
 \end{align*}
+For example, the three terms in $\lah_{4,1}$ count increasing ordered trees
+whose child-count partition is respectively $(3)$, $(2,1)$, and $(1,1,1)$.
 \end{example*}
-
 

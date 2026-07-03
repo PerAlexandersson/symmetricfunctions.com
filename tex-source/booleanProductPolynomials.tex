@@ -23,6 +23,19 @@ The \defin{boolean product polynomials} are a family of polynomials defined as f
 These were introduced by \name{Lukas Billera}, \name{Sara Billey}, and \name{Vasu Tewari} in an FPSAC abstract,
 and inspired by certain applications in hyperplane arrangements, among other things.
 
+\begin{example}
+% Related Rust: sym-poly/sym/examples/boolean_product_site_example.rs
+The first nontrivial case is already Schur-positive:
+\[
+\begin{aligned}
+\booleanProduct_2(\xvec_3)
+&=(x_1+x_2)(x_1+x_3)(x_2+x_3)\\
+&=\monomial_{21}+2\monomial_{111}
+=\schurS_{21}.
+\end{aligned}
+\]
+\end{example}
+
 
 \subsection[booleanProductSchurPositivity]{Schur positivity}
 

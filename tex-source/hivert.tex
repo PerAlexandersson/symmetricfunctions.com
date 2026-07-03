@@ -23,6 +23,63 @@ and the \hyperref[qmonom]{monomial quasisymmetric functions}.
 
 Transition matrices involving Hivert polynomials are studied in \cite{LoehrSerranoWarrington2013}.
 
+Let $\alpha=(\alpha_1,\dotsc,\alpha_k)$ be a composition and let $\beta$ be a
+refinement of $\alpha$.  If the parts of $\beta$ refining $\alpha_j$ are
+counted by $b_j$, set
+\[
+\mathrm{Bre}(\beta,\alpha)=(b_1,\dotsc,b_k), \qquad
+s(\alpha,\beta)\coloneqq \sum_{j=1}^k j(b_j-1).
+\]
+One convenient normalization of the \defin{Hivert polynomial} is
+\[
+\hivert_\alpha(\xvec;t)
+=
+\sum_{\beta\text{ refines }\alpha}
+(-1)^{\ell(\beta)-\ell(\alpha)}
+t^{s(\alpha,\beta)}\gessel_\beta(\xvec).
+\]
+This is \cite[Thm.~11]{LoehrSerranoWarrington2013}, written as a definition.
+It gives
+\[
+\hivert_\alpha(\xvec;0)=\gessel_\alpha(\xvec),
+\qquad
+\hivert_\alpha(\xvec;1)=\qmonom_\alpha(\xvec).
+\]
+
+\begin{example}
+% Related Rust: sym-poly/qsym/src/hivert.rs and
+% sym-poly/qsym/examples/hivert_site_example.rs
+For $\alpha=(3)$, the refinements are $(3)$, $(2,1)$, $(1,2)$, and
+$(1,1,1)$.  Thus
+\[
+\hivert_3
+=
+\gessel_3
+-t\gessel_{21}
+-t\gessel_{12}
++t^2\gessel_{111}.
+\]
+In the monomial quasisymmetric basis this becomes
+\[
+\hivert_3
+=
+\qmonom_3
++(1-t)\qmonom_{21}
++(1-t)\qmonom_{12}
++(1-t)^2\qmonom_{111}.
+\]
+The inverse transition begins
+\[
+\gessel_3
+=
+\hivert_3
++t\hivert_{21}
++t\hivert_{12}
++t^3\hivert_{111},
+\]
+which is the degree-three case of \cite[Thm.~26]{LoehrSerranoWarrington2013}.
+\end{example}
+
 Hivert also introduced quasisymmetric divided-difference operators.  Replacing
 the ordinary divided differences by Hivert's operators in the construction of
 Schur functions recovers the \hyperref[gessel]{fundamental quasisymmetric

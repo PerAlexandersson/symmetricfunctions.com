@@ -31,7 +31,13 @@ where $\mathrm{flat}(\beta)$ denotes the composition obtained by removing all 0s
 and $\trianglerighteq$ denotes \hyperref[partialOrderingsOnPartitions]{dominance order}.
 \end{definition}
 
-As an example (from \cite[Eq. 3.7]{AssafSearles2016}), $\slideM_{(0,2,0,3)}(\xvec) = x_1^2x_2^3 + x_1^2x_3^3 + x_1^2 x_4^3 + x_2^2 x_3^3  + x_2^2 x_4^3$.
+As an example (from \cite[Eq. 3.7]{AssafSearles2016}),
+\[
+\slideM_{(0,2,0,3)}(\xvec)
+=
+x_1^2x_2^3 + x_1^2x_3^3 + x_1^2 x_4^3
++ x_2^2 x_3^3  + x_2^2 x_4^3.
+\]
 
 
 
@@ -98,6 +104,26 @@ as stable limit:
 \[
  \lim_{m \to \infty} \slideF_{0^m\times \alpha}(\xvec) = \gessel_{\mathrm{flat}(\alpha)}(\xvec).
 \]
+
+\begin{example}
+% Related Rust: sym-poly/multipoly/src/slide_polynomial.rs and
+% sym-poly/multipoly/examples/slide_site_example.rs
+For $\alpha=(1,0,2)$, the monomial slide polynomial is
+\[
+\slideM_{(1,0,2)}(\xvec)
+=
+x_1x_3^2+x_1x_2^2.
+\]
+The fundamental slide polynomial permits the refinement $(1,1,1)$ of
+$\mathrm{flat}(\alpha)=(1,2)$, so
+\[
+\slideF_{(1,0,2)}(\xvec)
+=
+x_1x_3^2+x_1x_2x_3+x_1x_2^2
+=
+\slideM_{(1,0,2)}(\xvec)+\slideM_{(1,1,1)}(\xvec).
+\]
+\end{example}
 
 \subsection[fundamentalParticle]{Fundamental particle basis}
 
