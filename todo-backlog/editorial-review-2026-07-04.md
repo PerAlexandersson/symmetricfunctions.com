@@ -36,9 +36,9 @@ before editing the public pages.
 
 ## Key/Lascoux/Stanley-family precision
 
-- `tex-source/lascoux.tex`: The Monical--Pechenik--Scrimshaw crystal question is
-  currently followed by "This seems to be answered in Yu2023."  Check Yu's exact
-  theorem and replace this with a precise statement and citation.
+- Resolved 2026-07-04 in `tex-source/lascoux.tex`: Yu's answer to the
+  Monical--Pechenik--Scrimshaw crystal question is now stated with its precise
+  abstract Kashiwara-crystal scope.
 - `tex-source/lascoux.tex`: Add the planned worked Monical set-valued skyline
   filling example for a small shape.  This should be backed by the Rust
   generators when feasible.
