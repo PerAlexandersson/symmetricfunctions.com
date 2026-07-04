@@ -15,6 +15,9 @@ For background on interlacing and the main tools used in the proofs here,
 see \hyperref[interlacingPolynomials]{interlacing polynomials}.
 For the broader context of real-rootedness and unimodality,
 see \hyperref[polynomialRootIntro]{unimodality and real-rootedness}.
+For descent polynomials of linear extensions of posets, including
+\hyperref[generalizedSnakeRealRooted]{generalized snake posets}, see
+\hyperref[posetRealRooted]{poset operations preserving real-rootedness}.
 
 
 
@@ -246,11 +249,11 @@ Introducing $Q_n = x\cdot P_n$, we have the recursion
 
 The operator $T_n:f \mapsto nx f + 2(1-x)t \cdot f'$
 satisfies $T_n[(x+y)^n] = n t (2+s-t)(s+t)^{n-1}$,
-and since the right hand side vanish at $s=i$, $t = 2+i$,
+and since the right-hand side vanishes at $s=i$, $t = 2+i$,
 we have that the operator does \emph{not} preserve real-rootedness.
 
 However, we can apply the Ma--Wang theorem \cite{MaWang2008}
-and deduce that all roots of $Q_n$ are real, and that  $Q_n \interl Q_{n+1}$
+and deduce that all roots of $Q_n$ are real, and that $Q_n \interl Q_{n+1}$
 \end{example*}
 
 
@@ -306,7 +309,8 @@ These are therefore fairly similar to Eulerian polynomials.
 
 
 \begin{example*}[Excedances and derangements, with proof]
-Let $P_n(t)\coloneqq \sum_{\pi \in D(n)} t^{\exc(\pi)}$, where $D(n)$ are the derangements (fixed-point-free permutations) of size $n$,
+Let $P_n(t)\coloneqq \sum_{\pi \in D(n)} t^{\exc(\pi)}$,
+where $D(n)$ is the set of derangements (fixed-point-free permutations) of size $n$,
 see \oeis{A046739}. Then $P_{n-1} \interl P_n$.
 
 The proof is as follows.
@@ -365,7 +369,7 @@ Another way to prove realrootedness is by interpreting $T_n(x)$ as a \hyperref[t
 \begin{example*}[Set partitions without singleton blocks]
 
 Let us define $D_n(t) = \sum_{\pi \in SP_2(n)} t^{blocks(\pi)}$,
-where $SP_2(n)$ are the set-partitions of $[n]$ where all blocks have size at least $2$.
+where $SP_2(n)$ is the set of set partitions of $[n]$ whose blocks all have size at least $2$.
 Then
 \[
  D_n(t) = t\left( D'_{n-1}(t) + (n-1) D_{n-2}(t) \right)
@@ -511,4 +515,7 @@ The quasi-Stirling case follows from the relation
 \[
  \widetilde{Q}_n(t)=t J_{2n,n+1}(t).
 \]
+Elizalde also proves asymptotic normality for the descent distribution and
+extends the analysis to a one-parameter family generalizing
+\(k\)-Stirling permutations.
 \end{example*}

@@ -17,7 +17,7 @@ Addressing conjectures of Panyushev and Bessis--Reiner, they showed that this ac
 in equivariant bijection with the Kreweras complementation action on
 the $\Phi$-noncrossing partition lattice.
 Moreover, they showed that the $q$-$\Phi$-Catalan polynomial is a cyclic sieving polynomial
-for the action of rowmotion on the  antichains of $\Phi^+$ (equivalently, for the Kreweras
+for the action of rowmotion on the antichains of $\Phi^+$ (equivalently, for the Kreweras
 complement acting on $\Phi$-noncrossing partitions).
 Note that the Type $A$ case of this CSP is equivalent to
 the \hyperref[cspNonCrossingMatchingsI]{Non-crossing matchings} CSP.
@@ -27,7 +27,7 @@ Rowmotion can be realized as a certain composition of toggles.
 By making these toggles piecewise-linear, one obtains a piecewise-linear action
 of rowmotion on height $m$ \hyperref[pPartition]{$P$-partitions} of a poset $P$.
 Hopkins (see \cite{Hopkins2024}) conjectured a CSP for the action
-of piecewise-linear rowmotion on these $P$-partitions when $P$ is
+of piecewise-linear rowmotion on these $P$-partitions when $P$ is a
 root poset \enquote{of coincidental type}, where the sieving polynomial is
 the so-called \emph{$q$-$\Phi$-multi-Catalan number}.
 This conjecture extends the aforementioned result of Armstrong--Stump--Thomas, which is the case $m=1$.
@@ -85,24 +85,24 @@ conjectures, see \cite{Hopkins2020}.
 
 In \cite{BarceloReinerStanton2008}, a bi-cyclic sieving phenomenon on permutation matrices is described.
 Let $X_n$ be the set of $n\times n$ permutation matrices,
-and let $\grpc_n \times \grpc_n $ act on $X_n$ by cyclic shift on rows, and columns.
+and let $\grpc_n \times \grpc_n$ act on $X_n$ by cyclic shifts of rows and columns.
 Then
 \[
 \left(X_n, \grpc_n \times \grpc_n, \epsilon(q,t)\sum_{\lambda \vdash n} f^\lambda(q) f^\lambda(t) \right)
 \]
-exhibit the bi-cyclic sieving phenomenon. 
-Here, $\epsilon(q,t)$ is $(qt)^{n/2}$ if $n$ is even, and$1$ if $n$ is odd.
+exhibits the bi-cyclic sieving phenomenon.
+Here, $\epsilon(q,t)$ is $(qt)^{n/2}$ if $n$ is even, and $1$ if $n$ is odd.
 In fact, they prove a much stronger statement regarding complex reflection groups.
 
 This is further generalized in \cite{Rhoades2010b} to $01$-matrices,
 where the column sums and row sums in the matrices are given by fixed integer partitions.
 
 \name{Brendon Rhoades} further generalizes this to matrices with non-negative 
-integer entries, and prove a bi-cyclic phenomenon using
+integer entries, and proves a bi-cyclic phenomenon using
 \[
 \epsilon(q,t)\sum_{\lambda \vdash n} K_{\lambda,\mu}(q) K_{\lambda,\nu}(t)
 \]
-as biCSP polynomial. Note that this is closely 
+as a biCSP polynomial. Note that this is closely
 related to the \hyperref[rsk]{Robinson--Schensted--Knuth algorithm}.
 
 
@@ -135,6 +135,26 @@ That is, we get a family of cyclic sieving phenomena on the lattice points of di
 \name{Shiwen Zhang} study zero-sum polytopes associated with finite abelian
 groups, including reciprocity, rigidity, and cyclic sieving phenomena
 \cite{HanWangZhangZhang2026x}.
+
+
+\subsection[cspIndependentSetsGraphs]{Independent sets of graphs}
+
+\name{Jacob A. White} gives cyclic sieving phenomena for independent sets of
+fixed size in graphs equipped with cyclic group actions \cite{White2026x}.
+The main examples are powers of cycle graphs, and the same work gives closed
+formulas for the number of independent sets of fixed size in powers of cycles
+and paths.  Whiskering gives a way to build new CSP examples from old ones,
+and recursive methods handle independent sets in gear graphs, helm graphs,
+and book graphs.
+
+
+\subsection[cspStrongDichotomy]{Strong dichotomy classes}
+
+\name{Octavio A. Agust{\'i}n-Aquino} studies cyclic sieving in the
+enumeration of strong dichotomy classes, that is, bicolour self-complementary
+and rigid patterns in $\setZ/2k\setZ$ \cite{AgustinAquino2026x}.  The paper
+proves that, for odd $k$, evaluating the rigid pattern-inventory polynomial
+at $-1$ gives the negative of the number of strong classes.
 
 
 \subsection[cspCyclicCodes]{Hamming codes}

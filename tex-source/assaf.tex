@@ -78,6 +78,8 @@ The $K$-theoretical analog of fundamental slide
 polynomials are the \emph{glide polynomials}, see \cite{PechenikSearles2017}.
 They refine stable Grothendieck polynomials in the same way that fundamental
 slide polynomials refine Schubert polynomials.
+\todo{Add a small checked glide-polynomial example, preferably next to the
+fundamental slide example and backed by Rust or a paper computation.}
 
 
 The fundamental slide polynomials expand positively 
@@ -114,6 +116,40 @@ For $\alpha=(1,0,2)$, the monomial slide polynomial is
 =
 x_1x_3^2+x_1x_2^2.
 \]
+The support can be seen directly from the weak-composition diagrams below.
+We draw the exponent vector $b=(b_1,b_2,b_3)$ by placing $b_i$ cells in row
+$i$, with row $3$ at the top.
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c}
+b=(1,0,2) &
+\begin{array}{c|cc}
+3 & \bullet & \bullet\\
+2 & {} & {}\\
+1 & \bullet & {}\\ \hline
+  & 1 & 2
+\end{array}
+& x_1x_3^2\\[2.6em]
+b=(1,1,1) &
+\begin{array}{c|cc}
+3 & \bullet & {}\\
+2 & \bullet & {}\\
+1 & \bullet & {}\\ \hline
+  & 1 & 2
+\end{array}
+& x_1x_2x_3\\[2.6em]
+b=(1,2,0) &
+\begin{array}{c|cc}
+3 & {} & {}\\
+2 & \bullet & \bullet\\
+1 & \bullet & {}\\ \hline
+  & 1 & 2
+\end{array}
+& x_1x_2^2
+\end{array}
+\]
+The first and last diagrams have flat composition $(1,2)$, so they contribute
+to $\slideM_{(1,0,2)}$.  The middle diagram has flat composition $(1,1,1)$,
+which refines $(1,2)$ but is not equal to it.
 The fundamental slide polynomial permits the refinement $(1,1,1)$ of
 $\mathrm{flat}(\alpha)=(1,2)$, so
 \[
@@ -147,6 +183,8 @@ the usual Demazure atom operators with Hivert's quasisymmetric divided
 difference operators \cite{HicksNiese2024x}.  In this form the basis has an
 explicit monomial-positive formula, and the fundamental slide polynomials
 expand positively in the fundamental particle basis.
+\todo{Add a checked fundamental-particle expansion example, and compare it
+with the fundamental slide expansion for a small weak composition.}
 
 
 \subsection[slidePositive]{Slide positive families}
@@ -164,6 +202,12 @@ In \cite{TewariWilsonZhang2022}, it is shown that certain polynomials similar to
 
 
 See \cite{SmirnovTutubalina2021} for the notion of \emph{slide complexes}.
+
+The \hyperref[kohnert]{Kohnert polynomial} page gives a diagrammatic model
+which contains keys, Schubert polynomials, locks, and other Assaf--Searles
+families as special cases.  For $K$-theoretic diagram models related to
+Lascoux and glide phenomena, see the \hyperref[lascoux]{Lascoux polynomial}
+page.
 
 
 \section[forestPolynomials]{Forest polynomials}

@@ -1,5 +1,5 @@
 \metatitle{Representation theory}
-\metadescription{An introduction to representation theory, including general definitions, irreducible representations, 
+\metadescription{An introduction to representation theory, including general definitions, irreducible representations,
 tensor products, characters, and specific focus on the representation theory of the symmetric group $\symS_n$ and the general linear group $\GL_n$.}
 
 \section[representationTheory]{Representation theory}
@@ -7,10 +7,10 @@ tensor products, characters, and specific focus on the representation theory of 
 \subsection[representationDefinition]{Representation of a group}
 
 
-Let $G$ be a group and $V$ a vector space. A \defin{representation} 
-is a map $\rho$ that sends elements in $G$ to linear maps on $V$, 
+Let $G$ be a group and $V$ a vector space. A \defin{representation}
+is a map $\rho$ that sends elements in $G$ to linear maps on $V$,
 with the condition that it is compatible with the group structure.
-To be precise, let $\psi_g : V \to V$ be the linear map on $V$ we associate with $g \in G$. 
+To be precise, let $\psi_g : V \to V$ be the linear map on $V$ we associate with $g \in G$.
 Then
 \[
 \psi_{g_1 g_2} = \psi_{g_1} \circ \psi_{g_2} \text{ for all } g_1,g_2 \in G.
@@ -19,15 +19,15 @@ Thus, a representation is a group homomorphism $\rho : G \to GL(V)$.
 
 \begin{example}
 Let $G = \symS_n$ and $V=\setC[x_1,\dotsc,x_n]$. Note that $V$ is not finite-dimensional.
-Then we let $G$ acts on $V$ by permuting the indices of the variables. 
-By picking a basis of monomials of $V$, then $\rho$ sends a permutation $g \in G$ to a permutation matrix in $GL(V)$.
+Then we let $G$ act on $V$ by permuting the indices of the variables.
+After choosing a monomial basis of $V$, the map $\rho$ sends a permutation $g \in G$ to a permutation matrix in $GL(V)$.
 \end{example}
 
 
 \subsection[representationIrreducible]{Irreducible representation}
 
 Let $W \subset V$ be a subspace and $\rho:G \to GL(V)$ be a representation.
-If $\rho(g)w \in W$ for all $w \in W$, then we say that $W$ is $G$-invariant. 
+If $\rho(g)w \in W$ for all $w \in W$, then we say that $W$ is $G$-invariant.
 
 If the only $G$-invariant subspaces of $V$ is $V$ itself and $\{0\}$, then we say that $\rho$
 is an \defin{irreducible representation}.
@@ -53,7 +53,7 @@ sending $g$ to the tensor product of the individual images:
 
 \subsection[representationCharacter]{Character}
 
-Let $\rho: G \to GL(V)$ be a representation of $G$. 
+Let $\rho: G \to GL(V)$ be a representation of $G$.
 Then the \defin{character} is the map $\chi_{\rho}:G \to \setC$, defined as $\chi_{\rho}(g) \coloneqq tr( \rho(g))$.
 
 A character is irreducible if it is the character of an
@@ -70,7 +70,7 @@ As a typical example of $\symS_n$-modules, we have the \hyperref[stanleySymFrobe
 
 \subsection[frobeniusCharacteristic]{Frobenius characteristic}
 
-Let $\chi$ be a class function on $\symS_n$. 
+Let $\chi$ be a class function on $\symS_n$.
 We then define the \defin{Frobenius characteristic} (or \defin{Frobenius image})
 as the map
 \[
@@ -78,7 +78,7 @@ as the map
 = \sum_{\mu} \chi_\mu \frac{\powerSum_\mu(\xvec)}{z_\mu}.
 \]
 This map has the property that for the irreducible characters $\chi^\lambda$ of $\symS_n$,
-which are class functions, we have 
+which are class functions, we have
 \[
 \frobChar(\chi^\lambda) = \schurS_\lambda(\xvec).
 \]
@@ -123,35 +123,35 @@ symmetric group.
 
 \subsection[computingSnCharacters]{Computing characters of $\symS_n$}
 
-You have an $\symS_n$-module $M$ and wish to compute its
+Suppose we have an $\symS_n$-module $M$ and wish to compute its
 \hyperref[frobeniusCharacteristic]{Frobenius characteristic}
 $\frobChar_M(\xvec)$.
-This is the step-by-step guide (inspired by lecture notes by \name{Mike Zabrocki}).
+This gives a step-by-step guide (inspired by lecture notes by \name{Mike Zabrocki}).
 
 The same method can be adapted to compute characters for arbitrary finite groups.
 
 \begin{enumerate}
-\item 
+\item
 We assume that $M$ is the span of some set of polynomials in $\setC[x_1,\dotsc,x_n]$.
 
-\item 
+\item
 Use linear algebra and find a basis for $M = \langle \bvec_1,\bvec_2,\dotsc,\bvec_d \rangle$.
 
-\item 
+\item
 For each $\sigma \in \symS_n$, we compute its character $\chi_M(\sigma)$ as follows.
- For each $i \in [d]$, solve the linear system 
+ For each $i \in [d]$, solve the linear system
  \[
  \sigma(\bvec_i) = c_{i1} \bvec_1 + c_{i2} \bvec_2 + \dotsb +  c_{id} \bvec_d.
  \]
  Then $\chi_M(\sigma) \coloneqq c_{11} + c_{22} + \dotsb + c_{dd}$.
  This is a type of trace and independent of the choice of basis.
- 
+
  It is in fact sufficient to compute $\chi_M(\sigma)$ for each type $\mu$,
  as $\chi_M(\sigma)=\chi_M(\tau)$ whenever $\sigma$ and $\tau$ have the same cycle type.
 
 
-\item 
- 
+\item
+
 Now that we have computed $\chi_M(\sigma)$, we use the above formula and get that
 \[
 \frobChar_M(\xvec) = \frac{1}{n!} \sum_{\sigma \in \symS_n} \chi_M(\sigma) \powerSum_\sigma(\xvec).
@@ -164,27 +164,27 @@ and the above observations, we see that
 \]
 where $\chi_M(\mu)$ is the character of some permutation of type $\mu$.
 
-\item 
+\item
 
 We then have the following relation:
  \[
-  M = \bigoplus_{\lambda \vdash n} \left(S^{\lambda} \right)^{\oplus c_\lambda} \qquad 
-  \Longleftrightarrow 
-  \qquad  
+  M = \bigoplus_{\lambda \vdash n} \left(S^{\lambda} \right)^{\oplus c_\lambda} \qquad
+  \Longleftrightarrow
+  \qquad
   \frobChar_M(\xvec) = \sum_{\lambda \vdash n} c_\lambda \schurS_\lambda(\xvec).
  \]
- Here, we have expressed $M$ as a sum of irreducible $\symS_n$-modules, denoted $S^{\lambda}$. 
+ Here, we have expressed $M$ as a sum of irreducible $\symS_n$-modules, denoted $S^{\lambda}$.
  In particular, we must have that the coefficients $c_\lambda$ are non-negative integers.
  Note that $\dim(S^{\lambda}) = f^\lambda$, the number of \hyperref[prelimTableaux]{standard Young tableaux} of shape $\lambda$.
 
 \end{enumerate}
 
-In all examples below, $\symS_n$ act on the space by permuting the variable indices.
+In all examples below, $\symS_n$ acts on the space by permuting the variable indices.
 
 \begin{example}
 Let $M = \langle x_1 + x_2 + x_3 \rangle$. This is a one-dimensional vector space,
-and all elements in $\symS_3$ fixes $M$.
-Thus $\chi_M(\sigma)=1$ for all $\sigma \in \symS_3$ and 
+and all elements in $\symS_3$ fix $M$.
+Thus $\chi_M(\sigma)=1$ for all $\sigma \in \symS_3$ and
 \[
 \frobChar_M(\xvec) = \frac{1}{3!} \sum_{\sigma \in \symS_3} \powerSum_\sigma(\xvec) = \schurS_{3}(\xvec).
 \]
@@ -192,7 +192,7 @@ The same thing happens for $M = \langle x_1 x_2 x_3 \rangle$.
 \end{example}
 
 \begin{example}
-Let $M = \langle (x_1-x_2)(x_1-x_3)(x_2-x_3) \rangle$. 
+Let $M = \langle (x_1-x_2)(x_1-x_3)(x_2-x_3) \rangle$.
 This is also a one-dimensional vector space,
 but odd permutations change the sign of the basis vector.
 Thus $\chi_M(\sigma)=\sign(\sigma)$ and
@@ -202,7 +202,7 @@ Thus $\chi_M(\sigma)=\sign(\sigma)$ and
 \end{example}
 
 \begin{example}
-Let $M = \langle x_1 , x_2 , x_3 \rangle$. 
+Let $M = \langle x_1 , x_2 , x_3 \rangle$.
 Note that $\langle x_1 + x_2 + x_3 \rangle$ is an invariant subspace.
 
 We have that $\frobChar_M(\xvec) = \schurS_{3}(\xvec) + \schurS_{21}(\xvec)$.
@@ -225,7 +225,7 @@ The symmetric group $\symS_n$ acts on \emph{parking functions} by relabeling.
 We can generalize this to view parking functions as labeled $m$-Dyck paths
 in an $n \times mn$-rectangle (counted by Fuss--Catalan numbers).
 The Frobenius characteristic for $(m,n)$ is then
-\[ 
+\[
    \sum_{\lambda \vdash n} K_{\lambda,m} \completeH_\lambda
 \]
 where $K_{\lambda,m}$ is the number of $m$-Dyck-paths of type $\lambda$.
@@ -287,10 +287,10 @@ Frobenius characteristic} is explicitly
 
 \section[representationGln]{Representation theory of $\GL_n$}
 
-We can also study representation theory of infinite groups, 
+We can also study representation theory of infinite groups,
 such as the group of invertible $n\times n$-matrices with complex entries.
 This is the \defin{general linear group}, $\GL_n(\setC)$.
-For a brief introduction to representation 
+For a brief introduction to representation
 theory of $\GL_n(\setC)$, see for example \cite[Chap. 7, App. 2]{StanleyEC2}.
 For more detailed introductory accounts, see
 \href{https://arxiv.org/abs/0912.0569}{Kamnitzer's geometric lecture notes}
@@ -303,9 +303,9 @@ and
 \href{http://math.cmu.edu/~cnewstea/notes/reptheory.pdf}{Newstead's notes}.
 
 
-A \defin{representation} of $\GL_n(\setC)$ is 
+A \defin{representation} of $\GL_n(\setC)$ is
 a group homomorphism $\phi : \GL_n(\setC) \to \GL_m(\setC)$ for some $m$.
-We will only study the cases when $\phi$ is \defin{homogeneous} and \defin{rational}, 
+We will only study the cases when $\phi$ is \defin{homogeneous} and \defin{rational},
 meaning that $\phi(\alpha A) = \alpha^k \phi(A)$
 for some $k \in \setZ$ and all $\alpha \in \setC \setminus \{0\}$.
 The integer $k$ is called the \defin{degree} of $\phi$, and if $k\geq 0$,
@@ -340,8 +340,8 @@ $\phi \otimes \varphi$. We then have
 \[
 \glChar(\phi \otimes \varphi)(\xvec) = \glChar(\phi)(\xvec) \cdot \glChar(\varphi)(\xvec).
 \]
-In particular, if $\phi$ and $\varphi$ are irreducible, then 
-the character $\glChar(\phi \otimes \varphi)(\xvec)$ decompose into irreducible 
+In particular, if $\phi$ and $\varphi$ are irreducible, then
+the character $\glChar(\phi \otimes \varphi)(\xvec)$ decompose into irreducible
 representations via the \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson rule}.
 
 
@@ -380,7 +380,7 @@ work on \hyperref[key]{key polynomials} and a flagged
 \hyperref[schurFlagged]{flagged Schur} families also have a
 representation-theoretic model as characters of modules for a Borel subgroup.
 
-In \cite{Szendroi2026x}, the author considers 
+In \cite{Szendroi2026x}, the author considers
 the coordinate rings of general Segre embeddings of products of projective spaces.
-Their bigraded Hilbert polynomials get expressed in terms of major-descent generating functions 
+Their bigraded Hilbert polynomials get expressed in terms of major-descent generating functions
 of words in multisets. Also, quantum cohomology and Garsia--Stanton-style bases are mentioned.

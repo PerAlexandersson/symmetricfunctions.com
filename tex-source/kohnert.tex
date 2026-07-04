@@ -30,9 +30,10 @@ the family of \hyperref[schubert]{Schubert polynomials}
 and \hyperref[key]{key polynomials}.
 
 All Kohnert polynomials are \hyperref[slideM]{monomial slide positive}, \cite[Thm. 3.7]{AssafSearles2019},
-and they were later proved to be key positive in \cite{Assaf2021}.
+and they were later proved to be key-positive in \cite{Assaf2021}.
 
-See \cite{ArmonAssafBowlingEhrhard2023} for a representation-theoretical interpretation of Kohnert polynomials.
+See \cite{ArmonAssafBowlingEhrhard2023} for a representation-theoretical
+interpretation of Kohnert polynomials through flagged Schur modules.
 
 
 \subsection[kohnertDefinition]{Definition}
@@ -63,6 +64,12 @@ The \defin{Kohnert polynomial} of a diagram \(D\) is
 \]
 \end{definition}
 
+In our French coordinate convention, a diagram \(D\) is \defin{southwest} if,
+whenever \(D\) contains cells \((c_1,r_2)\) and \((c_2,r_1)\) with
+\(c_1\lt c_2\) and \(r_1\lt r_2\), it also contains \((c_1,r_1)\).  This is
+the coordinate-reflected version of the \emph{northwest} diagrams used in
+\cite{ArmonAssafBowlingEhrhard2023}.
+
 For a weak composition \(a=(a_1,\dotsc,a_n)\), the \defin{key diagram}
 \(D(a)\) is the left-justified diagram with \(a_i\) cells in row \(i\).
 For a permutation \(w\), let \(D(w)\) denote its \hyperref[rotheDiagram]{Rothe diagram}.
@@ -82,6 +89,19 @@ That is, we can produce both \hyperref[key]{key polynomials} and \hyperref[schub
 Rothe diagrams and Billey--Jockusch--Stanley compatible sequences
 \cite{Assaf2022}.  This gives a bijective proof of Kohnert's rule for
 Schubert polynomials.
+
+\begin{theorem}[Assaf; Armon--Assaf--Bowling--Ehrhard]
+If \(D\) is southwest, then \(\kohnert_D(\xvec)\) is
+\hyperref[key]{key-positive}.  Moreover, in the northwest convention of
+\cite{ArmonAssafBowlingEhrhard2023}, the characters of flagged Schur modules
+are computed by Kohnert's rule exactly for northwest indexing diagrams.
+\end{theorem}
+Thus Kohnert's rule covers the module characters whose special cases include
+\hyperref[schurFlagged]{flagged skew Schur polynomials}, Demazure characters,
+and \hyperref[schubert]{Schubert polynomials}.  For arbitrary skew box
+arrangements, the southwest/northwest closure condition is the useful test:
+without it, the simple Kohnert-crystal and divided-difference recurrences need
+not survive unchanged.
 
 % Related Rust:
 % /home/paxinum/Dropbox/AI-projects/rust/sym-poly/multipoly/examples/kohnert_site_example.rs
@@ -147,6 +167,38 @@ where \(0^m\times D\) is obtained from \(D\) by shifting all cells upward by
 \hyperref[gessel]{fundamental quasisymmetric basis} \cite{AssafSearles2019}.
 For lock diagrams, the stable limits are the
 \hyperref[extSchur]{extended Schur functions}.
+
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/src/kohnert_qsym.rs
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/kohnert_key_stable_degree4.rs
+\begin{example*}[A stable key limit]
+Let \(D=D(1,1,2)\) be the left-justified key diagram with one cell in each of
+the first two rows and two cells in the third row.  The stable Kohnert
+quasisymmetric function is the stable limit of the corresponding key
+polynomials, so in this case
+\[
+ \kohnert_D(\xvec)
+ =
+ \schurS_{211}(\xvec).
+\]
+In the fundamental quasisymmetric basis this is
+\[
+ \kohnert_D(\xvec)
+ =
+ \gessel_{112}+\gessel_{121}+\gessel_{211},
+\]
+and in the monomial quasisymmetric basis it is
+\[
+ \kohnert_D(\xvec)
+ =
+ 3\qmonom_{1111}
+ +\qmonom_{112}
+ +\qmonom_{121}
+ +\qmonom_{211}.
+\]
+This gives a small concrete bridge between Kohnert diagrams, key polynomials,
+and the Schur functions obtained after stabilization.
+\end{example*}
 
 
 

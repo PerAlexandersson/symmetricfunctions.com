@@ -1,5 +1,5 @@
 \metatitle{Key polynomials and Demazure atoms}
-\metadescription{An introduction to key polynomials (Demazure characters) and Demazure atoms, including their definitions via divided difference operators, combinatorial models using tableaux and fillings, representation-theoretical interpretations, and properties such as products and Pieri rules.} 
+\metadescription{An introduction to key polynomials (Demazure characters) and Demazure atoms, including their definitions via divided difference operators, combinatorial models using tableaux and fillings, representation-theoretical interpretations, and properties such as products and Pieri rules.}
 
 \section[key]{Key polynomials}
 
@@ -33,7 +33,7 @@ Demazure characters were introduced in \cite{Demazure1974nouvelle,Demazure1974}.
 Later, a combinatorial formula using so called \defin{key tableaux} was discovered in
 \cite{Lascoux1990Keys}.
 Key polynomials are also given as a specialization of \hyperref[macdonaldE]{non-symmetric Macdonald polynomials},
-see \cite{HaglundHaimanLoehr2008}, and this gives several combinatorial 
+see \cite{HaglundHaimanLoehr2008}, and this gives several combinatorial
 models for the key polynomials, see the works of \name{Sarah Mason} \cite{Mason2009},
 and also \cite{Kurland2016,AlexanderssonSawhney2019}.
 Another positive model is given by \hyperref[kohnertTableaux]{Kohnert tableaux},
@@ -61,16 +61,16 @@ The $K$-theoretic version of key polynomials are the \hyperref[lascoux]{Lascoux 
   Space    & Other \\
   Basis    & True \\
   Rating   & 1 \\
-  Bib      & Weising2024x \\
+  Bib      & Weising2024AlmostSymmetricx \\
   Year     & 2024 \\
   Symbol   & $s_{(\mu|\lambda)}$ \\
   Category & Schur \\
-  Generalizes & key | Weising2024x | scope=finite-variable nonsymmetric edge \\
-  Generalizes & schurS | Weising2024x | scope=fully symmetric edge \\
+  Generalizes & key | Weising2024AlmostSymmetricx | scope=finite-variable nonsymmetric edge \\
+  Generalizes & schurS | Weising2024AlmostSymmetricx | scope=fully symmetric edge \\
 \end{polydata}
 
 \name{Milo Bechtloff Weising} introduces the almost symmetric Schur
-functions $s_{(\mu|\lambda)}$ \cite{Weising2024x}.  They are the $q=t=0$
+functions $s_{(\mu|\lambda)}$ \cite{Weising2024AlmostSymmetricx}.  They are the $q=t=0$
 specialization of stable-limit nonsymmetric Macdonald functions and
 simultaneously generalize finite-variable key polynomials and ordinary
 Schur functions.  The paper gives recurrence definitions using isobaric
@@ -98,13 +98,13 @@ This is well-defined, as the action of $\pi_\sigma$ is independent of the choice
 
 
 Let $\lambda$ be a partition with at most $n$ parts, and let $\sigma \in \symS_n$.
-In fact, we can choose $\sigma$ to be the \emph{minimal coset representation} for 
+In fact, we can choose $\sigma$ to be the \emph{minimal coset representation} for
 the parabolic subgroup $W_J \subseteq \symS_n$ that fixes $\lambda$.
 The \defin{key polynomial} $\key_{\lambda,\sigma}(z)$ is defined as
 \begin{equation*}
  \key_{\lambda,\sigma}(z) \coloneqq \pi_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
 \end{equation*}
-Note that if $\sigma^1(\lambda)=\sigma^2(\lambda)$, then 
+Note that if $\sigma^1(\lambda)=\sigma^2(\lambda)$, then
 $\key_{\lambda,\sigma^1}(z) = \key_{\lambda,\sigma^2}(z)$.
 
 
@@ -121,11 +121,11 @@ so the key polynomials are a superfamily of the \hyperref[schurS]{Schur polynomi
 \begin{example}[Taken from \cite{AlexanderssonAlhajjar2018}]
 
 Let $\lambda = (2,1,0,0)$ and $\sigma = [2,4,3,1] \in \symS_4$ in one-line notation.
-The permutation can be expressed as a reduced word as 
+The permutation can be expressed as a reduced word as
 $\sigma = s_2 s_3 s_2 s_1$.
 We compute the key polynomial as follows:
 \begin{align*}
- \key_{\lambda,\sigma}(z) &= \pi_2 \pi_3 \pi_2 \pi_1 (z_1^2 z_2) = 
+ \key_{\lambda,\sigma}(z) &= \pi_2 \pi_3 \pi_2 \pi_1 (z_1^2 z_2) =
  \pi_2 \pi_3 \pi_2 \partial_1 (z_1^3 z_2 ) = \pi_2 \pi_3 \pi_2 \left( \frac{z_1^3z_2 - z_1 z^3_2}{z_1-z_2}\right) \\
  &= \pi_2 \pi_3 \pi_2  (z_1^2z_2 + z_1 z_2^2).
 \end{align*}
@@ -138,15 +138,15 @@ We continue the calculation by applying $\pi_2$ and get
 \begin{equation*}
 \begin{split}
 \key_{\lambda,\sigma}(z) &=
-z_1^2 z_2  + 
-z_1^2 z_3  + 
-z_1^2 z_4  + 
-z_1 z_2^2  + 
+z_1^2 z_2  +
+z_1^2 z_3  +
+z_1^2 z_4  +
+z_1 z_2^2  +
 z_1 z_3^2  \\
 &\phantom{=}+
 z_1 z_4^2  +
-z_1 z_2 z_3  + 
-z_1 z_2 z_4  + 
+z_1 z_2 z_3  +
+z_1 z_2 z_4  +
 z_1 z_3 z_4 .
  \end{split}
 \end{equation*}
@@ -200,7 +200,7 @@ To each equality $x_{i+1,j} = x_{i,j}$,  we associate the simple transposition $
 For $n = 4$, the six left-interlacing positions and their transpositions
 ($s_{4-i+j-1} = s_{3-i+j}$) are:
 \begin{figure}
-\svgimg[width=0.2\textwidth]{svg-images/koganFacesGT-1.svg}{Left-interlacing inequalities in a GT-pattern for $n=4$, 
+\svgimg[width=0.2\textwidth]{svg-images/koganFacesGT-1.svg}{Left-interlacing inequalities in a GT-pattern for $n=4$,
 with transposition labels.}
 \end{figure}
 The blue arrows show the left-interlacing inequalities $x_{i+1,j} \geq x_{i,j}$,
@@ -226,7 +226,7 @@ different reduced Kogan faces, since a permutation may have multiple reduced wor
 \begin{example*}[Worked example: $n = 3$, $\lambda=210$]
 For $n = 3$, the GT-pattern has three left-interlacing positions, which we refer to as $L_1$, $L_2$, and $L_3$ in reading order:
 \begin{figure}
-\svgimg[width=0.2\textwidth]{svg-images/koganFacesGT-2.svg}{Left-interlacing inequalities in 
+\svgimg[width=0.2\textwidth]{svg-images/koganFacesGT-2.svg}{Left-interlacing inequalities in
 a GT-pattern for $n=3$, with transposition labels.}
 \end{figure}
 
@@ -382,7 +382,7 @@ Moreover, after setting $a_j = \lambda_1+\lambda_2+\dotsb+\lambda_j$, the functi
 $P_{\sigma}(a_1,\dotsc,a_n;k)$ is a polynomial in $\setQ[a_1,\dotsc,a_n,k]$
 with non-negative coefficients.
 \end{conjecture}
-See also \hyperref[keyRealRootedHstar]{my conjecture} 
+See also \hyperref[keyRealRootedHstar]{my conjecture}
 regarding the corresponding $h^*$-polynomial.
 
 
@@ -394,10 +394,10 @@ It is relatively straightforward to see that setting $q=t=0$ in a non-symmetric 
 $\macdonaldE_{\alpha}(\xvec,q,t)$, we recover the key polynomial $\key_\alpha(\xvec)$.
 
 
-From the work of \name{Sarah Mason} \cite{Mason2009}, 
-we in fact get two combinatorial models for key polynomials 
+From the work of \name{Sarah Mason} \cite{Mason2009},
+we in fact get two combinatorial models for key polynomials
 as special cases of the \hyperref[macdonaldEperm]{permuted basement Macdonald polynomials}.
-In the below definition, we assume that the reader is familiar with 
+In the below definition, we assume that the reader is familiar with
 the combinatorial model for the permuted basement Macdonald polynomials.
 
 
@@ -409,20 +409,20 @@ are weakly decreasing, and there are no coinversion triples.
 Let $\mathrm{SSAF}(\alpha)$ be the set of semi-standard augmented fillings
 of shape $\alpha$.
 
-The key polynomial $\key_\alpha(\xvec)$ is defined as 
+The key polynomial $\key_\alpha(\xvec)$ is defined as
 \[
 \key_\alpha(\xvec) = \sum_{T \in \mathrm{SSAF}(\alpha)} \xvec^T.
 \]
-Note that when $\alpha$ is a partition, we sum over fillings with 
-weakly decreasing rows, and strictly decreasing columns. 
+Note that when $\alpha$ is a partition, we sum over fillings with
+weakly decreasing rows, and strictly decreasing columns.
 It is then easy to see that this sum is the Schur polynomial $\schurS_{\lambda}(x_1,\dotsc,x_n)$.
 
 Alternatively, by choosing a different basement,
-we can realize $\key_\alpha(\xvec)$ as a sum over augmented fillings 
+we can realize $\key_\alpha(\xvec)$ as a sum over augmented fillings
 with partition shape.
-Let $\mathrm{SSAF}_{\sigma}(\lambda)$ be the set of semi-standard augmented fillings 
+Let $\mathrm{SSAF}_{\sigma}(\lambda)$ be the set of semi-standard augmented fillings
 with basement $\sigma$ and shape $\lambda$.
-Then 
+Then
 \[
 \key_\alpha(\xvec) = \sum_{T \in \mathrm{SSAF}_{\sigma}(\lambda)} \xvec^T,
 \quad
@@ -431,10 +431,10 @@ Then
 \]
 \end{definition}
 
-In fact, one can find a series of bijections 
+In fact, one can find a series of bijections
 proving the equivalence of the two above formulas,
 see \cite[Prop. 5.5]{AlexanderssonSawhney2019} (with $t=0$).
-It amounts to prove that interchanging two adjacent rows (including the basement) in 
+It amounts to prove that interchanging two adjacent rows (including the basement) in
 an augmented diagram in such a way that a longer row is moved upwards,
 preserves the weighted sum of SSAF's with corresponding shape and basement.
 
@@ -444,16 +444,54 @@ preserves the weighted sum of SSAF's with corresponding shape and basement.
 Let $\alpha=(1,0,2)$.  In the English row convention used on the
 \hyperref[macdonaldEperm]{permuted-basement Macdonald} page, the key fillings
 are displayed with shape $(2,0,1)$ and basement $(3,2,1)$.
-Writing each row with its basement entry first, the five fillings have rows
-and weights
+The vertical bar separates the basement from the ordinary cells.  The five
+fillings are
 \[
 \begin{array}{c@{\qquad}c}
-\text{rows of } F & \mathrm{wt}(F) \\
-(3,2,1)/(2)/(1,1) & (2,1,0) \\
-(3,2,2)/(2)/(1,1) & (1,2,0) \\
-(3,3,1)/(2)/(1,1) & (2,0,1) \\
-(3,3,2)/(2)/(1,1) & (1,1,1) \\
-(3,3,3)/(2)/(1,1) & (1,0,2).
+F_1=
+\begin{array}{c|cc}
+3 & 2 & 1\\
+2 & {} & {}\\
+1 & 1 & {}
+\end{array}
+&
+F_2=
+\begin{array}{c|cc}
+3 & 2 & 2\\
+2 & {} & {}\\
+1 & 1 & {}
+\end{array}
+\\[2.4em]
+F_3=
+\begin{array}{c|cc}
+3 & 3 & 1\\
+2 & {} & {}\\
+1 & 1 & {}
+\end{array}
+&
+F_4=
+\begin{array}{c|cc}
+3 & 3 & 2\\
+2 & {} & {}\\
+1 & 1 & {}
+\end{array}
+\\[2.4em]
+F_5=
+\begin{array}{c|cc}
+3 & 3 & 3\\
+2 & {} & {}\\
+1 & 1 & {}
+\end{array}
+&
+{}
+\end{array}
+\]
+Their weights are
+\[
+\begin{array}{c|ccccc}
+F & F_1 & F_2 & F_3 & F_4 & F_5 \\ \hline
+\mathrm{wt}(F) &
+(2,1,0) & (1,2,0) & (2,0,1) & (1,1,1) & (1,0,2)
 \end{array}
 \]
 It follows that
@@ -566,7 +604,7 @@ Writing $\delta_i=\evec_i-\evec_{i+1}$, the operator identity
 \[
 \pi_i(F)= \frac{F}{1-\xvec^{-\delta_i}} - \frac{\xvec^{-\delta_i}s_i(F)}{1-\xvec^{-\delta_i}}
 \]
-lets us expand one Demazure operator at a time. 
+lets us expand one Demazure operator at a time.
 If a reflected denominator root becomes negative, rewrite it using
 \[
 \frac{1}{1-\xvec^\gamma} = -\frac{\xvec^{-\gamma}}{1-\xvec^{-\gamma}}.
@@ -601,8 +639,8 @@ See introduction in e.g. \cite{FanGuoPengSun2020}.
 
 \subsection[keyProduct]{Products of key polynomials}
 
-A product of key polynomials is not in general key positive. 
-However, in some instances such a product is key positive, see \cite{Kouno2018}.
+A product of key polynomials is not in general key-positive.
+However, in some instances such a product is key-positive, see \cite{Kouno2018}.
 
 \name{Guilherme Zeus Dantas e Moura}'s senior thesis surveys operator,
 tableau, plactic, and crystal models for key and atom polynomials
@@ -633,7 +671,7 @@ polynomials, and prove a related log-concavity result using Demazure crystals.
 
 \subsection[keyPieri]{Pieri rule for key polynomials}
 
-A Pieri rule for key polynomials is described via 
+A Pieri rule for key polynomials is described via
 an \hyperref[rsk]{Robinson--Schensted--Knuth}-type algorithm is given by \name{Sami Assaf} and \name{Danjoseph Quijada} in \cite{AssafQuijada2019x}.
 Their rule expands the product of an arbitrary key polynomial with a
 single-part key polynomial in the key basis.  Unlike general key products,
@@ -666,8 +704,8 @@ multiple presentations as sums of such bounded sequences.
 \end{polydata}
 
 In \cite{AssafvanWilligenburg2019}, the authors introduce skew key polynomials,
-and show that these are positive in the key basis. They use weak \hyperref[schurPositivityDualEquivalence]{dual equivalence} 
-to obtain their result. 
+and show that these are positive in the key basis. They use weak \hyperref[schurPositivityDualEquivalence]{dual equivalence}
+to obtain their result.
 This generalizes an earlier result by \name{Vic Reiner} and \name{Mark Shimozono} \cite{ReinerShimozono1995}.
 Combining this key-positive expansion with the positive expansion of keys into
 Demazure atoms gives an atom-positive expansion of skew key polynomials.
@@ -752,35 +790,35 @@ The \defin{Demazure atom} $\atom_{\lambda,\sigma}(z)$ is defined as
  \atom_{\lambda,\sigma}(z) \coloneqq \theta_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
 \end{equation*}
 Again, instead of using $(\lambda,\sigma)$ as index, we simply use $\sigma(\lambda)$
-as index. 
+as index.
 Here, we must choose $\sigma$ to be the \hyperref[reducedWord]{shortest permutation} $\sigma$
 which sends $\lambda$ to $\alpha = \sigma(\lambda)$.
 
-For example, if $\alpha = 1113$, then $\lambda=3111$, 
-and we must pick $\sigma = 4123$, and 
+For example, if $\alpha = 1113$, then $\lambda=3111$,
+and we must pick $\sigma = 4123$, and
 \[
-\atom_{1113}(z) = \atom_{3111,4123}(z) = 
-z_1 z_2 z_3 z_4^3 + 
-z_1 z_2 z_3^2 z_4^2 + 
-z_1 z_2^2 z_3z_4^2 + 
+\atom_{1113}(z) = \atom_{3111,4123}(z) =
+z_1 z_2 z_3 z_4^3 +
+z_1 z_2 z_3^2 z_4^2 +
+z_1 z_2^2 z_3z_4^2 +
 z_1^2 z_2 z_3 z_4^2.
 \]
 Similarly,
 \[
  \atom_{103}(z) = \atom_{310,312}(z) = z_1^3 z_2  + z_1^3 z_3  + z_1^2 z_2^2 +  z_1^2 z_3^2 +  z_1^2 z_2 z_3 +
-  z_1 z_2^3 + z_1 z_3^3 + z_1 z_2 z_3^2 + z_1 z_2^2 z_3.   
+  z_1 z_2^3 + z_1 z_3^3 + z_1 z_2 z_3^2 + z_1 z_2^2 z_3.
 \]
 
-Since $\pi_i = \theta_i+1$, one can easily show that key polynomials are 
-positive in the Demazure atom basis. 
+Since $\pi_i = \theta_i+1$, one can easily show that key polynomials are
+positive in the Demazure atom basis.
 In fact we have that (see \cite[Thm. 2.8]{Pun2016Thesis})
 \[
 	\key_{\alpha}(z) = \sum_{\beta \leq \alpha} \atom_{\beta}(z),
 \]
-where we have $\beta \leq \alpha$ if one can obtain 
+where we have $\beta \leq \alpha$ if one can obtain
 $\beta$ from $\rev(\alpha)$ by successively permuting entries which are
 in increasing order.
-For example, 
+For example,
 \[
  \key_{301} = \atom_{103} + \atom_{130}+\atom_{301}+\atom_{310}
 \]
@@ -797,7 +835,7 @@ We have that
 \[
  \key_{202} = \atom_{202}+\atom_{220}
 \]
-and 
+and
 \[
  \key_{301} = \atom_{103} + \atom_{130}+\atom_{301}+\atom_{310}
 \]
@@ -820,16 +858,16 @@ The proof uses the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}.
 \begin{theorem}[See \cite[Thm. 6]{Lascoux2003}]
 We have that
 \[
-\prod_{i+j \leq n+1} (1-x_iy_j)^{-1} = 
+\prod_{i+j \leq n+1} (1-x_iy_j)^{-1} =
 \sum_{\alpha \in \setN^n} \atom_{w_0\alpha}(\xvec) \key_{\alpha}(\yvec).
 \]
 \end{theorem}
 
-In \cite{FuLascoux2009}, the authors prove this formula and several other Cauchy-type 
+In \cite{FuLascoux2009}, the authors prove this formula and several other Cauchy-type
 identities involving key polynomials and Demazure atoms in other types.
 
-A generalization to \emph{truncated staircase shapes} is provided 
-by \name{Olga Azenhas} and \name{Aram Emami} in \cite{AzenhasEmami2015}. 
+A generalization to \emph{truncated staircase shapes} is provided
+by \name{Olga Azenhas} and \name{Aram Emami} in \cite{AzenhasEmami2015}.
 They use a version of RSK introduced by \name{Sarah Mason} in \cite{Mason2008}.
 
 \name{Evgeny Feigin}, \name{Anton Khoroshkin}, and
@@ -846,15 +884,15 @@ They realize the product side as a character of functions on a matrix space and
 identify the associated graded pieces with tensor products of generalized
 global Weyl modules for the Iwahori algebra.
 
-An alternative proof also appear in \cite{ChoiKwon2017} where the 
+An alternative proof also appear in \cite{ChoiKwon2017} where the
 authors use $U_q(\mathfrak{g})$ \hyperref[crystals]{crystals}.
 
-See also \cite{AzenhasGobetLecouvey2022x} for the connection between the Cauchy kernel, 
+See also \cite{AzenhasGobetLecouvey2022x} for the connection between the Cauchy kernel,
 \hyperref[rsk]{RSK}, \hyperref[crystals]{crystals} and last passage percolation.
 
 
 \begin{example}[Personal communication, Vasu Tewari 2019]
-Recall the Cauchy identity for 
+Recall the Cauchy identity for
 \hyperref[schubert]{Schubert polynomials} (see e.g. \cite[p. 30]{PostnikovStanley2008}).
 \[
  \sum_{w \in \symS_n} \schubert_w(\xvec) \schubert_{w w_0}(\yvec) = \prod_{i+j \leq n} (1 + x_iy_j) =
@@ -920,7 +958,7 @@ See also \cite{RamYip2011}, as key polynomials are specializations of non-symmet
   Category & Schur \\
 \end{polydata}
 
-In \cite{Santos2021}, \name[J. M. Santos]{João Miguel Santos} gives 
+In \cite{Santos2021}, \name[J. M. Santos]{João Miguel Santos} gives
 combinatorial formulas for the type $C$ key polynomials and Demazure atom polynomials.
 The type $C$ key polynomials expand positively into type $C$ Demazure atoms,
 by summing over an ideal in the Bruhat poset, see \cite[Prop. 53]{Santos2021}.
@@ -949,5 +987,5 @@ keys and atoms beyond type $A$.
 
 
 See \cite{FuLascoux2009} for definitions of key polynomials in other types.
-These are related to the \hyperref[schurOrthogonal]{orthogonal} 
+These are related to the \hyperref[schurOrthogonal]{orthogonal}
 and \hyperref[schurSymplectic]{symplectic} Schur functions.

@@ -18,9 +18,9 @@
   PositiveIn & schurS | LoehrWarrington2019 \\
 \end{polydata}
 
-The cycle index polynomial (\emph{Zyklenzeiger}) of a group $G$ was 
+The cycle index polynomial (\emph{Zyklenzeiger}) of a group $G$ was
 introduced by \name{George Pólya} in \cite[Eq. (1,5)]{Polya1937}.
-Let $G \subseteq \symS_n$ be a subgroup. The \defin{cycle index polynomial} is defined 
+Let $G \subseteq \symS_n$ be a subgroup. The \defin{cycle index polynomial} is defined
 in terms of the \hyperref[powerSum]{powersum symmetric functions} as the average
 \[
 \cyc_G(\xvec) \coloneqq \frac{1}{|G|} \sum_{\pi \in G} \powerSum_{\type(\pi)}(\xvec).
@@ -52,24 +52,24 @@ we get \(\cyc_{\symS_3}=\schurS_3\).  This matches the fact that
 \end{example}
 
 Let $\symS_n/G$ denote the set of left cosets of $G$, and let $\symS_n$ act on $\setC[\symS_n/G]$.
-This makes $\setC[\symS_n/G]$ into an $\symS_n$-module, 
-and its \hyperref[frobeniusCharacteristic]{Frobenius characteristic} is given by $\cyc_G(\xvec)$. 
+This makes $\setC[\symS_n/G]$ into an $\symS_n$-module,
+and its \hyperref[frobeniusCharacteristic]{Frobenius characteristic} is given by $\cyc_G(\xvec)$.
 In particular, $\cyc_G(\xvec)$ is \hyperref[schurPositivity]{Schur-positive}.
 For more info on the cycle index polynomial, we refer to \cite{LoehrWarrington2019}.
 
 
 \begin{conjecture}[Foulkes Conjecture, \cite{Foulkes1950}]
-Let $X_{a,b}$ be the set of set-partitions of $\{1,2,\dotsc,ab\}$ into 
+Let $X_{a,b}$ be the set of set-partitions of $\{1,2,\dotsc,ab\}$ into
 $a$ blocks of size $b$. The symmetric group $S_{ab}$ acts on $X_{a,b}$
-in the obvious manner. Let $G_{a,b}$ be the stabilizer subgroup of some fixed element in 
+in the obvious manner. Let $G_{a,b}$ be the stabilizer subgroup of some fixed element in
 $X_{a,b}$ under this action.
 Let
 \[
 \cyc_{G_{a,b}}(\xvec) = \sum_\lambda c_{\lambda,a,b}\; \schurS_\lambda(\xvec).
 \]
-Foulkes conjecture states that whenever $a\leq b$, then for all $\lambda$,
+Foulkes conjecture states that if $a\leq b$, then for all $\lambda$,
 $c_{\lambda,a,b} \leq c_{\lambda,b,a}$.
-This is equivalent with the statement that 
+This is equivalent to the statement that
 $
 \completeH_b[\completeH_a]-\completeH_a[\completeH_b]
 $
@@ -100,7 +100,7 @@ See also \cite{Tetreault2020x} and \cite{GutierrezSzwej2025x}.
 \end{polydata}
 
 The \defin{Lyndon symmetric functions}, also known as \defin{higher Lie characters} in \cite{AdinHegedusRoichman2019x},
-are described using 
+are described using
 the \hyperref[gessel]{fundamental quasisymmetric functions}:
 \[
 L_{\lambda}(\xvec) \coloneqq \sum_{\pi \in K_\lambda} \gessel_{n,D(w)}(\xvec)
@@ -114,25 +114,25 @@ and it was shown by \name{Ira Gessel} and \name{Christophe Reutenauer} \cite[Thm
 we have
 \begin{equation}
 L_{n}(\xvec) = \frac{1}{n} \sum_{d \mid n} \mu(d)\powerSum_{d}^{n/d},
-\quad 
+\quad
 L_{n^k}(\xvec) = \completeH_k[L_{n}],
-\quad 
+\quad
 \text{ and }
 \quad
 L_{1^{m_1}2^{m_2}\dotsb}(\xvec) = L_{1^{m_1}} L_{2^{m_2}} \dotsm.
 \end{equation}
-These relations uniquely define the $L_{\lambda}(\xvec)$ where 
+These relations uniquely define the $L_{\lambda}(\xvec)$ where
 we write $\lambda = 1^{m_1}2^{m_2}\dotsb$.
 Moreover, since $L_{n}(\xvec)$ can be shown to be \hyperref[schurPositivity]{Schur-positive},
-it follows that the Lyndon symmetric functions are also Schur positive.
-A monomial expansion for $L_{\lambda}(\xvec)$ is given by summing over all 
+it follows that the Lyndon symmetric functions are also Schur-positive.
+A monomial expansion for $L_{\lambda}(\xvec)$ is given by summing over all
 multisets of primitive necklaces whose sizes are given by $\lambda$.
 Gessel then has a bijection which sends such multisets to
 words of length $n$ whose \emph{standardization permutation} is $\lambda$.
 
 
 See also \cite[Ex. 7.69c]{StanleyEC2} for some applications of Lyndon symmetric functions.
-In particular, \name{Thomas Scharf} shows that a certain character is 
+In particular, \name{Thomas Scharf} shows that a certain character is
 \[
   \sum_{n\geq 0} \completeH_{n}\left[ \sum_{d\mid k} L_d \right].
 \]
@@ -172,7 +172,7 @@ see 38:00 in \href{https://www.youtube.com/watch?v=NDAzHTP3vOs}{this youtube vid
 
 The functions $L_{n}(\xvec)$ are Lie characters, see \cite[Thm. 8.3]{Reutenauer1993}.
 \name{Richard Stanley} discusses these also in \href{https://math.mit.edu/~rstan/transparencies/whouse.pdf}{these slides}.
-One can show that 
+One can show that
 \[
 L_{n}(\xvec) = \sum_{\lambda \vdash n} |\{T \in \SYT(n) : \maj(T) \equiv_n 1\}| \schurS_\lambda(\xvec).
 \]

@@ -1,5 +1,5 @@
 \metatitle{Symplectic and Orthogonal Schur polynomials}
-\metadescription{An introduction to symplectic and orthogonal Schur polynomials, their definitions via tableaux, Jacobi--Trudi identities, Cauchy identities, and other properties.}  
+\metadescription{An introduction to symplectic and orthogonal Schur polynomials, their definitions via tableaux, Jacobi--Trudi identities, Cauchy identities, and other properties.}
 
 \section[schurSymplectic]{Symplectic Schur polynomials}
 
@@ -39,14 +39,14 @@ flag varieties and gives defining equations for these varieties
 
 We work in the alphabet $\xvec = (x_1,x_1^{-1},x_2,x_2^{-1},\dotsc,x_n,x_n^{-1})$.
 A \defin{symplectic tableau} (also known as King tableau) of shape $\lambda/\mu$ is a filling of the shape $\lambda/\mu$
-with entries in 
+with entries in
 \[
 1 \lt \overline{1} \lt 2 \lt \overline 2 \lt \dotsb \lt n \lt \overline{n}
 \]
 such that (a) entries are weakly increasing along rows, and strictly increasing along columns and
 (b) entries in row $i$ are greater than or equal to $i$.
 Let $SP(\lambda/\mu)$ denote the set of such tableaux.
-We then define the \defin{even symplectic Schur polynomials} 
+We then define the \defin{even symplectic Schur polynomials}
 (using the definition in \cite{Hamel1997}) as
 \[
 \schurSp_{\lambda/\mu}(\xvec) = \sum_{T \in SP(\lambda/\mu)} \xvec^{T},
@@ -78,7 +78,7 @@ defined on these KN-tableaux.
 
 \subsection[schurSymplecticBialternant]{Bialternant formula}
 
-We have that the \emph{even symplectic Schur functions} can be expressed as 
+We have that the \emph{even symplectic Schur functions} can be expressed as
 \[
 \schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
 =
@@ -140,11 +140,11 @@ edge kernels.
 
 In \cite{FulmekKrattenthaler1997}, the following analogs of the Jacobi--Trudi identities are proved:
 \begin{align}
-\schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) 
+\schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
 & = \frac{1}{2}\det[ \completeH_{\lambda_i - i+j}(\xvec) + \completeH_{\lambda_i - i- j + 2}(\xvec) ]_{1\leq i,j \leq \length(\lambda)} \\
 & = \det[ \elementaryE_{\lambda'_j - j+i}(\xvec) - \elementaryE_{\lambda'_j - j- i}(\xvec) ]_{1\leq i,j \leq \lambda_1}.
 \end{align}
-Note that these formulas allow us to consider $\schurSp_\lambda(\xvec)$ as a symmetric function, 
+Note that these formulas allow us to consider $\schurSp_\lambda(\xvec)$ as a symmetric function,
 by instead using the infinite alphabet $x_1,x_2,\dotsc$.
 
 \begin{example}
@@ -154,9 +154,9 @@ We have the following expansions in the monomial basis:
 \schurSp_{31} &= -\monomial_{2} - \monomial_{11} + \monomial_{22}+\monomial_{31}+2\monomial_{211}+3\monomial_{1111} \\
 \schurSp_{22} &= - \monomial_{11} + \monomial_{22} + \monomial_{211}+2\monomial_{1111} \\
 \schurSp_{211} &= 1 - \monomial_{2} -2 \monomial_{11} + \monomial_{211} + 3\monomial_{1111} \\
-\schurSp_{1111} &= - \monomial_{11} + \monomial_{1111} 
+\schurSp_{1111} &= - \monomial_{11} + \monomial_{1111}
 \end{align}
-Observe that one needs to substitute the finite symplectic alphabet 
+Observe that one needs to substitute the finite symplectic alphabet
 in these expressions in order for these formulas to agree with the tableau definition.
 For example,
 \begin{align}
@@ -307,11 +307,11 @@ where the sum is over all partitions $\mu$ where the columns are even.
 
 
 A \defin{special orthogonal tableau} of shape $\lambda/\mu$ is a filling of the shape $\lambda/\mu$
-with entries in 
+with entries in
 \[
 1 \lt \overline{1} \lt 2 \lt \overline 2 \lt \dotsb \lt n \lt \overline{n} \lt \infty
 \]
-such that (a) entries are weakly increasing along rows 
+such that (a) entries are weakly increasing along rows
 and all finite entries are strictly increasing along columns,
 (b) entries in row $i$ are greater than or equal to $i$,
 and (c) there are at most one $\infty$ in every row.
@@ -329,18 +329,18 @@ We note that $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$, where $\omega$ is t
 
 \subsection[schurOrthogonalJacobiTrudy]{Jacobi--Trudi}
 
-We have the following Jacobi--Trudi identities for the 
+We have the following Jacobi--Trudi identities for the
 orthogonal Schur polynomials, see \cite{FulmekKrattenthaler1997,Hamel1997}.
 These follow from the symplectic ones, using the identity $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$.
 
 \begin{align}
-\schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) 
-& 
+\schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
+&
 =\det[ \completeH_{\lambda_i - i+j}(\xvec) - \completeH_{\lambda_i - i- j }(\xvec) ]_{1\leq i,j \leq \length(\lambda)} \\
-& =\frac{1}{2}\det[ \elementaryE_{\lambda'_i - i+j}(\xvec) + 
+& =\frac{1}{2}\det[ \elementaryE_{\lambda'_i - i+j}(\xvec) +
 \elementaryE_{\lambda'_i - i- j + 2}(\xvec) ]_{1\leq i,j \leq \lambda_1}.
 \end{align}
-Note that the functions in the right hand side are also evaluated in 
+Note that the functions in the right hand side are also evaluated in
 the alphabet $\xvec = (x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})$.
 
 
@@ -364,10 +364,10 @@ where the sum is over all partitions $\mu$ where the rows are even.
 vertex-operator treatment of skew symplectic and orthogonal Schur functions
 \cite{JingLiWang2024}.  Their formulas include Jacobi--Trudi identities,
 Gelfand--Tsetlin-pattern models, branching rules, and Cauchy-type identities.
-% 
+%
 % \subsection[schurOrthogonalBialternant]{Bialternant formula}
-% 
-% We have that the \emph{orthogonal Schur functions} can be expressed as 
+%
+% We have that the \emph{orthogonal Schur functions} can be expressed as
 % \[
 % \schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
 % =
@@ -419,7 +419,7 @@ including the empty partition.
 
 Schur's $P$ functions were introduced by \name{Issai Schur} in \cite{Schur1911},
 to study projective representations of the symmetric and alternating groups.
-Schur's $P$ functions $\schurP_\lambda(\xvec)$ are indexed by partitions with \emph{distinct parts} and are given 
+Schur's $P$ functions $\schurP_\lambda(\xvec)$ are indexed by partitions with \emph{distinct parts} and are given
 as the specialization of the \hyperref[hallLittlewoodP]{Hall--Littlewood $P$ functions} at $t=-1$.
 \name{Federico Ardila} and \name{Luis G. Serrano} prove Stanley's conjecture
 that, for the staircase shape $\delta_n$, every skew Schur function
@@ -453,15 +453,15 @@ Then
 
 Given a partition $\lambda$ with distinct parts, consider the \defin{shifted tableau} of shape $\lambda$.
 Then consider fillings of this diagram with entries in the alphabet $1' \lt 1 \lt 2' \lt 2 \lt \dotsb $
-such that 
+such that
 \begin{itemize}
-\item 
-	each row has at most one marked $i$ for every $i=1,2,\dotsc$ 
-\item 
+\item
+	each row has at most one marked $i$ for every $i=1,2,\dotsc$
+\item
 	each column has at most one unmarked $i$, for every $i=1,2,\dotsc$,
-\item 
+\item
 	entries in rows and columns are weakly increasing and
-\item 
+\item
 	there are no marked entries on the main diagonal.
 \end{itemize}
 We let $ShSSYT(\lambda)$ denote the set of such fillings.
@@ -473,13 +473,13 @@ For $\lambda=9531$ we have the shifted diagram with an element in $ShSSYT(\lambd
  &   &  & & & & & & \\
 \none & & & & & \\
 \none & \none & & & \\
-\none & \none & \none & 
+\none & \none & \none &
 \end{ytableau}
 \begin{ytableau}
 1 & 1  & 2' & 3' & 3 & 3 & 4 & 4 & 4 \\
 \none & 2 & 2 & 3 & 4' & 4 \\
 \none & \none & 2 & 3 & 4 \\
-\none & \none & \none & 4 
+\none & \none & \none & 4
 \end{ytableau}
 \end{figure}
 \end{example}
@@ -504,7 +504,7 @@ See \cite{Cho2012} for additional results.
 
 Schur's $P$ functions are \hyperref[schurPositivity]{Schur-positive}, see \cite{WorleyThesis,Sagan1987,Assaf2018ShiftedDual}.
 \name{Bruce Sagan} gives a proof using an insertion algorithm similar to \hyperref[rsk]{RSK} insertion
-that respects the \hyperref[knuthRelations]{Knuth relations}. The proof by \name{Sami Assaf} uses the notion of dual 
+that respects the \hyperref[knuthRelations]{Knuth relations}. The proof by \name{Sami Assaf} uses the notion of dual
 equivalence which in some sense is very close to \hyperref[rsk]{RSK}.
 
 \name{Seung-Il Choi} and \name{Jae-Hoon Kwon} give a proof of Schur positivity using \hyperref[crystals]{crystals}, see \cite{ChoiKwon2018}.
@@ -573,20 +573,20 @@ For evacuation, see \url{https://arxiv.org/pdf/1701.08950.pdf}.
 \end{polydata}
 
 
-Schur's $Q$ functions $\schurQ_\lambda(\xvec)$ are indexed by partitions with distinct parts, and are given 
+Schur's $Q$ functions $\schurQ_\lambda(\xvec)$ are indexed by partitions with distinct parts, and are given
 as the specialization of the \hyperref[hallLittlewoodQ]{Hall--Littlewood $Q$ functions} at $t=-1$.
 A combinatorial formula using \hyperref[gtpatterns]{Gelfand--Tsetlin patterns} is provided by \name{Richard Stanley} in
 \cite{Stanley1986}.
 
 Alternatively, $\schurQ_\lambda(\xvec) = 2^{\length(\lambda)} \schurP_\lambda(\xvec)$.
-Hence, $\schurQ_\lambda(\xvec)$ can be realized as a sum over tableau objects by modifying the 
+Hence, $\schurQ_\lambda(\xvec)$ can be realized as a sum over tableau objects by modifying the
 formula for Schur's $P$ functions by allowing diagonal entries in $ShSSYT(\lambda)$
 to be marked.
 
 
 The Schur $Q$ functions are related to so called \defin{spin characters},
 and this was perhaps the original motivation for studying these functions.
-The following is due to Schur. 
+The following is due to Schur.
 
 \begin{theorem}[See \cite[3.3.6]{Morris1962} and \cite[(7.1)]{Stembridge1989}]
 
@@ -594,7 +594,7 @@ Let $\lambda$ be a partition of $n$ with $m$ distinct parts.
 We have that the spin characters $\zeta_{\mu}^{\lambda}$
 \[
 \schurQ_\lambda(\xvec) = \sum_{\mu}
-2^{(\length(\lambda)+ \length(\mu)+\epsilon)/2} 
+2^{(\length(\lambda)+ \length(\mu)+\epsilon)/2}
 \zeta_{\lambda}(\mu) \frac{ \powerSum_{\mu} }{z_\mu} .
 \]
 Here, $\mu$ runs over partitions with odd parts,
@@ -610,10 +610,10 @@ The one-part partitions have a rather explicit expression:
 \name{Hjalmar Rosengren} gives formulas for $\schurQ_{\lambda}(1,q,q^2,\dotsc,q^n)$
 and also shows \cite[Prop.3.1]{Rosengren2008}, that for a partition $\lambda$ of length $m$,
 \[
-\schurQ_{\lambda}(1,q,q^2,\dotsc) = \prod_{i=1}^m \frac{(-1;q)_{\lambda_i}}{ (q;q)_{\lambda_i} } 
-\prod_{1 \leq i \lt \leq j} \frac{q^{\lambda_j} - q^{\lambda_i}}{1-q^{\lambda_i+\lambda_j}}.
+\schurQ_{\lambda}(1,q,q^2,\dotsc) = \prod_{i=1}^m \frac{(-1;q)_{\lambda_i}}{ (q;q)_{\lambda_i} }
+\prod_{1 \leq i \lt j \leq m} \frac{q^{\lambda_j} - q^{\lambda_i}}{1-q^{\lambda_i+\lambda_j}}.
 \]
-Rosengren mentions that this formula is in fact equivalent with \hyperref[schurKawanaka]{Kawanaka's identity} for 
+Rosengren mentions that this formula is in fact equivalent to \hyperref[schurKawanaka]{Kawanaka's identity} for
 Schur functions.
 
 
@@ -623,8 +623,8 @@ the spin characters $\zeta_{\mu}^{\lambda}$  is given in \cite{MorrisOlsson1988}
 In \cite[Cor. 4.3]{MorrisOlsson1988}, they
 give a formula which seems to be a spin
 version of the \hyperref[borderStripHookFormulas]{Fomin--Lulov}
-hook formula for ribbon tableaux. 
-This is similar to the properties of the classical irreducible 
+hook formula for ribbon tableaux.
+This is similar to the properties of the classical irreducible
 character values for the symmetric group.
 Morris and Olsson use the abacus model to prove their results.
 
@@ -764,7 +764,7 @@ symmetric-function expansion \cite[Thm.~7.4]{CliffordStanley2004}.
 
 \begin{conjecture}[Alexandersson, 2019]
 
-Let $R=(R_{\lambda\mu})$ with $\lambda,\mu \vdash n$ be the matrix with coefficients 
+Let $R=(R_{\lambda\mu})$ with $\lambda,\mu \vdash n$ be the matrix with coefficients
 defined via $\powerSum_{\lambda} = \sum_\mu R_{\lambda\mu} \monomial_\mu$.
 
 
@@ -778,8 +778,8 @@ They did not guess any combinatorial interpretation of these coefficients.
 
 In 2019, I did a search in the OEIS and the sequence $a(n)$ given by \oeis{A129528} seems to be a match.
 The sequence $a(n)$ is defined as follows:
- Consider the set of all Dyck paths, consisting of steps $(1,1)$ and $(1,−1)$. 
- The \defin{peak-abscissa-sum} of a path is the sum of the $x$-coordinates of all peaks. 
+ Consider the set of all Dyck paths, consisting of steps $(1,1)$ and $(1,−1)$.
+ The \defin{peak-abscissa-sum} of a path is the sum of the $x$-coordinates of all peaks.
  Then $a(n)$ is the number of Dyck paths of \emph{any length} with peak-abscissa-sum $n$.
 
 \end{conjecture}
@@ -864,7 +864,7 @@ We then define the \defin{wreath product Schur polynomials} as
 \[
 \schurS_{\underline{\lambda}}(\xvec^{(1)},\dotsc,\xvec^{(r)}) = \prod_{i} \schurS_{\lambda^i}(\xvec^{(i)}).
 \]
-This can be realized as a sum over $r$-tuples of semi-standard Young tableaux of shape $\lambda^i$, where tableau $i$ only uses 
+This can be realized as a sum over $r$-tuples of semi-standard Young tableaux of shape $\lambda^i$, where tableau $i$ only uses
 entries from the alphabet $\xvec^{(i)}$.
 
 

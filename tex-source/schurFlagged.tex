@@ -45,6 +45,12 @@ Every flagged Schur polynomial $\schurS_{\lambda,b}(\xvec)$ is a \hyperref[key]{
 see \cite[Thm. 23]{ReinerShimozono1995}.
 Moreover, a \hyperref[schubert]{Schubert polynomial} $\schubert_w(\xvec)$ is a flagged Schur function
 if and only if $w$ is a \hyperref[vexillary]{vexillary permutation} (avoids 2143).
+\name{Sam Armon}, \name{Sami Assaf}, \name{Grant Bowling}, and
+\name{Henry Ehrhard} prove a \hyperref[kohnert]{Kohnert rule} for flagged
+Schur modules \cite{ArmonAssafBowlingEhrhard2023}.  Their module characters
+include flagged skew Schur polynomials, Demazure characters, and Schubert
+polynomials, and Kohnert's algorithm applies exactly to northwest indexing
+diagrams.
 
 
 \subsection[hFlaggedSchurPolynomials]{$h$-flagged Schur polynomials}
@@ -91,6 +97,9 @@ The \defin{flagged skew Schur polynomials}, $\schurS_{\lambda/\mu,a,b}(\avec,\bv
 are now defined as the sum over all skew semistandard Young tableaux of shape $\lambda/\mu$
 such that entries in row $i$ must be from the interval $\{a_i,a_i+1,\dotsb,b_i\}$.
 We still require that the corresponding flags are weakly increasing.
+Taking \(a_i=1\) and \(b_i=n\) for every row recovers the ordinary
+\hyperref[schurSkew]{skew Schur polynomial} in the variables
+\(x_1,\dotsc,x_n\).
 
 With $\completeH_m(a,b) \coloneqq  \completeH_m(x_a,x_{a+1},\dotsc,x_b)$,
 one can show the Jacobi--Trudi type formula
@@ -101,6 +110,18 @@ one can show the Jacobi--Trudi type formula
 This was proved by \name{Ira Gessel} and \name{Xavier Viennot} (see \cite{GesselViennot1989}) and later in \cite{Wachs1985}.
 An alternative proof is given in \cite{Chu1992}, which relies on a recursion.
 
+There are also operator constructions, but the cleanest statements usually
+embed the flagged skew family into a larger operator-defined family.  For
+example, skew Schubert polynomials are defined using divided-difference
+operators, and their single-alphabet specialization gives the flagged skew
+Schur functions studied by Wachs and by Billey--Jockusch--Stanley
+\cite{ChenYanYang2004SkewSchubert}.  The flagged Schur module viewpoint gives
+another realization: for northwest diagrams, the corresponding characters are
+computed by \hyperref[kohnert]{Kohnert's rule}
+\cite{ArmonAssafBowlingEhrhard2023}.  Thus flagged skew Schur polynomials can
+be produced by operators after placing them in these frameworks, while the
+tableau and determinant definitions remain the most direct standalone
+definitions.
 
 
 Unlike the classical Jacobi--Trudi identities, exchanging $\completeH \leftrightarrow \elementaryE$ does

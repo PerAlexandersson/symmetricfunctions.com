@@ -44,10 +44,12 @@
 \end{polydata}
 
 
-The \emph{hook Schur functions} also known as \emph{supersymmetric Schur functions},
-are characters of the Lie superalgebra $\mathrm{gl}(m/n)$, see \cite{Kac1977}.
-The hook Schur functions were introduced by \name{Allan Berele} and \name{Amitai Regev} 1983, see \cite{BereleRegev1983}.
-A good overview of this area can be found in the PhD thesis by \name[E. M. Moens]{Els M. Moens}, \cite{Moens2007}.
+The \emph{hook Schur functions}, also known as \emph{supersymmetric Schur functions},
+are characters of the Lie superalgebra $\mathrm{gl}(m/n)$; see \cite{Kac1977}.
+The hook Schur functions were introduced by \name{Allan Berele} and
+\name{Amitai Regev} in 1983; see \cite{BereleRegev1983}.
+A good overview of this area can be found in the PhD thesis by
+\name[E. M. Moens]{Els M. Moens} \cite{Moens2007}.
 
 This is also the 6th variant of Schur functions considered in \cite[Eq. 6.19]{Macdonald1992}.
 
@@ -118,7 +120,8 @@ where the expansion in the last sum is in terms of the
 classical \hyperref[schurS]{schur functions}.
 
 \begin{example*}[A small hook Schur polynomial]
-% Related Rust: sym-poly/sym/examples/hook_schur_site_example.rs
+% Related Rust: sym-poly/sym/src/hook_schur.rs and
+% sym-poly/sym/examples/hook_schur_site_example.rs
 For the alphabet $1\lt2\lt1'$ and shape $(3,1)$, the two hook tableaux
 \[
 \begin{ytableau}
@@ -180,6 +183,10 @@ $\lambda_{m+1} \geq n$.
 \name{Alibek Adilzhan} and \name{Damir Yeliussizov} give
 Hamel--Goulden type ribbon-decomposition determinant formulas for flagged
 supersymmetric Schur functions \cite{AdilzhanYeliussizov2025x}.
+\todo{Add detailed worked examples for the Adilzhan--Yeliussizov
+Hamel--Goulden type determinant formulas. Prefer small ytableau examples,
+and avoid TikZ ribbon pictures unless the conventions can be verified from
+the paper.}
 
 \subsection[hookSchurPlethDef]{Plethysm definition}
 

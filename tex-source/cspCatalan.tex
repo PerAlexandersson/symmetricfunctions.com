@@ -73,6 +73,11 @@ A combinatorial proof is provided \href{https://math.stackexchange.com/questions
 faces of generalized cluster complexes \cite{EuFu2008}.  They treat faces in
 types $A_n$, $B_n$, $D_n$, and $I_2(a)$, and verify the phenomenon for
 maximal faces in the exceptional types.
+\name{Lucas Pouillart} refines this setting to parabolic classes of faces
+\cite{Pouillart2026x}.  The proof uses a uniform $q$-analogue of the
+face-enumeration formula of \name{Theo Douvropoulos} and
+\name[Matthieu Josuat-Verges]{Matthieu Josuat-Verg{\`e}s}, followed by a
+type-by-type verification for finite irreducible Coxeter groups.
 
 
 \begin{example*}[Non-crossing matchings]
@@ -154,7 +159,7 @@ Let $\mathrm{NCC}_n$ be the set non-crossing $(1,2)$-configurations of $[n-1]$.
 That is, elements are partitioned into sets of size $1$ or $2$
 and sets of size $2$ are non-crossing.
 We have that $|X_n| = \catalan(n)$, \cite[Family 60]{StanleyCatalan}.
-The generator of $\grpc_{n}$ act on $\mathrm{NCC}_{n+1}$ by a $2\pi/n$ rotation.
+The generator of $\grpc_{n}$ acts on $\mathrm{NCC}_{n+1}$ by a $2\pi/n$ rotation.
 Then 
 \[
 \left( \mathrm{NCC}_{n+1}, \grpc_{n}, \catalan_{n+1}(q) \right)
@@ -289,7 +294,7 @@ Consider the $q$-analog of the Fuß--Catalan numbers:
 f_{n,m}(q) \coloneqq \frac{1}{[n]_q} \qbinom{(m+1)n}{n-1}_q =  \frac{1}{[(m+1)n+1]_q}\qbinom{(m+1)n+1}{n}_q.
 \]
 Then $(X_{n,m},\grpc_{mn},f_{n,m}(q))$ is a CSP-triple,
-where $\grpc_n$ act by rotation of $2\pi/(mn)$.
+where $\grpc_{mn}$ acts by rotation of $2\pi/(mn)$.
 
 
 Similarly, let $Y_{n,m}$ be the number of non-crossing partitions of $[nm]$
@@ -298,7 +303,7 @@ where each part has a size equal to $m$, and let
 g_{n,m}(q) \coloneqq \frac{1}{[n]_q} \qbinom{mn}{n-1}_q.
 \]
 Then $(Y_{n,m},\grpc_{mn},g_{n,m}(q))$ is a CSP-triple,
-where $\grpc_n$ act by rotation of $2\pi/(mn)$.
+where $\grpc_{mn}$ acts by rotation of $2\pi/(mn)$.
 
 
 The authors also consider \emph{irreducible well-generated complex reflection groups},
@@ -319,7 +324,7 @@ that the rational $q$-Catalan numbers,
 \catalan_{a/b}(q) = \frac{1}{[a+b]_q} \qbinom{a+b}{a}_q,
 \]
 admits a cyclic sieving phenomenon. They require that $a\lt b$ and $a$, $b$ are coprime.
-Then $\grpc_{b-1}$ act on the set of $(a,b)$-non-crossing 
+Then $\grpc_{b-1}$ acts on the set of $(a,b)$-non-crossing
 partitions of $[b-1]$ by rotation, and this gives a cyclic sieving phenomenon.
 This settles a conjecture stated in \cite{Armstrong2012}.
 

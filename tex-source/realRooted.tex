@@ -53,8 +53,8 @@ Finally, if $P$ has only real roots, it is called \defin{real-rooted}.
 Every real-rooted polynomial satisfies the Newton inequalities, see e.g. \cite{Branden2015}.
 
 
-In \cite{Wang2002}, a conjecture by \name{Rodica Simion} is proved,
-where a sequence of lattice path counts are proved to be log-concave.
+In \cite{Wang2002}, a conjecture by \name{Rodica Simion} is proved:
+a sequence of lattice path counts is log-concave.
 See also \cite{Sagan1987unimodal} for a short proof of unimodality in this case.
 
 In \cite{AhmiaBelbachir2018} it is shown that if $f(t)$
@@ -64,19 +64,25 @@ for any $\ell \geq 1$.
 \name{Zhong-Xue Zhang} use chromatic symmetric functions to prove
 log-concavity results for independence polynomials \cite{LiLiYangZhang2025x}.
 Their applications include spiders and pineapple graphs.
+\name{Jinting Liang} and \name{Bruce E. Sagan} give a broad distributive
+lattice method for proving log-concavity and log-convexity
+\cite{LiangSagan2024x}.  Their Order Ideal Lemma applies to lattice paths,
+Young's lattice intervals, order polynomials, Schur and Schur \(Q\)-function
+specializations, Lucas sequences, descent and peak polynomials, pattern
+avoidance, set partitions, and noncrossing partitions.
 
 
 
 \subsection[kurtzTheorem]{Kurtz theorem}
 
 \begin{theorem}[Kurtz sufficiency theorem, \cite{Hutchinson1923,Kurtz1992}]
-\name{David Kurtz} proved that a polynomial 
-$a_n t^n + a_{n-1}t^{n-1} + \dotsb + a_1 t + a_0$ 
-with positive coefficients (and degree at least two) that satisifies 
+\name{David Kurtz} proved that a polynomial
+$a_n t^n + a_{n-1}t^{n-1} + \dotsb + a_1 t + a_0$
+with positive coefficients (and degree at least two) that satisfies
 \[
  a_i^2 \gt 4a_{i-1}a_{i+1}  \text{ for all } i,
 \]
-is real rooted. 
+is real-rooted.
 \end{theorem}
 This result was proved earlier in the context of entire functions, see \cite{Hutchinson1923}.
 
@@ -126,7 +132,7 @@ Their proof passes through a correspondence between colored upho posets and
 atomic left-cancellative monoids.
 
 \begin{theorem}[Veronese sections preserve real-rootedness]
-Let $r\geq 1$ and $0\leq i \lt r$. 
+Let $r\geq 1$ and $0\leq i \lt r$.
 Define the \defin{Veronese section}
 \[
   \mathcal{S}^r_i\left(\sum_{m\geq 0} a_m t^m\right)
@@ -135,7 +141,7 @@ Define the \defin{Veronese section}
 \]
 If $f(t)$ is real-rooted with non-negative coefficients, then
 $\mathcal{S}^r_i(f)$ is also real-rooted with non-negative coefficients.
-See also the more general interlacing framework in \cite{AthanasiadisWagner2024}.
+See also the more general interlacing framework in \cite{AthanasiadisWagner2024x}.
 \end{theorem}
 
 \begin{proof}
@@ -153,7 +159,7 @@ shows that $\mathcal{S}^r_i(f)$ is real-rooted.
 
 \name{Christos A. Athanasiadis} and \name{David G. Wagner} prove a stronger
 interlacing version of this statement
-\cite[Thm.~5.3 and Rem.~5.4]{AthanasiadisWagner2024}.  They define a matrix
+\cite[Thm.~5.3 and Rem.~5.4]{AthanasiadisWagner2024x}.  They define a matrix
 of formal power series to be \defin{fully interlacing} when the matrix obtained
 by interleaving the Toeplitz matrices of its entries is totally non-negative.
 The fully interlacing property is preserved by Veronese sections.  In
@@ -185,7 +191,7 @@ that this polynomial is real-rooted.
 
 \begin{theorem}[Characterization of TNN matrices, \cite[Thm. 3.1]{Brenti1995}.]
 A matrix is TNN if and only if it can be obtained from a \emph{fully compatible}
-planar directed graph, with non-negative edge weights. 
+planar directed graph, with non-negative edge weights.
 \end{theorem}
 
 
@@ -375,7 +381,7 @@ $\sum_j\alpha_j<\infty$.
 
 \begin{theorem}[Schur--Pólya; see {\cite[Thm.~3.4]{Wagner1992}}]
 If $f$ and $g$ are real-rooted with non-negative coefficients,
-then $f\odot g$ is also real-rooted with non-negative coefficients. 
+then $f\odot g$ is also real-rooted with non-negative coefficients.
 \end{theorem}
 
 \begin{theorem}[Garloff--Wagner, see \cite[Thm.~4]{GarloffWagner1996}]
@@ -504,6 +510,47 @@ These operations preserve real-rootedness, so all series-parallel posets have re
 see \cite{Wagner1992,Wagner1992en}.
 This result extends to labeled posets, see \cite{Branden2004operators}.
 \end{example*}
+
+\subsection[generalizedSnakeRealRooted]{Generalized snake posets}
+
+\name{Benjamin Braun} and \name{Aryaman Jal} prove
+\(h^*\)-real-rootedness for \hyperref[orderPolytope]{order polytopes} of
+\defin{generalized snake posets} \cite{BraunJal2026x}.  If \(w\) is a
+generalized snake word and \(P(w)\) is the corresponding naturally labeled
+width-two poset, then Stanley's theorem and the width-two poset model of
+\name{Per Alexandersson} and \name{Aryaman Jal} identify
+\[
+  h^*(\mathcal{O}(P(w));t)
+  =
+  W_{P(w)}(t)
+  =
+  M_w(t),
+\]
+where \(W_{P(w)}(t)\) is the descent-generating polynomial of the linear
+extensions of \(P(w)\), and \(M_w(t)\) is the corresponding non-nesting rook
+polynomial.
+
+\begin{theorem}[Braun--Jal \cite[Thm.~4.1]{BraunJal2026x}]
+Let \(w\) be a word in \(L\) and \(R\) of positive length, and let \(w'\) be
+obtained by deleting the last letter of \(w\).  Then \(M_{\epsilon w}(t)\) is real-rooted
+and
+\[
+  M_{\epsilon w'}(t) \interl M_{\epsilon w}(t).
+\]
+\end{theorem}
+
+The proof is a clean interlacing induction using a recurrence for the
+non-nesting rook polynomials.  The constant words recover the Narayana
+polynomials, while the regular snake words recover the Delannoy row
+polynomials \(d_n(t)\).  In particular, the first nontrivial regular-snake
+base case is
+\[
+  M_{\epsilon R}(t)=M_{\epsilon L}(t)=1+3t+t^2.
+\]
+This is also the first nontrivial row \(1,3,1\) of \oeis{A205497}, and the
+same polynomial appears in the
+\hyperref[transferMatrixWeightedTilings]{weighted transfer-matrix tiling}
+example.
 
 
 

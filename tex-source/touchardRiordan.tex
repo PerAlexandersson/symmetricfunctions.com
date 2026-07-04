@@ -17,7 +17,7 @@ This weight is quite remarkable.
 
 By using \cite[Thm. 1]{Flajolet2006}, we immediately get the following continued fraction:
 \[
-\sum_{n\geq 0} z^n \sum_{\avec \in \DP(n) } X_{\avec}(q) = 
+\sum_{n\geq 0} z^n \sum_{\avec \in \DP(n) } X_{\avec}(q) =
 \cfrac{1}{
 1 - \cfrac{z[1]_q}{
 1 - \cfrac{z[2]_q}{
@@ -42,7 +42,7 @@ This follows from \cite{Read1979} who shows that $\sum_{n \geq 0} z^n T_n(q)$
 is given by the continued fraction expression above.
 
 
-Another formula is 
+Another formula is
 \[
  (q-1)^m T_m(q) = \sum_{j=0}^{2m} (-1)^j \binom{2m}{j} q^{\binom{m-j+1}{2}},
 \]
@@ -67,7 +67,7 @@ n & T_n(q) \\
 \end{example*}
 
 
-A perfect matching $M \in \setPM(n)$ may be described as a list of $n$ tuples, 
+A perfect matching $M \in \setPM(n)$ may be described as a list of $n$ tuples,
 which we represent as an array.
 \[
 M=
@@ -93,11 +93,11 @@ maximal-genus Bolza diagram, and its mixing time is polynomial in $n$.
 
 Perfect matchings are closely related to pfaffians.
 Let $A$ be a $2n \times 2n$ skew-symmetric matrix.
-The \defin{pfaffian} of $A$ is defined as 
+The \defin{pfaffian} of $A$ is defined as
 \[
 \pfaff(A) \coloneqq \sum_{M \in \setPM(n)} (-1)^{cr(M)} \prod_{(i,j) \in M} a_{ij}.
 \]
-We have that $\pfaff(A)^2 = |A|$. 
+We have that $\pfaff(A)^2 = |A|$.
 See \cite{Stembridge1990} for combinatorial applications of the pfaffian.
 
 
@@ -108,7 +108,7 @@ There is a natural projection $\psi$ from perfect matchings to Dyck paths.
 
 Let $a_i \coloneqq (2i-1) - m_{2i-1}$ be the \defin{area sequence} of the matching $M$.
 This defines a map from $\setPM(n)$ to $\DP(n)$.
-One can show $\psi$ is surjective and that $\psi: \setPM(n) \to \DP(n)$ 
+One can show $\psi$ is surjective and that $\psi: \setPM(n) \to \DP(n)$
 restricted to \emph{non-crossing} perfect matchings is a bijection.
 
 \begin{example}
@@ -159,7 +159,7 @@ X_\avec(q) = \sum_{\pi \in RP(\avec)} q^{\inv(\pi)}.
 \]
 \end{theorem}
 
-The fact that the number or rook placements factors 
+The fact that the number of rook placements factors
 nicely was first proved in \cite{GoldmanJoichiWhite1975}.
 Another $q$-analog of the above identity is due to \name{Adriano Garsia} and \name{Jeffrey Remmel}, \cite{GarsiaRemmel1986},
 

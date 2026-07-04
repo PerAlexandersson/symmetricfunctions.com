@@ -35,6 +35,27 @@ The specialization $q=t=0$ gives \hyperref[key]{key polynomials}, while the
 limit $q,t\to\infty$ gives \hyperref[atom]{Demazure atoms}
 \cite{Mason2009}.
 
+\begin{example*}[A tiny non-attacking filling]
+% Related Rust: sym-poly/core/src/ssaf.rs and
+% sym-poly/multipoly/examples/key_site_example.rs
+The \hyperref[macdonaldEpermDefinition]{permuted-basement page} uses English
+augmented diagrams.  For shape $(2,0,1)$ and basement $(3,2,1)$, one filling
+is
+\[
+F=
+\begin{array}{c|cc}
+3 & 2 & 1\\
+2 & {} & {}\\
+1 & 1 & {}
+\end{array}.
+\]
+Among equal entries, the only adjacent-column pairs have their right-hand
+entry in the same row as, or in a row above, the other entry.  Hence no
+right-hand entry lies strictly below the other one.  This is one of the
+semi-standard augmented fillings which contributes $x_1^2x_2$ to
+\(\key_{(1,0,2)}(x_1,x_2,x_3)\).
+\end{example*}
+
 Later, an alternative combinatorial formula using alcove walks was
 proved by \name{Arun Ram} and \name{Martha Yip} \cite{RamYip2011}, which works for all Lie types.
 At $q=t=0$, their model reduces to the \emph{Littelmann path model}.

@@ -1,11 +1,11 @@
-\metatitle{The Cyclic sieving phenomenon}
+\metatitle{The cyclic sieving phenomenon}
 \metadescription{Index over topics concerning the cyclic sieving phenomenon.}
 
 
 \section[cyclicSieving]{The cyclic sieving phenomenon}
 
-See below for the \hyperref[cspDefinition]{definition of the cyclic sieving phenomenon}, (CSP).
-There are many instances of the CSP, which I have put into different categories
+See below for the \hyperref[cspDefinition]{definition of the cyclic sieving phenomenon} (CSP).
+There are many instances of the CSP, which we have put into different categories
 based roughly on the type of combinatorial object it concerns.
 \begin{itemize}
 \item \hyperref[cspCatalan]{CSP on Catalan objects.}
@@ -30,7 +30,7 @@ Then the triple $(X,\grpc_n,f(q))$ is said to \emph{exhibit the cyclic sieving p
 \]
 In words, $f(q)$ evaluated at certain roots of unity gives the number of elements in $X$ fixed by powers of $g$.
 Note that $f(1) = |X|$, so in many instances, $f(q)$
-is a \hyperref[qAnalogs]{$q$-analog}(or $q$-enumeration) of the set $X$.
+is a \hyperref[qAnalogs]{$q$-analog} (or $q$-enumeration) of the set $X$.
 The cyclic action need not be faithful.  If $\grpc_h$ acts with a kernel of
 order $d$, then the CSP is equivalent to the faithful quotient action of
 $\grpc_{h/d}$ together with a polynomial $f'(q)$ satisfying
@@ -45,8 +45,8 @@ Schröder-type sequences are not almost realizable.
 
 
 \begin{proposition}
-Let $\xi$ is a primitive $n^\thsup$ root of unity,
-and suppose that $f \in \setN[q]$ such that $f(\xi^j) \in \setZ$ for all $j \in \setZ$.
+Let $\xi$ be a primitive $n^\thsup$ root of unity,
+and suppose that $f \in \setN[q]$ satisfies $f(\xi^j) \in \setZ$ for all $j \in \setZ$.
 Then for all $j \in \setZ$, $f(\xi^j) = f( \xi^{\gcd(j,n)})$.
 \end{proposition}
 \begin{proof*}
@@ -97,7 +97,7 @@ Let $S_k$ be defined as
 \[
 S_k \coloneqq \sum_{j|k} \mu(k/j) f(\xi^j).
 \]
-Then there is a group action $\grpc_n$ acting on some $X$ with cardinality $f(1)$
+Then there is a $\grpc_n$-action on some $X$ with cardinality $f(1)$
 and $(X,\grpc_n,f(q))$ exhibits the CSP if and only if all $S_k$ are non-negative.
 
 In other words, these are necessary and sufficient conditions on $f(q) \in \setN[q]$
@@ -137,18 +137,19 @@ V = \setC X = \{a_1 x_1 + a_2x_2+\dotsb + a_M x_M : a_1,\dotsc,a_m \in \setC \},
 \]
 and note that $G$ acts on $V$.
 We can \hyperref[computingSnCharacters]{compute} the character $\chi(g)$ for $g\in G$,
-as a certain type of trace. Since $G$ in our case act via 
+as a certain type of trace. Since $G$ in our case acts via
 permutations, $\chi(g)$ is simply the number of elements in $X$ fixed by $g$.
 
 
-One then wish to find a different basis $B$ for $V$ (perhaps starting with the 
+One then wishes to find a different basis $B$ for $V$ (perhaps starting with the
 diagonal matrix with entries $(1,\zeta,\zeta^2,\dotsc,\zeta^{n-1})$ representing a generator of $C_n$)
 such that the action of $G$ on $B$ is diagonal. 
 It is then easy to compute the trace, expressed in terms of roots of unity.
-If this trace of $g^d$ is exactly $f(\zeta^d)$ for our polynomial $f$(q), we have proved an instance of CSP.
+If this trace of $g^d$ is exactly $f(\zeta^d)$ for our polynomial $f(q)$, we have proved an instance of CSP.
 
 Several examples are given in \cite{Sagan2011}.
-One can also construct new CSP from existing ones by using representation theory, see \cite{BergetEuReiner2011,ReinerStantonWhite2004}.
+One can also construct new CSP instances from existing ones by using representation theory,
+see \cite{BergetEuReiner2011,ReinerStantonWhite2004}.
 \name{David B. Rush} gives a crystal/global-basis proof of
 \name{Brendon Rhoades}'s rectangular tableaux CSP theorem
 \cite{Rush2021}.
@@ -172,8 +173,8 @@ equidistributed with $\maj$ on words of length $n$ with fixed content $\alpha$.
 
 \subsection[cspProper]{Proper statistic}
 
-\emph{The following definition has not been defined in any publication to my knowledge.
-This is possibly related or equivalent with the notion of a universal CSP statistic.
+\emph{The following definition has not been defined in any publication, to our knowledge.
+This is possibly related or equivalent to the notion of a universal CSP statistic.
  --- Per}
 
 Suppose $X$ is a combinatorial family with a statistic $\sigma:X \to \setN$,
@@ -185,9 +186,9 @@ Then the statistic is called \defin{proper} if whenever $d|n$, we have that
 \]
 
 \begin{example}
-Let $n=2$ and suppose $g$ generate a $\grpc_2$-action on $X$.
-If $\sigma$ is a proper statistic on $X$, and $X^g \subseteq X$ are the elements 
-fixed under $g$, then there should (in principle) 
+Let $n=2$ and suppose $g$ generates a $\grpc_2$-action on $X$.
+If $\sigma$ is a proper statistic on $X$, and $X^g \subseteq X$ is the set of
+elements fixed under $g$, then there should (in principle)
 exist an involution $\psi : X\setminus X^g \to X\setminus X^g$,
 such that $(-1)^{\sigma(x)}+(-1)^{\sigma(\psi(x))} = 0$,
 which would provide a proof of CSP.
@@ -277,7 +278,7 @@ satisfy \defin{$q$-Gauß congruences} if for every $n \in \setP$, we have
 \[
    \sum_{d|n} \mu(d) a_{n/d}(q^d) \equiv 0 \mod [n]_q.
 \]
-It can be verified that this condition on the family is equivalent with being \hyperref[lyndonCSP]{Lyndon-like},
+It can be verified that this condition on the family is equivalent to being \hyperref[lyndonCSP]{Lyndon-like},
 that is $a_{n/m}(1) = a_n(\xi)$ where $\xi$ is an $n$th root of unity with order $m$,
 see \cite[Cor. 2.5]{Gorodetsky2019}.
 \name{Ofir Gorodetsky} also uses this criterion to prove cyclic sieving
@@ -346,9 +347,10 @@ non-leaf corners, or corners at nodes of prescribed degree.
 \section[homomesy]{Homomesy}
 
 
-The term \defin{homomesy} was introduced by \name{Jim Propp} and \name{Tom Roby} in \cite{ProppRoby2013x} is defined as follows.
+The term \defin{homomesy} was introduced by \name{Jim Propp} and
+\name{Tom Roby} in \cite{ProppRoby2013x} and is defined as follows.
 Let $X$ be some combinatorial set and let $\langle g \rangle$ act on $X$ such that every orbit is finite,
-and let $\sigma : X \to \setZ$ be statistic on $X$.
+and let $\sigma : X \to \setZ$ be a statistic on $X$.
 Then the triple $(X,\langle g \rangle,\sigma)$ is said to exhibit homomesy if for every orbit $O \subseteq X$, we have
 \[
 \frac{1}{|O|} \sum_{x \in O} \sigma(x) = \frac{1}{|X|} \sum_{x \in X} \sigma(x).
@@ -363,7 +365,7 @@ Since then, many more instances have been found.
 
 For homomesy on minuscule posets, see \cite{Okada2021},
 and for the Foata map, see \cite{LaCroixRoby2020x}.
-Spectral theory approach to homomesy, see \cite{Propp2021x}.
+For a spectral-theory approach to homomesy, see \cite{Propp2021x}.
 
 \name{Will Dowling} and \name{Nadia Lafrenière} carry out a systematic search
 for permutation statistics that are homomesic under rotation
@@ -379,7 +381,7 @@ include Lehmer-code rotation, reverse, complement, the Foata bijection, and
 Kreweras complement.
 
 
-An action is \defin{homometric} if the total sum of the statistic on orbits of the same size,
+An action is \defin{homometric} if the total sum of the statistic on orbits of the same size
 is the same. For example, for all orbits of size 4, the sum of the statistic on each orbit must be the same.
 This notion was introduced 
 by \name{Sergi Elizalde}, \name{Matthew Plante}, \name{Tom Roby} and \name{Bruce Sagan}.

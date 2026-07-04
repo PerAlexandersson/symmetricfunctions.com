@@ -612,8 +612,6 @@ Indeed, the four standard immaculate tableaux of this shape are
 \ytableaushort{15,2,34}.
 \]
 \end{example*}
-Alexandersson 2022: Can one find a q-analog of this and some nice instance of cyclic sieving?
-
 \name{Sarah Mason} and \name{Tianhao Xie} classify when skew immaculate
 functions are nonzero \cite{MasonXie2026}.  Their results compare the matrix
 definition of skew immaculate functions with the Hopf-algebraic definition, and
@@ -751,6 +749,7 @@ the subscript $112$ denotes the composition $(1,1,2)$.
   Symbol   & $\extSchur_\alpha(\xvec)$ \\
   Category & Schur \\
   Contains & schurS | AssafSearles2019 | scope=partition compositions \\
+  PositiveIn & qmonom | AssafSearles2019 | scope=stable Kohnert limit \\
   PositiveIn & gessel | AssafSearles2019 \\
   TransformsTo & rsExtSchur | Daugherty2024Extended,NieseSundaramWilligenburgVegaWang2023 | map=psi \\
   TransformsTo & flippedExtSchur | Daugherty2024Extended | map=rho and reverse index \\
@@ -806,6 +805,39 @@ The other three bases in this system are the
 from the extended Schur family by $\psi$, while Daugherty's flipped and
 backward families are obtained from it by $\rho$ and $\omega$, respectively,
 with the corresponding reversal of the indexing composition.
+
+% Related Rust:
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/src/kohnert_qsym.rs
+% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/extended_schur_degree4.rs
+The degree four extended Schur functions have the following expansions in the
+\hyperref[qmonom]{monomial quasisymmetric basis}.  As above, the subscript
+$112$ denotes the composition $(1,1,2)$.
+\[
+\begin{array}{ll}
+\toprule
+\alpha & \extSchur_\alpha(\xvec) \\
+\midrule
+1111 & \qmonom_{1111} \\
+112  & \qmonom_{1111}+\qmonom_{112} \\
+121  & 2\qmonom_{1111}+\qmonom_{112}+\qmonom_{121} \\
+13   & \qmonom_{1111}+\qmonom_{112}+\qmonom_{121}+\qmonom_{13} \\
+211  & 3\qmonom_{1111}+\qmonom_{112}+\qmonom_{121}+\qmonom_{211} \\
+22   & 2\qmonom_{1111}+\qmonom_{112}+\qmonom_{121}
+       +\qmonom_{211}+\qmonom_{22} \\
+31   & 3\qmonom_{1111}+2\qmonom_{112}+2\qmonom_{121}
+       +\qmonom_{13}+2\qmonom_{211}+\qmonom_{22}+\qmonom_{31} \\
+4    & \qmonom_{1111}+\qmonom_{112}+\qmonom_{121}+\qmonom_{13}
+       +\qmonom_{211}+\qmonom_{22}+\qmonom_{31}+\qmonom_{4} \\
+\bottomrule
+\end{array}
+\]
+For instance, the same Rust check gives
+\[
+ \extSchur_{211}(\xvec)
+ =
+ \gessel_{112}+\gessel_{121}+\gessel_{211}
+\]
+in the fundamental quasisymmetric basis.
 
 For a connection with the \hyperref[zeroHeckeAlgebra]{0-Hecke algebra}, see \cite{Searles2020}, where these are shown to be characters of
 certain \hyperref[zeroHeckeAlgebra]{0-Hecke modules}.
