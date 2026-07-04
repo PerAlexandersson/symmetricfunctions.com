@@ -9,10 +9,9 @@ before editing the public pages.
 - Resolved 2026-07-04 in `tex-source/cspTableau.tex`: the stretched-shape CSP
   for `\SYT(n\lambda)` is now stated as an explicit problem asking for a
   natural order-`n` action realizing the CSP.
-- `tex-source/cspWord.tex`: The RSK fixed-shape CSP on
-  `\SYT(\lambda)\times\SYT(\lambda)` similarly says that the order-`n` action is
-  unclear.  Source-search for an explicit action or rephrase this as a clean
-  open question.
+- Resolved 2026-07-04 in `tex-source/cspWord.tex`: the RSK fixed-shape CSP on
+  `\SYT(\lambda)\times\SYT(\lambda)` is now stated as an explicit problem
+  asking for a natural order-`n` action realizing the CSP.
 - `tex-source/cspTableau.tex`: Check Chen's formulas for two-row skew
   increasing tableaux.  The current page suggests they might exhibit CSP; this
   should either become a theorem with a precise action/polynomial or be recorded
