@@ -10,6 +10,9 @@
 A polytope is called a \defin{lattice polytope} or \defin{integral polytope} 
 if all its vertices have integer coordinates.
 If vertices have rational coordinates, we call it a \defin{rational polytope}.
+A convex polytope is called a \defin{regular polytope}\label{regularPolytope}
+if its Euclidean symmetry group acts transitively on its flags, that is, on
+maximal chains of faces.
 
 \name{Marie-Charlotte Brandenburg}, \name{Jesús A. De Loera}, and
 \name{Chiara Meroni} study exact algorithms for cutting \defin{polytopal
@@ -158,6 +161,18 @@ interlacing recurrences.  The ladder and regular snake cases recover the
 Narayana and Delannoy polynomials, respectively.
 
 
+\subsection[chainPolytope]{Chain polytopes}
+
+Given a finite poset $P$, its \defin{chain polytope} $\mathcal{C}(P)$ is the
+polytope in $\setR_{\geq 0}^{P}$ cut out by
+\[
+  x_{p_1}+x_{p_2}+\dotsb+x_{p_k}\leq 1
+\]
+for every chain $p_1<_P p_2<_P\dotsb<_P p_k$.  Stanley introduced chain
+polytopes together with order polytopes \cite{Stanley86TwoPosetPolytopes};
+the two have the same Ehrhart polynomial.
+
+
 
 \subsection[markedOrderPolytope]{Marked order polytopes}
 
@@ -256,6 +271,38 @@ polytope of the heap of the longest $c_B$-sorting word
 \cite[Thm.~3.16]{BanaianChepuriGunawanPan2026x}.
 
 
+\subsection[edgePolytope]{Edge polytopes}
+
+Let $G=([n],E)$ be a finite simple graph.  The \defin{edge polytope} of $G$ is
+\[
+  P_G \coloneqq \operatorname{conv}\{e_i+e_j : \{i,j\}\in E\}
+  \subseteq \setR^n.
+\]
+The related \defin{symmetric edge polytope}\label{symmetricEdgePolytope} is
+\[
+  P_G^{\pm} \coloneqq
+  \operatorname{conv}\{\pm(e_i-e_j): \{i,j\}\in E\}.
+\]
+Symmetric edge polytopes often appear in Ehrhart-theoretic questions, for
+example in gamma-positivity and magic positivity problems.
+
+
+\subsection[perfectMatchingPolytope]{Perfect matching polytopes}
+
+For a graph $G=(V,E)$, the \defin{perfect matching polytope} is the convex hull
+in $\setR^E$ of the indicator vectors of perfect matchings of $G$.  For the
+complete bipartite graph $K_{n,n}$, this is the
+\hyperref[birkhoffPolytope]{Birkhoff polytope}.
+
+
+\subsection[associahedron]{Associahedra}
+
+The \defin{associahedron}, also called the \defin{Stasheff polytope}, is the
+polytope whose vertices correspond to triangulations of a convex polygon and
+whose edges correspond to diagonal flips.  Equivalently, its face poset
+records partial triangulations of the polygon.
+
+
 \subsection[parkingFunctionPolytope]{Parking function polytopes}
 
 Let $u=(u_1,\dotsc,u_n)\in\setR_{\geq 0}^n$ satisfy
@@ -279,7 +326,8 @@ partial permutahedra, and obtain a closed formula for the volume.
 
 \section[polytopeIDP]{The integer decomposition property}
 
-An integral polytope $\mathcal{P} \subset \setR^d$ is said to have the \defin{integer decomposition property} (IDP) 
+An integral polytope $\mathcal{P} \subset \setR^d$ is said to have the
+\defin{integer decomposition property}\label{integerDecompositionProperty} (IDP)
 if for every positive integer $k$ and $\xvec \in k \mathcal{P} \cap \setZ^d$,
 we can find $\xvec_1,\xvec_2,\dots,\xvec_k \in \mathcal{P} \cap \setZ^d$ such that $\xvec_1 + \dots + \xvec_k = \xvec$.
 
@@ -304,7 +352,7 @@ if the dual polytope
 is again a lattice polytope.
 Equivalently, $h^*_P(t)$ is palindromic of degree $d$, see \cite{Hibi92}.
 
-A polytope $P$ is called \defin{Gorenstein} (of index $r$) if for some $r \in 1,2,\dotsc$, the dilation $rP$
+A polytope $P$ is called \defin{Gorenstein}\label{gorensteinPolytope} (of index $r$) if for some $r \in 1,2,\dotsc$, the dilation $rP$
 contains a unique lattice point $m$, and the translation $r P-m$ is reflexive.
 
 

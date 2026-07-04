@@ -116,6 +116,15 @@ An element $e \in E$ is called a \defin{loop} if it does not appear in any basis
 An element $e \in E$ is called a \defin{coloop} if it appears in every basis.
 
 
+\subsection[connectedMatroid]{Connected matroids}
+
+If $M_1$ and $M_2$ are matroids on disjoint ground sets, their direct sum
+$M_1\oplus M_2$ is the matroid whose bases are all unions $B_1\cup B_2$ with
+$B_i$ a basis of $M_i$.  A nonempty matroid is called a
+\defin{connected matroid} if it cannot be written as a direct sum of two
+matroids on nonempty ground sets.
+
+
 \subsection[matroidDuality]{Dual of a matroid}
 
 If $M=(E,\mathcal{B})$ then $M^* \coloneqq (E,\mathcal{B}^*)$
@@ -234,11 +243,30 @@ The matroid $M$ is representable over every $\mathbb{F}$ if and only if
 it is the vector matroid for some totally unimodular matrix (every minor has determinant $\pm 1$ or $0$).
 \end{theorem}
 \label{matroidRegular}
-Matroids representable over every field are called \defin{regular matroids}.
+Matroids representable over every field are called
+\defin{regular matroids}.\label{regularMatroid}
 
 \begin{theorem}
 All graphic matroids are regular.
 \end{theorem}
+
+
+\subsection[orientedMatroid]{Oriented matroids}
+
+An \defin{oriented matroid} is a matroid together with orientation data
+abstracting the signs of linear dependences among real vectors.  Equivalently,
+one may specify signed circuits or a chirotope satisfying the oriented-matroid
+axioms.  For a real matrix, the signs of its maximal minors define a realizable
+oriented matroid; see \cite{Oxley2011} for background.
+
+
+\subsection[rigidityMatroid]{Rigidity matroids}
+
+Let $V$ be a finite vertex set.  The generic $d$-dimensional
+\defin{rigidity matroid} is the matroid on the edge set of the complete graph
+on $V$ in which a set of edges is independent if the corresponding squared
+edge-length constraints are generically independent for point configurations
+in $\setR^d$.
 
 
 \subsection[partitionMatroids]{Partition matroids}
@@ -454,7 +482,7 @@ polynomial, with the two gradings tracking bosonic and fermionic degree.
 \section[matroidPolytopes]{Matroid (base) polytopes}
 
 
-\begin{definition}[Matroid Base polytope]
+\begin{definition}[Matroid base polytope]\label{matroidBasePolytope}
 The \defin{matroid base polytope} is the convex hull of all indicator vectors of the bases.
 \end{definition}
 
@@ -570,7 +598,7 @@ maximally ranked posets \cite{BrandenVecchi2025Uniform}.
 Given a polynomial $f \in \setC[x_1,\dotsc,x_n]$ with $f = \sum_\alpha c_\alpha \xvec^\alpha$,
 with $\alpha \in \setN^n$, the \defin{support} of $f$ is the 
 set $\mathrm{supp}(f) \coloneqq \{\alpha : c_\alpha \neq 0\}$.
-The \defin{Newton polytope} of $f$ is defined as the convex hull of the support.
+The \defin{Newton polytope}\label{newtonPolytope} of $f$ is defined as the convex hull of the support.
 This is a polytope in $\setR^n$ which we denote by $\mathrm{Newton}(f)$.
 
 A polynomial has a \defin{saturated Newton polytope} (SNP) if 
@@ -786,6 +814,28 @@ are given by \name{Mario Kummer} and \name{David Sawall}
 \subsection[matroidVariantsAdjacentClasses]{Variants and adjacent classes}
 
 There are several useful recent variants and adjacent classes.
+
+\name{James G. Oxley}'s book \cite{Oxley2011} is a standard reference for
+many of these matroid classes.  A rank-$r$ matroid is a
+\defin{paving matroid}\label{pavingMatroid} if every subset of size less than
+$r$ is independent, equivalently if every circuit has size at least $r$.  It
+is \defin{sparse paving} if both the matroid and its dual are paving.
+
+\begin{definition}[$\Delta$-matroid]\label{deltaMatroid}
+A \defin{$\Delta$-matroid} is a pair $(E,\mathcal{F})$ where
+$\mathcal{F}$ is a nonempty collection of subsets of $E$, called feasible
+sets, satisfying the symmetric exchange axiom: for all
+$F_1,F_2\in\mathcal{F}$ and all $x\in F_1\triangle F_2$, there is some
+$y\in F_1\triangle F_2$ such that $F_1\triangle\{x,y\}\in\mathcal{F}$.
+\end{definition}
+
+\begin{definition}[Valuated matroid]\label{valuatedMatroid}
+A \defin{valuated matroid} of rank $r$ on $E$ is a function on the
+$r$-subsets of $E$, with values in $\setR\cup\{\infty\}$, whose finite support
+is the set of bases of a matroid and whose values satisfy the tropical
+Pl{\"u}cker relations.
+\end{definition}
+
 \name{Ethan Partida} studies shifted and threshold matroids \cite{Partida2026}.
 \name{Sebastian Degen} and \name{Lukas Kühne} show that most $q$-matroids are
 not representable \cite{DegenKuhne2024x}.  \name{Michela Ceria},
