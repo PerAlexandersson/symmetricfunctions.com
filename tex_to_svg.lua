@@ -59,7 +59,8 @@ if not PWD then
 end
 
 local ABS_LIB = PWD .. "/" .. CONFIG.LIB_DIR
-local TEX_ENV = string.format("TEXINPUTS=.:%s/:", ABS_LIB)
+local SHARED_TIKZ_MACROS = "/home/paxinum/Dropbox/latex/tikz-macros"
+local TEX_ENV = string.format("TEXINPUTS=.:%s/:%s/:", ABS_LIB, SHARED_TIKZ_MACROS)
 
 -- =============================================================================
 -- HELPER FUNCTIONS

@@ -139,6 +139,14 @@ the five states
 \]
 can occur, where for instance $23$ means that rows $2$ and $3$ are already
 occupied.
+Indeed, a $2\times2$ square crossing the boundary occupies an adjacent pair
+of rows, and two such squares can cross the same boundary only in the disjoint
+pairs $12$ and $34$.  The shaded cells in the following figure are precisely
+the rows recorded by the boundary state.
+
+\begin{figure}
+\svgimg[width=0.9\textwidth]{svg-images/transfer-matrix-boundary-states.svg}{The five boundary states for height-four tilings by unit squares and $2\times2$ squares.}
+\end{figure}
 
 Using column vectors, with rows indexed by the next state and columns indexed
 by the current state in the order above, the transfer matrix is
