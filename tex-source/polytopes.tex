@@ -203,6 +203,19 @@ generally for pyramids over cross-polytopes, in terms of colored permutations
 \cite{MenonVerkama2025x}.  In particular, this gives a combinatorial proof
 that these Ehrhart coefficients are positive.
 
+
+\subsection[rootPolytope]{Root polytopes}
+
+For a finite \hyperref[rootSystem]{root system} $\Phi\subseteq\setR^d$, the
+\defin{root polytope} is the convex hull $\operatorname{conv}(\Phi)$.  In type
+$A$, one often also considers graphical root polytopes: for a graph $G$ on
+$[n]$ with oriented edges $i\to j$, the associated root polytope is
+\[
+  Q_G\coloneqq
+  \operatorname{conv}\left(\{0\}\cup\{e_i-e_j : i\to j \text{ is an edge of }G\}\right).
+\]
+
+
 \subsection[flowPolytope]{Flow polytopes}
 
 Let $G=(V,E)$ be a directed graph and let $a\in\setR^V$ satisfy
@@ -238,6 +251,16 @@ Equivalently, it is the convex hull of all coordinate permutations of
 $(1,2,\dotsc,n)$.  Its face structure is governed by ordered set partitions
 of $[n]$, and it is a basic example of a generalized permutohedron; see
 \cite{ZieglerLecturesOnPolytopes95}.
+
+
+\subsection[generalizedPermutohedron]{Generalized permutohedra}
+
+A \defin{generalized permutohedron} is a polytope whose normal fan coarsens the
+braid fan.  Equivalently, every edge is parallel to $e_i-e_j$ for some
+$i,j$.  Many generalized permutohedra can be described by
+\hyperref[submodularFunction]{submodular functions}; in particular,
+\hyperref[matroidBasePolytope]{matroid base polytopes} are generalized
+permutohedra.
 
 
 \subsection[birkhoffPolytope]{Birkhoff polytopes}

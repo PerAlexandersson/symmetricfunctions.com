@@ -32,6 +32,14 @@ $x \in A \setminus B$, there is some $y \in B \setminus A$ such that
 \]
 The cardinality, $r$, of each set in $\mathcal{B}$ is called the \defin{rank} 
 of the matroid, and the elements of $\mathcal{B}$ are the \defin{bases} of $M$.
+The \defin{basis-generating polynomial}\label{basisGeneratingPolynomial} of
+$M$ is
+\[
+  B_M(\xvec)\coloneqq \sum_{B\in\mathcal{B}} \prod_{i\in B} x_i.
+\]
+This polynomial is a central bridge from matroids to
+\hyperref[stablePolynomial]{stable} and
+\hyperref[lorentzianPolynomial]{Lorentzian polynomials}.
 
 
 \begin{example}[Uniform matroid]\label{matroidUniform}
@@ -556,9 +564,13 @@ volume-polynomial approach to this result via Lorentzian polynomials
 
 
 \section[KazhdanLusztig]{Kazhdan--Lusztig polynomials}
+\label{matroidKazhdanLusztigPolynomial}
 
 For the classical Hecke-algebra version, see
 \hyperref[kazhdanLusztigPolynomials]{Kazhdan--Lusztig polynomials}.
+The \defin{matroid Kazhdan--Lusztig polynomial} is the
+Kazhdan--Lusztig--Stanley polynomial attached to the lattice of flats of a
+matroid.
 
 \name{Alice L. L. Gao} and \name{Matthew H. Y. Xie} define inverse
 Kazhdan--Lusztig polynomials for matroids through the inverse
@@ -581,9 +593,15 @@ log-concavity for this family.
 
 
 \section[matroidChowPolynomials]{Chow polynomials}
+\label{matroidChowRing}
 
-Chow polynomials and augmented Chow polynomials encode Hilbert--Poincaré
-series of the Chow ring and augmented Chow ring associated with a matroid.
+The \defin{Chow ring of a matroid} is the Chow ring of the Bergman fan of the
+matroid.  For a loopless matroid, it has generators indexed by the nonempty
+proper flats, with linear relations coming from elements of the ground set and
+quadratic relations killing products of incomparable flats
+\cite{AdiprasitoHuhKatz2018}.  Chow polynomials and augmented Chow polynomials
+encode Hilbert--Poincaré series of the Chow ring and augmented Chow ring
+associated with a matroid.
 \name{Elena Hoster} gives explicit combinatorial formulas for both
 polynomials for uniform matroids, proving a conjecture of Ferroni and
 interpreting the coefficients through Schubert matroids \cite{Hoster2024x}.
@@ -642,7 +660,7 @@ in many cases.
 
 \section[MConvexity]{M-convexity}
 
-A subset $J \in \setN^n$ is \defin{M-convex} if for all $\alpha,\beta \in J$,
+A subset $J \in \setN^n$ is \defin{M-convex}\label{mConvexSet} if for all $\alpha,\beta \in J$,
 and any index $i\in [n]$ with $\alpha_i \gt \beta_i$, there is some index $j$
 with $\alpha_j \lt \beta_j$ and $\alpha - e_i + e_j \in J$.
 Here, $e_i$ is the $i^\thsup$ unit vector.
@@ -669,6 +687,17 @@ give a combinatorial description of the vertices of these Newton polytopes.
 
 
 \section[polymatroids]{Polymatroids}
+
+\subsection[submodularFunction]{Submodular functions}
+
+Let $E$ be a finite set.  A function $f:2^E\to\setR$ is
+\defin{submodular} if
+\[
+  f(A)+f(B) \geq f(A\cup B)+f(A\cap B)
+  \qquad \text{for all } A,B\subseteq E.
+\]
+Matroid rank functions and polymatroid rank functions are submodular functions.
+
 
 Polymatroids are a weighted version of matroids, where the rank of a subset
 does not have to be bounded by its cardinality.  Let $E$ be a finite set.  A
@@ -834,6 +863,22 @@ A \defin{valuated matroid} of rank $r$ on $E$ is a function on the
 $r$-subsets of $E$, with values in $\setR\cup\{\infty\}$, whose finite support
 is the set of bases of a matroid and whose values satisfy the tropical
 Pl{\"u}cker relations.
+\end{definition}
+
+\begin{definition}[Flag matroid]\label{flagMatroid}
+A \defin{flag matroid} is a compatible sequence of matroids
+$M_1,\dotsc,M_k$ on the same ground set, with increasing ranks, such that the
+bases form feasible flags
+$B_1\subseteq B_2\subseteq\dotsb\subseteq B_k$.  Equivalently, it is the type
+$A$ case of a Coxeter matroid.
+\end{definition}
+
+\begin{definition}[Coxeter matroid]\label{coxeterMatroid}
+A \defin{Coxeter matroid} is a matroid-like structure attached to a finite
+Coxeter group $W$ and a parabolic subgroup $W_P$.  Its feasible sets are
+elements of the quotient $W/W_P$ satisfying the Coxeter-matroid version of the
+greedy algorithm.  Ordinary matroids and flag matroids are the type $A$
+examples.
 \end{definition}
 
 \name{Ethan Partida} studies shifted and threshold matroids \cite{Partida2026}.
