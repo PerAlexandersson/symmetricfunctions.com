@@ -42,9 +42,9 @@ before editing the public pages.
 - `tex-source/lascoux.tex`: Add the planned worked Monical set-valued skyline
   filling example for a small shape.  This should be backed by the Rust
   generators when feasible.
-- `tex-source/stanleySymmetric.tex`: I changed the old phrase "(some?) affine
-  Stanley symmetric functions" to "certain affine Stanley symmetric functions"
-  as a prose cleanup.  Check the cited crystal proof and record the exact class.
+- Resolved 2026-07-04 in `tex-source/stanleySymmetric.tex`: the
+  Morse--Schilling result is now stated as partial ordinary Schur coefficient
+  positivity for rectangular-index coefficients, not full Schur positivity.
 
 ## General polish
 

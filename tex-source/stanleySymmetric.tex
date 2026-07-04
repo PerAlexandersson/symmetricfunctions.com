@@ -224,7 +224,7 @@ are Schur-positive for all $\omega \in A_n$, by a version of the Edelman--Greene
   Contains & schurAffine | Lam2006 | scope=affine Grassmannian permutations \\
   Contains & schurCylindric | Lam2006 \\
   Contains & stanleySym | Lam2006 | scope=finite permutations \\
-  PositiveIn & schurS | MorseSchilling2015 \\
+  PositiveIn & schurS | MorseSchilling2015 | scope=rectangular Schur coefficients; note=partial result \\
   PositiveIn & schurAffine | Lam2006 | status=conjecture \\
 \end{polydata}
 
@@ -271,8 +271,13 @@ It is proved in \cite{Lam2006} that
 
 \subsection[stanleySymAffineSchurExpansion]{Schur expansion}
 
-In \cite{MorseSchilling2015}, 
-the authors give a crystal proof that certain affine Stanley symmetric functions are Schur-positive.
+Affine Stanley symmetric functions are not Schur-positive in general.
+However, \name{Jennifer Morse} and \name{Anne Schilling} prove that the
+coefficient of $\schurS_\mu$ in an affine Stanley symmetric function is a
+nonnegative affine Littlewood--Richardson coefficient whenever
+$\mu \subseteq (n-r)^r$, for $1 \leq r \lt n$.
+Their crystal gives highest-weight formulas for these coefficients in several
+cases \cite[Prop.~5.9 and Thm.~5.10]{MorseSchilling2015}.
 
 \subsection[stanleySymAffineSchurAffineExpansion]{Affine Schur expansion}
 
