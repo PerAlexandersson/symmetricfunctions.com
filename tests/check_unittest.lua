@@ -65,3 +65,7 @@ assert_eq((specializes.attrs or {}).note, "unit test", "SpecializesTo note attr"
 if not contains(html, 'href="unittest.htm#testFamily"') then
   fail("rendered unittest HTML did not resolve local hyperref")
 end
+
+if not contains(html, [[\(i\lt{}j\) and \(j\gt{}i.\)]]) then
+  fail("raw math angle brackets were not normalized to \\lt{} and \\gt{}")
+end
