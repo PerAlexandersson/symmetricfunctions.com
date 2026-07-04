@@ -1013,4 +1013,35 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-kTheory}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Grothendieck-group relation: a middle object split into subobject
+  % and quotient, drawn as bundle-like blocks.
+  \draw[black, thinner, ->, >=stealth] (-0.65,0.35) -- (-0.18,0.35);
+  \draw[black, thinner, ->, >=stealth] (0.18,0.35) -- (0.65,0.35);
+
+  \filldraw[white, draw=black, rounded corners=0.08cm]
+    (-0.82,0.18) rectangle (-0.55,0.52);
+  \filldraw[iconblue, draw=black, rounded corners=0.08cm]
+    (-0.16,0.12) rectangle (0.16,0.58);
+  \filldraw[white, draw=black, rounded corners=0.08cm]
+    (0.55,0.18) rectangle (0.82,0.52);
+
+  \draw[black, thinner] (-0.55,-0.35) -- (-0.15,-0.35);
+  \draw[black, thinner] (0.15,-0.35) -- (0.55,-0.35);
+  \draw[black, thinner] (0,-0.55) -- (0,-0.15);
+
+  \begin{scope}[yshift=-0.35cm]
+    \filldraw[white, draw=black, rounded corners=0.07cm]
+      (-0.72,-0.18) rectangle (-0.38,0.18);
+    \filldraw[iconblue, draw=black, rounded corners=0.07cm]
+      (-0.17,-0.18) rectangle (0.17,0.18);
+    \filldraw[white, draw=black, rounded corners=0.07cm]
+      (0.38,-0.18) rectangle (0.72,0.18);
+  \end{scope}
+\end{tikzpicture}
+
+
 \end{document}
