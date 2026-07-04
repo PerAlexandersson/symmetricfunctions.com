@@ -1044,4 +1044,26 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-varieties}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A compact flag-variety/Grassmannian icon: nested subspaces and a
+  % highlighted Schubert condition.
+  \draw[black, thinner] (-0.72,-0.55) -- (0.72,-0.55);
+  \draw[black, thinner] (-0.55,-0.15) -- (0.62,-0.15);
+  \draw[black, thinner] (-0.33,0.25) -- (0.46,0.25);
+
+  \filldraw[iconblue, draw=black]
+    (-0.05,-0.55) -- (0.45,-0.15) -- (0.18,0.25) -- (-0.32,-0.15) -- cycle;
+
+  \node[node-blue] at (-0.32,-0.15) {};
+  \node[node-blue] at (0.45,-0.15) {};
+  \node[node-blue] at (0.18,0.25) {};
+
+  \draw[black, thinner, dashed] (-0.7,0.55) -- (0.72,-0.72);
+  \node[node-black] at (-0.05,-0.05) {};
+\end{tikzpicture}
+
+
 \end{document}
