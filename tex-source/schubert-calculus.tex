@@ -1,5 +1,5 @@
 \metatitle{Schubert calculus}
-\metadescription{A computation-focused introduction to Schubert calculus on Grassmannians, including Schubert classes, Pieri and Giambelli formulas, and enumerative examples.}
+\metadescription{A computation-focused introduction to Schubert calculus on Grassmannians.}
 
 \section[schubertCalculus]{Schubert calculus}
 
@@ -123,7 +123,10 @@ stay inside the $k\times(n-k)$ rectangle:
   c_{\lambda,\mu}^{\nu}\sigma_\nu.
 \]
 Equivalently, multiply $\schurS_\lambda\schurS_\mu$ and discard or straighten
-terms which do not define classes in the Grassmannian.
+terms which do not define classes in the Grassmannian.  More precisely, one
+uses the usual quotient presentation of $H^*(\operatorname{Gr}(k,n))$, where
+the Schur classes outside the rectangle are reduced by the Grassmannian
+relations.
 
 
 \subsection[schubertCalculusPieri]{Pieri rule}
@@ -311,7 +314,8 @@ rather than by partitions.  The polynomial representatives are the
 \name{Alain Lascoux} and \name{M.-P. Schützenberger}
 \cite{LascouxSchutzenberger1982}.
 
-For the full flag variety in $\setC^3$, the six Schubert polynomials are
+For the full flag variety in $\setC^3$, with permutations written in one-line
+notation, the six Schubert polynomials are
 \[
 \begin{array}{c|c}
 w & \schubert_w(x_1,x_2)\\

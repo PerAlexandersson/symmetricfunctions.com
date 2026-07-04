@@ -1,5 +1,5 @@
 \metatitle{Varieties in algebraic combinatorics}
-\metadescription{A short guide to algebraic varieties appearing in algebraic combinatorics, including Grassmannians, flag varieties, Schubert varieties, Schubert matroids, Richardson varieties, Springer fibers, Peterson varieties, Hessenberg varieties, and Demazure characters.}
+\metadescription{A short guide to Grassmannians, flag varieties, Schubert varieties, Springer fibers, and Hessenberg varieties.}
 
 \section[varieties]{Varieties in algebraic combinatorics}
 
@@ -9,12 +9,13 @@ a subvariety, the Hilbert series of a coordinate ring, or the point-counting
 shadow of a variety over a finite field.  This page gives a short map of the
 varieties that occur most often on this site.
 
-The main examples are \hyperref[grassmannian]{Grassmannians},
-\hyperref[flagVarieties]{flag varieties}, Schubert varieties,
+The main examples are \hyperref[grassmannianVarieties]{Grassmannians},
+\hyperref[flagVarieties]{flag varieties},
+\hyperref[schubertVarietiesAndMatroids]{Schubert varieties},
 \hyperref[richardsonVarieties]{Richardson varieties},
 \hyperref[springerFibers]{Springer fibers}, and
-\hyperref[hessenbergVarieties]{Hessenberg varieties}.  They connect directly
-to \hyperref[schubertCalculus]{Schubert calculus},
+\hyperref[hessenbergVarietiesBackground]{Hessenberg varieties}.  They connect
+directly to \hyperref[schubertCalculus]{Schubert calculus},
 \hyperref[grothendieck]{Grothendieck polynomials},
 \hyperref[key]{key polynomials}, \hyperref[schurFlagged]{flagged Schur
 polynomials}, \hyperref[positroid]{positroids}, and
@@ -100,11 +101,11 @@ For $I=\{i_1<\dotsb<i_k\}\subseteq[n]$, the corresponding
 \[
   \mathcal B_I
   =
-  \{J=\{j_1<\dotsb<j_k\}: j_a\leq i_a\text{ for all }a\}.
+  \{J=\{j_1<\dotsb<j_k\}: i_a\leq j_a\text{ for all }a\}.
 \]
-For example, if $I=\{2,4\}$, then
+For example, if $I=\{1,3\}\subseteq[4]$, then
 \[
-  \mathcal B_I=\{12,13,14,23,24\}.
+  \mathcal B_I=\{13,14,23,24,34\}.
 \]
 Thus Schubert matroids are the matroid-theoretic shadow of Schubert cells in
 the Grassmannian.  They are positroids, and Suho Oh showed that positroids
@@ -162,7 +163,7 @@ nilpotent linear operator $N$.  In type $A$, it is
   \text{ for all }i\}.
 \]
 The cohomology of Springer fibers carries deep Weyl-group representations;
-this is the starting point of Springer theory \cite{Springer1974}.  Springer
+this is the starting point of Springer theory \cite{Springer1978}.  Springer
 fibers also interact with tableaux, Hall--Littlewood theory, and the
 \hyperref[deltaSpringerHallLittlewood]{$\Delta$-Springer varieties} appearing
 near the Delta conjecture.
@@ -175,7 +176,7 @@ and the Hessenberg function
 \]
 Thus its flags satisfy
 \[
-  N F_i\subseteq F_{i+1}.
+  N F_i\subseteq F_{i+1}\qquad\text{for }1\leq i<n.
 \]
 It sits between the ordinary Springer-fiber world and the broader Hessenberg
 world, and it is important in the Schubert-calculus literature because of its
@@ -186,8 +187,9 @@ relationship with quantum cohomology of flag varieties.
 
 Let $G=\operatorname{GL}_n(\setC)$ and let $B$ be the subgroup of upper
 triangular matrices.  The flag variety can be written as the quotient $G/B$.
-The subgroup $B$ is a Borel subgroup, and its stable subvarieties inside
-$G/B$ are precisely Schubert varieties.
+The subgroup $B$ is a Borel subgroup, and the irreducible closed
+$B$-stable subvarieties inside $G/B$ are precisely Schubert varieties.  General
+closed $B$-stable subvarieties are unions of Schubert varieties.
 
 This is the geometric background for \hyperref[key]{key polynomials}.  A
 dominant weight $\lambda$ gives a line bundle on $G/B$, and taking sections
