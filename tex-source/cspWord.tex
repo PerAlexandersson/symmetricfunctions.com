@@ -33,6 +33,21 @@ Then
 \]
 exhibits the CSP, see \cite{ReinerStantonWhite2004}.
 
+\name{Drew Armstrong} studies the bounded-multiplicity interpolation between
+subsets and multisets \cite{Armstrong2025BoundedMultiplicityCSP}.  Let
+$X_{n,k}^{(b)}$ be the set of $k$-multisets of $[n]$ in which each element has
+multiplicity at most $b-1$, and let the long cycle act on the entries.  Define
+$h_k^{(b)}(z_1,\dotsc,z_n)$ by
+\[
+  \sum_{k\geq 0} h_k^{(b)}(z_1,\dotsc,z_n)t^k
+  \coloneqq \prod_{i=1}^{n}
+  \left(1+z_i t+(z_i t)^2+\dotsb+(z_i t)^{b-1}\right).
+\]
+Under suitable coprimality and divisibility hypotheses, the specialization
+$h_k^{(b)}(1,q,\dotsc,q^{n-1})$ gives cyclic sieving phenomena on
+$X_{n,k}^{(b)}$.  This recovers the subset case when $b=2$ and the ordinary
+multiset case in the limit $b\to \infty$.
+
 
 \subsection[cspBinaryWordsTwist]{Binary words with a twist}
 
@@ -98,6 +113,12 @@ Kreweras words of length $3n$ \cite{HopkinsRubey2021}.  These are in bijection
 with linear extensions of a certain poset, and also with so-called Kreweras
 webs.  The group action is promotion in the linear extensions, which is
 equivalent to rotation of the webs.
+
+\name{Mona Gatzweiler} and \name{Christian Krattenthaler} prove positivity
+results for quotients of $q$-binomial coefficients which imply that the
+conjectural cyclic sieving polynomial for Kreweras words is indeed a
+polynomial with non-negative integer coefficients
+\cite{GatzweilerKrattenthaler2025x}.
 
 
 \subsection[cspLucasWords]{Lucas binary words}
