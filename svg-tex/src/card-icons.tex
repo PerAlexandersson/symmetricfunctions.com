@@ -1,5 +1,4 @@
 \documentclass[tikz, border=0mm]{standalone}
-\usepackage{fontawesome5}
 \usetikzlibrary{calc}
 \newcommand{\tikzsetnextfilename}[1]{}
 
@@ -730,6 +729,35 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-schubertCalculus}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A small Schubert-calculus icon: a 2x3 Grassmannian rectangle with
+  % two incidence lines meeting in a highlighted Schubert cell.
+  \begin{scope}[xscale=0.34,yscale=0.34,shift={(-1.55,-1.05)}]
+    % 2 by 3 rectangle of Schubert boxes
+    \foreach \x in {0,1,2} {
+      \foreach \y in {0,1} {
+        \filldraw[white, draw=black] (\x,\y) rectangle ++(1,1);
+      }
+    }
+
+    % Partition (2,1)
+    \filldraw[iconblue, draw=black] (0,1) rectangle ++(1,1);
+    \filldraw[iconblue, draw=black] (1,1) rectangle ++(1,1);
+    \filldraw[iconblue, draw=black] (0,0) rectangle ++(1,1);
+
+    % Incidence lines
+    \draw[black, thinner] (-0.15,-0.15) -- (3.15,2.15);
+    \draw[black, thinner] (-0.15,2.15) -- (3.15,-0.15);
+
+    % Intersection point
+    \node[node-blue] at (1.5,1) {};
+  \end{scope}
+\end{tikzpicture}
+
+
 
 \tikzsetnextfilename{card-polynomialRootIntro}
 \begin{tikzpicture}[icon]
@@ -908,7 +936,16 @@
 \tikzsetnextfilename{card-parkingFunctions}
 \begin{tikzpicture}[icon]
   \cardframe
-  \node[font=\fontsize{28}{28}\selectfont, iconblue] at (0,0) {\faIcon{parking}};
+
+  % Parking sign for parking functions.
+  \filldraw[iconblue, draw=black, rounded corners=0.08cm]
+    (-0.48,-0.62) rectangle (0.48,0.62);
+  \draw[white, line width=1.5mm, line cap=butt]
+    (-0.16,-0.38) -- (-0.16,0.38);
+  \draw[white, line width=1.5mm]
+    (-0.16,0.32) -- (0.2,0.32)
+    .. controls (0.42,0.32) and (0.42,-0.05) .. (0.2,-0.05)
+    -- (-0.16,-0.05);
 \end{tikzpicture}
 
 

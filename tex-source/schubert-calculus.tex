@@ -1,0 +1,345 @@
+\metatitle{Schubert calculus}
+\metadescription{A computation-focused introduction to Schubert calculus on Grassmannians, including Schubert classes, Pieri and Giambelli formulas, and enumerative examples.}
+
+\section[schubertCalculus]{Schubert calculus}
+
+\defin{Schubert calculus} is the use of Schubert varieties and their
+intersection products to solve enumerative problems.  In the most classical
+case, this means computing in the cohomology ring of a Grassmannian.  The
+combinatorics is governed by partitions, Young diagrams, Schur polynomials,
+Pieri rules, Giambelli determinants, and
+\hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients}.
+
+Good introductions include \name{William Fulton}'s book on Young tableaux
+\cite{Fulton1997} and \name{Maria Gillespie}'s tutorial
+\cite{Gillespie2019}, which is adapted from her
+\href{https://www.mathematicalgemstones.com/gemstones/sapphire/schubert-calculus-mini-course/}
+{Schubert Calculus mini-course}.
+For the flag-variety and polynomial side, see also
+\hyperref[schubert]{Schubert polynomials}.
+
+
+\section[grassmannian]{Grassmannians}
+
+Let $V$ be an $n$-dimensional complex vector space.  The
+\defin{Grassmannian} $\operatorname{Gr}(k,V)$, often written
+$\operatorname{Gr}(k,n)$, is the space of $k$-dimensional linear subspaces
+$W\subseteq V$.
+
+The projective interpretation is often the most concrete.  A $k$-dimensional
+linear subspace of $V=\setC^n$ gives a projective $(k-1)$-plane in
+$\mathbb{P}^{n-1}$.  Thus $\operatorname{Gr}(2,4)$ parametrizes lines in
+$\mathbb{P}^3$, and $\operatorname{Gr}(3,6)$ parametrizes projective planes in
+$\mathbb{P}^5$.
+
+\begin{example*}[Lines in projective space]
+A point of $\operatorname{Gr}(2,4)$ is a $2$-dimensional vector subspace
+$W\subseteq\setC^4$.  After projectivizing, this is a line
+$\mathbb{P}(W)\subseteq\mathbb{P}^3$.  Schubert calculus on
+$\operatorname{Gr}(2,4)$ therefore answers questions about lines in
+projective three-space.
+\end{example*}
+
+The dimension is
+\[
+  \dim \operatorname{Gr}(k,n)=k(n-k).
+\]
+One way to see this is that a generic $k$-plane can be represented by a
+$k\times n$ matrix in row echelon form.  After choosing pivot columns, the
+remaining free entries form a $k(n-k)$-dimensional affine chart.
+
+
+\section[grassmannianSchubertClasses]{Schubert classes on the Grassmannian}
+
+Fix a complete flag
+\[
+  0=F_0\subset F_1\subset F_2\subset\dotsb\subset F_n=V,
+  \qquad \dim F_i=i.
+\]
+Schubert classes in $\operatorname{Gr}(k,n)$ are indexed by partitions
+$\lambda$ fitting in the $k\times(n-k)$ rectangle:
+\[
+  n-k\geq \lambda_1\geq \lambda_2\geq\dotsb\geq\lambda_k\geq 0.
+\]
+The corresponding \defin{Schubert variety} is
+\[
+  \Omega_\lambda(F_\bullet)
+  \coloneqq
+  \left\{
+    W\in\operatorname{Gr}(k,n):
+    \dim(W\cap F_{n-k+i-\lambda_i})\geq i
+    \text{ for } 1\leq i\leq k
+  \right\}.
+\]
+Its cohomology class is denoted $\sigma_\lambda$, and its codimension is
+$|\lambda|$.
+
+The Schubert classes form an additive basis:
+\[
+  H^*(\operatorname{Gr}(k,n),\setZ)
+  =
+  \bigoplus_{\lambda\subseteq (n-k)^k}\setZ\,\sigma_\lambda.
+\]
+The top class is $\sigma_{(n-k)^k}$, and integration over the Grassmannian
+extracts the coefficient of this class.
+
+
+\subsection[grassmannianSchubertDictionary]{Dictionary for $\operatorname{Gr}(2,4)$}
+
+The Grassmannian $\operatorname{Gr}(2,4)$ has dimension $4$ and parametrizes
+lines in $\mathbb{P}^3$.  The partitions fit in a $2\times 2$ box:
+\[
+  \emptyset,\quad (1),\quad (2),\quad (1,1),\quad (2,1),\quad (2,2).
+\]
+With respect to a fixed flag in $\setC^4$, the corresponding geometric
+conditions are:
+\[
+\begin{array}{c|l}
+\lambda & \text{condition on the line } L\subseteq\mathbb{P}^3\\
+\hline
+\emptyset & \text{no condition}\\
+(1) & L \text{ meets a fixed line}\\
+(2) & L \text{ contains a fixed point}\\
+(1,1) & L \text{ lies in a fixed plane}\\
+(2,1) & L \text{ contains a fixed point and lies in a fixed plane}\\
+(2,2) & L \text{ is a fixed line.}
+\end{array}
+\]
+The codimension is the number of boxes in $\lambda$.
+
+
+\section[schubertCalculusComputationRules]{Computation rules}
+
+For ordinary Grassmannians, multiplication of Schubert classes is computed by
+the same Littlewood--Richardson coefficients as multiplication of
+\hyperref[schurS]{Schur polynomials}, with the restriction that partitions must
+stay inside the $k\times(n-k)$ rectangle:
+\[
+  \sigma_\lambda\sigma_\mu
+  =
+  \sum_{\nu\subseteq(n-k)^k}
+  c_{\lambda,\mu}^{\nu}\sigma_\nu.
+\]
+Equivalently, multiply $\schurS_\lambda\schurS_\mu$ and discard or straighten
+terms which do not define classes in the Grassmannian.
+
+
+\subsection[schubertCalculusPieri]{Pieri rule}
+
+The special class $\sigma_r$ corresponds to a single row of length $r$.  The
+Pieri rule says
+\[
+  \sigma_r\sigma_\lambda
+  =
+  \sum_\mu \sigma_\mu,
+\]
+where the sum is over partitions $\mu$ such that $\mu/\lambda$ is a horizontal
+strip of size $r$ and $\mu$ still fits in the $k\times(n-k)$ rectangle.
+There is a dual version with $\sigma_{1^r}$ and vertical strips.
+
+\begin{example*}[A Pieri computation in $\operatorname{Gr}(3,7)$]
+The rectangle is $3\times4$.  Starting from $\lambda=(2,1)$ and multiplying
+by $\sigma_2$, we add two boxes with no two in the same column.  The possible
+results are
+\[
+  (4,1),\qquad (3,2),\qquad (3,1,1),\qquad (2,2,1).
+\]
+Therefore
+\[
+  \sigma_2\sigma_{2,1}
+  =
+  \sigma_{4,1}+\sigma_{3,2}+\sigma_{3,1,1}+\sigma_{2,2,1}
+  \qquad\text{in } H^*(\operatorname{Gr}(3,7)).
+\]
+\end{example*}
+
+
+\subsection[schubertCalculusGiambelli]{Giambelli formula}
+
+The Giambelli formula expresses every Schubert class in terms of the special
+classes $\sigma_r$:
+\[
+  \sigma_\lambda
+  =
+  \det\left(\sigma_{\lambda_i+j-i}\right)_{1\leq i,j\leq k},
+\]
+where $\sigma_0=1$ and $\sigma_r=0$ if $r<0$ or $r>n-k$.
+
+\begin{example*}[A Giambelli computation]
+In any Grassmannian whose rectangle contains $(2,1)$, we have
+\[
+  \sigma_{2,1}
+  =
+  \begin{vmatrix}
+    \sigma_2 & \sigma_3\\
+    1 & \sigma_1
+  \end{vmatrix}
+  =
+  \sigma_2\sigma_1-\sigma_3.
+\]
+In $\operatorname{Gr}(2,4)$, the class $\sigma_3$ is zero because the rectangle
+has width $2$, so the same formula gives
+\[
+  \sigma_{2,1}=\sigma_2\sigma_1.
+\]
+\end{example*}
+
+\begin{example*}[Recovering $\sigma_{1,1}$]
+For $\lambda=(1,1)$,
+\[
+  \sigma_{1,1}
+  =
+  \begin{vmatrix}
+    \sigma_1 & \sigma_2\\
+    1 & \sigma_1
+  \end{vmatrix}
+  =
+  \sigma_1^2-\sigma_2.
+\]
+Thus $\sigma_1^2=\sigma_2+\sigma_{1,1}$.
+\end{example*}
+
+
+\subsection[schubertCalculusLRTruncation]{Littlewood--Richardson truncation}
+
+Littlewood--Richardson multiplication can be used directly, provided we keep
+only the classes which fit in the Grassmannian rectangle.
+
+\begin{example*}[A product in $\operatorname{Gr}(2,5)$]
+In symmetric functions,
+\[
+  \schurS_2\schurS_{1,1}
+  =
+  \schurS_{3,1}+\schurS_{2,2}+\schurS_{2,1,1}.
+\]
+The rectangle for $\operatorname{Gr}(2,5)$ is $2\times3$, so the term
+$\schurS_{2,1,1}$ has too many rows.  Hence
+\[
+  \sigma_2\sigma_{1,1}
+  =
+  \sigma_{3,1}+\sigma_{2,2}
+  \qquad\text{in } H^*(\operatorname{Gr}(2,5)).
+\]
+\end{example*}
+
+
+\section[schubertCalculusGr24]{The ring of $\operatorname{Gr}(2,4)$}
+
+Here is the complete multiplication table for Schubert classes in
+$H^*(\operatorname{Gr}(2,4))$.  Products not visible by symmetry are obtained
+by commutativity.
+\[
+\begin{array}{c|cccccc}
+\cdot
+& 1 & \sigma_1 & \sigma_2 & \sigma_{1,1} & \sigma_{2,1} & \sigma_{2,2}\\
+\hline
+1
+& 1 & \sigma_1 & \sigma_2 & \sigma_{1,1} & \sigma_{2,1} & \sigma_{2,2}\\
+\sigma_1
+& \sigma_1 & \sigma_2+\sigma_{1,1} & \sigma_{2,1} & \sigma_{2,1} & \sigma_{2,2} & 0\\
+\sigma_2
+& \sigma_2 & \sigma_{2,1} & \sigma_{2,2} & \sigma_{2,2} & 0 & 0\\
+\sigma_{1,1}
+& \sigma_{1,1} & \sigma_{2,1} & \sigma_{2,2} & \sigma_{2,2} & 0 & 0\\
+\sigma_{2,1}
+& \sigma_{2,1} & \sigma_{2,2} & 0 & 0 & 0 & 0\\
+\sigma_{2,2}
+& \sigma_{2,2} & 0 & 0 & 0 & 0 & 0
+\end{array}
+\]
+
+For example,
+\[
+  \sigma_1^2=\sigma_2+\sigma_{1,1},
+  \qquad
+  \sigma_1^3=2\sigma_{2,1},
+  \qquad
+  \sigma_1^4=2\sigma_{2,2}.
+\]
+Since $\sigma_{2,2}$ is the class of a point, integration gives
+\[
+  \int_{\operatorname{Gr}(2,4)}\sigma_1^4=2.
+\]
+
+\begin{example*}[The classical line-count]
+The class $\sigma_1$ is the condition that a line in $\mathbb{P}^3$ meets a
+fixed line.  Thus $\sigma_1^4=2\sigma_{2,2}$ says:
+
+\[
+  \text{There are }2\text{ lines in }\mathbb{P}^3
+  \text{ meeting four general fixed lines.}
+\]
+\end{example*}
+
+
+\section[schubertCalculusPoincareDuality]{Poincaré duality}
+
+Let $\lambda\subseteq(n-k)^k$.  The Poincaré dual partition is
+\[
+  \lambda^\vee
+  =
+  (n-k-\lambda_k,\dotsc,n-k-\lambda_2,n-k-\lambda_1).
+\]
+Then
+\[
+  \int_{\operatorname{Gr}(k,n)}
+  \sigma_\lambda\sigma_\mu
+  =
+  \begin{cases}
+  1, & \mu=\lambda^\vee,\\
+  0, & \text{otherwise.}
+  \end{cases}
+\]
+
+\begin{example*}
+In $\operatorname{Gr}(2,4)$, the dual of $(1)$ is $(2,1)$, so
+\[
+  \sigma_1\sigma_{2,1}=\sigma_{2,2}.
+\]
+Geometrically, a general line-meeting condition and a general
+point-in-plane condition cut out one line.
+\end{example*}
+
+
+\section[schubertCalculusFlagVariety]{Flag varieties and Schubert polynomials}
+
+Schubert calculus on the complete flag variety is indexed by permutations
+rather than by partitions.  The polynomial representatives are the
+\hyperref[schubert]{Schubert polynomials} $\schubert_w(\xvec)$ introduced by
+\name{Alain Lascoux} and \name{M.-P. Schützenberger}
+\cite{LascouxSchutzenberger1982}.
+
+For the full flag variety in $\setC^3$, the six Schubert polynomials are
+\[
+\begin{array}{c|c}
+w & \schubert_w(x_1,x_2)\\
+\hline
+123 & 1\\
+213 & x_1\\
+132 & x_1+x_2\\
+231 & x_1x_2\\
+312 & x_1^2\\
+321 & x_1^2x_2.
+\end{array}
+\]
+Therefore
+\[
+  \schubert_{213}\schubert_{132}
+  =
+  x_1(x_1+x_2)
+  =
+  \schubert_{312}+\schubert_{231}.
+\]
+This is the flag-variety analogue of a Schubert-class multiplication
+computation.
+
+More generally, the problem of finding a positive combinatorial rule for the
+structure constants
+\[
+  \schubert_u(\xvec)\schubert_v(\xvec)
+  =
+  \sum_w c_{u,v}^w\schubert_w(\xvec)
+\]
+is a central open problem; see
+\hyperref[schubertLittlewoodRichardson]{Schubert Littlewood--Richardson
+coefficients}.
