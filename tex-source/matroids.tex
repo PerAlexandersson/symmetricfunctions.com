@@ -8,8 +8,9 @@
 
 Matroids were first introduced by \name{Hassler Whitney} \cite{Whitney1935},
 and independently by \name{Takeo Nakasawa}, see \cite{NishimuraKuroda2009}.
-This was further developed by \name{Saunders MacLane}, \name[B.L. van der Waerden]{Bartel Leendert van der Waerden} 
-\name{Richard Rado} and \name[W.T. Tutte]{William Thomas Tutte}.
+This was further developed by \name{Saunders MacLane},
+\name[B.L. van der Waerden]{Bartel Leendert van der Waerden},
+\name{Richard Rado}, and \name[W.T. Tutte]{William Thomas Tutte}.
 
 For systematic references on matroid theory, see \name[James Oxley]{James G. Oxley}'s
 book \cite{Oxley2011} and Tutte's introduction \cite{Tutte1971}.
@@ -96,7 +97,7 @@ then the rank of a set $X$ is simply
 \[
   r(X) = \max \{ |X \cap B| : B \in \mathcal{B} \} = \max \{ |I| : I \subseteq X \text{ where } I \in \mathcal{I} \}.
 \]
-That is, the rank is the cardinality of the maximal independent set it contains.
+That is, the rank is the cardinality of a maximal independent subset contained in it.
 
 
 \subsection[matroidFlats]{Flats}
@@ -105,7 +106,7 @@ A subset $X \subseteq E$ of a matroid is called a \defin{flat} (or closed) if
 there is no element we can add to $X$ from $E \setminus X$ and preserve the rank.
 For representable matroids, flats correspond to the various linear subspaces spanned by the independent sets.
 
-The set of flats form a lattice under inclusion, the \defin{lattice of flats}.
+The set of flats forms a lattice under inclusion, the \defin{lattice of flats}.
 
 \begin{example}[The lattice of flats of $U_{2,3}$]
 For the uniform matroid $U_{2,3}$, the flats are
@@ -163,9 +164,9 @@ matroids on nonempty ground sets.
 \subsection[matroidDuality]{Dual of a matroid}
 
 If $M=(E,\mathcal{B})$ then $M^* \coloneqq (E,\mathcal{B}^*)$
-with 
+with
 \[
-\mathcal{B}^* \coloneqq (E \setminus A : A \in \mathcal{B})
+\mathcal{B}^* \coloneqq \{E \setminus A : A \in \mathcal{B}\}
 \]
 is also a matroid. The matroid $M^*$ is called the \defin{dual} of $M$.
 
@@ -177,7 +178,7 @@ The dual of the uniform matroid $U_{r,n}$ is the uniform matroid $U_{n-r,n}$.
 
 Let $M=(E,\mathcal{B})$ be a matroid and $e \in E$. The \defin{deletion} $M \setminus e$
 is the matroid on ground set $E\setminus \{e\}$,
-and the bases are 
+and the bases are
 \[
 \begin{cases}
 \{ B \in \mathcal{B} : e \notin B \} & \text{ if $e$ is not a coloop} \\
@@ -190,8 +191,8 @@ The \defin{restriction} of $M$ to $X \subseteq E$
 is denoted $M \vert_{X}$, and corresponds to deletion of $M$ by $E\setminus X$.
 
 
-The \defin{contraction} $M / e$ is the matroid on 
-ground set $E\setminus \{e\}$ whose bases are 
+The \defin{contraction} $M / e$ is the matroid on
+ground set $E\setminus \{e\}$ whose bases are
 \[
 \begin{cases}
 \{ B \setminus \{e\} : B \in \mathcal{B},\ e\in B  \}
@@ -226,8 +227,8 @@ Thus $M/3$ is $U_{1,2}$.
 
 \subsection[matroidGraphic]{Graphic matroids}
 
-Given a graph $G=(V,E)$, the \defin{graphic matroid} associated by $G$ is 
-the matroid whose independent sets are subsets of edges of $E$, that contain no cycles.
+Given a graph $G=(V,E)$, the \defin{graphic matroid} associated to $G$ is
+the matroid whose independent sets are the subsets of $E$ that contain no cycles.
 
 
 \begin{example}
@@ -239,7 +240,7 @@ but $a$ is independent of these. To the right is a graph that defines the same m
 \end{figure}
 The sets of linearly independent vectors are
 \begin{equation}
-  \mathcal{I} = \{ abc, abd, abe, ace, ab, ac,ad, ae, bc, bd, be, cd, ce, a, b, c, d, e \}.
+  \mathcal{I} = \{ abc, abd, abe, ace, ab, ac, ad, ae, bc, bd, be, cd, ce, a, b, c, d, e \}.
 \end{equation}
 \end{example}
 
@@ -250,9 +251,10 @@ A \defin{matroid isomorphism} from $(E_1,\mathcal{B}_1)$ to $(E_2,\mathcal{B}_2)
 is a bijection from $E_1$ to $E_2$ which induces a bijection from $\mathcal{B}_1$ to $\mathcal{B}_2$.
 
 
-Given a $r \times n$ full-rank matrix $X$ over a field $\mathbb{F}$, we let $M[X]$
-be the matroid with ground set being the column vectors of $X$, and bases
-being the collection of all sets of columns being of full rank.
+Given an $r \times n$ full-rank matrix $X$ over a field $\mathbb{F}$, with
+columns $v_1,\dotsc,v_n$, we let $M[X]$ be the matroid with ground set $[n]$
+whose bases are the $r$-subsets $B\subseteq[n]$ for which
+$\{v_i:i\in B\}$ has rank $r$.
 
 A matroid $M$ is said to be \defin{realizable} over a field $\mathbb{F}$
 if it is isomorphic to some $M[X]$ with $X \in \mathbb{F}^{r \times n }$.
@@ -315,7 +317,8 @@ All partition matroids are \hyperref[latticePathMatroids]{lattice path matroids}
 \begin{definition}
 Let $(A_1,A_2,\dotsc,A_m)$ be subsets of some set $E$ (this is called a \defin{set system}).
 A \defin{partial transversal} of the set system is a subset $I=\{e_1,e_2,\dotsc,e_k\} \subseteq E$
-such that there is an injection $\phi$ such that $e_i \in A_{\phi(i)}$. 
+for which there is an injection $\phi:\{1,\dotsc,k\}\to\{1,\dotsc,m\}$
+such that $e_i \in A_{\phi(i)}$.
 We can think of this as $e_i$ being a representative of some $A_j$.
 If we have a representative from each $A_j$, the set $I$ is just called a \defin{transversal}.
 \end{definition}
@@ -345,23 +348,20 @@ single-element contraction of a transversal matroid is again transversal
 \cite{Bastida2024x}.  When the contraction is transversal, the algorithm also
 produces a transversal representation.
 
-
-Transversal matroids coincide with the class of \hyperref[matroidMatching]{matching matroids}.
-
-
-In \cite{Toft2025x}, the \defin{path-circular matroids} are introduced;
-these form a new minor-closed class of transversal matroids.
+\name{Bjarne Toft} introduces \defin{path-circular matroids}, which form a
+new minor-closed class of transversal matroids \cite{Toft2025x}.
 
 
 \subsection[matroidMatching]{Matching matroids}
 
-Let $G=(V,E)$ be a graph. Now consider all subsets $I \subseteq V$ that can be covered by a matching on $G$.
+Let $G=(V,E)$ be a graph.  Consider all subsets $I \subseteq V$ that can be covered by a matching on $G$.
 Then these subsets form the independent sets of a matroid, called the \defin{matching matroid}.
-For $A\subseteq E$, let $\mathrm{match}(G,A)$ be the family of subsets $I \subseteq A$,
-which may be covered by a matching of $G$. Then $\mathrm{match}(G,A)$ is a matroid with $A$ as ground set.
+For $A\subseteq V$, let $\mathrm{match}(G,A)$ be the family of subsets $I \subseteq A$,
+that may be covered by a matching of $G$. Then $\mathrm{match}(G,A)$ is a matroid with $A$ as ground set.
 Compare this with the \hyperref[stablePolynomial]{multivariate matching polynomial}, which is stable.
 
-All matching matroids are \hyperref[transversalMatroids]{transversal matroids} and vice versa, see \cite{EdmondsFulkerson1965,Triesch1992}.
+Matching matroids and \hyperref[transversalMatroids]{transversal matroids}
+are the same class; see \cite{EdmondsFulkerson1965,Triesch1992}.
 
 \begin{example}[A matching matroid]
 Let $G$ be the graph on $[7]$ with edges $12,23,13,34,45,35,56,67$.
@@ -435,7 +435,7 @@ Classical algorithmic background includes matroid intersection algorithms
 
 \section[tuttePolynomial]{Tutte polynomial}
 
-The \defin{Tutte polynomial} $T_M(x,y)$ of a matroid $M$ (on ground set $E$) 
+The \defin{Tutte polynomial} $T_M(x,y)$ of a matroid $M$ (on ground set $E$)
 is defined via a deletion-contraction recursion.
 If $M$ is the empty matroid (on ground set $\emptyset$) then $T_M(x,y) \coloneqq 1$.
 
@@ -474,38 +474,38 @@ It follows that
 \subsection[tutteInternalExternal]{Internal and external activity}
 
 In the definition below, we assume that the ground set is $\{1,2,\dotsc,n\}$.
-For other ground sets, one needs to choose a total ordering on the ground set, 
+For other ground sets, one needs to choose a total ordering on the ground set,
 and the word \emph{smaller} is with respect to this ordering.
 
 \begin{definition}[Internally and externally active elements]
 Let $\mathcal{B}$ be the set of bases for a matroid with ground set $E=\{1,2,\dotsc,n\}$.
-Let $F \in \mathcal{B}$. An element $e\in E$ is said to be 
+Let $F \in \mathcal{B}$. An element $e\in E$ is said to be
 \begin{itemize}
  \item \defin{internally active} if $e \in F$, and there is no smaller $y \in E\setminus F$
- such that 
+ such that
  \[
- (F\setminus \{e\})\cup \{y\} \text { is in } \mathcal{B};
+ (F\setminus \{e\})\cup \{y\} \text{ is in } \mathcal{B};
  \]
- 
- \item \defin{externally active} if $e \notin F$, and there is no smaller $y \in F$ 
- such that 
+
+ \item \defin{externally active} if $e \notin F$, and there is no smaller $y \in F$
+ such that
  \[
- (F\setminus \{y\})\cup \{e\}\text { is in } \mathcal{B}.
+ (F\setminus \{y\})\cup \{e\}\text{ is in } \mathcal{B}.
  \]
 \end{itemize}
 \end{definition}
 
-The Tutte polynomial can then be expressed as 
+The Tutte polynomial can then be expressed as
 \[
   T_M(x,y) = \sum_{B \in \mathcal{B}} x^{ia(B)} y^{ea(B)}
 \]
-where $ia(b)$ and $ea(B)$ denotes the internal and external activity, respectively.
+where $ia(B)$ and $ea(B)$ denote the internal and external activity, respectively.
 
 
 \subsection[tutteProperties]{Properties of the Tutte polynomial}
 
-We have that $T_{M}(x,y) = T_{M^*}(y,x)$.
-Moreover, the Tutte polynomial is multiplicative with respect to direct sum: 
+We have $T_{M}(x,y) = T_{M^*}(y,x)$.
+Moreover, the Tutte polynomial is multiplicative with respect to direct sum:
 \[
 T_{M_1 \oplus M_2}(x,y) = T_{M_1}(x,y) T_{M_2}(x,y).
 \]
@@ -521,13 +521,14 @@ polynomial, with the two gradings tracking bosonic and fermionic degree.
 
 
 \begin{definition}[Matroid base polytope]\label{matroidBasePolytope}
-The \defin{matroid base polytope} is the convex hull of all indicator vectors of the bases.
+The \defin{matroid base polytope} of a matroid is the convex hull of the
+indicator vectors of its bases.
 \end{definition}
 
-For example, the matroid with bases $\{123456,123467,123567,124567,134567,234567\}$
-is the convex hull of
+For example, the base polytope of the matroid with bases
+$\{123456,123467,123567,124567,134567,234567\}$ is the convex hull of
 \begin{array}{lll}
-(1,1,1,1,1,1,0), & (1,1,1,1,0,1,1), & (1,1,1,0,1,1,1), \\ 
+(1,1,1,1,1,1,0), & (1,1,1,1,0,1,1), & (1,1,1,0,1,1,1), \\
 (1,1,0,1,1,1,1), & (1,0,1,1,1,1,1), & (0,1,1,1,1,1,1).
 \end{array}
 We let $\xvec(S) \coloneqq \sum_{i \in S} x_i$.
@@ -542,9 +543,10 @@ together with the equality $\xvec([n]) = r([n])$.
 The matroid base polytope is a
 \hyperref[generalizedPermutohedron]{generalized permutohedron}.
 
-Every matroid base polytope has a \defin{regular unimodular triangulation}, see \cite{BackmanLiu2023x}.
-This implies that the base polytope satisfies the integer decomposition property,
-which was known before, see \cite{GijswijtRegts2012}.
+Every matroid base polytope has a \defin{regular unimodular triangulation}; see \cite{BackmanLiu2023x}.
+This implies that the base polytope satisfies the
+\hyperref[integerDecompositionProperty]{integer decomposition property},
+a property previously proved in \cite{GijswijtRegts2012}.
 \name{Matt Larson} gives a rank-$9$ binary matroid on $18$ elements for which
 the $s=2$ basis-pair version of White's conjecture, often called Farber's
 conjecture, fails \cite{Larson2026x}.  The same example shows that
@@ -618,7 +620,7 @@ coefficients of inverse Kazhdan--Lusztig polynomials for braid matroids.
 
 \name{Alice L. L. Gao}, \name{Yun Li}, and \name{Matthew H. Y. Xie}
 compute equivariant inverse Kazhdan--Lusztig polynomials for thagomizer
-matroids \cite{GaoLiXie2025x}.  These are graphic matroids associated with
+matroids \cite{GaoLiXie2025x}.  Thagomizer matroids are graphic matroids associated with
 the complete tripartite graphs $K_{1,1,n}$.  Their formulas give the
 corresponding non-equivariant inverse Kazhdan--Lusztig polynomials and imply
 log-concavity for this family.
@@ -677,7 +679,7 @@ polymatroid polytope is
   \text{ for all } A\subseteq E\},
 \]
 where $x(A)\coloneqq \sum_{i\in A} x_i$.  Its base polytope is obtained by
-adding the equation $x(E)=r(E)$.  This is the polyhedral point of view of
+adding the equation $x(E)=r(E)$.  This is the polyhedral point of view due to
 \name{Jack Edmonds} \cite{Edmonds1970}.
 
 If $r$ is integer-valued, the integer points in the base polytope are called
