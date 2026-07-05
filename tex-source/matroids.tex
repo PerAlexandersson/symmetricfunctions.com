@@ -15,23 +15,32 @@ For systematic references on matroid theory, see \name[James Oxley]{James G. Oxl
 book \cite{Oxley2011} and Tutte's introduction \cite{Tutte1971}.
 
 
-One motivating example for introducing matroids is the notion of
-\emph{bases} for a vector space. 
-Let $E = \{v_1,\dotsc, v_n \}$ be a collection of vectors in some $r$-dimensional space $V$.
-We let $\mathcal{B}$ be the collection of subsets of $E$ which constitute a basis for $V$.
-The pair $(E,\mathcal{B})$ is then an example of a matroid.
+The guiding example is linear independence.  Let
+$E=\{v_1,\dotsc,v_n\}$ be a finite list of vectors in a vector space $V$.
+The subsets of $E$ which are linearly independent behave much like independent
+sets in a graph, and the maximal independent subsets behave like bases of a
+vector space.  A matroid abstracts exactly this exchange behavior.
 
-There are many equivalent definitions of a \defin{matroid}.
-Let $E$ be a set (called the \defin{ground set}) and let $\mathcal{B}$
-be a collection of subsets of size $r$ from $E$.
-Then $M = (E,\mathcal{B})$ is a matroid if the \defin{basis exchange axiom} is satisfied.
-This states that for every two different $A, B \in \mathcal{B}$ and 
-$x \in A \setminus B$, there is some $y \in B \setminus A$ such that 
+There are several equivalent, or cryptomorphic, ways to specify a
+\defin{matroid}: by bases, independent sets, rank functions, circuits, flats,
+or closure operators.  The most useful description depends on the problem.
+We start with bases, since this leads directly to the basis-generating
+polynomial and the matroid base polytope.
+
+
+\subsection[matroidBases]{Bases}
+
+Let $E$ be a finite set, called the \defin{ground set}, and let
+$\mathcal{B}$ be a nonempty collection of subsets of $E$, all of the same
+cardinality $r$.  Then $M=(E,\mathcal{B})$ is a matroid if the
+\defin{basis exchange axiom} holds: for every two bases
+$A,B\in\mathcal{B}$ and every $x\in A\setminus B$, there is some
+$y\in B\setminus A$ such that
 \[
-   (A \setminus \{x\}) \cup \{y\} \in \mathcal{B}.
+  (A\setminus \{x\})\cup \{y\} \in \mathcal{B}.
 \]
-The cardinality, $r$, of each set in $\mathcal{B}$ is called the \defin{rank} 
-of the matroid, and the elements of $\mathcal{B}$ are the \defin{bases} of $M$.
+The cardinality $r$ is called the \defin{rank} of the matroid, and the elements
+of $\mathcal{B}$ are the \defin{bases} of $M$.
 The \defin{basis-generating polynomial}\label{basisGeneratingPolynomial} of
 $M$ is
 \[
@@ -40,12 +49,30 @@ $M$ is
 This polynomial is a central bridge from matroids to
 \hyperref[stablePolynomial]{stable} and
 \hyperref[lorentzianPolynomial]{Lorentzian polynomials}.
+Its support is the set of indicator vectors of bases, a basic example of an
+\hyperref[MConvexity]{$M$-convex set}.
 
 
 \begin{example}[Uniform matroid]\label{matroidUniform}
 The \defin{uniform matroid} $U_{r,n}$ is the matroid on ground set $[n]$
-whose bases are all $r$-element subsets of $[n]$.
+whose bases are all $r$-element subsets of $[n]$.  For example, the bases of
+$U_{2,3}$ are $12$, $13$, and $23$.
 \end{example}
+
+
+\subsection[matroidIndependentSets]{Independent sets}
+
+Equivalently, a matroid can be specified by its independent sets.  A collection
+$\mathcal{I}\subseteq 2^E$ is the collection of independent sets of a matroid
+if
+\begin{itemize}
+\item $\emptyset\in\mathcal{I}$;
+\item if $I\in\mathcal{I}$ and $J\subseteq I$, then $J\in\mathcal{I}$;
+\item if $I,J\in\mathcal{I}$ and $|I|<|J|$, then there is some
+  $x\in J\setminus I$ such that $I\cup\{x\}\in\mathcal{I}$.
+\end{itemize}
+The bases are the maximal independent sets.  For a vector configuration, this
+recovers the ordinary linearly independent subsets.
 
 
 
@@ -208,7 +235,7 @@ In the figure below, we have five vectors that define a matroid. Vectors $b,c,d,
 but $a$ is independent of these. To the right is a graph that defines the same matroid.
 
 \begin{figure}
-  \svgimg[width=0.75\textwidth]{./svg-images/graphic-matroid.svg}{A set of vectors and a graph. Both define the same matroid.}
+  \svgimg[width=0.5\textwidth]{./svg-images/graphic-matroid.svg}{A set of vectors and a graph. Both define the same matroid.}
 \end{figure}
 The sets of linearly independent vectors are
 \begin{equation}
@@ -511,7 +538,8 @@ The matroid base polytope is precisely the polytope defined by the following set
 \end{equation}
 together with the equality $\xvec([n]) = r([n])$.
 \end{theorem}
-The matroid base polytope is a \defin{generalized permutohedron}.
+The matroid base polytope is a
+\hyperref[generalizedPermutohedron]{generalized permutohedron}.
 
 Every matroid base polytope has a \defin{regular unimodular triangulation}, see \cite{BackmanLiu2023x}.
 This implies that the base polytope satisfies the integer decomposition property,
@@ -524,7 +552,8 @@ matroid.  This does not refute the weaker quadratic-generation form of
 White's conjecture.
 \name{Anastasia Chavez}, \name{Galen Dorpalen-Barry}, \name{Luis Ferroni},
 \name{Fu Liu}, \name{Felipe Rincón}, and \name{Andrés R. Vindas-Meléndez}
-show that the linear coefficient of the Ehrhart polynomial of a matroid base
+show that the linear coefficient of the \hyperref[ehrhart]{Ehrhart polynomial}
+of a matroid base
 polytope, after evaluating at $t-1$, recovers the beta invariant up to
 normalization \cite{ChavezDorpalenBarryFerroniLiuRinconVindasMelendez2025x}.
 
@@ -611,81 +640,6 @@ interpreting the coefficients through Schubert matroids \cite{Hoster2024x}.
 real-rootedness conjecture for the Chow polynomials of uniform matroids, and
 also prove real-rootedness for Chow and augmented Chow polynomials of
 maximally ranked posets \cite{BrandenVecchi2025Uniform}.
-
-
-\section[SNP]{Saturated Newton polytopes}
-
-Given a polynomial $f \in \setC[x_1,\dotsc,x_n]$ with $f = \sum_\alpha c_\alpha \xvec^\alpha$,
-with $\alpha \in \setN^n$, the \defin{support} of $f$ is the 
-set $\mathrm{supp}(f) \coloneqq \{\alpha : c_\alpha \neq 0\}$.
-The \defin{Newton polytope}\label{newtonPolytope} of $f$ is defined as the convex hull of the support.
-This is a polytope in $\setR^n$ which we denote by $\mathrm{Newton}(f)$.
-
-A polynomial has a \defin{saturated Newton polytope} (SNP) if 
-\[
- \mathrm{Newton}(f)\cap \setZ^n = \mathrm{supp}(f).
-\]
-Several classical polynomials such as \hyperref[schurS]{Schur polynomials} and \hyperref[stanleySym]{Stanley symmetric functions}
-have saturated Newton polytopes.
-
-A seminal paper in this area is \cite{MonicalTokcanYong2019} where many conjectures 
-were presented. Several have since then been proved.
-
-Key polynomials and Schubert polynomials have SNP \cite{FinkMeszarosDizier2018}.
-Key polynomials in other types ($A_r$, $B_r$, $C_r$, $F_4$, $G_2$) also have SNP, see \cite{BessonJeraldsKiers2023}.
-\name{Greta Panova} and \name{Chenchen Zhao} prove special cases of the
-Monical--Tokcan--Yong conjecture that Kronecker products of Schur functions
-have saturated Newton polytopes \cite{PanovaZhao2023x}.  Their arguments use
-Horn inequalities for Littlewood--Richardson coefficients and imply necessary
-conditions for positivity of Kronecker coefficients.
-
-\name{Mario Sanchez} studies when matroid polytopes, flag matroid polytopes,
-Bruhat interval polytopes, and Schubitopes are Mirković--Vilonen polytopes
-\cite{Sanchez2023x}.  In particular, the Newton polytopes of Schubert
-polynomials and key polynomials are Mirković--Vilonen polytopes.
-
-\name{Marc Besson}, \name{Sam Jeralds}, and \name{Joshua Kiers} extend part
-of this Demazure-polytope picture to affine Demazure modules
-\cite{BessonJeraldsKiers2024x}.  Their affine Demazure weight polytopes are
-cut out by inequalities governed by standard, opposite, and semi-infinite
-Bruhat orders, while their face vertices are described using twisted Bruhat
-orders.
-SNP for \hyperref[chromaticQuasisymmetric]{chromatic symmetric polynomials} obtained from incomparability graphs of $(3+1)$-free posets
-was proved in \cite{MatherneMoralesSelover2022x}.
-
-For more background and results, see \cite{WangZhangZhang2024x}.
-
-In \cite{NguyenNgocTuanHai2023} the authors prove SNP for many families of symmetric functions,
-such as \hyperref[schurP]{Schur-P} and \hyperref[schurQ]{Schur-Q} polynomials as well as many of the above mentioned families.
-Moreover, they prove that $\mathrm{Newton}(f)$ has the \hyperref[polytopeIDP]{integer decomposition property}
-in many cases.
-
-\section[MConvexity]{M-convexity}
-
-A subset $J \in \setN^n$ is \defin{M-convex}\label{mConvexSet} if for all $\alpha,\beta \in J$,
-and any index $i\in [n]$ with $\alpha_i \gt \beta_i$, there is some index $j$
-with $\alpha_j \lt \beta_j$ and $\alpha - e_i + e_j \in J$.
-Here, $e_i$ is the $i^\thsup$ unit vector.
-
-This notion generalizes the basis exchange axiom for matroids.
-
-\begin{theorem}[See \cite{DizierPhDThesis}]
-A homogeneous polynomial $f$ is $M$-convex if and only if $f$ 
-has a saturated Newton polytope and this Newton polytope is a generalized permutahedron.
-\end{theorem}
-
-\hyperref[key]{Key polynomials} are M-convex (conjectured earlier by \name{Monical}, \name{Tokcan} and \name{Yong} \cite{MonicalTokcanYong2019}) see \cite{FanGuoPengSun2020}.
-
-In \cite{WangZhangZhang2024x}, it is proved that 
-affine Stanley symmetric functions and cylindric skew Schur functions are $M$-convex.
-
-\name{Serena An}, \name{Katherine Tung}, and \name{Yuchong Zhang}
-characterize the support of dual Schubert polynomials as a Minkowski sum over
-the inversions of the indexing permutation \cite[Thm.~1.2]{AnTungZhang2024x}.
-This gives an elementary proof that dual Schubert polynomials are
-$M$-convex, have saturated Newton polytopes, and have Newton polytopes which
-are generalized permutahedra \cite[Cor.~1.3]{AnTungZhang2024x}.  They also
-give a combinatorial description of the vertices of these Newton polytopes.
 
 
 \section[polymatroids]{Polymatroids}
@@ -803,7 +757,9 @@ Several matroid-related topics have their own pages on this site.  See
 rook, and snake matroids, \hyperref[positroid]{positroids} for the
 totally nonnegative Grassmannian side, and
 \hyperref[stablePolynomial]{stable polynomials} for the half-plane property
-and basis-generating polynomials.  The
+and basis-generating polynomials.  For saturated Newton polytopes and the
+$M$-convex exchange condition generalizing matroid bases, see
+\hyperref[newtonPolytopes]{Newton polytopes and $M$-convexity}.  The
 \hyperref[lgvLemma]{Lindström--Gessel--Viennot lemma} also appears in several
 path models related to matroid polytopes.
 

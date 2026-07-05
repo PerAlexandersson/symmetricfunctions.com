@@ -1,0 +1,122 @@
+\metatitle{Newton polytopes and M-convexity}
+\metadescription{Newton polytopes, saturated Newton polytopes, M-convex sets, generalized permutohedra, and their relation to Lorentzian polynomials.}
+
+
+\section[newtonPolytopes]{Newton polytopes}
+
+Given a polynomial
+\[
+  f=\sum_{\alpha} c_\alpha \xvec^\alpha \in \setC[x_1,\dotsc,x_n],
+\]
+with $\alpha\in\setN^n$, the \defin{support} of $f$ is
+\[
+  \operatorname{supp}(f)\coloneqq \{\alpha : c_\alpha \neq 0\}.
+\]
+The \defin{Newton polytope}\label{newtonPolytope} of $f$ is the convex hull
+of the support.  We denote it by $\operatorname{Newton}(f)$.
+
+Newton polytopes turn questions about monomial supports into questions about
+lattice points and convex geometry.  In algebraic combinatorics, this is useful
+for Schur, key, Schubert, Grothendieck, chromatic, and related polynomials.
+The same language also appears naturally in
+\hyperref[lorentzianPolynomial]{Lorentzian polynomials}, where the support is
+controlled by \hyperref[MConvexity]{$M$-convexity}.
+
+
+\section[SNP]{Saturated Newton polytopes}
+
+A polynomial has a \defin{saturated Newton polytope} (SNP) if
+\[
+  \operatorname{Newton}(f)\cap \setZ^n = \operatorname{supp}(f).
+\]
+Equivalently, every lattice point in the Newton polytope occurs as the exponent
+vector of a monomial with nonzero coefficient.
+
+Several classical polynomials, such as \hyperref[schurS]{Schur polynomials} and
+\hyperref[stanleySym]{Stanley symmetric functions}, have saturated Newton
+polytopes.  A foundational source for this circle of questions is the paper of
+\name{Cara Monical}, \name{Neriman Tokcan}, and \name{Alexander Yong}
+\cite{MonicalTokcanYong2019}, where many conjectures were formulated.
+
+Key polynomials and Schubert polynomials have SNP
+\cite{FinkMeszarosDizier2018}.  Key polynomials in other types
+($A_r$, $B_r$, $C_r$, $F_4$, $G_2$) also have SNP; see
+\cite{BessonJeraldsKiers2023}.
+\name{Greta Panova} and \name{Chenchen Zhao} prove special cases of the
+Monical--Tokcan--Yong conjecture that Kronecker products of Schur functions
+have saturated Newton polytopes \cite{PanovaZhao2023x}.  Their arguments use
+Horn inequalities for Littlewood--Richardson coefficients and imply necessary
+conditions for positivity of Kronecker coefficients.
+
+\name{Mario Sanchez} studies when matroid polytopes, flag matroid polytopes,
+Bruhat interval polytopes, and Schubitopes are Mirković--Vilonen polytopes
+\cite{Sanchez2023x}.  In particular, the Newton polytopes of Schubert
+polynomials and key polynomials are Mirković--Vilonen polytopes.
+
+\name{Marc Besson}, \name{Sam Jeralds}, and \name{Joshua Kiers} extend part
+of this Demazure-polytope picture to affine Demazure modules
+\cite{BessonJeraldsKiers2024x}.  Their affine Demazure weight polytopes are
+cut out by inequalities governed by standard, opposite, and semi-infinite
+Bruhat orders, while their face vertices are described using twisted Bruhat
+orders.
+
+SNP for \hyperref[chromaticQuasisymmetric]{chromatic symmetric polynomials}
+obtained from incomparability graphs of $(3+1)$-free posets was proved by
+\name{Jacob P. Matherne}, \name{Alejandro H. Morales}, and
+\name{Jesse Selover} \cite{MatherneMoralesSelover2022x}.
+
+For more background and results, see \cite{WangZhangZhang2024x}.
+In \cite{NguyenNgocTuanHai2023}, the authors prove SNP for many families of
+symmetric functions, such as \hyperref[schurP]{Schur-$P$} and
+\hyperref[schurQ]{Schur-$Q$} polynomials, as well as many of the families
+above.  Moreover, they prove that $\operatorname{Newton}(f)$ has the
+\hyperref[polytopeIDP]{integer decomposition property} in many cases.
+
+
+\section[MConvexity]{$M$-convexity}
+
+A subset $J\subseteq\setN^n$ is \defin{$M$-convex}\label{mConvexSet} if for
+all $\alpha,\beta\in J$, and any index $i\in[n]$ with
+$\alpha_i>\beta_i$, there is some index $j$ with $\alpha_j<\beta_j$ and
+\[
+  \alpha-e_i+e_j\in J.
+\]
+Here $e_i$ is the $i^\thsup$ unit vector.  This is the integer-lattice version
+of the exchange axiom: for a \hyperref[matroid]{matroid}, the indicator
+vectors of the bases form an $M$-convex subset of $\{0,1\}^n$.
+
+\begin{theorem}[See \cite{DizierPhDThesis}]
+A homogeneous polynomial $f$ is $M$-convex if and only if $f$ has a saturated
+Newton polytope and this Newton polytope is a
+\hyperref[generalizedPermutohedron]{generalized permutohedron}.
+\end{theorem}
+
+\hyperref[key]{Key polynomials} are $M$-convex; this was conjectured earlier by
+\name{Cara Monical}, \name{Neriman Tokcan}, and \name{Alexander Yong}
+\cite{MonicalTokcanYong2019}, and proved in \cite{FanGuoPengSun2020}.
+In \cite{WangZhangZhang2024x}, it is proved that affine Stanley symmetric
+functions and cylindric skew Schur functions are $M$-convex.
+
+\name{Serena An}, \name{Katherine Tung}, and \name{Yuchong Zhang}
+characterize the support of dual Schubert polynomials as a Minkowski sum over
+the inversions of the indexing permutation \cite[Thm.~1.2]{AnTungZhang2024x}.
+This gives an elementary proof that dual Schubert polynomials are
+$M$-convex, have saturated Newton polytopes, and have Newton polytopes which
+are generalized permutohedra \cite[Cor.~1.3]{AnTungZhang2024x}.  They also
+give a combinatorial description of the vertices of these Newton polytopes.
+
+
+\section[newtonLorentzianBridge]{Relation with Lorentzian polynomials}
+
+The support condition in the definition of a
+\hyperref[lorentzianPolynomial]{Lorentzian polynomial} is exactly
+$M$-convexity.  Thus Lorentzian polynomials combine a discrete convex support
+condition with a Hessian-signature condition.  In particular, if $B$ is the set
+of bases of an integral \hyperref[polymatroids]{polymatroid}, then the
+normalized support polynomial
+\[
+  \sum_{\alpha\in B}
+  \frac{\xvec^\alpha}{\alpha_1!\alpha_2!\dotsm\alpha_n!}
+\]
+is Lorentzian \cite{BrandenHuh2020}.  For ordinary matroids this recovers the
+\hyperref[basisGeneratingPolynomial]{basis-generating polynomial}.

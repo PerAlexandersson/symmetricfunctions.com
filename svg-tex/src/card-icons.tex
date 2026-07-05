@@ -1195,4 +1195,29 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-newtonPolytopes}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Newton polygon with its lattice support points.
+  \draw[black!45, line width=0.35mm] (-0.62,-0.55) -- (-0.62,0.55);
+  \draw[black!45, line width=0.35mm] (-0.62,-0.55) -- (0.65,-0.55);
+  \foreach \x in {-0.62,-0.2,0.22,0.64} {
+    \draw[black!25, line width=0.25mm] (\x,-0.55) -- (\x,0.55);
+  }
+  \foreach \y in {-0.55,-0.18,0.19,0.56} {
+    \draw[black!25, line width=0.25mm] (-0.62,\y) -- (0.65,\y);
+  }
+  \filldraw[fill=iconblue!18, draw=iconblue, line width=0.85mm]
+    (-0.52,-0.46) -- (0.55,-0.46) -- (0.28,0.42)
+    -- (-0.38,0.26) -- cycle;
+  \node[node-blue] at (-0.52,-0.46) {};
+  \node[node-blue] at (-0.1,-0.46) {};
+  \node[node-blue] at (0.32,-0.46) {};
+  \node[node-blue] at (0.28,-0.09) {};
+  \node[node-blue] at (-0.38,0.26) {};
+  \node[node-blue] at (0.28,0.42) {};
+\end{tikzpicture}
+
+
 \end{document}
