@@ -26,16 +26,19 @@ We first fix the interlacing convention used throughout, following
 \begin{definition}[Interleaving polynomials]
 Let $f$ and $g$ be polynomials with positive leading coefficients and
 with real roots $\{f_{i}\}$ and $\{g_{i}\}$, respectively.
-We say that $f$ \defin{interlaces} $g$ if $\deg(f)+1=\deg(g)=d$ and
+We say that $f$ \defin{interlaces}\label{interlacesPolynomial} $g$
+if $\deg(f)+1=\deg(g)=d$ and
 \[
 g_1 \leq f_1 \leq g_2 \leq f_2 \leq \dotsm \leq  f_{d-1}\leq g_{d}.
 \]
-Moreover, we say that $f$ \defin{alternates left of} $g$ if
+Moreover, we say that $f$
+\defin{alternates left of}\label{alternatesLeftOf} $g$ if
 $\deg(f)=\deg(g)=d$ and
 \[
 f_1 \leq g_1 \leq f_2 \leq \dotsm \leq f_{d}\leq g_{d}.
 \]
-We say that $f$ \defin{interleaves} $g$ if either $f$ interlaces $g$ or
+We say that $f$ \defin{interleaves}\label{interleavesPolynomial} $g$
+if either $f$ interlaces $g$ or
 $f$ alternates left of $g$. We write this as $f \interl g$.
 By convention, $0 \interl 0$, $0 \interl h$ and $h \interl 0$ whenever
 $h$ is a polynomial with a positive leading coefficient.
@@ -126,10 +129,13 @@ $b(r) \lt 0$ whenever $f(r)=0$, then $f$ strictly interlaces $F$.
 It is fairly common to see sequences of polynomials, $\{ P_n(t) \}_{n \geq 0}$
 with the property that $P_j(t) \interl P_{j+1}(t)$ for all $j$.
 If the leading coefficient is always positive and $\deg(P_n)=n$,
-this is called a \defin{Sturm sequence}, see \cite{LiuWang2007}.
-If we drop the degree condition, the sequence is called a \defin{generalized Sturm sequence}.
+this is called a \defin{Sturm sequence}\label{sturmSequenceDefinition},
+see \cite{LiuWang2007}.
+If we drop the degree condition, the sequence is called a
+\defin{generalized Sturm sequence}\label{generalizedSturmSequence}.
 
-The notion of \defin{Sturm-unimodality} is defined in the analogous manner.
+The notion of \defin{Sturm-unimodality}\label{sturmUnimodality}
+is defined in the analogous manner.
 
 
 
@@ -139,7 +145,8 @@ There are many Sturm sequences on \hyperref[realRootedWords]{permutations} and \
 \subsection[bezoutMatrix]{Bézout matrices and Hurwitz--Lace}
 
 For arbitrary polynomials $f(t)$ and $g(t)$ with $\deg(f) = \deg(g)+1$,
-let $B(f,g)$ be the \defin{Bézout matrix}, whose $(i,j)$ entry is equal to the coefficient of $x^{i-1} y^{j-1}$ in the polynomial
+let $B(f,g)$ be the \defin{Bézout matrix}\label{bezoutMatrixDefinition},
+whose $(i,j)$ entry is equal to the coefficient of $x^{i-1} y^{j-1}$ in the polynomial
 \[
  \frac{f(x)g(y) - f(y)g(x)}{x-y}.
 \]
@@ -158,7 +165,8 @@ Let
 p_0(t)=a_0+a_1t+a_2t^2+\dotsb,\qquad
 p_1(t)=b_0+b_1t+b_2t^2+\dotsb
 \]
-have non-negative coefficients. Form the Hurwitz matrix
+have non-negative coefficients.  Form the
+\defin{Hurwitz matrix}\label{hurwitzMatrix}
 \[
 H(p_0,p_1)=
 \begin{pmatrix}
@@ -210,10 +218,12 @@ The following definitions are from \cite{Branden2015}.
 
 \begin{definition}[Interlacing sequences of polynomials]
 A sequence $\{f_1,f_2,\dotsc,f_n\}$ of polynomials with positive leading coefficients
-is said to be an \defin{interlacing sequence}
+is said to be an
+\defin{interlacing sequence}\label{interlacingSequenceDefinition}
 if $f_i \interl f_j$  for all $1\leq i \lt j \leq n$.
 
-We let \defin{$\mathscr{F}_n^+$} denote the family of interlacing
+We let \defin{$\mathscr{F}_n^+$}\label{positiveInterlacingFamily}
+denote the family of interlacing
 sequences of length $n$ with \emph{non-negative} coefficients.
 \end{definition}
 
@@ -242,7 +252,8 @@ $0 \leq i \lt p$ and $0 \leq j \lt q$, and write
  A_{ij}(x)=\sum_{n\geq 0} a_{ij}(n)x^n,
 \]
 with $a_{ij}(n)=0$ for $n \lt 0$.
-The infinite matrix $\operatorname{Lace}(A)$ has integer rows and columns.
+The infinite \defin{Lace matrix}\label{laceMatrix}
+$\operatorname{Lace}(A)$ has integer rows and columns.
 If
 \[
  u=pu' + i,\qquad v=qv' + j,\qquad 0\leq i \lt p,\quad 0\leq j \lt q,
@@ -256,7 +267,8 @@ coefficient-convolution matrix associated to multiplication by $A$.
 \end{definition}
 
 For a column vector $A=(A_0,A_1,\dotsc,A_{p-1})^T$, Athanasiadis--Wagner call
-the sequence \defin{fully interlacing} if $\operatorname{Lace}(A)$ is
+the sequence \defin{fully interlacing}\label{fullyInterlacingSequence}
+if $\operatorname{Lace}(A)$ is
 \hyperref[totallyNonnegative]{totally non-negative}.  Thus every finite minor
 of this infinite coefficient-convolution matrix is non-negative.
 
@@ -364,7 +376,8 @@ the conditions in the theorem above.
 
 Chudnovsky and Seymour introduced a concept closely related to interleaving
 sequences of polynomials. The polynomials $f_1,\dotsc,f_k \in \setR[z]$
-have a \defin{common interlacing} if there is some $h \in \setR[z]$
+have a \defin{common interlacing}\label{commonInterlacing}
+if there is some $h \in \setR[z]$
 with $h \interl f_j$ for all $j$.
 
 \begin{theorem}[Obreschkoff--Dedieu, see
@@ -385,7 +398,8 @@ non-negative compatibility theorem below.
 
 Let $\{f_1,f_2,\dotsc,f_n\}$ be a set of real-rooted polynomials with
 \emph{positive} leading coefficients.
-Such a set is said to be \defin{compatible} if for all
+Such a set is said to be \defin{compatible}\label{compatiblePolynomialSet}
+if for all
 choices $\lambda_j\geq 0$, the sum $\sum_{j=1}^n \lambda_j f_j$ is real-rooted.
 
 Then the following are equivalent:
@@ -468,7 +482,8 @@ Then there are unique polynomials $a,b \in \setR[x]$ such that
 \[
  p(x) = a(x) + x b(x), \qquad I_d(a)=a, \qquad I_{d-1}(b)=b.
 \]
-This is the \defin{symmetric $I_d$-decomposition} of $p$, and it is given
+This is the \defin{symmetric $I_d$-decomposition}\label{symmetricIDecomposition}
+of $p$, and it is given
 explicitly by
 \[
  a = \frac{p - x I_d(p)}{1-x}, \qquad b = \frac{I_d(p)-p}{1-x}.
@@ -568,13 +583,15 @@ real-rootedness, then $\phi$ preserves the interleaving property:
 Another operator with strong interlacing properties is the following.
 Let $d_n(x)$ denote the classical
 \hyperref[peakRunDerangementPolynomials]{derangement polynomial}, and define
-the linear map $D : \setR[x] \to \setR[x]$ by
+the \defin{derangement transformation}\label{derangementTransformation}
+$D : \setR[x] \to \setR[x]$ by
 \[
  D(x^n) \coloneqq d_n(x).
 \]
 If $p$ and $q$ are degree-$n$ polynomials with roots
 $\alpha_1 \leq \dotsb \leq \alpha_n$ and $\beta_1 \leq \dotsb \leq \beta_n$
-in $[-1,0]$, write $p \leq_{\mathrm{root}} q$ if
+in $[-1,0]$, write
+\defin{root order}\label{rootOrder} $p \leq_{\mathrm{root}} q$ if
 $\alpha_k \leq \beta_k$ for all $k$.
 
 \begin{theorem}[Brändén--Solus, \cite[Thm.~3.6]{BrandenSolus2018}]
