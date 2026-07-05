@@ -53,7 +53,9 @@ expansion of chromatic symmetric functions in the
 and later the refined conjecture by \name{John Shareshian}
 and \name{Michelle Wachs} in \cite{ShareshianWachs2012,ShareshianWachs2016}.
 These conjectures are referred to as
-the \hyperref[chromaticQuasisymmetricElementaryExpansion]{Stanley--Stembridge conjecture and Shareshian--Wachs conjecture}, respectively.
+the \hyperref[stanleyStembridgeConjecture]{Stanley--Stembridge conjecture}
+and the \hyperref[shareshianWachsConjecture]{Shareshian--Wachs conjecture},
+respectively.
 Shareshian and Wachs also conjectured that $\omega \chrom_G(\xvec;q)$ is
 \hyperref[dotAction]{related to
 the equivariant cohomology of regular semisimple Hessenberg varieties}.
@@ -84,16 +86,19 @@ $X_{K_{\setN,1}}(G)$ is Stanley's chromatic symmetric function and the whole
 family is a complete invariant for finite graphs.
 
 \name{Logan Crew}, \name{Evan Haithcock}, \name{Josephine Reynes}, and
-\name{Sophie Spirkl} introduce a chromatic multisymmetric function for graphs
-whose vertex set is partitioned into parts \cite{CrewHaithcockReynesSpirkl2024}.
+\name{Sophie Spirkl} introduce a
+\defin{chromatic multisymmetric function}\label{chromaticMultisymmetricFunction}
+for graphs whose vertex set is partitioned into parts
+\cite{CrewHaithcockReynesSpirkl2024}.
 They use homogeneous sets and homogeneous pairs to turn known relations for
 ordinary chromatic symmetric functions into new ones, including a
 generalization of Guay-Paquet's reduction of the Stanley--Stembridge
 conjecture to unit interval graphs.
 
 \name{Farid Aliniaeifard}, \name{Victor Wang}, and
-\name{Stephanie van Willigenburg} define a centered chromatic symmetric
-function $y_{G:v}$ using a quotient of noncommutative symmetric functions
+\name{Stephanie van Willigenburg} define a
+\defin{centered chromatic symmetric function}\label{centeredChromaticSymmetricFunction}
+$y_{G:v}$ using a quotient of noncommutative symmetric functions
 \cite{AliniaeifardWangWilligenburg2024}.  This viewpoint gives new
 $e$-positive unit interval graph families, operations preserving the stronger
 centered positivity property, and noncommutative refinements of sink-counting
@@ -111,7 +116,8 @@ Let $G$ be an \defin{oriented graph}\label{orientedGraph} with $n$ vertices.
 Given a vertex-coloring $\kappa:G\to \setP$,
 let $\asc(\kappa)$ denote the number of directed edges $(u,v)$ in $G$ such that $\kappa(u) \lt \kappa(v)$.
 
-The \defin{chromatic quasisymmetric function} of $G$ is defined as
+The \defin{chromatic quasisymmetric function}\label{chromaticQuasisymmetricFunction}
+of $G$ is defined as
 \[
 \chrom_G(\xvec;q) \coloneqq
 \sum_{\substack{\kappa : G\to \setP \\ \kappa \text{ proper}} } x_{\kappa(1)}\dotsm x_{\kappa(n)} q^{\asc(\kappa)},
@@ -131,12 +137,14 @@ $\chi_G(k)$ is given by the specialization $\chrom_G(1^k;1)$.
 See \cite{SaganVatter2021} for a nice article with bijective proofs of
 properties of $\chi_G(k)$.
 \name{Zhiyun Cheng}, \name{Ziyi Lei}, \name{Yitian Wang}, and
-\name{Yanguo Zhang} construct a cohomology theory for the signed chromatic
-polynomial of a signed graph \cite{ChengLeiWangZhang2022}.  Its graded Euler
+\name{Yanguo Zhang} construct a cohomology theory for the
+\defin{signed chromatic polynomial}\label{signedChromaticPolynomial}
+of a signed graph \cite{ChengLeiWangZhang2022}.  Its graded Euler
 characteristic is the signed chromatic polynomial, and its long exact sequence
 categorifies signed deletion--contraction.
-\name{Jean-Christophe Aval} and \name{Raquel Melgar} introduce chromatic
-quasisymmetric functions for signed graphs \cite{AvalMelgar2025x}.  Their
+\name{Jean-Christophe Aval} and \name{Raquel Melgar} introduce
+\defin{chromatic quasisymmetric functions for signed graphs}\label{signedChromaticQuasisymmetricFunction}
+\cite{AvalMelgar2025x}.  Their
 construction is guided by Zaslavsky's signed-graph hyperplane arrangements and
 leads to an algebra of signed quasisymmetric functions.
 
@@ -275,11 +283,12 @@ They show that symmetry of a product of quasisymmetric functions forces each
 factor to be symmetric, reduce the problem to connected graphs, and prove that
 directed trees other than directed paths have nonsymmetric chromatic
 quasisymmetric functions.
-\name{Laura Colmenarejo} and \name{Ian Klein} introduce total chromatic
-quasisymmetric functions of graphs \cite{ColmenarejoKlein2026x}.  One variant
-normalizes over all vertex labelings, while another is built from acyclic
-orientations; the paper compares their monomial-quasisymmetric expansions and
-gives explicit formulas for star graphs.
+\name{Laura Colmenarejo} and \name{Ian Klein} introduce
+\defin{total chromatic quasisymmetric functions}\label{totalChromaticQuasisymmetricFunction}
+of graphs \cite{ColmenarejoKlein2026x}.  One variant normalizes over all
+vertex labelings, while another is built from acyclic orientations; the paper
+compares their monomial-quasisymmetric expansions and gives explicit formulas
+for star graphs.
 
 
 \subsection[chromaticQuasisymmetricReciprocity]{Reciprocity}
@@ -479,10 +488,12 @@ The authors also characterize all Schur-positive complete tripartite graphs.
 
 \subsection[chromaticQuasisymmetricElementaryExpansion]{Elementary symmetric expansion}
 
-The Stanley--Stembridge conjecture (1993) is a long-standing open problem in
-algebraic combinatorics, first formulated in \cite{StanleyStembridge1993}
-and \cite{Stanley1995} (for $q=1$). A refinement using the general
-$q$-parameter was presented in \cite[Conj.~4.9]{ShareshianWachs2012}.
+The \defin{Stanley--Stembridge conjecture}\label{stanleyStembridgeConjecture}
+(1993) is a long-standing open problem in algebraic combinatorics, first
+formulated in \cite{StanleyStembridge1993} and \cite{Stanley1995} (for $q=1$).
+The \defin{Shareshian--Wachs conjecture}\label{shareshianWachsConjecture}
+is the refinement using the general $q$-parameter, presented in
+\cite[Conj.~4.9]{ShareshianWachs2012}.
 Positivity in the elementary symmetric function basis (for $q=1$) was proved
 by \name{Tatsuyuki Hikita}.
 For a survey on expansions in the elementary symmetric function basis, see
@@ -554,9 +565,10 @@ coefficients from induced subgraphs.  They also explain the algorithm of
 and \name{Jos{\'e} Zamora} as a special case of their method.
 
 In \cite[Thm.~1.3]{HasebeTsujie2017}, it is proved that \emph{ordered trees}
-are distinguished by their order quasisymmetric function, where the rooted
-tree is viewed as a \hyperref[posets]{poset} and colors increase away from the
-root.
+are distinguished by their
+\defin{order quasisymmetric function}\label{orderQuasisymmetricFunction},
+where the rooted tree is viewed as a \hyperref[posets]{poset} and colors
+increase away from the root.
 Both the weakly increasing and strictly increasing versions of the
 quasisymmetric function distinguish ordered trees.
 The work by \name{Takahiro Hasebe} and \name{Shuhei Tsujie} is continued in \cite{Zhou2020x},
@@ -573,7 +585,8 @@ See also \cite{FoleyKazdanKrollAlbergaMelnykTenenbaum2021x}.
 
 
 There is a variant of Stanley's CSF defined for \emph{rooted trees},
-and this rooted version is shown to distinguish non-isomorphic trees, see \cite{LoehrWarrington2024}.
+and this rooted version is shown to distinguish non-isomorphic trees, see
+\cite{LoehrWarrington2024}.
 
 
 Chromatic symmetric functions associated with trees are in general not
@@ -597,7 +610,8 @@ are shown to be \hyperref[schurPositivity]{Schur-positive} in \cite{ThibonWang20
 The approach uses non-commutative ideas.
 
 \name{Esme Bajo}, \name{Matthias Beck}, and
-\name{Andrés R. Vindas-Meléndez} define $q$-chromatic polynomials by
+\name{Andrés R. Vindas-Meléndez} define
+\defin{$q$-chromatic polynomials}\label{qChromaticPolynomial} by
 weighting proper colorings with $q^{\sum_v \lambda_v c(v)}$
 \cite{BajoBeckVindasMelendez2024x}.  These polynomials specialize to the
 ordinary chromatic polynomial at $q=1$ and, for $\lambda=(1,\dotsc,1)$, to a
