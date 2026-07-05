@@ -87,6 +87,8 @@ satisfying the following three properties:
 \item $r(X) \leq r(Y)$ for all $X\subseteq Y \subseteq E$;
 \item $r(X \cup Y) + r(X \cap Y) \leq r(X)+r(Y)$, whenever $X,Y \subseteq E$.
 \end{itemize}
+The third condition says that the rank function is
+\hyperref[submodularFunction]{submodular}.
 
 A set is an independent set if $r(X)=|X|$.
 The bases of a matroid are all independent sets of maximal rank.
@@ -397,7 +399,7 @@ A \defin{positroid} is a matroid on a cyclically ordered ground set that is
 represented by a \hyperref[totallyNonnegative]{totally nonnegative matrix}.
 Positroids were introduced by
 \name{Alexander Postnikov} in the study of the totally nonnegative
-Grassmannian \cite{Postnikov2006x}.
+\hyperref[grassmannianVarieties]{Grassmannian} \cite{Postnikov2006x}.
 
 They form a minor-closed family of representable matroids, closed also under
 duality and cyclic shifts of the ground set. Important examples include
@@ -566,7 +568,7 @@ set; see \hyperref[positroidPolytopes]{positroid polytopes}.
 
 \name{Jesús A. De Loera}, \name{David C. Haws}, and
 \name{Matthias Köppe} study Ehrhart polynomials of matroid polytopes and
-polymatroids \cite{DeLoera2008}.  For fixed rank, their methods compute these
+\hyperref[polymatroids]{polymatroids} \cite{DeLoera2008}.  For fixed rank, their methods compute these
 Ehrhart polynomials in polynomial time; their examples also show that the
 Ehrhart polynomial of a matroid base polytope is not a deletion-contraction
 invariant.
@@ -578,8 +580,9 @@ Several special families are now understood in more detail.
 matroids, including positivity results and Kohnert-diagram formulas
 \cite{FanLi2023}.  \name{Derek Hanely}, \name{Jeremy L. Martin},
 \name{Daniel McGinnis}, \name{Dane Miyata}, \name{George D. Nasr},
-\name{Andrés R. Vindas-Meléndez}, and \name{Mei Yin} treat paving and
-panhandle matroids \cite{HanelyMartinMcGinnisMiyataNasrVindasMelendezYin2023},
+\name{Andrés R. Vindas-Meléndez}, and \name{Mei Yin} treat
+\hyperref[pavingMatroid]{paving matroids} and panhandle matroids
+\cite{HanelyMartinMcGinnisMiyataNasrVindasMelendezYin2023},
 while \name{Danai Deligeorgaki}, \name{Daniel McGinnis}, and
 \name{Andrés R. Vindas-Meléndez} give Ehrhart bounds for these families using
 chain forests \cite{DeligeorgakiMcGinnisVindasMelendez2023x}.
@@ -761,7 +764,7 @@ Several matroid-related topics have their own pages on this site.  See
 rook, and snake matroids, \hyperref[positroid]{positroids} for the
 totally nonnegative Grassmannian side, and
 \hyperref[stablePolynomial]{stable polynomials} for the half-plane property
-and basis-generating polynomials.  For saturated Newton polytopes and the
+and \hyperref[basisGeneratingPolynomial]{basis-generating polynomials}.  For saturated Newton polytopes and the
 $M$-convex exchange condition generalizing matroid bases, see
 \hyperref[newtonPolytopes]{Newton polytopes and $M$-convexity}.  The
 \hyperref[lgvLemma]{Lindström--Gessel--Viennot lemma} also appears in several
@@ -793,7 +796,7 @@ settle Dowling's polynomial conjecture for independent sets of matroids using
 \hyperref[lorentzianPolynomial]{Lorentzian polynomials}
 \cite{CaoChenLiWu2026x}.  \name{Jeffrey Giansiracusa},
 \name{Felipe Rincón}, \name{Victoria Schleis}, and \name{Martin Ulirsch}
-extend log-concavity results to independent sets of valuated matroids
+extend log-concavity results to independent sets of \hyperref[valuatedMatroid]{valuated matroids}
 \cite{GiansiracusaRinconSchleisUlirsch2024x}.
 
 For the half-plane property and stability perspective, see also
@@ -856,7 +859,8 @@ characterize \defin{strong $\Delta$-matroids} by several equivalent exchange
 and antipode conditions, and relate peerless antipode equations to
 tropicalizations of quadrics for the orthogonal Grassmannian
 \cite{CalvertDermenjianFinkSmith2026x}.  \name{Jon Pål Hamre} connects sparse
-paving matroids with Schubert coefficients \cite{Hamre2024x}.
+\hyperref[pavingMatroid]{paving matroids} with Schubert coefficients
+\cite{Hamre2024x}.
 
 \name{Matthew Baker}, \name{Hope Dobbelaere}, \name{Brennan Fullmer}, and
 \name{Patrik Gajdoš} introduce matroid bingo as a characterization of matroids
