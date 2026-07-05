@@ -22,8 +22,9 @@
   SignedIn & completeFlaggedHomogeneous | Ehrhard2023x | proof=Thm. 7.6 \\
 \end{polydata}
 
-The \defin{key polynomials}, also known as \defin{Demazure characters},
-form a family of nonsymmetric polynomials, indexed by
+The \defin{key polynomials}\label{keyPolynomial}, also known as
+\defin{Demazure characters}\label{demazureCharacter}, form a family of
+nonsymmetric polynomials, indexed by
 \hyperref[weakCompositions]{weak compositions}, or alternatively, by an
 integer partition and a permutation.  The set
 $\{ \key_\alpha(x_1,\dotsc,x_n) \}_\alpha$, where $\alpha$ ranges over all
@@ -36,7 +37,8 @@ Demazure characters were introduced in \cite{Demazure1974nouvelle,Demazure1974}.
 Geometrically, they are characters of Demazure modules associated with
 Schubert varieties in the \hyperref[flagVarieties]{flag variety}; see
 \hyperref[varietiesForKeys]{varieties in algebraic combinatorics}.
-Later, a combinatorial formula using so-called \defin{key tableaux} was discovered in
+Later, a combinatorial formula using so-called
+\defin{key tableaux}\label{keyTableau} was discovered in
 \cite{Lascoux1990Keys}.
 Key polynomials are also given as a specialization of \hyperref[macdonaldE]{nonsymmetric Macdonald polynomials},
 see \cite{HaglundHaimanLoehr2008}, and this gives several combinatorial
@@ -89,12 +91,14 @@ symmetric functions.
 
 \subsection[keyDefinitionOperators]{Definition (Operators)}
 
-Define the \hyperref[schubertOperatorformula]{divided difference operator}
+Define the \hyperref[dividedDifferenceOperators]{divided difference operator}
 $\partial_i$ as
 \[
  \partial_i(f) = \frac{f - s_i(f)}{z_i - z_{i+1}},
 \]
-and let $\pi_i(f) \coloneqq \partial_i(z_i f)$ for $i=1,\dotsc,n-1$ whenever
+and let the \defin{isobaric divided difference operator}
+\label{isobaricDividedDifferenceOperator} be
+$\pi_i(f) \coloneqq \partial_i(z_i f)$ for $i=1,\dotsc,n-1$ whenever
 $f \in \setC[z_1,\dotsc,z_n]$.
 One can show that $\pi_i^2 = \pi_i$ and that they satisfy the
 \hyperref[braidRelations]{braid relations}.
@@ -110,7 +114,8 @@ This is well-defined, as the action of $\pi_\sigma$ is independent of the choice
 Let $\lambda$ be a partition with at most $n$ parts, and let $\sigma \in \symS_n$.
 In fact, we can choose $\sigma$ to be the \emph{minimal coset representation} for
 the parabolic subgroup $W_J \subseteq \symS_n$ that fixes $\lambda$.
-The \defin{key polynomial} $\key_{\lambda,\sigma}(z)$ is defined as
+The \defin{key polynomial}\label{keyPolynomialOperatorDefinition}
+$\key_{\lambda,\sigma}(z)$ is defined as
 \begin{equation*}
  \key_{\lambda,\sigma}(z) \coloneqq \pi_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
 \end{equation*}
@@ -198,7 +203,7 @@ $w(G) = (w_1, \dotsc, w_n)$ where
 $w_k = \sum_j x_{k,j} - \sum_j x_{k-1,j}$
 (row sum differences, with $\sum_j x_{0,j} = 0$).
 
-\begin{definition}[Kogan face]\label{def:koganFace}
+\begin{definition}[Kogan face]\label{def:koganFace}\label{koganFace}
 A \defin{Kogan face} of $\GT(\lambda)$ is obtained by forcing
 a subset of the \emph{left-interlacing} inequalities to equalities:
 $x_{i+1,j} = x_{i,j}$
@@ -220,11 +225,14 @@ inequality is forced to equality.
 
 
 \begin{definition}[Reduced Kogan face and type]\label{def:reducedKogan}
+\label{reducedKoganFace}
 Given a Kogan face, we read the associated transpositions row by row from bottom to top.
 Within each row, we read from left to right.
 If the resulting word $s_{a_1} s_{a_2} \dotsm s_{a_\ell}$
-is a \hyperref[reducedWord]{reduced word} the Kogan face is called \defin{reduced}.
-Its \defin{type} is the permutation $\sigma = s_{a_1} s_{a_2} \dotsm s_{a_\ell} \in \symS_n$.
+is a \hyperref[reducedWord]{reduced word} the Kogan face is called
+\defin{reduced}.
+Its \defin{type}\label{koganType} is the permutation
+$\sigma = s_{a_1} s_{a_2} \dotsm s_{a_\ell} \in \symS_n$.
 \end{definition}
 
 \begin{remark}
@@ -292,8 +300,8 @@ The connection to Kogan faces uses the product $w_0 \sigma$,
 where we use function composition:
 $(w_0 \sigma)(i) = w_0(\sigma(i))$, i.e., $\sigma$ acts first.
 
-\begin{theorem}[Kiritchenko--Smirnov--Timorin {\cite[Thm. 2.2]{KiritchenkoSmirnovTimorin2010}}]
-\label{thm:keyGT}
+\begin{theorem}[Kiritchenko--Smirnov--Timorin {\cite[Thm.~2.2]{KiritchenkoSmirnovTimorin2010}}]
+\label{thm:keyGT}\label{keyGelfandTsetlinFormula}
 Define
 \[
   \GT(\lambda, \sigma) \coloneqq
@@ -412,7 +420,8 @@ the combinatorial model for the permuted basement Macdonald polynomials.
 
 
 \begin{definition}
-A \defin{semistandard augmented filling} of shape $\alpha = (\alpha_1,\dotsc,\alpha_n)$
+A \defin{semistandard augmented filling}\label{semistandardAugmentedFilling}
+of shape $\alpha = (\alpha_1,\dotsc,\alpha_n)$
 is a non-attacking filling of the diagram with shape $\alpha$,
 basement $\sigma = [n,n-1,\dotsc,2,1]$ such that all rows (including the basement)
 are weakly decreasing, and there are no coinversion triples.
@@ -523,7 +532,8 @@ elementary monomials below is closely related to the chain constructions of
 
 \subsection[keyDefinitionSSYT]{Definition (SSYT)}
 
-A \defin{key} is a semistandard tableau, with the property
+A \defin{key tableau}\label{keyTableauSSYTDefinition} is a semistandard
+tableau, with the property
 that the entries in column $j+1$ are a subset of the entries in column $j$, for all $j$.
 
 Below is the unique key tableau with weight $(1,3,0,1,2,4)$:
@@ -547,7 +557,8 @@ Coxeter combinatorics to spherical Schubert geometry
 \cite{HodgesYong2020Spherical}.
 
 
-Given a semistandard tableau $T$, we can compute its \defin{right key} $K_+(T)$,
+Given a semistandard tableau $T$, we can compute its
+\defin{right key}\label{rightKey} $K_+(T)$,
 via a rather involved process. A simpler method is proved in \cite{Mason2009}.
 The key polynomial can then be computed by
 \[
@@ -713,7 +724,8 @@ Demazure atoms gives an atom-positive expansion of skew key polynomials.
 \end{polydata}
 
 \name{Henry Ehrhard} \cite{Ehrhard2023x} introduces
-\defin{complete flagged homogeneous polynomials}.  For a weak composition
+\defin{complete flagged homogeneous polynomials}
+\label{completeFlaggedHomogeneousPolynomial}.  For a weak composition
 $a=(a_1,a_2,\dotsc)$, they are defined by
 \[
 h_a(\xvec) \coloneqq \prod_{i\geq 1} \completeH_{a_i}(x_1,\dotsc,x_i).
@@ -746,7 +758,7 @@ complete flagged homogeneous basis.
   PositiveIn & fundamentalParticle | Searles2019PolynomialBases,HicksNiese2024x | proof=Thm. 3.14 and Cor. 3.11 \\
 \end{polydata}
 
-The Demazure atoms (originally called \defin{standard bases})
+The Demazure atoms (originally called \defin{standard bases}\label{standardBasis})
 may be defined in a manner similar to \hyperref[keyDefinitionOperators]{key polynomials} using operators.
 They were introduced by \name{Alain Lascoux} and \name{Marcel-Paul Schützenberger} in \cite{Lascoux1990Keys}.
 Mason's semistandard augmented filling model gives a positive monomial
@@ -770,7 +782,8 @@ so we must now pay extra attention to choices of permutations.
 
 Let $\lambda$ be a partition with at most $n$ parts, and let $\sigma \in \symS_n$
 be a minimal coset representative in $\symS_n / Stab_n(\lambda)$.
-The \defin{Demazure atom} $\atom_{\lambda,\sigma}(z)$ is defined as
+The \defin{Demazure atom}\label{demazureAtom} $\atom_{\lambda,\sigma}(z)$ is
+defined as
 \begin{equation*}
  \atom_{\lambda,\sigma}(z) \coloneqq \theta_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
 \end{equation*}
@@ -796,7 +809,7 @@ Similarly,
 
 Since $\pi_i = \theta_i+1$, one can easily show that key polynomials are
 positive in the Demazure atom basis.
-In fact we have that (see \cite[Thm. 2.8]{Pun2016Thesis})
+In fact we have that (see \cite[Thm.~2.8]{Pun2016Thesis})
 \[
 	\key_{\alpha}(z) = \sum_{\beta \leq \alpha} \atom_{\beta}(z),
 \]
@@ -837,10 +850,11 @@ crystal setting.
 
 \subsection[atomCauchyKernel]{Cauchy kernel}
 
-A bijective proof of the Cauchy-type identity below is given in \cite[Thm. 6]{Lascoux2003}.
+A bijective proof of the Cauchy-type identity below is given in
+\cite[Thm.~6]{Lascoux2003}.
 The proof uses the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}.
 
-\begin{theorem}[See \cite[Thm. 6]{Lascoux2003}]
+\begin{theorem}[See \cite[Thm.~6]{Lascoux2003}]
 We have that
 \[
 \prod_{i+j \leq n+1} (1-x_iy_j)^{-1} =
@@ -878,7 +892,8 @@ See also \cite{AzenhasGobetLecouvey2022x} for the connection between the Cauchy 
 
 \begin{example}[Personal communication, Vasu Tewari 2019]
 Recall the Cauchy identity for
-\hyperref[schubert]{Schubert polynomials} (see e.g. \cite[p. 30]{PostnikovStanley2008}).
+\hyperref[schubert]{Schubert polynomials} (see e.g.
+\cite[p.~30]{PostnikovStanley2008}).
 \[
  \sum_{w \in \symS_n} \schubert_w(\xvec) \schubert_{w w_0}(\yvec) = \prod_{i+j \leq n} (1 + x_iy_j) =
  \prod_{k=1}^{n-1}\sum_{j=0}^k y_{n-k}^{k-j} \elementaryE_{j}(x_1,\dotsc,x_k).
