@@ -192,7 +192,8 @@ polynomial is recovered from it by Möbius inversion on an associated poset.
 
 
 There is an expression for Grothendieck polynomials using
-alternating sign matrices, due to \name{Alain Lascoux}.
+\hyperref[alternatingSignMatrix]{alternating sign matrices}, due to
+\name{Alain Lascoux}.
 
 
 \section[grothendieckStable]{Stable Grothendieck polynomials}
@@ -213,7 +214,9 @@ alternating sign matrices, due to \name{Alain Lascoux}.
   SignedIn & schurS | Lascoux2001 \\
 \end{polydata}
 
-The \defin{stable Grothendieck polynomials} were introduced by \name{Sergey Fomin} and \name{Anatoly Kirillov} in \cite{FominKirillov1994grothendieck,FominKirillov1996YangBaxter}.
+The \defin{stable Grothendieck polynomials}\label{stableGrothendieckPolynomial}
+were introduced by \name{Sergey Fomin} and \name{Anatoly Kirillov} in
+\cite{FominKirillov1994grothendieck,FominKirillov1996YangBaxter}.
 Similar to \hyperref[stanleySymLimitDefinition]{Stanley symmetric functions},
 the stable Grothendieck polynomials are defined as the limit
 \begin{equation*}
@@ -537,7 +540,9 @@ crystal-theoretic route to Grothendieck positivity.
 
 
 
-The \defin{double Grothendieck polynomials} are defined via divided difference operators, $\pi_i$,
+The \defin{double Grothendieck polynomials}\label{doubleGrothendieckPolynomial}
+are defined via \hyperref[dividedDifferenceOperators]{divided difference operators},
+$\pi_i$,
 defined by
 \[
 \pi_i(f) \coloneqq \frac{ (1+\beta x_{i+1})f-(1+\beta x_i)s_i(f)}{x_i - x_{i+1}},
@@ -572,9 +577,11 @@ product stability numbers, and their work gives another proof of a finiteness
 conjecture for products of back stable Grothendieck polynomials.
 \name{Allen Knutson}, \name{Ezra Miller}, and \name{Alexander Yong} obtain a
 formula for double Grothendieck polynomials of vexillary permutations using
-flagged set-valued tableaux \cite{KnutsonMillerYong2009}.  The proof gives
+\defin{flagged set-valued tableaux}\label{flaggedSetValuedTableau}
+\cite{KnutsonMillerYong2009}.  The proof gives
 a geometric interpretation through Gröbner degenerations of vexillary matrix
-Schubert varieties and geometric vertex decompositions.
+\hyperref[schubertVarietiesAndMatroids]{Schubert varieties} and geometric
+vertex decompositions.
 \name{Tomoo Matsumura} gives a tableau formula for double Grothendieck
 polynomials attached to $321$-avoiding permutations \cite{Matsumura2020}.
 The proof checks compatibility with the $K$-theoretic divided difference
@@ -713,7 +720,8 @@ type rule for canonical stable Grothendieck functions \cite{Kundu2025x}.
 \end{polydata}
 
 
-In \cite{LenartMaeno2006}, the authors introduce the \defin{quantum double Grothendieck polynomials}.
+In \cite{LenartMaeno2006}, the authors introduce the
+\defin{quantum double Grothendieck polynomials}\label{quantumDoubleGrothendieckPolynomial}.
 
 \name{Satoshi Naito} and \name{Daisuke Sagaki} prove a Pieri-type
 multiplication formula for quantum Grothendieck polynomials
@@ -743,7 +751,8 @@ of the full flag manifold.
 
 In \cite{MatsumuraSugimoto2019}, the authors consider a
 generalization of the \hyperref[grothendieckGrassmann]{Grassmann Grothendieck polynomials}.
-They introduce the \defin{flagged factorial Grothendieck polynomials},
+They introduce the
+\defin{flagged factorial Grothendieck polynomials}\label{flaggedFactorialGrothendieckPolynomial},
 indexed by a partition $\lambda$ with $r$ parts and a flag $f = (0 \lt f_1 \leq f_2 \leq \dotsb \leq f_r)$.
 We then let
 \[
@@ -827,7 +836,7 @@ sums of meets or joins.
 \subsection[grothendieckDualStableBialternant]{Bialternant formula}
 
 
-A \defin{bialternant formula} for the dual stable Grothendieck polynomials
+A \defin{bialternant formula}\label{bialternantFormula} for the dual stable Grothendieck polynomials
 is proved in \cite[Thm.~17]{Yeliussizov2019}.
 It states that
 \begin{align}
@@ -879,7 +888,8 @@ distributions and introduces related distributions connected with the corner
 growth model.
 
 There is also a Jacobi--Trudi identity for the
-\defin{skew dual stable Grothendieck polynomials}, originally conjectured by
+\defin{skew dual stable Grothendieck polynomials}\label{skewDualStableGrothendieckPolynomial},
+originally conjectured by
 \name{Darij Grinberg}.
 A proof was later presented by \name[J. S. Kim]{Jang Soo Kim}
 \cite{Kim2021RefinedDualGrothendieckJT}.
@@ -898,7 +908,7 @@ The skew Jacobi--Trudi identity states that
 
 
 The skew Jacobi--Trudi identity extends to the family
-of \defin{refined dual stable Grothendieck polynomials},
+of \defin{refined dual stable Grothendieck polynomials}\label{refinedDualStableGrothendieckPolynomial},
 introduced in \cite{GalashinGrinbergLiu2016}, see
 \cite{Kim2021RefinedDualGrothendieckJT,AmanovYeliussizov2020} for proofs.
 \name[J. S. Kim]{Jang Soo Kim} later proves Jacobi--Trudi formulas for
@@ -913,7 +923,8 @@ In \cite[Thm.~9.8]{LamPylyavskyy2007combinatorialhopf}, the authors show that
 \[
 \grothendieckDual_\lambda(\xvec) = \sum_\mu f^\mu_\lambda \schurS_\mu(\xvec)
 \]
-where $f^\mu_\lambda$ is the number of \defin{elegant fillings} of shape $\lambda/\mu$.
+where $f^\mu_\lambda$ is the number of
+\defin{elegant fillings}\label{elegantFilling} of shape $\lambda/\mu$.
 A filling is elegant if it is semistandard, and all entries in row $i$ are in $1,\dotsc,i-1$.
 See also \cite{Galashin2017} for a crystal proof.
 
@@ -944,7 +955,8 @@ can be realized as a column distribution of a directed last-passage percolation 
 \end{polydata}
 
 
-The \defin{refined dual stable Grothendieck polynomials} were introduced in \cite{GalashinGrinbergLiu2016}.
+The refined dual stable Grothendieck polynomials were introduced in
+\cite{GalashinGrinbergLiu2016}.
 The authors define them as
 \[
 \grothendieckRefinedDualStable_\lambda(\xvec;\tvec) \coloneqq
@@ -955,7 +967,8 @@ and $b(T)_j$ is the number of boxes in row $j$ whose entry is equal to the entry
 the box immediately below it.
 
 
-In \cite{Yeliussizov2019}, the \defin{generalized dual stable Grothendieck polynomials}
+In \cite{Yeliussizov2019}, the
+\defin{generalized dual stable Grothendieck polynomials}\label{generalizedDualStableGrothendieckPolynomial}
 are defined:
 \[
 \grothendieckDual_\lambda(\xvec;\zvec)
