@@ -79,6 +79,39 @@ control the expansion in the \hyperref[gessel]{fundamental quasisymmetric}
 basis.
 \end{example*}
 
+\section[pEulerianPolynomial]{$P$-Eulerian polynomials}
+
+Let $(P,w)$ be a labeled poset.  The
+\defin{$P$-Eulerian polynomial}\label{pEulerianPolynomial} is the descent
+generating polynomial of the Jordan--Hölder set:
+\[
+  W_{P,w}(t)
+  \coloneqq
+  \sum_{\sigma\in\mathcal{L}(P,w)} t^{|\DES(\sigma)|}.
+\]
+If the labeling is understood, or if $P$ is naturally labeled, we often write
+$W_P(t)$.
+
+\begin{example*}
+For the naturally labeled poset $1,2\lt 3$, the Jordan--Hölder set is
+$\{123,213\}$.  Thus
+\[
+  W_P(t)=1+t,
+\]
+because $123$ has no descent and $213$ has one descent.  With the relabeling
+from the previous example, the Jordan--Hölder set is $\{231,321\}$, so the
+corresponding labeled-poset Eulerian polynomial is $t+t^2$.
+\end{example*}
+
+The $P$-Eulerian polynomial appears in the Ehrhart theory of
+\hyperref[orderPolytope]{order polytopes}: the $h^*$-polynomial of
+$\mathcal{O}(P)$ is the $P$-Eulerian polynomial for a natural labeling.  This
+is the bridge between linear extensions, descent statistics, and
+\hyperref[posetRealRooted]{real-rootedness questions for posets}.  A famous
+question in this direction was the
+\hyperref[neggersStanleyConjecture]{Neggers--Stanley conjecture}, which asked
+for real-rootedness of these polynomials in broad generality.
+
 \section[posetIdeals]{Order ideals, filters and antichains}
 
 An \defin{order ideal}\label{orderIdeal} of a poset $P$ is a subset
