@@ -64,7 +64,7 @@ where $T_1$ is the first row of $T$ and $T_{2\sim}$ denotes the SSYT with the fi
 removed.
 \begin{enumerate}
 \item If $T = \emptyset$, then $T \leftarrow k$ is just the tableau \ytableaushort{k}.
-\item If $k$ is not smaller than the largest entry in $T_1$, 
+\item If $k$ is not smaller than the largest entry in $T_1$,
 then $T  \leftarrow k$ is given by appending $k$ at the end of the first row of $T$.
 \item Otherwise, find the leftmost entry in $T_1$ larger than $k$, and let this be $k'$.
 The insertion $T \leftarrow k$ is then given as the tableau with first row $T_1$,
@@ -75,7 +75,7 @@ Given a word $w$, inserting the letters one by one gives the \defin{insertion ta
 This is sometimes denoted $P(w)$.
 
 \begin{example}
-Inserting the entries $w = 34112312$ from left to right 
+Inserting the entries $w = 34112312$ from left to right
 gives the following sequence of tableaux, where $\ins(w)$ is the last.
 
 \begin{figure}
@@ -95,11 +95,11 @@ gives the following sequence of tableaux, where $\ins(w)$ is the last.
 Let $\pi$ be a permutation and let $I_k(\pi)$
 denote the length of the longest subword of $\pi$ that can be
 expressed as a disjoint union of $k$ increasing subsequences of $\pi$.
-Similarly, let $D_k(\pi)$ be the length of the 
-longest subword of $\pi$ that can be expressed as a disjoint union of $k$ 
+Similarly, let $D_k(\pi)$ be the length of the
+longest subword of $\pi$ that can be expressed as a disjoint union of $k$
 decreasing subsequences of $\pi$.
 
-Let $\lambda$ be the shape of $P(\pi)$. Then 
+Let $\lambda$ be the shape of $P(\pi)$. Then
 \[
 I_k(\pi) = \lambda_1+\dotsb + \lambda_k \qquad
 D_k(\pi) = \lambda'_1+\dotsb + \lambda'_k.
@@ -115,7 +115,7 @@ RSK together with Schützenberger evacuation.
 
 The \defin{Erdős--Szekeres theorem} \cite{ErdosSzekeres2009}
 states that any sequence of distinct real numbers of length $(r-1)(s-1)+1$
-contains a monotonically increasing subsequence of length $r$, 
+contains a monotonically increasing subsequence of length $r$,
 or a monotonically decreasing subsequence of length $s$.
 
 Suppose we have a sequence $w$ of such numbers. We apply row insertion to this sequence,
@@ -131,7 +131,8 @@ Application of Greene's theorem finishes the proof.
 \subsection[rskOne]{RSK (variant I)}
 
 The RSK correspondence is done in two steps.
-A matrix $A \in M(\lambda,\mu)$ is first turned into a \defin{biword} $W$ of length $n$ as follows. 
+A matrix $A \in M(\lambda,\mu)$ is first turned into a
+\defin{biword} $W$ of length $n$ as follows.
 For each entry $A_{ij}$, we have $A_{ij}$ columns in $W$ equal to $\binom{i}{j}$.
 Furthermore, the columns are ordered lexicographically, with respect to the top entry first.
 
@@ -142,9 +143,9 @@ in the box where the last insertion took place to get $P'$.
 
 Finally, the pair $(P,Q)$ in the correspondence $W \rskArrow (P,Q)$
 is obtained by inserting each column $\binom{i}{j}$ from left to right in $W$.
-One can prove that $(P,Q)$ is indeed a pair of semistandard Young tableaux,
-provided that $W$ corresponds to some matrix $A$.
-We refer to $P = \ins(W)$ as the \defin{insertion tableau} 
+The resulting $(P,Q)$ is a pair of semistandard Young tableaux whenever
+$W$ corresponds to a matrix $A$.
+We refer to $P = \ins(W)$ as the \defin{insertion tableau}
 and $Q=\rec(W)$ as the \defin{recording tableau}.
 
 \begin{example}
@@ -156,7 +157,7 @@ W=
 1& 3& 4& 1& 2& 1& 3& 2
 \end{pmatrix}
 \end{equation*}
-% BiwordRSK[{1, 1, 1, 2, 2, 3, 3, 4}, {1, 3, 4, 1, 2, 1, 3, 2}] 
+% BiwordRSK[{1, 1, 1, 2, 2, 3, 3, 4}, {1, 3, 4, 1, 2, 1, 3, 2}]
 is mapped to the pair $(P,Q)$
 
 \begin{figure}
@@ -173,7 +174,7 @@ that can be expressed as a disjoint union of $k$ weakly increasing subwords.
 Let $D_k(W)$ be the analogous maximum length using $k$ strictly decreasing
 subwords.
 
-Let $\lambda$ be the shape of $\ins(W)$. Then 
+Let $\lambda$ be the shape of $\ins(W)$. Then
 \[
 I_k(W) = \lambda_1+\dotsb + \lambda_k \qquad
 D_k(W) = \lambda'_1+\dotsb + \lambda'_k.
@@ -184,9 +185,9 @@ D_k(W) = \lambda'_1+\dotsb + \lambda'_k.
 \subsection[rskDual]{Dual RSK (variant II)}
 
 
-There is a dual notion of row insertion, called \defin{column insertion}, 
+The dual notion of row insertion is called \defin{column insertion},
 traditionally indicated with a right-pointing arrow.
-We now insert into dual SSYT. 
+We now insert into dual SSYT.
 A \defin{dual SSYT} is a filling that is the transpose of an SSYT.
 
 Given a \emph{dual SSYT} $T$ and $k \in \setN$, the \emph{dual insertion}
@@ -195,9 +196,9 @@ row of $T$ and $T_{2\sim}$ denotes the dual SSYT with the first row of $T$
 removed.
 \begin{enumerate}
 \item If $T = \emptyset$, then $k \to T$ is just the tableau \ytableaushort{k}.
-\item If $k$ is \emph{greater} than the largest entry in $T_1$, 
+\item If $k$ is \emph{greater} than the largest entry in $T_1$,
 then $k \to T$ is given by appending $k$ at the end of the first row of $T$.
-\item Otherwise, find the leftmost entry in $T_1$ \emph{larger than or equal to} $k$, 
+\item Otherwise, find the leftmost entry in $T_1$ \emph{larger than or equal to} $k$,
 and let this be $k'$.
 The insertion $k \to T$ is then given as the tableau with first row $T_1$,
 except that $k'$ has been replaced by $k$, and the remaining rows are given by
@@ -212,10 +213,10 @@ Equivalently,
 \[
 \rev(w) \rskArrow P \iff w \rskDualArrow P^t,
 \]
-see \cite[Prop. 2.3.14]{Butler1994}.
+see \cite[Prop.~2.3.14]{Butler1994}.
 
 \begin{example}
-Dual-inserting the entries $w=34112312$ from left to right 
+Dual-inserting the entries $w=34112312$ from left to right
 gives the following sequence of tableaux, where $P$ is the last.
 
 \begin{figure}
@@ -239,7 +240,7 @@ Dual RSK provides the following bijections:
 
 \begin{align}
 B(\mu,\nu) & \qquad \rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda',\nu) \times \SSYT(\lambda,\mu) \\
-[d]^n & \qquad \rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda',d) \times \SYT(\lambda) \\ 
+[d]^n & \qquad \rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda',d) \times \SYT(\lambda) \\
 \symS_n  & \qquad\rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda') \times \SYT(\lambda) \\
 \{\sigma \in \symS_n : \sigma^2 = e \}  & \qquad \rskDualArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda).
 \end{align}
@@ -260,7 +261,7 @@ W=
 1& 3& 4& 1& 2& 1& 3& 2
 \end{pmatrix}
 \end{equation*}
-% BiwordRSKDual[{1, 1, 1, 2, 2, 3, 3, 4}, {1, 3, 4, 1, 2, 1, 3, 2}] 
+% BiwordRSKDual[{1, 1, 1, 2, 2, 3, 3, 4}, {1, 3, 4, 1, 2, 1, 3, 2}]
 is mapped to the pair $(P,Q)$
 
 \begin{figure}
@@ -271,7 +272,7 @@ is mapped to the pair $(P,Q)$
 
 \begin{proposition}[RSK vs. dual RSK]
 Let $\pi \in \symS_n$.
-The following conditions are equivalent \cite[Thm. 4.1.1]{Leeuwen1996}:
+The following conditions are equivalent \cite[Thm.~4.1.1]{Leeuwen1996}:
 \begin{itemize}
 \item $\pi \rskArrow (P,Q)$
 \item $n+1-\pi \rskDualArrow (\evac(P^t),Q^t)$
@@ -280,8 +281,8 @@ The following conditions are equivalent \cite[Thm. 4.1.1]{Leeuwen1996}:
 \item $\revCompl(\pi) \rskDualArrow (\evac(P),\evac(Q))$
 \end{itemize}
 
-The following extension is proved in \cite[Prop. 2.3.14]{Butler1994}.
-Let $w \in [d]^n$ be a word. We have that
+The following extension is proved in \cite[Prop.~2.3.14]{Butler1994}.
+Let $w \in [d]^n$ be a word. Then
 \[
 w \rskArrow P \iff \rev(w) \rskDualArrow P^t.
 \]
@@ -317,27 +318,28 @@ For example,
 1 & 1 & 1 & 0 \\
 0 & 0 & 1 & 0
 \end{pmatrix}
-\qquad 
+\qquad
 \longleftrightarrow
-\qquad 
+\qquad
 \begin{pmatrix}
 1 & 1 & 2 & 2 & 2 & 3 \\
 4 & 1 & 3 & 2 & 1 & 3
 \end{pmatrix}
 \]
 
-In this setting, we write $W \rskbArrow (P,Q)$ if the biword $W$ is first sorted in the Burge
-fashion and the entries are inserted using row insertion.
+In this setting, we write $W \rskbArrow (P,Q)$ if the biword $W$ is
+first sorted in the Burge fashion and the entries are inserted using row
+insertion.
 
-For this map, $W \rskbArrow (P,Q)$ has $P$ and $Q^T$ semistandard tableaux
+For this map, $W \rskbArrow (P,Q)$ has $P$ and $Q^t$ semistandard tableaux
 of the same shape, giving another set of bijections.
-We let $B(\mu,\nu)$ denote the 
+We let $B(\mu,\nu)$ denote the
 set of binary matrices with row sums $\mu$ and column sums $\nu$.
 
 \begin{align}
 B(\mu,\nu) & \qquad \rskbArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda,\nu) \times \SSYT(\lambda',\mu) \\
 [n]^n & \qquad \rskbArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda) \times \SSYT(\lambda') \\
-\symS_n  & \qquad \rskbArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda) \times \SYT(\lambda') 
+\symS_n  & \qquad \rskbArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda) \times \SYT(\lambda')
 \end{align}
 
 
@@ -365,9 +367,9 @@ is mapped to the pair $(P,Q)$ below.
 \end{example*}
 
 
-\begin{proposition}[See \cite{Krattenthaler2006} and \cite[p. 200]{Fulton1997}]
+\begin{proposition}[Burge transpose relation]
 Let $B$ be a binary matrix.
-Then 
+Then
 \[
 B \rskbArrow (P,Q) \iff B^T \rskDualArrow (Q,P).
 \]
@@ -375,6 +377,8 @@ Using biwords, this can be phrased as
 \[
 \binom{w_1}{w_2} \rskbArrow (P,Q) \iff \binom{w_2}{w_1} \rskDualArrow (Q,P).
 \]
+This relation is recorded in \cite{Krattenthaler2006} and
+\cite[p.~200]{Fulton1997}.
 \end{proposition}
 
 
@@ -392,9 +396,9 @@ where $\equiv$ is the equivalence class generated by the \defin{Knuth relations}
 Two words $w$ and $w'$ are \defin{Knuth-equivalent}
 if and only if they have the same insertion tableau, $T$.
 Moreover, the reading word of $T$ is also Knuth-equivalent to $w$,
-and it is the unique word in the equivalence class which is the 
+and it is the unique word in the equivalence class which is the
 reading word of a semistandard tableau,
-see \cite[p.22]{Fulton1997} or \cite[Cor. 2.3.21]{Butler1994}.
+see \cite[p.~22]{Fulton1997} or \cite[Cor.~2.3.21]{Butler1994}.
 
 \name{Santiago Estupiñán-Salamanca} and \name{Oliver Pechenik} give a
 universal characterization of the shifted plactic monoid
@@ -417,8 +421,9 @@ if and only if $k-1$ or $k+2$ occur somewhere between.
 For example, $\underline{5}34\underline{6}7182$ and $\underline{6}34\underline{5}7182$
 are equivalent, since $4$ appears between them.
 
-Two words are dual Knuth equivalent if and only if one can be transformed to the other 
-via elementary dual Knuth transformations, see \cite[p.200]{Fulton1997}.
+Two words are dual Knuth equivalent if and only if one can be transformed
+to the other via elementary dual Knuth transformations, see
+\cite[p.~200]{Fulton1997}.
 
 
 
@@ -438,8 +443,8 @@ and \hyperref[tableauDescentSet]{tableau descents}.
 A \quad \rskArrow \quad (P,Q) \qquad  \iff  \qquad A^{T} \quad \rskArrow \quad (Q,P).
 \]
 
-\item 
-For a permutation $\pi \in \symS_n$, the following statements are equivalent, see 
+\item
+For a permutation $\pi \in \symS_n$, the following statements are equivalent, see
 \cite[A.1.2.11]{StanleyEC2}.
 
 \begin{align}
@@ -467,7 +472,7 @@ satisfies an additional simple tableau condition.
 
 \item If $w \equiv w'$, then $\charge(w)=\charge(w')$.
 
-\item We have that
+\item
 \[
 \sum_{\sigma \in \symS_n} t^{\des(\sigma)} = \sum_{\lambda}
 f^{\lambda} \sum_{Q\in\SYT(\lambda)} t^{\des(Q)},
@@ -475,7 +480,7 @@ f^{\lambda} \sum_{Q\in\SYT(\lambda)} t^{\des(Q)},
 since RSK maps descents on permutations to descents in tableaux.
 
 
-\item 
+\item
 
 If $\pi \rskArrow (P,Q)$ then $\sign(\pi) = \sign(P)\sign(Q)(-1)^e$,
 where $\sign(T)$ is defined as $(-1)^{\inv(\rw(T))}$ and $e$ is the total length
@@ -490,7 +495,7 @@ RSK commutes with standardization, so if $W\rskArrow (P,Q)$
 then $W'=\std(W)$ is mapped to $(\std(P),\std(Q))$.
 
 \begin{example*}
-We have that
+For the biword
 \[
 W=\begin{pmatrix}
 1& 1& 1& 2& 2& 3 \\
@@ -509,7 +514,7 @@ is mapped to the pair
 \end{ytableau}
 \end{figure}
 
-and the standardization of the word 
+and the standardization of the word
 \[
 W'=\begin{pmatrix}
 1& 2& 3& 4& 5& 6 \\
@@ -531,11 +536,11 @@ is mapped to the following pair of standard Young tableaux.
 \end{example*}
 
 \begin{lemma}
-We have that for $w \in [d]^n$,
+For $w \in [d]^n$,
 \[
 \rev(w) \rskDualArrow P \implies \std(w) \rskArrow \std(P^t),
 \]
-and 
+and
 \[
 (\rev \circ w) \rskDualArrow P
 \implies
@@ -543,13 +548,13 @@ and
 \]
 \end{lemma}
 \begin{proof*}
-From \cite[Prop. 2.3.14]{Butler1994} we have that 
+By \cite[Prop.~2.3.14]{Butler1994},
 \[
 w \rskArrow P \iff \rev(w) \rskDualArrow P^t.
 \]
-This together with the fact that usual RSK commutes 
+This together with the fact that usual RSK commutes
 with standardization gives the first statement.
-It is then easy to derive the second statement as well.
+The second statement follows similarly.
 \end{proof*}
 
 
@@ -563,7 +568,7 @@ Schur functions, and they retain several of the symmetry features of ordinary
 RSK.
 
 For a later discussion of injections as generalizations of permutations, see
-\href{https://www.youtube.com/watch?v=SeFLyM3zDV0}{the FPSAC 2020 talk}.
+\name{Nathan Lindzey}'s FPSAC 2020 talk \cite{Lindzey2020FPSACTalk}.
 
 
 
@@ -602,7 +607,7 @@ these \emph{minimal matrices} are exactly the symmetric Hankel matrices.
 \section[rimHookRSK]{Rimhook RSK}
 
 \name{Dennis W. Stanton} and \name{Dennis E. White} define a bijection
-\cite[Thm. 3]{StantonWhite1985},
+\cite[Thm.~3]{StantonWhite1985},
 \[
 \begin{pmatrix}
 H(1)& H(2)& \dotsc & H(\ell) \\
@@ -635,8 +640,8 @@ The \defin{Hillman--Grassl correspondence}, introduced in
 the set of reverse plane partitions of shape $\lambda$.  Equivalently, it
 encodes a reverse plane partition by a multiset of rim hooks in the Young
 diagram of $\lambda$; the hook lengths explain the resulting product
-enumeration.  Sage has an implementation of the map in its
-\href{http://sporadic.stanford.edu/reference/combinat/sage/combinat/tableau.html#sage.combinat.tableau.Tableau.hillman_grassl}{tableau tools}.
+enumeration.  Sage has an implementation of the map in its tableau tools
+\cite{Sage,Sage-Combinat}.
 
 
 \subsection[sulzgruberInsertion]{The Pak--Sulzgruber correspondence}
@@ -672,10 +677,10 @@ type $B/D$ analogue \cite{Terada1993}.
 The \defin{Berele insertion} is a symplectic version of Schensted insertion.
 In \cite{Berele1986}, it is used to prove the identity
 \[
-(a_1+ a_1^{-1} + \dotsb + a_n + a_n^{-1})^m = \sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n) 
+(a_1+ a_1^{-1} + \dotsb + a_n + a_n^{-1})^m = \sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n)
 \]
 where $\schurSp_\lambda(a_1,\dotsc,a_n)$ is a \hyperref[schurSymplectic]{symplectic Schur function}
-and $Q^\lambda_m(n)$ is the number of oscillating sequences 
+and $Q^\lambda_m(n)$ is the number of oscillating sequences
 of diagrams $\emptyset = \lambda^0,\lambda^1,\dotsc,\lambda^n = \lambda$ with length at most $n$.
 
 \name{Masato Kobayashi} and \name{Tomoo Matsumura} formulate a type $C$ RSK
@@ -689,8 +694,9 @@ involutions.
 \name{Masato Kobayashi}, \name{Tomoo Matsumura}, and \name{Shogo Sugimoto}
 study the generating function of semistandard oscillating tableaux more
 directly \cite{KobayashiMatsumuraSugimoto2026x}.  They prove
-fundamental-quasisymmetric positivity, symmetry, Schur positivity, and the
-saturated Newton polytope property.
+fundamental-quasisymmetric positivity, symmetry,
+\hyperref[schurPositivity]{Schur positivity}, and the
+\hyperref[newtonPolytopes]{saturated Newton polytope} property.
 
 
 \name{Ioanna Nteka} gives a randomized $q$-deformation of Berele insertion and
