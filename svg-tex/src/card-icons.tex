@@ -1220,4 +1220,28 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-posets}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A small Hasse diagram with two linear-extension paths suggested.
+  \coordinate (a) at (-0.48,-0.48);
+  \coordinate (b) at (0.48,-0.48);
+  \coordinate (c) at (-0.48,0.12);
+  \coordinate (d) at (0.48,0.12);
+  \coordinate (e) at (0,0.66);
+
+  \draw[black!55, line width=0.65mm] (a) -- (c);
+  \draw[black!55, line width=0.65mm] (b) -- (d);
+  \draw[black!55, line width=0.65mm] (c) -- (e);
+  \draw[black!55, line width=0.65mm] (d) -- (e);
+  \draw[iconblue, line width=0.75mm] (a) -- (d);
+  \draw[iconblue, line width=0.75mm] (b) -- (c);
+
+  \foreach \p in {a,b,c,d,e} {
+    \node[node-blue] at (\p) {};
+  }
+\end{tikzpicture}
+
+
 \end{document}

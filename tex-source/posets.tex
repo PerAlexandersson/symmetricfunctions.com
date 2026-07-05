@@ -1,0 +1,176 @@
+\metatitle{Posets and linear extensions}
+\metadescription{Finite posets, linear extensions, Jordan--Hölder sets, order ideals, hook formulas, order polytopes, and common classes of posets.}
+\metakeywords{posets,linear extensions,Jordan-Hölder set,order ideals,order polytopes,series-parallel posets,lattices,3+1-free posets}
+
+\section[posets]{Posets}
+
+A \defin{poset}\label{poset} is a set $P$ with a partial order $\leq_P$:
+the relation is reflexive, antisymmetric, and transitive.  We write
+$x\lt_P y$ if $x\leq_P y$ and $x\neq y$.  A \defin{cover relation} is a
+relation $x\lessdot_P y$ such that $x\lt_P y$ and there is no $z$ with
+$x\lt_P z\lt_P y$.  The \defin{Hasse diagram} of $P$ draws only these cover
+relations.
+
+Two basic examples are the \defin{chain} $1\lt 2\lt \dotsb \lt n$ and the
+\defin{antichain} on $n$ elements, where no two distinct elements are
+comparable.  Posets are useful because many combinatorial objects are naturally
+sets with precedence constraints: boxes in a Young diagram, roots in a root
+poset, subsets ordered by inclusion, or independent sets ordered by inclusion.
+
+\section[linearExtensions]{Linear extensions}
+
+Let $P$ be a finite poset with $n$ elements.  A
+\defin{linear extension}\label{linearExtension} of $P$ is a total ordering
+$(p_1,p_2,\dotsc,p_n)$ of the elements of $P$ such that
+\[
+  p_i\lt_P p_j \quad\Longrightarrow\quad i\lt j.
+\]
+Equivalently, it is an order-preserving bijection $P\to [n]$.
+We write $e(P)$ for the number of linear extensions of $P$.
+
+\begin{example*}[Three small posets]
+Let $P$ be the poset with two minimal elements $a,b$ and one maximal element
+$c$, so that $a\lt c$ and $b\lt c$.  Its linear extensions are
+\[
+  (a,b,c),\qquad (b,a,c).
+\]
+For the chain $a\lt b\lt c$, there is exactly one linear extension:
+$(a,b,c)$.  For the antichain on $\{a,b,c\}$, every ordering is allowed, so
+there are $3!=6$ linear extensions.
+\end{example*}
+
+Counting linear extensions is difficult in general: \name{Graham Brightwell}
+and \name{Peter Winkler} prove that this counting problem is
+\#P-complete \cite{BrightwellWinkler1991}.  This is one reason why product
+formulas, recurrences, and special poset classes are valuable.
+
+\section[jordanHolderSet]{Jordan--Hölder sets}
+
+A linear extension is usually a word in the \emph{elements} of $P$.  A
+\defin{Jordan--Hölder set}\label{jordanHolderSet} records instead the
+\emph{labels} that appear along a linear extension.
+
+More precisely, let $w:P\to [n]$ be a bijective labeling.  The
+Jordan--Hölder set of the labeled poset $(P,w)$ is
+\[
+  \mathcal{L}(P,w)
+  \coloneqq
+  \{\sigma\in\symS_n : \sigma^{-1}\circ w \text{ is order-preserving}\}.
+\]
+Thus $\sigma$ is the word of labels seen in some linear extension of $P$.
+The poset determines the possible element orders; the labeling translates
+those orders into permutations.
+
+\begin{example*}[Same poset, different labels]
+Let $P$ be the poset $a,b\lt c$.  With the natural labeling
+$w(a)=1$, $w(b)=2$, and $w(c)=3$, the Jordan--Hölder set is
+\[
+  \mathcal{L}(P,w)=\{123,213\}.
+\]
+If we relabel by $w(c)=1$, $w(a)=2$, and $w(b)=3$, then the linear extensions
+of the underlying poset are still $(a,b,c)$ and $(b,a,c)$, but the
+Jordan--Hölder set becomes
+\[
+  \mathcal{L}(P,w)=\{231,321\}.
+\]
+This distinction is important in the theory of
+\hyperref[pPartition]{$P$-partitions}, where descent sets of the label words
+control the expansion in the \hyperref[gessel]{fundamental quasisymmetric}
+basis.
+\end{example*}
+
+\section[posetIdeals]{Order ideals, filters and antichains}
+
+An \defin{order ideal}\label{orderIdeal} of a poset $P$ is a subset
+$I\subseteq P$ such that $x\in I$ and $y\leq_P x$ imply $y\in I$.  Dually, an
+\defin{order filter}\label{orderFilter} is an upward-closed subset.  An
+\defin{antichain}\label{antichain} is a subset whose elements are pairwise
+incomparable.
+
+Order ideals and antichains are equivalent data: an ideal is determined by
+its maximal elements, and those maximal elements form an antichain.  This is
+the starting point for many actions such as rowmotion and promotion, and it is
+also why the lattice of ideals of a poset appears throughout algebraic
+combinatorics.
+
+Independent sets of a graph or matroid can also be ordered by inclusion.  For
+a graph $G$, the independent sets form a down-set in the Boolean lattice
+$2^{V(G)}$.  This poset is usually not a lattice under union, but it is a
+natural way to turn graph-theoretic independence into an ordered object.
+
+\section[posetHookFormulas]{Hook formulas}
+
+Many important posets have unexpectedly simple formulas for $e(P)$.
+
+For a partition $\lambda$, the boxes of its Young diagram form a poset by
+declaring a box to be less than the boxes weakly southeast of it.  A standard
+Young tableau of shape $\lambda$ is the same thing as a linear extension of
+this Young-diagram poset.  The classical
+\hyperref[partitionCores]{hook formula} says
+\[
+  e(\lambda)=|\SYT(\lambda)|
+  = \frac{|\lambda|!}{\prod_{\square\in\lambda} h(\square)}.
+\]
+Equivalently, this is the Frame--Robinson--Thrall hook-length formula
+\cite{FrameRobinsonThrall}.  See also the
+\hyperref[prelimQHook]{$q$-hook formula}.
+
+There is an analogous hook formula for rooted trees.  If $T$ is a rooted tree
+viewed as a poset with $u\leq_T v$ when $u$ is on the path from the root to
+$v$, then
+\[
+  e(T)=\frac{|T|!}{\prod_{v\in T} |T_v|},
+\]
+where $T_v$ is the rooted subtree consisting of $v$ and all its descendants.
+This formula is discussed, for example, by \name{Donald E. Knuth}
+\cite{Knuth1998ArtOfProgramming}.
+
+Hook formulas also exist for shifted shapes, $d$-complete posets, and several
+other structured families.  The important contrast is that such formulas are
+special: for an arbitrary poset, counting linear extensions is computationally
+hard \cite{BrightwellWinkler1991}.
+
+\section[posetPolytopes]{Order and chain polytopes}
+
+Finite posets have a direct polyhedral avatar.  The
+\hyperref[orderPolytope]{order polytope} $\mathcal{O}(P)$ is the set of
+functions $f:P\to [0,1]$ such that $x\leq_P y$ implies $f(x)\leq f(y)$.
+The \hyperref[chainPolytope]{chain polytope} $\mathcal{C}(P)$ is cut out by
+nonnegativity and the inequalities
+\[
+  f(x_1)+f(x_2)+\dotsb+f(x_k)\leq 1
+\]
+for every chain $x_1<_P x_2<_P\dotsb<_P x_k$.  Stanley introduced these two
+poset polytopes in \cite{Stanley86TwoPosetPolytopes}.
+
+The normalized volume of $\mathcal{O}(P)$ is $e(P)$, and the
+\hyperref[ehrhart]{$h^*$-polynomial} of $\mathcal{O}(P)$ is the descent
+generating polynomial of the linear extensions of $P$.  Thus order polytopes
+connect linear extensions to Ehrhart theory and to real-rootedness questions
+for descent polynomials.
+
+\section[posetClasses]{Some classes of posets}
+
+The \defin{width}\label{posetWidth} of a poset is the largest size of an
+antichain.  Width-one posets are chains; width-two posets already contain
+rich examples such as the posets attached to skew Ferrers diagrams and
+\hyperref[latticePathMatroids]{lattice path matroids}.
+
+A \defin{lattice}\label{latticePoset} is a poset in which every two elements
+have a meet and a join, usually written $x\wedge y$ and $x\vee y$.  A basic
+source of lattices is the set $J(P)$ of order ideals of a finite poset $P$,
+ordered by inclusion.  These are distributive lattices.
+
+A \defin{series-parallel poset}\label{seriesParallelPoset} is built from
+one-element posets using two operations: disjoint union, also called parallel
+composition, and ordinal sum, also called series composition.  Such posets are
+often amenable to recursive enumeration because both operations have simple
+effects on linear extensions.
+
+A poset is \defin{$(3+1)$-free}\label{threePlusOneFreePoset} if it has no
+induced subposet consisting of a three-element chain together with an element
+incomparable to all three elements of the chain.  These posets are central in
+the study of incomparability graphs and chromatic symmetric functions:
+\name{Vesselin Gasharov} proved Schur positivity for incomparability graphs
+of $(3+1)$-free posets \cite{Gasharov1996}.  They also occur in
+\hyperref[chromaticQuasisymmetric]{chromatic quasisymmetric functions}.
