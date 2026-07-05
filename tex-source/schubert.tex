@@ -22,9 +22,11 @@
 \end{polydata}
 
 
-Schubert polynomials were introduced by \name{Alain Lascoux} and \name{M.-P. Schützenberger} in \cite{LascouxSchutzenberger1982}.
+Schubert polynomials were introduced by \name{Alain Lascoux} and
+\name[M.-P. Schützenberger]{Marcel-Paul Schützenberger}
+in \cite{LascouxSchutzenberger1982}.
 The Schubert polynomials generalize the \hyperref[schurS]{Schur polynomials} and
-represent Schubert cycles in flag varieties.
+represent Schubert cycles in \hyperref[flagVarieties]{flag varieties}.
 The Schubert polynomials are generalized by the \hyperref[grothendieck]{Grothendieck polynomials},
 which play the same role in \hyperref[kTheory]{K-theory}.
 \name[Kursat Aker]{K{\"u}r{\c{s}}at Aker} and
@@ -144,7 +146,8 @@ They prove the following formula for the \hyperref[schubertDouble]{double Schube
 \schubert_\omega(\xvec,\yvec) = \sum_{P \in RBPD(\omega)} \prod_{(i,j)\in D(P)} (x_i - y_j )
 \]
 where the sum runs over \emph{reduced bumpless pipe dreams}.
-This formula can be lifted to a formula for \hyperref[grothendieck]{the double Grothendieck polynomials.}
+This formula can be lifted to a formula for the
+\hyperref[grothendieck]{double Grothendieck polynomials}.
 
 \name{Anna Weigandt} uses bumpless pipe dreams to give explicit change-of-basis
 rules between Grothendieck and Schubert polynomials
@@ -158,12 +161,12 @@ the corresponding back stable $K$-theoretic Schubert calculus
 \cite{LamLeeShimozono2022}.  This includes back stable Grothendieck
 polynomials and their role in the $K$-theory Schubert basis.
 \name{Patricia Klein} and \name{Anna Weigandt} show that bumpless pipe dreams
-index irreducible components of diagonal Groebner degenerations of matrix
+index irreducible components of diagonal Gr{\"o}bner degenerations of matrix
 Schubert varieties \cite{KleinWeigandt2021x}.  Thus bumpless pipe dreams have
 a geometric role parallel to the classical anti-diagonal pipe-dream theory.
 \name{Zachary Hamaker}, \name{Oliver Pechenik}, and \name{Anna Weigandt} study
-the Groebner geometry of Schubert polynomials through the six-vertex ice model
-\cite{HamakerPechenikWeigandt2022}.  Their work relates diagonal Groebner
+the Gr{\"o}bner geometry of Schubert polynomials through the six-vertex ice model
+\cite{HamakerPechenikWeigandt2022}.  Their work relates diagonal Gr{\"o}bner
 degenerations to Lascoux's ice formula, now also viewed through bumpless pipe
 dreams.
 
@@ -226,7 +229,8 @@ Given a diagram $D$, the \defin{flagged Weyl module} $\mathcal{M}_D$ is a $B$-mo
 \]
 where $ Y_{D_j}^{C_j}$ denotes the submatrix of $Y$ with row-indices from $C_j$ and column-indices from $D_j$.
 
-The character, $char(M_D)(x_1,\dotsc,x_n)$ of $\mathcal{M}_D$ is defined as the trace of the map $X : \mathcal{M}_D \to \mathcal{M}_D$,
+The character, $\mathrm{char}(\mathcal{M}_D)(x_1,\dotsc,x_n)$, is defined as
+the trace of the map $X : \mathcal{M}_D \to \mathcal{M}_D$,
 where $X = (x_1,\dotsc,x_n)$ is a diagonal matrix acting on $\setC[Y]$.
 Note that for $C \leq D$,
 \[
@@ -237,7 +241,7 @@ so we see that all polynomials $\det( Y_{D_j}^{C_j} )$ with $C \leq D$ are eigen
 It was shown in \cite{KraskiewiczPragacz1987,KraskiewiczPragacz2004} 
 that the Schubert polynomial indexed by $\omega$ is related to the character of $\mathcal{M}_{D(\omega)}$, via
 \[
-\schubert_\omega(x_1,\dotsc,x_n) = char(M_{D(\omega)})(x^{-1}_1,\dotsc,x^{-1}_n).
+\schubert_\omega(x_1,\dotsc,x_n) = \mathrm{char}(\mathcal{M}_{D(\omega)})(x^{-1}_1,\dotsc,x^{-1}_n).
 \]
 
 \name{Zhuowei Lin}, \name[Simon C. Y. Peng]{Simon C.~Y.~Peng}, and
@@ -318,7 +322,7 @@ We then have the factorization (see \cite{BilleyJockuschStanley1993})
 \[
  \schubert_{\sigma \times \tau} = (x_1 \dotsm x_j)^k \schubert_{\sigma} \; \uparrow^j \! \schubert_{\tau}
 \]
-where $\uparrow^k x_i \coloneqq x_{j+k}$ is the operator which 
+where $\uparrow^j x_i \coloneqq x_{i+j}$ is the operator which
 increases the variable index by $j$ on all variables.
 
 
@@ -331,7 +335,7 @@ A Grassmannian permutation determines a partition:
 \[
 \lambda(\omega) = (\omega_k - k, \omega_{k-1} - k + 1, \dotsc, \omega_1 - 1 ).
 \] 
-The same partitions index Schubert cells in the Grassmannian
+The same partitions index Schubert cells in the \hyperref[grassmannian]{Grassmannian}
 $\mathrm{Gr}(k,n)$.  Fix a complete flag
 $0=F_0\subset F_1\subset \dotsb \subset F_n=\setC^n$.
 For $\lambda$ contained in the $k\times(n-k)$ rectangle, the Schubert variety
@@ -365,7 +369,7 @@ In \cite{MorrisonSottile2018} a Murnaghan--Nakayama rule is proved:
 
 
 
-\subsection[schubertMonksRule]{Monks rule}
+\subsection[schubertMonksRule]{Monk's rule}
 
 The geometric version of this result was given by \name{David Monk} in \cite{Monk1959}.
 (\href{http://www.wfnmc.org/erdmonk.html}{David Monk} is a prolific IMO problem constructor.)
@@ -392,8 +396,8 @@ Let $\omega \in \symS_n$, then
 \[
 \completeH_{m}(x_1,\dotsc,x_k) \schubert_\omega(\xvec) = \sum_{\omega'} \schubert_{\omega'}(\xvec)
 \]
-where the sum run over all $w = w't_{a_1b_1}\dotsm t_{a_mb_m}$ such that $a_i \leq k \leq b_i$,
-$\length(w't_{a_1b_1}\dotsm t_{a_ib_i}) = \length(w')+i$ and all $b_i$ distinct.
+where the sum runs over all $\omega' = \omega t_{a_1b_1}\dotsm t_{a_mb_m}$ such that $a_i \leq k \leq b_i$,
+$\length(\omega t_{a_1b_1}\dotsm t_{a_ib_i}) = \length(\omega)+i$ and all $b_i$ distinct.
 
 Similarly,
 \[
@@ -458,7 +462,7 @@ prove an inverse Grassmannian Littlewood--Richardson rule
 Schubert structure constants, extending the range of products accessible by
 positive combinatorial formulas.
 
-\name{Matthew Samuel} has a python \href{https://pypi.org/project/schubmult/}{package for computing products of Schubert polynomials}.
+\name{Matthew Samuel} has a Python \href{https://pypi.org/project/schubmult/}{package for computing products of Schubert polynomials}.
 
 
 \begin{problem}
@@ -578,8 +582,8 @@ for sums of Schubert coefficients with bounded number of inversions.
 In type $B$, there are combinatorial analogs of Schubert polynomials introduced in \cite{FominKirillov1996}.
 They also introduce \hyperref[stanleySymBC]{type $B$ Stanley symmetric functions}.
 
-Divided difference formulas for Schubert polynomials in types $B$, $C$ and $D$ were 
-introduced by \name{Billey} and \name{Haiman} \cite{BilleyHaiman1995}.
+Divided difference formulas for Schubert polynomials in types $B$, $C$ and $D$ were
+introduced by \name{Sara Billey} and \name{Mark Haiman} \cite{BilleyHaiman1995}.
 See also \name{Sara Billey}'s PhD thesis on Schubert polynomials for classical groups \cite{Billey1994Thesis}.
 
 Type $B$, $C$ and $D$ double Schubert polynomials are defined in \cite{IkedaMihalceaNaruse2011}.
@@ -722,7 +726,7 @@ as a sum over \hyperref[schubertPipeDream]{pipe dreams}:
 \end{equation*}
 See also the survey by \name{Nantel Bergeron} and \name{Sara Billey} \cite{BergeronBilley1993}.
 
-In a recent paper, \name{Allen Knutson} \cite{Knutson2019} provides new proofs that 
+\name{Allen Knutson} \cite{Knutson2019} provides new proofs of
 several combinatorial formulas for the double Schubert polynomials.
 
 \name{Matthew J. Samuel} proves a Molev--Sagan type formula for products
@@ -738,7 +742,7 @@ applied to Schubert polynomials.
 Postnikov--Stanley polynomials are \hyperref[lorentzianPolynomial]{Lorentzian}
 \cite{AnTungZhang2024Lorentzian}.  These polynomials generalize skew dual
 Schubert polynomials to arbitrary Weyl groups, and the proof realizes them as
-degree polynomials of Richardson varieties.
+degree polynomials of \hyperref[richardsonVarieties]{Richardson varieties}.
 
 
 \subsection[schubertDoubleGiambelliFormula]{Giambelli formula}
@@ -916,23 +920,23 @@ that expresses the Schubert polynomials as sums of products of elementary symmet
 \]
 The quantum Schubert polynomials are then defined as
 \[
-\schubert_\omega(\xvec) = \sum a_{k_1 \dotsc k_n} \elementaryE^{q}_{k_1}(1) \elementaryE^{q}_{k_2}(2) \dotsm \elementaryE^{q}_{k_n}(n)
+\schubert^q_\omega(\xvec) = \sum a_{k_1 \dotsc k_n} \elementaryE^{q}_{k_1}(1) \elementaryE^{q}_{k_2}(2) \dotsm \elementaryE^{q}_{k_n}(n)
 \]
 where 
 \[
-\sum_{i=0}^k \elementaryE^{q}_{k}(i)t^i = \det(1+tG_k) \text{ and } G_k=
-\begin{vmatrix}
-x_1 & q_1 & 0 & \ldots & 0 \\
--1 & x_2 & q_2 & \ldots & 0 \\
-0 & -1 & x_3 & \ldots & 0 \\
+\sum_{i=0}^k \elementaryE^{q}_{i}(k)t^i = \det(I+tG_k) \text{ and } G_k=
+\begin{pmatrix}
+x_1 & q_1 & 0 & \dots & 0 \\
+-1 & x_2 & q_2 & \dots & 0 \\
+0 & -1 & x_3 & \dots & 0 \\
 \vdots & \vdots &   & \ddots & \vdots \\
-0 & 0 & 0 & \ldots & x_k \\
-\end{vmatrix}
+0 & 0 & 0 & \dots & x_k \\
+\end{pmatrix}
 \]
 By letting $q_i=0$, one recovers the classical Schubert polynomials.
 
 
-There is a bumpless pipedream model for the quantum double Schubert polynomials, see \cite[Thm. 3.3]{LeOuyangTaoRestivoZhang2024x}.
+There is a bumpless pipe-dream model for the quantum double Schubert polynomials, see \cite[Thm. 3.3]{LeOuyangTaoRestivoZhang2024x}.
 \name{Laura Colmenarejo} and \name{Nicholas Mayers} study the quantum
 $k$-Bruhat order that appears in quantum Schubert multiplication
 \cite{ColmenarejoMayers2026x}.  They encode maximal chains in intervals by
@@ -940,7 +944,7 @@ operators from a free monoid acting on a $q$-extension of $\symS_n$, and
 formulate a completeness conjecture for the resulting operator equivalences.
 
 
-\subsection[schubertQuantumMonksRule]{Quantum Monks rule}
+\subsection[schubertQuantumMonksRule]{Quantum Monk's rule}
 
 The following refinement of Monk's rule is given in \cite[Theorem 7.1]{FominGelfandPostnikov1997}.
 Let $s_r$ be a simple transposition. Then
@@ -958,7 +962,7 @@ transpositions $t_{cd}$ such that $c\leq r \lt d$ and
 $\length(\omega t_{cd}) = \length(\omega)-\length(t_{cd}) =
 \length(\omega)-2(d-c)+1$.
 
-Here, $q_{cd} = q_c q_{c+1} \dotsm q_d$.
+Here, $q_{cd} = q_c q_{c+1} \dotsm q_{d-1}$.
 
 
 \subsection[schubertQuantumPieriRule]{Quantum Pieri rule}
@@ -1033,7 +1037,8 @@ quantum double Schubert polynomials is given:
 \end{polydata}
 
 
-The universal Schubert polynomials were introduced by \name{William Fulton}, \cite{Fulton1999} and 
+The universal Schubert polynomials were introduced by \name{William Fulton}
+\cite{Fulton1999} and
 generalize the (double) quantum Schubert polynomials.
 
 
@@ -1062,7 +1067,8 @@ The \defin{twisted Schubert polynomials}
 are defined via $\tilde{\schubert}_{\omega_0}=x_1^{n-1} x_2^{n-2}\dotsm x_{n-1}$,
 and the recursion $\tilde{\schubert}_{\omega s_i}= (s_i + \partial_i)\tilde{\schubert}_{\omega}$.
 
-It was recently proved in \cite{Liu2019} that these are positive in the monomial basis.
-This is the earliest reference that I could find that explicitly defines these polynomials.
+It was proved in \cite{Liu2019} that these are positive in the monomial basis.
+This appears to be an early reference that explicitly defines these polynomials.
 They are implicitly studied in earlier works, and are related to
-the Chern--Schwartz--MacPherson classes of Schubert cells in flag varieties. 
+the Chern--Schwartz--MacPherson classes of Schubert cells in
+\hyperref[flagVarieties]{flag varieties}.
