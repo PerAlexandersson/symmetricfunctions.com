@@ -8,7 +8,7 @@
 
 The \defin{Robinson--Schensted--Knuth correspondence} (RSK)
 is a bijection between matrices with non-negative integer entries and pairs of
-semistandard Young tableaux of the same shape.
+\hyperref[prelimTableaux]{semistandard Young tableaux} of the same shape.
 Let $M(\mu,\nu)$ denote the set of matrices with entries in $\setN$,
 whose row sums are $\mu$ and whose column sums are $\nu$.
 The RSK correspondence provides the following bijections,
@@ -21,8 +21,10 @@ M(\mu,\nu) & \qquad \rskArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda,\n
 \{\sigma \in \symS_n : \sigma^2 = e \}  & \qquad \rskArrow \qquad \bigcup_{\lambda \vdash n} \SYT(\lambda).
 \end{align}
 
-In particular, the first bijection proves \hyperref[schurCauchyFormula]{the first Cauchy identity}
-for Schur functions. The second variant of RSK proves the second Cauchy identity.
+In particular, the first bijection proves
+\hyperref[schurCauchyFormula]{the first Cauchy identity} for
+\hyperref[schurS]{Schur functions}.  The binary-matrix variant proves the
+second Cauchy identity from the same section.
 
 
 For an excellent overview on the different variants of RSK, see
@@ -49,14 +51,14 @@ posets.
 permutations using the Steinberg variety of matrix Schubert varieties
 \cite{Singh2020PartialPermutationsRSK}.  The correspondence sends a partial
 permutation to an admissible signed Young diagram together with two standard
-Young tableaux.
+\hyperref[prelimTableaux]{Young tableaux}.
 
 
 
 \subsection[rowInsertion]{Row insertion}
 
 In order to describe RSK, we need the notion of row insertion.
-Given a SSYT $T$ and $k \in \setN$, the \emph{insertion}
+Given a SSYT $T$ and $k \in \setN$, the \defin{row insertion}
 $T \leftarrow k$ is defined recursively as follows,
 where $T_1$ is the first row of $T$ and $T_{2\sim}$ denotes the SSYT with the first row of $T$
 removed.
@@ -91,7 +93,7 @@ gives the following sequence of tableaux, where $\ins(w)$ is the last.
 
 \begin{theorem}[Greene's theorem, \cite{Greene1974,Sagan2001}]
 Let $\pi$ be a permutation and let $I_k(\pi)$
-denote the length of the longest sub-word of $\pi$ that can be 
+denote the length of the longest subword of $\pi$ that can be
 expressed as a disjoint union of $k$ increasing subsequences of $\pi$.
 Similarly, let $D_k(\pi)$ be the length of the 
 longest subword of $\pi$ that can be expressed as a disjoint union of $k$ 
@@ -111,12 +113,12 @@ RSK together with Schützenberger evacuation.
 
 \begin{example*}[An application:  Erdős--Szekeres theorem]
 
-The \defin{Erdős--Szekeres theorem}\cite{ErdosSzekeres2009}
+The \defin{Erdős--Szekeres theorem} \cite{ErdosSzekeres2009}
 states that any sequence of distinct real numbers of length $(r-1)(s-1)+1$
 contains a monotonically increasing subsequence of length $r$, 
 or a monotonically decreasing subsequence of length $s$.
 
-Suppose we have a sequence $w$ of such numbers. We apply row insertion on this sequence,
+Suppose we have a sequence $w$ of such numbers. We apply row insertion to this sequence,
 and obtain a tableau $P$ (with real numbers).
 Note that this tableau cannot be contained in an $(r-1)\times (s-1)$-rectangle,
 so either the first row is longer than $r$, or the first column is longer than $s$.
@@ -166,8 +168,10 @@ is mapped to the pair $(P,Q)$
 
 \begin{theorem}[Greene's theorem for words, \cite{Greene1974,Sagan2001}]
 Let $W$ be a biword with lexicographically sorted columns.
-We use $I_k(W)$ and $D_k(W)$ to denote $k$-weakly increasing
-and $k$-strictly decreasing subwords of the bottom row of $W$.
+Let $I_k(W)$ be the maximum length of a subword of the bottom row of $W$
+that can be expressed as a disjoint union of $k$ weakly increasing subwords.
+Let $D_k(W)$ be the analogous maximum length using $k$ strictly decreasing
+subwords.
 
 Let $\lambda$ be the shape of $\ins(W)$. Then 
 \[
@@ -185,8 +189,8 @@ traditionally indicated with a right-pointing arrow.
 We now insert into dual SSYT. 
 A \defin{dual SSYT} is a filling that is the transpose of an SSYT.
 
-Given a \emph{dual SSYT} $T$ and $k \in \setN$, the \emph{dual insertion} $k \to T $ 
-is defined recursively as follows where $T_1$ is the first 
+Given a \emph{dual SSYT} $T$ and $k \in \setN$, the \emph{dual insertion}
+$k \to T$ is defined recursively as follows, where $T_1$ is the first
 row of $T$ and $T_{2\sim}$ denotes the dual SSYT with the first row of $T$
 removed.
 \begin{enumerate}
@@ -230,7 +234,7 @@ gives the following sequence of tableaux, where $P$ is the last.
 Dual RSK is defined on biwords such that there are no duplicate columns.
 We denote the dual RSK map as $W \rskDualArrow (P,Q)$,
 and we obtain a pair of tableaux such that $P$ is dual semistandard and $Q$ is semistandard.
-Let $B(\mu,\nu)$ denote the set of \emph{binary} matrices with given row- and column-sums.
+Let $B(\mu,\nu)$ denote the set of \emph{binary} matrices with given row and column sums.
 Dual RSK provides the following bijections:
 
 \begin{align}
@@ -267,7 +271,7 @@ is mapped to the pair $(P,Q)$
 
 \begin{proposition}[RSK vs. dual RSK]
 Let $\pi \in \symS_n$.
-Then \cite[Thm. 4.1.1]{Leeuwen1996} states that the following are equivalent:
+The following conditions are equivalent \cite[Thm. 4.1.1]{Leeuwen1996}:
 \begin{itemize}
 \item $\pi \rskArrow (P,Q)$
 \item $n+1-\pi \rskDualArrow (\evac(P^t),Q^t)$
@@ -290,11 +294,12 @@ This property generalizes to biwords, see the
 \subsection[rskBurge]{RSK (variant III)}
 
 
-In the usual RSK we require that the biword $W$ is sorted in a 
-lexicographical fashion. Suppose instead the columns $\binom{i}{j}$ are sorted first 
-on $i$ and in case of equality, sort \emph{decreasingly} with respect to $j$.
-Furthermore, we impose the same condition as in dual RSK that two columns may not be identical.
-We call such biwords \defin{Burge words} as this ordering was studied in Burge insertion.
+In the usual RSK we require that the biword $W$ is sorted in lexicographic
+order.  Suppose instead that the columns $\binom{i}{j}$ are sorted first on
+$i$, and in case of equality are sorted \emph{decreasingly} with respect to
+$j$.  Furthermore, we impose the same condition as in dual RSK that two
+columns may not be identical.  We call such biwords \defin{Burge words}
+because this ordering was studied in Burge insertion.
 
 For a broader ribbon-tableau setting, \name{Marc A. A. van Leeuwen}
 constructs spin-preserving Knuth correspondences
@@ -321,12 +326,11 @@ For example,
 \end{pmatrix}
 \]
 
-In this setting, we write $W \rskbArrow (P,Q)$ if the biword $W$ is first sorted in the Burge 
+In this setting, we write $W \rskbArrow (P,Q)$ if the biword $W$ is first sorted in the Burge
 fashion and the entries are inserted using row insertion.
 
-For this map, we have that $W \rskbArrow (P,Q)$ where $P$ and $Q^T$ 
-are semistandard tableaux of the same shape
-and we get a second set of bijections. 
+For this map, $W \rskbArrow (P,Q)$ has $P$ and $Q^T$ semistandard tableaux
+of the same shape, giving another set of bijections.
 We let $B(\mu,\nu)$ denote the 
 set of binary matrices with row sums $\mu$ and column sums $\nu$.
 
@@ -424,6 +428,8 @@ Here is an overview of the properties of RSK.
 Several of the standard symmetry rules can be found in
 \cite[App. A.4.3]{Fulton1997} and \cite[A.1.2.11]{StanleyEC2}.
 Note that RSK is closely connected to \hyperref[chargeProperties]{charge}.
+The descent identity below uses \hyperref[descentSet]{permutation descents}
+and \hyperref[tableauDescentSet]{tableau descents}.
 
 \begin{itemize}
 
@@ -550,15 +556,14 @@ It is then easy to derive the second statement as well.
 \section[skewRSK]{Skew RSK}
 
 \name{Bruce Sagan} and \name{Richard Stanley} introduce several analogues of
-the Robinson--Schensted algorithm for skew Young tableaux
+the Robinson--Schensted algorithm for \hyperref[skewShapes]{skew Young tableaux}
 \cite{SaganStanley1990SkewRSK}.  These skew correspondences give
 combinatorial proofs of identities involving standard skew tableaux and skew
 Schur functions, and they retain several of the symmetry features of ordinary
 RSK.
 
 For a later discussion of injections as generalizations of permutations, see
-the FPSAC 2020 talk
-\url{https://www.youtube.com/watch?v=SeFLyM3zDV0}.
+\href{https://www.youtube.com/watch?v=SeFLyM3zDV0}{the FPSAC 2020 talk}.
 
 
 
@@ -580,22 +585,24 @@ fluctuation theorem into a single narrative.
 
 \section[patternsAndRSK]{RSK and pattern avoidance}
 
-\name{Amanda Burcroff} and \name{Colin Defant} use RSK to study strong pattern
-avoidance, where both a permutation and one of its powers avoid a fixed pattern
+\name{Amanda Burcroff} and \name{Colin Defant} use RSK to study strong
+\hyperref[permutationPattern]{pattern avoidance}, where both a permutation
+and one of its powers avoid a fixed pattern
 \cite{BurcroffDefant2020}.
 
 
 
-In \cite{Pahuja2026x}, the author considers matrices that map to a fixed shape
-$\lambda$ under RSK and studies those with the minimal number of inversions,
-computed from the second row in the biword.  The author conjectures that these
-\emph{minimal matrices} are exactly the symmetric Hankel matrices.
+\name{Nimisha Pahuja} considers matrices that map to a fixed shape $\lambda$
+under RSK and studies those with the minimal number of inversions, computed
+from the second row in the biword \cite{Pahuja2026x}.  She conjectures that
+these \emph{minimal matrices} are exactly the symmetric Hankel matrices.
 
 
 
 \section[rimHookRSK]{Rimhook RSK}
 
-In \cite[Thm. 3]{StantonWhite1985}, the authors define a bijection,
+\name{Dennis W. Stanton} and \name{Dennis E. White} define a bijection
+\cite[Thm. 3]{StantonWhite1985},
 \[
 \begin{pmatrix}
 H(1)& H(2)& \dotsc & H(\ell) \\
@@ -611,9 +618,9 @@ The output is a pair $(P,Q)$ of $d$-rim-hook tableaux of the same shape.
 The map $\rskArrow_{d}$ can be decomposed into a $d$-tuple of usual RSK-maps.
 
 
-As a corollary, they have that $d$-hook tableaux of shape $\lambda$ are in 
-bijection with $d$-tuples of standard Young tableaux 
-(with different entries!) whose shapes are given by the $d$-quotient of $\lambda$.
+As a corollary, $d$-hook tableaux of shape $\lambda$ are in bijection with
+$d$-tuples of standard Young tableaux with disjoint entry sets, whose shapes
+are given by the \hyperref[partitionQuotient]{$d$-quotient} of $\lambda$.
 
 
 \section[hillmanGrassl]{Hillman--Grassl correspondence}
@@ -623,18 +630,20 @@ with non-negative integers. There are no other conditions.
 A \hyperref[planePartitions]{reverse plane partition} of shape $\lambda$ is a
 $\lambda$-array with weakly increasing rows and columns.
 
-The \defin{Hillman--Grassl correspondence} is a bijection from the set of $\lambda$-arrays
-to the set of reverse plane partitions of shape $\lambda$.
-
-See 
-\url{http://sporadic.stanford.edu/reference/combinat/sage/combinat/tableau.html#sage.combinat.tableau.Tableau.hillman_grassl}
-for definition.
+The \defin{Hillman--Grassl correspondence}, introduced in
+\cite{HillmanGrassl1976}, is a bijection from the set of $\lambda$-arrays to
+the set of reverse plane partitions of shape $\lambda$.  Equivalently, it
+encodes a reverse plane partition by a multiset of rim hooks in the Young
+diagram of $\lambda$; the hook lengths explain the resulting product
+enumeration.  Sage has an implementation of the map in its
+\href{http://sporadic.stanford.edu/reference/combinat/sage/combinat/tableau.html#sage.combinat.tableau.Tableau.hillman_grassl}{tableau tools}.
 
 
 \subsection[sulzgruberInsertion]{The Pak--Sulzgruber correspondence}
 
-A different bijection is defined by \name{Igor Pak} \cite{Pak2001}, from reverse plane partitions to $\lambda$-arrays.
-The inverse of this map is called the Sulzgruber correspondence.
+The Pak correspondence is a different bijection, defined by \name{Igor Pak}
+\cite{Pak2001}, from reverse plane partitions to $\lambda$-arrays.  The
+inverse of this map is called the Sulzgruber correspondence.
 
 \name{Robin Sulzgruber} gives this inverse as a rim-hook insertion algorithm
 for reverse plane partitions \cite{Sulzgruber2020}.  In
@@ -648,7 +657,7 @@ invariants.
 
 \section[signedPermutationsRSK]{Signed permutations and RSK}
 
-\defin{Domino insertion} is a type $B/C$ analog of RSK for signed
+\defin{Domino insertion} is a type $B/C$ analogue of RSK for signed
 permutations.  \name{Thomas Lam} gives a growth-diagram proof of the
 semistandard domino-Schensted correspondence, extends it to a nonempty
 $2$-core, and constructs two dual domino-Schensted correspondences
@@ -660,7 +669,8 @@ type $B/D$ analogue \cite{Terada1993}.
 \section[bereleRSK]{Berele insertion for the symplectic case}
 
 
-In \cite{Berele1986}, a version of Schensted insertion is described, which proves the identity
+The \defin{Berele insertion} is a symplectic version of Schensted insertion.
+In \cite{Berele1986}, it is used to prove the identity
 \[
 (a_1+ a_1^{-1} + \dotsb + a_n + a_n^{-1})^m = \sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n) 
 \]
@@ -687,9 +697,8 @@ saturated Newton polytope property.
 uses it to prove Littlewood-type identities for $q$-deformed symplectic Schur
 functions \cite{Nteka2018}.
 
-
-See also \url{http://fpsac2019.fmf.uni-lj.si/resources/Proceedings/67.pdf}
-for $SO(2n+1)$.
+For an odd-orthogonal analogue involving vacillating tableaux and $SO(2k+1)$,
+see \cite{Jagenteufel2019SundaramSO}.
 
 
 \section[multisetRSK]{Multiset RSK}
@@ -710,7 +719,7 @@ For $K$-theoretic analogues, \name{Anders Buch}, \name{Andrew Kresch},
 use a common generalization of Robinson--Schensted and Edelman--Greene
 insertion to study stable \hyperref[grothendieck]{Grothendieck polynomials}
 \cite{BuchKreschShimozonoTamvakisYong2007}.  \name{Hugh Thomas} and
-\name{Alexander Yong} develop a $K$-theoretic jeu-de-taquin theory for
+\name{Alexander Yong} develop a $K$-theoretic \hyperref[jeuDeTaquin]{jeu-de-taquin} theory for
 increasing tableaux \cite{ThomasYong2009}.
 
 \name{Ting Guo} and \name{Svetlana Poznanović} use Hecke insertion and
@@ -728,19 +737,23 @@ variables.
 
 \section[probabilisticRSK]{Probabilistic RSK}
 
-Frieden and Schreier-Aigner \cite{FriedenSchreierAigner2021} introduced a $qt$-deformation of the Robinson--Schensted correspondence.
-The output consists of several tableaux (with some probabilities), and this proves a (squarefree)
-version of the Cauchy identity for \hyperref[macdonaldP]{Macdonald polynomials}.
-In a more recent paper, they define a $qt$-version of RSK from which one can prove the dual Cauchy identity for 
-\hyperref[macdonaldP]{Macdonald polynomials}, see \cite{FriedenSchreierAigner2024x}.
+\name{Gabriel Frieden} and \name{Florian Schreier-Aigner}
+\cite{FriedenSchreierAigner2021} introduced a $qt$-deformation of the
+Robinson--Schensted correspondence.  The output is a probability distribution
+on several tableaux, and this proves a squarefree version of the Cauchy
+identity for \hyperref[macdonaldP]{Macdonald polynomials}.  In a later paper,
+they define a $qt$-version of RSK from which one can prove the dual Cauchy
+identity for Macdonald polynomials \cite{FriedenSchreierAigner2024x}.
 
 
 \section[geometricRSK]{Geometric RSK}
 
-There is a geometric lift of RSK, where the classical RSK is given by the tropicalization of this lift.
+The \defin{geometric RSK correspondence} is a birational lift of RSK, where
+the classical RSK is recovered by tropicalization.
 \hyperref[whittaker]{Whittaker functions} then take the place of Schur
 functions.
-See \cite{CorwinOConnellSeppalainenZygouras2014}.
+See \cite{CorwinOConnellSeppalainenZygouras2014} and the
+\hyperref[geometricWhittaker]{Whittaker-function discussion of geometric RSK}.
 
 
 For a different geometric aspect, see \cite{GillespieReimerBerg2023}
@@ -760,8 +773,7 @@ the RSK-type algorithm of \name{Sami Assaf} and \name{Danjoseph Quijada}
 \name{Deke Zhao} extends RSK superinsertion to hook multipartitions and uses
 it to derive super Frobenius formulae for cyclotomic Hecke algebras
 \cite{Zhao2019x}.  For an expository account of Pak--Postnikov's super RSK
-correspondence and a super Cauchy identity, see \name{James Rowan}'s notes
-\url{https://math.mit.edu/research/undergraduate/urop-plus/documents/Rowan.pdf}.
+correspondence and a super Cauchy identity, see \cite{Rowan2014SuperRSK}.
 
 \name{Rebecca Patrias} and \name{Pavlo Pylyavskyy} define dual filtered
 graphs as $K$-theoretic analogues of Fomin's dual graded graphs
@@ -771,7 +783,7 @@ associated insertion algorithms and growth rules.
 
 
 
-\section[otherRSK]{Other types of RSK}
+\section[otherRSK]{Further RSK variants and applications}
 
 \begin{itemize}
 \item \name{Jonathan S. Bloom} and \name{Dan Saracino} use
@@ -813,7 +825,7 @@ Littlewood--Richardson rule for super Schur functions.
 
 \item \name{Benjamin Brubaker}, \name{Gabriel Frieden},
 \name{Pavlo Pylyavskyy}, and \name{Travis Scrimshaw} develop geometric RSK
-from the viewpoint of geometric crystals and invariant theory
+from the viewpoint of \hyperref[crystals]{geometric crystals} and invariant theory
 \cite{BrubakerFriedenPylyavskyyScrimshaw2025GeoRSK}.  They describe
 generators for fields and rings of invariants under the two commuting
 geometric crystal actions on matrices.
@@ -824,7 +836,7 @@ They characterize hook-shaped simple graphs by peak and valley conditions on
 Burge arrays, and construct a crystal structure on simple graphs of hook
 shape.
 
-\item There is a type of RSK involving vacillating tableaux,
+\item A set-partition version of RSK involves vacillating tableaux:
 \[
   B(2k) = \sum_{\lambda} m^{\lambda}_k \cdot m^{\lambda}_k
 \]
@@ -832,9 +844,10 @@ where $m^{\lambda}_k$ is the number of vacillating tableaux of shape $\lambda$, 
 is a Bell number (number of set partitions of $[2k]$), see \cite{HalversonLewandowski2005}.
 For a generalization of this, see \cite{BerikkyzyHarrisPunYanZhao2022x}.
 
-One can ask if this can be interpreted for run-sorted permutations,
-see \cite{AlexanderssonNabawanda2021}. The number of run-sorted permutations of size $2k+1$ is given by $B(2k)$---
-can one do some type of RSK on such permutations to obtain a pair of vacillating tableaux?
+This suggests a natural question for run-sorted permutations, see
+\cite{AlexanderssonNabawanda2021}.  The number of run-sorted permutations of
+size $2k+1$ is given by $B(2k)$, so one can ask whether some RSK-type map sends
+such permutations to pairs of vacillating tableaux.
 
 
 \item RSK has a close connection with \hyperref[promotion]{promotion} and the
@@ -843,7 +856,7 @@ shadow construction by \name{Xavier Viennot}, see
 
 \item \name{Peter L. Guo} relates Richardson tableaux to RSK insertion tableaux of
 noncrossing partial matchings \cite{Guo2025x}.  This gives a bijection between
-Richardson tableaux of size $n$ and Motzkin paths with $n$ steps, and connects
+\hyperref[richardsonVarieties]{Richardson} tableaux of size $n$ and Motzkin paths with $n$ steps, and connects
 their $q$-enumeration to $q$-Catalan numbers.
 
 \item \name{M. Parvathi}, \name{A. Tamilselvi}, and \name{D. Hepsi} construct
@@ -855,10 +868,10 @@ $p$-Young tableaux and primitive idempotents in the group algebras, and leads
 to a lacunary Cauchy identity.
 
 \item \name{Steven N. Karp} and \name{Martha E. Precup} introduce Richardson
-tableaux as a subset of standard tableaux motivated by Springer fibers and
+tableaux as a subset of standard tableaux motivated by \hyperref[springerFibers]{Springer fibers} and
 totally nonnegative geometry \cite{KarpPrecup2025x}.  They characterize these
-tableaux using evacuation and pairs of reading words, prove that the
-corresponding Springer-fiber component is a Richardson variety, and enumerate
+tableaux using \hyperref[evacuation]{evacuation} and pairs of reading words, prove that the
+corresponding Springer-fiber component is a \hyperref[richardsonVarieties]{Richardson variety}, and enumerate
 Richardson tableaux by Motzkin numbers.
 
 \end{itemize}
