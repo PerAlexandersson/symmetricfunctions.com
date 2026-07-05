@@ -1,5 +1,5 @@
 \metatitle{Gelfand--Tsetlin patterns and polytopes}
-\metadescription{Definition of Gelfand--Tsetlin patterns and Gelfand--Tsetlin polytopes. Bijection with semi-standard Young tableaux. Related results.}
+\metadescription{Definition of Gelfand--Tsetlin patterns and Gelfand--Tsetlin polytopes. Bijection with semistandard Young tableaux. Related results.}
 
 
 \section[gtpatterns]{Gelfand--Tsetlin patterns}
@@ -7,9 +7,10 @@
 Gelfand--Tsetlin (sometimes spelled Cetlin or Zetlin) patterns
 were introduced by \name{Israel Gelfand} and \name{Michael Tsetlin} in \cite{GelfandTsetlin1950},
 motivated by the close relationship with representation theory of $GL_n$.
-A short introduction to GT-patterns can be found in \cite[p.103]{StanleyEC2}.
+A short introduction to GT-patterns can be found in \cite[p.~103]{StanleyEC2}.
 
-For a brief background, see \href{https://www.findstat.org/CollectionsDatabase/GelfandTsetlinPatterns/}{this page on FindStat}.
+For a brief background, see the Gelfand--Tsetlin pattern collection in
+FindStat \cite{FindStatGelfandTsetlinPatterns}.
 
 \name{Ilse Fischer} and \name{Florian Schreier-Aigner} prove product formulas
 for $(-1)$-enumerations of arrowed Gelfand--Tsetlin patterns
@@ -48,7 +49,7 @@ The entries must satisfy the conditions
 x_{i+1,j} \geq x_{ij} \text{ and } x_{ij} \geq x_{i+1,j+1}
 \end{equation*}
 for all values of $i$, $j$ where the indexing is defined.
-The inequalities simply states that horizontal rows are weakly decreasing,
+The inequalities simply state that horizontal rows are weakly decreasing,
 down-right diagonals are weakly decreasing and down-left diagonals are weakly increasing.
 
 The \defin{weight} $w(G) = (w_1,\dotsc,w_n)$ of a GT-pattern $G$ is defined as
@@ -58,15 +59,15 @@ By convention, $x_{0j}=0$ if these entries are not specified.
 
 \subsection[gtpatternsAsSSYT]{Bijection with semistandard Young tableaux}
 
-The conditions ensures every row in the pattern defines an integer partition.
+The conditions ensure every row in the pattern defines an integer partition.
 Furthermore, any two adjacent rows define a skew shape.
-These properties enables us to biject triangular GT-patterns with Young tableaux
+These properties enable us to biject triangular GT-patterns with Young tableaux
 and parallelogram GT-patterns with skew Young tableaux.
 
 The skew shape defined by row $j$ and $j+1$ in a GT-pattern $G$
-describes which boxes in a tableau $T$ that have content $j$.
+describes which boxes in a tableau $T$ have content $j$.
 In particular, if $T$ has shape $\lambda/\mu$ then the first row in $G$ is $\mu$
-and the last row is $\lambda$. 
+and the last row is $\lambda$.
 
 
 \begin{example}
@@ -81,7 +82,7 @@ The following triangular GT-pattern
  &  &  &  &  & 3 & \\
 \end{matrix}
 \]
-is in bijection with the semi-standard Young tableau below.
+is in bijection with the semistandard Young tableau below.
 
 \begin{figure}
 \begin{ytableau}
@@ -93,7 +94,7 @@ is in bijection with the semi-standard Young tableau below.
 \end{ytableau}
 \end{figure}
 
-Notice that the fourth row in the GT-pattern is $3321$ and 
+Notice that the fourth row in the GT-pattern is $3321$ and
 the shape of all entries less than or equal to four in the tableau is also $3321$.
 \end{example}
 
@@ -139,7 +140,7 @@ and let $L(G)$ be the number of entries $c$ such that $a=c$.
 
 Let $\rho = (n-1,n-2,\dotsc,1,0)$. Then (see \cite{Tokuyama1988})
 \begin{equation*}
-\schurS_{\lambda}(x_1,\dotsc,x_n) \cdot \prod_{1 \leq i \lt j \leq n} (x_i + t x_j)  = 
+\schurS_{\lambda}(x_1,\dotsc,x_n) \cdot \prod_{1 \leq i \lt j \leq n} (x_i + t x_j)  =
 \sum_{G \in SGT(\lambda + \rho)} (1+t)^{S(G)} t^{L(G)}\xvec^{w(G)}.
 \end{equation*}
 
@@ -159,12 +160,12 @@ deform the Weyl character formula for $SO(2n+1,\setC)$.
 \section[gtpolytopes]{Gelfand--Tsetlin polytopes}
 
 By specifying the top row in a triangular GT-pattern as $\lambda$
-and imposing the inequalities above we get a convex polytope. 
+and imposing the inequalities above, we obtain a convex polytope.
 This is a \defin{Gelfand--Tsetlin polytope}, $\gtp_{\lambda} \subset \setR^{n(n+1)/2}$.
 By construction, the integer lattice points in $\gtp_{\lambda}$
-is in bijection with $\SSYT(\lambda)$.
-The analogous statement holds for parallelogram GT-patterns where 
-also the bottom row $\mu$ is a fixed integer partition.
+are in bijection with $\SSYT(\lambda)$.
+The analogous statement holds for parallelogram GT-patterns where the bottom
+row $\mu$ is also a fixed integer partition.
 These polytopes are denoted $\gtp_{\lambda\mu} \subset \setR^{nm}$.
 Below, we use $d$ to denote the dimension ($n(n+1)/2$ or $mn$) of the ambient space.
 
@@ -172,15 +173,17 @@ Below, we use $d$ to denote the dimension ($n(n+1)/2$ or $mn$) of the ambient sp
 \subsection[gtpolytopesMarkedPoset]{Unimodular triangulation and marked posets}
 
 The polytopes $\gtp_{\lambda\mu}$ admit \emph{unimodular triangulations}.
-This means that the polytopes can be decomposed into simplices with integer vertices and 
-normalized volume $1$. For a short proof, see \cite{Alexandersson2019CounterExamples}.
+This means that the polytopes can be decomposed into simplices with integer
+vertices and normalized volume $1$. For a short proof, see
+\cite{Alexandersson2019CounterExamples}.
 
 As a consequence, Gelfand--Tsetlin polytopes have integer vertices,
-and have the \hyperref[polytopeIDP]{integer decomposition property} (IDP). This means that 
+and have the \hyperref[polytopeIDP]{integer decomposition property} (IDP).
+This means that
 if $p$ is a lattice point in $k \gtp_{\lambda\mu}$ for some integer $k\geq 1$,
 then $p$ can be expressed as $p_1 + \dotsb + p_k$ where each $p_i$ is a lattice point in $\gtp_{\lambda\mu}$.
-This can be proved directly by bijecting to semi-standard tableaux,
-see \cite[Subsection 2.3]{Alexandersson2016GTPoly}.  Under this bijection,
+This can be proved directly by bijecting to semistandard tableaux,
+see \cite[Subsec.~2.3]{Alexandersson2016GTPoly}.  Under this bijection,
 elementwise addition of GT-patterns corresponds to concatenating tableaux:
 a tableau of shape $k\lambda/k\mu$ decomposes into $k$ tableaux of shape
 $\lambda/\mu$.
@@ -190,8 +193,8 @@ polytopes (the $k=2$ case was introduced in \cite{HaaseHofmann2017}).
 The following theorem follows very easily from the bijection with SSYT.
 
 \begin{theorem}[Alexandersson, 2018]
-Let $\gtp_{\lambda^1},\dotsc,\gtp_{\lambda^k}$ 
-be GT-polytopes, embedded in the same ambient space 
+Let $\gtp_{\lambda^1},\dotsc,\gtp_{\lambda^k}$
+be GT-polytopes, embedded in the same ambient space
 by padding the partitions with zeros if needed.
 Then
 \[
@@ -206,13 +209,15 @@ This theorem does not generalize to skew shapes. The pair $\gtp_{3}$
 and $\gtp_{2/1}$ yields a counterexample.
 
 
-Gelfand--Tsetlin polytopes are special cases of so-called \hyperref[orderPolytope]{marked order polytopes},
-which generalizes \hyperref[orderPolytope]{order polytopes} considered by
-\name{Richard Stanley}, \cite{Stanley86TwoPosetPolytopes}.
-In \cite{ArdilaBliemSalazar2011}, the authors generalize the bijection 
+Gelfand--Tsetlin polytopes are special cases of
+\hyperref[orderPolytope]{marked order polytopes},
+which generalize \hyperref[orderPolytope]{order polytopes} considered by
+\name{Richard Stanley} \cite{Stanley86TwoPosetPolytopes}.
+In \cite{ArdilaBliemSalazar2011}, the authors generalize the bijection
 between order polytopes and \hyperref[chainPolytope]{chain polytopes} and
 give a marked chain polytope analog of GT-polytopes.
-In type $A$ these analogs are so called \defin{Feigin--Fourier--Littelmann polytopes}.
+In type $A$ these analogs are called
+\defin{Feigin--Fourier--Littelmann polytopes}.
 
 \name{Igor Makhlin} studies marked chain-order polytopes for the
 Gelfand--Tsetlin poset \cite{Makhlin2024}.  He realizes their toric varieties
@@ -249,8 +254,9 @@ prove structural properties such as being Noetherian, reduced, Koszul, and
 Cohen--Macaulay, describe maximal ideals and irreducible modules, and relate
 the associated variety to toric degenerations of partial flag varieties.
 
-The Gelfand--Tsetlin polytopes are also special cases of so called \emph{flow polytopes},
-see \cite{LiuMeszarosDizier2019flow}.  In fact,
+The Gelfand--Tsetlin polytopes are also special cases of
+\hyperref[flowPolytope]{flow polytopes}; see
+\cite{LiuMeszarosDizier2019flow}.  In fact,
 \name{Ricky Ini Liu}, \name[Karola Mészáros]{Karola Mészáros}, and
 \name{Avery St. Dizier} develop a general connection between marked order
 polytopes and flow polytopes, with GT-polytopes as a central example.
@@ -264,8 +270,9 @@ There is a natural correspondence between \defin{contingency matrices}
 and certain GT-polytopes \cite{Alexandersson2016GTPoly}.
 A contingency matrix is a matrix of non-negative integers with specified row sums and column sums.
 
-Given a skew shape $\lambda/\mu$ and the GT-polytope for weight $\onevec = (1,1,\dotsc,1)$,
-each lattice point corresponds to a semi-standard Young tableau.
+Given a skew shape $\lambda/\mu$ and the GT-polytope for weight
+$\onevec = (1,1,\dotsc,1)$, each lattice point corresponds to a
+semistandard Young tableau.
 Let $a_{ij}$ denote the number of boxes with entry $j$ in row $i$ of the tableau.
 This gives an $m \times n$ matrix $A = (a_{ij})$ where each column sums to $1$
 and row $i$ sums to $\lambda_i - \mu_i$.
@@ -274,7 +281,8 @@ so lattice points in the GT-polytope are in bijection with contingency matrices
 with column sums $1$ and row sums $\lambda_i - \mu_i$.
 
 The special case $\lambda_i - \mu_i = 1$ with $n = m$ recovers the
-\defin{Birkhoff polytope}, which is the convex hull of all $n \times n$ permutation matrices.
+\hyperref[birkhoffPolytope]{Birkhoff polytope}, which is the convex hull of
+all $n \times n$ permutation matrices.
 Since GT-polytopes are compressed (have the \hyperref[polytopeIDP]{IDP}),
 it follows that the Birkhoff polytope is also compressed,
 a fact proved independently in \cite{StanleyDecompositions80}.
@@ -286,9 +294,9 @@ such as how to compute their volumes; see \cite{Pak2000}.
 
 \subsection[gtEhrhart]{Ehrhart polynomials}
 
-By definition, it follows that for a partition of length $m$,
+For a partition of length $m$,
 \[
- \left| \setZ^d \cap \gtp_{\lambda} \right| = \schurS_{\lambda}(1^m)  = 
+ \left| \setZ^d \cap \gtp_{\lambda} \right| = \schurS_{\lambda}(1^m)  =
  \prod_{1 \leq i \lt j \leq m } \frac{\lambda_i - \lambda_j + j-i}{j-i},
 \]
 where the last identity is due to \name{Richard Stanley}'s hook-content formula.
@@ -311,15 +319,14 @@ For example, $m=3$, $\lambda=321$ and $\mu=1$ gives the Ehrhart polynomial
 Ehr(\gtp_{321/1},k) = \frac{1}{2} (k^5+6 k^4+14 k^3+16 k^2+9 k+2).
 \]
 
-By adding an extra row to $\lambda/\mu$, one can show that 
+Adding an extra row to $\lambda/\mu$ gives
 \[
 \schurS_{k\lambda/k\mu}(1^n) = K_{k\nu/k\tau,(km)^n},
 \]
-for appropriate $\nu/\tau$ and $m = |\lambda/\mu|$. 
-The idea is that one can freely fill the shape $\lambda/\mu$,
-and in a unique way fill the remaining boxes in the added row,
-so that the weight becomes $m^n$.
-A similar construction works for flagged skew Schur 
+for appropriate $\nu/\tau$ and $m = |\lambda/\mu|$.
+The shape $\lambda/\mu$ can be filled freely, and the remaining boxes in the
+added row are then filled uniquely so that the weight becomes $m^n$.
+A similar construction works for flagged skew Schur
 functions and \hyperref[schurFlagged]{flagged skew Kostka coefficients}.
 
 \name{Margaret Bayer}, \name{Bennet Goeckner}, \name{Su Ji Hong},
@@ -328,15 +335,16 @@ functions and \hyperref[schurFlagged]{flagged skew Kostka coefficients}.
 from Schur polynomials and inflated symmetric
 \hyperref[grothendieck]{Grothendieck polynomials}
 \cite{BayerGoecknerHongMcAllisterOlsenPinckneyVegaYip2021}.  These polytopes
-have the integer decomposition property by saturated Newton polytope results,
-and the paper characterizes when they are reflexive.
+have the \hyperref[polytopeIDP]{integer decomposition property} by
+\hyperref[newtonPolytopes]{saturated Newton polytope} results, and the paper
+characterizes when they are \hyperref[reflexivePolytope]{reflexive}.
 
 
 
 \begin{question}
 Do all Kogan faces of Gelfand--Tsetlin polytopes have non-negative Ehrhart polynomial?
-There is an example (see \cite{Alexandersson2019CounterExamples}) 
-of a (non-Kogan) face where the Ehrhart polynomial 
+There is an example (see \cite{Alexandersson2019CounterExamples})
+of a (non-Kogan) face where the Ehrhart polynomial
 has a negative coefficient. However, this polynomial is of degree 20.
 \end{question}
 
@@ -344,14 +352,14 @@ has a negative coefficient. However, this polynomial is of degree 20.
 \subsection[gtpolytopesFVectors]{Vertices, $f$-vectors and differential equations}
 
 There has been some effort in counting the number of vertices of GT-polytopes.
-In \cite{GusevKiritchenkoTimorin2013}, the authors 
+In \cite{GusevKiritchenkoTimorin2013}, the authors
 describe a generating function that enumerates the vertices of $\gtp_{\lambda}$.
 
 Let $V(1^{i_1},2^{i_2},\dotsc,k^{i_k})$ denote the number of vertices of
 $\gtp_{\lambda}$ where $\lambda$ is the partition with \hyperref[prelimPartitions]{type} $(i_1,i_2,\dotsc,i_k)$.
 Consider the generating function
 \[
-E_k(z_1,\dotsc,z_k) \coloneqq 
+E_k(z_1,\dotsc,z_k) \coloneqq
 \sum_{i_1,\dotsc,i_k \geq 0} V(1^{i_1},2^{i_2},\dotsc,k^{i_k}) \frac{z_1^{i_1}}{i_1!} \dotsm \frac{z_k^{i_k}}{i_k!}.
 \]
 \begin{theorem}[See \cite{GusevKiritchenkoTimorin2013}]
@@ -364,12 +372,12 @@ The formal power series $E_k(z_1,\dotsc,z_k)$ satisfies the partial differential
 \]
 \end{theorem}
 
-This result is later improved in \cite[Thm. 1.14]{AnChoKim2018},
-where the authors provide a differential equation 
+This result is later improved in \cite[Thm.~1.14]{AnChoKim2018},
+where the authors provide a differential equation
 for the full $f$-vector of GT-polytopes.
 They consider the generating function
 \[
-F_k(z_1,\dotsc,z_k;t) \coloneqq 
+F_k(z_1,\dotsc,z_k;t) \coloneqq
 \sum_{d\geq 0} \sum_{i_1,\dotsc,i_k \geq 0} t^d f_d(1^{i_1},2^{i_2},\dotsc,k^{i_k}) \frac{z_1^{i_1}}{i_1!} \dotsm \frac{z_k^{i_k}}{i_k!}.
 \]
 where $f_d$ is the number of $d$-dimensional faces of $\gtp_{\lambda}$.
@@ -382,19 +390,19 @@ There are analogs of GT-polytopes for type $B$ and $C$, see \cite{ArdilaBliemSal
 
 \section[gtKostka]{Weight-restricted Gelfand--Tsetlin polytopes}
 
-Let $\gtp_{\lambda,w}\subseteq \gtp_{\lambda}$ be the Gelfand--Tsetlin polytope defined 
-as $\gtp_{\lambda}$ but 
+Let $\gtp_{\lambda,w}\subseteq \gtp_{\lambda}$ be the Gelfand--Tsetlin polytope defined
+as $\gtp_{\lambda}$ but
 with the additional constraint that the difference of
 the row sums of rows $j+1$ and $j$ is exactly $w_j$.
 
 By construction, lattice points in $\gtp_{\lambda,w}$ are in bijection with $\SSYT(\lambda,w)$.
-Therefore, the number of lattice points in $\gtp_{\lambda,w}$ is 
+Therefore, the number of lattice points in $\gtp_{\lambda,w}$ is
 given by the \hyperref[schurCombinatorialFormula]{Kostka coefficient} $K_{\lambda w}$.
 
 We do the analogous definitions for parallelogram GT-patterns and skew shapes.
 
 
-\begin{theorem}[See \cite[p.179]{Kirillov2001}]
+\begin{theorem}[See \cite[p.~179]{Kirillov2001}]
 If $\lambda$ has $r$ parts and $\mu$ has $s$ parts, then the dimension of the
 polytope $\gtp_{\lambda,\mu}$ (assuming non-empty) is given by
 \[
@@ -406,7 +414,7 @@ polytope $\gtp_{\lambda,\mu}$ (assuming non-empty) is given by
 \subsection[gtKostkaVertices]{Non-integrality and vertices}
 
 Contrary to $\gtp_{\lambda}$, the polytopes (also called Gelfand--Tsetlin polytopes) $\gtp_{\lambda,w}$
-are not always integral. In fact, the denominators of the 
+are not always integral. In fact, the denominators of the
 vertices can get arbitrary large, see \cite{DeLoeraMcAllister2004}.
 
 In \cite{Alexandersson2016GTPoly}, we prove that for $\lambda \vdash n$,
@@ -416,8 +424,9 @@ the polytope $\gtp_{\lambda,1^n}$ is non-integral unless $\lambda=(2,2)$ or a ho
 \subsection[gtKostkaSaturation]{Saturation theorem}
 
 The following theorem is a GT-polytope analog of the celebrated Saturation theorem,
-proved by \name{Allen Knutson} and \name{Terence Tau} \cite{KnutsonTau1999,KnutsonTaoWoodward2004}.
-They proved a similar statement for so called \emph{Berenstein--Zelevinsky polytopes}.
+proved by \name{Allen Knutson} and \name{Terence Tao}
+\cite{KnutsonTau1999,KnutsonTaoWoodward2004}.
+They proved a similar statement for so-called \emph{Berenstein--Zelevinsky polytopes}.
 
 \begin{theorem}[See \cite{Alexandersson2015KSaturation}]
 
@@ -430,25 +439,25 @@ contains at least one vertex with integer coordinates.
 
 \subsection[gtKostkaEhrhart]{Ehrhart polynomials and period collapse}
 
-Since the $\gtp_{\lambda/\mu,w}$ are not lattice \hyperref[polytope]{polytopes}, 
-one does not expect the \hyperref[ehrhart]{Ehrhart function} to be a polynomial. 
+Since the $\gtp_{\lambda/\mu,w}$ are not lattice \hyperref[polytope]{polytopes},
+one does not expect the \hyperref[ehrhart]{Ehrhart function} to be a polynomial.
 However, these polytopes exhibit a \defin{period collapse} \cite{HaaseMcAllister2007}
-and they do have a polynomial \hyperref[ehrhart]{Ehrhart function}. 
+and they do have a polynomial \hyperref[ehrhart]{Ehrhart function}.
 See \cite{Rassart2004} for a proof of this statement.
 
 
-\begin{conjecture}[See \cite[p.170]{Kirillov2001} and later \cite{KingTolluToumazet2004}]
+\begin{conjecture}[See \cite[p.~170]{Kirillov2001} and later \cite{KingTolluToumazet2004}]
 The coefficients of the Ehrhart polynomial of $\gtp_{\lambda/\mu,w}$ are non-negative.
 \end{conjecture}
 
 See also \cite{Alexandersson2015KSaturation} for related open conjectures.
 
 
-We could also consider a fixed face of the Gelfand--Tsetlin polytope intersected 
+We could also consider a fixed face of the Gelfand--Tsetlin polytope intersected
 with the hyperplane defined by a weight.
 Suppose $P$ is the polytope obtained from the non-skew shape $\lambda = (2,2,2)$
-and $w = (1,1,\dotsc,1)$, intersected with the face requiring 
-that there the $3$ is not in the first row of the corresponding SSYTs. 
+and $w = (1,1,\dotsc,1)$, intersected with the face requiring
+that $3$ is not in the first row of the corresponding SSYTs.
 Then the number of lattice points in $kP$ is
 \[
   3, 7, 13, 22, 34, 50, 70, 95, 125, 161, 203 \dotsc, \text{ for } k=1,2,\dotsc,
@@ -588,7 +597,7 @@ Littlewood--Richardson tableau is filled entirely with letter $1$.
 
 These additional linear constraints, imposed on $\gtp_{\lambda/\mu,\nu}$,
 cut out a polytope whose integer lattice points are in bijection with
-Littlewood--Richardson tableaux. In fact, we obtain the 
+Littlewood--Richardson tableaux. In fact, this gives the
 description of \hyperref[bzPatterns]{Berenstein--Zelevinsky patterns}.
 
 
@@ -644,7 +653,7 @@ which fails the lattice word condition at the first letter.
 The remaining inequalities (with $j=2,3$) are satisfied
 for the first two patterns,
 confirming $c^{(3,2,1)}_{(2,1),(2,1)} = 2$.
-One can verify this agrees with the product decomposition
+This agrees with the product decomposition
 \[
 \schurS_{(2,1)} \cdot \schurS_{(2,1)}
 = \schurS_{(4,2)} + \schurS_{(4,1,1)} + \schurS_{(3,3)}
@@ -685,11 +694,12 @@ The Yamanouchi conditions eliminate four of the six GT-patterns.
 
 \section[alternatingSignMatrix]{Monotone triangles and alternating sign matrices}
 
-\defin{Monotone triangles} are special types of triangular GT-patterns with additional constraints.
+\defin{Monotone triangles} are special triangular GT-patterns with additional
+constraints.
 First, the top row is $(n,n-1,\dotsc,1)$ and all rows must be \emph{strictly} decreasing.
 
 Monotone triangles of size $n$ are in bijection with $n \times n$ \emph{alternating sign matrices}.
-\defin{Alternating sign matrices} are matrices with entries in $\{-1,0,1\}$ 
+\defin{Alternating sign matrices} are matrices with entries in $\{-1,0,1\}$
 such that in each row and column, the nonzero elements alternate in sign.
 Furthermore, the sum of the entries in each row (and column) is $1$.
 
@@ -703,19 +713,19 @@ is the sum of the first $k$ rows.
  &1& & & \\
 1&\color{blue}{\overline{1}}& &1& \\
  &1& &\color{blue}{\overline{1}}&1\\
- & &1& & \\ 
- & & &1& 
+ & &1& & \\
+ & & &1&
 \end{bmatrix}
 \to
 \begin{bmatrix}
 1&1&1&1&1 \\
 1& &1&1&1 \\
  &1&1& &1 \\
- & &1&1&  \\ 
- & & &1& 
+ & &1&1&  \\
+ & & &1&
 \end{bmatrix}
 \]
-For each row, we then record the columns that contains a $1$
+For each row, we then record the columns that contain a $1$
 and write the column indices in a decreasing fashion.
 The result is a monotone triangle.
 \[
@@ -729,7 +739,7 @@ The result is a monotone triangle.
 \]
 \end{example}
 
-\name{Doron Zeilberger} \cite{Zeilberger1995} proved that the number of 
+\name{Doron Zeilberger} \cite{Zeilberger1995} proved that the number of
 monotone triangles of size $n$, or equivalently, number of $n\times n$
 \hyperref[alternatingSignMatrix]{alternating sign matrices} is given by
 \[
@@ -737,7 +747,7 @@ monotone triangles of size $n$, or equivalently, number of $n\times n$
 \]
 
 A generalization of this result is given in \cite{Fischer2006},
-where difference operators are used in a formula to 
+where difference operators are used in a formula to
 count the number of monotone triangles with prescribed top row $\lambda$.
 
 
@@ -746,10 +756,9 @@ count the number of monotone triangles with prescribed top row $\lambda$.
 \subsection[gtSchur]{Schur polynomials}
 
 The close connection between GT-patterns and \hyperref[schurS]{Schur polynomials}
-is quite apparent. The Schur polynomial $\schurS_\lambda(x_1,\dotsc,x_n)$ can be expressed 
+is quite apparent. The Schur polynomial $\schurS_\lambda(x_1,\dotsc,x_n)$ can be expressed
 as a sum over $GT(\lambda)$, the set of triangular GT-patterns with top row
 equal to $\lambda$.
-We have that
 \[
 \schurS_\lambda(x_1,\dotsc,x_n) = \sum_{G \in GT(\lambda) } \xvec^{w(G)}
 \]
@@ -757,10 +766,10 @@ where $w$ depends on the row-sums of the pattern $G$.
 
 \subsection[gtHL]{Hall--Littlewood polynomials}
 
-The identity for Schur functions can be 
+The identity for Schur functions can be
 generalized to \hyperref[hallLittlewoodP]{Hall--Littlewood polynomials},
 via a weighted version of Brion's theorem.
-\begin{theorem}[See  \cite{FeiginMakhlin2016}]
+\begin{theorem}[See \cite{FeiginMakhlin2016}]
 Let $\lambda$ be a partition. Then
 \begin{equation*}
  \hallLittlewoodP_\lambda(\xvec;t) = \sum_{G \in GT(\lambda) } p_G(t) \xvec^{w(G)}
