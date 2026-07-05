@@ -1066,4 +1066,145 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-transferMatrixMethod}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Four states with allowed transitions.
+  \foreach \x/\y in {-0.55/0.42, 0.55/0.42, -0.55/-0.42, 0.55/-0.42} {
+    \filldraw[iconblue, draw=black, line width=0.55mm, rounded corners=0.04cm]
+      (\x-0.22,\y-0.22) rectangle (\x+0.22,\y+0.22);
+    \node[circle, fill=white, draw=black, line width=0.45mm,
+      minimum size=4pt, inner sep=0pt] at (\x,\y) {};
+  }
+
+  \draw[black, thinner] (-0.32,0.42) -- (0.32,0.42);
+  \draw[black, thinner] (-0.32,-0.42) -- (0.32,-0.42);
+  \draw[black, thinner] (-0.55,0.2) -- (-0.55,-0.2);
+  \draw[black, thinner] (0.55,0.2) -- (0.55,-0.2);
+  \draw[black, thinner] (-0.38,0.25) -- (0.38,-0.25);
+  \draw[black, thinner] (0.38,0.25) -- (-0.38,-0.25);
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-symmetricFunctionsSpace}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Three stacked bases/layers in the symmetric-function ring.
+  \foreach \y in {-0.42,-0.03,0.34} {
+    \fill[iconblue] (-0.72,\y-0.18) rectangle (0.72,\y+0.18);
+    \fill[iconblue] (0,\y+0.18) ellipse [x radius=0.72, y radius=0.18];
+    \draw[black, thinner] (-0.72,\y-0.18) -- (-0.72,\y+0.18);
+    \draw[black, thinner] (0.72,\y-0.18) -- (0.72,\y+0.18);
+    \draw[black, thinner] (0,\y-0.18) ellipse [x radius=0.72, y radius=0.18];
+    \draw[black, thinner] (0,\y+0.18) ellipse [x radius=0.72, y radius=0.18];
+  }
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-interlacingPolynomials}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Two interlacing real-root sets on one axis.
+  \draw[black, thinner, ->, >=stealth] (-0.75,0) -- (0.78,0);
+  \foreach \x in {-0.55,0,0.55} {
+    \node[node-blue] at (\x,0) {};
+    \draw[iconblue, thinner] (\x,0.16) -- (\x,0.36);
+  }
+  \foreach \x in {-0.28,0.28} {
+    \node[node-black] at (\x,0) {};
+    \draw[black, thinner] (\x,-0.16) -- (\x,-0.36);
+  }
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-stablePolynomial}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Upper half-plane picture for stability.
+  \fill[iconblue!15] (-0.75,-0.25) rectangle (0.75,0.75);
+  \draw[black, thinner, ->, >=stealth] (-0.78,-0.25) -- (0.8,-0.25);
+  \draw[black, thinner, ->, >=stealth] (-0.42,-0.72) -- (-0.42,0.78);
+  \node[node-blue] at (-0.06,0.12) {};
+  \node[node-blue] at (0.32,0.32) {};
+  \node[node-blue] at (0.58,0.02) {};
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-lorentzianPolynomial}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Lorentz-cone silhouette.
+  \fill[iconblue!18] (0,0) -- (-0.72,0.72) -- (0.72,0.72) -- cycle;
+  \draw[iconblue, line width=0.9mm] (0,0) -- (-0.72,0.72);
+  \draw[iconblue, line width=0.9mm] (0,0) -- (0.72,0.72);
+  \draw[black!55, thinner] (0,0) -- (-0.72,-0.72);
+  \draw[black!55, thinner] (0,0) -- (0.72,-0.72);
+  \node[node-black] at (0,0) {};
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-gammaPositivity}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Symmetric unimodal coefficients with the central gamma contribution.
+  \draw[black, line width=0.45mm] (-0.75,-0.6) -- (0.75,-0.6);
+  \filldraw[fill=white, draw=black, line width=0.5mm]
+    (-0.67,-0.6) rectangle (-0.45,-0.32);
+  \filldraw[fill=white, draw=black, line width=0.5mm]
+    (-0.39,-0.6) rectangle (-0.17,0.12);
+  \filldraw[fill=iconblue, draw=black, line width=0.5mm]
+    (-0.11,-0.6) rectangle (0.11,0.35);
+  \filldraw[fill=white, draw=black, line width=0.5mm]
+    (0.17,-0.6) rectangle (0.39,0.12);
+  \filldraw[fill=white, draw=black, line width=0.5mm]
+    (0.45,-0.6) rectangle (0.67,-0.32);
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-realRootedCatalan}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A small Dyck path with its peaks marked.
+  \draw[black!55, line width=0.45mm] (-0.78,-0.58) -- (0.78,-0.58);
+  \fill[iconblue!15]
+    (-0.78,-0.58) -- (-0.52,-0.32) -- (-0.26,-0.06)
+    -- (0,-0.32) -- (0.26,-0.58) -- (0.52,-0.32)
+    -- (0.78,-0.58) -- cycle;
+  \draw[iconblue, line width=0.9mm]
+    (-0.78,-0.58) -- (-0.52,-0.32) -- (-0.26,-0.06)
+    -- (0,-0.32) -- (0.26,-0.58) -- (0.52,-0.32)
+    -- (0.78,-0.58);
+  \node[node-black] at (-0.26,-0.06) {};
+  \node[node-black] at (0.52,-0.32) {};
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-realRootedMatching}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A graph with a highlighted matching.
+  \coordinate (a) at (-0.48,0.48);
+  \coordinate (b) at (0.48,0.48);
+  \coordinate (c) at (-0.48,-0.48);
+  \coordinate (d) at (0.48,-0.48);
+  \draw[black!55, thinner] (a) -- (b);
+  \draw[black!55, thinner] (c) -- (d);
+  \draw[black!55, thinner] (a) -- (d);
+  \draw[black!55, thinner] (b) -- (c);
+  \draw[iconblue, line width=1.1mm] (a) -- (c);
+  \draw[iconblue, line width=1.1mm] (b) -- (d);
+  \foreach \p in {a,b,c,d} {
+    \node[node-black] at (\p) {};
+  }
+\end{tikzpicture}
+
+
 \end{document}
