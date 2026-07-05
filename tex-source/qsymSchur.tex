@@ -19,7 +19,8 @@
   TransformsTo & rsqSchur | MasonRemmel2013 | map=omega \\
 \end{polydata}
 
-The \defin{quasisymmetric Schur functions}, $\{\qSchur_\alpha \}$, were
+The \defin{quasisymmetric Schur functions}\label{quasisymmetricSchurFunction},
+$\{\qSchur_\alpha \}$, were
 introduced by \name{James Haglund}, \name{Kurt Luoto}, \name{Sarah Mason},
 and \name{Stephanie van Willigenburg}
 \cite{HaglundLuotoMasonWilligenburg2011}.
@@ -190,7 +191,9 @@ $112$ denotes the composition $(1,1,2)$.
 \end{polydata}
 
 
-The \defin{Young quasisymmetric Schur functions}, introduced in \cite{LuotoMykytiukWilligenburg2013},
+The \defin{Young quasisymmetric Schur functions}
+\label{youngQuasisymmetricSchurFunction}, introduced in
+\cite{LuotoMykytiukWilligenburg2013},
 are obtained from the \hyperref[qSchur]{quasisymmetric Schur functions} via the relation
 $\yqSchur_\alpha = \rho(\qSchur_{\rev(\alpha)})$
 where $\rho$ is the \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}
@@ -239,7 +242,8 @@ The degree four Young quasisymmetric Schur functions have the following
   PositiveIn & peakYqSchur | ChoiNamOh2025,SearlesSlatteryHolmes2026 | proof=Thms. 4.5 and 4.16 \\
 \end{polydata}
 
-The \defin{quasisymmetric Schur $Q$-functions} were introduced by
+The \defin{quasisymmetric Schur $Q$-functions}
+\label{quasisymmetricSchurQFunction} were introduced by
 \name{Naihuan Jing} and \name{Yunnan Li} \cite{JingLi2015} as lifts of
 \hyperref[schurQ]{Schur $Q$-functions} to the
 \hyperref[peakQSym]{peak algebra}.  They are indexed by
@@ -304,7 +308,8 @@ expand as follows.
   PositiveIn & peakQSym | Searles2025 | proof=Thm. 5.9 \\
 \end{polydata}
 
-The \defin{peak Young quasisymmetric Schur functions} were introduced by
+The \defin{peak Young quasisymmetric Schur functions}
+\label{peakYoungQuasisymmetricSchurFunction} were introduced by
 \name{Dominic Searles} \cite{Searles2025} through diagram supermodules for
 $0$-Hecke--Clifford algebras.  They form a basis of the
 \hyperref[peakQSym]{peak algebra} and are a peak-algebra analogue of the
@@ -352,7 +357,8 @@ $K_{431}$ to $\widetilde{S}_{431}$.
   TransformsTo & qSchur | MasonRemmel2013 | map=omega \\
 \end{polydata}
 
-The \defin{row-strict quasisymmetric Schur functions} were introduced by
+The \defin{row-strict quasisymmetric Schur functions}
+\label{rowStrictQuasisymmetricSchurFunction} were introduced by
 \name{Sarah Mason} and \name{Jeffrey Remmel} \cite{MasonRemmel2013}.
 These \hyperref[quasiSymmetricFunctions]{quasisymmetric functions} are indexed by
 \hyperref[weakCompositions]{compositions}, and refine the \hyperref[schurS]{Schur functions}
@@ -413,7 +419,8 @@ See also \cite[Thms.~10 and 11]{MasonNiese2015}.
   TransformsTo & yqSchur | MasonNiese2015 | map=omega \\
 \end{polydata}
 
-The \defin{row-strict Young quasisymmetric Schur functions} and their skew
+The \defin{row-strict Young quasisymmetric Schur functions}
+\label{rowStrictYoungQuasisymmetricSchurFunction} and their skew
 versions are introduced in \cite{MasonNiese2015}.
 They can be defined via the relation with \hyperref[yqSchur]{Young quasisymmetric Schur functions}:
 $\rsyqSchur_\alpha = \omega(\yqSchur_\alpha)$, see
@@ -492,7 +499,8 @@ The last identity follows from $\psi=\omega\circ\rho=\rho\circ\omega$ on
   TransformsTo & rsdiSchur | NieseSundaramWilligenburgVegaWang2023 | map=psi \\
 \end{polydata}
 
-The \defin{dual immaculate Schur functions} (and their skew version),
+The \defin{dual immaculate Schur functions}\label{dualImmaculateSchurFunction}
+(and their skew version),
 $\{\diSchur_\alpha\}$, were introduced in \cite{BergBergeronSaliolaSerranoZabrocki2014}.
 They constitute a basis for the space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
 The original definition is that they are dual to
@@ -684,6 +692,7 @@ immaculate basis; see \cite[Lem.~3.1 and Thm.~4.4]{BergeronSanchezOrtegaZabrocki
 \end{polydata}
 
 The \defin{row-strict dual immaculate Schur functions}
+\label{rowStrictDualImmaculateSchurFunction}
 $\{\rsdiSchur_\alpha\}$, were introduced in \cite{NieseSundaramWilligenburgVegaWang2023},
 and are defined similarly to the \hyperref[diSchur]{dual immaculate Schur
 functions}.
@@ -816,7 +825,8 @@ the subscript $112$ denotes the composition $(1,1,2)$.
   TransformsTo & extSchur | Daugherty2024Extended | map=omega and reverse index \\
 \end{polydata}
 
-The \defin{extended Schur functions} were introduced by \name{Sami Assaf}
+The \defin{extended Schur functions}\label{extendedSchurFunction} were
+introduced by \name{Sami Assaf}
 and \name{Dominic Searles} in \cite{AssafSearles2019}.
 They are obtained by taking the stable limit of \hyperref[lock]{lock polynomials}.
 Alternatively, the extended Schur functions are dual
@@ -827,9 +837,10 @@ quasisymmetric bases connected by involutions \cite{Daugherty2024Extended}.
 In particular, the extended Schur functions sit in a four-family system closed
 under the $\psi$, $\rho$, and $\omega$ involutions.
 The other three bases in this system are the
-\defin{row-strict extended Schur functions}, the
-\defin{flipped extended Schur functions}, and the
-\defin{backward extended Schur functions}.  The row-strict family is obtained
+\defin{row-strict extended Schur functions}\label{rowStrictExtendedSchurFunction},
+the \defin{flipped extended Schur functions}\label{flippedExtendedSchurFunction},
+and the \defin{backward extended Schur functions}\label{backwardExtendedSchurFunction}.
+The row-strict family is obtained
 from the extended Schur family by $\psi$, while Daugherty's flipped and
 backward families are obtained from it by $\rho$ and $\omega$, respectively,
 with the corresponding reversal of the indexing composition.
