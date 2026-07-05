@@ -177,17 +177,21 @@ A \defin{weak composition} allows for parts to be equal to $0$.
 \section[notationPermutations]{Permutations and words}
 
 The set of permutations of $n$ elements is denoted $\symS_n$.
+
+\subsection[descentsMajorIndex]{Descents and major index}
+
 Let $\pi \in \symS_n$, or more generally, a word of length $n$.
-The \defin{descent set} $\DES(\pi)\subseteq [n-1]$
+The \defin{descent set}\label{descentSet} $\DES(\pi)\subseteq [n-1]$
 is defined as 
 \[
 \DES(\pi) \coloneqq \{i \in [n-1] : \pi_i \gt \pi_{i+1} \}.
 \]
-The set of \defin{inversions} is the set of pairs,
+The set of \defin{inversions}\label{inversionSet} is the set of pairs,
 \[
-\INV(\pi) \coloneqq \{(i,j) \in [n]\times [n] : \pi_i \gt \pi_{j} \}.
+\INV(\pi) \coloneqq \{(i,j) : 1\leq i\lt j\leq n,\ \pi_i \gt \pi_{j} \}.
 \]
-We define the \defin{major index} on permutations and words:
+We define the \defin{inversion number}\label{inversionNumber} and
+\defin{major index}\label{majorIndex} on permutations and words by
 \[
 \inv(\pi) \coloneqq |\INV(\pi)| \text{ and } \maj(\pi) \coloneqq \sum_{i \in \DES(\pi)} i.
 \]
@@ -252,11 +256,13 @@ Whenever $T \in \SYT(\lambda)$, we define $\charge(T)$ and $\cocharge(T)$ as
 the charge and cocharge, respectively, of their reading words.
 \end{example}
 
-Given $T \in \SYT(\lambda)$ let 
+Given $T \in \SYT(\lambda)$, the
+\defin{tableau descent set}\label{tableauDescentSet} is
 \[
 \DES(T) \coloneqq \{i \in [n-1] : i+1 \text{ appears in a lower row than } i \}.
 \]
-We then let $\maj(T)  \coloneqq \sum_{i \in \DES(T)} i$.
+The \defin{tableau major index}\label{tableauMajorIndex} is
+$\maj(T)  \coloneqq \sum_{i \in \DES(T)} i$.
 Thus, $\maj(T) = \maj(\rw(T)^{-1})$.
 
 
