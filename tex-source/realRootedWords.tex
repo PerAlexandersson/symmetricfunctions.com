@@ -7,9 +7,9 @@
 
 This page collects real-rootedness results for statistics on permutations,
 words, and set partitions.  Many examples are
-\hyperref[sturmSequence]{Sturm sequences}, meaning that
+\hyperref[sturmSequenceDefinition]{Sturm sequences}, meaning that
 \(P_j\interl P_{j+1}\) for all \(j\).  Others use
-\hyperref[interlacingSequences]{interlacing sequences},
+\hyperref[interlacingSequenceDefinition]{interlacing sequences},
 \hyperref[stablePolynomial]{stable polynomials}, or
 \hyperref[polyaFrequency]{total-positivity} methods.  For the broader
 context of real-rootedness and unimodality, see
@@ -21,7 +21,7 @@ posets, including
 
 The examples are grouped into Eulerian-type descent polynomials, other
 permutation statistics, set partitions, and Stirling permutations.  The
-subsections are meant as a guide to the method as much as to the objects: repeated
+subsections are meant as a guide to the methods as much as to the objects: repeated
 themes are derivative recurrences, compatible or interlacing refinements,
 and multivariate stability.
 
@@ -31,7 +31,7 @@ and multivariate stability.
 
 \begin{example*}[Eulerian polynomials, descents in permutations]\label{ex:eulerianSturm}
 
-The \defin{Eulerian polynomials} are
+The \defin{Eulerian polynomials}\label{eulerianPolynomial} are
 \[
   A_n(t) \coloneqq \sum_{\sigma \in \symS_n} t^{\des(\sigma)}.
 \]
@@ -69,6 +69,7 @@ Define
 \[
  A_M(x;q) \coloneqq  \sum_{\pi \in \symS_M } x^{\des(\pi)}q^{\maj(\pi)}.
 \]
+These are the \defin{multi-Eulerian polynomials}\label{multiEulerianPolynomial}.
 Then (MacMahon, \cite{MacMahon1960})
 \[
  \frac{A_M(x;q)}{\prod_{j=0}^N (1-x q^j)}
@@ -172,7 +173,8 @@ are only conjectured to form interlacing pairs; see \cite[Section~5]{Chow2022}.
 
 \begin{example*}[Binomial Eulerian polynomials]
 
-The \defin{binomial Eulerian polynomials} can be defined as
+The \defin{binomial Eulerian polynomials}\label{binomialEulerianPolynomial}
+can be defined as
 \[
  \tilde{A}_n(t) \coloneqq \sum_{\sigma \in \symS_n} (1+t)^{\fix(\sigma)} t^{\exc(\sigma)}.
 \]
@@ -194,9 +196,13 @@ Fix $\svec = (s_1,\dotsc,s_n)$ and define
 \{ (e_1,\dotsc,e_n) \in \setZ^n : 0 \leq e_i \lt s_i,\; 1 \leq i \leq n \}
 \]
 with the conventions that $e_0 = e_{n+1} =0$ and $s_0 = s_{n+1}=1$.
-This is the set of \defin{inversion sequences} associated with $\svec$.
+This is the set of
+\defin{inversion sequences}\label{inversionSequence} associated with $\svec$.
 
-An index $0 \leq i \leq n$ is an \defin{ascent}, \defin{collision}, or \defin{descent}
+An index $0 \leq i \leq n$ is an
+\defin{ascent}\label{inversionSequenceAscent},
+\defin{collision}\label{inversionSequenceCollision}, or
+\defin{descent}\label{inversionSequenceDescent}
 of an inversion sequence $\evec$ if
 \[
  \frac{e_i}{s_i} \lt \frac{e_{i+1}}{s_{i+1}}, \qquad
@@ -206,13 +212,13 @@ of an inversion sequence $\evec$ if
 respectively. Moreover, let $\mathcal{D}_n^\svec \subset \mathcal{I}_n^\svec$
 be the set of inversion sequences without collisions.
 
-It was proved in \cite{SavageVisontai2015} and \cite{GustafssonSolus2020}, respectively,
-that
+It was proved in \cite{SavageVisontai2015} and
+\cite{GustafssonSolus2020}, respectively, that
 \[
 E^\svec_n(t) = \sum_{\evec \in \mathcal{I}_n^\svec} t^{\asc(\evec)} \quad \text{and} \quad
 D^\svec_n(t) = \sum_{\evec \in \mathcal{D}_n^\svec} t^{\asc(\evec)}
 \]
-are real-rooted. The methods use theory of interlacing sequences of polynomials.
+are real-rooted. The methods use the theory of interlacing sequences of polynomials.
 In particular, if $\svec$ is a fixed \emph{sequence} of positive integers,
 then $E^\svec_n(t) \interl E^\svec_{n+1}(t)$.
 
@@ -237,7 +243,8 @@ The unsigned Stirling numbers of the first kind appear in the identity
 t(t+1)(t+2)\dotsm (t+n-1) = \sum_{k=1}^n |s(n,k)|t^k
 = \sum_{\pi \in \symS_n} t^{\mathrm{numberOfCycles}(\pi)} = \sum_{\pi \in \symS_n} t^{\mathrm{leftToRightMinima}(\pi)}
 \]
-where $|s(n,k)|$ are the unsigned Stirling numbers of the first kind, see \oeis{A132393}.
+where $|s(n,k)|$ denotes the unsigned Stirling number of the first kind;
+see \oeis{A132393}.
 \end{example*}
 
 \begin{example*}[Higher-order Stirling triangles]
@@ -252,7 +259,8 @@ They prove several cases for order \(2\).
 \end{example*}
 
 \begin{example*}[Big descents in pattern-avoiding permutations]
-A descent $i$ of a permutation $\pi$ is called a \defin{big descent} if
+A descent $i$ of a permutation $\pi$ is called a
+\defin{big descent}\label{bigDescent} if
 $\pi_i>\pi_{i+1}+1$.  \name{Sergi Elizalde}, \name{Johnny Rivera}, and
 \name{Yan Zhuang} classify the big-descent distributions on permutations
 avoiding one or two patterns of length three \cite{ElizaldeRiveraZhuang2026}.
@@ -269,7 +277,7 @@ associated quasisymmetric functions.
 
 \begin{example*}[Peak polynomials, peaks in permutations]\label{ex:peakSturm}
 
-The \defin{peak-generating polynomials}
+The \defin{peak-generating polynomials}\label{peakGeneratingPolynomial}
 \[
   P_n(x)=\sum_{\sigma\in\symS_n} x^{\text{peaks}(\sigma)}
 \]
@@ -338,7 +346,8 @@ R_n(t) = t\cdot R'_{n-1}(t) + t\cdot (n-2) R_{n-2}(t),
 satisfy $R_{n-1} \interl R_{n}$ for all $n \geq 1$.
 The triangle of coefficients can be found in \oeis{A124324}.
 
-The polynomial $R_n(t)$ is the generating function of the number of runs in \emph{run-sorted permutations}:
+The polynomial $R_n(t)$ is the generating function for the number of runs in
+\emph{run-sorted permutations}:
 \[
  R_n(t) = \sum_{\pi \in \text{RSP}(n)} t^{\des(\pi)+1}.
 \]
@@ -386,7 +395,8 @@ See also \cite{LiuWang2007} where this is proved using a different recursion.
 
 \begin{example*}[Touchard polynomials (blocks in set partitions), with proof]\label{touchardPolynomial}
 
-The \defin{Touchard polynomials} may be defined via
+The \defin{Touchard polynomials}\label{touchardPolynomialDefinition}
+may be defined via
 \[
 T_n(x) \coloneqq \sum_{P \in SP(n)} x^{\mathrm{blocks}(P)}
 = \sum_{k=1}^n S(n,k) x^k,
@@ -474,8 +484,8 @@ In particular, this implies the real-rootedness of the Touchard polynomials.
 
 \begin{example*}[Stirling permutations]
 
-The descent of a \hyperref[permutationsStirling]{Stirling permutation} $\pi \in Q_n$
-is defined as the cardinality of
+The descent number of a \hyperref[permutationsStirling]{Stirling permutation}
+\(\pi \in Q_n\) is the cardinality of
 \[
  \{ i : \pi_i \gt \pi_{i+1} \} \cup \{2n\}.
 \]
@@ -496,7 +506,7 @@ presented below.
  1 & 114 & 1452 & 4400 & 3708 & 720 \\
 \bottomrule
 \end{array}
-These numbers show up when studying the Hilbert series of the Whitehouse complex;
+These numbers appear in the Hilbert series of the Whitehouse complex;
 see \cite{Readdy2005}. These polynomials are the $h^*$-polynomials of the
 \hyperref[orderPolytope]{order polytope} defined by the inequalities
 \[
@@ -518,6 +528,7 @@ show that a multivariate generalization is stable.
 \end{example*}
 
 \begin{theorem*}[Dey's interlacing criterion, \cite{Dey2023InterlacingZeroes}]
+\label{deyInterlacingCriterion}
 Let $(F_n(x))_{n\geq 0}$ be a sequence of polynomials satisfying
 \[
   F_n(x)=\bigl(\alpha_1(n)x+\alpha_2\bigr)F_{n-1}(x)
@@ -543,7 +554,8 @@ statement when the recurrence has the form above.
 
 
 \begin{example*}[Quasi-Stirling permutations]
-A \defin{quasi-Stirling permutation} of size $n$ is a permutation of the multiset
+A \defin{quasi-Stirling permutation}\label{quasiStirlingPermutation}
+of size $n$ is a permutation of the multiset
 $\{1,1,2,2,\dotsc,n,n\}$ avoiding the patterns $1212$ and $2121$.
 Let $\widetilde{Q}_n$ be the set of quasi-Stirling permutations of size $n$, and set
 \[
