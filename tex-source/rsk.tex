@@ -6,11 +6,11 @@
 
 \section[rsk]{The Robinson--Schensted--Knuth correspondence}
 
-The \defin{Robinson--Schensted--Knuth correspondence} (RSK),
+The \defin{Robinson--Schensted--Knuth correspondence} (RSK)
 is a bijection between matrices with non-negative integer entries and pairs of
-semi-standard Young tableaux of the same shape.
+semistandard Young tableaux of the same shape.
 Let $M(\mu,\nu)$ denote the set of matrices with entries in $\setN$,
-row sums are determined by $\mu$ and column sums determined by $\nu$.
+whose row sums are $\mu$ and whose column sums are $\nu$.
 The RSK correspondence provides the following bijections,
 where $\lambda$, $\mu$ are integer partitions of $n$:
 
@@ -25,9 +25,17 @@ In particular, the first bijection proves \hyperref[schurCauchyFormula]{the firs
 for Schur functions. The second variant of RSK proves the second Cauchy identity.
 
 
-For an excellent overview on the different variants of RSK, see \name{Christian Krattenthaler}'s survey \cite{Krattenthaler2006}.
-We shall cover the same four variants of RSK as in his paper and keep the same numbering.
-See also \cite[App. A.4.3]{Fulton1997} and \cite{Sagan2001} for more resources on RSK.
+For an excellent overview on the different variants of RSK, see
+\name{Christian Krattenthaler}'s survey \cite{Krattenthaler2006}.
+We follow his numbering for the ordinary, dual, and Burge variants discussed
+below.  See also \cite[App. A.4.3]{Fulton1997} and \cite{Sagan2001} for more
+resources on RSK.
+
+This page first gives the insertion algorithms and the basic matrix
+correspondence, then records the standard dual and Burge variants, Knuth
+relations, and the most frequently used symmetry properties.  The later
+sections are a guide to important extensions of RSK rather than complete
+constructions of every variant.
 
 See the \hyperref[evacuation]{evacuation} section on how RSK interacts with evacuation.
 The standard transpose, inverse, and reversal symmetries are collected in the
@@ -48,7 +56,8 @@ Young tableaux.
 \subsection[rowInsertion]{Row insertion}
 
 In order to describe RSK, we need the notion of row insertion.
-Given a SSYT $T$ and $k \in \setN$, the \emph{insertion} $T \leftarrow k$ recursively as follows,
+Given a SSYT $T$ and $k \in \setN$, the \emph{insertion}
+$T \leftarrow k$ is defined recursively as follows,
 where $T_1$ is the first row of $T$ and $T_{2\sim}$ denotes the SSYT with the first row of $T$
 removed.
 \begin{enumerate}
@@ -122,16 +131,16 @@ Application of Greene's theorem finishes the proof.
 The RSK correspondence is done in two steps.
 A matrix $A \in M(\lambda,\mu)$ is first turned into a \defin{biword} $W$ of length $n$ as follows. 
 For each entry $A_{ij}$, we have $A_{ij}$ columns in $W$ equal to $\binom{i}{j}$.
-Furthermore, the columns are ordered lexicographically, with respect to the top-most value first.
+Furthermore, the columns are ordered lexicographically, with respect to the top entry first.
 
 Given a pair $(P,Q)$ of SSYT of the same shape,
-the insertion $(P,Q) \leftarrow \binom{i}{j} $ is defines as the pair $(P',Q')$,
+the insertion $(P,Q) \leftarrow \binom{i}{j}$ is defined as the pair $(P',Q')$,
 where $P' =  P \leftarrow j$ and $Q'$ is obtained from $Q$ by putting $i$
 in the box where the last insertion took place to get $P'$.
 
 Finally, the pair $(P,Q)$ in the correspondence $W \rskArrow (P,Q)$
 is obtained by inserting each column $\binom{i}{j}$ from left to right in $W$.
-One can prove that $(P,Q)$ is indeed a pair of semi-standard Young tableaux,
+One can prove that $(P,Q)$ is indeed a pair of semistandard Young tableaux,
 provided that $W$ corresponds to some matrix $A$.
 We refer to $P = \ins(W)$ as the \defin{insertion tableau} 
 and $Q=\rec(W)$ as the \defin{recording tableau}.
@@ -273,7 +282,8 @@ Let $w \in [d]^n$ be a word. We have that
 w \rskArrow P \iff \rev(w) \rskDualArrow P^t.
 \]
 \end{proposition}
-This property generalizes to biwords, see \hyperref[RSKvsDualRSK]{this section}.
+This property generalizes to biwords, see the
+\hyperref[RSKvsDualRSK]{RSK vs. dual RSK section}.
 
 
 
@@ -396,12 +406,12 @@ Two words $w$ and $w'$ are \defin{dual Knuth-equivalent}
 if and only if they have the same \defin{recording tableau}.
 
 An \defin{elementary dual Knuth transformation} on a permutation
-on a permutation $\sigma_1,\dotsc,\sigma_n$
+$\sigma_1,\dotsc,\sigma_n$
 interchanges $\sigma_i =k$ and $\sigma_j =k+1$
 if and only if $k-1$ or $k+2$ occur somewhere between.
 
 For example, $\underline{5}34\underline{6}7182$ and $\underline{6}34\underline{5}7182$
-are equivalent, since $4$ appear between them.
+are equivalent, since $4$ appears between them.
 
 Two words are dual Knuth equivalent if and only if one can be transformed to the other 
 via elementary dual Knuth transformations, see \cite[p.200]{Fulton1997}.
@@ -454,7 +464,7 @@ satisfies an additional simple tableau condition.
 \item We have that
 \[
 \sum_{\sigma \in \symS_n} t^{\des(\sigma)} = \sum_{\lambda}
-f^{\lambda} \sum_{Q\in\SYT(\lambda)} t^{\des(T)},
+f^{\lambda} \sum_{Q\in\SYT(\lambda)} t^{\des(Q)},
 \]
 since RSK maps descents on permutations to descents in tableaux.
 
@@ -539,11 +549,16 @@ It is then easy to derive the second statement as well.
 
 \section[skewRSK]{Skew RSK}
 
-\name{Bruce Sagan} and \name{Richard Stanley} consider a skew extension of RSK 
-\url{http://www-math.mit.edu/~rstan/pubs/pubfiles/76.pdf}.
+\name{Bruce Sagan} and \name{Richard Stanley} introduce several analogues of
+the Robinson--Schensted algorithm for skew Young tableaux
+\cite{SaganStanley1990SkewRSK}.  These skew correspondences give
+combinatorial proofs of identities involving standard skew tableaux and skew
+Schur functions, and they retain several of the symmetry features of ordinary
+RSK.
 
-Also, I recommend the FPSAC2020 talk, \url{https://www.youtube.com/watch?v=SeFLyM3zDV0}
-on injections (seen as generalizations of permutations).
+For a later discussion of injections as generalizations of permutations, see
+the FPSAC 2020 talk
+\url{https://www.youtube.com/watch?v=SeFLyM3zDV0}.
 
 
 
@@ -571,10 +586,10 @@ avoidance, where both a permutation and one of its powers avoid a fixed pattern
 
 
 
-In \cite{Pahuja2026x}, the author considers the set of matrices that map to 
-a fixed shape $\lambda$ under RSK. In this set, there are matrices with the minimal number of inversions
-(computed from the second row in the biword). The author conjectures a characterization of 
-these \emph{minimal matrices}, namely that these are symmetric Hankel matrices.
+In \cite{Pahuja2026x}, the author considers matrices that map to a fixed shape
+$\lambda$ under RSK and studies those with the minimal number of inversions,
+computed from the second row in the biword.  The author conjectures that these
+\emph{minimal matrices} are exactly the symmetric Hankel matrices.
 
 
 
@@ -647,7 +662,7 @@ type $B/D$ analogue \cite{Terada1993}.
 
 In \cite{Berele1986}, a version of Schensted insertion is described, which proves the identity
 \[
-(a_1+ a_1^{-1} + \dotsb + a_n + a^{-1}_{n})^m = \sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n) 
+(a_1+ a_1^{-1} + \dotsb + a_n + a_n^{-1})^m = \sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n) 
 \]
 where $\schurSp_\lambda(a_1,\dotsc,a_n)$ is a \hyperref[schurSymplectic]{symplectic Schur function}
 and $Q^\lambda_m(n)$ is the number of oscillating sequences 
@@ -716,7 +731,7 @@ variables.
 Frieden and Schreier-Aigner \cite{FriedenSchreierAigner2021} introduced a $qt$-deformation of the Robinson--Schensted correspondence.
 The output consists of several tableaux (with some probabilities), and this proves a (squarefree)
 version of the Cauchy identity for \hyperref[macdonaldP]{Macdonald polynomials}.
-In a more recent paper, they define a $qt$-version of RSK from where one can prove the dual Cauchy identity for 
+In a more recent paper, they define a $qt$-version of RSK from which one can prove the dual Cauchy identity for 
 \hyperref[macdonaldP]{Macdonald polynomials}, see \cite{FriedenSchreierAigner2024x}.
 
 
@@ -725,10 +740,10 @@ In a more recent paper, they define a $qt$-version of RSK from where one can pro
 There is a geometric lift of RSK, where the classical RSK is given by the tropicalization of this lift.
 \hyperref[whittaker]{Whittaker functions} then take the place of Schur
 functions.
-See \url{https://maths.ucd.ie/~noconnell/pubs/cosz.pdf}
+See \cite{CorwinOConnellSeppalainenZygouras2014}.
 
 
-For a different geometrical aspect, see \cite{GillespieReimerBerg2023}
+For a different geometric aspect, see \cite{GillespieReimerBerg2023}
 where Schubert-geometric type questions (points on a curve) are considered.
 
 
