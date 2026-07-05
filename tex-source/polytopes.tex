@@ -6,16 +6,18 @@
 \section[polytope]{Polytopes}
 
 
-A polytope is called a \defin{lattice polytope} or \defin{integral polytope}
+A polytope is called a \defin{lattice polytope}\label{latticePolytope}
+or \defin{integral polytope}\label{integralPolytope}
 if all its vertices have integer coordinates.
-If vertices have rational coordinates, we call it a \defin{rational polytope}.
+If its vertices have rational coordinates, we call it a
+\defin{rational polytope}\label{rationalPolytope}.
 A convex polytope is called a \defin{regular polytope}\label{regularPolytope}
 if its Euclidean symmetry group acts transitively on its flags, that is, on
 maximal chains of faces.
 
 \name{Marie-Charlotte Brandenburg}, \name{Jesús A. De Loera}, and
 \name{Chiara Meroni} study exact algorithms for cutting \defin{polytopal
-measures}, meaning Lebesgue measure restricted to finite unions of
+measures}\label{polytopalMeasure}, meaning Lebesgue measure restricted to finite unions of
 full-dimensional convex polytopes \cite{BrandenburgLoeraMeroni2026x}.  For
 fixed ambient dimension, their algorithms describe all ham-sandwich cuts and
 more general prescribed-proportion cuts as semialgebraic sets in polynomial
@@ -29,16 +31,17 @@ level $1/(d+1)$.
 
 Let $P$ be a lattice polytope. The number of lattice points in the dilation
 $n\cdot P$ is a polynomial in $n$.
-The \defin{Ehrhart polynomial of $P$} is the polynomial
+The \defin{Ehrhart polynomial of $P$}\label{ehrhartPolynomialDefinition}
+is the polynomial
 $E_P(n) \coloneqq |n P \cap \setZ^d|$.
-The \defin{Ehrhart series} is
+The \defin{Ehrhart series}\label{ehrhartSeries} is
 \[
 \sum_{n \geq 0} |nP \cap \setZ^d| t^n = \frac{H_P(t)}{(1-t)^{d+1}}
 \]
 where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the
-\defin{$h^*$-polynomial} of $P$.
+\defin{$h^*$-polynomial}\label{hStarPolynomial} of $P$.
 The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the
-\defin{$h^*$-vector}; all its entries are non-negative integers, see
+\defin{$h^*$-vector}\label{hStarVector}; all its entries are non-negative integers, see
 \cite{Stanley1993} and \cite{Beck2007}.
 
 For a $d$-dimensional polytope, we have the following relation between
@@ -47,7 +50,7 @@ entries in the $h^*$-vector and the Ehrhart polynomial:
  E_P(t) = \sum_{j=0}^d \binom{t+d-j}{d} h^*_j.
 \]
 There is a similar relation to express $H_P(t)$ in terms of the
-Ehrhart polynomial coefficients involving the Eulerian polynomials.
+Ehrhart polynomial coefficients involving the \hyperref[eulerianPolynomial]{Eulerian polynomials}.
 
 \name{Victor Reiner} and \name{Brendon Rhoades} introduce a $q$-deformation
 of the Ehrhart series using harmonic spaces and Macaulay inverse systems for
@@ -59,7 +62,8 @@ Hilbert series recovers the same series.
 For a \emph{rational} polytope $P$ with denominator $q$
 (the smallest positive integer such that $qP$ is a lattice polytope),
 the lattice-point counting function $E_P(t) = |tP \cap \setZ^d|$ is a
-\defin{quasi-polynomial} of degree $d$ and period dividing $q$.
+\defin{quasi-polynomial}\label{ehrhartQuasiPolynomial} of degree $d$
+and period dividing $q$.
 The Ehrhart series then satisfies
 \[
  \sum_{n \geq 0} E_P(n) z^n = \frac{h^*(P;z)}{(1-z^q)^{d+1}},
@@ -68,7 +72,8 @@ where $h^*(P;z)$ is a polynomial of degree at most $q(d+1)-1$
 with non-negative integer coefficients, see \cite{Beck2007} and \cite{Stanley1993}.
 
 \name{Jesús A. De Loera}, \name{Laura Escobar}, \name{Nathan Kaplan}, and
-\name{Chengyang Wang} develop a \defin{weight-lifting} construction for sums
+\name{Chengyang Wang} develop a
+\defin{weight-lifting}\label{weightLifting} construction for sums
 of weighted lattice points of polytopes \cite{LoeraEscobarKaplanWang2024x}.
 For many quasi-polynomial weights, the weighted sum over lattice points in
 $P$ is transformed into an ordinary lattice-point count in a higher-dimensional
@@ -83,7 +88,7 @@ They prove non-negativity for weighted $h^*$-polynomials when the weights are
 homogeneous polynomials decomposable into products of linear forms which are
 non-negative on the polytope.
 
-Some rational polytopes exhibit \defin{period collapse},
+Some rational polytopes exhibit \hyperref[periodCollapse]{period collapse},
 meaning the Ehrhart quasi-polynomial is in fact a polynomial.
 Certain \hyperref[gtKostkaEhrhart]{Gelfand--Tsetlin polytopes} have this property.
 However, not every such polynomial arises as the Ehrhart polynomial of a lattice polytope.
@@ -138,7 +143,8 @@ See \cite{Beck2007} for an alternative proof.
 \subsection[orderPolytope]{Order polytopes}
 
 Given a \hyperref[poset]{partial order} $P$ on the set $[n]$, we associate a
-polytope $\mathcal{O}(P)$, called the \defin{order polytope} of $P$.
+polytope $\mathcal{O}(P)$, called the
+\defin{order polytope}\label{orderPolytopeDefinition} of $P$.
 It is the polytope in $\setR^n$ defined via the inequalities
 \begin{align}
 x_i \leq x_j \text{ if } i <_P j
@@ -171,7 +177,9 @@ Narayana and Delannoy polynomials, respectively.
 
 \subsection[chainPolytope]{Chain polytopes}
 
-Given a finite poset $P$, its \defin{chain polytope} $\mathcal{C}(P)$ is the
+Given a finite poset $P$, its
+\defin{chain polytope}\label{chainPolytopeDefinition}
+$\mathcal{C}(P)$ is the
 polytope in $\setR_{\geq 0}^{P}$ cut out by
 \[
   x_{p_1}+x_{p_2}+\dotsb+x_{p_k}\leq 1
@@ -184,7 +192,8 @@ the two have the same Ehrhart polynomial.
 
 \subsection[markedOrderPolytope]{Marked order polytopes}
 
-The \defin{marked order polytopes} generalize order polytopes, see
+The \defin{marked order polytopes}\label{markedOrderPolytopeDefinition}
+generalize order polytopes, see
 \cite{ArdilaBliemSalazar2011},
 where we replace the conditions $0 \leq x_i \leq 1$ with
 $a_i \leq x_i \leq b_i$ for $1\leq i \leq n$,
@@ -202,7 +211,8 @@ The \hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes} are marked order polytope
 
 \subsection[crossPolytope]{Cross-polytopes}
 
-The \defin{cross-polytope} in dimension $d$ is
+The \defin{cross-polytope}\label{crossPolytopeDefinition}
+in dimension $d$ is
 \[
   \left\{ x\in\setR^d : |x_1|+\dotsb+|x_d|\leq 1 \right\}.
 \]
@@ -216,7 +226,8 @@ that these Ehrhart coefficients are positive.
 \subsection[rootPolytope]{Root polytopes}
 
 For a finite \hyperref[rootSystem]{root system} $\Phi\subseteq\setR^d$, the
-\defin{root polytope} is the convex hull $\operatorname{conv}(\Phi)$.  In type
+\defin{root polytope}\label{rootPolytopeDefinition} is the convex hull
+$\operatorname{conv}(\Phi)$.  In type
 $A$, one often also considers graphical root polytopes: for a graph $G$ on
 $[n]$ with oriented edges $i\to j$, the associated root polytope is
 \[
@@ -231,7 +242,8 @@ Let $G=(V,E)$ be a directed graph and let $a\in\setR^V$ satisfy
 \[
   \sum_{v\in V} a_v=0.
 \]
-The \defin{flow polytope} $\mathcal{F}_G(a)$ is the set of non-negative
+The \defin{flow polytope}\label{flowPolytopeDefinition}
+$\mathcal{F}_G(a)$ is the set of non-negative
 flows $f:E\to\setR_{\geq 0}$ such that, for every vertex $v$,
 \[
   \sum_{e=(v,w)} f(e)-\sum_{e=(u,v)} f(e)=a_v.
@@ -249,7 +261,7 @@ permutation flows.
 
 \subsection[permutohedron]{The permutohedron}
 
-The \defin{permutohedron} is the polytope
+The \defin{permutohedron}\label{permutohedronDefinition} is the polytope
 \[
   \operatorname{Perm}_n
   \coloneqq
@@ -264,7 +276,8 @@ of $[n]$, and it is a basic example of a generalized permutohedron; see
 
 \subsection[generalizedPermutohedron]{Generalized permutohedra}
 
-A \defin{generalized permutohedron} is a polytope whose normal fan coarsens the
+A \defin{generalized permutohedron}\label{generalizedPermutohedronDefinition}
+is a polytope whose normal fan coarsens the
 braid fan.  Equivalently, every edge is parallel to $e_i-e_j$ for some
 $i,j$.  Many generalized permutohedra can be described by
 \hyperref[submodularFunction]{submodular functions}; in particular,
@@ -274,7 +287,8 @@ permutohedra.
 
 \subsection[birkhoffPolytope]{Birkhoff polytopes}
 
-The \defin{Birkhoff polytope} $\mathcal{B}_n$ is the polytope of
+The \defin{Birkhoff polytope}\label{birkhoffPolytopeDefinition}
+$\mathcal{B}_n$ is the polytope of
 $n\times n$ doubly stochastic matrices:
 \[
   \mathcal{B}_n
@@ -305,7 +319,8 @@ polytope of the heap of the longest $c_B$-sorting word
 
 \subsection[edgePolytope]{Edge polytopes}
 
-Let $G=([n],E)$ be a finite simple graph.  The \defin{edge polytope} of $G$ is
+Let $G=([n],E)$ be a finite simple graph.  The
+\defin{edge polytope}\label{edgePolytopeDefinition} of $G$ is
 \[
   P_G \coloneqq \operatorname{conv}\{e_i+e_j : \{i,j\}\in E\}
   \subseteq \setR^n.
@@ -321,7 +336,9 @@ example in gamma-positivity and magic positivity problems.
 
 \subsection[perfectMatchingPolytope]{Perfect matching polytopes}
 
-For a graph $G=(V,E)$, the \defin{perfect matching polytope} is the convex hull
+For a graph $G=(V,E)$, the
+\defin{perfect matching polytope}\label{perfectMatchingPolytopeDefinition}
+is the convex hull
 in $\setR^E$ of the indicator vectors of perfect matchings of $G$.  For the
 complete bipartite graph $K_{n,n}$, this is the
 \hyperref[birkhoffPolytope]{Birkhoff polytope}.
@@ -329,7 +346,8 @@ complete bipartite graph $K_{n,n}$, this is the
 
 \subsection[associahedron]{Associahedra}
 
-The \defin{associahedron}, also called the \defin{Stasheff polytope}, is the
+The \defin{associahedron}\label{associahedronDefinition},
+also called the \defin{Stasheff polytope}\label{stasheffPolytope}, is the
 polytope whose vertices correspond to triangulations of a convex polygon and
 whose edges correspond to diagonal flips.  Equivalently, its face poset
 records partial triangulations of the polygon.
@@ -341,7 +359,8 @@ Let $u=(u_1,\dotsc,u_n)\in\setR_{\geq 0}^n$ satisfy
 $u_1\leq\dotsb\leq u_n$.  A vector
 $a=(a_1,\dotsc,a_n)\in\setR_{\geq 0}^n$ is a \defin{$u$-parking function}
 if its non-decreasing rearrangement $b_1\leq\dotsb\leq b_n$ satisfies
-$b_i\leq u_i$ for all $i$.  The \defin{parking function polytope}
+$b_i\leq u_i$ for all $i$.  The
+\defin{parking function polytope}\label{parkingFunctionPolytopeDefinition}
 $\operatorname{PF}(u)$ is the convex hull of all $u$-parking functions.
 
 \name{Fu Liu} and \name{Warut Thawinrak} study these polytopes, including
@@ -378,7 +397,8 @@ In the following list, each entry implies the next:
 \section[gorenstein]{Reflexive and Gorenstein polytopes}\label{reflexivePolytope}
 
 A lattice polytope $P \subset \setR^d$ containing the origin in its interior
-is called \defin{reflexive} if the dual polytope
+is called \defin{reflexive}\label{reflexivePolytopeDefinition}
+if the dual polytope
 \[
  P^* \coloneqq \left\{ y \in \setR^d : \langle x, y \rangle \leq 1 \text{ for all } x \in P \right\}
 \]
@@ -394,7 +414,8 @@ unique lattice point $m$, and the translation $rP-m$ is reflexive.
 \section[magicPositiveEhrhart]{Magic positivity and reflexive polytopes}
 
 Following \cite{FerroniHigashitani2024}, a degree-$d$ polynomial $f(n)$ is called
-\defin{magic positive} if it can be written in the form
+\defin{magic positive}\label{magicPositivePolynomial}
+if it can be written in the form
 \[
  f(n) = \sum_{i=0}^d a_i n^i (n+1)^{d-i}
 \]
@@ -428,7 +449,7 @@ positive.
 
 \begin{example*}[Pitman--Stanley polytopes]
 Let $y=(y_1,\dotsc,y_n)\in \setZ_{>0}^n$. The
-\defin{Pitman--Stanley polytope} is
+\defin{Pitman--Stanley polytope}\label{pitmanStanleyPolytope} is
 \[
   \Pi_n(y)
   \coloneqq
@@ -500,11 +521,13 @@ Let
  \{e_i+\dotsb+e_j : 1\leq i \lt j \leq d\}
  \right).
 \]
-Then $\operatorname{St}_d$ is the dual of the $d$-dimensional Stasheff polytope,
+Then $\operatorname{St}_d$ is the dual of the
+$d$-dimensional \hyperref[stasheffPolytope]{Stasheff polytope},
 and Konoike proves that the Ehrhart polynomial of the Stasheff polytope $\operatorname{St}_d^*$
 is magic positive.
 
-For the cycle graph $C_{d+1}$, the \defin{symmetric edge polytope} is
+For the cycle graph $C_{d+1}$, the
+\hyperref[symmetricEdgePolytope]{symmetric edge polytope} is
 \[
  P_{C_{d+1}} \coloneqq
  \operatorname{conv}\left(
