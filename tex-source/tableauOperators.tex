@@ -12,7 +12,8 @@ the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence} first.
 
 Here is an overview of the notation:
 \begin{itemize}
-\item $\revCompl : \symS_n \to \symS_n$ via $\pi \to n+1 - \rev(\pi)$, the reverse-complement operator.
+\item $\revCompl : \symS_n \to \symS_n$ via $\pi \to n+1 - \rev(\pi)$,
+  the \defin{reverse-complement operator}\label{reverseComplementOperator}.
 \item $\revCompl_m : [m]^n \to [m]^n$ is defined similarly as  $w \to m+1 - \rev(w)$.
 \item $BK_i$ is the Bender--Knuth involution.
 \item $\evac$ and $\evac^*$ are evacuation and dual evacuation, respectively.
@@ -27,7 +28,8 @@ and sending entry $k$ to $n+1-k$.
 
 \subsection[benderKnuth]{Bender--Knuth involutions}
 
-The \defin{Bender--Knuth involution} $BK_i$ is a map on $\SSYT(\lambda/\mu, w)$
+The \defin{Bender--Knuth involution}\label{benderKnuthInvolution}
+$BK_i$ is a map on $\SSYT(\lambda/\mu, w)$
 to $\SSYT(\lambda/\mu, s_i w)$, where $w$
 is the \hyperref[notationPermutations]{weight of the tableau}.
 
@@ -86,7 +88,8 @@ groups.
 \subsection[jeuDeTaquin]{Jeu de taquin}
 
 There is a particular method to convert a skew SSYT to a non-skew shape
-via a series of slides, called \defin{jeu de taquin}.
+via a series of slides, called
+\defin{jeu de taquin}\label{jeuDeTaquinOperation}.
 The slides are defined as follows under the conditions
 that $a \lt b$ and $a \leq b$, respectively.
 The boxes $b$ and $c$ may or may not be present.
@@ -207,7 +210,7 @@ Littlewood--Richardson rule for the \hyperref[hookSchur]{super Schur functions}
 
 \bigskip
 
-We define \defin{promotion}, $\promotion$, on a
+We define \defin{promotion}\label{tableauPromotion}, $\promotion$, on a
 (skew) standard Young tableau with $n$ boxes by the composition
 \[
 \promotion(T) \coloneqq \left( BK_{n-1} \circ BK_{n-2} \circ \dotsm \circ BK_2 \circ BK_1 \right)(T).
@@ -260,9 +263,11 @@ whose promotion orbit has order $n$, are equinumerous with $\symS_n$.
 Promotion can be defined on \hyperref[linearExtension]{linear extensions} of
 posets, see \name{Richard Stanley} \cite{Stanley2009}.  \name{Colin Defant}
 and \name{Noah Kravitz} generalize this to arbitrary
-\hyperref[labeledPoset]{poset labelings} through promotion sorting
+\hyperref[labeledPoset]{poset labelings} through
+\defin{promotion sorting}\label{promotionSorting}
 \cite{DefantKravitz2022}.
-\name{Colin Defant} introduces toric promotion, a cyclic analogue of
+\name{Colin Defant} introduces
+\defin{toric promotion}\label{toricPromotion}, a cyclic analogue of
 promotion for graph labelings \cite{Defant2022ToricPromotion}.  For forests,
 the orbit structure has a particularly simple description.
 
@@ -274,7 +279,8 @@ This was introduced by \name[M.-P. Schützenberger]{Marcel-Paul Schützenberger}
 We follow \cite{BennettMadillStokke2014}. Note that we define the inverse here,
 as this is consistent with previous notation.
 
-The $k$-promotion operator $\promotion_k$ may be defined via jeu-de-taquin as follows.
+The \defin{$k$-promotion operator}\label{kPromotionOperator}
+$\promotion_k$ may be defined via jeu-de-taquin as follows.
 Given $T \in \SSYT(\lambda,\cdot)$, remove all entries equal to $1$, such that a skew tableau is formed.
 Perform jeu-de-taquin slides until a straight shape $\mu \subseteq \lambda$ is reached.
 Subtract $1$ from all entries in the tableau and finally fill the cells of
@@ -314,7 +320,8 @@ in order to find $\promotion_k(T)$,
 
 \subsection[evacuation]{Evacuation}
 
-Evacuation was introduced by \name[M.-P. Schützenberger]{Marcel-Paul Schützenberger} \cite{Schutzenberger1963},
+The \defin{evacuation}\label{tableauEvacuation} operator was introduced by
+\name[M.-P. Schützenberger]{Marcel-Paul Schützenberger} \cite{Schutzenberger1963},
 and is an involution $\evac : \SYT(\lambda) \to \SYT(\lambda)$.
 It is a special case of the Lusztig involution on crystals, see e.g.
 \cite{MonicalPechenikScrimshaw2018}.
@@ -360,12 +367,13 @@ Furthermore, $\evac_d : \SSYT(\lambda,d) \to \SSYT(\lambda,d)$ is also defined v
 \]
 
 
-There is also the notion of \defin{dual evacuation}, $\evac^*$,
+There is also the notion of
+\defin{dual evacuation}\label{dualEvacuation}, $\evac^*$,
 which can be defined via promotion and ordinary evacuation as
 $\evac^*(T) \coloneqq \promotion^n \circ \evac(T)$, see \cite{Stanley2009} for details.
 \name{Michael Chmutov}, \name{Gabriel Frieden}, \name{Dongkwan Kim},
 \name[Joel B. Lewis]{Joel Brewster Lewis}, and \name{Elena Yudovina}
-construct an affine analogue of evacuation on tabloids
+construct an \defin{affine evacuation}\label{affineEvacuation} operator on tabloids
 \cite{ChmutovFriedenKimLewisYudovina2022}.  The fixed points of the affine
 evacuation involution are counted by a Green polynomial evaluated at $q=-1$.
 
