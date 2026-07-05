@@ -22,7 +22,8 @@ twin-manifold dagger action.}
 \end{polydata}
 
 
-The \defin{unicellular LLT polynomials} are the one-cell-per-component
+The \defin{unicellular LLT polynomials}\label{unicellularLLTPolynomialDefinition}
+are the one-cell-per-component
 subfamily of the \hyperref[LLT]{LLT polynomials}.  In the tuple model, this
 means that the indexing tuple consists of single boxes.  A more convenient
 description, observed in \cite{CarlssonMellit2017,AlexanderssonPanova2018},
@@ -40,18 +41,19 @@ page}.  The vertices are ordered as
 \[
 1\lt 2\lt \dotsb \lt n.
 \]
-For a coloring $ \kappa:[n]\to \setP$, 
-an edge $\{i,j\}$ with $i\lt j$ is an \defin{ascent} of $\kappa$ if
-$ \kappa(i)\lt\kappa(j)$.
-We write $\asc(\kappa)$ for the number of such edges.  The \defin{unicellular LLT
-polynomial} is
+For a coloring $\kappa:[n]\to \setP$,
+an edge $\{i,j\}$ with $i\lt j$ is an
+\defin{ascent}\label{unicellularLLTAscent} of $\kappa$ if
+$\kappa(i)\lt\kappa(j)$.
+We write $\asc(\kappa)$ for the number of such edges.  The
+\defin{unicellular LLT polynomial}\label{unicellularLLTGraphPolynomial} is
 \[
 \LLT_\avec(\xvec;q)
 \coloneqq
 \sum_{\kappa:[n]\to\setP}
 x_{\kappa(1)}\dotsm x_{\kappa(n)}q^{\asc(\kappa)}.
 \]
-All colorings are allowed. This is the main difference from the corresponding
+All colorings are allowed.  This is the main difference from the corresponding
 \hyperref[chromaticQuasisymmetricDefinition]{chromatic quasisymmetric function}.
 
 The graph-coloring model is equivalent to the one-cell tuple definition of LLT
@@ -203,15 +205,17 @@ using the $n$ distinct colors $1,\dotsc,n$, and $f^\lambda$ is the number of
 
 \begin{theorem}[See \name{Jonah Blasiak} \cite{Blasiak2016}]
 Whenever $\nuvec=(\nu^1,\nu^2,\nu^3)$ is a $3$-tuple of possibly disconnected
-skew shapes, $\LLT_{\nuvec}(\xvec;q)$ is Schur-positive with an explicit
-combinatorial formula.  In the unicellular case, this includes the area
+skew shapes, $\LLT_{\nuvec}(\xvec;q)$ is
+\hyperref[schurPositivity]{Schur-positive} with an explicit combinatorial
+formula.  In the unicellular case, this includes the area
 sequences indexing $\LLT_{\avec}(\xvec;q)$ with $\max_i a_i\leq 2$.
 \end{theorem}
 
 In his PhD thesis, \name{Christopher Miller} shows that LLT polynomials with
 bandwidth at most $3$ are \hyperref[kSchur]{$3$-Schur-positive}, which is
-stronger than Schur positivity \cite{Miller2019}.  The bandwidth-at-most-two
-case was treated earlier by \name[S.J. Lee]{Seung Jin Lee} \cite{Lee2020}.
+stronger than \hyperref[schurPositivity]{Schur positivity} \cite{Miller2019}.
+The bandwidth-at-most-two case was treated earlier by
+\name[S.J. Lee]{Seung Jin Lee} \cite{Lee2020}.
 
 In \cite{ChoHuh2019}, a combinatorial formula is given for the hook
 coefficients, that is, the coefficients of $\schurS_{\lambda}$ where
@@ -228,8 +232,8 @@ power-sum expansion; see also the related result on
 \hyperref[pPartitionPsiExp]{P-partitions}.
 
 Given a poset $P$ on $n$ elements, let $\opsurj(P)$ be the set of
-order-preserving surjections $f:P\to[k]$ for some $k$.  The \defin{type} of
-such a surjection is
+order-preserving surjections $f:P\to[k]$ for some $k$.  The
+\defin{type}\label{orderPreservingSurjectionType} of such a surjection is
 \[
 \alpha(f)\coloneqq (|f^{-1}(1)|,|f^{-1}(2)|,\dotsc,|f^{-1}(k)|).
 \]
@@ -307,7 +311,7 @@ function basis.  The formula below was later proved by \name{Per Alexandersson} 
 \name{Robin Sulzgruber}.
 
 Let $\theta\in O(\avec)$, and for each $i\in[n]$ define the
-\defin{highest reachable vertex} by
+\defin{highest reachable vertex}\label{highestReachableVertex} by
 \[
 \mathrm{hrv}(i)\coloneqq \max\{j\in[n]: i\leq_{P(\theta)}j\}.
 \]
@@ -382,12 +386,13 @@ The unicellular LLT polynomials can be expressed as sums over these forests.
 
 \section[unicellularLLTRepresentationTheory]{Representation theory}
 
-The polynomial $\LLT_\avec(\xvec;q)$  is the Frobenius characteristic of
-\emph{twin cohomology} with \emph{the dagger action}. 
+The polynomial $\LLT_\avec(\xvec;q)$ is the Frobenius characteristic of
+\emph{twin cohomology} with \emph{the dagger action}.
 
 \subsection[unicellularLLTFrobeniusTarget]{Frobenius characteristic}
 
-The polynomial $\LLT_\avec(\xvec;q)$ is symmetric and Schur-positive. 
+The polynomial $\LLT_\avec(\xvec;q)$ is symmetric and
+\hyperref[schurPositivity]{Schur-positive}.
 Hence it can be interpreted as a graded Frobenius characteristic:
 \[
 \LLT_\avec(\xvec;q)
@@ -456,7 +461,7 @@ p_v-p_{v s_{ij}}\in (t_{v(i)}-t_{v(j)}).
 Thus the edge label depends on the graph edge $\{i,j\}$ itself, rather than
 on the image of the edge under the fixed point $v$.
 
-Second, the group action is the \defin{dagger action}.  
+Second, the group action is the \defin{dagger action}\label{daggerAction}.
 It acts by moving the fixed-point labels, without permuting the polynomial variables:
 \[
 (\sigma\dagger p)_v
@@ -506,7 +511,7 @@ then gives the unicellular LLT polynomial.
 
 \name[J.-C. Novelli]{Jean-Christophe Novelli} and
 \name[J.-Y. Thibon]{Jean-Yves Thibon} introduce a non-commutative lift of the
-unicellular LLT polynomials in \cite[Thm. 6.2]{NovelliThibon2019}.  They show
+unicellular LLT polynomials in \cite[Thm.~6.2]{NovelliThibon2019}.  They show
 that these are positive in a non-commutative analogue of the
 \hyperref[gessel]{Gessel quasisymmetric basis}, and that they satisfy a
 non-commutative \hyperref[plethysm]{plethystic} relation with
