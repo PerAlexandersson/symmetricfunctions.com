@@ -214,17 +214,20 @@ and $\gtp_{2/1}$ yields a counterexample.
 
 
 Gelfand--Tsetlin polytopes are special cases of
-\hyperref[orderPolytope]{marked order polytopes},
+\hyperref[markedOrderPolytope]{marked order polytopes},
 which generalize \hyperref[orderPolytope]{order polytopes} considered by
 \name{Richard Stanley} \cite{Stanley86TwoPosetPolytopes}.
 In \cite{ArdilaBliemSalazar2011}, the authors generalize the bijection
 between order polytopes and \hyperref[chainPolytope]{chain polytopes} and
-give a marked chain polytope analog of GT-polytopes.
+give a \defin{marked chain polytope}\label{markedChainPolytope} analog
+of GT-polytopes.
 In type $A$ these analogs are called
 \defin{Feigin--Fourier--Littelmann polytopes}\label{fflvPolytope}.
 
-\name{Igor Makhlin} studies marked chain-order polytopes for the
-Gelfand--Tsetlin poset \cite{Makhlin2024}.  He realizes their toric varieties
+\name{Igor Makhlin} studies
+\defin{marked chain-order polytopes}\label{markedChainOrderPolytope}
+for the \defin{Gelfand--Tsetlin poset}\label{gtPoset} \cite{Makhlin2024}.
+He realizes their toric varieties
 as explicit Gröbner/SAGBI degenerations of the \hyperref[flagVarieties]{flag
 variety}, using \hyperref[schubertPipeDream]{pipe dreams} to construct the
 Plücker-coordinate embeddings, and also obtains standard monomial theories and
@@ -234,7 +237,9 @@ FFLV polytopes \cite{FangKoshevoy2020x}.
 
 \name{Oliver Clarke}, \name{Akihiro Higashitani}, and
 \name{Fatemeh Mohammadi} relate Gelfand--Tsetlin and FFLV polytopes for
-Grassmannians to matching-field polytopes \cite{ClarkeHigashitaniMohammadi2024}.
+Grassmannians to
+\defin{matching-field polytopes}\label{matchingFieldPolytope}
+\cite{ClarkeHigashitaniMohammadi2024}.
 They construct a sequence of combinatorial mutations between these polytopes
 which stays inside the class of matching-field polytopes, giving toric
 degenerations and Newton--Okounkov bodies for the
@@ -255,7 +260,8 @@ Gelfand--Tsetlin pattern model \cite{WatanabeYamamura2021}.
 \name{Pablo S. Ocal}, \name{Jianping Pan}, and \name{Jacinta Torres} study
 the monoid algebra of \hyperref[prelimTableaux]{semistandard tableaux}
 \cite{DaughertyGonzalezMunizOcalPanTorres2025x}.
-For $m=n$ this algebra agrees with the Gelfand--Tsetlin semigroup ring.  They
+For $m=n$ this algebra agrees with the
+\defin{Gelfand--Tsetlin semigroup ring}\label{gtSemigroupRing}.  They
 prove structural properties such as being Noetherian, reduced, Koszul, and
 Cohen--Macaulay, describe maximal ideals and irreducible modules, and relate
 the associated variety to toric degenerations of
@@ -398,10 +404,10 @@ There are analogs of GT-polytopes for type $B$ and $C$, see \cite{ArdilaBliemSal
 
 \section[gtKostka]{Weight-restricted Gelfand--Tsetlin polytopes}
 
-Let $\gtp_{\lambda,w}\subseteq \gtp_{\lambda}$ be the Gelfand--Tsetlin polytope defined
-as $\gtp_{\lambda}$ but
-with the additional constraint that the difference of
-the row sums of rows $j+1$ and $j$ is exactly $w_j$.
+Let $\gtp_{\lambda,w}\subseteq \gtp_{\lambda}$ be the
+\defin{weight-restricted Gelfand--Tsetlin polytope}\label{weightRestrictedGTPolytope}
+defined as $\gtp_{\lambda}$ but with the additional constraint that the
+difference of the row sums of rows $j+1$ and $j$ is exactly $w_j$.
 
 By construction, lattice points in $\gtp_{\lambda,w}$ are in bijection with $\SSYT(\lambda,w)$.
 Therefore, the number of lattice points in $\gtp_{\lambda,w}$ is
@@ -431,10 +437,12 @@ the polytope $\gtp_{\lambda,1^n}$ is non-integral unless $\lambda=(2,2)$ or a ho
 
 \subsection[gtKostkaSaturation]{Saturation theorem}
 
-The following theorem is a GT-polytope analog of the celebrated Saturation theorem,
+The following theorem is a GT-polytope analog of the celebrated
+\defin{Saturation theorem}\label{lrSaturationTheorem},
 proved by \name{Allen Knutson} and \name{Terence Tao}
 \cite{KnutsonTau1999,KnutsonTaoWoodward2004}.
-They proved a similar statement for so-called \emph{Berenstein--Zelevinsky polytopes}.
+They proved a similar statement for so-called
+\defin{Berenstein--Zelevinsky polytopes}\label{berensteinZelevinskyPolytope}.
 
 \begin{theorem}[See \cite{Alexandersson2015KSaturation}]
 
@@ -581,8 +589,9 @@ letter $k$ in row $j$ of the tableau.
 
 \subsection[gtLRInequalities]{Yamanouchi inequalities on GT-patterns}
 
-The lattice word condition on the reverse reading word translates to
-the following linear inequalities on the GT-pattern entries.
+The lattice word condition on the reverse reading word translates to the
+\defin{Yamanouchi inequalities}\label{yamanouchiInequalities}, the following
+linear inequalities on the GT-pattern entries.
 
 \begin{proposition}
 A skew semistandard Young tableau with GT-pattern
