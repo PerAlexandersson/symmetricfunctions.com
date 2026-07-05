@@ -124,8 +124,8 @@ and $K_{\lambda, \mu}=0$ unless $\lambda \geq \mu$ in \hyperref[partialOrderings
 \subsection[kostkaInverseRecursion]{Recursions for inverse Kostka coefficients}
 
 A convenient recursive formula for the entries in $(K_{\lambda\mu})^{-1}$
-is given in \cite{EgeciogluRemmel1990}. This is based on the combinatorial model using 
-\hyperref[kostkaInverseModel]{special rim hook tabloids.}
+is given in \cite{EgeciogluRemmel1990}. The formula is based on the combinatorial model using
+\hyperref[kostkaInverseModel]{special rim hook tabloids}.
 
 \begin{theorem}[Eğecioğlu--Remmel, 1990]
 Let $\lambda = (r_1^{j_1}, r_2^{j_2},\dotsc,r_k^{j_k})$ where $r_1 \lt r_2 \lt \dotsb$.
@@ -137,8 +137,8 @@ K^{-1}_{\lambda[j], (\mu_1-1,\mu_2-1,\dotsc,\mu_{i-1}-1,\mu_{i+1},\dotsc,\mu_{\e
 \]
 where $\lambda[j]$ denotes the partition obtained from $\lambda$ with one part equal to $j$ removed.
 \end{theorem}
-An implementation of this recursion in Mathematica can be found in
-this \href{https://github.com/PerAlexandersson/Mathematica-packages}{github repository}.
+Computationally, the recursion is useful because each term removes one part
+from $\lambda$.
 
 
 In \cite{Carbonara1998}, a $t$-version of the Eğecioğlu--Remmel result is proved, 
@@ -150,7 +150,7 @@ sign-reversing involution and relates the calculation to dual bases in
 $\spaceSym$ and noncommutative symmetric functions.
 
 
-A similar-looking but different recursion is given in \cite[Thm. 3]{Duan2003}.
+A similar-looking but different recursion is given in \cite[Thm.~3]{Duan2003}.
 
 \begin{theorem}[H. Duan, 2003]
 Let $\lambda = (r_1^{j_1}, r_2^{j_2},\dotsc,r_k^{j_k})$ where $r_1 \lt r_2 \lt \dotsb$.
@@ -430,7 +430,7 @@ LittlewoodRichardson[{2, 1, 1}, {3, 1}, {4, 2, 1, 1}]
 
 
 A similar expression for the \hyperref[schurP]{Schur P} structure 
-coefficients can be found in \cite[Thm. 6.2.5]{RassartThesis}.
+coefficients can be found in \cite[Thm.~6.2.5]{RassartThesis}.
 This can perhaps be seen as a type $B$ analog of Steinberg's formula.
 
 
@@ -472,7 +472,7 @@ It then remains to prove that
 for fixed vectors $\alpha \in \setN^n$ and $\beta \in \setZ^n$,
 the map $k \mapsto \kostantP\left( k \alpha + \beta \right)$ is 
 a polynomial for large enough $k$.
-This fact follows from \cite[Thm. 1]{Sturmfels1995} together with the fact that the
+This fact follows from \cite[Thm.~1]{Sturmfels1995} together with the fact that the
 vector partition function $\phi_A$ in type $A$ (another name for $\kostantP$)
 arises from a unimodular matrix (all minors have determinant in $\{-1,0,1\}$).
 Unimodularity for the matrix corresponding to Kostant's partition function
@@ -657,7 +657,7 @@ See also the close relationship with the \hyperref[rsk]{Robinson--Schensted--Knu
 For words of partition weight, we have some extra nice properties:
 Each equivalence class contains a unique word which is the reading word of a semistandard Young tableau.
 Furthermore, one can show that $w \equiv w'$ then $\charge(w)=\charge(w')$,
-see \cite[Cor. 2.4.38]{Butler1994}.
+see \cite[Cor.~2.4.38]{Butler1994}.
 
 
 
@@ -686,7 +686,7 @@ are defined as the coefficients in the expansion
 \schurS_{\lambda/\mu}(\xvec) = \sum_{\nu}K_{\lambda/\mu,\nu}(q) \hallLittlewoodP_{\nu}(\xvec;q).
 \]
 
-One can show that the above formula generalizes, see \cite[Corr. 2.5.8]{Butler1994}.
+One can show that the above formula generalizes, see \cite[Cor.~2.5.8]{Butler1994}.
 \[
 K_{\lambda/\mu,\nu}(q) =  \sum_{T \in \SSYT(\lambda/\mu,\nu)} q^{\charge(T)}.
 \]
@@ -859,7 +859,7 @@ It is straightforward from this definition to see that if each
 partition $R^i = (\mu_i)$ has a single part, then $K_{\lambda,R}(q) = K_{\lambda,\mu}(q)$,
 the standard \hyperref[kostkaFromKostant]{Kostka--Foulkes polynomial}.
 
-One can show \cite[Prop. 8]{ShimozonoWeyman2000} that 
+One can show \cite[Prop.~8]{ShimozonoWeyman2000} that
 \[
 K_{\lambda,R}(1) = \langle \schurS_\lambda, \schurS_{R^1} \schurS_{R^2} \dotsm \schurS_{R^k} \rangle,
 \]
@@ -884,8 +884,8 @@ In particular, there is a connection with \hyperref[LLT]{LLT polynomials}.
 
 When the part sizes in the rectangles $R^j$ are weakly decreasing, we have a \defin{dominant sequence of rectangles}.
 In this case, it is known that $K_{\lambda,R}(q) \in \setN[q]$, via a rigged configuration proof.
-A charge formula is conjectured in \cite[Conj. 27]{ShimozonoWeyman2000},
-and later proved by \name{Mark Shimozono} \cite[Thm. 11]{Shimozono2001}.
+A charge formula is conjectured in \cite[Conj.~27]{ShimozonoWeyman2000},
+and later proved by \name{Mark Shimozono} \cite[Thm.~11]{Shimozono2001}.
 There,
 \[
 K_{\lambda,R}(q) = \sum_{T \in LRT(\lambda,R)} q^{\charge_R(T)}
@@ -907,6 +907,7 @@ polynomials are stable under uniform translation of partitions, and every
 Kostka--Foulkes polynomial can be written as a signed linear combination of
 admissible ones.
 
+% Related Rust: rust/kostka/src/kostka_dp.rs
 A convenient dynamic program for ordinary Kostka coefficients is obtained from
 the Pieri recursion.  Let $\mu=(\mu_1,\dotsc,\mu_\ell)$.  We count chains
 \[
@@ -926,9 +927,7 @@ Lascoux's atomic decomposition asks for a positive expansion of
 Kostka--Foulkes polynomials into atomic polynomials.  \name{Cédric Lecouvey}
 and \name{Cristian Lenart} formulate this idea uniformly for characters and
 crystals, prove it in type $A$, and establish stable-range results and
-conjectures in the other classical types \cite{LecouveyLenart2021}.  A
-\href{http://fpsac2019.fmf.uni-lj.si/resources/Posters/76poster.pdf}{FPSAC
-2019 poster} gives a compact overview.
+conjectures in the other classical types \cite{LecouveyLenart2021}.
 
 
 
