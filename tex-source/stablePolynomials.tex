@@ -8,19 +8,20 @@
 
 
 Let $\mathcal{H} \subset \setC$ denote the
-upper half-plane $\{z \in \setC: \mathrm{im}(z) >0 \}$.
+upper half-plane $\{z \in \setC: \mathrm{im}(z) > 0 \}$.
 
 \begin{definition}[Stability]
 
 A multivariate polynomial $P \in \setC[z_1,\dotsc,z_n]$
-is called \defin{stable} if it does not vanish on $\mathcal{H}^n$.
+is called \defin{stable}\label{stablePolynomialDefinition}
+if it does not vanish on $\mathcal{H}^n$.
 That is, $P$ is stable if
 \[
  \zvec^* \in \mathcal{H}^n \implies P(\zvec^*) \neq 0.
 \]
-One can easily show that $P \in \setR[z_1,\dotsc,z_n] $ is stable if and only if
-$P(\alpha+\lambda t)=0$ has only real zeros
-for all $\alpha \in \setR^n$, $\lambda \in \setR_+^n$.
+One can easily show that $P \in \setR[z_1,\dotsc,z_n]$ is stable if and only
+if $P(\alpha+\lambda t)=0$ has only real zeros for all
+$\alpha \in \setR^n$, $\lambda \in \setR_+^n$.
 A univariate polynomial with real coefficients
 is stable if and only if all its roots are real.
 \end{definition}
@@ -30,7 +31,7 @@ is stable if and only if all its roots are real.
 
 
 \begin{definition}[Strongly Rayleigh]\label{stronglyRayleigh}
-A measure $\mu$ on the set of subsets of $[n]$, is called
+A measure $\mu$ on the set of subsets of $[n]$ is called
 \defin{strongly Rayleigh} if
 \[
  \sum_{S \subseteq [n]} \mu(S) \prod_{s\in S} x_s
@@ -51,7 +52,7 @@ Then the following are also stable.
 \item $z_j \partial_{z_j} p$ (Degree-preserving differentiation)
 \item $p(z_1,\dotsc,z_{j-1},r,z_{j+1},\dotsc,z_n)$ (Real specialization)
 \item $p(z_1,\dotsc,z_{j-1},z_1,z_{j+1},\dotsc,z_n)$ (Projection)
-\item $z_j^d p(z_1,\dotsc,-1/z_{j},z_1,z_{j+1},\dotsc,z_n)$ (Inversion)
+\item $z_j^d p(z_1,\dotsc,z_{j-1},-1/z_{j},z_{j+1},\dotsc,z_n)$ (Inversion)
 \end{itemize}
 Here, $d$ is the degree of $z_j$ in $p$.
 \end{theorem}
@@ -60,10 +61,11 @@ Here, $d$ is the degree of $z_j$ in $p$.
 \subsection[borceaBrandenSymbols]{Borcea--Brändén symbols}
 
 The Borcea--Brändén classification packages a linear operator into a
-polynomial, or into an entire power series, called its \defin{symbol}.  This
-is often the most practical way to prove that an operator preserves stability:
-instead of testing the operator on all stable inputs, one tests one universal
-object.  For real stability one must allow both signs.  For instance,
+polynomial, or into an entire power series, called its
+\defin{symbol}\label{stabilitySymbol}.  This is often the most practical way
+to prove that an operator preserves stability: instead of testing the operator
+on all stable inputs, one tests one universal object.  For real stability one
+must allow both signs.  For instance,
 \(f(z)\mapsto f(-z)\) preserves real-rootedness, but it is detected by the
 minus symbol rather than the plus symbol.
 
@@ -75,7 +77,7 @@ For a linear operator
 \[
  T:\setR_{\leq \mathbf{d}}[z_1,\dotsc,z_n]\to \setR[x_1,\dotsc,x_m],
 \]
-define the two \defin{algebraic symbols} of $T$ by
+define the two \defin{algebraic symbols}\label{algebraicSymbol} of $T$ by
 \[
  G_T^{+}(\xvec,\mathbf{w})
  \coloneqq
@@ -131,7 +133,9 @@ stability preservers.
 \end{example*}
 
 \begin{definition}[Laguerre--Pólya class and transcendental symbol]
-Let \(\mathcal{LP}_r\) be the class of entire functions in \(r\) variables
+Let \(\mathcal{LP}_r\) be the
+\defin{Laguerre--Pólya class}\label{laguerrePolyaClass}
+of entire functions in \(r\) variables
 that are limits, uniformly on compact sets, of real stable polynomials.
 This is the multivariate Laguerre--Pólya class.
 
@@ -139,7 +143,8 @@ For a linear operator
 \[
   T:\setR[z_1,\dotsc,z_n]\to \setR[x_1,\dotsc,x_m],
 \]
-its \defin{transcendental symbol} is the formal power series
+its \defin{transcendental symbol}\label{transcendentalSymbol}
+is the formal power series
 \[
   \overline{G}_T(\xvec,\mathbf{w})
   \coloneqq
@@ -194,7 +199,8 @@ Tur\'an expressions, alternating-runs polynomials, and several interlacing and
 alternatingly-increasing phenomena.
 
 \name{Hao Fang} and \name{Biao Ma} introduce
-\defin{G{\aa}rding polynomials}, a class strictly containing real stable
+\defin{G{\aa}rding polynomials}\label{gardingPolynomial}, a class strictly
+containing real stable
 polynomials \cite{FangMa2026x}.  The definition is phrased in terms of
 positivity regions invariant under translation by positive vectors; they prove
 equivalent formulations by polarization and by a recursive criterion using
@@ -206,28 +212,34 @@ specializations have ultra-log-concave coefficient sequences.
 
 \subsection[stabilitymultiaffine]{Multi-affine stability}
 
-A polynomial $P(z_1,\dotsc,z_n)$ is \defin{multi-affine} if the degree in each variable is at most $1$.
+A polynomial $P(z_1,\dotsc,z_n)$ is
+\defin{multi-affine}\label{multiAffinePolynomial}
+if the degree in each variable is at most $1$.
 
 
 
 \begin{theorem}[See \cite{Branden2007}]
-A homogeneous multiaffine (real) polynomial $f(x_1,\dotsc,x_n)$ is real stable if and only if
+A homogeneous multi-affine (real) polynomial $f(x_1,\dotsc,x_n)$ is real
+stable if and only if
 \[
  \frac{\partial f}{\partial x_i} \cdot \frac{\partial f}{\partial x_j} -
  \frac{\partial^2 f}{\partial x_i \partial x_j} \cdot f \geq 0
 \]
 whenever $x_1,x_2,\dotsc,x_n \in \setR$.
 \end{theorem}
-To satisfy this inequality is called to have the \defin{strongly Rayleigh property}.
-The \defin{weak Rayleigh property} holds if the above inequality is true whenever
-the variable are positive real numbers.
+A polynomial satisfying this inequality is said to have the
+\defin{strongly Rayleigh property}\label{stronglyRayleighProperty}.
+The \defin{weak Rayleigh property}\label{weakRayleighProperty}
+holds if the above inequality is true whenever the variables are positive
+real numbers.
 
 
 \begin{theorem}[Grace--Walsh--Szeg\H{o}, see \cite{Grace1902,Szego1922,Walsh1922,RahmanSchmeisser2002}]
 Let $P(z_1,\dotsc,z_n)$ be a \emph{symmetric} multi-affine polynomial.
 Then $P$ is stable if and only if the univariate diagonal specialization
 $P(t,\dotsc,t)$ is stable.
-If $P$ has real coefficients, this is equivalent to the univariate specialization $P(t,\dotsc,t)$ being real-rooted.
+If $P$ has real coefficients, this is equivalent to the univariate
+specialization $P(t,\dotsc,t)$ being real-rooted.
 \end{theorem}
 
 \begin{definition}[Apolar polynomials]
@@ -237,7 +249,7 @@ Let
   \qquad\text{and}\qquad
   G(z)=\sum_{k=0}^n \binom{n}{k} b_k z^k.
 \]
-The polynomials $F$ and $G$ are \defin{apolar} if
+The polynomials $F$ and $G$ are \defin{apolar}\label{apolarPolynomial} if
 \[
   \sum_{k=0}^n (-1)^k \binom{n}{k} a_k b_{n-k}=0.
 \]
@@ -250,7 +262,8 @@ has at least one zero in $C$.
 \end{theorem}
 
 A useful way to reduce questions to the multi-affine case is
-\defin{polarization}.  If $0 \leq k \leq d_j$, set
+\defin{polarization}\label{polarizationDefinition}.
+If $0 \leq k \leq d_j$, set
 \[
  \operatorname{Pol}_{d_j}(z_j^k)
  \coloneqq \binom{d_j}{k}^{-1}
@@ -263,11 +276,13 @@ For monomials, define
  \prod_{j=1}^n \operatorname{Pol}_{d_j}(z_j^{\alpha_j}),
 \]
 and extend linearly to polynomials.  This gives the polarization
-$\operatorname{Pol}_{\mathbf{d}}(P)$ of a polynomial whose degree in $z_j$ is at most $d_j$.
+$\operatorname{Pol}_{\mathbf{d}}(P)$ of a polynomial whose degree in $z_j$
+is at most $d_j$.
 
 \begin{theorem}[Polarization, see \cite{BorceaBranden2009II}]
-Let $P \in \setC[z_1,\dotsc,z_n]$ have degree at most $d_j$ in the variable $z_j$.
-Then $P$ is stable if and only if $\operatorname{Pol}_{\mathbf{d}}(P)$ is stable.
+Let $P \in \setC[z_1,\dotsc,z_n]$ have degree at most $d_j$ in the variable
+$z_j$.  Then $P$ is stable if and only if
+$\operatorname{Pol}_{\mathbf{d}}(P)$ is stable.
 \end{theorem}
 
 
@@ -283,9 +298,9 @@ If $P$ is stable, then $\supp(P)$ is a jump system.
 
 
 \begin{theorem}[See \cite{ChoeOxleySokalWagner2004}]
-If $P$ is a homogeneous and multi-affine stable polynomial,
+If $P$ is homogeneous and multi-affine stable,
 then its support is the set of bases of a \hyperref[matroid]{matroid}.
-See also  \cite[Cor. 3.4]{Branden2007}.
+See also \cite[Cor. 3.4]{Branden2007}.
 \end{theorem}
 The converse is in general not true but some classes of \hyperref[matroid]{matroids}
 always have a \hyperref[basisGeneratingPolynomial]{basis-generating polynomial}
@@ -297,8 +312,8 @@ a subclass of \hyperref[transversalMatroids]{transversal matroids}
 (see \cite{ChoeOxleySokalWagner2004}).
 
 
-\hyperref[matroidOperations]{Deletion and contraction} on matroids preserve stability of the
-basis generating polynomial.
+\hyperref[matroidOperations]{Deletion and contraction} on matroids preserve
+stability of basis-generating polynomials.
 
 For a connected graph $G$ on vertex set $V$, the spanning-tree degree
 enumerator
@@ -326,9 +341,10 @@ is real stable or identically zero.
 
 
 \begin{theorem}[See \cite{BorceaBranden2010}]
-A polynomial in two variables, $P(z,w) \in \setR[s,t]$ is stable if and only if it can be expressed as
-$\pm \det(zA+wB+C)$ where $A,B,C$ are real $n \times n$-matrices, where $A$ and $B$ are positive semidefinite
-and $C$ is symmetric.
+A polynomial in two variables $P(z,w) \in \setR[z,w]$ is stable if and only
+if it can be expressed as $\pm \det(zA+wB+C)$, where $A,B,C$ are real
+$n \times n$ matrices, $A$ and $B$ are positive semidefinite, and $C$ is
+symmetric.
 \end{theorem}
 
 
@@ -342,13 +358,15 @@ Then
  \mathrm{per}(J_nZ_n + A) = \mathrm{per}\left( (z_j + a_{ij})_{1 \leq i,j \leq n} \right)
 \]
 is stable, see \cite{BrandenHaglundVisontaiWagner2011}.
-By noting that the \hyperref[ex:eulerianSturm]{Eulerian polynomials} are generated by excedances,
+By noting that the \hyperref[ex:eulerianSturm]{Eulerian polynomials}
+are generated by excedances,
 they give a new proof that (a multivariate version of) Eulerian polynomials
 are stable.
 \end{example*}
 
 
-\begin{example*}[Multivariate Eulerian polynomials]\label{ex:stableMultivariateEulerianOperator}
+\begin{example*}[Multivariate Eulerian polynomials]
+\label{ex:stableMultivariateEulerianOperator}
 \name{Petter Brändén} (see \cite[Thm. 2.5]{HaglundVisontai2012}) proved
 stability of the following multivariate refinement of Eulerian polynomials.
 Set
@@ -425,16 +443,24 @@ second-order Eulerian polynomials.
 
 
 \begin{example*}[Multivariate matching polynomials]
-The multivariate matching polynomial is real stable, see \cite{BorceaBranden2009I,BorceaBranden2009II}.
-See also In \cite{LeakeRyder2019} (there are two types of multivariate matching polynomials,
-either by recording vertex labels or edge labels in the matchings, respectively;
+The multivariate \hyperref[realRootedMatching]{matching polynomial} is real
+stable, see \cite{BorceaBranden2009I,BorceaBranden2009II}.
+See also \cite{LeakeRyder2019}; there are two types of multivariate matching
+polynomials, recording either vertex labels or edge labels in the matchings:
 \begin{align}
-\mu_V(G;x_1,\dotsc,x_n) & \coloneqq \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}} \prod_{uv \in M} -x_u x_v, \\
-\mu_E(G;x_1,\dotsc,x_n) & \coloneqq \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}} \prod_{e \in M} x_e.
+\mu_V(G;x_1,\dotsc,x_n)
+  & \coloneqq
+  \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}}
+  \prod_{uv \in M} -x_u x_v, \\
+\mu_E(G;x_1,\dotsc,x_n)
+  & \coloneqq
+  \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}}
+  \prod_{e \in M} x_e.
 \end{align}
 \end{example*}
 
 The \defin{multi-affine vertex matching polynomial}
+\label{multiAffineVertexMatchingPolynomial}
 $\mu_V(G;x_1,\dotsc,x_n)$ is real stable, see \cite{BorceaBranden2009I}.
 
 \name[D.G. Wagner]{David Wagner}'s survey \cite{Wagner2009StableSurvey}
@@ -442,14 +468,14 @@ is a useful reference for the theory and applications of multivariate
 stable polynomials, including the Borcea--Brändén classification of
 stability preservers, matrix applications, and probabilistic applications.
 
-\begin{theorem}[Strong Rayleigh measures are negatively associated, see
+\begin{theorem}[Strongly Rayleigh measures are negatively associated, see
 \cite{Wagner2009StableSurvey}]
 Let $\mu$ be a probability measure on subsets of $[n]$ whose generating
 polynomial
 \[
   \sum_{S\subseteq[n]}\mu(S)\prod_{i\in S}x_i
 \]
-is real stable. Then every measure obtained from $\mu$ by applying
+is real stable.  Then every measure obtained from $\mu$ by applying
 positive external fields is negatively associated: increasing functions
 depending on disjoint coordinate sets have non-positive covariance.
 \end{theorem}
@@ -464,49 +490,62 @@ and is a strictly weaker notion than stability.
 
 \begin{definition}[Same-phase stability]
  A polynomial $P(z_1,\dotsc,z_n) \in \setR[z_1,\dotsc,z_n]$ is said
- to be \defin{same-phase stable}  if for
- every $\lambda \in \setR_+^n$, we have that the univariate polynomial
+ to be \defin{same-phase stable}\label{samePhaseStabilityDefinition}
+ if for every $\lambda \in \setR_+^n$, the univariate polynomial
  $P(\lambda_1 t,\lambda_2 t,\dotsc,\lambda_n t) \in \setR[t]$ is real-rooted.
 \end{definition}
 
-A set of polynomials $\{p_j(\xvec) \}_{j=1}^m$ are \defin{same-phase compatible}
-if for every vector of positive numbers $\lambda$, we have that
- $\{p_j(\lambda t) \}_{j=1}^m$ are compatible (as univariate polynomials).
+A family of polynomials $\{p_j(\xvec) \}_{j=1}^m$ is
+\defin{same-phase compatible}\label{samePhaseCompatible}
+if for every vector of positive numbers $\lambda$, the univariate polynomials
+$\{p_j(\lambda t) \}_{j=1}^m$ are
+\hyperref[compatiblePolynomials]{compatible}.
 
 
-Let $P, P_0, \dotsc, P_k$ be polynomials such that $P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$.
-This is a \defin{proper splitting of $P$} if all $P_{j}$ do not depend on
-the variables $\{z_{i_1}, \dotsc, z_{i_m} \}$.
+Let $P, P_0, \dotsc, P_m$ be polynomials such that
+$P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$.
+This is a \defin{proper splitting of $P$}\label{properSplitting}
+if none of the polynomials $P_j$ depends on the variables
+$\{z_{i_1}, \dotsc, z_{i_m} \}$.
 
 
 \begin{theorem}[See \cite{LeakeRyder2019}]
-Suppose $P$ is a multiaffine polynomial with non-negative coefficients.
+Suppose $P$ is a multi-affine polynomial with non-negative coefficients.
 Then the following are equivalent:
 \begin{itemize}
 \item $P$ is same-phase stable;
-\item For any proper splitting, $P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$,
-we have that $P_0, z_{i_1} P_{1}, \dotsc, z_{i_m} P_{m}$
+\item For any proper splitting,
+$P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$,
+the polynomials $P_0, z_{i_1} P_{1}, \dotsc, z_{i_m} P_{m}$
 are same-phase compatible.
 
-\item There is some proper splitting, $P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$,
-such that $P_0, z_{i_1} P_{1}, \dotsc, z_{i_m} P_{m}$ are same-phase compatible.
+\item There is some proper splitting
+$P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$
+such that $P_0, z_{i_1} P_{1}, \dotsc, z_{i_m} P_{m}$ are same-phase
+compatible.
 
 \end{itemize}
 
 \end{theorem}
 
 
-The \defin{multiaffine edge matching polynomial}
+The \defin{multi-affine edge matching polynomial}
+\label{multiAffineEdgeMatchingPolynomial}
 $\mu_E(G;x_1,\dotsc,x_n)$ is same-phase stable \cite[Cor. 3.2]{LeakeRyder2019}.
 
-Let $G$ be a graph on the vertex set $[n]$, and define the \defin{multivariate independence polynomial}
+Let $G$ be a graph on the vertex set $[n]$, and define the
+\defin{multivariate independence polynomial}\label{multivariateIndependencePolynomial}
 \[
-I(G;x_1,\dotsc,x_n) \coloneqq \sum_{\substack{A \subseteq V(G) \\ A \text{ independent}}} \prod_{v \in A} x_v.
+I(G;x_1,\dotsc,x_n)
+\coloneqq
+\sum_{\substack{A \subseteq V(G) \\ A \text{ independent}}}
+\prod_{v \in A} x_v.
 \]
 In \cite{LeakeRyder2019}, it is proved that $I(G;x_1,\dotsc,x_n)$
 is same-phase stable \emph{if and only if} $G$ is claw-free.
-This is a reinterpretation of Engström's weighted result, \cite{Engstrom2007},
-but Leake--Ryder gives a much sleeker proof, and the if-and-only-if condition explains
+This is a reinterpretation of Engström's weighted result \cite{Engstrom2007},
+but Leake and Ryder give a much sleeker proof, and the if-and-only-if
+condition explains
 that the claw-free requirement is sharp.
 
 
@@ -516,10 +555,13 @@ of the Eulerian polynomial is same-phase stable, but not stable:
 \[
  \tilde{A}_n(\xvec) = \sum_{\pi \in \symS_n} \prod_{\pi_i \gt \pi_{i+1}} x_{i}.
 \]
-Note that we now keep track of the descent index, rather than the descent bottom value.
+Note that we now keep track of the descent index, rather than the descent
+bottom value.
 Moreover, we showed that
 \[
- \tilde{A}_{n-1}(\lambda_1 t, \dotsc, \lambda_{n-1} t) \interl \tilde{A}_n(\lambda_1 t, \dotsc, \lambda_n t)
+ \tilde{A}_{n-1}(\lambda_1 t, \dotsc, \lambda_{n-1} t)
+ \interl
+ \tilde{A}_n(\lambda_1 t, \dotsc, \lambda_n t)
 \]
 for all positive real numbers $\lambda_1,\dotsc,\lambda_n$.
 \end{example*}
