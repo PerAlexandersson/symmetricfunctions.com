@@ -1,5 +1,5 @@
 \metatitle{Grothendieck polynomials}
-\metadescription{An introduction to Grothendieck polynomials, including their definitions via divided difference operators and pipe dreams, stable Grothendieck polynomials and their properties such as Jacobi--Trudi identities, Pieri rules, Murnaghan--Nakayama rules, Schur expansions, and skew versions, as well as double Grothendieck polynomials and canonical stable Grothendieck polynomials.}
+\metadescription{An introduction to Grothendieck polynomials, divided differences, pipe dreams, stable Grothendieck polynomials, set-valued tableaux, Pieri rules, Schur expansions, and dual variants.}
 
 \section[grothendieck]{Grothendieck polynomials}
 
@@ -22,7 +22,7 @@
 
 The Grothendieck polynomials are closely related to the \hyperref[schubertOperatorformula]{Schubert polynomials}.
 They are the polynomial representatives naturally attached to
-\hyperref[kTheory]{K-theoretic} Schubert calculus.
+\hyperref[kTheory]{$K$-theoretic} \hyperref[schubertCalculus]{Schubert calculus}.
 They were introduced by \name{Alain Lascoux} in 1990 \cite{Lascoux1990Grothendieck}.
 
 \name{Neil J. Y. Fan} and \name{Peter L. Guo} give formulas for
@@ -59,19 +59,29 @@ $K$-theoretic Schur $P$- and $Q$-functions.
 
 \subsection[grothendieckOperatorformula]{Operator definition}
 
-Define $\partial_i(f)$ as $\frac{f-s_i(f)}{x_i - x_{i+1}}$ for $i=1,\dotsc,n-1$,
-and let $\pi_i(f) \coloneqq \partial_i((1-x_{i+1})f)$.
+Define
+\[
+  \partial_i(f)=\frac{f-s_i(f)}{x_i-x_{i+1}},
+  \qquad 1\leq i\leq n-1,
+\]
+as on the \hyperref[schubertOperatorformula]{Schubert-polynomial page}, and let
+\[
+  \pi_i(f) \coloneqq \partial_i((1-x_{i+1})f).
+\]
 
 The Grothendieck polynomials are then defined as
 \begin{equation*}
- \grothendieck_\omega(x_1,\dotsc,x_n) \coloneqq \pi_{\omega^{-1}\omega_0}(x_1^{n-1}x_2^{n-2}\dotsm x_{n-1}).
+ \grothendieck_\omega(x_1,\dotsc,x_n)
+ \coloneqq
+ \pi_{\omega^{-1}\omega_0}(x_1^{n-1}x_2^{n-2}\dotsm x_{n-1}).
 \end{equation*}
 
-Note that the lowest degree homogeneous part of $\grothendieck_\omega(\xvec)$ is given by the Schubert polynomial
+Note that the lowest-degree homogeneous part of $\grothendieck_\omega(\xvec)$ is given by the Schubert polynomial
 $\schubert_\omega(\xvec)$.
 
 
-There is a connection with polytopes just as for Schubert polynomials, see \cite{MeszarosDizier2017}.
+There is a connection with \hyperref[newtonPolytope]{Newton polytopes} just as
+for Schubert polynomials; see \cite{MeszarosDizier2017}.
 
 
 \subsection[grothendieckPipedreams]{Pipe dreams}
@@ -99,8 +109,8 @@ as a sum over \emph{bumpless pipe dreams} \cite[Thm.~1.1]{Weigandt2021}:
 \grothendieck^{(\beta)}_\omega(\xvec,\yvec) =
 \beta^{-\length(\omega)}
 \sum_{P \in BPD(\omega)}
-\prod_{(i,j)\in D(P)} \beta (x_i \oplus y_j )
-\prod_{(i,j)\in NW(P)} \left(1+ \beta (x_i \oplus y_j )\right)
+\prod_{(i,j)\in D(P)} \beta (x_i \oplus y_j)
+\prod_{(i,j)\in NW(P)} \left(1+ \beta (x_i \oplus y_j)\right)
 \]
 where $BPD(\omega)$ is the set of \defin{bumpless pipe dreams} of type $\omega$
 and $NW(P)$ is the set of West-to-North pipe bends.
@@ -127,10 +137,12 @@ top-degree term of double Grothendieck polynomials.
 \name{Chen-An Chou} and \name{Tianyi Yu} also study Grothendieck polynomials
 of inverse fireworks permutations from the pipe-dream viewpoint
 \cite{ChouYu2024x}.
-\name{Chen-An Chou} and \name{Linus Setiabrata} prove saturated-Newton-polytope
-results for fireworks Grothendieck polynomials \cite{ChouSetiabrata2025x}.
+\name{Chen-An Chou} and \name{Linus Setiabrata} prove
+\hyperref[newtonPolytope]{saturated Newton polytope} results for fireworks
+Grothendieck polynomials \cite{ChouSetiabrata2025x}.
 They characterize the support by divisibility between the Schubert support and
-the maximal Grothendieck monomial, prove $M$-convexity after homogenization,
+the maximal Grothendieck monomial, prove
+\hyperref[MConvexity]{$M$-convexity} after homogenization,
 and compare supports with those of suitable layered permutations.
 
 \name{Matt Dreyer}, \name[Karola Mészáros]{Karola Mészáros}, and
@@ -145,10 +157,13 @@ degrees of symmetric Grothendieck polynomials to Castelnuovo--Mumford
 regularity \cite{RajchgotRenRobichauxDizierWeigandt2021}.
 \name{Elena S. Hafner} studies supports of Castelnuovo--Mumford polynomials,
 the top-degree components of Grothendieck polynomials
-\cite{Hafner2026x}.  She proves the expected M-convex support property for
+\cite{Hafner2026x}.  She proves the expected \hyperref[MConvexity]{$M$-convex}
+support property for
 new families of permutations and studies when the support is the set of
-integer points in a schubitope.
+integer points in the relevant \hyperref[newtonPolytope]{Newton polytope},
+a schubitope.
 
+% Related Rust: rust/sym-poly/multipoly/examples/lascoux_k_kohnert_site_example.rs
 \name{Colleen Robichaux} gives a minimal counterexample in $\symS_8$ to the
 Ross--Yong $K$-Kohnert conjecture for Grothendieck polynomials
 \cite{Robichaux2024x}.  The same paper proposes a revised $K$-theoretic
@@ -246,8 +261,9 @@ conjecture for the Hecke--Grothendieck specialization.
 \end{polydata}
 
 
-See \hyperref[grassmannianPermutation]{this page} for the definition of
-a Grassmannian permutation, and how to associate a partition to such a permutation.
+See \hyperref[grassmannianPermutation]{Grassmannian permutations} for the
+definition of a Grassmannian permutation, and for how to associate a partition
+to such a permutation.
 For a paper with many references and results, see \cite{MonicalPechenikScrimshaw2018}.
 
 
@@ -862,9 +878,10 @@ normalized Schur functions to random lozenge tilings and plane partitions
 distributions and introduces related distributions connected with the corner
 growth model.
 
-There is also a Jacobi--Trudi identity for the \defin{skew dual stable Grothendieck polynomials},
-originally conjectured by \name{Darij Grinberg} \href{http://www.cip.ifi.lmu.de/~grinberg/algebra/chicago2015.pdf}{(see these slides)}.
-A proof was later presented in \name[J. S. Kim]{Jang Soo Kim}
+There is also a Jacobi--Trudi identity for the
+\defin{skew dual stable Grothendieck polynomials}, originally conjectured by
+\name{Darij Grinberg}.
+A proof was later presented by \name[J. S. Kim]{Jang Soo Kim}
 \cite{Kim2021RefinedDualGrothendieckJT}.
 A different proof was obtained independently by \name{Alimzhan Amanov} and \name{Damir Yeliussizov} \cite{AmanovYeliussizov2020}.
 Both approaches use quite novel techniques with \hyperref[lgvLemma]{non-intersecting lattice paths}.
