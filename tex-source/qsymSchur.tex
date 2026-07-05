@@ -32,15 +32,16 @@ $\alpha$ whose parts rearrange to the parts of $\lambda$.
 The $\{\qSchur_\alpha \}$ constitute a basis for the
 space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
 \name{Sami Assaf} and \name{Dominic Searles} use the name
-\defin{quasi-Schur functions} for this quasisymmetric basis and introduce
-quasi-key polynomials as a polynomial lift \cite{AssafSearles2018}.  The
+\defin{quasi-Schur functions}\label{quasiSchurFunctions} for this
+quasisymmetric basis and introduce \hyperref[quasiKey]{quasi-key polynomials}
+as a polynomial lift \cite{AssafSearles2018}.  The
 stable limits of the quasi-key polynomials are the quasi-Schur functions, and
-their Kohnert-tableau model lifts the expansion of Schur functions into
+their \hyperref[kohnert]{Kohnert-tableau} model lifts the expansion of Schur functions into
 quasi-Schur functions and then into
 \hyperref[gessel]{fundamental quasisymmetric functions}.
 
 A skew version is introduced in \cite{BessenrodtLuotoWilligenburg2011},
-and they show that the \defin{skew quasisymmetric Schur functions}
+and they show that the \defin{skew quasisymmetric Schur functions}\label{skewQuasisymmetricSchurFunctions}
 expand positively into quasisymmetric Schur functions.
 
 The quasisymmetric Schur functions can be described as certain characters of
@@ -64,7 +65,8 @@ $\gamma$ obtained by inserting $0$s between parts of $\alpha$.
 We can compute the expansion of $\qSchur_\alpha$ in terms of
 \hyperref[gessel]{fundamental quasisymmetric functions} by using standard
 reverse composition tableaux.
-A \defin{semistandard reverse composition tableau} (SSRCT) of shape
+A \defin{semistandard reverse composition tableau}\label{semistandardReverseCompositionTableau}
+(SSRCT) of shape
 $\alpha \vDash n$ is a filling of the diagram $\alpha$
 \hyperref[prelimPartitions]{(English notation)} with positive integers
 satisfying:
@@ -83,9 +85,10 @@ b & c\\[-2pt]
 the condition $a \leq b$ implies that the box $c$ is present and $a\lt c$.
 \end{enumerate}
 
-A \defin{standard reverse composition tableau} (SRCT) uses each integer
+A \defin{standard reverse composition tableau}\label{standardReverseCompositionTableau}
+(SRCT) uses each integer
 $1,2,\dotsc,n$ exactly once in the filling.
-The \defin{descent set} $\des(T)$ of a SRCT is defined as
+The \hyperref[descentSet]{descent set} $\des(T)$ of a SRCT is defined as
 \[
  \des(T) := \{ i : i+1 \text{ appears weakly to the right of } i \}.
 \]
@@ -115,7 +118,7 @@ Skew quasisymmetric Schur functions have a similar expansion.
 
 
 \begin{example*}[Fundamental expansion of $\qSchur_{(2,1,3)}$]
-(From \cite[Ex. 2.7]{TewariWilligenburg2015})
+This example is from \cite[Ex.~2.7]{TewariWilligenburg2015}.
 The expansion
 \[
 \qSchur_{(2,1,3)}
@@ -262,7 +265,8 @@ following displayed tableau has peak shape $(4,3,1)$:
 1&2&3&4
 \end{ytableau}
 \]
-It is a standard peak composition tableau.  Its upward descent set is
+It is a \defin{standard peak composition tableau}\label{standardPeakCompositionTableau}.
+Its upward descent set is
 $\{4,7\}$, so its peak composition is $(4,3,1)$.  Hence this tableau
 contributes the summand $K_{431}$ to $\widetilde{Q}_{431}$.
 \end{example*}
@@ -326,9 +330,10 @@ functions expand as follows.
 \end{array}
 \]
 
-The filling in the preceding example is also a standard peak Young composition
-tableau of shape $(4,3,1)$.  Its left descent set is again $\{4,7\}$, so it
-contributes $K_{431}$ to $\widetilde{S}_{431}$.
+The filling in the preceding example is also a
+\defin{standard peak Young composition tableau}\label{standardPeakYoungCompositionTableau}
+of shape $(4,3,1)$.  Its left descent set is again $\{4,7\}$, so it contributes
+$K_{431}$ to $\widetilde{S}_{431}$.
 
 
 \section[rsqSchur]{Row-strict quasisymmetric Schur functions}
@@ -498,7 +503,8 @@ They are defined by
 \[
  \diSchur_\alpha = \sum_{T \in IT(\alpha)} \xvec^T
 \]
-where we sum over all \emph{immaculate tableaux} of shape $\alpha$.
+where we sum over all \defin{immaculate tableaux}\label{immaculateTableau} of
+shape $\alpha$.
 These are fillings of the diagram $\alpha$ whose rows are weakly increasing
 and whose first column is \emph{strictly increasing} with respect to the row
 indexing.
@@ -521,7 +527,8 @@ later give a $0$-Hecke-module interpretation of this positivity
 % Related Rust:
 % /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/dual_immaculate_site_example.rs
 \begin{example*}[A small dual immaculate expansion]
-For $\alpha=(2,1)$, the standard immaculate tableaux are
+For $\alpha=(2,1)$, the \defin{standard immaculate tableaux}\label{standardImmaculateTableau}
+are
 \[
 \ytableaushort{12,3}
 \qquad\text{and}\qquad
@@ -576,7 +583,7 @@ families into parallel Young and reverse versions.
 \begin{theorem}
 Let $\alpha=(\alpha_1,\dotsc,\alpha_\ell)$ be a composition of $n$.
 For a cell $c=(i,j)$ in the diagram of $\alpha$, define its
-\defin{immaculate hook} by
+\defin{immaculate hook}\label{immaculateHook} by
 \[
   H_{i,j} \coloneqq
   \begin{cases}
@@ -697,7 +704,9 @@ They are defined by
 \[
  \rsdiSchur_\alpha = \sum_{T \in \mathrm{RSIT}(\alpha)} \xvec^T
 \]
-where we sum over all \emph{row-strict immaculate tableaux} of shape $\alpha$.
+where we sum over all
+\defin{row-strict immaculate tableaux}\label{rowStrictImmaculateTableau} of
+shape $\alpha$.
 These are fillings of the diagram $\alpha$ whose rows are strictly increasing
 and whose first column is \emph{weakly increasing} with respect to the row
 indexing.
