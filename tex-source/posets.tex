@@ -117,8 +117,21 @@ questions for posets}.  A famous question in this direction was the
 \hyperref[neggersStanleyConjecture]{Neggers--Stanley conjecture}, which asked
 for real-rootedness of these polynomials in broad generality.
 
-\todo{Add a small table comparing $W_{P,w}(t)$ for two non-isomorphic
-three- or four-element labeled posets.}
+\begin{example*}[Small naturally labeled posets]
+The polynomial \(W_P(t)\) records the descent distribution of the linear
+extensions; it is not the same data as the poset itself.
+
+\begin{tabular}{lll}
+\toprule
+Poset \(P\) & Linear extensions & \(W_P(t)\) \\
+\midrule
+Chain \(1\lt 2\lt 3\) & \(123\) & \(1\) \\
+\(1,2\lt 3\) & \(123,213\) & \(1+t\) \\
+\(1\lt 3\), with \(2\) isolated & \(123,132,213\) & \(1+2t\) \\
+Antichain on \(\{1,2,3\}\) & \(S_3\) & \(1+4t+t^2\) \\
+\bottomrule
+\end{tabular}
+\end{example*}
 
 \section[posetIdeals]{Order ideals, filters and antichains}
 
@@ -277,6 +290,17 @@ the study of incomparability graphs and chromatic symmetric functions:
 of $(3+1)$-free posets \cite{Gasharov1996}.  They also occur in
 \hyperref[chromaticQuasisymmetric]{chromatic quasisymmetric functions}.
 
+\begin{example*}[$(3+1)$-free and not $(3+1)$-free]
+Every poset of height at most two is automatically $(3+1)$-free, since it has
+no three-element chain.  For example, the diamond-shaped poset with
+relations \(a,b\lt c,d\) is $(3+1)$-free.
+
+In contrast, take a chain \(a\lt b\lt c\) and add an element \(d\) that is
+incomparable to \(a,b,c\).  The induced subposet on
+\(\{a,b,c,d\}\) is exactly a \((3+1)\), so this poset is not
+$(3+1)$-free.
+\end{example*}
+
 A poset is \defin{$(2+2)$-free}\label{twoPlusTwoFreePoset} if it has no
 induced subposet consisting of two disjoint two-element chains.  Equivalently,
 it is an \defin{interval order}\label{intervalOrder}: its elements can be
@@ -292,6 +316,3 @@ This is the setting of many
 chromatic quasisymmetric functions, and the reduced setting for the
 \hyperref[chromaticEExpansionConjectures]{Stanley--Stembridge
 $\elementaryE$-positivity problem}.
-
-\todo{Add one explicit $(3+1)$-free example and one induced $(3+1)$
-obstruction, preferably with a small Hasse diagram.}
