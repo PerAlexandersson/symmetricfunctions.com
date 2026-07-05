@@ -348,20 +348,77 @@ are stable.
 \end{example*}
 
 
-\begin{example*}[Multivariate Eulerian polynomials]
-\name{Petter Brändén} (see \cite[Thm. 2.5]{HaglundVisontai2012}) has proved that the
-following generalization of the Eulerian polynomial is a multivariate stable polynomial:
+\begin{example*}[Multivariate Eulerian polynomials]\label{ex:stableMultivariateEulerianOperator}
+\name{Petter Brändén} (see \cite[Thm. 2.5]{HaglundVisontai2012}) proved
+stability of the following multivariate refinement of Eulerian polynomials.
+Set
 \[
- A_n(\xvec,\yvec) = \sum_{\pi \in \symS_n} \prod_{\pi_i \gt \pi_{i+1}} x_{\pi_i} \prod_{\pi_i \lt \pi_{i+1}} y_{\pi_i}.
+ \widetilde A_n(\xvec,\yvec)
+ =
+ \sum_{\pi \in \symS_n}
+ \prod_{\substack{1\leq i<n\\ \pi_i \gt \pi_{i+1}}} x_{\pi_i}
+ \prod_{\substack{1\leq i<n\\ \pi_i \lt \pi_{i+1}}} y_{\pi_{i+1}}.
 \]
-In fact, Haglund and Visontai show that keeping track of plateaus as well
-give rise to stable polynomials:
+Thus descent tops receive \(x\)-variables and ascent tops receive
+\(y\)-variables.  The proof uses a stability-preserving operator.  If
 \[
- A_n(\xvec,\yvec,\zvec) = \sum_{\pi \in \symS_n}
- \prod_{\pi_i \gt \pi_{i+1}} x_{\pi_i}
- \prod_{\pi_i \lt \pi_{i+1}} y_{\pi_i}
- \prod_{\pi_i = \pi_{i+1}} z_{\pi_i}.
+  \partial
+  =
+  \sum_{i=1}^n \frac{\partial}{\partial x_i}
+  +
+  \sum_{i=1}^n \frac{\partial}{\partial y_i},
 \]
+then
+\[
+  T_{n+1}
+  \coloneqq
+  (x_{n+1}+y_{n+1}) + x_{n+1}y_{n+1}\partial
+\]
+preserves real stability on multi-affine polynomials, by the
+\hyperref[borceaBrandenFiniteSymbol]{Borcea--Brändén symbol criterion}.
+Equivalently, if
+\[
+  U=\prod_{i=1}^n (x_i+u_i)(y_i+v_i),
+\]
+then the algebraic symbol
+\[
+  T_{n+1}(U)
+  =
+  \left(
+    x_{n+1}+y_{n+1}
+    +x_{n+1}y_{n+1}
+    \sum_{i=1}^n
+    \left(\frac{1}{x_i+u_i}+\frac{1}{y_i+v_i}\right)
+  \right)U
+\]
+is stable.
+The recurrence
+\[
+  \widetilde A_{n+1}(\xvec,\yvec)
+  =
+  T_{n+1}\widetilde A_n(\xvec,\yvec)
+\]
+then proves stability by induction from \(\widetilde A_1=1\).
+Specializing \(y_i=1\) and then \(x_i=t\) gives
+\[
+  t\,\widetilde A_n(t,\dotsc,t;1,\dotsc,1)=A_n(t),
+\]
+so the classical Eulerian polynomial has only real roots.
+
+In fact, \name{Jim Haglund} and \name{Mirko Visontai} also treat Stirling
+permutations, where plateaus occur.  If \(Q_n\) is the set of Stirling
+permutations and \(D(\sigma),A(\sigma),P(\sigma)\) are the descent-top,
+ascent-top, and plateau sets, then
+\[
+ C_n(\xvec,\yvec,\zvec)
+ =
+ \sum_{\sigma \in Q_n}
+ \prod_{i\in D(\sigma)} x_{\sigma_i}
+ \prod_{i\in A(\sigma)} y_{\sigma_i}
+ \prod_{i\in P(\sigma)} z_{\sigma_i}
+\]
+is stable.  Specializing \(y_i=z_i=1\) recovers real-rootedness of the
+second-order Eulerian polynomials.
 \end{example*}
 
 
