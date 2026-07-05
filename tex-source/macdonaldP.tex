@@ -1,6 +1,5 @@
-
 \metatitle{Macdonald P polynomials}
-\metadescription{Macdonald P polynomials and related symmetric functions.}
+\metadescription{Macdonald P and J polynomials, their characterizations, tableau formulas, specializations, Kostka positivity, quasisymmetric refinements, and wreath analogues.}
 
 
 \section[macdonaldP]{Macdonald P polynomials}
@@ -12,7 +11,7 @@
   Rating   & 4 \\
   Bib      & Macdonald1987 \\
   Year     & 1987 \\
-  Symbol   & $\macdonaldP_\lambda(\xvec;q,t) $ \\
+  Symbol   & $\macdonaldP_\lambda(\xvec;q,t)$ \\
   Category & Schur \\
   Contains & elementaryE | Macdonald1987 | scope=column partitions \\
   Contains & macdonaldPqq2 | He2020 | scope=$t=q^2$ specialization \\
@@ -32,9 +31,10 @@ two-parameter extension of the Schur functions and unify the
 For column partitions one has
 $\macdonaldP_{(1^r)}(\xvec;q,t)=\elementaryE_r(\xvec)$.
 
-The master's thesis by \name{Robin Langer} \cite{Langer2009} from 2009 gives a nice overview.
-Colmenarejo--Ram suggests the term \defin{bosonic Macdonald polynomials}
-while the \hyperref[macdonaldE]{non-symmetric Macdonald polynomials} 
+The master's thesis by \name{Robin Langer} \cite{Langer2009} gives an overview.
+\name{Laura Colmenarejo} and \name{Arun Ram} suggest the term
+\defin{bosonic Macdonald polynomials}, while the
+\hyperref[macdonaldE]{non-symmetric Macdonald polynomials}
 are called \defin{electronic Macdonald polynomials}, see \cite{ColmenarejoRam2022x}.
 \name{Laura Colmenarejo}, \name{Charles F. Dunkl}, and
 \name{Jean-Gabriel Luque} compare vector-valued and highest-weight Jack and
@@ -69,13 +69,15 @@ using free field theory \cite{Koshida2021}.
 whose $\lambda=0$ specialization is a specialized Macdonald polynomial and
 whose $\nu=0$ specialization is the graded character of a level-two
 Demazure module for affine $\mathfrak{sl}_{n+1}$
-\cite{BiswalChariShereenWand2019x}.  They prove Schur positivity under
+\cite{BiswalChariShereenWand2019x}.  They prove
+\hyperref[schurPositivity]{Schur positivity} under
 natural hypotheses and express the family through Macdonald polynomials.
 \name{Jimmy He} constructs a characteristic map for the symmetric space of
 symplectic forms over a finite field \cite{He2020}.  Under this map the
 spherical functions are sent to Macdonald polynomials with parameters
-$(q,q^2)$, and the construction gives Schur-positivity results for skew
-Macdonald polynomials at these parameters.
+$(q,q^2)$, and the construction gives
+\hyperref[schurPositivity]{Schur-positivity} results for skew Macdonald
+polynomials at these parameters.
 
 \subsection[macdonaldPqq2]{The $(q,q^2)$ finite-field specialization}
 
@@ -100,9 +102,9 @@ prime power, the Schur coefficient
     \macdonaldP_{\lambda/\mu}(\xvec;q,q^2),\schurS_\nu
   \right\rangle
 \]
-is nonnegative \cite[Thm.~0.1]{He2020}.  This is a numerical positivity
+is non-negative \cite[Thm.~0.1]{He2020}.  This is a numerical positivity
 statement at finite-field values of $q$, not a claim that the coefficients are
-polynomials in $q$ with nonnegative integer coefficients.
+polynomials in $q$ with non-negative integer coefficients.
 
 For example, the degree-two polynomial is
 \[
@@ -140,23 +142,28 @@ polynomials.
 
 \subsection[macdonaldPUniqueDefinition]{Inner product characterization}
 
-Let $\langle \cdot , \cdot \rangle_{q,t}$ denote the inner product on symmetric functions such that
+Let $\langle \cdot , \cdot \rangle_{q,t}$ denote the inner product on symmetric
+functions such that
 \[
-\langle \powerSum_\lambda , \powerSum_\mu \rangle_{q,t} = 
+\langle \powerSum_\lambda , \powerSum_\mu \rangle_{q,t} =
 z_\lambda \delta_{\lambda\mu} \prod_{i=1}^{\length(\lambda)} \frac{1-q^{\lambda_i}}{1-t^{\lambda_i}} .
 \]
 Note that at $q=t=0$, we recover the standard Hall inner product.
 
-The \defin{Macdonald polynomials} $\macdonaldP_\lambda(\xvec;q,t)$ are defined as the unique family of polynomials 
+The \defin{Macdonald polynomials} $\macdonaldP_\lambda(\xvec;q,t)$ are
+defined as the unique family of polynomials
 such that
 \begin{equation*}
-\macdonaldP_\lambda(\xvec;q,t) = \monomial_\lambda(\xvec) + \sum_{\mu \prec \lambda} \eta_{\lambda\mu} \monomial_\mu(\xvec)
+\macdonaldP_\lambda(\xvec;q,t) =
+\monomial_\lambda(\xvec) + \sum_{\mu \prec \lambda}
+\eta_{\lambda\mu} \monomial_\mu(\xvec)
 \end{equation*}
-and $\langle \macdonaldP_\lambda, \macdonaldP_\mu \rangle_{q,r}=0$ whenever $\lambda \neq \mu$.
+and $\langle \macdonaldP_\lambda, \macdonaldP_\mu \rangle_{q,t}=0$
+whenever $\lambda \neq \mu$.
 Here, $\prec$ denotes the \hyperref[dominanceOrder]{dominance order on partitions}.
 
 \begin{example*}[Macdonald polynomials for $\lambda \vdash 3$]
-We have the following Macdonald polynomials:
+For degree $3$, the monomial expansions are
 \begin{align*}
 \macdonaldP_{111}(\xvec;q,t) &= \monomial_{111} \\
 \macdonaldP_{21}(\xvec;q,t) &= \monomial_{21} +  \frac{(t-1) (2 q t+q+t+2)}{q t^2-1} \monomial_{111} \\
@@ -166,12 +173,12 @@ We have the following Macdonald polynomials:
 \end{align*}
 \end{example*}
 
-Note that this characterization is quite useless for actually computing Macdonald polynomials,
-it is really inefficient. The \hyperref[macdonaldPTableauFormula]{tableau formula} below is much faster.
+This characterization is not efficient for actual computation.  The
+\hyperref[macdonaldPTableauFormula]{tableau formula} below is usually more practical.
 
 \subsection[macdonaldPEigenvectors]{Eigenvector characterization}
 
-The Macdonald polynomials can also be characterized as eigenvectors 
+The Macdonald polynomials can also be characterized as eigenvectors
 to a certain operator $D$, see \cite{Macdonald1987}.
 The operator $D$ is given as
 \[
@@ -217,33 +224,34 @@ derive Pieri rules for multiplication by elementary symmetric functions.
 
 \subsection[macdonaldPTableauFormula]{Tableau formula}
 
-There is a quite cumbersome way to express Macdonald polynomials
-as a sum over tableaux, see \cite{Macdonald1987} and \cite{Macdonald1995}.
+The classical tableau formula expresses Macdonald polynomials as a sum over
+tableaux; see \cite{Macdonald1987} and \cite{Macdonald1995}.
 We first need to introduce some notation.
-Given $\lambda/\mu$, let $R_{\lambda/\mu}$ and $C_{\lambda/\mu}$ be the set of rows (columns, resp.) 
-containing some box of $\lambda/\mu$. 
+Given $\lambda/\mu$, let $R_{\lambda/\mu}$ and $C_{\lambda/\mu}$ be the set of
+rows and columns, respectively, containing some box of $\lambda/\mu$.
 
-For $\lambda/\mu$ being a \emph{horizontal strip} (no two boxes in the same column),
+When $\lambda/\mu$ is a \emph{horizontal strip} (no two boxes in the same column),
 we define $\psi_{\lambda/\mu}(q,t)$ as the following product.
 Set
 \[
-\psi_{\lambda/\mu}(q,t) \coloneqq \prod_{\substack{ s \in R_{\lambda/\mu} \setminus C_{\lambda/\mu} }}
+\psi_{\lambda/\mu}(q,t) \coloneqq
+\prod_{\substack{ s \in R_{\lambda/\mu} \setminus C_{\lambda/\mu} }}
 \frac{b_{\mu}(s;q,t)}{b_{\lambda}(s;q,t)}
 \]
-where 
+where
 \[
-b_{\mu}(s;q,t) \coloneqq 
+b_{\mu}(s;q,t) \coloneqq
 \begin{cases}
-\frac{ 1-q^{\arm_\mu(s)}t^{1+\leg_\mu(s)}  }{ 1-q^{1+\arm_\mu(s)}t^{\leg_\mu(s)} } &\text{if $s\in \mu$} \\
+\frac{ 1-q^{\arm_\mu(s)}t^{1+\leg_\mu(s)}  }{ 1-q^{1+\arm_\mu(s)}t^{\leg_\mu(s)} }
+&\text{if $s\in \mu$} \\
 1 &\text{otherwise}.
 \end{cases}
 \]
 
 \begin{example*}[Computation of $\psi_{\lambda/\mu}(q,t)$]
 Let $\lambda=(8,5,5,1)$ and $\mu=(6,5,2)$.
-One can fairly easily see that it suffices to
-take the product over only the 
-set of boxes both in $\mu$ and in $R_{\lambda/\mu} \setminus C_{\lambda/\mu}$.
+It suffices to take the product over the boxes that lie both in $\mu$ and in
+$R_{\lambda/\mu} \setminus C_{\lambda/\mu}$.
 Here there are three such boxes, $(1,2)$, $(1,6)$ and $(3,2)$, marked in the figure.
 \begin{figure}
 \begin{ytableau}
@@ -268,7 +276,7 @@ b_{\lambda}((3,2);q,t) = \frac{1-q^{3}t^{1+0}}{1-q^{1+3}t^{0}}.
 \]
 In total, $\psi_{\lambda/\mu}(q,t)$ is given by
 \[
-\frac{(1-q^{4}t^{3})}{(1-q^{5}t^{2})} 
+\frac{(1-q^{4}t^{3})}{(1-q^{5}t^{2})}
 \frac{(1-q^{7}t^{2})}{(1-q^{6}t^{3})}
 \frac{(1-t)}{(1-q)}
 \frac{(1-q^{3})}{(1-q^{2}t)}
@@ -277,21 +285,21 @@ In total, $\psi_{\lambda/\mu}(q,t)$ is given by
 \]
 \end{example*}
 
-Now, if $T$ is a \hyperref[prelimTableaux]{semi-standard Young tableau},
-we let 
+Now, if $T$ is a \hyperref[prelimTableaux]{semistandard Young tableau},
+we let
 \[
 \psi_{T}(q,t) \coloneqq \prod_{j=1}^n \psi_{\lambda^{j}/\lambda^{j-1}}(q,t)
 \]
-where $\lambda^{j}/\lambda^{j-1}$ is the horizontal strip determined 
+where $\lambda^{j}/\lambda^{j-1}$ is the horizontal strip determined
 by the entries with value $j$ in $T$.
 
-Finally, we have that for $\mu \vdash n$
+The tableau formula is
 \[
-\macdonaldP_{\mu}(\xvec;q,t) = \sum_{\nu \vdash n} \monomial_\nu(\xvec) 
+\macdonaldP_{\mu}(\xvec;q,t) = \sum_{\nu \vdash n} \monomial_\nu(\xvec)
 \sum_{T \in \SSYT(\mu,\nu)}  \psi_{T}(q,t).
 \]
 
-Note that if $q=t$, this formula does indeed give the Schur polynomial $\schurS_\mu(\xvec)$.
+Note that if $q=t$, this formula gives the Schur polynomial $\schurS_\mu(\xvec)$.
 
 \name{Olya Mandelshtam} gives a more compact tableau formula for the symmetric
 Macdonald polynomials $\macdonaldP_\lambda(\xvec;q,t)$ using coquinv-sorted
@@ -304,7 +312,7 @@ limit, it recovers the Knop--Sahi formula for Jack polynomials.
 \subsection[macdonaldPFromE]{From non-symmetric Macdonald $E$ polynomials}
 
 
-In \cite[Prop. 5.3.1]{HaglundHaimanLoehr2008}, the following expansion is obtained:
+In \cite[Prop.~5.3.1]{HaglundHaimanLoehr2008}, the following expansion is obtained:
 \begin{equation*}
 \macdonaldP_\lambda(\xvec;q,t) = \prod_{u \in \lambda} \left(1- q^{1+\leg(u)}t^{\arm(u)}\right) 
 \sum_{\gamma \sim \lambda} \frac{ \macdonaldE_{\gamma}(x_1,\dotsc,x_n;q^{-1},t^{-1})}{
@@ -314,29 +322,31 @@ In \cite[Prop. 5.3.1]{HaglundHaimanLoehr2008}, the following expansion is obtain
 The polynomial $\macdonaldE_{\gamma}(\xvec;q,t)$
 is a \hyperref[macdonaldE]{non-symmetric Macdonald polynomial}.
 
-We can express this formula using 
-\hyperref[macdonaldEperm]{permuted-basement Macdonald polynomials} also,
+The same formula can also be expressed using
+\hyperref[macdonaldEperm]{permuted-basement Macdonald polynomials}:
 \begin{equation*}
 \macdonaldP_\lambda(\xvec;q,t) = \prod_{u \in \lambda} \left(1- q^{1+\leg(u)}t^{\arm(u)}\right) 
 \sum_{\gamma \sim \lambda} \frac{ \macdonaldE^{id}_{\gamma}(x_1,\dotsc,x_n;q,t)}{
 \prod_{v \in \gamma} \left(1- q^{1+\leg(v)}t^{\arm(v)}\right)
 },
 \end{equation*}
-since we have the relation 
+since we have the relation
 $\macdonaldE^{id}_{\gamma}(x_1,\dotsc,x_n;q,t) = \macdonaldE_{\gamma}(x_n,\dotsc,x_1;q^{-1},t^{-1})$.
 
-Another similar expression (\cite{ColmenarejoRam2022x}) is 
+A related expression from \cite{ColmenarejoRam2022x} is
 \begin{equation*}
 \macdonaldP_\lambda(\xvec;q,t) = \frac{1}{W_\lambda(t)}
 \sum_{w \in \symS_n} w \left( \macdonaldE_{\gamma}(\xvec;q,t)
 \prod_{i \lt j} \frac{x_i - t x_j}{x_i - x_j}
 \right),
 \end{equation*}
-where $W_\lambda(t)$ is a normalization constant, so that $[x^{\lambda}] \macdonaldP_\lambda =1$.
-Compare this with the formula for Hall--Littlewood polynomials (obtained as $q\to 0$).
+where $W_\lambda(t)$ is a normalization constant, so that
+$[x^{\lambda}] \macdonaldP_\lambda =1$.
+Compare this with the formula for
+\hyperref[hallLittlewoodP]{Hall--Littlewood polynomials}, obtained as $q\to 0$.
 
-In fact, an analog of this formula exists for any fixed basement,
-see \cite[Thm. 29]{Alexandersson2015gbMacdonald}.
+In fact, an analogue of this formula exists for any fixed basement,
+see \cite[Thm.~29]{Alexandersson2015gbMacdonald}.
 
 \name{Cristian Lenart}, \name{Satoshi Naito}, \name{Fumihiko Nomoto}, and
 \name{Daisuke Sagaki} give a path model for symmetric and nonsymmetric
@@ -347,13 +357,12 @@ paths also carry a connected pseudo-crystal structure.
 
 \subsection[macdonaldPProperties]{Specializations}
 
-The Macdonald polynomials specialize to other families of symmetric functions,
-the \hyperref[schurS]{Schur}, \hyperref[hallLittlewoodP]{Hall--Littlewood} and \hyperref[jackP]{Jack} polynomials:
-\begin{equation*}
-\schurS_\lambda(\xvec) = \macdonaldP_\lambda(\xvec;q,q), \qquad 
-\hallLittlewoodP_\lambda(\xvec;t) = \macdonaldP_\lambda(\xvec;0,t) \qquad
-\jackP_\lambda(\xvec;a) = \lim_{t \to 1} \macdonaldP_\lambda(\xvec;t^a,t)
-\end{equation*}
+The Macdonald polynomials specialize to other families of symmetric functions:
+\begin{align*}
+\schurS_\lambda(\xvec) &= \macdonaldP_\lambda(\xvec;q,q), \\
+\hallLittlewoodP_\lambda(\xvec;t) &= \macdonaldP_\lambda(\xvec;0,t), \\
+\jackP_\lambda(\xvec;a) &= \lim_{t \to 1} \macdonaldP_\lambda(\xvec;t^a,t).
+\end{align*}
 
 
 \section[macdonaldJ]{Macdonald J polynomials}
@@ -365,7 +374,7 @@ the \hyperref[schurS]{Schur}, \hyperref[hallLittlewoodP]{Hall--Littlewood} and \
   Rating   & 4 \\
   Bib      & Macdonald1987 \\
   Year     & 1987 \\
-  Symbol   & $\macdonaldP_\lambda(\xvec;q,t) $ \\
+  Symbol   & $\macdonaldJ_\lambda(\xvec;q,t)$ \\
   Category & Schur \\
   SpecializesTo & jackJ | Macdonald1987 | map=Jack limit \\
   TransformsTo & macdonaldH | Macdonald1987 | map=plethystic transform \\
@@ -383,25 +392,29 @@ Similarly, the integral-form Jack polynomials are obtained as a limit:
 \jackJ_\lambda(\xvec;a) = \lim_{t \to 1} \frac{\macdonaldJ_\lambda(\xvec;t^a,t)}{(1-t)^{|\lambda|}}
 \]
 
-The \hyperref[macdonaldH]{modified Macdonald polynomials} 
+The \hyperref[macdonaldH]{modified Macdonald polynomials}
 (also known as transformed Macdonald polynomials) are obtained by letting
 \begin{equation*}
-\macdonaldH_\lambda(\xvec;q,t) := t^{n(\lambda)}H_\lambda(\xvec;q,1/t),\qquad \text{ where } \qquad  H_\lambda(\xvec;q,t) = \macdonaldJ_\lambda[\xvec/(1-t);q,t],
+\macdonaldH_\lambda(\xvec;q,t) \coloneqq
+t^{n(\lambda)}H_\lambda(\xvec;q,1/t),
+\qquad
+H_\lambda(\xvec;q,t) = \macdonaldJ_\lambda[\xvec/(1-t);q,t],
 \end{equation*}
 and we use \hyperref[plethysm]{plethystic notation} in the last expression.
 
 
-In \cite{JinLin2026x}, the authors unify several different combinatorial formulas, and 
-generalize to superized versions. In particular, their formula specializes to
+In \cite{JinLin2026x}, the authors unify several different combinatorial
+formulas and generalize them to superized versions. In particular, their formula specializes to
 the formulas by
-Corteel--Mandelshtam--Williams \cite{CorteelMandelshtamWilliams2018x} and 
+Corteel--Mandelshtam--Williams \cite{CorteelMandelshtamWilliams2018x} and
 Corteel--Mandelshtam--Mason--Williams \cite{CorteelMandelshtamMasonWilliams2022}.
 
 
 
 \subsection[macdonaldJqtKostka]{$qt$-Kostka polynomials}
 
-Macdonald \cite[p.354]{Macdonald1987} introduces the \defin{$qt$-Kostka polynomials} $K_{\lambda\mu}(q,t)$
+Macdonald \cite[p.~354]{Macdonald1987} introduces the
+\defin{$qt$-Kostka polynomials} $K_{\lambda\mu}(q,t)$
 via the relation
 \[
 \macdonaldJ_\mu(\xvec;q,t) = \sum_{\lambda} K_{\lambda\mu}(q,t) \schurS_\lambda[\xvec(1-t)]
@@ -412,8 +425,8 @@ where
 \prod_{i=1}^{\length(\rho)} (1-t^{\rho_i}).
 \]
 In \cite{Macdonald1987}, it is conjectured that the $K_{\lambda\mu}(q,t)$
-are polynomials in $\setN[q,t]$. 
-This was later confirmed by \name{Mark Haiman} \cite{Haiman2001}, as this property follows 
+are polynomials in $\setN[q,t]$.
+This was later confirmed by \name{Mark Haiman} \cite{Haiman2001}, as this property follows
 from \hyperref[macdonaldHSchurPositivity]{the Schur positivity of the modified Macdonald polynomials},
 and the corresponding modified $qt$-Kostka polynomials.
 
@@ -430,17 +443,21 @@ Macdonald analogue of a special case of a factorization conjecture of
 
 \subsection[macdonaldJHaglundsConjecture]{Haglund's conjecture}
 
-In \cite{Haglund2010}, \name{Jim Haglund} conjectures that 
+In \cite{Haglund2010}, \name{Jim Haglund} conjectures that
 \[
 \left\langle  \frac{\macdonaldJ_\lambda(\xvec;q,q^k)}{(1-q)^{|\lambda|}} , \schurS_\mu(\xvec)  \right\rangle \in \setN[q]
 \]
-for any $k \in 0,1,2,\dotsc$. 
-In \cite{HaglundHaimanLoehr2005}, it is proved that the expression $\frac{\macdonaldJ_\lambda(\xvec;q,q^k)}{(1-q)^{|\lambda|}}$
+for any $k \in 0,1,2,\dotsc$.
+In \cite{HaglundHaimanLoehr2005}, it is proved that the expression
+$\frac{\macdonaldJ_\lambda(\xvec;q,q^k)}{(1-q)^{|\lambda|}}$
 when expanded in the $\monomial_\mu$-basis has coefficients in $\setN[q]$.
-Haglund's conjecture states that the expression is actually Schur-positive.
+Haglund's conjecture states that the expression is actually
+\hyperref[schurPositivity]{Schur-positive}.
 
-\name{Arun Ram} suggests that Haglund's conjecture can be made stronger: there is some type of positivity when $\macdonaldJ_\lambda(\xvec;q,q^k)$
-is expanded in the $\macdonaldJ_\lambda(\xvec;q,q^{k-1})$-basis. Note that $\macdonaldJ_\lambda(\xvec;q,q)=\schurS_\lambda$.
+\name{Arun Ram} suggests that Haglund's conjecture can be made stronger:
+there is a positivity statement when $\macdonaldJ_\lambda(\xvec;q,q^k)$
+is expanded in the $\macdonaldJ_\lambda(\xvec;q,q^{k-1})$-basis. Note that
+$\macdonaldJ_\lambda(\xvec;q,q)=\schurS_\lambda$.
 
 Haglund's conjecture has been shown to be true in some special cases, see \cite{Yoo2012,Yoo2015,Bhattacharya2022x}.
 
@@ -463,10 +480,11 @@ types $B$, $C$, and $D$ \cite{Lassalle2005x}.
   Category & Schur \\
 \end{polydata}
 
-A \hyperref[quasiSymmetricFunctions]{quasisymmetric} refinement of $\macdonaldJ_\lambda(\xvec;q,t)$
+A \hyperref[quasiSymmetricFunctions]{quasisymmetric} refinement of
+$\macdonaldJ_\lambda(\xvec;q,t)$
 is introduced in \cite{CorteelMandelshtamMasonWilliams2022}.
-The \defin{quasisymmetric Macdonald polynomials} $G_{\alpha}(\xvec;q,t)$,
-as a sum over certain non-symmetric Macdonald polynomials,
+The \defin{quasisymmetric Macdonald polynomials} $G_{\alpha}(\xvec;q,t)$
+are defined as sums over certain non-symmetric Macdonald polynomials,
 such that the following properties hold:
 \begin{itemize}
 \item $\macdonaldJ_\lambda(\xvec;q,t)$ is a positive sum of $G_{\alpha}(\xvec;q,t)$.
@@ -486,21 +504,25 @@ such that the following properties hold:
   Rating   & 1 \\
   Bib      & GonzalesLapointe2019 \\
   Year     & 2019 \\
-  Symbol   & $\macdonaldP_{\lambdavec}(\xvec;q,t) $ \\
+  Symbol   & $\macdonaldP_{\lambdavec}(\xvec;q,t)$ \\
   Category & Schur \\
 \end{polydata}
 
-In \cite{GonzalesLapointe2019}, \name{Camilo González} and \name{Luc Lapointe} 
-introduce the multi-Macdonald polynomials, which are indexed by $r$-tuples of partitions.
-They are defined via triangularity relations, similar to the definition of \hyperref[macdonaldP]{Macdonald P polynomials}.
-When $r=1$, the usual Macdonald-P polynomials are recovered, and when $r=2$, the family coincides with the double Macdonald polynomials,
+In \cite{GonzalesLapointe2019}, \name{Camilo González} and \name{Luc Lapointe}
+introduce the multi-Macdonald polynomials, which are indexed by $r$-tuples of
+partitions.
+They are defined via triangularity relations, similar to the definition of
+\hyperref[macdonaldP]{Macdonald P polynomials}.
+When $r=1$, the usual Macdonald $P$ polynomials are recovered, and when
+$r=2$, the family coincides with the double Macdonald polynomials,
 previously defined in \cite{BlondeauFournierLapointeMathieu2014}.
 
-The multi-Macdonald polynomials can be expressed as a product of Macdonald-P polynomials,
+The multi-Macdonald polynomials can be expressed as a product of Macdonald
+$P$ polynomials,
 with suitable plethystic substitutions in each factor.
 
-There is an analog of the \hyperref[macdonaldH]{modified Macdonald polynomials},
-and then an analog of the $qt$-Kostka polynomials when expanded in the
+There is an analogue of the \hyperref[macdonaldH]{modified Macdonald polynomials},
+and then an analogue of the $qt$-Kostka polynomials when expanded in the
 \hyperref[schurWreath]{Wreath product Schur polynomials}.
 The authors show that the multi-$qt$-Kostka polynomials are in $\setN[q,t]$.
 
@@ -520,7 +542,8 @@ The authors show that the multi-$qt$-Kostka polynomials are in $\setN[q,t]$.
 \end{polydata}
 
 The wreath Macdonald P polynomials, $\macdonaldP_{\lambdavec^\bullet}(\xvec;q,t)$,
-were conjectured to exist in \name{Mark Haiman's} seminal article \cite[7.2.19]{Haiman2002hilbertSchemes}.
+were conjectured to exist in \name{Mark Haiman's} seminal article
+\cite[Sec.~7.2.19]{Haiman2002hilbertSchemes}.
 This conjecture was later proved in \cite{BezrukavnikovFinkelbergVologodsky2014}.
 See \cite{OrrShimozono2023x} for a survey on wreath Macdonald P polynomials.
 
