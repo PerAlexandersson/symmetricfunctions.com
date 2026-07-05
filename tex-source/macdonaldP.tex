@@ -33,9 +33,12 @@ $\macdonaldP_{(1^r)}(\xvec;q,t)=\elementaryE_r(\xvec)$.
 
 The master's thesis by \name{Robin Langer} \cite{Langer2009} gives an overview.
 \name{Laura Colmenarejo} and \name{Arun Ram} suggest the term
-\defin{bosonic Macdonald polynomials}, while the
+\defin{bosonic Macdonald polynomials}\label{bosonicMacdonaldPolynomial},
+while the
 \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}
-are called \defin{electronic Macdonald polynomials}, see \cite{ColmenarejoRam2022x}.
+are called
+\defin{electronic Macdonald polynomials}\label{electronicMacdonaldPolynomial},
+see \cite{ColmenarejoRam2022x}.
 \name{Laura Colmenarejo}, \name{Charles F. Dunkl}, and
 \name{Jean-Gabriel Luque} compare vector-valued and highest-weight Jack and
 Macdonald polynomials \cite{ColmenarejoDunklLuque2019x}.  Their results
@@ -134,15 +137,17 @@ than as a separate scalar symmetric-function basis.
 $\Gamma$ which gives a creation formula for Macdonald polynomials
 \cite{DaliDAdderio2024x}.  The formula connects the Bergeron--Garsia--
 Haiman--Tesler operator viewpoint with shifted Macdonald polynomials, and is
-used to define two-parameter Macdonald characters, generalizing
-\hyperref[jackCharacters]{Jack characters}.  They also formulate positivity
-conjectures extending Goulden--Jackson type conjectures for Jack
-polynomials.
+used to define
+\defin{two-parameter Macdonald characters}\label{macdonaldCharacter},
+which generalize \hyperref[jackCharacters]{Jack characters}.  They also
+formulate positivity conjectures extending Goulden--Jackson type conjectures
+for Jack polynomials.
 
 
 \subsection[macdonaldPUniqueDefinition]{Inner product characterization}
 
-Let $\langle \cdot , \cdot \rangle_{q,t}$ denote the inner product on symmetric
+Let $\langle \cdot , \cdot \rangle_{q,t}$ denote the
+\defin{Macdonald inner product}\label{macdonaldInnerProduct} on symmetric
 functions such that
 \[
 \langle \powerSum_\lambda , \powerSum_\mu \rangle_{q,t} =
@@ -150,7 +155,8 @@ z_\lambda \delta_{\lambda\mu} \prod_{i=1}^{\length(\lambda)} \frac{1-q^{\lambda_
 \]
 Note that at $q=t=0$, we recover the standard Hall inner product.
 
-The \defin{Macdonald polynomials} $\macdonaldP_\lambda(\xvec;q,t)$ are
+The \defin{Macdonald polynomials}\label{macdonaldPolynomialDefinition}
+$\macdonaldP_\lambda(\xvec;q,t)$ are
 defined as the unique family of polynomials
 such that
 \begin{equation*}
@@ -179,7 +185,8 @@ This characterization is not efficient for actual computation.  The
 \subsection[macdonaldPEigenvectors]{Eigenvector characterization}
 
 The Macdonald polynomials can also be characterized as eigenvectors
-to a certain operator $D$, see \cite{Macdonald1987}.
+to a certain \defin{Macdonald difference operator}\label{macdonaldDifferenceOperator}
+$D$, see \cite{Macdonald1987}.
 The operator $D$ is given as
 \[
 D = \sum_{i=1}^n \prod_{j \neq i} \left( \frac{tx_i-x_j}{x_i-x_j} \right) T_{q,x_i}
@@ -189,14 +196,17 @@ where $T_{q,x_i} f(x_1,\dotsc,x_n) = f(x_1,\dotsc,x_{i-1},qx_i,x_{i+1},\dotsc,x_
 There is also a way to produce Macdonald polynomials via determinants,
 see \cite{LapointeLascouxMorse1998}.
 
-\name{Philip Schlösser} studies intermediate Macdonald polynomials, which are
+\name{Philip Schlösser} studies
+\defin{intermediate Macdonald polynomials}\label{intermediateMacdonaldPolynomial},
+which are
 invariant under a parabolic subgroup of the finite Weyl group and interpolate
 between nonsymmetric and symmetric Macdonald polynomials
 \cite{Schlosser2026Macdonald}.  The paper proves orthogonality, eigenfunction
 properties, norm formulas, and vector-valued interpretations using
 double-affine Hecke algebras.
 
-\name{Luc Lapointe} introduces $m$-symmetric functions, which are symmetric in
+\name{Luc Lapointe} introduces
+\defin{$m$-symmetric functions}\label{mSymmetricFunction}, which are symmetric in
 the variables $x_{m+1},x_{m+2},\dotsc$ but not necessarily in
 $x_1,\dotsc,x_m$ \cite{Lapointe2022x}.  He constructs $m$-symmetric
 Macdonald and Schur functions and formulates positivity conjectures for the
@@ -204,8 +214,9 @@ modified $m$-symmetric Macdonald polynomials.  \name{Manuel Concha} and
 \name{Luc Lapointe} establish the basic structure of the $m$-symmetric
 Macdonald polynomials, including orthogonality, norm, evaluation, inclusion,
 and Cauchy-type formulas \cite{ConchaLapointe2023Macdonald}.  \name{Ben
-Goodberry} studies the same family as type $A$ partially symmetric Macdonald
-polynomials and proves stability, an integral form, and Pieri-type rules
+Goodberry} studies the same family as type $A$
+\defin{partially symmetric Macdonald polynomials}\label{partiallySymmetricMacdonaldPolynomial}
+and proves stability, an integral form, and Pieri-type rules
 \cite{Goodberry2025}.
 \name{Daniel Orr} and \name[Milo B. Weising]{Milo Bechtloff Weising}
 identify normalized fixed-point classes in parabolic flag Hilbert schemes
@@ -214,8 +225,9 @@ with modified partially symmetric Macdonald polynomials
 geometric interpretation and gives an explicit formula for the induced
 involution on the polynomial representation.
 
-\name{Manuel Concha} and \name{Luc Lapointe} study bisymmetric Macdonald
-polynomials \cite{ConchaLapointe2023x}.  These are built from nonsymmetric
+\name{Manuel Concha} and \name{Luc Lapointe} study
+\defin{bisymmetric Macdonald polynomials}\label{bisymmetricMacdonaldPolynomial}
+\cite{ConchaLapointe2023x}.  These are built from nonsymmetric
 Macdonald polynomials by combining antisymmetrization and $t$-symmetrization.
 They prove an evaluation symmetry extending the usual Macdonald symmetry, and
 derive Pieri rules for multiplication by elementary symmetric functions.
@@ -382,7 +394,9 @@ The Macdonald polynomials specialize to other families of symmetric functions:
 \end{polydata}
 
 
-By rescaling, the integral form Macdonald polynomials are defined via
+By rescaling, the
+\defin{integral form Macdonald polynomials}\label{integralFormMacdonaldPolynomial}
+are defined via
 \begin{equation*}
 \macdonaldJ_\lambda(\xvec;q,t) = \left( \prod_{\square \in \lambda} 1-q^{\arm(\square)}t^{1+\leg(\square)} \right)  \macdonaldP_\lambda(\xvec;q,t).
 \end{equation*}
@@ -414,7 +428,8 @@ Corteel--Mandelshtam--Mason--Williams \cite{CorteelMandelshtamMasonWilliams2022}
 \subsection[macdonaldJqtKostka]{$qt$-Kostka polynomials}
 
 Macdonald \cite[p.~354]{Macdonald1987} introduces the
-\defin{$qt$-Kostka polynomials} $K_{\lambda\mu}(q,t)$
+\defin{$qt$-Kostka polynomials}\label{qtKostkaPolynomial}
+$K_{\lambda\mu}(q,t)$
 via the relation
 \[
 \macdonaldJ_\mu(\xvec;q,t) = \sum_{\lambda} K_{\lambda\mu}(q,t) \schurS_\lambda[\xvec(1-t)]
@@ -433,7 +448,8 @@ and the corresponding modified $qt$-Kostka polynomials.
 It is still an open problem to find a combinatorial interpretation of $K_{\lambda\mu}(q,t)$.
 
 \name{Konstantin Matveev} and \name{Yuchen Wei} prove a factorization formula
-for certain Macdonald Littlewood--Richardson coefficients
+for certain
+\defin{Macdonald Littlewood--Richardson coefficients}\label{macdonaldLittlewoodRichardsonCoefficient}
 $c^\nu_{\lambda\mu}(q,t)$ \cite{MatveevWei2023x}.  Their result applies when
 the corresponding Kostka number $K_{\mu,\nu-\lambda}$ is equal to $1$, giving a
 Macdonald analogue of a special case of a factorization conjecture of
@@ -443,7 +459,9 @@ Macdonald analogue of a special case of a factorization conjecture of
 
 \subsection[macdonaldJHaglundsConjecture]{Haglund's conjecture}
 
-In \cite{Haglund2010}, \name{Jim Haglund} conjectures that
+In \cite{Haglund2010}, \name{Jim Haglund} makes
+\defin{Haglund's Macdonald conjecture}\label{haglundMacdonaldConjecture},
+namely
 \[
 \left\langle  \frac{\macdonaldJ_\lambda(\xvec;q,q^k)}{(1-q)^{|\lambda|}} , \schurS_\mu(\xvec)  \right\rangle \in \setN[q]
 \]
@@ -483,7 +501,8 @@ types $B$, $C$, and $D$ \cite{Lassalle2005x}.
 A \hyperref[quasiSymmetricFunctions]{quasisymmetric} refinement of
 $\macdonaldJ_\lambda(\xvec;q,t)$
 is introduced in \cite{CorteelMandelshtamMasonWilliams2022}.
-The \defin{quasisymmetric Macdonald polynomials} $G_{\alpha}(\xvec;q,t)$
+The \defin{quasisymmetric Macdonald polynomials}\label{quasisymmetricMacdonaldPolynomial}
+$G_{\alpha}(\xvec;q,t)$
 are defined as sums over certain non-symmetric Macdonald polynomials,
 such that the following properties hold:
 \begin{itemize}
@@ -509,12 +528,15 @@ such that the following properties hold:
 \end{polydata}
 
 In \cite{GonzalesLapointe2019}, \name{Camilo González} and \name{Luc Lapointe}
-introduce the multi-Macdonald polynomials, which are indexed by $r$-tuples of
+introduce the
+\defin{multi-Macdonald polynomials}\label{multiMacdonaldPolynomial},
+which are indexed by $r$-tuples of
 partitions.
 They are defined via triangularity relations, similar to the definition of
 \hyperref[macdonaldP]{Macdonald P polynomials}.
 When $r=1$, the usual Macdonald $P$ polynomials are recovered, and when
-$r=2$, the family coincides with the double Macdonald polynomials,
+$r=2$, the family coincides with the
+\defin{double Macdonald polynomials}\label{doubleMacdonaldPolynomial},
 previously defined in \cite{BlondeauFournierLapointeMathieu2014}.
 
 The multi-Macdonald polynomials can be expressed as a product of Macdonald
@@ -541,7 +563,8 @@ The authors show that the multi-$qt$-Kostka polynomials are in $\setN[q,t]$.
   Category & Schur \\
 \end{polydata}
 
-The wreath Macdonald P polynomials, $\macdonaldP_{\lambdavec^\bullet}(\xvec;q,t)$,
+The \defin{wreath Macdonald $P$ polynomials}\label{wreathMacdonaldPolynomial},
+$\macdonaldP_{\lambdavec^\bullet}(\xvec;q,t)$,
 were conjectured to exist in \name{Mark Haiman's} seminal article
 \cite[Sec.~7.2.19]{Haiman2002hilbertSchemes}.
 This conjecture was later proved in \cite{BezrukavnikovFinkelbergVologodsky2014}.
@@ -573,8 +596,9 @@ algebra.
 \name{Marino Romero} and \name{Joshua Jeishing Wen} prove Tesler identities
 for wreath Macdonald polynomials \cite{RomeroWen2025x}.  Their operator
 formula sends a wreath Macdonald polynomial to a delta function attached to
-its character, leading to reciprocity results, wreath interpolation Macdonald
-polynomials, plethystic formulas for wreath $(q,t)$-Kostka coefficients, and
+its character, leading to reciprocity results,
+\defin{wreath interpolation Macdonald polynomials}\label{wreathInterpolationMacdonaldPolynomial},
+plethystic formulas for wreath $(q,t)$-Kostka coefficients, and
 series solutions to the corresponding bispectral problem.
 \name{Seamus Albion Ferlinc} and \name{Joshua Jeishing Wen} introduce
 Ext-operator analogues of the Carlsson--Nekrasov--Okounkov vertex operator
