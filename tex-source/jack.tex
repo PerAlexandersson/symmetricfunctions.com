@@ -109,11 +109,13 @@ setting; they can be described using vertex operators and Pieri formulas.
 
 \subsection[jackRecursive]{Recursive formula}
 
-There is an \hyperref[kostkaRecursion]{efficient recursion for computing the Kostka coefficients} $K_{\lambda\mu}(\alpha)$,
-appearing in the expansion $\jackP_\lambda = \sum_{\mu} K_{\lambda\mu}(\alpha) \monomial_\lambda$.
-This recursion can be found in \cite[p.327]{Macdonald1995} where he uses the notation $u_{\lambda\mu}$
+There is an \hyperref[kostkaRecursion]{efficient recursion for computing the
+Kostka coefficients} $K_{\lambda\mu}(\alpha)$, appearing in the expansion
+$\jackP_\lambda = \sum_{\mu} K_{\lambda\mu}(\alpha) \monomial_\mu$.
+This recursion can be found in \cite[p.~327]{Macdonald1995}, where Macdonald
+uses the notation $u_{\lambda\mu}$
 for these coefficients. See also \cite{LapointeLascouxMorse1999,Roberts2000},
-and \cite[Prop. 2.16]{DumitriuEdelmanShuman2007} where this formula appears.
+and \cite[Prop.~2.16]{DumitriuEdelmanShuman2007}, where this formula appears.
 Generalizations to other root systems can be found in \cite{vanDiejenLapointeMorse2004}.
 
 
@@ -124,8 +126,8 @@ The (dual) Cauchy identity for Jack $P$ polynomials states that
 \[
 \sum_{\lambda}  \jackP_\lambda(x;a) \jackP_\lambda(y;1/a)  = \prod_{i,j} (1+x_i y_j),
 \]
-see \cite[Eq. (2.6)]{Macdonald1992}. There is also a generalization of the \hyperref[jackJCauchy]{Cauchy identity
-for the Jack J polynomials}.
+see \cite[Eq.~(2.6)]{Macdonald1992}. There is also a generalization of the
+\hyperref[jackJCauchy]{Cauchy identity for the Jack J polynomials}.
 
 \section[jackJ]{Jack J polynomials}
 
@@ -180,7 +182,7 @@ H'_\lambda = \prod_{\square \in \lambda} h'_\lambda(\square).
 \]
 The relationship between $\jackJ_\lambda$ and $\jackP_\lambda$ is
 then given by $\jackJ_\lambda(x;a) = H_\lambda \jackP_\lambda(x;a)$.
-Furthermore, we have that
+Furthermore,
 \[
 \langle \jackJ_\lambda, \jackJ_\lambda \rangle_a = H_\lambda H'_\lambda
 \quad
@@ -215,7 +217,8 @@ Furthermore, we have that
 For example,
 \[
 \jackJ_{31}(x;a) =
-(2a^2 + 4a + 2)\monomial_{31}+(6a + 10)\monomial_{211}+(4a + 4)\monomial_{22}+ 24\monomial_{1111}.
+(2a^2 + 4a + 2)\monomial_{31}+(6a + 10)\monomial_{211}
++(4a + 4)\monomial_{22}+ 24\monomial_{1111}.
 \]
 In the augmented monomial basis this is
 \[
@@ -233,7 +236,7 @@ In the augmented monomial basis this is
 
 \subsection[jackSpecializations]{Specializations}
 
-We have that
+The specializations are
 \[
 \jackP_\lambda(x;1) =\schurS_\lambda(x),\quad
 \jackP_{\lambda'}(x;0)=\elementaryE_{\lambda}(x) \text{ and }
@@ -324,7 +327,7 @@ Jack-positivity inequalities for the corresponding symmetric functions.
 
 
 \name{Richard Stanley} provides a Pieri rule for Jack polynomials.
-\begin{theorem}[See \cite[Thm. 6.1]{Stanley1989}]
+\begin{theorem}[See \cite[Thm.~6.1]{Stanley1989}]
 Let $\mu \subseteq \lambda$ and let $\lambda/\mu$ be a horizontal $r$-strip. Then
 \begin{equation*}
 \langle \jackJ_{(r)}\jackJ_{(\mu)},  \jackJ_\lambda \rangle =
@@ -352,8 +355,9 @@ The middle product is simply $r!a^r$.
 polynomials and applies them to interpolation Jack polynomials
 \cite{Shibukawa2020}.
 
-A dual Pieri rule, for computing $\langle \jackJ_{(1^r)}\jackJ_{(\mu)},  \jackJ_\lambda \rangle$
-is given in \cite[Thm. 6.1]{KnopSahi1996}. It is given for the Jack $P$ functions,
+A dual Pieri rule, for computing
+$\langle \jackJ_{(1^r)}\jackJ_{(\mu)},  \jackJ_\lambda \rangle$, is given
+in \cite[Thm.~6.1]{KnopSahi1996}. It is given for the Jack $P$ functions
 and is stated as follows.
 Let $X(\lambda/\mu)$ be the set of boxes $(i,j)$ in $\mu$, such that $\mu_i=\lambda_i$
 and $\mu'_j \lt \lambda'_j$. Then
@@ -371,9 +375,10 @@ see \cite[Sec.~2.3]{Naqvi2016}.
 \subsection[jackChromaticPowerSumExpansion]{Jack in power-sum basis}
 
 In \cite{HaglundWilson2017}, a formula for $\jackJ_\lambda (x;a)$ in terms of
-power-sum symmetric functions is given. It is in general not cancellation free.
+power-sum symmetric functions is given. It is not cancellation-free in general.
 
-A formula for the Schur expansion is also given, but it is fairly complicated and not cancellation free in general.
+The same paper gives a Schur expansion formula, also not cancellation-free in
+general.
 
 
 
@@ -404,7 +409,7 @@ Then $g^\lambda_{\mu\nu}(a) = H'_\lambda H_\mu H_\nu c^\lambda_{\mu\nu}(a)$.
 
 \end{lemma}
 \begin{proof*}
-Since $\jackJ_\mu = H_\mu\jackJ_\mu$, we have that
+Since $\jackP_\mu = \jackJ_\mu/H_\mu$, we have
 \begin{align}
 \frac{\jackJ_\mu}{H_\mu} \frac{\jackJ_\nu}{H_\nu} = \sum_{\lambda} c^\lambda_{\mu\nu}(a) \frac{\jackJ_\lambda}{H_\lambda}
 \end{align}
@@ -455,8 +460,9 @@ of a fixed standard Young tableau of shape $\lambda$.
 
 \subsection[jackSchurExpansionConjecture]{Schur expansion conjecture}
 
-Expanding Jack polynomials in terms of Schur functions seems to have a strong connection
-with rook polynomials. This is explored in \cite{AlexanderssonHaglundWang2018}.
+Expanding Jack polynomials in terms of Schur functions seems to have a strong
+connection with \hyperref[realRootedMatching]{rook polynomials}. This is
+explored in \cite{AlexanderssonHaglundWang2018}.
 We pose the following conjecture in that paper.
 
 \begin{conjecture}[Alexandersson--Haglund--Wang, 2018]
@@ -484,11 +490,11 @@ Consider the expansions
  a^{|\lambda|}\jackJ_\mu(x;1/a) = \sum_{k=0}^{n} c_k(\mu,\lambda) \binom{a+k}{n} =
  \sum_{k=0}^{n} b_{n-k}(\mu,\lambda) \binom{a}{k} k!
 \]
-and define the \defin{Jack rook polynomial} $R_{\lambda,\mu}(t)$
-and the \defin{Jack hit polynomial} $R_{\lambda,\mu}(t)$ as
+and define the \defin{Jack rook polynomial} $R_{\lambda,\mu}(z)$
+and the \defin{Jack hit polynomial} $H_{\lambda,\mu}(z)$ as
 \[
-R_{\lambda,\mu}(t) = \sum_{k=0}^{n} b_k(\mu,\lambda) z^k \qquad
-H_{\lambda,\mu}(t) = \sum_{k=0}^{n} c_k(\mu,\lambda) z^k,
+R_{\lambda,\mu}(z) = \sum_{k=0}^{n} b_k(\mu,\lambda) z^k \qquad
+H_{\lambda,\mu}(z) = \sum_{k=0}^{n} c_k(\mu,\lambda) z^k,
 \]
 respectively. For small $(\lambda,\mu)$ we get the following table.
 Missing combinations of $\lambda$ and $\mu$ means that the
@@ -532,8 +538,8 @@ Data for partitions of sizes $1,2,\dotsc,9$ is available
 from \filelink{files/jack-rook-hit-data.txt}{jack-rook-hit-data.txt (106 KiB)}.
 
 We conjecture that each polynomial above is real-rooted.
-One can show that if the Jack hit polynomials are real-rooted,
-then so are the Jack rook polynomials.
+If the Jack hit polynomials are real-rooted, then so are the Jack rook
+polynomials.
 
 \end{example*}
 
@@ -574,12 +580,15 @@ The Jack characters are certain normalizations of the coefficients
 when Jack polynomials are expanded in the power-sum basis.
 
 Let $\lambda \vdash n$ and $\mu \vdash m$.
-Then the \defin{Jack character} (introduced in \cite{Lassalle2008,Lassalle2009}) is defined as
+Then the \defin{Jack character} (introduced in
+\cite{Lassalle2008,Lassalle2009}) is defined as
 \[
  \theta_{\mu}^{(\alpha)}(\lambda) \coloneqq
  \begin{cases}
- \binom{n- m + m_1(\mu)}{m_1(\mu)} \powerSum_{\mu,1^{n-m}} & \text{if } n\lt m \\
-  0 & \text{if } n\lt m
+ 0 & \text{if } n\lt m, \\
+ \binom{n- m + m_1(\mu)}{m_1(\mu)}
+ [\powerSum_{\mu,1^{n-m}}]\jackJ_\lambda^{(\alpha)}
+ & \text{if } n\geq m,
   \end{cases}
 \]
 where $m_1(\mu)$ denotes the number of parts equal to $1$ in $\mu$.
@@ -592,15 +601,17 @@ graph, respectively.  The same work gives a Jack analogue of a hook-product
 formula for these derangement sums.
 
 
-Lasalle conjectured that $\theta_{\mu}^{(\alpha)}(\lambda)$ satisfy a certain positivity property \cite{Lassalle2008}.
-This was recently proved by \name[H.B. Dali]{Houcine Ben Dali} and \name{Maciej Dołęga} \cite{DaliDolega2023x}.
-We shall need some more definitions and background in order to state their result.
+Lassalle conjectured that Jack characters satisfy a certain positivity
+property \cite{Lassalle2008}. This was proved by
+\name[H.B. Dali]{Houcine Ben Dali} and \name{Maciej Dołęga}
+\cite{DaliDolega2023x}.
+The result is stated in Stanley's multirectangular coordinates.
 
 Let $\lambda = [s_1^{r_1}, s_2^{r_2}, s_k^{r_k}]$ be the multi-rectangular
 coordinates for $\lambda$, where $s_1 \geq s_2 \geq \dotsb \geq s_k$.
 That is, $\lambda$ consists of $k$
 rectangles of size $s_i \times r_i$ stacked on top of each other.
-It was then proved that
+In these coordinates,
 $\theta_{\mu}^{(\alpha)}(\mathbf{r},\mathbf{s})$ is a polynomial in $\setQ[\alpha,s_1,\dotsc,s_k,r_1,\dotsc,r_k]$.
 \name{Richard Stanley} conjectured a combinatorial formula in the case
 $\alpha=1$ \cite{Stanley2003}, and this was later proved by \name{Valentin Féray} \cite{Feray2010}.
