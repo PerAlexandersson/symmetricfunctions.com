@@ -6,7 +6,7 @@
 
 \section[rsk]{The Robinson--Schensted--Knuth correspondence}
 
-The \defin{Robinson--Schensted--Knuth correspondence} (RSK)
+The \defin{Robinson--Schensted--Knuth correspondence}\label{rskCorrespondence} (RSK)
 is a bijection between matrices with non-negative integer entries and pairs of
 \hyperref[prelimTableaux]{semistandard Young tableaux} of the same shape.
 Let $M(\mu,\nu)$ denote the set of matrices with entries in $\setN$,
@@ -30,7 +30,7 @@ In particular, the first bijection proves
 For an excellent overview on the different variants of RSK, see
 \name{Christian Krattenthaler}'s survey \cite{Krattenthaler2006}.
 We follow his numbering for the ordinary, dual, and Burge variants discussed
-below.  See also \cite[App. A.4.3]{Fulton1997} and \cite{Sagan2001} for more
+below.  See also \cite[App.~A.4.3]{Fulton1997} and \cite{Sagan2001} for more
 resources on RSK.
 
 This page first gives the insertion algorithms and the basic matrix
@@ -115,7 +115,8 @@ RSK together with \hyperref[evacuation]{Schützenberger evacuation}.
 
 \begin{example*}[An application:  Erdős--Szekeres theorem]
 
-The \defin{Erdős--Szekeres theorem} \cite{ErdosSzekeres2009}
+The \defin{Erdős--Szekeres theorem}\label{erdosSzekeresTheorem}
+\cite{ErdosSzekeres2009}
 states that any sequence of distinct real numbers of length $(r-1)(s-1)+1$
 contains a monotonically increasing subsequence of length $r$,
 or a monotonically decreasing subsequence of length $s$.
@@ -193,7 +194,8 @@ traditionally indicated with a right-pointing arrow.
 We now insert into dual SSYT.
 A \defin{dual SSYT}\label{dualSSYT} is a filling that is the transpose of an SSYT.
 
-Given a \emph{dual SSYT} $T$ and $k \in \setN$, the \emph{dual insertion}
+Given a \emph{dual SSYT} $T$ and $k \in \setN$, the
+\defin{dual insertion}\label{dualInsertion}
 $k \to T$ is defined recursively as follows, where $T_1$ is the first
 row of $T$ and $T_{2\sim}$ denotes the dual SSYT with the first row of $T$
 removed.
@@ -415,10 +417,12 @@ places Serrano's shifted plactic monoid in the same structural framework.
 \subsection[knuthRelationsDual]{Dual Knuth relations}
 
 
-Two words $w$ and $w'$ are \defin{dual Knuth-equivalent}
+Two words $w$ and $w'$ are
+\defin{dual Knuth-equivalent}\label{dualKnuthEquivalent}
 if and only if they have the same \defin{recording tableau}.
 
-An \defin{elementary dual Knuth transformation} on a permutation
+An \defin{elementary dual Knuth transformation}
+\label{elementaryDualKnuthTransformation} on a permutation
 $\sigma_1,\dotsc,\sigma_n$
 interchanges $\sigma_i =k$ and $\sigma_j =k+1$
 if and only if $k-1$ or $k+2$ occur somewhere between.
@@ -436,7 +440,7 @@ to the other via elementary dual Knuth transformations, see
 
 Here is an overview of the properties of RSK.
 Several of the standard symmetry rules can be found in
-\cite[App. A.4.3]{Fulton1997} and \cite[A.1.2.11]{StanleyEC2}.
+\cite[App.~A.4.3]{Fulton1997} and \cite[A.1.2.11]{StanleyEC2}.
 Note that RSK is closely connected to \hyperref[chargeProperties]{charge}.
 The descent identity below uses \hyperref[descentSet]{permutation descents}
 and \hyperref[tableauDescentSet]{tableau descents}.
@@ -767,7 +771,8 @@ identity for Macdonald polynomials \cite{FriedenSchreierAigner2024x}.
 
 \section[geometricRSK]{Geometric RSK}
 
-The \defin{geometric RSK correspondence} is a birational lift of RSK, where
+The \defin{geometric RSK correspondence}\label{geometricRSKCorrespondence} is
+a birational lift of RSK, where
 the classical RSK is recovered by tropicalization.
 \hyperref[whittaker]{Whittaker functions} then take the place of Schur
 functions.
