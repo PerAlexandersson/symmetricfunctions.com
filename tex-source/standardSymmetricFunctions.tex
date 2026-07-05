@@ -1,6 +1,6 @@
 \metatitle{Standard symmetric functions}
-\metadescription{An introduction to standard symmetric functions, including monomial, elementary, complete homogeneous, powersum, and forgotten symmetric functions, along with their properties and identities.} 
-\metakeywords{Symmetric functions,monomial symmetric functions,elementary symmetric functions,complete homogeneous symmetric functions,powersum symmetric functions,forgotten symmetric functions}
+\metadescription{An introduction to standard symmetric functions, including monomial, elementary, complete homogeneous, power-sum, and forgotten symmetric functions, along with their properties and identities.}
+\metakeywords{Symmetric functions,monomial symmetric functions,elementary symmetric functions,complete homogeneous symmetric functions,power-sum symmetric functions,forgotten symmetric functions}
 
 
 
@@ -8,19 +8,19 @@
 
 
 A function $f$ in $n$ variables is \defin{symmetric} if for any permutation $w\in \symS_n$,
-we have 
+we have
 \[
  f(x_1,x_2,\dotsc,x_n) = f(x_{w(1)},x_{w(2)},\dotsc,x_{w(n)}).
 \]
-The space of symmetric functions is denoted \defin{$\spaceSym$}. 
+The space of symmetric functions is denoted \defin{$\spaceSym$}.
 This is a graded vector space, and the Hilbert series of this space is given by the partition numbers, \oeis{A000041}.
 
 Further down we list the most common families of symmetric functions.
 These are all bases for the space of symmetric functions.
 
-Here are a few great resources:
+Here are a few useful references:
 \begin{itemize}
-\item \name{Mike Zabrocki}'s introduction to symmetric functions, \cite{Zabrocki2003}.
+\item \name{Mike Zabrocki}'s introduction to symmetric functions \cite{Zabrocki2003}.
 \item \name{Amritanshu Prasad}'s introduction to Schur polynomials, published in \cite{Prasad2019}.
 \end{itemize}
 
@@ -158,7 +158,7 @@ describe coefficients in powers of circulant determinants.
 The elementary symmetric functions are defined as follows:
 \[
 \elementaryE_k(\xvec) = \sum_{i_1 < i_2 < \dotsb < i_k } x_{i_1} \dotsm x_{i_k} = \monomial_{1^k}(\xvec),
-\qquad 
+\qquad
 \elementaryE_\lambda(\xvec) = \elementaryE_{\lambda_1} \elementaryE_{\lambda_2} \dotsm \elementaryE_{\lambda_\ell}
 \]
 Their generating function is
@@ -186,10 +186,11 @@ Their generating function is
 
 
 
-Similar to the elementary symmetric functions, the complete homogeneous functions are defined as
+Analogously to the elementary symmetric functions, the complete homogeneous
+functions are defined by
 \[
 \completeH_k(\xvec) = \sum_{i_1 \leq i_2 \leq \dotsb \leq i_k } x_{i_1} \dotsm x_{i_k} = \sum_{\lambda \vdash k} \monomial_\lambda(\xvec),
-\qquad 
+\qquad
 \completeH_\lambda(\xvec) = \completeH_{\lambda_1} \completeH_{\lambda_2} \dotsm \completeH_{\lambda_\ell}
 \]
 Their generating function is
@@ -206,11 +207,11 @@ nonnegative orthant \cite{HeatonShankar2021}.  This disproves a conjecture
 that such nonnegativity for complete homogeneous symmetric functions should
 force dominance comparability, as happens for several other standard bases.
 
-\section[powerSum]{Powersum symmetric functions}
+\section[powerSum]{Power-sum symmetric functions}
 
 
 \begin{polydata}{powerSum}
-  Name   & Powersum symmetric functions \\
+  Name   & Power-sum symmetric functions \\
   Space    & Sym \\
   Basis    & Yes \\
   Rating   & 5 \\
@@ -222,10 +223,10 @@ force dominance comparability, as happens for several other standard bases.
 \end{polydata}
 
 
-The powersum symmetric functions are defined as
+The power-sum symmetric functions are defined as
 \[
 \powerSum_k(\xvec) =  x_{1}^k +  x_2^k + x_3^k + \dotsb = \monomial_{(k)}(\xvec),
-\qquad 
+\qquad
 \powerSum_\lambda(\xvec) = \powerSum_{\lambda_1} \powerSum_{\lambda_2} \dotsm \powerSum_{\lambda_\ell}.
 \]
 The ordinary generating function for the individual power sums is
@@ -237,7 +238,7 @@ The ordinary generating function for the individual power sums is
 
 
 They serve as an orthogonal basis for the \hyperref[hallInnerProduct]{Hall inner product}.
-We have the following product expansions \cite[Sec. 1.4]{Macdonald1995} 
+We have the following product expansions \cite[Sec.~1.4]{Macdonald1995}
 (see the \hyperref[prelimPartitionStatistics]{preliminaries} for the definition of $z_\lambda$):
 \[
 \prod_{i,j\geq 1}(1-x_i y_j)^{-1} = \sum_{\lambda} z_\lambda^{-1} \powerSum_\lambda(\xvec)\powerSum_\lambda(\yvec).
@@ -249,7 +250,7 @@ and
 
 \begin{lemma}
 \[
-\prod_{i,j,k\geq 1}(1+x_i y_j z_k) = \sum_{\lambda} 
+\prod_{i,j,k\geq 1}(1+x_i y_j z_k) = \sum_{\lambda}
 (-1)^{|\lambda|-\length(\lambda)} z_\lambda^{-1} \powerSum_\lambda(\xvec)\powerSum_\lambda(\yvec)\powerSum_\lambda(\zvec).
 \]
 \end{lemma}
@@ -257,24 +258,24 @@ and
 First note that
 \begin{align}
 \prod_{i,j,k\geq 1}(1+x_i y_j z_k) &= \prod_{k\geq 1} \prod_{i,j\geq 1}(1+x_i (y_j z_k)) \\
- &= \prod_{k\geq 1} 
+ &= \prod_{k\geq 1}
  \sum_{\lambda} (-1)^{|\lambda|-\length(\lambda)} z_\lambda^{-1} \powerSum_\lambda(\xvec)\powerSum_\lambda(\yvec z_k).
 \end{align}
 Now using that $\powerSum_\lambda(\yvec z_k) = z_k^{|\lambda|} \powerSum_\lambda(\yvec)$,
-we can easily deduce the statement.
+we deduce the statement.
 \end{proof*}
 
 
-There are two \hyperref[qPsi]{quasisymmetric refinements of the power-sum symmetric functions} 
+There are two \hyperref[qPsi]{quasisymmetric refinements of the power-sum symmetric functions}
 given in \cite{BallantineDaughertyHicksMason2020}.
 
-\begin{conjecture}[Sundaram 2017, \cite[Conjecture 1]{Sundaram2017}]
+\begin{conjecture}[Sundaram 2017, \cite[Conj.~1]{Sundaram2017}]
  Let $L_n$ be the reverse lexicographic ordering of partitions.
 Then the following sum over any initial segment,
 \[
 \sum_{\lambda \in [1^n,\mu]} \powerSum_\lambda(\xvec)
 \]
-is Schur-positive.
+is \hyperref[schurPositivity]{Schur-positive}.
 \end{conjecture}
 For some partial progress on \name{Sheila Sundaram}'s conjecture, see \cite{Sundaram2020}.
 
@@ -335,57 +336,56 @@ defined as $\forgotten_\lambda = \omega(\monomial_\lambda)$
 where $\omega$ is the \hyperref[standardInvolution]{involution on symmetric functions}.
 Note that $\langle \forgotten_\lambda, \elementaryE_\mu \rangle = \delta_{\lambda \mu}$.
 
-It does not have as many applications as the other bases.
+This basis does not have as many applications as the other standard bases.
 
 In \cite[Ex. 7.9]{StanleyEC2}, the following monomial expansion is given,
-where $\lambda \vdash n$ has $\ell$ parts: 
+where $\lambda \vdash n$ has $\ell$ parts:
 \begin{equation}
 (-1)^{n-\ell} \forgotten_\lambda(\xvec) = \sum_{\mu} a_{\lambda\mu} \monomial_\mu(\xvec)
 \end{equation}
 where $a_{\lambda \mu}$ is the number of distinct permutations $(\alpha_1,\dotsc,\alpha_\ell)$
-of $(\lambda_1,\dotsc,\lambda_\ell)$ such that 
+of $(\lambda_1,\dotsc,\lambda_\ell)$ such that
 \[
- \{ \alpha_1+ \dotsb + \alpha_i : i \in [\ell] \} \supseteq 
- \{ \mu_1+ \dotsb + \mu_j : j \in \length(\mu) \}.
+ \{ \alpha_1+ \dotsb + \alpha_i : i \in [\ell] \} \supseteq
+ \{ \mu_1+ \dotsb + \mu_j : j \in [\length(\mu)] \}.
 \]
 
 
 \section[standardIdentities]{Various identities}
 
-We have that
 \[
 \sum_{i=0}^n (-1)^i \elementaryE_i \completeH_{n-i} = \delta_{n,0}.
 \]
-Introducing 
+Set
 \[
-E(z) = \sum_{k \geq 0} \elementaryE_k z^k, \quad 
+E(z) = \sum_{k \geq 0} \elementaryE_k z^k, \quad
 P(z) = \sum_{k \geq 0} \powerSum_{k+1} z^k
 \text{ and }
 H(z) = \sum_{k \geq 0} \completeH_k z^k
 \]
-we get $E(-z)H(z)=1$. 
+Then $E(-z)H(z)=1$.
 Moreover,
 \[
   P(-z) = \frac{E'(z)}{E(z)}, \quad P(z) = \frac{H'(z)}{H(z)}.
 \]
-One can show that 
+Also,
 \begin{align}
-H(z) = \exp\left( \sum_{k \geq 1} \frac{\powerSum_k }{k}  z^k \right) 
+H(z) = \exp\left( \sum_{k \geq 1} \frac{\powerSum_k }{k}  z^k \right)
 \text{ and }
 E(-z) = \exp\left( - \sum_{k \geq 1} \frac{\powerSum_k }{k} z^k \right).
 \end{align}
 
 
-Another common identity is 
+Another common identity is
 \[
  \prod_{i} \frac{1+t x_i}{1-t x_i} = \sum_{\lambda} t^{|\lambda|} 2^{\length(\lambda)} \monomial_{\lambda}(\xvec).
 \]
-Note that $\sum_{\lambda \vdash n} 2^{\length(\lambda)} \monomial_{\lambda}(\xvec)$ is the 
+Note that $\sum_{\lambda \vdash n} 2^{\length(\lambda)} \monomial_{\lambda}(\xvec)$ is the
 \hyperref[schurQ]{Schur's Q function} $\schurQ_{(n)}(\xvec)$.
 
-We have---by using a relation above---that
+Using the relation above,
 \[
-  \sum_{\lambda \vdash n} \forgotten_\lambda(\xvec) = \monomial_{1^n}(\xvec), \qquad 
+  \sum_{\lambda \vdash n} \forgotten_\lambda(\xvec) = \monomial_{1^n}(\xvec), \qquad
   \sum_{\lambda \vdash n} \monomial_\lambda(\xvec) = \forgotten_{1^n}(\xvec).
 \]
 
@@ -406,7 +406,7 @@ n! \elementaryE_n = \begin{vmatrix}
 \powerSum_1 & 1 & 0 & \cdots \\
 \powerSum_2 & \powerSum_1 & 2 & 0 & \cdots  \\
 \vdots && \ddots & \ddots \\
-\powerSum_{n-1} & \powerSum_{n-2} & \cdots & \powerSum_1 & n-1 \\ 
+\powerSum_{n-1} & \powerSum_{n-2} & \cdots & \powerSum_1 & n-1 \\
 \powerSum_n & \powerSum_{n-1} & \cdots & \powerSum_2 & \powerSum_1
 \end{vmatrix}.
 \]
@@ -432,7 +432,7 @@ Given a symmetric function $f$, we define the following \defin{principal special
 \princSpec_k^q(f) = f(1,q,q^2,\dotsc,q^{k-1})
 \qquad
 \princSpec_k^1(f) = f(\underbrace{1,1,\dotsc,1}_k)
-\qquad 
+\qquad
 \princSpec(f) = f(1,q,q^2,\dotsc)
 \]
 The last specialization is a formal power series,
@@ -452,9 +452,9 @@ Since every symmetric function $f$ can be expressed in terms of power-sum symmet
 this gives one possible way for computing $\princSpec(f)$.
 \end{example*}
 
-Let $\lambda$ be a partition of $n$ with $\ell$ parts. 
-Furthermore, let $m_i$ be the number of parts of size $i$,
-and we use the notation of raising and falling factorials.
+Let $\lambda$ be a partition of $n$ with $\ell$ parts, and let $m_i$ be the
+number of parts of size $i$.  We use the notation of rising and falling
+factorials.
 \begin{itemize}
 \item
 $\princSpec_k^1(\monomial_\lambda) = \frac{(k)_{\ell}}{m_1!m_2!\dotsm m_\ell!}$
@@ -472,18 +472,18 @@ $\princSpec_k^1(\completeH_\lambda) = \prod_{j=1}^\ell \frac{(k)^{\lambda_j}}{\l
 $\princSpec_k^1(\elementaryE_\lambda) = \prod_{j=1}^\ell \frac{(k)_{\lambda_j}}{\lambda_j!}$
 \end{itemize}
 
-We also have 
+We also have
 \[
-\princSpec_k^q( \elementaryE_n ) = q^{\binom{n}{2}} \qbinom{k}{n}_q, \qquad 
-\princSpec_k^q( \completeH_n )  =  \qbinom{n+k-1}{n}_q \qquad 
+\princSpec_k^q( \elementaryE_n ) = q^{\binom{n}{2}} \qbinom{k}{n}_q, \qquad
+\princSpec_k^q( \completeH_n )  =  \qbinom{n+k-1}{n}_q \qquad
 \princSpec_k^q( \powerSum_n )  =  \frac{1-q^{kn}}{1-q^n}.
 \]
 
-For reference and proofs, see e.g. \cite{Rosas2002}. 
+For reference and proofs, see e.g. \cite{Rosas2002}.
 \emph{Warning!} Note that \name{Mercedes Rosas} uses the non-standard notation $|\lambda|=m_1!m_2!\dotsm m_\ell!$.
 
 We also have the following stable principal specializations,
-see \cite[p. 303]{StanleyEC2} for details.
+see \cite[p.~303]{StanleyEC2} for details.
 
 \begin{itemize}
 \item
@@ -497,9 +497,9 @@ $\princSpec(\elementaryE_\lambda) = \prod_{j=1}^\ell \frac{q^{\binom{\lambda_j}{
 
 \end{itemize}
 
-The combinatorics involving the elementary, powersum and complete homogeneous polynomials
-is studied in \cite{OSullivan2022x}, where various combinatorial sequences are shown 
-to satisfy similar relations. 
+The combinatorics involving the elementary, power-sum and complete homogeneous
+polynomials is studied in \cite{OSullivan2022x}, where various combinatorial
+sequences are shown to satisfy similar relations.
 
 
 Sagan--Swanson show in \cite{SaganSwanson2022x} that
@@ -507,22 +507,22 @@ $q$-Stirling numbers of type $B$ can be obtained as the following specialization
 \[
  S_B(n,k;q) = \completeH_{n-k}\left([1]_q,[3],[5]_q,\dotsc,[2k+1]_q \right).
 \]
-They also show some other interesting identities.
+They also prove additional identities.
 
 
 
 
 \section[symmetricTransitionMatrices]{Transition matrices}
 
-There are combinatorial interpretations of the coefficients 
-in the transition matrices between these bases. 
+There are combinatorial interpretations of the coefficients
+in the transition matrices between these bases.
 The reference \cite{EgeciogluRemmel1991} gives a comprehensive overview.
 \name{Igor Pak} and \name{Colleen Robichaux} give a systematic discussion of
 signed combinatorial interpretations for many integral constants in algebraic
 combinatorics, including structure constants and transition coefficients for
 standard symmetric and quasisymmetric bases \cite{PakRobichaux2024x}.
 
-In the table below, we show the coefficients in the expansion 
+In the table below, we show the coefficients in the expansion
 \[
 \mathrm{v}_\lambda = \sum_{\mu} c_{\lambda \mu} \mathrm{u}_\mu,
 \]
@@ -541,9 +541,10 @@ for different choices of bases $\{\mathrm{v}_\lambda\}$ and $\{\mathrm{u}_\lambd
 \end{array}
 
 
-We have that $BM_{\lambda,\mu}$ is the number of $01$-matrices with row sums given by $\lambda$
-and column sums given by $\mu$. Similarly, $IM_{\lambda,\mu}$ is the number of non-negative integer matrices
-with row sums given by $\lambda$ and column sums given by $\mu$.
+Here $BM_{\lambda,\mu}$ is the number of $01$-matrices with row sums given by
+$\lambda$ and column sums given by $\mu$.  Similarly, $IM_{\lambda,\mu}$ is
+the number of non-negative integer matrices with row sums given by $\lambda$
+and column sums given by $\mu$.
 Combinatorial interpretations for computing the matrices
 $(IM_{\lambda,\mu})^{-1}$ and $(BM_{\lambda,\mu})^{-1}$ are given in \cite{KulikauskasRemmel2006}.
 
@@ -562,16 +563,15 @@ The coefficient $K_{\lambda,\mu}$ is a \hyperref[kostkaCoefficients]{Kostka coef
 Moreover, the entries in the \defin{inverse Kostka matrix}, $(K_{\lambda,\mu})^{-1}$,
 have a combinatorial formula, see \cite{EgeciogluRemmel1990}.
 A \defin{special rim hook tabloid} of type $\lambda$ and shape $\mu$
-is a filling of $\mu$ with rim hooks, such that the length of the rim hooks are given by $\lambda$
-and each rim hook has at least one box in
-the first column. In other words, a special rim hook tabloid is a \hyperref[borderStripTableauxDefinition]{border strip tableau},
-where every border-strip contains a box from the first column. 
+is a filling of $\mu$ with rim hooks whose lengths are given by $\lambda$,
+and each rim hook has at least one box in the first column. In other words, a
+special rim hook tabloid is a \hyperref[borderStripTableauxDefinition]{border strip tableau},
+where every border strip contains a box from the first column.
 An important difference with border strip tableaux is that the rim-hooks are not labeled.
 
 The height of a rim hook tableau is defined as for a border strip tableau.
 
 \begin{theorem}[Eğecioğlu, Remmel (1990)]
-We have that
 \[
   (K_{\lambda,\mu})^{-1} = \sum_{T \in \mathrm{SRHT}(\lambda,\mu) } (-1)^{\ht(T)}
 \]
@@ -585,7 +585,7 @@ Here is an example of a special rim hook tableau of type $(8,6,6,4,3,1)$ and sha
 A special rim hook tableau of type $(8,6,6,4,3,1)$ and shape $(7,7,5,3,2,2,2)$.}
 \end{figure}
 This tableau is the only contribution to the coefficient $(K_{866431,7753222})^{-1}$ with sign $(-1)^{3}= -1$.
-This appears in the expansion 
+This appears in the expansion
 \[
 \schurS_{7753222} = \dotsb + (-1)\completeH_{866431} + \dotsb.
 \]
@@ -620,7 +620,7 @@ The inverse Kostka matrix for $n=4$ is the $5\times 5$-transition matrix below:
 \]
 The rows and columns are indexed by the partitions of $4$ in lexicographic order:
 $(4), (3,1), (2,2), (2,1,1), (1,1,1,1)$.
-For example, 
+For example,
 $\schurS_{31} = (-1)\completeH_{4} + \completeH_{31}$.
 
 \begin{figure}
@@ -671,6 +671,6 @@ Hence, the coefficient of $\completeH_{321}$ in the expansion of $\schurS_{2211}
 
 \section[positivityProbabilities]{Positivity probabilities}
 
-In \cite{PatriasWilligenburg2018}, the authors describe the probability that 
+In \cite{PatriasWilligenburg2018}, the authors describe the probability that
 a random symmetric function is monomial-, Schur-, and elementary-positive, by comparing volumes of
 cones spanned by the basis elements.
