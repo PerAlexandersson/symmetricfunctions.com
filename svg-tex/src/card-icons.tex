@@ -1091,15 +1091,9 @@
 \begin{tikzpicture}[icon]
   \cardframe
 
-  % Three stacked bases/layers in the symmetric-function ring.
-  \foreach \y in {-0.42,-0.03,0.34} {
-    \fill[iconblue] (-0.72,\y-0.18) rectangle (0.72,\y+0.18);
-    \fill[iconblue] (0,\y+0.18) ellipse [x radius=0.72, y radius=0.18];
-    \draw[black, thinner] (-0.72,\y-0.18) -- (-0.72,\y+0.18);
-    \draw[black, thinner] (0.72,\y-0.18) -- (0.72,\y+0.18);
-    \draw[black, thinner] (0,\y-0.18) ellipse [x radius=0.72, y radius=0.18];
-    \draw[black, thinner] (0,\y+0.18) ellipse [x radius=0.72, y radius=0.18];
-  }
+  % The standard involution is the most recognizable operator here.
+  \node[text=iconblue, font=\fontsize{46}{46}\selectfont] at (0,0.02)
+    {$\omega$};
 \end{tikzpicture}
 
 
