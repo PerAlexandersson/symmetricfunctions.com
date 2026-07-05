@@ -236,10 +236,28 @@ is real-rooted. The proof uses an interpretation via lattice paths and solves \c
 
 
 \begin{example*}[Delannoy numbers]
-The \defin{Delannoy numbers} $D(n,k) = \sum_{i=0}^k \binom{k}{i}\binom{n+k-i}{k}$
-(see \oeis{A008288}) form a TNN matrix.
-By \cite[Cor. 5.15]{Brenti1995}, every row of the matrix $(D(n,k))_{n,k}$ is a PF sequence,
-so the row-generating polynomials $\sum_k D(n,k) t^k$ are real-rooted for all $n$.
+Let \(\Delta(a,b)\) be the \defin{Delannoy number} counting lattice paths
+from \((0,0)\) to \((a,b)\) with east, north, and north-east steps.  Equivalently,
+\[
+  \Delta(a,b)=\sum_i \binom{a}{i}\binom{b}{i}2^i .
+\]
+The square array \((\Delta(a,b))_{a,b\geq 0}\) is \oeis{A008288} when read by
+antidiagonals, and it forms a TNN matrix \cite[Cor.~5.15]{Brenti1995}.  The
+finite antidiagonal row polynomials
+\[
+  P_n(t)=\sum_{k=0}^n \Delta(n-k,k)t^k
+\]
+begin
+\[
+  1,\qquad 1+t,\qquad 1+3t+t^2,\qquad 1+5t+5t^2+t^3,\dotsc
+\]
+and satisfy
+\[
+  P_0(t)=1,\qquad P_1(t)=1+t,\qquad
+  P_n(t)=(1+t)P_{n-1}(t)+tP_{n-2}(t) \quad (n\geq 2).
+\]
+These are the \hyperref[delannoyRowPolynomials]{Delannoy row polynomials}
+that occur below as \(h^*\)-polynomials of regular snake posets.
 \end{example*}
 
 
@@ -554,14 +572,24 @@ and
 
 The proof is a clean interlacing induction using a recurrence for the
 non-nesting rook polynomials.  The constant words recover the Narayana
-polynomials, while the regular snake words recover the Delannoy row
-polynomials \(d_n(t)\).  In particular, the first nontrivial regular-snake
-base case is
+polynomials, while the regular snake words recover the
+\defin{Delannoy row polynomials}\label{delannoyRowPolynomials} \(P_n(t)\),
+whose coefficients are the antidiagonal rows of \oeis{A008288}.  These
+polynomials satisfy
+\[
+  P_0(t)=1,\qquad P_1(t)=1+t,\qquad
+  P_n(t)=(1+t)P_{n-1}(t)+tP_{n-2}(t) \quad (n\geq 2).
+\]
+Thus the Delannoy row polynomials are \(h^*\)-polynomials of order polytopes
+of regular snake posets.  This is a different family from the zig-zag
+Eulerian polynomials \(Z_m(t)\) discussed on the
+\hyperref[gammaPositivity]{gamma-positivity page}.  In particular, the first
+nontrivial regular-snake base case is
 \[
   M_{\epsilon R}(t)=M_{\epsilon L}(t)=1+3t+t^2.
 \]
-This is also the first nontrivial row \(1,3,1\) of \oeis{A205497}, and the
-same polynomial appears in the
+This is also the first nontrivial row \(1,3,1\) of the Delannoy triangle
+\oeis{A008288}, and the same polynomial appears in the
 \hyperref[transferMatrixWeightedTilings]{weighted transfer-matrix tiling}
 example.
 
