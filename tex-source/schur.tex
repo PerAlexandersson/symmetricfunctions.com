@@ -22,7 +22,7 @@ Definitions and formulas, the Murnaghan--Nakayama rule and Hamel--Goulden formul
 \end{polydata}
 
 \defin{Schur functions} were first studied by \name{Augustin-Louis Cauchy} in \cite{Cauchy1815},
-where he defined the Schur functions as a ratio of alternants, and proving that these are symmetric.
+where he defined the Schur functions as a ratio of alternants and proved that these are symmetric.
 Later, \name{Carl Jacobi} \cite{Jacobi1841} gave the definition of Schur
 polynomials via \hyperref[schurWeylformula]{Cauchy's bialternant formula}
 and proved the \hyperref[schurJacobiTrudi]{Jacobi--Trudi identity}.
@@ -31,7 +31,7 @@ in \hyperref[frobeniusCharacteristic]{representation theory}
 of the symmetric group and $\GL_n$ came much later when \name{Issai Schur} studied
 them in his thesis, \cite{Schur1901}.
 A common problem arising in algebraic combinatorics is to show that
-some symmetric function is Schur-positive.
+some symmetric function is \hyperref[schurPositivity]{Schur-positive}.
 There are \hyperref[schurPositivity]{several different techniques} for this.
 
 
@@ -73,12 +73,12 @@ where $\sigma$ acts by permuting the indices of the variables.
 \subsection[schurCombinatorialFormula]{Combinatorial formula}
 
 The Schur polynomials may be defined combinatorially as a sum over
-\hyperref[prelimTableaux]{semi-standard Young tableaux},
+\hyperref[prelimTableaux]{semistandard Young tableaux},
 see \cite{Macdonald1995,StanleyEC2}:
 \begin{equation*}
  \schurS_\lambda(\xvec) = \sum_{T \in \SSYT(\lambda)} x^{T} = \sum_{\mu \vdash n} K_{\lambda\mu}\monomial_\mu(\xvec)
 \end{equation*}
-The semi-standard Young tableaux of shape $\lambda$ are
+The semistandard Young tableaux of shape $\lambda$ are
 in bijection with \hyperref[LGVssyt]{non-intersecting lattice paths},
 and \hyperref[gtpatternsAsSSYT]{Gelfand--Tsetlin patterns}.
 The \hyperref[kostkaCoefficients]{Kostka coefficients}, $K_{\lambda\mu}$,
@@ -92,7 +92,7 @@ The Schur polynomial $\schurS_{32}(x_1,x_2,x_3)$ is given by
 & 2x_1^2x_2x_3^2 + 2x_1^2x_2^2x_3 +  x_1x_2x_3^3 + 2x_1x_2^2x_3^2 + x_1x_2^3x_3 + \\
 & x_2^2x_3^3 + x_2^3x_3^2
 \end{align*}
-The first few monomials arise from the semi-standard Young tableaux below.
+The first few monomials arise from the semistandard Young tableaux below.
 
 \begin{figure}
 \begin{ytableau}
@@ -136,12 +136,13 @@ by using Gelfand--Tsetlin patterns.
 
 \subsection[schurSpecializations]{Specializations}
 
-We have that
+The specialization formula is
 \[
 \schurS_{\lambda}(1^m) = \prod_{1\leq i \lt j \leq m} \frac{\lambda_i-\lambda_j + j-i}{j-i} =
 \prod_{\square \in \lambda} \frac{m + c(\square)}{h(\square)}
 \]
-where $h(\square)$ is the \hyperref[partitionCores]{hook} of the box, and $c(\square)$ is the \hyperref[partitionCores]{content}.
+where $h(\square)$ is the \hyperref[partitionCores]{hook length} of the box,
+and $c(\square)$ is the \hyperref[partitionCores]{content}.
 The first identity is a consequence of the Weyl formula, while the second is
 the hook-content formula \cite{Stanley1971}.
 
@@ -171,7 +172,7 @@ multivariate skew hook-length formula for skew shapes \cite{PanovaPetrov2026}.
 One proof uses contour integrals, while the other interprets excited diagrams
 as a free-fermion vertex model and derives the identity from the
 Yang--Baxter equation.  This gives another bridge between skew Schur
-specializations, excited diagrams, non-intersecting lattice paths, and
+specializations, excited diagrams, \hyperref[lgvLemma]{non-intersecting lattice paths}, and
 integrable lattice models.
 
 See also the \hyperref[skewSchurSpecializations]{specializations} for the skew Schur functions.
@@ -208,7 +209,7 @@ fluctuation regimes for the domino height function.
 \defin{Elliptic Schur functions} are elliptic analogues of Schur functions
 obtained by replacing the ordinary lattice-path or tableau weights by
 theta-function weights.  \name{Michael Schlosser} gives such a construction
-from elliptically weighted non-intersecting lattice paths
+from elliptically weighted \hyperref[lgvLemma]{non-intersecting lattice paths}
 \cite{Schlosser2007EllipticPaths}.  The resulting functions have a closed
 product formula under principal specialization, but they are not known to be
 orthogonal with respect to a natural elliptic scalar product.
@@ -274,8 +275,8 @@ to obtain determinant formulas for generalized Schur functions
 Schur-function identities implying Dodgson condensation and Pl\"ucker
 relations \cite{FulmekKleber2001}.
 To prove these identities, one uses the
-\href{https://en.wikipedia.org/wiki/Lindstr%C3%B6m%E2%80%93Gessel%E2%80%93Viennot_lemma}{Lindström–Gessel–Viennot lemma}
-on lattice paths, by bijecting semi-standard
+\hyperref[lgvLemma]{Lindström--Gessel--Viennot lemma}
+on lattice paths, by bijecting semistandard
 Young tableaux to sets of \hyperref[LGVssyt]{non-intersecting lattice paths}.
 
 
@@ -290,10 +291,10 @@ In other words, it expresses an arbitrary Schur function as a determinant of Sch
 indexed by hook shapes.
 A combinatorial proof of this formula can be found in \cite{EgeciogluRemmel1988}.
 
-A similar result expressing Schur functions as determinants of
+A similar result, expressing Schur functions as determinants of
 \hyperref[schurSkew]{skew Schur functions} indexed by border strips,
 is proved in \cite{LascouxPragacz1988}.
-This is later generalized in the \hyperref[schurStripDecompFormula]{Hamel--Goulden identities}.
+This is later generalized by the \hyperref[schurStripDecompFormula]{Hamel--Goulden identities}.
 
 
 
@@ -323,14 +324,12 @@ It is \hyperref[jackCharacterConjecture]{conjectured} that a
 variant of Hanlon's formula generalizes to Jack polynomials.
 
 \name{Valentin F{\'e}ray} gives a representation-theory-free proof of the
-Schur-function case in his FPSAC 2015 slides
-\href{https://vferay.perso.math.cnrs.fr/Slides/Feray_FPSAC2015.pdf}
-{Jack symmetric functions and graphs on surfaces}.
+Schur-function case in his FPSAC 2015 slides \cite{Feray2015FPSACSlides}.
 
 
 \subsection[schurRoichmanFormula]{Roichman's formula}
 
-In \cite{Roichman1997}, the following power-sum symmetric expansion of a Schur polynomial indexed by $\lambda \vdash n$ is given:
+\name{Yuval Roichman} gives the following power-sum expansion of a Schur polynomial indexed by $\lambda \vdash n$ \cite{Roichman1997}:
 \[
  \schurS_\lambda(\xvec) = \sum_{\mu \vdash n}
  %
@@ -355,7 +354,7 @@ By applying $\omega$ on the $y$-alphabet, we get the second Cauchy identity
  \sum_\lambda \schurS_\lambda(\xvec) \schurS_{\lambda'}(y) = \sum_\lambda \monomial_\lambda(\xvec) \elementaryE_{\lambda}(y) = \prod_{i,j} (1+x_i y_j).
 \end{equation*}
 
-One  can prove these identities bijectively via the
+One can prove these identities bijectively via the
 \hyperref[rsk]{Robinson--Schensted--Knuth algorithm}.
 
 
@@ -365,7 +364,7 @@ For example,
   \exp\left(  \sum_{m\geq 1} m \frac{\powerSum_m(\xvec)}{m} \frac{\powerSum_m(\yvec)}{m} \right)
   = \sum_{\lambda} \schurS_\lambda(\xvec)\schurS_\lambda(\yvec).
 \]
-See \cite[p. 386]{StanleyEC2} for a reference.
+See \cite[p.~386]{StanleyEC2} for a reference.
 
 In \cite{IshikawaTagawa2007}, the following generalization is proved,
 where the sum is over all partitions with at most $m$ parts.
@@ -411,10 +410,11 @@ symmetric-function route to the classical product-sum identities.
 \subsection[schurSums]{Littlewood identities}
 
 There are various identities involving a single alphabet,
-and are closely related to the theory of
+closely related to the theory of
 \hyperref[planePartitions]{plane partitions}.
-Identity two and three below are due to \name{Dudley Littlewood}.
-See \cite[p. 76--77]{Macdonald1995} for a reference, or \cite[Exercise 4.3.10]{Bressoud1999}.
+The second and third identities below are due to \name{Dudley Littlewood}.
+See \cite[p.~76--77]{Macdonald1995} for a reference, or
+\cite[Exercise~4.3.10]{Bressoud1999}.
 \begin{equation*}
 \sum_{\lambda}
 \schurS_\lambda(\xvec_m) = \prod_{i=1}^m \frac{1}{1-x_i} \prod_{1 \leq i \lt j \leq m} \frac{1}{1-x_ix_j}
@@ -432,8 +432,8 @@ An integer partition is \defin{even} if all parts are multiples of two.
 \schurS_\lambda(\xvec_m) = \prod_{1 \leq i \lt j \leq m} \frac{1}{1-x_ix_j}
 \end{equation*}
 
-One can prove these via plethysm, see \cite{StanleyEC2}.
-Further identities are (see \cite[p. 78--79]{Macdonald1995})
+One can prove these via \hyperref[plethysm]{plethysm}, see \cite{StanleyEC2}.
+Further identities are given in \cite[p.~78--79]{Macdonald1995}:
 \begin{equation*}
 \sum_{\lambda}
 (-1)^{n(\lambda)}\schurS_\lambda  = \prod_{i}\frac{1}{1-x_i} \prod_{ i \lt j} \frac{1}{1+x_ix_j}
@@ -479,7 +479,7 @@ Kawanaka's identity (\cite{Kawanaka1999}) states that
     \schurS_\mu
   =  \prod_{i \geq 1} \prod_{r=0}^{\infty} \frac{ 1+x_i q^{r+1} }{ 1- x_i q^{r} } \prod_{i \lt j} \frac{1}{1-x_i x_j},
 \end{equation}
-where \hyperref[partitionCores]{hook length} of the box,
+where $h(\square)$ is the \hyperref[partitionCores]{hook length} of the box,
 and the first sum is taken over all integer partitions $\mu$.
 
 
@@ -521,7 +521,7 @@ in such a way that two added boxes may not appear in the same row.
 
 
 By iterating the Pieri rules, it follows that $\completeH_\lambda(\xvec)$ and $\elementaryE_\lambda(\xvec)$
-are Schur-positive. In fact, it is an easy exercise to see that
+are \hyperref[schurPositivity]{Schur-positive}. In fact, it is an easy exercise to see that
 \[
 \completeH_\lambda(\xvec) = \sum_{\mu} K_{\mu \lambda} \schurS_{\mu},
 \]
@@ -530,10 +530,10 @@ where $K_{\mu \lambda}$ are the Kostka coefficients.
 
 One can view the Pieri rules as special cases of the \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson rule}.
 An analogue of the Pieri rule for \hyperref[schubert]{Schubert polynomials}
-is given by \hyperref[schubertMonksRule]{Monks rule}.
+is given by \hyperref[schubertMonksRule]{Monk's rule}.
 
 
-\subsection[schurKroneckerCoefficients]{Kronecker Coefficients}
+\subsection[schurKroneckerCoefficients]{Kronecker coefficients}
 
 The \defin{Kronecker coefficients} $g_{\lambda\mu\nu}$ can be defined via the relation
 \[
@@ -541,7 +541,7 @@ The \defin{Kronecker coefficients} $g_{\lambda\mu\nu}$ can be defined via the re
 \sum_{\lambda,\mu,\nu} g_{\lambda\mu\nu} \schurS_\lambda(\xvec)\schurS_\mu(\yvec) \schurS_\nu(\zvec).
 \]
 They are related to the characters of the symmetric group,
-see \cite[pp.68--69]{Schur1901}.
+see \cite[pp.~68--69]{Schur1901}.
 \[
 g_{\lambda\mu\nu} =\frac{1}{n!}
 \sum_{\sigma \in \symS_n} \chi^{\lambda}(\sigma)\chi^{\mu}(\sigma)\chi^{\nu}(\sigma).
@@ -590,7 +590,7 @@ by using \emph{ribbon graphs}.
 
 
 \begin{theorem}[Bürgisser and Ikenmeyer, \cite{BurgisserIkenmeyer2008}]
-Computing $g_{\lambda\mu\nu}$ is $\# P$-hard in general.
+Computing $g_{\lambda\mu\nu}$ is $\#P$-hard in general.
 \end{theorem}
 
 \begin{theorem}[Ikenmeyer and Panova, \cite{IkenmeyerPanova2023x}]
@@ -609,7 +609,7 @@ Schur log-concavity theorem of
 
 \begin{conjecture}[Saxl conjecture, 2012]
 Let $\rho$ be the staircase shape $(k-1,k-2,\dotsc,2,1)$.
-Prove that for all $\nu \vdash \binom{k}{2}$ we have that
+Prove that for all $\nu \vdash \binom{k}{2}$ we have
 \[
 g_{\rho, \rho, \nu} \gt 0.
 \]
@@ -622,8 +622,8 @@ alternating parts of Kronecker squares, with applications to the Saxl
 conjecture \cite{BessenrodtBowman2023}.  Their results connect these splittings
 with $2$-decomposition numbers and Catalan combinatorics.
 
-A very short proof for the tensor cube version of Saxl's conjecture
-was recently posted at \cite{Ryba2022x}.
+A very short proof for the tensor-cube version of Saxl's conjecture
+appears in \cite{Ryba2022x}.
 This states that for every $\nu \vdash \binom{k}{2}$, we have that
 $S^{\nu}$ appears in the tensor product $S^\rho \otimes S^\rho \otimes S^\rho$.
 
@@ -700,12 +700,12 @@ polynomial \cite{GrinbergKorniichukMolokanovKhomych2024x}.  This generalizes
 \subsection[skewSchurCombinatorialFormula]{Combinatorial formula}
 
 
-The skew Schur polynomials can be expressed as a sum over skew semi-standard Young tableaux:
+The skew Schur polynomials can be expressed as a sum over skew semistandard Young tableaux:
 \begin{equation*}
  \schurS_{\lambda/\mu}(\xvec) = \sum_{T \in \SSYT(\lambda/\mu)} \xvec^{T}.
 \end{equation*}
 In particular, this shows that the family of skew Schur polynomials
-contain the usual Schur polynomials and is closed under multiplication.
+contains the usual Schur polynomials and is closed under multiplication.
 That is, $\schurS_{\lambda^1/\mu^1} \schurS_{\lambda^2/\mu^2}$ can be expressed as $ \schurS_{\lambda^3/\mu^3}$
 for the skew shape $\lambda^3/\mu^3$ which is the disjoint union of the two diagrams $\lambda^1/\mu^1$
 and $\lambda^2/\mu^2$.
@@ -720,7 +720,7 @@ Then
  \left(\prod_{\square \in \lambda/\mu} [n+c(\square)]_q\right)^{-1}
  \det\left( \qbinom{\lambda_i + n-i}{\lambda_i - \mu_j-i+j}  \right)_{1 \leq i,j \leq n},
 \]
-see \cite[Exer. 102]{StanleyEC2} and \cite{ChenStanley2016}.
+see \cite[Exer.~102]{StanleyEC2} and \cite{ChenStanley2016}.
 
 
 
@@ -732,7 +732,7 @@ Then
 \schurS_{\lambda/\mu} = \det\left[ \completeH_{\lambda_i-\mu_j - i + j}  \right]_{1\leq i,j \leq \ell} \text{ and }
 \schurS_{\lambda'/\mu'} = \det\left[ \elementaryE_{\lambda_i-\mu_j - i + j}  \right]_{1\leq i,j \leq \ell}.
 \]
-This is proved using the Lindström--Gessel--Viennot lemma.
+This is proved using the \hyperref[lgvLemma]{Lindström--Gessel--Viennot lemma}.
 
 
 \subsection[skewSchurMurnaghanNakayama]{Murnaghan--Nakayama rule}
@@ -847,7 +847,8 @@ polynomials} are defined by
 \schurS_\lambda(x_1+t,\dotsc,x_n+t)
   = \sum_i \schurS_\lambda^{(i)}(x_1,\dotsc,x_n)t^i.
 \]
-\name{Julius Ross} and \name{Kuang-Yu Wu} conjecture a Schur-positive
+\name{Julius Ross} and \name{Kuang-Yu Wu} conjecture a
+\hyperref[schurPositivity]{Schur-positive}
 log-concavity property
 \[
 (\schurS_\lambda^{(i)})^2
@@ -864,15 +865,15 @@ property for partitions with growing first part and column, relating the
 phenomenon to the quantum Pascal triangle.
 
 
-\subsection[schurGustavssonMilne]{Gustavsson--Milne formula}
+\subsection[schurGustafsonMilne]{Gustafson--Milne formula}
 
 Let $\lambda$ be a partition with $k$ parts. Then
 \[
 \schurS_{\lambda_1 - n + 1, \lambda_2 - n + 2,\dotsc,\lambda_k - n + k}(x_1,\dotsc,x_k)
  =\sum_{S \in \binom{[n]}{k}} \frac{\schurS_\lambda(x_S)}{\prod_{i\in S} \prod_{j\in \overline{S}}} (x_i-x_j).
 \]
-For a proof using words such as Chern classes, tautological bundles and Atiyah--Bott localization theorem,
-see \cite[Thm. 7.1]{FeherRimanyiNemethi2012}.
+For a proof using Chern classes, tautological bundles, and the Atiyah--Bott localization theorem,
+see \cite[Thm.~7.1]{FeherRimanyiNemethi2012}.
 
 This identity is closely related to Widom's formula
 and stretched Schur polynomials, see \cite{Alexandersson2012Toeplitz,Alexandersson2014stretched}.
@@ -891,7 +892,7 @@ and $\oplus$ denotes entrywise addition of the parts of the partitions.
 
 
 \begin{problem}[M. Dołęga, 2017+]
-Prove that $\kappa( X_{\lambda^1}, \dotsc, X_{\lambda^k} )$ is Schur-positive.
+Prove that $\kappa( X_{\lambda^1}, \dotsc, X_{\lambda^k} )$ is \hyperref[schurPositivity]{Schur-positive}.
 \end{problem}
 
 There is a generalization of this to \hyperref[macdonaldHCumulants]{modified Macdonald polynomials}.
