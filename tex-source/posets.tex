@@ -6,16 +6,19 @@
 
 A \defin{poset}\label{poset} is a set $P$ with a partial order $\leq_P$:
 the relation is reflexive, antisymmetric, and transitive.  We write
-$x\lt_P y$ if $x\leq_P y$ and $x\neq y$.  A \defin{cover relation} is a
-relation $x\lessdot_P y$ such that $x\lt_P y$ and there is no $z$ with
-$x\lt_P z\lt_P y$.  The \defin{Hasse diagram} of $P$ draws only these cover
+$x\lt_P y$ if $x\leq_P y$ and $x\neq y$.  A
+\defin{cover relation}\label{coverRelation} is a relation
+$x\lessdot_P y$ such that $x\lt_P y$ and there is no $z$ with
+$x\lt_P z\lt_P y$.  The
+\defin{Hasse diagram}\label{hasseDiagram} of $P$ draws only these cover
 relations.
 
-Two basic examples are the \defin{chain} $1\lt 2\lt \dotsb \lt n$ and the
-\defin{antichain} on $n$ elements, where no two distinct elements are
-comparable.  Posets are useful because many combinatorial objects are naturally
-sets with precedence constraints: boxes in a Young diagram, roots in a root
-poset, subsets ordered by inclusion, or independent sets ordered by inclusion.
+Two basic examples are the \defin{chain}\label{chainPoset}
+$1\lt 2\lt \dotsb \lt n$ and the \defin{antichain}\label{antichain} on $n$
+elements, where no two distinct elements are comparable.  Posets are useful
+because many combinatorial objects are naturally sets with precedence
+constraints: boxes in a Young diagram, roots in a root poset, subsets ordered
+by inclusion, or independent sets ordered by inclusion.
 
 \section[linearExtensions]{Linear extensions}
 
@@ -122,8 +125,7 @@ three- or four-element labeled posets.}
 An \defin{order ideal}\label{orderIdeal} of a poset $P$ is a subset
 $I\subseteq P$ such that $x\in I$ and $y\leq_P x$ imply $y\in I$.  Dually, an
 \defin{order filter}\label{orderFilter} is an upward-closed subset.  An
-\defin{antichain}\label{antichain} is a subset whose elements are pairwise
-incomparable.
+\defin{antichain} is a subset whose elements are pairwise incomparable.
 
 Order ideals and antichains are equivalent data: an ideal is determined by
 its maximal elements, and those maximal elements form an antichain.  This is
@@ -252,8 +254,9 @@ of $(3+1)$-free posets \cite{Gasharov1996}.  They also occur in
 
 A poset is \defin{$(2+2)$-free}\label{twoPlusTwoFreePoset} if it has no
 induced subposet consisting of two disjoint two-element chains.  Equivalently,
-it is an interval order: its elements can be represented by intervals on the
-real line, ordered by lying completely to the left.
+it is an \defin{interval order}\label{intervalOrder}: its elements can be
+represented by intervals on the real line, ordered by lying completely to the
+left.
 
 A \defin{unit interval order}\label{unitIntervalOrder} is an interval order
 that can be represented using intervals of equal length.  Equivalently, it is
