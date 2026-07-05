@@ -116,36 +116,21 @@ For $\alpha=(1,0,2)$, the monomial slide polynomial is
 =
 x_1x_3^2+x_1x_2^2.
 \]
-The support can be seen directly from the weak-composition diagrams below.
-We draw the exponent vector $b=(b_1,b_2,b_3)$ by placing $b_i$ cells in row
-$i$, with row $3$ at the top.
+The support can be seen directly from the weak-composition diagrams.  We record
+the same information by listing the rows from top to bottom: row $3$, row $2$,
+then row $1$.
 \[
-\begin{array}{c@{\qquad}c@{\qquad}c}
-b=(1,0,2) &
-\begin{array}{c|cc}
-3 & \bullet & \bullet\\
-2 & {} & {}\\
-1 & \bullet & {}\\ \hline
-  & 1 & 2
-\end{array}
-& x_1x_3^2\\[2.6em]
-b=(1,1,1) &
-\begin{array}{c|cc}
-3 & \bullet & {}\\
-2 & \bullet & {}\\
-1 & \bullet & {}\\ \hline
-  & 1 & 2
-\end{array}
-& x_1x_2x_3\\[2.6em]
-b=(1,2,0) &
-\begin{array}{c|cc}
-3 & {} & {}\\
-2 & \bullet & \bullet\\
-1 & \bullet & {}\\ \hline
-  & 1 & 2
-\end{array}
-& x_1x_2^2
-\end{array}
+\begin{aligned}
+b=(1,0,2)&:\quad
+(\bullet\bullet,\ \emptyset,\ \bullet)
+  &&\longmapsto x_1x_3^2,\\
+b=(1,1,1)&:\quad
+(\bullet,\ \bullet,\ \bullet)
+  &&\longmapsto x_1x_2x_3,\\
+b=(1,2,0)&:\quad
+(\emptyset,\ \bullet\bullet,\ \bullet)
+  &&\longmapsto x_1x_2^2.
+\end{aligned}
 \]
 The first and last diagrams have flat composition $(1,2)$, so they contribute
 to $\slideM_{(1,0,2)}$.  The middle diagram has flat composition $(1,1,1)$,
