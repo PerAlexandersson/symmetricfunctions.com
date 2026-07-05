@@ -7,12 +7,13 @@
 \section[symmetricFunctions]{Symmetric functions}
 
 
-A function $f$ in $n$ variables is \defin{symmetric} if for any permutation $w\in \symS_n$,
+A function $f$ in $n$ variables is \defin{symmetric}\label{symmetricFunction}
+if for any permutation $w\in \symS_n$,
 we have
 \[
  f(x_1,x_2,\dotsc,x_n) = f(x_{w(1)},x_{w(2)},\dotsc,x_{w(n)}).
 \]
-The space of symmetric functions is denoted \defin{$\spaceSym$}.
+The space of symmetric functions is denoted \defin{$\spaceSym$}\label{spaceSym}.
 This is a graded vector space, and the Hilbert series of this space is given by the partition numbers, \oeis{A000041}.
 
 Further down we list the most common families of symmetric functions.
@@ -31,7 +32,8 @@ partitions and tableaux, including analogues of the Pieri and
 Littlewood--Richardson rules.
 \name{Andrew Weinfeld} constructs families of bases for symmetric polynomials
 and uses them to obtain Schur bases for quotient rings generalizing the
-cohomology and quantum cohomology of Grassmannians \cite{Weinfeld2019x}.
+cohomology and quantum cohomology of
+\hyperref[grassmannianVarieties]{Grassmannians} \cite{Weinfeld2019x}.
 \name{Leonid G. Fel} introduces symmetric polynomials associated with
 numerical semigroups \cite{Fel2021NumericalSemigroupSymmetric}.  These
 polynomials have power-sum expressions and are conjecturally related to the
@@ -43,7 +45,8 @@ the work of \name{Christian Korff} and \name{David Palazzo}
 \hyperref[planePartitions]{cylindric reverse plane partitions} and prove
 positivity properties for the resulting families.
 
-\name{Milo Bechtloff Weising} introduces \defin{Artin symmetric functions}
+\name{Milo Bechtloff Weising} introduces
+\defin{Artin symmetric functions}\label{artinSymmetricFunction}
 \cite{Weising2024Artinx}, attached to Galois representations over number fields.
 These live in a completed tensor product of symmetric-function rings indexed
 by prime ideals.  The construction is designed so that Artin symmetric
@@ -51,8 +54,9 @@ functions satisfy induction, inflation, and direct-sum properties analogous
 to Artin $L$-functions, and their arithmetic Hall--Littlewood expansions are
 described by trace values of representations built from modified
 Hall--Littlewood functors.
-\name{Milo Bechtloff Weising} also studies \defin{multi-symmetric Schur
-functions} \cite{Weising2025x}.  These are stable limits of key polynomials,
+\name{Milo Bechtloff Weising} also studies
+\defin{multi-symmetric Schur functions}\label{multiSymmetricSchurFunction}
+\cite{Weising2025x}.  These are stable limits of \hyperref[key]{key polynomials},
 form an integral basis for multi-symmetric functions indexed by tuples of
 partitions, and expand positively into tensor products of ordinary Schur
 functions.
@@ -338,7 +342,7 @@ Note that $\langle \forgotten_\lambda, \elementaryE_\mu \rangle = \delta_{\lambd
 
 This basis does not have as many applications as the other standard bases.
 
-In \cite[Ex. 7.9]{StanleyEC2}, the following monomial expansion is given,
+In \cite[Ex.~7.9]{StanleyEC2}, the following monomial expansion is given,
 where $\lambda \vdash n$ has $\ell$ parts:
 \begin{equation}
 (-1)^{n-\ell} \forgotten_\lambda(\xvec) = \sum_{\mu} a_{\lambda\mu} \monomial_\mu(\xvec)
@@ -427,7 +431,8 @@ n\elementaryE_n & \elementaryE_{n-1} & \cdots & & \elementaryE_1 &
 
 \subsection[standardSpecialization]{Principal specializations}
 
-Given a symmetric function $f$, we define the following \defin{principal specializations}:
+Given a symmetric function $f$, we define the following
+\defin{principal specializations}\label{principalSpecialization}:
 \[
 \princSpec_k^q(f) = f(1,q,q^2,\dotsc,q^{k-1})
 \qquad
@@ -436,7 +441,7 @@ Given a symmetric function $f$, we define the following \defin{principal special
 \princSpec(f) = f(1,q,q^2,\dotsc)
 \]
 The last specialization is a formal power series,
-and is called the \defin{stable principal specialization}.
+and is called the \defin{stable principal specialization}\label{stablePrincipalSpecialization}.
 
 \begin{example*}[Small example]
 For example, consider $\powerSum_1(\xvec)=x_1+x_2+x_3+\dotsb$.
@@ -554,15 +559,18 @@ using the \hyperref[schurMurnaghanNakayama]{Murnaghan--Nakayama rule}.
 
 
 The coefficients $B_{\mu,\lambda}$ and $OB_{\mu,\lambda}$ may be computed by
-counting certain \defin{brick tabloids}, see \cite{EgeciogluRemmel1991}.
+counting certain \defin{brick tabloids}\label{brickTabloid}, see
+\cite{EgeciogluRemmel1991}.
 
 
 \subsection[kostkaInverseModel]{Model for inverse Kostka coefficients}
 
 The coefficient $K_{\lambda,\mu}$ is a \hyperref[kostkaCoefficients]{Kostka coefficient}.
-Moreover, the entries in the \defin{inverse Kostka matrix}, $(K_{\lambda,\mu})^{-1}$,
+Moreover, the entries in the \defin{inverse Kostka matrix}\label{inverseKostkaMatrix},
+$(K_{\lambda,\mu})^{-1}$,
 have a combinatorial formula, see \cite{EgeciogluRemmel1990}.
-A \defin{special rim hook tabloid} of type $\lambda$ and shape $\mu$
+A \defin{special rim hook tabloid}\label{specialRimHookTabloid}
+of type $\lambda$ and shape $\mu$
 is a filling of $\mu$ with rim hooks whose lengths are given by $\lambda$,
 and each rim hook has at least one box in the first column. In other words, a
 special rim hook tabloid is a \hyperref[borderStripTableauxDefinition]{border strip tableau},
