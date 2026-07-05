@@ -21,7 +21,8 @@ Definitions and formulas, the Murnaghan--Nakayama rule and Hamel--Goulden formul
   PositiveIn & rsqSchur | MasonRemmel2013 \\
 \end{polydata}
 
-\defin{Schur functions} were first studied by \name{Augustin-Louis Cauchy} in \cite{Cauchy1815},
+\defin{Schur functions}\label{schurFunction} were first studied by
+\name{Augustin-Louis Cauchy} in \cite{Cauchy1815},
 where he defined the Schur functions as a ratio of alternants and proved that these are symmetric.
 Later, \name{Carl Jacobi} \cite{Jacobi1841} gave the definition of Schur
 polynomials via \hyperref[schurWeylformula]{Cauchy's bialternant formula}
@@ -51,8 +52,9 @@ symbolically computing Schur polynomials.
 
 \subsection[schurWeylformula]{Weyl formula}
 
-Jacobi's definition of Schur polynomials is via \defin{Cauchy's bialternant formula},
-also called \defin{Weyl's formula}:
+Jacobi's definition of Schur polynomials is via
+\defin{Cauchy's bialternant formula}\label{cauchyBialternantFormula},
+also called \defin{Weyl's formula}\label{weylFormula}:
 \begin{equation*}
  \schurS_\lambda(x_1,\dotsc,x_n) =  \prod_{1\leq i \lt j \leq n} (x_i-x_j)^{-1}
 \begin{vmatrix}
@@ -180,7 +182,8 @@ See also the \hyperref[skewSchurSpecializations]{specializations} for the skew S
 
 \subsection[schurGeneratingFunctions]{Schur generating functions}
 
-A \defin{Schur generating function} is a normalized generating series in
+A \defin{Schur generating function}\label{schurGeneratingFunction} is a
+normalized generating series in
 Schur polynomials attached to a probability measure on signatures.  Such
 generating functions are useful because analytic information about the Schur
 series can be translated into limit-shape and fluctuation statements.
@@ -206,7 +209,8 @@ fluctuation regimes for the domino height function.
   Category & Schur \\
 \end{polydata}
 
-\defin{Elliptic Schur functions} are elliptic analogues of Schur functions
+\defin{Elliptic Schur functions}\label{ellipticSchurFunction} are elliptic
+analogues of Schur functions
 obtained by replacing the ordinary lattice-path or tableau weights by
 theta-function weights.  \name{Michael Schlosser} gives such a construction
 from elliptically weighted \hyperref[lgvLemma]{non-intersecting lattice paths}
@@ -248,7 +252,8 @@ as a determinant of \hyperref[completeH]{complete homogeneous symmetric function
  \schurS_\lambda(\xvec) = \det[ \completeH_{\lambda_i + j - i}(\xvec) ]_{1\leq i,j \leq n}
 \end{equation*}
 By applying the \hyperref[standardInvolution]{$\omega$-involution}, we recover the dual Jacobi--Trudi identity,
-also known as the \defin{Nägelsbach--Kostka identity}:
+also known as the \defin{Nägelsbach--Kostka identity}
+\label{nagelsbachKostkaIdentity}:
 \begin{equation*}
  \schurS_{\lambda'}(\xvec) = \det[ \elementaryE_{\lambda_i + j - i}(\xvec) ]_{1\leq i,j \leq n}
 \end{equation*}
@@ -345,7 +350,7 @@ A type-$B$ analogue of this result is given in \cite{AdinEtAl2017}.
 
 \subsection[schurCauchyFormula]{Cauchy identities}
 
-The \defin{Cauchy identity} states that
+The \defin{Cauchy identity}\label{cauchyIdentity} states that
 \begin{equation*}
  \sum_\lambda \schurS_\lambda(\xvec) \schurS_{\lambda}(y) = \sum_\lambda \monomial_\lambda(\xvec) \completeH_{\lambda}(y)= \prod_{i,j} \frac{1}{1-x_i y_j}.
 \end{equation*}
@@ -421,7 +426,8 @@ See \cite[p.~76--77]{Macdonald1995} for a reference, or
 \end{equation*}
 This is the $q=0$ case of \hyperref[schurKawanaka]{Kawanaka's identity}.
 
-An integer partition is \defin{even} if all parts are multiples of two.
+An integer partition is \defin{even}\label{evenPartition} if all parts are
+multiples of two.
 \begin{equation*}
 \sum_{\lambda\text{ even}}
 \schurS_\lambda(\xvec_m) = \prod_{i=1}^m \frac{1}{1-x^2_i} \prod_{1 \leq i \lt j \leq m} \frac{1}{1-x_ix_j}
@@ -489,7 +495,8 @@ The Littlewood--Richardson rule is a combinatorial rule for multiplying Schur fu
 \[
 \schurS_{\lambda} \cdot \schurS_{\mu} = \sum_{\nu} c^{\nu}_{\lambda\mu} \schurS_{\nu}.
 \]
-The coefficients $c^{\nu}_{\lambda\mu}$ are the \defin{Littlewood--Richardson coefficients}.
+The coefficients $c^{\nu}_{\lambda\mu}$ are the
+\defin{Littlewood--Richardson coefficients}\label{littlewoodRichardsonCoefficient}.
 
 There are various \hyperref[littlewoodRichardsonModels]{combinatorial models for the Littlewood--Richardson coefficients}.
 
@@ -535,7 +542,8 @@ is given by \hyperref[schubertMonksRule]{Monk's rule}.
 
 \subsection[schurKroneckerCoefficients]{Kronecker coefficients}
 
-The \defin{Kronecker coefficients} $g_{\lambda\mu\nu}$ can be defined via the relation
+The \defin{Kronecker coefficients}\label{kroneckerCoefficient}
+$g_{\lambda\mu\nu}$ can be defined via the relation
 \[
 \prod_{i,j,k} \frac{1}{1-x_i y_j z_k} =
 \sum_{\lambda,\mu,\nu} g_{\lambda\mu\nu} \schurS_\lambda(\xvec)\schurS_\mu(\yvec) \schurS_\nu(\zvec).
@@ -566,7 +574,8 @@ In \hyperref[plethysm]{plethystic} notation,
 = \sum_{\lambda,\mu} g_{\lambda\mu\nu} \schurS_\lambda(\xvec) \schurS_\mu(\yvec).
 \]
 
-If we define the \defin{inner product, or inner tensor product}, $\ast$, on the space
+If we define the \defin{inner product, or inner tensor product}
+\label{innerTensorProduct}, $\ast$, on the space
 of symmetric functions via $\powerSum_\lambda \ast \powerSum_\mu \coloneqq \delta_{\lambda \mu} z_\lambda \powerSum_\lambda$,
 then
 \[
@@ -650,13 +659,13 @@ $S^{\nu}$ appears in the tensor product $S^\rho \otimes S^\rho \otimes S^\rho$.
 \end{polydata}
 
 
-The \defin{skew Schur polynomials} are defined via the property
+The \defin{skew Schur polynomials}\label{skewSchurPolynomial} are defined via the property
 \[
  \langle \schurS_\mu  \schurS_\nu, \schurS_{\lambda} \rangle = \langle \schurS_{\lambda/\mu}, \schurS_\nu \rangle.
 \]
 We may view multiplication by $\schurS_\mu$ as a linear map on the space of symmetric functions.
 This map has an adjoint under the \hyperref[hallInnerProduct]{Hall inner product}.
-The adjoint, which is called \defin{skewing by $\mu$}
+The adjoint, which is called \defin{skewing by $\mu$}\label{skewingOperator}
 produces $\schurS_{\lambda/\mu}$ when acting on $\schurS_{\lambda}$.
 
 In other words, the skew Schur functions may be defined via the
@@ -753,10 +762,12 @@ In \cite{HamelGoulden1995}, \name{Angèle Hamel} and \name{Ian Goulden} describe
 uniform framework, unifying the Jacobi--Trudi identities, the Giambelli formula and
 the result by \name{Alain Lascoux} and \name{Piotr Pragacz} \cite{LascouxPragacz1988}.
 
-An \defin{outside decomposition} of a skew diagram $\lambda/\mu$ is a
+An \defin{outside decomposition}\label{outsideDecomposition} of a skew diagram
+$\lambda/\mu$ is a
 decomposition into \hyperref[skewShapes]{border strips}, each of which starts on the left or lower
 boundary of $\lambda/\mu$ and ends on the upper or right boundary.  Such a
-decomposition determines a common \defin{cutting strip}: after translating the
+decomposition determines a common \defin{cutting strip}\label{cuttingStrip}:
+after translating the
 \hyperref[skewShapes]{border strips} so that cells of equal content lie on the same diagonal, each
 border strip appears as a segment of this cutting strip.
 
@@ -843,7 +854,7 @@ See \cite{Macdonald1995} for the following identity:
 \subsection[derivedSchur]{Derived Schur polynomials}
 
 For a Schur polynomial $\schurS_\lambda$, the \defin{derived Schur
-polynomials} are defined by
+polynomials}\label{derivedSchurPolynomial} are defined by
 \[
 \schurS_\lambda(x_1+t,\dotsc,x_n+t)
   = \sum_i \schurS_\lambda^{(i)}(x_1,\dotsc,x_n)t^i.
@@ -883,7 +894,7 @@ and stretched Schur polynomials, see \cite{Alexandersson2012Toeplitz,Alexanderss
 
 \name{Maciej Dołęga} has introduced the notion of cumulants of families of symmetric functions \cite{Dolega2019}.
 Let $\{X_\lambda\}$ be such a family, indexed by partitions.
-The \defin{cumulant} is defined as
+The \defin{cumulant}\label{schurCumulant} is defined as
 \[
 \kappa( X_{\lambda^1}, \dotsc, X_{\lambda^k} ) \coloneqq
 \sum_{\pi \in \mathrm{SetPart}([r])} (-1)^{|\pi|-1}(|\pi|-1)! \prod_{ B \in \pi } X_{\lambda^{B_1} \oplus \dotsb \oplus \lambda^{B_\ell}}
