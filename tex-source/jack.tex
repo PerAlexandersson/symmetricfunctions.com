@@ -71,7 +71,9 @@ and
 Here, $R_{\lambda/\mu}$ denotes the set of boxes in a row that intersects the shape $\lambda/\mu$.
 The set of boxes  $C_{\lambda/\mu}$  is defined in a similar manner for columns.
 
-This formula generalizes to the \defin{super Jack polynomials}, see \cite{SergeevVeselov2005}.
+This formula generalizes to the
+\defin{super Jack polynomials}\label{superJackPolynomial}, see
+\cite{SergeevVeselov2005}.
 
 \name{Houcine Ben Dali} studies the expansion of Jack polynomials in the
 power-sum basis through decorated bipartite maps \cite{Dali2023x}.  The paper
@@ -148,7 +150,8 @@ see \cite[Eq.~(2.6)]{Macdonald1992}. There is also a generalization of the
   PositiveIn & augmentedMonomial | KnopSahi1997 | semiring=NN[a] \\
 \end{polydata}
 
-The \defin{integral form Jack polynomials} are defined as the unique family satisfying the following relations:
+The \defin{integral form Jack polynomials}\label{integralFormJackPolynomial}
+are defined as the unique family satisfying the following relations:
 
 \begin{itemize}
 \item  Orthogonality: $\langle \jackJ_\lambda, \jackJ_\mu \rangle_a = 0$ whenever $\lambda \neq \mu$.
@@ -168,7 +171,8 @@ then $u_\mu^{-1} v_{\lambda\mu}(a) \in \setN[a]$, by the
 
 It is convenient to introduce the following notation:
 Let $\lambda$ be a diagram, and $\square$ a box in $\lambda$, and define the
-\defin{upper hook length} and \defin{lower hook length} as
+\defin{upper hook length}\label{upperHookLength} and
+\defin{lower hook length}\label{lowerHookLength} as
 \begin{align}
 h'_\lambda(\square) & \coloneqq (a \cdot \arm_\lambda(\square) + \leg_\lambda(\square) + a) \\
  h_\lambda(\square) & \coloneqq (a \cdot \arm_\lambda(\square) + \leg_\lambda(\square) + 1).
@@ -265,7 +269,7 @@ The Cauchy identity for Jack polynomials states that
 \subsection[jackLaplaceBeltrami]{Calogero--Sutherland and Laplace--Beltrami operators}
 
 The Jack polynomials $\jackJ_\lambda$ are eigenpolynomials for the
-\defin{Calogero--Sutherland} operator
+\defin{Calogero--Sutherland operator}\label{calogeroSutherlandOperator}
 \[
 \mathcal{H} \coloneqq \frac{\alpha}{2} \sum_{i=1}^n \left(x_i\frac{\partial}{\partial x_i}\right)^2 +
 \frac{1}{2} \sum_{i\lt j} \left( \frac{x_i+x_j}{ x_i - x_j } \right)\left( x_i \frac{\partial}{\partial x_i} - x_j \frac{\partial}{\partial x_j} \right),
@@ -281,7 +285,8 @@ eigenfunctions are linear combinations of polynomials generalizing super Schur
 polynomials, and this gives explicit series representations for super Jack
 polynomials.
 
-They are also eigenpolynomials for the (quasi) \defin{Laplace--Beltrami} operator,
+They are also eigenpolynomials for the
+\defin{Laplace--Beltrami operator}\label{laplaceBeltramiOperator},
 \[
 \frac{\alpha}{2} \sum_{i=1}^n \left(x_i\frac{\partial}{\partial x_i}\right)^2 +
 \frac{1}{2} \sum_{i\neq j} \left( \frac{x_i^2}{ x_i - x_j } \right) \frac{\partial}{\partial x_i}.
@@ -298,7 +303,8 @@ expansion of the integral form Jack polynomials was found:
 \jackJ_\lambda (x;a) = \sum_{T \in \mathrm{NAF}(\lambda)} d_T(a) x^T
 \]
 where $\mathrm{NAF}(\lambda)$ is the set of non-attacking fillings of the diagram $\lambda$.
-These are fillings of $\lambda$ with natural numbers such that for all boxes $(i,j)$,
+These are \defin{non-attacking fillings}\label{nonAttackingFilling} of
+$\lambda$ with natural numbers such that for all boxes $(i,j)$,
 we have
 \begin{itemize}
 \item $T(i,j) \neq T(i',j)$  whenever $i \neq i'$,
@@ -401,7 +407,9 @@ This conjecture has a generalization for \hyperref[jackShiftedLittlewoodRichards
 
 
 \begin{lemma}
-Let us define the Jack Littlewood--Richardson coefficients $c^\lambda_{\mu\nu}(a)$ via
+Let us define the
+\defin{Jack Littlewood--Richardson coefficients}\label{jackLittlewoodRichardsonCoefficient}
+$c^\lambda_{\mu\nu}(a)$ via
 \[
 \jackP_\mu \jackP_\nu = \sum_{\lambda} c^\lambda_{\mu\nu}(a)  \jackP_\lambda.
 \]
@@ -490,8 +498,9 @@ Consider the expansions
  a^{|\lambda|}\jackJ_\mu(x;1/a) = \sum_{k=0}^{n} c_k(\mu,\lambda) \binom{a+k}{n} =
  \sum_{k=0}^{n} b_{n-k}(\mu,\lambda) \binom{a}{k} k!
 \]
-and define the \defin{Jack rook polynomial} $R_{\lambda,\mu}(z)$
-and the \defin{Jack hit polynomial} $H_{\lambda,\mu}(z)$ as
+and define the \defin{Jack rook polynomial}\label{jackRookPolynomial}
+$R_{\lambda,\mu}(z)$ and the
+\defin{Jack hit polynomial}\label{jackHitPolynomial} $H_{\lambda,\mu}(z)$ as
 \[
 R_{\lambda,\mu}(z) = \sum_{k=0}^{n} b_k(\mu,\lambda) z^k \qquad
 H_{\lambda,\mu}(z) = \sum_{k=0}^{n} c_k(\mu,\lambda) z^k,
@@ -555,7 +564,8 @@ a^{|\lambda|}\jackJ_\lambda(x;1/a) = \sum_{\pi,\tau \in \symS_n} \binom{a+n-1-\d
 
 \subsection[jackDouble]{Double Jack polynomials}
 
-\name{Luc Lapointe} and \name{Pierre Mathieu} define double Jack polynomials
+\name{Luc Lapointe} and \name{Pierre Mathieu} define
+\defin{double Jack polynomials}\label{doubleJackPolynomial}
 through the stable sector of Jack superpolynomials \cite{LapointeMathieu2015}.
 After the fermionic variables are stripped off, the stabilized
 superpolynomials factor into a product of two ordinary Jack polynomials,
@@ -566,8 +576,9 @@ algebra.
 
 \subsection[jackAffineAnalogues]{Affine analogues}
 
-\name{Pavel Etingof} and \name{Alexander Kirillov Jr.} define affine
-analogues of Jack polynomials as eigenfunctions of an affine Sutherland
+\name{Pavel Etingof} and \name{Alexander Kirillov Jr.} define
+\defin{affine analogues of Jack polynomials}\label{affineJackPolynomial}
+as eigenfunctions of an affine Sutherland
 operator for the affine root system $\hat{A}_{n-1}$ \cite{EtingofKirillov1994x}.
 They construct these polynomials explicitly as traces of intertwiners for an
 affine Lie algebra.  Their $q$-analogue gives affine analogues of Macdonald
@@ -580,7 +591,7 @@ The Jack characters are certain normalizations of the coefficients
 when Jack polynomials are expanded in the power-sum basis.
 
 Let $\lambda \vdash n$ and $\mu \vdash m$.
-Then the \defin{Jack character} (introduced in
+Then the \defin{Jack character}\label{jackCharacter} (introduced in
 \cite{Lassalle2008,Lassalle2009}) is defined as
 \[
  \theta_{\mu}^{(\alpha)}(\lambda) \coloneqq
@@ -593,7 +604,8 @@ Then the \defin{Jack character} (introduced in
 \]
 where $m_1(\mu)$ denotes the number of parts equal to $1$ in $\mu$.
 
-\name{Nathan Lindzey} studies \defin{Jack derangements} by summing Jack
+\name{Nathan Lindzey} studies
+\defin{Jack derangements}\label{jackDerangement} by summing Jack
 characters over partitions with no singleton parts \cite{Lindzey2023x}.  At
 the specializations $\alpha=1$ and $\alpha=2$, these sums recover eigenvalues
 for the permutation derangement graph and the perfect matching derangement
