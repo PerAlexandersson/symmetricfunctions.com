@@ -595,18 +595,9 @@ column interlacing in a more general recurrence setup.
 
 
 \begin{remark*}[Pólya frequency sequences and TNN]
-A sequence $(a_n)_{n\geq 0}$ of non-negative reals
-is a \defin{Pólya frequency sequence} (PF) if the
-infinite Toeplitz matrix $T_{i,j}=a_{i-j}$ (with $a_k=0$ for $k<0$)
-is totally non-negative.
-By the Edrei--Thoma theorem, a sequence is PF if and only if
-its generating function has the form
-\[
-  \sum_{n\geq 0} a_n x^n = C e^{\gamma x}
-  \prod_{i} \frac{1+\alpha_i x}{1-\beta_i x}
-\]
-with $C,\gamma,\alpha_i,\beta_i \geq 0$ and $\sum(\alpha_i+\beta_i)<\infty$.
-In particular, the coefficients of any such generating function
-form a log-concave and unimodal sequence.
-See \cite{Karlin1968} for a full treatment.
+For the coefficient-level total-positivity background used above, see
+\hyperref[polyaFrequency]{Pólya frequency sequences}.  In that language,
+ordinary PF sequences are TNN Toeplitz matrices, while
+\hyperref[fullyInterlacingLace]{fully interlacing sequences} are built from
+block Toeplitz matrices.
 \end{remark*}

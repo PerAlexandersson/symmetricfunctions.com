@@ -17,6 +17,8 @@ The following pages cover more specialized topics:
 \begin{itemize}
 \item \hyperref[interlacingPolynomials]{Interlacing polynomials}:
   interlacing roots, operators preserving real-rootedness, Sturm sequences.
+\item \hyperref[polyaFrequency]{Pólya frequency sequences and total positivity}:
+  Toeplitz matrices, total non-negativity, Veronese sections, and path matrices.
 \item \hyperref[realRootedWords]{Permutation statistics}:
   Eulerian polynomials, peaks, derangements, and other permutation statistics.
 \item \hyperref[realRootedCatalan]{Catalan families}:
@@ -87,202 +89,20 @@ is real-rooted.
 This result was proved earlier in the context of entire functions, see \cite{Hutchinson1923}.
 
 
-\section[totallyNonnegative]{Totally non-negative matrices}
+\section[realRootedTransformations]{Transformations preserving real-rootedness}
 
-A matrix $M = (m_{ij})$ is \defin{totally non-negative} (TNN)
-if every minor (determinant of every square submatrix) is non-negative.
-It is \defin{totally positive} (TP) if every minor is strictly positive.
-
-TNN matrices arise naturally from path-counting in directed graphs
-via the \hyperref[lgvLemma]{Lindström--Gessel--Viennot lemma} (LGV).
-Planar networks with compatible source/sink orderings yield TNN matrices automatically.
-As a standard example, Pascal's triangle $M_{n,j} = \binom{n}{j}$
-is TNN by the LGV lemma applied to a grid with West and North steps.
-See \cite{ChenFuRuan2025x} for more on this.
-
-\begin{example*}[TNN for a matrix via LGV]
-The matrix $M$ defined by
-\[
-M_{n,j} = \binom{d(n-j\ell)}{j}
-\]
-admits a lattice path interpretation:.
-$M_{n,j}$ counts West--North paths from $A_n=(dn,0)$
-to $B_j=((d\ell{+}1)j,\,j)$.
-Since sources lie on the $x$-axis with spacing $d$
-and sinks lie on the line $y = x/(d\ell{+}1)$,
-any non-identity matching forces a path crossing.
-By the \hyperref[lgvLemma]{LGV lemma}, the matrix $(M_{n,j})$ is then TNN.
-\end{example*}
-
-
-\begin{theorem}[Aissen--Schoenberg--Whitney, 1952]
-A polynomial $p(t) = \sum_k a_k t^k$ with $a_k \geq 0$ has only real non-positive roots
-\emph{if and only if} its coefficient sequence $(a_0, a_1, \dotsc)$ is a \defin{Pólya frequency sequence} (PF),
-meaning the semi-infinite Toeplitz matrix $T_{i,j} = a_{i-j}$ (with $a_k=0$ for $k<0$) is TNN.
-See \cite{Karlin1968} for a full treatment.
-\end{theorem}
-
-\name{Ziyao Fu}, \name{Yulin Peng}, and \name{Yuchong Zhang} connect this
-kind of total positivity with upper homogeneous posets, or \defin{upho
-posets} \cite{FuPengZhang2024x}.  They prove that a formal power series
-$f(x)\in 1+x\setZ_{\geq 0}[[x]]$ is the rank-generating function of a
-Schur-positive upho poset if and only if $f(x)$ is totally positive.  Here
-Schur positivity refers to the Ehrenborg quasisymmetric function of the poset.
-Their proof passes through a correspondence between colored upho posets and
-atomic left-cancellative monoids.
-
-\begin{theorem}[Veronese sections preserve real-rootedness]
-Let $r\geq 1$ and $0\leq i \lt r$.
-Define the \defin{Veronese section}
-\[
-  \mathcal{S}^r_i\left(\sum_{m\geq 0} a_m t^m\right)
-  =
-  \sum_{m\geq 0} a_{i+rm} t^m.
-\]
-If $f(t)$ is real-rooted with non-negative coefficients, then
-$\mathcal{S}^r_i(f)$ is also real-rooted with non-negative coefficients.
-See also the more general interlacing framework in \cite{AthanasiadisWagner2024x}.
-\end{theorem}
-
-\begin{proof}
-The roots of $f$ are necessarily non-positive. Hence, by the
-Aissen--Schoenberg--Whitney theorem, the coefficient sequence
-$(a_0,a_1,\dotsc)$ is PF, so its Toeplitz matrix
-$T_{p,q}=a_{p-q}$ is TNN. The Toeplitz matrix for the subsequence
-$(a_i,a_{i+r},a_{i+2r},\dotsc)$ is the submatrix
-\[
-  T_{i+rp,rq}=a_{i+r(p-q)}.
-\]
-It is therefore TNN as well. Applying Aissen--Schoenberg--Whitney again
-shows that $\mathcal{S}^r_i(f)$ is real-rooted.
-\end{proof}
-
-\name{Christos A. Athanasiadis} and \name{David G. Wagner} prove a stronger
-interlacing version of this statement
-\cite[Thm.~5.3 and Rem.~5.4]{AthanasiadisWagner2024x}.  They define a matrix
-of formal power series to be \defin{fully interlacing} when the matrix obtained
-by interleaving the Toeplitz matrices of its entries is totally non-negative.
-The fully interlacing property is preserved by Veronese sections.  In
-particular, if $f$ is an AESW series, or equivalently in the polynomial case
-if $f$ has non-negative coefficients and only real roots, then
-\[
-  \bigl(
-    \mathcal{S}^r_0(f),
-    \mathcal{S}^r_1(f),
-    \dotsc,
-    \mathcal{S}^r_{r-1}(f)
-  \bigr)
-\]
-is a fully interlacing sequence.  Thus the Veronese construction produces an
-interlacing family of polynomials, not only separate real-rooted polynomials;
-non-negative linear combinations of the sections are again AESW.
-
-\begin{example*}[Rows of Pascal's triangle]
-The polynomial
-\[
-  \sum_{m=0}^{n}\binom{kn}{km}t^m
-\]
-is the Veronese section $\mathcal{S}^k_0((1+t)^{kn})$.
-Since $(1+t)^{kn}$ is real-rooted, the theorem above immediately gives
-that this polynomial is real-rooted.
-\end{example*}
-
-
-
-\begin{theorem}[Characterization of TNN matrices, \cite[Thm. 3.1]{Brenti1995}.]
-A matrix is TNN if and only if it can be obtained from a \emph{fully compatible}
-planar directed graph, with non-negative edge weights.
-\end{theorem}
-
-
-\begin{theorem}[Characterization of TNN lower unitriangular matrices, \cite{BrandenLeite2024x}]
-Let $\Gamma_N$ be the directed graph on $\{(i,j)\in\mathbb{N}^2 : j \leq i \leq N\}$
-with horizontal edges $(i,j)\to(i,j+1)$ and vertical edges $(i+1,j)\to(i,j)$.
-Assign non-negative weights $\lambda = (\lambda_{i,j})_{0\leq j\leq i < N}$ to the vertical edges
-(weight $1$ on horizontal edges), and let $r_{n,k}(\Gamma_N,\lambda)$ be the
-total weight of paths from $(n,0)$ to $(k,k)$.
-
-A lower unitriangular matrix $R = (r_{n,k})_{n,k=0}^N$ is totally nonnegative
-if and only if there exists such a weight array $\lambda$ with $R = R(\Gamma_N,\lambda)$.
-The forward direction follows from the \hyperref[lgvLemma]{LGV lemma};
-the converse is Whitney's reduction theorem, see \cite{FallatJohnson2011}.
-\end{theorem}
-
-
-\emph{Checking TNN.}
-Total non-negativity can be checked efficiently via \emph{Neville elimination}
-(a variant of Gaussian elimination using adjacent-row operations):
-a matrix is TNN if and only if Neville elimination completes
-with all multipliers non-negative and no entry becoming negative.
-This gives an $O(n^2 m)$ algorithm for an $n\times m$ matrix,
-compared to the exponential cost of checking all minors directly.
-
-TNN matrices are closed under products and under
-Hadamard (entry-wise) products, see \cite{Wagner1992}.
-See \cite{BrandenLeite2024x} for some applications related to chains in posets.
-See also \cite{FallatJohnson2011} for a comprehensive treatment.
-
-
-
-\begin{example*}[Ray through Pascal's triangle]
-The following is proved in \cite{Yu2009}.
-Let $n \geq k \geq 0$ and $b \gt a \gt 0$, $k\lt b$.
-Then the polynomial
-\[
- \sum_{j \geq 0} \binom{n+ja}{k+jb} t^j
-\]
-is real-rooted. The proof uses an interpretation via lattice paths and solves \cite[Problem 12]{ForgcsTran2016}.
-\end{example*}
-
-
-\begin{example*}[Delannoy numbers]
-Let \(\Delta(a,b)\) be the \defin{Delannoy number} counting lattice paths
-from \((0,0)\) to \((a,b)\) with east, north, and north-east steps.  Equivalently,
-\[
-  \Delta(a,b)=\sum_i \binom{a}{i}\binom{b}{i}2^i .
-\]
-The square array \((\Delta(a,b))_{a,b\geq 0}\) is \oeis{A008288} when read by
-antidiagonals, and it forms a TNN matrix \cite[Cor.~5.15]{Brenti1995}.  The
-finite antidiagonal row polynomials
-\[
-  P_n(t)=\sum_{k=0}^n \Delta(n-k,k)t^k
-\]
-begin
-\[
-  1,\qquad 1+t,\qquad 1+3t+t^2,\qquad 1+5t+5t^2+t^3,\dotsc
-\]
-and satisfy
-\[
-  P_0(t)=1,\qquad P_1(t)=1+t,\qquad
-  P_n(t)=(1+t)P_{n-1}(t)+tP_{n-2}(t) \quad (n\geq 2).
-\]
-These are the \hyperref[delannoyRowPolynomials]{Delannoy row polynomials}
-that occur below as \(h^*\)-polynomials of regular snake posets.
-\end{example*}
-
-
-
-\begin{theorem}[Brenti~\cite{Brenti1995}]\label{thm:brenti}
-Let $D$ be a locally finite digraph on $\setN \times\setN$ with nonnegative edge weights.
-Assume that $D$ is planar and weakly $y$-invariant
-(i.e., the edges from $(m,k)$ are independent of~$m$).
-Let $M_{n,j}\coloneqq P_D\bigl((0,0),(n,j)\bigr)$
-be the weighted path count from $(0,0)$ to $(n,j)$.
-Then $M=(M_{n,j})$ is totally positive
-and every row is a P\'olya frequency sequence.
-In particular, every row polynomial $\sum_j M_{n,j}\,t^j$
-has only real nonpositive zeros.
-\end{theorem}
-
-
-\begin{theorem}[Stanley, \cite{Stanley1998}]
-A polynomial $Q(x)=1+a_1x+a_2x^2+\dotsb+a_n x^n$ has only
-negative real roots if and only if the product
-\[
- \prod_{i \geq 1} Q(x_i)
-\]
-is Schur-positive.
-\end{theorem}
+Several standard methods prove real-rootedness by applying a transformation
+known to preserve real roots.  Coefficientwise methods based on
+\hyperref[polyaFrequency]{Pólya frequency sequences} and
+\hyperref[totallyNonnegative]{totally non-negative matrices} are collected on
+their own page; the main examples there include
+\hyperref[aissenSchoenbergWhitney]{Aissen--Schoenberg--Whitney},
+\hyperref[edreiThomaTheorem]{Edrei--Thoma theory},
+\hyperref[veroneseSectionsPF]{Veronese sections}, and
+\hyperref[tnnPathMatrix]{path matrices}.  This page records two other
+frequently used classes of transformations: basis transformations such as the
+Narayana and Eulerian transformations, and coefficientwise products such as
+\hyperref[hadamardProduct]{Hadamard products}.
 
 
 \subsection[narayanaTransformations]{Narayana transformations and matrix products}

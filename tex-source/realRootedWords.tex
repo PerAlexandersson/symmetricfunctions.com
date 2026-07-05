@@ -3,18 +3,17 @@
 \metadescription{Examples of Sturm sequences and interlacing from permutation statistics, set partitions, and Stirling permutations: Eulerian polynomials, peaks, descents, derangements, and more.}
 
 
-\section[realRootedWords]{Sturm sequences: permutations, set partitions and more}
+\section[realRootedWords]{Permutation statistics, words, and set partitions}
 
-This page collects examples of \hyperref[sturmSequence]{Sturm sequences} arising from combinatorial statistics
-on classes of permutations, words and types of partitions.
-
-Recall that a sequence of polynomials $\{P_n(t)\}$ is a \hyperref[sturmSequence]{Sturm sequence} if
-$P_j \interl P_{j+1}$ for all $j$;
-in particular each $P_n$ is real-rooted.
-For background on interlacing and the main tools used in the proofs here,
-see \hyperref[interlacingPolynomials]{interlacing polynomials}.
-For the broader context of real-rootedness and unimodality,
-see \hyperref[polynomialRootIntro]{unimodality and real-rootedness}.
+This page collects real-rootedness results for statistics on permutations,
+words, and set partitions.  Many examples are
+\hyperref[sturmSequence]{Sturm sequences}, meaning that
+\(P_j\interl P_{j+1}\) for all \(j\).  Others use
+\hyperref[interlacingSequences]{interlacing sequences},
+\hyperref[stablePolynomial]{stable polynomials}, or
+\hyperref[polyaFrequency]{total-positivity} methods.  For the broader
+context of real-rootedness and unimodality, see
+\hyperref[polynomialRootIntro]{unimodality and real-rootedness}.
 For descent polynomials of \hyperref[linearExtension]{linear extensions} of
 posets, including
 \hyperref[generalizedSnakeRealRooted]{generalized snake posets}, see
@@ -218,7 +217,9 @@ cycle and subset triangles and formulate total-positivity and real-rootedness
 questions for them \cite{DebSokal2025x}.  Their framework asks for total
 positivity of the triangle, its row reversal, Toeplitz total positivity of row
 sequences, and coefficientwise Hankel total positivity of the row-generating
-polynomials; they prove several cases for order $2$.
+polynomials.  Toeplitz total positivity is the
+\hyperref[polyaFrequency]{Pólya frequency} condition on each row sequence.
+They prove several cases for order \(2\).
 \end{example*}
 
 \begin{example*}[Big descents in pattern-avoiding permutations]

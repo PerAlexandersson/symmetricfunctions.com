@@ -1,0 +1,49 @@
+\documentclass[tikz,border=0mm]{standalone}
+\usetikzlibrary{calc}
+
+\definecolor{iconblue}{RGB}{70,140,255}
+
+\begin{document}
+\begin{tikzpicture}[
+  line cap=round,
+  line join=round,
+  cell/.style={draw=black, line width=0.45mm},
+  bluecell/.style={draw=black, fill=iconblue!65, line width=0.45mm},
+  root/.style={circle, draw=black, fill=iconblue, line width=0.55mm,
+    minimum size=5.5pt, inner sep=0pt}
+]
+  \useasboundingbox (-1,-1) rectangle (1,1);
+  \draw[line width=1.2mm, rounded corners=0.25cm] (-0.9,-0.9) rectangle (0.9,0.9);
+
+  % A small Toeplitz matrix: constant diagonals encode the coefficient sequence.
+  \begin{scope}[shift={(-0.53,0.0)}, scale=0.28]
+    \foreach \i in {0,...,3} {
+      \foreach \j in {0,...,3} {
+        \pgfmathtruncatemacro{\d}{\i-\j}
+        \ifnum\d=0
+          \path[bluecell] (\j,-\i) rectangle ++(1,1);
+        \else
+          \ifnum\d=1
+            \path[fill=iconblue!25, cell] (\j,-\i) rectangle ++(1,1);
+          \else
+            \ifnum\d=2
+              \path[fill=iconblue!12, cell] (\j,-\i) rectangle ++(1,1);
+            \else
+              \path[cell] (\j,-\i) rectangle ++(1,1);
+            \fi
+          \fi
+        \fi
+      }
+    }
+  \end{scope}
+
+  % Real non-positive roots.
+  \draw[black, line width=0.55mm, ->, >=stealth] (-0.54,0.54) -- (0.64,0.54);
+  \foreach \x in {-0.34,-0.03,0.28} {
+    \node[root] at (\x,0.54) {};
+  }
+
+  % Link the coefficient matrix to the root picture.
+  \draw[iconblue, line width=0.8mm, ->, >=stealth] (0.33,-0.18) to[out=35,in=-105] (0.48,0.4);
+\end{tikzpicture}
+\end{document}
