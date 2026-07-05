@@ -57,7 +57,17 @@ Here, $d$ is the degree of $z_j$ in $p$.
 \end{theorem}
 
 
-\begin{theorem}[Borcea--Brändén, see \cite{BorceaBranden2009I}]
+\subsection[borceaBrandenSymbols]{Borcea--Brändén symbols}
+
+The Borcea--Brändén classification packages a linear operator into a
+polynomial, or into an entire power series, called its \defin{symbol}.  This
+is often the most practical way to prove that an operator preserves stability:
+instead of testing the operator on all stable inputs, one tests one universal
+object.  For real stability one must allow both signs.  For instance,
+\(f(z)\mapsto f(-z)\) preserves real-rootedness, but it is detected by the
+minus symbol rather than the plus symbol.
+
+\begin{definition}[Algebraic symbols]
 Let $\mathbf{d}=(d_1,\dotsc,d_n) \in \setN^n$, and let
 $\setR_{\leq \mathbf{d}}[z_1,\dotsc,z_n]$ denote the polynomials whose degree
 in $z_j$ is at most $d_j$.
@@ -65,19 +75,117 @@ For a linear operator
 \[
  T:\setR_{\leq \mathbf{d}}[z_1,\dotsc,z_n]\to \setR[x_1,\dotsc,x_m],
 \]
-define the \defin{algebraic symbol} of $T$ by
+define the two \defin{algebraic symbols} of $T$ by
 \[
- G_T(\xvec,\mathbf{w})
+ G_T^{+}(\xvec,\mathbf{w})
  \coloneqq
- T\left( \prod_{j=1}^n (z_j+w_j)^{d_j} \right).
+ T\left( \prod_{j=1}^n (z_j+w_j)^{d_j} \right),
+ \qquad
+ G_T^{-}(\xvec,\mathbf{w})
+ \coloneqq
+ T\left( \prod_{j=1}^n (z_j-w_j)^{d_j} \right).
 \]
 Here $T$ acts on the $z$-variables and the $w_j$'s are auxiliary variables.
-If $G_T$ is real stable, then $T$ sends every real stable polynomial in
-$\setR_{\leq \mathbf{d}}[z_1,\dotsc,z_n]$ to a real stable polynomial or to zero.
-Conversely, if $T$ preserves real stability, then either $G_T$ is real stable,
-or the range of $T$ has dimension at most two and consists of real stable
-polynomials and zero.
+\end{definition}
+
+\begin{theorem}[Borcea--Brändén finite-degree classification, see \cite{BorceaBranden2009I}]
+\label{borceaBrandenFiniteSymbol}
+Let \(T:\setR_{\leq \mathbf{d}}[z_1,\dotsc,z_n]\to
+\setR[x_1,\dotsc,x_m]\) be linear.  Then \(T\) sends every real stable
+polynomial to a real stable polynomial or to zero if and only if one of the
+following holds.
+\begin{itemize}
+\item \(G_T^{+}\) is real stable.
+\item \(G_T^{-}\) is real stable.
+\item The range of \(T\) has dimension at most two and can be written as
+  \(T(f)=\alpha(f)P+\beta(f)Q\), where \(\alpha,\beta\) are real linear
+  functionals and \(P,Q\) are real stable polynomials in proper position.
+  In one common convention this means that \(Q+iP\) is stable.
+\end{itemize}
 \end{theorem}
+
+For operators over complex coefficients, the corresponding stability-preserver
+classification has only the plus symbol, apart from the rank-one exceptional
+case.  The extra sign in the real theorem records the distinction between
+preserving the upper half-plane and preserving real-rootedness.
+
+\begin{example*}[Two elementary symbols]
+For \(T=\partial_{z_i}\), the plus symbol is
+\[
+  G_T^{+}(\xvec,\mathbf{w})
+  =
+  d_i(x_i+w_i)^{d_i-1}
+  \prod_{j\neq i}(x_j+w_j)^{d_j},
+\]
+which is stable.  This recovers the stability-preserving property of
+partial differentiation.
+
+For the univariate reflection \(T(f)(x)=f(-x)\) on
+\(\setR_{\leq d}[z]\), the plus symbol \((w-x)^d\) is not stable, but the
+minus symbol
+\[
+  G_T^{-}(x,w)=(-x-w)^d
+\]
+is stable.  Hence the sign alternative is genuinely needed for real
+stability preservers.
+\end{example*}
+
+\begin{definition}[Laguerre--Pólya class and transcendental symbol]
+Let \(\mathcal{LP}_r\) be the class of entire functions in \(r\) variables
+that are limits, uniformly on compact sets, of real stable polynomials.
+This is the multivariate Laguerre--Pólya class.
+
+For a linear operator
+\[
+  T:\setR[z_1,\dotsc,z_n]\to \setR[x_1,\dotsc,x_m],
+\]
+its \defin{transcendental symbol} is the formal power series
+\[
+  \overline{G}_T(\xvec,\mathbf{w})
+  \coloneqq
+  T\!\left(e^{-\zvec\cdot\mathbf{w}}\right)
+  =
+  \sum_{\alpha\in\setN^n}
+    (-1)^{|\alpha|}
+    T(\zvec^\alpha)
+    \frac{\mathbf{w}^{\alpha}}{\alpha!}.
+\]
+\end{definition}
+
+\begin{theorem}[Borcea--Brändén transcendental classification, see \cite{BorceaBranden2009I}]
+\label{borceaBrandenTranscendentalSymbol}
+Up to the same rank-at-most-two exception as above, a linear operator
+\[
+  T:\setR[z_1,\dotsc,z_n]\to \setR[x_1,\dotsc,x_m]
+\]
+preserves real stability if and only if
+\[
+  \overline{G}_T(\xvec,\mathbf{w})\in \mathcal{LP}_{m+n}
+  \qquad\text{or}\qquad
+  \overline{G}_T(\xvec,-\mathbf{w})\in \mathcal{LP}_{m+n}.
+\]
+\end{theorem}
+
+This is the infinite-degree analogue of the algebraic-symbol test.  It also
+explains why the classical \hyperref[multiplierSequences]{multiplier
+sequence} theorem has an exponential generating function.  If
+\[
+  T_\gamma(z^k)=\gamma_k z^k,
+\]
+then
+\[
+  \overline{G}_{T_\gamma}(x,w)
+  =
+  \sum_{k\geq 0}\gamma_k\frac{(-xw)^k}{k!}
+  =
+  \Phi_\gamma(-xw).
+\]
+Thus the Pólya--Schur condition on \(\Phi_\gamma\) is the diagonal-operator
+case of the Borcea--Brändén symbol criterion.  Compare this with
+\hyperref[polyaFrequency]{Pólya frequency sequences}: PF sequences are
+ordinary coefficient sequences controlled by Toeplitz total positivity,
+whereas multiplier sequences are diagonal operators controlled by exponential
+symbols.
 
 \name{Ming-Jian Ding} and \name{Bao-Xuan Zhu} give a systematic treatment of
 stability for combinatorial polynomials \cite{DingZhu2021Stability}.  They
