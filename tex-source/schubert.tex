@@ -68,7 +68,8 @@ Define
   \partial_i(f)=\frac{f-s_i(f)}{x_i-x_{i+1}},
   \qquad 1\leq i\leq n-1.
 \]
-These \defin{divided difference operators} satisfy the
+These \defin{divided difference operators}\label{dividedDifferenceOperators}
+satisfy the
 \hyperref[braidRelations]{braid relations},
 and we let $\partial_\omega = \partial_{a_1} \partial_{a_2} \dotsm \partial_{a_k}$
 where $(a_1,a_2,\dotsc,a_k)$ is a \hyperref[reducedWord]{reduced word} for $\omega$.
@@ -84,7 +85,8 @@ The \defin{Schubert polynomials} are then defined as
 \subsection[schubertReducedwordFormula]{Reduced word formula}
 Let $RW(\omega)$ be the set of reduced words of $\omega$.
 
-We say that a $k$-tuple $\alpha_1,\dotsc,\alpha_k$ is \defin{$a$-compatible}
+We say that a $k$-tuple $\alpha_1,\dotsc,\alpha_k$ is
+\defin{$a$-compatible}\label{aCompatibleSequence}
 if 
 \begin{itemize}
 \item
@@ -112,8 +114,8 @@ Let
 \[
 D(a,\alpha) = \{ (\alpha_j, a_j - \alpha_j + 1) \text{ for } j=1,\dotsc,k \}.
 \]
-This set of points is illustrated in an \defin{rc-graph}, also known as a
-\defin{pipe dream}.
+This set of points is illustrated in an \defin{rc-graph}\label{rcGraph}, also
+known as a \defin{pipe dream}\label{pipeDream}.
 
 \begin{example}
 % Related Rust: rust/sym-poly/multipoly/examples/schubert_site_example.rs
@@ -136,7 +138,8 @@ Let $\xvec_D = \prod_{(i,j) \in D} x_i$. Then the Schubert polynomial is given a
 See also \cite{FominKirillov1996YangBaxter}.
 
 \name{Allen Knutson} and \name{Paul Zinn-Justin} introduce
-\defin{generic pipe dreams}, a tile model whose leading forms recover the
+\defin{generic pipe dreams}\label{genericPipeDream}, a tile model whose leading
+forms recover the
 classical pipe dream and bumpless pipe dream formulas for double Schubert
 polynomials \cite{KnutsonZinnJustin2024x}.  Their generic pipe dream
 polynomials compute equivariant classes of lower-upper varieties and also
@@ -150,7 +153,7 @@ Grassmannian case, and is compatible with generalized chute moves.
 
 \subsection[schubertBumplessPipeDream]{Bumpless pipe dreams}
 
-The notion of \defin{bumpless pipe dreams} was introduced by 
+The notion of \defin{bumpless pipe dreams}\label{bumplessPipeDream} was introduced by
 \name{Thomas Lam}, \name{Seung Jin Lee}, and \name{Mark Shimozono} in \cite{LamLeeShimozono2018x}.
 They prove the following formula for the \hyperref[schubertDouble]{double Schubert polynomials}:
 \[
@@ -173,8 +176,9 @@ the corresponding back stable $K$-theoretic Schubert calculus
 polynomials and their role in the $K$-theory Schubert basis.
 \name{Patricia Klein} and \name{Anna Weigandt} show that bumpless pipe dreams
 index irreducible components of diagonal Gr{\"o}bner degenerations of matrix
-Schubert varieties \cite{KleinWeigandt2021x}.  Thus bumpless pipe dreams have
-a geometric role parallel to the classical anti-diagonal pipe-dream theory.
+\hyperref[schubertVarietiesAndMatroids]{Schubert varieties}
+\cite{KleinWeigandt2021x}.  Thus bumpless pipe dreams have a geometric role
+parallel to the classical anti-diagonal pipe-dream theory.
 \name{Zachary Hamaker}, \name{Oliver Pechenik}, and \name{Anna Weigandt} study
 the Gr{\"o}bner geometry of Schubert polynomials through the six-vertex ice model
 \cite{HamakerPechenikWeigandt2022}.  Their work relates diagonal Gr{\"o}bner
@@ -184,8 +188,9 @@ dreams.
 \name{Daoji Huang} and \name{Pavlo Pylyavskyy} study Knuth moves for the
 Schubert RSK correspondence \cite{HuangPylyavskyy2023x}.  In this setting
 biwords insert to bumpless pipe dreams, while recording objects are decorated
-Bruhat chains.  Their plactic biwords with the same insertion bumpless pipe
-dream are connected by Schubert Knuth moves.  \name{Daoji Huang} and
+\hyperref[bruhatOrder]{Bruhat chains}.  Their plactic biwords with the same
+insertion bumpless pipe dream are connected by Schubert Knuth moves.
+\name{Daoji Huang} and
 \name{Son Nguyen} later give a growth-diagram version for plactic biwords
 \cite{HuangNguyen2023x}, recovering the Gao--Huang bijection between pipe
 dreams and bumpless pipe dreams.
@@ -201,7 +206,7 @@ constants in the separated-descent case.  \name{Adam Gregory} and
 \name{Zachary Hamaker} show that, for vexillary permutations, the
 Gao--Huang bijection preserves the associated semistandard tableaux
 \cite{GregoryHamaker2022x}.
-\name{Tianyi Yu} embeds bumpless pipe dreams as Bruhat chains
+\name{Tianyi Yu} embeds bumpless pipe dreams as \hyperref[bruhatOrder]{Bruhat chains}
 \cite{Yu2024x}, giving another bridge between the bumpless model and the
 Bruhat-chain viewpoint on Schubert calculus.  \name{Christian Gaetz} and
 \name{Yibo Gao} study weighted enumeration of Bruhat chains in the symmetric
@@ -234,7 +239,8 @@ Let $Y$ denote the upper-triangular matrix with indeterminate entries $\{y_{ij}\
 and let $\setC[Y]$ be the polynomial ring with these indeterminates.
 We have that a matrix $M \in GL_n(\setC)$ acts on $f \in \setC[Y]$ on the right by $f \cdot M \coloneqq f(M^{-1} Y)$.
 
-Given a diagram $D$, the \defin{flagged Weyl module} $\mathcal{M}_D$ is a $B$-module, defined as
+Given a diagram $D$, the \defin{flagged Weyl module}\label{flaggedWeylModule}
+$\mathcal{M}_D$ is a $B$-module, defined as
 \[
   \mathcal{M}_D \coloneqq \mathrm{Span} \left\{   \prod_{j=1}^n \det( Y_{D_j}^{C_j} ) : C \leq D  \right\} \subseteq \setC[Y],
 \]
@@ -467,7 +473,8 @@ property for Schubert coefficients \cite{PakRobichaux2026x}.  They show that
 the failure occurs for a large family of instances, also refute saturation
 under bit scaling, and discuss consequences for computational complexity.
 
-This problem is closely related to \defin{the Fomin--Kirillov conjecture},
+This problem is closely related to
+\defin{the Fomin--Kirillov conjecture}\label{fominKirillovConjecture},
 see \cite[Conjecture 8.1 and Problem 8.3]{FominKirillov1999}.
 It concerns the evaluation of Schubert polynomials at Dunkl elements.
 
@@ -823,7 +830,8 @@ divided differences on the $x$-variables.  The affine operator is determined by
 \]
 with $x$-indices read modulo $n$.
 
-The \defin{affine Schubert polynomial} $\widetilde{\schubert}_w$ is the unique
+The \defin{affine Schubert polynomial}\label{affineSchubertPolynomial}
+$\widetilde{\schubert}_w$ is the unique
 homogeneous element of $R_n$ satisfying
 \[
   \partial_i \widetilde{\schubert}_w
@@ -889,8 +897,10 @@ There is also a recursive way to produce these polynomials via divided differenc
 The stable limit of these yields the
 \hyperref[stanleySymInvolution]{involution Stanley symmetric functions}.
 
-A combinatorial model using \emph{involution pipe dreams} for these polynomials
-is given by \name{Zachary Hamaker}, \name{Eric Marberg}, and \name{Brendan Pawlowski} in \cite{HamakerMarbergPawlowski2019}.
+A combinatorial model using
+\defin{involution pipe dreams}\label{involutionPipeDream} for these polynomials
+is given by \name{Zachary Hamaker}, \name{Eric Marberg}, and
+\name{Brendan Pawlowski} in \cite{HamakerMarbergPawlowski2019}.
 
 \begin{example}[A small involution Schubert polynomial]
 % Related Rust: rust/sym-poly/multipoly/examples/schubert_site_example.rs
@@ -957,7 +967,8 @@ x_1 & q_1 & 0 & \dots & 0 \\
 By letting $q_i=0$, one recovers the classical Schubert polynomials.
 
 
-There is a bumpless pipe-dream model for the quantum double Schubert polynomials, see \cite[Thm. 3.3]{LeOuyangTaoRestivoZhang2024x}.
+There is a bumpless pipe-dream model for the quantum double Schubert polynomials,
+see \cite[Thm.~3.3]{LeOuyangTaoRestivoZhang2024x}.
 \name{Laura Colmenarejo} and \name{Nicholas Mayers} study the quantum
 $k$-Bruhat order that appears in quantum Schubert multiplication
 \cite{ColmenarejoMayers2026x}.  They encode maximal chains in intervals by
@@ -1091,7 +1102,7 @@ as for \hyperref[schubertDoubleGiambelliFormula]{double Schubert polynomials}.
   Category & Schubert \\
 \end{polydata}
 
-The \defin{twisted Schubert polynomials}
+The \defin{twisted Schubert polynomials}\label{twistedSchubertPolynomial}
 are defined via $\tilde{\schubert}_{\omega_0}=x_1^{n-1} x_2^{n-2}\dotsm x_{n-1}$,
 and the recursion $\tilde{\schubert}_{\omega s_i}= (s_i + \partial_i)\tilde{\schubert}_{\omega}$.
 
