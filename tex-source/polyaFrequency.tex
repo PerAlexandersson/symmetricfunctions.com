@@ -8,8 +8,9 @@
 Pólya frequency sequences give a coefficient-level way to recognize
 real-rooted polynomials with non-negative coefficients.  The basic idea is to
 put the coefficients into a Toeplitz matrix and ask for total
-non-negativity.  This links real-rootedness with planar networks,
-\hyperref[interlacingPolynomials]{interlacing polynomials}, and
+non-negativity.  This puts real-rootedness in the same framework as planar
+networks, \hyperref[interlacingPolynomials]{interlacing polynomials},
+\hyperref[stablePolynomial]{stable polynomials}, and
 \hyperref[hadamardProduct]{Hadamard products}.
 
 \subsection[totallyNonnegative]{Totally non-negative matrices}
@@ -40,6 +41,12 @@ line \(y=x/(d\ell+1)\), any non-identity matching forces a path crossing.
 By the \hyperref[lgvLemma]{LGV lemma}, the matrix \((M_{n,j})\) is TNN.
 \end{example*}
 
+The class of TNN matrices is closed under taking submatrices and under
+matrix multiplication.  The latter follows from the Binet--Cauchy formula:
+each minor of a product is a sum of products of minors.  These two closure
+properties are the engine behind many real-rootedness-preserving
+constructions below.
+
 \subsection[toeplitzTnnMatrix]{Toeplitz matrices and PF sequences}
 
 \begin{definition}[Pólya frequency sequence]\label{def:polyaFrequencySequence}
@@ -53,8 +60,19 @@ is totally non-negative.
 \end{definition}
 
 Thus a PF sequence is a sequence whose finite Toeplitz minors are all
-non-negative.  In particular, PF sequences are log-concave and have no
-internal zeros.
+non-negative.  If only minors of size at most \(r\) are required to be
+non-negative, the sequence is called \defin{\(\mathrm{PF}_r\)}.  Thus
+\(\mathrm{PF}=\mathrm{PF}_\infty\).
+
+\begin{proposition}[Finite order two, see \cite{Brenti1989,Karlin1968}]
+\label{pfTwoLogConcavity}
+A non-negative sequence is \(\mathrm{PF}_2\) if and only if it is
+log-concave and has no internal zeros.
+\end{proposition}
+
+Consequently every PF sequence is log-concave and unimodal.  The converse is
+false: PF is a much stronger condition than log-concavity, because it asks for
+all Toeplitz minors, not only the adjacent \(2\times 2\) minors.
 
 \begin{theorem}[Aissen--Schoenberg--Whitney, 1952]
 \label{aissenSchoenbergWhitney}
@@ -67,10 +85,32 @@ has only real non-positive roots if and only if its coefficient sequence
 See \cite{Karlin1968} for a full treatment.
 \end{theorem}
 
-The theorem is often the fastest way to move between real-rootedness and
-matrix total positivity.  For example, if a construction takes a TNN Toeplitz
-matrix to another TNN Toeplitz matrix, it automatically preserves
-real-rootedness of the corresponding polynomial.
+This theorem is often the fastest way to move between real-rootedness and
+matrix total positivity.  If a construction takes a TNN Toeplitz matrix to
+another TNN Toeplitz matrix, it automatically preserves real-rootedness of
+the corresponding polynomial.
+
+\begin{proposition}[Closure under convolution]
+\label{pfConvolution}
+If \(a=(a_n)_{n\geq 0}\) and \(b=(b_n)_{n\geq 0}\) are PF sequences, then
+their convolution
+\[
+  (a*b)_n=\sum_{i+j=n} a_i b_j
+\]
+is again a PF sequence.
+\end{proposition}
+
+\begin{proof}
+The Toeplitz matrix of the convolution is the product of Toeplitz matrices:
+\[
+  T(a*b)=T(a)T(b).
+\]
+Since products of TNN matrices are TNN, \(T(a*b)\) is TNN.
+\end{proof}
+
+For finite sequences, this is the coefficient-sequence version of the fact
+that the product of two polynomials with only real non-positive zeros again
+has only real non-positive zeros.
 
 \subsection[edreiThomaTheorem]{Edrei--Thoma theorem}
 
@@ -92,6 +132,26 @@ where \(C,\gamma,\alpha_i,\beta_i\geq 0\), \(m\geq 0\), and
 The polynomial case is the finite part of this classification: a polynomial
 with non-negative coefficients has coefficient sequence PF exactly when its
 zeros are real and non-positive.
+
+\subsection[variationDiminishing]{Variation-diminishing property}
+
+Total positivity was originally developed partly to control sign changes.
+For a finite real vector \(v\), let \(\operatorname{var}(v)\) be the number
+of sign changes after deleting zero entries.
+
+\begin{theorem}[Variation-diminishing property, see \cite{Karlin1968,FallatJohnson2011}]
+\label{variationDiminishingProperty}
+If \(M\) is totally non-negative, then
+\[
+  \operatorname{var}(Mv)\leq \operatorname{var}(v)
+\]
+for every real vector \(v\) for which the product is defined.
+\end{theorem}
+
+For a PF sequence, this says that convolution with the sequence cannot create
+new sign changes.  This is another way to understand why PF sequences are
+rigid: the Toeplitz matrix controls not only the roots of one generating
+polynomial, but also the sign pattern of every sequence it acts on.
 
 \subsection[veroneseSectionsPF]{Veronese sections}
 
@@ -135,8 +195,8 @@ shows that \(\mathcal{S}^r_i(f)\) is real-rooted.
     \mathcal{S}^r_{r-1}(f)
   \bigr)
 \]
-is fully interlacing.  Thus the Veronese construction produces an interlacing
-family of polynomials, not only separate real-rooted polynomials.
+is fully interlacing.  Thus Veronese sections produce an interlacing family
+of polynomials, not only separate real-rooted polynomials.
 
 \begin{example*}[Rows of Pascal's triangle]
 The polynomial
@@ -182,9 +242,9 @@ with all multipliers non-negative and no entry becoming negative.  This gives
 an \(O(n^2m)\) algorithm for an \(n\times m\) matrix, compared to the
 exponential cost of checking all minors directly.
 
-TNN matrices are closed under products and under Hadamard products, see
-\cite{Wagner1992}.  See \cite{BrandenLeite2024x} for applications related to
-chains in posets, and \cite{FallatJohnson2011} for a comprehensive treatment.
+TNN matrices are also closed under Hadamard products, see \cite{Wagner1992}.
+See \cite{BrandenLeite2024x} for applications related to chains in posets,
+and \cite{FallatJohnson2011} for a comprehensive treatment.
 
 \subsection[polyaFrequencyExamples]{Examples}
 
@@ -237,6 +297,27 @@ be the weighted path count from \((0,0)\) to \((n,j)\).  Then
 sequence.  In particular, every row polynomial \(\sum_j M_{n,j}t^j\)
 has only real non-positive zeros.
 \end{theorem}
+
+\subsection[pfSchurJacobiTrudi]{Schur functions and Toeplitz minors}
+
+There is also a direct symmetric-function viewpoint.  Let \(h_0=1\),
+let \(h_m=0\) for \(m<0\), and form the Toeplitz matrix
+\[
+  H=(h_{i-j})_{i,j\geq 0}.
+\]
+The \hyperref[skewJacobiTrudi]{skew Jacobi--Trudi identity} says that the
+minors of \(H\) are skew Schur functions, up to the harmless reversal of row
+and column order.  Thus, after specializing the variables to non-negative
+real numbers, every minor is non-negative.  Equivalently, the specialized
+sequence
+\[
+  h_0(\xvec), h_1(\xvec), h_2(\xvec),\dotsc
+\]
+is PF.  The same conclusion follows from
+\hyperref[edreiThomaTheorem]{Edrei--Thoma}, since
+\[
+  \sum_{n\geq 0} h_n(\xvec)t^n = \prod_i \frac{1}{1-x_it}.
+\]
 
 \begin{theorem}[Stanley, \cite{Stanley1998}]
 \label{stanleySchurPositiveRealRooted}
