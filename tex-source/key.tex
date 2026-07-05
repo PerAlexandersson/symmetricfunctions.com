@@ -22,20 +22,23 @@
   SignedIn & completeFlaggedHomogeneous | Ehrhard2023x | proof=Thm. 7.6 \\
 \end{polydata}
 
-The \defin{key polynomials},  also known as  \defin{Demazure characters},
-is a family of non-symmetric polynomials, indexed by \hyperref[weakCompositions]{weak compositions}, or alternatively, an integer partition and a
-permutation. The set $\{ \key_\alpha(x_1,\dotsc,x_n) \}_\alpha$ where $\alpha$
-ranges over all \hyperref[weakCompositions]{compositions} of length $n$, is a basis for $\setC[x_1,\dotsc,x_n]$.
+The \defin{key polynomials}, also known as \defin{Demazure characters},
+form a family of nonsymmetric polynomials, indexed by
+\hyperref[weakCompositions]{weak compositions}, or alternatively, by an
+integer partition and a permutation. The set
+$\{ \key_\alpha(x_1,\dotsc,x_n) \}_\alpha$, where $\alpha$ ranges over all
+\hyperref[weakCompositions]{weak compositions} of length $n$, is a basis for
+$\setC[x_1,\dotsc,x_n]$.
 
 The key polynomials generalize the \hyperref[schurS]{Schur polynomials}.
 
 Demazure characters were introduced in \cite{Demazure1974nouvelle,Demazure1974}.
 Geometrically, they are characters of Demazure modules associated with
-Schubert varieties in the flag variety; see
+Schubert varieties in the \hyperref[flagVarieties]{flag variety}; see
 \hyperref[varietiesForKeys]{varieties in algebraic combinatorics}.
-Later, a combinatorial formula using so called \defin{key tableaux} was discovered in
+Later, a combinatorial formula using so-called \defin{key tableaux} was discovered in
 \cite{Lascoux1990Keys}.
-Key polynomials are also given as a specialization of \hyperref[macdonaldE]{non-symmetric Macdonald polynomials},
+Key polynomials are also given as a specialization of \hyperref[macdonaldE]{nonsymmetric Macdonald polynomials},
 see \cite{HaglundHaimanLoehr2008}, and this gives several combinatorial
 models for the key polynomials, see the works of \name{Sarah Mason} \cite{Mason2009},
 and also \cite{Kurland2016,AlexanderssonSawhney2019}.
@@ -54,7 +57,8 @@ corresponding Littelmann paths.
 
 Key polynomials are closely related to \hyperref[atom]{Demazure atoms}.
 
-The $K$-theoretic version of key polynomials are the \hyperref[lascoux]{Lascoux polynomials}.
+The $K$-theoretic versions of key polynomials are the
+\hyperref[lascoux]{Lascoux polynomials}.
 
 
 \subsection[almostSymmetricSchur]{Almost symmetric Schur functions}
@@ -185,7 +189,7 @@ Recall that the \hyperref[gtpolytopes]{GT-polytope} $\GT(\lambda)$
 is defined by the interlacing inequalities
 $x_{i+1,j} \geq x_{i,j} \geq x_{i+1,j+1}$
 together with the boundary condition $x_{n,j} = \lambda_j$.
-Its integer points are in bijection with \hyperref[prelimTableaux]{semi-standard Young tableaux} of shape $\lambda$.
+Its integer points are in bijection with \hyperref[prelimTableaux]{semistandard Young tableaux} of shape $\lambda$.
 The \hyperref[gtpatterns]{weight} of a GT-pattern $G$ is
 $w(G) = (w_1, \dotsc, w_n)$ where
 $w_k = \sum_j x_{k,j} - \sum_j x_{k-1,j}$
@@ -385,31 +389,31 @@ Moreover, after setting $a_j = \lambda_1+\lambda_2+\dotsb+\lambda_j$, the functi
 $P_{\sigma}(a_1,\dotsc,a_n;k)$ is a polynomial in $\setQ[a_1,\dotsc,a_n,k]$
 with non-negative coefficients.
 \end{conjecture}
-See also \hyperref[keyRealRootedHstar]{my conjecture}
+See also the \hyperref[keyRealRootedHstar]{related conjecture}
 regarding the corresponding $h^*$-polynomial.
 
 
 \subsection[keyDefinitionKeyFillings]{Definition (Skyline fillings)}
 
 In \cite{HaglundHaimanLoehr2008}, the authors presented a combinatorial model for the
-\hyperref[macdonaldE]{non-symmetric Macdonald polynomials}.
-It is relatively straightforward to see that setting $q=t=0$ in a non-symmetric Macdonald polynomial
+\hyperref[macdonaldE]{nonsymmetric Macdonald polynomials}.
+It is relatively straightforward to see that setting $q=t=0$ in a nonsymmetric Macdonald polynomial
 $\macdonaldE_{\alpha}(\xvec,q,t)$, we recover the key polynomial $\key_\alpha(\xvec)$.
 
 
 From the work of \name{Sarah Mason} \cite{Mason2009},
 we in fact get two combinatorial models for key polynomials
 as special cases of the \hyperref[macdonaldEperm]{permuted basement Macdonald polynomials}.
-In the below definition, we assume that the reader is familiar with
+In the definition below, we assume that the reader is familiar with
 the combinatorial model for the permuted basement Macdonald polynomials.
 
 
 \begin{definition}
-A \defin{semi-standard augmented filling} of shape $\alpha = (\alpha_1,\dotsc,\alpha_n)$
+A \defin{semistandard augmented filling} of shape $\alpha = (\alpha_1,\dotsc,\alpha_n)$
 is a non-attacking filling of the diagram with shape $\alpha$,
 basement $\sigma = [n,n-1,\dotsc,2,1]$ such that all rows (including the basement)
 are weakly decreasing, and there are no coinversion triples.
-Let $\mathrm{SSAF}(\alpha)$ be the set of semi-standard augmented fillings
+Let $\mathrm{SSAF}(\alpha)$ be the set of semistandard augmented fillings
 of shape $\alpha$.
 
 The key polynomial $\key_\alpha(\xvec)$ is defined as
@@ -423,7 +427,7 @@ It is then easy to see that this sum is the Schur polynomial $\schurS_{\lambda}(
 Alternatively, by choosing a different basement,
 we can realize $\key_\alpha(\xvec)$ as a sum over augmented fillings
 with partition shape.
-Let $\mathrm{SSAF}_{\sigma}(\lambda)$ be the set of semi-standard augmented fillings
+Let $\mathrm{SSAF}_{\sigma}(\lambda)$ be the set of semistandard augmented fillings
 with basement $\sigma$ and shape $\lambda$.
 Then
 \[
@@ -437,7 +441,7 @@ Then
 In fact, one can find a series of bijections
 proving the equivalence of the two above formulas,
 see \cite[Prop. 5.5]{AlexanderssonSawhney2019} (with $t=0$).
-It amounts to prove that interchanging two adjacent rows (including the basement) in
+It amounts to proving that interchanging two adjacent rows (including the basement) in
 an augmented diagram in such a way that a longer row is moved upwards,
 preserves the weighted sum of SSAF's with corresponding shape and basement.
 
@@ -542,16 +546,18 @@ Coxeter combinatorics to spherical Schubert geometry
 \cite{HodgesYong2020Spherical}.
 
 
-Given a semi-standard tableau $T$, we can compute its \defin{right key} $K_+(T)$,
+Given a semistandard tableau $T$, we can compute its \defin{right key} $K_+(T)$,
 via a rather involved process. A simpler method is proved in \cite{Mason2009}.
 The key polynomial can then be computed by
 \[
   \key_\alpha(\xvec) =
   \sum_{\substack{T \in \SSYT(\sort(\alpha)) \\ K_+(T) \leq \mathrm{key}(\alpha)}} \xvec^T
 \]
-where we sum over all \hyperref[prelimTableaux]{semi-standard tableaux} $T$ whose right key, $K_+(T)$, are entry-wise weakly smaller than $\mathrm{key}(\alpha)$.
+where we sum over all \hyperref[prelimTableaux]{semistandard tableaux} $T$
+whose right key, $K_+(T)$, is entrywise weakly smaller than $\mathrm{key}(\alpha)$.
 
-Similarly, the Demazure atoms are given as the sum over \hyperref[prelimTableaux]{semi-standard tableaux} with a given right key:
+Similarly, the Demazure atoms are given as the sum over
+\hyperref[prelimTableaux]{semistandard tableaux} with a given right key:
 \[
   \atom_\alpha(\xvec) =
   \sum_{\substack{T \in \SSYT(\sort(\alpha)) \\ K_+(T) = \mathrm{key}(\alpha)}} \xvec^T
@@ -648,8 +654,9 @@ polynomials, and prove a related log-concavity result using Demazure crystals.
 
 \subsection[keyPieri]{Pieri rule for key polynomials}
 
-A Pieri rule for key polynomials is described via
-an \hyperref[rsk]{Robinson--Schensted--Knuth}-type algorithm is given by \name{Sami Assaf} and \name{Danjoseph Quijada} in \cite{AssafQuijada2019x}.
+A Pieri rule for key polynomials, described via an
+\hyperref[rsk]{Robinson--Schensted--Knuth}-type algorithm, is given by
+\name{Sami Assaf} and \name{Danjoseph Quijada} in \cite{AssafQuijada2019x}.
 Their rule expands the product of an arbitrary key polynomial with a
 single-part key polynomial in the key basis.  Unlike general key products,
 this Pieri case admits a cancellation-free, multiplicity-free formula.  The
@@ -734,14 +741,14 @@ complete flagged homogeneous basis.
   Symbol   & $\atom_{\lambda,\sigma}(z)$ \\
   Keywords & divided-difference, fillings, polytopes, vertex model \\
   Category & Schur \\
-  PositiveIn & monomial | Mason2009 | scope=nonsymmetric monomials; proof=semi-standard augmented fillings \\
+  PositiveIn & monomial | Mason2009 | scope=nonsymmetric monomials; proof=semistandard augmented fillings \\
   PositiveIn & fundamentalParticle | Searles2019PolynomialBases,HicksNiese2024x | proof=Thm. 3.14 and Cor. 3.11 \\
 \end{polydata}
 
 The Demazure atoms (originally called \defin{standard bases})
 may be defined in a manner similar to \hyperref[keyDefinitionOperators]{key polynomials} using operators.
 They were introduced by \name{Alain Lascoux} and \name{Marcel-Paul Schützenberger} in \cite{Lascoux1990Keys}.
-Mason's semi-standard augmented filling model gives a positive monomial
+Mason's semistandard augmented filling model gives a positive monomial
 expansion \cite{Mason2009}.
 They also expand positively in the
 \hyperref[fundamentalParticle]{fundamental particle basis}
@@ -805,7 +812,7 @@ Similarly,
 \[
 \key_{002} = \atom_{200} + \atom_{020} + \atom_{002}.
 \]
-\emph{Again, note that the notation used here might differ from yours.}
+\emph{The notation used here is not uniform in the literature.}
 
 \begin{example*}[Key polynomials into atoms]
 We have that
@@ -861,7 +868,7 @@ They realize the product side as a character of functions on a matrix space and
 identify the associated graded pieces with tensor products of generalized
 global Weyl modules for the Iwahori algebra.
 
-An alternative proof also appear in \cite{ChoiKwon2017} where the
+An alternative proof also appears in \cite{ChoiKwon2017} where the
 authors use $U_q(\mathfrak{g})$ \hyperref[crystals]{crystals}.
 
 See also \cite{AzenhasGobetLecouvey2022x} for the connection between the Cauchy kernel,
@@ -916,11 +923,12 @@ $D$ Demazure characters by applying products of operators to dominant
 monomials, while the hatted operators give the corresponding atom-like
 family \cite[Sec.~3]{FuLascoux2009}.
 
-See \href{http://www.mat.uc.pt/~oazenhas/KC.pdf}{these slides} for a nice overview.
+For a concise overview, see
+\href{http://www.mat.uc.pt/~oazenhas/KC.pdf}{Azenhas's slides}.
 In particular, the type $C$ key polynomials contain the \hyperref[schurSymplectic]{symplectic Schur functions}.
-There is an operator definition, crystal graph definition and a key-tableau definition of these.
+There are operator, crystal-graph, and key-tableau definitions of these polynomials.
 
-See also \cite{RamYip2011}, as key polynomials are specializations of non-symmetric Macdonald polynomials.
+See also \cite{RamYip2011}, as key polynomials are specializations of nonsymmetric Macdonald polynomials.
 
 
 \section[keyTypeBC]{Type $B/C$ key polynomials}
