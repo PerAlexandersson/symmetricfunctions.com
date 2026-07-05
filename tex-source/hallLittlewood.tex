@@ -67,24 +67,27 @@ construction based on the $U_q(\mathfrak{sl}_2)$ $R$-matrix
 that specialize to Grothendieck-type polynomials, and the Yang--Baxter
 formalism gives determinant pairing and branching formulas.
 \name{Kailun Chen} and \name{Xiangmao Ding} give a combinatorial definition of
-stable spin Hall--Littlewood symmetric functions
+\defin{stable spin Hall--Littlewood symmetric functions}\label{stableSpinHallLittlewoodFunction}
 \cite{ChenDing2021SpinHL}.  They prove skew Littlewood, refined Cauchy, and
 refined Littlewood identities, and use them to build a half-space
 Yang--Baxter random field.
 \name{Leonid Petrov} proves a refined Cauchy identity for fully inhomogeneous
-spin Hall--Littlewood symmetric rational functions \cite{Petrov2021SpinHLCauchy}.
+\defin{spin Hall--Littlewood symmetric rational functions}\label{spinHallLittlewoodRationalFunction}
+\cite{Petrov2021SpinHLCauchy}.
 The identity expresses a weighted sum of products as an Izergin--Korepin
 determinant, links the functions to
 \hyperref[macdonaldPi]{interpolation Macdonald polynomials}, and has an ASEP
 specialization.
 \name{Ming Lu}, \name{Shiquan Ruan}, and \name{Weiqiang Wang} construct
-$\imath$ Hall--Littlewood functions from the $\imath$Hall algebra of the
+\defin{$\imath$ Hall--Littlewood functions}\label{imathHallLittlewoodFunction}
+from the $\imath$Hall algebra of the
 Jordan quiver \cite{LuRuanWang2025}.  The modified $\imath$
 Hall--Littlewood functions specialize to the modified Hall--Littlewood
 functions at $\theta=0$ and to deformed type $C$ universal characters at
 $\theta=1$.
 \name{Jiayi Chen}, \name{Ming Lu}, and \name{Shiquan Ruan} introduce double
-Hall--Littlewood symmetric polynomials via the derived Hall algebra of the
+\defin{double Hall--Littlewood symmetric polynomials}\label{doubleHallLittlewoodPolynomial}
+via the derived Hall algebra of the
 Jordan quiver \cite{ChenLuRuan2026x}.  These functions are indexed by
 bipartitions, reduce to ordinary Hall--Littlewood functions when one partition
 is empty, specialize to Schur Laurent symmetric functions at $t=0$, and satisfy
@@ -144,7 +147,9 @@ Note that
 \]
 Furthermore, $\hallLittlewoodP_\lambda(\xvec;-1)$ is equal to the \hyperref[schurP]{Schur-$P$ function}.
 
-The Hall--Littlewood polynomials are orthogonal with respect to the inner product $\langle - , - \rangle_t$
+The Hall--Littlewood polynomials are orthogonal with respect to the
+\defin{Hall--Littlewood inner product}\label{hallLittlewoodInnerProduct}
+$\langle - , - \rangle_t$
 defined via
 \[
 \langle \powerSum_\lambda , \powerSum_\mu \rangle_t = \delta_{\lambda\mu} z_{\lambda} \prod_{i=1}^{\length(\lambda)}
@@ -168,7 +173,8 @@ where
 \[
 \psi_{\lambda/\mu}(t) = \prod_{\substack{ i \geq 1 \\ m_i(\mu) = m_i(\lambda)+1  }} \left( 1-t^{m_i(\mu)} \right).
 \]
-Then the \defin{skew Hall--Littlewood}  $\hallLittlewoodP$ polynomial is given by
+Then the \defin{skew Hall--Littlewood $P$ polynomial}\label{skewHallLittlewoodP}
+is given by
 \[
 \hallLittlewoodP_{\lambda/\mu}(x_1,\dotsc,x_n;t)
 = \sum_{ \mu = \nu^{0} \prec \dotsb \prec \nu^n = \lambda}
@@ -204,7 +210,8 @@ identities and related affine Hall--Littlewood expansions.
 \subsection[hallLittlewoodSchubertSeries]{Hall--Littlewood--Schubert series}
 
 \name{Joshua Maglione} and \name{Christopher Voll} introduce
-\defin{Hall--Littlewood--Schubert series}, multivariate rational generating
+\defin{Hall--Littlewood--Schubert series}\label{hallLittlewoodSchubertSeriesDefinition},
+multivariate rational generating
 series built from Hall--Littlewood-type tableau weights
 \cite{MaglioneVoll2024x}.  These series specialize to affine Schubert series
 for lattice enumeration, symplectic Hecke series, generalized Igusa functions,
@@ -216,7 +223,8 @@ Littlewood identities.
 
 \name{Sean T. Griffin} proves a positive Hall--Littlewood expansion formula
 for the graded Frobenius characteristic of the cohomology ring of a
-$\Delta$-Springer variety \cite{Griffin2024}.  The proof counts points over
+\defin{$\Delta$-Springer variety}\label{deltaSpringerVariety}
+\cite{Griffin2024}.  The proof counts points over
 finite fields and decomposes the varieties into pieces built from Springer
 fibers and affine spaces.  As a special case, this gives a geometric
 interpretation of the Hall--Littlewood expansion appearing in the
@@ -244,8 +252,9 @@ $q_n(X;t)$ be defined by
 \prod_i \frac{1-tx_i u}{1-x_i u},
 \]
 and let $\theta_t$ be the algebra homomorphism determined by
-$\theta_t(h_n)=q_n(X;t)$.  The \defin{Hall--Littlewood $S$-symmetric
-functions} are
+$\theta_t(h_n)=q_n(X;t)$.  The
+\defin{Hall--Littlewood $S$-symmetric functions}\label{hallLittlewoodSFunction}
+are
 \[
 S_{\lambda/\mu}(X;t) \coloneqq \theta_t(s_{\lambda/\mu}).
 \]
@@ -337,7 +346,8 @@ There are various different products that lead to $t$-deformations of known stru
 
 \subsection[hallPolynomials]{Hall polynomials}
 
-The \defin{Hall polynomials}, $c^{\nu}_{\lambda\mu}(t) \in \setZ[t]$
+The \defin{Hall polynomials}\label{hallPolynomial},
+$c^{\nu}_{\lambda\mu}(t) \in \setZ[t]$
 deform the \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficients}.
 They are defined via the expansion
 \[
@@ -367,7 +377,8 @@ An abelian $p$-group of \emph{type} $\lambda$ is isomorphic to
 \[
 G = \setZ/p^{\lambda_1} \oplus  \setZ/p^{\lambda_2} \oplus  \dotsb \oplus \setZ/p^{\lambda_\ell}.
 \]
-A subgroup $H \subseteq G$ has \defin{cotype} $\nu$ if $G/H$ has type $\nu$.
+A subgroup $H \subseteq G$ has
+\defin{cotype}\label{abelianPGroupCotype} $\nu$ if $G/H$ has type $\nu$.
 
 \begin{theorem}
 The number of subgroups of type $\mu$ and cotype $\nu$ in
@@ -471,7 +482,8 @@ polynomials; there is a counterexample for $n=5$.  For the definition of
   SpecializesTo & schurS | Littlewood1961 | map=t=0 \\
 \end{polydata}
 
-The \defin{Hall--Littlewood $Q$ polynomials} can be defined as
+The \defin{Hall--Littlewood $Q$ polynomials}\label{hallLittlewoodQPolynomial}
+can be defined as
 \begin{equation*}
 \hallLittlewoodQ_\lambda(x_1,\dotsc,x_n;t) =
 (1-t)^{\length(\lambda)}[n-\length(\lambda)]_t!
@@ -529,7 +541,8 @@ Hall polynomials.
 \end{polydata}
 
 
-The \defin{transformed Hall--Littlewood polynomials} are defined via the Kostka--Foulkes polynomials as
+The \defin{transformed Hall--Littlewood polynomials}\label{transformedHallLittlewoodPolynomial}
+are defined via the Kostka--Foulkes polynomials as
 \[
 \hallLittlewoodT_\mu(\xvec;q) \coloneqq \sum_{\lambda} K_{\lambda\mu}(q) \schurS_\lambda(\xvec).
 \]
@@ -570,7 +583,8 @@ The coefficients are the \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials}.
 
 The transformed Hall--Littlewood polynomials are
 special cases of the \hyperref[catalanSymmetric]{Catalan symmetric functions}.
-These also define \defin{compositional Hall--Littlewood polynomials}
+These also define
+\defin{compositional Hall--Littlewood polynomials}\label{compositionalHallLittlewoodPolynomial}
 $\hallLittlewoodT_{\gamma}(\xvec;q)$, where $\gamma$ is a composition.
 
 We also have the following relation with \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}:
@@ -617,7 +631,8 @@ indexed by a Schroder path $P_\mu$.
   TransformsTo & hallLittlewoodQ | Macdonald1995 | map=rescaling and plethystic transform \\
 \end{polydata}
 
-The \defin{modified Hall--Littlewood polynomials} are related to
+The \defin{modified Hall--Littlewood polynomials}\label{modifiedHallLittlewoodPolynomial}
+are related to
 the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials} via
 \[
 \hallLittlewoodH_\lambda(\xvec;t) = t^{\partitionN(\lambda)} \hallLittlewoodT_\lambda(\xvec;t^{-1}).
