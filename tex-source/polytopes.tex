@@ -1,13 +1,12 @@
-
 \metatitle{Polytopes}
-\metadescription{Introduction to polytopes}
+\metadescription{An introduction to lattice polytopes, Ehrhart polynomials, order polytopes, generalized permutohedra, flow and root polytopes, IDP, Gorenstein and reflexive polytopes, and magic positivity.}
 
 
 
 \section[polytope]{Polytopes}
 
 
-A polytope is called a \defin{lattice polytope} or \defin{integral polytope} 
+A polytope is called a \defin{lattice polytope} or \defin{integral polytope}
 if all its vertices have integer coordinates.
 If vertices have rational coordinates, we call it a \defin{rational polytope}.
 A convex polytope is called a \defin{regular polytope}\label{regularPolytope}
@@ -28,22 +27,26 @@ level $1/(d+1)$.
 
 \section[ehrhart]{The Ehrhart polynomial and $h^*$-vector}
 
-Let $P$ be a lattice polytope. The number of lattice points in the dilation $n\cdot P$ is a polynomial in $n$.
-The \defin{Ehrhart polynomial of $P$} is the polynomial $E_P(n) \coloneqq |n P \cap \setZ^d|$.
-The \defin{Ehrhart series} is 
+Let $P$ be a lattice polytope. The number of lattice points in the dilation
+$n\cdot P$ is a polynomial in $n$.
+The \defin{Ehrhart polynomial of $P$} is the polynomial
+$E_P(n) \coloneqq |n P \cap \setZ^d|$.
+The \defin{Ehrhart series} is
 \[
-	\sum_{n \geq 0} |n P| t^n = \frac{H_P(t)}{(1-t)^{d+1}}
+\sum_{n \geq 0} |nP \cap \setZ^d| t^n = \frac{H_P(t)}{(1-t)^{d+1}}
 \]
-where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the \defin{$h^*$-polynomial} of $P$.
-The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the \defin{$h^*$-vector} 
-and one can show that all entries of this are non-negative integers, see \cite{Stanley1993} and \cite{Beck2007}.
+where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the
+\defin{$h^*$-polynomial} of $P$.
+The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the
+\defin{$h^*$-vector}; all its entries are non-negative integers, see
+\cite{Stanley1993} and \cite{Beck2007}.
 
-For a $d$-dimensional polytope, we have the following relation between 
+For a $d$-dimensional polytope, we have the following relation between
 entries in the $h^*$-vector and the Ehrhart polynomial:
 \[
  E_P(t) = \sum_{j=0}^d \binom{t+d-j}{d} h^*_j.
 \]
-There is a similar relation to express $H_P(t)$ in terms of the 
+There is a similar relation to express $H_P(t)$ in terms of the
 Ehrhart polynomial coefficients involving the Eulerian polynomials.
 
 \name{Victor Reiner} and \name{Brendon Rhoades} introduce a $q$-deformation
@@ -75,10 +78,10 @@ such as Kostka coefficients.
 \name{Esme Bajo}, \name{Robert Davis}, \name{Jesús A. De Loera},
 \name{Alexey Garber}, \name{Sofía Garzón Mora}, \name{Katharina Jochemko},
 and \name{Josephine Yu} develop a weighted Ehrhart theory extending
-Stanley's nonnegativity theorem \cite{BajoDavisLoeraGarberMoraJochemkoYu2024}.
-They prove nonnegativity for weighted $h^*$-polynomials when the weights are
+Stanley's non-negativity theorem \cite{BajoDavisLoeraGarberMoraJochemkoYu2024}.
+They prove non-negativity for weighted $h^*$-polynomials when the weights are
 homogeneous polynomials decomposable into products of linear forms which are
-nonnegative on the polytope.
+non-negative on the polytope.
 
 Some rational polytopes exhibit \defin{period collapse},
 meaning the Ehrhart quasi-polynomial is in fact a polynomial.
@@ -96,14 +99,17 @@ relate the construction to toric arc schemes of normal fans.
 
 \subsection[ehrhartMacdonaldReciprocity]{Ehrhart--Macdonald reciprocity}
 
-Let $P$ be a $d$-dimensional rational polytope with Ehrhart polynomial $E_P(t)$.
+Let $P$ be a $d$-dimensional rational polytope with Ehrhart polynomial
+$E_P(t)$.
 The \defin{Ehrhart--Macdonald reciprocity} states that
 \[
 	E_P(-t) = (-1)^d E_{P^\circ}(t)
 \]
-where $E_{P^\circ}(t) = |t P^\circ \cap \setZ^d|$ counts the lattice points in the \emph{interior} of $tP$.
-In terms of the Ehrhart series, this is equivalent to the relation $H_P(t) = t^{d+1} H_P(1/t)$,
-meaning the $h^*$-vector is palindromic if and only if the polytope is \hyperref[gorenstein]{Gorenstein}.
+where $E_{P^\circ}(t) = |t P^\circ \cap \setZ^d|$ counts the lattice points
+in the \emph{interior} of $tP$.
+In terms of the Ehrhart series, this is equivalent to the relation
+$H_P(t) = t^{d+1} H_P(1/t)$, meaning the $h^*$-vector is palindromic if and
+only if the polytope is \hyperref[gorenstein]{Gorenstein}.
 The reciprocity can be seen as a discrete analogue of Poincar\'e duality.
 This was first proved by \name{Ian G. Macdonald} \cite{Macdonald1971} for lattice polytopes;
 see \cite{Beck2007} for an alternative proof in the rational case.
@@ -121,7 +127,7 @@ Define the $h^*$-polynomials via
  \qquad \text{and} \qquad
  \operatorname{Ehr}(Q;z) = \frac{h^*(Q;z)}{(1-z^q)^{\dim(Q)+1}}.
 \]
-Then $h^*_i(P;z) \leq h^*_i(Q;z)$ coefficient-wise.
+Then $h^*(P;z) \leq h^*(Q;z)$ coefficient-wise.
 \end{theorem}
 See \cite{Beck2007} for an alternative proof.
 
@@ -131,15 +137,17 @@ See \cite{Beck2007} for an alternative proof.
 
 \subsection[orderPolytope]{Order polytopes}
 
-Given a \hyperref[poset]{partial order} $P$ on the set $[n]$, we associate a polytope $\mathcal{O}(P)$,
-called the \defin{order polytope} of $P$.
+Given a \hyperref[poset]{partial order} $P$ on the set $[n]$, we associate a
+polytope $\mathcal{O}(P)$, called the \defin{order polytope} of $P$.
 It is the polytope in $\setR^n$ defined via the inequalities
 \begin{align}
-x_i \leq x_j \text{ if } i <_P j \qquad \text{and} \qquad 0 \leq x_i \leq 1 \text{ for } 1\leq i \leq n.
+x_i \leq x_j \text{ if } i <_P j
+\qquad \text{and} \qquad
+0 \leq x_i \leq 1 \text{ for } 1\leq i \leq n.
 \end{align}
 
-There are order polytopes with negative Ehrhart coefficients, 
-see \cite[Figure 3.87]{StanleyEC1} and \cite{Alexandersson2019CounterExamples}.
+There are order polytopes with negative Ehrhart coefficients,
+see \cite[Fig.~3.87]{StanleyEC1} and \cite{Alexandersson2019CounterExamples}.
 
 
 Let $Z_n$ be the zig-zag poset with cover relations
@@ -176,9 +184,10 @@ the two have the same Ehrhart polynomial.
 
 \subsection[markedOrderPolytope]{Marked order polytopes}
 
-There is a slight generalization of order polytopes 
-called \defin{marked order polytopes}, see \cite{ArdilaBliemSalazar2011},
-where we replace the conditions $0 \leq x_i \leq 1$ with $a_i \leq x_i \leq b_i$ for $1\leq i \leq n$,
+The \defin{marked order polytopes} generalize order polytopes, see
+\cite{ArdilaBliemSalazar2011},
+where we replace the conditions $0 \leq x_i \leq 1$ with
+$a_i \leq x_i \leq b_i$ for $1\leq i \leq n$,
 where the $a_i$ and $b_i$ are constants.
 
 \name{Jan Stricker} studies $2$-levelness for marked order, marked chain, and
@@ -352,7 +361,8 @@ partial permutahedra, and obtain a closed formula for the volume.
 An integral polytope $\mathcal{P} \subset \setR^d$ is said to have the
 \defin{integer decomposition property}\label{integerDecompositionProperty} (IDP)
 if for every positive integer $k$ and $\xvec \in k \mathcal{P} \cap \setZ^d$,
-we can find $\xvec_1,\xvec_2,\dots,\xvec_k \in \mathcal{P} \cap \setZ^d$ such that $\xvec_1 + \dots + \xvec_k = \xvec$.
+we can find $\xvec_1,\xvec_2,\dotsc,\xvec_k \in \mathcal{P} \cap \setZ^d$
+such that $\xvec_1 + \dotsb + \xvec_k = \xvec$.
 
 In the following list, each entry implies the next:
 \begin{itemize}
@@ -367,16 +377,17 @@ In the following list, each entry implies the next:
 
 \section[gorenstein]{Reflexive and Gorenstein polytopes}\label{reflexivePolytope}
 
-A lattice polytope $P \subset \setR^d$ containing the origin in its interior is called \defin{reflexive}
-if the dual polytope
+A lattice polytope $P \subset \setR^d$ containing the origin in its interior
+is called \defin{reflexive} if the dual polytope
 \[
  P^* \coloneqq \left\{ y \in \setR^d : \langle x, y \rangle \leq 1 \text{ for all } x \in P \right\}
 \]
 is again a lattice polytope.
 Equivalently, $h^*_P(t)$ is palindromic of degree $d$, see \cite{Hibi92}.
 
-A polytope $P$ is called \defin{Gorenstein}\label{gorensteinPolytope} (of index $r$) if for some $r \in 1,2,\dotsc$, the dilation $rP$
-contains a unique lattice point $m$, and the translation $r P-m$ is reflexive.
+A polytope $P$ is called \defin{Gorenstein}\label{gorensteinPolytope}
+(of index $r$) if for some $r\in\setZ_{>0}$, the dilation $rP$ contains a
+unique lattice point $m$, and the translation $rP-m$ is reflexive.
 
 
 
@@ -391,7 +402,7 @@ with $a_i \geq 0$ for all $i$.
 For Ehrhart polynomials, this basis is useful because it links coefficient positivity
 to real-rootedness of the corresponding $h^*$-polynomial.
 
-\begin{theorem}[Brändén; see \cite[Thm. 4.19]{FerroniHigashitani2024}]
+\begin{theorem}[Brändén; see \cite[Thm.~4.19]{FerroniHigashitani2024}]
 If the Ehrhart polynomial $E_P(n)$ of a lattice polytope is magic positive,
 then $E_P(n)$ has non-negative coefficients and $h^*_P(t)$ is real-rooted.
 \end{theorem}
@@ -400,7 +411,8 @@ If $W$ denotes Wagner's transformation characterized by
 \[
  \sum_{n \geq 0} p(n) z^n = \frac{W(p)(z)}{(1-z)^{1+\deg p}},
 \]
-then magic positivity implies that $W(p)$ is real-rooted, see \cite[Rem. 4.21]{FerroniHigashitani2024}.
+then magic positivity implies that $W(p)$ is real-rooted, see
+\cite[Rem.~4.21]{FerroniHigashitani2024}.
 For Ehrhart polynomials, $W(E_P)$ is exactly the $h^*$-polynomial.
 This is the same transformation discussed on the page about
 \hyperref[interlacingPolynomials]{interlacing polynomials}.
@@ -438,7 +450,7 @@ More precisely, if
 then $n!c_i$ counts $y$-parking functions with exactly $i$ lucky cars
 in a modified parking protocol.
 
-It follows from Br\"anden's theorem that the $h^*$-polynomial
+It follows from Brändén's theorem that the $h^*$-polynomial
 $h^*_{\Pi_n(y)}(z)$ is real-rooted. In particular, its coefficients are
 log-concave and unimodal.
 
