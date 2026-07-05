@@ -38,7 +38,8 @@ polynomials and symplectic characters.
 \cite{Balla2022}.
 
 We work in the alphabet $\xvec = (x_1,x_1^{-1},x_2,x_2^{-1},\dotsc,x_n,x_n^{-1})$.
-A \defin{symplectic tableau} (also known as King tableau) of shape $\lambda/\mu$ is a filling of the shape $\lambda/\mu$
+A \defin{symplectic tableau}\label{symplecticTableau} (also known as King
+tableau) of shape $\lambda/\mu$ is a filling of the shape $\lambda/\mu$
 with entries in
 \[
 1 \lt \overline{1} \lt 2 \lt \overline 2 \lt \dotsb \lt n \lt \overline{n}
@@ -47,6 +48,7 @@ such that (a) entries are weakly increasing along rows, and strictly increasing 
 (b) entries in row $i$ are greater than or equal to $i$.
 Let $SP(\lambda/\mu)$ denote the set of such tableaux.
 We then define the \defin{even symplectic Schur polynomials}
+\label{evenSymplecticSchurPolynomial}
 (using the definition in \cite{Hamel1997}) as
 \[
 \schurSp_{\lambda/\mu}(\xvec) = \sum_{T \in SP(\lambda/\mu)} \xvec^{T},
@@ -72,7 +74,7 @@ discussion in \cite{MO362997}.  A complete proof is available in
 
 
 There are also alternative tableau descriptions.  For example, the
-\defin{Kashiwara--Nakashima tableaux} carry a
+\defin{Kashiwara--Nakashima tableaux}\label{kashiwaraNakashimaTableau} carry a
 \hyperref[kashiwaraCrystals]{$U_q(\mathfrak{sp}(2m,\setC))$-crystal structure}; see
 \cite{AzenhasFellerTorres2022}.
 
@@ -308,7 +310,8 @@ where the sum is over all partitions $\mu$ where the columns are even.
 \end{polydata}
 
 
-A \defin{special orthogonal tableau} of shape $\lambda/\mu$ is a filling of the shape $\lambda/\mu$
+A \defin{special orthogonal tableau}\label{specialOrthogonalTableau} of shape
+$\lambda/\mu$ is a filling of the shape $\lambda/\mu$
 with entries in
 \[
 1 \lt \overline{1} \lt 2 \lt \overline 2 \lt \dotsb \lt n \lt \overline{n} \lt \infty
@@ -319,7 +322,8 @@ and all finite entries are strictly increasing along columns,
 and (c) there is at most one $\infty$ in every row.
 Let $SO(\lambda/\mu)$ denote the set of such tableaux.
 
-We then define the \defin{even orthogonal Schur polynomials} (using the definition in \cite{Hamel1997}) as
+We then define the \defin{even orthogonal Schur polynomials}
+\label{evenOrthogonalSchurPolynomial} (using the definition in \cite{Hamel1997}) as
 \[
 \schurOr_{\lambda/\mu}(\xvec) = \sum_{T \in SO(\lambda/\mu)} \xvec^{T},
 \]
@@ -393,7 +397,8 @@ Gelfand--Tsetlin-pattern models, branching rules, and Cauchy-type identities.
 
 \subsection[schurOrthogonalOtherProperties]{Further properties}
 
-The \defin{orthogonal Schur functions} can be expressed as a sum of skew Schur functions as
+The \defin{orthogonal Schur functions}\label{orthogonalSchurFunction} can be
+expressed as a sum of skew Schur functions as
 \[
 \schurOr_\lambda(\xvec) = \sum_\beta (-1)^{|\beta|/2} \schurS_{\lambda/\beta}(\xvec)
 \]
@@ -422,7 +427,8 @@ including the empty partition.
 Schur's $P$ functions were introduced by \name{Issai Schur} in \cite{Schur1911}
 to study projective representations of the symmetric and alternating groups.
 Schur's $P$ functions $\schurP_\lambda(\xvec)$ are indexed by
-\defin{strict partitions}, that is, partitions with distinct parts, and are given
+\defin{strict partitions}\label{strictPartition}, that is, partitions with
+distinct parts, and are given
 as the specialization of the \hyperref[hallLittlewoodP]{Hall--Littlewood $P$ functions} at $t=-1$.
 \name{Federico Ardila} and \name{Luis G. Serrano} prove Stanley's conjecture
 that, for the staircase shape $\delta_n$, every skew Schur function
@@ -454,7 +460,8 @@ Then
 
 \subsection[schursPTableauformula]{Combinatorial formula}
 
-Given a partition $\lambda$ with distinct parts, consider the \defin{shifted tableau} of shape $\lambda$.
+Given a partition $\lambda$ with distinct parts, consider the
+\defin{shifted tableau}\label{shiftedTableau} of shape $\lambda$.
 Then consider fillings of this diagram with entries in the alphabet $1' \lt 1 \lt 2' \lt 2 \lt \dotsb $
 such that
 \begin{itemize}
@@ -487,7 +494,7 @@ For $\lambda=9531$ we have the shifted diagram with an element in $ShSSYT(\lambd
 \end{figure}
 \end{example}
 
-\defin{Schur's $P$ function} can then be defined as
+\defin{Schur's $P$ function}\label{schurPFunction} can then be defined as
 \[
 \schurP_\lambda(\xvec) \coloneqq \sum_{T \in ShSSYT(\lambda)} \xvec^T
 \]
@@ -547,8 +554,9 @@ was first given by \name{Luis Serrano} \cite{Serrano2009}.
 Another proof is given in \cite{Cho2012}.
 \name{Sami Assaf} gave a proof using \hyperref[schurPositivityDualEquivalence]{dual equivalence}, see \cite{Assaf2018ShiftedDual}.
 
-The coefficients $f_{\lambda\mu}^{\nu}$ appear in the study of the type $B$ and type $D$
-Schubert calculus of Grassmannians.
+The coefficients $f_{\lambda\mu}^{\nu}$ appear in the study of the type $B$
+and type $D$ \hyperref[schubertCalculus]{Schubert calculus} of
+\hyperref[grassmannianVarieties]{Grassmannians}.
 
 A new combinatorial model for $f_{\lambda\mu}^{\nu}$ is given in \cite{Nguyen2022}.
 He also gives a new model for the coefficients in the Schur expansion of $\schurQ_\lambda$.
@@ -578,7 +586,8 @@ For shifted tableau switching and related \hyperref[evacuation]{evacuation} oper
 \end{polydata}
 
 
-Schur's $Q$ functions $\schurQ_\lambda(\xvec)$ are indexed by strict partitions
+\defin{Schur's $Q$ functions}\label{schurQFunction}
+$\schurQ_\lambda(\xvec)$ are indexed by strict partitions
 and are given
 as the specialization of the \hyperref[hallLittlewoodQ]{Hall--Littlewood $Q$ functions} at $t=-1$.
 A combinatorial formula using \hyperref[gtpatterns]{Gelfand--Tsetlin patterns} is provided by \name{Richard Stanley} in
@@ -590,7 +599,8 @@ formula for Schur's $P$ functions by allowing diagonal entries in $ShSSYT(\lambd
 to be marked.
 
 
-The Schur $Q$ functions are related to so-called \defin{spin characters},
+The Schur $Q$ functions are related to so-called
+\defin{spin characters}\label{spinCharacter},
 and this was perhaps the original motivation for studying these functions.
 The following is due to Schur.
 
@@ -711,7 +721,9 @@ where the sum is over all strict partitions.
   Generalizes & schurQ | Okada2019x | scope=$f_d(u)=2u^d$ specialization \\
 \end{polydata}
 
-\name{Soichi Okada} introduces generalized Schur $P$- and $Q$-functions
+\name{Soichi Okada} introduces
+\defin{generalized Schur $P$-functions}\label{generalizedSchurPFunction} and
+\defin{generalized Schur $Q$-functions}\label{generalizedSchurQFunction}
 associated with an admissible polynomial sequence $F=\{f_d\}_{d\geq 0}$
 \cite{Okada2019x}.  The functions $P^F_\lambda(\xvec)$ are defined by a
 Nimmo-type Pfaffian formula, and this construction is Macdonald's ninth
@@ -745,7 +757,8 @@ and $deg(\powerSum_\nu) = \length(\nu)$. The
 \[
 \schurS_\lambda = \sum_{\mu} \frac{\chi^\lambda(\mu)}{z_\mu} \powerSum_\mu
 \]
-The \defin{bottom Schur function} $\hat{\schurS}_\lambda$ is defined as
+The \defin{bottom Schur function}\label{bottomSchurFunction}
+$\hat{\schurS}_\lambda$ is defined as
 \[
 \hat{\schurS}_\lambda = \sum_{\mu : \length(\mu)=\text{lowest}} \frac{\chi^\lambda(\mu)}{z_\mu} \powerSum_\mu,
 \]
@@ -785,9 +798,12 @@ They did not guess any combinatorial interpretation of these coefficients.
 In 2019, an OEIS search suggested that the sequence $a(n)$ given by \oeis{A129528}
 is a match.
 The sequence $a(n)$ is defined as follows:
- Consider the set of all Dyck paths, consisting of steps $(1,1)$ and $(1,-1)$.
- The \defin{peak-abscissa-sum} of a path is the sum of the $x$-coordinates of all peaks.
- Then $a(n)$ is the number of Dyck paths of \emph{any length} with peak-abscissa-sum $n$.
+Consider the set of all Dyck paths, consisting of steps $(1,1)$ and
+$(1,-1)$.
+The \defin{peak-abscissa-sum}\label{peakAbscissaSum} of a path is the sum of
+the $x$-coordinates of all peaks.
+Then $a(n)$ is the number of Dyck paths of \emph{any length} with
+peak-abscissa-sum $n$.
 
 \end{conjecture}
 
@@ -821,7 +837,8 @@ tableaux}, and identify the count with a coefficient in a
 \hyperref[schurS]{Schur expansion} of
 $\schurS_\lambda(m+y_1,\dotsc,m+y_n)$.
 
-A \defin{lecture hall tableau} of type $(n,\geq,>)$ and shape $\lambda/\mu$
+A \defin{lecture hall tableau}\label{lectureHallTableau} of type $(n,\geq,>)$
+and shape $\lambda/\mu$
 is a filling $T$ of the cells of $\lambda/\mu$ with nonnegative integers such
 that
 \[
@@ -869,7 +886,8 @@ see, for example, \cite{Macdonald1980} and \cite{MendesRemmelWagner2004}.
 
 A good introduction for the combinatorics is given in \cite{IngramJingStitzinger2009}.
 These are indexed by $r$-tuples of partitions, $\underline{\lambda}$, and live in the space $\spaceSym^{\otimes r}$.
-We then define the \defin{wreath product Schur polynomials} as
+We then define the \defin{wreath product Schur polynomials}
+\label{wreathProductSchurPolynomial} as
 \[
 \schurS_{\underline{\lambda}}(\xvec^{(1)},\dotsc,\xvec^{(r)}) = \prod_{i} \schurS_{\lambda^i}(\xvec^{(i)}).
 \]
