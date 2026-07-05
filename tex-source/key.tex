@@ -1,5 +1,5 @@
 \metatitle{Key polynomials and Demazure atoms}
-\metadescription{An introduction to key polynomials (Demazure characters) and Demazure atoms, including their definitions via divided difference operators, combinatorial models using tableaux and fillings, representation-theoretical interpretations, and properties such as products and Pieri rules.}
+\metadescription{An introduction to key polynomials, Demazure characters, Demazure atoms, divided difference definitions, SSAF and right-key models, Kohnert tableaux, products, and Pieri rules.}
 
 \section[key]{Key polynomials}
 
@@ -25,7 +25,7 @@
 The \defin{key polynomials}, also known as \defin{Demazure characters},
 form a family of nonsymmetric polynomials, indexed by
 \hyperref[weakCompositions]{weak compositions}, or alternatively, by an
-integer partition and a permutation. The set
+integer partition and a permutation.  The set
 $\{ \key_\alpha(x_1,\dotsc,x_n) \}_\alpha$, where $\alpha$ ranges over all
 \hyperref[weakCompositions]{weak compositions} of length $n$, is a basis for
 $\setC[x_1,\dotsc,x_n]$.
@@ -89,12 +89,15 @@ symmetric functions.
 
 \subsection[keyDefinitionOperators]{Definition (Operators)}
 
-Define the \hyperref[schubertOperatorformula]{divided difference operator} $\partial_i$ as
+Define the \hyperref[schubertOperatorformula]{divided difference operator}
+$\partial_i$ as
 \[
  \partial_i(f) = \frac{f - s_i(f)}{z_i - z_{i+1}},
 \]
-and let $\pi_i(f) \coloneqq \partial_i(z_i f)$ for $i=1,\dotsc,n-1$ whenever $f \in \setC[z_1,\dotsc,z_n]$.
-One can show that $\pi_i^2 = \pi_i$ and that they satisfy the \hyperref[braidRelations]{braid relations}.
+and let $\pi_i(f) \coloneqq \partial_i(z_i f)$ for $i=1,\dotsc,n-1$ whenever
+$f \in \setC[z_1,\dotsc,z_n]$.
+One can show that $\pi_i^2 = \pi_i$ and that they satisfy the
+\hyperref[braidRelations]{braid relations}.
 
 Let $\sigma = s_{i_1} s_{i_2} \dotsc s_{i_\ell}$ be a \hyperref[reducedWord]{reduced word} of a permutation $\sigma \in \symS_n$,
 and let
@@ -440,13 +443,12 @@ Then
 
 In fact, one can find a series of bijections
 proving the equivalence of the two above formulas,
-see \cite[Prop. 5.5]{AlexanderssonSawhney2019} (with $t=0$).
+see \cite[Prop.~5.5]{AlexanderssonSawhney2019} (with $t=0$).
 It amounts to proving that interchanging two adjacent rows (including the basement) in
 an augmented diagram in such a way that a longer row is moved upwards,
 preserves the weighted sum of SSAF's with corresponding shape and basement.
 
-% Related Rust:
-% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/multipoly/examples/key_site_example.rs
+% Related Rust: rust/sym-poly/multipoly/examples/key_site_example.rs
 \begin{example*}[A small SSAF computation]
 Let $\alpha=(1,0,2)$.  In the English row convention used on the
 \hyperref[macdonaldEperm]{permuted-basement Macdonald} page, the key fillings
@@ -484,25 +486,24 @@ It follows that
 This agrees with the divided-difference definition of the same key polynomial.
 \end{example*}
 
-% Related Rust:
-% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/multipoly/examples/key_right_key_site_example.rs
+% Related Rust: rust/sym-poly/multipoly/examples/key_right_key_site_example.rs
 \begin{example*}[The same key from right keys]
 For $\alpha=(1,0,2)$, the key tableau $\mathrm{key}(\alpha)$ has rows
 $[1,3]/[3]$.  The semistandard tableaux of shape $(2,1)$ with entries at
 most $3$ have the following right-key weights, computed via Mason's
 SSYT-to-SSAF bijection \cite{Mason2009}:
 \[
-\begin{array}{ccc}
-T & \mathrm{wt}(K_+(T)) & K_+(T)\leq \mathrm{key}(\alpha) \\
+\begin{array}{cccc}
+T & \mathrm{wt}(T) & \mathrm{wt}(K_+(T)) & K_+(T)\leq \mathrm{key}(\alpha) \\
 \hline
-[1,1]/[2] & (2,1,0) & \text{yes} \\
-[1,1]/[3] & (2,0,1) & \text{yes} \\
-[1,2]/[2] & (1,2,0) & \text{yes} \\
-[1,2]/[3] & (0,2,1) & \text{no} \\
-[1,3]/[2] & (1,0,2) & \text{yes} \\
-[1,3]/[3] & (1,0,2) & \text{yes} \\
-[2,2]/[3] & (0,2,1) & \text{no} \\
-[2,3]/[3] & (0,1,2) & \text{no}
+[1,1]/[2] & (2,1,0) & (2,1,0) & \text{yes} \\
+[1,1]/[3] & (2,0,1) & (2,0,1) & \text{yes} \\
+[1,2]/[2] & (1,2,0) & (1,2,0) & \text{yes} \\
+[1,2]/[3] & (1,1,1) & (0,2,1) & \text{no} \\
+[1,3]/[2] & (1,1,1) & (1,0,2) & \text{yes} \\
+[1,3]/[3] & (1,0,2) & (1,0,2) & \text{yes} \\
+[2,2]/[3] & (0,2,1) & (0,2,1) & \text{no} \\
+[2,3]/[3] & (0,1,2) & (0,1,2) & \text{no}
 \end{array}
 \]
 The five tableaux marked ``yes'' have weights
@@ -923,8 +924,6 @@ $D$ Demazure characters by applying products of operators to dominant
 monomials, while the hatted operators give the corresponding atom-like
 family \cite[Sec.~3]{FuLascoux2009}.
 
-For a concise overview, see
-\href{http://www.mat.uc.pt/~oazenhas/KC.pdf}{Azenhas's slides}.
 In particular, the type $C$ key polynomials contain the \hyperref[schurSymplectic]{symplectic Schur functions}.
 There are operator, crystal-graph, and key-tableau definitions of these polynomials.
 
@@ -946,7 +945,7 @@ See also \cite{RamYip2011}, as key polynomials are specializations of nonsymmetr
 In \cite{Santos2021}, \name[J. M. Santos]{João Miguel Santos} gives
 combinatorial formulas for the type $C$ key polynomials and Demazure atom polynomials.
 The type $C$ key polynomials expand positively into type $C$ Demazure atoms,
-by summing over an ideal in the Bruhat poset, see \cite[Prop. 53]{Santos2021}.
+by summing over an ideal in the Bruhat poset, see \cite[Prop.~53]{Santos2021}.
 This is analogous to the type $A$ setting.
 A crystal characterization is also given, as well as analogs of key tableaux.
 
