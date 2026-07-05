@@ -1,6 +1,6 @@
 \metatitle{Diagonal harmonics}
 
-\metadescription{Definitions and background related to diagonal harmonics.}
+\metadescription{Definitions and background related to diagonal harmonics, the shuffle theorem, Hikita polynomials, Delta conjectures, and parking-function formulas.}
 
 
 For background, see the canonical sources by \name{Jim Haglund}
@@ -85,14 +85,17 @@ which agrees with \(\nabla\elementaryE_2\).
 
 \subsection[dhDefinitions]{Macdonald eigenoperators}
 
-Given a partition $\mu$, we define 
+Given a partition $\mu$, we define
 \[
 B(\mu) \coloneqq \sum_{\square \in \mu} q^{\arm'(\square)} t^{\leg'(\square)}.
 \]
 Thus, a cell in row $i$, column $j$ contributes with $q^{j-1} t^{i-1}$.
 
 \begin{example*}[Example \(B(441)\)]
-We have that $B(\mu) = 1+q+q^2+q^3 + t(1+q+q^2+q^3)+t^2$,
+We have
+\[
+B(\mu) = 1+q+q^2+q^3 + t(1+q+q^2+q^3)+t^2,
+\]
 as the monomials arise from the following Young diagram:
 \begin{figure}
 \begin{ytableau}
@@ -152,7 +155,7 @@ operators interact with Delta operators and plethystic substitutions.
 For \(1\leq k\leq n\), the two Delta operators above are related by
 \cite{HaglundRemmelWilson2018}
 \[
- \Delta_{\elementaryE_k} \elementaryE_n = 
+ \Delta_{\elementaryE_k} \elementaryE_n =
  \Delta'_{\elementaryE_k} \elementaryE_n +
  \Delta'_{\elementaryE_{k-1}} \elementaryE_n.
 \]
@@ -173,8 +176,8 @@ Let \(\mathcal{F}_{\mathcal{DH}_n}(q,t)\) be the bigraded
 \]
 
 The (total) dimension of $\mathcal{DH}_n$ is $(n+1)^{n-1}$.
-This is sequence \oeis{A000272} and in particular, 
-is the number of \emph{parking functions} of size $n$.
+This is sequence \oeis{A000272} and in particular,
+is the number of \hyperref[parkingFunctions]{parking functions} of size $n$.
 The dimension can be refined by degree.  The bigraded Hilbert series is
 \[
  \mathrm{Hilb}_{\mathcal{DH}_n}(q,t)
@@ -188,7 +191,8 @@ The Shuffle theorem gives the parking-function formula
 \]
 It is an open problem to give a combinatorial argument why this sum is symmetric in $q$ and $t$.
 
-It is still a major open problem to find a manifestly Schur-positive
+It is still a major open problem to find a manifestly
+\hyperref[schurPositivity]{Schur-positive}
 combinatorial formula for the Schur expansion of
 \(\mathcal{F}_{\mathcal{DH}_n}(q,t)\); see
 \cite[Prob.~2.15]{qtCatalanBook} and \cite[Sec.~3]{vanWilligenburg2019}.
@@ -263,26 +267,26 @@ and weighting them by inversions, we have
 \mathrm{Hilb}_{\mathcal{DH}_n}(q,1) = \sum_{T} q^{\inv(T)}.
 \]
 
-The \hyperref[qtCatalan]{$qt$-Catalan} numbers show up here by computing the sign representation:
+The \hyperref[qtCatalan]{$qt$-Catalan} numbers appear here by computing the sign representation:
 \[
 \left\langle \mathcal{F}_{\mathcal{DH}_n}(q,t), \elementaryE_{n} \right\rangle =
 \sum_{ P \in \DP(n) } q^{\dinv(P)} t^{\area(P)} =
 \sum_{ P \in \DP(n) } q^{\area(P)} t^{\bounce(P)}.
 \]
-These identities were proved in \cite[Thm. I.2]{GarsiaHaglund2000}.
+These identities were proved in \cite[Thm.~I.2]{GarsiaHaglund2000}.
 
 
 
-\name{Mark Haiman} proved in \cite[Thm. 3.10]{Haiman2002} a connection with Macdonald polynomials,
-among many other things.
+\name{Mark Haiman} proved the following Macdonald-polynomial formula,
+among many other results \cite[Thm.~3.10]{Haiman2002}.
 \begin{theorem}[Haiman (2002)]
 Set $T_\mu \coloneqq q^{\partitionN(\mu')}t^{\partitionN(\mu)}$,
 $M\coloneqq(1-q)(1-t)$, and
 \[
-w_\mu \coloneqq \prod_{\square \in \mu} 
-(q^{\arm(\square)} - t^{\leg(\square)+1}) 
+w_\mu \coloneqq \prod_{\square \in \mu}
+(q^{\arm(\square)} - t^{\leg(\square)+1})
 (t^{\leg(\square)}- q^{\arm(\square)+1} ),
-\qquad 
+\qquad
 \Pi_\mu \coloneqq \prod_{\square \in \mu/(1)} \left(1- q^{\arm'(\square)} t^{\leg'(\square)} \right).
 \]
 Then, with $\macdonaldH_\mu$ being the \hyperref[macdonaldH]{modified Macdonald polynomials},
@@ -318,13 +322,13 @@ where the sum is taken over word parking functions.  The statistic
 function reading word.
 \end{theorem}
 
-After using the zeta map, as defined in \cite[p. 82]{qtCatalanBook},
-the right hand side can be expressed using 
+Applying the zeta map, as defined in \cite[p.~82]{qtCatalanBook},
+the right hand side can be expressed using
 vertical-strip \hyperref[unicellularLLT]{LLT polynomials} as
 \[
 \nabla \elementaryE_n = \sum_{\avec \in \DP(n)} t^{\bounce(\avec)} \LLT_{\avec,\svec}(\xvec;q)
 \]
-where $\svec$ marks every corner as strict, see \cite{AlexanderssonPanova2018} for 
+where $\svec$ marks every corner as strict, see \cite{AlexanderssonPanova2018} for
 definitions.
 
 
@@ -338,7 +342,7 @@ C_a f[X] \coloneqq
 \]
 We then have the identity
 \[
-\nabla (C_{\alpha_1} C_{\alpha_2}\dotsm C_{\alpha_\ell} 1) 
+\nabla (C_{\alpha_1} C_{\alpha_2}\dotsm C_{\alpha_\ell} 1)
 =
 \sum_{\substack{\pi \in WPF(n) \\ \mathrm{touch}(\pi)=\alpha }}
   t^{\area(\pi)}q^{\dinv(\pi)}
@@ -369,16 +373,17 @@ questions around nonsymmetric diagonal harmonics.
 
 
 The $qt$-Narayana numbers are described in \cite{AvalDAdderioDukesHicksBorgne2014}.
-They may be defined as 
+They may be defined as
 \[
 N_{a,b}(q,t) = \sum_{P \in Polyo(b,a+1-b)} q^{\area(P)}t^{\bounce(P)}
 \]
-where the sum is taken over certain pairs of non-intersecting paths confined to 
+where the sum is taken over certain pairs of
+\hyperref[lgvLemma]{non-intersecting paths} confined to
 a $b \times (a+1-b)$-rectangle (so-called parallelogram polyominoes).
 
-The authors show in \cite[Thm. 6.1]{AvalDAdderioDukesHicksBorgne2014} that
+The authors show in \cite[Thm.~6.1]{AvalDAdderioDukesHicksBorgne2014} that
 \[
-N_{a,b}(q,t) = 
+N_{a,b}(q,t) =
 (qt)^{a} \langle \nabla \elementaryE_{a-1}, \completeH_{b-1} \completeH_{a-b} \rangle.
 \]
 \name{Eugene Gorsky}, \name{Mikhail Mazin}, and \name{Monica Vazirani}
@@ -392,7 +397,7 @@ open questions for operators connected with rectangular Catalan combinatorics
 \section[rationalShuffle]{Rational Shuffle theorem}
 
 A bigraded deformation of the $q,t$-Catalan numbers is introduced in \cite{GorskyMazin2013}.
-The rational shuffle conjecture is then stated in \cite[Eq. 51]{GorskyNegut2015}
+The rational shuffle conjecture is then stated in \cite[Eq.~(51)]{GorskyNegut2015}
 and independently in \cite{Hikita2014} and \cite{Armstrong2012}.
 
 The \defin{extended rational shuffle conjecture} is first stated in \cite{BergeronGarsiaLevenXin2015}.
@@ -411,8 +416,8 @@ so we have the shuffle theorem as a special case.
   Space    & Sym \\
   Basis    & False \\
   Rating   & 1 \\
-  Bib      & Hikita2014\\
-  Year     & 2014\\
+  Bib      & Hikita2014 \\
+  Year     & 2014 \\
   Symbol   & $H_{m,n}(\xvec;q,t)$ \\
   Keywords & fillings, schur-positive, LLT, Frobenius \\
   Category & Schur \\
@@ -428,24 +433,26 @@ H_{(m,n)}(\xvec;q,t) \coloneqq
 \]
 The functions $H_{(m,n)}(\xvec;q,t)$ are also known as \defin{Hikita polynomials} (for coprime $m,n$),
 after the introduction in \cite{Hikita2014}.
-Bergeron, Garsia, Leven and Xin then introduce 
-the \defin{extended Hikita polynomials}, 
+\name{François Bergeron}, \name{Adriano Garsia}, \name{Emily Leven}, and
+\name{Guoce Xin} then introduce the \defin{extended Hikita polynomials},
 \[
 H_{(km,kn)}(\xvec;q,t) \coloneqq
 \sum_{(km,kn) \text{ parking functions } P} [ret(P)]_{1/t}
 q^{\area(P)} t^{\dinv(P)} \gessel_{n,\DES(P)}(\xvec).
 \]
-where \defin{$ret(P)$} is the smallest integer $j \gt 0$ such 
+where \defin{$ret(P)$} is the smallest integer $j \gt 0$ such
 that the supporting path of $P$ goes through $(jm,jn)$.
-One can then show (see \cite[Eq. 6.3]{BergeronGarsiaLevenXin2015})
-that $H_{(m,n)}$ is a positive linear combination of vertical-strip \hyperref[lltDefinitionTuples]{LLT polynomials}.
+They show \cite[Eq.~(6.3)]{BergeronGarsiaLevenXin2015} that
+$H_{(m,n)}$ is a positive linear combination of vertical-strip
+\hyperref[lltDefinitionTuples]{LLT polynomials}.
 In \cite{KaliszewskiKarmakar2018}, a close relationship between Hikita polynomials
 and \hyperref[catalanSymmetric]{Catalan symmetric functions} is studied.
 
 \name[Nicolle Gonzalez]{Nicolle González}, \name[Jose Simental]{José Simental},
 and \name{Monica Vazirani} introduce higher-rank $(q,t)$-Catalan polynomials
 \cite{GonzalezSimentalVazirani2023x}.  These are finite-variable truncations of
-Hikita polynomials and are related to parabolic affine Springer fibers.  Their
+Hikita polynomials and are related to parabolic affine
+\hyperref[springerFibers]{Springer fibers}.  Their
 finite rational shuffle theorem uses rank-$r$ semistandard parking functions,
 with a dinv statistic coming from standardization and a codinv statistic
 matching the dimensions of cells in an affine paving.
@@ -464,7 +471,7 @@ specialization of $L_{M,N}$ and relates the construction conjecturally to
 elliptic Hall algebra operators.
 
 
-The operators $Q_{m,n}$ are defined recursively via the 
+The operators $Q_{m,n}$ are defined recursively via the
 Bergeron--Garsia operators \defin{$D_k$} (acting on $F \in \spaceSym$)
 \[
 D_k F[X] \coloneqq [z^k] F\left[ X + \frac{(1-q)(1-t)}{z} \right] \sum_{j \geq 0}
@@ -473,12 +480,13 @@ D_k F[X] \coloneqq [z^k] F\left[ X + \frac{(1-q)(1-t)}{z} \right] \sum_{j \geq 0
 
 The construction of the $Q_{m,n}$ is quite involved.
 Moreover, it seems that different authors use slightly different
-definitions which leads to a sign difference. 
+definitions, which leads to a sign difference.
 
-It is shown by \cite{GorskyNegut2015} that for coprime $m,n$,
-and in \cite{QiuRemmel2018x} that
+\name{Eugene Gorsky} and \name{Andrei Negu\c{t}} show
+\cite{GorskyNegut2015} that for coprime $m,n$, and
+\name{Dun Qiu} and \name{Jeffrey Remmel} show \cite{QiuRemmel2018x} that
 \[
- \nabla Q_{m,n} \nabla^{-1} = Q_{m+n,n} \qquad 
+ \nabla Q_{m,n} \nabla^{-1} = Q_{m+n,n} \qquad
  \nabla Q_{kn,n} \nabla^{-1} = Q_{(k+1)n,n}.
 \]
 
@@ -488,36 +496,38 @@ implementable way to see how the zeta map sends the pair of statistics
 $(\dinv,\area)$ to $(\area,\bounce)$.
 
 
-\name{Anton Mellit} proved the following theorem in \cite{Mellit2016x}.
+\name{Anton Mellit} proved the following theorem \cite{Mellit2016x}.
 \begin{theorem}[The (extended) rational shuffle theorem]
-For coprime $m,n$ and $k \ge 0$, we have that
+For coprime $m,n$ and $k \geq 0$, we have
 \[
  H_{(km,kn)}(\xvec;q,t) =  Q_{km,kn} (-1)^n.
 \]
 \end{theorem}
 In fact, he proves the compositional refinement
-stated in \cite[Conj. 3.3]{BergeronGarsiaLevenXin2015}.
+stated in \cite[Conj.~3.3]{BergeronGarsiaLevenXin2015}.
 
 
-In \cite{Hikita2014}, it is shown that $B_{m,n}(\xvec;q,t)$
-is the Frobenius character of the action in the homology of a 
-certain Springer fiber in the affine flag variety equipped with a certain filtration.
+\name{Tatsuyuki Hikita} shows that $B_{m,n}(\xvec;q,t)$
+is the Frobenius character of the action in the homology of a certain
+\hyperref[springerFibers]{Springer fiber} in the affine flag variety equipped
+with a certain filtration \cite{Hikita2014}.
 
 
-The \hyperref[prelimQanalogsCatalan]{rational Catalan numbers} 
+The \hyperref[prelimQanalogsCatalan]{rational Catalan numbers}
 are defined as $\catalan_{a/b} = \frac{1}{a+b}\binom{a+b}{a,b}$ for coprime $a,b$.
-We have that for coprime $m,n$ that
+For coprime $m,n$,
 \[
  \langle H_{(m,n)}(\xvec;q,t), \elementaryE_n \rangle_* = \catalan_{m/n}.
 \]
-where $\langle \cdot, \cdot \rangle_*$ is a certain deformation of the 
-\hyperref[hallInnerProduct]{Hall inner product}, see \cite[Eq.(4.6) and (6.29)]{BergeronGarsiaLevenXin2015}.
+Here $\langle \cdot, \cdot \rangle_*$ is a certain deformation of the
+\hyperref[hallInnerProduct]{Hall inner product}, see
+\cite[Eq.~(4.6) and Eq.~(6.29)]{BergeronGarsiaLevenXin2015}.
 
 An expression for $H_{(m,n)}(\xvec;q,t)$ can also be given by using so-called
 Tesler matrices.
 
 
-See \cite{QiuRemmel2018x} for recent results 
+See \cite{QiuRemmel2018x} for results
 on Schur coefficients of $H_{(m,n)}(\xvec;q,t)$.
 
 \name{Maria Gillespie}, \name{Eugene Gorsky}, and \name{Sean T. Griffin}
@@ -550,13 +560,14 @@ statistics.
 
 \section[dhSquare]{The square paths theorem, $\nabla \powerSum_n$}
 
-The square path conjecture was formulated by \name{Nicholas Loehr} and \name{Gregory Warrington} \cite{LoehrWarrington2007}.
-It provides a combinatorial expression for $\nabla \powerSum_n$ 
+The square path conjecture was formulated by \name{Nicholas Loehr} and
+\name{Gregory Warrington} \cite{LoehrWarrington2007}.
+It provides a combinatorial expression for $\nabla \powerSum_n$
 as a sum over preference functions.
 
 A \defin{preference function} is a map $f:[n] \to [n]$.
-A parking function is any preference function such 
-that $|f^{-1}([k])| \geq k$ for all $k \in [n]$. 
+A \hyperref[parkingFunctions]{parking function} is any preference function such
+that $|f^{-1}([k])| \geq k$ for all $k \in [n]$.
 With the parking language, we think of $f(i)$ as the \defin{preference} of car $i$.
 There is a way to associate a lattice path to any preference function as follows.
 In an $n\times n$-square, write the numbers $f^{-1}(i)$ in column $i$, starting from $i=1$.
@@ -565,7 +576,7 @@ Then there is a unique lattice path from $(0,0)$ to $(n,n)$ using North and East
 such that the numbers are written immediately to the right of the North steps.
 
 \begin{example*}[Path from preference function]
-For example, we have that the 
+For example, the
 preference function $(1,5,1,2,1)$ gives rise to the path
 \(P=\mathtt{nnneneeene}\),
 and the diagram
@@ -575,7 +586,7 @@ and the diagram
  & 4 & & &   \\
 5 & & & &  \\
 3 & & & &  \\
-1 & & & & 
+1 & & & &
 \end{ytableau}
 \end{figure}
 \end{example*}
@@ -587,8 +598,8 @@ the area coincides with the classical notion of area.
 The \defin{dinv} statistic is similar to the inv-statistic for LLT polynomials,
 but one must add the number of cars strictly below the $x=y$ diagonal.
 
-\name{Emily Sergel} \cite{Sergel2017} gave a proof of the square path conjecture.
-\begin{theorem}[E. Sergel, (2017)]
+\name{Emily Sergel} gave a proof of the square path conjecture \cite{Sergel2017}.
+\begin{theorem}[Sergel (2017)]
 We have the expansion in the \hyperref[gessel]{fundamental quasisymmetric functions}
 \[
 (-1)^{n-1} \nabla \powerSum_n = \sum_{w \in Pref(n)} t^{\area(w)} q^{\dinv(w)} \gessel_{\mathrm{IDES}(w)}(\xvec),
@@ -596,15 +607,15 @@ We have the expansion in the \hyperref[gessel]{fundamental quasisymmetric functi
 where the sum is taken over all preference functions of size $n$.
 \end{theorem}
 
-It is rather straightforward to express this as a sum over vertical-strip LLT polynomials.
-A path arising from a preference function of size $n$, can be described using a weak 
+This can also be expressed as a sum over vertical-strip
+\hyperref[lltDefinitionTuples]{LLT polynomials}.
+A path arising from a preference function of size $n$ can be described using a weak
 composition $\alpha$, such that $\alpha_i \coloneqq |f^{-1}(i)|$.
-It is then rather straightforward how to define $\area(\alpha)$ 
+The path determines $\area(\alpha)$
 and $\mathrm{carsBelow}(\alpha)$, the number of cars below the main diagonal.
 Finally, we can associate an $n$-tuple of skew shapes, $\nuvec$,
-determined by the positions of the cars. We therefore get the following:
+determined by the positions of the cars. This gives the following:
 \begin{proposition}
-We have that
 \begin{equation*}
 (-1)^{n-1} \nabla \powerSum_n
 = \sum_{\alpha} t^{\area(\alpha)} q^{\mathrm{carsBelow}(\alpha)}
@@ -680,7 +691,7 @@ the valley side and use them to prove several special cases
 \cite{HaglundSergel2020}.
 \begin{conjecture}[Valley Delta conjecture, J. Haglund, J. Remmel, A. Wilson]
 \[
-\Delta'_{\elementaryE_k} \elementaryE_n = 
+\Delta'_{\elementaryE_k} \elementaryE_n =
 [z^{n-k-1}]
 \sum_{w \in WPF(n)} t^{\area(w)}q^{\dinv(w)} \xvec_w
 \prod_{i \in Val(w)} \left(1 + z/t^{d_i(w)+1}\right)
@@ -702,7 +713,7 @@ general conjecture whose special cases are connected to unified forms of the
 Delta conjecture.
 
 \name{Abel Lacabanne}, \name{Pedro Vaz}, and \name{Arik Wilbert} study
-two-row Delta Springer varieties, introduced by Griffin--Levinson--Woo to
+two-row \hyperref[springerFibers]{Delta Springer varieties}, introduced by Griffin--Levinson--Woo to
 geometrically realize a symmetric function from the Delta conjecture
 \cite{LacabanneVazWilbert2025}.  They describe the irreducible components
 combinatorially, compare them with ordinary and exotic Springer fibers, and
@@ -729,7 +740,7 @@ square version.
 
 
 \subsection[dhGeneralizedDelta]{The generalized Delta conjecture,
-$\Delta_{\completeH_m}  \Delta'_{\elementaryE_{n-k-1}} \elementaryE_n$
+$\Delta_{\completeH_m} \Delta'_{\elementaryE_{n-k-1}} \elementaryE_n$
 }
 
 The generalized valley Delta conjecture is equivalent to the original valley
@@ -763,7 +774,7 @@ This was proved in \cite{BlasiakHaimanMorsePunSeelinger2023}.
 valley version of the extended Delta conjecture.
 \begin{conjecture}[Valley extended Delta conjecture]
 \[
-\Delta'_{\elementaryE_k} \Delta_{\completeH_r} \elementaryE_n 
+\Delta'_{\elementaryE_k} \Delta_{\completeH_r} \elementaryE_n
 =
 [z^{n-k-1}]
 \sum_{w \in WPF(n,r)} t^{\area(w)}q^{\dinv(w)} \xvec_w
@@ -773,24 +784,25 @@ valley version of the extended Delta conjecture.
 The valley version has been proved true for $q=0$ or $t=0$.
 
 See also \cite{Bergeron2024}.
-For some recent results see \cite{DAdderioIraci2023}.
+For consequences and related special cases, see \cite{DAdderioIraci2023}.
 
 
 \section[dhDeltaSquare]{Generalized Delta square conjecture}
 
-The \defin{Generalized delta square conjecture} (stated in
+The \defin{generalized Delta square conjecture} (stated in
 \cite{DAdderioIraciWyngaerd2019})
 is about a combinatorial interpretation of
 \[
   \frac{[n-k]_t}{[n]_t} \Delta_{\completeH_m} \Delta_{\elementaryE_{n-k}} \omega(\powerSum_n).
 \]
-Remark 3.14 shows that this (if the conjecture is true) can be expressed as a sum of LLT polynomials.
+Remark~3.14 of \cite{DAdderioIraciWyngaerd2019} shows that this, if the
+conjecture is true, can be expressed as a sum of LLT polynomials.
 
 The full Delta square conjectures remain open in general.  The valley version
 was formulated in \cite{IraciWyngaerd2021}, and the implications from the
 original valley Delta conjecture are discussed in \cite{IraciWyngaerd2022}.
 
-Some questions solved in \cite{Romero2022}.
+Some related questions are solved in \cite{Romero2022}.
 
 \name{Alessandro Iraci}, \name{Roberto Pagaria}, and \name{Giovanni Paolini}
 prove a fall-decorated rational shuffle theorem
@@ -821,14 +833,14 @@ bosonic--fermionic diagonal coinvariant modules conjecture
 
 \section[dhSchur]{Conjecture on $\nabla^m \schurS_\lambda$}
 
-\name{Nicholas Loehr} and \name{Gregory Warrington} \cite{LoehrWarrington2010} conjectured 
+\name{Nicholas Loehr} and \name{Gregory Warrington} conjectured
 a combinatorial expansion of $\nabla^m \schurS_\lambda$.
 
 This conjecture (in fact, a much stronger result)
-was proved by \name{Jonah Blasiak}, \name{Mark Haiman}, \name{Jennifer Morse}, 
-\name{Anna Pun} and \name{George Seelinger},
+was proved by \name{Jonah Blasiak}, \name{Mark Haiman}, \name{Jennifer Morse},
+\name{Anna Pun}, and \name{George H. Seelinger},
 in \cite{BlasiakHaimanMorsePunSeelinger2021xLWConj,BlasiakHaimanMorsePunSeelinger2021xLLT}.
-Their work also gives a new proof of the Shuffle theorem and similar other 
+Their work also gives a new proof of the Shuffle theorem and similar
 identities.
 \name{Donghyun Kim} and \name{Jaeseong Oh} introduce Macdonald piece
 polynomials and obtain the Loehr--Warrington conjecture as a corollary of a
@@ -846,7 +858,7 @@ We have for every pair of partitions $\lambda$, $\mu$,
 (-1)^{|\lambda|-\length(\lambda)} \langle \nabla \monomial_\lambda, \schurS_\mu \rangle \in \setN[q,t].
 \]
 \end{conjecture}
-This also appears in \cite[Conj. 11]{LoehrWarrington2007}.
+This also appears in \cite[Conj.~11]{LoehrWarrington2007}.
 
 \name{Dun Qiu} and \name{Minhao Zhang} proved this conjecture in full
 generality, and in fact proved the following stronger statement.
@@ -860,11 +872,11 @@ For all partitions \(\alpha,\lambda\vdash n\) and all integers \(r\geq 1\),
 \end{theorem}
 Their proof expands \((-1)^{|\alpha|-\length(\alpha)}\monomial_\alpha\)
 positively in the functions \(C_\beta(1)\), then applies the compositional
-shuffle theorems and Schur positivity of LLT polynomials.  They also prove an
+shuffle theorems and \hyperref[schurPositivity]{Schur positivity} of LLT polynomials.  They also prove an
 \(\elementaryE\)-positive analogue after the substitution \(q\mapsto q+1\)
 \cite[Thm.~1.3]{QiuZhang2026x}.
 
-\name{Menghao Qu} and \name{Guoce Xin} prove Schur positivity of
+\name{Menghao Qu} and \name{Guoce Xin} prove \hyperref[schurPositivity]{Schur positivity} of
 $(-1)^k\nabla \monomial_{2^k1^\ell}$ and give a parking-function
 interpretation \cite{QuXin2025}.  Their proof establishes $C$-positivity for
 $(-1)^k\monomial_{2^k1^\ell}$ and then applies the compositional shuffle
@@ -877,7 +889,7 @@ theorem.
 
 
 The first Bergeron--Garsia--Haiman--Tesler conjecture in this group concerns
-signed Schur positivity of $\nabla^m\schurS_\lambda$.  This is now a theorem,
+signed \hyperref[schurPositivity]{Schur positivity} of $\nabla^m\schurS_\lambda$.  This is now a theorem,
 following from the proof of the Loehr--Warrington conjecture discussed above.
 
 \begin{conjecture}[Bergeron--Garsia--Haiman--Tesler (1999), \cite[Conj. II]{BergeronGarsiaHaimanTesler1999}]
@@ -897,7 +909,7 @@ Hall--Littlewood polynomials \cite{Qu2026xHallLittlewood}.
 
 
 
-In \cite{BergeronGarsiaHaimanTesler1999} and later \cite[Conj. 3.20]{Haiman2002}, 
+In \cite{BergeronGarsiaHaimanTesler1999} and later \cite[Conj.~3.20]{Haiman2002},
 the following conjecture is stated:
 \begin{conjecture}[Bergeron--Garsia--Haiman--Tesler (1999)]
 The expression
