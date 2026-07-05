@@ -23,25 +23,26 @@ sets in a graph, and the maximal independent subsets behave like bases of a
 vector space.  A matroid abstracts exactly this exchange behavior.
 
 There are several equivalent, or cryptomorphic, ways to specify a
-\defin{matroid}: by bases, independent sets, rank functions, circuits, flats,
-or closure operators.  The most useful description depends on the problem.
-We start with bases, since this leads directly to the basis-generating
-polynomial and the matroid base polytope.
+\defin{matroid}\label{matroidDefinition}: by bases, independent sets, rank
+functions, circuits, flats, or closure operators.  The most useful description
+depends on the problem.  We start with bases, since this leads directly to the
+basis-generating polynomial and the matroid base polytope.
 
 
 \subsection[matroidBases]{Bases}
 
-Let $E$ be a finite set, called the \defin{ground set}, and let
+Let $E$ be a finite set, called the \defin{ground set}\label{groundSet}, and let
 $\mathcal{B}$ be a nonempty collection of subsets of $E$, all of the same
 cardinality $r$.  Then $M=(E,\mathcal{B})$ is a matroid if the
-\defin{basis exchange axiom} holds: for every two bases
+\defin{basis exchange axiom}\label{basisExchangeAxiom} holds: for every two bases
 $A,B\in\mathcal{B}$ and every $x\in A\setminus B$, there is some
 $y\in B\setminus A$ such that
 \[
   (A\setminus \{x\})\cup \{y\} \in \mathcal{B}.
 \]
-The cardinality $r$ is called the \defin{rank} of the matroid, and the elements
-of $\mathcal{B}$ are the \defin{bases} of $M$.
+The cardinality $r$ is called the \defin{rank}\label{matroidRankDefinition}
+of the matroid, and the elements of $\mathcal{B}$ are the
+\defin{bases}\label{matroidBasis} of $M$.
 The \defin{basis-generating polynomial}\label{basisGeneratingPolynomial} of
 $M$ is
 \[
@@ -55,9 +56,9 @@ Its support is the set of indicator vectors of bases, a basic example of an
 
 
 \begin{example}[Uniform matroid]\label{matroidUniform}
-The \defin{uniform matroid} $U_{r,n}$ is the matroid on ground set $[n]$
-whose bases are all $r$-element subsets of $[n]$.  For example, the bases of
-$U_{2,3}$ are $12$, $13$, and $23$.
+The \defin{uniform matroid}\label{uniformMatroid} $U_{r,n}$ is the matroid on
+ground set $[n]$ whose bases are all $r$-element subsets of $[n]$.  For
+example, the bases of $U_{2,3}$ are $12$, $13$, and $23$.
 \end{example}
 
 
@@ -80,8 +81,9 @@ recovers the ordinary linearly independent subsets.
 \subsection[matroidRank]{Rank functions}
 
 A matroid can also be defined via a \emph{rank function}.
-Let $E$ be a (ground) set. A \defin{rank function} $r$ is an integer-valued function on subsets of $E$,
-satisfying the following three properties:
+Let $E$ be a (ground) set. A \defin{rank function}\label{rankFunction} $r$ is
+an integer-valued function on subsets of $E$, satisfying the following three
+properties:
 \begin{itemize}
 \item $0 \leq r(X) \leq |X|$ for every $X \subseteq E$;
 \item $r(X) \leq r(Y)$ for all $X\subseteq Y \subseteq E$;
@@ -104,11 +106,14 @@ That is, the rank is the cardinality of a maximal independent subset contained i
 
 \subsection[matroidFlats]{Flats}
 
-A subset $X \subseteq E$ of a matroid is called a \defin{flat} (or closed) if
-there is no element we can add to $X$ from $E \setminus X$ and preserve the rank.
-For representable matroids, flats correspond to the various linear subspaces spanned by the independent sets.
+A subset $X \subseteq E$ of a matroid is called a
+\defin{flat}\label{matroidFlat} (or closed) if there is no element we can add
+to $X$ from $E \setminus X$ and preserve the rank.  For representable matroids,
+flats correspond to the various linear subspaces spanned by the independent
+sets.
 
-The set of flats forms a lattice under inclusion, the \defin{lattice of flats}.
+The set of flats forms a lattice under inclusion, the
+\defin{lattice of flats}\label{latticeOfFlats}.
 
 \begin{example}[The lattice of flats of $U_{2,3}$]
 For the uniform matroid $U_{2,3}$, the flats are
@@ -124,7 +129,8 @@ the rank.  Thus the lattice of flats is
 \end{example}
 
 If $W_i(M)$ denotes the number of flats of rank $i$, then the sequence
-$(W_i(M))_i$ is the sequence of \defin{Whitney numbers of the second kind}.
+$(W_i(M))_i$ is the sequence of \defin{Whitney numbers of the second kind}
+\label{whitneyNumbersSecondKind}.
 \name{Matt Larson} gives a graphic counterexample to \name{J. H. Mason}'s
 conjecture that these numbers are always log-concave \cite{Larson2026x}.
 The graph is a generalized theta graph whose matroid simplifies to $U_{3,4}$
@@ -150,8 +156,10 @@ permutation arrays.
 \subsection[matroidLoopsColoops]{Matroid loops and coloops}
 
 Let $M$ be a matroid on the ground set $E$.
-An element $e \in E$ is called a \defin{loop} if it does not appear in any basis.
-An element $e \in E$ is called a \defin{coloop} if it appears in every basis.
+An element $e \in E$ is called a \defin{loop}\label{matroidLoop} if it does
+not appear in any basis.
+An element $e \in E$ is called a \defin{coloop}\label{matroidColoop} if it
+appears in every basis.
 
 
 \subsection[connectedMatroid]{Connected matroids}
@@ -170,7 +178,8 @@ with
 \[
 \mathcal{B}^* \coloneqq \{E \setminus A : A \in \mathcal{B}\}
 \]
-is also a matroid. The matroid $M^*$ is called the \defin{dual} of $M$.
+is also a matroid. The matroid $M^*$ is called the
+\defin{dual}\label{matroidDual} of $M$.
 
 The dual of the uniform matroid $U_{r,n}$ is the uniform matroid $U_{n-r,n}$.
 
@@ -178,7 +187,8 @@ The dual of the uniform matroid $U_{r,n}$ is the uniform matroid $U_{n-r,n}$.
 
 \subsection[matroidMinors]{Minors of a matroid}
 
-Let $M=(E,\mathcal{B})$ be a matroid and $e \in E$. The \defin{deletion} $M \setminus e$
+Let $M=(E,\mathcal{B})$ be a matroid and $e \in E$.
+The \defin{deletion}\label{matroidDeletion} $M \setminus e$
 is the matroid on ground set $E\setminus \{e\}$,
 and the bases are
 \[
@@ -189,11 +199,11 @@ and the bases are
 \]
 The deletion $M \setminus X$ is computed by iteratively deleting each element in $X$.
 
-The \defin{restriction} of $M$ to $X \subseteq E$
+The \defin{restriction}\label{matroidRestriction} of $M$ to $X \subseteq E$
 is denoted $M \vert_{X}$, and corresponds to deletion of $M$ by $E\setminus X$.
 
 
-The \defin{contraction} $M / e$ is the matroid on
+The \defin{contraction}\label{matroidContraction} $M / e$ is the matroid on
 ground set $E\setminus \{e\}$ whose bases are
 \[
 \begin{cases}
@@ -229,8 +239,9 @@ Thus $M/3$ is $U_{1,2}$.
 
 \subsection[matroidGraphic]{Graphic matroids}
 
-Given a graph $G=(V,E)$, the \defin{graphic matroid} associated to $G$ is
-the matroid whose independent sets are the subsets of $E$ that contain no cycles.
+Given a graph $G=(V,E)$, the
+\defin{graphic matroid}\label{graphicMatroid} associated to $G$ is the
+matroid whose independent sets are the subsets of $E$ that contain no cycles.
 
 
 \begin{example}
@@ -249,8 +260,9 @@ The sets of linearly independent vectors are
 
 \subsection[matroidRealizability]{Representable matroids}
 
-A \defin{matroid isomorphism} from $(E_1,\mathcal{B}_1)$ to $(E_2,\mathcal{B}_2)$
-is a bijection from $E_1$ to $E_2$ which induces a bijection from $\mathcal{B}_1$ to $\mathcal{B}_2$.
+A \defin{matroid isomorphism}\label{matroidIsomorphism} from
+$(E_1,\mathcal{B}_1)$ to $(E_2,\mathcal{B}_2)$ is a bijection from $E_1$ to
+$E_2$ which induces a bijection from $\mathcal{B}_1$ to $\mathcal{B}_2$.
 
 
 Given an $r \times n$ full-rank matrix $X$ over a field $\mathbb{F}$, with
@@ -258,10 +270,12 @@ columns $v_1,\dotsc,v_n$, we let $M[X]$ be the matroid with ground set $[n]$
 whose bases are the $r$-subsets $B\subseteq[n]$ for which
 $\{v_i:i\in B\}$ has rank $r$.
 
-A matroid $M$ is said to be \defin{realizable} over a field $\mathbb{F}$
-if it is isomorphic to some $M[X]$ with $X \in \mathbb{F}^{r \times n }$.
+A matroid $M$ is said to be \defin{realizable}\label{realizableMatroid} over a
+field $\mathbb{F}$ if it is isomorphic to some $M[X]$ with
+$X \in \mathbb{F}^{r \times n }$.
 
-There are matroids which are not realizable over any field, for example the \defin{Vámos matroid}.
+There are matroids which are not realizable over any field, for example the
+\defin{Vámos matroid}\label{vamosMatroid}.
 It is the matroid whose bases are all $4$-element subsets of $[8]$, except
 \[
 1234, 1456, 1478, 2356, 2378.
@@ -310,19 +324,22 @@ in $\setR^d$.
 
 \subsection[partitionMatroids]{Partition matroids}
 
-A \defin{partition matroid} is a direct sum of uniform matroids. This family is closed under minors and duality.
-All partition matroids are \hyperref[latticePathMatroids]{lattice path matroids}.
+A \defin{partition matroid}\label{partitionMatroid} is a direct sum of uniform
+matroids. This family is closed under minors and duality.  All partition
+matroids are \hyperref[latticePathMatroids]{lattice path matroids}.
 
 
 \subsection[transversalMatroids]{Transversal matroids}
 
 \begin{definition}
-Let $(A_1,A_2,\dotsc,A_m)$ be subsets of some set $E$ (this is called a \defin{set system}).
-A \defin{partial transversal} of the set system is a subset $I=\{e_1,e_2,\dotsc,e_k\} \subseteq E$
-for which there is an injection $\phi:\{1,\dotsc,k\}\to\{1,\dotsc,m\}$
-such that $e_i \in A_{\phi(i)}$.
+Let $(A_1,A_2,\dotsc,A_m)$ be subsets of some set $E$ (this is called a
+\defin{set system}\label{setSystem}).
+A \defin{partial transversal}\label{partialTransversal} of the set system is a
+subset $I=\{e_1,e_2,\dotsc,e_k\} \subseteq E$ for which there is an injection
+$\phi:\{1,\dotsc,k\}\to\{1,\dotsc,m\}$ such that $e_i \in A_{\phi(i)}$.
 We can think of this as $e_i$ being a representative of some $A_j$.
-If we have a representative from each $A_j$, the set $I$ is just called a \defin{transversal}.
+If we have a representative from each $A_j$, the set $I$ is just called a
+\defin{transversal}\label{transversal}.
 \end{definition}
 
 \begin{theorem}[Piff--Welsh, 1970]
@@ -357,7 +374,8 @@ new minor-closed class of transversal matroids \cite{Toft2025x}.
 \subsection[matroidMatching]{Matching matroids}
 
 Let $G=(V,E)$ be a graph.  Consider all subsets $I \subseteq V$ that can be covered by a matching on $G$.
-Then these subsets form the independent sets of a matroid, called the \defin{matching matroid}.
+Then these subsets form the independent sets of a matroid, called the
+\defin{matching matroid}\label{matchingMatroid}.
 For $A\subseteq V$, let $\mathrm{match}(G,A)$ be the family of subsets $I \subseteq A$,
 that may be covered by a matching of $G$. Then $\mathrm{match}(G,A)$ is a matroid with $A$ as ground set.
 Compare this with the \hyperref[stablePolynomial]{multivariate matching polynomial}, which is stable.
@@ -437,7 +455,7 @@ Classical algorithmic background includes matroid intersection algorithms
 
 \section[tuttePolynomial]{Tutte polynomial}
 
-The \defin{Tutte polynomial} $T_M(x,y)$ of a matroid $M$ (on ground set $E$)
+The \defin{Tutte polynomial}\label{tuttePolynomialDefinition} $T_M(x,y)$ of a matroid $M$ (on ground set $E$)
 is defined via a deletion-contraction recursion.
 If $M$ is the empty matroid (on ground set $\emptyset$) then $T_M(x,y) \coloneqq 1$.
 
@@ -483,13 +501,13 @@ and the word \emph{smaller} is with respect to this ordering.
 Let $\mathcal{B}$ be the set of bases for a matroid with ground set $E=\{1,2,\dotsc,n\}$.
 Let $F \in \mathcal{B}$. An element $e\in E$ is said to be
 \begin{itemize}
- \item \defin{internally active} if $e \in F$, and there is no smaller $y \in E\setminus F$
+ \item \defin{internally active}\label{internallyActive} if $e \in F$, and there is no smaller $y \in E\setminus F$
  such that
  \[
  (F\setminus \{e\})\cup \{y\} \text{ is in } \mathcal{B};
  \]
 
- \item \defin{externally active} if $e \notin F$, and there is no smaller $y \in F$
+ \item \defin{externally active}\label{externallyActive} if $e \notin F$, and there is no smaller $y \in F$
  such that
  \[
  (F\setminus \{y\})\cup \{e\}\text{ is in } \mathcal{B}.
@@ -545,14 +563,15 @@ together with the equality $\xvec([n]) = r([n])$.
 The matroid base polytope is a
 \hyperref[generalizedPermutohedron]{generalized permutohedron}.
 
-Every matroid base polytope has a \defin{regular unimodular triangulation}; see \cite{BackmanLiu2023x}.
+Every matroid base polytope has a \defin{regular unimodular triangulation}
+\label{regularUnimodularTriangulation}; see \cite{BackmanLiu2023x}.
 This implies that the base polytope satisfies the
 \hyperref[integerDecompositionProperty]{integer decomposition property},
 a property previously proved in \cite{GijswijtRegts2012}.
 \name{Matt Larson} gives a rank-$9$ binary matroid on $18$ elements for which
 the $s=2$ basis-pair version of White's conjecture, often called Farber's
 conjecture, fails \cite{Larson2026x}.  The same example shows that
-\defin{symmetric exchange binomials} need not generate the toric ideal of a
+\defin{symmetric exchange binomials}\label{symmetricExchangeBinomial} need not generate the toric ideal of a
 matroid.  This does not refute the weaker quadratic-generation form of
 White's conjecture.
 \name{Anastasia Chavez}, \name{Galen Dorpalen-Barry}, \name{Luis Ferroni},
@@ -654,7 +673,7 @@ maximally ranked posets \cite{BrandenVecchi2025Uniform}.
 \subsection[submodularFunction]{Submodular functions}
 
 Let $E$ be a finite set.  A function $f:2^E\to\setR$ is
-\defin{submodular} if
+\defin{submodular}\label{submodular} if
 \[
   f(A)+f(B) \geq f(A\cup B)+f(A\cap B)
   \qquad \text{for all } A,B\subseteq E.
@@ -664,7 +683,7 @@ Matroid rank functions and polymatroid rank functions are submodular functions.
 
 Polymatroids are a weighted version of matroids, where the rank of a subset
 does not have to be bounded by its cardinality.  Let $E$ be a finite set.  A
-\defin{polymatroid rank function} is a function
+\defin{polymatroid rank function}\label{polymatroidRankFunction} is a function
 $r:2^E\to \setR_{\geq 0}$ such that
 \[
   r(\emptyset)=0, \qquad
@@ -686,7 +705,7 @@ adding the equation $x(E)=r(E)$.  This is the polyhedral point of view due to
 \name{Jack Edmonds} \cite{Edmonds1970}.
 
 If $r$ is integer-valued, the integer points in the base polytope are called
-the \defin{bases} of the integral polymatroid.  These bases form an
+the \defin{bases}\label{integralPolymatroidBase} of the integral polymatroid.  These bases form an
 \hyperref[MConvexity]{$M$-convex} subset of $\setN^E$, and conversely
 finite $M$-convex subsets of $\setN^E$ are the base sets of integral
 polymatroids; see also \name{Kazuo Murota}'s discrete convex analysis
@@ -813,7 +832,7 @@ There are several useful recent variants and adjacent classes.
 many of these matroid classes.  A rank-$r$ matroid is a
 \defin{paving matroid}\label{pavingMatroid} if every subset of size less than
 $r$ is independent, equivalently if every circuit has size at least $r$.  It
-is \defin{sparse paving} if both the matroid and its dual are paving.
+is \defin{sparse paving}\label{sparsePavingMatroid} if both the matroid and its dual are paving.
 
 \begin{definition}[$\Delta$-matroid]\label{deltaMatroid}
 A \defin{$\Delta$-matroid} is a pair $(E,\mathcal{F})$ where
@@ -855,7 +874,7 @@ delta-matroids \cite{CeriaJohnsenJurrius2024x}, while
 \name{Zhiyan Ying} study lattice path delta-matroids
 \cite{ChenSanchezVelizYing2023x}.  \name{Kieran Calvert},
 \name{Aram Dermenjian}, \name{Alex Fink}, and \name{Ben Smith}
-characterize \defin{strong $\Delta$-matroids} by several equivalent exchange
+characterize \defin{strong $\Delta$-matroids}\label{strongDeltaMatroid} by several equivalent exchange
 and antipode conditions, and relate peerless antipode equations to
 tropicalizations of quadrics for the orthogonal Grassmannian
 \cite{CalvertDermenjianFinkSmith2026x}.  \name{Jon Pål Hamre} connects sparse
@@ -881,4 +900,4 @@ basis conjecture in connection with Latin squares and straightening
 coefficients \cite[Conj.~4]{HuangRota1994}.  In matroid language, it says
 that if $B_1,\dotsc,B_n$ are bases of a rank $n$ matroid, then the multiset
 union $B_1\cup\dotsb\cup B_n$ can be partitioned into $n$ disjoint
-\defin{rainbow bases}, each containing exactly one element from each $B_i$.
+\defin{rainbow bases}\label{rainbowBasis}, each containing exactly one element from each $B_i$.
