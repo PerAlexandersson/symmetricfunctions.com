@@ -24,7 +24,7 @@ M(\mu,\nu) & \qquad \rskArrow \qquad \bigcup_{\lambda \vdash n} \SSYT(\lambda,\n
 In particular, the first bijection proves
 \hyperref[schurCauchyFormula]{the first Cauchy identity} for
 \hyperref[schurS]{Schur functions}.  The binary-matrix variant proves the
-second Cauchy identity from the same section.
+\hyperref[schurCauchyFormula]{second Cauchy identity} from the same section.
 
 
 For an excellent overview on the different variants of RSK, see
@@ -43,12 +43,13 @@ See the \hyperref[evacuation]{evacuation} section on how RSK interacts with evac
 The standard transpose, inverse, and reversal symmetries are collected in the
 \hyperref[rskProperties]{properties section} below.
 \name{Son Nguyen}, \name{Joseph Vulakh}, and \name{Dora Woodruff} define a
-generalization of RSK for $d$-complete posets
+generalization of RSK for $d$-complete \hyperref[posets]{posets}
 \cite{NguyenVulakhWoodruff2025DCompleteRSK}.  Their construction gives an
-elementary combinatorial proof of the hook length formula for $d$-complete
-posets.
+elementary combinatorial proof of the \hyperref[posetHookFormulas]{hook length
+formula} for $d$-complete posets.
 \name{Rahul Singh} develops a Robinson--Schensted correspondence for partial
-permutations using the Steinberg variety of matrix Schubert varieties
+permutations using the \hyperref[varieties]{Steinberg variety} of
+\hyperref[schubertVarietiesAndMatroids]{matrix Schubert varieties}
 \cite{Singh2020PartialPermutationsRSK}.  The correspondence sends a partial
 permutation to an admissible signed Young diagram together with two standard
 \hyperref[prelimTableaux]{Young tableaux}.
@@ -71,7 +72,8 @@ The insertion $T \leftarrow k$ is then given as the tableau with first row $T_1$
 except that $k'$ has been replaced by $k$, and the remaining rows are given by
 the insertion $T_{2\sim}  \leftarrow k'$.
 \end{enumerate}
-Given a word $w$, inserting the letters one by one gives the \defin{insertion tableau}, $\ins(w)$.
+Given a word $w$, inserting the letters one by one gives the
+\defin{insertion tableau}\label{insertionTableau}, $\ins(w)$.
 This is sometimes denoted $P(w)$.
 
 \begin{example}
@@ -108,7 +110,7 @@ D_k(\pi) = \lambda'_1+\dotsb + \lambda'_k.
 \name{Krishna Menon} and \name{Anurag Singh} extend this RSK viewpoint to
 subsequences with prescribed descent restrictions \cite{MenonSingh2026x}.
 Their statistics depend only on the recording tableau and are computed using
-RSK together with Schützenberger evacuation.
+RSK together with \hyperref[evacuation]{Schützenberger evacuation}.
 
 
 \begin{example*}[An application:  Erdős--Szekeres theorem]
@@ -132,7 +134,7 @@ Application of Greene's theorem finishes the proof.
 
 The RSK correspondence is done in two steps.
 A matrix $A \in M(\lambda,\mu)$ is first turned into a
-\defin{biword} $W$ of length $n$ as follows.
+\defin{biword}\label{biword} $W$ of length $n$ as follows.
 For each entry $A_{ij}$, we have $A_{ij}$ columns in $W$ equal to $\binom{i}{j}$.
 Furthermore, the columns are ordered lexicographically, with respect to the top entry first.
 
@@ -145,8 +147,8 @@ Finally, the pair $(P,Q)$ in the correspondence $W \rskArrow (P,Q)$
 is obtained by inserting each column $\binom{i}{j}$ from left to right in $W$.
 The resulting $(P,Q)$ is a pair of semistandard Young tableaux whenever
 $W$ corresponds to a matrix $A$.
-We refer to $P = \ins(W)$ as the \defin{insertion tableau}
-and $Q=\rec(W)$ as the \defin{recording tableau}.
+We refer to $P = \ins(W)$ as the insertion tableau
+and $Q=\rec(W)$ as the \defin{recording tableau}\label{recordingTableau}.
 
 \begin{example}
 The word
@@ -185,10 +187,11 @@ D_k(W) = \lambda'_1+\dotsb + \lambda'_k.
 \subsection[rskDual]{Dual RSK (variant II)}
 
 
-The dual notion of row insertion is called \defin{column insertion},
+The dual notion of row insertion is called
+\defin{column insertion}\label{columnInsertion},
 traditionally indicated with a right-pointing arrow.
 We now insert into dual SSYT.
-A \defin{dual SSYT} is a filling that is the transpose of an SSYT.
+A \defin{dual SSYT}\label{dualSSYT} is a filling that is the transpose of an SSYT.
 
 Given a \emph{dual SSYT} $T$ and $k \in \setN$, the \emph{dual insertion}
 $k \to T$ is defined recursively as follows, where $T_1$ is the first
@@ -299,10 +302,11 @@ In the usual RSK we require that the biword $W$ is sorted in lexicographic
 order.  Suppose instead that the columns $\binom{i}{j}$ are sorted first on
 $i$, and in case of equality are sorted \emph{decreasingly} with respect to
 $j$.  Furthermore, we impose the same condition as in dual RSK that two
-columns may not be identical.  We call such biwords \defin{Burge words}
+columns may not be identical.  We call such biwords \defin{Burge words}\label{burgeWords}
 because this ordering was studied in Burge insertion.
 
-For a broader ribbon-tableau setting, \name{Marc A. A. van Leeuwen}
+For a broader \hyperref[borderStripTableauxDefinition]{ribbon-tableau} setting,
+\name{Marc A. A. van Leeuwen}
 constructs spin-preserving Knuth correspondences
 \cite{Leeuwen2005Ribbon}.  These extend the Stanton--White correspondence
 from colored permutations to matrices with entries in $\setN^r$, producing
@@ -385,7 +389,8 @@ This relation is recorded in \cite{Krattenthaler2006} and
 
 \subsection[knuthRelations]{Knuth relations}
 
-Let $A$ be an alphabet. The \defin{plactic monoid} is the quotient $A^*/\equiv$,
+Let $A$ be an alphabet. The \defin{plactic monoid}\label{placticMonoid} is the
+quotient $A^*/\equiv$,
 where $\equiv$ is the equivalence class generated by the \defin{Knuth relations}
 
 \begin{align*}
@@ -583,9 +588,10 @@ limit theorem for bumping routes in the Robinson--Schensted correspondence
 
 \name{Mihir Gupta} gives an expository account of the longest increasing
 subsequence problem for random permutations \cite{Gupta2025x}.  The survey
-organizes the RSK correspondence, Young tableaux, hook-length formula,
-Logan--Shepp and Vershik--Kerov limit shapes, and the Baik--Deift--Johansson
-fluctuation theorem into a single narrative.
+organizes the RSK correspondence, Young tableaux,
+\hyperref[partitionCores]{hook-length formula}, Logan--Shepp and
+Vershik--Kerov limit shapes, and the Baik--Deift--Johansson fluctuation theorem
+into a single narrative.
 
 
 \section[patternsAndRSK]{RSK and pattern avoidance}
@@ -619,11 +625,13 @@ H_1& H_2& \dotsc & H_\ell \\
 where $H(1), H(2),\dotsc, H(\ell)$ is a sequence of hook shapes of size $d$,
 filled with $1,2,\dotsc,\ell$ and $H_1, H_2, \dotsc, H_\ell$
 is the same sequence of hook shapes, but the values are permuted.
-The output is a pair $(P,Q)$ of $d$-rim-hook tableaux of the same shape.
+The output is a pair $(P,Q)$ of
+\hyperref[borderStripTableauxDefinition]{$d$-rim-hook tableaux} of the same shape.
 The map $\rskArrow_{d}$ can be decomposed into a $d$-tuple of usual RSK-maps.
 
 
-As a corollary, $d$-hook tableaux of shape $\lambda$ are in bijection with
+As a corollary, \hyperref[borderStripTableauxDefinition]{$d$-hook tableaux} of
+shape $\lambda$ are in bijection with
 $d$-tuples of standard Young tableaux with disjoint entry sets, whose shapes
 are given by the \hyperref[partitionQuotient]{$d$-quotient} of $\lambda$.
 
@@ -635,10 +643,12 @@ with non-negative integers. There are no other conditions.
 A \hyperref[planePartitions]{reverse plane partition} of shape $\lambda$ is a
 $\lambda$-array with weakly increasing rows and columns.
 
-The \defin{Hillman--Grassl correspondence}, introduced in
+The \defin{Hillman--Grassl correspondence}\label{hillmanGrasslCorrespondence},
+introduced in
 \cite{HillmanGrassl1976}, is a bijection from the set of $\lambda$-arrays to
 the set of reverse plane partitions of shape $\lambda$.  Equivalently, it
-encodes a reverse plane partition by a multiset of rim hooks in the Young
+encodes a reverse plane partition by a multiset of
+\hyperref[borderStripTableauxDefinition]{rim hooks} in the Young
 diagram of $\lambda$; the hook lengths explain the resulting product
 enumeration.  Sage has an implementation of the map in its tableau tools
 \cite{Sage,Sage-Combinat}.
@@ -662,7 +672,7 @@ invariants.
 
 \section[signedPermutationsRSK]{Signed permutations and RSK}
 
-\defin{Domino insertion} is a type $B/C$ analogue of RSK for signed
+\defin{Domino insertion}\label{dominoInsertion} is a type $B/C$ analogue of RSK for signed
 permutations.  \name{Thomas Lam} gives a growth-diagram proof of the
 semistandard domino-Schensted correspondence, extends it to a nonempty
 $2$-core, and constructs two dual domino-Schensted correspondences
@@ -674,7 +684,8 @@ type $B/D$ analogue \cite{Terada1993}.
 \section[bereleRSK]{Berele insertion for the symplectic case}
 
 
-The \defin{Berele insertion} is a symplectic version of Schensted insertion.
+The \defin{Berele insertion}\label{bereleInsertion} is a symplectic version of
+Schensted insertion.
 In \cite{Berele1986}, it is used to prove the identity
 \[
 (a_1+ a_1^{-1} + \dotsb + a_n + a_n^{-1})^m = \sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n)
@@ -709,9 +720,10 @@ see \cite{Jagenteufel2019SundaramSO}.
 
 \section[multisetRSK]{Multiset RSK}
 
-Multiset and set-partition versions of RSK replace ordinary letters in a
-biword by multisets.  \name{Tom Halverson} and \name{Tim Lewandowski}
-construct an RSK insertion for set partitions and diagram algebras
+Multiset and \hyperref[setPartitions]{set-partition} versions of RSK replace
+ordinary letters in a biword by multisets.  \name{Tom Halverson} and
+\name{Tim Lewandowski} construct an RSK insertion for set partitions and
+diagram algebras
 \cite{HalversonLewandowski2005}.  \name{Laura Colmenarejo},
 \name{Rosa Orellana}, \name{Franco Saliola}, \name{Anne Schilling}, and
 \name{Mike Zabrocki} generalize this to two-row arrays of multisets
@@ -720,7 +732,8 @@ bijection sends words of length $k$ in $[n]$ to a pair consisting of a
 standard Young tableau of size $n$ and a standard multiset tableau of content
 $[k]$.
 
-For $K$-theoretic analogues, \name{Anders Buch}, \name{Andrew Kresch},
+For \hyperref[kTheory]{$K$-theoretic} analogues, \name{Anders Buch},
+\name{Andrew Kresch},
 \name{Mark Shimozono}, \name{Harry Tamvakis}, and \name{Alexander Yong}
 use a common generalization of Robinson--Schensted and Edelman--Greene
 insertion to study stable \hyperref[grothendieck]{Grothendieck polynomials}
@@ -763,7 +776,8 @@ See \cite{CorwinOConnellSeppalainenZygouras2014} and the
 
 
 For a different geometric aspect, see \cite{GillespieReimerBerg2023}
-where Schubert-geometric type questions (points on a curve) are considered.
+where \hyperref[schubertCalculus]{Schubert-geometric} type questions
+(points on a curve) are considered.
 
 
 \section[nonsymmetricRSK]{Key polynomials and RSK}
@@ -784,8 +798,9 @@ correspondence and a super Cauchy identity, see \cite{Rowan2014SuperRSK}.
 \name{Rebecca Patrias} and \name{Pavlo Pylyavskyy} define dual filtered
 graphs as $K$-theoretic analogues of Fomin's dual graded graphs
 \cite{PatriasPylyavskyy2014x}.  Their examples include
-$K$-theoretic analogues of Young's lattice and shifted Young's lattice, with
-associated insertion algorithms and growth rules.
+\hyperref[kTheory]{$K$-theoretic} analogues of
+\hyperref[posets]{Young's lattice} and shifted Young's lattice, with associated
+insertion algorithms and growth rules.
 
 
 
@@ -846,8 +861,10 @@ shape.
 \[
   B(2k) = \sum_{\lambda} m^{\lambda}_k \cdot m^{\lambda}_k
 \]
-where $m^{\lambda}_k$ is the number of vacillating tableaux of shape $\lambda$, of length $k$ and $B(2k)$
-is a Bell number (number of set partitions of $[2k]$), see \cite{HalversonLewandowski2005}.
+where $m^{\lambda}_k$ is the number of vacillating tableaux of shape $\lambda$,
+of length $k$ and $B(2k)$ is a Bell number (number of
+\hyperref[setPartitions]{set partitions} of $[2k]$), see
+\cite{HalversonLewandowski2005}.
 For a generalization of this, see \cite{BerikkyzyHarrisPunYanZhao2022x}.
 
 This suggests a natural question for run-sorted permutations, see
@@ -862,8 +879,9 @@ shadow construction by \name{Xavier Viennot}, see
 
 \item \name{Peter L. Guo} relates Richardson tableaux to RSK insertion tableaux of
 noncrossing partial matchings \cite{Guo2025x}.  This gives a bijection between
-\hyperref[richardsonVarieties]{Richardson} tableaux of size $n$ and Motzkin paths with $n$ steps, and connects
-their $q$-enumeration to $q$-Catalan numbers.
+\hyperref[richardsonVarieties]{Richardson} tableaux of size $n$ and Motzkin
+paths with $n$ steps, and connects their $q$-enumeration to
+\hyperref[prelimQanalogsCatalan]{$q$-Catalan numbers}.
 
 \item \name{M. Parvathi}, \name{A. Tamilselvi}, and \name{D. Hepsi} construct
 Robinson--Schensted correspondences for elements of the groups
@@ -874,10 +892,12 @@ $p$-Young tableaux and primitive idempotents in the group algebras, and leads
 to a lacunary Cauchy identity.
 
 \item \name{Steven N. Karp} and \name{Martha E. Precup} introduce Richardson
-tableaux as a subset of standard tableaux motivated by \hyperref[springerFibers]{Springer fibers} and
-totally nonnegative geometry \cite{KarpPrecup2025x}.  They characterize these
-tableaux using \hyperref[evacuation]{evacuation} and pairs of reading words, prove that the
-corresponding Springer-fiber component is a \hyperref[richardsonVarieties]{Richardson variety}, and enumerate
-Richardson tableaux by Motzkin numbers.
+tableaux as a subset of \hyperref[prelimTableaux]{standard tableaux} motivated
+by \hyperref[springerFibers]{Springer fibers} and totally nonnegative geometry
+\cite{KarpPrecup2025x}.  They characterize these tableaux using
+\hyperref[evacuation]{evacuation} and pairs of reading words, prove that the
+corresponding Springer-fiber component is a
+\hyperref[richardsonVarieties]{Richardson variety}, and enumerate Richardson
+tableaux by Motzkin numbers.
 
 \end{itemize}
