@@ -8,10 +8,27 @@
 This page collects real-rootedness results from tableaux and polytope
 combinatorics: descent polynomials of standard Young tableaux, Ehrhart
 polynomials from Schur functions, and related families.  The main tools are
-\hyperref[interlacingPolynomials]{interlacing}, Brenti's criteria for
-\hyperref[ehrhart]{Ehrhart} and \(h^*\)-polynomials, and occasionally
+\hyperref[interlacingPolynomials]{interlacing},
+\hyperref[brentiEhrhartCriterion]{Brenti's Ehrhart criterion}, and occasionally
 \hyperref[polyaFrequency]{total-positivity} methods.  For the broader context,
 see \hyperref[polynomialRootIntro]{unimodality and real-rootedness}.
+
+\subsection[brentiEhrhartCriterion]{Brenti's Ehrhart criterion}
+
+The examples below use the same bridge between Ehrhart theory and
+real-rootedness.  Suppose \(L(m)\) is a polynomial of degree \(d\), and define
+the numerator \(H(t)\) by
+\[
+  \sum_{m\geq 0} L(m)t^m = \frac{H(t)}{(1-t)^{d+1}}.
+\]
+In the factored cases below, the hypotheses in Brenti's
+Worpitzky-transform criterion \cite[Thm.~4.6.1]{Brenti1989} are checked
+directly from the linear-factor product.  The conclusion is that the numerator
+\(H(t)\) has only real roots.  Thus the proof strategy is to identify the
+desired descent or \(h^*\)-polynomial as such a numerator and then prove that
+\(L(m)\) factors with only real roots.
+
+\subsection[sytDescentRealRooted]{Descent polynomials of standard Young tableaux}
 
 \begin{example*}[Descents in standard Young tableaux]
 
@@ -33,9 +50,10 @@ Second, the hook-content formula gives
   \schurS_\lambda(1^m) = \prod_{u \in \lambda} \frac{m + c(u)}{h(u)},
 \]
 where $c(u)$ is the content and $h(u)$ the hook length of cell $u$.
-Each factor is linear in $m$ with a non-positive root, so the Ehrhart polynomial is real-rooted.
-By \cite[Thm. 4.6.1]{Brenti1989}, a real-rooted Ehrhart polynomial implies a real-rooted $h^*$-polynomial,
-giving real-rootedness of $W_\lambda(t)$.
+Each factor is linear in $m$, so the relevant Ehrhart/order polynomial is
+real-rooted.  By
+\hyperref[brentiEhrhartCriterion]{Brenti's Ehrhart criterion}, the numerator
+is real-rooted, giving real-rootedness of $W_\lambda(t)$.
 
 This argument does not extend to skew shapes: the Ehrhart polynomial of $\lambda/\mu$
 need not be real-rooted, so Brenti's criterion does not apply (see the remark below).
@@ -49,10 +67,11 @@ In particular, for $\lambda=(n,n)$, $W_\lambda(t)$ is the \hyperref[realRootedCa
 \begin{remark*}[Skew shapes]
 For skew shapes $\lambda/\mu$, the identity $\sum_{m\geq 0} \schurS_{\lambda/\mu}(1^m)\,z^m = W_{\lambda/\mu}(z)/(1-z)^{n+1}$
 still holds, but the Ehrhart polynomial $m \mapsto \schurS_{\lambda/\mu}(1^m)$ need not be real-rooted,
-so Brenti's criterion does not apply.
+so \hyperref[brentiEhrhartCriterion]{Brenti's criterion} does not apply.
 Whether $W_{\lambda/\mu}(t)$ is nevertheless real-rooted for all skew shapes is open.
 \end{remark*}
 
+\subsection[schurEhrhartRealRooted]{Schur Ehrhart polynomials}
 
 \begin{example*}[Ehrhart polynomials from Schur functions]
 
@@ -68,7 +87,8 @@ is a polynomial in $n$. The Weyl character formula gives
 \]
 Since $\lambda_i \geq \lambda_j$ for $i < j$, each factor is linear in $n$ with a non-positive root,
 so $P_\lambda(n)$ is real-rooted as a product of such factors.
-By \cite[Thm. 4.6.1]{Brenti1989}, this implies that the corresponding $h^*$-polynomial is also real-rooted.
+By \hyperref[brentiEhrhartCriterion]{Brenti's Ehrhart criterion}, this implies
+that the corresponding $h^*$-polynomial is also real-rooted.
 Brändén \cite{Branden2004operators} showed moreover that $P_\lambda(n)$
 \hyperref[interlacingPolynomials]{interlaces} $P_\mu(n)$ whenever $\mu$ covers $\lambda$ in Young's lattice.
 The above map is the Ehrhart polynomial of the \hyperref[gtpatterns]{Gelfand--Tsetlin polytope} associated with $\lambda$ and $k$.
@@ -84,4 +104,3 @@ the polynomial $\frac{1}{4} (n+1)^2 \left(7 n^2+10 n+4\right)$ which has non-rea
 It does look like the corresponding $h^*$-polynomials are real-rooted even for skew shapes.
 For non-skew shapes, this is proved by \name{Francesco Brenti} \cite{Brenti1989}.
 \end{example*}
-

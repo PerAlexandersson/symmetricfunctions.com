@@ -193,13 +193,23 @@ nonpositive roots.
 
 
 
-\section[hadamardProduct]{Hadamard product of polynomials}
+\section[hadamardProduct]{Coefficientwise products and multiplier sequences}
+
+Coefficientwise products are another standard way to preserve real roots.
+There are three closely related forms in common use: finite
+\hyperref[hadamardProductTheorems]{Hadamard product theorems}, infinite
+diagonal operators or \hyperref[multiplierSequences]{multiplier sequences},
+and normalized products such as the
+\hyperref[schurSzegoComposition]{Schur--Szeg\H{o} composition} and
+\hyperref[diamondProduct]{diamond product}.
 
 The \defin{Hadamard product} (or \emph{coefficient-wise product})
 of two polynomials $f(t)=\sum a_j t^j$ and $g(t)=\sum b_j t^j$ is
 \[
   f \odot g \coloneqq \sum_j a_j b_j \, t^j.
 \]
+
+\subsection[multiplierSequences]{Multiplier sequences}
 
 \begin{definition}[Multiplier sequence]
 A sequence $\gamma=(\gamma_0,\gamma_1,\dotsc)$ is a
@@ -225,6 +235,8 @@ or $\Phi_\gamma(-x)$ has the form
 where $C\in\setR$, $m\geq 0$, $a\geq 0$, $\alpha_j\geq 0$, and
 $\sum_j\alpha_j<\infty$.
 \end{theorem}
+
+\subsection[hadamardProductTheorems]{Hadamard product theorems}
 
 \begin{theorem}[Schur--Pólya; see {\cite[Thm.~3.4]{Wagner1992}}]
 If $f$ and $g$ are real-rooted with non-negative coefficients,
@@ -264,7 +276,8 @@ If $a_0b_0\neq 0$, then all zeros are distinct.
 \end{theorem}
 
 \name{Jang Soo Kim} and \name{Jaeseong Oh} study Hadamard products of
-Jacobi--Trudi matrices in relation to total positivity \cite{KimOh2025x}.
+Jacobi--Trudi matrices in relation to
+\hyperref[totallyNonnegative]{total positivity} \cite{KimOh2025x}.
 They give Schur-positive results for ribbon-indexed Hadamard squares; the
 arXiv version notes that an attempted bijection has a flaw, so Sokal's
 conjecture on Hadamard squares remains open.
@@ -298,6 +311,8 @@ The Hadamard product theorem is useful whenever a polynomial's
 coefficients factor as a product of two sequences that are each
 the coefficient sequence of a real-rooted polynomial.
 
+\subsection[schurSzegoComposition]{Schur--Szeg\H{o} composition}
+
 \begin{theorem}[Schur--Szeg\H{o} composition theorem, see \cite{RahmanSchmeisser2002}]
 Let
 \[
@@ -314,6 +329,8 @@ Their \defin{Schur--Szeg\H{o} composition} is
 If $F$ and $G$ have only real non-positive zeros, then $F*G$ also has
 only real non-positive zeros.
 \end{theorem}
+
+\subsection[diamondProduct]{Diamond product}
 
 \begin{theorem}[Wagner--Brändén, {\cite[Thm.~2 and Thm.~13]{Branden2004operators}}]
 For polynomials $f,h\in \setR[x]$, define the \defin{diamond product} by
@@ -365,7 +382,7 @@ Moreover, for the \defin{disjoint union} of posets, we have
 \[
 E(P \sqcup Q, t) = E(P,t) \diamond E(Q,t),
 \]
-where $\diamond$ is the diamond product above.
+where $\diamond$ is the \hyperref[diamondProduct]{diamond product} above.
 These operations preserve real-rootedness, so all series-parallel posets have real-rooted Eulerian polynomials,
 see \cite{Wagner1992,Wagner1992en}.
 This result extends to labeled posets, see \cite{Branden2004operators}.

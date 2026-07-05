@@ -18,12 +18,13 @@ For the broader context, see
 \begin{example*}[Narayana polynomials]\label{ex:narayanaSturm}
 
 Let $P_n(t)\coloneqq \sum_{\pi \in Dyck(n)} t^{peaks(\pi)}$,
-where $Dyck(n)$ Dyck paths of size $n$, and $peaks(\pi)$ count the number of peaks.
-Equivalently, this is the same as counting descents in binary words with $n$ 0s and $n$ 1s,
-where in each prefix of the word, there are at least as many $0$s as $1$s, see \oeis{A001263}.
+where $Dyck(n)$ is the set of Dyck paths of size $n$, and $peaks(\pi)$
+counts the number of peaks.  Equivalently, this counts descents in binary
+words with $n$ zeros and $n$ ones such that, in each prefix, there are at
+least as many zeros as ones; see \oeis{A001263}.
 A closed-form formula is
 \[
-P_n(t) = \frac{1}{n} \sum_{k=1}^n \binom{n}{k} \binom{n}{k-1} t^k
+P_n(t) = \frac{1}{n} \sum_{k=1}^n \binom{n}{k} \binom{n}{k-1} t^k.
 \]
 These satisfy the recursion (see \cite[Eq. (2)]{Sulanke2002}, \cite[Eq. (3.3)]{LiuWang2007})
 \[
@@ -32,7 +33,8 @@ These satisfy the recursion (see \cite[Eq. (2)]{Sulanke2002}, \cite[Eq. (3.3)]{L
 with initial conditions  $P_1(t)=t$, $P_2(t)=t(1+t)$, which is used to prove
 the interlacing property.
 
-Real-rootedness and the interlacing property was first proved in \cite{Branden2006}.
+Real-rootedness and the interlacing property were first proved in
+\cite{Branden2006}.
 See also \cite[Eq (31)]{Agapito2014}, where a different recursive formula (involving derivatives)
 is listed:
 \[
@@ -51,14 +53,23 @@ NN[n_] := NN[n] = Expand[
 )/(n + 1)];
 \end{lstlisting}
 
+It is useful to keep the proof methods separate.  The recurrence above gives
+a \hyperref[sturmSequence]{Sturm-sequence} proof; the differential recurrence
+can be handled by interlacing criteria for derivative recurrences; stable
+multivariate refinements give a \hyperref[stablePolynomial]{stability}
+proof; and the \hyperref[narayanaTransformations]{Narayana transformation}
+explains why the type $A$ and type $B$ Narayana bases preserve real roots on
+non-negative coefficient cones.
+
 One can also prove real-rootedness by observing that the Narayana polynomials
 are a simple transformation of Jacobi polynomials, or Gegenbauer polynomials
 (which are orthogonal polynomials on an interval).
 We have that the Narayana polynomials are given by the Hypergeometric series:
 \[
-P_n(t) = {}_2F_1(-n, -n-1;2;x)
+P_n(t) = {}_2F_1(-n, -n-1;2;t)
 \]
-or, \texttt{HypergeometricPFQ[{-n, -n - 1}, {2}, x]}, see \cite[Sec. 12]{BarryHennessy2011}.
+or, \texttt{HypergeometricPFQ[{-n, -n - 1}, {2}, t]},
+see \cite[Sec. 12]{BarryHennessy2011}.
 
 
 Yet another recurrence is
@@ -91,6 +102,9 @@ P_n(t) = \sum_{k=0}^n \binom{n}{k}^2 t^k.
 Since these are produced by the Hadamard product of $(1+t)^n$ with itself, it
 follows that the $P_n(t)$ are also real-rooted.
 See the \hyperref[hadamardProduct]{Hadamard product subsection} for a general statement.
+They also occur as the type $B$ endpoint of the
+\hyperref[narayanaTransformations]{Narayana transformation} discussed on the
+main real-rootedness page.
 \end{example*}
 
 
@@ -98,10 +112,12 @@ See the \hyperref[hadamardProduct]{Hadamard product subsection} for a general st
 \begin{example*}[Generalized Narayana polynomials]
 A two-parameter family of Narayana-type polynomials
 \[
-P_{n,m}(t) = \sum_{k=0}^n \left(\binom{n}{k}\binom{m}{k} -\binom{n}{k+1}\binom{m}{k-1} \right)t^k.
+P_{n,m}(t) = \sum_{k=0}^n
+\left(\binom{n}{k}\binom{m}{k}
+-\binom{n}{k+1}\binom{m}{k-1} \right)t^k
 \]
-is considered in \cite[Thm. 1.4]{ChenYangZhang2018},
-and they use a fairly general recurrence relation to obtain interlacing roots.
+is considered in \cite[Thm. 1.4]{ChenYangZhang2018}; the authors use a
+fairly general recurrence relation to obtain interlacing roots.
 \end{example*}
 
 
@@ -147,8 +163,9 @@ are real-rooted. The formula above is valid for $n \gt k$, and for $n \leq k$ th
 The authors conjectured that for fixed $k$, $\{W_{n,k}\}_{n\geq k}$ form a \hyperref[sturmSequence]{Sturm sequence},
 and that for fixed $n$, $\{W_{n,k}\}_{1 \leq k\leq n}$ is \hyperref[sturmSequence]{Sturm-unimodal}.
 These conjectures were later proved in \cite{WangZhang2024}.
-The authors there finds a two-term recurrence, expression $W_{n,k}(t)$ in terms of $W_{n-1,k}(t)$ and $W_{n,k}(t)$.
-Alternatively, $W_{n,k}(t)$ can be expressed in terms of $W_{n,k-1}(t)$ and its derivative.
+They find a two-term recurrence involving \(W_{n-1,k}(t)\).  Alternatively,
+\(W_{n,k}(t)\) can be expressed in terms of \(W_{n,k-1}(t)\) and its
+derivative.
 \end{example*}
 
 

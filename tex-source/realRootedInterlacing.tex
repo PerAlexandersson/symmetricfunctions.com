@@ -5,9 +5,23 @@
 
 \section[interlacingPolynomials]{Interlacing and interleaving roots}
 
+Interlacing is one of the most flexible ways to certify
+\hyperref[polynomialRootIntro]{real-rootedness}.  This page separates four
+recurring viewpoints:
+\begin{itemize}
+\item root-level interlacing, Sturm sequences, and derivative recurrences;
+\item matrix certificates such as Bézout matrices, Hurwitz matrices, and
+  \hyperref[fullyInterlacingLace]{Lace matrices};
+\item compatible polynomials and common interlacings;
+\item operators and decompositions that preserve real-rootedness.
+\end{itemize}
+Coefficient-level total-positivity tools are collected on the
+\hyperref[polyaFrequency]{Pólya frequency page}, while the multivariate
+operator viewpoint is covered on the
+\hyperref[stablePolynomial]{stable-polynomial page}.
 
-The following definitions are from \cite{Wagner1992}.  See also
-\cite{Branden2015}.
+We first fix the interlacing convention used throughout, following
+\cite{Wagner1992}; see also \cite{Branden2015}.
 
 \begin{definition}[Interleaving polynomials]
 Let $f$ and $g$ be polynomials with positive leading coefficients and
@@ -16,24 +30,26 @@ We say that $f$ \defin{interlaces} $g$ if $\deg(f)+1=\deg(g)=d$ and
 \[
 g_1 \leq f_1 \leq g_2 \leq f_2 \leq \dotsm \leq  f_{d-1}\leq g_{d}.
 \]
-Moreover, we say that $f$ \defin{alternates left of} $g$ if $\deg(f)=\deg(g)=d$ and
+Moreover, we say that $f$ \defin{alternates left of} $g$ if
+$\deg(f)=\deg(g)=d$ and
 \[
 f_1 \leq g_1 \leq f_2 \leq \dotsm \leq f_{d}\leq g_{d}.
 \]
 We say that $f$ \defin{interleaves} $g$ if either $f$ interlaces $g$ or
 $f$ alternates left of $g$. We write this as $f \interl g$.
-By convention, $0 \interl 0$, $0 \interl h$ and $h \interl 0$ whenever $h$ is a polynomial with
-a positive leading coefficient.
+By convention, $0 \interl 0$, $0 \interl h$ and $h \interl 0$ whenever
+$h$ is a polynomial with a positive leading coefficient.
 \end{definition}
 
 
 \begin{lemma}[Folklore]
-    Let $f, g$ be monic polynomials with $\deg(f) = \deg(g)+1$ and all real, non-positive roots.
-    If $g \interl f$, then $f-tg$ is real-rooted and $g \interl f- tg \interl f$.
+Let $f, g$ be monic polynomials with $\deg(f) = \deg(g)+1$ and all roots
+real and non-positive.  If $g \interl f$, then $f-tg$ is real-rooted and
+$g \interl f- tg \interl f$.
 \end{lemma}
 
 
-The following very useful lemma is from \cite[Sec. 3]{Wagner1992}.
+Wagner's lemma is one of the basic closure tools for interlacing induction.
 \begin{lemma}[Wagner's lemma]
 Let $f, g, h \in \setR[t]$ be real-rooted polynomials with
 only real, non-positive roots and positive leading coefficients.
@@ -73,7 +89,8 @@ characteristic polynomial of $A$.
 
 
 
-A more recent result is the following theorem by \name{Shi-Mei Ma} and \name{Yi Wang} \cite{MaWang2008}.
+A useful derivative criterion is due to \name{Shi-Mei Ma} and
+\name{Yi Wang} \cite{MaWang2008}.
 \begin{theorem}[Ma and Wang, 2008]
 Suppose $f$ and $F$ are polynomials with positive leading coefficients,
 such that
@@ -94,9 +111,11 @@ Let $F,f,g \in \setR[t]$ satisfy
  F(x) = a(x)f(x) + b(x)g(x), \qquad \deg(F) \in \{\deg(f), \deg(f)+1\},
 \]
 where $a(x),b(x) \in \setR[t]$.
-Assume that $f$ and $g$ are real-rooted, that $g \interl f$, and that $F$ and $g$ have leading coefficients of the same sign.
+Assume that $f$ and $g$ are real-rooted, that $g \interl f$, and that
+$F$ and $g$ have leading coefficients of the same sign.
 If $b(r) \leq 0$ whenever $f(r)=0$, then $F$ is real-rooted and $f \interl F$.
-In particular, if $g$ strictly interlaces $f$ and $b(r) \lt 0$ whenever $f(r)=0$, then $f$ strictly interlaces $F$.
+In particular, if $g$ strictly interlaces $f$ and
+$b(r) \lt 0$ whenever $f(r)=0$, then $f$ strictly interlaces $F$.
 \end{theorem}
 
 
@@ -183,7 +202,7 @@ are treated in \cite{AdmGarloffTyaglov2017}.
 
 
 
-\section[interlacingSequences]{Interlacing sequences}
+\section[interlacingSequences]{Interlacing sequences and matrix criteria}
 
 
 The following definitions are from \cite{Branden2015}.
@@ -284,7 +303,7 @@ Thus ordinary pairwise interlacing does not imply full interlacing.
 \subsection[realMatrixRecursion]{Matrices preserving interlacing sequences}
 
 
-The following very useful theorem is proved in \cite[Thm. 7.8.5]{Branden2015}.
+The following matrix criterion is proved in \cite[Thm. 7.8.5]{Branden2015}.
 
 \begin{theorem}[Matrices preserving interlacing sequences]
 Let $G$ be an $m \times n$ matrix of polynomials in $t$.
@@ -308,8 +327,8 @@ $\lambda, \mu > 0$, we have
 
 There are 81 matrices with entries in $\{0,1,t\}$.
 Remove those where first and last row are equal and those where one of the rows is $(0,0)$.
-There are 56 such matrices left, and among these, the following 
-satisfies the conditions in the theorem above.
+There are 56 such matrices left, and among these, the following matrices
+satisfy the conditions in the theorem above.
 \begin{equation*}
 \begin{pmatrix}0 & 1 \\ 0 & t\end{pmatrix}, \quad
 \begin{pmatrix}0 & 1 \\ t & 0\end{pmatrix}, \quad
@@ -423,7 +442,13 @@ interlacing theorem from a single principal submatrix to a whole tree of
 principal submatrices.
 
 
-\section[interlacingTransforms]{Symmetric decompositions and preserving operators}
+\section[interlacingTransforms]{Preserving operators and symmetric decompositions}
+
+The previous sections treat interlacing as a certificate.  The next examples
+show how the certificate is produced by structural operations: symmetric
+decompositions in Ehrhart theory, differential operators, products of
+Ehrhart functions, and basis transformations such as the derangement and
+Narayana transformations.
 
 
 \subsection[symmetricDecompInterlacing]{Symmetric decompositions}
