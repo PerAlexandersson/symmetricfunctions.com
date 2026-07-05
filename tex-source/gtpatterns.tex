@@ -19,7 +19,7 @@ Littlewood-type identity and determinant evaluations via LU decompositions,
 Sister Celine's algorithm, and creative telescoping.
 
 
-A \defin{Gelfand--Tsetlin pattern} or \defin{GT-pattern}
+A \defin{Gelfand--Tsetlin pattern}\label{gtPattern} or \defin{GT-pattern}
 is a triangular (or sometimes parallelogram) arrangement of non-negative integers,
 with certain constraints.
 The triangular patterns are indexed as follows.
@@ -52,8 +52,9 @@ for all values of $i$, $j$ where the indexing is defined.
 The inequalities simply state that horizontal rows are weakly decreasing,
 down-right diagonals are weakly decreasing and down-left diagonals are weakly increasing.
 
-The \defin{weight} $w(G) = (w_1,\dotsc,w_n)$ of a GT-pattern $G$ is defined as
-the vector where $w_i$ is the difference of the sum of row $i$ and $i-1$.
+The \defin{weight}\label{gtPatternWeight} $w(G) = (w_1,\dotsc,w_n)$ of a
+GT-pattern $G$ is defined as the vector where $w_i$ is the difference of the
+sum of row $i$ and $i-1$.
 By convention, $x_{0j}=0$ if these entries are not specified.
 
 
@@ -61,8 +62,9 @@ By convention, $x_{0j}=0$ if these entries are not specified.
 
 The conditions ensure every row in the pattern defines an integer partition.
 Furthermore, any two adjacent rows define a skew shape.
-These properties enable us to biject triangular GT-patterns with Young tableaux
-and parallelogram GT-patterns with skew Young tableaux.
+These properties enable us to biject triangular GT-patterns with
+\hyperref[prelimTableaux]{Young tableaux} and parallelogram GT-patterns with
+\hyperref[skewShapes]{skew Young tableaux}.
 
 The skew shape defined by row $j$ and $j+1$ in a GT-pattern $G$
 describes which boxes in a tableau $T$ have content $j$.
@@ -130,7 +132,8 @@ The corresponding crystal graph on GT-patterns is described explicitly in
 
 \subsection[gtpatternsTokuyama]{Tokuyama's formula}
 
-Let $SGT(\lambda)\subset \gtp(\lambda)$ be the set of \defin{strict Gelfand--Tsetlin patterns}.
+Let $SGT(\lambda)\subset \gtp(\lambda)$ be the set of
+\defin{strict Gelfand--Tsetlin patterns}\label{strictGTPattern}.
 This is the subset of patterns where each row is \emph{strictly decreasing}.
 Consider tuples $(a,b,c)$ in the pattern arranged as
 $\begin{smallmatrix}
@@ -161,7 +164,8 @@ deform the Weyl character formula for $SO(2n+1,\setC)$.
 
 By specifying the top row in a triangular GT-pattern as $\lambda$
 and imposing the inequalities above, we obtain a convex polytope.
-This is a \defin{Gelfand--Tsetlin polytope}, $\gtp_{\lambda} \subset \setR^{n(n+1)/2}$.
+This is a \defin{Gelfand--Tsetlin polytope}\label{gtPolytope},
+$\gtp_{\lambda} \subset \setR^{n(n+1)/2}$.
 By construction, the integer lattice points in $\gtp_{\lambda}$
 are in bijection with $\SSYT(\lambda)$.
 The analogous statement holds for parallelogram GT-patterns where the bottom
@@ -217,13 +221,14 @@ In \cite{ArdilaBliemSalazar2011}, the authors generalize the bijection
 between order polytopes and \hyperref[chainPolytope]{chain polytopes} and
 give a marked chain polytope analog of GT-polytopes.
 In type $A$ these analogs are called
-\defin{Feigin--Fourier--Littelmann polytopes}.
+\defin{Feigin--Fourier--Littelmann polytopes}\label{fflvPolytope}.
 
 \name{Igor Makhlin} studies marked chain-order polytopes for the
 Gelfand--Tsetlin poset \cite{Makhlin2024}.  He realizes their toric varieties
-as explicit Gröbner/SAGBI degenerations of the flag variety, using pipe dreams
-to construct the Plücker-coordinate embeddings, and also obtains standard
-monomial theories and PBW-type monomial bases.
+as explicit Gröbner/SAGBI degenerations of the \hyperref[flagVarieties]{flag
+variety}, using \hyperref[schubertPipeDream]{pipe dreams} to construct the
+Plücker-coordinate embeddings, and also obtains standard monomial theories and
+PBW-type monomial bases.
 \name{Xin Fang} and \name{Gleb Koshevoy} compare Lusztig polytopes and
 FFLV polytopes \cite{FangKoshevoy2020x}.
 
@@ -232,7 +237,8 @@ FFLV polytopes \cite{FangKoshevoy2020x}.
 Grassmannians to matching-field polytopes \cite{ClarkeHigashitaniMohammadi2024}.
 They construct a sequence of combinatorial mutations between these polytopes
 which stays inside the class of matching-field polytopes, giving toric
-degenerations and Newton--Okounkov bodies for the Grassmannians.
+degenerations and Newton--Okounkov bodies for the
+\hyperref[grassmannianVarieties]{Grassmannians}.
 
 \name{Robert G. Donnelly} and \name{Molly W. Dunkum} construct
 Gelfand--Tsetlin-type weight bases for all special linear Lie algebra
@@ -247,12 +253,13 @@ Gelfand--Tsetlin pattern model \cite{WatanabeYamamura2021}.
 
 \name{Spencer Daugherty}, \name{Nicolle González}, \name{Bárbara Muniz},
 \name{Pablo S. Ocal}, \name{Jianping Pan}, and \name{Jacinta Torres} study
-the monoid algebra of semistandard tableaux
+the monoid algebra of \hyperref[prelimTableaux]{semistandard tableaux}
 \cite{DaughertyGonzalezMunizOcalPanTorres2025x}.
 For $m=n$ this algebra agrees with the Gelfand--Tsetlin semigroup ring.  They
 prove structural properties such as being Noetherian, reduced, Koszul, and
 Cohen--Macaulay, describe maximal ideals and irreducible modules, and relate
-the associated variety to toric degenerations of partial flag varieties.
+the associated variety to toric degenerations of
+\hyperref[flagVarieties]{partial flag varieties}.
 
 The Gelfand--Tsetlin polytopes are also special cases of
 \hyperref[flowPolytope]{flow polytopes}; see
@@ -266,7 +273,7 @@ flow polytopes related to caracol graphs \cite{JangKim2020}.
 
 \subsection[birkhoffPolytopeAsGelfandTsetlin]{Birkhoff polytope as a GT-polytope}
 
-There is a natural correspondence between \defin{contingency matrices}
+There is a natural correspondence between \defin{contingency matrices}\label{contingencyMatrices}
 and certain GT-polytopes \cite{Alexandersson2016GTPoly}.
 A contingency matrix is a matrix of non-negative integers with specified row sums and column sums.
 
@@ -299,7 +306,8 @@ For a partition of length $m$,
  \left| \setZ^d \cap \gtp_{\lambda} \right| = \schurS_{\lambda}(1^m)  =
  \prod_{1 \leq i \lt j \leq m } \frac{\lambda_i - \lambda_j + j-i}{j-i},
 \]
-where the last identity is due to \name{Richard Stanley}'s hook-content formula.
+where the last identity is due to \name{Richard Stanley}'s
+\hyperref[schurSpecializations]{hook-content formula}.
 Furthermore, the \hyperref[ehrhart]{Ehrhart polynomial} of $\gtp_{\lambda}$ is given by
 \[
 Ehr(\gtp_{\lambda};k) = \prod_{1 \leq i \lt j \leq m } \frac{k(\lambda_i - \lambda_j) + j-i}{j-i}.
@@ -441,7 +449,8 @@ contains at least one vertex with integer coordinates.
 
 Since the $\gtp_{\lambda/\mu,w}$ are not lattice \hyperref[polytope]{polytopes},
 one does not expect the \hyperref[ehrhart]{Ehrhart function} to be a polynomial.
-However, these polytopes exhibit a \defin{period collapse} \cite{HaaseMcAllister2007}
+However, these polytopes exhibit a \defin{period collapse}\label{periodCollapse}
+\cite{HaaseMcAllister2007}
 and they do have a polynomial \hyperref[ehrhart]{Ehrhart function}.
 See \cite{Rassart2004} for a proof of this statement.
 
@@ -475,7 +484,7 @@ all points satisfying the interlacing inequalities strictly:
 \[
 x_{i+1,j} > x_{ij} > x_{i+1,j+1}.
 \]
-Integer points in the interior are \defin{strict GT-patterns},
+Integer points in the interior are strict GT-patterns,
 where every interlacing condition holds with strict inequality
 (cf.\ $SGT(\lambda)$ in \hyperref[gtpatternsTokuyama]{Tokuyama's formula}).
 
@@ -558,7 +567,7 @@ The \hyperref[lrTableaux]{Littlewood--Richardson coefficient} $c^\lambda_{\mu\nu
 counts skew semistandard Young tableaux of shape $\lambda/\mu$
 and content $\nu$ whose reverse reading word
 (read right to left across each row, from top to bottom)
-is a \defin{lattice word}:
+is a \defin{lattice word}\label{latticeWord}:
 at every position in the word, the number of occurrences of letter $i$
 weakly exceeds the number of occurrences of letter $i+1$, for all $i$.
 
@@ -597,7 +606,7 @@ Littlewood--Richardson tableau is filled entirely with letter $1$.
 
 These additional linear constraints, imposed on $\gtp_{\lambda/\mu,\nu}$,
 cut out a polytope whose integer lattice points are in bijection with
-Littlewood--Richardson tableaux. In fact, this gives the
+\hyperref[lrTableaux]{Littlewood--Richardson tableaux}.  In fact, this gives the
 description of \hyperref[bzPatterns]{Berenstein--Zelevinsky patterns}.
 
 
@@ -694,12 +703,13 @@ The Yamanouchi conditions eliminate four of the six GT-patterns.
 
 \section[alternatingSignMatrix]{Monotone triangles and alternating sign matrices}
 
-\defin{Monotone triangles} are special triangular GT-patterns with additional
+\defin{Monotone triangles}\label{monotoneTriangle} are special triangular GT-patterns with additional
 constraints.
 First, the top row is $(n,n-1,\dotsc,1)$ and all rows must be \emph{strictly} decreasing.
 
 Monotone triangles of size $n$ are in bijection with $n \times n$ \emph{alternating sign matrices}.
-\defin{Alternating sign matrices} are matrices with entries in $\{-1,0,1\}$
+\defin{Alternating sign matrices}\label{alternatingSignMatrixDefinition}
+are matrices with entries in $\{-1,0,1\}$
 such that in each row and column, the nonzero elements alternate in sign.
 Furthermore, the sum of the entries in each row (and column) is $1$.
 
