@@ -34,7 +34,7 @@ functions.
 \cite{Okada2020Intermediate}.  These characters interpolate between Schur
 polynomials and symplectic characters.
 \name{George Balla} constructs PBW tableaux for symplectic PBW degenerate
-flag varieties and gives defining equations for these varieties
+\hyperref[flagVarieties]{flag varieties} and gives defining equations for these varieties
 \cite{Balla2022}.
 
 We work in the alphabet $\xvec = (x_1,x_1^{-1},x_2,x_2^{-1},\dotsc,x_n,x_n^{-1})$.
@@ -73,7 +73,7 @@ discussion in \cite{MO362997}.  A complete proof is available in
 
 There are also alternative tableau descriptions.  For example, the
 \defin{Kashiwara--Nakashima tableaux} carry a
-$U_q(\mathfrak{sp}(2m,\setC))$-crystal structure; see
+\hyperref[kashiwaraCrystals]{$U_q(\mathfrak{sp}(2m,\setC))$-crystal structure}; see
 \cite{AzenhasFellerTorres2022}.
 
 
@@ -180,7 +180,7 @@ see e.g. \cite[Eq.~(3.11)]{FulmekKrattenthaler1997}.
 
 \subsection[schurSymplecticCrystal]{Kashiwara crystals}
 
-In \cite{Lee2019} \name{Seung Jin Lee} defines a \hyperref[crystals]{crystal graph} structure on King tableaux,
+In \cite{Lee2019}, \name{Seung Jin Lee} defines a \hyperref[crystalGraphs]{crystal graph} structure on King tableaux,
 so that connected components correspond to single symplectic Schur functions.
 The crystal structure on $K(\mu,n)$ --- the set of symplectic tableaux of shape $\mu$ and maximal entry at most $n$ ---
 is isomorphic to the crystal $B(\mu)$, the irreducible representation of $\mathfrak{sp}_{2n}$ indexed by $\mu$.
@@ -201,8 +201,8 @@ is also given in \cite[Conj.~6.2]{Lee2019}.
 orthogonal, and orthosymplectic Schur functions \cite{KumariStokke2026}.
 For symplectic Schur functions, the product of a symplectic power sum with
 $\schurSp_\mu$ is expressed as a sum of three kinds of terms: symplectic Schur
-functions obtained by adding a border strip to $\mu$, those obtained by
-removing a border strip from $\mu$, and an additional Weyl-denominator
+functions obtained by adding a \hyperref[skewShapes]{border strip} to $\mu$, those obtained by
+removing a \hyperref[skewShapes]{border strip} from $\mu$, and an additional Weyl-denominator
 correction term.  The orthogonal rules are analogous, while the
 orthosymplectic rule has a third term involving both symplectic and ordinary
 Schur functions.
@@ -225,7 +225,7 @@ groups, using Weyl character formulas and beta-sets of $t$-core partitions.
 \name{Seamus P. Albion} embeds the Schur, symplectic, and orthogonal
 factorization formulas into a family involving a parameter $z$ and a
 parameter $q$ \cite{Albion2025x}.  The proof uses $t$-cores and $t$-quotients
-of $z$-asymmetric partitions and relates the formulas to plethysm.
+of $z$-asymmetric partitions and relates the formulas to \hyperref[plethysm]{plethysm}.
 \name{Arvind Ayyer} and \name{Nishu Kumari} obtain further root-of-unity
 factorizations for classical and universal characters
 \cite{AyyerKumari2024x}, including specializations of Schur polynomials and
@@ -234,11 +234,11 @@ staircase-shape factorizations.
 
 \subsection[schurSymplecticOtherProperties]{Further properties}
 
-There are analogues of Gelfand--Tsetlin patterns for these functions, see e.g.
+There are analogues of \hyperref[gtpatterns]{Gelfand--Tsetlin patterns} for these functions, see e.g.
 \cite{Proctor1994,AyyerFischer2019,JingLiWang2024}.
 
 \name{Tewodros Amdeberhan}, \name{George E. Andrews}, and
-\name{Cristina Ballantine} study partition identities involving hook lengths
+\name{Cristina Ballantine} study partition identities involving \hyperref[partitionCores]{hook lengths}
 and symplectic or orthogonal contents \cite{AmdeberhanAndrewsBallantine2023}.
 They prove special cases of Nekrasov--Okounkov-type conjectures and relate
 nonzero symplectic contents to partitions into distinct even parts.
@@ -326,7 +326,8 @@ We then define the \defin{even orthogonal Schur polynomials} (using the definiti
 where entries $i$ in $T$ contribute with $x_i$ and entries $\overline{j}$ contribute with $x_j^{-1}$.
 The $\infty$-elements do not contribute.
 
-We note that $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$, where $\omega$ is the standard involution on symmetric functions.
+We note that $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$, where $\omega$ is the
+\hyperref[standardInvolution]{standard involution on symmetric functions}.
 
 
 \subsection[schurOrthogonalJacobiTrudy]{Jacobi--Trudi}
@@ -418,9 +419,10 @@ including the empty partition.
   TransformsTo & schurQ | Schur1911 | map=multiply by $2^{\length(\lambda)}$ \\
 \end{polydata}
 
-Schur's $P$ functions were introduced by \name{Issai Schur} in \cite{Schur1911},
+Schur's $P$ functions were introduced by \name{Issai Schur} in \cite{Schur1911}
 to study projective representations of the symmetric and alternating groups.
-Schur's $P$ functions $\schurP_\lambda(\xvec)$ are indexed by partitions with \emph{distinct parts} and are given
+Schur's $P$ functions $\schurP_\lambda(\xvec)$ are indexed by
+\defin{strict partitions}, that is, partitions with distinct parts, and are given
 as the specialization of the \hyperref[hallLittlewoodP]{Hall--Littlewood $P$ functions} at $t=-1$.
 \name{Federico Ardila} and \name{Luis G. Serrano} prove Stanley's conjecture
 that, for the staircase shape $\delta_n$, every skew Schur function
@@ -555,7 +557,7 @@ An easier formula for $f_{\lambda\mu}^{\nu}$ using a type of Yamanouchi words is
 
 \subsection[schurPEvacuation]{Evacuation}
 
-For shifted tableau switching and related evacuation operations, see
+For shifted tableau switching and related \hyperref[evacuation]{evacuation} operations, see
 \cite{ChoiNamOh2017x}.
 
 
@@ -576,7 +578,8 @@ For shifted tableau switching and related evacuation operations, see
 \end{polydata}
 
 
-Schur's $Q$ functions $\schurQ_\lambda(\xvec)$ are indexed by partitions with distinct parts, and are given
+Schur's $Q$ functions $\schurQ_\lambda(\xvec)$ are indexed by strict partitions
+and are given
 as the specialization of the \hyperref[hallLittlewoodQ]{Hall--Littlewood $Q$ functions} at $t=-1$.
 A combinatorial formula using \hyperref[gtpatterns]{Gelfand--Tsetlin patterns} is provided by \name{Richard Stanley} in
 \cite{Stanley1986}.
@@ -621,7 +624,7 @@ Schur functions.
 
 
 A \hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama}-type formula for computing
-the spin characters $\zeta_{\mu}^{\lambda}$  is given in \cite{MorrisOlsson1988}.
+the spin characters $\zeta_{\mu}^{\lambda}$ is given in \cite{MorrisOlsson1988}.
 
 \name{Alun Morris} and \name{Jørn Olsson} give \cite[Cor.~4.3]{MorrisOlsson1988}
 a formula which seems to be a spin
@@ -736,7 +739,7 @@ for skew $Q$-functions, and a Pieri-type rule.
 
 The bottom Schur functions were introduced by \name{Peter Clifford} and \name{Richard Stanley} in \cite{CliffordStanley2004}.
 
-Let the degree of the power-sum symmetric functions be $1$, so that $deg(\powerSum_i)=1$
+Let the degree of the \hyperref[powerSum]{power-sum symmetric functions} be $1$, so that $deg(\powerSum_i)=1$
 and $deg(\powerSum_\nu) = \length(\nu)$. The
 \hyperref[schurMurnaghanNakayama]{Murnaghan--Nakayama rule} states that
 \[

@@ -247,7 +247,7 @@ as a determinant of \hyperref[completeH]{complete homogeneous symmetric function
 \begin{equation*}
  \schurS_\lambda(\xvec) = \det[ \completeH_{\lambda_i + j - i}(\xvec) ]_{1\leq i,j \leq n}
 \end{equation*}
-By applying the $\omega$-involution, we recover the dual Jacobi--Trudi identity,
+By applying the \hyperref[standardInvolution]{$\omega$-involution}, we recover the dual Jacobi--Trudi identity,
 also known as the \defin{Nägelsbach--Kostka identity}:
 \begin{equation*}
  \schurS_{\lambda'}(\xvec) = \det[ \elementaryE_{\lambda_i + j - i}(\xvec) ]_{1\leq i,j \leq n}
@@ -267,7 +267,7 @@ Jacobi--Trudi-like determinant through a construction of
 \name{Andrey Zelevinsky} involving BGG complexes
 \cite{SamWeyman2023}.  This gives common ground for the classical
 Jacobi--Trudi identity and several generalizations related to determinantal
-varieties.
+\hyperref[varieties]{varieties}.
 \name[J. S. Kim]{Jang Soo Kim} and \name{Meesue Yoo} use the Bazin identity
 to obtain determinant formulas for generalized Schur functions
 \cite{KimYoo2021}.
@@ -292,7 +292,7 @@ indexed by hook shapes.
 A combinatorial proof of this formula can be found in \cite{EgeciogluRemmel1988}.
 
 A similar result, expressing Schur functions as determinants of
-\hyperref[schurSkew]{skew Schur functions} indexed by border strips,
+\hyperref[schurSkew]{skew Schur functions} indexed by \hyperref[skewShapes]{border strips},
 is proved in \cite{LascouxPragacz1988}.
 This is later generalized by the \hyperref[schurStripDecompFormula]{Hamel--Goulden identities}.
 
@@ -349,7 +349,7 @@ The \defin{Cauchy identity} states that
 \begin{equation*}
  \sum_\lambda \schurS_\lambda(\xvec) \schurS_{\lambda}(y) = \sum_\lambda \monomial_\lambda(\xvec) \completeH_{\lambda}(y)= \prod_{i,j} \frac{1}{1-x_i y_j}.
 \end{equation*}
-By applying $\omega$ on the $y$-alphabet, we get the second Cauchy identity
+By applying \hyperref[standardInvolution]{$\omega$} on the $y$-alphabet, we get the second Cauchy identity
 \begin{equation*}
  \sum_\lambda \schurS_\lambda(\xvec) \schurS_{\lambda'}(y) = \sum_\lambda \monomial_\lambda(\xvec) \elementaryE_{\lambda}(y) = \prod_{i,j} (1+x_i y_j).
 \end{equation*}
@@ -512,7 +512,7 @@ function with a complete homogeneous symmetric function:
 The sum is taken over all partitions $\mu \vdash |\lambda|+k$, obtained by adding $k$ boxes to the diagram $\lambda$,
 in such a way that two boxes are not allowed to be added to the same column.
 
-By applying the $\omega$-involution, the \emph{dual Pieri rule} is recovered:
+By applying the \hyperref[standardInvolution]{$\omega$-involution}, the \emph{dual Pieri rule} is recovered:
 \[
 \elementaryE_k(\xvec) \schurS_{\lambda}(\xvec) = \sum_{\mu} \schurS_{\mu},
 \]
@@ -525,7 +525,7 @@ are \hyperref[schurPositivity]{Schur-positive}. In fact, it is an easy exercise 
 \[
 \completeH_\lambda(\xvec) = \sum_{\mu} K_{\mu \lambda} \schurS_{\mu},
 \]
-where $K_{\mu \lambda}$ are the Kostka coefficients.
+where $K_{\mu \lambda}$ are the \hyperref[kostkaCoefficients]{Kostka coefficients}.
 
 
 One can view the Pieri rules as special cases of the \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson rule}.
@@ -700,7 +700,8 @@ polynomial \cite{GrinbergKorniichukMolokanovKhomych2024x}.  This generalizes
 \subsection[skewSchurCombinatorialFormula]{Combinatorial formula}
 
 
-The skew Schur polynomials can be expressed as a sum over skew semistandard Young tableaux:
+The skew Schur polynomials can be expressed as a sum over skew
+\hyperref[prelimTableaux]{semistandard Young tableaux}:
 \begin{equation*}
  \schurS_{\lambda/\mu}(\xvec) = \sum_{T \in \SSYT(\lambda/\mu)} \xvec^{T}.
 \end{equation*}
@@ -742,7 +743,7 @@ Using the same notation as for the Schur polynomials,
  \schurS_{\lambda/\mu}(\xvec)
   = \sum_{\nu} \frac{\powerSum_{\nu}(\xvec)}{z_\nu} \sum_{T \in \BST(\lambda/\mu,\nu)} (-1)^{\mathrm{ht}(T)}
 \end{equation*}
-where the sum is taken over border strip tableaux
+where the sum is taken over \hyperref[borderStripTableauxDefinition]{border strip tableaux}
 of skew shape $\lambda/\mu$ and weight $\nu$.
 
 
@@ -753,10 +754,10 @@ uniform framework, unifying the Jacobi--Trudi identities, the Giambelli formula 
 the result by \name{Alain Lascoux} and \name{Piotr Pragacz} \cite{LascouxPragacz1988}.
 
 An \defin{outside decomposition} of a skew diagram $\lambda/\mu$ is a
-decomposition into border strips, each of which starts on the left or lower
+decomposition into \hyperref[skewShapes]{border strips}, each of which starts on the left or lower
 boundary of $\lambda/\mu$ and ends on the upper or right boundary.  Such a
 decomposition determines a common \defin{cutting strip}: after translating the
-border strips so that cells of equal content lie on the same diagonal, each
+\hyperref[skewShapes]{border strips} so that cells of equal content lie on the same diagonal, each
 border strip appears as a segment of this cutting strip.
 
 Given an outside decomposition $(\theta_1,\dotsc,\theta_m)$ of $\lambda/\mu$,
@@ -770,8 +771,7 @@ one has
 \]
 See \cite{HamelGoulden1995} for the full notation and conventions.
 
-% Related Rust:
-% /home/paxinum/Dropbox/AI-projects/rust/sym-poly/core/examples/hamel_goulden_site_example.rs
+% Related Rust: rust/sym-poly/core/examples/hamel_goulden_site_example.rs
 \begin{example}
 Let $D=(3,3,3,1)/(1)$, and take the outside decomposition
 $\Pi=(\theta_1,\theta_2)$ used in
@@ -815,12 +815,13 @@ Giambelli determinant and the rim-ribbon determinant as a special case.
 \subsection[skewSchurGesselExpansion]{Fundamental quasi-symmetric expansion}
 
 
-Skew Schur polynomials and thus Schur polynomials, expand positively in the
+Skew Schur polynomials, and thus Schur polynomials, expand positively in the
 \hyperref[gessel]{Gessel fundamental quasi-symmetric functions},
 \[
 \schurS_{\lambda/\mu}(\xvec) = \sum_{T \in \SYT(\lambda/\mu)} \gessel_{D(T)}(\xvec)
 \]
-where $\SYT(\lambda/\mu)$ is the set of standard Young tableaux of shape $\lambda/\mu$ and $D(T)$ is the descent set of $T$.
+where $\SYT(\lambda/\mu)$ is the set of standard Young tableaux of shape
+$\lambda/\mu$ and $D(T)$ is the \hyperref[tableauDescentSet]{descent set} of $T$.
 
 
 The \hyperref[gesselSlinkyRule]{slinky rule} can be used to find the Schur expansion
