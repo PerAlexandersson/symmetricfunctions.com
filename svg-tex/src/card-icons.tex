@@ -938,14 +938,16 @@
   \cardframe
 
   % Parking sign for parking functions.
-  \filldraw[iconblue, draw=black, rounded corners=0.08cm]
-    (-0.48,-0.62) rectangle (0.48,0.62);
-  \draw[white, line width=1.5mm, line cap=butt]
-    (-0.16,-0.38) -- (-0.16,0.38);
-  \draw[white, line width=1.5mm]
-    (-0.16,0.32) -- (0.2,0.32)
-    .. controls (0.42,0.32) and (0.42,-0.05) .. (0.2,-0.05)
-    -- (-0.16,-0.05);
+  \begin{scope}[xshift=-0.06cm]
+    \filldraw[iconblue, draw=black, rounded corners=0.08cm]
+      (-0.48,-0.62) rectangle (0.60,0.62);
+    \draw[white, line width=1.5mm, line cap=butt]
+      (-0.16,-0.38) -- (-0.16,0.38);
+    \draw[white, line width=1.5mm]
+      (-0.16,0.32) -- (0.2,0.32)
+      .. controls (0.42,0.32) and (0.42,-0.05) .. (0.2,-0.05)
+      -- (-0.16,-0.05);
+  \end{scope}
 \end{tikzpicture}
 
 
@@ -1048,21 +1050,13 @@
 \begin{tikzpicture}[icon]
   \cardframe
 
-  % A compact flag-variety/Grassmannian icon: nested subspaces and a
-  % highlighted Schubert condition.
-  \draw[black, thinner] (-0.72,-0.55) -- (0.72,-0.55);
-  \draw[black, thinner] (-0.55,-0.15) -- (0.62,-0.15);
-  \draw[black, thinner] (-0.33,0.25) -- (0.46,0.25);
-
-  \filldraw[iconblue, draw=black]
-    (-0.05,-0.55) -- (0.45,-0.15) -- (0.18,0.25) -- (-0.32,-0.15) -- cycle;
-
-  \node[node-blue] at (-0.32,-0.15) {};
-  \node[node-blue] at (0.45,-0.15) {};
-  \node[node-blue] at (0.18,0.25) {};
-
-  \draw[black, thinner, dashed] (-0.7,0.55) -- (0.72,-0.72);
-  \node[node-black] at (-0.05,-0.05) {};
+  % A clean flag-variety cue.
+  \draw[black, line width=0.85mm] (-0.48,-0.62) -- (-0.48,0.62);
+  \filldraw[iconblue, draw=black, line width=0.55mm]
+    (-0.48,0.52) -- (0.42,0.34) -- (-0.48,0.14) -- cycle;
+  \filldraw[white, draw=black, line width=0.55mm]
+    (-0.48,0.08) -- (0.26,-0.08) -- (-0.48,-0.24) -- cycle;
+  \draw[black, line width=0.75mm] (-0.65,-0.62) -- (-0.28,-0.62);
 \end{tikzpicture}
 
 
@@ -1092,7 +1086,7 @@
   \cardframe
 
   % The standard involution is the most recognizable operator here.
-  \node[text=iconblue, font=\fontsize{46}{46}\selectfont] at (0,0.02)
+  \node[text=iconblue, font=\boldmath\fontsize{74}{74}\selectfont] at (0,0.02)
     {$\omega$};
 \end{tikzpicture}
 
