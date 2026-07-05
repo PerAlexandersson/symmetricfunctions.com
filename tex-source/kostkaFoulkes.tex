@@ -5,8 +5,9 @@
 \section[kostkaCoefficients]{Kostka coefficients}
 
 
-The \defin{Kostka coefficients} appear in the monomial expansion of \hyperref[schurS]{Schur functions},
-and the Schur expansion of the complete homogeneous symmetric functions:
+The \defin{Kostka coefficients}\label{kostkaCoefficient} appear in the
+monomial expansion of \hyperref[schurS]{Schur functions}, and the Schur
+expansion of the complete homogeneous symmetric functions:
 \[
 \schurS_\lambda = \sum_\mu K_{\lambda\mu} \monomial_\mu,
 \qquad 
@@ -25,7 +26,8 @@ positive Kostka coefficient \cite{GaoKiersOrelowitzYong2024}.  They prove that
 Hilbert-basis membership is NP-complete, give a Gale--Ryser style criterion
 using KGR graphs, and classify the extremal rays of the associated cone.
 \name{Arjun Krishnan} and \name{Scott Neville} relate Kostka numbers to
-permutations with prescribed longest increasing subsequence behavior
+permutations with prescribed \hyperref[rsk]{longest increasing subsequence}
+behavior
 \cite{KrishnanNeville2019x}.  Their results generalize the classical Catalan
 case where permutations with longest increasing subsequence of length at most
 two are counted by a Kostka number.
@@ -75,7 +77,7 @@ K_{\lambda/\mu,\nu} = \langle \schurS_{\mu} \cdot \completeH_{\nu} ,  \schurS_\l
 and the latter is a \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficient} $c^{\tau}_{\sigma\lambda}$
 where $\tau/\sigma$ is the skew shape obtained by \enquote{concatenating}
 $\ell$ horizontal strips of sizes given by $\nu$, and the shape $\mu$.
-See \cite[p.338]{StanleyEC2} for proof.
+See \cite[p.~338]{StanleyEC2} for proof.
 \end{proposition}
 
 
@@ -96,7 +98,7 @@ such that $\lambda/\nu$ is a horizontal strip.
 See also the \hyperref[kostkaIdentities]{recursion for Kostka--Foulkes polynomials}.
 
 
-In \cite[p.327]{Macdonald1995}, the following recursion is 
+In \cite[p.~327]{Macdonald1995}, the following recursion is
 described. In fact, it generalizes to \hyperref[jackP]{Jack polynomials}.
 \begin{theorem}
 First, let $d(\lambda)\coloneqq \partitionN(\lambda')-\partitionN(\lambda)$.
@@ -124,8 +126,9 @@ and $K_{\lambda, \mu}=0$ unless $\lambda \geq \mu$ in \hyperref[partialOrderings
 \subsection[kostkaInverseRecursion]{Recursions for inverse Kostka coefficients}
 
 A convenient recursive formula for the entries in $(K_{\lambda\mu})^{-1}$
-is given in \cite{EgeciogluRemmel1990}. The formula is based on the combinatorial model using
-\hyperref[kostkaInverseModel]{special rim hook tabloids}.
+is given in \cite{EgeciogluRemmel1990}. The formula is based on the
+combinatorial model using
+\hyperref[specialRimHookTabloid]{special rim hook tabloids}.
 
 \begin{theorem}[Eğecioğlu--Remmel, 1990]
 Let $\lambda = (r_1^{j_1}, r_2^{j_2},\dotsc,r_k^{j_k})$ where $r_1 \lt r_2 \lt \dotsb$.
@@ -191,8 +194,9 @@ Let $\evec_{ij}$ denote the vector with $1$ at index $i$
 and $-1$ at index $j$ and remaining entries equal to $0$. 
 We refer to this collection of vectors as \hyperref[rootSystem]{positive roots} 
 or just roots for short.
-Given an integer vector $w$ of length $n$, 
-let \defin{Kostant's partition function} $\kostantP(w)$ be the number of solutions to
+Given an integer vector $w$ of length $n$,
+let \defin{Kostant's partition function}\label{kostantPartitionFunctionDefinition}
+$\kostantP(w)$ be the number of solutions to
 \[
 w = \sum_{(i,j) \in \binom{[n]}{2}} a_{ij} \evec_{ij}
 \]
@@ -216,8 +220,9 @@ From the definition above, we have that
 \]
 
 
-This has a close relationship with the \hyperref[schurJacobiTrudi]{Jacobi--Trudi identity}, see
-the excellent introduction in \cite{DesarmenienLeclercThibon1994}.
+This has a close relationship with the
+\hyperref[schurJacobiTrudi]{Jacobi--Trudi identity}; see the excellent
+introduction in \cite{DesarmenienLeclercThibon1994}.
 
 
 \begin{example}
@@ -261,8 +266,10 @@ see \cite{HarrisRahmoellerSchneider2019x}. Similar properties for other root sys
 
 \section[kostantPartitionFunctionOtherTypes]{Kostant partition function in general types}
 
-In more generality, let $\Phi^+ \subset \Phi$ be a set of positive roots in a root system.
-The \defin{Kostant partition function} for $\Phi^+$ is defined via the relation
+In more generality, let $\Phi^+ \subset \Phi$ be a set of positive roots in a
+\hyperref[rootSystem]{root system}.  The \defin{Kostant partition function}
+\label{kostantPartitionFunctionGeneralType} for $\Phi^+$ is defined via the
+relation
 \begin{equation*}
 \prod_{\alpha \in \Phi^+}  \frac{1}{1-e^\alpha} = \sum_{w} \kostantP(w) e^w.
 \end{equation*}
@@ -293,7 +300,9 @@ number in types $C$ and $D$.
 \subsection[kostkaFromKostant]{Kostka coefficients from Kostant's partition function}
 
 Let $\lambda$ and $\mu$ be integer partitions of $n$.
-Then the \defin{Kostant's multiplicity formula} (see \cite[(1.1.5)]{Kostant1959}) states that
+Then the \defin{Kostant's multiplicity formula}
+\label{kostantMultiplicityFormula} (see \cite[(1.1.5)]{Kostant1959}) states
+that
 \[
 K_{\lambda,\mu} = \sum_{\sigma \in \symS_n} 
 (-1)^{\length(\sigma)} \kostantP\left( \sigma(\lambda + \rho) - (\mu+\rho) \right)
@@ -303,7 +312,8 @@ This formula is used to prove polynomiality of stretched Kostka coefficients, se
 Note that the above formula is really not an efficient way to compute Kostka coefficients.
 
 
-The \defin{Kostka--Foulkes polynomials} $K_{\lambda,\mu}(q)$ can be computed via the $q$-analogue:
+The \defin{Kostka--Foulkes polynomials}\label{kostkaFoulkesPolynomial}
+$K_{\lambda,\mu}(q)$ can be computed via the $q$-analogue:
 \[
 K_{\lambda,\mu}(q) = \sum_{\sigma \in \symS_n} 
 (-1)^{\length(\sigma)} \kostantP_q\left( \sigma(\lambda + \rho) - (\mu+\rho) \right).
@@ -384,6 +394,7 @@ Set
 \]
 
 \begin{theorem}[Steinberg's formula \cite{Steinberg1961,RassartThesis}]
+\label{steinbergFormula}
 We have that the \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficient} 
 $c^{\nu}_{\lambda \mu}$ is given by
 \[
@@ -493,7 +504,7 @@ weight multiplicities.
 
 \section[kostkaFoulkes]{Kostka--Foulkes polynomials from charge}
 
-For an excellent background on charge, see \cite[Chapter 2.4]{Butler1994}.
+For an excellent background on charge, see \cite[Chapter~2.4]{Butler1994}.
 \name{Anatol Kirillov} provides an extensive survey on Kostka--Foulkes polynomials in \cite{Kirillov2001}.
 
 Here is a longer explanation on how to compute the coefficients $K_{\lambda,\mu}(q)$,
@@ -503,7 +514,8 @@ These coefficients appear in the expansion of Schur polynomials into
 The combinatorial model using charge was first described by \name{Alain Lascoux} and 
 \name[M. P. Schützenberger]{Marcel-Paul Schützenberger} in \cite{LascouxSchutzenberger78}. 
 
-First we need to introduce the \defin{charge} of a permutation.
+First we need to introduce the \defin{charge}\label{chargeStatistic} of a
+permutation.
 For $\sigma \in \symS_k$, we let 
 \begin{equation*}
  \charge(\sigma) \coloneqq \maj(\rev(\sigma^{-1})) = 
@@ -514,7 +526,7 @@ For example,
 \charge(198423765) = \maj(\rev(156498732) ) = \maj(237894651) = 20.
 \]
 
-The \defin{cocharge} of a permutation, $\cocharge(\pi)$ is 
+The \defin{cocharge}\label{cochargeStatistic} of a permutation, $\cocharge(\pi)$ is
 defined as $\binom{n}{2}-\charge(\pi)$.
 
 \begin{example*}[Computing cocharge]
@@ -550,7 +562,8 @@ This agrees with the fact that $16+20 = 36 = \binom{9}{2}$.
 \subsection[standardSubwords]{Standard subwords}
 
 Given a word $w$ with content $\mu \vdash n$,
-partition its entries into \defin{standard subwords} as follows.
+partition its entries into
+\defin{standard subwords}\label{standardSubword} as follows.
 Start from the right of $w$ and mark the first occurrence of $1$.
 Proceed to the left and mark the first occurrence of $2$,
 then $3$ and so on, wrapping around the end if necessary,
@@ -580,12 +593,14 @@ Hence  $\charge(w) = 8$ for our particular word.
 For a semistandard Young tableau $T \in \SSYT(\lambda,\mu)$, the reading word of $T$, $\rw(T)$
 is given by concatenating the rows of $T$, starting with the bottom-most row.
 We then define $\charge(T) = \charge(\rw(T))$,
-and the \defin{Kostka--Foulkes polynomial} $K_{\lambda,\mu}(q)$ may be computed as
+and the \hyperref[kostkaFoulkesPolynomial]{Kostka--Foulkes polynomial}
+$K_{\lambda,\mu}(q)$ may be computed as
 \[
  K_{\lambda,\mu}(q) = \sum_{T \in \SSYT(\lambda,\mu)} q^{\charge(T)}.
 \]
 
-Similarly, the \defin{modified Kostka--Foulkes polynomials} 
+Similarly, the \defin{modified Kostka--Foulkes polynomials}
+\label{modifiedKostkaFoulkesPolynomial}
 are defined as
 \[
  \tilde{K}_{\lambda,\mu}(q) = \sum_{T \in \SSYT(\lambda,\mu)} q^{\cocharge(T)}.
@@ -647,11 +662,13 @@ The rows are indexed by $\lambda$.
 \subsection[chargeProperties]{Properties of charge}
 
 
-The \defin{elementary Knuth transforms} are transformations on three 
-adjacent letters on words. We allow the transformations $yzx \leftrightarrows yxz $ whenever $x \lt y\leq z$
+The \defin{elementary Knuth transforms}\label{elementaryKnuthTransform} are
+transformations on three adjacent letters on words. We allow the
+transformations $yzx \leftrightarrows yxz$ whenever $x \lt y\leq z$
 and $xzy \leftrightarrows zxy$ whenever $x \leq y \lt z$.
-Two words are \defin{Knuth-equivalent}, denoted $\equiv$ if one can obtain one from the other via a sequence
-of elementary Knuth transforms. 
+Two words are \defin{Knuth-equivalent}\label{knuthEquivalent}, denoted
+$\equiv$, if one can obtain one from the other via a sequence of elementary
+Knuth transforms.
 See also the close relationship with the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}.
 
 For words of partition weight, we have some extra nice properties:
@@ -673,14 +690,15 @@ acts via \hyperref[crystalOperators]{Lascoux--Schützenberger involutions},
 \item if $w$ and $w'$ are Knuth-equivalent, then $\charge(w) = \charge(w')$.
 \end{itemize}
 \end{theorem}
-This is stated as above in \cite[p.54]{Nelsen2005}.
+This is stated as above in \cite[p.~54]{Nelsen2005}.
 
 One can also obtain the charge via crystal operators \cite{Patimo2021x}.
 
 
 \subsection[skewKostkaFoulkes]{Skew Kostka--Foulkes polynomials}
 
-The \defin{skew Kostka--Foulkes polynomials} $K_{\lambda/\mu,\nu}(q)$
+The \defin{skew Kostka--Foulkes polynomials}
+\label{skewKostkaFoulkesPolynomial} $K_{\lambda/\mu,\nu}(q)$
 are defined as the coefficients in the expansion
 \[
 \schurS_{\lambda/\mu}(\xvec) = \sum_{\nu}K_{\lambda/\mu,\nu}(q) \hallLittlewoodP_{\nu}(\xvec;q).
@@ -709,7 +727,7 @@ transformations, rotations, and catabolism transformations
 
 In \cite{LascouxSchutzenberger1981}, \name{Alain Lascoux} 
 and \name[M.P. Schützenberger]{Marcel-Paul Schützenberger} introduce the notion 
-of \defin{cyclage}. Let $\mu$ be a partition,
+of \defin{cyclage}\label{cyclageDefinition}. Let $\mu$ be a partition,
 and consider the set $\SSYT(\cdot,\mu) \coloneqq \bigcup_\lambda \SSYT(\lambda,\mu)$.
 That is, the set of all semistandard Young tableaux with content $\mu$.
 They define a poset structure on $\SSYT(\cdot,\mu)$ via the covering relations
@@ -718,7 +736,7 @@ They define a poset structure on $\SSYT(\cdot,\mu)$ via the covering relations
 \]
 where $\equiv$ denotes \hyperref[knuthRelations]{Knuth equivalence}. This is in fact a graded poset,
 whose grading is given by cocharge.
-See \cite[Section 5.6]{Lothaire2002} for more properties of cyclage.
+See \cite[Section~5.6]{Lothaire2002} for more properties of cyclage.
 
 \begin{example*}[Figure of a cyclage poset]
 The charge is displayed on the right hand side of each tableau.
@@ -730,13 +748,13 @@ The charge is displayed on the right hand side of each tableau.
  
 \subsection[catabolism]{Catabolism}
  
- Catabolism is defined in \cite[Exercise 5.6.1]{Lothaire2002} as follows.
- Given a tableau $T$ of shape $\lambda$, let $F$ be the first row of length $\lambda_1$
- and $R$ be the tableau consisting of the remaining rows.
- Perform row insertion on $F \cdot \rw(R)$. 
- This gives a new tableau with the same weight as $T$, 
- and charge has increased by $|\lambda|-\lambda_1$.
- Tableaux with only one row are the only fixed points under catabolism.
+Catabolism is defined in \cite[Exercise~5.6.1]{Lothaire2002} as follows.
+Given a tableau $T$ of shape $\lambda$, let $F$ be the first row of length $\lambda_1$
+and $R$ be the tableau consisting of the remaining rows.
+Perform row insertion on $F \cdot \rw(R)$.
+This gives a new tableau with the same weight as $T$,
+and charge has increased by $|\lambda|-\lambda_1$.
+Tableaux with only one row are the only fixed points under catabolism.
  
 \begin{example*}[Catabolism of a tableau]
 In this example, we start with
@@ -785,7 +803,8 @@ Using the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}, one can sho
 where $N_{\mu\nu}$ is the number of $n \times n$-matrices with entries in $\setN$,
 row sums are determined by $\mu$ and column-sums are determined by $\nu$.
 
-There is a $q$-analogue of this in the case $\nu=1^n$, see \cite[Corollary 1.3]{Kirillov2000}.
+There is a $q$-analogue of this in the case $\nu=1^n$, see
+\cite[Corollary~1.3]{Kirillov2000}.
 \[
 \sum_{\lambda \vdash n}  K_{\lambda \mu} K_{\lambda, 1^n}(q) = q^{n(\mu')} \qbinom{n}{\mu_1,\dotsc,\mu_\ell}_q.
 \]
@@ -849,7 +868,8 @@ We introduce $\kostantP^\eta_q(w)$, which is a generalization of the $q$-analog 
 \sum_{w \in \setZ^N} \kostantP^\eta_q(w)\xvec^w
 = \prod_{(i,j) \in R^+_\eta} \frac{1}{1-q\frac{x_i}{x_j}}.
 \end{equation*}
-Finally, the \defin{parabolic Kostka polynomial} $K_{\lambda,R}(q)$ is defined as
+Finally, the \defin{parabolic Kostka polynomial}
+\label{parabolicKostkaPolynomial} $K_{\lambda,R}(q)$ is defined as
 \begin{equation*}
 K_{\lambda,R}(q) = \sum_{\sigma \in \symS_N}
 (-1)^{\length(\sigma)} \kostantP^\eta_q\left( \sigma(\lambda + \rho) - (\gamma+\rho) \right),
@@ -876,13 +896,15 @@ This is a type $C$ analogue of the charge formula for ordinary
 
 \subsection[kostkaFoulkesRect]{Rectangular special case}
 
-When all $R^j$ are rectangles, the $K_{\lambda,R}(q)$ are \defin{Poincaré polynomials}.
+When all $R^j$ are rectangles, the $K_{\lambda,R}(q)$ are
+\defin{Poincaré polynomials}\label{poincarePolynomial}.
 
 Several conjectures regarding this special case appear in
 \cite{Shimozono2005GeneralizedKostka}.
 In particular, there is a connection with \hyperref[LLT]{LLT polynomials}.
 
-When the part sizes in the rectangles $R^j$ are weakly decreasing, we have a \defin{dominant sequence of rectangles}.
+When the part sizes in the rectangles $R^j$ are weakly decreasing, we have a
+\defin{dominant sequence of rectangles}\label{dominantSequenceOfRectangles}.
 In this case, it is known that $K_{\lambda,R}(q) \in \setN[q]$, via a rigged configuration proof.
 A charge formula is conjectured in \cite[Conj.~27]{ShimozonoWeyman2000},
 and later proved by \name{Mark Shimozono} \cite[Thm.~11]{Shimozono2001}.
@@ -890,7 +912,8 @@ There,
 \[
 K_{\lambda,R}(q) = \sum_{T \in LRT(\lambda,R)} q^{\charge_R(T)}
 \]
-where $\charge_R$ is a generalization of charge, and $LRT(\lambda,R)$ is the set of certain Littlewood--Richardson tableaux.
+where $\charge_R$ is a generalization of charge, and $LRT(\lambda,R)$ is the
+set of certain \hyperref[lrTableaux]{Littlewood--Richardson tableaux}.
 See \cite{KirillovShimozono2002,KirillovSchillingShimozono2001,SchillingWarnaar1999} 
 for more background.
  
@@ -933,12 +956,15 @@ conjectures in the other classical types \cite{LecouveyLenart2021}.
 
 \section[quantumKostka]{Quantum Kostka coefficients}
 
-The quantum Kostka coefficients arise in the study of the
-quantum cohomology of the Grassmannian, \cite{PetrovicRadovanovic2016}.
+The quantum Kostka coefficients arise in the study of the quantum cohomology
+of the \hyperref[grassmannianVarieties]{Grassmannian}
+\cite{PetrovicRadovanovic2016}.
 A combinatorial formula for these coefficients first appeared in \cite{BertramCiocanFontanineFulton1999}.
 
 Let $\lambda \subseteq n \times k$ and suppose $\nu$ satisfies
-$|\nu| = |\lambda| + m(n+k)$. Then the \defin{quantum Kostka coefficient} $K_{\lambda \nu}^{k,n}$
+$|\nu| = |\lambda| + m(n+k)$. Then the
+\defin{quantum Kostka coefficient}\label{quantumKostkaCoefficient}
+$K_{\lambda \nu}^{k,n}$
 is given by
 \[
 K_{\lambda \nu}^{k,n} = \sum_{\rho} \sign(\rho/\lambda) K_{\rho \nu}
@@ -955,8 +981,9 @@ for all ribbons $r_j$ where the width is the number of columns the ribbon occupi
 
 \name{Anatol N. Kirillov} gives new combinatorial formulas for modified
 Hall--Littlewood polynomials, for transition coefficients between elementary
-and Hall--Littlewood bases, and for point counts on unipotent partial flag
-varieties \cite{Kirillov2000}.  The same paper reviews $q$-analogues of
+and Hall--Littlewood bases, and for point counts on unipotent
+\hyperref[flagVarieties]{partial flag varieties} \cite{Kirillov2000}.  The
+same paper reviews $q$-analogues of
 Littlewood--Richardson coefficients and formulates conjectures for
 one-dimensional sums and generalized Kostka--Foulkes polynomials.
 
