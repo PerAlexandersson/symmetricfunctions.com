@@ -104,7 +104,7 @@ then $F$ is real-rooted and $f \interl F$.
 The theorem states more regarding root placements and multiplicities.
 
 
-The following criterion from \cite[Thm. 2.1]{LiuWang2007} is often useful.
+The following criterion from \cite[Thm.~2.1]{LiuWang2007} is often useful.
 \begin{theorem}[Liu--Wang, 2007]
 Let $F,f,g \in \setR[t]$ satisfy
 \[
@@ -144,7 +144,7 @@ let $B(f,g)$ be the \defin{Bézout matrix}, whose $(i,j)$ entry is equal to the 
  \frac{f(x)g(y) - f(y)g(x)}{x-y}.
 \]
 
-\begin{theorem}[Bézout's theorem, {\cite[Cor. 9.145]{Fisk2006x}}]
+\begin{theorem}[Bézout's theorem, {\cite[Cor.~9.145]{Fisk2006x}}]
 Let $f(t)$ be a polynomial of degree $d$ and $g(t)$ a polynomial of degree $d-1$.
 Then $f(t)$ and $g(t)$ are both real-rooted and $g$ strictly interlaces $f$
 if and only if $B(f,g)$ is positive definite.
@@ -171,7 +171,8 @@ a_0 & a_1 & a_2 & a_3 & \dotsb \\
 \vdots & \vdots & \vdots & \vdots & \ddots
 \end{pmatrix}.
 \]
-Then \(H(p_0,p_1)\) is \hyperref[totallyNonnegative]{totally non-negative} if and only if \(p_1 \interl p_0\).
+Then $H(p_0,p_1)$ is \hyperref[totallyNonnegative]{totally non-negative}
+if and only if $p_1 \interl p_0$.
 \end{theorem}
 
 This criterion packages interlacing roots as total non-negativity of a
@@ -303,13 +304,13 @@ Thus ordinary pairwise interlacing does not imply full interlacing.
 \subsection[realMatrixRecursion]{Matrices preserving interlacing sequences}
 
 
-The following matrix criterion is proved in \cite[Thm. 7.8.5]{Branden2015}.
+The following matrix criterion is proved in \cite[Thm.~7.8.5]{Branden2015}.
 
 \begin{theorem}[Matrices preserving interlacing sequences]
 Let $G$ be an $m \times n$ matrix of polynomials in $t$.
 Then $G : \mathscr{F}_n^+ \to \mathscr{F}_m^+$ if and only if
 \begin{enumerate}
-\item All entries of $G$ have nonnegative coefficients, and
+\item All entries of $G$ have non-negative coefficients, and
 \item For every $2{\times}2$ sub-matrix
 $\begin{bmatrix}
  a(t) & b(t) \\
@@ -323,12 +324,12 @@ $\lambda, \mu > 0$, we have
 \end{theorem}
 
 
-\begin{example*}[Minors preserving interleaving sequences]
+\begin{example*}[Small matrices preserving interleaving sequences]
 
 There are 81 matrices with entries in $\{0,1,t\}$.
-Remove those where first and last row are equal and those where one of the rows is $(0,0)$.
-There are 56 such matrices left, and among these, the following matrices
-satisfy the conditions in the theorem above.
+Remove those whose first and last rows are equal and those where one row is
+$(0,0)$.  This leaves 56 matrices; among them, the following matrices satisfy
+the conditions in the theorem above.
 \begin{equation*}
 \begin{pmatrix}0 & 1 \\ 0 & t\end{pmatrix}, \quad
 \begin{pmatrix}0 & 1 \\ t & 0\end{pmatrix}, \quad
@@ -361,9 +362,10 @@ satisfy the conditions in the theorem above.
 
 \subsection[compatiblePolynomials]{Compatible polynomials}
 
-Chudnovsky and Seymour introduced a concept closely related to interleaving sequences
-of polynomials. The polynomials $f_1,\dotsc,f_k \in \setR[z]$ have a \defin{common interlacing}
-if there is some $h \in \setR[z]$ with $h \interl f_j$ for all $j$.
+Chudnovsky and Seymour introduced a concept closely related to interleaving
+sequences of polynomials. The polynomials $f_1,\dotsc,f_k \in \setR[z]$
+have a \defin{common interlacing} if there is some $h \in \setR[z]$
+with $h \interl f_j$ for all $j$.
 
 \begin{theorem}[Obreschkoff--Dedieu, see
 {\cite{Obreschkoff1963,Dedieu1992} and \cite[Thm.~8]{Branden2004operators}}]
@@ -381,7 +383,8 @@ non-negative compatibility theorem below.
 
 \begin{theorem}[Chudnovsky--Seymour, 2007, \cite{ChudnovskySeymour2007}]
 
-Let $\{f_1,f_2,\dotsc,f_n\}$ be a set of real-rooted polynomials with \emph{positive} leading coefficients.
+Let $\{f_1,f_2,\dotsc,f_n\}$ be a set of real-rooted polynomials with
+\emph{positive} leading coefficients.
 Such a set is said to be \defin{compatible} if for all
 choices $\lambda_j\geq 0$, the sum $\sum_{j=1}^n \lambda_j f_j$ is real-rooted.
 
@@ -394,9 +397,10 @@ Then the following are equivalent:
 \end{itemize}
 \end{theorem}
 This theorem can be generalized to polynomials with arbitrary real
-coefficients (with negative leading coefficients), see \cite{LeakeRyder2024x}.
+coefficients, allowing negative leading coefficients; see
+\cite{LeakeRyder2024x}.
 
-Another very interesting technique is presented in \cite{Bencs2014},
+Another useful technique is presented in \cite{Bencs2014},
 where Christoffel--Darboux type identities are used to show interlacing.
 This exploits an idea similar to \hyperref[bezoutMatrix]{Bézout matrices}.
 By taking the limit,
@@ -420,9 +424,9 @@ This is especially useful when a Christoffel--Darboux identity gives a
 closed form for the difference quotient above.
 
 \begin{theorem}[Interlacing families, see \cite{Lau2022InterlacingFamilies}]
-Let $T$ be a rooted tree whose leaves are labelled by real-rooted
+Let $T$ be a rooted tree whose leaves are labeled by real-rooted
 polynomials of the same degree and with positive leading coefficients.
-Label every internal vertex by the sum of the polynomials labelling its
+Label every internal vertex by the sum of the polynomials labeling its
 children. Suppose that the children of every internal vertex have a
 common interlacing. Then, for each root index $j$, there are leaves
 $a$ and $b$ such that
@@ -464,7 +468,8 @@ Then there are unique polynomials $a,b \in \setR[x]$ such that
 \[
  p(x) = a(x) + x b(x), \qquad I_d(a)=a, \qquad I_{d-1}(b)=b.
 \]
-This is the \defin{symmetric $I_d$-decomposition} of $p$, and it is given explicitly by
+This is the \defin{symmetric $I_d$-decomposition} of $p$, and it is given
+explicitly by
 \[
  a = \frac{p - x I_d(p)}{1-x}, \qquad b = \frac{I_d(p)-p}{1-x}.
 \]
@@ -477,12 +482,14 @@ and to define
 \[
  R_d(f)(x) \coloneqq (-1)^d f(-1-x).
 \]
-The paper uses the proper-position relation $\prec$; in the present non-negative coefficient
-setting, this can be read as an interlacing relation.
+The paper uses the proper-position relation $\prec$; in the present
+non-negative coefficient setting, this can be read as an interlacing relation.
 
-\begin{theorem}[Brändén--Solus, \cite[Thm. 2.7]{BrandenSolus2018}]
-Let $p \in \setR[x]$ have degree at most $d$, and let $(a,b)$ be its symmetric $I_d$-decomposition.
-Assume that both $a$ and $b$ have non-negative coefficients. Then the following are equivalent:
+\begin{theorem}[Brändén--Solus, \cite[Thm.~2.7]{BrandenSolus2018}]
+Let $p \in \setR[x]$ have degree at most $d$, and let $(a,b)$ be its
+symmetric $I_d$-decomposition.
+Assume that both $a$ and $b$ have non-negative coefficients. Then the
+following are equivalent:
 \begin{itemize}
 \item $b \prec a$;
 \item $a \prec p$;
@@ -490,13 +497,15 @@ Assume that both $a$ and $b$ have non-negative coefficients. Then the following 
 \item $I_d(p) \prec p$;
 \item $R_d(f) \prec f$.
 \end{itemize}
-In particular, these conditions imply that $p$, $a$, and $b$ are all real-rooted.
+In particular, these conditions imply that $p$, $a$, and $b$ are all
+real-rooted.
 \end{theorem}
 
 Thus, an interlacing statement between a polynomial and its reciprocal
 forces the symmetric pieces of the decomposition to be real-rooted as well.
 This is one reason the theorem shows up naturally for reflexive
-$h^*$-polynomials; see \hyperref[magicPositiveEhrhart]{magic positivity} on the polytope page.
+$h^*$-polynomials; see \hyperref[magicPositiveEhrhart]{magic positivity} on
+the polytope page.
 
 
 
@@ -525,25 +534,26 @@ is real-rooted.
 
 In \cite{Wagner1992}, the following is proved.
 \begin{theorem}
-Suppose $f,g$ are polynomials, expressed as
+Suppose $f,g$ are polynomials for which
 \[
  \sum_{n \geq 0} f(n) z^n = \frac{W(f)(z)}{(1-z)^{1+\deg f}}, \quad
  \sum_{n \geq 0} g(n) z^n = \frac{W(g)(z)}{(1-z)^{1+\deg g}},
 \]
-with $W(f)(z)$ and $W(g)(z)$ being real-rooted with non-positive roots, then $W(fg)(z)$
-also have real and non-positive roots.
+where $W(f)(z)$ and $W(g)(z)$ are real-rooted with non-positive roots.
+Then $W(fg)(z)$ also has real and non-positive roots.
 \end{theorem}
-This, in particular, shows that if $f$ and $g$ are \hyperref[ehrhart]{Ehrhart functions} of two polytopes $P_f$ and $P_g$
-with real-rooted $h^*$-polynomials, then the $h^*$-polynomial of the polytope product $P_f * P_g$
-is also real-rooted.
+In particular, this shows that if $f$ and $g$ are
+\hyperref[ehrhart]{Ehrhart functions} of two polytopes $P_f$ and $P_g$
+with real-rooted $h^*$-polynomials, then the $h^*$-polynomial of the polytope
+product $P_f * P_g$ is also real-rooted.
 For examples of polytopes with real-rooted $h^*$-polynomials, see
 \hyperref[realRootedTableaux]{tableaux and polytopes}.
 
 
 
 \begin{theorem}[See \cite[Thm.~9]{Branden2004operators}]
-If $\phi : \setR[x] \to \setR[x]$ is a linear operator that preserves real-rootedness,
-then $\phi$ preserves the interleaving property:
+If $\phi : \setR[x] \to \setR[x]$ is a linear operator that preserves
+real-rootedness, then $\phi$ preserves the interleaving property:
 \[
   f \interl g \implies \phi(f) \interl \phi(g).
 \]
@@ -553,19 +563,21 @@ then $\phi$ preserves the interleaving property:
 
 
 
-\subsection[derangedMap]{The deranged map}
+\subsection[derangedMap]{Derangement and Narayana transformations}
 
 Another operator with strong interlacing properties is the following.
-Let $d_n(x)$ denote the classical derangement polynomial, and define the linear map
-$D : \setR[x] \to \setR[x]$ by
+Let $d_n(x)$ denote the classical
+\hyperref[peakRunDerangementPolynomials]{derangement polynomial}, and define
+the linear map $D : \setR[x] \to \setR[x]$ by
 \[
  D(x^n) \coloneqq d_n(x).
 \]
 If $p$ and $q$ are degree-$n$ polynomials with roots
 $\alpha_1 \leq \dotsb \leq \alpha_n$ and $\beta_1 \leq \dotsb \leq \beta_n$
-in $[-1,0]$, write $p \leq_{\mathrm{root}} q$ if $\alpha_k \leq \beta_k$ for all $k$.
+in $[-1,0]$, write $p \leq_{\mathrm{root}} q$ if
+$\alpha_k \leq \beta_k$ for all $k$.
 
-\begin{theorem}[Brändén--Solus, \cite[Thm. 3.6]{BrandenSolus2018}]
+\begin{theorem}[Brändén--Solus, \cite[Thm.~3.6]{BrandenSolus2018}]
 If $p$ and $q$ have all roots in $[-1,0]$ and $p \leq_{\mathrm{root}} q$, then
 $D(p) \prec D(q)$.
 \end{theorem}
@@ -575,22 +587,23 @@ As a consequence, if
 \[
  p(x)=\sum_{k=0}^n c_k x^k (x+1)^{n-k}, \qquad c_k \geq 0,
 \]
-then \cite[Cor. 3.7]{BrandenSolus2018} gives
+then \cite[Cor.~3.7]{BrandenSolus2018} gives
 \[
  A_n \prec D(p) \prec d_n.
 \]
-This is one route to the interlacing results for colored Eulerian and colored derangement
-polynomials on \hyperref[realRootedWords]{the permutation page}.
+This is one route to the interlacing results for colored
+\hyperref[ex:eulerianSturm]{Eulerian} and colored derangement polynomials on
+\hyperref[realRootedWords]{the permutation page}.
 
 There is an analogous basis-transformation viewpoint for other classical
-polynomial triangles.  The Eulerian transformation \(A(x^n)=A_n(x)\) does not
+polynomial triangles.  The Eulerian transformation $A(x^n)=A_n(x)$ does not
 preserve real-rootedness in complete generality \cite{BrandenJochemko2022},
 but it does preserve real-rootedness on the non-negative cone discussed on the
 \hyperref[gammaPositivity]{gamma-positivity page}
 \cite{Athanasiadis2025EulerianTransformation}.  In parallel,
 \name{Jianxi Mao} and \name{Lijie Wang} prove that the Narayana
-transformation \(T_{N_m}(x^n)=N_{n,m}(x)\), interpolating between the type
-\(B\) and type \(A\) Narayana polynomials, preserves real-rootedness for
+transformation $T_{N_m}(x^n)=N_{n,m}(x)$, interpolating between the type
+$B$ and type $A$ Narayana polynomials, preserves real-rootedness for
 polynomials with non-negative coefficients; see
 \hyperref[narayanaTransformations]{Narayana transformations} and
 \cite{MaoWang2026x}.
@@ -610,7 +623,7 @@ is a generalized Sturm sequence, and for every fixed $n$ the row
 \[
   d_{n,0}(t),\,d_{n,1}(t),\,\dotsc,\,d_{n,n}(t)
 \]
-is an interlacing sequence of real-rooted polynomials. They prove
+is an interlacing sequence of real-rooted polynomials.  They prove
 analogous statements for the type $B$ and $r$-colored derangement
 transformations, and obtain sufficient conditions for such row and
 column interlacing in a more general recurrence setup.
