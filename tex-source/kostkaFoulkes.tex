@@ -12,7 +12,7 @@ and the Schur expansion of the complete homogeneous symmetric functions:
 \qquad 
 \completeH_\mu = \sum_\lambda K_{\lambda\mu} \schurS_\lambda.
 \]
-Hence, $K_{\lambda\mu}$ is equal to the number of \hyperref[prelimTableaux]{semi-standard Young tableaux}
+Hence, $K_{\lambda\mu}$ is equal to the number of \hyperref[prelimTableaux]{semistandard Young tableaux}
 of shape $\lambda$ and content $\mu$.
 
 From this, we immediately have that $K_{\lambda\lambda}=1$, $K_{\lambda,1^n} = f^{\lambda}$
@@ -254,7 +254,7 @@ KostantPartitionFunction[{5,2,-7}]
 Kostant's partition function is related to juggling sequences,
 see \cite{BenedettiHanusaHarrisMoralesSimpson2020}.
 
-The number of summands used in expressing $w$,converges to a Gaussan distribution,
+The number of summands used in expressing $w$ converges to a Gaussian distribution,
 see \cite{HarrisRahmoellerSchneider2019x}. Similar properties for other root systems hold.
 
 
@@ -272,7 +272,7 @@ The $q$-analogue is then defined via
 \begin{equation*}
 \prod_{\alpha \in \Phi^+}  \frac{1}{1-q e^\alpha} = \sum_{w} \kostantP_q(w) e^w.
 \end{equation*}
-Thus, the coefficient $[q^j]\kostantP_q(w)$ count the number of ways to express $w$
+Thus, the coefficient $[q^j]\kostantP_q(w)$ counts the number of ways to express $w$
 as a sum of exactly $j$ positive roots.
 
 In \cite{RassartThesis}, a different $q$-analog, defined via
@@ -328,7 +328,7 @@ We have that
 \subsection[kostkaFromContingency]{Kostka coefficients from contingency tables}
 
 Let $\lambda$ and $\mu$ be partitions of lengths at most $n$
-and let and $\rho = (n-1,n-2,\dotsc,2,1)$.
+and let $\rho = (n-1,n-2,\dotsc,2,1)$.
 Moreover, let $M_\alpha[\beta]$ be the number of non-negative integer matrices
 with row sums given by $(\alpha_1,\dotsc,\alpha_n)$
 and column sums given by $(\beta_1,\dotsc,\beta_n)$.
@@ -383,7 +383,7 @@ Set
 \delta \coloneqq \frac{1}{2}(k-1,k-3,\dotsc,3-k,1-k).
 \]
 
-\begin{theorem}[Steinbergs formula \cite{Steinberg1961,RassartThesis}]
+\begin{theorem}[Steinberg's formula \cite{Steinberg1961,RassartThesis}]
 We have that the \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson coefficient} 
 $c^{\nu}_{\lambda \mu}$ is given by
 \[
@@ -435,7 +435,7 @@ This can perhaps be seen as a type $B$ analog of Steinberg's formula.
 
 
 In \cite{BerensteinZelevinsky1988} the authors
-attributes the following formula to \name{Bertram Kostant}:
+attribute the following formula to \name{Bertram Kostant}:
 \begin{theorem}[Kostant]
 Let $\lambda,\mu,\nu$ be partitions of length at most $\ell$, such that $|\nu|=|\lambda|+|\mu|$. Then
 \begin{equation}
@@ -447,7 +447,7 @@ where $\rho = \tfrac12 (\ell-1,\ell-3,\dotsc,1-\ell)$.
 
 A generalization of this formula exists 
 for \hyperref[toricSchurIntoSchur]{Gromov--Witten invariants},
-which show up in the study of \hyperref[schurToric]{toric Schur functions}.
+which appear in the study of \hyperref[schurToric]{toric Schur functions}.
 
 
 
@@ -472,7 +472,7 @@ It then remains to prove that
 for fixed vectors $\alpha \in \setN^n$ and $\beta \in \setZ^n$,
 the map $k \mapsto \kostantP\left( k \alpha + \beta \right)$ is 
 a polynomial for large enough $k$.
-This fact follows \cite[Thm. 1]{Sturmfels1995} together with the fact that the 
+This fact follows from \cite[Thm. 1]{Sturmfels1995} together with the fact that the
 vector partition function $\phi_A$ in type $A$ (another name for $\kostantP$)
 arises from a unimodular matrix (all minors have determinant in $\{-1,0,1\}$).
 Unimodularity for the matrix corresponding to Kostant's partition function
@@ -655,7 +655,7 @@ of elementary Knuth transforms.
 See also the close relationship with the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}.
 
 For words of partition weight, we have some extra nice properties:
-Each equivalence class contains a unique word which is the reading word of a semi-standard Young tableau.
+Each equivalence class contains a unique word which is the reading word of a semistandard Young tableau.
 Furthermore, one can show that $w \equiv w'$ then $\charge(w)=\charge(w')$,
 see \cite[Cor. 2.4.38]{Butler1994}.
 
@@ -814,14 +814,16 @@ The following definition appears in \cite{ShimozonoWeyman2000}.
 
 Let $R = (R^1,\dotsc,R^k)$ be a sequence of partitions,
 and let $\lambda$ be a partition such that $|\lambda| = \sum_j |R^j|$.
-Let $\gamma$ be the partition whose parts are the multiset of parts of the $R^j$.
 Furthermore, let $\eta_j \coloneqq \length(R^j)$ and $N \coloneqq \sum_j \eta_j$.
+Let $\gamma$ be the length-$N$ sequence obtained by concatenating the parts of
+the $R^j$.
 Let $M$ be the $N\times N$ matrix with diagonal blocks of size $\eta_j$,
 and let $R^+_\eta \subset [N]^2$ be the subset of entries in $M$ strictly above the blocks.
 
 
 \begin{example*}
-This example is from \href{https://www.aimath.org/WWN/kostka/gksw.pdf}{these notes by Shimozono}.
+This example is from Shimozono's AIM note on generalized Kostka polynomials
+\cite{Shimozono2005GeneralizedKostka}.
 
 Let $R=((4,4),(3),(1,1,1))$. Then $\eta = (2,1,3)$, $N=6$ and $\gamma = 443111$.
 The matrix $M$ is as follows where $R^+_\eta$ consists of the lightgreen boxes.
@@ -844,16 +846,17 @@ R^+_\eta = \{13,14,15,16, \; 23,24,25,26, \; 34, 35, 36 \}.
 We introduce $\kostantP^\eta_q(w)$, which is a generalization of the $q$-analog of the 
 \hyperref[kostkaFromKostant]{Kostant partition function}, via the relation
 \begin{equation*}
-\sum_{w \in \setZ^n} \kostantP^\eta_q(w) = \prod_{(i,j) \in R^+_\eta} \frac{1}{1-q\frac{x_i}{x_j}}.
+\sum_{w \in \setZ^N} \kostantP^\eta_q(w)\xvec^w
+= \prod_{(i,j) \in R^+_\eta} \frac{1}{1-q\frac{x_i}{x_j}}.
 \end{equation*}
 Finally, the \defin{parabolic Kostka polynomial} $K_{\lambda,R}(q)$ is defined as
 \begin{equation*}
-K_{\lambda,R}(q) = \sum_{\sigma \in \symS_n} 
-(-1)^{\length(\sigma)} \kostantP^\eta_q\left( \sigma(\lambda + \rho) - (\mu+\rho) \right),
+K_{\lambda,R}(q) = \sum_{\sigma \in \symS_N}
+(-1)^{\length(\sigma)} \kostantP^\eta_q\left( \sigma(\lambda + \rho) - (\gamma+\rho) \right),
 \end{equation*}
 where $\rho = (N-1,\dotsc,2,1,0)$.
 It is straightforward from this definition to see that if each 
-partition $R_i = (\mu_i)$, a single part, then $K_{\lambda,R}(q) = K_{\lambda,\mu}(q)$,
+partition $R^i = (\mu_i)$ has a single part, then $K_{\lambda,R}(q) = K_{\lambda,\mu}(q)$,
 the standard \hyperref[kostkaFromKostant]{Kostka--Foulkes polynomial}.
 
 One can show \cite[Prop. 8]{ShimozonoWeyman2000} that 
@@ -875,7 +878,8 @@ This is a type $C$ analogue of the charge formula for ordinary
 
 When all $R^j$ are rectangles, the $K_{\lambda,R}(q)$ are \defin{Poincaré polynomials}.
 
-Several conjectures regarding this special case appear in \href{https://www.aimath.org/WWN/kostka/gksw.pdf}{these notes}.
+Several conjectures regarding this special case appear in
+\cite{Shimozono2005GeneralizedKostka}.
 In particular, there is a connection with \hyperref[LLT]{LLT polynomials}.
 
 When the part sizes in the rectangles $R^j$ are weakly decreasing, we have a \defin{dominant sequence of rectangles}.
@@ -894,7 +898,8 @@ For a representation-theoretic realization of $q$-Kostka polynomials,
 \name{Adriano M. Garsia} and \name{Claudio Procesi} construct graded
 $\symS_n$-modules whose graded multiplicities are governed by these
 polynomials \cite{GarsiaProcesi1992}.  This connects the Kostka--Foulkes
-theory with Springer fibers and Tanisaki-type quotient rings.
+theory with \hyperref[springerFibers]{Springer fibers} and Tanisaki-type
+quotient rings.
 
 \name{Pasquale Petrullo} and \name{Domenico Senato} introduce a monoid of
 admissible Kostka--Foulkes polynomials \cite{PetrulloSenato2020}.  These
@@ -917,8 +922,13 @@ layered graph gives $K_{\lambda,\mu}$.
 
 \subsection[kostkaFoulkesAtoms]{Atomic decomposition}
 
-
-\href{http://fpsac2019.fmf.uni-lj.si/resources/Posters/76poster.pdf}{See this poster.}
+Lascoux's atomic decomposition asks for a positive expansion of
+Kostka--Foulkes polynomials into atomic polynomials.  \name{Cédric Lecouvey}
+and \name{Cristian Lenart} formulate this idea uniformly for characters and
+crystals, prove it in type $A$, and establish stable-range results and
+conjectures in the other classical types \cite{LecouveyLenart2021}.  A
+\href{http://fpsac2019.fmf.uni-lj.si/resources/Posters/76poster.pdf}{FPSAC
+2019 poster} gives a compact overview.
 
 
 
