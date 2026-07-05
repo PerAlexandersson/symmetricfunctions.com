@@ -5,8 +5,8 @@
 \section[tableauOperations]{Operations on Young tableaux}
 
 
-Here we cover some miscellaneous operations on tableaux.
-The reader is encouraged to read about 
+We collect several standard operations on tableaux.
+The reader is encouraged to read about
 the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence} first.
 
 
@@ -15,7 +15,7 @@ Here is an overview of the notation:
 \item $\revCompl : \symS_n \to \symS_n$ via $\pi \to n+1 - \rev(\pi)$, the reverse-complement operator.
 \item $\revCompl_m : [m]^n \to [m]^n$ is defined similarly as  $w \to m+1 - \rev(w)$.
 \item $BK_i$ is the Bender--Knuth involution.
-\item $\evac$ and $\evac^*$ is evacuation and dual evacuation, respectively.
+\item $\evac$ and $\evac^*$ are evacuation and dual evacuation, respectively.
 \item $\promotion$ is promotion.
 \item $\jdt$ is the jeu-de-taquin sliding operator.
 \item $\ins$ is the operator that sends a word to its insertion tableau under row insertion.
@@ -28,16 +28,16 @@ and sending entry $k$ to $n+1-k$.
 \subsection[benderKnuth]{Bender--Knuth involutions}
 
 The \defin{Bender--Knuth involution} $BK_i$ is a map on $\SSYT(\lambda/\mu, w)$
-to $\SSYT(\lambda/\mu, s_i w)$, where $w$ 
+to $\SSYT(\lambda/\mu, s_i w)$, where $w$
 is the \hyperref[notationPermutations]{weight of the tableau}.
 
 For $T \in \SSYT(\lambda/\mu, w)$, ignore all entries not equal to $i$ or $i+1$.
 Furthermore, ignore columns that contain both $i$ and $i+1$.
-What remains is a disjoint set of rows, each row is a sequence of $i$s immediately 
+What remains is a disjoint set of rows; each row is a sequence of $i$s immediately
 followed by a sequence of $(i+1)$s.
 
 The map $BK_i$ replaces each such sequence $i^a(i+1)^b$ with  $i^b(i+1)^a$.
-It is easy to verify that $BK_i$ preserves the property of being a semistandard Young tableau.
+The resulting filling is again a semistandard Young tableau.
 
 \begin{example*}[Bender--Knuth]
 Here is the action of $BK_2$, by showing the steps described above.
@@ -50,17 +50,17 @@ Here is the action of $BK_2$, by showing the steps described above.
 \begin{ytableau}
  & & & & & & &2&2&2&3 \\
  &2&2&2&2&2&  \\
- & & & & 
+ & & & &
 \end{ytableau}
 \begin{ytableau}
  & & & & & & &2&3&3&3 \\
  &3&3&3&3&3&  \\
- & & & & 
+ & & & &
 \end{ytableau}
 \begin{ytableau}
  1&1&1&1&1&1&2&2&3&3&3 \\
  2&3&3&3&3&3&3 \\
- 3&4&4&4&4 
+ 3&4&4&4&4
 \end{ytableau}
 \end{figure}
 
@@ -85,8 +85,8 @@ groups.
 
 \subsection[jeuDeTaquin]{Jeu de taquin}
 
-There is a  particular method to convert a skew SSYT to a non-skew shape
-via a series of slides, called \defin{Jeu-de-taquin}.
+There is a particular method to convert a skew SSYT to a non-skew shape
+via a series of slides, called \defin{jeu de taquin}.
 The slides are defined as follows under the conditions
 that $a \lt b$ and $a \leq b$, respectively.
 The boxes $b$ and $c$ may or may not be present.
@@ -103,7 +103,7 @@ a             & c & \none & \none \rightarrow &\none & \none \bullet & c
 \end{figure}
 
 Here, $\bullet$ represents an empty square.
-The sliding procedure applied to a skew tableau $T$ 
+The sliding procedure applied to a skew tableau $T$
 stops when a non-skew shape has been reached.
 It turns out that the result is independent of the order of the slides,
 and we denote the result by $\jdt(T)$.
@@ -139,32 +139,32 @@ The following is a sequence of slides applied to a skew tableau.
 \begin{ytableau}
 \none \bullet & 1 & 1 \\
 2 & 3 & 3 \\
-3 
+3
 \end{ytableau}
 
 \begin{ytableau}
 1 & \none \bullet & 1 \\
 2 & 3 & 3 \\
-3 
+3
 \end{ytableau}
 
 \begin{ytableau}
 1 & 1 & \none \bullet \\
 2 & 3 & 3 \\
-3 
+3
 \end{ytableau}
 
 \begin{ytableau}
 1 & 1 & 3 \\
 2 & 3  \\
-3 
+3
 \end{ytableau}
 \end{figure}
 
 \end{example*}
 
 
-\begin{theorem}[See \cite[Cor. 2.3.19]{Butler1994}]
+\begin{theorem}[See \cite[Cor.~2.3.19]{Butler1994}]
 Let $T$ be the skew tableau with $w_i$ at position $(n+1-i,i)$.
 Then $\jdt(T)$ is the same as the insertion tableau $\ins(w)$.
 \end{theorem}
@@ -189,11 +189,11 @@ anti-diagonal skew shape from the theorem above and rectifying:
 \]
 \end{example*}
 
-For a skew SSYT $T$, $\ins(\rw(T)) = \jdt(T)$. In other words, 
+For a skew SSYT $T$, $\ins(\rw(T)) = \jdt(T)$. In other words,
 performing jeu-de-taquin gives the same result as row insertion of the reading word of $T$.
 
 Recall the notion of \hyperref[tableauDescentSet]{descent} for skew SYT.
-In \cite[Lemma 3.2]{DoranIV1997}, it is shown that jeu-de-taquin preserves the descent set.
+In \cite[Lem.~3.2]{DoranIV1997}, it is shown that jeu-de-taquin preserves the descent set.
 This can be generalized to semistandard Young tableaux.
 
 \name{Nohra Hage} studies a super version of jeu de taquin, related to a
@@ -207,12 +207,12 @@ Littlewood--Richardson rule for the \hyperref[hookSchur]{super Schur functions}
 
 \bigskip
 
-We define \defin{promotion}, $\promotion$, on a 
+We define \defin{promotion}, $\promotion$, on a
 (skew) standard Young tableau with $n$ boxes by the composition
 \[
 \promotion(T) \coloneqq \left( BK_{n-1} \circ BK_{n-2} \circ \dotsm \circ BK_2 \circ BK_1 \right)(T).
 \]
-In other words, we swap 1 and 2 if they are not in the same row or column, 
+In other words, we swap 1 and 2 if they are not in the same row or column,
 then swap 2 and 3 if they are not in the same row or column, and so on.
 
 \name{Marcel-Paul Schützenberger} showed that $\promotion^n(T)=T$
@@ -223,7 +223,7 @@ such that promotion is mapped to rotation, see \hyperref[cspNonCrossingMatchings
 Promotion has the following properties, where $T$ is any skew standard Young tableau:
 \[
 \promotion(T)^t = \promotion(T^t)
-\quad 
+\quad
 \text{ and }
 \quad
 \promotion \circ \revCompl \circ T  = \revCompl \circ \promotion^{-1} \circ T.
@@ -240,7 +240,7 @@ Let $T$ be the following tableau.
 \begin{figure}
 \ytableaushort{1345,268,79}
 \end{figure}
-We replace the $9$ with a bullet and perform slides: 
+We replace the $9$ with a bullet and perform slides:
 \begin{figure}
 \ytableaushort{1345,268,7{\bullet}}
 \ytableaushort{1345,268,{\bullet}7}
@@ -254,7 +254,7 @@ The $\promotion^{-1}(T)$ is therefore
 \end{example*}
 
 See \cite{PurbhooRhee2017} for a proof that elements in $\SYT(m^n)$ with $m\geq n$,
-which has order $n$ under promotion, is equinumerous with $\symS_n$.
+whose promotion orbit has order $n$, are equinumerous with $\symS_n$.
 
 
 Promotion can be defined on \hyperref[linearExtension]{linear extensions} of
@@ -269,15 +269,16 @@ the orbit structure has a particularly simple description.
 \subsection[kpromotion]{k-Promotion}
 
 There is a generalization of promotion, acting on $\SSYT(\lambda,\cdot)$ with entries $\leq k$.
-This was introduced by \name{Craige Schensted} \cite{Schutzenberger1963,Schutzenberger1972}.
-We follow \cite{BennettMadillStokke2014}. Note that we define the inverse here, 
+This was introduced by \name[M.-P. Schützenberger]{Marcel-Paul Schützenberger}
+\cite{Schutzenberger1963,Schutzenberger1972}.
+We follow \cite{BennettMadillStokke2014}. Note that we define the inverse here,
 as this is consistent with previous notation.
 
 The $k$-promotion operator $\promotion_k$ may be defined via jeu-de-taquin as follows.
 Given $T \in \SSYT(\lambda,\cdot)$, remove all entries equal to $1$, such that a skew tableau is formed.
 Perform jeu-de-taquin slides until a straight shape $\mu \subseteq \lambda$ is reached.
-Subtract $1$ from all entries in the tableau and finally let the values in the skew shape 
-$\lambda/\mu$ have value $k$. The result is a semistandard tableau of shape $\lambda$.
+Subtract $1$ from all entries in the tableau and finally fill the cells of
+$\lambda/\mu$ with $k$. The result is a semistandard tableau of shape $\lambda$.
 
 Note that if $T$ has content $(\alpha_1,\dotsc,\alpha_k)$,
 then $\promotion_k(T)$ has content $(\alpha_2,\dotsc,\alpha_k,\alpha_1)$.
@@ -305,7 +306,7 @@ in order to find $\promotion_k(T)$,
 \begin{ytableau}
 1 & 1&1&1&2&4 \\
 2&3&3&3 & *(lightblue) 7 & *(lightblue) 7 \\
-3 & 5 & *(lightblue) 7 \\ 
+3 & 5 & *(lightblue) 7 \\
 6
 \end{ytableau}
 \end{figure}
@@ -314,8 +315,9 @@ in order to find $\promotion_k(T)$,
 \subsection[evacuation]{Evacuation}
 
 Evacuation was introduced by \name[M.-P. Schützenberger]{Marcel-Paul Schützenberger} \cite{Schutzenberger1963},
-and is an involution $\evac : \SYT(\lambda) \to \SYT(\lambda)$. 
-It is a special case of the \name{George Lusztig} involution on crystals, see e.g. \cite{MonicalPechenikScrimshaw2018}.
+and is an involution $\evac : \SYT(\lambda) \to \SYT(\lambda)$.
+It is a special case of the Lusztig involution on crystals, see e.g.
+\cite{MonicalPechenikScrimshaw2018}.
 
 It can be defined in several ways, the following is from \cite{Butler1994}.
 
@@ -333,7 +335,8 @@ Evacuation $\evac$ is computed step by step as described above.
 \ytableaushort{1358,249,67}
 \end{figure}
 
-As a second example, (taken from \cite{PonWang2011} adapted to our notation), $\evac$ sends the 
+As a second example, taken from \cite{PonWang2011} and adapted to our
+notation, $\evac$ sends the
 first SYT below to the second.
 \begin{figure}
 \ytableaushort{138,24,59,6{10},7}
@@ -343,7 +346,7 @@ first SYT below to the second.
 
 Alternatively, evacuation on $T \in \SYT(\lambda)$ can be computed using row-insertion as follows.
 \[
-\evac(T) = \ins \circ \revCompl \circ \rw(T) 
+\evac(T) = \ins \circ \revCompl \circ \rw(T)
 \]
 
 We may also define evacuation via Bender--Knuth operators, now acting on $\SSYT(\lambda,d)$:
@@ -369,19 +372,19 @@ evacuation involution are counted by a Green polynomial evaluated at $q=-1$.
 As a map $\evac_d^* : \SSYT(\lambda,d) \to \SSYT(\lambda,d)$, it
 can be defined via Bender--Knuth operators:
 \[
-\evac_d^* 
+\evac_d^*
 \coloneqq (BK_{d-1}) \circ (BK_{d-2} \circ BK_{d-1}) \circ (BK_{d-3} \circ BK_{d-2} \circ BK_{d-1})
 \circ \dotsb \circ (BK_{1} \circ BK_2 \circ \dotsb \circ BK_{d-2} \circ BK_{d-1}).
 \]
 
 We have the following properties of evacuation and promotion on SYT with $n$ boxes.
 \[
-\evac^2 = (\evac^*)^2 = id \qquad 
-\promotion \evac = \evac \promotion^{-1} \qquad 
+\evac^2 = (\evac^*)^2 = id \qquad
+\promotion \evac = \evac \promotion^{-1} \qquad
 \promotion^n  = \evac \evac^*
 \]
 
-\begin{problem}[See \cite[Remark 2.12]{PonWang2011}]
+\begin{problem}[See \cite[Rem.~2.12]{PonWang2011}]
 Can $\evac^*$ be described using RSK, as with $\evac$?
 That is, is there some nice involution $\revCompl^*(w)$ on words such that
 $\revCompl^*(w) \rskArrow (\evac^* \circ P, \evac^* \circ Q)$?
@@ -395,7 +398,7 @@ Let $w \in [d]^n$, then
 \[
 w \rskArrow (P,Q) \iff \revCompl(w) \rskArrow (\evac_n \circ P, \evac \circ Q).
 \]
-For dual RSK, we have 
+For dual RSK, we have
 \[
 w \rskDualArrow (P,Q) \iff  \revCompl(w) \rskDualArrow (\evac_n \circ P, \evac \circ Q).
 \]
@@ -413,7 +416,7 @@ rotation of matchings and permutations \cite{PfannererRubeyWestbury2020}.
 
 \subsection[RSKvsDualRSK]{RSK vs. dual RSK}
 
-\emph{Request!} If there is a reference for this somewhere, please let me know.
+\todo{Find a published reference for the RSK, dual RSK, and evacuation proposition.}
 
 \begin{proposition}[RSK, dual RSK and evacuation]
 
@@ -437,7 +440,7 @@ Then, by choosing $m$ sufficiently large,
 \]
 \end{proposition}
 \begin{proof*}
-First of all, \cite[Prop. 2.3.14]{Butler1994} states that for any word,
+First, \cite[Prop.~2.3.14]{Butler1994} states that for any word,
 \[
 w \rskArrow P \iff \rev(w) \rskDualArrow P^t.
 \]
@@ -454,7 +457,7 @@ A property of RSK says that
 \[
 \pi \rskArrow (P,Q) \iff \rev(\pi) \rskArrow (P^t,\evac(Q^t)).
 \]
-From this property, we have that
+Thus
 \[
 \begin{pmatrix}
 n & n-1 & \dotsc & 1 \\
@@ -490,7 +493,7 @@ Further properties of RSK say that
 \[
 \rev(w) \rskDualArrow P \iff \std(w) \rskArrow \std(P^t),
 \]
-so by standardization, we must have that the proposition holds for all biwords
+so by standardization, the proposition holds for all biwords
 with distinct entries.
 \end{proof*}
 
@@ -515,7 +518,7 @@ We have the following properties of crystals and \hyperref[rsk]{RSK}.
 These are phrased for the operator $\cryse_i$, but any of $\cryse_i$, $\crysf_i$ or $\cryss_i$
 can be used.
 
-Caveat! In order to apply an operator on row $1$ or $2$ on biword, 
+Caveat! In order to apply an operator to row $1$ or $2$ of a biword,
 one should first sort the columns according to the entries in \emph{the other row},
 followed by application of the operator.
 
@@ -543,7 +546,7 @@ We then apply $\cryse_1$ on the top row:
 1&1&1&2&2&3
 \end{pmatrix}
 \]
-The biword is then re-sorted in according to top row:
+The biword is then re-sorted according to the top row:
 \[
 \begin{pmatrix}
 1&1&1&2&2&3 \\
@@ -555,9 +558,9 @@ The biword is then re-sorted in according to top row:
 
 \subsection[crystalsAndRSKI]{Relationship with the RSK I}
 
-For proofs of the following statements, see \cite[Thm. 5.5.1]{Lothaire2002}.
+For proofs of the following statements, see \cite[Thm.~5.5.1]{Lothaire2002}.
 
-Let $w \in [d]^n$. Then 
+Let $w \in [d]^n$. Then
 \[
 w \rskArrow (P,Q)  \qquad \iff  \qquad \cryse_i \circ w  \rskArrow (\cryse_i \circ P,Q).
 \]
@@ -570,22 +573,24 @@ Let $W = (w_1,w_2)^T$ be a biword. Then the following are equivalent.
 \end{align}
 
 
-We also have the following relations with evacuation, see \cite[Prop. 2.87]{Shimozono2005}.
-Here $T$ is a semi-standard tableau with $n$ boxes.
+We also have the following relations with evacuation, see
+\cite[Prop.~2.87]{Shimozono2005}.
+Here $T$ is a semistandard tableau with $n$ boxes.
 \begin{itemize}
 
-\item 
+\item
 $\crysf_i(\evac_n(T)) = \evac_n( \cryse_{n-i}(T) )$
 
-\item 
+\item
 $\cryse_i(\evac_n(T)) = \evac_n( \crysf_{n-i}(T) )$
 
-\item 
+\item
 $\cryss_i(\evac_n(T)) = \evac_n( \cryss_{n-i}(T) )$
 
 \end{itemize}
 
-Note that if $\equiv$ denotes Knuth equivalence, then (\cite[Thm. 5.5.1]{Lothaire2002})
+Note that if $\equiv$ denotes Knuth equivalence, then
+\cite[Thm.~5.5.1]{Lothaire2002}
 \[
 w \equiv w' \iff  \cryse_i(w) \equiv \cryse_i(w')
 \iff  \crysf_i(w) \equiv \crysf_i(w')
@@ -607,7 +612,7 @@ differ by transposition and Schützenberger duality.
 
 \bigskip
 
-Let $W = (w_1,w_2)^T$ be a biword obtained from a binary matrix. 
+Let $W = (w_1,w_2)^T$ be a biword obtained from a binary matrix.
 To apply $\cryse_i$ on the top row of $W$, sort the biword primarily in an increasing fashion
 according to the bottom row, and secondarily in a decreasing fashion in the top row.
 
@@ -635,7 +640,7 @@ Burge specialization of the horizontal/vertical crystal compatibility.
 \bigskip
 
 We now examine the \hyperref[rskBurge]{third class of RSK} where we use Burge biwords,
-where the biword entries are primarily sorted according to the top entry, 
+where the biword entries are primarily sorted according to the top entry,
 but secondarily in a \emph{decreasing fashion} on the bottom entry.
 We still perform the usual RSK bumping algorithm on Burge biwords.
 
@@ -651,7 +656,7 @@ Then the following are equivalent.
 \begin{pmatrix}  w_1 \\ \cryse_i \circ w_2 \end{pmatrix} & \rskbArrow (\cryse_i \circ P, Q) \\
 \begin{pmatrix} \cryse_i \circ w_1 \\ w_2 \end{pmatrix} & \rskbArrow (P, \cryse_i \circ Q) \\
 \end{align}
- 
+
 
 This version of RSK is studied extensively by \name{Olga Azenhas}, see \cite{Azenhas2006},
 in particular in relationship with \hyperref[key]{key polynomials}.
@@ -659,5 +664,5 @@ in particular in relationship with \hyperref[key]{key polynomials}.
 
 \section[tableauOpOther]{Other operators}
 
-There is also the \hyperref[cyclage]{cyclage} and \hyperref[catabolism]{catabolism}
-operations on semistandard Young tableaux. 
+There are also the \hyperref[cyclage]{cyclage} and
+\hyperref[catabolism]{catabolism} operations on semistandard Young tableaux.
