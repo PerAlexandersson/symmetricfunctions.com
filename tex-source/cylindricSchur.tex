@@ -1,6 +1,9 @@
 \metatitle{Cylindric Schur polynomials}
-\metadescription{An introduction to cylindric Schur polynomials, including their definition via cylindric semi-standard tableaux, Schur expansions, connections to Gromov--Witten invariants, and positivity properties.}
-\metakeywords{Cylindric Schur polynomials,Gromov--Witten invariants,Schur-positivity,toric Schur polynomials,affine Schur functions}
+\metadescription{An introduction to cylindric Schur polynomials, including
+their definition via cylindric semistandard tableaux, Schur expansions,
+Gromov--Witten invariants, and positivity properties.}
+\metakeywords{Cylindric Schur polynomials,Gromov--Witten invariants,
+Schur-positivity,toric Schur polynomials,affine Schur functions}
 
 \section[schurCylindric]{Cylindric Schur polynomials}
 
@@ -15,28 +18,37 @@
   Contains & schurSkew | Postnikov2005 | scope=degree zero \\
 \end{polydata}
 
-The family of (skew) cylindric Schur functions was introduced by \name{Alexander Postnikov} in \cite{Postnikov2005}.
+The family of (skew) cylindric Schur functions was introduced by
+\name{Alexander Postnikov} in \cite{Postnikov2005}.
 This is motivated by the fact that the coefficients in the Schur expansion
-of such cylindric Schur functions are given by 3-point Gromov--Witten invariants of the Grassmannian.
-See also \cite{McNamara2006} for an introduction to this family of symmetric functions.
+of such cylindric Schur functions are given by 3-point
+\hyperref[gromovWittenInvariant]{Gromov--Witten invariants} of the
+\hyperref[grassmannian]{Grassmannian}.
+See also \cite{McNamara2006} for an introduction to this family of symmetric
+functions.
 \name{Ron M. Adin}, \name{Victor Reiner}, and \name{Yuval Roichman} study
 cyclic descents for tableaux, including the cylindric descent framework
 \cite{AdinReinerRoichman2017}.
 
-The cylindric Schur functions are a subset of \hyperref[schurAffine]{skew affine Schur functions},
-which was proved by \name{Thomas Lam}, in \cite[Prop. 33]{Lam2006}.
+The cylindric Schur functions are a subset of
+\hyperref[schurAffineSkew]{skew affine Schur functions}, which was proved by
+\name{Thomas Lam} in \cite[Prop.~33]{Lam2006}.
 
 
 \subsection[cylindricSchurDefinition]{Definition}
 
-A \defin{cylindric shape} $\lambda$ is an infinite lattice path in $\setZ^2$,
-invariant under shifts $(n-m,m)$ where $m \in [1,n-1]$ and
-let $C^{n,m}$ be the set of such paths.
-Suppose $\lambda,\mu \in C^{n,m}$ and that $\mu$ always lie weakly to the left of $\lambda$,
-then we say that $\mu \subseteq \lambda$ and $\lambda / \mu$ is a \defin{cylindric skew shape}.
+A \defin{cylindric shape}\label{cylindricShape} $\lambda$ is an infinite
+lattice path in $\setZ^2$, invariant under shifts by $(n-m,m)$, where
+$m \in [1,n-1]$.
+Let $C^{n,m}$ be the set of such paths.
+Suppose $\lambda,\mu \in C^{n,m}$ and $\mu$ always lies weakly to the left of
+$\lambda$.
+Then we say that $\mu \subseteq \lambda$ and that $\lambda / \mu$ is a
+\defin{cylindric skew shape}\label{cylindricSkewShape}.
 
 
-A \defin{cylindric semi-standard tableau} of shape $\lambda / \mu$ is a sequence
+A \defin{cylindric semistandard tableau}\label{cylindricSemistandardTableau}
+of shape $\lambda / \mu$ is a sequence
 \[
 \mu = \lambda^0 \subseteq \lambda^1 \subseteq \dotsb \subseteq \lambda^{\ell} = \lambda
 \]
@@ -48,12 +60,14 @@ is given by letting $a_i$ be the number of boxes in any $n-m$
 consecutive columns of $\lambda^i/\lambda^{i-1}$.
 
 
-The \defin{cylindric Schur function} $\schurCylindric_{\lambda/\mu}(\xvec)$
-is then defined as
+The \defin{cylindric Schur function}\label{cylindricSchurFunction}
+$\schurCylindric_{\lambda/\mu}(\xvec)$ is then defined as
 \[
-\schurCylindric_{\lambda/\mu}(\xvec) = \sum_{T \in \mathrm{CSSYT(\lambda/\mu)}} \xvec^T
+\schurCylindric_{\lambda/\mu}(\xvec)
+= \sum_{T \in \mathrm{CSSYT}(\lambda/\mu)} \xvec^T
 \]
-where the sum is over all cylindric semi-standard tableaux of shape $\lambda/\mu$.
+where the sum is over all cylindric semistandard tableaux of shape
+$\lambda/\mu$.
 One can show via a variant of the Bender--Knuth involution
 that all $\schurCylindric_{\lambda/\mu}(\xvec)$ are symmetric functions.
 
@@ -62,9 +76,10 @@ that all $\schurCylindric_{\lambda/\mu}(\xvec)$ are symmetric functions.
 In the following examples, $n=7$, $m=3$.
 This implies invariance when shifting $3$ steps up and $4$ steps to the right.
 We show two cylindric semistandard tableaux, of two different shapes,
-where exactly one representative of boxes under the shift action has been assigned an integer.
-Note that the second example shows that the \hyperref[schurSkew]{skew Schur functions} are a proper subset
-of cylindric Schur functions.
+where exactly one representative of each orbit of boxes under the shift action
+has been assigned an integer.
+Note that the second example shows that the \hyperref[schurSkew]{skew Schur
+functions} are a proper subset of cylindric Schur functions.
 
 \begin{figure}
 \begin{ytableau}
@@ -97,11 +112,12 @@ The Schur expansion of the first shape gives
 \]
 \end{example*}
 
-\name{Alexander Postnikov} uses the notation $\lambda/d/\mu$ to describe a cylindric shape,
-where $\lambda$ and $\mu$ are partitions and $d\geq 0.$
+\name{Alexander Postnikov} uses the notation $\lambda/d/\mu$ to describe a
+cylindric shape, where $\lambda$ and $\mu$ are partitions and $d\geq 0$.
 The cylindric shape is constructed as follows:
-Draw the outline of the partition $\lambda$ in the plane, but shifted $d$ steps right and $d$
-steps down, then the outline of $\mu$ without shift, and extend both outlines periodically.
+Draw the outline of the partition $\lambda$ in the plane, shifted $d$ steps
+right and $d$ steps down, then draw the outline of $\mu$ without shift, and
+extend both outlines periodically.
 
 In the example above, the first shape can be described as $(6,3,3)/1/(6,3,1)$
 and the second shape is just $(4,4,4)/0/(3,2,0)$, so that when $d=0$
@@ -116,17 +132,22 @@ $\Lambda=(4,4,4,4,2,1,1)$.  Removing the top $7$-ribbon twice gives
 $\Lambda[-1]=(4,4,4,1)$ and then $\Lambda[-2]=(3,3)$.  Hence this
 cylindric shape is described as $(3,3)/2/(2,1)$.
 
-For the poset structure on cylindric diagrams and connected
-to \hyperref[rootSystem]{root systems} and the Bruhat order,
+For the poset structure on cylindric diagrams and its connection
+to \hyperref[rootSystem]{root systems} and the \hyperref[bruhatOrder]{Bruhat order},
 see \cite{NakadaSuzukiToyosawa2023x}.
 
 
-Every cylindric Schur polynomial can be obtained as a \hyperref[schurAffineSkew]{skew affine Schur function}.
-This implies in particular, that the support of the monomials in a skew Schur function form an \hyperref[MConvexity]{M-convex set}.
+Every cylindric Schur polynomial can be obtained as a
+\hyperref[schurAffineSkew]{skew affine Schur function}.
+This implies, in particular, that the support of the monomials in a skew Schur
+function forms an \hyperref[MConvexity]{$M$-convex set}.
 
-Note that cylindric Schur polynomials are not in general special cases of \hyperref[pPartitionDefinition]{$(P,w)$-partitions};
-see e.g. \cite{McNamara2006} (this is easily seen from the fact that all $(P,w)$-partitions are positive in the
-fundamental quasisymmetric basis, but \hyperref[cylindricSchurPositivity]{\enquote{most} cylindric Schur functions are not}.
+Note that cylindric Schur polynomials are not in general special cases of
+\hyperref[pPartitionDefinition]{$(P,w)$-partitions}; see
+\cite{McNamara2006}.  This is easily seen from the fact that all
+$(P,w)$-partitions are positive in the fundamental quasisymmetric basis, while
+\hyperref[cylindricSchurPositivity]{\enquote{most} cylindric Schur functions
+are not}.
 
 \name{Isaiah Siegl} defines cylindric $P$-tableaux for $(3+1)$-free posets
 and corresponding $P$-analogues of cylindric Schur functions
@@ -139,9 +160,11 @@ functions of incomparability graphs.
 \section[cylindricAffineLittlewood]{Affine bounded Littlewood identities}
 
 In \cite{HuhKimKrattenthalerOkada2023x}, the authors
-study bounded \hyperref[schurSums]{Littlewood identities} where the cylindric Schur functions appear.
-They give proofs of \defin{affine Littlewood identities} which are analogs of
-the Littlewood identities for cylindric Schur functions.
+study bounded \hyperref[schurSums]{Littlewood identities} where the cylindric
+Schur functions appear.
+They give proofs of \defin{affine Littlewood identities}
+\label{affineLittlewoodIdentity}, which are analogues of the Littlewood
+identities for cylindric Schur functions.
 
 
 \section[cylindricEquivariantQuantumPieri]{Equivariant Quantum Pieri rule}
@@ -165,10 +188,10 @@ for the Grassmannian on cylindric shapes, see
   PositiveIn & schurS | Postnikov2005 | scope=finite-variable toric shapes \\
 \end{polydata}
 
-A shape $\lambda/\mu \in C^{n,m}$ is called \defin{toric} if
+A shape $\lambda/\mu \in C^{n,m}$ is called \defin{toric}\label{toricShape} if
 every column contains at most $m$ boxes.
 Cylindric Schur functions indexed by such shapes
-are referred to as \defin{toric Schur polynomials}.
+are referred to as \defin{toric Schur polynomials}\label{toricSchurPolynomial}.
 All the usual skew shapes are toric.
 
 The specialization
@@ -176,9 +199,9 @@ The specialization
 \schurCylindric_{\lambda/d/\mu}(\xvec)(x_1,\dotsc,x_m) \coloneqq
 \schurCylindric_{\lambda/d/\mu}(x_1,\dotsc,x_m,0,\dotsc)
 \]
-is non-zero if and only of the shape $\lambda/d/\mu$ is toric.
+is non-zero if and only if the shape $\lambda/d/\mu$ is toric.
 These polynomials, in a finite set of variables,
-are referred to as \defin{toric Schur polynomials}.
+are referred to as \hyperref[toricSchurPolynomial]{toric Schur polynomials}.
 
 
 
@@ -190,38 +213,45 @@ the coefficients $C_{\mu,\nu}^{\lambda,d}$ in the Schur expansion
 \schurCylindric_{\lambda/d/\mu}(x_1,\dotsc,x_m) =
 \sum_\nu C_{\mu,\nu}^{\lambda,d} \schurS_\nu(x_1,\dotsc,x_m)
 \]
-are non-negative integers given by certain \defin{Gromov--Witten invariants}.
+are non-negative integers given by certain
+\defin{Gromov--Witten invariants}\label{gromovWittenInvariant}.
 
 
 \begin{problem}[Postnikov, \cite{Postnikov2005}]
 It is an open problem to find a (positive) combinatorial rule for $C_{\mu,\nu}^{\lambda,d}$.
-Note that such a rule would generalize the classical Littlewood--Richardson rule.
+Note that such a rule would generalize the classical
+\hyperref[littlewoodRichardsonCoefficient]{Littlewood--Richardson rule}.
 \end{problem}
 
-Postnikov also introduces a certain family of \defin{toric Specht modules}
-and conjectures that they decompose into irreducible \hyperref[spechtModules]{Specht modules} with
+Postnikov also introduces a certain family of
+\defin{toric Specht modules}\label{toricSpechtModule} and conjectures that
+they decompose into irreducible \hyperref[spechtModules]{Specht modules} with
 multiplicities given by the $C_{\mu,\nu}^{\lambda,d}$.
 
 
 The coefficients $C_{\mu,\nu}^{\lambda,d}$ can be computed as an
 \hyperref[littlewoodRichardsonFromKostant]{alternating sum of Kostka coefficients},
-see \cite[Cor. 1.4]{Korff2009x}.
+see \cite[Cor.~1.4]{Korff2009x}.
 
-Another formula uses an alternating sum of regular Littlewood--Richardson coefficients, see
-\cite[Eq. (21)]{BertramCiocanFontanineFulton1999}.
+Another formula uses an alternating sum of regular
+\hyperref[littlewoodRichardsonCoefficient]{Littlewood--Richardson
+coefficients}; see
+\cite[Eq.~(21)]{BertramCiocanFontanineFulton1999}.
 They show that for $\lambda, \mu,\nu \subseteq \ell \times k$,
 $|\lambda|+|\mu| = |\nu|+mn$,
 \[
-C_{\lambda,\mu}^{\nu,m} = \sum_{\rho} \sign(\rho/\nu) c^{\nu}_{\lambda,\mu}, \qquad
+C_{\lambda,\mu}^{\nu,m}
+= \sum_{\rho} \sign(\rho/\nu) c^{\rho}_{\lambda,\mu}, \qquad
 \sign(\rho/\nu) \coloneqq \prod_{j} (-1)^{k-\mathrm{width}(r_j)},
 \]
 where the sum is over all diagrams $\rho$ obtained from
-$\nu$ by adding $m$ ribbons, each ribbon $r_j$ containing $n$ boxes and starting from
-the first row.
+$\nu$ by adding $m$ ribbons, each ribbon $r_j$ containing $n$ boxes and
+starting from the first row.
 
 
-The $C_{\mu,\nu}^{\lambda,d}$ are closely related to \defin{fusion coefficients}
-as seen in \cite{Korff2009x}.
+The $C_{\mu,\nu}^{\lambda,d}$ are closely related to
+\defin{fusion coefficients}\label{fusionCoefficient}, as seen in
+\cite{Korff2009x}.
 For some positivity results on fusion coefficients, see \cite{MorseSchilling2012}.
 
 
@@ -230,25 +260,33 @@ Another related notion is the \hyperref[quantumKostka]{quantum Kostka coefficien
 
 \subsection[cylindricSchurPositivity]{Cylindric Schur positivity}
 
-\name{Peter McNamara} \cite{McNamara2006} asked for which cylindric shapes $\schurCylindric_{\lambda/d/\mu}(\xvec)$ are
-Schur-positive (as proper symmetric functions in an infinite alphabet) and conjectured that
+\name{Peter McNamara} \cite{McNamara2006} asked for which cylindric shapes
+$\schurCylindric_{\lambda/d/\mu}(\xvec)$ are
+\hyperref[schurPositivity]{Schur-positive} as proper symmetric functions in an
+infinite alphabet, and conjectured that
 each cylindric skew Schur function can be positively expanded in
-certain \emph{non-skew} cylindric Schur functions, with coefficients being Gromov--Witten invariants.
-\name{Peter McNamara} proves that only ordinary skew Schur functions are \hyperref[schurPositivity]{Schur-positive}.
+certain \emph{non-skew} cylindric Schur functions, with coefficients being
+\hyperref[gromovWittenInvariant]{Gromov--Witten invariants}.
+\name{Peter McNamara} proves that only ordinary skew Schur functions are
+Schur-positive.
 In fact, these are the only cylindric Schur functions that are positive in
-the \hyperref[gessel]{Gessel fundamental quasisymmetric basis}, see \cite[Thm. 5.7]{McNamara2006}.
+the \hyperref[gessel]{Gessel fundamental quasisymmetric basis}; see
+\cite[Thm.~5.7]{McNamara2006}.
 
 
-McNamara's conjecture was recently answered in \cite{Lee2017} in the following theorem:
+McNamara's conjecture was answered in \cite{Lee2017} by the following theorem:
 \begin{equation*}
 \schurCylindric_{\lambda/d/\mu}(\xvec) = \sum_{\nu \in C^{n,m}, e\geq 0}
 c^{\lambda/d/\mu}_{\nu/e/\emptyset} \schurCylindric_{\nu/e/\emptyset}(\xvec).
 \end{equation*}
 The coefficients are all non-negative and satisfy
-$c^{\lambda/d/\mu}_{\nu/e/\emptyset} = c^{\lambda/d-1/\mu}_{\nu/e-1/\emptyset}$ whenever $e \gt 0$.
-Furthermore, we have that $c^{\lambda/d/\mu}_{\nu/0/\emptyset} = C_{\mu,\nu}^{\lambda,d}$.
+$c^{\lambda/d/\mu}_{\nu/e/\emptyset}
+= c^{\lambda/d-1/\mu}_{\nu/e-1/\emptyset}$ whenever $e \gt 0$.
+Furthermore, $c^{\lambda/d/\mu}_{\nu/0/\emptyset} =
+C_{\mu,\nu}^{\lambda,d}$.
 
-For a short proof, see \cite{Dobner2026x} where the structure coefficients are interpreted using \emph{fusion coefficients}.
+For a short proof, see \cite{Dobner2026x}, where the structure coefficients
+are interpreted using \hyperref[fusionCoefficient]{fusion coefficients}.
 
 
 
@@ -260,11 +298,13 @@ For a short proof, see \cite{Dobner2026x} where the structure coefficients are i
   Space    & CSym \\
   Basis    & No \\
   Rating   & 1 \\
-  Year     & 2005 \\
+  Year     & 2020 \\
   Bib      & KorffPalazzo2020 \\
 \end{polydata}
 
-Introduced in \cite{KorffPalazzo2020}.
+The \defin{cylindric complete homogeneous polynomials}
+\label{cylindricCompleteHomogeneousPolynomial} were introduced in
+\cite{KorffPalazzo2020}.
 
 
 \section[elementaryECylindric]{Cylindric elementary polynomials}
@@ -275,11 +315,13 @@ Introduced in \cite{KorffPalazzo2020}.
   Space  & CSym \\
   Basis  & No \\
   Rating & 1 \\
-  Year   & 2005 \\
-  Bib    & KorffPalazzo2018 \\
+  Year   & 2020 \\
+  Bib    & KorffPalazzo2020 \\
 \end{polydata}
 
-Introduced in \cite{KorffPalazzo2020}.
+The \defin{cylindric elementary polynomials}
+\label{cylindricElementaryPolynomial} were introduced in
+\cite{KorffPalazzo2020}.
 
 
 \section[cylindricSchurSeeAlso]{See also}
