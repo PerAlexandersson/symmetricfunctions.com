@@ -8,7 +8,7 @@
 The following result was first proved by \name{Bengt Lindström} \cite{Lindstrom1973}
 and later rediscovered by \name{Ira Gessel} and \name{Xavier Viennot} \cite{GesselViennot1989}.
 It gives a combinatorial interpretation of certain determinants as weighted sums over
-sets of non-intersecting lattice paths.
+sets of nonintersecting lattice paths.
 For early applications to binomial determinants, hook length formulae, and
 \hyperref[planePartitions]{plane partitions}, see
 \cite{GesselViennot1985,GesselViennot1989}.  For a
@@ -17,68 +17,79 @@ survey of lattice path enumeration with determinant methods, see
 Bera gives a graph-theoretic proof of Cramer's rule using the
 Gessel--Viennot--Lindström lemma \cite{Bera2025x}.
 
-Let $R$ be a commutative ring, $G=(V,E)$ be a graph, and let $w : E \to R$ be a weight function.
+Let $R$ be a commutative ring, let $G=(V,E)$ be a finite directed acyclic graph,
+and let $w : E \to R$ be a weight function.
 
-Given two vertices $u, v \in V$, a path in $G$ from $u$ to $v$ is a 
-sequence of distinct vertices $\omega = (u = v_0, v_1, \dotsc, v_k = v)$ such 
-that $(v_i, v_{i+1}) \in E$ for all $0 \le i < k$. We denote this by $\omega : u \to v$.
+Given two vertices $u, v \in V$, a path in $G$ from $u$ to $v$ is a
+sequence of vertices $\omega = (u = v_0, v_1, \dotsc, v_k = v)$ such
+that $(v_i, v_{i+1}) \in E$ for all $0 \le i < k$.  We denote this by
+$\omega : u \to v$.
 The \defin{weight of the path} $\omega$ is defined to be:
 \[
 w(\omega) = \prod_{i=0}^{k-1} w(v_i, v_{i+1}).
 \]
 
 \begin{definition}[Crossing paths and crossing condition]
-Two paths $\omega = (u_0, \dotsc, u_k)$ and $\eta = (v_0, \dots, v_l)$ are said to \defin{cross} 
-if they share a vertex, that is, if $u_i = v_j$ for some indices $i, j$.
+Two paths $\omega = (u_0, \dotsc, u_k)$ and
+$\eta = (v_0, \dotsc, v_l)$ are said to \defin{cross} if they share a
+vertex, that is, if $u_i = v_j$ for some indices $i, j$.
+A family of paths is \defin{nonintersecting}\label{nonintersectingPaths}
+if no two paths in the family cross.
 
-Given a graph $G=(V,E)$, a weight function $w$, 
-and subsets of vertices $\{A_1, \dots, A_n\}$ and $\{B_1, \dots, B_n\}$, 
-we say that the \defin{crossing condition} is satisfied if, for 
-any indices $1 \le i \lt j \le n$ and $1 \le i' \lt j' \le n$, 
+Given a graph $G=(V,E)$, a weight function $w$,
+and vertices $A_1, \dotsc, A_n$ and $B_1, \dotsc, B_n$, we say that the
+\defin{crossing condition}\label{crossingCondition} is satisfied if, for
+any indices $1 \le i \lt j \le n$ and $1 \le i' \lt j' \le n$,
 any path $\omega : A_i \to B_{j'}$ and any path $\eta : A_j \to B_{i'}$ must cross.
 \end{definition}
 
-Fix sets of vertices $\{A_1, \dots, A_n\}$ and $\{B_1, \dots, B_n\}$ in $V$, 
-and define an $n \times n$ matrix $M = (m_{ij})$ by
+Fix vertices $A_1, \dotsc, A_n$ and $B_1, \dotsc, B_n$ in $V$, and define
+an $n \times n$ matrix $M = (m_{ij})$ by
 \[
 m_{ij} \coloneqq \sum_{\omega : A_i \to B_j} w(\omega),
 \]
 where the sum runs over all paths from $A_i$ to $B_j$.
 
-\begin{theorem}[Lindström--Gessel--Viennot lemma]
-Assume that the crossing condition holds. 
+\begin{theorem}[Lindström--Gessel--Viennot lemma]\label{lindstromGesselViennotLemma}
+Assume that the crossing condition holds.
 Then the determinant of the matrix $M$ is given by
 \[
-\det(M) = \sum_{(\omega_1, \dots, \omega_n)} \text{sgn}(\sigma) w(\omega_1) \cdots w(\omega_n),
+\det(M)
+=
+\sum_{(\omega_1, \dotsc, \omega_n)}
+w(\omega_1) \cdots w(\omega_n),
 \]
-where the sum runs over all $n$-tuples $(\omega_1, \dots, \omega_n)$ of 
-pairwise non-crossing paths such that $\omega_i : A_i \to B_i$.
+where the sum runs over all $n$-tuples $(\omega_1, \dotsc, \omega_n)$ of
+pairwise nonintersecting paths such that $\omega_i : A_i \to B_i$.
 \end{theorem}
 
 \subsection[LGVssyt]{Semistandard tableaux}
 
-\hyperref[prelimTableaux]{Semistandard Young tableaux} can be put in correspondence with sets of non-intersecting lattice paths,
-and this allows us to prove the two \hyperref[schurJacobiTrudi]{Jacobi--Trudi identities},
+\hyperref[prelimTableaux]{Semistandard Young tableaux} can be put in
+correspondence with sets of \hyperref[nonintersectingPaths]{nonintersecting}
+lattice paths, and this allows us to prove the two
+\hyperref[schurJacobiTrudi]{Jacobi--Trudi identities},
 by using the Lindström--Gessel--Viennot lemma \cite{Lindstrom1973,GesselViennot1989}.
 
 Let $T \in \SSYT(\lambda/\mu)$ where the entries are bounded by $m$.
 
-\emph{Row bijection}: 
-Each row $i$ of $T$ is mapped to a lattice path $P_i$, with steps in the set $\{ (0,1), (1,0)\}$.
+\emph{Row bijection}:
+Each row $i$ of $T$ is mapped to a lattice path $P_i$, with steps in the set
+$\{ (0,1), (1,0)\}$.
 The starting vertex of $P_i$ is $(-i + \mu_i,1)$,
 the ending vertex is $(-i + \lambda_i, m)$,
 and its number of horizontal steps on $y$-coordinate $j$ is given by the number of entries in
-row $i$ equal to $j$. The length of path $P_i$ is $m-1 + \lambda_i-\mu_i$.
+row $i$ equal to $j$.  The length of path $P_i$ is $m-1 + \lambda_i-\mu_i$.
 This bijection can be used to prove the first \hyperref[skewJacobiTrudi]{Jacobi--Trudi identity}.
 
 
-\emph{Column bijection}: 
+\emph{Column bijection}:
 Each column of $T$ is mapped to a path $P'_i$,
 with steps in the set $\{ (-1,1), (1,1)\}$.
 The starting vertex of $P'_i$ is given by $(2i - 2\mu'_i, 0)$,
 the ending vertex is $(2i - 2\lambda'_i + m, m)$
 and the $j$th step of $P'_i$ is $(-1,1)$ if $j$ is present in column $i$,
-otherwise it is $(1,1)$. Each path has length $m$.
+otherwise it is $(1,1)$.  Each path has length $m$.
 This bijection can be used to prove the second \hyperref[skewJacobiTrudi]{Jacobi--Trudi identity}.
 
 
@@ -89,13 +100,13 @@ Consider the following skew semistandard Young tableau $T$.
 \ytableaushort{{\none}{\none}{\none}1122346,{\none}{\none}1223455,{\none}{\none}2344566,113556,2346,456,6}
 \end{figure}
 
-The rows give rise to the following set of non-intersecting lattice paths,
+The rows give rise to the following set of nonintersecting lattice paths,
 where the topmost row in $T$ corresponds to the rightmost path.
 \begin{figure}
-\svgimg[width=0.65\textwidth]{./svg-images/ssyt-lattice-paths-1.svg}{SSYT rows as lattice paths.}  
+\svgimg[width=0.65\textwidth]{./svg-images/ssyt-lattice-paths-1.svg}{SSYT rows as lattice paths.}
 \end{figure}
 
-The columns in $T$ give rise to the following set of non-intersecting lattice paths,
+The columns in $T$ give rise to the following set of nonintersecting lattice paths,
 where the leftmost column corresponds to the leftmost path.
 
 \begin{figure}
@@ -106,24 +117,32 @@ where the leftmost column corresponds to the leftmost path.
 
 The following theorem is proved using lattice paths.
 \begin{theorem}[See {\cite{McDowell2023}}]
-Let $A$ and $B$ be subsets of $\{0,1,\dotsc,n\}$ of equal size and let $A^c$, $B^c$ be their complements.
+Let $A$ and $B$ be subsets of $\{0,1,\dotsc,n\}$ of equal size, and let
+$A^c$, $B^c$ be their complements.
 Then
 \[
-\det \left[ \completeH_{b-a}( x_1,x_2,\dotsc,x_{a+1} ) \right]_{a \in A, b \in B} =
-\det \left[ \elementaryE_{a'-b'}( x_1,x_2,\dotsc,x_{a'} ) \right]_{a' \in A^c, b' \in B^c}.
+\det \left[
+  \completeH_{b-a}(x_1,x_2,\dotsc,x_{a+1})
+\right]_{a \in A, b \in B}
+=
+\det \left[
+  \elementaryE_{a'-b'}(x_1,x_2,\dotsc,x_{a'})
+\right]_{a' \in A^c, b' \in B^c}.
 \]
 Moreover, this is related to \name[C. A. Aitken]{Alexander Craig}'s identity;
 \[
-\det \left[ \completeH_{b-a}(\xvec ) \right]_{a \in A, b \in B} =
-\det \left[ \elementaryE_{a'-b'}( \xvec ) \right]_{a' \in A^c, b' \in B^c}.
+\det \left[ \completeH_{b-a}(\xvec) \right]_{a \in A, b \in B}
+=
+\det \left[ \elementaryE_{a'-b'}(\xvec) \right]_{a' \in A^c, b' \in B^c}.
 \]
 \end{theorem}
 
 
 See also \cite{Stembridge1990} for background on counting lattice paths with Pfaffians.
-One can also prove the Weyl alternant formula by the Lindström--Gessel--Viennot lemma, see \cite{Xiong2020x}.
-
-See \href{https://www.youtube.com/watch?v=H1wEiEIznaA}{this GOCC talk from 2023} on a generalization of the LGV lemma.
+The Weyl alternant formula can also be proved by the
+Lindström--Gessel--Viennot lemma \cite{Xiong2020x}.
+For a video introduction to one extension of the theorem, see the GOCC talk
+\cite{GOCC2023LGVExtension}.
 
 
 
@@ -131,8 +150,9 @@ See \href{https://www.youtube.com/watch?v=H1wEiEIznaA}{this GOCC talk from 2023}
 \section[LGVplanePartitions]{Plane partitions as lattice paths}
 
 
-See \cite[Thm. 10.7.1]{Krattenthaler2015} and \cite[Eq. (6)]{StanleyPitman2002} for the following
-application of the Lindström--Gessel--Viennot lemma.
+See \cite[Thm.~10.7.1]{Krattenthaler2015} and
+\cite[Eq.~(6)]{StanleyPitman2002} for the following application of the
+Lindström--Gessel--Viennot lemma.
 
 \begin{theorem}
 Let $\lambda$ and $\mu$ be partitions with at most $r$ parts such that
@@ -145,7 +165,8 @@ Then the number of lattice paths contained in $\lambda / \mu$ equals
 For non-skew shapes, we can also interpret such partitions $\nu$ as lattice
 points in Stanley--Pitman \hyperref[polytope]{polytopes} \cite{StanleyPitman2002}.
 This is also the number of plane partitions of skew shape $\lambda/\mu$, with binary entries,
-or the number of non-nesting rook placements on the Ferrers board of shape $\lambda / \mu$.
+or the number of \hyperref[nonNestingRookPlacement]{nonnesting rook placements}
+on the Ferrers board of shape $\lambda / \mu$.
 There is also an interpretation of these quantities using certain
 \hyperref[linearExtension]{linear extensions}, see
 \cite{AlexanderssonJal2024x}.
@@ -169,9 +190,10 @@ We then define
 \[
   F_{\lambda/\mu}(\xvec) \coloneqq \sum_{P} \prod_{i \in N(P)} x_i,
 \]
-where the sum is over all paths contained in $\lambda/\mu$ and $N(P)$ is the set of North-step labels of $P$.
-Equivalently, $F_{\lambda/\mu}(\xvec)$ is the basis-generating polynomial of the corresponding
-lattice path matroid.
+where the sum is over all paths contained in $\lambda/\mu$ and $N(P)$ is the
+set of North-step labels of $P$.
+Equivalently, $F_{\lambda/\mu}(\xvec)$ is the basis-generating polynomial of
+the corresponding \hyperref[latticePathMatroidDefinition]{lattice path matroid}.
 
 The weighted version of the determinant above is
 \[
