@@ -25,6 +25,7 @@ TEST_CHECK := $(TEMP_DIR)/unittest.check
 
 # === GENERATED OUTPUTS ===
 REFS_JSON := $(TEMP_DIR)/bibliography.json
+BIBTEX_JSON := $(TEMP_DIR)/bibtex-entries.json
 TEST_WWW_DIR := $(TEMP_DIR)/test-www
 TEST_LABELS_JSON := $(TEMP_DIR)/test-site-labels.json
 TEST_POLYDATA_JSON := $(TEMP_DIR)/test-site-polydata.json
@@ -36,4 +37,4 @@ TEST_PUBLIC_LABELS_JSON := $(TEST_WWW_DIR)/site-labels.json
 # === EXPORTS FOR SCRIPTS ===
 export TEST_DIR TEMP_DIR WWW_DIR
 export ASSETS_DIR
-export TEMPLATE REFS_JSON
+export TEMPLATE REFS_JSON BIBTEX_JSON

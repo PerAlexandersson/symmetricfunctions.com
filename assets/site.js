@@ -116,6 +116,10 @@
     var blocks = document.querySelectorAll('pre');
     
     blocks.forEach(function(pre) {
+        if (pre.classList.contains('bibtex-code') || pre.hasAttribute('data-no-auto-copy')) {
+            return;
+        }
+
         // Create the button
         var button = document.createElement('button');
         button.className = 'copy-btn';
@@ -148,6 +152,71 @@
 
         // Append button to the <pre> block
         pre.appendChild(button);
+    });
+  }
+
+  function setTemporaryButtonHtml(button, html, className) {
+    var original = button.getAttribute('data-original-html');
+    if (!original) {
+      original = button.innerHTML;
+      button.setAttribute('data-original-html', original);
+    }
+    if (className) button.classList.add(className);
+    button.innerHTML = html;
+    setTimeout(function () {
+      button.innerHTML = original;
+      if (className) button.classList.remove(className);
+    }, 1800);
+  }
+
+  function getBibtexText(button) {
+    var details = button.closest('.bibtex-details');
+    if (!details) return "";
+    var code = details.querySelector('.bibtex-code code');
+    return code ? code.innerText : "";
+  }
+
+  function initBibtexControls() {
+    document.addEventListener('click', function (e) {
+      var copyButton = e.target.closest('.bibtex-copy');
+      if (copyButton) {
+        var text = getBibtexText(copyButton);
+        if (!text || !navigator.clipboard) return;
+
+        navigator.clipboard.writeText(text).then(function () {
+          setTemporaryButtonHtml(
+            copyButton,
+            '<img src="icons/icon-check-circle.svg" class="icon" alt="" aria-hidden="true"/> Copied',
+            'is-success'
+          );
+        }).catch(function (err) {
+          console.error('Failed to copy BibTeX!', err);
+        });
+        return;
+      }
+
+      var downloadButton = e.target.closest('.bibtex-download');
+      if (!downloadButton) return;
+
+      var bibtex = getBibtexText(downloadButton);
+      if (!bibtex) return;
+
+      var filename = downloadButton.getAttribute('data-filename') || 'citation.bib';
+      var blob = new Blob([bibtex], { type: 'application/x-bibtex;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      setTemporaryButtonHtml(
+        downloadButton,
+        '<img src="icons/icon-check-circle.svg" class="icon" alt="" aria-hidden="true"/> Downloaded',
+        'is-success'
+      );
     });
   }
 
@@ -266,6 +335,7 @@
     initTOCListeners();
     initScrollBehavior();
     initCopyButtons();
+    initBibtexControls();
     initHeaderAnchors();
     initFamilyIndexTable();
 

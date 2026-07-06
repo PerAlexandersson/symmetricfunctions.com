@@ -29,6 +29,7 @@ UTILS_LUA          = utils.lua
 FILE_READING_LUA   = file_reading.lua
 BIBHANDLER_LUA     = bibhandler.lua
 BIB_MATH_FILTER    = bib_math_filter.lua
+BIBTEX_EXTRACT_LUA = bibtex_extract.lua
 FIG_TO_HTML_LUA    = figure_to_html.lua
 POLY_TO_HTML_LUA   = polydata_to_html.lua
 RELATION_REGISTRY_LUA = relation_registry.lua
@@ -46,6 +47,7 @@ HTML_FILES := $(patsubst $(SRC_DIR)/%.tex,$(WWW_DIR)/%.htm,$(TEX_FILES))
 
 # === GENERATED OUTPUTS ===
 REFS_JSON     := $(TEMP_DIR)/bibliography.json
+BIBTEX_JSON   := $(TEMP_DIR)/bibtex-entries.json
 LABELS_JSON   := $(TEMP_DIR)/site-labels.json
 POLYDATA_JSON := $(TEMP_DIR)/site-polydata.json
 TODOS_JSON    := $(TEMP_DIR)/site-todo.json
@@ -57,5 +59,5 @@ RELATION_GRAPH_JSON := $(WWW_DIR)/polynomial-relations.json
 
 # === EXPORTS FOR SCRIPTS ===
 export SRC_DIR ASSETS_DIR TEMP_DIR WWW_DIR
-export TEMPLATE REFS_JSON LABELS_JSON POLYDATA_JSON TODOS_JSON SITEMAP_XML
+export TEMPLATE REFS_JSON BIBTEX_JSON LABELS_JSON POLYDATA_JSON TODOS_JSON SITEMAP_XML
 export RELATION_GRAPH_HTML RELATION_GRAPH_JSON

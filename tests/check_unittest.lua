@@ -69,3 +69,11 @@ end
 if not contains(html, [[\(i\lt{}j\) and \(j\gt{}i.\)]]) then
   fail("raw math angle brackets were not normalized to \\lt{} and \\gt{}")
 end
+
+if not contains(html, 'class="bibtex-details"') then
+  fail("bibliography did not render expandable BibTeX details")
+end
+
+if not contains(html, '@article{Cauchy1815,') then
+  fail("bibliography did not include raw BibTeX for cited entries")
+end

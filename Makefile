@@ -45,13 +45,17 @@ $(WWW_DIR)/.created:
 
 # === BIBLIOGRAPHY (must complete before gathering) ===
 .PHONY: bib
-bib: $(REFS_JSON)
+bib: $(REFS_JSON) $(BIBTEX_JSON)
 
 $(REFS_JSON): $(BIBFILE) $(BIB_MATH_FILTER) | $(TEMP_DIR)/.created
 	$(LOG) "Generating $@"
 	@sed -E 's/[Ee][Pp][Rr][Ii][Nn][Tt][[:space:]]*=[[:space:]]*\{([Aa][Rr][Xx][Ii][Vv]:)?([^}]*)\}/url = {https:\/\/arxiv.org\/abs\/\2}/g' $(BIBFILE) > $(TEMP_DIR)/bibfile_processed.bib
 	@$(PANDOC) -f biblatex -t csljson $(TEMP_DIR)/bibfile_processed.bib \
 	  --lua-filter=bib_math_filter.lua --fail-if-warnings -o $@.tmp && mv $@.tmp $@
+
+$(BIBTEX_JSON): $(BIBFILE) $(BIBTEX_EXTRACT_LUA) $(FILE_READING_LUA) $(UTILS_LUA) | $(TEMP_DIR)/.created
+	$(LOG) "Generating $@"
+	@$(LUA) $(BIBTEX_EXTRACT_LUA) $(BIBFILE) > "$@.tmp" && mv "$@.tmp" "$@"
 
 
 # === 1) PREPROCESS: tex → pre.tex ===
@@ -93,7 +97,7 @@ meta: $(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) 
 
 # All site metadata outputs are produced by one merge pass. Grouped targets make
 # Make regenerate the whole set when any one output is missing or stale.
-$(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON) &: $(JSON_FILES) $(MERGE_META_DEPS) | $(TEMP_DIR)/.created $(WWW_DIR)/.created
+$(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON) &: $(JSON_FILES) $(MERGE_META_DEPS) $(BIBTEX_JSON) | $(TEMP_DIR)/.created $(WWW_DIR)/.created
 	$(LOG) "Generating site metadata ..."
 	@$(LUA) $(MERGE_META_LUA) $(JSON_FILES)
 
@@ -114,14 +118,14 @@ endif
 $(TEMP_DIR)/%.timestamp: $(SRC_DIR)/%.tex | $(TEMP_DIR)/.created
 	@stat -c '%Y' "$<" > "$@"
 
-$(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(TEMP_DIR)/%.timestamp $(RENDER_DEPS) $(TEMPLATE) $(REFS_JSON) $(LABELS_JSON) $(POLYDATA_JSON) | $(WWW_DIR)/.created
+$(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(TEMP_DIR)/%.timestamp $(RENDER_DEPS) $(TEMPLATE) $(REFS_JSON) $(BIBTEX_JSON) $(LABELS_JSON) $(POLYDATA_JSON) | $(WWW_DIR)/.created
 	$(LOG) "Rendering $< → $@"
 	@SOURCE_TS=$$(cat $(TEMP_DIR)/$*.timestamp) \
 	$(LUA) $(RENDER_LUA) "$<" > "$@"
 
 # Test metadata is separate from site metadata so unittest links resolve against
 # labels declared inside tests/*.tex.
-$(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_TODOS_JSON) $(TEST_SITEMAP_XML) $(TEST_GOTO_HTML) $(TEST_PUBLIC_LABELS_JSON) &: $(TEST_JSON) $(MERGE_META_DEPS) | $(TEMP_DIR)/.created
+$(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_TODOS_JSON) $(TEST_SITEMAP_XML) $(TEST_GOTO_HTML) $(TEST_PUBLIC_LABELS_JSON) &: $(TEST_JSON) $(MERGE_META_DEPS) $(BIBTEX_JSON) | $(TEMP_DIR)/.created
 	$(LOG) "Generating test metadata ..."
 	@mkdir -p $(TEST_WWW_DIR)
 	@LABELS_JSON=$(TEST_LABELS_JSON) \
@@ -134,7 +138,7 @@ $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_TODOS_JSON) $(TEST_SITEMAP_XML)
 	  $(LUA) $(MERGE_META_LUA) $(TEST_JSON)
 
 # Test file rendering
-$(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_DEPS) $(TEMPLATE) $(REFS_JSON) $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) | $(WWW_DIR)/.created
+$(TEST_HTML): $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(RENDER_DEPS) $(TEMPLATE) $(REFS_JSON) $(BIBTEX_JSON) $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) | $(WWW_DIR)/.created
 	$(LOG) "Rendering test $< → $@"
 	@SOURCE_TS=$$(stat -c '%Y' "$(TEST_DIR)/$*.tex") \
 	LABELS_JSON=$(TEST_LABELS_JSON) \

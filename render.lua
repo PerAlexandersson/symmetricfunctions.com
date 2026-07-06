@@ -32,6 +32,7 @@ local transform_tex_snippet = fig_to_html.transform_tex_snippet
 
 local TEMP_DIR      = os.getenv("TEMP_DIR") or "temp"
 local REFS_JSON     = os.getenv("REFS_JSON") or (TEMP_DIR .. "/bibliography.json")
+local BIBTEX_JSON   = os.getenv("BIBTEX_JSON") or (TEMP_DIR .. "/bibtex-entries.json")
 local LABELS_JSON   = os.getenv("LABELS_JSON") or (TEMP_DIR .. "/site-labels.json")
 local POLYDATA_JSON = os.getenv("POLYDATA_JSON") or (TEMP_DIR .. "/site-polydata.json")
 local TEMPLATE      = os.getenv("TEMPLATE") or "template.htm"
@@ -543,7 +544,7 @@ end
 
 local function build_bibliography_html(refs_json_path, citations)
   if not citations or #citations == 0 then return "" end
-  return bibhandler.build_bibliography_HTML(refs_json_path, citations)
+  return bibhandler.build_bibliography_HTML(refs_json_path, citations, BIBTEX_JSON)
 end
 
 

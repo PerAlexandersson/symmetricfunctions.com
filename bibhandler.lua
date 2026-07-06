@@ -22,10 +22,12 @@ local MONTH_NAMES = {
 
 local MAX_LABEL_LENGTH = 4
 local DEFAULT_BIB_PATH = "./temp/bibliography.json"
+local DEFAULT_BIBTEX_PATH = os.getenv("BIBTEX_JSON") or "./temp/bibtex-entries.json"
 
 -- ========== MODULE STATE ==========
 
 local bib_cache = nil
+local bibtex_cache = nil
 
 -- ========== DATE UTILITIES ==========
 
@@ -298,7 +300,39 @@ local function format_venue_info(item)
   return table.concat(parts)
 end
 
-local function format_bibliography_entry(item, key, label)
+local function download_filename_for_key(key)
+  local filename = tostring(key or ""):gsub("[^%w%._%-]+", "_")
+  if filename == "" then filename = "citation" end
+  return filename .. ".bib"
+end
+
+local function format_bibtex_controls(key, bibtex_entry)
+  if not bibtex_entry or bibtex_entry == "" then
+    print_error("Missing raw BibTeX entry for citation key: %s", key or "")
+    return ""
+  end
+
+  return table.concat({
+    '<details class="bibtex-details" data-pagefind-ignore>',
+    '<summary>BibTeX</summary>',
+    '<div class="bibtex-actions">',
+    '<button type="button" class="bibtex-copy">',
+    '<img src="icons/icon-clone.svg" class="icon" alt="" aria-hidden="true"/> Copy',
+    '</button>',
+    '<button type="button" class="bibtex-download" data-filename="',
+    html_escape(download_filename_for_key(key)),
+    '">',
+    '<img src="icons/icon-download.svg" class="icon" alt="" aria-hidden="true"/> Download',
+    '</button>',
+    '</div>',
+    '<pre class="bibtex-code" data-no-auto-copy="true"><code>',
+    html_escape(bibtex_entry),
+    '</code></pre>',
+    '</details>'
+  })
+end
+
+local function format_bibliography_entry(item, key, label, bibtex_entry)
   local entry_id = item.id or (key or "")
 
   local authors = normalize_authors(item.author)
@@ -334,6 +368,8 @@ local function format_bibliography_entry(item, key, label)
   if item.note and item.note ~= "" then
     table.insert(parts, ' <span class="citeNote">' .. html_escape(item.note) .. '</span>')
   end
+
+  table.insert(parts, format_bibtex_controls(key, bibtex_entry))
   
   table.insert(parts, "</li>")
   
@@ -365,11 +401,18 @@ local function load_bibliography_json(path)
   return bib_cache
 end
 
+local function load_bibtex_json(path)
+  if bibtex_cache then return bibtex_cache end
+  path = path or DEFAULT_BIBTEX_PATH
+  bibtex_cache = file_reading.load_json_file(path, "raw BibTeX entries", true)
+  return bibtex_cache
+end
 
 -- ========== PUBLIC API ==========
 
-local function build_bibliography_HTML(path, citations)
+local function build_bibliography_HTML(path, citations, bibtex_path)
   local bibliography = load_bibliography_json(path)
+  local bibtex_entries = load_bibtex_json(bibtex_path)
   if type(citations) ~= "table" or #citations == 0 then return "" end
   
   local html_parts = {}
@@ -381,7 +424,12 @@ local function build_bibliography_HTML(path, citations)
     if not entry then
       print_error("Missing citation key: %s", cite_key)
     else
-      table.insert(html_parts, format_bibliography_entry(entry, cite_key) .. "\n")
+      table.insert(html_parts, format_bibliography_entry(
+        entry,
+        cite_key,
+        nil,
+        bibtex_entries[cite_key]
+      ) .. "\n")
     end
   end
   
