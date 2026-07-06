@@ -1,5 +1,7 @@
 \metatitle{Whittaker functions}
-\metadescription{An introduction to Whittaker functions and their $q$-deformation, $q$-Whittaker functions, including their definitions and connections to geometric RSK, crystals, and finite-field subspace profiles.}
+\metadescription{An introduction to Whittaker functions and their
+$q$-deformation, $q$-Whittaker functions, including definitions and
+connections to geometric RSK, crystals, and finite-field subspace profiles.}
 
 \section[whittaker]{Whittaker functions}
 
@@ -54,19 +56,23 @@ record its basic identities \cite{RahmanMubeenNisarChoi2017x}.
   PositiveIn & schurS | Assaf2018Kostka,AssafGonzalez2018 | semiring=NN[q] \\
 \end{polydata}
 
-The $q$-Whittaker functions $\qWhittaker_\lambda(\xvec;q)$ are eigenfunctions of the quantum Toda lattice.
+The $q$-Whittaker functions $\qWhittaker_\lambda(\xvec;q)$ are eigenfunctions
+of the quantum Toda lattice.
 
 For a recent survey on this topic, see \cite{Bergeron2024}.
 The \defin{$q$-Whittaker function $\qWhittaker_\lambda(\xvec;q)$}
+\label{qWhittakerFunctionDefinition}
 can be defined as any of the quantities:
 \begin{itemize}
-\item 
-the \hyperref[macdonaldH]{modified Macdonald polynomial} $[t^{\partitionN(\lambda)}] \macdonaldH_\lambda(\xvec;q,t)$,
-\item 
+\item
+the \hyperref[macdonaldH]{modified Macdonald polynomial}
+$[t^{\partitionN(\lambda)}] \macdonaldH_\lambda(\xvec;q,t)$,
+\item
 the \hyperref[macdonaldP]{Macdonald $P$ polynomial} $\macdonaldP_\lambda(\xvec;q,0)$
-\item 
-the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomial} $\omega \hallLittlewoodT_{\lambda'}(\xvec;q)$,
-\item 
+\item
+the \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomial}
+$\omega \hallLittlewoodT_{\lambda'}(\xvec;q)$,
+\item
 the \hyperref[macdonaldE]{non-symmetric Macdonald polynomial} $\macdonaldE_\lambda(\xvec;q,0)$.
 \end{itemize}
 
@@ -74,12 +80,14 @@ We have that
 \[
   \qWhittaker_\mu(\xvec;q) = \sum_{\lambda} K_{\lambda'\mu'}(q) \schurS_\lambda,
 \]
-where the coefficients are given by the \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials}.
+where the coefficients are given by the
+\hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials}.
 Proofs of this can be found in \cite{Assaf2018Kostka,AssafGonzalez2018},
 where RSK and a crystal structure are given.
 
 
-See \cite{Uhlin2019,AlexanderssonUhlin2020} and \hyperref[cspMacdonaldE]{the cyclic sieving page}
+See \cite{Uhlin2019,AlexanderssonUhlin2020} and
+\hyperref[cspMacdonaldE]{the cyclic sieving page}
 for a cyclic sieving phenomenon on non-attacking fillings associated with
 $q$-Whittaker polynomials.
 
@@ -103,8 +111,10 @@ for Iwahori Whittaker functions.
 
 \subsection[skewqWhittaker]{Skew $q$-Whittaker functions}
 
-In \cite{AlexanderssonUhlin2020}, we introduce a skew version, $\qWhittaker_{\lambda/\mu}(\xvec;q)$
-which is symmetric and Schur-positive for partitions $\mu \subseteq \lambda$.
+In \cite{AlexanderssonUhlin2020}, a \defin{skew $q$-Whittaker function}
+\label{skewQWhittakerFunction} $\qWhittaker_{\lambda/\mu}(\xvec;q)$ is
+introduced.  It is symmetric and Schur-positive for partitions
+$\mu \subseteq \lambda$.
 
 
 \subsection[qWhittakerModels]{Cauchy identities and combinatorial models}
@@ -137,8 +147,8 @@ Haglund--Haiman--Loehr inv formula and the Ayyer--Mandelshtam--Martin quinv
 formula for $q$-Whittaker functions and modified Hall--Littlewood functions
 \cite{Bhattacharya2025}.  The proof uses weighted Dyck path symmetric
 functions of \name{Erik Carlsson} and \name{Anton Mellit}; the two Dyck paths
-attached to a partition are related by the $\zeta$ map, its inverse, and path
-reversal \cite[Cor.~2.5 and Thm.~2.8]{Bhattacharya2025}.
+attached to a partition are related by the $\zeta$ map, its inverse, and
+path reversal \cite[Cor.~2.5 and Thm.~2.8]{Bhattacharya2025}.
 \name{Tirtharaj Basu} and \name{Aritra Bhattacharya} give a standard-tableau
 formula for the Garsia--Remmel $q$-rook numbers
 \cite{BasuBhattacharya2025x}.  They relate this formula to the coefficients
@@ -160,10 +170,11 @@ using coloured lattice paths \cite[Thm.~2]{BhattacharyaRatheeshViswanath2024x}.
 A recent application of the $q$-Whittaker functions appears in
 \cite{Ram2026}, which solves a finite-field enumeration problem
 posed by \name{Edward Bender}, \name{Raymond Coley}, \name{David Robbins}, and
-\name{Howard Rumsey} \cite{BenderColeyRobbinsRumsey1992}. Let $\Delta$ be an $n \times n$
-matrix over the finite field $\mathbb{F}_q$. A subspace
+\name{Howard Rumsey} \cite{BenderColeyRobbinsRumsey1992}.  Let $\Delta$ be
+an $n \times n$ matrix over the finite field $\mathbb{F}_q$.  A subspace
 $W \subseteq \mathbb{F}_q^n$ has \defin{$\Delta$-profile}
-$\mu=(\mu_1,\mu_2,\ldots)$ if
+\label{deltaProfile}
+$\mu=(\mu_1,\mu_2,\dotsc)$ if
 \[
 \dim(W+\Delta W+\cdots+\Delta^{j-1}W)=\mu_1+\cdots+\mu_j
 \qquad (j \geq 1).
@@ -179,7 +190,8 @@ interpretation.  They also express the Touchard--Riordan crossing polynomial
 for chord diagrams in terms of $q$-Whittaker functions.
 
 The key symmetric function attached to $\Delta$ is the
-\defin{invariant flag generating function} $F_\Delta(\xvec)$. Suppose the
+\defin{invariant flag generating function}\label{invariantFlagGeneratingFunction}
+$F_\Delta(\xvec)$.  Suppose the
 $\mathbb{F}_q[t]$-module defined by the action of $\Delta$ on
 $\mathbb{F}_q^n$ decomposes as
 \[
@@ -188,11 +200,11 @@ $\mathbb{F}_q^n$ decomposes as
 \frac{\mathbb{F}_q[t]}{(g_i^{\lambda^i_j})},
 \]
 where the $g_i$ are distinct monic irreducible polynomials of degrees $d_i$
-and $\lambda^i=(\lambda^i_1,\lambda^i_2,\ldots)$ are partitions. Then
+and $\lambda^i=(\lambda^i_1,\lambda^i_2,\dotsc)$ are partitions. Then
 \[
 F_\Delta(\xvec)=
 \prod_{i=1}^r
-\hallLittlewoodH_{\lambda^i}(x_1^{d_i},x_2^{d_i},\ldots;q^{d_i})
+\hallLittlewoodH_{\lambda^i}(x_1^{d_i},x_2^{d_i},\dotsc;q^{d_i})
 =
 \prod_{i=1}^r
 \powerSum_{d_i}\circ \hallLittlewoodH_{\lambda^i}(\xvec;q^{d_i}).
@@ -208,15 +220,15 @@ size $n$ gives $F_\Delta(\xvec)=\completeH_n(\xvec)$; a nilpotent matrix of
 Jordan type $\lambda$ gives
 $F_\Delta(\xvec)=\hallLittlewoodH_\lambda(\xvec;q)$; and a matrix
 diagonalizable over $\mathbb{F}_q$ with eigenspace dimensions
-$\nu_1,\ldots,\nu_r$ gives
+$\nu_1,\dotsc,\nu_r$ gives
 \[
 F_\Delta(\xvec)=\prod_{i=1}^r \qWhittaker_{(\nu_i)}(\xvec;q),
 \]
 a product of single-row $q$-Whittaker functions.
 
-Let $\widetilde{\qWhittaker}_\lambda(\xvec;q)$ denote the basis dual to the
+Let \(\widetilde{\qWhittaker}_\lambda(\xvec;q)\) denote the basis dual to the
 $q$-Whittaker basis with respect to the Hall scalar product
-$\langle -,- \rangle$. The main theorem of \cite{Ram2026} is
+$\langle -,- \rangle$.  The main theorem of \cite{Ram2026} is
 \[
 \sigma(\mu,\Delta)
 =
@@ -228,7 +240,7 @@ F_\Delta(\xvec),
 \bigr\rangle.
 \]
 When $|\mu|=n$, this gives a direct finite-field interpretation of the
-coefficients in the $q$-Whittaker expansion of $F_\Delta(\xvec)$. In
+coefficients in the $q$-Whittaker expansion of $F_\Delta(\xvec)$.  In
 particular, the coefficients in the $q$-Whittaker expansions of
 $\powerSum_n$, $\completeH_n$, products of modified Hall--Littlewood functions,
 and products of one-row $q$-Whittaker functions count subspaces, up to sign and
@@ -247,8 +259,9 @@ methods have a long history going back to \name{Lagrange}, \name{Euler},
 \name{Gauss}, \name{Hilbert}, and \name[von Neumann]{John von Neumann},
 among others; see
 \cite{LiesenStrakos2013} for an overview. For an ordered set
-$S=\{v_1,\ldots,v_k\}\subseteq \mathbb{F}_q^n$, the
-\defin{truncated Krylov subspace of order $\ell$} generated by $S$ is
+$S=\{v_1,\dotsc,v_k\}\subseteq \mathbb{F}_q^n$, the
+\defin{truncated Krylov subspace of order $\ell$}
+\label{truncatedKrylovSubspace} generated by $S$ is
 \[
 \operatorname{Kry}(\Delta,S,\ell)
 =
@@ -257,7 +270,7 @@ $S=\{v_1,\ldots,v_k\}\subseteq \mathbb{F}_q^n$, the
 f_i\in \mathbb{F}_q[x],\ \deg f_i<\ell
 \right\}.
 \]
-\cite[Theorem 7.1]{Ram2026} gives a Hall scalar-product
+\cite[Thm.~7.1]{Ram2026} gives a Hall scalar-product
 formula involving dual $q$-Whittaker functions for the probability that a
 randomly chosen ordered set $S$ of size $k$ satisfies
 $\operatorname{Kry}(\Delta,S,\ell)=\mathbb{F}_q^n$.
@@ -267,7 +280,7 @@ $\operatorname{Kry}(\Delta,S,\ell)=\mathbb{F}_q^n$.
 
 The Whittaker functions show up when 
 considering a geometric lift of \hyperref[rsk]{RSK}.
-There is also a notion of geometric crystals.
+There is also a notion of \defin{geometric crystals}\label{geometricCrystal}.
 \name{Ivan Corwin}, \name{Neil O'Connell}, \name{Timo Seppäläinen}, and
 \name{Nikos Zygouras} relate tropical combinatorics, geometric RSK, and
 Whittaker functions \cite{CorwinOConnellSeppalainenZygouras2014}.
