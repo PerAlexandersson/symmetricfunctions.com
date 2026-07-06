@@ -1,40 +1,107 @@
 \metatitle{Dictionary}
-\metadescription{Words and terminology that appear in algebraic combinatorics}
+\metadescription{A short glossary of words and terminology that appear in
+algebraic combinatorics and symmetric functions.}
 
 
 \section[wordList]{Dictionary}
 
-
-bosonic variables --- a commuting variable, $x_ix_j = x_j x_i$. 
-See also \emph{fermionic variables}.
-
-character
+This page is a quick glossary for terms that appear across the site.  Most
+entries point to a fuller page where the term is used in context.
 
 
-cluster algebra
+\subsection[dictionaryAlgebraRepresentation]{Algebra and representation theory}
 
-Ehrhart polynomial
+\textbf{Character.}
+The \hyperref[representationCharacterDefinition]{character} of a
+representation is the trace of each group element acting on the representation
+space.  For $\symS_n$, the
+\hyperref[frobeniusCharacteristic]{Frobenius characteristic} converts
+characters into symmetric functions.
 
-fermionic variables --- anti-commuting variables, $\theta_i \theta_j= - \theta_j \theta_i$.
-Note that $\theta_i \theta_i = - \theta_i \theta_i$, so $\theta_i^2 =0$. 
-See also \emph{bosonic variables}.
+\textbf{Cluster algebra.}
+A cluster algebra is a commutative algebra generated from overlapping sets of
+generators called clusters, related by mutation rules.  Cluster structures
+often appear in total positivity, Grassmannians, and canonical-basis questions.
 
-Frobenius notation
+\textbf{Graded character.}
+A graded character records the character of a graded representation degree by
+degree.  In symmetric-function notation, this often gives a series such as
+\(\sum_d q^d\frobChar(M_d)\).
 
-graded character
+\textbf{Hilbert series.}
+The \hyperref[hilbertSeries]{Hilbert series} of a graded vector space records
+the dimensions of its homogeneous components.  If the graded space carries an
+$\symS_n$-action, the Frobenius characteristic refines the Hilbert series.
 
-h*-polynomial
+\textbf{Quiver.}
+A quiver is a directed graph.  Quivers enter this site mostly through
+\hyperref[algebras]{quiver Hecke algebras}, Hall--Littlewood-type formulas,
+and representation-theoretic models.
 
-Hessenberg variety
 
-Hilbert series
+\subsection[dictionaryCommutingVariables]{Commuting and anticommuting variables}
 
-plane partition
+\textbf{Bosonic variables.}
+Bosonic variables commute:
+\[
+  x_i x_j = x_j x_i.
+\]
+These are the ordinary variables used for symmetric, quasisymmetric, and
+polynomial bases throughout the site.
 
-plethystic notation
+\textbf{Fermionic variables.}
+Fermionic variables anticommute:
+\[
+  \theta_i\theta_j=-\theta_j\theta_i.
+\]
+In particular, over a field of characteristic zero, \(\theta_i^2=0\).
+They appear in super and fermionic variants of symmetric-function and
+\hyperref[diagonalHarmonics]{diagonal-harmonic} constructions.
 
-quiver
+\textbf{Plethystic notation.}
+Plethystic notation is a compact way to substitute alphabets and virtual
+alphabets into symmetric functions.  It is tied to the
+\hyperref[plethysm]{plethysm} operation.
 
-Schubert cell
 
-Tamari lattice
+\subsection[dictionaryPartitionsTableaux]{Partitions, tableaux, and Catalan objects}
+
+\textbf{Frobenius notation.}
+The \hyperref[frobeniusCoordinates]{Frobenius notation} of a partition records
+the arm and leg lengths from the diagonal boxes of its Young diagram.
+
+\textbf{Plane partition.}
+A \hyperref[planePartitions]{plane partition} is a two-dimensional array of
+nonnegative integers with weakly decreasing rows and columns.
+
+\textbf{Tamari lattice.}
+The Tamari lattice is a partial order on Catalan objects such as binary trees
+or Dyck paths.  It also appears in rational, cyclic, affine, and
+\(\nu\)-Tamari variants; see the \hyperref[cspRationalCatalan]{rational
+Catalan} and \hyperref[tamariInterval]{Tamari interval} discussions.
+
+
+\subsection[dictionaryGeometryPolytopes]{Geometry and polytopes}
+
+\textbf{Ehrhart polynomial.}
+The \hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial} of a lattice
+polytope \(P\) counts lattice points in dilates \(nP\).
+
+\textbf{\(h^*\)-polynomial.}
+The \hyperref[hStarPolynomial]{\(h^*\)-polynomial} is the numerator of the
+Ehrhart series of a lattice polytope.  Its coefficients are always
+nonnegative integers, even though the Ehrhart polynomial itself can have
+negative coefficients.
+
+\textbf{Hessenberg variety.}
+A \hyperref[hessenbergVarietyDefinition]{Hessenberg variety} is a subvariety
+of a flag variety defined by a linear operator and a Hessenberg function.
+Regular semisimple Hessenberg varieties are connected to chromatic
+quasisymmetric functions through Tymoczko's
+\hyperref[tymoczkoDotAction]{dot action}.
+
+\textbf{Schubert cell.}
+A Schubert cell is one stratum in the standard cell decomposition of a flag
+variety or Grassmannian.  In the Grassmannian, these cells are indexed by
+partitions fitting inside a rectangle and are closely related to
+\hyperref[grassmannianSchubertClasses]{Schubert classes}.

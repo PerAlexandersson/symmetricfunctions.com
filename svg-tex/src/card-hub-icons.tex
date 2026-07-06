@@ -230,6 +230,20 @@
   \draw[iconblue, thinner, ->, >=Stealth] (0.38,-0.6) -- (0.62,-0.6);
 \end{tikzpicture}
 
+\tikzsetnextfilename{card-wordList}
+\begin{tikzpicture}[icon]
+  \cardframe
+  \filldraw[fill=iconblue!18, draw=black, line width=0.6mm,
+    rounded corners=0.06cm] (-0.55,-0.62) rectangle (0.48,0.62);
+  \draw[black, thinner] (-0.34,0.62) -- (-0.34,-0.62);
+  \foreach \y in {0.34,0.12,-0.10,-0.32} {
+    \draw[black, line width=0.45mm] (-0.18,\y) -- (0.28,\y);
+    \fill[iconorange] (-0.33,\y) circle (0.035);
+  }
+  \draw[icongreen, line width=0.8mm] (0.22,-0.38) circle (0.16);
+  \draw[icongreen, line width=0.8mm] (0.33,-0.49) -- (0.56,-0.72);
+\end{tikzpicture}
+
 \tikzsetnextfilename{card-hivePolytopes}
 \begin{tikzpicture}[icon]
   \cardframe
