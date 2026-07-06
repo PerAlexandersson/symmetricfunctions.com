@@ -1,7 +1,7 @@
 \metatitle{Word cyclic sieving}
 \metadescription{A list of instances of the cyclic sieving phenomenon on words}
 
-See the \hyperref[cyclicSieving]{cyclic sieving phenomenon} 
+See the \hyperref[cyclicSieving]{cyclic sieving phenomenon}
 page for the definition and related theorems.
 
 
@@ -10,10 +10,17 @@ page for the definition and related theorems.
 
 \subsection[cspWords]{Words}
 
-Let $X_n(\alpha)$ be the set of words of length $n$ and content $\alpha$, that is, each word has $a_i$ entries equal to $i$.
+Let $X_n(\alpha)$ be the set of words of length $n$ and content $\alpha$;
+that is, each word has $\alpha_i$ entries equal to $i$.
 Let the cyclic group $\grpc_n$ act on $X_n(\alpha)$ by cyclic shift, and let
 \[
-f_n(\alpha;q) \coloneqq \qbinom{n}{\alpha}_q = \sum_{w \in X_n(\alpha)} q^{\maj(w)} = \sum_{w \in X_n(\alpha)} q^{\inv(w)}.
+f_n(\alpha;q)
+\coloneqq
+\qbinom{n}{\alpha}_q
+=
+\sum_{w \in X_n(\alpha)} q^{\maj(w)}
+=
+\sum_{w \in X_n(\alpha)} q^{\inv(w)}.
 \]
 Then $(X_n(\alpha),\grpc_n,f_n(\alpha;q))$ exhibits the CSP,
 see \cite{ReinerStantonWhite2004}.
@@ -21,17 +28,19 @@ see \cite{ReinerStantonWhite2004}.
 
 \subsection[cspMultisets]{Multisets}
 
-Let $X_{n,k}$ be the set of $k$-multisets of $[n]$. Note that $|X_{n,k}| = \binom{n+k-1}{k}$.
-For $n=3$, $k=2$ we have 
+Let $X_{n,k}$ be the set of $k$-multisets of $[n]$.
+Note that $|X_{n,k}| = \binom{n+k-1}{k}$.
+For $n=3$, $k=2$ we have
 \[
 X = \{11,12,13,22,23,33 \}.
 \]
-Let $\grpc_n = \langle g \rangle$ act on $X_{n,k}$ by the cycle $g=(123\dotsb n)$, so that $g\circ 23 = 31 = 13$ in the example above.
-Then 
+Let $\grpc_n = \langle g \rangle$ act on $X_{n,k}$ by the cycle
+$g=(123\dotsb n)$, so that $g\circ 23 = 31 = 13$ in the example above.
+Then
 \[
 \left( X_{n,k}, \grpc_n,  \qbinom{n+k-1}{k}_q \right)
 \]
-exhibits the CSP, see \cite{ReinerStantonWhite2004}.
+exhibits the CSP \cite{ReinerStantonWhite2004}.
 
 \name{Drew Armstrong} studies the bounded-multiplicity interpolation between
 subsets and multisets \cite{Armstrong2025BoundedMultiplicityCSP}.  Let
@@ -51,20 +60,21 @@ multiset case in the limit $b\to \infty$.
 
 \subsection[cspBinaryWordsTwist]{Binary words with a twist}
 
-Let $X_n$ be the set of binary words and let $\eta$ 
+Let $X_n$ be the set of binary words and let $\eta$
 act on $X_n$ by a \emph{twisted cyclic shift}
 \[
 \eta(b_1,b_2,\dotsc,b_{n-1},b_n) = (1-b_n,b_1,b_2,\dotsc,b_{n-1}),
 \]
-which generates a cyclic group of order $2n$, so $\langle \eta^2 \rangle$ is a cyclic 
+which generates a cyclic group of order $2n$, so $\langle \eta^2 \rangle$ is a cyclic
 group of order $n$.
 Then
 \[
 \left(X_n, \langle \eta^2 \rangle, \prod_{j=0}^{n-1}(1+q^j) \right)
 \]
-exhibits the cyclic sieving phenomenon. This is proved in \cite{AlexanderssonLinussonPotka2019}.
+exhibits the cyclic sieving phenomenon.  This is proved in
+\cite{AlexanderssonLinussonPotka2019}.
 
-By adjusting the $q$-analog a bit, one can show that
+By adjusting the $q$-analogue a bit, one can show that
 \[
 \left(X_n, \langle \eta \rangle, \prod_{j=1}^{n}(1+q^j) \right)
 \]
@@ -79,7 +89,8 @@ for restricting the set of words we act on.
 \name{Sam Hopkins} pointed out that this also follows from \cite{RushShi2012},
 with \hyperref[cspListPosetsMinuscule]{cyclic sieving on minuscule posets of type $B$}.
 The idea is to biject order ideals to binary words.
-This in turn is related to \cite[Cor. 8.5]{ReinerStantonWhite2004}, by taking $k=0$ in their statement.
+This in turn is related to \cite[Cor.~8.5]{ReinerStantonWhite2004}, by taking
+$k=0$ in their statement.
 
 
 \subsection[cspWordsTwist]{General words with a twist}
@@ -88,10 +99,13 @@ We can generalize the twisted binary words CSP.
 
 \begin{definition}
 Let $W(n,k)$ denote the set of words of length $n$ with entries in $\{1,2,\dotsc,k\}$.
-Given $w=(w_1,\dotsc,w_n) \in W(n,k)$, let $\phi(w) \coloneqq (w_n+1,w_1,w_2,\dotsc,w_{n-1})$,
+Given $w=(w_1,\dotsc,w_n) \in W(n,k)$, let
+\[
+\phi(w) \coloneqq (w_n+1,w_1,w_2,\dotsc,w_{n-1}),
+\]
 where the addition is taken modulo $k$.
-Note that $\phi^{\circ n}(w) = w+1$ and that it follows that $\phi^{\circ k}$ 
-generate a cyclic group of order $n$.
+Note that $\phi^{\circ n}(w) = w+1$, and hence $\phi$ generates a cyclic
+group of order $nk$.
 \end{definition}
 
 \begin{conjecture}[Alexandersson, 2022]
@@ -99,7 +113,7 @@ For every $n,k\geq 1$,
 \[
  \left(
 W(n,k), \left\langle \phi \right\rangle,
-\prod_{j=1}^{n}\left(1+q^j+q^{2j}+q^{3j}+\dotsb+q^{(k-1)j}\right)  
+\prod_{j=1}^{n}\left(1+q^j+q^{2j}+q^{3j}+\dotsb+q^{(k-1)j}\right)
  \right)
 \]
 is a CSP-triple.
@@ -119,7 +133,7 @@ to rotation of the webs.
 \name{Mona Gatzweiler} and \name{Christian Krattenthaler} prove positivity
 results for quotients of $q$-binomial coefficients which imply that the
 conjectural cyclic sieving polynomial for Kreweras words is indeed a
-polynomial with non-negative integer coefficients
+polynomial with nonnegative integer coefficients
 \cite{GatzweilerKrattenthaler2025x}.
 
 
@@ -133,14 +147,19 @@ We let $\grpc_n$ act on $LW_{n}$ by rotation.
 We note that $|LW_{n}|= L_n$, a Lucas number, \oeis{A000032}.
 Define the $2\times 2$-matrix $A(x,t)$ with entries in $\setZ[q,t]$ as
 \[
-A(x,t)\coloneqq 
+A(x,t)\coloneqq
 \begin{bmatrix}
 1 & t \\
 x & 0
 \end{bmatrix}
 \]
-and let $|LW_{n}|_q \coloneqq \trace \left(  A(q^{n-1},1)  A(q^{n-2},1) \dotsm  A(1,1) \right)$.
-This is a $q$-analog of $C_{n}$.
+and let
+\[
+|LW_{n}|_q
+\coloneqq
+\trace \left(  A(q^{n-1},1)  A(q^{n-2},1) \dotsm  A(1,1) \right).
+\]
+This is a $q$-analogue of the Lucas number $L_{n}$.
 Then the following is a CSP-triple:
 \[
 \left( LW_n, \grpc_n, |LW_{n}|_q \right).
@@ -148,15 +167,20 @@ Then the following is a CSP-triple:
 
 This result can be refined in the following manner.
 Let $LW_{n,k}\subset LW_{n}$ be the subset of binary words with exactly $k$ ones.
-Let $|LW_{n,k}|_q \coloneqq [t^k] \trace \left(  A(q^{n-1},t)  A(q^{n-2},t) \dotsm  A(1,t) \right)$.
-This is a $q$-analog of $LW_{n,k}$ and in fact,
+Let
 \[
-|LW_{n,k}|_q = \sum_{w \in LW_{n,k}}  q^{\stat(w)} 
-= q^{k^2-k}\qbinom{n-k+1}{k}_q - 
+|LW_{n,k}|_q
+\coloneqq
+[t^k] \trace \left(  A(q^{n-1},t)  A(q^{n-2},t) \dotsm  A(1,t) \right).
+\]
+This is a $q$-analogue of $|LW_{n,k}|$ and in fact,
+\[
+|LW_{n,k}|_q = \sum_{w \in LW_{n,k}}  q^{\stat(w)}
+= q^{k^2-k}\qbinom{n-k+1}{k}_q -
 q^{n+(k-1)^2-k}\qbinom{n-k-1}{k-2}_q.
 \]
 where $\stat(w) = \sum_{i=1}^n [w_i=1] (n-i)$, using the Iverson bracket.
-We have the CSP-triple 
+We have the CSP-triple
 \[
 \left( LW_{n,k}, \grpc_n, |LW_{n,k}|_q \right).
 \]
@@ -165,25 +189,29 @@ We have the CSP-triple
 
 \subsection[cspLongestTypeBReducedWords]{Reduced words of $w_0$ in type B}
 
-Let $X_n$ be the set of all \hyperref[reducedWord]{reduced words} for the longest element in the type $B_n$ \hyperref[coxeterGroups]{Coxeter group}.
-We can define \hyperref[notationPermutations]{major index} on these. Let $C_{n^2}$ act on such reduced words by rotation.
-Then 
+Let $X_n$ be the set of all \hyperref[reducedWord]{reduced words} for the
+longest element in the type $B_n$ \hyperref[coxeterGroups]{Coxeter group}.
+We can define \hyperref[notationPermutations]{major index} on these.
+Let $C_{n^2}$ act on such reduced words by rotation.
+Then
 \[
 \left( X_n, C_{n^2}, q^{-n\binom{n}{2}}\sum_{w \in X_n} q^{\maj(w)} \right)
 \]
-is a CSP-triple. 
-The proof in \cite{PetersenSerrano2010} is done via 
-bijecting to $n\times n$-SYT and then using \hyperref[cspRectangularSYT]{\name{Brendon Rhoades} result}.
+is a CSP-triple.
+The proof in \cite{PetersenSerrano2010} uses a bijection to
+$n\times n$-SYT and then the \hyperref[cspRectangularSYT]{rectangular SYT CSP}
+of \name{Brendon Rhoades}.
 
 
 
 \subsection[cspPermutations]{Permutations of fixed type and exceedances}
 
 The following CSP is proved in \cite{SaganShareshianWachs2011}.
-Let $S_{\lambda,j} \subseteq \symS_n$ be the set of permutations of 
+Let $S_{\lambda,j} \subseteq \symS_n$ be the set of permutations of
 cycle type $\lambda$ and exactly $j$ exceedances.
-Let $\grpc_n$ be generated by the long cycle $(1\,2\,3\,\dotsb\,n)$, and let it act on $S_{\lambda,j}$ by conjugation.
-Define 
+Let $\grpc_n$ be generated by the long cycle $(1\,2\,3\,\dotsb\,n)$, and let
+it act on $S_{\lambda,j}$ by conjugation.
+Define
 \[
 f_{\lambda,j}(q) \coloneqq  \sum_{\pi \in S_{\lambda,j} } q^{\maj(\pi) - \exc(\pi)}.
 \]
@@ -194,27 +222,30 @@ Then $(S_{\lambda,j}, \grpc_n, f_{\lambda,j}(q))$ is a CSP-triple.
 \subsection[cspPermutations2]{Permutations}
 
 The following CSP is a special case of \hyperref[csp01Matrices]{the CSP on binary matrices}.
-Let $\symS_n$ be the set of permutations, seen as a list of pairs $\{i,\pi(i)\}$, $1 \leq i \leq n$.
-We let $C_n = \langle g \rangle$ act on such pairs by $g \cdot \{i,\pi(i)\} = \{i+1,\pi(i)+1\}$,
+Let $\symS_n$ be the set of permutations, seen as a list of pairs
+$\{i,\pi(i)\}$, $1 \leq i \leq n$.
+We let $C_n = \langle g \rangle$ act on such pairs by
+$g \cdot \{i,\pi(i)\} = \{i+1,\pi(i)+1\}$,
 where addition is performed modulo $n$.
 
 Then
 \[
 \left( \symS_n, C_n, \sum_{\lambda \vdash n} (f^{\lambda}(q))^2 \right)
 \]
-is a CSP-triple, where $f^{\lambda}(q)$ is the $q$-analog of the \hyperref[prelimQHook]{hook formula}.
+is a CSP-triple, where $f^{\lambda}(q)$ is the $q$-analogue of the
+\hyperref[prelimQHook]{hook formula}.
 
 
 \subsection[cspPermutations3]{Permutations of fixed shape}
 
 By using \hyperref[rsk]{RSK}, we have that
-the set $\SYT(\lambda) \times \SYT(\lambda)$ is in bijection with permutations in $\symS_n$,
-which insert to a pair of Young tableaux of shape $\lambda$.
-In \cite[Thm.~44]{AlexanderssonPfannererRubeyUhlin2020}, we show that
-there exists a cyclic group action of order $n$, such that
+the set $\SYT(\lambda) \times \SYT(\lambda)$ is in bijection with permutations
+in $\symS_n$ which insert to a pair of Young tableaux of shape $\lambda$.
+In \cite[Thm.~44]{AlexanderssonPfannererRubeyUhlin2020}, it is shown that
+there exists a cyclic group action of order $n$ such that
 for any $\lambda \vdash n$,
 \[
- \left( \SYT(\lambda) \times \SYT(\lambda), C_n, \left(f^{\lambda}(q)\right)^2 \right) 
+ \left( \SYT(\lambda) \times \SYT(\lambda), C_n, \left(f^{\lambda}(q)\right)^2 \right)
 \]
 is a CSP-triple.  The proof is existential, and does not give a natural action
 on the pairs of tableaux.
@@ -230,15 +261,22 @@ Note that this refines the CSP on \hyperref[cspPermutations2]{permutation matric
 
 \subsection[cspPathGraphLabelings]{Labelings of the path graph}
 
-The path graph $P_n$ on $n$ vertices has $n!$ labelings, using labels from $\setZ/n\setZ$.
-The authors of \cite{DefantMadhukaraThomas2023x} study a version of promotion, named \defin{toric promotion}.
-They introduce \defin{permutoric promotion} which is an operator determined by a permutation $\pi$ in $\symS_n$.
+The path graph $P_n$ on $n$ vertices has $n!$ labelings, using labels from
+$\setZ/n\setZ$.
+The authors of \cite{DefantMadhukaraThomas2023x} study a version of promotion,
+named \defin{toric promotion}\label{pathGraphToricPromotion}.
+They introduce \defin{permutoric promotion}\label{permutoricPromotion}, which
+is an operator determined by a permutation $\pi$ in $\symS_n$.
 The role of $\pi$ is to decide in which order to perform certain local toggles.
 
-Permutoric promotion, $\mathrm{TPro}_{\pi}$, 
+Permutoric promotion, $\mathrm{TPro}_{\pi}$,
 acts on labelings with order $d(n-d)$ where $d$ is the number of descents of $\pi^{-1}$.
-They show that 
+They show that
 \[
- \left( \text{Labelings of $P_n$}, \mathrm{TPro}_{\pi}, n(d-1)!(n-d-1)! [n-d]_{q^d} \qbinom{n-1}{d-1}_q \right)
+ \left(
+ \text{Labelings of $P_n$},
+ \mathrm{TPro}_{\pi},
+ n(d-1)!(n-d-1)! [n-d]_{q^d} \qbinom{n-1}{d-1}_q
+ \right)
 \]
 is a CSP-triple.
