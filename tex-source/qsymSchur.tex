@@ -1,5 +1,9 @@
 \metatitle{Quasisymmetric Schur functions and variants}
-\metadescription{An introduction to quasisymmetric Schur functions and their variants, including definitions, properties, and connections to tableaux and 0-Hecke algebras.}
+\metadescription{An introduction to quasisymmetric Schur functions and their
+variants, including definitions, examples, tableaux, 0-Hecke modules, and
+related Schur-like quasisymmetric bases.}
+\metakeywords{quasisymmetric Schur function, Young quasisymmetric Schur
+function, dual immaculate function, extended Schur function, 0-Hecke algebra}
 
 \section[qSchur]{Quasisymmetric Schur functions}
 
@@ -37,16 +41,19 @@ space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
 quasisymmetric basis and introduce \hyperref[quasiKey]{quasi-key polynomials}
 as a polynomial lift \cite{AssafSearles2018}.  The
 stable limits of the quasi-key polynomials are the quasi-Schur functions, and
-their \hyperref[kohnert]{Kohnert-tableau} model lifts the expansion of Schur functions into
+their \hyperref[kohnertTableaux]{Kohnert-tableau} model lifts the expansion
+of Schur functions into
 quasi-Schur functions and then into
 \hyperref[gessel]{fundamental quasisymmetric functions}.
 
-A skew version is introduced in \cite{BessenrodtLuotoWilligenburg2011},
-and they show that the \defin{skew quasisymmetric Schur functions}\label{skewQuasisymmetricSchurFunctions}
-expand positively into quasisymmetric Schur functions.
+\name{Christine Bessenrodt}, \name{Kurt Luoto}, and
+\name{Stephanie van Willigenburg} introduce
+\defin{skew quasisymmetric Schur functions}
+\label{skewQuasisymmetricSchurFunctions} and show that they expand positively
+into quasisymmetric Schur functions \cite{BessenrodtLuotoWilligenburg2011}.
 
 The quasisymmetric Schur functions can be described as certain characters of
-the \hyperref[zeroHeckeAlgebra]{0-Hecke algebra}, see
+the \hyperref[zeroHeckeAlgebra]{0-Hecke algebra}; see
 \cite{TewariWilligenburg2015}.
 
 
@@ -55,7 +62,9 @@ functions is in terms of \hyperref[atom]{Demazure atoms}:
 \begin{definition}
 Let $\alpha$ be a \hyperref[weakCompositions]{composition}. Then
 \[
-\qSchur_\alpha(\xvec) \coloneqq \sum_{\gamma : \mathrm{comp}(\gamma) = \alpha} \atom_{\gamma}(\xvec)
+\qSchur_\alpha(\xvec)
+\coloneqq
+\sum_{\gamma : \mathrm{comp}(\gamma)=\alpha} \atom_{\gamma}(\xvec)
 \]
 where the sum ranges over all \hyperref[weakCompositions]{weak compositions}
 $\gamma$ obtained by inserting $0$s between parts of $\alpha$.
@@ -91,7 +100,9 @@ A \defin{standard reverse composition tableau}\label{standardReverseCompositionT
 $1,2,\dotsc,n$ exactly once in the filling.
 The \hyperref[descentSet]{descent set} $\des(T)$ of a SRCT is defined as
 \[
- \des(T) := \{ i : i+1 \text{ appears weakly to the right of } i \}.
+ \des(T)
+ \coloneqq
+ \{ i : i+1 \text{ appears weakly to the right of } i \}.
 \]
 
 \begin{example*}[Example of a SRCT and its descent set]
@@ -123,7 +134,7 @@ This example is from \cite[Ex.~2.7]{TewariWilligenburg2015}.
 The expansion
 \[
 \qSchur_{(2,1,3)}
-= \gessel_{(2,1,3)} + \gessel_{(2,2,2)}+\gessel_{(1,2,1,2)}
+= \gessel_{(2,1,3)}+\gessel_{(2,2,2)}+\gessel_{(1,2,1,2)}
 \]
 corresponds to the three SRCTs
 \begin{figure}
@@ -196,7 +207,8 @@ The \defin{Young quasisymmetric Schur functions}
 \cite{LuotoMykytiukWilligenburg2013},
 are obtained from the \hyperref[qSchur]{quasisymmetric Schur functions} via the relation
 $\yqSchur_\alpha = \rho(\qSchur_{\rev(\alpha)})$
-where $\rho$ is the \hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}
+where $\rho$ is the
+\hyperref[standardQuasiInvolution]{involution on quasisymmetric functions}
 given by $\rho\gessel_\beta=\gessel_{\beta^r}$.
 They also refine Schur functions:
 \[
@@ -361,8 +373,12 @@ The \defin{row-strict quasisymmetric Schur functions}
 \label{rowStrictQuasisymmetricSchurFunction} were introduced by
 \name{Sarah Mason} and \name{Jeffrey Remmel} \cite{MasonRemmel2013}.
 These \hyperref[quasiSymmetricFunctions]{quasisymmetric functions} are indexed by
-\hyperref[weakCompositions]{compositions}, and refine the \hyperref[schurS]{Schur functions}
-as $\schurS_\lambda(\xvec) = \sum_{\alpha \sim \lambda'} \rsqSchur_\alpha(\xvec)$.
+\hyperref[weakCompositions]{compositions}, and refine the
+\hyperref[schurS]{Schur functions} as
+\[
+  \schurS_\lambda(\xvec)
+  = \sum_{\alpha \sim \lambda'} \rsqSchur_\alpha(\xvec).
+\]
 
 They are related to the \hyperref[qSchur]{quasisymmetric Schur functions} by
 \[
@@ -394,9 +410,10 @@ The degree four row-strict quasisymmetric Schur functions have the following
 \]
 
 
-A product rule for multiplying a \hyperref[rsqSchur]{row-strict quasisymmetric Schur function} with a
-regular \hyperref[schurS]{Schur function}, and expanding into row-strict quasisymmetric Schur functions,
-is given in \cite[Thm.~13]{Ferreira2011b}.
+A product rule for multiplying a
+\hyperref[rsqSchur]{row-strict quasisymmetric Schur function} with an ordinary
+\hyperref[schurS]{Schur function}, and expanding into row-strict
+quasisymmetric Schur functions, is given in \cite[Thm.~13]{Ferreira2011b}.
 See also \cite[Thms.~10 and 11]{MasonNiese2015}.
 
 
@@ -422,7 +439,8 @@ See also \cite[Thms.~10 and 11]{MasonNiese2015}.
 The \defin{row-strict Young quasisymmetric Schur functions}
 \label{rowStrictYoungQuasisymmetricSchurFunction} and their skew
 versions are introduced in \cite{MasonNiese2015}.
-They can be defined via the relation with \hyperref[yqSchur]{Young quasisymmetric Schur functions}:
+They can be defined via the relation with
+\hyperref[yqSchur]{Young quasisymmetric Schur functions}:
 $\rsyqSchur_\alpha = \omega(\yqSchur_\alpha)$, see
 \cite[Thm.~12]{MasonNiese2015}.
 They refine Schur functions by summing over the compositions whose parts
@@ -504,8 +522,8 @@ The \defin{dual immaculate Schur functions}\label{dualImmaculateSchurFunction}
 $\{\diSchur_\alpha\}$, were introduced in \cite{BergBergeronSaliolaSerranoZabrocki2014}.
 They constitute a basis for the space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
 The original definition is that they are dual to
-\hyperref[immaculateSchur]{immaculate Schur functions},
-which are \hyperref[nonComFunctions]{non-commutative}.
+\hyperref[immaculateSchur]{immaculate Schur functions} in
+\hyperref[nonComFunctions]{noncommutative symmetric functions}.
 
 They are defined by
 \[
@@ -516,14 +534,15 @@ shape $\alpha$.
 These are fillings of the diagram $\alpha$ whose rows are weakly increasing
 and whose first column is \emph{strictly increasing} with respect to the row
 indexing.
-The weight $\xvec^T$ is computed in the same manner as for \hyperref[prelimTableaux]{semistandard Young tableaux}.
+The weight $\xvec^T$ is computed in the same manner as for
+\hyperref[prelimTableaux]{semistandard Young tableaux}.
 
 
 By \cite[Prop.~3.37]{BergBergeronSaliolaSerranoZabrocki2014},
 \[
  \diSchur_\alpha = \sum_{\beta \leq_\ell \alpha} L_{\alpha,\beta} \gessel_\beta
 \]
-where $L_{\alpha,\beta}$ are certain non-negative coefficients, and $\leq_\ell$
+where $L_{\alpha,\beta}$ are certain nonnegative coefficients, and $\leq_\ell$
 denotes lexicographic ordering.
 \name{Edward Allen}, \name{Joshua Hallam}, and \name{Sarah Mason} prove that
 the dual immaculate functions expand positively in the
@@ -575,7 +594,8 @@ the subscript $112$ denotes the composition $(1,1,2)$.
 \end{array}
 \]
 
-\emph{Note:} The \hyperref[schurS]{Schur functions} are not positive in the dual immaculate basis!
+\emph{Note:} The \hyperref[schurS]{Schur functions} are not positive in the
+dual immaculate basis.
 
 \name{Sarah Mason} and \name{Dominic Searles} construct polynomial lifts of
 the dual immaculate functions \cite{MasonSearles2021}.  Their lifts are
@@ -583,7 +603,7 @@ designed so that the stable limit recovers the dual immaculate basis, in the
 same spirit that slide and related polynomial bases lift quasisymmetric
 families.
 \name{Sarah Mason} and \name{Dominic Searles} also study the broader
-``Young'' and ``reverse'' dichotomy of polynomial bases
+\enquote{Young} and \enquote{reverse} dichotomy of polynomial bases
 \cite{MasonSearles2022}, organizing several quasisymmetric and polynomial
 families into parallel Young and reverse versions.
 
@@ -606,13 +626,16 @@ immaculate tableaux of shape $\alpha$ is
 \[
   f^\alpha = \frac{n!}{\prod_{(i,j)\in\alpha} h_{i,j}}.
 \]
-This hook-length formula was proved in
+This \hyperref[hookLength]{hook-length formula} was proved in
 \cite[Prop.~3.13]{BergBergeronSaliolaSerranoZabrocki2014}; see also the
 bijective proof of \name{Emma L. L. Gao} and \name{Arthur L. B. Yang}
 \cite[Thm.~1.1]{GaoYang2016}.
 Equivalently,
 \[
-  \frac{ (n-1)! }{ \prod_{k=1}^{\ell-1}(n-\alpha_1-\alpha_2-\dotsb - \alpha_k) \prod_{k=1}^\ell (\alpha_k - 1)! }.
+  \frac{(n-1)!}{
+    \prod_{k=1}^{\ell-1}(n-\alpha_1-\alpha_2-\dotsb-\alpha_k)
+    \prod_{k=1}^{\ell}(\alpha_k-1)!
+  }.
 \]
 \end{theorem}
 
@@ -693,10 +716,11 @@ immaculate basis; see \cite[Lem.~3.1 and Thm.~4.4]{BergeronSanchezOrtegaZabrocki
 
 The \defin{row-strict dual immaculate Schur functions}
 \label{rowStrictDualImmaculateSchurFunction}
-$\{\rsdiSchur_\alpha\}$, were introduced in \cite{NieseSundaramWilligenburgVegaWang2023},
-and are defined similarly to the \hyperref[diSchur]{dual immaculate Schur
-functions}.
-They constitute a basis for the space of \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
+$\{\rsdiSchur_\alpha\}$, were introduced in
+\cite{NieseSundaramWilligenburgVegaWang2023} and are defined similarly to the
+\hyperref[diSchur]{dual immaculate Schur functions}.
+They constitute a basis for the space of
+\hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
 For an introduction, see \name{Sheila Sundaram}'s AlCoVE 2022 talk
 \cite{Sundaram2022AlCoVE}.
 The paper of \name{Sarah Niese}, \name{Sheila Sundaram},
@@ -828,10 +852,12 @@ the subscript $112$ denotes the composition $(1,1,2)$.
 The \defin{extended Schur functions}\label{extendedSchurFunction} were
 introduced by \name{Sami Assaf}
 and \name{Dominic Searles} in \cite{AssafSearles2019}.
-They are obtained by taking the stable limit of \hyperref[lock]{lock polynomials}.
+They are obtained by taking the stable limit of
+\hyperref[lockPolynomialDefinition]{lock polynomials}.
 Alternatively, the extended Schur functions are dual
 to the \emph{shin polynomials} (see \cite{CampbellFeldmanLightShuldinerXu2014})
-which constitute a basis for the ring of \hyperref[nonComFunctions]{non-commutative symmetric functions}.
+which constitute a basis for the ring of
+\hyperref[nonComFunctions]{noncommutative symmetric functions}.
 \name{Spencer Daugherty} studies extended Schur functions and related
 quasisymmetric bases connected by involutions \cite{Daugherty2024Extended}.
 In particular, the extended Schur functions sit in a four-family system closed
@@ -879,7 +905,8 @@ For instance, the same Rust check gives
 in the fundamental quasisymmetric basis.
 
 For a connection with the \hyperref[zeroHeckeAlgebra]{0-Hecke algebra}, see
-\cite{Searles2020}, where these are shown to be characters of certain
+\cite{Searles2020}, where extended Schur functions are shown to be characters
+of certain
 \hyperref[zeroHeckeAlgebra]{0-Hecke modules}.
 \name{Seung-Il Choi}, \name{Young-Hun Kim}, \name{Sun-Young Nam}, and
 \name{Young-Tak Oh} study projective covers of tableau-cyclic
