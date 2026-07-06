@@ -1,13 +1,17 @@
 \metatitle{RSK, the Robinson--Schensted--Knuth correspondence}
 
-\metadescription{Background and properties of the Robinson--Schensted--Knuth correspondence.}
+\metadescription{Background and properties of the
+Robinson--Schensted--Knuth correspondence, including row insertion, dual RSK,
+Burge insertion, Knuth relations, and geometric RSK.}
+\metakeywords{RSK correspondence, Robinson-Schensted-Knuth correspondence,
+row insertion, Knuth relations, Burge correspondence, geometric RSK}
 
 
 
 \section[rsk]{The Robinson--Schensted--Knuth correspondence}
 
 The \defin{Robinson--Schensted--Knuth correspondence}\label{rskCorrespondence} (RSK)
-is a bijection between matrices with non-negative integer entries and pairs of
+is a bijection between matrices with nonnegative integer entries and pairs of
 \hyperref[prelimTableaux]{semistandard Young tableaux} of the same shape.
 Let $M(\mu,\nu)$ denote the set of matrices with entries in $\setN$,
 whose row sums are $\mu$ and whose column sums are $\nu$.
@@ -39,7 +43,8 @@ relations, and the most frequently used symmetry properties.  The later
 sections are a guide to important extensions of RSK rather than complete
 constructions of every variant.
 
-See the \hyperref[evacuation]{evacuation} section on how RSK interacts with evacuation.
+See the \hyperref[evacuation]{evacuation} section for how RSK interacts with
+evacuation.
 The standard transpose, inverse, and reversal symmetries are collected in the
 \hyperref[rskProperties]{properties section} below.
 \name{Son Nguyen}, \name{Joseph Vulakh}, and \name{Dora Woodruff} define a
@@ -121,9 +126,9 @@ states that any sequence of distinct real numbers of length $(r-1)(s-1)+1$
 contains a monotonically increasing subsequence of length $r$,
 or a monotonically decreasing subsequence of length $s$.
 
-Suppose we have a sequence $w$ of such numbers. We apply row insertion to this sequence,
-and obtain a tableau $P$ (with real numbers).
-Note that this tableau cannot be contained in an $(r-1)\times (s-1)$-rectangle,
+Suppose we have a sequence $w$ of such numbers.  Applying row insertion to
+this sequence gives a tableau $P$ with real entries.
+This tableau cannot be contained in an $(r-1)\times (s-1)$-rectangle,
 so either the first row is longer than $r$, or the first column is longer than $s$.
 
 Application of Greene's theorem finishes the proof.
@@ -136,16 +141,17 @@ Application of Greene's theorem finishes the proof.
 The RSK correspondence is done in two steps.
 A matrix $A \in M(\lambda,\mu)$ is first turned into a
 \defin{biword}\label{biword} $W$ of length $n$ as follows.
-For each entry $A_{ij}$, we have $A_{ij}$ columns in $W$ equal to $\binom{i}{j}$.
-Furthermore, the columns are ordered lexicographically, with respect to the top entry first.
+For each entry $A_{ij}$, the biword $W$ has $A_{ij}$ columns equal to
+$\binom{i}{j}$.
+The columns are ordered lexicographically, with respect to the top entry first.
 
 Given a pair $(P,Q)$ of SSYT of the same shape,
 the insertion $(P,Q) \leftarrow \binom{i}{j}$ is defined as the pair $(P',Q')$,
 where $P' =  P \leftarrow j$ and $Q'$ is obtained from $Q$ by putting $i$
 in the box where the last insertion took place to get $P'$.
 
-Finally, the pair $(P,Q)$ in the correspondence $W \rskArrow (P,Q)$
-is obtained by inserting each column $\binom{i}{j}$ from left to right in $W$.
+The pair $(P,Q)$ in the correspondence $W \rskArrow (P,Q)$ is obtained by
+inserting each column $\binom{i}{j}$ from left to right in $W$.
 The resulting $(P,Q)$ is a pair of semistandard Young tableaux whenever
 $W$ corresponds to a matrix $A$.
 We refer to $P = \ins(W)$ as the insertion tableau
@@ -315,8 +321,10 @@ from colored permutations to matrices with entries in $\setN^r$, producing
 pairs of semistandard $r$-ribbon tableaux on a fixed $r$-core, and also give
 an asymmetric version for matrices with entries in $\{0,1\}^r$.
 
-Each binary matrix $B$ gives rise to a Burge word by recording the row and column coordinates of the ones.
-That is, if  $B_{ij}=1$ then $\binom{i}{j}$ appears as a column in the corresponding biword.
+Each binary matrix $B$ gives rise to a Burge word by recording the row and
+column coordinates of the ones.
+That is, if $B_{ij}=1$ then $\binom{i}{j}$ appears as a column in the
+corresponding biword.
 For example,
 \[
 \begin{pmatrix}
@@ -438,10 +446,10 @@ to the other via elementary dual Knuth transformations, see
 
 \section[rskProperties]{Properties of RSK}
 
-Here is an overview of the properties of RSK.
+The following list records useful properties of RSK.
 Several of the standard symmetry rules can be found in
 \cite[App.~A.4.3]{Fulton1997} and \cite[A.1.2.11]{StanleyEC2}.
-Note that RSK is closely connected to \hyperref[chargeProperties]{charge}.
+RSK is also closely connected to \hyperref[chargeProperties]{charge}.
 The descent identity below uses \hyperref[descentSet]{permutation descents}
 and \hyperref[tableauDescentSet]{tableau descents}.
 
@@ -504,7 +512,7 @@ RSK commutes with standardization, so if $W\rskArrow (P,Q)$
 then $W'=\std(W)$ is mapped to $(\std(P),\std(Q))$.
 
 \begin{example*}
-For the biword
+The biword
 \[
 W=\begin{pmatrix}
 1& 1& 1& 2& 2& 3 \\
@@ -642,8 +650,9 @@ are given by the \hyperref[partitionQuotient]{$d$-quotient} of $\lambda$.
 
 \section[hillmanGrassl]{Hillman--Grassl correspondence}
 
-A $\lambda$-array is a filling of the Young diagram of shape $\lambda$
-with non-negative integers. There are no other conditions.
+A \defin{$\lambda$-array}\label{lambdaArray} is a filling of the Young
+diagram of shape $\lambda$ with nonnegative integers.  There are no other
+conditions.
 A \hyperref[planePartitions]{reverse plane partition} of shape $\lambda$ is a
 $\lambda$-array with weakly increasing rows and columns.
 
@@ -676,8 +685,9 @@ invariants.
 
 \section[signedPermutationsRSK]{Signed permutations and RSK}
 
-\defin{Domino insertion}\label{dominoInsertion} is a type $B/C$ analogue of RSK for signed
-permutations.  \name{Thomas Lam} gives a growth-diagram proof of the
+\defin{Domino insertion}\label{dominoInsertion} is a type $B/C$ analogue of
+RSK for signed permutations.  \name{Thomas Lam} gives a growth-diagram proof
+of the
 semistandard domino-Schensted correspondence, extends it to a nonempty
 $2$-core, and constructs two dual domino-Schensted correspondences
 \cite{Lam2004Domino}.  \name{Itaru Terada}'s Robinson--Schensted-type
@@ -692,11 +702,15 @@ The \defin{Berele insertion}\label{bereleInsertion} is a symplectic version of
 Schensted insertion.
 In \cite{Berele1986}, it is used to prove the identity
 \[
-(a_1+ a_1^{-1} + \dotsb + a_n + a_n^{-1})^m = \sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n)
+(a_1+ a_1^{-1} + \dotsb + a_n + a_n^{-1})^m
+=
+\sum_{\lambda} Q^\lambda_m(n)\schurSp_\lambda(a_1,\dotsc,a_n)
 \]
-where $\schurSp_\lambda(a_1,\dotsc,a_n)$ is a \hyperref[schurSymplectic]{symplectic Schur function}
-and $Q^\lambda_m(n)$ is the number of oscillating sequences
-of diagrams $\emptyset = \lambda^0,\lambda^1,\dotsc,\lambda^n = \lambda$ with length at most $n$.
+where $\schurSp_\lambda(a_1,\dotsc,a_n)$ is a
+\hyperref[schurSymplectic]{symplectic Schur function} and $Q^\lambda_m(n)$
+is the number of oscillating sequences of diagrams
+$\emptyset = \lambda^0,\lambda^1,\dotsc,\lambda^n = \lambda$ with length at
+most $n$.
 
 \name{Masato Kobayashi} and \name{Tomoo Matsumura} formulate a type $C$ RSK
 correspondence for King tableaux using Berele insertion
@@ -710,8 +724,8 @@ involutions.
 study the generating function of semistandard oscillating tableaux more
 directly \cite{KobayashiMatsumuraSugimoto2026x}.  They prove
 fundamental-quasisymmetric positivity, symmetry,
-\hyperref[schurPositivity]{Schur positivity}, and the
-\hyperref[newtonPolytopes]{saturated Newton polytope} property.
+\hyperref[schurPositiveDefinition]{Schur positivity}, and the
+\hyperref[SNP]{saturated Newton polytope} property.
 
 
 \name{Ioanna Nteka} gives a randomized $q$-deformation of Berele insertion and
@@ -754,18 +768,18 @@ partitions.
 \name{Alexander Wilson} extends multiset RSK to two-row arrays of multisets
 whose elements come from two alphabets \cite{Wilson2024}.  This super
 multiset RSK gives enumerative decompositions for the mixed multiset
-partition algebra and for polynomial rings in commuting and anti-commuting
+partition algebra and for polynomial rings in commuting and anticommuting
 variables.
 
 
 \section[probabilisticRSK]{Probabilistic RSK}
 
 \name{Gabriel Frieden} and \name{Florian Schreier-Aigner}
-\cite{FriedenSchreierAigner2021} introduced a $qt$-deformation of the
+\cite{FriedenSchreierAigner2021} introduced a $q,t$-deformation of the
 Robinson--Schensted correspondence.  The output is a probability distribution
 on several tableaux, and this proves a squarefree version of the Cauchy
 identity for \hyperref[macdonaldP]{Macdonald polynomials}.  In a later paper,
-they define a $qt$-version of RSK from which one can prove the dual Cauchy
+they define a $q,t$-version of RSK from which one can prove the dual Cauchy
 identity for Macdonald polynomials \cite{FriedenSchreierAigner2024x}.
 
 
@@ -789,7 +803,7 @@ where \hyperref[schubertCalculus]{Schubert-geometric} type questions
 
 
 \name{Olga Azenhas} and \name{Aram Emami} construct an RSK analogue for
-truncated staircases and non-symmetric Cauchy kernels
+truncated staircases and nonsymmetric Cauchy kernels
 \cite{AzenhasEmami2015}.  For \hyperref[key]{key polynomials} and Demazure
 atoms, see also
 the RSK-type algorithm of \name{Sami Assaf} and \name{Danjoseph Quijada}
