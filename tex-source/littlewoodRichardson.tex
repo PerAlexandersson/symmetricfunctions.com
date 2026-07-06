@@ -5,9 +5,11 @@
 
 \section[littlewoodRichardsonModels]{Combinatorial models for Littlewood--Richardson coefficients}
 
-The \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients} are defined as the structure constants
-$c^{\lambda}_{\mu\nu}$ appearing in the 
-expansion $\schurS_\mu \schurS_\nu = \sum_\lambda c^{\lambda}_{\mu\nu} \schurS_\lambda$.
+The \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients}
+are defined as the structure constants $c^{\lambda}_{\mu\nu}$ appearing in the
+expansion
+$\schurS_\mu \schurS_\nu =
+\sum_\lambda c^{\lambda}_{\mu\nu} \schurS_\lambda$.
 One can show that $c^{\lambda}_{\mu\nu}=0$ unless $\mu,\nu \subseteq \lambda$.
 Furthermore, we have the symmetries
 \[
@@ -36,22 +38,28 @@ In \cite{Azenhas1999}, it is proved that for fixed $\lambda$ and $\mu$, the set
  \{ \nu : c^{\lambda}_{\mu \nu}>0 \}
 \]
 is a sub-lattice of the partition lattice under domination order.
-See also \cite{TaskinGumus2022x} for conditions on when $c^{\lambda}_{\mu \nu}$ is positive.
+See also \cite{TaskinGumus2022x} for conditions on when
+$c^{\lambda}_{\mu \nu}$ is positive.
 
 
-The problem of determining for which $(\lambda, \mu, \nu)$ we have $c^{\lambda}_{\nu\mu} > 0$,
-is determined by the \defin{Horn inequalities}, see \cite{Klyachko1998,KnutsonTau1999}.
+The \defin{Horn inequalities}\label{hornInequalities} determine for which
+triples $(\lambda, \mu, \nu)$ we have $c^{\lambda}_{\nu\mu} > 0$; see
+\cite{Klyachko1998,KnutsonTau1999}.
 
 
 
 \subsection[lrTableaux]{Littlewood--Richardson tableaux}
 
-The Littlewood--Richardson rule states that $c^{\lambda}_{\mu\nu}$ counts the number of
-skew \hyperref[prelimTableaux]{semistandard Young tableaux} of shape $\lambda/\mu$ with content $\nu$,
-with the additional restriction that the concatenation of the reversed rows is a \defin{lattice word}.
-A word $w_1,\dotsc,w_\ell$ is a lattice word if every prefix has the property that its content is a partition.
-That is, the number of times $i$ appears in the prefix is at least as many as $i+1$, for every $i$.
-Tableaux of this type are called \defin{Littlewood--Richardson tableaux}.
+The Littlewood--Richardson rule states that $c^{\lambda}_{\mu\nu}$ counts the
+number of skew \hyperref[prelimTableaux]{semistandard Young tableaux} of shape
+$\lambda/\mu$ with content $\nu$, with the additional restriction that the
+concatenation of the reversed rows is a
+\defin{lattice word}\label{lrLatticeWord}.
+A word $w_1,\dotsc,w_\ell$ is a lattice word if every prefix has the property
+that its content is a partition.  That is, the number of times $i$ appears in
+the prefix is at least as many as $i+1$, for every $i$.
+Tableaux of this type are called
+\defin{Littlewood--Richardson tableaux}\label{littlewoodRichardsonTableaux}.
 
 \begin{example*}[Littlewood--Richardson tableaux]
 Consider the coefficient of $\schurS_{542}$ in the product $\schurS_{32}\cdot \schurS_{321}$.
@@ -75,22 +83,24 @@ Consequently, $c^{542}_{32,321}=2$.
 
 \subsection[lrYamanouchi]{Semistandard Young tableaux}
 
-In \cite[Cor. 5.4.8 ]{Lothaire2002}, they give the following 
-characterization of Littlewood--Richardson coefficients: 
-$c^{\lambda}_{\mu\nu}$ is the number of \hyperref[prelimTableaux]{semistandard Young tableaux} $T$
-with shape $\nu$, and content $\lambda-\mu$ such that
+In \cite[Cor.~5.4.8]{Lothaire2002}, one finds the following
+characterization of Littlewood--Richardson coefficients:
+$c^{\lambda}_{\mu\nu}$ is the number of
+\hyperref[prelimTableaux]{semistandard Young tableaux} $T$ with shape $\nu$
+and content $\lambda-\mu$ such that
 $\rw(t) \cdot \ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{\mu_1}$ is a Yamanouchi word.
 
-By using \cite[Rem. 14 and Cor. 21]{KaliszewskiMorse2019}, 
-one can show that this is equivalent to the following model.
+Using \cite[Rem.~14 and Cor.~21]{KaliszewskiMorse2019}, one can show that
+this is equivalent to the following model.
 
 
 \subsection[lrMolevSagan]{Semistandard Young tableaux II}
 
 In \cite{FominGreene1993,MolevSagan1999}, the following model is described.
-$c^{\lambda}_{\mu\nu}$ is the number of \hyperref[prelimTableaux]{semistandard Young tableaux} $T$
-with shape $\mu$, with the property that
-the column index reading word of $T$, \defin{fits} the skew shape $\lambda/\mu$.
+$c^{\lambda}_{\mu\nu}$ is the number of
+\hyperref[prelimTableaux]{semistandard Young tableaux} $T$ with shape $\mu$
+and with the property that the column index reading word of $T$
+\defin{fits}\label{lrFitsSkewShape} the skew shape $\lambda/\mu$.
 That is, we take the column reading word of $T$, reading columns right to left.
 This gives a word $w$. For each entry $w_i$, we put an entry $i$ in row $w_i$,
 so that the resulting filling $F=F(T)$ is of shape $\lambda/\mu$.
@@ -114,7 +124,8 @@ Let us show that $c^{542}_{321,32}=2$ using the Fomin--Greene model.
 We are counting SSYT with shape $\mu=321$,
 which fit $542/32$.
 
-There are two such SSYT (and corresponding SYT obtained from the column reading word):
+There are two such SSYT, together with the corresponding SYT obtained from
+the column reading word:
 \begin{figure}
 \begin{ytableau}
 1 & 1 & 2\\
@@ -148,26 +159,32 @@ Consequently, $c^{542}_{32,321}=2$.
 
 In \cite{AlexanderssonUhlin2020} we show that
 \[
-c^{\lambda}_{\mu\nu} = \left|  T \in \SSYT(\nu, \lambda - \mu) : \charge( \rw(T) \cdot \ell^{\mu_\ell} \dotsm
-2^{\mu_2}1^{\mu_1})=0
+c^{\lambda}_{\mu\nu}
+=
+\left|
+T \in \SSYT(\nu, \lambda - \mu) :
+\charge( \rw(T) \cdot \ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{\mu_1})=0
 \right|.
 \]
-That is, $c^{\lambda}_{\mu\nu}$ is equal 
+That is, $c^{\lambda}_{\mu\nu}$ is equal
 to the number of \hyperref[prelimTableaux]{semistandard Young tableaux}
-of shape $\nu$ and content $\lambda - \mu$ such that the reading word postfixed with
-$\ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{\mu_1}$ has \hyperref[kostkaFoulkes]{charge} equal to zero.
+of shape $\nu$ and content $\lambda - \mu$ such that the reading word
+postfixed with $\ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{\mu_1}$ has
+\hyperref[kostkaFoulkes]{charge} equal to zero.
 
 
 \begin{example*}[Postfix-charge model]
 Let us compute $c^{33221}_{221,321}$, where
 $\lambda = 33221$, $\mu = 221$ and $\nu = 321$.
-We are interested in semistandard tableaux with shape $321$ and content $\lambda-\mu = 11121$.
+We are interested in semistandard tableaux with shape $321$ and content
+$\lambda-\mu = 11121$.
 There are eight such tableaux.
 \begin{figure}
 \ytableaushort{144,25,3}\ytableaushort{135,24,4}\ytableaushort{134,25,4}\ytableaushort{134,24,5}
 \ytableaushort{125,34,4}\ytableaushort{124,35,4}\ytableaushort{124,34,5}\ytableaushort{123,44,5}
 \end{figure}
-We take their reading words and concatenate $\ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{\mu_1} = 32211$ at the end.
+We take their reading words and concatenate
+$\ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{\mu_1} = 32211$ at the end.
 \begin{array}{ll}
 \toprule
 \text{Word} & \text{Charge} \\
@@ -182,12 +199,14 @@ We take their reading words and concatenate $\ell^{\mu_\ell} \dotsm 2^{\mu_2}1^{
  54412332211 & 1 \\
 \bottomrule
 \end{array}
-As we see, the third and fourth tableau above give charge $0$, so $c^{33221}_{221,321}=2$.
+As we see, the third and fourth tableaux above give charge $0$, so
+$c^{33221}_{221,321}=2$.
 \end{example*}
 
 \begin{example*}[Postfix-charge model II]
-Let us compute $c^{542}_{32,321} = c^{\lambda}_{\mu\nu}$. 
-We are interested in semistandard tableaux with shape $321$ and content $\lambda-\mu = 222$.
+Let us compute $c^{542}_{32,321} = c^{\lambda}_{\mu\nu}$.
+We are interested in semistandard tableaux with shape $321$ and content
+$\lambda-\mu = 222$.
 There are two such tableaux.
 \begin{figure}
 \ytableaushort{113,22,3}
@@ -224,11 +243,12 @@ Both of these words have charge $0$, so $c^{542}_{32,321}=2$.
 
 \subsection[bzPatterns]{Berenstein--Zelevinsky patterns}
 
-Berenstein and Zelevinsky \cite{BerensteinZelevinsky1992}
-gave a combinatorial model for the Littlewood--Richardson
-coefficients that uses certain triangular arrays,
+\name{Arkady Berenstein} and \name{Andrei Zelevinsky}
+\cite{BerensteinZelevinsky1992} gave a combinatorial model for the
+Littlewood--Richardson coefficients that uses certain triangular arrays,
 reminiscent of \hyperref[gtpatterns]{Gelfand--Tsetlin patterns}.
-The exact definition is written in an accessible manner in \cite[Def. A1.3.10]{StanleyEC2}.
+The exact definition is written in an accessible manner in
+\cite[Def.~A1.3.10]{StanleyEC2}.
 
 
 \subsection[knutsonTaoHoneycomb]{Knutson--Tao honeycombs}
@@ -236,21 +256,24 @@ The exact definition is written in an accessible manner in \cite[Def. A1.3.10]{S
 
 \subsection[knutsonTaoWoodwardPuzzles]{Knutson--Tao--Woodward puzzles}
 
-Knutson--Tao--Woodward puzzles \cite{KnutsonTau1999,KnutsonTaoWoodward2004} is a different model
-used for proving the saturation conjecture.
-A nice overview of the saturation conjecture is given by \name{Anders Buch} \cite{Buch2000}.
+Knutson--Tao--Woodward puzzles
+\cite{KnutsonTau1999,KnutsonTaoWoodward2004} are another model used for
+proving the saturation conjecture.
+An overview of the saturation conjecture is given by \name{Anders Buch}
+\cite{Buch2000}.
 
 \name{Christian Gaetz} and \name{Yibo Gao} relate Schubert puzzles to
 interlacing triangular arrays \cite{GaetzGao2025}.  They prove that certain
 rank-three interlacing arrays are equinumerous with proper colorings of a
 triangular grid graph via generalized Knutson--Tao puzzles, and use the same
-objects to compute structure constants in $K(\operatorname{Gr}(d,n))$, in
-the localized cohomology of cotangent bundles of Grassmannians, and in the
-cohomology of partial flag varieties.
+objects to compute structure constants in $K(\operatorname{Gr}(d,n))$, in the
+localized cohomology of cotangent bundles of \hyperref[grassmannian]{Grassmannians},
+and in the cohomology of partial \hyperref[flagVarieties]{flag varieties}.
 
 \name{Portia Anderson} extends triangular Schubert puzzles to puzzles with
 convex polygonal boundary shapes \cite{Anderson2024Puzzlesx}.  The resulting
-four-, five-, and six-sided puzzles have Schubert-calculus interpretations,
+four-, five-, and six-sided puzzles have
+\hyperref[schubertCalculus]{Schubert-calculus} interpretations,
 give commutativity statements for several symmetric boundary conditions, and
 express the associated structure constants in terms of
 Littlewood--Richardson numbers.
@@ -279,12 +302,15 @@ L-log-concavity theorem using Murota's L-convexity.
 
 \subsection[steinbergLRFormula]{Steinberg's formula}
 
-One can express the \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients} 
-as a signed sum involving the \hyperref[kostantPartitionFunction]{Kostant partition function},
-by using Steinberg's formula \cite{Steinberg1961}.
+One can express the
+\hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients}
+as a signed sum involving the
+\hyperref[kostantPartitionFunction]{Kostant partition function}, by using
+Steinberg's formula \cite{Steinberg1961}.
 
-See the exact formula in the section 
-with the \hyperref[littlewoodRichardsonFromKostant]{Littlewood--Richardson coefficients from the Kostant partition function}.
+See the exact formula in the section with the
+\hyperref[littlewoodRichardsonFromKostant]
+{Littlewood--Richardson coefficients from the Kostant partition function}.
 
 
 
@@ -292,17 +318,19 @@ with the \hyperref[littlewoodRichardsonFromKostant]{Littlewood--Richardson coeff
 
 
 In \cite{KosakowskaSchmidmeier2022}, $c^{\lambda}_{\mu\nu}$
-is realized as the number of \emph{socle tableaux} of shape $\lambda/\nu$ and content $\mu$.
-Note that the role of $\mu$ and $\nu$ have been interchanged.
+is realized as the number of \emph{socle tableaux} of shape $\lambda/\nu$ and
+content $\mu$.
+Note that the roles of $\mu$ and $\nu$ have been interchanged.
 
-A \defin{socle tableau} is weakly decreasing in rows, strictly decreasing in columns,
-and for each vertical line and integer $\ell$, there are 
-at most as many entries $\ell+1$ on the left hand side, as entries $\ell$.
+A \defin{socle tableau}\label{socleTableau} is weakly decreasing in rows,
+strictly decreasing in columns, and for each vertical line and integer $\ell$,
+there are at most as many entries $\ell+1$ on the left-hand side as entries
+$\ell$.
 
 
 \subsection[lrExplicitFormula]{Evaluating Schur functions at roots of unity}
 
-\name{Xueqing Wen} gives a fairly explicit formula 
+\name{Xueqing Wen} gives a fairly explicit formula
 for Littlewood--Richardson coefficients, as a sum over partitions,
 where the terms include a product of three Schur functions, evaluated at certain roots of unity, see \cite{Wen2021x}.
 
@@ -310,32 +338,48 @@ where the terms include a product of three Schur functions, evaluated at certain
 
 \section[newellLittlewood]{Newell--Littlewood numbers}
 
-The \defin{Newell--Littlewood numbers} may be defined as
+The \defin{Newell--Littlewood numbers}\label{newellLittlewoodNumbersDefinition}
+may be defined as
 \[
- N_{\mu,\nu,\lambda} = \sum_{\alpha,\beta,\gamma} c^{\mu}_{\alpha\beta} c^{\nu}_{\alpha\gamma} c^{\lambda}_{\beta\gamma}.
+ N_{\mu,\nu,\lambda}
+ =
+ \sum_{\alpha,\beta,\gamma}
+ c^{\mu}_{\alpha\beta} c^{\nu}_{\alpha\gamma}
+ c^{\lambda}_{\beta\gamma}.
 \]
 For recent papers on these coefficients, see \cite{GaoOrelowitzYong2020x,GaoOrelowitzYong2020IIx}.
 
-The Littlewood--Richardson coefficients arise as tensor product multiplicities of irreducible representations of $\GL(V)$.
-The Newell--Littlewood numbers arise in the same manner, where $\GL(V)$ is replaced by a Lie group of type $B$, $C$ or $D$.
+The Littlewood--Richardson coefficients arise as tensor product
+multiplicities of irreducible \hyperref[representationTheory]{representations}
+of $\GL(V)$.
+The Newell--Littlewood numbers arise in the same manner, where $\GL(V)$ is
+replaced by a Lie group of type $B$, $C$, or $D$.
 
-There is a symmetric function basis, the \defin{Koike--Terada basis}, $\{\schurS_{[\lambda]}\}_\lambda$
+There is a symmetric function basis, the
+\defin{Koike--Terada basis}\label{koikeTeradaBasis},
+$\{\schurS_{[\lambda]}\}_\lambda$,
 for which the $N_{\mu,\nu,\lambda}$ serve as multiplication structure constants.
 An explicit Jacobi--Trudi type formula for this basis is given in \cite{GaoOrelowitzYong2020x}.
 
-In \cite[Thm. 5.1]{GaoOrelowitzYong2020x}, a polytope description for $N_{\mu,\nu,\lambda}$ is given,
+In \cite[Thm.~5.1]{GaoOrelowitzYong2020x}, a polytope description for
+$N_{\mu,\nu,\lambda}$ is given,
 and a saturation-type conjecture is stated. See also \cite{King2021x} for more conjectures.
 The saturation conjecture for the Newell--Littlewood numbers has since been proved in \cite{Min2024x}.
 
 \section[lrStretched]{Stretched Littlewood--Richardson coefficients}
 
-The Littlewood--Richardson coefficients are in correspondence with lattice points in certain rational polytopes,
-as proved in \cite{BerensteinZelevinsky1988}. 
-Consequently, it is immediate that this function is a \emph{quasi}-polynomial,
-since we can model this as the Ehrhart (quasi)polynomial of a rational polytope.
-Polynomiality was later proved by \name{Harm Derksen} and \name{Jerzy Weyman} \cite{DerksenWeyman2002}, and \name{Etienne Rassart} \cite{Rassart2004}.
-A simple proof of polynomiality is given in \cite{Thawinrak2022x}. 
-The proof uses the \hyperref[kostantPartitionFunction]{Kostant partition function} formula due to \name{Robert Steinberg}.
+The Littlewood--Richardson coefficients are in correspondence with lattice
+points in certain rational \hyperref[polytope]{polytopes}, as proved in
+\cite{BerensteinZelevinsky1988}.
+Consequently, it is immediate that this function is a quasipolynomial, since
+we can model it as the \hyperref[ehrhartPolynomialDefinition]{Ehrhart}
+quasipolynomial of a rational polytope.
+Polynomiality was later proved by \name{Harm Derksen} and
+\name{Jerzy Weyman} \cite{DerksenWeyman2002}, and by
+\name{Etienne Rassart} \cite{Rassart2004}.
+A simple proof of polynomiality is given in \cite{Thawinrak2022x}.
+The proof uses the \hyperref[kostantPartitionFunction]{Kostant partition function}
+formula due to \name{Robert Steinberg}.
 
 
 
@@ -345,19 +389,23 @@ The function
 \[
 t \to c^{t \nu}_{t\lambda,t\mu}
 \]
-for fixed partitions, is a polynomial in $t$. 
-Note that this is the Ehrhart polynomial of the corresponding BZ-polytope (where lattice points are BZ-patterns).
+for fixed partitions is a polynomial in $t$.
+Note that this is the \hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial}
+of the corresponding \hyperref[bzPatterns]{BZ-polytope}, where lattice
+points are BZ-patterns.
 
-Computer experiments, see \cite{KingTolluToumazet2004}, suggest that the Ehrhart polynomial above has non-negative coefficients.
-This conjecture is still open. 
+Computer experiments in \cite{KingTolluToumazet2004} suggest that the Ehrhart
+polynomial above has non-negative coefficients.
+This conjecture is still open.
 A special case of this conjecture is to consider the map $t \to K_{t\lambda,t\mu}$,
 of so called \hyperref[kostkaStretched]{stretched Kostka coefficients}.
-Various aspects of this problem has been considered in 
+Various aspects of this problem have been considered in
 \cite{Alexandersson2016GTPoly,Alexandersson2019CounterExamples}.
 \end{conjecture}
 
-Fulton's conjecture stated that $c^{\nu}_{\lambda,\mu}=1$ implies that
-$c^{t \nu}_{t\lambda,t\mu}=1$ for all $t \geq 1$. This was later proved in \cite{KnutsonTaoWoodward2004}.
+\defin{Fulton's conjecture}\label{fultonsConjecture} stated that
+$c^{\nu}_{\lambda,\mu}=1$ implies that $c^{t \nu}_{t\lambda,t\mu}=1$ for all
+$t \geq 1$.  This was later proved in \cite{KnutsonTaoWoodward2004}.
 
 \name[Mrigendra Singh Kushwaha]{Mrigendra Singh Kushwaha},
 \name[K. N. Raghavan]{K.~N. Raghavan}, and
@@ -374,8 +422,9 @@ They give a hive model for these coefficients and prove a saturation theorem
 when $w$ is $312$-avoiding, $231$-avoiding, or a commuting product of such
 permutations, generalizing the Knutson--Tao saturation theorem.
 
-The next natural case is, $c^{\nu}_{\lambda,\mu}=2$ and 
-it is proved by \name{Christian Ikenmeyer} \cite{Ikenmeyer2016} and later \name{Cass Sherman} \cite{Sherman2015x,Sherman2017} that
+The next natural case is $c^{\nu}_{\lambda,\mu}=2$.
+It was proved by \name{Christian Ikenmeyer} \cite{Ikenmeyer2016} and later by
+\name{Cass Sherman} \cite{Sherman2015x,Sherman2017} that
 \[
 c^{\nu}_{\lambda,\mu}=2 \implies c^{t \nu}_{t\lambda,t\mu}=t+1.
 \]
@@ -385,13 +434,15 @@ where it is proved that
 \[
 c^{\nu}_{\lambda,\mu}=2 \implies c^{\nu(s,t)}_{\lambda(s,t),\mu(s,t)}=\binom{s+t}{t},
 \]
-with the convention that $\lambda(s,t) \coloneqq s (t \lambda')'$ (i.e., we stretch in both vertical and horizontal direction).
+with the convention that $\lambda(s,t) \coloneqq s (t \lambda')'$; that is,
+we stretch in both the vertical and horizontal directions.
 
 
 Stretching of Newell--Littlewood coefficients is studied in \cite{King2021x}.
-This preprint contains lots of interesting conjectures analogous to results/conjectures about the Littlewood--Richardson
-coefficients. \name{Ronald C. King} proves that the map $t \to n^{t \nu}_{t\lambda,t\mu}$
-is a quasipolynomial with period at most 2.
+This preprint contains many conjectures analogous to results and conjectures
+about the Littlewood--Richardson coefficients.  \name{Ronald C. King} proves
+that the map $t \to n^{t \nu}_{t\lambda,t\mu}$ is a quasipolynomial with
+period at most $2$.
 
 
 \section[lrIdentities]{Identities}
@@ -400,9 +451,9 @@ is a quasipolynomial with period at most 2.
 \subsection[lrCoquereauxZuber]{Coquereaux--Zuber relation}
 
 Let $\mu, \nu \vdash n$ be such that all entries are at most $k$.
-In \cite{CoquereauxZuber2011}, it is proved that 
+In \cite{CoquereauxZuber2011}, it is proved that
 \[
- \sum_{\lambda \vdash n} c^{\lambda}_{\mu, \nu} = 
+ \sum_{\lambda \vdash n} c^{\lambda}_{\mu, \nu} =
  \sum_{\lambda \vdash n} c^{\lambda}_{\mu^{\vee k}, \nu},
 \]
 where $\mu^{\vee k} \coloneqq (k-\lambda_n,\dotsc,k-\lambda_2,k-\lambda_1)$.
@@ -414,28 +465,36 @@ where $\mu^{\vee k} \coloneqq (k-\lambda_n,\dotsc,k-\lambda_2,k-\lambda_1)$.
 See \cite{HarrisWillenbring2014}.
 
 \[
- \sum_{n \geq 0} \sum_{\lambda,\mu, \nu \vdash n} \left( c^{\lambda}_{\mu\nu} \right)^2 t^{|\mu|}q^{|\nu|} = \prod_{i \geq 1} \frac{1}{1-t^i-q^i}
+ \sum_{n \geq 0}
+ \sum_{\lambda,\mu, \nu \vdash n}
+ \left( c^{\lambda}_{\mu\nu} \right)^2
+ t^{|\mu|}q^{|\nu|}
+ =
+ \prod_{i \geq 1} \frac{1}{1-t^i-q^i}
 \]
 
 
 
 \subsection[lrShrivastava]{Shrivastava's relation with Kostka numbers}
 
-In \cite{Shrivastava2022x}, \name{Sagar Shrivastava} shows how one can compute Littlewood--Richardson coefficients
-as a signed sum of Kostka coefficients.
+In \cite{Shrivastava2022x}, \name{Sagar Shrivastava} shows how one can
+compute Littlewood--Richardson coefficients as a signed sum of Kostka
+coefficients.
 
-It is known that (skew) Kostka coefficients can be obtained as a \hyperref[kostkaFromLR]{special case of Littlewood--Richardson coefficients},
-see e.g. \cite[p. 338, Eq. 7.61]{StanleyEC2}.
+It is known that (skew) Kostka coefficients can be obtained as a
+\hyperref[kostkaFromLR]{special case of Littlewood--Richardson coefficients};
+see, for example, \cite[p.~338, Eq.~7.61]{StanleyEC2}.
 
 
 
 
 \section[lrcalc]{Computing coefficients, and A. Buch's lrcalc}
 
-\name{Hariharan Narayanan} proved in 2006 that computing Littlewood--Richardson coefficients and 
+\name{Hariharan Narayanan} proved in 2006 that computing
+Littlewood--Richardson coefficients and
 Kostka coefficients is in general $\#P$-complete, see \cite{Narayanan2006}.
 This implies that there are no efficient
-algorithms for computing these quantities 
+algorithms for computing these quantities
 (assuming widely believed conjectures regarding complexity theory).
 
 \name[Peter Bürgisser]{Peter Bürgisser} and \name{Christian Ikenmeyer}
@@ -445,8 +504,10 @@ Knutson--Tao hive model, they interpret $c^\nu_{\lambda,\mu}$ as the number
 of capacity-achieving hive flows on the honeycomb graph and obtain an
 $O(n^3\log \nu_1)$ positivity test.
 
-\name{Anders Buch} has a fast C program, \href{https://sites.math.rutgers.edu/~asbuch/lrcalc/}{lrcalc}, for computing
-Littlewood--Richardson coefficients.
+\name{Anders Buch} has a fast C program, \texttt{lrcalc}, for computing
+Littlewood--Richardson coefficients \cite{BuchLRCalc}.
 
-See also \name{Matthew J. Samuel}'s \href{https://pypi.org/project/schubmult/}{Python package for computing products of Schubert polynomials} which,
-in particular, can compute Littlewood--Richardson coefficients.
+See also \name{Matthew J. Samuel}'s \texttt{schubmult} Python package for
+computing products of \hyperref[schubert]{Schubert polynomials}, which in
+particular can compute Littlewood--Richardson coefficients
+\cite{SamuelSchubmult}.
