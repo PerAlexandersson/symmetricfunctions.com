@@ -1,0 +1,122 @@
+\documentclass[tikz,border=2mm]{standalone}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\newcommand{\tikzsetnextfilename}[1]{}
+
+\definecolor{iconblue}{RGB}{70,140,255}
+\definecolor{softgreen}{RGB}{95,166,123}
+\definecolor{softorange}{RGB}{226,145,67}
+\definecolor{softred}{RGB}{205,88,84}
+
+\tikzset{
+  every node/.style={font=\sffamily},
+  dot/.style={circle, draw=black, fill=white, line width=0.5pt,
+    inner sep=0pt, minimum size=5pt},
+  blue dot/.style={dot, fill=iconblue!75},
+  small label/.style={font=\scriptsize\sffamily},
+  edge/.style={line width=0.9pt, line cap=round, line join=round},
+  path edge/.style={edge, draw=iconblue, line width=2pt, -{Stealth[length=4pt]}}
+}
+
+\begin{document}
+
+\tikzsetnextfilename{ehrhart-order-polytopes}
+\begin{tikzpicture}[line cap=round,line join=round]
+  \useasboundingbox (-3.65,-1.35) rectangle (3.65,1.35);
+
+  \node[small label] at (-2.65,1.1) {chain};
+  \node[blue dot] (c1) at (-3.0,0.55) {};
+  \node[blue dot] (c2) at (-3.0,0.0) {};
+  \node[blue dot] (c3) at (-3.0,-0.55) {};
+  \draw[edge] (c1) -- (c2) -- (c3);
+
+  \node[small label] at (0,1.1) {order polytope};
+  \fill[iconblue!18] (-0.75,-0.75) -- (0.75,-0.75) -- (0.75,0.75) -- cycle;
+  \draw[edge] (-0.75,-0.75) -- (0.75,-0.75) -- (0.75,0.75) -- cycle;
+  \foreach \p in {(-0.75,-0.75),(0.75,-0.75),(0.75,0.75)} {
+    \node[blue dot] at \p {};
+  }
+  \foreach \x/\y in {-0.25/-0.25,0.25/-0.25,0.25/0.25} {
+    \fill[black] (\x,\y) circle (1pt);
+  }
+
+  \draw[-{Stealth[length=5pt]}, edge] (-2.55,0) -- (-1.15,0);
+  \draw[-{Stealth[length=5pt]}, edge] (1.05,0) -- (2.35,0);
+
+  \node[small label] at (2.9,1.1) {$h^*(t)$};
+  \draw[edge] (2.35,-0.72) -- (2.35,0.72) -- (3.45,0.72);
+  \draw[softgreen, line width=5pt] (2.55,-0.55) -- (2.55,0.25);
+  \draw[softorange, line width=5pt] (2.9,-0.55) -- (2.9,0.45);
+  \draw[softred, line width=5pt] (3.25,-0.55) -- (3.25,-0.05);
+  \node[small label] at (2.9,-0.98) {descents of linear extensions};
+\end{tikzpicture}
+
+\tikzsetnextfilename{total-positivity-network}
+\begin{tikzpicture}[line cap=round,line join=round]
+  \useasboundingbox (-3.4,-1.55) rectangle (3.4,1.55);
+
+  \foreach \i/\y in {1/1,2/0,3/-1} {
+    \node[small label, anchor=east] at (-3.05,\y) {$s_\i$};
+    \node[blue dot] (s\i) at (-2.75,\y) {};
+    \node[small label, anchor=west] at (3.05,\y) {$t_\i$};
+    \node[blue dot] (t\i) at (2.75,\y) {};
+  }
+
+  \node[dot] (a) at (-1.55,0.6) {};
+  \node[dot] (b) at (-1.25,-0.65) {};
+  \node[dot] (c) at (0.0,0.15) {};
+  \node[dot] (d) at (1.15,0.7) {};
+  \node[dot] (e) at (1.35,-0.55) {};
+
+  \draw[edge] (s1) -- (a) -- (c) -- (d) -- (t1);
+  \draw[edge] (s2) -- (a);
+  \draw[edge] (s2) -- (b) -- (c);
+  \draw[edge] (c) -- (e) -- (t2);
+  \draw[edge] (b) -- (e) -- (t3);
+  \draw[edge] (d) -- (t2);
+  \draw[edge] (s3) -- (b);
+
+  \draw[path edge] (s1) -- (a) -- (c) -- (d) -- (t1);
+  \draw[path edge] (s3) -- (b) -- (e) -- (t3);
+
+  \node[small label, align=center] at (0,-1.3)
+    {nonintersecting paths give nonnegative minors};
+\end{tikzpicture}
+
+\tikzsetnextfilename{coxeter-types-diagrams}
+\begin{tikzpicture}[line cap=round,line join=round]
+  \useasboundingbox (-3.75,-1.65) rectangle (3.75,1.65);
+
+  \node[small label, anchor=east] at (-2.75,1.05) {$A_3$};
+  \foreach \x in {-2.35,-1.75,-1.15} {
+    \node[blue dot] at (\x,1.05) {};
+  }
+  \draw[edge] (-2.35,1.05) -- (-1.75,1.05) -- (-1.15,1.05);
+
+  \node[small label, anchor=east] at (0.4,1.05) {$B_3/C_3$};
+  \foreach \x in {0.8,1.4,2.0} {
+    \node[blue dot] at (\x,1.05) {};
+  }
+  \draw[edge] (0.8,1.05) -- (1.4,1.05);
+  \draw[edge] (1.4,1.11) -- (2.0,1.11);
+  \draw[edge] (1.4,0.99) -- (2.0,0.99);
+  \node[small label] at (1.7,1.36) {$4$};
+
+  \node[small label, anchor=east] at (-2.75,-0.45) {$D_4$};
+  \node[blue dot] (d0) at (-1.75,-0.45) {};
+  \node[blue dot] (d1) at (-2.35,-0.45) {};
+  \node[blue dot] (d2) at (-1.15,-0.45) {};
+  \node[blue dot] (d3) at (-1.75,0.15) {};
+  \draw[edge] (d1) -- (d0) -- (d2);
+  \draw[edge] (d0) -- (d3);
+
+  \node[small label, anchor=east] at (0.4,-0.45) {$\widetilde A_2$};
+  \node[blue dot] (a1) at (0.95,-0.85) {};
+  \node[blue dot] (a2) at (1.95,-0.85) {};
+  \node[blue dot] (a3) at (1.45,0.0) {};
+  \draw[edge] (a1) -- (a2) -- (a3) -- (a1);
+
+  \node[small label, align=center] at (0,-1.35)
+    {unlabeled edges have braid parameter \(m=3\)};
+\end{tikzpicture}
+
+\end{document}

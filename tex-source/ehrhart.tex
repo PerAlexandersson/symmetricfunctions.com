@@ -39,6 +39,9 @@ Thus \(h^*_P(t)=1\).  For the unit square \([0,1]^2\),
 so \(h^*_P(t)=1+t\).
 \end{example}
 
+\svgimg[width=0.78\textwidth]{svg-images/ehrhart-order-polytopes.svg}{
+Order polytopes connect lattice-point enumeration with descent statistics.}
+
 \subsection[ehrhartReciprocityHub]{Reciprocity and duality}
 
 \hyperref[ehrhartMacdonaldReciprocity]{Ehrhart--Macdonald reciprocity} relates
@@ -70,6 +73,10 @@ If \(P\) is an antichain on \(d\) elements, then
 \[
   E_{\mathcal O(P)}(n)=(n+1)^d.
 \]
+Its \(h^*\)-polynomial is the Eulerian polynomial, whose coefficients are
+the Eulerian numbers \oeis{A008292}.  Thus even the most basic order
+polytopes already produce familiar sequence data.
+
 If \(P\) is a chain on \(d\) elements, then
 \(\mathcal O(P)\) is a simplex, and \(E_{\mathcal O(P)}(n)\) counts weakly
 increasing sequences
@@ -110,6 +117,11 @@ Common questions include:
 \item whether a family admits a combinatorial interpretation for its
 \(h^*\)-coefficients.
 \end{itemize}
+
+For experimental families, the first rows of \(h^*\)-vectors are often among
+the best invariants to compare with OEIS.  When an \(h^*\)-triangle is
+recognizable, recording the OEIS entry usually helps locate older
+enumerative interpretations, recurrences, and transforms.
 
 These questions are often subtle: the \(h^*\)-vector of a lattice polytope is
 always nonnegative, but Ehrhart polynomial coefficients can be negative.
