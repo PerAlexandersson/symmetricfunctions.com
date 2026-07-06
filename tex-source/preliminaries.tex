@@ -17,7 +17,7 @@ The \defin{type} of $\lambda$ is the vector $(m_1,\dotsc,m_k)$.
 For example, the partition $444332111111$ can in a more compact form be described as $1^6,2^1,3^2,4^3$,
 and it has type $(6,1,2,3)$.
 
-Partitions may be illustrated as \defin{Young diagrams}. 
+Partitions may be illustrated as \defin{Young diagrams}\label{youngDiagram}.
 \begin{example}
 Consider $\lambda=(7,5,5,4,3)$. There are two common ways to draw $\lambda$ as Young diagram,
 the \defin{English} way --- which is what is mainly used here, and the \defin{French way}. 
@@ -115,8 +115,9 @@ That is,
 \[
 z_\lambda = |\{ \sigma \in \symS_n : \sigma g_\lambda \sigma^{-1} = g_\lambda \}|.
 \]
-The $z_\lambda$ often shows up as a normalizing factor when dealing with \hyperref[powerSum]{power-sum symmetric functions},
-and in particular, in the \hyperref[hallInnerProduct]{Hall inner product}.
+The $z_\lambda$ often shows up as a normalizing factor when dealing with
+\hyperref[powerSum]{power-sum symmetric functions}, and in particular, in the
+\hyperref[hallInnerProduct]{Hall inner product}.
 
 
 \subsection[partitionCores]{Hook lengths and cores}
@@ -230,9 +231,11 @@ A tableau is a filling of the boxes determined by a partition, or sometimes a mo
 The \defin{reading word} of a tableau is the word obtained by concatenating the rows,
 starting from the bottom row in English notation.
 
-The set of \defin{standard Young tableaux} of shape $\lambda$, denoted $\SYT(\lambda)$, 
-is the set of bijective fillings $\lambda \to [n]$, such that rows and columns are increasing with row and column index.
-The set of \defin{semistandard Young tableaux}, $\SSYT(\lambda)$,
+The set of \defin{standard Young tableaux}\label{standardYoungTableau} of
+shape $\lambda$, denoted $\SYT(\lambda)$, is the set of bijective fillings
+$\lambda \to [n]$, such that rows and columns are increasing with row and
+column index.
+The set of \defin{semistandard Young tableaux}\label{semistandardYoungTableau}, $\SSYT(\lambda)$,
 is defined as the set of fillings with entries in $\setP$, with weakly increasing rows and strictly increasing columns.
 We let $\SSYT(\lambda,\mu)$ denote the (finite) set of semi-standard Young tableaux with shape $\lambda$
 and type $\mu$, that is, there are $\mu_i$ entries equal to $i$ in each such tableau.
@@ -320,5 +323,5 @@ which are lattice points in Gelfand--Tsetlin polytopes.
 
 \subsection[companionMap]{The companion map}
 
-In \cite[Def. 15]{KaliszewskiMorse2019}, the authors describe a \defin{companion map},
+In \cite[Def.~15]{KaliszewskiMorse2019}, the authors describe a \defin{companion map},
 which interchanges the role of shape and weight of fillings.
