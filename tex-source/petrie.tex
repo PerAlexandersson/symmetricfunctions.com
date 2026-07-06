@@ -1,7 +1,7 @@
 
 \metatitle{Petrie symmetric functions}
-\metadescription{An introduction to Petrie symmetric functions, their definition as sums of monomial symmetric functions with bounded parts, their Schur expansions, and various properties including recursions, combinatorial interpretations, and connections to modular Schur functions.}
-\metakeywords{Petrie symmetric functions,modular Schur functions,Schur expansion,recurrence relations,combinatorial interpretation,principal specialization,Hopf algebra,Pieri rule}
+\metadescription{Petrie symmetric functions, modular Schur functions, Schur expansions, recurrences, and Pieri rules.}
+\metakeywords{Petrie symmetric functions,modular Schur functions,Schur expansion,Pieri rule}
 
 \section[petrie]{Petrie symmetric functions}
 
@@ -18,59 +18,65 @@
 \end{polydata}
 
 
-The \emph{Petrie symmetric functions} are a family of symmetric functions indexed by
-two non-negative integers. 
-This family is the main topic in the work by \name{Darij Grinberg} \cite{Grinberg2020x,Grinberg2020}.
-They are also studied independently by \name{Houshan Fu} and \name{Zhousheng Mei} \cite{FuMei2020}
-under the name \emph{truncated homogeneous symmetric functions}.
+The \defin{Petrie symmetric functions}\label{petrieSymmetricFunctionDefinition}
+are a family of symmetric functions indexed by two nonnegative integers.
+This family is the main topic in the work of \name{Darij Grinberg}
+\cite{Grinberg2020x,Grinberg2020}.
+They are also studied independently by \name{Houshan Fu} and
+\name{Zhousheng Mei} \cite{FuMei2020} under the name
+\defin{truncated homogeneous symmetric functions}.
 
-The earliest reference we have found (so far) is \cite[Eq. (3.11)]{DotyWalker1992}, 
+An early reference is \cite[Eq.~(3.11)]{DotyWalker1992},
 under the name \defin{modular complete symmetric functions}.
 A corresponding family of \defin{modular elementary symmetric functions} is also defined.
 
-A more recent paper, \cite{BazeniarAhmiaBelbachir2018}, studies the 
-Petrie symmetric functions under the name \emph{generalized elementary symmetric functions},
-when studying variants of $q$-binomial coefficients.
-See also the recent reference is \name{Moussa Ahmia} and \name{Mircea Merca} \cite{AhmiaMerca2020x}.
+A later paper by \name{Abdelkader Bazeniar}, \name{Moussa Ahmia}, and
+\name{Hacène Belbachir} studies the Petrie symmetric functions under the name
+\defin{generalized elementary symmetric functions}, while studying variants of
+$q$-binomial coefficients \cite{BazeniarAhmiaBelbachir2018}.
+See also \name{Moussa Ahmia} and \name{Mircea Merca} \cite{AhmiaMerca2020x}.
 
 The Petrie symmetric functions are special cases of the \hyperref[modularSchur]{modular Schur functions}.
 
 
 
-The \defin{Petrie symmetric function} $G(k,m)$ is defined as
+The Petrie symmetric function $G(k,m)$ is defined as
 \[
 G(k,m) \coloneqq \sum_{\alpha : |\alpha|=m, \max(\alpha) \lt k} \xvec^{\alpha}
 = \sum_{\lambda \vdash m, \lambda_1 \lt k}
 \monomial_\lambda(\xvec)
 \]
-where the first sum is over \hyperref[weakCompositions]{weak compositions} $\alpha$
-of $m$, where all entries are less than $k$.
-Note that for $k=2$, we have that $G(2,m) =\elementaryE_m$.
-Hence, the alternative notation $E^{(k)}_m(\xvec)$ as seen in 
-\cite{BazeniarAhmiaBelbachir2018,AhmiaMerca2020x} makes sense --- however there is a 
-shift in indexing so that the elementary symmetric functions are recovered at $k=1$
-in their notation.
+where the first sum is over
+\hyperref[weakCompositionDefinition]{weak compositions} $\alpha$ of $m$ whose
+entries are all less than $k$.
+Note that for $k=2$, we have $G(2,m)=\elementaryE_m$.
+Hence, the alternative notation $E^{(k)}_m(\xvec)$ used in
+\cite{BazeniarAhmiaBelbachir2018,AhmiaMerca2020x} is natural.  There is a
+shift in indexing: in their notation the elementary symmetric functions are
+recovered at $k=1$.
 
 
-Note that $G(k,m)$ is homogeneous degree $m$.
-The non-homogeneous version is defined as
+Note that $G(k,m)$ is homogeneous of degree $m$.
+The nonhomogeneous version is defined as
 \[
 G(k) \coloneqq \sum_{m \geq 0} G(k,m) = \sum_{\lambda : \lambda_1 \lt k} \monomial_\lambda(\xvec),
 \]
-where the second sum is over all integer partitions with all parts less than $k$.
+where the second sum is over all integer partitions with all parts less than
+$k$.
 
 
-The Petrie symmetric functions also appear as a special case in \cite{Numata2007},
-as a special case of \defin{weighted complete homogeneous symmetric polynomials},
-$\completeH^{(a)}_i(x_1,\dotsc,x_n)$ indexed by an integer $i\geq 0$ and a vector $a$.
-We then let $a(t)\coloneqq \sum_{t\geq 0} a_i t^i$ and set
+The Petrie symmetric functions also appear in \cite{Numata2007} as a special
+case of \defin{weighted complete homogeneous symmetric polynomials},
+$\completeH^{(a)}_i(x_1,\dotsc,x_n)$ indexed by an integer $i\geq 0$ and a
+vector $a$.
+We then let $a(t)\coloneqq \sum_{i\geq 0} a_i t^i$ and set
 \[
-\completeH^{\{a\}}_i(x_1,\dotsc,x_n) \coloneqq 
+\completeH^{\{a\}}_i(x_1,\dotsc,x_n) \coloneqq
 [t^i] a(t x_1) a(t x_2)\dotsm a(t x_n).
 \]
-This is clearly a symmetric polynomial. 
-Now we can see that $G(k,m) = \completeH^{\{a\}}_m(\xvec)$ for the sequence 
-$a_i =1$ if $i \lt k$ and $0$ otherwise.
+This is a symmetric polynomial.
+Now we can see that $G(k,m)=\completeH^{\{a\}}_m(\xvec)$ for the sequence
+$a_i=1$ if $i \lt k$ and $0$ otherwise.
 
 
 \subsection[petrieRecursion]{Recurrence relations and identities}
@@ -78,33 +84,41 @@ $a_i =1$ if $i \lt k$ and $0$ otherwise.
 For this section, see \cite{BazeniarAhmiaBelbachir2018}.
 Define $E^{(s)}_k(\xvec)$ and $H^{(s)}_k(\xvec)$ via
 \[
-  \sum_{k=0}^\infty H^{(s)}_k(x_1,\dotsc,x_n) t^k = 
+  \sum_{k=0}^\infty H^{(s)}_k(x_1,\dotsc,x_n) t^k =
   \prod_{i=1}^n \left(  1-x_i t + \dotsb + (-x_i t)^s  \right)^{-1},
 \]
 and
 \[
-  \sum_{k=0}^\infty E^{(s)}_k(x_1,\dotsc,x_n) t^k = 
-  \prod_{i=1}^n \left(  1 + x_i t + \dotsb + (x_i t)^s  \right)^{-1}.
+  \sum_{k=0}^\infty E^{(s)}_k(x_1,\dotsc,x_n) t^k =
+  \prod_{i=1}^n \left(  1 + x_i t + \dotsb + (x_i t)^s  \right).
 \]
 Note that $E^{(s)}_k(\xvec)$ is equal to $G(s+1,k)$.
 
 \[
-	E^{(s)}_k(x_1,\dotsc,x_n) = \sum_{j=0}^s x_n^j E^{(s)}_{k-j}(x_1,\dotsc,x_{n-1})
+E^{(s)}_k(x_1,\dotsc,x_n)
+=
+\sum_{j=0}^s x_n^j E^{(s)}_{k-j}(x_1,\dotsc,x_{n-1})
 \]
 A similar recursion is given for 
 \[
-	H^{(s)}_k(x_1,\dotsc,x_n) = \sum_{j=0}^s (-1)^j x_n^j H^{(s)}_{k-j}(x_1,\dotsc,x_{n-1}).
+H^{(s)}_k(x_1,\dotsc,x_n)
+=
+\sum_{j=0}^s (-1)^j x_n^j H^{(s)}_{k-j}(x_1,\dotsc,x_{n-1}).
 \]
 
 
 In \cite{AhmiaMerca2020x} the following generalized Newton identity is proved,
 where $s,k$ and $n$ are positive integers:
 \[
-   \sum_{j=0}^k (-1)^j E^{(s)}_j(x_1,\dotsc,x_n) H^{(s)}_{k-j}(x_1,\dotsc,x_n) = \delta_{0,n}.
+   \sum_{j=0}^k (-1)^j
+   E^{(s)}_j(x_1,\dotsc,x_n) H^{(s)}_{k-j}(x_1,\dotsc,x_n)
+   =
+   \delta_{k,0}.
 \]
 
-There are some interesting relations related to evaluations of monomial symmetric functions 
-at roots of unity given in \cite{AhmiaMerca2020x}.
+\name{Moussa Ahmia} and \name{Mircea Merca} also give relations involving
+evaluations of monomial symmetric functions at roots of unity
+\cite{AhmiaMerca2020x}.
 
 \subsection[petrieCombinatorial]{Combinatorial interpretation}
 
@@ -113,10 +127,14 @@ in terms of lattice paths.
 
 \subsection[petriePrincipal]{Principal specialization}
 
-We have \cite[Cor. 4.1]{AhmiaMerca2020x} that
+We have \cite[Cor.~4.1]{AhmiaMerca2020x} that
 \[
-E^{(s-1)}_k(1,q,q^2,\dotsc,q^{n-1}) = 
-\sum_{j=0}^{\lfloor k/s \rfloor} (-1)^j q^{s \binom{j}{2}} \qbinom{n}{j}_{q^s} \qbinom{n+k-sj-1}{k-sj}_q.
+E^{(s-1)}_k(1,q,q^2,\dotsc,q^{n-1})
+=
+\sum_{j=0}^{\lfloor k/s \rfloor}
+(-1)^j q^{s \binom{j}{2}}
+\qbinom{n}{j}_{q^s}
+\qbinom{n+k-sj-1}{k-sj}_q.
 \]
 
 
@@ -129,44 +147,56 @@ G(k) = \sum_\lambda H_k[ \schurS_\lambda ] \schurS_\lambda(\xvec)
 \]
 where $H_k$ is an algebra homomorphism defined via
 \[
-H_k[\completeH_j] \coloneqq 
+H_k[\completeH_j] \coloneqq
 \begin{cases}
-1 \text{ if } 0 \leq j \lt k \\
-0 \text{ otherwise}.
+1, & \text{if } 0 \leq j \lt k, \\
+0, & \text{otherwise}.
 \end{cases}
 \]
 Note that the \hyperref[schurJacobiTrudi]{Jacobi--Trudi identity}
-for Schur functions imply that $H_k[ \schurS_\lambda ]$
-is the determinant of a Petrie matrix, 
-which always have value $\pm 1$ or $0$, see \cite{GordonWilkinson1974} for more background.
+for Schur functions implies that $H_k[\schurS_\lambda]$ is the determinant of
+a Petrie matrix, which always has value $\pm 1$ or $0$; see
+\cite{GordonWilkinson1974} for background.
 
 \begin{example*}[Schur expansion of $G(4,8)$]
-We have that $G(4,8)$ is given by 
+We have that $G(4,8)$ is given by
 \[
-\monomial_{332}+\monomial_{2222}+\monomial_{3221}+\monomial_{3311}+\monomial_{22211}+\monomial_{32111}+\monomial_{221111}+\monomial_{311111}+\monomial_{2111111}+\monomial_{11111111}
+\begin{aligned}
+G(4,8)
+= {}&
+\monomial_{332}+\monomial_{2222}+\monomial_{3221}
++\monomial_{3311}+\monomial_{22211}\\
+&+\monomial_{32111}+\monomial_{221111}
++\monomial_{311111}+\monomial_{2111111}
++\monomial_{11111111}
+\end{aligned}
 \]
 and this has Schur expansion
 \[
-\schurS_{332}+\schurS_{2222}-\schurS_{3221}+\schurS_{311111}-\schurS_{2111111}+\schurS_{11111111}.
+\schurS_{332}+\schurS_{2222}-\schurS_{3221}
++\schurS_{311111}-\schurS_{2111111}+\schurS_{11111111}.
 \]
 \end{example*}
 
 
-An explicit formula for the coefficients in the Schur expansion is proved in \cite{Grinberg2020}.
-A more explicit formula using \hyperref[partitionQuotient]{$k$-cores} is proved in \cite{ChengChouEuFuYao2022x}.
-These formulas are used to prove the Liu--Polo conjecture, \cite[Remark 1.4.5]{LiuPolo2021}.
+An explicit formula for the coefficients in the Schur expansion is proved in
+\cite{Grinberg2020}.
+A more explicit formula using \hyperref[partitionQuotient]{$k$-cores} is
+proved in \cite{ChengChouEuFuYao2022x}.
+These formulas are used to prove the Liu--Polo conjecture
+\cite[Rem.~1.4.5]{LiuPolo2021}.
 
 
-The Petrie symmetric functions have the following nice property:
+The Petrie symmetric functions have the following property:
 For every $\lambda$, consider the expansion
 \[
 \schurS_\lambda \cdot G(k) = \sum_\mu \epsilon(\lambda,k,\mu) \schurS_\mu.
 \]
-The coefficients $\epsilon(\lambda,k,\mu)$ 
+The coefficients $\epsilon(\lambda,k,\mu)$
 then have the property that they lie in $\{-1,0,1\}$.
 
-\begin{problem}[D. Grinberg (2020), Institute Mittag--Leffler]
-Classify all symmetric functions $F$, such that
+\begin{problem}[D.~Grinberg (2020), Institute Mittag--Leffler]
+Classify all symmetric functions $F$ such that,
 for every partition $\lambda$, the product $\schurS_\lambda \cdot F$
 has coefficients in $\{-1,0,1\}$ when expanded in the Schur basis.
 \end{problem}
@@ -174,19 +204,20 @@ has coefficients in $\{-1,0,1\}$ when expanded in the Schur basis.
 
 \subsection[petrieMN]{Multiplication by $\powerSum_2$}
 
-In February 2022, I conjectured that for positive $k$, the product $G(k,m) \powerSum_2$
-is signed multiplicity-free in the Schur basis. 
+A 2022 conjecture stated that, for positive $k$, the product
+$G(k,m)\powerSum_2$ is \defin{signed multiplicity-free} in the Schur basis.
 That is,
 \[
 G(k,m) \powerSum_2 = \sum_\mu u_\mu \schurS_\mu
 \]
-with $u_\mu \in \{-1,0,1\}$. 
-This conjecture has now been proved in \cite[Thm. 1.5]{ChengChouEuFuYao2022x}.
+with $u_\mu \in \{-1,0,1\}$.
+This conjecture has now been proved in \cite[Thm.~1.5]{ChengChouEuFuYao2022x}.
 
 
 \subsection[petrieHopf]{Hopf algebra}
 
-There is a nice \hyperref[hopfAlgebra]{coproduct formula} for the Petrie symmetric functions:
+There is a \hyperref[hopfAlgebra]{coproduct formula} for the Petrie symmetric
+functions:
 \[
 \Delta( G(k,m) ) = \sum_{j=0}^m  G(k,j) \otimes G(k,m-j).
 \]
@@ -195,38 +226,44 @@ There is a nice \hyperref[hopfAlgebra]{coproduct formula} for the Petrie symmetr
 \subsection[pieriPetrie]{Pieri rule}
 
 In \cite{JinJingLiu2024x}, the authors give a combinatorial proof of
-the Pieri-type rule for the expansion 
+the Pieri-type rule for the expansion
 \[
- G(k,m) \schurS_\mu = \sum_\lambda Pet_k(\lambda,\mu) \schurS_\lambda.
+ G(k,m) \schurS_\mu
+ =
+ \sum_\lambda \operatorname{Pet}_k(\lambda,\mu) \schurS_\lambda.
 \]
-The $Pet_k(\lambda,\mu)$ are in $\{-1,0,1\}$ and the paper above gives a combinatorial 
-interpretation of these using ribbon tilings (similar to the Murnaghan--Nakayama rule).
+The coefficients $\operatorname{Pet}_k(\lambda,\mu)$ are in $\{-1,0,1\}$.
+\name{Yizhou Jin}, \name{Nan Jing}, and \name{Huilan Liu} give a
+combinatorial interpretation using ribbon tilings, similar to the
+\hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama rule}.
 
 
-More transparent proofs are given in \cite{WuEuKuShih2025x} as well as generalizing to
-skew shapes.
+Alternative proofs are given in \cite{WuEuKuShih2025x}, and the rule is
+extended to skew shapes there.
 
 
 \subsection[petrieDeterminant]{Generalization}
 
-The following definition is done in \cite[Eq. (3.20)]{DotyWalker1992}.
+The following definition appears in \cite[Eq.~(3.20)]{DotyWalker1992}.
 
 It is natural to extend the definition of Petrie symmetric functions as follows.
 Let
 \[
-G(k,\lambda) \coloneqq \det[ G(k, \lambda_i-i+j)  ]_{1\leq i,j \leq \length(\lambda)}.
+G(k,\lambda)
+\coloneqq
+\det\left[ G(k, \lambda_i-i+j) \right]_{1\leq i,j \leq \length(\lambda)}.
 \]
 Then $G(k,\lambda) = \schurS_\lambda$ whenever $k > \lambda_1$,
-and $G(k,\lambda)$ are the so called \hyperref[modularSchur]{modular Schur functions}.
+and $G(k,\lambda)$ are the so-called \hyperref[modularSchur]{modular Schur functions}.
 
 The $G(k,\lambda)$ are not Schur-positive in general.
 For example,
 \[
-G(4,44) = 
-\schurS_{4 4} + \schurS_{3 3 2} - \schurS_{4 3 1} + \schurS_{6 1 1} + 
- 2 \schurS_{2 2 2 2} - \schurS_{3 2 2 1} + \schurS_{4 2 1 1} - 
- \schurS_{5 1 1 1} - \schurS_{2 1 1 1 1 1 1} + 
- \schurS_{1 1 1 1 1 1 1 1}.
+G(4,44)
+=
+\schurS_{44} + \schurS_{332} - \schurS_{431} + \schurS_{611}
++ 2 \schurS_{2222} - \schurS_{3221} + \schurS_{4211}
+- \schurS_{5111} - \schurS_{2111111} + \schurS_{11111111}.
 \]
 In fact, $G(5,321)$ is not even monomial-positive.
 
@@ -240,19 +277,18 @@ In fact, $G(5,321)$ is not even monomial-positive.
   Space  & Sym \\
   Basis  & False \\
   Rating & 1 \\
-  Bib    & DotyWalker1992\\
-  Year   & 1992\\
+  Bib    & DotyWalker1992 \\
+  Year   & 1992 \\
   Category & Schur \\
   Contains & petrie | DotyWalker1992 | scope=one-row partitions \\
   SpecializesTo & schurS | DotyWalker1992 | parameter=k greater than largest part \\
 \end{polydata}
 
-The \defin{modular Schur functions} were introduced 
-by \name{Stephen Doty} and \name{Grant Walker} \cite[Eq. (3.20)]{DotyWalker1992},
+The \defin{modular Schur functions}\label{modularSchurDefinition} were introduced
+by \name{Stephen Doty} and \name{Grant Walker} \cite[Eq.~(3.20)]{DotyWalker1992},
 and further studied by \name{Grant Walker} \cite{Walker1994}.
 
-They are indexed by two parameters, a partition $\lambda$ and a positive integer $m$.
-When $m$ is a prime number, the modular Schur function is a character of $\GL_n(K)$
-where $K$ has characteristic $m$.
-
-
+They are indexed by two parameters, a partition $\lambda$ and a positive
+integer $k$.
+When $k$ is prime, the modular Schur function is a character of $\GL_n(K)$,
+where $K$ has characteristic $k$.
