@@ -118,6 +118,9 @@ Ehrhart theory appears in several parts of algebraic combinatorics:
 \begin{itemize}
 \item \hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes} and marked order
 polytopes model representation-theoretic multiplicities.
+\item \hyperref[gtKostkaEhrhart]{Skew and flagged GT-polytopes} give
+stretched Kostka, flagged skew Schur, and Littlewood--Richardson-type
+counting functions.
 \item \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson
 coefficients} can be studied through lattice points in hive and related
 polytopes.
@@ -135,6 +138,53 @@ or Euler-number triangles.
 Ehrhart series when lattice points are built from finitely many boundary
 states.
 \end{itemize}
+
+\subsection[ehrhartConjecturalPositivity]{Conjectural Ehrhart positivity}
+
+A recurring phenomenon is that representation-theoretic GT-polytopes seem to
+have more positive Ehrhart polynomials than arbitrary polytopes.  This should
+be treated as a conjectural pattern, since Ehrhart positivity is false for
+general lattice polytopes and even for many natural-looking families.
+
+\begin{conjecture}
+The Ehrhart polynomial of the skew Gelfand--Tsetlin polytope
+\(\gtp_{\lambda/\mu}\) has nonnegative coefficients.  Equivalently,
+\[
+  k\mapsto \schurS_{k\lambda/k\mu}(1^m)
+\]
+has nonnegative coefficients as a polynomial in \(k\).  This is the
+\hyperref[gtKostkaEhrhart]{Alexandersson--Alhajjar conjecture} on the
+Gelfand--Tsetlin page.
+\end{conjecture}
+
+\begin{conjecture}
+The flagged skew Schur stretching polynomial
+\[
+  k \mapsto K_{k\lambda/k\mu,k\nu}(\avec,\bvec)
+\]
+has nonnegative coefficients.  This is the
+\hyperref[schurFlagged]{flagged generalization} of the
+King--Tollu--Toumazet positivity conjecture.
+\end{conjecture}
+
+\begin{conjecture}
+For fixed \(\lambda\) and \(\sigma\in\symS_n\), the polynomial
+\[
+  k\mapsto \key_{k\lambda,\sigma}(1^n)
+\]
+is Ehrhart-positive; more precisely, the polynomial
+\(P_\sigma(\lambda_1,\dotsc,\lambda_n;k)\) from the
+\hyperref[keyEhrhart]{GT-face model for key polynomials} has nonnegative
+coefficients, and remains nonnegative after changing variables to partial
+sums \(a_j=\lambda_1+\dotsb+\lambda_j\).
+\end{conjecture}
+
+These conjectures are parallel: ordinary skew Schur functions, flagged skew
+Schur functions, and key polynomials all have GT-type models, and stretching
+the highest weights turns the relevant specialization into an Ehrhart
+polynomial or a closely related lattice-point count.  The evidence suggests
+that the representation-theoretic inequalities impose positivity that is not
+visible for arbitrary polytopes.
 
 \subsection[ehrhartQuestions]{Typical questions}
 
