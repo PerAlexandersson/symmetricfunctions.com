@@ -1,6 +1,6 @@
 \metatitle{Real-rooted and stable polynomials}
 
-\metadescription{Polynomials with real roots, and their multivariate analogs. Also, Lorentzian polynomials.}
+\metadescription{Polynomials with real roots, and their multivariate analogues. Also, Lorentzian polynomials.}
 
 
 \section[polynomialRootIntro]{Introduction}
@@ -10,9 +10,8 @@ For an enumerative family of polynomials, natural questions include
 \emph{interlacing roots}.
 
 A useful general reference is \cite{Branden2015}, together with other works
-of \name{Petter Brändén}.  See also this
-\href{https://www.youtube.com/watch?v=wuQN0xaTkxE}{OPAC seminar}
-about unimodality, real-rootedness, and stable polynomials.
+of \name{Petter Brändén}.  See also the IPAC seminar lecture on Lorentzian
+polynomials \cite{IPAC2022LorentzianLecture}.
 
 The following pages cover more specialized topics:
 \begin{itemize}
@@ -38,21 +37,29 @@ The following pages cover more specialized topics:
 
 \section[polynomialUnimodality]{Unimodality, log-concavity and real roots}
 
-Let $P = a_0 + a_1t+\dotsb + a_n t^n$ be a polynomial. It is called \emph{unimodal} if there is some $j$
-such that $a_0 \leq a_1 \leq \dotsb \leq a_j \geq a_{j+1} \geq a_{j+2} \geq \dotsb \geq a_n$.
+Let $P = a_0 + a_1t+\dotsb + a_n t^n$ be a polynomial.
+It is called \defin{unimodal}\label{unimodalPolynomial} if there is some $j$
+such that
+\[
+a_0 \leq a_1 \leq \dotsb \leq a_j \geq a_{j+1}
+\geq a_{j+2} \geq \dotsb \geq a_n.
+\]
 
-Suppose now all coefficients are positive. We say that $P$ is \defin{log-concave} if
+Suppose now all coefficients are positive. We say that \(P\) is
+\defin{log-concave}\label{logConcavePolynomial} if
 \[
   a_{j-1}a_{j+1} \leq a_j^2
 \]
 for all relevant $j$. This property implies unimodality.
 
-We get an even stronger property if the \defin{Newton inequalities} are satisfied:
+We get an even stronger property if the
+\defin{Newton inequalities}\label{newtonInequalities} are satisfied:
 \[
   \frac{a_{j-1}}{ \binom{n}{j-1} } \frac{a_{j+1}}{ \binom{n}{j+1} } \leq \frac{a_{j}^2}{ \binom{n}{j}^2 }.
 \]
 
-Finally, if $P$ has only real roots, it is called \defin{real-rooted}.
+Finally, if $P$ has only real roots, it is called
+\defin{real-rooted}\label{realRootedPolynomial}.
 Every real-rooted polynomial satisfies the Newton inequalities, see e.g. \cite{Branden2015}.
 
 
@@ -61,7 +68,8 @@ a sequence of lattice path counts is log-concave.
 See also \cite{Sagan1987unimodal} for a short proof of unimodality in this case.
 
 In \cite{AhmiaBelbachir2018} it is shown that if $f(t)$
-has non-negative, non-decreasing coefficients, then the polynomial $f(1+t+t^2+\dotsb+x^\ell)$ is unimodal,
+has non-negative, non-decreasing coefficients, then the polynomial
+$f(1+x+x^2+\dotsb+x^\ell)$ is unimodal,
 for any $\ell \geq 1$.
 \name{Ethan Y. H. Li}, \name{Grace M. X. Li}, \name{Arthur L. B. Yang}, and
 \name{Zhong-Xue Zhang} use chromatic symmetric functions to prove
@@ -83,7 +91,7 @@ avoidance, set partitions, and noncrossing partitions.
 $a_n t^n + a_{n-1}t^{n-1} + \dotsb + a_1 t + a_0$
 with positive coefficients (and degree at least two) that satisfies
 \[
- a_i^2 \gt 4a_{i-1}a_{i+1}  \text{ for all } i,
+ a_i^2 \gt 4a_{i-1}a_{i+1} \text{ for all } i,
 \]
 is real-rooted.
 \end{theorem}
@@ -120,7 +128,8 @@ interpolating between the type $B$ and type $A$ Narayana polynomials
 \]
 where $(a)_k$ is the Pochhammer symbol.  Then $N_{n,0}(x)$ is the
 type $B$ Narayana polynomial and $N_{n,1}(x)$ is the type $A$
-Narayana polynomial.  The corresponding \defin{Narayana transformation}
+Narayana polynomial.  The corresponding
+\defin{Narayana transformation}\label{narayanaTransformationDefinition}
 $T_{N_m}$ is defined by
 \[
   T_{N_m}(x^n)=N_{n,m}(x).
@@ -143,7 +152,8 @@ In particular, the type $A$ and type $B$ Narayana transformations
 preserve real-rootedness for polynomials with non-negative coefficients.
 The proof uses rectangular additive convolution, and the non-negativity
 assumption on the coefficients is essential.
-This should be compared with the \defin{Eulerian transformation}
+This should be compared with the
+\defin{Eulerian transformation}\label{eulerianTransformation}
 \(A(x^n)=A_n(x)\).  Brenti conjectured that the Eulerian transformation
 preserves real-rootedness, but this is false in full generality by
 \name{Petter Brändén} and \name{Katharina Jochemko}
@@ -176,7 +186,7 @@ $M=(M(n,k))_{n,k\geq 0}$ is lower triangular, write
 \[
   M_n(x)\coloneqq \sum_{k=0}^n M(n,k)x^k
 \]
-for its \defin{row-generating function} (RGF).
+for its \defin{row-generating function}\label{rowGeneratingFunction} (RGF).
 Their product criterion gives a broad class of matrices $B$ for which
 real-rootedness of all $M_n(x)$ forces real-rootedness of the RGFs of
 $MB^r$ for every $r\geq 1$ \cite[Thm.~1.3]{MaoWang2026x}.  This applies
@@ -203,7 +213,8 @@ and normalized products such as the
 \hyperref[schurSzegoComposition]{Schur--Szeg\H{o} composition} and
 \hyperref[diamondProduct]{diamond product}.
 
-The \defin{Hadamard product} (or \emph{coefficient-wise product})
+The \defin{Hadamard product}\label{hadamardProductDefinition}
+(or \emph{coefficientwise product})
 of two polynomials $f(t)=\sum a_j t^j$ and $g(t)=\sum b_j t^j$ is
 \[
   f \odot g \coloneqq \sum_j a_j b_j \, t^j.
@@ -213,7 +224,8 @@ of two polynomials $f(t)=\sum a_j t^j$ and $g(t)=\sum b_j t^j$ is
 
 \begin{definition}[Multiplier sequence]
 A sequence $\gamma=(\gamma_0,\gamma_1,\dotsc)$ is a
-\defin{multiplier sequence} if the diagonal operator
+\defin{multiplier sequence}\label{multiplierSequenceDefinition}
+if the diagonal operator
 \[
   T_\gamma\!\left(\sum_{k\geq 0} a_k x^k\right)
   \coloneqq
@@ -320,7 +332,8 @@ Let
   \qquad\text{and}\qquad
   G(x)=\sum_{k=0}^n \binom{n}{k} b_k x^k.
 \]
-Their \defin{Schur--Szeg\H{o} composition} is
+Their \defin{Schur--Szeg\H{o} composition}\label{schurSzegoCompositionDefinition}
+is
 \[
   (F*G)(x)
   \coloneqq
@@ -333,7 +346,8 @@ only real non-positive zeros.
 \subsection[diamondProduct]{Diamond product}
 
 \begin{theorem}[Wagner--Brändén, {\cite[Thm.~2 and Thm.~13]{Branden2004operators}}]
-For polynomials $f,h\in \setR[x]$, define the \defin{diamond product} by
+For polynomials $f,h\in \setR[x]$, define the
+\defin{diamond product}\label{diamondProductDefinition} by
 \[
   f\diamond h
   \coloneqq
@@ -359,7 +373,8 @@ the polynomial $f\diamond h$ also has all zeros in $[-1,0]$.
 For a naturally labeled poset $P$, the
 \hyperref[pEulerianPolynomial]{$P$-Eulerian polynomial} is the descent
 generating polynomial of the linear extensions of $P$.  The
-\defin{Neggers--Stanley conjecture} predicted that these polynomials have only
+\defin{Neggers--Stanley conjecture}\label{neggersStanleyConjectureDefinition}
+predicted that these polynomials have only
 real zeros.  The conjecture is false in this generality: counterexamples were
 constructed by \name{John R. Stembridge}
 \cite{Stembridge2007NeggersStanleyCounter}.  Positive results for restricted
@@ -368,8 +383,10 @@ polynomials are $h^*$-polynomials of \hyperref[orderPolytope]{order
 polytopes}.
 
 \begin{example*}[P-Eulerian polynomials for series-parallel posets]
-Let $E(P,t)$ denote the Eulerian polynomial associated with the naturally labeled poset $P$.
-The \defin{ordinal sum} $P \oplus Q$ of two posets is the poset
+Let $E(P,t)$ denote the Eulerian polynomial associated with the naturally
+labeled poset $P$.
+The \defin{ordinal sum}\label{ordinalSumPoset} $P \oplus Q$ of two posets is
+the poset
 where
 \[
 x \prec y \iff x \prec_P y \text{ or } x \prec_Q y \text{ or } x \in P, y \in Q.
@@ -378,12 +395,14 @@ The Eulerian polynomial then has the property that
 \[
 E(P \oplus Q, t) = E(P,t) \cdot E(Q,t).
 \]
-Moreover, for the \defin{disjoint union} of posets, we have
+Moreover, for the \defin{disjoint union}\label{disjointUnionPoset} of posets,
+we have
 \[
 E(P \sqcup Q, t) = E(P,t) \diamond E(Q,t),
 \]
 where $\diamond$ is the \hyperref[diamondProduct]{diamond product} above.
-These operations preserve real-rootedness, so all series-parallel posets have real-rooted Eulerian polynomials,
+These operations preserve real-rootedness, so all series-parallel posets have
+real-rooted Eulerian polynomials,
 see \cite{Wagner1992,Wagner1992en}.
 This result extends to labeled posets, see \cite{Branden2004operators}.
 \end{example*}
@@ -392,7 +411,8 @@ This result extends to labeled posets, see \cite{Branden2004operators}.
 
 \name{Benjamin Braun} and \name{Aryaman Jal} prove
 \(h^*\)-real-rootedness for \hyperref[orderPolytope]{order polytopes} of
-\defin{generalized snake posets} \cite{BraunJal2026x}.  If \(w\) is a
+\defin{generalized snake posets}\label{generalizedSnakePoset}
+\cite{BraunJal2026x}.  If \(w\) is a
 generalized snake word and \(P(w)\) is the corresponding naturally labeled
 width-two poset, then Stanley's theorem and the width-two poset model of
 \name{Per Alexandersson} and \name{Aryaman Jal} identify
