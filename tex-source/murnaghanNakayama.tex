@@ -1,10 +1,12 @@
 \metatitle{Murnaghan--Nakayama rule}
-\metadescription{An introduction to the Murnaghan--Nakayama rule, including its statement, various formulas for the characters of the symmetric group, and variants of the rule.}
+\metadescription{An introduction to the Murnaghan--Nakayama rule, including
+its statement, formulas for symmetric-group characters, and variants of the
+rule.}
 
 \section[murnaghanNakayamaRule]{The Murnaghan--Nakayama rule}
 
 
-The expansion of \hyperref[schurS]{Schur polynomials} in the 
+The expansion of \hyperref[schurS]{Schur polynomials} in the
 \hyperref[powerSum]{power-sum} basis gives the
 irreducible \hyperref[representationCharacter]{characters of the symmetric group} as coefficients:
 \begin{equation*}
@@ -12,7 +14,8 @@ irreducible \hyperref[representationCharacter]{characters of the symmetric group
   = \sum_{\mu} \frac{\chi^{\lambda}_{\mu}}{z_\mu} \powerSum_{\mu}(\xvec)
   = \sum_{\mu} \frac{\powerSum_{\mu}(\xvec)}{z_\mu} \sum_{T \in \BST(\lambda,\mu)} (-1)^{\mathrm{ht}(T)}
 \end{equation*} 
-where the sum is taken over \hyperref[borderStripTableaux]{border strip tableaux} of shape $\lambda$ and weight $\mu$.
+where the sum is taken over \hyperref[borderStripTableaux]{border strip
+tableaux} of shape $\lambda$ and weight $\mu$.
 
 Another way to phrase the Murnaghan--Nakayama rule is the following:
 \begin{equation*}
@@ -21,8 +24,9 @@ Another way to phrase the Murnaghan--Nakayama rule is the following:
 where the sum ranges over all $\mu$ such that $\mu/\lambda$ is a border-strip with $r$ boxes.
 The combinatorial rule was first stated in \cite{Murnaghan1937,Nakayama1940}.
 
-A completely combinatorial proof of the Murnaghan--Nakayama rule is provided in \cite{Mendes2019},
-which uses only a sign-reversing involution for the proof. 
+A completely combinatorial proof of the
+\defin{Murnaghan--Nakayama rule}\label{murnaghanNakayamaRuleDefinition}
+is provided in \cite{Mendes2019}, using only a sign-reversing involution.
 
 \name{Stephan Pfannerer} gives a descent refinement of the
 Murnaghan--Nakayama rule for border-strip tableaux
@@ -36,12 +40,13 @@ We can also write the power-sum expansion as the average
   = \frac{1}{n!} \sum_{\sigma \in \symS_n} \chi^{\lambda}(\sigma) \powerSum_{\text{type}(\sigma)}(\xvec).
 \end{equation*}
 
-The characters $\chi^{\lambda}_{\mu}$ also show up in the Schur expansion of power-sum symmetric functions.
+The characters $\chi^{\lambda}_{\mu}$ also show up in the Schur expansion of
+power-sum symmetric functions.
 \begin{equation*}
  \powerSum_\mu(\xvec) =  \sum_{\lambda} \chi^{\lambda}_{\mu} \schurS_{\lambda}(\xvec).
 \end{equation*}
-This is a consequence of the fact that the characters are orthogonal (so that inverting a transition matrix 
-is more or less a transposition).
+This is a consequence of the fact that the characters are orthogonal, so
+inverting the transition matrix is essentially transposition.
 
 \name{Karlee J. Westrem} studies character sums over the multiset
 $\operatorname{Ev}(\lambda)$ obtained from a partition $\lambda$ by replacing
@@ -66,8 +71,8 @@ proves a conjecture of \name{Steven J. Miller} and extends their earlier
 result on divisibility by primes.
 
 
-Yet another way to compute  $\chi^{\lambda}_{\mu}$ is by taking the coefficient of
-$\prod_{i=1}^k x_i^{\lambda_i + \ell -i}$ in 
+Yet another way to compute $\chi^{\lambda}_{\mu}$ is by taking the coefficient
+of $\prod_{i=1}^k x_i^{\lambda_i + \ell -i}$ in
 \[
  \prod_{i \lt j} (x_i - x_j ) \; \cdot \; \powerSum_{\mu}(x_1,\dotsc,x_\ell),
 \]
@@ -81,7 +86,7 @@ where $\ell$ is at least the number of parts of $\lambda$.
 \subsection[mnRecursion]{Murnaghan--Nakayama recursion}
 
 One can reformulate the Murnaghan--Nakayama rule as a recursive rule,
-see e.g. \cite[2.4.4]{JamesKerber1984}.
+see e.g. \cite[Sec.~2.4.4]{JamesKerber1984}.
 
 Let $\lambda \vdash n$ and $\mu \vdash n-m$.
 \[
@@ -92,8 +97,10 @@ where the sum ranges over all $\nu$ such that $\lambda/\nu$ is a border-strip of
 
 \subsection[roichmanChi]{Y. Roichman's formula}
 
-Y. Roichman has an alternative way of expressing the coefficients $\chi^{\lambda}_{\mu}$.
-This generalizes to so-called Kazhdan--Lusztig characters, see \cite{Roichman1997} and \cite{Roichman1999}.
+Y. Roichman has an alternative way of expressing the coefficients
+$\chi^{\lambda}_{\mu}$.  This generalizes to so-called
+Kazhdan--Lusztig characters; see \cite{Roichman1997} and
+\cite{Roichman1999}.
 \begin{theorem}[Y. Roichman, 1997]
 We have that
 \[
@@ -109,16 +116,19 @@ and
 \[
 f_\mu(i,Q) \coloneqq \begin{cases}
 -1 &\text{ if $i+1$ is southwest of $i$} \\
-0  &\text{ if $i+1$ is northeast of $i$, $i+2$ southwest of $i+1$ and $i+1 \notin B(\mu)$} \\
+0  &\text{ if $i+1$ is northeast of $i$, $i+2$ southwest of $i+1$,
+and $i+1 \notin B(\mu)$} \\
 1  & \text{ otherwise}.
 \end{cases}
 \]
 \end{theorem}
 
-Another way to phrase this, is due to \name{Christos Athanasiadis} \cite[Prop. 3.2]{Athanasiadis2015} and is as follows. 
+A related formulation is due to \name{Christos Athanasiadis}
+\cite[Prop.~3.2]{Athanasiadis2015}.
 \begin{theorem}
 Let $\lambda$ be a partition of $n$.
-Then the expansion of the Schur function $\schurS_{\lambda}$ into power sum symmetric functions is given by
+Then the expansion of the Schur function $\schurS_{\lambda}$ into power-sum
+symmetric functions is given by
 \begin{align}\label{eq:schurRoichmanPexp}
 \schurS_\lambda(\xvec)
 =
@@ -130,20 +140,24 @@ Then the expansion of the Schur function $\schurS_{\lambda}$ into power sum symm
 (-1)^{\DES(T) \setminus S_\mu}
 \,,
 \end{align}
-where $S_\mu$ and $U_\mu$ are defined \hyperref[gesselPowerSum]{here}.
+where $S_\mu$ and $U_\mu$ are defined in the
+\hyperref[gesselPowerSum]{power-sum expansion section}.
 \end{theorem}
 
 
 
 \subsection[holmesChi]{R. Holmes' recursion}
 
-\name{Randall Holmes} \cite{Holmes2017x} generalizes a result by \name{Gordon James} and \name{Adalbert Kerber} \cite[2.4.3]{JamesKerber1984}.
+\name{Randall Holmes} \cite{Holmes2017x} generalizes a result by
+\name{Gordon James} and \name{Adalbert Kerber}
+\cite[Sec.~2.4.3]{JamesKerber1984}.
 This gives a recursive method of computing $\chi^{\lambda}_{\mu}$.
-The interesting aspect of this recursion is that one computes characters of $\symS_n$
-by only relying on characters values for $\symS_{n-1}$
+The interesting aspect of this recursion is that one computes characters of
+$\symS_n$ by using only character values for $\symS_{n-1}$
 (and not smaller groups as with the Murnaghan--Nakayama recursion).
 
-The following set of relations are enough to compute all $\chi^{\lambda}_{\mu}$.
+The following set of relations is enough to compute all
+$\chi^{\lambda}_{\mu}$.
 Here, $\lambda \vdash n$ and we always assume that the arguments to $\chi$
 are partitions of the same size, and $\epsilon_i$ denotes the unit vector with $1$
 at the $i^\thsup$ coordinate.
@@ -157,14 +171,14 @@ at the $i^\thsup$ coordinate.
 	\end{cases}
 \]
 
-\emph{The James--Kerber branching rule:}
+\emph{The \defin{James--Kerber branching rule}\label{jamesKerberBranchingRule}:}
 \[
 	\chi^{\lambda}_{(\mu,1)} =
 	\sum_{\substack{ 1 \leq i \leq \length(\lambda) \\ \lambda_i \gt \lambda_{i+1} }}
 		\chi^{\lambda - \epsilon_i}_{\mu}.
 \]
 
-\emph{R. Holmes recursion}, $m \geq 2$:
+\emph{\defin{R. Holmes recursion}\label{holmesCharacterRecursion}}, $m \geq 2$:
 \[
 	\chi^{\lambda}_{(\mu,m)} = \frac{1}{m-1} \left[
 	
@@ -182,7 +196,7 @@ in the partition $(\mu,m-1)$.
 
 To speed up computation, one can also add the following special case.
 
-\emph{Hook formula case:}
+\emph{\defin{Hook formula case}\label{characterHookFormulaCase}:}
 \[
 	\chi^{\lambda}_{(1^n)} = f^\lambda
 \]
@@ -193,9 +207,9 @@ This quantity can be computed using the \hyperref[partitionCores]{hook formula}.
 
 \subsection[youngsConstruction]{Alfred Young's construction}
 
-A construction due to \name{Alfred Young} is presented in \cite[Thm. 1.6]{GarsiaEgecioglu2020},
-see also the discussion on \href{https://mathoverflow.net/questions/460613/an-identity-for-characters-of-the-symmetric-group}{this discussion on MathOverflow}.
-This states
+A construction due to \name{Alfred Young} is presented in
+\cite[Thm.~1.6]{GarsiaEgecioglu2020}; see also the MathOverflow discussion
+\cite{MO460613}.  It states
 \[
 \chi^{\lambda}_{\mu} =
 z_\mu \frac{f^{\lambda}}{n!}
@@ -218,7 +232,8 @@ polynomials}, see \cite{Kundu2025x}.
 
 \item $K\text{-}k$-Schur functions, see \cite{Nguyen2022x}.
 
-\item Cylindric Schur functions (cylindric Hecke characters), see \cite[Lem. 5.3]{Korff2020}.
+\item Cylindric Schur functions (cylindric Hecke characters), see
+\cite[Lem.~5.3]{Korff2020}.
 
 \item the \hyperref[schurSymplecticMurnaghanNakayama]{symplectic, orthogonal,
 and orthosymplectic Schur functions}.
@@ -259,8 +274,9 @@ Murnaghan--Nakayama rule.
 \subsection[quantumMNRule]{Quantum Murnaghan--Nakayama rule}
 
 \name{Matja{\v z} Konvalinka} proves a skew quantum version
-of the Murnaghan--Nakayama rule \cite{Konvalinka2011x}. Here, one multiplies the Schur function with a $q$-deformation
-of the power-sum symmetric functions. These deformations are equal to
+of the Murnaghan--Nakayama rule \cite{Konvalinka2011x}.  Here, one
+multiplies the Schur function with a $q$-deformation of the power-sum
+symmetric functions.  These deformations are equal to
 the Hall--Littlewood $P$-functions, indexed by one-part partitions.
 The paper has several conjectured generalizations of Murnaghan--Nakayama
 rules for Hall--Littlewood $P$-functions.
@@ -278,9 +294,13 @@ by hooks and uses detailed properties of the quantum Bruhat order.
 
 A rule for computing the coefficients in the expansion
 \[
-\schurS_\mu \cdot (\powerSum_r[\completeH_m]) = \sum_{\lambda \vdash rm+|\mu|} (-1)^{\mathrm{ht}_r(\lambda/\mu)} \schurS_{\lambda}
+\schurS_\mu \cdot (\powerSum_r[\completeH_m])
+=
+\sum_{\lambda \vdash rm+|\mu|}
+(-1)^{\mathrm{ht}_r(\lambda/\mu)} \schurS_{\lambda}
 \]
-is given by \name{Mark Wildon} \cite{Wildon2016}. See also \cite{Wildon2018} for a more general result.
+is given by \name{Mark Wildon} \cite{Wildon2016}.  See also
+\cite{Wildon2018} for a more general result.
 
 \name{Pavel Turek} gives a short combinatorial proof of this rule using
 \name{Nicholas Loehr}'s labelled abaci \cite{Turek2023x}.  A vertex-operator
@@ -307,10 +327,11 @@ permutation statistics conditional on cycle type.
 
 
 
-\subsection[chernClassMNRule]{Murnaghan--Nakayama rule for Chern classes of Schubert cells}
+\subsection[chernClassMNRule]{Murnaghan--Nakayama rule for Chern classes of
+Schubert cells}
 
-In \cite{FanGuoXiong2022x}, the authors give a Pieri rule and a Murnaghan--Nakayama rule for 
-Chern classes of Schubert cells. 
+In \cite{FanGuoXiong2022x}, the authors give a Pieri rule and a
+Murnaghan--Nakayama rule for Chern classes of Schubert cells.
 \name{Leonardo C. Mihalcea}, \name{Hiroshi Naruse}, and \name{Changjian Su}
 derive hook formulae from Segre--MacPherson classes of Schubert cells and
 varieties \cite{MihalceaNaruseSu2025}.  Their work generalizes a
