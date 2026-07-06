@@ -3,18 +3,19 @@
 
 \section[schubertCalculus]{Schubert calculus}
 
-\defin{Schubert calculus} is the use of Schubert varieties and their
-intersection products to solve enumerative problems.  In the most classical
-case, this means computing in the cohomology ring of a Grassmannian.  The
-combinatorics is governed by partitions, Young diagrams, Schur polynomials,
-Pieri rules, Giambelli determinants, and
+\defin{Schubert calculus}\label{schubertCalculusDefinition} is the use of
+Schubert varieties and their intersection products to solve enumerative
+problems.  In the most classical case, this means computing in the cohomology
+ring of a \hyperref[grassmannian]{Grassmannian}.  The combinatorics is governed
+by partitions, Young diagrams, \hyperref[schurS]{Schur polynomials},
+\hyperref[schubertCalculusPieri]{Pieri rules},
+\hyperref[schubertCalculusGiambelli]{Giambelli determinants}, and
 \hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients}.
 
 Good introductions include \name{William Fulton}'s book on Young tableaux
 \cite{Fulton1997} and \name{Maria Gillespie}'s tutorial
-\cite{Gillespie2019}, which is adapted from her
-\href{https://www.mathematicalgemstones.com/gemstones/sapphire/schubert-calculus-mini-course/}
-{Schubert Calculus mini-course}.
+\cite{Gillespie2019}, which is adapted from her Schubert calculus mini-course
+\cite{Gillespie2017SchubertMiniCourse}.
 For the flag-variety and polynomial side, see also
 \hyperref[schubert]{Schubert polynomials}.  For a broader map of the
 geometric objects, see \hyperref[varieties]{varieties in algebraic
@@ -24,7 +25,8 @@ combinatorics}.
 \section[grassmannian]{Grassmannians}
 
 Let $V$ be an $n$-dimensional complex vector space.  The
-\defin{Grassmannian} $\operatorname{Gr}(k,V)$, often written
+\defin{Grassmannian}\label{grassmannianDefinition} $\operatorname{Gr}(k,V)$,
+often written
 $\operatorname{Gr}(k,n)$, is the space of $k$-dimensional linear subspaces
 $W\subseteq V$.
 
@@ -53,17 +55,18 @@ remaining free entries form a $k(n-k)$-dimensional affine chart.
 
 \section[grassmannianSchubertClasses]{Schubert classes on the Grassmannian}
 
-Fix a complete flag
+Fix a \hyperref[flagVarieties]{complete flag}
 \[
   0=F_0\subset F_1\subset F_2\subset\dotsb\subset F_n=V,
   \qquad \dim F_i=i.
 \]
-Schubert classes in $\operatorname{Gr}(k,n)$ are indexed by partitions
+\defin{Schubert classes}\label{grassmannianSchubertClassDefinition}
+in $\operatorname{Gr}(k,n)$ are indexed by partitions
 $\lambda$ fitting in the $k\times(n-k)$ rectangle:
 \[
   n-k\geq \lambda_1\geq \lambda_2\geq\dotsb\geq\lambda_k\geq 0.
 \]
-The corresponding \defin{Schubert variety} is
+The corresponding \defin{Schubert variety}\label{schubertVarietyDefinition} is
 \[
   \Omega_\lambda(F_\bullet)
   \coloneqq
@@ -213,14 +216,14 @@ only the classes which fit in the Grassmannian rectangle.
 \begin{example*}[A product in $\operatorname{Gr}(2,5)$]
 In symmetric functions,
 \[
-  \schurS_2\schurS_{1,1}
+  \schurS_1\schurS_{2,1}
   =
   \schurS_{3,1}+\schurS_{2,2}+\schurS_{2,1,1}.
 \]
 The rectangle for $\operatorname{Gr}(2,5)$ is $2\times3$, so the term
 $\schurS_{2,1,1}$ has too many rows.  Hence
 \[
-  \sigma_2\sigma_{1,1}
+  \sigma_1\sigma_{2,1}
   =
   \sigma_{3,1}+\sigma_{2,2}
   \qquad\text{in } H^*(\operatorname{Gr}(2,5)).
