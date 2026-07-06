@@ -1,5 +1,7 @@
 \metatitle{Tableaux cyclic sieving}
 \metadescription{A list of instances of the cyclic sieving phenomenon on tableaux and fillings}
+\metakeywords{cyclic sieving phenomenon, promotion, tableaux, standard Young
+tableaux, semistandard tableaux, plane partitions, increasing tableaux}
 
 See the \hyperref[cyclicSieving]{cyclic sieving phenomenon}
 page for the definition and related theorems.
@@ -25,8 +27,8 @@ $
 is a CSP-triple, see \name{Brendon Rhoades} \cite{Rhoades2010}.
 
 For a different proof using Wronskians, see \cite{Purbhoo2013}.
-An overview of different approaches is given in the master's
-thesis by \name{Donguk Rhee} \cite{Rhee2019}.
+\name{Donguk Rhee} gives an overview of different approaches in his master's
+thesis \cite{Rhee2019}.
 See also \name{Connor Ahlbach} \cite{Ahlbach2019} for some related results
 and open conjectures.
 In particular, Ahlbach explicitly describes the fixed points under promotion.
@@ -36,14 +38,16 @@ Other alternative proofs can be found in
 
 The $3$-row case can also be seen as rotation of certain graphs introduced in
 \cite{Kuperberg1996}.
-The cyclic sieving result is proved in \cite{PetersenPylyavskyyRhoades2008}.
+\name{T. Kyle Petersen}, \name{Pavlo Pylyavskyy}, and \name{Brendon Rhoades}
+prove the cyclic sieving result \cite{PetersenPylyavskyyRhoades2008}.
 These graphs constitute a so-called web basis for $U_q(\mathfrak{sl}_3)$.
 
 The $4$-row case can be interpreted as rotation of
 \defin{hourglass plabic graphs}\label{hourglassPlabicGraph} introduced in
-\cite{GaetzPechenikPfannererStrikerSwanson2023x}.  That is, there is a
-bijection between $4$-row rectangular SYT and hourglass plabic graphs such
-that promotion on the SYTs maps to rotation of these planar graphs.
+\cite{GaetzPechenikPfannererStrikerSwanson2023x}.  This gives a bijection
+between $4$-row rectangular SYT and hourglass plabic graphs such that
+\hyperref[promotion]{promotion} on the SYTs maps to rotation of these planar
+graphs.
 These graphs give rise to a web basis for $U_q(\mathfrak{sl}_4)$.
 
 \subsection[cspSignedRectangularSYT]{Signed rectangular SYT}
@@ -72,13 +76,14 @@ conjecture a corresponding cyclic sieving phenomenon for general rectangles.
 
 \subsection[cspStretchedSYT]{Stretched SYT}
 
-In \cite[Thm.~46]{AlexanderssonPfannererRubeyUhlin2020x}, we show that
-there exists a cyclic group action of order $n$, such that
+In joint work with \name{Stephan Pfannerer}, \name{Martin Rubey}, and
+\name{Joakim Uhlin}, we show that a cyclic group action of order $n$ exists
+such that
 for any $\lambda$,
 \[
  \left( \SYT( n \lambda), C_n, f^{n \lambda}(q) \right)
 \]
-is a CSP-triple.
+is a CSP-triple \cite[Thm.~46]{AlexanderssonPfannererRubeyUhlin2020x}.
 The proof is existential, and does not give a natural action on the tableaux.
 
 \begin{problem}
@@ -93,20 +98,23 @@ cyclic sieving phenomenon for arbitrary $\lambda$.
 
 
 Let $sc_k$ be the staircase shape for the partition $(k,k-1,\dotsc,2,1)$.
-In \cite{PonWang2011}, the authors show that promotion on $\SYT(sc_k)$ acts
-in a structured way, but they do not prove a cyclic sieving phenomenon.
-In \cite{Purbhoo2018}, building on his earlier work using Wronskians to understand promotion,
-and by considering the Lagrangian Grassmannian, \name{Kevin Purbhoo} showed that every
-promotion symmetry class for the staircase is counted
-by the number of certain ribbon tableaux.
+\name{Steven Pon} and \name{Qiang Wang} show that promotion on
+$\SYT(sc_k)$ acts in a structured way, but they do not prove a cyclic sieving
+phenomenon \cite{PonWang2011}.  Building on his earlier work using Wronskians
+to understand promotion, and by considering the
+\hyperref[grassmannianVarieties]{Lagrangian Grassmannian},
+\name{Kevin Purbhoo} shows that every promotion symmetry class for the
+staircase is counted by the number of certain ribbon tableaux
+\cite{Purbhoo2018}.
 \name{Nathan Williams} conjectured a product formula for a polynomial
 which should be a CSP polynomial for the action of
 promotion on $\SYT(sc_k)$: see \cite{Hopkins2020} for this conjecture.
 
 Now let $ssc_k$ be the shifted staircase shape for the strict
-partition $(k,k-1,\dotsc,2,1)$. By considering the orthogonal Grassmannian,
-\name{Kevin Purbhoo} \cite{Purbhoo2018} showed that every symmetry class of
-promotion on $\SYT(ssc_k)$ can again be counted by the number of certain ribbon tableaux.
+partition $(k,k-1,\dotsc,2,1)$.  By considering the orthogonal Grassmannian,
+\name{Kevin Purbhoo} shows that every symmetry class of promotion on
+$\SYT(ssc_k)$ can again be counted by the number of certain ribbon tableaux
+\cite{Purbhoo2018}.
 Using this result of Purbhoo, Sekheri--Schank--Djermane \cite{SekheriSchankDjermane2014}
 verified that
 \[
@@ -151,8 +159,9 @@ This result can also be deduced from \cite{ShenWeng2020}
 by mapping promotion to toggles.
 
 
-In \cite{FontaineKamnitzer2013}, \name{Brendon Rhoades}' result is refined in
-the following manner.
+\name{Bruce Fontaine} and \name{Joel Kamnitzer} refine
+\name{Brendon Rhoades}' result in the following manner
+\cite{FontaineKamnitzer2013}.
 Let $\gamma$ be a composition of $ab$, such that $\gamma$ is invariant
 under $\ell$-th cyclic shift,
 and let $\partial$ denote the \hyperref[kpromotion]{$k$-promotion} operator.
@@ -168,7 +177,8 @@ Here $K_{\lambda,\nu}(q)$ is a \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomi
 
 \subsection[cspHookSSYT]{Hook SSYT}
 
-The following results are proved by \name{Max Bennett}, \name{Blake Madill} and \name{Anna Stokke} \cite{BennettMadillStokke2014}.
+\name{Max Bennett}, \name{Blake Madill}, and \name{Anna Stokke} prove the
+following results \cite{BennettMadillStokke2014}.
 Let $\alpha$ be a weak composition with $k$ parts
 and let $\lambda = (n-m,1^m)$ be a hook shape with $n$ boxes.
 Then
@@ -196,16 +206,16 @@ is a CSP-triple, and the cyclic group has order $nz(\alpha)-1$.
 
 \subsection[cspGeneralSSYT]{SSYT of arbitrary shape}
 
-In \cite{OhPark2019}, \name[Y.-T. Oh]{Young-Tak Oh} and \name{Euiyong Park}
-provide a new CSP on $\SSYT(\lambda,n)$ with a group action of
-order $n$ whenever $\gcd(n,|\lambda|)=1$.
+\name[Y.-T. Oh]{Young-Tak Oh} and \name{Euiyong Park} provide a new CSP on
+$\SSYT(\lambda,n)$ with a group action of order $n$ whenever
+$\gcd(n,|\lambda|)=1$ \cite{OhPark2019}.
 The element $c \coloneqq \cryss_1 \cryss_2 \dotsb \cryss_{n-1} \in \symS_n$
 acts on $\SSYT(\lambda,n)$
 as a product of \hyperref[crystalOperators]{crystal reflection operators}.
 Note that this is similar to how the promotion operator is defined,
 but in contrast with promotion, the element $c$ has order $n$ for all partitions $\lambda$
 when acting on $\SSYT(\lambda,n)$.
-The authors then prove that whenever $\gcd(n,|\lambda|)=1$,
+Oh and Park prove that whenever $\gcd(n,|\lambda|)=1$,
 \[
 (\SSYT(\lambda,n), \langle c \rangle, X_{\lambda,n}(q))
 \]
@@ -272,12 +282,12 @@ Each row here is an orbit.
 \end{example*}
 
 
-In \cite[Cor. 3.4]{OhPark2021}, a solution to
-the Alexandersson--Amini conjecture \cite{AlexanderssonAmini2018}
-is proved in the non-skew case.
+\name[Y.-T. Oh]{Young-Tak Oh} and \name{Euiyong Park} prove the non-skew
+case of the Alexandersson--Amini conjecture
+\cite[Cor.~3.4]{OhPark2021}; see also \cite{AlexanderssonAmini2018}.
 \begin{theorem}[Oh--Park 2020]
 Let $\lambda$ be a partition so that $n$ divides $\lambda_i - \lambda_j$ for all $i,j$.
-Then there is a cyclic group $\grpc_n$ of order $n$, such that
+Then a cyclic group $\grpc_n$ of order $n$ exists such that
 \[
 (\SSYT(\lambda,m),\grpc_n,q^{-\partitionN(\lambda)}\schurS_{\lambda}(1,q,q^2,\dotsc,q^{m-1}))
 \]
@@ -301,10 +311,11 @@ $\lambda=(m,n^b)$ and $(b+2)$-part contents $\mu$, they prove a CSP for
 $\SSYT(\lambda,\mu)$ under a power of jeu-de-taquin promotion, with sieving
 polynomial given by a shifted modified Kostka--Foulkes polynomial.
 
-The skew case is partially resolved in \cite{LeeOh2022}.
+\name{So-Yeon Lee} and \name[Y.-T. Oh]{Young-Tak Oh} partially resolve the
+skew case \cite{LeeOh2022}.
 \begin{theorem}[Lee--Oh, 2022]
 Let $\lambda/\mu$ be a skew shape such that $\lambda_i - \mu_i$ is a multiple of $m$ for all $i$.
-Then there is a cyclic group $\grpc_m$ of order $m$ such that
+Then a cyclic group $\grpc_m$ of order $m$ exists such that
 \[
 (\SSYT(\lambda/\mu,km),\grpc_m,\schurS_{\lambda/\mu}(1,q,q^2,\dotsc,q^{km-1}))
 \]
@@ -315,18 +326,18 @@ is a CSP-triple, for any $k \in \setN$.
 They also prove a similar theorem for ribbons.
 \begin{theorem}[Lee--Oh, 2022]
 Let $\lambda/\mu$ be a \emph{ribbon shape}, such that $\lambda_i - \mu_i$ is a multiple of $m$ for all $i$.
-Then there is a cyclic group $\grpc_m$ of order $m$ such that
+Then a cyclic group $\grpc_m$ of order $m$ exists such that
 \[
 (\SSYT(\lambda/\mu,k),\grpc_m,\schurS_{\lambda/\mu}(1,q,q^2,\dotsc,q^{k-1}))
 \]
 is a CSP-triple.
 \end{theorem}
 
-Moreover, \cite{LeeOh2022} shows that the conjecture in
+Moreover, Lee and Oh show that the conjecture in
 \cite{AlexanderssonAmini2018}, regarding stretching of general skew shapes, is
 not true in general.  Taking $\lambda/\mu = 3321/21$, $m=9$, and $k=4$, and
 looking at $\schurS_{9\lambda/9\mu}(1,q,q^2,q^3)$, gives an example where CSP
-cannot hold.
+cannot hold \cite{LeeOh2022}.
 
 
 The skew shape case is treated further by \name{Nishu Kumari}
@@ -344,8 +355,9 @@ semistandard Young tableaux.
 
 \subsection[cspPlanePartitions]{Plane partitions}
 
-The following is proved in \cite{ShenWeng2020}, using representation theory,
-cluster variables, and the theory of the Grassmannian.
+\name{Linhui Shen} and \name{Daping Weng} prove the following result using
+representation theory, cluster variables, and the theory of the
+\hyperref[grassmannianVarieties]{Grassmannian} \cite{ShenWeng2020}.
 
 Let
 \[
@@ -388,8 +400,8 @@ It turns out that this CSP of Shen--Weng is equivalent
 to the aforementioned CSP for promotion of rectangular
 SSYT obtained by \name{Brendon Rhoades}; see \cite{Hopkins2020} for the details of this equivalence.
 
-In \cite{Hopkins2020}, \name{Sam Hopkins} considers
-\hyperref[planePartitions]{plane partitions} with additional symmetry,
+\name{Sam Hopkins} considers \hyperref[planePartitions]{plane partitions}
+with additional symmetry \cite{Hopkins2020},
 counting plane partitions in a square under the promotion and
 transposition-complement operator.  The paper contains several interesting
 conjectures regarding CSP on plane partitions with additional symmetry.
@@ -400,8 +412,8 @@ for more discussion on these conjectures.
 
 \subsection[cspPlethysmCoefficients]{Plethysm coefficients}
 
-In \cite{Rush2018}, \name{David B. Rush} gives several instances of cyclic sieving related to
-\hyperref[plethysm]{plethysm} coefficients and promotion.
+\name{David B. Rush} gives several instances of cyclic sieving related to
+\hyperref[plethysm]{plethysm} coefficients and promotion \cite{Rush2018}.
 For example, if $\lambda$ is a rectangular partition,
 \[
 \left( \mathrm{PYTab}(\lambda,\mu^n), \partial,
@@ -417,13 +429,14 @@ The function $\hallLittlewoodT_{1^n}(\xvec;q)$ is a \hyperref[hallLittlewoodT]{t
 
 \subsection[cspMacdonaldE]{Macdonald $\macdonaldE$ fillings}
 
-Consider the specialized \hyperref[macdonaldE]{non-symmetric Macdonald polynomial}
+Consider the specialized \hyperref[macdonaldE]{nonsymmetric Macdonald polynomial}
 $\macdonaldE_{\lambda}(\xvec;q;0)$, where $\lambda$ is a partition.
 This makes $\macdonaldE_{\lambda}(\xvec;q;0)$ into a symmetric polynomial:
 in fact it is more or less a \hyperref[hallLittlewoodH]{modified Hall--Littlewood polynomial}.
 These polynomials in $k$ variables can be realized as a sum over certain non-attacking fillings, $NAF(\lambda,k)$.
 
-In \cite{AlexanderssonUhlin2020}, we prove the following results.
+In joint work with \name{Joakim Uhlin}, we prove the following results
+\cite{AlexanderssonUhlin2020}.
 
 \begin{theorem}[Alexandersson, Uhlin 2020]
 Let $\lambda$ be an integer partition, and $n$ a positive integer.
@@ -449,7 +462,8 @@ is a CSP-triple for every choice of partition $\nu$.
 We prove this theorem by using a result by \name{Brendon Rhoades} \cite{Rhoades2010b},
 regarding \hyperref[csp01Matrices]{cyclic sieving on matrices}.
 
-In the earlier work, \cite{Uhlin2019}, several related results are proved.
+\name{Joakim Uhlin} proves several related results in earlier work
+\cite{Uhlin2019}.
 Note that the case $\lambda = (1)$ gives the
 CSP with \hyperref[majorIndex]{major index} on words of length $n$ with
 entries in $[k]$.
@@ -458,7 +472,7 @@ entries in $[k]$.
 
 \subsection[cspIncreasingTableau]{Increasing tableaux}
 
-In \cite{Pechenik2014}, the following CSP is described.
+\name{Oliver Pechenik} describes the following CSP \cite{Pechenik2014}.
 Let $\lambda\vdash n$ and let $Inc_k(\lambda)$ denote the set of
 tableaux with strictly increasing rows and columns and with maximal value $n-k$,
 such that every number in $[n-k]$ is present at least once.
@@ -480,26 +494,28 @@ is a CSP-triple.  Note that $Inc_k(2\times n)$ is in bijection with
 $\SYT(n-k,n-k,1^k)$.
 
 
-The result by \name{Oliver Pechenik} is generalized in \cite{PresseyStokkeVisentin2016},
-and the authors show that
+\name{Timothy Pressey}, \name{Anna Stokke}, and \name{Terry Visentin}
+generalize Pechenik's result and show that
 \[
 \left( Inc_k(N-r,1^r), \grpc_{N-k-1}, \qbinom{N-k-1}{r}_q \qbinom{r}{k}_q \right)
 \]
-is a CSP-triple, where promotion is used.
+is a CSP-triple, where promotion is used \cite{PresseyStokkeVisentin2016}.
 
 
-In \cite{Chen2020}, formulas for two-row skew shapes
-are given, and perhaps these exhibit the CSP.
+\name{Xiaomei Chen} gives formulas for two-row skew shapes; perhaps these
+exhibit the CSP \cite{Chen2020}.
 
 
 
-In \cite{GaetzPechenikStrikerSwanson2021x}, the authors prove
-that packed, increasing tableaux of shape $3 \times k$ and maximal entry
-$3+k$, are equinumerous with $\SYT(2^3,1^{k-2})$.
-They prove that the set of increasing tableaux under $K$-promotion,
+\name{Christian Gaetz}, \name{Oliver Pechenik}, \name{Jessica Striker}, and
+\name{Joshua P. Swanson} prove that packed, increasing tableaux of shape
+$3 \times k$ and maximal entry $3+k$ are equinumerous with
+$\SYT(2^3,1^{k-2})$.  They prove that the set of increasing tableaux under
+$K$-promotion,
 together with $f^{(2^3,1^{k-2})}(q)$ is a CSP-triple.
 Interestingly, the promotion has order $k$ here, even though
-the number of boxes in the SYTs is $k+1$.
+the number of boxes in the SYTs is $k+1$
+\cite{GaetzPechenikStrikerSwanson2021x}.
 
 
 
@@ -510,11 +526,12 @@ There is a canonical $q$-analog of the set of \hyperref[alternatingSignMatrix]{a
 ASM(n,q) \coloneqq \prod_{k=0}^{n-1} \frac{(3k+1)_q!}{(n+k)_q!}.
 \]
 
-In \cite{StephensCloninger2007}, the authors attribute a CSP to \name{Dennis Stanton}.
+\name{Noah Stephens-Davidowitz} and \name{A. Cloninger} attribute a
+CSP to \name{Dennis Stanton} \cite{StephensCloninger2007}.
 Let $\grpc_4$ act on $ASM(n)$ by a quarter-turn.
 Then $(ASM(n),\grpc_4,ASM(n,q))$ is a CSP-triple.
 See also \name{Victor Reiner}'s lecture on cyclic sieving
 \cite{Reiner2018CyclicSievingVideo}.
 
-The authors ask in Question~6.4 if there is a map of order $3$
-such that $ASM(n,q)$ exhibits CSP.
+Stephens-Davidowitz and Cloninger ask in Question~6.4 whether a map of order
+$3$ exists such that $ASM(n,q)$ exhibits CSP.
