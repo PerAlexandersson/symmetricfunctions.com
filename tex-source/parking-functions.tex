@@ -1,25 +1,30 @@
 
 \metatitle{Parking functions}
 \metadescription{Properties of parking functions}
-
+\metakeywords{parking function, labeled Dyck path, Shi arrangement, rooted labeled tree}
 
 \section[parkingFunctions]{Parking functions}
 
 
 \begin{definition}
-Let $(a_1, a_2, \dots, a_n)$ be a sequence of positive integers.
-We think of these as $n$ cars, where $a_i$ is the preferred parking spot for car $i$.
-The parking spots are labeled $1, 2, \dotsc, n$ and the $n$ cars attempt to park according to the following
-rules:
+Let $(a_1, a_2, \dotsc, a_n)$ be a sequence of positive integers.
+We think of these as $n$ cars, where $a_i$ is the preferred parking spot
+for car $i$.
+The parking spots are labeled $1, 2, \dotsc, n$ and the $n$ cars attempt
+to park according to the following rules:
 \begin{itemize}
   \item Car \( i \) attempts to park in spot \( a_i \).
-  \item If that spot is taken, it proceeds to the next available empty spot to the right (higher index).
+  \item If that spot is taken, it proceeds to the next available empty
+        spot to the right.
 \end{itemize}
-If all cars can park successfully, then the sequence \( (a_1, \dots, a_n) \) is a  \defin{parking function}.
+If all cars can park successfully, then the sequence
+\( (a_1, \dotsc, a_n) \) is a
+\defin{parking function}\label{parkingFunctionDefinition}.
 \end{definition}
 
-There are $(n+1)^{n-1}$ parking functions in total, see \name{Pyke} (1956)
-and \name{Alan Konheim} and \name{Benjamin Weiss} \cite{KonheimWeiss1966}.
+There are $(n+1)^{n-1}$ parking functions in total; see
+\name{Ronald Pyke} \cite{Pyke1959} and \name{Alan Konheim}
+and \name{Benjamin Weiss} \cite{KonheimWeiss1966}.
 \name[Henry O. Pollak]{H. O. Pollak} gave a neat proof for this formula
 by adding an extra $(n+1)$th spot; see \name{John Riordan}
 \cite{Riordan1969}.
@@ -27,24 +32,25 @@ by adding an extra $(n+1)$th spot; see \name{John Riordan}
 through bijections with Young tableaux \cite{Wallace2020x}.
 
 \begin{theorem}
-The sequence $(a_1, \dots, a_n)$ of positive integers is a 
-parking function if and only if, when rearranged 
-in non-decreasing order $(b_1 \le b_2 \le \dots \le b_n)$, it satisfies
+The sequence $(a_1, \dotsc, a_n)$ of positive integers is a
+parking function if and only if, when rearranged
+in nondecreasing order
+$(b_1 \leq b_2 \leq \dotsb \leq b_n)$, it satisfies
 \[
-b_i \le i \quad \text{for all } i = 1, \dots, n.
+b_i \leq i \quad \text{for all } i = 1, \dotsc, n.
 \]
 \end{theorem}
 \begin{proof*}
-\textbf{First direction:} 
-If $(a_1, \dots, a_n)$ is a parking function, then $b_i \leq i$ for all $i$.
+\textbf{First direction:}
+If $(a_1, \dotsc, a_n)$ is a parking function, then $b_i \leq i$ for all $i$.
 
 For any $k$, there must be at least $k$ cars preferring spots among $1,2,\dotsc,k$.
 This immediately gives that $b_k \leq k$ for all $k$.
 
-\textbf{Other direction:} If $b_i \le i$ for all $i =1,2,\dotsc,n$, 
-then $(a_1, \dots, a_n)$ is a parking function.
+\textbf{Conversely:} If $b_i \leq i$ for all $i = 1,2,\dotsc,n$,
+then $(a_1, \dotsc, a_n)$ is a parking function.
 
-Suppose this statement is not correct. We can then (by minimal counterexample) 
+Suppose this statement is not correct. We can then (by minimal counterexample)
 assume the first $n-1$ cars manage to park, but the last car fails to park.
 Then there must be some (smallest) $j$ such that spots $\{j,j+1,\dotsc,n\}$
 are occupied after the first $n-1$ cars, and $a_n \geq j$.
@@ -67,18 +73,22 @@ and \name{Alexander N. Wilson} give a Pollak-style proof of this enumeration
 
 There is a classical bijection between parking functions of length $n$ and
 labeled Dyck paths of order $n$.
-A \defin{labeled Dyck path} is a Dyck path from $(0,0)$ to $(n,n)$
-where the $n$ North steps are labeled with $1,2,\dotsc,n$,
-and labels within each column are arranged in strictly decreasing order from top to bottom.
+A \defin{labeled Dyck path}\label{labeledDyckPathDefinition} is a
+\hyperref[qtCatalan]{Dyck path} from $(0,0)$ to $(n,n)$ where the $n$
+North steps are labeled with $1,2,\dotsc,n$, and labels within each column
+are arranged in strictly decreasing order from top to bottom.
 
 Given a parking function $(a_1, \dotsc, a_n)$, place label $i$ in column $a_i$.
 Within each column, arrange labels in decreasing order, then connect them with
 east steps to form a Dyck path.
-Conversely, reading which column each label appears in recovers the parking function---see \cite{Yan2015} and \cite{qtCatalanBook} for details.
+Conversely, reading which column each label appears in recovers the parking
+function; see \cite{Yan2015} and \cite{qtCatalanBook} for details.
 
 
 \section[parkingFunctionsLabeledTrees]{Bijection with rooted labeled trees}
 
+A \defin{rooted labeled tree}\label{rootedLabeledTreeDefinition} is a tree
+whose vertices are labeled and in which one vertex is distinguished as the root.
 Since both parking functions and rooted labeled trees on $n+1$ vertices
 (with root labeled $0$) are counted by $(n+1)^{n-1}$,
 there exist natural bijections between them.
@@ -101,12 +111,14 @@ This gives a parking function, and the map is invertible.
 
 \section[parkingFunctionsHyperplanes]{Connection with hyperplane arrangements}
 
-The \defin{Shi arrangement} $\mathcal{S}_n$ consists of the hyperplanes
+The \defin{Shi arrangement}\label{shiArrangementDefinition}
+$\mathcal{S}_n$ consists of the hyperplanes
 \[
 x_i - x_j = 0 \quad \text{and} \quad x_i - x_j = 1
 \qquad \text{for all } 1 \leq i < j \leq n,
 \]
-introduced by \name{Jian-Yi Shi} in the study of the affine Weyl group of type $A_{n-1}$.
+introduced by \name{Jian-Yi Shi} in the study of the affine Weyl group
+of type $A_{n-1}$.
 
 \begin{theorem}[{\cite{AthanasiadisLinusson1999}}]
 The number of regions of $\mathcal{S}_n$ is $(n+1)^{n-1}$.
@@ -116,7 +128,8 @@ and parking functions on $[n]$.
 
 Each parking function $f$ determines a partition of $[n]$ into chains
 (grouping $i,j$ whenever $f(i)=f(j)$), and these chains are braided into a
-permutation diagram that encodes a unique Shi region; see \cite{AthanasiadisLinusson1999} for the full construction.
+permutation diagram that encodes a unique Shi region;
+see \cite{AthanasiadisLinusson1999} for the full construction.
 
 
 \section[parkingFunctionVariations]{Variations of parking functions}
@@ -148,5 +161,6 @@ functions with fixed displacement.
 
 \name{Pamela E. Harris}, \name{Selvi Kara}, \name{Erin McNicholas},
 \name{Kathryn Nyman}, and \name{Mei Yin} study statistics of prime parking
-functions, {\L}ukasiewicz paths, and quasisymmetric functions
+functions, {\L}ukasiewicz paths, and
+\hyperref[quasiSymmetricFunctions]{quasisymmetric functions}
 \cite{HarrisKaraMcNicholasNymanYin2026x}.
