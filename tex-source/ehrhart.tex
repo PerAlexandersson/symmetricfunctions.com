@@ -1,0 +1,115 @@
+\metatitle{Ehrhart theory}
+\metadescription{Ehrhart polynomials, Ehrhart series, h-star vectors,
+reciprocity, and common appearances in algebraic combinatorics.}
+\metakeywords{Ehrhart theory,Ehrhart polynomial,Ehrhart series,h-star vector,
+Ehrhart--Macdonald reciprocity,order polytope}
+
+\section[ehrhart]{Ehrhart theory}
+
+\defin{Ehrhart theory}\label{ehrhartTheory} studies the lattice points in
+dilates of rational and lattice polytopes.  For a lattice polytope \(P\), the
+basic counting function is
+\[
+  E_P(n)=|nP\cap \setZ^d|.
+\]
+This is the \hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial} of
+\(P\).  Its generating function is the
+\hyperref[ehrhartSeries]{Ehrhart series}, usually written in the form
+\[
+  \sum_{n\geq 0} E_P(n)t^n
+  =
+  \frac{h^*_P(t)}{(1-t)^{d+1}},
+\]
+where \(h^*_P(t)\) is the
+\hyperref[hStarPolynomial]{\(h^*\)-polynomial}.  See
+\cite{Stanley1993,Beck2007} and the \hyperref[ehrhartPolytopes]{polytope}
+page for the standard definitions and basic theorems.
+
+\begin{example}
+For the unit interval \(P=[0,1]\),
+\[
+  E_P(n)=n+1,\qquad
+  \sum_{n\geq 0}(n+1)t^n=\frac{1}{(1-t)^2}.
+\]
+Thus \(h^*_P(t)=1\).  For the unit square \([0,1]^2\),
+\[
+  E_P(n)=(n+1)^2,\qquad
+  \sum_{n\geq 0}(n+1)^2t^n=\frac{1+t}{(1-t)^3},
+\]
+so \(h^*_P(t)=1+t\).
+\end{example}
+
+\subsection[ehrhartReciprocityHub]{Reciprocity and duality}
+
+\hyperref[ehrhartMacdonaldReciprocity]{Ehrhart--Macdonald reciprocity} relates
+lattice points in \(nP\) to lattice points in the interior of \(nP\), by
+evaluating the Ehrhart polynomial at negative integers.  For a
+\(d\)-dimensional lattice polytope,
+\[
+  E_P(-n)=(-1)^d |nP^\circ\cap \setZ^d|.
+\]
+In terms of the Ehrhart series, palindromicity of the
+\hyperref[hStarVector]{\(h^*\)-vector} is tied to the
+\hyperref[gorenstein]{Gorenstein} condition.  This is one reason Ehrhart
+theory often behaves like a discrete shadow of Poincaré duality.
+
+\subsection[ehrhartPosets]{Order polytopes and posets}
+
+For a finite \hyperref[poset]{poset} \(P\), the
+\hyperref[orderPolytope]{order polytope} \(\mathcal O(P)\) packages
+order-preserving maps \(P\to[0,1]\).  Its \(h^*\)-polynomial is the
+\hyperref[pEulerianPolynomial]{\(P\)-Eulerian polynomial}; equivalently, it
+records descents of linear extensions.  The
+\hyperref[chainPolytope]{chain polytope} \(\mathcal C(P)\) has the same
+Ehrhart polynomial as \(\mathcal O(P)\), but its inequalities are controlled
+by chains rather than order relations.
+
+\begin{example}
+If \(P\) is an antichain on \(d\) elements, then
+\(\mathcal O(P)=[0,1]^d\).  Hence
+\[
+  E_{\mathcal O(P)}(n)=(n+1)^d.
+\]
+If \(P\) is a chain on \(d\) elements, then
+\(\mathcal O(P)\) is a simplex, and \(E_{\mathcal O(P)}(n)\) counts weakly
+increasing sequences
+\[
+  0\leq a_1\leq a_2\leq \dotsb \leq a_d\leq n.
+\]
+\end{example}
+
+\subsection[ehrhartWhereItAppears]{Where it appears}
+
+Ehrhart theory appears in several parts of algebraic combinatorics:
+\begin{itemize}
+\item \hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes} and marked order
+polytopes model representation-theoretic multiplicities.
+\item \hyperref[littlewoodRichardsonModels]{Littlewood--Richardson
+coefficients} can be studied through lattice points in hive and related
+polytopes.
+\item \hyperref[matroidBasePolytope]{Matroid base polytopes} and
+\hyperref[positroidPolytopes]{positroid polytopes} have Ehrhart theory tied
+to matroid invariants.
+\item \hyperref[gammaPositivity]{Gamma-positivity} and
+\hyperref[realRootedTableaux]{real-rootedness questions} often ask whether
+the corresponding \(h^*\)-polynomials have stronger positivity properties.
+\item The \hyperref[transferMatrixMethod]{transfer matrix method} can compute
+Ehrhart series when lattice points are built from finitely many boundary
+states.
+\end{itemize}
+
+\subsection[ehrhartQuestions]{Typical questions}
+
+Common questions include:
+\begin{itemize}
+\item whether the coefficients of \(E_P(n)\) are nonnegative;
+\item whether \(h^*_P(t)\) is unimodal, real-rooted, or
+\hyperref[gammaPositivePolynomial]{gamma-positive};
+\item whether a rational polytope has
+\hyperref[periodCollapse]{period collapse};
+\item whether a family admits a combinatorial interpretation for its
+\(h^*\)-coefficients.
+\end{itemize}
+
+These questions are often subtle: the \(h^*\)-vector of a lattice polytope is
+always nonnegative, but Ehrhart polynomial coefficients can be negative.

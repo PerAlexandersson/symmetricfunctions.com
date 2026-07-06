@@ -79,6 +79,47 @@ with semigroup exponents
 quasisymmetric Hopf-algebra framework and interacts with Rota--Baxter algebra
 structures.
 
+\section[qsymNSymDuality]{Duality with noncommutative symmetric functions}
+
+The algebra $\spaceQSym$ is graded-dual to the algebra
+\hyperref[nonComFunctions]{NSym} of noncommutative symmetric functions
+\cite{GelfandKrobLascouxLeclercRetakhThibon1995}.
+Under the standard pairing,
+\[
+ \langle \completeH_\alpha,\qmonom_\beta\rangle=\delta_{\alpha,\beta},
+\]
+where $\completeH_\alpha$ denotes the noncommutative complete homogeneous
+basis and $\qmonom_\beta$ denotes the monomial quasisymmetric basis.
+Thus product rules in $\spaceQSym$ are dual to coproduct rules in NSym, and
+coproduct rules in $\spaceQSym$ are dual to products in NSym.
+
+This duality should be compared with the ordinary Hall inner product on
+\hyperref[symmetricFunctionsSpace]{symmetric functions}.  In the symmetric
+world, Schur functions are self-dual.  In the QSym--NSym world, the two sides
+are different algebras: composition-indexed quasisymmetric functions live on
+the commutative side, while noncommutative complete, ribbon, immaculate, and
+noncommutative Schur functions live on the dual side.
+
+\begin{example}
+For compositions of $2$, the duality gives
+\[
+ \langle \completeH_{2},\qmonom_{2}\rangle=1,\qquad
+ \langle \completeH_{2},\qmonom_{11}\rangle=0,\qquad
+ \langle \completeH_{11},\qmonom_{11}\rangle=1.
+\]
+The refinement order appears when changing from monomial quasisymmetric
+functions to the \hyperref[gessel]{fundamental basis}; dually, the same
+incidence matrix changes the noncommutative complete basis to the ribbon
+basis.
+\end{example}
+
+The representation-theoretic shadow of this duality is the
+\hyperref[zeroHeckeAlgebra]{0-Hecke algebra}.  The Grothendieck group of
+finite-dimensional $0$-Hecke modules identifies with $\spaceQSym$, while the
+Grothendieck group of projective modules identifies with NSym
+\cite{KrobThibon1997}.  Under the quasisymmetric characteristic, simple
+$0$-Hecke modules map to the fundamental quasisymmetric functions.
+
 
 \section[qmonom]{Monomial quasisymmetric functions}
 

@@ -1,0 +1,91 @@
+\metatitle{Total positivity}
+\metadescription{Total positivity and total nonnegativity as organizing
+principles for matrices, planar networks, Pólya frequency sequences,
+positroids, and real-rootedness.}
+\metakeywords{total positivity,total nonnegativity,TNN matrix,planar network,
+Pólya frequency sequence,positroid}
+
+\section[totalPositivity]{Total positivity and total nonnegativity}
+
+Total positivity is the study of matrices and kernels whose minors have a
+fixed sign.  A matrix is \hyperref[totallyNonnegative]{totally nonnegative}
+(TNN) if all minors are nonnegative, and
+\hyperref[totallyPositiveMatrix]{totally positive} if all minors are
+positive.  See \cite{Karlin1968,FallatJohnson2011} for general background.
+
+This page is a navigation point for the versions that occur most often in
+algebraic combinatorics: planar networks, Pólya frequency sequences, real
+zeros, and totally nonnegative Grassmannians.
+
+\begin{example}
+The matrix
+\[
+  \begin{pmatrix}
+  1 & 1\\
+  1 & 2
+  \end{pmatrix}
+\]
+is totally positive: all entries are positive, and its determinant is \(1\).
+For larger matrices, checking all minors is usually inefficient, so one uses
+structure such as planar networks, Toeplitz form, or factorization.
+\end{example}
+
+\subsection[totalPositivityNetworks]{Planar networks}
+
+The \hyperref[lgvLemma]{Lindström--Gessel--Viennot lemma} explains why planar
+networks produce TNN matrices.  If a matrix entry counts weighted paths from
+a source to a sink in a compatible planar network, then each minor counts
+families of nonintersecting paths and is therefore nonnegative.
+
+This mechanism appears in:
+\begin{itemize}
+\item \hyperref[tnnPathMatrix]{path matrices} for total positivity;
+\item Jacobi--Trudi and flagged Jacobi--Trudi determinants;
+\item \hyperref[positroidNetworks]{planar networks and plabic graphs} for
+\hyperref[positroid]{positroids};
+\item network proofs of real-rootedness and interlacing.
+\end{itemize}
+
+\subsection[totalPositivityPF]{Pólya frequency sequences}
+
+A sequence \(a=(a_0,a_1,\dotsc)\) is a
+\hyperref[polyaFrequencySequenceDefinition]{Pólya frequency sequence} if its
+Toeplitz matrix \(T(a)_{i,j}=a_{i-j}\) is TNN.  The
+\hyperref[aissenSchoenbergWhitney]{Aissen--Schoenberg--Whitney theorem}
+identifies finite Pólya frequency sequences with polynomials whose zeros are
+real and nonpositive.
+
+Thus total positivity gives one of the main bridges between coefficient
+sequences and \hyperref[realRootedPolynomial]{real-rooted polynomials}.
+It also explains closure properties: products of TNN matrices are TNN, so
+convolutions of Pólya frequency sequences remain Pólya frequency sequences.
+
+\subsection[totalPositivityGrassmannians]{Grassmannians and positroids}
+
+For a \(k\times n\) matrix \(A\), the maximal minors \(\Delta_I(A)\) are the
+\hyperref[pluckerCoordinate]{Plücker coordinates} of a point of the
+\hyperref[grassmannianVarieties]{Grassmannian} \(\mathrm{Gr}(k,n)\).
+The totally nonnegative Grassmannian consists of points with all Plücker
+coordinates nonnegative.  Its cells are indexed by
+\hyperref[positroid]{positroids}, introduced by \name{Alexander Postnikov}
+\cite{Postnikov2006x}.
+
+This is a different but closely related face of total positivity: instead of
+asking all minors of a square matrix to be nonnegative, one fixes the maximal
+minors that define a Grassmannian point.
+
+\subsection[totalPositivityRealRootedness]{Real-rootedness}
+
+Total positivity frequently packages root-location statements.  The
+\hyperref[polyaFrequency]{Pólya frequency page} treats Toeplitz total
+positivity and real-rootedness of coefficient sequences.  The
+\hyperref[interlacingPolynomials]{interlacing page} uses total
+nonnegativity to encode pairs and families of interlacing polynomials.  The
+\hyperref[stablePolynomial]{stable-polynomial page} gives a multivariate
+framework that often implies the same univariate real-rootedness results
+after specialization.
+
+In practice, the useful question is often not "are all minors nonnegative?"
+but "which structured matrix has the desired minors?"  Once the matrix is
+identified as a path matrix, Toeplitz matrix, or product of elementary TNN
+matrices, the desired positivity follows from closure properties.
