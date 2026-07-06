@@ -1,5 +1,7 @@
 \metatitle{Kohnert polynomials}
-\metadescription{An introduction to Kohnert polynomials, their definition via Kohnert diagrams, and their properties including monomial slide positivity and key positivity.}
+\metadescription{An introduction to Kohnert polynomials, their definition via
+Kohnert diagrams, and their monomial slide, key, and fundamental slide
+positivity properties.}
 \metakeywords{Kohnert polynomials,key-positive,divided-difference,fillings}
 
 \section[kohnert]{Kohnert polynomials}
@@ -23,13 +25,16 @@
   StableLimit & kohnertQuasi | AssafSearles2019 | proof=Def. 3.10 \\
 \end{polydata}
 
-\defin{Kohnert polynomials} were introduced by \name{Sami Assaf} and \name{Dominic Searles} in \cite{AssafSearles2019}.
-This is a large family of polynomials, which contains several 
+\defin{Kohnert polynomials}\label{kohnertPolynomialDefinition} were introduced
+by \name{Sami Assaf} and \name{Dominic Searles} in
+\cite{AssafSearles2019}.
+This is a large family of polynomials, which contains several
 of the classical families as special cases, in particular
 the family of \hyperref[schubert]{Schubert polynomials}
 and \hyperref[key]{key polynomials}.
 
-All Kohnert polynomials are \hyperref[slideM]{monomial slide positive}, \cite[Thm. 3.7]{AssafSearles2019},
+All Kohnert polynomials are \hyperref[slideM]{monomial slide positive}
+\cite[Thm.~3.7]{AssafSearles2019},
 and they were later proved to be key-positive in \cite{Assaf2021}.
 
 See \cite{ArmonAssafBowlingEhrhard2023} for a representation-theoretical
@@ -39,8 +44,10 @@ interpretation of Kohnert polynomials through flagged Schur modules.
 \subsection[kohnertDefinition]{Definition}
 
 We use French coordinates for diagrams: rows are indexed from bottom to top,
-starting with row \(1\). A \defin{diagram} is a finite set of cells in
-\(\setN \times \setN\). Its \defin{weight} is the weak composition
+starting with row \(1\). A \defin{diagram}\label{diagramDefinition} is a
+finite set of cells in \(\setN \times \setN\). Its
+\defin{weight}\label{diagramWeight} is the
+\hyperref[weakCompositionDefinition]{weak composition}
 \[
  \operatorname{wt}(D)_i
  \coloneqq
@@ -48,14 +55,14 @@ starting with row \(1\). A \defin{diagram} is a finite set of cells in
 \]
 
 \begin{definition}[Kohnert move]
-A \defin{Kohnert move} selects the rightmost cell in a row and moves it
-downward in its column to the first empty position below it, jumping over
-occupied cells if necessary.  Let \(\mathrm{KD}(D)\) be the set of diagrams
-obtained from \(D\) by a sequence of Kohnert moves.
+A \defin{Kohnert move}\label{kohnertMove} selects the rightmost cell in a row
+and moves it downward in its column to the first empty position below it,
+jumping over occupied cells if necessary.  Let \(\mathrm{KD}(D)\) be the set
+of diagrams obtained from \(D\) by a sequence of Kohnert moves.
 \end{definition}
 
 \begin{definition}
-The \defin{Kohnert polynomial} of a diagram \(D\) is
+The \defin{Kohnert polynomial}\label{kohnertPolynomial} of a diagram \(D\) is
 \[
  \kohnert_D(\xvec)
  \coloneqq
@@ -64,17 +71,19 @@ The \defin{Kohnert polynomial} of a diagram \(D\) is
 \]
 \end{definition}
 
-In our French coordinate convention, a diagram \(D\) is \defin{southwest} if,
-whenever \(D\) contains cells \((c_1,r_2)\) and \((c_2,r_1)\) with
-\(c_1\lt c_2\) and \(r_1\lt r_2\), it also contains \((c_1,r_1)\).  This is
-the coordinate-reflected version of the \emph{northwest} diagrams used in
+In our French coordinate convention, a diagram \(D\) is
+\defin{southwest}\label{southwestDiagram} if, whenever \(D\) contains cells
+\((c_1,r_2)\) and \((c_2,r_1)\) with \(c_1\lt c_2\) and \(r_1\lt r_2\), it
+also contains \((c_1,r_1)\).  This is the coordinate-reflected version of the
+\emph{northwest} diagrams used in
 \cite{ArmonAssafBowlingEhrhard2023}.
 
-For a weak composition \(a=(a_1,\dotsc,a_n)\), the \defin{key diagram}
+For a \hyperref[weakCompositionDefinition]{weak composition}
+\(a=(a_1,\dotsc,a_n)\), the \defin{key diagram}\label{keyDiagram}
 \(D(a)\) is the left-justified diagram with \(a_i\) cells in row \(i\).
 For a permutation \(w\), let \(D(w)\) denote its \hyperref[rotheDiagram]{Rothe diagram}.
 
-\begin{theorem}[Kohnert, Winkel, Assaf--Searles {\cite[Thms. 2.6 and 2.10]{AssafSearles2019}}]
+\begin{theorem}[Kohnert, Winkel, Assaf--Searles {\cite[Thms.~2.6 and 2.10]{AssafSearles2019}}]
 For every weak composition \(a\),
 \[
  \kohnert_{D(a)}(\xvec)=\key_a(\xvec).
@@ -84,7 +93,8 @@ For every permutation \(w\),
  \kohnert_{D(w)}(\xvec)=\schubert_w(\xvec).
 \]
 \end{theorem}
-That is, we can produce both \hyperref[key]{key polynomials} and \hyperref[schubert]{Schubert polynomials} via Kohnert diagrams.
+That is, we can produce both \hyperref[key]{key polynomials} and
+\hyperref[schubert]{Schubert polynomials} via Kohnert diagrams.
 \name{Sami Assaf} gives an explicit bijection between Kohnert diagrams for
 Rothe diagrams and Billey--Jockusch--Stanley compatible sequences
 \cite{Assaf2022}.  This gives a bijective proof of Kohnert's rule for
@@ -97,7 +107,8 @@ If \(D\) is southwest, then \(\kohnert_D(\xvec)\) is
 are computed by Kohnert's rule exactly for northwest indexing diagrams.
 \end{theorem}
 Thus Kohnert's rule covers the module characters whose special cases include
-\hyperref[schurFlagged]{flagged skew Schur polynomials}, Demazure characters,
+\hyperref[schurFlagged]{flagged skew Schur polynomials},
+\hyperref[key]{Demazure characters},
 and \hyperref[schubert]{Schubert polynomials}.  For arbitrary skew box
 arrangements, the southwest/northwest closure condition is the useful test:
 without it, the simple Kohnert-crystal and divided-difference recurrences need
@@ -154,8 +165,8 @@ initial monomial.
   PositiveIn & qmonom | AssafSearles2019 | proof=Thm. 3.11 \\
 \end{polydata}
 
-The \defin{Kohnert quasisymmetric function} of a diagram \(D\) is the stable
-limit
+The \defin{Kohnert quasisymmetric function}
+\label{kohnertQuasisymmetricFunction} of a diagram \(D\) is the stable limit
 \[
  \kohnert_D(\xvec)
  \coloneqq
@@ -207,12 +218,13 @@ and the Schur functions obtained after stabilization.
 \defin{Kohnert tableaux} were introduced by
 \name{Sami Assaf} and \name{Dominic Searles}
 in \cite{AssafSearles2018}.  They are a labeled version of Kohnert diagrams
-for key diagrams. The labels record which row of the initial key diagram a
+for key diagrams.  The labels record which row of the initial key diagram a
 cell came from.
 
-\begin{definition}[Kohnert tableau {\cite[Def. 2.3]{AssafSearles2018}}]
+\begin{definition}[Kohnert tableau {\cite[Def.~2.3]{AssafSearles2018}}]
 Let \(a=(a_1,\dotsc,a_n)\) be a weak composition.  A
-\defin{Kohnert tableau} of content \(a\) is a filled diagram using entries
+\defin{Kohnert tableau}\label{kohnertTableauDefinition} of content \(a\) is a
+filled diagram using entries
 \[
  1^{a_1},2^{a_2},\dotsc,n^{a_n},
 \]
@@ -230,7 +242,7 @@ The weight \(\operatorname{wt}(T)\) is the weak composition counting cells
 of \(T\) by row.
 \end{definition}
 
-\begin{theorem}[Assaf--Searles {\cite[Thm. 2.8]{AssafSearles2018}}]
+\begin{theorem}[Assaf--Searles {\cite[Thm.~2.8]{AssafSearles2018}}]
 There is a weight-preserving bijection between Kohnert diagrams in
 \(\mathrm{KD}(D(a))\) and Kohnert tableaux in \(\mathrm{KT}(a)\).  Hence
 \[
@@ -239,18 +251,18 @@ There is a weight-preserving bijection between Kohnert diagrams in
 \end{theorem}
 
 
-\begin{definition}[Quasi-Yamanouchi Kohnert tableau {\cite[Def. 2.10]{AssafSearles2018}}]
-A Kohnert tableau is \defin{quasi-Yamanouchi} if, for each nonempty row
-\(i\), either row \(i\) contains an entry \(i\), or row \(i+1\) contains a
-cell weakly to the right of a cell in row \(i\).  Let
-\(\mathrm{QKT}(a)\) denote the set of quasi-Yamanouchi Kohnert tableaux of
-content \(a\).
+\begin{definition}[Quasi-Yamanouchi Kohnert tableau {\cite[Def.~2.10]{AssafSearles2018}}]
+A Kohnert tableau is \defin{quasi-Yamanouchi}
+\label{quasiYamanouchiKohnertTableau} if, for each nonempty row \(i\), either
+row \(i\) contains an entry \(i\), or row \(i+1\) contains a cell weakly to the
+right of a cell in row \(i\).  Let \(\mathrm{QKT}(a)\) denote the set of
+quasi-Yamanouchi Kohnert tableaux of content \(a\).
 \end{definition}
 
 The quasi-Yamanouchi condition gives the compact expansion of key
 polynomials in the \hyperref[slideF]{fundamental slide basis}.
 
-\begin{theorem}[Assaf--Searles {\cite[Thm. 2.13]{AssafSearles2018}}]
+\begin{theorem}[Assaf--Searles {\cite[Thm.~2.13]{AssafSearles2018}}]
 For every weak composition \(a\),
 \[
  \key_a(\xvec) = \sum_{T \in \mathrm{QKT}(a)} \slideF_{\operatorname{wt}(T)}(\xvec).
@@ -276,14 +288,16 @@ For every weak composition \(a\),
 \end{polydata}
 
 \name{Sami Assaf} and \name{Dominic Searles} also use Kohnert tableaux to define
-\defin{quasi-key polynomials}, which lift quasi-Schur functions from the
+\defin{quasi-key polynomials}\label{quasiKeyPolynomialDefinition}, which lift
+\hyperref[quasiSchurFunctions]{quasi-Schur functions} from the
 quasisymmetric setting to the full polynomial ring.
 
-\begin{definition}[Quasi-key polynomial {\cite[Def. 3.2]{AssafSearles2018}}]
-A \defin{quasi-Kohnert tableau} is a Kohnert tableau satisfying two
-additional conditions from \cite[Def. 3.1]{AssafSearles2018}.  Let
+\begin{definition}[Quasi-key polynomial {\cite[Def.~3.2]{AssafSearles2018}}]
+A \defin{quasi-Kohnert tableau}\label{quasiKohnertTableau} is a Kohnert
+tableau satisfying two additional conditions from
+\cite[Def.~3.1]{AssafSearles2018}.  Let
 \(\mathrm{qKT}(a)\) be the set of quasi-Kohnert tableaux of content \(a\).
-The \defin{quasi-key polynomial} indexed by \(a\) is
+The \defin{quasi-key polynomial}\label{quasiKeyPolynomial} indexed by \(a\) is
 \[
  Q_a(\xvec)
  \coloneqq
@@ -292,7 +306,7 @@ The \defin{quasi-key polynomial} indexed by \(a\) is
 \]
 \end{definition}
 
-\begin{theorem}[Assaf--Searles {\cite[Thms. 3.3, 3.4, and 3.7]{AssafSearles2018}}]
+\begin{theorem}[Assaf--Searles {\cite[Thms.~3.3, 3.4, and 3.7]{AssafSearles2018}}]
 The quasi-key polynomials \(Q_a\) form a \(\setZ\)-basis of the polynomial
 ring. 
 They have a positive fundamental slide expansion
@@ -312,7 +326,7 @@ Moreover, each key polynomial expands positively in the quasi-key basis:
 \]
 \end{theorem}
 
-\begin{theorem}[Assaf--Searles {\cite[Thms. 4.15 and 4.16]{AssafSearles2018}}]
+\begin{theorem}[Assaf--Searles {\cite[Thms.~4.15 and 4.16]{AssafSearles2018}}]
 If the nonzero entries of \(a\) occur in an interval ending in position
 \(k\), then
 \[
@@ -320,7 +334,8 @@ If the nonzero entries of \(a\) occur in an interval ending in position
  =
  \mathrm{QS}_{\operatorname{flat}(a)}(x_1,\dotsc,x_k),
 \]
-where \(\mathrm{QS}_{\alpha}\) is the quasi-Schur function.
+where \(\mathrm{QS}_{\alpha}\) is the
+\hyperref[quasiSchurFunctions]{quasi-Schur function}.
 In general,
 \[
  \lim_{m\to\infty} Q_{0^m\times a}(X)
