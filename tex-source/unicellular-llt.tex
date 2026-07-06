@@ -2,6 +2,9 @@
 \metadescription{Unicellular LLT polynomials, their graph-coloring model,
 Schur and elementary expansions, Frobenius characteristics, and the
 twin-manifold dagger action.}
+\metakeywords{unicellular LLT polynomial, LLT polynomial, unit interval graph,
+chromatic quasisymmetric function, Frobenius characteristic, twin manifold,
+dagger action}
 
 
 \section[unicellularLLT]{Unicellular LLT polynomials}
@@ -26,9 +29,10 @@ The \defin{unicellular LLT polynomials}\label{unicellularLLTPolynomialDefinition
 are the one-cell-per-component
 subfamily of the \hyperref[LLT]{LLT polynomials}.  In the tuple model, this
 means that the indexing tuple consists of single boxes.  A more convenient
-description, observed in \cite{CarlssonMellit2017,AlexanderssonPanova2018},
-uses \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graphs}
-and their area sequences.
+description, observed by \name{Erik Carlsson} and \name{Anton Mellit}, and
+independently in joint work with \name{Greta Panova}, uses
+\hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graphs} and
+their area sequences \cite{CarlssonMellit2017,AlexanderssonPanova2018}.
 
 
 \subsection[unicellularLLTGraphModel]{The graph-coloring model}
@@ -112,8 +116,9 @@ the plethystic relation
 
 \subsection[unicellularLLTProperties]{Basic properties}
 
-The complete graphs on $n$ vertices are unit interval graphs.  For the complete
-graph $K_n$, one has
+The complete graphs on $n$ vertices are
+\hyperref[unitIntervalGraph]{unit interval graphs}.  For the complete graph
+$K_n$, one has
 \[
 \LLT_{K_n}(\xvec;q)
 =
@@ -125,7 +130,7 @@ Here $\macdonaldH_{(n)}(\xvec;q,t)$ is a
 \hyperref[macdonaldH]{modified Macdonald polynomial}, and the last sum is a
 \hyperref[hallLittlewoodH]{modified Hall--Littlewood polynomial}.
 
-In \cite{AlexanderssonPanova2018}, it is proved that for any area sequence
+In joint work with \name{Greta Panova}, we prove that for any area sequence
 $\avec$ of length $n$,
 \[
 \omega \LLT_{\avec}(\xvec;q)
@@ -143,14 +148,15 @@ $\LLT_{\avec^T}(\xvec;q)=\LLT_{\avec}(\xvec;q)$.
 
 The unicellular LLT polynomials are also evaluations of certain traces of
 \hyperref[heckeAlgebra]{Hecke algebras}; see \cite{MoralesSkanderaWang2024}.
-There is a close connection with Kazhdan--Lusztig polynomials.
+These traces are closely connected with
+\hyperref[kazhdanLusztigPolynomials]{Kazhdan--Lusztig polynomials}.
 
 
 \subsection[unicellularLLTRecursions]{Recursions}
 
-There are several recursions and linear relations related to unicellular LLT
-polynomials.  For example, \name{Seung Jin Lee} gives a three-term recursion in
-\cite{Lee2020}.  Short bijective proofs of these recursions are given in
+Several recursions and linear relations are known for unicellular LLT
+polynomials.  For example, \name{Seung Jin Lee} gives a three-term recursion
+in \cite{Lee2020}.  Short bijective proofs of these recursions are given in
 \cite{Alexandersson2019llt}.
 
 Lee's recursions are generalized further by \name{Christopher Miller}; see
@@ -160,9 +166,11 @@ relations between LLT polynomials, see \cite{Tom2020x} and \cite{Keating2021x}.
 
 \subsection[unicellularLLTSchurExpansion]{Schur expansion}
 
-It is a major open problem to find a combinatorial rule for the Schur expansion
-of $\LLT_\avec(\xvec;q)$.  For so-called melting lollipop graphs, a
-combinatorial formula for the Schur expansion is given in \cite{HuhNamYoo2020}.
+It is a major open problem to find a combinatorial rule for the
+\hyperref[schurPositivity]{Schur expansion} of $\LLT_\avec(\xvec;q)$.  For
+so-called melting lollipop graphs, \name{JiSun Huh}, \name{Seung Jin Nam}, and
+\name{Meesue Yoo} give a combinatorial formula for the Schur expansion
+\cite{HuhNamYoo2020}.
 \name{Victor Wang} extends this direction to two-headed melting lollipop
 graphs by giving a formula expanding the corresponding unicellular LLT
 polynomials into ribbon Schur functions \cite{WangLollipopLLT2025x}.
@@ -217,8 +225,8 @@ stronger than \hyperref[schurPositivity]{Schur positivity} \cite{Miller2019}.
 The bandwidth-at-most-two case was treated earlier by
 \name[S.J. Lee]{Seung Jin Lee} \cite{Lee2020}.
 
-In \cite{ChoHuh2019}, a combinatorial formula is given for the hook
-coefficients, that is, the coefficients of $\schurS_{\lambda}$ where
+\name{Soojin Cho} and \name{JiSun Huh} give a combinatorial formula for the
+hook coefficients, that is, the coefficients of $\schurS_{\lambda}$ where
 $\lambda$ has the form $(m,1,1,\dotsc,1)$.
 
 
@@ -226,7 +234,8 @@ $\lambda$ has the form $(m,1,1,\dotsc,1)$.
 
 From the \hyperref[chromaticQuasisymmetricPowerSumExpansion]{power-sum
 expansion of chromatic quasisymmetric functions}, one can derive a formula for
-$\LLT_\avec(\xvec;q)$ in the power-sum basis.  Alternatively, the general
+$\LLT_\avec(\xvec;q)$ in the \hyperref[powerSum]{power-sum basis}.
+Alternatively, the general
 machinery in \cite{AlexanderssonSulzgruber2019} gives the following shifted
 power-sum expansion; see also the related result on
 \hyperref[pPartitionPsiExp]{P-partitions}.
@@ -299,15 +308,18 @@ $g$ is not an element of $\opsurj^\ast_{22}(P(\theta_2))$.
 
 A similar-looking formula for
 \hyperref[chromaticQuasisymmetricPowerSumExpansion]{chromatic symmetric
-functions} is given in \cite[Prop. 5.2]{BernardiNadeau2020}.
+functions} is due to \name{Olivier Bernardi} and \name{Philippe Nadeau}
+\cite[Prop.~5.2]{BernardiNadeau2020}.
 
 
 \subsection[unicellularLLTEExpansion]{Elementary symmetric expansion}
 
 Together with \name{Greta Panova}, we conjectured in
-\cite{AlexanderssonPanova2018} that for any unit interval graph $\avec$, the
-polynomial $\LLT_\avec(\xvec;q+1)$ is positive in the elementary symmetric
-function basis.  The formula below was later proved by \name{Per Alexandersson} and
+\cite{AlexanderssonPanova2018} that for any
+\hyperref[unitIntervalGraph]{unit interval graph} $\avec$, the polynomial
+$\LLT_\avec(\xvec;q+1)$ is positive in the
+\hyperref[elementaryE]{elementary symmetric function basis}.  The formula
+below was later proved by \name{Per Alexandersson} and
 \name{Robin Sulzgruber}.
 
 Let $\theta\in O(\avec)$, and for each $i\in[n]$ define the
@@ -336,10 +348,10 @@ This is an analogue of the
 \hyperref[chromaticQuasisymmetricElementaryExpansion]{Stanley--Stembridge
 conjecture} for \hyperref[chromaticQuasisymmetricDefinition]{chromatic
 quasisymmetric functions}.  A similar formula holds for vertical-strip LLT
-polynomials.  The path graph case was proved in
-\cite{AlexanderssonPanova2018}, and the complete graph case can be proved by a
-recursion.  For melting lollipop graphs, a similar-looking
-$\elementaryE$-expansion is proved in \cite{Alexandersson2019llt}.
+polynomials.  The path graph case appears in
+\cite{AlexanderssonPanova2018}, and the complete graph case follows from a
+recursion.  For melting lollipop graphs, \cite{Alexandersson2019llt} gives a
+similar-looking $\elementaryE$-expansion.
 
 \begin{example}
 In the diagram with $\avec=012223$, the orientation $\theta\in O(\avec)$ is
@@ -376,9 +388,9 @@ The full expansion is
 \end{align*}
 \end{example}
 
-A refinement to LLT cumulants, where certain connectivity requirements are
-imposed, is given in \cite{Kowalski2020x}; see also
-\cite{DolegaKowalski2021x}.  Another refinement is given by
+A refinement to LLT cumulants imposes certain connectivity requirements
+\cite{Kowalski2020x}; see also \cite{DolegaKowalski2021x}.
+Another refinement is given by
 \name{Alex Abreu} and \name{Antonio Nigro} in \cite{AbreuNigro2021}, where
 they consider symmetric functions defined as sums over increasing forests.
 The unicellular LLT polynomials can be expressed as sums over these forests.
@@ -386,14 +398,16 @@ The unicellular LLT polynomials can be expressed as sums over these forests.
 
 \section[unicellularLLTRepresentationTheory]{Representation theory}
 
-The polynomial $\LLT_\avec(\xvec;q)$ is the Frobenius characteristic of
+The polynomial $\LLT_\avec(\xvec;q)$ is the
+\hyperref[frobeniusCharacteristic]{Frobenius characteristic} of
 \emph{twin cohomology} with \emph{the dagger action}.
 
 \subsection[unicellularLLTFrobeniusTarget]{Frobenius characteristic}
 
 The polynomial $\LLT_\avec(\xvec;q)$ is symmetric and
 \hyperref[schurPositivity]{Schur-positive}.
-Hence it can be interpreted as a graded Frobenius characteristic:
+Hence it can be interpreted as a
+\hyperref[frobeniusCharacteristic]{graded Frobenius characteristic}:
 \[
 \LLT_\avec(\xvec;q)
 =
@@ -416,7 +430,8 @@ realization:
 =
 \LLT_\avec(\xvec;q).
 \]
-This is the LLT analogue of the Hessenberg dot-action theorem.
+This is the LLT analogue of the
+\hyperref[dotAction]{Hessenberg dot-action theorem}.
 \name{Young-Hoon Kiem} and \name{Donggun Lee} give a direct geometric proof
 of this statement by comparing twin manifolds through a roof manifold and
 showing that their cohomology satisfies the modular law for unicellular LLT
@@ -433,16 +448,16 @@ $\completeH_{1^n}$:
 The right-hand side is the ascent enumerator over colorings using all $n$
 colors exactly once, equivalently over permutations.
 
-There is also a complementary finite-group interpretation.  In
-\cite[Thm.~5.1]{Gagnon2024}, \name{Lucas Gagnon} realizes vertical-strip LLT
-polynomials by inducing characters from the unipotent upper triangular group
-to $\GL_n(\mathbb{F}_q)$ and then recording the unipotent constituents.
+A complementary finite-group interpretation is due to \name{Lucas Gagnon}.
+He realizes vertical-strip LLT polynomials by inducing characters from the
+unipotent upper triangular group to $\GL_n(\mathbb{F}_q)$ and then recording
+the unipotent constituents \cite[Thm.~5.1]{Gagnon2024}.
 
 
 \subsection[unicellularLLTTwinGKM]{The twin GKM model}
 
-The twin-manifold GKM model is close to the regular semisimple Hessenberg GKM
-model, with two differences.
+The twin-manifold GKM model is close to the regular semisimple
+\hyperref[hessenbergVarieties]{Hessenberg} GKM model, with two differences.
 
 First, the congruence labels are fixed \hyperref[rootSystem]{roots}.
 The fixed points are indexed by permutations $v\in\symS_n$, and for each edge $\{i,j\}$ of
@@ -468,8 +483,8 @@ It acts by moving the fixed-point labels, without permuting the polynomial varia
 \coloneqq
 p_{\sigma^{-1}v}.
 \]
-This should be contrasted with Tymoczko's dot action, where $\sigma$ also acts
-on the variables $t_1,\dotsc,t_n$.
+This should be contrasted with \hyperref[tymoczkoDotAction]{Tymoczko's dot
+action}, where $\sigma$ also acts on the variables $t_1,\dotsc,t_n$.
 
 The equivariant twin GKM module is therefore
 \[
