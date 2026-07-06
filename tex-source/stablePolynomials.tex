@@ -1,6 +1,9 @@
 \metatitle{Stable polynomials}
 
-\metadescription{Multivariate stable polynomials, strongly Rayleigh measures, stability-preserving operations, and same-phase stability.}
+\metadescription{Multivariate stable polynomials, strongly Rayleigh measures,
+stability-preserving operations, and same-phase stability.}
+\metakeywords{stable polynomial, real stable polynomial, strongly Rayleigh
+measure, Borcea--Branden symbol, multiaffine polynomial, same-phase stability}
 
 
 \section[stablePolynomial]{Stable polynomials}
@@ -204,7 +207,7 @@ containing real stable
 polynomials \cite{FangMa2026x}.  The definition is phrased in terms of
 positivity regions invariant under translation by positive vectors; they prove
 equivalent formulations by polarization and by a recursive criterion using
-partial derivatives.  Multi-affine G{\aa}rding polynomials with non-negative
+partial derivatives.  Multi-affine G{\aa}rding polynomials with nonnegative
 coefficients satisfy the Rayleigh property, and their positive univariate
 specializations have ultra-log-concave coefficient sequences.
 
@@ -326,7 +329,7 @@ only if $G$ is distance-hereditary \cite{CherkashinPetrovProzorov2023}.
 
 \begin{theorem}[See \cite{BrandenHuh2020}]
 Let $P \in \setR[z_1,\dotsc,z_n]$ be homogeneous, real stable, and have
-non-negative coefficients.  Then $P$ is \hyperref[lorentzianPolynomial]{Lorentzian}.
+nonnegative coefficients.  Then $P$ is \hyperref[lorentzianPolynomial]{Lorentzian}.
 \end{theorem}
 
 
@@ -444,9 +447,10 @@ second-order Eulerian polynomials.
 
 \begin{example*}[Multivariate matching polynomials]
 The multivariate \hyperref[realRootedMatching]{matching polynomial} is real
-stable, see \cite{BorceaBranden2009I,BorceaBranden2009II}.
-See also \cite{LeakeRyder2019}; there are two types of multivariate matching
-polynomials, recording either vertex labels or edge labels in the matchings:
+stable; see \cite{BorceaBranden2009I,BorceaBranden2009II}.
+\name{Jonathan D. Leake} and \name{Nick R. Ryder} distinguish two types of
+multivariate matching polynomials, recording either vertex labels or edge
+labels in the matchings \cite{LeakeRyder2019}:
 \begin{align}
 \mu_V(G;x_1,\dotsc,x_n)
   & \coloneqq
@@ -477,7 +481,7 @@ polynomial
 \]
 is real stable.  Then every measure obtained from $\mu$ by applying
 positive external fields is negatively associated: increasing functions
-depending on disjoint coordinate sets have non-positive covariance.
+depending on disjoint coordinate sets have nonpositive covariance.
 \end{theorem}
 
 
@@ -485,8 +489,8 @@ depending on disjoint coordinate sets have non-positive covariance.
 
 \subsection[samePhaseStable]{Same phase stability}
 
-The following notion was introduced in \cite{LeakeRyder2019}
-and is a strictly weaker notion than stability.
+\name{Jonathan D. Leake} and \name{Nick R. Ryder} introduced the following
+notion, which is strictly weaker than stability \cite{LeakeRyder2019}.
 
 \begin{definition}[Same-phase stability]
  A polynomial $P(z_1,\dotsc,z_n) \in \setR[z_1,\dotsc,z_n]$ is said
@@ -510,7 +514,7 @@ $\{z_{i_1}, \dotsc, z_{i_m} \}$.
 
 
 \begin{theorem}[See \cite{LeakeRyder2019}]
-Suppose $P$ is a multi-affine polynomial with non-negative coefficients.
+Suppose $P$ is a multi-affine polynomial with nonnegative coefficients.
 Then the following are equivalent:
 \begin{itemize}
 \item $P$ is same-phase stable;
@@ -519,7 +523,7 @@ $P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$,
 the polynomials $P_0, z_{i_1} P_{1}, \dotsc, z_{i_m} P_{m}$
 are same-phase compatible.
 
-\item There is some proper splitting
+\item Some proper splitting
 $P = P_0 + \sum_{j=1}^m z_{i_j} P_{j}$
 such that $P_0, z_{i_1} P_{1}, \dotsc, z_{i_m} P_{m}$ are same-phase
 compatible.
@@ -541,8 +545,9 @@ I(G;x_1,\dotsc,x_n)
 \sum_{\substack{A \subseteq V(G) \\ A \text{ independent}}}
 \prod_{v \in A} x_v.
 \]
-In \cite{LeakeRyder2019}, it is proved that $I(G;x_1,\dotsc,x_n)$
-is same-phase stable \emph{if and only if} $G$ is claw-free.
+Leake and Ryder prove that $I(G;x_1,\dotsc,x_n)$ is same-phase stable
+\emph{if and only if} $G$ is \hyperref[clawFreeGraph]{claw-free}
+\cite{LeakeRyder2019}.
 This is a reinterpretation of Engström's weighted result \cite{Engstrom2007},
 but Leake and Ryder give a much sleeker proof, and the if-and-only-if
 condition explains
@@ -550,8 +555,9 @@ that the claw-free requirement is sharp.
 
 
 \begin{example*}[Multivariate Eulerian polynomials II]
-In \cite{AlexanderssonNabawanda2021}, we show that the following generalization
-of the Eulerian polynomial is same-phase stable, but not stable:
+In joint work with \name{Olivia Nabawanda}, we show that the following
+generalization of the \hyperref[eulerianPolynomial]{Eulerian polynomial} is
+same-phase stable, but not stable \cite{AlexanderssonNabawanda2021}:
 \[
  \tilde{A}_n(\xvec) = \sum_{\pi \in \symS_n} \prod_{\pi_i \gt \pi_{i+1}} x_{i}.
 \]
