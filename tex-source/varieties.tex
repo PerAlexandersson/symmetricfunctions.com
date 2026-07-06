@@ -1,5 +1,5 @@
 \metatitle{Varieties in algebraic combinatorics}
-\metadescription{A short guide to Grassmannians, flag varieties, Schubert varieties, Springer fibers, and Hessenberg varieties.}
+\metadescription{A short guide to Grassmannians, flag varieties, Schubert varieties, and related spaces.}
 
 \section[varieties]{Varieties in algebraic combinatorics}
 
@@ -24,13 +24,14 @@ polynomials}, \hyperref[positroid]{positroids}, and
 
 \section[affineProjectiveVarieties]{Affine and projective varieties}
 
-An \defin{affine variety} is, roughly, the set of common zeros of polynomial
-equations in affine space:
+An \defin{affine variety}\label{affineVarietyDefinition} is, roughly, the set
+of common zeros of polynomial equations in affine space:
 \[
   X=\{x\in\setC^n:f_1(x)=\dotsb=f_r(x)=0\}.
 \]
-A \defin{projective variety} is the corresponding notion in projective space,
-where points are lines through the origin:
+A \defin{projective variety}\label{projectiveVarietyDefinition} is the
+corresponding notion in projective space, where points are lines through the
+origin:
 \[
   \mathbb P^{n-1}
   =
@@ -48,37 +49,43 @@ coordinates.
 
 \section[grassmannianVarieties]{Grassmannians}
 
-The \defin{Grassmannian} $\operatorname{Gr}(k,n)$ is the variety of
-$k$-dimensional subspaces of $\setC^n$.  Equivalently, it parametrizes
-projective $(k-1)$-planes in $\mathbb P^{n-1}$.  For example,
-$\operatorname{Gr}(2,4)$ parametrizes lines in $\mathbb P^3$.
+The \defin{Grassmannian}\label{grassmannianVarietyDefinition}
+$\operatorname{Gr}(k,n)$ is the variety of $k$-dimensional subspaces of
+$\setC^n$.  Equivalently, it parametrizes projective $(k-1)$-planes in
+$\mathbb P^{n-1}$.  For example, $\operatorname{Gr}(2,4)$ parametrizes lines
+in $\mathbb P^3$.
 
-The standard projective realization is the \defin{Plücker embedding}
+The standard projective realization is the
+\defin{Plücker embedding}\label{pluckerEmbedding}
 \[
   \operatorname{Gr}(k,n)\hookrightarrow \mathbb P^{\binom nk-1}.
 \]
 If a $k$-plane is represented by a full-rank $k\times n$ matrix, its maximal
-minors are the \defin{Plücker coordinates}.  These coordinates satisfy
-quadratic Plücker relations.
+minors are the \defin{Plücker coordinates}\label{pluckerCoordinate}.  These
+coordinates satisfy quadratic Plücker relations.
 
 This is where matroids enter.  Given a point of $\operatorname{Gr}(k,n)$, the
-sets $I\subseteq[n]$ with nonzero Plücker coordinate $p_I$ form the bases of a
-rank $k$ representable matroid.  The totally nonnegative part of the
+sets $I\subseteq[n]$ with nonzero Plücker coordinate $p_I$ form the
+\hyperref[matroidBasis]{bases} of a rank $k$ representable
+\hyperref[matroidDefinition]{matroid}.  The totally nonnegative part of the
 Grassmannian gives \hyperref[positroid]{positroids}, introduced by
 \name{Alexander Postnikov} \cite{Postnikov2006x}.  Schubert matroids and
-lattice path matroids are important positroid families \cite{Oh2011}.
+\hyperref[latticePathMatroidDefinition]{lattice path matroids} are important
+positroid families \cite{Oh2011}.
 
 
 \section[flagVarieties]{Flag varieties}
 
-A \defin{complete flag} in $\setC^n$ is a chain
+A \defin{complete flag}\label{completeFlagDefinition} in $\setC^n$ is a chain
 \[
   0=F_0\subset F_1\subset F_2\subset\dotsb\subset F_n=\setC^n,
   \qquad \dim F_i=i.
 \]
-The \defin{flag variety} $\operatorname{Fl}_n$ is the variety of all complete
-flags.  A \defin{partial flag variety} remembers only some of the subspaces in
-the chain.  Grassmannians are partial flag varieties, since
+The \defin{flag variety}\label{flagVarietyDefinition} $\operatorname{Fl}_n$ is
+the variety of all complete flags.  A
+\defin{partial flag variety}\label{partialFlagVarietyDefinition} remembers only
+some of the subspaces in the chain.  Grassmannians are partial flag varieties,
+since
 $\operatorname{Gr}(k,n)$ remembers only the $k$-dimensional subspace.
 
 The flag variety is the geometric source of many divided-difference
@@ -91,13 +98,14 @@ corresponding polynomial representatives are
 
 \section[schubertVarietiesAndMatroids]{Schubert varieties and Schubert matroids}
 
-Fix a complete flag $F_\bullet$ in $\setC^n$.  Schubert varieties are
+Fix a complete flag $F_\bullet$ in $\setC^n$.
+\defin{Schubert varieties}\label{schubertVarietyGeometryDefinition} are
 subvarieties of a Grassmannian or flag variety defined by incidence conditions
 with respect to $F_\bullet$.  In the Grassmannian, they are indexed by
 partitions in a rectangle, or equivalently by $k$-element subsets of $[n]$.
 
 For $I=\{i_1<\dotsb<i_k\}\subseteq[n]$, the corresponding
-\defin{Schubert matroid} has bases
+\defin{Schubert matroid}\label{schubertMatroidDefinition} has bases
 \[
   \mathcal B_I
   =
@@ -117,17 +125,18 @@ Schubert calculus, and Grassmannian coordinates often appear together.
 
 \section[richardsonVarieties]{Richardson varieties}
 
-A \defin{Richardson variety} is an intersection of a Schubert variety and an
-opposite Schubert variety.  In the complete flag variety, if $X_w$ is the
-Schubert variety indexed by $w$ and $X^v$ is the opposite Schubert variety
-indexed by $v$, then
+A \defin{Richardson variety}\label{richardsonVarietyDefinition} is an
+intersection of a Schubert variety and an opposite Schubert variety.  In the
+complete flag variety, if $X_w$ is the Schubert variety indexed by $w$ and
+$X^v$ is the opposite Schubert variety indexed by $v$, then
 \[
   X_w^v\coloneqq X_w\cap X^v.
 \]
-This intersection is nonempty precisely when $v\leq w$ in Bruhat order.
+This intersection is nonempty precisely when $v\leq w$ in
+\hyperref[bruhatOrder]{Bruhat order}.
 
 Richardson varieties are useful because they isolate the geometry of an
-interval in Bruhat order.  They also appear naturally in total positivity,
+interval in \hyperref[bruhatOrder]{Bruhat order}.  They also appear naturally in total positivity,
 positroid geometry, and the study of components of Springer fibers.  For a
 recent tableau connection, see the Richardson tableaux of
 \name{Steven N. Karp} and \name{Martha E. Precup} \cite{KarpPrecup2025x}.
@@ -135,10 +144,11 @@ recent tableau connection, see the Richardson tableaux of
 
 \section[hessenbergVarietiesBackground]{Hessenberg varieties}
 
-Hessenberg varieties are subvarieties of the flag variety cut out by a linear
-operator and a Hessenberg function.  In type $A$, one starts with a weakly
-increasing sequence $m=(m_1,\dotsc,m_n)$ with $i\leq m_i\leq n$ and considers
-flags satisfying
+\defin{Hessenberg varieties}\label{hessenbergVarietyDefinition} are
+subvarieties of the flag variety cut out by a linear operator and a
+\defin{Hessenberg function}\label{hessenbergFunctionDefinition}.  In type $A$,
+one starts with a weakly increasing sequence $m=(m_1,\dotsc,m_n)$ with
+$i\leq m_i\leq n$ and considers flags satisfying
 \[
   T F_i\subseteq F_{m_i}.
 \]
@@ -154,8 +164,8 @@ functions}.
 
 \section[springerFibers]{Springer fibers and the Peterson variety}
 
-A \defin{Springer fiber} is a subvariety of the flag variety attached to a
-nilpotent linear operator $N$.  In type $A$, it is
+A \defin{Springer fiber}\label{springerFiberDefinition} is a subvariety of the
+flag variety attached to a nilpotent linear operator $N$.  In type $A$, it is
 \[
   \mathcal B_N
   =
@@ -168,9 +178,9 @@ fibers also interact with tableaux, Hall--Littlewood theory, and the
 \hyperref[deltaSpringerHallLittlewood]{$\Delta$-Springer varieties} appearing
 near the Delta conjecture.
 
-The \defin{Peterson variety} is a special regular nilpotent Hessenberg
-variety.  In type $A$, it is obtained from a regular nilpotent operator $N$
-and the Hessenberg function
+The \defin{Peterson variety}\label{petersonVarietyDefinition} is a special
+regular nilpotent Hessenberg variety.  In type $A$, it is obtained from a
+regular nilpotent operator $N$ and the Hessenberg function
 \[
   m(i)=i+1\quad(1\leq i<n),\qquad m(n)=n.
 \]
@@ -187,14 +197,14 @@ relationship with quantum cohomology of flag varieties.
 
 Let $G=\operatorname{GL}_n(\setC)$ and let $B$ be the subgroup of upper
 triangular matrices.  The flag variety can be written as the quotient $G/B$.
-The subgroup $B$ is a Borel subgroup, and the irreducible closed
+The subgroup $B$ is a \defin{Borel subgroup}\label{borelSubgroup}, and the irreducible closed
 $B$-stable subvarieties inside $G/B$ are precisely Schubert varieties.  General
 closed $B$-stable subvarieties are unions of Schubert varieties.
 
 This is the geometric background for \hyperref[key]{key polynomials}.  A
 dominant weight $\lambda$ gives a line bundle on $G/B$, and taking sections
 over a Schubert variety gives a Demazure module.  Its character is a
-\defin{Demazure character}, also called a key polynomial
+\hyperref[demazureCharacter]{Demazure character}, also called a key polynomial
 \cite{Demazure1974nouvelle,Demazure1974}.
 
 The \hyperref[schurFlagged]{flagged Schur polynomials} are closely related.
