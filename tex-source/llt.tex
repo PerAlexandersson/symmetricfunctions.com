@@ -1,7 +1,9 @@
 \metatitle{LLT polynomials}
-\metadescription{An introduction to LLT polynomials, their definitions via ribbon tableaux and tuples of skew shapes, 
-properties including Murnaghan--Nakayama rule, Pieri rule, Cauchy identity, 
-fundamental quasisymmetric expansion, Schur positivity, and the special case of unicellular LLT polynomials.} 
+\metadescription{An introduction to LLT polynomials, their definitions via
+ribbon tableaux and tuples of skew shapes, properties including
+Murnaghan--Nakayama rule, Pieri rule, Cauchy identity, fundamental
+quasisymmetric expansion, Schur positivity, and the special case of
+unicellular LLT polynomials.}
 
 \section[LLT]{LLT polynomials}
 
@@ -23,17 +25,23 @@ fundamental quasisymmetric expansion, Schur positivity, and the special case of 
   PositiveIn & schurS | Lascoux97ribbontableaux | combinatorial_rule=none_known \\
 \end{polydata}
 
-LLT polynomials were originally introduced by \name{Alain Lascoux}, \name{Bernard Leclerc} and \name[J.Y. Thibon]{Jean-Yves Thibon} in \cite{Lascoux97ribbontableaux}.
-It is a large family of symmetric functions, and can be seen as a $q$-deformation of products of \hyperref[schurSkew]{skew Schur functions}.
+LLT polynomials were originally introduced by \name{Alain Lascoux},
+\name{Bernard Leclerc}, and \name[J.Y. Thibon]{Jean-Yves Thibon} in
+\cite{Lascoux97ribbontableaux}.
+They form a large family of symmetric functions, and can be seen as a
+$q$-deformation of products of \hyperref[schurSkew]{skew Schur functions}.
 This family contains the usual Schur polynomials, the skew Schur functions
 and the family of \hyperref[hallLittlewoodT]{transformed Hall--Littlewood polynomials}.
 Here this is recorded as a containment relation, since the Schur and skew
 Schur functions appear as special LLT data rather than as a uniform
 one-parameter specialization.
-The original motivation for LLT polynomials was to study certain \hyperref[plethysm]{plethysm} coefficients,
-and a relationship with the \hyperref[fockSpace]{Fock space} representation of the quantum affine algebra $U_q(\widehat{\mathfrak{sl}_n})$.
-There are generalizations to other types, for example by \name{Cédric Lecouvey} \cite{Lecouvey2009},
-and by \name{Ian Grojnowski} and \name{Mark Haiman} \cite{GrojnowskiHaiman2006}.
+The original motivation for LLT polynomials was to study certain
+\hyperref[plethysm]{plethysm} coefficients and their relationship with the
+\hyperref[fockSpace]{Fock space} representation of the quantum affine algebra
+$U_q(\widehat{\mathfrak{sl}_n})$.
+There are generalizations to other types, for example by
+\name{Cédric Lecouvey} \cite{Lecouvey2009}, and by
+\name{Ian Grojnowski} and \name{Mark Haiman} \cite{GrojnowskiHaiman2006}.
 \name{Per Alexandersson} and \name{Joakim Uhlin} introduce skew specialized
 \hyperref[macdonaldE]{nonsymmetric Macdonald polynomials} and prove that
 they are symmetric and Schur-positive \cite{AlexanderssonUhlin2020}.  In the
@@ -42,25 +50,29 @@ polynomials specialize to vertical-strip LLT polynomials, giving a
 combinatorial Schur expansion for this family of LLT polynomials.
 For an accessible entry point to the affine-Hecke and ribbon-tableau side of
 the subject, see \name{Thomas Lam}'s work on ribbon tableaux and affine
-Stanley symmetric functions \cite{Lam2005,Lam2006}, as well as
-\href{https://www.aimath.org/WWN/kostka/lam.pdf}{Lam's AIM notes}.
-\name{Mark Haiman}'s
-\href{http://math.stanford.edu/~vakil/crm07/haiman.pdf}{CRM slides on
-general LLT polynomials} give an expository overview of the
+Stanley symmetric functions \cite{Lam2005,Lam2006}, as well as his AIM notes
+\cite{Lam2005IntroLLT}.
+\name{Mark Haiman}'s CRM slides on general LLT polynomials
+\cite{Haiman2007GeneralLLTSlides} give an expository overview of the
 Grojnowski--Haiman approach to general LLT positivity.
 
-The original definition expresses the LLT polynomials (called \defin{spin LLT polynomials})
-as a sum over so called \hyperref[borderStripTableauxDefinition]{ribbon tableaux}, weighted with a \emph{spin} statistic.
-The authors originally named them \defin{ribbon Schur functions}, but they are now referred to as LLT polynomials.
+The original definition expresses the LLT polynomials, called
+\defin{spin LLT polynomials}\label{spinLLTPolynomial}, as a sum over
+so-called \hyperref[borderStripTableauxDefinition]{ribbon tableaux}, weighted
+with a \emph{spin} statistic.
+The authors originally named them \defin{ribbon Schur functions}, but they are
+now referred to as LLT polynomials.
 \name{Ezgi Kantarc{\i} O{\u{g}}uz} gives a type-$B$ analogue in terms of
 shifted $k$-ribbon tableaux \cite{Oguz2020}.  The paper constructs a
 bijection from shifted $k$-ribbon fillings to ordinary fillings of a
 $\lfloor k/2\rfloor$-tuple of shapes, called the $k$-quotient, and proves
 that the associated generating functions are symmetric, Schur-positive, and
 Schur $Q$-positive.
-A supersymmetric version of LLT polynomials, (akin to \hyperref[hookSchur]{supersymmetric Schur functions}) has 
-also been considered, see e.g., \cite{CurranFrechetteYostWolffZhangZhang2021x} for a \hyperref[latticeModel]{lattice model} generating 
-such \defin{supersymmetric LLT polynomials}.
+A supersymmetric version of LLT polynomials, akin to
+\hyperref[hookSchur]{supersymmetric Schur functions}, has also been
+considered; see, for example, \cite{CurranFrechetteYostWolffZhangZhang2021x}
+for a \hyperref[latticeModel]{lattice model} generating such
+\defin{supersymmetric LLT polynomials}\label{supersymmetricLLTPolynomial}.
 \name{Andrew Gitlin} and \name{David Keating} give a Yang--Baxter integrable
 vertex model for supersymmetric LLT polynomials \cite{GitlinKeating2023}.
 Their partition functions are essentially \name{Thomas Lam}'s super ribbon
@@ -70,14 +82,16 @@ lattice-path partition functions \cite{Keating2025LLTx}.  The result gives a
 path-model explanation for when different LLT data produce the same symmetric
 function.
 
-In \cite{LeclercThibon2000} it is proved that the coefficients in the Schur
+In \cite{LeclercThibon2000}, it is proved that the coefficients in the Schur
 basis of spin LLT polynomials are \emph{parabolic}
 \hyperref[kazhdanLusztigPolynomials]{Kazhdan--Lusztig polynomials}.
-For the connection with Kazhdan--Lusztig polynomials and the more representation-theoretical
-connection, see \cite{LaniniRam2019}.
+For the connection with Kazhdan--Lusztig polynomials and the more
+representation-theoretic viewpoint, see \cite{LaniniRam2019}.
 
-LLT polynomials have a prominent role in the study of \hyperref[diagonalHarmonics]{diagonal harmonics}.
-See \cite{BlasiakHaimanMorsePunSeelinger2021x} for recent results in this area.
+LLT polynomials have a prominent role in the study of
+\hyperref[diagonalHarmonics]{diagonal harmonics}.
+See \cite{BlasiakHaimanMorsePunSeelinger2021x} for related results in this
+area.
 
 
 \subsection[flaggedLLT]{Flagged LLT polynomials}
@@ -98,8 +112,9 @@ See \cite{BlasiakHaimanMorsePunSeelinger2021x} for recent results in this area.
 \name{Jonah Blasiak}, \name{Mark Haiman}, \name{Jennifer Morse},
 \name{Anna Pun}, and \name{George H. Seelinger}
 \cite{BlasiakHaimanMorsePunSeelinger2025x} introduce
-\defin{flagged LLT polynomials} $G_{\nu,\sigma}$.  These generalize ordinary
-LLT polynomials in the same way that flagged Schur functions generalize Schur
+\defin{flagged LLT polynomials}\label{flaggedLLTPolynomialDefinition}
+$G_{\nu,\sigma}$.  These generalize ordinary LLT polynomials in the same way
+that \hyperref[schurFlagged]{flagged Schur functions} generalize Schur
 functions, and they have both algebraic and tableau-sum definitions.
 
 One striking feature is that flagged LLT polynomials interact well with a
@@ -115,56 +130,68 @@ positivity story for symmetric LLT polynomials.
 The original definition is given in \cite{LeclercThibon2000}.
 A modern reference is \cite{Iijima2013}.
 
-Let $\SSYT^{(k)}(\lambda/\mu)$ be the set of $k$-ribbon tableaux of shape $\lambda/\mu$.
+Let $\SSYT^{(k)}(\lambda/\mu)$ be the set of $k$-ribbon tableaux of shape
+$\lambda/\mu$.
 Then the \defin{spin LLT polynomial} is defined as
 \[
-\LLTG^{(k)}_{\lambda/\mu}(\xvec;q) \coloneqq \sum_{T \in \SSYT^{(k)}(\lambda/\mu)} \xvec_T q^{spin(T)}.
+\LLTG^{(k)}_{\lambda/\mu}(\xvec;q)
+\coloneqq
+\sum_{T \in \SSYT^{(k)}(\lambda/\mu)} \xvec_T q^{spin(T)}.
 \]
 
 
 \subsection[lltDefinitionTuples]{Definition (tuples)}
 
-\name{Mikael Bylund} and \name{Mark Haiman} discovered an alternative way to model LLT polynomials.
+\name{Mikael Bylund} and \name{Mark Haiman} discovered an alternative way to
+model LLT polynomials.
 These are indexed by $k$-tuples $\nuvec$ of skew Young diagrams. When $k=1$,
 we recover a single skew Schur function.
-The Bylund--Haiman model is described in \cite{HaglundHaimanLoehr2005} where it is proved that 
-the two models are equivalent. The proof uses a version of the \hyperref[littlewoodMap]{Littlewood map},
+The Bylund--Haiman model is described in \cite{HaglundHaimanLoehr2005}, where
+it is proved that the two models are equivalent.
+The proof uses a version of the \hyperref[littlewoodMap]{Littlewood map},
 which sends ribbon tableaux to tuples of \hyperref[prelimTableaux]{semistandard Young tableaux}.
 
 
-Given a $k$-tuple of skew-shapes $\nuvec$, let 
+Given a $k$-tuple of skew shapes $\nuvec$, let
 \[
 \SSYT(\nuvec) = \SSYT(\nuvec^1) \times \SSYT(\nuvec^2)\times \dotsm \times \SSYT(\nuvec^k)
 \]
-where $\SSYT(\lambda)$ is the set of skew \hyperref[prelimTableaux]{semistandard Young tableaux} of shape $\lambda$.
+where $\SSYT(\lambda)$ is the set of skew
+\hyperref[prelimTableaux]{semistandard Young tableaux} of shape $\lambda$.
 For $T = (T^1,T^2,\dotsc,T^k) \in \SSYT(\nuvec)$,
 let $\xvec^T$ denote the product $\xvec_{T^1}\dotsm \xvec_{T^k}$ where $\xvec_{T^i}$
 is the usual weight of the semistandard Young tableau $T^i$.
-Given a cell $u = (r,c)$ (row, column) in a skew diagram, the \defin{content} of $u$ is defined as $c(u)\coloneqq c-r$. 
+Given a cell $u = (r,c)$ in a skew diagram, with row $r$ and column $c$, the
+\defin{content}\label{skewDiagramContent} of $u$ is defined as
+$c(u)\coloneqq c-r$.
 
-Entries $T^i(u) \gt T^j(v)$ in a tuple form an \defin{inversion} if
-either 
+Entries $T^i(u) \gt T^j(v)$ in a tuple form an
+\defin{LLT inversion}\label{lltInversion} if either
 \begin{itemize}
 \item $i \lt j$ and $c(u) = c(v)$, or
 \item $i \gt j$ and $c(u) = c(v)-1$.
 \end{itemize}
-Finally, we can define the \defin{LLT polynomial}
+Finally, we can define the \defin{LLT polynomial}\label{lltPolynomialDefinition}
 \[
-\LLT_\nuvec(\xvec;q) = \sum_{T \in \SSYT(\nuvec)}  q^{\inv(T)} \xvec_T 
+\LLT_\nuvec(\xvec;q)
+\coloneqq
+\sum_{T \in \SSYT(\nuvec)}  q^{\inv(T)} \xvec_T
 \]
-where $\inv(T)$ is the total number of inversions appearing in $T$. 
-When all shapes in $\nuvec$ consist of single boxes, 
+where $\inv(T)$ is the total number of inversions appearing in $T$.
+When all shapes in $\nuvec$ consist of single boxes,
 we get the family of \hyperref[unicellularLLT]{unicellular LLT polynomials}.
-Note that $\LLT_\nuvec(\xvec;1) = \prod_{i} \schurS_{\nuvec^i}(\xvec)$, a product of skew Schur polynomials.
+Note that $\LLT_\nuvec(\xvec;1) = \prod_{i} \schurS_{\nuvec^i}(\xvec)$, a
+product of skew Schur polynomials.
 
 
 \begin{example}
 
-Tuples $\nuvec$ are traditionally illustrated 
+Tuples $\nuvec$ are traditionally illustrated
 in the \hyperref[prelimPartitions]{French notation} when dealing with LLT polynomials.
 Below, the $3$-tuple $32/1$, $31$, $33/21$ of skew shapes is illustrated.
 Note that boxes with same content are placed on the same diagonal (oriented up-right).
-The numbers indicate the \defin{reading order} which has a certain significance.
+The numbers indicate the \defin{reading order}\label{lltReadingOrder}, which
+controls the LLT inversion statistic.
 
 If $F$ is a filling of the diagram, we have for example inversions if
 $F(1)\lt F(2)$ or $F(2)\lt F(3)$.
@@ -214,21 +241,24 @@ In the Schur basis, this is
 \end{example*}
 
 
-The original spin LLT polynomials and the modern LLT polynomials are related as follows.
-If $\nuvec$ is the $k$-tuple obtained as the $k$-quotient of $\lambda/\mu$, then 
-there is some $e$, depending only on $\lambda/\mu$, such that
+The original spin LLT polynomials and the modern LLT polynomials are related as
+follows.
+If $\nuvec$ is the $k$-tuple obtained as the $k$-quotient of $\lambda/\mu$,
+then there is some $e$, depending only on $\lambda/\mu$, such that
 \[
 q^e \LLT_\nuvec(\xvec;q^{-2}) =  \LLTG^{(k)}_{\lambda/\mu}(\xvec;q).
 \]
-See \cite[Prop. 6.17]{GrojnowskiHaiman2006}.
+See \cite[Prop.~6.17]{GrojnowskiHaiman2006}.
 
 
 \subsection[lltVertexModel]{Vertex-model}
 
-It has recently been shown that LLT polynomials can be realized as the partition functions of
-certain colored fermionic vertex models, see \cite{CorteelGitlinKeatingMeza2021} and \cite{AggarwalBorodinWheeler2023}.
-For connection with fermionic vertex models, see \cite{BrubakerBuciumasBumpGustafsson2020}.
-The same vertex-model framework also leads to coloured corner processes from
+It has been shown that LLT polynomials can be realized as the partition
+functions of certain colored fermionic vertex models; see
+\cite{CorteelGitlinKeatingMeza2021} and \cite{AggarwalBorodinWheeler2023}.
+For the connection with fermionic vertex models, see
+\cite{BrubakerBuciumasBumpGustafsson2020}.
+The same vertex-model framework also leads to colored corner processes from
 asymptotics of LLT polynomials \cite{AggarwalBorodinWheeler2024}.
 
 
@@ -238,64 +268,79 @@ asymptotics of LLT polynomials \cite{AggarwalBorodinWheeler2024}.
 
 \subsection[lltPieri]{Pieri rule}
 
-\subsection[lltCauchy]{Cauchy Identity}
+\subsection[lltCauchy]{Cauchy identity}
 
 A Cauchy identity for the spin LLT polynomials was first given in \cite{Lam2005},
 and a combinatorial proof is given in \cite{Leeuwen2005}.
 
 In \cite{CorteelGitlinKeatingMeza2021}, the authors describe a
-Yang--Baxter integrable vertex model for LLT polynomials, and prove a Cauchy-identity.
+Yang--Baxter integrable vertex model for LLT polynomials and prove a Cauchy
+identity.
 Here, the sum is taken over $k$-tuples of integer partitions,
 \[
-  \sum_{\nuvec} \LLT_\nuvec(x_1,\dotsc,x_n;q) \LLT_{\nuvec^\textrm{rot}}(y_1,\dotsc,y_n;q) = 
-  \prod_{i=1}^n \prod_{j=1}^n \prod_{m=0}^{k-1} \frac{1}{1-x_iy_j t^m }
+  \sum_{\nuvec}
+  \LLT_\nuvec(x_1,\dotsc,x_n;q)
+  \LLT_{\nuvec^{\mathrm{rot}}}(y_1,\dotsc,y_n;q)
+  =
+  \prod_{i=1}^n
+  \prod_{j=1}^n
+  \prod_{m=0}^{k-1} \frac{1}{1-x_iy_j t^m}
 \]
-where $\nuvec^\textrm{rot}$ rotates each partition 180 degrees, and reverses the order of the tuple.
+where $\nuvec^{\mathrm{rot}}$ rotates each partition 180 degrees and reverses
+the order of the tuple.
 
 
 \subsection[lltFundamentalExpansion]{Fundamental quasisymmetric expansion}
 
-It is fairly straightforward from the tuples definition to recover the 
-expansion in the \hyperref[gessel]{fundamental quasisymmetric basis}. 
+It is fairly straightforward from the tuples definition to recover the
+expansion in the \hyperref[gessel]{fundamental quasisymmetric basis}.
 This is done in \cite{HaglundHaimanLoehr2005} and we have that
 \[
 \LLT_\nuvec(\xvec;q) = \sum_{T \in \SYT(\nuvec)} q^{\inv(T)} \gessel_{D(T)}(\xvec).
 \]
-The set $\SYT(\nuvec)$ consists of all fillings of $\nuvec$ using entries 
-in $\setN$ so that each shape has increasing rows and columns. 
-The descent set $D(T)$ is computed with respect to the reading word. 
-That is, $i$ is a descent if $i+1$ appears before $i$ when reading the boxes of $\nuvec$ in the reading order.
+The set $\SYT(\nuvec)$ consists of all fillings of $\nuvec$ using entries
+in $\setN$ so that each shape has increasing rows and columns.
+The descent set $D(T)$ is computed with respect to the reading word.
+That is, $i$ is a descent if $i+1$ appears before $i$ when reading the boxes of
+$\nuvec$ in the reading order.
 
 
 \subsection[lltSchurPositivity]{Schur positivity}
 
-It is proved in \cite{LeclercThibon2000} that $\LLT_\nuvec(\xvec;q)$ is Schur-positive 
-whenever $\nuvec$ is a $k$-tuple of straight shapes. 
-The proof uses the \hyperref[fockSpace]{Fock space} representation of $U_q(\widehat{\mathfrak{sl}_n})$, see 
-\cite{Iijima2013} for some background. 
+It is proved in \cite{LeclercThibon2000} that $\LLT_\nuvec(\xvec;q)$ is
+Schur-positive whenever $\nuvec$ is a $k$-tuple of straight shapes.
+The proof uses the \hyperref[fockSpace]{Fock space} representation of
+$U_q(\widehat{\mathfrak{sl}_n})$; see \cite{Iijima2013} for some background.
 
-\name{Ian Grojnowski} and \name{Mark Haiman} prove in an unpublished preprint, \cite{GrojnowskiHaiman2006},
-that all LLT polynomials $\LLT_\nuvec(\xvec;q)$ for arbitrary tuples of skew shapes, are Schur-positive.
-They use \hyperref[heckeAlgebra]{Hecke algebras} and deep representation theory --- their proof does not give a
-combinatorial formula for the Schur coefficients.
+\name{Ian Grojnowski} and \name{Mark Haiman} prove in an unpublished preprint
+\cite{GrojnowskiHaiman2006} that all LLT polynomials
+$\LLT_\nuvec(\xvec;q)$, for arbitrary tuples of skew shapes, are
+Schur-positive.
+They use \hyperref[heckeAlgebra]{Hecke algebras} and deep representation
+theory; their proof does not give a combinatorial formula for the Schur
+coefficients.
 For a geometric approach to characters of Hecke algebras, including
 LLT-related characters and Schur-positivity questions, see
 \cite{AbreuNigro2025}.
 
-Some partial progress on a combinatorial proof of Schur positivity is given in \cite{Roberts2013}.
+Some partial progress on a combinatorial proof of Schur positivity is given in
+\cite{Roberts2013}.
 
 
-The case when the tuple consists of $k\leq 3$ ribbons is considered by \name{Jonah Blasiak} \cite{Blasiak2016},
-and an explicit Schur expansion is given. Note that the ribbons need not be connected.
-This result is used to show that Macdonald polynomials indexed with shapes that have at most three columns,
-are Schur-positive.
+The case when the tuple consists of $k\leq 3$ ribbons is considered by
+\name{Jonah Blasiak} \cite{Blasiak2016}, and an explicit Schur expansion is
+given.  Note that the ribbons need not be connected.
+This result is used to show that Macdonald polynomials indexed with shapes that
+have at most three columns are Schur-positive.
 
 
-In \cite{Tom2020x}, \name{Foster Tom} gives a combinatorial formula for the Schur expansion 
-of certain vertical-strip LLT polynomials, whenever the underlying unit-interval
-graph is triangle-free; see the \hyperref[unicellularLLT]{page on
-unicellular LLT polynomials}. \name{Foster Tom} uses a generalization of cocharge.
-This generalizes an earlier result by \name{Per Alexandersson} and \name{Joakim Uhlin} \cite{AlexanderssonUhlin2020}.
+In \cite{Tom2020x}, \name{Foster Tom} gives a combinatorial formula for the
+Schur expansion of certain vertical-strip LLT polynomials, whenever the
+underlying \hyperref[unitIntervalGraph]{unit interval graph} is triangle-free;
+see the \hyperref[unicellularLLT]{page on unicellular LLT polynomials}.
+\name{Foster Tom} uses a generalization of cocharge.
+This generalizes an earlier result by \name{Per Alexandersson} and
+\name{Joakim Uhlin} \cite{AlexanderssonUhlin2020}.
 \name{Foster Tom} also proves that a horizontal-strip LLT polynomial is
 determined by its weighted graph \cite{Tom2023}.
 
@@ -305,17 +350,22 @@ determined by its weighted graph \cite{Tom2023}.
 
 When all shapes in the tuple consist of single boxes, one obtains the
 \hyperref[unicellularLLT]{unicellular LLT polynomials}.  They have a graph
-coloring model using unit interval graphs, a shifted
+coloring model using \hyperref[unitIntervalGraph]{unit interval graphs}, a
+shifted
 $\elementaryE$-positive orientation formula, and a twin-manifold
 representation-theoretic interpretation.
 
 
 \section[lltSuperSym]{Supersymmetric LLT polynomials}
 
-There is a notion of supersymmetric LLT polynomials introduced by \name{Thomas Lam}.
-See also \cite{BrubakerBuciumasBumpGustafsson2020} where \defin{metaplectic symmetric functions} are introduced.
+There is a notion of \hyperref[supersymmetricLLTPolynomial]{supersymmetric LLT
+polynomials} introduced by \name{Thomas Lam}.
+See also \cite{BrubakerBuciumasBumpGustafsson2020}, where
+\defin{metaplectic symmetric functions}\label{metaplecticSymmetricFunction}
+are introduced.
 
 
 \section[lltFactorial]{Factorial LLT polynomials}
 
-In \cite{AggarwalBorodinWheeler2023}, the authors introduce the notion of \defin{factorial LLT polynomials}.
+In \cite{AggarwalBorodinWheeler2023}, the authors introduce the notion of
+\defin{factorial LLT polynomials}\label{factorialLLTPolynomial}.
