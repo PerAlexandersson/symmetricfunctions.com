@@ -1,6 +1,9 @@
 \metatitle{Lascoux polynomials}
-\metadescription{An introduction to Lascoux polynomials, their definition via divided-difference operators, their combinatorial models using set-valued tableaux and skyline fillings, and properties including expansions into Grothendieck polynomials.}
-\metakeywords{Lascoux polynomials,Lascoux atoms,divided-difference operators,set-valued tableaux,skyline fillings,Grothendieck polynomials}
+\metadescription{An introduction to Lascoux polynomials, their definition via
+divided-difference operators, combinatorial models using set-valued tableaux
+and skyline fillings, and expansions into Grothendieck polynomials.}
+\metakeywords{Lascoux polynomials,Lascoux atoms,divided-difference operators,
+set-valued tableaux,skyline fillings,Grothendieck polynomials}
 
 \section[lascoux]{Lascoux polynomials}
 
@@ -20,24 +23,31 @@
   SpecializesTo & key | Lascoux2001 | map=beta=0 \\
 \end{polydata}
 
-The \defin{Lascoux polynomials} are a family of non-symmetric,
-non-homogeneous polynomials, first introduced by \name{Alain Lascoux} in \cite{Lascoux2001}.
+The \defin{Lascoux polynomials}\label{lascouxPolynomialDefinition} are a
+family of non-symmetric, non-homogeneous polynomials, first introduced by
+\name{Alain Lascoux} in \cite{Lascoux2001}.
 The set $\{ \lascoux_\alpha(x_1,\dotsc,x_n) \}_\alpha$ where $\alpha$
-ranges over all compositions of length $n$, is a basis for $\setC[x_1,\dotsc,x_n]$.
+ranges over all \hyperref[compositionDefinition]{compositions} of length $n$,
+is a basis for $\setC[x_1,\dotsc,x_n]$.
 
-The Lascoux polynomials are the K-theoretic analog of the \hyperref[key]{key polynomials},
+The Lascoux polynomials are the $K$-theoretic analogue of the
+\hyperref[key]{key polynomials},
 and they generalize the \hyperref[grothendieckGrassmann]{Grothendieck polynomials}.
-Similarly, there are Lascoux-atom polynomials, which are K-theoretical 
-analogs of the \hyperref[atom]{Demazure atom polynomials}.
+Similarly, there are \hyperref[lascouxAtom]{Lascoux-atom polynomials}, which
+are $K$-theoretic analogues of the
+\hyperref[atom]{Demazure atom polynomials}.
 
-\emph{Note:} There seem to be other types of polynomials referred to as Lascoux polynomials,
+\emph{Note:} There seem to be other types of polynomials referred to as
+Lascoux polynomials,
 e.g. \cite{BorziChenMotwaniVenturelloVodicka2021}.
 
 
 \subsection[lascouxDefinition]{Definition}
 
 We use the same notation as in the operator definition of \hyperref[key]{key polynomials}.
-Define the $\beta$-versions of the divided difference operator $\partial_i$, and $\pi_i$:
+Define the \defin{$\beta$-divided difference operators}
+\label{betaDividedDifferenceOperator} $\partial_i^{(\beta)}$ and
+\(\pi_i^{(\beta)}\):
 \[
 \partial_i^{(\beta)}(f) \coloneqq 
 \partial_i(f + \beta x_{i+1} f)
@@ -57,27 +67,32 @@ The \defin{Lascoux polynomial} is then defined as
 Note that $\key_{\alpha}(\xvec) = \lascoux^{(0)}_{\alpha}(\xvec)$,
 that is, at $\beta=0$ we recover a key polynomial.
 
-The first combinatorial model for Lascoux polynomials was conjectured by \name{Cara Monical} in \cite{Monical2017},
-where these are given as a sum over certain set-valued tableaux. 
-They also provide a combinatorial formula involving set-valued \emph{skyline fillings} 
+The first combinatorial model for Lascoux polynomials was conjectured by
+\name{Cara Monical} in \cite{Monical2017}, where these are given as a sum over
+certain \defin{set-valued tableaux}\label{lascouxSetValuedTableau}.
+They also provide a combinatorial formula involving
+\defin{set-valued skyline fillings}\label{setValuedSkylineFilling}
 (terminology from \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}).
-A proof of this conjecture was later given in \cite[Thm. 4.1]{BuciumasScrimshawWeber2020}.
+A proof of this conjecture was later given in
+\cite[Thm.~4.1]{BuciumasScrimshawWeber2020}.
 \todo{Add a worked Monical set-valued skyline filling example for a small
 Lascoux polynomial, backed by paper and Rust checks.}
 
-Another set-valued tableau formula is proved in \cite[Thm. 1.1]{ReinerYong2021}.
-A set-valued tableau formula is also given in \cite[Thm. 3.16]{Yu2023}.
+Another set-valued tableau formula is proved in
+\cite[Thm.~1.1]{ReinerYong2021}.
+A set-valued tableau formula is also given in \cite[Thm.~3.16]{Yu2023}.
 Here, the tableaux have composition shape, and the author argues that his formula 
 is simpler, as it does not use the Lusztig involution.
 
-In \cite{MonicalPechenikScrimshaw2018}, the question is raised whether there is some type of K-theoretical
+In \cite{MonicalPechenikScrimshaw2018}, the question is raised whether there
+is some type of $K$-theoretic
 crystal structure for Lascoux polynomials.  Yu's set-valued-tableau operators
 give an answer in the context of abstract Kashiwara crystals: they behave as
 a $K$-theoretic analogue of Demazure crystals and satisfy the corresponding
 generation properties \cite[Sec.~5]{Yu2023}.
 
 The Lascoux polynomials also have a diagram formula using
-\defin{$K$-Kohnert diagrams}.  This was conjectured by
+\defin{$K$-Kohnert diagrams}\label{kKohnertDiagram}.  This was conjectured by
 \name{Colleen Ross} and \name{Alexander Yong}, and proved by
 \name{Jianping Pan} and \name{Tianyi Yu} via a weight-preserving
 bijection with reverse set-valued tableaux
@@ -212,7 +227,8 @@ stable shifted Grothendieck functions have positive finite expansions in
 stable Grothendieck functions \cite[Thms.~3.28 and~3.41]{MarbergScrimshaw2026}.
 
 \name{Cara Monical}, \name{Oliver Pechenik}, and \name{Dominic Searles}
-introduce the \defin{quasiLascoux basis} and \defin{kaon basis} in
+introduce the \defin{quasiLascoux basis}\label{quasiLascouxBasis} and
+\defin{kaon basis}\label{kaonBasis} in
 combinatorial $K$-theory
 \cite{MonicalPechenikSearles2021}.  The quasiLascoux basis is a
 $K$-theoretic deformation of the quasikey basis and a polynomial lift of
@@ -252,4 +268,4 @@ $0$ or $1$, and the proof is by a sign-reversing involution.
 
 In \cite{BuciumasScrimshawWeber2020}, the authors construct a 5-vertex model 
 whose partition function is a Lascoux atom.
-This is the first combinatorial model for the Lascoux-atoms.
+This is the first combinatorial model for the Lascoux atoms.
