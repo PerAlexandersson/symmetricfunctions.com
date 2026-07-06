@@ -1,21 +1,28 @@
 \metatitle{Touchard--Riordan polynomials}
 \metadescription{Touchard--Riordan polynomials and Catalan objects.}
+\metakeywords{Touchard--Riordan polynomials,Dyck paths,perfect matchings,
+Pfaffians,rook placements,Macdonald polynomials}
 
 
 \section[unitIntervalAO]{A weighted Dyck path enumeration}
 
-In the \hyperref[chromaticQuasisymmetricGesselExpansion]{expansion of chromatic quasisymmetric functions}
-in the \hyperref[gessel]{Gessel quasisymmetric fundamental basis}, the following expression shows up,
-where $\avec$ is the area sequence of a \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graph}.
-The number of area sequences of length $n$ is given by the $n$th Catalan number, and
-there is a natural correspondence between area sequences and Dyck paths in $\DP(n)$.
+In the \hyperref[chromaticQuasisymmetricGesselExpansion]{expansion of
+chromatic quasisymmetric functions} in the \hyperref[gessel]{Gessel
+quasisymmetric fundamental basis}, the following expression shows up, where
+$\avec$ is the \hyperref[areaSequence]{area sequence} of a
+\hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graph}.
+The number of area sequences of length $n$ is given by the $n$th Catalan
+number, and there is a natural correspondence between area sequences and
+\hyperref[qtCatalan]{Dyck paths} in $\DP(n)$.
 
-Let $\avec$ be an area sequence of length $n$ and let $X_{\avec}(q) \coloneqq \prod_{i=1}^n [a_i+1]_q$,
+Let $\avec$ be an area sequence of length $n$ and let
+$X_{\avec}(q) \coloneqq \prod_{i=1}^n [a_i+1]_q$,
 where we use the $q$-analogue $[n]_q = 1+q+q^2+\dotsb+q^{n-1}$.
 Notice that $X_{\avec}(q)$ defines a weight on the corresponding Dyck path.
 This weight is quite remarkable.
 
-By using \cite[Thm. 1]{Flajolet2006}, we immediately get the following continued fraction:
+By using \cite[Thm.~1]{Flajolet2006}, we immediately get the following
+continued fraction:
 \[
 \sum_{n\geq 0} z^n \sum_{\avec \in \DP(n) } X_{\avec}(q) =
 \cfrac{1}{
@@ -29,8 +36,9 @@ By using \cite[Thm. 1]{Flajolet2006}, we immediately get the following continued
 \subsection[aoPerfectMatchings]{Perfect matchings}
 
 Let $\setPM(n)$ be the set of perfect matchings on $[2n]$, placed in a circle.
-Let $cr(M)$ denote the number of crossings. Let the \defin{Touchard--Riordan polynomials},
-see \oeis{A067311} be defined as
+Let $cr(M)$ denote the number of crossings.  Let the
+\defin{Touchard--Riordan polynomials}\label{touchardRiordanPolynomialDefinition},
+see \oeis{A067311}, be defined as
 \[
 T_n(q) = \sum_{M \in \setPM(n)} q^{cr(M)}.
 \]
@@ -77,9 +85,9 @@ m_2 & m_4 &  m_6 &\dotsc & m_{2n},
 \end{bmatrix}
 \]
 where $m_{2i-1} \lt m_{2i}$ for $i\in [n]$ and $m_{2i-1} \lt m_{2i+1}$
-for all $i \in [n-1]$. That is, the top row is strictly increasing, and the smallest entry in each column
-appear at the top.
-We write $(i,j) \in M$ whenever $\binom{i}{j}$ appear as a column in $M$.
+for all $i \in [n-1]$.  That is, the top row is strictly increasing, and the
+smallest entry in each column appears at the top.
+We write $(i,j) \in M$ whenever $\binom{i}{j}$ appears as a column in $M$.
 
 \name{Renan Gross} and \name{Anđela Šarković} study a related Markov chain
 on chord diagrams where the chords match the sides of a $2n$-gon, rather than
@@ -89,16 +97,16 @@ genus is preserved.  For fixed genus, the chain is irreducible except for the
 maximal-genus Bolza diagram, and its mixing time is polynomial in $n$.
 
 
-\subsection[pfaffian]{The pfaffian}
+\subsection[pfaffian]{The Pfaffian}
 
-Perfect matchings are closely related to pfaffians.
+Perfect matchings are closely related to Pfaffians.
 Let $A$ be a $2n \times 2n$ skew-symmetric matrix.
-The \defin{pfaffian} of $A$ is defined as
+The \defin{Pfaffian}\label{pfaffianDefinition} of $A$ is defined as
 \[
 \pfaff(A) \coloneqq \sum_{M \in \setPM(n)} (-1)^{cr(M)} \prod_{(i,j) \in M} a_{ij}.
 \]
 We have that $\pfaff(A)^2 = |A|$.
-See \cite{Stembridge1990} for combinatorial applications of the pfaffian.
+See \cite{Stembridge1990} for combinatorial applications of the Pfaffian.
 
 
 
@@ -106,10 +114,11 @@ See \cite{Stembridge1990} for combinatorial applications of the pfaffian.
 
 There is a natural projection $\psi$ from perfect matchings to Dyck paths.
 
-Let $a_i \coloneqq (2i-1) - m_{2i-1}$ be the \defin{area sequence} of the matching $M$.
+Let $a_i \coloneqq (2i-1) - m_{2i-1}$ be the
+\defin{area sequence}\label{touchardRiordanAreaSequence} of the matching $M$.
 This defines a map from $\setPM(n)$ to $\DP(n)$.
 One can show $\psi$ is surjective and that $\psi: \setPM(n) \to \DP(n)$
-restricted to \emph{non-crossing} perfect matchings is a bijection.
+restricted to \emph{noncrossing} perfect matchings is a bijection.
 
 \begin{example}
 
@@ -136,10 +145,11 @@ which is the Dyck path $0 0 0 1 0 1 1 0 1 0 1 1$.
 
 \subsection[aoOnUnitIntervalGraphs]{Acyclic orientations of unit interval graphs}
 
-Let $AO(\avec)$ be the set of acyclic orientations on the unit interval graph with area sequence $\avec$.
+Let $AO(\avec)$ be the set of \hyperref[acyclicOrientation]{acyclic
+orientations} on the unit interval graph with area sequence $\avec$.
 Furthermore, let $\asc(\theta)$ be the number of edges oriented from smaller to larger vertex label.
 Then
-\begin{theorem}[See \cite[Section 9]{AlexanderssonPanova2018}]
+\begin{theorem}[See \cite[Sec.~9]{AlexanderssonPanova2018}]
 \[
  X_\avec(q) = \sum_{\theta \in AO(\avec)} q^{\asc(\theta)}.
 \]
@@ -153,7 +163,7 @@ Let $RP(\avec)$ be the set of non-attacking rook placements on this board, using
 An \defin{inversion} of a rook placement $\pi$ is a square on the board with no rook above it,
 and no rook to its left. Let $\inv(\pi)$ denote the number of such inversions.
 
-\begin{theorem}[See e.g. \cite[Section 9]{AlexanderssonPanova2018}]
+\begin{theorem}[See, for example, \cite[Sec.~9]{AlexanderssonPanova2018}]
 \[
 X_\avec(q) = \sum_{\pi \in RP(\avec)} q^{\inv(\pi)}.
 \]
@@ -161,16 +171,18 @@ X_\avec(q) = \sum_{\pi \in RP(\avec)} q^{\inv(\pi)}.
 
 The fact that the number of rook placements factors
 nicely was first proved in \cite{GoldmanJoichiWhite1975}.
-Another $q$-analog of the above identity is due to \name{Adriano Garsia} and \name{Jeffrey Remmel}, \cite{GarsiaRemmel1986},
+Another $q$-analogue of the above identity is due to \name{Adriano Garsia}
+and \name{Jeffrey Remmel} \cite{GarsiaRemmel1986}.
 
 
 \subsection[aoMacdonald]{Macdonald polynomials}
 
-In \cite[Prop. 5.9]{AlexanderssonUhlin2020} \name{Joakim Uhlin} and I prove that
+\name{Per Alexandersson} and \name{Joakim Uhlin} prove that
 \[
 [\monomial_{1^{2n}}] \macdonaldE_{(n,n)}(\xvec;q,0) = [n]_q! T_n(q).
 \]
-This formula appears as a conjecture in \cite{Uhlin2019}.
+This is \cite[Prop.~5.9]{AlexanderssonUhlin2020}; the formula appears as a
+conjecture in \cite{Uhlin2019}.
 
 The same paper explains how this specialization sits inside the usual
 Macdonald hierarchy.  For a partition $\lambda$, the polynomial
