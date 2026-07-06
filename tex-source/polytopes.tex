@@ -1,5 +1,10 @@
 \metatitle{Polytopes}
-\metadescription{An introduction to lattice polytopes, Ehrhart polynomials, order polytopes, generalized permutohedra, flow and root polytopes, IDP, Gorenstein and reflexive polytopes, and magic positivity.}
+\metadescription{An introduction to lattice polytopes, Ehrhart polynomials,
+order polytopes, generalized permutohedra, flow and root polytopes, IDP,
+Gorenstein and reflexive polytopes, and magic positivity.}
+\metakeywords{lattice polytope, Ehrhart polynomial, h-star polynomial,
+order polytope, chain polytope, generalized permutohedron, flow polytope,
+root polytope, reflexive polytope, Gorenstein polytope}
 
 
 
@@ -17,19 +22,20 @@ maximal chains of faces.
 
 \name{Marie-Charlotte Brandenburg}, \name{Jesús A. De Loera}, and
 \name{Chiara Meroni} study exact algorithms for cutting \defin{polytopal
-measures}\label{polytopalMeasure}, meaning Lebesgue measure restricted to finite unions of
-full-dimensional convex polytopes \cite{BrandenburgLoeraMeroni2026x}.  For
-fixed ambient dimension, their algorithms describe all ham-sandwich cuts and
-more general prescribed-proportion cuts as semialgebraic sets in polynomial
-time.  They also compute centerpoints of rational polytopal measures, and show
-that the centerpoints of a convex polytope are exactly its floating body at
-level $1/(d+1)$.
+measures}\label{polytopalMeasure}, meaning Lebesgue measure restricted to
+finite unions of full-dimensional convex polytopes
+\cite{BrandenburgLoeraMeroni2026x}.  For fixed ambient dimension, their
+algorithms describe all ham-sandwich cuts and more general
+prescribed-proportion cuts as semialgebraic sets in polynomial time.  They also
+compute centerpoints of rational polytopal measures, and show that the
+centerpoints of a convex polytope are exactly its floating body at level
+$1/(d+1)$.
 
 
 
 \section[ehrhart]{The Ehrhart polynomial and $h^*$-vector}
 
-Let $P$ be a lattice polytope. The number of lattice points in the dilation
+Let $P$ be a lattice polytope.  The number of lattice points in the dilation
 $n\cdot P$ is a polynomial in $n$.
 The \defin{Ehrhart polynomial of $P$}\label{ehrhartPolynomialDefinition}
 is the polynomial
@@ -41,11 +47,12 @@ The \defin{Ehrhart series}\label{ehrhartSeries} is
 where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the
 \defin{$h^*$-polynomial}\label{hStarPolynomial} of $P$.
 The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the
-\defin{$h^*$-vector}\label{hStarVector}; all its entries are non-negative integers, see
-\cite{Stanley1993} and \cite{Beck2007}.
+\defin{$h^*$-vector}\label{hStarVector}; all its entries are nonnegative
+integers, see \cite{Stanley1993} and \cite{Beck2007}.
 
 For a $d$-dimensional polytope, we have the following relation between
-entries in the $h^*$-vector and the Ehrhart polynomial:
+entries in the \hyperref[hStarVector]{$h^*$-vector} and the
+\hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial}:
 \[
  E_P(t) = \sum_{j=0}^d \binom{t+d-j}{d} h^*_j.
 \]
@@ -64,12 +71,13 @@ For a \emph{rational} polytope $P$ with denominator $q$
 the lattice-point counting function $E_P(t) = |tP \cap \setZ^d|$ is a
 \defin{quasi-polynomial}\label{ehrhartQuasiPolynomial} of degree $d$
 and period dividing $q$.
-The Ehrhart series then satisfies
+The \hyperref[ehrhartSeries]{Ehrhart series} then satisfies
 \[
  \sum_{n \geq 0} E_P(n) z^n = \frac{h^*(P;z)}{(1-z^q)^{d+1}},
 \]
 where $h^*(P;z)$ is a polynomial of degree at most $q(d+1)-1$
-with non-negative integer coefficients, see \cite{Beck2007} and \cite{Stanley1993}.
+with nonnegative integer coefficients, see \cite{Beck2007} and
+\cite{Stanley1993}.
 
 \name{Jesús A. De Loera}, \name{Laura Escobar}, \name{Nathan Kaplan}, and
 \name{Chengyang Wang} develop a
@@ -83,15 +91,17 @@ such as Kostka coefficients.
 \name{Esme Bajo}, \name{Robert Davis}, \name{Jesús A. De Loera},
 \name{Alexey Garber}, \name{Sofía Garzón Mora}, \name{Katharina Jochemko},
 and \name{Josephine Yu} develop a weighted Ehrhart theory extending
-Stanley's non-negativity theorem \cite{BajoDavisLoeraGarberMoraJochemkoYu2024}.
-They prove non-negativity for weighted $h^*$-polynomials when the weights are
+Stanley's nonnegativity theorem \cite{BajoDavisLoeraGarberMoraJochemkoYu2024}.
+They prove nonnegativity for weighted $h^*$-polynomials when the weights are
 homogeneous polynomials decomposable into products of linear forms which are
-non-negative on the polytope.
+nonnegative on the polytope.
 
 Some rational polytopes exhibit \hyperref[periodCollapse]{period collapse},
 meaning the Ehrhart quasi-polynomial is in fact a polynomial.
 Certain \hyperref[gtKostkaEhrhart]{Gelfand--Tsetlin polytopes} have this property.
-However, not every such polynomial arises as the Ehrhart polynomial of a lattice polytope.
+However, not every such polynomial arises as the
+\hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial} of a lattice
+polytope.
 For example, \cite{HaaseMcAllister2007} construct a rational polygon $Q$
 whose Ehrhart function is a polynomial with linear coefficient $1$,
 but no integral polygon has this property.
@@ -113,11 +123,13 @@ The \defin{Ehrhart--Macdonald reciprocity} states that
 where $E_{P^\circ}(t) = |t P^\circ \cap \setZ^d|$ counts the lattice points
 in the \emph{interior} of $tP$.
 In terms of the Ehrhart series, this is equivalent to the relation
-$H_P(t) = t^{d+1} H_P(1/t)$, meaning the $h^*$-vector is palindromic if and
+$H_P(t) = t^{d+1} H_P(1/t)$, meaning the
+\hyperref[hStarVector]{$h^*$-vector} is palindromic if and
 only if the polytope is \hyperref[gorenstein]{Gorenstein}.
 The reciprocity can be seen as a discrete analogue of Poincar\'e duality.
-This was first proved by \name{Ian G. Macdonald} \cite{Macdonald1971} for lattice polytopes;
-see \cite{Beck2007} for an alternative proof in the rational case.
+This was first proved by \name{Ian G. Macdonald} \cite{Macdonald1971} for
+lattice polytopes; see \cite{Beck2007} for an alternative proof in the
+rational case.
 
 
 
@@ -157,22 +169,28 @@ see \cite[Fig.~3.87]{StanleyEC1} and \cite{Alexandersson2019CounterExamples}.
 
 
 Let $Z_n$ be the zig-zag poset with cover relations
-$z_1<z_2>z_3<z_4>\dotsb$.  The $h^*$-polynomial of the order polytope
+$z_1<z_2>z_3<z_4>\dotsb$.  The
+\hyperref[hStarPolynomial]{$h^*$-polynomial} of the order polytope
 $\mathcal{O}(Z_n)$ has a combinatorial interpretation in terms of the swap
 statistic on alternating permutations.  This also gives another proof that
-its coefficients are symmetric and unimodal; see \cite{CoonsSullivant2023}.
+its coefficients are symmetric and \hyperref[unimodalPolynomial]{unimodal};
+see \cite{CoonsSullivant2023}.
 \name{Teemu Lundström} and \name{Leonardo Saud Maia Leite} study the order
 polytopes of crown posets \cite{LundstromLeite2026}.  They give formulas for
-$f$-vectors, recurrences for Ehrhart polynomials, and an $h^*$-interpretation
-using cyclically alternating permutations.
+$f$-vectors, recurrences for
+\hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomials}, and an
+interpretation of the \hyperref[hStarPolynomial]{$h^*$-polynomial} using
+cyclically alternating permutations.
 
 \name{Benjamin Braun} and \name{Aryaman Jal} prove that order polytopes of
-generalized snake posets have real-rooted $h^*$-polynomials
+generalized snake posets have \hyperref[realRootedPolynomial]{real-rooted}
+\hyperref[hStarPolynomial]{$h^*$-polynomials}
 \cite{BraunJal2026x}.  These posets are width-two distributive lattices, and
 the proof uses Stanley's interpretation of the $h^*$-polynomial as a
-$P$-Eulerian polynomial, its realization as a non-nesting rook polynomial, and
-interlacing recurrences.  The ladder and regular snake cases recover the
-Narayana and Delannoy polynomials, respectively.
+\hyperref[pEulerianPolynomial]{$P$-Eulerian polynomial}, its realization as a
+non-nesting rook polynomial, and interlacing recurrences.  The ladder and
+regular snake cases recover the Narayana and Delannoy polynomials,
+respectively.
 
 
 \subsection[chainPolytope]{Chain polytopes}
@@ -185,23 +203,26 @@ polytope in $\setR_{\geq 0}^{P}$ cut out by
   x_{p_1}+x_{p_2}+\dotsb+x_{p_k}\leq 1
 \]
 for every chain $p_1<_P p_2<_P\dotsb<_P p_k$.  Stanley introduced chain
-polytopes together with order polytopes \cite{Stanley86TwoPosetPolytopes};
-the two have the same Ehrhart polynomial.
+polytopes together with
+\hyperref[orderPolytopeDefinition]{order polytopes}
+\cite{Stanley86TwoPosetPolytopes}; the two have the same
+\hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial}.
 
 
 
 \subsection[markedOrderPolytope]{Marked order polytopes}
 
-The \defin{marked order polytopes}\label{markedOrderPolytopeDefinition}
-generalize order polytopes, see
-\cite{ArdilaBliemSalazar2011},
-where we replace the conditions $0 \leq x_i \leq 1$ with
+The \defin{marked order polytope}\label{markedOrderPolytopeDefinition}
+generalizes the \hyperref[orderPolytopeDefinition]{order polytope}; see
+\cite{ArdilaBliemSalazar2011}.
+It is obtained by replacing the conditions $0 \leq x_i \leq 1$ with
 $a_i \leq x_i \leq b_i$ for $1\leq i \leq n$,
 where the $a_i$ and $b_i$ are constants.
 
 \name{Jan Stricker} studies $2$-levelness for marked order, marked chain, and
-marked chain-order polytopes, and gives an exact formula for the Ehrhart
-polynomial of marked order polytopes \cite{Stricker2024x}.  Via transfer
+marked chain-order polytopes, and gives an exact formula for the
+\hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial} of marked order
+polytopes \cite{Stricker2024x}.  Via transfer
 between the marked models, the same polynomial also gives the Ehrhart
 polynomial for the corresponding marked chain and marked chain-order
 polytopes.
@@ -243,14 +264,16 @@ Let $G=(V,E)$ be a directed graph and let $a\in\setR^V$ satisfy
   \sum_{v\in V} a_v=0.
 \]
 The \defin{flow polytope}\label{flowPolytopeDefinition}
-$\mathcal{F}_G(a)$ is the set of non-negative
+$\mathcal{F}_G(a)$ is the set of nonnegative
 flows $f:E\to\setR_{\geq 0}$ such that, for every vertex $v$,
 \[
   \sum_{e=(v,w)} f(e)-\sum_{e=(u,v)} f(e)=a_v.
 \]
-Thus the vector $a$ records the netflow at each vertex. Flow polytopes are
-closely related to root polytopes, Kostant partition functions, and
-Gelfand--Tsetlin polytopes; see for example \cite{LiuMeszarosDizier2019flow}.
+Thus the vector $a$ records the netflow at each vertex.  Flow polytopes are
+closely related to \hyperref[rootPolytopeDefinition]{root polytopes},
+\hyperref[kostantPartitionFunction]{Kostant partition functions}, and
+\hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes}; see for example
+\cite{LiuMeszarosDizier2019flow}.
 \name[Rafael S. Gonz{\'a}lez D'Le{\'o}n]{Rafael S.~Gonz{\'a}lez D'Le{\'o}n},
 \name{Christopher R. H. Hanusa}, and \name{Martha Yip} introduce permutation
 flows as a combinatorial model for triangulations of flow polytopes
@@ -330,7 +353,8 @@ The related \defin{symmetric edge polytope}\label{symmetricEdgePolytope} is
   P_G^{\pm} \coloneqq
   \operatorname{conv}\{\pm(e_i-e_j): \{i,j\}\in E\}.
 \]
-Symmetric edge polytopes often appear in Ehrhart-theoretic questions, for
+Symmetric edge polytopes often appear in
+\hyperref[ehrhart]{Ehrhart-theoretic} questions, for
 example in gamma-positivity and magic positivity problems.
 
 
@@ -365,7 +389,7 @@ $\operatorname{PF}(u)$ is the convex hull of all $u$-parking functions.
 
 \name{Fu Liu} and \name{Warut Thawinrak} study these polytopes, including
 their normal fans, face posets, $h$-polynomials, volumes, and Ehrhart
-polynomials \cite{LiuThawinrak2025x}.  In this non-negative convention,
+polynomials \cite{LiuThawinrak2025x}.  In this nonnegative convention,
 the classical parking functions correspond to $u=(0,1,\dotsc,n-1)$.
 
 \name{Mitsuki Hanada}, \name{John Lentfer}, and
@@ -413,19 +437,21 @@ unique lattice point $m$, and the translation $rP-m$ is reflexive.
 
 \section[magicPositiveEhrhart]{Magic positivity and reflexive polytopes}
 
-Following \cite{FerroniHigashitani2024}, a degree-$d$ polynomial $f(n)$ is called
-\defin{magic positive}\label{magicPositivePolynomial}
+Following \cite{FerroniHigashitani2024}, a degree-$d$ polynomial $f(n)$ is
+called \defin{magic positive}\label{magicPositivePolynomial}
 if it can be written in the form
 \[
  f(n) = \sum_{i=0}^d a_i n^i (n+1)^{d-i}
 \]
 with $a_i \geq 0$ for all $i$.
-For Ehrhart polynomials, this basis is useful because it links coefficient positivity
-to real-rootedness of the corresponding $h^*$-polynomial.
+For Ehrhart polynomials, this basis is useful because it links coefficient
+positivity to \hyperref[realRootedPolynomial]{real-rootedness} of the
+corresponding \hyperref[hStarPolynomial]{$h^*$-polynomial}.
 
 \begin{theorem}[Brändén; see \cite[Thm.~4.19]{FerroniHigashitani2024}]
 If the Ehrhart polynomial $E_P(n)$ of a lattice polytope is magic positive,
-then $E_P(n)$ has non-negative coefficients and $h^*_P(t)$ is real-rooted.
+then $E_P(n)$ has nonnegative coefficients and $h^*_P(t)$ is
+\hyperref[realRootedPolynomial]{real-rooted}.
 \end{theorem}
 
 If $W$ denotes Wagner's transformation characterized by
@@ -444,11 +470,11 @@ negative Ehrhart coefficients, and open problems around Ehrhart positivity
 \name{Masato Konoike} studies how dilation affects magic positivity
 \cite{Konoike2025x}.  Every polynomial with positive real coefficients becomes
 magic positive after sufficiently large positive dilation, but for each
-dimension $d\geq 3$ there are polytopes whose fixed dilates are not magic
+dimension $d\geq 3$, some polytopes have fixed dilates that are not magic
 positive.
 
 \begin{example*}[Pitman--Stanley polytopes]
-Let $y=(y_1,\dotsc,y_n)\in \setZ_{>0}^n$. The
+Let $y=(y_1,\dotsc,y_n)\in \setZ_{>0}^n$.  The
 \defin{Pitman--Stanley polytope}\label{pitmanStanleyPolytope} is
 \[
   \Pi_n(y)
@@ -472,8 +498,10 @@ then $n!c_i$ counts $y$-parking functions with exactly $i$ lucky cars
 in a modified parking protocol.
 
 It follows from Brändén's theorem that the $h^*$-polynomial
-$h^*_{\Pi_n(y)}(z)$ is real-rooted. In particular, its coefficients are
-log-concave and unimodal.
+$h^*_{\Pi_n(y)}(z)$ is
+\hyperref[realRootedPolynomial]{real-rooted}.  In particular, its coefficients
+are \hyperref[logConcavePolynomial]{log-concave} and
+\hyperref[unimodalPolynomial]{unimodal}.
 
 For computations, one may use the lattice-point function
 \[
@@ -513,7 +541,8 @@ classical parking function interpretation.
 \end{example*}
 
 \begin{example*}[Stasheff and symmetric edge polytopes]
-In \cite{Konoike2024x}, \name{Masato Konoike} studies two reflexive families.
+\name{Masato Konoike} studies two reflexive families
+\cite{Konoike2024x}.
 Let
 \[
  \operatorname{St}_d \coloneqq \operatorname{conv}\left(
@@ -523,8 +552,8 @@ Let
 \]
 Then $\operatorname{St}_d$ is the dual of the
 $d$-dimensional \hyperref[stasheffPolytope]{Stasheff polytope},
-and Konoike proves that the Ehrhart polynomial of the Stasheff polytope $\operatorname{St}_d^*$
-is magic positive.
+and Konoike proves that the Ehrhart polynomial of the Stasheff polytope
+$\operatorname{St}_d^*$ is magic positive.
 
 For the cycle graph $C_{d+1}$, the
 \hyperref[symmetricEdgePolytope]{symmetric edge polytope} is
