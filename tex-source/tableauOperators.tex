@@ -1,5 +1,7 @@
 \metatitle{Operations on Young tableaux}
 \metadescription{The Bender--Knuth involutions, evacuation, promotion and jeu-de-taquin}
+\metakeywords{Bender--Knuth involution, evacuation, promotion, jeu de taquin,
+Young tableau operation, tableau crystal operator}
 
 
 \section[tableauOperations]{Operations on Young tableaux}
@@ -14,7 +16,8 @@ Here is an overview of the notation:
 \begin{itemize}
 \item $\revCompl : \symS_n \to \symS_n$ via $\pi \to n+1 - \rev(\pi)$,
   the \defin{reverse-complement operator}\label{reverseComplementOperator}.
-\item $\revCompl_m : [m]^n \to [m]^n$ is defined similarly as  $w \to m+1 - \rev(w)$.
+\item $\revCompl_m : [m]^n \to [m]^n$ is defined similarly as
+$w \to m+1 - \rev(w)$.
 \item $BK_i$ is the Bender--Knuth involution.
 \item $\evac$ and $\evac^*$ are evacuation and dual evacuation, respectively.
 \item $\promotion$ is promotion.
@@ -22,7 +25,8 @@ Here is an overview of the notation:
 \item $\ins$ is the operator that sends a word to its insertion tableau under row insertion.
 \end{itemize}
 
-We let $\revCompl$ act on skew standard Young tableaux with $n$ boxes by rotating the shape $180^\circ$
+We let $\revCompl$ act on skew standard Young tableaux with $n$ boxes by
+rotating the shape $180^\circ$
 and sending entry $k$ to $n+1-k$.
 
 
@@ -72,7 +76,8 @@ while the image has weight $(6,3,10,4)$.
 
 
 The operations $BK_i$ can be used to show that Schur polynomials are symmetric.
-Note however that the $BK_i$ \emph{do not} satisfy the \hyperref[braidRelations]{braid relations}!
+Note, however, that the $BK_i$ \emph{do not} satisfy the
+\hyperref[braidRelations]{braid relations}!
 See the \hyperref[crystalOperators]{Lascoux--Schützenberger involutions}
 instead for such a family of involutions.
 
@@ -87,8 +92,8 @@ groups.
 
 \subsection[jeuDeTaquin]{Jeu de taquin}
 
-There is a particular method to convert a skew SSYT to a non-skew shape
-via a series of slides, called
+A standard method converts a skew SSYT to a straight shape via a series of
+slides, called
 \defin{jeu de taquin}\label{jeuDeTaquinOperation}.
 The slides are defined as follows under the conditions
 that $a \lt b$ and $a \leq b$, respectively.
@@ -192,11 +197,13 @@ anti-diagonal skew shape from the theorem above and rectifying:
 \]
 \end{example*}
 
-For a skew SSYT $T$, $\ins(\rw(T)) = \jdt(T)$. In other words,
-performing jeu-de-taquin gives the same result as row insertion of the reading word of $T$.
+For a skew SSYT $T$, $\ins(\rw(T)) = \jdt(T)$.  In other words,
+performing jeu-de-taquin gives the same result as row insertion of the
+reading word of $T$.
 
 Recall the notion of \hyperref[tableauDescentSet]{descent} for skew SYT.
-In \cite[Lem.~3.2]{DoranIV1997}, it is shown that jeu-de-taquin preserves the descent set.
+\name{William F. Doran IV} proves that jeu-de-taquin preserves the descent
+set \cite[Lem.~3.2]{DoranIV1997}.
 This can be generalized to semistandard Young tableaux.
 
 \name{Nohra Hage} studies a super version of jeu de taquin, related to a
@@ -220,8 +227,9 @@ then swap 2 and 3 if they are not in the same row or column, and so on.
 
 \name{Marcel-Paul Schützenberger} showed that $\promotion^n(T)=T$
 for any standard Young tableau $T$ of \emph{rectangular} shape, with $n$ boxes.
-For SYT of shape $2 \times k$, there is a bijection to non-crossing matchings,
-such that promotion is mapped to rotation, see \hyperref[cspNonCrossingMatchingsI]{this example of cyclic sieving}.
+For SYT of shape $2 \times k$, a bijection to non-crossing matchings sends
+promotion to rotation; see
+\hyperref[cspNonCrossingMatchingsI]{this example of cyclic sieving}.
 
 Promotion has the following properties, where $T$ is any skew standard Young tableau:
 \[
