@@ -1,5 +1,6 @@
 \metatitle{Specht modules}
-\metadescription{An introduction to Specht modules, their construction using tableaux, and their role in representing the symmetric group.}
+\metadescription{An introduction to Specht modules, their construction using
+tableaux, and their role in representing the symmetric group.}
 \metakeywords{Specht modules,symmetric group,tableaux,row-stabilizer,column-stabilizer,polytabloid}
 
 \section[spechtModules]{Specht modules}
@@ -7,37 +8,31 @@
 
 \subsection[spechtModulesIntro]{Introduction to Specht modules}
 
-The purpose of \defin{Specht modules} is to construct $\symS_n$-modules, one for each partition of $n$,
-such that the modules are irreducible.
+The \defin{Specht module} $S^\lambda$ is the basic irreducible
+$\symS_n$-module attached to a partition $\lambda\vdash n$.
+Over $\setC$, the modules $S^\lambda$, as $\lambda$ ranges over all
+partitions of $n$, form a complete set of pairwise non-isomorphic irreducible
+$\symS_n$-modules.  Their characters are sent by the
+\hyperref[frobeniusCharacteristic]{Frobenius characteristic} to the
+\hyperref[schurFunction]{Schur functions}:
+\[
+  \frobChar(S^\lambda)=\schurS_\lambda.
+\]
+The construction below is the standard tableau construction; see
+\cite{Fulton1997,Sagan2001,JamesKerber1984}.
 
-For related work, \name{Rowena Paget} and \name{Mark Wildon} construct
-homomorphisms from Specht modules into Foulkes modules \cite{PagetWildon2011}.
-\name{Reuven Hodges} and \name{Hanzhang Yin} give a non-iterative
-straightening algorithm for skew Schur modules, a closely related tableau-based
-construction \cite{HodgesYin2025x}.
+\subsection[spechtTabloids]{Tabloids}
 
-\name{Jesse Kim} constructs a rotation-invariant web basis for the Specht
-modules $S^{(d^3,1^{n-3d})}$, indexed by normal plabic graphs or augmented
-$\mathrm{SL}_3$ webs \cite{Kim2024x}.  The construction gives skein relations
-for the $\symS_n$-action and leads to a cyclic-sieving result for the
-corresponding $q$-hook length formula.
+In order to construct an $\symS_n$-module, we first need a vector space on
+which $\symS_n$ acts.  A \defin{tableau} of shape $\lambda$ is a filling of
+the Young diagram $\lambda$ with $\{1,2,3,\dotsc,n\}$, using each entry once.
+The \defin{row-stabilizer} $R_T$ of a tableau $T$ is the set of permutations
+that keep entries within rows.  Similarly, the
+\defin{column-stabilizer} $C_T$ of $T$ is the set of permutations that keep
+entries within columns.
 
-\name{Maria Gillespie} studies higher Specht polynomials in two sets of
-variables under the diagonal action of $\symS_n$ \cite{Gillespie2024x}.  In
-particular, she constructs a higher Specht basis for Garsia--Haiman modules
-for hook shapes.  In a complementary direction, \name{Shaul Zemel}
-generalizes higher Specht polynomials to homogeneous representations and
-quotients related to the rings $R_{n,k,s}$ \cite{Zemel2025x}.
-
-
-In order to construct an $\symS_n$-module, we need a vector space on which $\symS_n$ acts.
-A \defin{tableau} of shape $\lambda$ is a filling of the Young diagram $\lambda$ with $\{1,2,3,\dotsc,n\}$.
-The \defin{row-stabilizer} $R_T$ of a tableau $T$ is the set of permutations that keep entries within rows.
-Similarly, \defin{column-stabilizer} $C_T$ of a tableau $T$ is the set of permutations
-that preserves the column entries.
-
-For example, the following tableaux are in the same orbit under $R_T$, and there are $3! \cdot 2!$
-permutations total in $R_T$.
+For example, the following tableaux are in the same orbit under $R_T$, and
+there are $3! \cdot 2!$ permutations total in $R_T$.
 \begin{figure}
 \begin{ytableau}
 1 & 2 & 4 \\
@@ -49,8 +44,8 @@ permutations total in $R_T$.
 \end{ytableau}
 \end{figure}
 
-Similarly, all tableaux which can be obtained from the first one by
-some element in $C_T$ are the following.
+Similarly, the tableaux which can be obtained from the first one by some
+element of $C_T$ are the following.
 \begin{figure}
 \begin{ytableau}
 1 & 2 & 4 \\
@@ -70,10 +65,144 @@ some element in $C_T$ are the following.
 \end{ytableau}
 \end{figure}
 
-Two tableaux are considered \emph{equivalent} if they are in the same orbit under $R_T$,
-and that $\symS_n$ acts on such equivalence classes.
-(Equivalently, we can think of $\symS_n$ acting on tableaux, by first permuting
-the entries, then rearranging each of the rows in increasing order.)
+Two tableaux are considered equivalent if they are in the same orbit under
+the row-stabilizer.  An equivalence class is called a
+\defin{tabloid}\label{tabloidDefinition} and is denoted by $\{T\}$.
+Equivalently, a tabloid remembers the set of entries in each row, but forgets
+the order inside each row.
 
+The \defin{permutation module} $M^\lambda$ is the $\setC$-vector space with
+basis all tabloids of shape $\lambda$.  The symmetric group acts by permuting
+the entries:
+\[
+  \sigma \{T\} = \{\sigma T\}.
+\]
+This action is well-defined because row-equivalent tableaux remain
+row-equivalent after applying $\sigma$.
 
-A \defin{polytabloid}
+\subsection[polytabloids]{Polytabloids}
+
+A \defin{polytabloid}\label{polytabloidDefinition} is obtained by
+antisymmetrizing a tabloid in its columns.  For a tableau $T$, define
+\[
+  e_T
+  \coloneqq
+  \sum_{\tau\in C_T}\sign(\tau)\{\tau T\}.
+\]
+The \defin{Specht module}\label{spechtModuleClassicalDefinition}
+of shape $\lambda$ is
+\[
+  S^\lambda \coloneqq
+  \langle e_T : T\text{ is a tableau of shape }\lambda\rangle_{\setC}
+  \subseteq M^\lambda.
+\]
+Since $\sigma e_T=e_{\sigma T}$, the space $S^\lambda$ is stable under the
+action of $\symS_n$.
+
+\begin{example}
+Let $\lambda=(2,1)$ and let
+\[
+T=
+\begin{ytableau}
+1 & 2\\
+3
+\end{ytableau}.
+\]
+The column-stabilizer is $C_T=\{e,(13)\}$, so the corresponding polytabloid is
+\[
+  e_T
+  =
+  \left\{\begin{array}{cc}
+  1&2\\
+  3
+  \end{array}\right\}
+  -
+  \left\{\begin{array}{cc}
+  2&3\\
+  1
+  \end{array}\right\}.
+\]
+The row order is not part of the tabloid data: for instance
+\[
+  \left\{\begin{array}{cc}1&2\\3\end{array}\right\}
+  =
+  \left\{\begin{array}{cc}2&1\\3\end{array}\right\}.
+\]
+For this shape, $S^{(2,1)}$ is the standard two-dimensional irreducible
+representation of $\symS_3$.
+\end{example}
+
+\subsection[spechtFrobenius]{Frobenius characteristic}
+
+The Specht modules explain why Schur functions are the natural character
+basis for $\symS_n$-representations.  If $\chi^\lambda$ is the irreducible
+character of $S^\lambda$, then
+\[
+  \frobChar(\chi^\lambda)=\schurS_\lambda.
+\]
+Consequently, if an $\symS_n$-module decomposes as
+\[
+  M \cong \bigoplus_{\lambda\vdash n}
+  (S^\lambda)^{\oplus c_\lambda},
+\]
+then its Frobenius characteristic is
+\[
+  \frobChar(M)=\sum_{\lambda\vdash n} c_\lambda\schurS_\lambda.
+\]
+Thus Schur positivity is the statement that a symmetric function is the
+Frobenius characteristic of an honest $\symS_n$-module, or at least behaves
+as if it were one.
+
+The dimension of $S^\lambda$ is the number $f^\lambda$ of standard Young
+tableaux of shape $\lambda$, given by the
+\hyperref[hookFormula]{hook formula}.
+
+\subsection[spechtZeroHeckeComparison]{Comparison with the 0-Hecke picture}
+
+The \hyperref[zeroHeckeAlgebra]{0-Hecke algebra} gives a useful parallel to
+the classical Specht-module story.  The group algebra $\setC[\symS_n]$ has
+irreducible modules indexed by partitions, and its Frobenius characteristic
+lands in symmetric functions.  The 0-Hecke algebra $H_n(0)$ has simple
+modules indexed by compositions, and its quasisymmetric characteristic lands
+in \hyperref[quasiSymmetricFunctions]{quasisymmetric functions}.
+
+\[
+\begin{array}{lll}
+\toprule
+\text{Feature} & \setC[\symS_n] & H_n(0)\\
+\midrule
+\text{Simple modules} & S^\lambda,\ \lambda\vdash n
+  & F^\alpha,\ \alpha\vDash n\\
+\text{Characteristic} & \frobChar(S^\lambda)=\schurS_\lambda
+  & \mathrm{Ch}(F^\alpha)=\gessel_\alpha\\
+\text{Indexing objects} & \text{partitions and standard tableaux}
+  & \text{compositions and descent sets}\\
+\text{Dual Hopf algebra} & \spaceSym & \mathrm{NSym}\\
+\bottomrule
+\end{array}
+\]
+
+This dictionary is one reason that the
+\hyperref[qsymNSymDuality]{QSym--NSym duality} is best understood together
+with ordinary representation theory of $\symS_n$.
+
+\subsection[spechtRecentWork]{Related directions}
+
+For related work, \name{Rowena Paget} and \name{Mark Wildon} construct
+homomorphisms from Specht modules into Foulkes modules \cite{PagetWildon2011}.
+\name{Reuven Hodges} and \name{Hanzhang Yin} give a non-iterative
+straightening algorithm for skew Schur modules, a closely related
+tableau-based construction \cite{HodgesYin2025x}.
+
+\name{Jesse Kim} constructs a rotation-invariant web basis for the Specht
+modules $S^{(d^3,1^{n-3d})}$, indexed by normal plabic graphs or augmented
+$\mathrm{SL}_3$ webs \cite{Kim2024x}.  The construction gives skein
+relations for the $\symS_n$-action and leads to a cyclic-sieving result for
+the corresponding $q$-hook length formula.
+
+\name{Maria Gillespie} studies higher Specht polynomials in two sets of
+variables under the diagonal action of $\symS_n$ \cite{Gillespie2024x}.  In
+particular, she constructs a higher Specht basis for Garsia--Haiman modules
+for hook shapes.  In a complementary direction, \name{Shaul Zemel}
+generalizes higher Specht polynomials to homogeneous representations and
+quotients related to the rings $R_{n,k,s}$ \cite{Zemel2025x}.
