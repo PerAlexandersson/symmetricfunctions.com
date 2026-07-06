@@ -148,4 +148,40 @@
     {induction and restriction give product and coproduct};
 \end{tikzpicture}
 
+\tikzsetnextfilename{hive-rhombus-inequalities}
+\begin{tikzpicture}[line cap=round,line join=round]
+  \useasboundingbox (-3.45,-1.45) rectangle (3.45,1.45);
+
+  \begin{scope}[scale=0.55, shift={(-2.1,-1.7)}]
+    \foreach \i in {0,...,4} {
+      \foreach \j in {0,...,\i} {
+        \coordinate (h\i\j) at ({\j+0.5*(4-\i)},{0.86*\i});
+        \node[blue dot] at (h\i\j) {};
+      }
+    }
+    \foreach \i in {0,...,3} {
+      \pgfmathtruncatemacro{\next}{\i+1}
+      \foreach \j in {0,...,\i} {
+        \draw[edge] (h\i\j) -- (h\next\j);
+        \draw[edge] (h\i\j) -- (h\next\the\numexpr\j+1\relax);
+      }
+    }
+    \foreach \i in {1,...,4} {
+      \pgfmathtruncatemacro{\last}{\i-1}
+      \foreach \j in {0,...,\last} {
+        \draw[edge] (h\i\j) -- (h\i\the\numexpr\j+1\relax);
+      }
+    }
+    \fill[softorange!28] (h21) -- (h31) -- (h42) -- (h32) -- cycle;
+    \draw[softorange, line width=2pt] (h21) -- (h31) -- (h42) -- (h32)
+      -- cycle;
+  \end{scope}
+
+  \node[small label, align=center] at (1.45,0.55)
+    {each small rhombus gives\\a concavity inequality};
+  \node[small label, align=center] at (1.45,-0.35)
+    {\(a+d\geq b+c\)};
+  \draw[edge, ->, >=Stealth] (0.25,0.2) -- (-0.42,0.22);
+\end{tikzpicture}
+
 \end{document}

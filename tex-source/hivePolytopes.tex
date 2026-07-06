@@ -1,0 +1,104 @@
+\metatitle{Hives and BZ-polytopes}
+\metadescription{Knutson--Tao hives, Berenstein--Zelevinsky polytopes,
+Littlewood--Richardson coefficients, saturation, and Ehrhart stretching.}
+\metakeywords{hive polytope,Berenstein--Zelevinsky polytope,
+Littlewood--Richardson coefficient,saturation theorem,
+stretched Littlewood--Richardson coefficient}
+
+\section[hivePolytopes]{Hives and BZ-polytopes}
+
+\defin{Knutson--Tao hives}\label{hiveDefinition} and
+\defin{Berenstein--Zelevinsky patterns}\label{bzPatternDefinition} are
+polyhedral models for
+\hyperref[schurLittlewoodRichardson]{Littlewood--Richardson coefficients}.
+They replace tableaux by lattice points in a polytope whose boundary data is
+given by three partitions.  The main references are
+\cite{BerensteinZelevinsky1988,BerensteinZelevinsky1992,KnutsonTau1999}.
+
+For fixed partitions \(\lambda,\mu,\nu\), the corresponding
+\defin{hive polytope}\label{hivePolytope} is cut out by linear inequalities
+on a triangular array.  The boundary differences encode
+\(\lambda,\mu,\nu\), and each elementary rhombus imposes a concavity
+inequality.
+
+\svgimg[width=0.72\textwidth]{svg-images/hive-rhombus-inequalities.svg}{
+A hive is a triangular array satisfying one rhombus inequality in each
+orientation.}
+
+With the usual boundary convention,
+\[
+  c^\nu_{\lambda,\mu}
+  =
+  |\{\text{integer hives with boundary }(\lambda,\mu,\nu)\}|.
+\]
+Equivalently, one may use
+\hyperref[bzPatterns]{Berenstein--Zelevinsky patterns}; these are different
+coordinates for the same Littlewood--Richardson cone.
+
+\begin{example}
+The product
+\[
+  \schurS_{(2)}\schurS_{(1)}
+  =
+  \schurS_{(3)}+\schurS_{(2,1)}
+\]
+says that the two relevant hive polytopes each contain one integer point, and
+all other boundary triples for this product contain none.
+\end{example}
+
+\subsection[hiveSaturation]{Saturation}
+
+The hive model gives a geometric proof of the saturation theorem:
+\[
+  c^\nu_{\lambda,\mu}>0
+  \quad\Longleftrightarrow\quad
+  c^{k\nu}_{k\lambda,k\mu}>0
+  \qquad (k\geq 1).
+\]
+This was proved by \name{Allen Knutson} and \name{Terence Tao}
+\cite{KnutsonTau1999}; see also \cite{Buch2000}.  In hive language, scaling
+the boundary scales the polytope.  Saturation says that rational feasibility
+already detects integral feasibility.
+
+\subsection[hiveStretching]{Stretching and Ehrhart theory}
+
+The stretching function
+\[
+  k\mapsto c^{k\nu}_{k\lambda,k\mu}
+\]
+is naturally an Ehrhart-type lattice-point count.  The polynomiality of this
+function is nontrivial and was proved by \name{Harm Derksen} and
+\name{Jerzy Weyman} \cite{DerksenWeyman2002}, and by
+\name{Etienne Rassart} \cite{Rassart2004}.  The polynomial is called a
+\defin{stretched Littlewood--Richardson polynomial}
+\label{stretchedLRPolynomial}.
+
+\begin{conjecture}[King--Tollu--Toumazet, \cite{KingTolluToumazet2004}]
+The stretched Littlewood--Richardson polynomial
+\[
+  k\mapsto c^{k\nu}_{k\lambda,k\mu}
+\]
+has nonnegative coefficients.
+\end{conjecture}
+
+This is one of the motivating examples for the
+\hyperref[ehrhartConjecturalPositivity]{Ehrhart positivity conjectures} on
+the Ehrhart page.  The same circle of ideas also contains stretched Kostka
+coefficients, flagged skew Schur coefficients, and
+\hyperref[keyEhrhart]{Ehrhart polynomials for key polynomials}.
+
+\subsection[hiveRelatedModels]{Related models}
+
+Hives are closely related to several other models:
+\begin{itemize}
+\item \hyperref[lrTableaux]{Littlewood--Richardson tableaux} give the
+classical tableau model for the same coefficients.
+\item \hyperref[bzPatterns]{BZ-patterns} and
+\hyperref[gtLR]{GT-patterns with Yamanouchi inequalities} give alternate
+polyhedral coordinates.
+\item \hyperref[knutsonTaoWoodwardPuzzles]{Knutson--Tao--Woodward puzzles}
+give a planar combinatorial model tied to the facets of the
+Littlewood--Richardson cone \cite{KnutsonTaoWoodward2004}.
+\item \hyperref[kostantPartitionFunction]{Kostant partition functions} give
+piecewise-polynomial formulas for the same multiplicities.
+\end{itemize}

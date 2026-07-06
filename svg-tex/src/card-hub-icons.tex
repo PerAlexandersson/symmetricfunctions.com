@@ -203,4 +203,34 @@
   \draw[iconblue, thinner, ->, >=Stealth] (0.38,-0.6) -- (0.62,-0.6);
 \end{tikzpicture}
 
+\tikzsetnextfilename{card-hivePolytopes}
+\begin{tikzpicture}[icon]
+  \cardframe
+  \begin{scope}[scale=0.34, shift={(-1.5,-1.45)}]
+    \foreach \i in {0,...,4} {
+      \foreach \j in {0,...,\i} {
+        \coordinate (p\i\j) at ({\j+0.5*(4-\i)},{0.86*\i});
+        \node[node-blue, minimum size=4.8pt] at (p\i\j) {};
+      }
+    }
+    \foreach \i in {0,...,3} {
+      \pgfmathtruncatemacro{\next}{\i+1}
+      \foreach \j in {0,...,\i} {
+        \draw[black, line width=0.55mm] (p\i\j) -- (p\next\j);
+        \draw[black, line width=0.55mm]
+          (p\i\j) -- (p\next\the\numexpr\j+1\relax);
+      }
+    }
+    \foreach \i in {1,...,4} {
+      \pgfmathtruncatemacro{\last}{\i-1}
+      \foreach \j in {0,...,\last} {
+        \draw[black, line width=0.55mm]
+          (p\i\j) -- (p\i\the\numexpr\j+1\relax);
+      }
+    }
+    \filldraw[fill=iconorange!60, draw=black, line width=0.5mm]
+      (p21) -- (p31) -- (p42) -- (p32) -- cycle;
+  \end{scope}
+\end{tikzpicture}
+
 \end{document}
