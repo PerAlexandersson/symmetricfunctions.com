@@ -1,6 +1,9 @@
 \metatitle{Interlacing polynomials}
 
-\metadescription{Theory of interlacing and interleaving roots, Sturm sequences, compatible polynomials, and operators preserving real-rootedness.}
+\metadescription{Theory of interlacing and interleaving roots, Sturm
+sequences, compatible polynomials, and operators preserving real-rootedness.}
+\metakeywords{interlacing polynomials, interleaving roots, Sturm sequence,
+compatible polynomials, real-rootedness preservers, Lace matrix}
 
 
 \section[interlacingPolynomials]{Interlacing and interleaving roots}
@@ -47,7 +50,7 @@ $h$ is a polynomial with a positive leading coefficient.
 
 \begin{lemma}[Folklore]
 Let $f, g$ be monic polynomials with $\deg(f) = \deg(g)+1$ and all roots
-real and non-positive.  If $g \interl f$, then $f-tg$ is real-rooted and
+real and nonpositive.  If $g \interl f$, then $f-tg$ is real-rooted and
 $g \interl f- tg \interl f$.
 \end{lemma}
 
@@ -55,7 +58,7 @@ $g \interl f- tg \interl f$.
 Wagner's lemma is one of the basic closure tools for interlacing induction.
 \begin{lemma}[Wagner's lemma]
 Let $f, g, h \in \setR[t]$ be real-rooted polynomials with
-only real, non-positive roots and positive leading coefficients.
+only real, nonpositive roots and positive leading coefficients.
 Then
 \begin{itemize}
 \item if $f \interl h$ and $g \interl h$ then $f+g \interl h$.
@@ -139,7 +142,8 @@ is defined in the analogous manner.
 
 
 
-There are many Sturm sequences on \hyperref[realRootedWords]{permutations} and \hyperref[realRootedCatalan]{Catalan objects}.
+There are many Sturm sequences on \hyperref[realRootedWords]{permutations}
+and \hyperref[realRootedCatalan]{Catalan objects}.
 
 
 \subsection[bezoutMatrix]{Bézout matrices and Hurwitz--Lace}
@@ -165,7 +169,7 @@ Let
 p_0(t)=a_0+a_1t+a_2t^2+\dotsb,\qquad
 p_1(t)=b_0+b_1t+b_2t^2+\dotsb
 \]
-have non-negative coefficients.  Form the
+have nonnegative coefficients.  Form the
 \defin{Hurwitz matrix}\label{hurwitzMatrix}
 \[
 H(p_0,p_1)=
@@ -179,11 +183,11 @@ a_0 & a_1 & a_2 & a_3 & \dotsb \\
 \vdots & \vdots & \vdots & \vdots & \ddots
 \end{pmatrix}.
 \]
-Then $H(p_0,p_1)$ is \hyperref[totallyNonnegative]{totally non-negative}
+Then $H(p_0,p_1)$ is \hyperref[totallyNonnegative]{totally nonnegative}
 if and only if $p_1 \interl p_0$.
 \end{theorem}
 
-This criterion packages interlacing roots as total non-negativity of a
+This criterion packages interlacing roots as total nonnegativity of a
 structured Hurwitz matrix.
 
 \begin{theorem}[Hermite--Biehler, see \cite{Holtz2003}]
@@ -198,14 +202,14 @@ be a real polynomial, and define its even and odd parts by
   P_O(t)=\sum_{k\geq 0} a_{2k+1}t^k.
 \]
 Assume that $P_E P_O\not\equiv 0$ and that $P_E$ and $P_O$ have
-positive leading coefficients. Then $P$ has all zeros in the closed
+positive leading coefficients.  Then $P$ has all zeros in the closed
 left half-plane if and only if $P_E$ and $P_O$ have only real
-non-positive zeros and $P_O \interl P_E$.
+nonpositive zeros and $P_O \interl P_E$.
 \end{theorem}
 
 Thus the \name{Hermite--Biehler} and \name{Routh--Hurwitz} criteria
 also translate root-location questions into interlacing and total
-non-negativity.  The block-Toeplitz and network viewpoint is discussed
+nonnegativity.  The block-Toeplitz and network viewpoint is discussed
 in \cite[Sec.~4]{Angarone2023x}, and weak/quasi-stable boundary cases
 are treated in \cite{AdmGarloffTyaglov2017}.
 
@@ -224,11 +228,11 @@ if $f_i \interl f_j$  for all $1\leq i \lt j \leq n$.
 
 We let \defin{$\mathscr{F}_n^+$}\label{positiveInterlacingFamily}
 denote the family of interlacing
-sequences of length $n$ with \emph{non-negative} coefficients.
+sequences of length $n$ with \emph{nonnegative} coefficients.
 \end{definition}
 
-In \cite{Branden2015}, there are nice examples of how interlacing
-sequences can be used to prove real-rootedness.
+\name{Petter Brändén} gives useful examples of how interlacing sequences can
+be used to prove real-rootedness \cite{Branden2015}.
 In particular, \hyperref[realRootedMatching]{rook polynomials} associated with
 Ferrers diagrams can be proved to be real-rooted using this method.
 
@@ -269,11 +273,11 @@ coefficient-convolution matrix associated to multiplication by $A$.
 For a column vector $A=(A_0,A_1,\dotsc,A_{p-1})^T$, Athanasiadis--Wagner call
 the sequence \defin{fully interlacing}\label{fullyInterlacingSequence}
 if $\operatorname{Lace}(A)$ is
-\hyperref[totallyNonnegative]{totally non-negative}.  Thus every finite minor
-of this infinite coefficient-convolution matrix is non-negative.
+\hyperref[totallyNonnegative]{totally nonnegative}.  Thus every finite minor
+of this infinite coefficient-convolution matrix is nonnegative.
 
 Full interlacing implies ordinary pairwise interlacing, but the converse is
-false. The distinction is useful: pairwise interlacing is a root-level
+false.  The distinction is useful: pairwise interlacing is a root-level
 condition, whereas full interlacing is a total-nonnegativity condition on a
 structured coefficient matrix.
 
@@ -282,7 +286,8 @@ Whenever the product $AB$ is defined,
 \[
  \operatorname{Lace}(AB)=\operatorname{Lace}(A)\operatorname{Lace}(B).
 \]
-This is convenient, since totally non-negative matrices are closed under multiplication.
+This is convenient, since totally nonnegative matrices are closed under
+multiplication.
 
 
 \begin{example*}[Pairwise interlacing need not be fully interlacing]
@@ -322,8 +327,8 @@ The following matrix criterion is proved in \cite[Thm.~7.8.5]{Branden2015}.
 Let $G$ be an $m \times n$ matrix of polynomials in $t$.
 Then $G : \mathscr{F}_n^+ \to \mathscr{F}_m^+$ if and only if
 \begin{enumerate}
-\item All entries of $G$ have non-negative coefficients, and
-\item For every $2{\times}2$ sub-matrix
+\item All entries of $G$ have nonnegative coefficients, and
+\item For every $2{\times}2$ submatrix
 $\begin{bmatrix}
  a(t) & b(t) \\
  c(t) & d(t)
@@ -375,14 +380,14 @@ the conditions in the theorem above.
 \subsection[compatiblePolynomials]{Compatible polynomials}
 
 Chudnovsky and Seymour introduced a concept closely related to interleaving
-sequences of polynomials. The polynomials $f_1,\dotsc,f_k \in \setR[z]$
+sequences of polynomials.  The polynomials $f_1,\dotsc,f_k \in \setR[z]$
 have a \defin{common interlacing}\label{commonInterlacing}
-if there is some $h \in \setR[z]$
+if some $h \in \setR[z]$ exists
 with $h \interl f_j$ for all $j$.
 
 \begin{theorem}[Obreschkoff--Dedieu, see
 {\cite{Obreschkoff1963,Dedieu1992} and \cite[Thm.~8]{Branden2004operators}}]
-Let $f,g \in \setR[x]$ have positive leading coefficients. Then every
+Let $f,g \in \setR[x]$ have positive leading coefficients.  Then every
 polynomial in the real pencil
 \[
   \{ \alpha f+\beta g : \alpha,\beta\in\setR\}
@@ -392,7 +397,7 @@ one of $f \interl g$ or $g \interl f$ holds.
 \end{theorem}
 
 This signed pencil criterion is the two-polynomial counterpart of the
-non-negative compatibility theorem below.
+nonnegative compatibility theorem below.
 
 \begin{theorem}[Chudnovsky--Seymour, 2007, \cite{ChudnovskySeymour2007}]
 
@@ -425,7 +430,7 @@ which is the Wronskian of $f$ and $g$.
 
 \begin{proposition}[Wronskian criterion]
 Let $f$ and $g$ be real-rooted polynomials with positive leading
-coefficients. Then $g \interl f$ if and only if
+coefficients.  Then $g \interl f$ if and only if
 \[
   f'(x)g(x)-f(x)g'(x)\geq 0
 \]
@@ -433,7 +438,7 @@ for all $x\in\setR$.
 \end{proposition}
 
 Thus one way to prove an interlacing statement is to show that this
-Wronskian is non-negative, perhaps by rewriting it as a sum of squares.
+Wronskian is nonnegative, perhaps by rewriting it as a sum of squares.
 This is especially useful when a Christoffel--Darboux identity gives a
 closed form for the difference quotient above.
 
@@ -442,20 +447,20 @@ Let $T$ be a rooted tree whose leaves are labeled by real-rooted
 polynomials of the same degree and with positive leading coefficients.
 Label every internal vertex by the sum of the polynomials labeling its
 children. Suppose that the children of every internal vertex have a
-common interlacing. Then, for each root index $j$, there are leaves
-$a$ and $b$ such that
+common interlacing.  Then, for each root index $j$, leaves $a$ and $b$ exist
+such that
 \[
   \lambda_j(p_a)\leq \lambda_j(p_{\emptyset})\leq \lambda_j(p_b),
 \]
-where $\lambda_j$ denotes the $j$th largest zero. In particular, some
+where $\lambda_j$ denotes the $j$th largest zero.  In particular, some
 leaf has largest zero at most the largest zero of the root polynomial.
 \end{theorem}
 
 For example, if $A$ is a real symmetric matrix and $A_S$ denotes the
 principal submatrix obtained by deleting the rows and columns indexed by
 $S$, then the characteristic polynomials $\{\det(xI-A_S): |S|=k\}$
-form an interlacing family. The root polynomial is the $k$th derivative
-of the characteristic polynomial of $A$. This refines the Cauchy
+form an interlacing family.  The root polynomial is the $k$th derivative
+of the characteristic polynomial of $A$.  This refines the Cauchy
 interlacing theorem from a single principal submatrix to a whole tree of
 principal submatrices.
 
@@ -478,7 +483,7 @@ Given $p \in \setR[x]$ with $\deg(p) \leq d$, define
 \[
  I_d(p)(x) \coloneqq x^d p(1/x).
 \]
-Then there are unique polynomials $a,b \in \setR[x]$ such that
+Then unique polynomials $a,b \in \setR[x]$ exist such that
 \[
  p(x) = a(x) + x b(x), \qquad I_d(a)=a, \qquad I_{d-1}(b)=b.
 \]
@@ -498,12 +503,12 @@ and to define
  R_d(f)(x) \coloneqq (-1)^d f(-1-x).
 \]
 The paper uses the proper-position relation $\prec$; in the present
-non-negative coefficient setting, this can be read as an interlacing relation.
+nonnegative coefficient setting, this can be read as an interlacing relation.
 
 \begin{theorem}[Brändén--Solus, \cite[Thm.~2.7]{BrandenSolus2018}]
 Let $p \in \setR[x]$ have degree at most $d$, and let $(a,b)$ be its
 symmetric $I_d$-decomposition.
-Assume that both $a$ and $b$ have non-negative coefficients. Then the
+Assume that both $a$ and $b$ have nonnegative coefficients.  Then the
 following are equivalent:
 \begin{itemize}
 \item $b \prec a$;
@@ -538,7 +543,7 @@ Let
 \[
   f(x)=a_0+a_1x+\dotsb+a_nx^n
 \]
-and $g(x)$ be real-rooted polynomials. Then
+and $g(x)$ be real-rooted polynomials.  Then
 \[
   f\!\left(\frac{d}{dx}\right)g
   \coloneqq
@@ -547,15 +552,16 @@ and $g(x)$ be real-rooted polynomials. Then
 is real-rooted.
 \end{theorem}
 
-In \cite{Wagner1992}, the following is proved.
+\name[D.G. Wagner]{David Wagner} proves the following result
+\cite{Wagner1992}.
 \begin{theorem}
 Suppose $f,g$ are polynomials for which
 \[
  \sum_{n \geq 0} f(n) z^n = \frac{W(f)(z)}{(1-z)^{1+\deg f}}, \quad
  \sum_{n \geq 0} g(n) z^n = \frac{W(g)(z)}{(1-z)^{1+\deg g}},
 \]
-where $W(f)(z)$ and $W(g)(z)$ are real-rooted with non-positive roots.
-Then $W(fg)(z)$ also has real and non-positive roots.
+where $W(f)(z)$ and $W(g)(z)$ are real-rooted with nonpositive roots.
+Then $W(fg)(z)$ also has real and nonpositive roots.
 \end{theorem}
 In particular, this shows that if $f$ and $g$ are
 \hyperref[ehrhart]{Ehrhart functions} of two polytopes $P_f$ and $P_g$
@@ -615,13 +621,13 @@ This is one route to the interlacing results for colored
 There is an analogous basis-transformation viewpoint for other classical
 polynomial triangles.  The Eulerian transformation $A(x^n)=A_n(x)$ does not
 preserve real-rootedness in complete generality \cite{BrandenJochemko2022},
-but it does preserve real-rootedness on the non-negative cone discussed on the
+but it does preserve real-rootedness on the nonnegative cone discussed on the
 \hyperref[gammaPositivity]{gamma-positivity page}
 \cite{Athanasiadis2025EulerianTransformation}.  In parallel,
 \name{Jianxi Mao} and \name{Lijie Wang} prove that the Narayana
 transformation $T_{N_m}(x^n)=N_{n,m}(x)$, interpolating between the type
 $B$ and type $A$ Narayana polynomials, preserves real-rootedness for
-polynomials with non-negative coefficients; see
+polynomials with nonnegative coefficients; see
 \hyperref[narayanaTransformations]{Narayana transformations} and
 \cite{MaoWang2026x}.
 
