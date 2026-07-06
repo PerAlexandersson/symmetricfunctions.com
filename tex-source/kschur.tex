@@ -1,5 +1,5 @@
 \metatitle{Catalan and Katalan symmetric functions, and k-Schur polynomials}
-\metadescription{An introduction to Catalan symmetric functions, Katalan symmetric functions, and k-Schur polynomials, including their definitions, 
+\metadescription{An introduction to Catalan symmetric functions, Katalan symmetric functions, and k-Schur polynomials, including their definitions,
 properties, and connections to Schur functions and Macdonald polynomials.}
 \metakeywords{Catalan symmetric functions,Katalan symmetric functions,k-Schur polynomials,
 Schur functions,Macdonald polynomials,operators,recurrence relations,Pieri rule,Murnaghan--Nakayama rule,Littlewood--Richardson rule}
@@ -24,10 +24,11 @@ Schur functions,Macdonald polynomials,operators,recurrence relations,Pieri rule,
 
 
 Catalan symmetric functions were introduced in \cite{ChenLiChungThesis} and \cite{Panyushev2010}.
-These functions are $GL_\ell$-equivariant Euler characteristics of vector bundles on the flag variety.
+These functions are $GL_\ell$-equivariant Euler characteristics of vector
+bundles on the \hyperref[flagVarieties]{flag variety}.
 The Catalan symmetric functions specialize to $k$-Schur functions, see \cite{BlasiakMorsePunSummers2018}.
 
-See also \href{https://www.youtube.com/watch?v=YYOUHcgRC1E}{J. Blasiak's talk from FPSAC 2023}.
+See also \name{Jonah Blasiak}'s FPSAC 2023 talk \cite{Blasiak2023CatalaniaVideo}.
 
 \subsection[catalanSymmetricDefinition]{Definition}
 
@@ -39,16 +40,17 @@ R_{ij} \schurS_{\alpha} = \schurS_{\alpha+\varepsilon_i-\varepsilon_j}.
 Here, $\alpha$ can be a composition, and we then evaluate the Schur 
 function using the \hyperref[schurJacobiTrudi]{Jacobi--Trudi formula}.
 
-A \defin{root ideal} $\Phi$ is an upper order ideal in
+A \defin{root ideal}\label{rootIdeal} $\Phi$ is an upper order ideal in
 \[
 \Delta_\ell^+ \coloneqq \{ (i,j) : 1 \leq i \lt j \leq \ell \}
 \]
-with the partial order relation $(a,b) \leq (c,d)$ when $a\geq c$ and $b \leq d$.
+with the partial order relation $(a,b) \leq (c,d)$ when $a\geq c$ and
+$b \leq d$.
 There are $\catalan(\ell)$ different such order ideals, thus explaining the name.
 
 \begin{example}
-For example $\{ 15, 25, 35, 14, 24 \}$ is an order ideal,
-as they are entries above a Dyck path in the diagram:
+For example, $\{ 15, 25, 35, 14, 24 \}$ is an order ideal: it is the set of
+entries above a Dyck path in the diagram
 \begin{figure}
 \begin{ytableau}
 *(gray) 15 & *(gray) 25 & *(gray) 35 & 45  & 5 \\
@@ -59,18 +61,20 @@ as they are entries above a Dyck path in the diagram:
 \end{ytableau}
 \end{figure}
 
-See also how \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{area sequences} of length $\ell$
-are related to unit interval graphs.
+See also how \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{area
+sequences} of length $\ell$ are related to unit interval graphs.
 \end{example}
 
 Let $\gamma \in \setZ^\ell$ and let $\Phi$ be a root ideal.
-The \defin{Catalan symmetric function} is then defined as
+The \defin{Catalan symmetric function}\label{catalanSymmetricFunctionDefinition}
+is then defined as
 \[
-\catalanH_{\Phi,\gamma}(\xvec;t) \coloneqq \prod_{(i,j)\in \Phi} (1-t R_{ij})^{-1}\schurS_{\gamma}(\xvec).
+\catalanH_{\Phi,\gamma}(\xvec;t) \coloneqq
+\prod_{(i,j)\in \Phi} (1-t R_{ij})^{-1}\schurS_{\gamma}(\xvec).
 \]
 Note that 
 \[
-(1-rR_{ij})^{-1} = 1 + tR_{ij} + t^2 (R_{ij})^2 + t^3 (R_{ij})^3 + \dotsb
+(1-tR_{ij})^{-1} = 1 + tR_{ij} + t^2 (R_{ij})^2 + t^3 (R_{ij})^3 + \dotsb
 \]
 but one only has to apply a finite number of these as $(R_{ij})^k$ 
 kills any Schur function for sufficiently large $k$.
@@ -93,10 +97,10 @@ and $\gamma=(4,2,1,1,0)$ gives
 \end{example}
 
 
-In \cite{ChenLiChungThesis}, it was conjectured that 
+In \cite{ChenLiChungThesis}, it was conjectured that
 $\catalanH_{\Phi,\mu}(\xvec;t)$ is Schur-positive for any $\Phi$
-and partition $\mu$. This conjecture is resolved 
-by \name{Jonah Blasiak}, \name{Jennifer Morse} 
+and partition $\mu$.  This conjecture is resolved
+by \name{Jonah Blasiak}, \name{Jennifer Morse},
 and \name{Anna Pun} in \cite{BlasiakMorsePun2020x}.
 They introduce a larger family of non-symmetric Catalan functions,
 the \defin{tame non-symmetric Catalan functions}, $\catalanH_{\Phi,\mu,w}(\xvec;t)$,
@@ -108,7 +112,7 @@ which then implies the Schur positivity for $\catalanH_{\Phi,\mu}(\xvec;t)$.
 
 
 
-\section[KatalanSymmetric]{Katalan symmetric functions}
+\section[katalanSymmetric]{Katalan symmetric functions}
 
 
 \begin{polydata}{KatalanSymmetric}
@@ -126,9 +130,11 @@ which then implies the Schur positivity for $\catalanH_{\Phi,\mu}(\xvec;t)$.
 \end{polydata}
 
 
-In \cite{BlasiakMorseSeelinger2020}, the authors consider a $K$-theoretic 
-version of the Catalan symmetric functions, named \defin{Katalan symmetric functions}
-and show that this family includes the $K$-$k$-Schur functions, and the usual Catalan symmetric functions.
+In \cite{BlasiakMorseSeelinger2020}, the authors consider a
+\hyperref[kTheory]{$K$-theoretic} version of the Catalan symmetric functions,
+named \defin{Katalan symmetric functions}\label{katalanSymmetricFunction},
+and show that this family includes the $K$-$k$-Schur functions and the usual
+Catalan symmetric functions.
 
 The definition again uses raising operators, together with lowering operators.
 Let $\Phi \subseteq \Delta_\ell^+$ be a root ideal, let $M$ be a multiset on
@@ -144,7 +150,8 @@ function is
 \]
 Repeated entries of $M$ contribute repeated lowering factors.
 
-A nice conjecture regarding the Katalan symmetric functions is solved in \cite{IkedaIwaoNaito2024}.
+A conjecture regarding the Katalan symmetric functions is solved in
+\cite{IkedaIwaoNaito2024}.
 
 \section[kSchur]{$k$-Schur polynomials} 
 
@@ -162,17 +169,18 @@ A nice conjecture regarding the Katalan symmetric functions is solved in \cite{I
   PositiveIn & schurS | BlasiakMorseSummers2019 | proof=positive k-branching \\
 \end{polydata}
 
-The $k$-Schur functions were introduced in \cite{LapointeLascouxMorse2003} (under a different name
-and the notation $A_\mu^{(k)}[\xvec;t]$ was used).
-The motivation was to provide a strong refinement of the Schur positivity conjecture 
+The $k$-Schur functions were introduced in \cite{LapointeLascouxMorse2003}
+under a different name, using the notation $A_\mu^{(k)}[\xvec;t]$.
+The motivation was to provide a strong refinement of the Schur-positivity conjecture
 of the \hyperref[macdonaldH]{modified Macdonald polynomials}.
-Several alternative definitions of $k$-Schur functions have since then surfaced, and not all
-have been proved to be equivalent.
+Several alternative definitions of $k$-Schur functions have since surfaced,
+and not all have been proved to be equivalent.
 For a thorough reference, see the book \cite{LLMSSZ2014}.
 
 
 For each integer $k$, we have the family of $k$-Schur functions $\{ \kSchur^{(k)}_\lambda(\xvec) \}$
-where the $\lambda$ are \defin{$k$-bounded partitions}, meaning that $\lambda_1 \leq k$.
+where the $\lambda$ are \defin{$k$-bounded partitions}\label{kBoundedPartition},
+meaning that $\lambda_1 \leq k$.
 The $k$-Schur functions form a basis in the subring of symmetric functions,
 spanned by $\completeH_1,\dotsc,\completeH_k$, the \hyperref[completeH]{complete homogeneous symmetric functions}.
 
@@ -195,15 +203,17 @@ Hence, as $k\to \infty$, the $k$-Schur functions reduce to the usual \hyperref[s
 
 \subsection[kSchurDefinition]{Definition}
 
-Note that there are several different, but conjectured equivalent definitions of $k$-Schur functions.
+Note that there are several different, but conjecturally equivalent,
+definitions of $k$-Schur functions.
 We use the definition in \cite{BlasiakMorsePunSummers2018},
-which defines the \defin{$k$-Schur functions} as Catalan symmetric functions for special root ideals.
+which defines the \defin{$k$-Schur functions}\label{kSchurFunctionDefinition}
+as Catalan symmetric functions for special root ideals.
 Let $\mu$ be a partition with at most $\ell$ parts and $\mu_1 \leq k$.
 
-Let $\Phi_\mu \coloneqq \{ (i,j) \in \Delta_\ell^+ : k-\mu_i+i \lt j \}$ and define the 
+Let $\Phi_\mu \coloneqq \{ (i,j) \in \Delta_\ell^+ : k-\mu_i+i \lt j \}$ and define the
 \defin{$k$-Schur functions} as
 \[
-\kSchur^{(k)}_\mu(\xvec;t) \coloneqq \catalanH_{\Phi_\mu,\mu}(\xvec;t) = 
+\kSchur^{(k)}_\mu(\xvec;t) \coloneqq \catalanH_{\Phi_\mu,\mu}(\xvec;t) =
 \prod_{i=1}^\ell \prod_{j=k+1-\mu_i+i}^\ell (1-tR_{ij})^{-1} \schurS_\mu.
 \]
 
@@ -216,10 +226,15 @@ Most results so far concern this specialization.
 \begin{example}
 We have the following Schur expansions of some $k$-Schur functions:
 \[
-\kSchur^{(2)}_{221}(\xvec) = \schurS_{221}(\xvec)+\schurS_{311}(\xvec)+2\schurS_{320}(\xvec)+2\schurS_{410}(\xvec)+\schurS_{500}(\xvec)
+\kSchur^{(2)}_{221}(\xvec)
+=
+\schurS_{221}(\xvec)+\schurS_{311}(\xvec)+2\schurS_{320}(\xvec)
++2\schurS_{410}(\xvec)+\schurS_{500}(\xvec)
 \]
 \[
-\kSchur^{(3)}_{221}(\xvec) = \schurS_{221}(\xvec)+\schurS_{320}(\xvec)\quad \text{ and } \quad
+\kSchur^{(3)}_{221}(\xvec)
+=
+\schurS_{221}(\xvec)+\schurS_{320}(\xvec)\quad \text{ and } \quad
 \kSchur^{(4)}_{221}(\xvec) = \schurS_{221}(\xvec)
 \]
 \end{example}
@@ -248,13 +263,13 @@ factorization.
 
 \name{Luc Lapointe} and \name{Jennifer Morse} proved the following Pieri rule.
 
-\begin{theorem}[See  \cite[Thm. 29]{LapointeMorse2007}]
-Let $\nu$ be a $k$-bounded partition and $r \leq k$. Then 
+\begin{theorem}[See \cite[Thm.~29]{LapointeMorse2007}]
+Let $\nu$ be a $k$-bounded partition and $r \leq k$. Then
 \[
 \completeH_r \kSchur^{(k)}_\nu = \sum_{\mu \in H^k_{\nu,r}} \kSchur^{(k)}_\mu
 \]
-where $H^k_{\nu,r}$ is a certain subset of partitions formed by adding horizontal $r$-strips to $\lambda$.
-To be more precise
+where $H^k_{\nu,r}$ is a certain subset of partitions formed by adding
+horizontal $r$-strips to $\lambda$.  More precisely,
 \[
 H^k_{\nu,r} = \{ \mu : \mu/\nu \text{ is a horizontal strip and } 
 \mu^{(k)}/\nu^{(k)} \text{ is a vertical $r$-strip} \}.
@@ -265,7 +280,7 @@ Here, $\mu^{(k)}$ denotes the $k$-conjugate of $\mu$.
 
 \subsection[kSchurMurnaghanNakayama]{Murnaghan--Nakayama rule}
 
-\name{Jason Bandlow}, \name{Anne Schilling} and \name{Mike Zabrocki}
+\name{Jason Bandlow}, \name{Anne Schilling}, and \name{Mike Zabrocki}
 prove the following analog of the \hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama rule}.
 
 \begin{theorem}[See \cite{BandlowSchillingZabrocki2011}]
@@ -279,9 +294,10 @@ The definition of a $k$-ribbon is somewhat involved,
 see \cite{BandlowSchillingZabrocki2011} for details.
 \end{theorem}
 
-An alternative proof is given by \name{Seung Jin Lee} in \cite[Thm. 10.1]{Lee2015},
-and in 2022, \name[D.-K. Nguyen]{Duc-Khanh Nguyen} \cite{Nguyen2022x} gave a 
-proof in the more general setting, where a Murnaghan--Nakayama rule 
+An alternative proof is given by \name{Seung Jin Lee}
+\cite[Thm.~10.1]{Lee2015}, and \name[D.-K. Nguyen]{Duc-Khanh Nguyen}
+\cite{Nguyen2022x} gives a proof in the more general setting, where a
+Murnaghan--Nakayama rule
 for $K\text{-}k$-Schur functions is also provided.
 
 
@@ -299,18 +315,20 @@ and thus sometimes proved to be non-negative.
 
 \subsection[kSchurSchurExpansion]{Schur expansion}
 
-It was conjectured in \cite{LapointeMorse2007} that the $k$-Schur functions are Schur-positive.
-A stronger statement is that the $k$-Schur functions expand positively into $(k+1)$-Schur functions.
-This is now proved in \cite[Thm. 2.6]{BlasiakMorseSummers2019},
-where an explicit combinatorial expansion of $\kSchur^{(k)}_\lambda(\xvec) $ into $\{ \kSchur^{(k+1)}_\mu(\xvec)  \}_{\mu}$
-is given.
+It was conjectured in \cite{LapointeMorse2007} that the $k$-Schur functions
+are \hyperref[schurPositivity]{Schur-positive}.  A stronger statement is that
+the $k$-Schur functions expand positively into $(k+1)$-Schur functions.
+This is now proved in \cite[Thm.~2.6]{BlasiakMorseSummers2019}, where an
+explicit combinatorial expansion of $\kSchur^{(k)}_\lambda(\xvec)$ into
+\(\{ \kSchur^{(k+1)}_\mu(\xvec) \}_{\mu}\) is given.
 
 
 \subsection[kSchurMacdonald]{Relation to modified Macdonald polynomials}
 
-\name{Syu Kato} \cite{Kato2025x} shows that Garcia--Haiman modules can be 
-decomposed into certain modules whose characters are $k$-Schur functions. 
-This implies that a modified Macdonald polynomial 
-indexed by $k$-bounded partitions expand positively into $k$-Schur functions.
-That is, can be expressed as a linear combination of  $\kSchur^{(k)}_\lambda$ with coefficients in $\setN[q,t]$,
-see  \cite[Corollary 9.4]{Kato2025x}.
+\name{Syu Kato} \cite{Kato2025x} shows that Garcia--Haiman modules can be
+decomposed into certain modules whose characters are $k$-Schur functions.
+This implies that a \hyperref[macdonaldH]{modified Macdonald polynomial}
+indexed by a $k$-bounded partition expands positively into $k$-Schur
+functions.  That is, it can be expressed as a linear combination of
+$\kSchur^{(k)}_\lambda$ with coefficients in $\setN[q,t]$; see
+\cite[Cor.~9.4]{Kato2025x}.
