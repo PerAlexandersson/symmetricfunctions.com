@@ -1,38 +1,54 @@
 \metatitle{Quasisymmetric functions}
-\metadescription{An introduction to quasisymmetric functions, including monomial quasisymmetric functions, quasisymmetric power sums, and the involution on quasisymmetric functions.}  
-\metakeywords{Quasisymmetric functions,monomial quasisymmetric functions,quasisymmetric power sums,involution on quasisymmetric functions}
+\metadescription{An introduction to quasisymmetric functions, including
+monomial quasisymmetric functions, quasisymmetric power sums, and the
+involution on quasisymmetric functions.}
+\metakeywords{Quasisymmetric functions,monomial quasisymmetric functions,
+quasisymmetric power sums,involution on quasisymmetric functions}
 
 
 \section[quasiSymmetricFunctions]{Quasisymmetric functions}
 
-Quasisymmetric functions were formally introduced by \name{Ira Gessel} in \cite{Gessel1984}.
-Earlier work on \hyperref[pPartition]{P-partitions} anticipated this development.
+Quasisymmetric functions were formally introduced by \name{Ira Gessel} in
+\cite{Gessel1984}.
+Earlier work on \hyperref[pPartition]{$P$-partitions} anticipated this
+development.
 For an introduction to quasisymmetric functions, see \cite{LuotoEtAl2013IntroQSymSchur}.
 
 
-A function $f$ is \defin{quasisymmetric} if for every composition $\alpha$ of length $\ell$,
+A function $f$ is \defin{quasisymmetric}\label{quasisymmetricFunctionDefinition}
+if for every \hyperref[compositions]{composition} $\alpha$ of length $\ell$,
 the coefficient of $x_1^{\alpha_1} \dotsm x_\ell^{\alpha_\ell}$
-is the same as the coefficient of $x_{i_1}^{\alpha_1} \dotsm x_{i_\ell}^{\alpha_\ell}$,
+is the same as the coefficient of
+$x_{i_1}^{\alpha_1} \dotsm x_{i_\ell}^{\alpha_\ell}$,
 for any $0 \lt i_1 \lt i_2 \lt \dotsb \lt i_{\ell}$.
 The set of quasisymmetric functions forms a graded ring, $\spaceQSym$.
 
 
-Quasisymmetric functions of degree $n$ are usually indexed by either integer compositions of $n$,
-or subsets of $[n-1]$.
+Quasisymmetric functions of degree $n$ are usually indexed by either
+\hyperref[compositions]{integer compositions} of $n$, or subsets of $[n-1]$.
 Given a composition $\alpha \vDash n$ with $\ell$ parts, define
 \[
-S_\alpha \coloneqq \{\alpha_1, \alpha_1+\alpha_2,\dotsc, \alpha_1+\alpha_2+\dotsb+\alpha_{\ell-1}\}.
+S_\alpha
+\coloneqq
+\{\alpha_1, \alpha_1+\alpha_2,\dotsc,
+\alpha_1+\alpha_2+\dotsb+\alpha_{\ell-1}\}.
 \]
-The bijection $\alpha \mapsto S_\alpha$ maps compositions of $n$ to subsets of $[n-1]$.
-The partial order $\alpha \leq \beta$ denotes \emph{refinement}. 
-That is, $\beta$ can be obtained from $\alpha$ by adding consecutive parts of $\alpha$.
-When $\alpha \leq \beta$, we illustrate this relationship with bars between parts of $\alpha$,
-such that parts between bars add to parts of $\beta$.
+The bijection $\alpha \mapsto S_\alpha$ maps compositions of $n$ to subsets of
+$[n-1]$.
+The partial order $\alpha \leq \beta$ denotes
+\defin{refinement}\label{compositionRefinementOrder}.  That is, $\beta$ can be
+obtained from $\alpha$ by adding consecutive parts of $\alpha$.
+When $\alpha \leq \beta$, we illustrate this relationship with bars between
+parts of $\alpha$, such that parts between bars add to parts of $\beta$.
 
 \begin{example*}[Refinement and bars]
 Taken from \cite{AlexanderssonSulzgruber2019}.
 \[
-112|341|21|34|2 \quad\text{corresponds to}\quad  \alpha = 11234121342, \quad \beta = 48372.
+112|341|21|34|2
+\quad\text{corresponds to}\quad
+\alpha = 11234121342,
+\quad
+\beta = 48372.
 \]
 \end{example*}
 
@@ -45,17 +61,20 @@ calculus and use the Aval--Bergeron--Bergeron decomposition modulo positive
 degree quasisymmetric polynomials.
 \name{Nantel Bergeron}, \name{Lucas Gagnon}, \name{Philippe Nadeau},
 \name{Hunter Spink}, and \name{Vasu Tewari} introduce equivariant
-quasisymmetry for polynomials in two alphabets
+\defin{equivariant quasisymmetry}\label{equivariantQuasisymmetry} for
+polynomials in two alphabets
 \cite{BergeronGagnonNadeauSpinkTewari2025x}.  This leads to double
 fundamental and double forest polynomials, intended as quasisymmetric
 analogues of double Schur and double Schubert polynomials.
 \name{Ron M. Adin}, \name{Ira M. Gessel}, \name{Victor Reiner}, and
-\name{Yuval Roichman} introduce cyclic quasisymmetric functions
+\name{Yuval Roichman} introduce
+\defin{cyclic quasisymmetric functions}\label{cyclicQuasisymmetricFunction}
 \cite{AdinGesselReinerRoichman2021}.  These are quasisymmetric functions
 with compatibility under cyclic rotation of the variables, and the paper
 develops cyclic analogues of descent-set enumerators and related bases.
 \name{Xing Gao}, \name{Li Guo}, and \name{Xiao-Song Peng} introduce
-multi-quasisymmetric functions with semigroup exponents
+\defin{multi-quasisymmetric functions}\label{multiQuasisymmetricFunction}
+with semigroup exponents
 \cite{GaoGuoPeng2024x}.  Their construction extends the usual
 quasisymmetric Hopf-algebra framework and interacts with Rota--Baxter algebra
 structures.
@@ -75,15 +94,17 @@ structures.
   PositiveIn & monomial | Gessel1984 | scope=nonsymmetric monomials; proof=definition \\
 \end{polydata}
 
-Given a composition $\alpha$ with $\ell$ parts, 
-we define the \defin{monomial quasisymmetric functions} as
+Given a composition $\alpha$ with $\ell$ parts,
+we define the \defin{monomial quasisymmetric functions}
+\label{monomialQuasisymmetricFunctionDefinition} as
 \[
 \qmonom_\alpha(\xvec) \coloneqq 
 \sum_{i_1 < i_2 < \dotsb < i_\ell} 
 x_{i_1}^{\alpha_1} x_{i_2}^{\alpha_2} \dotsm x_{i_\ell}^{\alpha_\ell}.
 \]
-The functions $\qmonom_\alpha$ constitute a basis for the space of 
-homogeneous quasisymmetric functions of degree $n$ as $\alpha$ ranges over all compositions of $n$.
+The functions $\qmonom_\alpha$ constitute a basis for the space of
+homogeneous quasisymmetric functions of degree $n$ as $\alpha$ ranges over all
+compositions of $n$.
 
 The monomial quasisymmetric functions refine the \hyperref[monomial]{monomial symmetric functions},
 \[
@@ -137,25 +158,33 @@ second immanants.
 
 Given a pair of compositions of $n$, $\alpha \leq \beta$, related by
 \begin{equation*}
- \alpha_{11} \alpha_{12} \dotsc \alpha_{1,i_1}| \alpha_{21} \alpha_{22} \dotsc \alpha_{2,i_2} | \dotsb |
+ \alpha_{11} \alpha_{12} \dotsc \alpha_{1,i_1}|
+ \alpha_{21} \alpha_{22} \dotsc \alpha_{2,i_2} | \dotsb |
  \alpha_{k1} \alpha_{k2} \dotsc \alpha_{k,i_k}
 \end{equation*}
 let 
 \begin{equation*}
 \pi(\alpha,\beta)
 \coloneqq
-\prod_{j=1}^k (\alpha_{j1})(\alpha_{j1}+\alpha_{j2})\dotsb (\alpha_{j1}+\alpha_{j2}+\dotsb +\alpha_{j,i_j}).
+\prod_{j=1}^k
+(\alpha_{j1})(\alpha_{j1}+\alpha_{j2})\dotsb
+(\alpha_{j1}+\alpha_{j2}+\dotsb +\alpha_{j,i_j}).
 \end{equation*}
-The \defin{quasisymmetric power sum} $\qPsi_\alpha$ is defined as
+The \defin{quasisymmetric power sum}\label{quasisymmetricPowerSumPsi}
+$\qPsi_\alpha$ is defined as
 \begin{equation*}
-\qPsi_\alpha(\xvec) \coloneqq z_\alpha \sum_{\beta \geq \alpha } \frac{1}{\pi(\alpha,\beta)} \qmonom_\beta(\xvec).
+\qPsi_\alpha(\xvec)
+\coloneqq
+z_\alpha
+\sum_{\beta \geq \alpha}
+\frac{1}{\pi(\alpha,\beta)} \qmonom_\beta(\xvec).
 \end{equation*}
 For example,
-$\Psi_{231} = 
-\frac{1}{10}\qmonom_6 + 
+$\Psi_{231} =
+\frac{1}{10}\qmonom_6 +
 \frac{1}{4}\qmonom_{24}+
 \frac{3}{5}\qmonom_{51}+\qmonom_{231}$.
-It was shown in \cite{BallantineDaughertyHicksMason2020} 
+It was shown in \cite{BallantineDaughertyHicksMason2020}
 that quasisymmetric power sums refine the usual power sums as
 \[
 \powerSum_{\lambda}(\xvec) = \sum_{\alpha \sim \lambda}\qPsi_{\alpha}(\xvec).
@@ -208,7 +237,8 @@ $\qPsi$-expansions.
 In \cite{AliniaeifardWangWilligenburg2021x}, the authors introduce
 a third quasisymmetric refinement of the power-sum basis, denoted $\qRho_\alpha$.
 They refer to this basis as the
-\defin{combinatorial quasisymmetric power-sum basis}.
+\defin{combinatorial quasisymmetric power-sum basis}
+\label{combinatorialQuasisymmetricPowerSumBasis}.
 
 \name{Ricky Ini Liu} and \name{Michael Tang} study shuffle bases of
 quasisymmetric functions and use infinitesimal characters to characterize
@@ -217,14 +247,16 @@ compositions \cite{LiuTang2023x}.  Their framework gives general
 constructions of quasisymmetric power sums, recovering several earlier
 bases in a uniform way.
 \name{Michael Tang} studies substring-compatible permutation statistics,
-constructing a substring coalgebra analogous to the shuffle algebra of a
+constructing a \defin{substring coalgebra}\label{substringCoalgebra}
+analogous to the shuffle algebra of a
 shuffle-compatible statistic \cite{Tang2025x}.  Under a weak shuffle
 compatibility hypothesis, the shuffle algebra and substring coalgebra combine
 to form a Hopf algebra; the paper conjectures that the descent, peak, and
 valley sets are the only nontrivial statistics satisfying both compatibilities.
 
 \begin{example*}[Substring coalgebra for descents]
-The descent set is substring-compatible.  If $\pi=\pi_1\dotsm\pi_n$ and
+The \hyperref[descentSet]{descent set} is substring-compatible.
+If $\pi=\pi_1\dotsm\pi_n$ and
 $\sigma=\pi_i\dotsm\pi_j$ is a consecutive substring, then $\DES(\sigma)$ is
 obtained from $\DES(\pi)\cap\{i,\dotsc,j-1\}$ by subtracting $i-1$ from each
 position.
@@ -275,12 +307,14 @@ has a ballot-sequence basis and Hilbert series
 \]
 
 Let $\alpha$ be a composition and let $\lambda$
-be the partition obtained from $\alpha$ by rearranging the parts in decreasing order.
+be the partition obtained from $\alpha$ by rearranging the parts in decreasing
+order.
 The monomial expansion of $\qRho_\alpha$ is given by
 \[
 \qRho_\alpha(\xvec) = \sum_{\beta} R_{\alpha \beta} \qmonom_\beta(\xvec)
 \]
-where $R_{\alpha \beta}$ is the number of ordered set-partitions (see \oeis{A000670})
+where $R_{\alpha \beta}$ is the number of
+\hyperref[setPartitions]{ordered set partitions} (see \oeis{A000670})
 \[
  \gamma_1 | \gamma_2 | \dotsb | \gamma_k
 \]
@@ -290,7 +324,7 @@ with the following two properties. The word
 \lambda_{\gamma_{21}}, \lambda_{\gamma_{22}},\dotsc,\; \dotsc,
 \lambda_{\gamma_{k1}}, \lambda_{\gamma_{k2}},\dotsc,
 \]
-is equal to $\alpha$, and 
+is equal to $\alpha$, and
 $
 \lambda_{\gamma_{i1}}+ \lambda_{\gamma_{i2}}+\dotsb = \beta_i
 $
@@ -328,8 +362,8 @@ The authors also give formulas for computing product and coproduct.
 
 \section[standardQuasiInvolution]{Involutions on quasisymmetric functions}
 
-The \hyperref[standardInvolution]{standard involution on symmetric functions} 
-that sends $\schurS_\lambda$ to $\schurS_{\lambda'}$ 
+The \hyperref[standardInvolution]{standard involution on symmetric functions}
+that sends $\schurS_\lambda$ to $\schurS_{\lambda'}$
 can be extended to quasisymmetric functions by $\omega$.
 Two other useful involutions, $\rho$ and $\psi$, are also defined via the
 \hyperref[gessel]{Gessel quasisymmetric functions}
@@ -354,4 +388,5 @@ $
 \omega\left( \qPsi_\alpha \right) = (-1)^{|\alpha|-\length(\alpha)}\qPsi_{\alpha^r},
 $
 where $\alpha^r$ denotes the reverse of $\alpha$.
-The same property holds for $\qRho_\alpha$, see \cite[Thm. 5.7]{AliniaeifardWangWilligenburg2021x}.
+The same property holds for $\qRho_\alpha$, see
+\cite[Thm.~5.7]{AliniaeifardWangWilligenburg2021x}.
