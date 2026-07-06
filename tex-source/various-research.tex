@@ -13,7 +13,7 @@ and define
 P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k) \coloneqq \key_{k\lambda,\sigma}(1^n).
 \]
 This is a polynomial in $\setQ[\lambda_1,\dotsc,\lambda_n,k]$,
-and for fixed $\lambda$, this is an Ehrhart polynomial of 
+and for fixed $\lambda$, this is an Ehrhart polynomial of
 a certain union of faces in a \hyperref[gtpolytopes]{Gelfand--Tsetlin polytope}.
 See \cite{AlexanderssonAlhajjar2018} for more background.
 
@@ -26,8 +26,8 @@ Let $\lambda$ and $\sigma$ be fixed and define $H_{\lambda,\sigma}(t) \in \setN[
 \]
 where $d$ is the degree (in $k$) of $P_{\lambda,\sigma}(k)$.
 Then $H_{\lambda,\sigma}(t)$ is a real-rooted polynomial.
-Moreover, if $\sigma_1,\sigma_2,\dotsc,\sigma_\ell$ is a saturated 
-chain in the \hyperref[bruhatOrder]{Bruhat order}, then 
+Moreover, if $\sigma_1,\sigma_2,\dotsc,\sigma_\ell$ is a saturated
+chain in the \hyperref[bruhatOrder]{Bruhat order}, then
 \[
 P_{\lambda,\sigma_1}(k), P_{\lambda,\sigma_2}(k),\dotsc,P_{\lambda,\sigma_\ell}(k)
 \]
@@ -42,7 +42,7 @@ I have checked this for some small cases.
 In \cite{AlexanderssonAmini2018}, we used the following inequality,
 where $a,b\geq 0$ and $k \geq j \ge 0$.
 \[
-\binom{ka+kb}{ka}^j \geq \binom{ja+jb}{ja}^k. 
+\binom{ka+kb}{ka}^j \geq \binom{ja+jb}{ja}^k.
 \]
 This is not very hard to prove. I realized that there might be a $q$-analogue of this inequality.
 
@@ -51,7 +51,7 @@ Suppose $a,b\geq 0$ and $k \geq j \ge 0$. Then
 \[
 q^{kab \binom{j}{2}} \qbinom{ka+kb}{ka}_q^j -  q^{jab \binom{k}{2}} \qbinom{ja+jb}{ja}_q^k
 \]
-is a polynomial in $\setN[q]$. 
+is a polynomial in $\setN[q]$.
 \end{conjecture}
 
 This was posted on \href{https://mathoverflow.net/questions/330620/q-analogue-of-an-inequality}{MathOverflow},
@@ -67,7 +67,7 @@ Define
 T_\lambda(\xvec) \coloneqq \sum_{\mu} |\BST(\lambda,\mu)| \powerSum_\mu(\xvec).
 \]
 Show that $T_\lambda(\xvec)$ is \hyperref[schurPositivity]{Schur-positive}.
-Note the close resemblance with the usual power-sum expansion of Schur polynomials. 
+Note the close resemblance with the usual power-sum expansion of Schur polynomials.
 
 \href{https://mathoverflow.net/questions/353150/schur-positive-expression-involving-border-strip-tableaux}{See this MO-post also}
 
@@ -76,7 +76,7 @@ Note the close resemblance with the usual power-sum expansion of Schur polynomia
 
 The sequence \oeis{A189912} is defined as
 \[
-a_n \coloneqq \sum_{k=0}^n 
+a_n \coloneqq \sum_{k=0}^n
 \frac{n!}{(n-k)! (\lfloor k/2 \rfloor!)^2 (\lfloor k/2 \rfloor +1)}.
 \]
 Let us split this sum into even and odd $k$.
@@ -85,7 +85,7 @@ We get
 &\sum_{k=0}^n
 \frac{n!}{(n-2k)! (\lfloor 2k/2 \rfloor!)^2 (\lfloor 2k/2 \rfloor +1)}
 + \\
-&\sum_{k=0}^n 
+&\sum_{k=0}^n
 \frac{n!}{(n-(2k+1))! (\lfloor (2k+1)/2 \rfloor!)^2 (\lfloor (2k+1)/2 \rfloor +1)}.
 \end{align*}
 Simplification and reindexing leads to
@@ -98,12 +98,12 @@ Simplification and reindexing leads to
 \]
 Rewriting gives
 \[
-\sum_{k=0}^n 
+\sum_{k=0}^n
 \frac{n!}{ (k!) (k+1)!}\left(
 \frac{1}{(n-2k)!} + \frac{1}{(n-2k-1)!}
 \right)
 =
-\sum_{k=0}^n 
+\sum_{k=0}^n
 \frac{n!}{(k!) (k+1)!}\left(
 \frac{1}{(n-2k)!} + \frac{n-2k}{(n-2k)!}
 \right)
@@ -113,15 +113,15 @@ so we end up with
 \sum_{k=0}^n (n+1-2k) \frac{n!}{ (k!) (k+1)! (n-2k)!}.
 \]
 The expression $\frac{n!}{(k!) (k+1)! (n-2k)!}$
-is exactly \oeis{A055151}, so this verifies 
+is exactly \oeis{A055151}, so this verifies
 the conjecture by \name{Werner Schulte}, Oct 23 2016.
 
 
 \subsection[schubertCharge]{Schubert charge}
 
 The Schubert polynomials generalize the Schur polynomials,
-so for Grassmann permutations, there should be a bijection 
-to SSYT from pipe dreams. 
+so for Grassmannian permutations there should be a bijection
+from pipe dreams to SSYT.
 What is the notion of (co)charge on pipe dreams?
 Does it generalize to arbitrary permutations?
 

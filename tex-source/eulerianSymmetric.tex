@@ -28,7 +28,7 @@ They were introduced in \cite{ShareshianWachs2010}.
 \subsection[eulerianSymmetricDefinition]{Definition}
 
 Let $\bar{1} \lt \bar{2} \lt \dotsb \lt \bar{n} \lt 1 \lt 2 \lt \dotsb \lt n$.
-For $\sigma \in \symS_n$, let $\overline{\sigma}$ be defined as the word 
+For $\sigma \in \symS_n$, let $\overline{\sigma}$ be defined as the word
 obtained from $\sigma$ by replacing $\sigma_i$ with $\overline{\sigma}_i$ whenever $\sigma_i \gt i$.
 Let
 \[
@@ -36,25 +36,25 @@ Let
 \]
 that is, the set of descents in the modified alphabet.
 
-The \defin{Eulerian quasisymmetric function} indexed by $n$ and $j$ is then 
+The \defin{Eulerian quasisymmetric function} indexed by $n$ and $j$ is then
 described using the \hyperref[gessel]{Gessel quasisymmetric functions}:
 \[
 \eulerianQ_{\lambda,j}(\xvec) \coloneqq \sum_{\substack{\sigma \in \symS_n \\ \type(\sigma) = \lambda}} \gessel_{n,\DEX(\sigma)}(\xvec).
 \]
 
 \begin{example}
-We have that 
+For example,
 \begin{align*}
-\eulerianQ_{33,2}(\xvec) &= 
-\gessel_{\emptyset,6} + 
-\gessel_{\{2\},6} + 
-\gessel_{\{3\},6} + 
-\gessel_{\{4\},6} + 
+\eulerianQ_{33,2}(\xvec) &=
+\gessel_{\emptyset,6} +
+\gessel_{\{2\},6} +
+\gessel_{\{3\},6} +
+\gessel_{\{4\},6} +
 \gessel_{\{1,3\},6}  \\
-&+\gessel_{\{1,4\},6} + 
-\gessel_{\{1,5\},6} + 
-\gessel_{\{2,4\},6} + 
-\gessel_{\{2,5\},6} + 
+&+\gessel_{\{1,4\},6} +
+\gessel_{\{1,5\},6} +
+\gessel_{\{2,4\},6} +
+\gessel_{\{2,5\},6} +
 \gessel_{\{3,5\},6}.
 \end{align*}
 \end{example}
@@ -63,10 +63,10 @@ We have that
 
 
 \begin{theorem}[See \cite{ShareshianWachs2010}]
-Let $\lambda$ have $m_i$ parts of size $i$. 
+Let $\lambda$ have $m_i$ parts of size $i$.
 Then
 \[
-\sum_{j=0}^{|\lambda|-1} \eulerianQ_{\lambda,j}(\xvec)t^j = 
+\sum_{j=0}^{|\lambda|-1} \eulerianQ_{\lambda,j}(\xvec)t^j =
 \prod_{i \geq 1} \completeH_{m_i}\left[ \sum_{j=0}^{i-1} \eulerianQ_{(i),j} t^j \right].
 \]
 \end{theorem}
@@ -88,7 +88,7 @@ In \cite{SaganShareshianWachs2011}, it is proved that $\eulerianQ_{(n),j}$ expan
 \end{conjecture}
 
 The stronger statement, positivity in the \hyperref[completeH]{complete homogeneous basis}, is not true.
-For example, 
+For example,
 \[
 \eulerianQ_{(6),3} = \completeH_{321} - \completeH_{411}+2\completeH_{42} + \completeH_{51}.
 \]
@@ -96,7 +96,7 @@ For example,
 \subsection[eulerianSymmetricCSP]{Cyclic sieving phenomena}
 
 Let $\symS_{\lambda,j}$ be the subset of permutations in $\symS_n$ with cycle type $\lambda$
-and exactly $j$ excedances. 
+and exactly $j$ excedances.
 In \cite{SaganShareshianWachs2011}, it is shown that
 \[
 \left(\symS_{\lambda,j}, C_n, \sum_{\sigma \in \symS_{\lambda,j}} q^{\maj(\sigma) - \exc(\sigma)} \right)
@@ -105,7 +105,7 @@ exhibits the \hyperref[cyclicSieving]{cyclic sieving phenomenon}, where $C_n$ ac
 
 
 \begin{conjecture}[Alexandersson (2018)]
-Let $\lambda$ be a partition of $n$. Then 
+Let $\lambda$ be a partition of $n$. Then
 \[
 \eulerianQ_{\lambda,j}(1,q,q^2,\dotsc,q^{n-1})
 \]
@@ -130,12 +130,12 @@ that completes this to a cyclic sieving phenomenon.
 
 
 
-In \cite{Hyatt2012}, the notion of Eulerian quasisymmetric functions is generalized to the wreath product of 
+In \cite{Hyatt2012}, the notion of Eulerian quasisymmetric functions is generalized to the wreath product of
 a cyclic group and the symmetric group, also known as the group of \emph{colored permutations}.
 The notion of descents, fixed points and so on generalizes naturally to this setting,
 and thus allows for a definition of \emph{colored Eulerian quasisymmetric functions}.
 
-A special case would be to choose the cyclic group to be $\setZ_2$, which can then be 
+A special case would be to choose the cyclic group to be $\setZ_2$, which can then be
 called a \defin{type $B$ Eulerian quasisymmetric function}.
 In \cite{Lin2013}, the author shows that these are symmetric functions.
 These are believed to satisfy a cyclic sieving phenomenon as above.

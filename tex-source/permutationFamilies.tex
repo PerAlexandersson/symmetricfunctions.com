@@ -4,12 +4,13 @@
 
 \section[namedPermutations]{Named families of permutations}
 
-See the \hyperref[permutationPattern]{permutation patterns page} 
+See the \hyperref[permutationPattern]{permutation patterns page}
 for background on pattern containment and avoidance.
 
 \begin{itemize}
 
-\item \defin{Up-down}\label{permUpDown} ---  in one-line notation, we have $\pi_1 \lt \pi_2 \gt \pi_3 \lt \pi_4 \dotsb$.
+\item \defin{Up-down}\label{permUpDown} --- in one-line notation,
+$\pi_1 \lt \pi_2 \gt \pi_3 \lt \pi_4 \dotsb$.
 \defin{Down-up} permutations are of the form $\pi_1 \gt \pi_2 \lt \pi_3 \gt \pi_4 \dotsb$.
 Enumerated by the Euler numbers \oeis{A000111}.
 
@@ -17,12 +18,15 @@ Enumerated by the Euler numbers \oeis{A000111}.
 
 \item \defin{Derangements} --- permutations with no fixed point, \oeis{A000166}.
 
-\item \defin{Dominant} --- 132-avoiding. Enumerated by the Catalan numbers, \oeis{A000108}.
+\item \defin{Dominant} --- 132-avoiding.
+Enumerated by the Catalan numbers, \oeis{A000108}.
 
 \item \defin{Baxter} --- avoids $2-14-3$ and $3-14-2$, see \cite{DulucqGuibert1998}.
 
 \item \defin{Boolean} --- 123-avoiding and 3412-avoiding, see \cite{Tenner2007,GunawanPanRussellTenner2022x}.
-A permutation is boolean iff the order ideal it defines in the \hyperref[bruhatOrder]{Bruhat order}, is a Boolean lattice, see \cite[Thm. 4.3]{Tenner2007}.
+A permutation is boolean if and only if the order ideal it defines in the
+\hyperref[bruhatOrder]{Bruhat order} is a Boolean lattice,
+see \cite[Thm.~4.3]{Tenner2007}.
 Enumerated by odd-indexed Fibonacci numbers, \oeis{A001519}.
 
 \item \defin{Fireworks} --- Same as 3-12 avoiding, see
@@ -32,11 +36,13 @@ runs are increasing.
 \item \defin{Fully commutative} --- 321-avoiding, see \cite{BilleyJockuschStanley1993,GunawanPanRussellTenner2022x}.
 Enumerated by the Catalan numbers, \oeis{A000108}.
 
-\item A \defin{simsun permutation} is a permutation such that restricting to entries $1,2,\dotsc,k$,
-it does not have a double descent, i.e., $\pi(i)\gt \pi(i+1) \gt \pi(i+2)$, see \cite{MaYeh2016}.
+\item A \defin{simsun permutation} is a permutation such that, after restricting
+to entries $1,2,\dotsc,k$, it does not have a double descent, that is,
+$\pi(i)\gt \pi(i+1) \gt \pi(i+2)$, see \cite{MaYeh2016}.
 The number of simsun permutations in $\symS_n$ is given by the Euler number $E_{n+1}$, see \oeis{A000111}.
 
-\item \defin{King permutations} are permutations where no two adjacent entries differ by $1$ in one-line notation.
+\item \defin{King permutations} are permutations in which no two adjacent
+entries differ by $1$ in one-line notation.
 This can be described via mesh-pattern avoidance, see \oeis{A002464}.
 
 \item \label{vexillary}
@@ -44,39 +50,45 @@ A permutation is \defin{vexillary} if it avoids the pattern 2143, see \oeis{A005
 
 \item A permutation is \defin{Grassmann} (or \defin{Grassmannian}) if it has at most one descent.
 These are special cases of vexillary permutations.
-There are $2^n-n$ Grassmann permutations in $\symS_n$, see \oeis{A000325}.
+There are $2^n-n$ Grassmannian permutations in $\symS_n$, see \oeis{A000325}.
 See \hyperref[grassmannianPermutation]{the Schubert polynomial page} for more details.
 
-\item A permutation $\pi$ is \defin{bi-Grassmann} if both $\pi$ and $\pi^{-1}$ are Grassmann. Equivalent with avoiding 2413.
+\item A permutation $\pi$ is \defin{bi-Grassmann} if both $\pi$ and $\pi^{-1}$
+are Grassmann.  This is equivalent to avoiding 2413.
 This set has size $1+\binom{n+1}{3}$.
 
-\item \defin{Separable} permutations are those which avoids $2413$ and $3142$, see \oeis{A006318}.
+\item \defin{Separable} permutations are those which avoid $2413$ and $3142$,
+see \oeis{A006318}.
 For reference, see \cite{West1995}.
 
-\item \defin{Skew-merged} permutations avoid $2143$ and $3412$. These are exactly the ones
-created by a union of an increasing sequence, and a decreasing sequence, see \cite[Thm.2.9]{Stankova1994}, \oeis{A029759}.
+\item \defin{Skew-merged} permutations avoid $2143$ and $3412$. These are
+exactly the ones formed as the union of an increasing sequence and a decreasing
+sequence; see \cite[Thm.~2.9]{Stankova1994}, \oeis{A029759}.
 See \cite{Atkinson1998} for exact enumeration and connection with RSK.
 
 \item \defin{Flattened permutations}, where runs are in lex order.
 Enumerated by Bell numbers \oeis{A000110}, see \cite[Prop. 16]{NabawandaRakotondrajaoBamunoba2020}.
 
-\item \defin{Parity-alternating permutations} are permutations which sends odd numbers to odd numbers,
-and even numbers to even, see \cite{KebedeRakotondrajao2021}.
-This can be generalized to \defin{mod-k-alternating permutations},
+\item \defin{Parity-alternating permutations} are permutations which send odd
+numbers to odd numbers and even numbers to even numbers,
+see \cite{KebedeRakotondrajao2021}.
+This can be generalized to \defin{modulo-$k$ alternating permutations},
 where we demand that $\pi(i) \equiv i \mod k$.
-For pattern-avoidance in mod-k-alternating permutations, see \cite{AlexanderssonFufaGetachewQiu2022x}.
+For pattern avoidance in modulo-$k$ alternating permutations, see
+\cite{AlexanderssonFufaGetachewQiu2022x}.
 
 
 \item The \defin{Richardson permutation} with parameters $(k_1,k_2,\dotsc,k_m)$
 is given by the following in two-line notation.
 \[
 \begin{pmatrix}
-1 & 2 &       \dotsc & k_1   & k_1+1 & k_1+2 & \dotsc & k_1 + k2 & k_1+k_2+1 & \dotsc \\
+1 & 2 &       \dotsc & k_1   & k_1+1 & k_1+2 & \dotsc & k_1 + k_2 & k_1+k_2+1 & \dotsc \\
 k_1 & k_1-1 & \dotsc,   1		 & k_1+k_2 & k_1+k_2-1 & \dotsc & k_1+1 & k_1+k_2+k_3 & \dotsc \\
 \end{pmatrix}
 \]
-Basically, we take the unique longest permutation in each of the sets $\symS_{k_1},\dotsc,\symS_{k_m}$,
-and produce the \hyperref[directSumPermutations]{direct sum} of these.
+Equivalently, we take the unique longest permutation in each of the sets
+$\symS_{k_1},\dotsc,\symS_{k_m}$ and produce their
+\hyperref[directSumPermutations]{direct sum}.
 
 \item \defin{Wachs permutations} --- \oeis{A359039}.
 These are the permutations in $\symS_n$ defined as

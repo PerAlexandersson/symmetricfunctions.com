@@ -67,7 +67,7 @@ h_d(\xi^j) = h_d( \xi^{\gcd(j,n)})
 for all $d \mid n$, $j\in \setZ$, which is straightforward.
 \end{proof*}
 This proposition is very handy: Suppose we know that $f$ is an integer at $n^\thsup$ roots of unity.
-Then it suffices to verify that for all $d \mid n$, we have that
+Then it suffices to verify that, for all $d \mid n$,
 \[
 |\{x \in X : g^d \circ x =x \}| = f\left(\exp\left(2\pi i  \frac{d}{n}\right)\right)
 \]
@@ -165,7 +165,7 @@ The notion of universal statistics was introduced in \cite{AhlbachSwanson2018}.
 Suppose $(X,\grpc_n,f(q))$ exhibits the CSP, where $f(q) = \sum_{x\in X} q^{\tau(x)}$
 for some combinatorial statistic $\tau:X \to \setN$.
 Then $\tau$ is said to be \emph{universal} if for every $\grpc_n$-orbit $O \subseteq X$,
-we have that $(O,\grpc_n,\sum_{x\in O} q^{\tau(x)})$ exhibits the CSP.
+the triple $(O,\grpc_n,\sum_{x\in O} q^{\tau(x)})$ exhibits the CSP.
 
 The usual \hyperref[cspWords]{major index on words} is not universal.
 The authors of \cite{AhlbachSwanson2018} introduce a new (universal) statistic on words
@@ -180,9 +180,9 @@ This is possibly related or equivalent to the notion of a universal CSP statisti
 Suppose $X$ is a combinatorial family with a statistic $\sigma:X \to \setN$,
 that defines the $q$-analog $f(q)$ of $X$, and that $(X, \grpc_n, f(q))$ is a CSP-triple.
 
-Then the statistic is called \defin{proper} if whenever $d|n$, we have that
+Then the statistic is called \defin{proper} if, whenever $d|n$,
 \[
- g^{d}(x) = x \implies   \sigma(x) \equiv_{n/d} 0   \text{ for all } x \in X. 
+ g^{d}(x) = x \implies   \sigma(x) \equiv_{n/d} 0   \text{ for all } x \in X.
 \]
 
 \begin{example}
@@ -223,7 +223,7 @@ Furthermore, let $\eta$ act on $X_n$ by a \emph{twisted two-step cyclic shift}
 \eta(b_1,b_2,\dotsc,b_{n-1},b_n) = (1-b_{n-1},1-b_n,b_1,b_2,\dotsc,b_{n-2}).
 \]
 It is easy to show that $\langle \eta \rangle$ is a cyclic group of order $n$.
-The polynomial we shall use is $f_n(q) = \prod_{j=1}^{n-1}(1+q^j)$.
+The polynomial we use is $f_n(q) = \prod_{j=1}^{n-1}(1+q^j)$.
 Then
 \[
 (Y_n \subseteq X_n, \langle \eta \rangle, f_n(q))
@@ -245,11 +245,11 @@ The family is \defin{Lyndon-like} if for all $n\geq 1$,
 \[
  f_{n/m}(1) = f_n\left( e^{\tfrac{2 \pi i}{m}} \right), \text{ whenever } m|n.
 \]
-By the definition of CSP, we have that
+By the definition of CSP,
 \[
  f_n\left( e^{\tfrac{2 \pi i}{m}} \right) = |\{ x \in X_n : g^{n/m}(x) = x \}|,
 \]
-where $\langle g \rangle = C_n$. 
+where $\langle g \rangle = C_n$.
 The family is therefore Lyndon-like if and only if
 for every $d|n$ the number of elements in $X_n$ fixed under $g^{d}$ is equal to $|X_{d}|$.
 \end{definition}

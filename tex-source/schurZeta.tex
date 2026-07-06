@@ -21,25 +21,34 @@
 
 The \defin{Schur multiple zeta functions} were introduced in \cite{NakasujiPhuksuwanYamasaki2018}
 in order to interpolate between previous generalizations of the Riemann zeta function.
-We have that $\zeta_\lambda(\svec)$ is defined as
+They are defined as
 \[
- \zeta_\lambda(\svec) \coloneqq \sum_{T \in \SSYT(\lambda)} \prod_{(i,j) \in \lambda} T_{ij}^{s_{ij}}.
+ \zeta_\lambda(\svec) \coloneqq
+ \sum_{T \in \SSYT(\lambda)} \prod_{(i,j) \in \lambda} T_{ij}^{-s_{ij}}.
 \]
 The product is taken over all boxes in the diagram of $\lambda$.
 Note that this is not a symmetric function and not a polynomial in $\svec$.
-In fact, when $\lambda = (1)$, $\zeta_\lambda(\svec)$ coincides 
+In fact, when $\lambda = (1)$, $\zeta_\lambda(\svec)$ coincides
 with the classical Riemann zeta function.
 
-When $\lambda$ is a single row or a single column, we recover the functions previously introduced
-by Hoffman \cite{Hoffman1992} and Zaiger \cite{Zagier1994}. 
+\begin{example}
+For the one-box partition,
+\[
+ \zeta_{(1)}(s) = \sum_{m\geq 1} m^{-s},
+\]
+which is the classical Riemann zeta function.
+\end{example}
 
-If we set all variables equal, then 
+When $\lambda$ is a single row or a single column, we recover the functions
+previously introduced by Hoffman \cite{Hoffman1992} and Zaiger \cite{Zagier1994}.
+
+If we set all variables equal, then
 \[
 \zeta_\lambda(s,s,s,\dotsc,s) = \schurS_\lambda(1^{-s},2^{-s},3^{-s},\dotsc).
 \]
 
 Jacobi--Trudi identities and Giambelli formulas are proved in \cite{NakasujiPhuksuwanYamasaki2018}.
-More general determinant formulas of the same type 
+More general determinant formulas of the same type
 as Lascoux--Pragacz and \hyperref[schurStripDecompFormula]{Hamel--Goulden}
 are proved in \cite{BachmannCharlton2020}.
 
@@ -54,9 +63,9 @@ A refinement of the Littlewood--Richardson rule is available in \cite{Hanaki2026
 
 \subsection[schurZetaP]{Schur multiple zeta P and Q}
 
-In \cite{NakasujiTakeda2022x} the authors introduce the multiple zeta 
+In \cite{NakasujiTakeda2022x} the authors introduce the multiple zeta
 analogs of \hyperref[schurP]{Schur P} and \hyperref[schurQ]{Schur Q} functions.
 
-They also define multiple zeta functions analogous to the 
-\hyperref[schurOrthogonal]{Orthogonal Schur polynomials} and the 
+They also define multiple zeta functions analogous to the
+\hyperref[schurOrthogonal]{Orthogonal Schur polynomials} and the
 \hyperref[schurSymplectic]{Symplectic Schur polynomials}.

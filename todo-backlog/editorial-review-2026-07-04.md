@@ -53,6 +53,27 @@ before editing the public pages.
 - The personal/About and minor-research pages intentionally use first person.
   Technical reference pages should continue to prefer "we" or impersonal prose.
 
+## Example coverage
+
+- 2026-07-06 pass: 87 of the 133 `tex-source/*.tex` pages currently contain an
+  `example` environment.  This includes new definition-level examples on
+  root systems, flagged Schur polynomials, Schur multiple zeta functions,
+  the Hall inner product, Tutte symmetric functions, varieties, and
+  \(q\)-Whittaker functions.  The pages without examples include short
+  navigation, error, dictionary, resource, and backlog pages, so absence of an
+  example is not automatically a problem.
+- Existing source TODOs already identify several high-value example gaps:
+  `tex-source/assaf.tex`, `tex-source/generalizedDemazureAtoms.tex`,
+  `tex-source/lascoux.tex`, `tex-source/nonCommutativeShifted.tex`, and
+  `tex-source/superSymmetricSchur.tex`.
+- Additional good candidates for source-checked examples in a future pass:
+  `tex-source/characterSymmetricFunctions.tex`,
+  `tex-source/permutationFamilies.tex`, and `tex-source/transfer-matrix.tex`.
+- Pipe-dream examples now have a reusable local TikZ helper,
+  `\pipeDreamStaircase`, in `svg-tex/lib/definitions.tex`.  Prefer using this
+  helper for ordinary staircase pipe-dream figures before adding another ad hoc
+  TikZ block.
+
 ## Bibliography cleanup
 
 - A reference audit on 2026-07-04 fixed the genuinely ambiguous duplicate keys

@@ -21,15 +21,15 @@
 
 
 The flagged Schur polynomials generalize the classical
-\hyperref[schurS]{Schur polynomials} and these are no longer symmetric in general.
+\hyperref[schurS]{Schur polynomials}, but they are no longer symmetric in general.
 They were first considered in \cite{LascouxSchutzenberger1982},
 in the study of Schubert polynomials.
 
 We follow the introduction given in \cite{MerzonSmirnov2015}.
 
 Let $m \leq n$ be fixed integers and let $\lambda$ be a partition with
-$m$ parts and let $1 \leq b_1 \leq b_2 \leq \dotsb \leq b_m \leq n$ be
-a sequence of integers.
+$m$ parts.  Let $1 \leq b_1 \leq b_2 \leq \dotsb \leq b_m \leq n$ be
+a weakly increasing sequence of integers.
 Let $T(\lambda,b)$ denote the set of
 \hyperref[prelimTableaux]{semistandard tableaux}
 of shape $\lambda$ such that the entries in row $i$ do not exceed $b_i$.
@@ -42,6 +42,18 @@ is defined as
 Note that if $b_1=\dotsb = b_m = n$, then $\schurS_{\lambda,b}(\xvec)$
 is the usual Schur polynomial in $n$ variables.
 
+\begin{example}
+Let $\lambda=(2,1)$ and $b=(1,2)$.
+The first row must contain only $1$'s, while the second row may contain a $2$.
+Thus the only tableau is
+\[
+\ytableaushort{11,2}
+\]
+and
+\[
+ \schurS_{(2,1),(1,2)}(x_1,x_2)=x_1^2x_2.
+\]
+\end{example}
 
 Every flagged Schur polynomial $\schurS_{\lambda,b}(\xvec)$ is a \hyperref[key]{key polynomial},
 see \cite[Thm.~23]{ReinerShimozono1995}.

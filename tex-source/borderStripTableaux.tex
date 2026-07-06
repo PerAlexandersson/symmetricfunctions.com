@@ -223,19 +223,19 @@ Conjugating $\lambda$ conjugates the core and all partitions in the quotient.
 
 \emph{Warning!} 
 Other definitions of the quotient might give another cyclic rotation of the entries in the $\ell$-tuple.
-See the discussion in Macdonald's book. 
+See the discussion in Macdonald's book.
 
 There are several ways to compute the quotient, see \cite[p.12]{Macdonald1995}.
 The following example shows one possible method.
 
 \begin{example}[Computing the quotient]
 Let $\lambda = 8766641$ and $\ell=3$. We label the path outlining the partition
-as follows. Each east step is labeled with the content (row-index minus column-index) 
-of the box above it, while north steps are labeled with the content of the box to its right. 
+as follows. Each east step is labeled with the content (row index minus column index)
+of the box above it, while north steps are labeled with the content of the box to its right.
 We only consider the remainder of the content mod $\ell$, which gives the labeling as in the figure.
 
 To find $\lambda^j$, simply consider all boxes in $\lambda$, such that the label of the horizontal step in the same row,
-and the vertical step in the same column both are labeled $j$.
+and the vertical step in the same column are both labeled $j$.
 After removing empty columns and rows, these boxes form the shape $\lambda^j$.
 \begin{figure}
 \svgimg[width=0.4\textwidth]{svg-images/partition-quotient.svg}{A partition and the 3-quotient}

@@ -43,24 +43,25 @@
 \end{polydata}
 
 
-In \cite{OrellanaZabrocki2018}, the authors define 
-the \defin{irreducible character basis}, $\{\chSym_\lambda\}$, 
-the \defin{induced character basis}, $\{\indCharBasis_\lambda\}$, and 
+In \cite{OrellanaZabrocki2018}, the authors define
+the \defin{irreducible character basis}, $\{\chSym_\lambda\}$,
+the \defin{induced character basis}, $\{\indCharBasis_\lambda\}$, and
 the \defin{induced trivial character basis}, $\{\indTrivBasis_\lambda\}$.
 See also the \href{https://www.youtube.com/watch?v=4fDmCz9gWac}{OPAC YouTube lectures on this topic}.
 The induced character basis was previously studied by \name{David Speyer}
- and \name{Sami Assaf} \cite{AssafSpeyer2019} under the name 
+and \name{Sami Assaf} \cite{AssafSpeyer2019} under the name
 \defin{stable Specht polynomials}.
 
-In order to define these three families, we need some additional notation.
-First, let 
+To define these three families, we need some additional notation.
+First, let
 \[
   \bar{\powerSum}_{i^r} \coloneqq i^r \left( \frac{1}{i} \sum_{d \mid i } \mu(i/d) \powerSum_d \right)_i
   \text{ and }
   \hat{\powerSum}_{i^r} \coloneqq \sum_{k=0}^r (-1)^{r-k} \binom{r}{k} \bar{\powerSum}_{i^k},
 \]
-where we use the notation of falling factorial in the first expression.
-With these definitions, we can define $\bar{\powerSum}_\gamma$ and $\hat{\powerSum}_\gamma$, for partitions $\gamma$.
+where $(\cdot)_i$ denotes a falling factorial in the first expression.
+With these definitions, we can define $\bar{\powerSum}_\gamma$ and
+$\hat{\powerSum}_\gamma$, for partitions $\gamma$.
 Finally, we set
 \[
 	\chSym_\lambda \coloneqq \sum_{\gamma} \chi^{\lambda}(\gamma) \frac{ \hat{\powerSum}_\gamma }{z_\gamma}
@@ -71,9 +72,9 @@ Finally, we set
 \]
 
 
-The \defin{irreducible character symmetric functions} $\{\chSym_\lambda\}$ were 
+The \defin{irreducible character symmetric functions} $\{\chSym_\lambda\}$ were
 introduced by \name{Rosa Orellana} and \name{Mike Zabrocki} already in \cite{OrellanaZabrocki2016}.
-They are non-homogeneous symmetric functions, and may alternatively be defined as follow.
+They are non-homogeneous symmetric functions and can alternatively be defined as follows.
 
 Let $\lambda$ be a fixed partition, and $n \geq |\lambda|+\lambda_1$.
 Then for all partitions $\gamma \vdash n$,
@@ -85,7 +86,7 @@ a permutation matrix with cycle structure $\gamma$.
 This property uniquely defines the $\chSym_\lambda$.
 
 This definition makes the connection with \defin{character polynomials}
-evident, see the paper \cite{GarsiaGoupil2009} for more background.
+evident; see the paper \cite{GarsiaGoupil2009} for more background.
 \name{Miko{\l}aj Marciniak} studies the quadratic coefficients of the
 Goulden--Rattan character polynomials \cite{Marciniak2021GouldenRattan}.
 In particular, he proves the Goulden--Rattan positivity conjecture for the
@@ -114,7 +115,10 @@ The $\{\chSym_\mu\}$ are the unique set of solutions to the system of equations
  \schurS_\lambda = \sum_{\mu : |\mu| \leq |\lambda|} A_{\lambda,(n-|\mu|,\mu)} \chSym_\mu
 \]
 for all $n$ sufficiently large.
-Here, $A_{\lambda,\mu} = \langle \schurS_\lambda, \schurS_\mu[1 + \completeH_1 + \completeH_2 + \dotsb \rangle$,
+Here,
+$A_{\lambda,\mu}
+ = \langle \schurS_\lambda,
+ \schurS_\mu[1 + \completeH_1 + \completeH_2 + \dotsb] \rangle$,
 where we use plethystic notation.
 It is an open problem to combinatorially describe the $A_{\lambda,\mu}$.
 

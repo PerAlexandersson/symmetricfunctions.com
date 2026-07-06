@@ -39,7 +39,7 @@ denote symmetric functions with \emph{integer} coefficients.
 Brackets are commonly used to denote
 \defin{plethystic substitutions}\label{plethysticSubstitution}.
 \begin{itemize}
-\item $\powerSum_k[\powerSum_m] = \powerSum_{km}$. 
+\item $\powerSum_k[\powerSum_m] = \powerSum_{km}$.
 \item $\powerSum_k[f\pm g] = \powerSum_k[f] \pm \powerSum_k[g]$.
 \item $\powerSum_k[f\cdot g] = \powerSum_k[f] \cdot \powerSum_k[g]$.
 \item $(f\pm g)[h] = f[h] \pm g[h]$.
@@ -59,7 +59,7 @@ and $0$ otherwise.
 
 
 \begin{example}
-Let us compute $\powerSum_{22}[\powerSum_{43}]$.  We have that
+Let us compute $\powerSum_{22}[\powerSum_{43}]$:
 \begin{align*}
 \powerSum_{22}[\powerSum_{43}] &= (\powerSum_{2}[\powerSum_{43}])^2 \\
 &= (\powerSum_{2}[\powerSum_{4}] \cdot \powerSum_{2}[\powerSum_{3}])^2 \\
@@ -94,12 +94,12 @@ f[g(\xvec)] \coloneqq
 \sum_{\lambda} c_\lambda(\qvec)
 \prod_{j=1}^{\length(\lambda)} \powerSum_{\lambda_j}[g(\xvec)].
 \]
-This definition agrees with the previous one in the case $f$ and $g$ are symmetric 
+This definition agrees with the previous one in the case $f$ and $g$ are symmetric
 functions with integer coefficients, not depending on formal parameters.
 
 
 \begin{example}
-We have that 
+For example,
 \[
 \powerSum_{k}[5q \cdot \powerSum_{m}] = 5 q^k \powerSum_{km}.
 \]
@@ -122,11 +122,11 @@ We have the following identities:
 \item $\powerSum_{k}[qX] = q^k\powerSum_{k}[X]$
 \item $\powerSum_{k}[-X] = -\powerSum_{k}[X]$
 \item $\powerSum_{k}[\epsilon X] = \epsilon^k \powerSum_{k}[X]$ when $\epsilon=-1$.
-\item $\powerSum_{k}[X(1-q)] = (1-q^k)\powerSum_{k}[X]$ 
-\item $\powerSum_{k}[X/(1-q)] = \powerSum_{k}[X]/(1-q^k)$ 
+\item $\powerSum_{k}[X(1-q)] = (1-q^k)\powerSum_{k}[X]$
+\item $\powerSum_{k}[X/(1-q)] = \powerSum_{k}[X]/(1-q^k)$
 \item $\powerSum_{k}[X+Y] = \powerSum_{k}[X]+\powerSum_{k}[Y]$
-\item $\powerSum_{\lambda}[XY] = \powerSum_{\lambda}[X]\powerSum_{\lambda}[Y]$ 
-\item $\schurS_{\lambda}[X+Y] = \sum_{\mu \subseteq \lambda} \schurS_{\mu}[X]\schurS_{\lambda/\mu}[Y]$ 
+\item $\powerSum_{\lambda}[XY] = \powerSum_{\lambda}[X]\powerSum_{\lambda}[Y]$
+\item $\schurS_{\lambda}[X+Y] = \sum_{\mu \subseteq \lambda} \schurS_{\mu}[X]\schurS_{\lambda/\mu}[Y]$
 \item
 $\schurS_\nu[XY] = \sum_{\lambda,\mu} g^{\nu}_{\lambda\mu} \schurS_\lambda(\xvec) \schurS_\mu(\yvec)$
 where $g^{\nu}_{\lambda\mu}$ are the \hyperref[schurKroneckerCoefficients]{Kronecker coefficients}.
@@ -151,11 +151,11 @@ Then
 \subsection[plethysmOther]{Other identities}
 
 \begin{proposition}
-We have that
+We have
 \[
 \completeH_k[\completeH_2] = \sum_{\mu : \text{ even }} \schurS_{\mu}
 \]
-where the sum ranges over all partitions of $2k$ into even parts. 
+where the sum ranges over all partitions of $2k$ into even parts.
 This identity is due to \name{Dudley Littlewood}.
 \end{proposition}
 
@@ -215,7 +215,7 @@ rectangular Kronecker coefficients.
 
 
 \begin{proposition}[See \cite[Appendix~B]{BentoNovaes2021}]
-We have that for an indeterminate $c$,
+For an indeterminate $c$,
 \[
 \schurS_\lambda\left[ \frac{\xvec}{1- c \xvec} \right] = \sum_{\rho} c^{|\rho|-|\lambda|}
 \det\left[  \binom{ \rho_j-j }{\lambda_i-i}   \right] \cdot \schurS_\rho(\xvec).
@@ -271,10 +271,10 @@ This is a major open problem in the theory of symmetric functions and representa
 \end{problem}
 
 \begin{example}
-We have that
+For example,
 \[
-\schurS_{211}[\schurS_{11}] = 
-\schurS_{3 3 2} + \schurS_{3 2 2 1} + \schurS_{4 2 1 1} + 
+\schurS_{211}[\schurS_{11}] =
+\schurS_{3 3 2} + \schurS_{3 2 2 1} + \schurS_{4 2 1 1} +
  \schurS_{2 2 2 1 1} + \schurS_{3 2 1 1 1} + \schurS_{3 1 1 1 1 1}.
 \]
 \end{example}

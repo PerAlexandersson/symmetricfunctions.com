@@ -1,7 +1,7 @@
 \metatitle{Non-crossing cyclic sieving}
 \metadescription{A list of instances of the cyclic sieving phenomenon on non-crossing objects}
 
-See the \hyperref[cyclicSieving]{cyclic sieving phenomenon} 
+See the \hyperref[cyclicSieving]{cyclic sieving phenomenon}
 page for the definition and related theorems.
 
 
@@ -16,7 +16,7 @@ This gives the CSP-triple
 \[
 \left( X_{n,k}, \grpc_{n}, \frac{1}{[n+k]_q}\qbinom{n+k}{k+1}_q \qbinom{n-3}{k}_q \right).
 \]
-This can also be turned into a CSP on the set $\SYT((k+1)^2 1^{n-k-3})$, but 
+This can also be turned into a CSP on the set $\SYT((k+1)^2 1^{n-k-3})$, but
 it is not explained what the corresponding group action is.
 
 
@@ -41,7 +41,7 @@ and
 \]
 
 \begin{problem}
-Find a cyclic sieving phenomena on matchings with more than $3$ crossings.
+Find a cyclic sieving phenomenon on matchings with more than $3$ crossings.
 \end{problem}
 
 
@@ -57,8 +57,8 @@ Instead of a circle, one chooses $n$ and $m$ and places \emph{exterior} vertices
 clockwise, and \emph{interior} vertices $n+1,\dotsc,n+m$ counter-clockwise on an interior circle.
 
 A permutation is $(n,m)$-non-crossing if one can draw the edges as before in a non-crossing manner,
-such that every cycle is oriented clockwise. A non-crossing permutation is called \emph{connected} 
-if it contains at least one cycle with both exterior and interior vertices. 
+such that every cycle is oriented clockwise. A non-crossing permutation is called \emph{connected}
+if it contains at least one cycle with both exterior and interior vertices.
 The paper \cite{Kim2013} only considers non-crossing permutations with at least one connected cycle.
 Let $ANC(n,m)$ denote the set of connected $(n,m)$-non-crossing permutations.
 
@@ -69,10 +69,10 @@ Then
 \]
 is a CSP-triple.
 
-Several refinements, such as the $q$-Narayana and $q$-Kreweras polynomials are also considered 
+Several refinements, such as the $q$-Narayana and $q$-Kreweras polynomials are also considered
 in \cite{Kim2013} and proved to have CSP.
 The type $B$ variants, where all non-crossing partitions are symmetric with respect to rotation by half a turn,
-are also covered. 
+are also covered.
 For example,
 \[
 \left( ANC_B(n,m), C, \frac{[2nm]_q}{[n+m]_q}\qbinom{2n}{n}_q\qbinom{2m}{m}_q \right)
@@ -95,10 +95,10 @@ is a CSP triple. This is also proved in \cite{Poznanovic2011}.
 
 
 We can also count graphs according to edges. In \cite{Poznanovic2011},
-the following $q$-analog is considered, which enumerates the number of 
+the following $q$-analog is considered, which enumerates the number of
 \emph{non-crossing graphs with $n$ vertices and $k$ edges}, $Y_{n,k}$:
 \[
-g_{n,k}(q) \coloneqq \frac{1}{[n-1]_q} \sum_{j=0}^{n-2} 
+g_{n,k}(q) \coloneqq \frac{1}{[n-1]_q} \sum_{j=0}^{n-2}
 q^{j(j+n-k+2)}\qbinom{n-1}{k-j}_q  \qbinom{n-1}{j+1}_q \qbinom{n-2+j}{n-2}_q.
 \]
 Then $(Y_{n,k},\grpc_n,g_{n,k}(q))$ is a CSP-triple, under rotation.
