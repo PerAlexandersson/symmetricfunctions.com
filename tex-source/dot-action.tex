@@ -1,10 +1,12 @@
 \metatitle{Dot action and Hessenberg varieties}
-\metadescription{A computational and representation-theoretic guide to Tymoczko's dot action on regular semisimple Hessenberg varieties, its GKM description, and its connection with chromatic quasisymmetric functions.}
+\metadescription{A computational and representation-theoretic guide to
+Tymoczko's dot action on regular semisimple Hessenberg varieties, its GKM
+description, and its connection with chromatic quasisymmetric functions.}
 
 
 \section[dotAction]{The dot action}
 
-The \defin{dot action} is a representation of $\symS_n$ on the cohomology
+The \defin{dot action}\label{tymoczkoDotAction} is a representation of $\symS_n$ on the cohomology
 of certain \hyperref[hessenbergVarieties]{Hessenberg varieties}.
 It was introduced by \name{Julianna Tymoczko} in the setting of equivariant
 cohomology \cite{Tymoczko2008,Tymoczko2008b}.
@@ -17,7 +19,8 @@ The conjecture was proved by \name{Patrick Brosnan} and \name{Timothy Chow}
 The broader chromatic symmetric function background is discussed on the
 \hyperref[chromaticQuasisymmetricHessenberg]{chromatic quasisymmetric
 function page}.  Here we isolate the representation-theoretic mechanism:
-start with a Hessenberg sequence, build the GKM (\name{Mark Goresky}, \name{Robert Kottwitz}, and \name{Robert MacPherson}) model for equivariant
+start with a Hessenberg sequence, build the GKM (\name{Mark Goresky},
+\name{Robert Kottwitz}, and \name{Robert MacPherson}) model for equivariant
 cohomology, descend the dot action to ordinary cohomology, and finally convert
 the resulting graded characters into a
 \hyperref[frobeniusCharacteristic]{Frobenius characteristic}.
@@ -26,13 +29,14 @@ the resulting graded characters into a
 \subsection[dotActionHessenbergSequence]{Hessenberg sequences and varieties}
 
 \label{hessenbergVarieties}
-A \defin{Hessenberg sequence} is a weakly increasing sequence
+A \defin{Hessenberg sequence}\label{hessenbergSequence} is a weakly increasing sequence
 $m=(m_1,\dotsc,m_n)$ such that
 \[
 i\leq m_i\leq n
 \qquad\text{for all } i.
 \]
-Equivalently, it is a Hessenberg function $m:[n]\to[n]$ with
+Equivalently, it is a \defin{Hessenberg function}\label{hessenbergFunction}
+$m:[n]\to[n]$ with
 $m(i)\geq i$.  This is the same data that appears in the area-sequence
 description of \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graphs},
 although the indexing convention depends on whether one starts from the
@@ -50,16 +54,16 @@ F_1\subset F_2\subset \dotsb \subset F_n=\setC^n,
 \dim F_i=i.
 \]
 Let $D$ be a diagonal $n\times n$ matrix with distinct diagonal entries.
-The \defin{type $A$ regular semisimple Hessenberg variety} associated with
-$m$ is
+The \defin{type $A$ regular semisimple Hessenberg variety}
+\label{regularSemisimpleHessenbergVariety} associated with $m$ is
 \[
 H(m)
 \coloneqq
 \{F\in F(n):D F_i\subseteq F_{m_i}\text{ for all }i\}.
 \]
 For background on this construction, see the thesis of \name{Nicholas Teff}
-\cite{Teff2013} and \href{https://math.dartmouth.edu/~orellana/wachs.pdf}{these
-slides}.
+\cite{Teff2013} and \name{Julianna Tymoczko}'s introduction to equivariant
+cohomology and homology \cite{Tymoczko2005}.
 
 The same sequence also determines a natural unit interval graph
 $\Gamma_\avec$ on vertex set $[n]$.  In the standard Hessenberg-function
@@ -105,7 +109,8 @@ w\longleftrightarrow w s_{ij}
 \text{for }\{i,j\}\in E(\Gamma_\avec).
 \]
 
-The GKM description realizes the equivariant cohomology as a ring of tuples
+The \defin{GKM description}\label{gkmDescription} realizes the equivariant
+cohomology as a ring of tuples
 \[
 p=(p_w)_{w\in\symS_n},
 \qquad
@@ -148,14 +153,15 @@ polynomial variables.
 
 The group $\symS_n$ acts on $\setC[t_1,\dotsc,t_n]$ by permuting the indices:
 \(\sigma(t_i)\coloneqq t_{\sigma(i)}\).
-Tymoczko's \defin{dot action} on a GKM tuple is
+Tymoczko's \defin{dot action on a GKM tuple}
+\label{dotActionOnGKMTuple} is
 \[
 (\sigma\cdot p)_w
 \coloneqq
 \sigma\left(p_{\sigma^{-1}w}\right).
 \]
 The subscript $\sigma^{-1}w$ moves the fixed-point label, and the outer
-$\sigma$ permutes the polynomial variables. The GKM divisibility relations are
+$\sigma$ permutes the polynomial variables.  The GKM divisibility relations are
 preserved, so this gives an action on equivariant cohomology.  Since the ideal
 $(t_1,\dotsc,t_n)$ is $\symS_n$-stable, the action descends to ordinary
 cohomology.
@@ -281,14 +287,15 @@ Shareshian--Wachs conjecture for these varieties.
 \name{Kyle Salois} studies the regular semisimple Hessenberg varieties with
 $h=(h(1),n,\dotsc,n)$ and the transpose family
 $h'=((n-1)^{n-m},n^m)$ \cite{Salois2026}.  For these families he constructs
-higher Specht bases and permutation bases for the cohomology rings, together
-with bijections to $P_h$-tableaux.  The permutation-basis result gives a
+higher \hyperref[spechtModules]{Specht} bases and permutation bases for the
+cohomology rings, together with bijections to $P_h$-tableaux.  The
+permutation-basis result gives a
 geometric explanation of the corresponding elementary-positivity statement.
 
 
 \subsection[dotActionTypeBC]{Types B and C}
 
-Recent work of \name{Nathan R. T. Lesnevich} extends the same GKM/spline
+\name{Nathan R. T. Lesnevich} extends the same GKM/spline
 viewpoint to types $B$ and $C$ \cite{Lesnevich2025x}.  The vertices are the
 signed permutations $\symB_n$, and an order ideal $H$ in the positive roots
 determines the signed transpositions and edge relations.  The resulting spline
