@@ -6,17 +6,20 @@
 \section[polyaFrequency]{Pólya frequency sequences}
 
 Pólya frequency sequences give a coefficient-level way to recognize
-real-rooted polynomials with non-negative coefficients.  The basic idea is to
-put the coefficients into a Toeplitz matrix and ask for total
-non-negativity.  This puts real-rootedness in the same framework as planar
+\hyperref[realRootedPolynomial]{real-rooted polynomials} with non-negative
+coefficients.  The basic idea is to put the coefficients into a Toeplitz
+matrix and ask for total non-negativity.  This puts real-rootedness in the
+same framework as planar
 networks, \hyperref[interlacingPolynomials]{interlacing polynomials},
 \hyperref[stablePolynomial]{stable polynomials}, and
 \hyperref[hadamardProduct]{Hadamard products}.
 
 \subsection[totallyNonnegative]{Totally non-negative matrices}
 
-A matrix \(M=(m_{ij})\) is \defin{totally non-negative} (TNN) if every minor
-is non-negative.  It is \defin{totally positive} (TP) if every minor is
+A matrix \(M=(m_{ij})\) is
+\defin{totally non-negative}\label{totallyNonnegativeMatrix} (TNN) if every
+minor is non-negative.  It is
+\defin{totally positive}\label{totallyPositiveMatrix} (TP) if every minor is
 strictly positive.
 
 TNN matrices arise naturally from path-counting in directed graphs via the
@@ -44,12 +47,13 @@ By the \hyperref[lgvLemma]{LGV lemma}, the matrix \((M_{n,j})\) is TNN.
 The class of TNN matrices is closed under taking submatrices and under
 matrix multiplication.  The latter follows from the Binet--Cauchy formula:
 each minor of a product is a sum of products of minors.  These two closure
-properties are the engine behind many real-rootedness-preserving
-constructions below.
+properties are the engine behind many
+\hyperref[realRootedPreservers]{real-rootedness-preserving} constructions
+below.
 
 \subsection[toeplitzTnnMatrix]{Toeplitz matrices and PF sequences}
 
-\begin{definition}[Pólya frequency sequence]\label{def:polyaFrequencySequence}
+\begin{definition}[Pólya frequency sequence]\label{polyaFrequencySequenceDefinition}
 A sequence \(a=(a_0,a_1,\dotsc)\) of non-negative real numbers is a
 \defin{Pólya frequency sequence} (PF sequence) if the semi-infinite Toeplitz
 matrix
@@ -61,7 +65,8 @@ is totally non-negative.
 
 Thus a PF sequence is a sequence whose finite Toeplitz minors are all
 non-negative.  If only minors of size at most \(r\) are required to be
-non-negative, the sequence is called \defin{\(\mathrm{PF}_r\)}.  Thus
+non-negative, the sequence is called
+\defin{\(\mathrm{PF}_r\)}\label{finitePolyaFrequencySequence}.  Thus
 \(\mathrm{PF}=\mathrm{PF}_\infty\).
 
 \begin{proposition}[Finite order two, see \cite{Brenti1989,Karlin1968}]
@@ -70,9 +75,11 @@ A non-negative sequence is \(\mathrm{PF}_2\) if and only if it is
 log-concave and has no internal zeros.
 \end{proposition}
 
-Consequently every PF sequence is log-concave and unimodal.  The converse is
-false: PF is a much stronger condition than log-concavity, because it asks for
-all Toeplitz minors, not only the adjacent \(2\times 2\) minors.
+Consequently every PF sequence is
+\hyperref[logConcavePolynomial]{log-concave} and
+\hyperref[unimodalPolynomial]{unimodal}.  The converse is false: PF is a much
+stronger condition than log-concavity, because it asks for all Toeplitz minors,
+not only the adjacent \(2\times 2\) minors.
 
 \begin{theorem}[Aissen--Schoenberg--Whitney, 1952]
 \label{aissenSchoenbergWhitney}
@@ -343,10 +350,11 @@ is Schur-positive.
 \end{theorem}
 
 \name{Ziyao Fu}, \name{Yulin Peng}, and \name{Yuchong Zhang} connect this
-kind of total positivity with upper homogeneous posets, or \defin{upho
-posets} \cite{FuPengZhang2024x}.  They prove that a formal power series
-\(f(x)\in 1+x\setZ_{\geq 0}[[x]]\) is the rank-generating function of a
-Schur-positive upho poset if and only if \(f(x)\) is totally positive.  Here
-Schur positivity refers to the Ehrenborg quasisymmetric function of the poset.
-Their proof passes through a correspondence between colored upho posets and
-atomic left-cancellative monoids.
+kind of total positivity with upper homogeneous posets, or
+\defin{upho posets}\label{uphoPoset} \cite{FuPengZhang2024x}.  They prove
+that a formal power series \(f(x)\in 1+x\setZ_{\geq 0}[[x]]\) is the
+rank-generating function of a \hyperref[schurPositivity]{Schur-positive} upho
+poset if and only if \(f(x)\) is totally positive.  Here Schur positivity
+refers to the Ehrenborg quasisymmetric function of the poset.  Their proof
+passes through a correspondence between colored upho posets and atomic
+left-cancellative monoids.
