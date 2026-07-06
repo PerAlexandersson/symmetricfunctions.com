@@ -1,6 +1,8 @@
 \metatitle{Real-rooted polynomials: graphs and combinatorics}
 
-\metadescription{Matching polynomials, rook polynomials, independence polynomials of claw-free graphs, Touchard polynomials, and Chow polynomials.}
+\metadescription{Matching polynomials, rook polynomials, independence
+polynomials of claw-free graphs, Touchard polynomials, Chow polynomials, and
+related real-rootedness results.}
 
 
 \section[realRootedMatching]{Matching and independence polynomials}
@@ -12,13 +14,14 @@ include deletion/interlacing theorems, the
 technology.
 
 Let $G = (V,E)$ be any graph.
-The \defin{matching polynomial} $\mu_G(x)$ is defined as
+The \defin{matching polynomial}\label{matchingPolynomial} $\mu_G(x)$ is
+defined as
 \[
 \mu_G(x) \coloneqq \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}} x^{|M|}
 \]
 where $|M|$ is the number of edges in the matching.
 
-In \cite[Thm. 4.2]{HeilmannLieb1972}, it was shown that $\mu_G(x)$
+In \cite[Thm.~4.2]{HeilmannLieb1972}, it was shown that $\mu_G(x)$
 is real-rooted. Moreover, $\mu_G(x)$ interlaces $\mu_{G'}(x)$, where $G'$
 is any graph obtained from $G$ by removing a vertex.
 This is a very powerful theorem, but it follows
@@ -30,7 +33,8 @@ is considered by \name{Nima Amini} in \cite{Amini2019x}.
 
 \begin{example*}[Laplacian matching polynomial]
 Let $d_G(v)$ denote the degree of $v$ in $G$.
-The \defin{Laplacian matching polynomial} is the matching-theoretic Laplacian analogue
+The \defin{Laplacian matching polynomial}\label{laplacianMatchingPolynomial}
+is the matching-theoretic Laplacian analogue
 \[
  \operatorname{LM}(G,x) \coloneqq
  \sum_{\substack{M \subseteq E(G) \\ \text{$M$ matching}}}
@@ -50,22 +54,26 @@ where $S(G)$ is the subdivision graph and
 \]
 is the usual Heilmann--Lieb normalization of the matching polynomial.
 
-For connected $G$, \name{Jiang-Chao Wan}, \name{Yi Wang} and \name{Ali Mohammadian} also show that $0$ is a root of
-$\operatorname{LM}(G,x)$ if and only if $G$ is a tree; that the number of distinct
-positive roots is at least the length of the longest path in $G$; and that
-$\operatorname{LM}(G,x)$ and $\operatorname{LM}(G-e,x)$ have interlacing roots for each
-edge $e$ of $G$.
+For connected $G$, \name{Jiang-Chao Wan}, \name{Yi Wang}, and
+\name{Ali Mohammadian} also show that $0$ is a root of
+$\operatorname{LM}(G,x)$ if and only if $G$ is a tree; that the number of
+distinct positive roots is at least the length of the longest path in $G$; and
+that $\operatorname{LM}(G,x)$ and $\operatorname{LM}(G-e,x)$ have
+\hyperref[interlacingPolynomials]{interlacing roots} for each edge $e$ of $G$.
 \end{example*}
 
 
 \begin{example*}[Fibonacci tilings via matchings]
-Recall that the number of ways to tile the  one-row Young diagram $(n)$
-with tiles of shape $(1)$ and $(2)$ is given by the $(n+1)th$ Fibonacci number.
+Recall that the number of ways to tile the one-row Young diagram $(n)$
+with tiles of shape $(1)$ and $(2)$ is the Fibonacci number $F_{n+1}$.
 If we then define
 \[
- F_0(x) \coloneqq 1 \quad F_1(x) \coloneqq 1, \quad F_n(x) \coloneqq F_{n-1}(x) + x\cdot F_{n-2}(x)
+ F_0(x) \coloneqq 1,\qquad
+ F_1(x) \coloneqq 1,\qquad
+ F_n(x) \coloneqq F_{n-1}(x) + x\cdot F_{n-2}(x)
 \]
-we see that $[x^k] F_n(x)$ is the number of ways to tile $(n)$ using exactly $k$ (2)-tiles.
+we see that $[x^k] F_n(x)$ is the number of ways to tile $(n)$ using exactly
+$k$ tiles of shape $(2)$.
 
 By the Heilmann--Lieb theorem, we can see that for all $n$, $F_n(x)$ is real-rooted,
 since we can see that $\mu_G(x) = F_n(x)$ for the path graph with $n$ vertices.
@@ -78,9 +86,11 @@ since we can see that $\mu_G(x) = F_n(x)$ for the path graph with $n$ vertices.
 
 The \hyperref[touchardPolynomial]{Touchard polynomials} may be defined via
 \[
-T_n(x) \coloneqq \sum_{P \in SP(n)} x^{blocks(P)} = \sum_{k=1}^n S(n,k) x^k.
+T_n(x) \coloneqq
+\sum_{P \in SP(n)} x^{\mathrm{blocks}(P)}
+= \sum_{k=1}^n S(n,k) x^k.
 \]
-\emph{The matching approach:} \cite[Lem. 5.1]{Godsil2017}, states
+\emph{The matching approach:} \cite[Lem.~5.1]{Godsil2017} states
 that the Stirling number $S(n,k)$ is equal to the number
 of size $n-k$ matchings in the bipartite graph $G_n$ on vertex set
 \[
@@ -88,7 +98,8 @@ of size $n-k$ matchings in the bipartite graph $G_n$ on vertex set
 \]
 where $i$ has an edge with $j'$ if and only if $i \lt j$.
 
-For example, the graph $G_4 = \{ \{1,2'\}, \{1,3'\}, \{1,4'\}, \{2,3'\}, \{2,4'\}, \{3,4'\} \}$
+For example, the graph
+$G_4 = \{ \{1,2'\}, \{1,3'\}, \{1,4'\}, \{2,3'\}, \{2,4'\}, \{3,4'\} \}$
 has $7=S(4,4-2)$ matchings of size $2$,
 and $6=S(4,4-1)$ matchings of size $1$.
 We then have that $x^n T_n(x^{-1}) = \mu_{G_n}(x)$ where
@@ -99,8 +110,9 @@ from which interlacing for Touchard polynomials follows.
 
 
 \emph{The rook placement approach:}
-The matching polynomial $\mu_{G_n}(x)$ for the bipartite graph above, is the rook polynomial
-of the staircase board of size $n-1$.
+The matching polynomial $\mu_{G_n}(x)$ for the bipartite graph above is the
+\hyperref[rookPolynomial]{rook polynomial} of the staircase board of size
+$n-1$.
 
 \end{example*}
 
@@ -115,17 +127,19 @@ matching polynomials is given in \cite{NyulRacz2021}.
 
 \subsection[rookPolynomials]{Rook polynomials}
 
-The \defin{rook polynomial} of a board $B$ is defined as
+The \defin{rook polynomial}\label{rookPolynomial} of a board $B$ is defined as
 \[
   R_B(z) \coloneqq \sum_k r_k(B) z^k
 \]
-where $r_k(B)$ is the number of ways to place $k$ non-attacking rooks on the board.
+where $r_k(B)$ is the number of ways to place $k$ non-attacking rooks on the
+board.
 Here, the board can be any subset of some $n {\times} n$-board.
-Note that $R_B(x)$ is exactly a matching polynomial, $\mu_G(x)$ for a bipartite
-graph $G$ on vertex set $\{v_1,\dotsc,v_n,v'_1,\dotsc,v'_n\}$
+Note that $R_B(x)$ is exactly a matching polynomial, $\mu_G(x)$, for a
+bipartite graph $G$ on vertex set $\{v_1,\dotsc,v_n,v'_1,\dotsc,v'_n\}$
 where  $(v_i,v'_j)$ is an edge if and only if $(i,j)$ is a cell of the board $B$.
 
-Nijenhuis \cite{Nijenhuis1976} proved that the rook polynomials are always real-rooted.
+\name{Albert Nijenhuis} \cite{Nijenhuis1976} proved that the rook polynomials
+are always real-rooted.
 In fact, Nijenhuis shows a weighted result involving permanents.
 \begin{theorem}[Nijenhuis, 1976]
 Let $A = (a_{ij})$ be a non-negative $m\times n$-matrix.
@@ -139,7 +153,8 @@ and $a(\rho_j)$ is the value of the matrix at position given by the $j$th rook.
 \end{theorem}
 
 
-The \defin{hit polynomial} of a board can also be defined in terms of the $r_k(B)$.
+The \defin{hit polynomial}\label{hitPolynomial} of a board can also be defined
+in terms of the $r_k(B)$.
 Let $B$ be a subset of the $n\times n$-board.
 The hit polynomial is then defined as
 \[
@@ -149,7 +164,8 @@ Here, $h_j(B)$ is the number of ways to place $n$ rooks on the $n \times n$-boar
 with exactly $j$ rooks in $B$, see \cite{KaplanskyRiordan1946,Haglund2000}.
 
 A theorem by Haglund--Ono--Wagner \cite{HaglundOnoWagner1999}
-states that if $B$ is a Ferrers board (same as a Young diagram),
+states that if $B$ is a Ferrers board (the same as a
+\hyperref[youngDiagram]{Young diagram}),
 then $T_B(z)$ is real-rooted.
 
 
@@ -157,30 +173,36 @@ then $T_B(z)$ is real-rooted.
 
 \subsection[realRootedIndependence]{Independence polynomials for claw-free graphs}
 
-Let $G = (V,E)$ be any graph. The \defin{independence polynomial} $I(G,x)$ is defined
-as
+Let $G = (V,E)$ be any graph.
+The \defin{independence polynomial}\label{independencePolynomial} $I(G,x)$ is
+defined as
 \[
 I(G,x) \coloneqq \sum_{\substack{A \subseteq V(G) \\ \text{$A$ independent}}} x^{|A|}
 \]
 where $|A|$ is the number of vertices in the independent set.
 
-A graph called \defin{claw-free} if no induced subgraph is isomorphic
+A graph is called \defin{claw-free}\label{clawFreeGraph} if no induced
+subgraph is isomorphic
 to the graph with edges $\{\{1,2\},\{1,3\},\{1,4\}\}$.
 
-If $G$ is any simple graph, its \emph{line graph} $L(G)$ is also simple.
-Moreover, $L(G)$  is claw-free. Finally, we have that $I(L(G),x) = \mu_G(x)$.
+If $G$ is any simple graph, its \defin{line graph}\label{lineGraph} $L(G)$ is
+also simple.
+Moreover, $L(G)$ is claw-free. Finally, we have that $I(L(G),x) = \mu_G(x)$.
 
-\begin{theorem}[Chudnovsky--Seymour 2007, \cite{ChudnovskySeymour2007},]
+\begin{theorem}[Chudnovsky--Seymour 2007, \cite{ChudnovskySeymour2007}]
 Suppose $G$ is claw-free. Then $I(G,x)$ is real-rooted.
 As a corollary, we get the Heilmann--Lieb theorem on matching polynomials.
 \end{theorem}
 \begin{proof*}
-This very briefly illustrates the ideas. Note that if $v \in V(G)$ and $nbh(v)$
-is $v$ and all vertices adjacent to $v$, then
+This very briefly illustrates the ideas. Note that if $v \in V(G)$ and
+$\operatorname{nbh}(v)$ is the closed neighborhood consisting of $v$ and all
+vertices adjacent to $v$, then
 \[
- I(G,x) = I(G \setminus \{v\} ,x) + x \cdot  I(G \setminus nbh(v),x).
+ I(G,x) = I(G \setminus \{v\} ,x)
+ + x \cdot I(G \setminus \operatorname{nbh}(v),x).
 \]
-Essentially, the above sum is broken down into the cases where $v \notin A$, and when $v \in A$.
+Essentially, the above sum is broken down into the cases where $v \notin A$
+and where $v \in A$.
 Observe that if $G$ is claw-free, then any induced subgraph is also claw-free.
 Chudnovsky--Seymour then use the notion of \hyperref[compatiblePolynomials]{compatible polynomials}
 to obtain their result.
@@ -213,9 +235,10 @@ only simple real zeros.
 \end{theorem}
 
 The last statement shows that real-rooted independence polynomials are
-plentiful among well-covered graph expansions, even though well-covered
-graphs themselves may have non-real zeros. For caterpillar trees, there
-are also broad unimodality results for independence polynomials, see
+plentiful among well-covered graph expansions, even though well-covered graphs
+themselves may have non-real zeros. For caterpillar trees, there are also
+broad \hyperref[unimodalPolynomial]{unimodality} results for independence
+polynomials, see
 \cite{BahlsEthridgeSzabo2018}; these are unimodality results rather than
 real-rootedness theorems.
 \name{Rohan Pandey} studies independence polynomials of generalized Petersen
@@ -226,7 +249,7 @@ they form complex conjugate patterns.  The resulting conjecture is that
 $I(\mathrm{GP}(n,k),x)$ is real-rooted if and only if $k$ is even.
 
 \name{Yan-Ting Xie} and \name{Shou-Jun Xu} study the complementary
-\defin{dependence polynomial}
+\defin{dependence polynomial}\label{dependencePolynomial}
 \[
   D(G,x) \coloneqq \sum_k d_k(G)x^k,
 \]
@@ -238,9 +261,10 @@ real-rooted examples are $K_2$, $P_3$, $K_3$, $2K_2$, $P_4$, $C_4$, and two
 small exceptional graphs shown in their Fig.~1.
 
 \name{Alexander Engström} proved the following weighted generalization of the Chudnovsky--Seymour theorem:
-\begin{theorem*}[A. Engström, \cite[Thm. 2.5]{Engstrom2007}]
+\begin{theorem*}[A. Engström, \cite[Thm.~2.5]{Engstrom2007}]
 Let $G = (V,E)$ be a graph, and $w : V \to \setR$ be vertex weights.
-The \defin{weighted independence polynomial} $I(G,w,x)$ is defined as
+The \defin{weighted independence polynomial}\label{weightedIndependencePolynomial}
+$I(G,w,x)$ is defined as
 \[
 I(G,w,x) \coloneqq \sum_{\substack{A \subseteq V(G) \\ \text{$A$ independent}}} x^{|A|} \prod_{v\in A} w(v).
 \]
@@ -251,17 +275,18 @@ If $G$ is claw-free and all weights are non-negative, then $I(G,w,x)$ is real-ro
 \subsection[realRootsChow]{Chow polynomials}
 
 In \cite{BrandenVecchi2025x}, the authors show various
-real-rootedness results regarding Chow polynomials.
+real-rootedness results regarding
+\defin{Chow polynomials}\label{chowPolynomialDefinition}.
 \name{Elena Hoster} and \name{Christian Stump} prove real-rootedness of Chow
 and augmented Chow polynomials for finite graded simplicial posets with a top
 element whenever the $h$-vector is positive \cite{HosterStump2025x}.  This
-includes Cohen--Macaulay simplicial posets and, in particular, lattices of
-flats of uniform matroids.
+includes Cohen--Macaulay simplicial posets and, in particular,
+\hyperref[latticeOfFlats]{lattices of flats} of uniform matroids.
 
 \name{Petter Brändén} and \name{Leonardo Saud Maia Leite} study the
 conjecture of \name{Christos A. Athanasiadis} and \name{Afrodite
 Kalampogia-Evangelinou} that chain polynomials of geometric lattices have only
 real zeros \cite{BrandenLeite2025x}.  They prove it for perfect matroid
-designs, Dowling lattices, and a class containing lattices of flats of paving
-matroids, and analyze how the property behaves under several lattice
+designs, Dowling lattices, and a class containing lattices of flats of
+\hyperref[pavingMatroid]{paving matroids}, and analyze how the property behaves under several lattice
 operations.
