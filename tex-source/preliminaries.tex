@@ -4,24 +4,31 @@
 
 \section[preliminaries]{Preliminaries}
 
-We use standard notation, $\setN$ is the set of natural numbers $\{0,1,2,\dotsc,\}$
+We use standard notation, $\setN$ is the set of natural numbers
+$\{0,1,2,\dotsc\}$
 and $[n]\coloneqq \{1,2,\dotsc,n\}$.
 
 
 \section[prelimPartitions]{Partitions}
 
-A \defin{partition} is a weakly decreasing sequence of positive integers, referred to as \emph{parts}.
+A \defin{partition}\label{partitionDefinition} is a weakly decreasing sequence
+of positive integers, referred to as \emph{parts}.
 A partition $\lambda$ can be described as $1^{m_1},2^{m_2},\dotsc,k^{m_k}$
 where $m_i$ is the number of parts of $\lambda$ equal to $i$.
-The \defin{type} of $\lambda$ is the vector $(m_1,\dotsc,m_k)$.
-For example, the partition $444332111111$ can in a more compact form be described as $1^6,2^1,3^2,4^3$,
+The \defin{type}\label{partitionType} of $\lambda$ is the vector
+$(m_1,\dotsc,m_k)$.
+For example, the partition $444332111111$ can in a more compact form be
+described as $1^6,2^1,3^2,4^3$,
 and it has type $(6,1,2,3)$.
 
 Partitions may be illustrated as \defin{Young diagrams}\label{youngDiagram}.
 \begin{example}
-Consider $\lambda=(7,5,5,4,3)$. There are two common ways to draw $\lambda$ as Young diagram,
-the \defin{English} way --- which is what is mainly used here, and the \defin{French way}. 
-The English way uses matrix coordinates while the French uses Cartesian coordinates in the first quadrant.
+Consider $\lambda=(7,5,5,4,3)$.
+There are two common ways to draw $\lambda$ as a Young diagram:
+the \defin{English} way --- which is what is mainly used here --- and the
+\defin{French way}.
+The English way uses matrix coordinates while the French way uses Cartesian
+coordinates in the first quadrant.
 The lengths of the rows are determined by the parts of $\lambda$.
 
 \begin{figure}
@@ -41,27 +48,35 @@ The lengths of the rows are determined by the parts of $\lambda$.
 \end{ytableau}
 \end{figure}
 
-There is a third way to describe a partition, using \defin{Frobenius coordinates}.
-Let $d$ be the number of boxes on the main diagonal in the Young diagram of $\lambda$. 
-This is the \defin{Durfee size} of $\lambda$.
-The \defin{Frobenius coordinates} of $\lambda$ is given by $(a_1,a_2,\dotsc,a_d|b_1,b_2,\dotsc,b_d)$
+There is a third way to describe a partition, using
+\defin{Frobenius coordinates}\label{frobeniusCoordinates}.
+Let $d$ be the number of boxes on the main diagonal in the Young diagram of
+$\lambda$.
+This is the \defin{Durfee size}\label{durfeeSize} of $\lambda$.
+The Frobenius coordinates of $\lambda$ are given by
+$(a_1,a_2,\dotsc,a_d|b_1,b_2,\dotsc,b_d)$
 where $a_i = \lambda_i-i$ is the number of boxes to the right of the diagonal in row $i$,
 and $b_i = \lambda'_i-i$ is the number of boxes below the diagonal in column $i$.
 In the figure above, $d=4$ and $\lambda=(6,3,2,0|4,3,2,0)$.
 \end{example}
 
 
-The \defin{conjugate} of a partition $\lambda$ is denoted $\lambda'$, 
+The \defin{conjugate}\label{conjugatePartition} of a partition $\lambda$ is
+denoted $\lambda'$,
 and corresponds to transposing the (English) Young diagram.
-Thus, the conjugate of $(7,5,5,4,3)$ is $(5,5,5,4,3,1,1)$, which is simply the sizes of the columns.
+Thus, the conjugate of $(7,5,5,4,3)$ is $(5,5,5,4,3,1,1)$, which is simply
+the sizes of the columns.
 
 \subsection[compositions]{Compositions}
 
-A \defin{composition} of $n$ is a vector with positive integer entries summing to $n$.
-Hence, every partition is a composition. These are also sometimes called \emph{strong compositions}.
+A \defin{composition}\label{compositionDefinition} of $n$ is a vector with
+positive integer entries summing to $n$.
+Hence, every partition is a composition.  These are also sometimes called
+\emph{strong compositions}.
 It is a classical exercise to show that there are $2^{n-1}$ compositions of $n$.
 
-A \defin{weak composition} of $n$ is a vector with non-negative integer entries summing to $n$.
+A \defin{weak composition}\label{weakCompositionDefinition} of $n$ is a vector
+with non-negative integer entries summing to $n$.
 
 
 \subsection[partialOrderingsOnPartitions]{Partial orderings on partitions}\label{dominanceOrder}
@@ -79,9 +94,9 @@ Dominance order is defined in the same manner for compositions and weak composit
 
 If $\lambda \supseteq \mu$, we let $\lambda/\mu$ denote the set of boxes 
 in the Young diagram of $\lambda$ which do not appear in $\mu$.
-We say that $\lambda/\mu$ is a \defin{skew shape}.
+We say that $\lambda/\mu$ is a \defin{skew shape}\label{skewShapeDefinition}.
 
-A skew shape is a \defin{ribbon} if it is connected and does not 
+A skew shape is a \defin{ribbon}\label{ribbonDefinition} if it is connected and does not
 contain a $2\times 2$-arrangement of boxes.
 The following figure illustrates a $12$-ribbon, as it has $12$ boxes.
 \begin{figure}
@@ -94,10 +109,12 @@ The following figure illustrates a $12$-ribbon, as it has $12$ boxes.
 t &  \\
 \end{ytableau}
 \end{figure}
-Ribbons are sometimes called \defin{border strips} or \defin{rim-hooks}.
+Ribbons are sometimes called \defin{border strips}\label{borderStrip} or
+\defin{rim hooks}\label{rimHook}.
 Ribbons play a special role in the definition of \hyperref[borderStripTableaux]{border-strip tableaux}.
-The \defin{head} of a ribbon is the rightmost box in the first row of the ribbon,
-while the \defin{tail} is the leftmost box in the last row of the ribbon.
+The \defin{head}\label{ribbonHead} of a ribbon is the rightmost box in the
+first row of the ribbon, while the \defin{tail}\label{ribbonTail} is the
+leftmost box in the last row of the ribbon.
 
 
 
@@ -105,7 +122,9 @@ while the \defin{tail} is the leftmost box in the last row of the ribbon.
 
 \subsection[prelimPartitionStatistics]{Statistics on partitions}
 
-Define $\partitionN(\lambda) \coloneqq \sum_i (i-1) \lambda_i = \sum_{i \geq 2} \binom{\lambda'_i}{2}$ and 
+Define
+$\partitionN(\lambda) \coloneqq \sum_i (i-1) \lambda_i
+= \sum_{i \geq 2} \binom{\lambda'_i}{2}$ and
 let $z_\lambda \coloneqq \prod_j \left( m_j! j^{m_j} \right)$
 where $m_i$ is the number of parts of $\lambda$ of size $i$.
 
@@ -123,8 +142,9 @@ The $z_\lambda$ often shows up as a normalizing factor when dealing with
 \subsection[partitionCores]{Hook lengths and cores}
 
 Given a box $(i,j)$ in the Ferrers diagram of $\lambda$, 
-the \defin{hook-length} of the box is given by $1 + (\lambda_i-i) + (\lambda'_j-j)$.
-For example, the hook-length in the diagram below has been written in each box.
+the \defin{hook length}\label{hookLength} of the box is given by
+$1 + (\lambda_i-j) + (\lambda'_j-i)$.
+For example, the hook length in the diagram below has been written in each box.
 \begin{figure}
 \begin{ytableau}
  11& 10& 9 & 7 & 5 & 2 & 1 \\
@@ -135,17 +155,19 @@ For example, the hook-length in the diagram below has been written in each box.
 \end{ytableau}
 \end{figure}
 
-The \defin{content} of a box $(i,j)$ is $j-i$, where $j$ is the column index, and $i$ is the row index.
+The \defin{content}\label{contentOfBox} of a box $(i,j)$ is $j-i$, where $j$
+is the column index, and $i$ is the row index.
 
-A \defin{$p$-core} is a partition where none of the hook-lengths are divisible by $p$.
+A \defin{$p$-core}\label{pCore} is a partition where none of the hook lengths
+are divisible by $p$.
 A closely related concept is the notion of \hyperref[partitionQuotient]{partition quotients}.
 
 
-The \defin{hook formula} states that 
+The \defin{hook formula}\label{hookFormula} states that
 \[
  |\SYT(\lambda)| = \frac{n!}{\prod_{\square \in \lambda} h(\square)},
 \]
-where $h(\square)$ denotes the hook length of the box. 
+where $h(\square)$ denotes the hook length of the box.
 There is a \hyperref[prelimQHook]{$q$-analog} of this identity.
 
 There is a more complicated formula for skew diagrams, due to \name{Hiroshi Naruse} \cite{Naruse2014slides}.
@@ -155,7 +177,8 @@ An extension to \hyperref[schurCylindric]{cylindric diagrams} is conjectured in 
 
 \section[weakCompositions]{Compositions and weak compositions}
 
-Similar to partitions, a composition of $n$ is an integer vector of positive 
+Similar to partitions, a \hyperref[compositionDefinition]{composition} of $n$
+is an integer vector of positive
 integers summing to $n$. For example, 
 \begin{example*}[Compositions of 4]
 There are $2^{n-1}$ compositions of $n$. For example,
@@ -172,7 +195,8 @@ There are $2^{n-1}$ compositions of $n$. For example,
 are the compositions of $4$.
 \end{example*}
 
-A \defin{weak composition} allows for parts to be equal to $0$.
+A \hyperref[weakCompositionDefinition]{weak composition} allows parts to be
+equal to $0$.
 
 
 \section[notationPermutations]{Permutations and words}
@@ -196,10 +220,12 @@ We define the \defin{inversion number}\label{inversionNumber} and
 \[
 \inv(\pi) \coloneqq |\INV(\pi)| \text{ and } \maj(\pi) \coloneqq \sum_{i \in \DES(\pi)} i.
 \]
-For permutations, we also define \defin{charge} as
+For permutations, we also define \defin{charge}\label{permutationChargeStatistic} as
 \[
-\charge(\pi) \coloneqq \maj(\rev(\pi^{-1})) \text{ and } \cocharge(\pi) \coloneqq \binom{n}{2} - \charge(\pi).
+\charge(\pi) \coloneqq \maj(\rev(\pi^{-1})) \text{ and }
+\cocharge(\pi) \coloneqq \binom{n}{2} - \charge(\pi).
 \]
+The latter statistic is called \defin{cocharge}\label{permutationCochargeStatistic}.
 
 \begin{lemma}
 We have that
@@ -211,12 +237,15 @@ where $\mathrm{foata}$ denotes the map sending major index to inversions \cite{F
 
 
 
-The \defin{weight} or \defin{type} of a word $w$ is the composition $\alpha$
+The \defin{weight}\label{wordWeight} or \defin{type} of a word $w$ is the
+composition $\alpha$
 such that $\alpha_i$ is the number of entries in $w$ equal to $i$.
 
-A word $w_1,\dotsc,w_n$ is called \defin{Yamanouchi} if the number of occurrences of $i$ is at least as many 
-as the number of occurrences of $i+1$ in every prefix $w_1,\dotsc,w_k$.
-Such words are also known as \defin{Ballot words}, see \oeis{A000085}.
+A word $w_1,\dotsc,w_n$ is called \defin{Yamanouchi}\label{yamanouchiWord} if
+the number of occurrences of $i$ is at least as many as the number of
+occurrences of $i+1$ in every prefix $w_1,\dotsc,w_k$.
+Such words are also known as \defin{ballot words}\label{ballotWord}; see
+\oeis{A000085}.
 
 For \hyperref[reducedWord]{reduced words} and the \hyperref[bruhatOrder]{Bruhat order},
 see the \hyperref[permutationMatrix]{permutations page}.
@@ -226,19 +255,23 @@ see the \hyperref[notationAffinePermutations]{generalizations page}.
 
 \section[prelimTableaux]{Tableaux}
 
-A tableau is a filling of the boxes determined by a partition, or sometimes a more general configuration of boxes.
+A \defin{tableau}\label{tableauDefinition} is a filling of the boxes
+determined by a partition, or sometimes a more general configuration of boxes.
 
-The \defin{reading word} of a tableau is the word obtained by concatenating the rows,
-starting from the bottom row in English notation.
+The \defin{reading word}\label{readingWord} of a tableau is the word obtained
+by concatenating the rows, starting from the bottom row in English notation.
 
 The set of \defin{standard Young tableaux}\label{standardYoungTableau} of
 shape $\lambda$, denoted $\SYT(\lambda)$, is the set of bijective fillings
 $\lambda \to [n]$, such that rows and columns are increasing with row and
 column index.
-The set of \defin{semistandard Young tableaux}\label{semistandardYoungTableau}, $\SSYT(\lambda)$,
-is defined as the set of fillings with entries in $\setP$, with weakly increasing rows and strictly increasing columns.
-We let $\SSYT(\lambda,\mu)$ denote the (finite) set of semi-standard Young tableaux with shape $\lambda$
-and type $\mu$, that is, there are $\mu_i$ entries equal to $i$ in each such tableau.
+The set of \defin{semistandard Young tableaux}\label{semistandardYoungTableau},
+$\SSYT(\lambda)$, is defined as the set of fillings with entries in $\setP$,
+with weakly increasing rows and strictly increasing columns.
+We let $\SSYT(\lambda,\mu)$ denote the finite set of
+\defin{semistandard Young tableaux of type $\mu$}
+\label{semistandardYoungTableauOfType} with shape $\lambda$, that is, there
+are $\mu_i$ entries equal to $i$ in each such tableau.
 
 
 \begin{example}
