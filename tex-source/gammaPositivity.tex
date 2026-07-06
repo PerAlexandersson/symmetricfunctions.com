@@ -8,12 +8,16 @@
 See the survey by \name{Christos Athanasiadis} \cite{Athanasiadis2018}.
 
 A polynomial $p(x)$ of degree $n$ with non-negative coefficients
-is \defin{palindromic} (or \defin{symmetric}) if $x^n p(x^{-1}) = p(x)$.
-A palindromic polynomial $p(x)$ is said to be \defin{gamma-positive} if it can be expressed as
+is \defin{palindromic}\label{palindromicPolynomial}
+(or \defin{symmetric}\label{symmetricPolynomial}) if
+$x^n p(x^{-1}) = p(x)$.
+A palindromic polynomial $p(x)$ is said to be
+\defin{gamma-positive}\label{gammaPositivePolynomial} if it can be expressed as
 \[
  p(x) = \sum_{i=0}^{\lfloor n/2 \rfloor} \gamma_i x^i (1+x)^{n-2i}, \qquad \gamma_i \geq 0.
 \]
-The \defin{gamma-polynomial} of $p(x)$ is $\gamma_p(x) \coloneqq \sum_j \gamma_j x^j$.
+The \defin{gamma-polynomial}\label{gammaPolynomial} of $p(x)$ is
+$\gamma_p(x) \coloneqq \sum_j \gamma_j x^j$.
 If $p(x)$ is palindromic with center of symmetry $n/2$, the expansion above is unique.
 
 \begin{example}
@@ -30,29 +34,33 @@ has degree \(3\), and its gamma expansion is
 Thus \(\gamma_{A_4}(x)=1+8x\), so \(A_4(x)\) is gamma-positive.
 \end{example}
 
-Gamma-positivity immediately implies unimodality: writing $p(x) = \sum_k a_k x^k$ with
-$a_k = a_{n-k}$ and expanding the binomial coefficients, each $\gamma_i$ contributes a
-unimodal symmetric summand, so $p(x)$ is unimodal.
+Gamma-positivity immediately implies \hyperref[unimodalPolynomial]{unimodality}:
+writing $p(x) = \sum_k a_k x^k$ with $a_k = a_{n-k}$ and expanding the
+binomial coefficients, each $\gamma_i$ contributes a unimodal symmetric
+summand, so $p(x)$ is unimodal.
 
 \begin{itemize}
 
-\item $p(x)$ has all roots on the negative real axis if and only if $\gamma_p(x)$ does,
-see \cite{Branden2004Poset,Gal2005}.
-In particular, if $p(x)$ is real-rooted and palindromic, then it is gamma-positive
+\item $p(x)$ has all roots on the negative real axis if and only if
+$\gamma_p(x)$ does; see \cite{Branden2004Poset,Gal2005}.
+In particular, if $p(x)$ is \hyperref[realRootedPolynomial]{real-rooted} and
+palindromic, then it is gamma-positive
 and $\gamma_p(x)$ is also real-rooted.
 
-\item \name{Świętosław Gal} conjectured \cite{Gal2005} that the $h$-polynomial of any
-flag simplicial sphere is gamma-positive.
+\item \name{Świętosław Gal} conjectured \cite{Gal2005} that the
+$h$-polynomial of any flag simplicial sphere is gamma-positive.
 This is still open in general but known for several families.
 
 \item Suppose $p(x)$ is palindromic with center of symmetry $n/2$.
-If $\gamma_p(x)$ is ultra-log-concave of order $\lfloor n/2 \rfloor$ with no internal zeros, then
-$p(x)$ is also ultra-log-concave of order $n$ with no internal zeros, \cite{BrandenFerroniJochemko2024x}.
+If $\gamma_p(x)$ is ultra-log-concave of order $\lfloor n/2 \rfloor$ with no
+internal zeros, then $p(x)$ is also ultra-log-concave of order $n$ with no
+internal zeros \cite{BrandenFerroniJochemko2024x}.
 The converse does not hold.
 
 \item Suppose $p(x)$ is palindromic.
-If $\gamma_p(x)$ is log-concave with no internal zeros, then
-$p(x)$ is also log-concave with no internal zeros, \cite{FerroniPanovaVenturello2025x}.
+If $\gamma_p(x)$ is \hyperref[logConcavePolynomial]{log-concave} with no
+internal zeros, then $p(x)$ is also log-concave with no internal zeros
+\cite{FerroniPanovaVenturello2025x}.
 The proof uses a binomial-coefficient inequality obtained through a
 path-counting argument.  The converse does not hold.
 
@@ -66,16 +74,18 @@ Define the \defin{Eulerian transformation} $A^\circ:\setR[x]\to\setR[x]$ by
   A^\circ(1)=1,\qquad A^\circ(x^m)=xA_m(x) \quad \text{for } m\geq 1.
 \]
 For every $p(x)\in \mathcal{P}_n[x]$, the polynomial $A^\circ(p(x))$
-is real-rooted. Moreover, it fits into an interlacing chain between
+is real-rooted.  Moreover, it fits into an interlacing chain between
 $xA_n(x)$ and $A^\circ((1+x)^n)$, and has a real-rooted interlacing
-symmetric decomposition. In particular, $A^\circ(p(x))$ is unimodal
+symmetric decomposition.  In particular, $A^\circ(p(x))$ is unimodal
 and gamma-positive.
 \end{theorem}
 
 
 \subsection[alternatingGammaPositivity]{Alternating gamma-positivity}
 
-A polynomial is \defin{alternatingly gamma-positive} if it can be written as
+A polynomial is
+\defin{alternatingly gamma-positive}\label{alternatingGammaPositivePolynomial}
+if it can be written as
 \[
   f(x)=\sum_k \gamma_k(-x)^k(1+x)^{n-2k}, \qquad \gamma_k\geq 0.
 \]
@@ -105,14 +115,17 @@ alternatingly semi-gamma-positive.
 
 
 \begin{theorem}[Foata--Strehl action on Eulerian polynomials]
-The \hyperref[ex:eulerianSturm]{Eulerian polynomials} $A_n(x)$ are palindromic and gamma-positive.
+The \hyperref[eulerianPolynomial]{Eulerian polynomials} $A_n(x)$ are
+palindromic and gamma-positive.
 The gamma-coefficients $\gamma_{n,k}$ count permutations $\sigma \in \symS_n$
-with $k$ \defin{peaks} (positions $i$ with $\sigma_{i-1} < \sigma_i > \sigma_{i+1}$).
+with $k$ \defin{peaks}\label{permutationPeak}
+(positions $i$ with $\sigma_{i-1} < \sigma_i > \sigma_{i+1}$).
 Thus
 \[
- A_n(x) = \sum_{k=0}^{\lfloor (n-1)/2 \rfloor} \gamma_{n,k}\, x^{k+1}(1+x)^{n-1-2k}.
+ A_n(x) = \sum_{k=0}^{\lfloor (n-1)/2 \rfloor} \gamma_{n,k}\, x^k(1+x)^{n-1-2k}.
 \]
-The proof uses the \defin{Foata--Strehl} (or \emph{valley-hopping}) action on $\symS_n$:
+The proof uses the \defin{Foata--Strehl action}\label{foataStrehlAction}
+(or \defin{valley-hopping action}\label{valleyHoppingAction}) on $\symS_n$:
 for each $i \in \{2,\dotsc,n-1\}$, define an involution $\varphi_i$ that swaps the
 relative position of $i$ with its neighbors when $i$ is a local minimum.
 The $2^{n-2}$ orbits of the abelian group generated by $\{\varphi_i\}$ are exactly the
@@ -128,7 +141,8 @@ The \hyperref[realRootedCatalan]{Narayana polynomials}
 \[
  N_n(x) = \frac{1}{n}\sum_{k=1}^n \binom{n}{k}\binom{n}{k-1} x^k
 \]
-are palindromic and gamma-positive. The gamma-coefficients are the Narayana numbers of the second kind.
+are palindromic and gamma-positive.  The gamma-coefficients are the Narayana
+numbers of the second kind.
 Since $N_n(x)$ is also real-rooted (see \cite{Branden2006}), the gamma-positivity follows
 from the real-rooted criterion above.
 \end{theorem}
@@ -139,12 +153,14 @@ Let $W_\lambda(t) = \sum_{T \in \SYT(\lambda)} t^{\des(T)}$.
 For any shape $\lambda$, $W_\lambda(t)$ is palindromic and gamma-positive.
 This follows because $W_\lambda(t)$ is real-rooted
 (see \cite{Brenti1989} and the discussion in \hyperref[realRootedTableaux]{tableaux examples}),
-combined with the criterion that palindromic real-rooted polynomials are gamma-positive.
+combined with the criterion that palindromic real-rooted polynomials are
+gamma-positive.
 \end{theorem}
 
 
 \begin{theorem}[Zig-zag poset, \cite{PetersenZhuang2024x}]
-Let $Z_m(t)$ be the $P$-Eulerian polynomial associated with the zig-zag poset on $m$ vertices.
+Let $Z_m(t)$ be the $P$-Eulerian polynomial associated with the zig-zag poset
+on $m$ vertices.
 Then $Z_m(t)$ is gamma-positive:
 \[
  Z_m(t) = t \cdot \sum_{0 \leq 2j \leq m-2} \gamma_{m,j}\,t^j (1+t)^{m-2-2j}, \qquad \gamma_{m,j} \geq 0.
@@ -156,10 +172,10 @@ We have that
 where the sum is over \hyperref[namedPermutations]{up-down permutations},
 and $\ret_1(\pi)$ counts instances where $i+1$ appears to the left of $i$ but not adjacent to it.
 The stronger assertion that all \(Z_m(t)\) are real-rooted remains open; it is
-not the same problem as the Delannoy row polynomial case for regular snake
-posets.
-It is an open problem to give a combinatorial explanation for the symmetry and unimodality
-of the $\gamma_{m,j}$.
+not the same problem as the \hyperref[delannoyRowPolynomials]{Delannoy row
+polynomial} case for regular snake posets.
+It is an open problem to give a combinatorial explanation for the symmetry and
+unimodality of the $\gamma_{m,j}$.
 \end{theorem}
 \name{Yakob Kahane} uses Ehrhart theory of the zig-zag poset to give another
 proof of the Watanabe--Yoshida conjecture on Hilbert--Kunz multiplicity
@@ -178,7 +194,7 @@ classical canon-permutation case.
 
 \begin{theorem}[Brändén, \cite{Branden2004Poset}]
 For any graded poset $P$ with a $\hat{0}$ and $\hat{1}$,
-if the \defin{$cd$-index} of $P$ has non-negative coefficients,
+if the \defin{$cd$-index}\label{cdIndex} of $P$ has non-negative coefficients,
 then the $h$-polynomial of the order complex of the proper part $\overline{P}$
 is gamma-positive.
 In particular, this applies to face posets of polytopes, Boolean algebras,
@@ -227,10 +243,11 @@ This gives gamma-positivity for Eulerian, Narayana, and SYT descent polynomials.
 Exhibit an involution (or group action) whose orbits correspond to the gamma-classes.
 The Foata--Strehl action is the canonical example.
 
-\item \emph{Symmetric decomposition.}
+\item \emph{\defin{Symmetric decomposition}\label{symmetricDecompositionMethod}.}
 Write $p(x) = a(x)(1+x) + x^c b(x)$ where $a,b$ are palindromic;
 if $a$ and $b$ are gamma-positive, so is $p$.
-See \cite{BrandenSolus2019} for this approach via the symmetric decomposition of the $h^*$-polynomial.
+See \cite{BrandenSolus2019} for this approach via the symmetric decomposition
+of the $h^*$-polynomial.
 
 \item \emph{Algebraic / representation-theoretic.}
 Show that $p(x)$ is the Hilbert series of a representation where the palindromy
@@ -243,11 +260,13 @@ the coinvariant algebra or $\mathfrak{sl}_2$-module structure.
 \section[realrootedOpenProblems]{Open problems}
 
 In \cite{CoulterDoMoskovsky2023x}, the authors consider polynomials related to Hurwitz numbers.
-These are conjectured to be real-rooted and interlace in a certain fashion \cite[Conj. 3.14]{CoulterDoMoskovsky2023x}.
+These are conjectured to be real-rooted and interlace in a certain fashion
+\cite[Conj.~3.14]{CoulterDoMoskovsky2023x}.
 The authors prove this statement for one-point Hurwitz numbers.
 
-Gal's conjecture \cite{Gal2005} that $h$-polynomials of flag simplicial spheres are gamma-positive
-remains open in general.
+\defin{Gal's conjecture}\label{galConjecture} \cite{Gal2005} says that
+$h$-polynomials of flag simplicial spheres are gamma-positive.  It remains
+open in general.
 \name{Soohyun Park} studies how PL homeomorphism constraints, especially the
 link condition for edge contractions, interact with gamma-vector growth for
 simplicial spheres \cite{Park2026x}.  The paper also relates gamma-vector
@@ -256,7 +275,7 @@ orthogonal polynomials and lattice paths.
 
 \name{Ira Gessel} and \name{Yan Zhuang} \cite{GesselZhuang2024TwoSided}
 give symmetric-function formulas for two-sided permutation statistics and
-pose several real-rootedness and gamma-positivity conjectures. In particular,
+pose several real-rootedness and gamma-positivity conjectures.  In particular,
 they conjecture that the inverse peak and inverse left-peak distributions over
 permutations with a fixed value of the corresponding peak statistic are
 real-rooted, and that the polynomial
@@ -275,5 +294,5 @@ stronger refinement by fixed pinnacle set.
 
 \section[symmetricDecomposition]{Symmetric decomposition}
 
-See \cite{BrandenSolus2019} for the symmetric decomposition
-and relationship with real-rootedness.
+See \cite{BrandenSolus2019} for the \defin{symmetric decomposition}
+and its relationship with real-rootedness.
