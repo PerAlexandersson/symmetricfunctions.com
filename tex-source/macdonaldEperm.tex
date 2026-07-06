@@ -20,12 +20,15 @@
   PositiveIn & atom | MandelshtamNiergarthSingh2026x | scope=t=0; semiring=NN[q]; proof=Cor. 4.7 \\
 \end{polydata}
 
-The \defin{permuted-basement Macdonald polynomials} 
-(also called \emph{relative Macdonald polynomials}, \cite{GuoRam2021x}) generalize the 
+The \defin{permuted-basement Macdonald polynomials}
+\label{permutedBasementMacdonaldPolynomial}
+(also called \emph{relative Macdonald polynomials} \cite{GuoRam2021x})
+generalize the
 \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}, by introducing
 an additional parameter $\sigma \in \symS_n$, the \emph{basement}.
-They were introduced in \cite{Ferreira2011} by \name{J. Ferreira}, as eigenpolynomials of certain operators.
-Later in \cite{Alexandersson2015gbMacdonald}, a combinatorial model was introduced. 
+They were introduced in \cite{Ferreira2011} by \name{J. Ferreira} as
+eigenpolynomials of certain operators.
+Later, in \cite{Alexandersson2015gbMacdonald}, a combinatorial model was introduced.
 For some properties of these formulas, see \cite{AlexanderssonSawhney2017,AlexanderssonSawhney2019}.
 
 A good overview and introduction to this topic is \cite{GuoRam2021x,GuoRam2021xSupp}.
@@ -51,7 +54,8 @@ via the exclusion process \cite{CorteelMandelshtamWilliams2018x}.
 \end{polydata}
 
 At $q=0$, the permuted-basement Macdonald polynomials become
-\defin{permuted-basement $t$-atoms}.  Alexandersson and Sawhney study these
+\defin{permuted-basement $t$-atoms}\label{permutedBasementTAtomDefinition}.
+Alexandersson and Sawhney study these
 polynomials using basement-permuting operators and fillings
 \cite{AlexanderssonSawhney2019}.
 
@@ -72,7 +76,8 @@ polynomials using basement-permuting operators and fillings
 \end{polydata}
 
 Setting $t=0$ in the permuted-basement $t$-atoms gives
-\defin{permuted-basement atoms}.  In the basement convention of
+\defin{permuted-basement atoms}\label{permutedBasementAtomDefinition}.
+In the basement convention of
 \cite{AlexanderssonSawhney2019}, the identity basement gives ordinary
 \hyperref[atom]{Demazure atoms}, while the longest basement gives
 \hyperref[key]{key polynomials}.
@@ -93,8 +98,9 @@ Setting $t=0$ in the permuted-basement $t$-atoms gives
 \end{polydata}
 
 The identity-basement case of the permuted-basement $t$-atoms is the family of
-\defin{Demazure $t$-atoms}.  They specialize at $t=0$ to ordinary Demazure
-atoms.  These are not the same as the
+\defin{Demazure $t$-atoms}\label{demazureTAtom}.
+They specialize at $t=0$ to ordinary Demazure atoms.  These are not the same
+as the
 \hyperref[generalizedDemazureAtoms]{generalized Demazure atoms} of
 \name{James Haglund}, \name{Sarah Mason}, and \name{Jeffrey B. Remmel}.
 
@@ -106,22 +112,24 @@ The following section is mainly from \cite{Alexandersson2015gbMacdonald},
 with the filling product written in the Ferreira--Moura--Mandelshtam
 convention.
 
-Let $\sigma = (\sigma_1,\dots,\sigma_n)$ be a list of $n$ different positive integers 
-and let $\alpha=(\alpha_1,\dots,\alpha_n)$ be a weak integer composition.
-An \defin{augmented filling} of shape $\alpha$ and \defin{basement} $\sigma$
-is a filling of a Young diagram of shape $(\alpha_1,\dotsc,\alpha_n)$ with positive integers,
-augmented with a zeroth column filled from top to bottom with $\sigma_1,\dotsc,\sigma_n$.
+Let $\sigma = (\sigma_1,\dotsc,\sigma_n)$ be a list of $n$ distinct positive
+integers and let $\alpha=(\alpha_1,\dotsc,\alpha_n)$ be a weak integer
+composition.
+An \defin{augmented filling}\label{augmentedFilling} of shape $\alpha$ and
+\defin{basement}\label{basement} $\sigma$ is a filling of a Young diagram of
+shape $(\alpha_1,\dotsc,\alpha_n)$ with positive integers, augmented with a
+zeroth column filled from top to bottom with $\sigma_1,\dotsc,\sigma_n$.
 
-Note that we use \emph{English notation} rather than the 
+Note that we use \emph{English notation} rather than the
 skyline fillings used in \cite{HaglundHaimanLoehr2008,Mason2009}.
 For example, the following figure illustrates the difference,
-where the English notation is used in the left diagram, while the skyline convention is 
-used in the right diagram.
+where the English notation is used in the left diagram, while the skyline
+convention is used in the right diagram.
 \begin{figure}
 \ytableaushort{655,5,4,3342,22,116}
 \ytableaushort{{\none}{\none}2,6{\none}4{\none}{\none}5,123{\none}{\none}5,123456}
 \end{figure}
-In the skyline convention, the basement appears in the bottom of the diagram,
+In the skyline convention, the basement appears at the bottom of the diagram,
 thus explaining the peculiar choice of terminology.
 
 \name{Guilherme Zeus Dantas e Moura} and \name{Olya Mandelshtam} give
@@ -129,9 +137,11 @@ probabilistic entry-swapping bijections for non-attacking fillings
 \cite{MouraMandelshtam2025x}.
 
 \begin{definition}
-Let $F$ be an augmented filling. Two boxes $a$, $b$, are \defin{attacking}
+Let $F$ be an augmented filling. Two boxes $a$ and $b$ are
+\defin{attacking}\label{attackingBoxes}
 if $F(a)=F(b)$ and the boxes are either in the same column,
-or they are in adjacent columns, with the rightmost box in a row strictly below the other box.
+or they are in adjacent columns, with the rightmost box in a row strictly below
+the other box.
 
 \begin{figure}
 \begin{ytableau}
@@ -149,20 +159,24 @@ or
 
 \end{definition}
 
-A filling is \defin{non-attacking} if there are no attacking pairs of boxes. 
+A filling is \defin{non-attacking}\label{nonAttackingFillingMacdonald}
+if there are no attacking pairs of boxes.
 
 
 \begin{definition}
-A \defin{triple of type $A$} is an arrangement of boxes, $a$, $b$, $c$,
-located such that $a$ is immediately to the left of $b$, and $c$ is somewhere below $b$,
-and the row containing $a$ and $b$ is at least as long as the row containing $c$.
-Similarly, a \defin{triple of type $B$} is an arrangement of boxes, $a$, $b$, $c$,
-located such that $a$ is immediately to the left of $b$, and $c$ is somewhere above $a$,
-and the row containing $a$ and $b$ is \emph{strictly} longer than the row containing $c$.
+A \defin{triple of type $A$}\label{typeATriple} is an arrangement of boxes,
+$a$, $b$, $c$, located such that $a$ is immediately to the left of $b$, and
+$c$ is somewhere below $b$, and the row containing $a$ and $b$ is at least as
+long as the row containing $c$.
+Similarly, a \defin{triple of type $B$}\label{typeBTriple} is an arrangement
+of boxes, $a$, $b$, $c$, located such that $a$ is immediately to the left of
+$b$, and $c$ is somewhere above $a$, and the row containing $a$ and $b$ is
+\emph{strictly} longer than the row containing $c$.
 
-A type $A$ triple is an \defin{inversion triple} if the entries ordered increasingly
-form a \emph{counter-clockwise} orientation. Similarly, a type $B$ triple is an inversion triple
-if the entries ordered increasingly form a \emph{clockwise} orientation.
+A type $A$ triple is an \defin{inversion triple}\label{inversionTriple}
+if the entries ordered increasingly form a \emph{counter-clockwise}
+orientation. Similarly, a type $B$ triple is an inversion triple if the
+entries ordered increasingly form a \emph{clockwise} orientation.
 If two entries are equal, the one with largest subscript in the figures below
 is considered largest.
 
@@ -186,14 +200,16 @@ a_3 & b_1 \\
 
 
 If $u = (i,j)$ let $d(u)$ denote $(i,j-1)$.
-A \defin{descent} in $F$ is a non-basement box $u$ such that $F(d(u)) \lt F(u)$.
+A \defin{descent}\label{macdonaldFillingDescent} in $F$ is a non-basement box
+$u$ such that $F(d(u)) \lt F(u)$.
 The set of descents in $F$ is denoted $\Des(F)$.
 
 
 
 \begin{example}
-Here is a non-attacking filling of shape $(4,1,3,0,1)$ and basement $(4,5,3,2,1)$.
-The bold entries are descents and the underlined entries form a type $A$ inversion triple.
+Here is a non-attacking filling of shape $(4,1,3,0,1)$ and basement
+$(4,5,3,2,1)$.  The bold entries are descents and the underlined entries form
+a type $A$ inversion triple.
 There are in total $7$ inversion triples (of type $A$ and $B$).
 \begin{figure}
 \begin{ytableau}
@@ -207,38 +223,41 @@ There are in total $7$ inversion triples (of type $A$ and $B$).
 \end{example}
 
 
-The \defin{leg}, $\leg(u)$, of a box $u$ in a diagram is the number of boxes
-to the right of $u$ in the diagram.
-The \defin{arm}, denoted $\arm(u)$, of a box $u = (r,c)$ in 
-a diagram $\alpha$ is defined as the cardinality of
-the sets
+The \defin{leg}\label{macdonaldFillingLeg}, $\leg(u)$, of a box $u$ in a
+diagram is the number of boxes to the right of $u$ in the diagram.
+The \defin{arm}\label{macdonaldFillingArm}, denoted $\arm(u)$, of a box
+$u = (r,c)$ in a diagram $\alpha$ is defined as the cardinality of the sets
 \begin{align*}
 \{ (r', c) \in \alpha : r < r' \text{ and } \alpha_{r'} \leq \alpha_r \} \text{ and } \\
 \{ (r', c-1) \in \alpha : r' < r \text{ and } \alpha_{r'} < \alpha_r \}.
 \end{align*}
 
-The \defin{major index} of an augmented filling $F$ is defined as
+The \defin{major index}\label{macdonaldFillingMajorIndex} of an augmented
+filling $F$ is defined as
 \begin{align*}
 \maj(F) = \sum_{ u \in \Des(F) } \leg(u)+1.
 \end{align*}
-The \defin{number of inversions}, $\inv(F)$ of a filling is the number of inversion triples of either type.
-The number of \defin{coinversions}, $\coinv(F)$, is the number of type $A$ and type $B$ triples which are \emph{not}
+The \defin{number of inversions}\label{macdonaldFillingInversionNumber},
+$\inv(F)$, of a filling is the number of inversion triples of either type.
+The number of \defin{coinversions}\label{coinversion}, $\coinv(F)$, is the
+number of type $A$ and type $B$ triples that are \emph{not}
 inversion triples.
 
 
-Let $\mathrm{NAF}_\sigma(\alpha)$ denote all non-attacking fillings of 
-shape $\alpha$, augmented with the basement $\sigma \in \symS_n$,
-and all entries in the fillings are from $[n]$.
+Let $\mathrm{NAF}_\sigma(\alpha)$ denote the set of all non-attacking fillings
+of shape $\alpha$, augmented with the basement $\sigma \in \symS_n$, with all
+entries in the fillings from $[n]$.
 
 
 \begin{definition}
 Let $\sigma \in \symS_n$ and let $\alpha$ be a weak composition with $n$ parts.
-The \defin{non-symmetric permuted basement Macdonald polynomial} 
+The \defin{non-symmetric permuted basement Macdonald polynomial}
+\label{nonSymmetricPermutedBasementMacdonaldPolynomial}
 $\macdonaldE^\sigma_\alpha(\xvec;q,t)$ is defined as
 
 \begin{equation}
-\macdonaldE^\sigma_\alpha(\xvec; q,t) = \sum_{ F \in \mathrm{NAF}_\sigma(\alpha)} 
-\xvec^F q^{\maj(F)} t^{\coinv(F)} 
+\macdonaldE^\sigma_\alpha(\xvec; q,t) = \sum_{ F \in \mathrm{NAF}_\sigma(\alpha)}
+\xvec^F q^{\maj(F)} t^{\coinv(F)}
 \prod_{ \substack{ u \in F \\ u \text{ is not in the basement} \\ F(d(u))\neq F(u) }}
   \frac{1-t}{1-q^{1+\leg(u)} t^{1+\arm(u)}}.
 \end{equation}
@@ -254,8 +273,7 @@ by Ferreira and by Moura--Mandelshtam
 product.  This should not be used literally: basement boxes may enter the arm
 sets of ordinary boxes, but they are not themselves product indices.  This is
 also the convention implemented in
-\href{https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/sf/ns_macdonald.html}{Sage's
-nonsymmetric Macdonald polynomial code}.
+Sage's nonsymmetric Macdonald polynomial code \cite{Sage}.
 
 There is a second convention issue in the operator formula.  In
 \cite[Rem.~2.7]{MouraMandelshtam2025x}, Moura--Mandelshtam note that the
@@ -317,11 +335,12 @@ factor is $1$.
 When $\sigma = \omega_0$, we recover
 the \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}
 defined in \cite{HaglundHaimanLoehr2008}, $\macdonaldE_\alpha(\xvec;q,t)$.
-\emph{There is a slight difference in notation, the index $\alpha$ is reversed compared to \cite{HaglundHaimanLoehr2008}.}
+\emph{There is a slight difference in notation: the index $\alpha$ is reversed
+compared to \cite{HaglundHaimanLoehr2008}.}
 
 
-A formula for the $\macdonaldE^\sigma_\alpha$ using 
-set-valued tableaux can be found in \cite[Thm. 2.2]{DaughertyRam2022x}.
+A formula for the $\macdonaldE^\sigma_\alpha$ using
+set-valued tableaux can be found in \cite[Thm.~2.2]{DaughertyRam2022x}.
 The proof relies on a bijection with alcove walks.
 \name{Olya Mandelshtam}, \name{Harper Niergarth}, and \name{Kartik Singh}
 study the $t=0$ specialization of these polynomials
@@ -343,41 +362,49 @@ involution.
 
 
 \begin{proposition}[See \cite{CorteelMandelshtamWilliams2018x}]
-Let $\mu$ be a partition, of length at most $n$
-and let $\macdonaldP_\mu(\xvec;q,t)$ denote the \hyperref[macdonaldP]{Macdonald P polynomials}.
+Let $\mu$ be a partition of length at most $n$, and let
+$\macdonaldP_\mu(\xvec;q,t)$ denote the
+\hyperref[macdonaldP]{Macdonald P polynomials}.
 Then
 \[
- \macdonaldP_\mu(\xvec;q,t) = \sum_{\sigma \in \symS_n(\mu)} \macdonaldE^{\rev(\sigma)}_{inc(\mu)}(\xvec;q,t),
+ \macdonaldP_\mu(\xvec;q,t)
+ =
+ \sum_{\sigma \in \symS_n(\mu)}
+ \macdonaldE^{\rev(\sigma)}_{inc(\mu)}(\xvec;q,t),
 \]
-where $inc(\mu)$ are the entries of $\mu$ sorted in increasing order.
+where $inc(\mu)$ is the list of entries of $\mu$ sorted in increasing order.
 \end{proposition}
 
 
 \begin{conjecture}[Olya Mandelshtam, 2019 personal communication]
 For any fixed \emph{composition} $\mu$, we can find
-coefficients $R_{\mu}(q,t) \in \setQ(q,t)$ and some subset $M \subseteq \symS_n$ such that
+coefficients $R_{\mu}(q,t) \in \setQ(q,t)$ and some subset
+$M \subseteq \symS_n$ such that
 \[
-R_{\mu}(q,t) \macdonaldP_{\lambda(\mu)}(\xvec;q,t) = \sum_{\sigma \in M} \macdonaldE^{\sigma}_{\mu}(\xvec;q,t).
+R_{\mu}(q,t) \macdonaldP_{\lambda(\mu)}(\xvec;q,t)
+= \sum_{\sigma \in M} \macdonaldE^{\sigma}_{\mu}(\xvec;q,t).
 \]
 \end{conjecture}
-Combining \cite[Prop 1.1]{GuoRam2021xSupp} with \cite[Eq 1.10]{GuoRam2021xSupp}, 
-one can more or less find the expansion 
+Combining \cite[Prop.~1.1]{GuoRam2021xSupp} with
+\cite[Eq.~1.10]{GuoRam2021xSupp}, one obtains an expansion
 \[
-\macdonaldP_{\lambda{\mu}}(\xvec;q,t) = \sum_{\sigma \in \symS_n} R'_{\mu,\alpha}(q,t) \macdonaldE^{\sigma}_\mu(\xvec;q,t),
+\macdonaldP_{\lambda(\mu)}(\xvec;q,t)
+= \sum_{\sigma \in \symS_n}
+R'_{\mu,\alpha}(q,t) \macdonaldE^{\sigma}_\mu(\xvec;q,t),
 \]
-see also \cite[Eq. 5.7.8]{Macdonald1996}.
+see also \cite[Eq.~5.7.8]{Macdonald1996}.
 
 
 \subsection[macdonaldEPermShape]{Shape changing identities}
 
 In \cite{MouraMandelshtam2026x,MouraMandelshtam2025x}, the authors extend
 the row-swapping identities for the $q=0$ specialization
-in \cite[Prop. 5.5]{AlexanderssonSawhney2019} to the full two-parameter family.
+in \cite[Prop.~5.5]{AlexanderssonSawhney2019} to the full two-parameter family.
 Here $s_i\cdot\alpha$ is obtained from $\alpha$ by swapping $\alpha_i$ and
 $\alpha_{i+1}$, while $\sigma s_i$ is obtained from $\sigma$ by swapping
 $\sigma_i$ and $\sigma_{i+1}$.
 
-\begin{theorem}[{\cite[Thm. 1.1]{MouraMandelshtam2026x}}]
+\begin{theorem}[{\cite[Thm.~1.1]{MouraMandelshtam2026x}}]
 Let $\alpha$ be a weak composition with $n$ parts, and suppose that
 $\alpha_i=\alpha_{i+1}$ for some $i\in[n-1]$. Then, for every
 $\sigma\in\symS_n$,
@@ -388,7 +415,7 @@ $\sigma\in\symS_n$,
 \]
 \end{theorem}
 
-\begin{theorem}[{\cite[Thm. 1.3]{MouraMandelshtam2026x}}]
+\begin{theorem}[{\cite[Thm.~1.3]{MouraMandelshtam2026x}}]
 Let $\alpha$ be a weak composition with $n$ parts, and suppose that
 $\alpha_i>\alpha_{i+1}$ for some $i\in[n-1]$. Then, for every
 $\sigma\in\symS_n$,
@@ -437,7 +464,9 @@ Furthermore,
   SpecializesTo & qSchur | CorteelMandelshtamMasonWilliams2019x | map=q=t=0 \\
 \end{polydata}
 
-A quasisymmetric version of the non-symmetric Macdonald polynomials was
+The \defin{quasisymmetric Macdonald E polynomials}
+\label{quasisymmetricMacdonaldEPolynomial}
+are a quasisymmetric version of the non-symmetric Macdonald polynomials
 introduced in \cite{CorteelMandelshtamMasonWilliams2019x}.
 
 They specialize to the quasisymmetric Schur polynomials at $q=t=0$.
@@ -445,10 +474,13 @@ They specialize to the quasisymmetric Schur polynomials at $q=t=0$.
 
 
 \begin{conjecture}[Alexandersson 2020]
-Let $\alpha$ be a composition. Then the coefficients $K_{\alpha\gamma}(q)$ in the expansion
+Let $\alpha$ be a composition. Then the coefficients $K_{\alpha\gamma}(q)$ in
+the expansion
 \[
-\macdonaldEQuasi_\alpha(\xvec;q,0) = \sum_{\gamma} K_{\alpha\gamma}(q) \schurQS_\gamma(\xvec) 
+\macdonaldEQuasi_\alpha(\xvec;q,0)
+= \sum_{\gamma} K_{\alpha\gamma}(q) \schurQS_\gamma(\xvec)
 \]
 are in $\setN[q]$. Note that this resembles the
-fact that $\macdonaldE_\alpha(\xvec;q,0)$ are key-positive, with versions of \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials} as coefficients.
+fact that $\macdonaldE_\alpha(\xvec;q,0)$ are key-positive, with versions of
+\hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials} as coefficients.
 \end{conjecture}
