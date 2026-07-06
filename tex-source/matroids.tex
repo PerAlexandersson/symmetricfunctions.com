@@ -1,6 +1,10 @@
 
 \metatitle{Matroids}
-\metadescription{Introduction to matroids}
+\metadescription{Introduction to matroids, bases, rank functions, flats,
+Tutte polynomials, matroid base polytopes, polymatroids, and related
+variants.}
+\metakeywords{matroid, matroid base polytope, Tutte polynomial, lattice of
+flats, polymatroid, valuated matroid, delta matroid}
 
 
 
@@ -8,17 +12,18 @@
 
 Matroids were first introduced by \name{Hassler Whitney} \cite{Whitney1935},
 and independently by \name{Takeo Nakasawa}, see \cite{NishimuraKuroda2009}.
-This was further developed by \name{Saunders MacLane},
+The theory was further developed by \name{Saunders MacLane},
 \name[B.L. van der Waerden]{Bartel Leendert van der Waerden},
 \name{Richard Rado}, and \name[W.T. Tutte]{William Thomas Tutte}.
 
-For systematic references on matroid theory, see \name[James Oxley]{James G. Oxley}'s
-book \cite{Oxley2011} and Tutte's introduction \cite{Tutte1971}.
+For systematic references on matroid theory, see
+\name[James Oxley]{James G. Oxley}'s book \cite{Oxley2011} and Tutte's
+introduction \cite{Tutte1971}.
 
 
 The guiding example is linear independence.  Let
 $E=\{v_1,\dotsc,v_n\}$ be a finite list of vectors in a vector space $V$.
-The subsets of $E$ which are linearly independent behave much like independent
+The subsets of $E$ that are linearly independent behave much like independent
 sets in a graph, and the maximal independent subsets behave like bases of a
 vector space.  A matroid abstracts exactly this exchange behavior.
 
@@ -81,7 +86,7 @@ recovers the ordinary linearly independent subsets.
 \subsection[matroidRank]{Rank functions}
 
 A matroid can also be defined via a \emph{rank function}.
-Let $E$ be a (ground) set. A \defin{rank function}\label{rankFunction} $r$ is
+Let $E$ be a finite set.  A \defin{rank function}\label{rankFunction} $r$ is
 an integer-valued function on subsets of $E$, satisfying the following three
 properties:
 \begin{itemize}
@@ -90,7 +95,7 @@ properties:
 \item $r(X \cup Y) + r(X \cap Y) \leq r(X)+r(Y)$, whenever $X,Y \subseteq E$.
 \end{itemize}
 The third condition says that the rank function is
-\hyperref[submodularFunction]{submodular}.
+\hyperref[submodular]{submodular}.
 
 A set is an independent set if $r(X)=|X|$.
 The bases of a matroid are all independent sets of maximal rank.
@@ -99,9 +104,14 @@ The bases of a matroid are all independent sets of maximal rank.
 If $(E,\mathcal{B})$ is a matroid with bases $\mathcal{B}$,
 then the rank of a set $X$ is simply
 \[
-  r(X) = \max \{ |X \cap B| : B \in \mathcal{B} \} = \max \{ |I| : I \subseteq X \text{ where } I \in \mathcal{I} \}.
+  r(X)
+  =
+  \max \{ |X \cap B| : B \in \mathcal{B} \}
+  =
+  \max \{ |I| : I \subseteq X \text{ and } I \in \mathcal{I} \}.
 \]
-That is, the rank is the cardinality of a maximal independent subset contained in it.
+That is, the rank of $X$ is the cardinality of a maximal independent subset
+contained in $X$.
 
 
 \subsection[matroidFlats]{Flats}
@@ -178,7 +188,7 @@ with
 \[
 \mathcal{B}^* \coloneqq \{E \setminus A : A \in \mathcal{B}\}
 \]
-is also a matroid. The matroid $M^*$ is called the
+is also a matroid.  The matroid $M^*$ is called the
 \defin{dual}\label{matroidDual} of $M$.
 
 The dual of the uniform matroid $U_{r,n}$ is the uniform matroid $U_{n-r,n}$.
@@ -212,7 +222,10 @@ ground set $E\setminus \{e\}$ whose bases are
 \{ B : B \in \mathcal{B}  \} & \text{ if $e$ is a loop}.
 \end{cases}
 \]
-One has that deletion and contraction are dual operators: $M/e = (M^* \setminus e)^*$.
+Deletion and contraction are dual operators:
+\[
+  M/e = (M^* \setminus e)^*.
+\]
 
 \begin{example}[Deletion and contraction in $U_{2,3}$]
 Let $M=U_{2,3}$, so
@@ -245,8 +258,9 @@ matroid whose independent sets are the subsets of $E$ that contain no cycles.
 
 
 \begin{example}
-In the figure below, we have five vectors that define a matroid. Vectors $b,c,d,e$ lie in the same plane,
-but $a$ is independent of these. To the right is a graph that defines the same matroid.
+In the figure below, five vectors define a matroid.  Vectors $b,c,d,e$ lie in
+the same plane, while $a$ is independent of them.  To the right is a graph
+that defines the same matroid.
 
 \begin{figure}
   \svgimg[width=0.5\textwidth]{./svg-images/graphic-matroid.svg}{A set of vectors and a graph. Both define the same matroid.}
@@ -292,8 +306,9 @@ If $M$ is representable over $\mathbb{F}$ then so is $M^*$.
 
 
 \begin{theorem}
-The matroid $M$ is representable over every $\mathbb{F}$ if and only if
-it is the vector matroid for some totally unimodular matrix (every minor has determinant $\pm 1$ or $0$).
+A matroid $M$ is representable over every field $\mathbb{F}$ if and only if
+it is the vector matroid for some totally unimodular matrix, that is, a matrix
+whose minors all have determinant $\pm 1$ or $0$.
 \end{theorem}
 \label{matroidRegular}
 Matroids representable over every field are called
@@ -325,7 +340,7 @@ in $\setR^d$.
 \subsection[partitionMatroids]{Partition matroids}
 
 A \defin{partition matroid}\label{partitionMatroid} is a direct sum of uniform
-matroids. This family is closed under minors and duality.  All partition
+matroids.  This family is closed under minors and duality.  All partition
 matroids are \hyperref[latticePathMatroids]{lattice path matroids}.
 
 
@@ -343,9 +358,12 @@ If we have a representative from each $A_j$, the set $I$ is just called a
 \end{definition}
 
 \begin{theorem}[Piff--Welsh, 1970]
-Let $(A_1,A_2,\dotsc,A_m)$ be a set system on $E$, and let $\mathcal{I}$ be the set of partial transversals.
-Then $\mathcal{M} = (E,\mathcal{I})$ is a matroid, where the partial transversals constitute the independent sets.
-Moreover, $\mathcal{M}$ is representable over $\mathbb{F}_k$ for $k$ sufficiently large,
+Let $(A_1,A_2,\dotsc,A_m)$ be a set system on $E$, and let $\mathcal{I}$ be
+the set of partial transversals.
+Then $\mathcal{M} = (E,\mathcal{I})$ is a matroid, where the partial
+transversals constitute the independent sets.
+Moreover, $\mathcal{M}$ is representable over $\mathbb{F}_k$ for $k$
+sufficiently large,
 in particular over all infinite fields.
 \end{theorem}
 
@@ -355,10 +373,10 @@ The transversals of this set system are $1234,1235,1245,1345$, and $2345$,
 and thus constitute the set of bases of a transversal matroid.
 \end{example}
 
-Observe that there is a close connection between partial transversals and matchings.
+There is a close connection between partial transversals and matchings.
 Consider the bipartite graph where one part is labeled by the elements of $E$,
 and the other part corresponds to $A_1,\dotsc,A_m$.
-The vertex $e \in E$ is connected to $A_j$ iff $e \in A_j$.
+The vertex $e \in E$ is connected to $A_j$ if and only if $e \in A_j$.
 A partial transversal is then a matching, and transversals are maximal matchings.
 
 The family of transversal matroids is closed under deletion/restriction, but not under contraction in general.
@@ -420,7 +438,7 @@ Positroids were introduced by
 \hyperref[grassmannianVarieties]{Grassmannian} \cite{Postnikov2006x}.
 
 They form a minor-closed family of representable matroids, closed also under
-duality and cyclic shifts of the ground set. Important examples include
+duality and cyclic shifts of the ground set.  Important examples include
 Schubert matroids, \hyperref[latticePathMatroids]{lattice path matroids} and
 \hyperref[rookMatroids]{rook matroids}. For the Grassmann-necklace,
 network and polytope descriptions, see \hyperref[positroid]{the page on
@@ -455,9 +473,10 @@ Classical algorithmic background includes matroid intersection algorithms
 
 \section[tuttePolynomial]{Tutte polynomial}
 
-The \defin{Tutte polynomial}\label{tuttePolynomialDefinition} $T_M(x,y)$ of a matroid $M$ (on ground set $E$)
-is defined via a deletion-contraction recursion.
-If $M$ is the empty matroid (on ground set $\emptyset$) then $T_M(x,y) \coloneqq 1$.
+The \defin{Tutte polynomial}\label{tuttePolynomialDefinition} $T_M(x,y)$ of
+a matroid $M$ on ground set $E$ is defined via a deletion-contraction
+recursion.
+If $M$ is the empty matroid, then $T_M(x,y) \coloneqq 1$.
 
 If $e \in E$ is a \emph{loop} in $M$ then
 \[
@@ -524,8 +543,8 @@ where $ia(B)$ and $ea(B)$ denote the internal and external activity, respectivel
 
 \subsection[tutteProperties]{Properties of the Tutte polynomial}
 
-We have $T_{M}(x,y) = T_{M^*}(y,x)$.
-Moreover, the Tutte polynomial is multiplicative with respect to direct sum:
+The Tutte polynomial satisfies $T_{M}(x,y) = T_{M^*}(y,x)$.
+It is also multiplicative with respect to direct sum:
 \[
 T_{M_1 \oplus M_2}(x,y) = T_{M_1}(x,y) T_{M_2}(x,y).
 \]
@@ -554,7 +573,8 @@ $\{123456,123467,123567,124567,134567,234567\}$ is the convex hull of
 We let $\xvec(S) \coloneqq \sum_{i \in S} x_i$.
 
 \begin{theorem}
-The matroid base polytope is precisely the polytope defined by the following set of inequalities:
+The matroid base polytope is precisely the polytope defined by the following
+inequalities:
 \begin{equation}
   \xvec(S) \leq r(S) \text{ for all $S \subseteq E$}, \qquad x_i \geq 0 \text{ for all $i \in [n]$},
 \end{equation}
@@ -587,7 +607,8 @@ set; see \hyperref[positroidPolytopes]{positroid polytopes}.
 
 \name{Jesús A. De Loera}, \name{David C. Haws}, and
 \name{Matthias Köppe} study Ehrhart polynomials of matroid polytopes and
-\hyperref[polymatroids]{polymatroids} \cite{DeLoera2008}.  For fixed rank, their methods compute these
+\hyperref[polymatroids]{polymatroids} \cite{DeLoera2008}.  For fixed rank,
+their methods compute these
 Ehrhart polynomials in polynomial time; their examples also show that the
 Ehrhart polynomial of a matroid base polytope is not a deletion-contraction
 invariant.
@@ -681,8 +702,9 @@ Let $E$ be a finite set.  A function $f:2^E\to\setR$ is
 Matroid rank functions and polymatroid rank functions are submodular functions.
 
 
-Polymatroids are a weighted version of matroids, where the rank of a subset
-does not have to be bounded by its cardinality.  Let $E$ be a finite set.  A
+\defin{Polymatroids}\label{polymatroid} are a weighted version of matroids,
+where the rank of a subset does not have to be bounded by its cardinality.
+Let $E$ be a finite set.  A
 \defin{polymatroid rank function}\label{polymatroidRankFunction} is a function
 $r:2^E\to \setR_{\geq 0}$ such that
 \[
@@ -705,7 +727,8 @@ adding the equation $x(E)=r(E)$.  This is the polyhedral point of view due to
 \name{Jack Edmonds} \cite{Edmonds1970}.
 
 If $r$ is integer-valued, the integer points in the base polytope are called
-the \defin{bases}\label{integralPolymatroidBase} of the integral polymatroid.  These bases form an
+the \defin{bases}\label{integralPolymatroidBase} of the integral polymatroid.
+These bases form an
 \hyperref[MConvexity]{$M$-convex} subset of $\setN^E$, and conversely
 finite $M$-convex subsets of $\setN^E$ are the base sets of integral
 polymatroids; see also \name{Kazuo Murota}'s discrete convex analysis
@@ -734,7 +757,7 @@ generating polynomial of $M$.
 \end{example}
 
 \begin{example}[A truncated box polymatroid]
-Fix non-negative integers $u_1,\dotsc,u_n$ and an integer
+Fix nonnegative integers $u_1,\dotsc,u_n$ and an integer
 $0\leq d\leq u_1+\dotsb+u_n$.  The function
 \[
   r(A)=\min\left(d,\sum_{i\in A} u_i\right)
@@ -771,7 +794,7 @@ give genuine polymatroids.
 study realizations of polymatroids from finite groups, in analogy with
 realizations of matroids over finite fields \cite{SwartzWentworthNiceXue2024x}.
 \name{Xiaxia Guan} and \name{Xian'an Jin} give a direct proof that the
-polymatroid Tutte polynomial is well defined \cite{GuanJin2024x}.
+polymatroid Tutte polynomial is well-defined \cite{GuanJin2024x}.
 
 
 \section[matroidLinks]{Further reading and adjacent topics}
@@ -783,7 +806,8 @@ Several matroid-related topics have their own pages on this site.  See
 rook, and snake matroids, \hyperref[positroid]{positroids} for the
 totally nonnegative Grassmannian side, and
 \hyperref[stablePolynomial]{stable polynomials} for the half-plane property
-and \hyperref[basisGeneratingPolynomial]{basis-generating polynomials}.  For saturated Newton polytopes and the
+and \hyperref[basisGeneratingPolynomial]{basis-generating polynomials}.  For
+saturated Newton polytopes and the
 $M$-convex exchange condition generalizing matroid bases, see
 \hyperref[newtonPolytopes]{Newton polytopes and $M$-convexity}.  The
 \hyperref[lgvLemma]{Lindström--Gessel--Viennot lemma} also appears in several
@@ -815,7 +839,8 @@ settle Dowling's polynomial conjecture for independent sets of matroids using
 \hyperref[lorentzianPolynomial]{Lorentzian polynomials}
 \cite{CaoChenLiWu2026x}.  \name{Jeffrey Giansiracusa},
 \name{Felipe Rincón}, \name{Victoria Schleis}, and \name{Martin Ulirsch}
-extend log-concavity results to independent sets of \hyperref[valuatedMatroid]{valuated matroids}
+extend log-concavity results to independent sets of
+\hyperref[valuatedMatroid]{valuated matroids}
 \cite{GiansiracusaRinconSchleisUlirsch2024x}.
 
 For the half-plane property and stability perspective, see also
@@ -832,7 +857,8 @@ There are several useful recent variants and adjacent classes.
 many of these matroid classes.  A rank-$r$ matroid is a
 \defin{paving matroid}\label{pavingMatroid} if every subset of size less than
 $r$ is independent, equivalently if every circuit has size at least $r$.  It
-is \defin{sparse paving}\label{sparsePavingMatroid} if both the matroid and its dual are paving.
+is \defin{sparse paving}\label{sparsePavingMatroid} if both the matroid and
+its dual are paving.
 
 \begin{definition}[$\Delta$-matroid]\label{deltaMatroid}
 A \defin{$\Delta$-matroid} is a pair $(E,\mathcal{F})$ where
@@ -874,7 +900,8 @@ delta-matroids \cite{CeriaJohnsenJurrius2024x}, while
 \name{Zhiyan Ying} study lattice path delta-matroids
 \cite{ChenSanchezVelizYing2023x}.  \name{Kieran Calvert},
 \name{Aram Dermenjian}, \name{Alex Fink}, and \name{Ben Smith}
-characterize \defin{strong $\Delta$-matroids}\label{strongDeltaMatroid} by several equivalent exchange
+characterize \defin{strong $\Delta$-matroids}\label{strongDeltaMatroid} by
+several equivalent exchange
 and antipode conditions, and relate peerless antipode equations to
 tropicalizations of quadrics for the orthogonal Grassmannian
 \cite{CalvertDermenjianFinkSmith2026x}.  \name{Jon Pål Hamre} connects sparse
@@ -900,4 +927,5 @@ basis conjecture in connection with Latin squares and straightening
 coefficients \cite[Conj.~4]{HuangRota1994}.  In matroid language, it says
 that if $B_1,\dotsc,B_n$ are bases of a rank $n$ matroid, then the multiset
 union $B_1\cup\dotsb\cup B_n$ can be partitioned into $n$ disjoint
-\defin{rainbow bases}\label{rainbowBasis}, each containing exactly one element from each $B_i$.
+\defin{rainbow bases}\label{rainbowBasis}, each containing exactly one
+element from each $B_i$.
