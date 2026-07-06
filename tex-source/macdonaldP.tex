@@ -1,5 +1,10 @@
 \metatitle{Macdonald P polynomials}
-\metadescription{Macdonald P and J polynomials, their characterizations, tableau formulas, specializations, Kostka positivity, quasisymmetric refinements, and wreath analogues.}
+\metadescription{Macdonald P and J polynomials, including characterizations,
+tableau formulas, specializations, Kostka positivity, quasisymmetric
+refinements, and wreath analogues.}
+\metakeywords{Macdonald polynomial, Macdonald P polynomial, Macdonald J
+polynomial, qt-Kostka polynomial, quasisymmetric Macdonald polynomial,
+wreath Macdonald polynomial}
 
 
 \section[macdonaldP]{Macdonald P polynomials}
@@ -24,7 +29,7 @@
 
 
 Macdonald polynomials, $\{\macdonaldP_\lambda(\xvec;q,t) \}_{\lambda}$,
-were introduced by \name{Ian Macdonald} in \cite{Macdonald1987}. They are a
+were introduced by \name{Ian Macdonald} in \cite{Macdonald1987}.  They are a
 two-parameter extension of the Schur functions and unify the
 \hyperref[jackP]{Jack polynomials} and
 \hyperref[hallLittlewoodP]{Hall--Littlewood polynomials}.
@@ -35,7 +40,7 @@ The master's thesis by \name{Robin Langer} \cite{Langer2009} gives an overview.
 \name{Laura Colmenarejo} and \name{Arun Ram} suggest the term
 \defin{bosonic Macdonald polynomials}\label{bosonicMacdonaldPolynomial},
 while the
-\hyperref[macdonaldE]{non-symmetric Macdonald polynomials}
+\hyperref[macdonaldE]{nonsymmetric Macdonald polynomials}
 are called
 \defin{electronic Macdonald polynomials}\label{electronicMacdonaldPolynomial},
 see \cite{ColmenarejoRam2022x}.
@@ -73,13 +78,13 @@ whose $\lambda=0$ specialization is a specialized Macdonald polynomial and
 whose $\nu=0$ specialization is the graded character of a level-two
 Demazure module for affine $\mathfrak{sl}_{n+1}$
 \cite{BiswalChariShereenWand2019x}.  They prove
-\hyperref[schurPositivity]{Schur positivity} under
+\hyperref[schurPositiveDefinition]{Schur positivity} under
 natural hypotheses and express the family through Macdonald polynomials.
 \name{Jimmy He} constructs a characteristic map for the symmetric space of
 symplectic forms over a finite field \cite{He2020}.  Under this map the
 spherical functions are sent to Macdonald polynomials with parameters
 $(q,q^2)$, and the construction gives
-\hyperref[schurPositivity]{Schur-positivity} results for skew Macdonald
+\hyperref[schurPositiveDefinition]{Schur-positivity} results for skew Macdonald
 polynomials at these parameters.
 
 \subsection[macdonaldPqq2]{The $(q,q^2)$ finite-field specialization}
@@ -105,9 +110,9 @@ prime power, the Schur coefficient
     \macdonaldP_{\lambda/\mu}(\xvec;q,q^2),\schurS_\nu
   \right\rangle
 \]
-is non-negative \cite[Thm.~0.1]{He2020}.  This is a numerical positivity
+is nonnegative \cite[Thm.~0.1]{He2020}.  This is a numerical positivity
 statement at finite-field values of $q$, not a claim that the coefficients are
-polynomials in $q$ with non-negative integer coefficients.
+polynomials in $q$ with nonnegative integer coefficients.
 
 For example, the degree-two polynomial is
 \[
@@ -150,8 +155,11 @@ Let $\langle \cdot , \cdot \rangle_{q,t}$ denote the
 \defin{Macdonald inner product}\label{macdonaldInnerProduct} on symmetric
 functions such that
 \[
-\langle \powerSum_\lambda , \powerSum_\mu \rangle_{q,t} =
-z_\lambda \delta_{\lambda\mu} \prod_{i=1}^{\length(\lambda)} \frac{1-q^{\lambda_i}}{1-t^{\lambda_i}} .
+\langle \powerSum_\lambda , \powerSum_\mu \rangle_{q,t}
+=
+z_\lambda \delta_{\lambda\mu}
+\prod_{i=1}^{\length(\lambda)}
+\frac{1-q^{\lambda_i}}{1-t^{\lambda_i}} .
 \]
 Note that at $q=t=0$, we recover the standard Hall inner product.
 
@@ -172,10 +180,15 @@ Here, $\prec$ denotes the \hyperref[dominanceOrder]{dominance order on partition
 For degree $3$, the monomial expansions are
 \begin{align*}
 \macdonaldP_{111}(\xvec;q,t) &= \monomial_{111} \\
-\macdonaldP_{21}(\xvec;q,t) &= \monomial_{21} +  \frac{(t-1) (2 q t+q+t+2)}{q t^2-1} \monomial_{111} \\
-\macdonaldP_{3}(\xvec;q,t) &= \monomial_{3} + \frac{\left(q^2+q+1\right)(t-1)}{q^2 t-1} \monomial_{21} \\
-                           &\phantom{=}+ \frac{(q+1) \left(q^2+q+1\right) (t-1)^2}{(q t-1)
-\left(q^2 t-1\right)} \monomial_{111}
+\macdonaldP_{21}(\xvec;q,t) &=
+\monomial_{21}
++  \frac{(t-1) (2 q t+q+t+2)}{q t^2-1} \monomial_{111} \\
+\macdonaldP_{3}(\xvec;q,t) &=
+\monomial_{3}
++ \frac{\left(q^2+q+1\right)(t-1)}{q^2 t-1} \monomial_{21} \\
+&\phantom{=}
++ \frac{(q+1) \left(q^2+q+1\right) (t-1)^2}
+{(q t-1)\left(q^2 t-1\right)} \monomial_{111}
 \end{align*}
 \end{example*}
 
@@ -189,11 +202,16 @@ to a certain \defin{Macdonald difference operator}\label{macdonaldDifferenceOper
 $D$, see \cite{Macdonald1987}.
 The operator $D$ is given as
 \[
-D = \sum_{i=1}^n \prod_{j \neq i} \left( \frac{tx_i-x_j}{x_i-x_j} \right) T_{q,x_i}
+D
+=
+\sum_{i=1}^n
+\prod_{j \neq i} \left( \frac{tx_i-x_j}{x_i-x_j} \right) T_{q,x_i}
 \]
-where $T_{q,x_i} f(x_1,\dotsc,x_n) = f(x_1,\dotsc,x_{i-1},qx_i,x_{i+1},\dotsc,x_n)$.
+where
+$T_{q,x_i} f(x_1,\dotsc,x_n)
+= f(x_1,\dotsc,x_{i-1},qx_i,x_{i+1},\dotsc,x_n)$.
 
-There is also a way to produce Macdonald polynomials via determinants,
+Macdonald polynomials can also be produced via determinants;
 see \cite{LapointeLascouxMorse1998}.
 
 \name{Philip Schlösser} studies
@@ -264,7 +282,7 @@ b_{\mu}(s;q,t) \coloneqq
 Let $\lambda=(8,5,5,1)$ and $\mu=(6,5,2)$.
 It suffices to take the product over the boxes that lie both in $\mu$ and in
 $R_{\lambda/\mu} \setminus C_{\lambda/\mu}$.
-Here there are three such boxes, $(1,2)$, $(1,6)$ and $(3,2)$, marked in the figure.
+The three such boxes are $(1,2)$, $(1,6)$, and $(3,2)$, marked in the figure.
 \begin{figure}
 \begin{ytableau}
 *(lightblue) & \ast & *(lightblue) & *(lightblue) & *(lightblue) & \ast & *(gray) & *(gray)\\
@@ -300,18 +318,23 @@ In total, $\psi_{\lambda/\mu}(q,t)$ is given by
 Now, if $T$ is a \hyperref[prelimTableaux]{semistandard Young tableau},
 we let
 \[
-\psi_{T}(q,t) \coloneqq \prod_{j=1}^n \psi_{\lambda^{j}/\lambda^{j-1}}(q,t)
+\psi_{T}(q,t)
+\coloneqq
+\prod_{j=1}^n \psi_{\lambda^{j}/\lambda^{j-1}}(q,t)
 \]
 where $\lambda^{j}/\lambda^{j-1}$ is the horizontal strip determined
 by the entries with value $j$ in $T$.
 
 The tableau formula is
 \[
-\macdonaldP_{\mu}(\xvec;q,t) = \sum_{\nu \vdash n} \monomial_\nu(\xvec)
+\macdonaldP_{\mu}(\xvec;q,t)
+=
+\sum_{\nu \vdash n} \monomial_\nu(\xvec)
 \sum_{T \in \SSYT(\mu,\nu)}  \psi_{T}(q,t).
 \]
 
-Note that if $q=t$, this formula gives the Schur polynomial $\schurS_\mu(\xvec)$.
+Note that if $q=t$, this formula gives the Schur polynomial
+$\schurS_\mu(\xvec)$.
 
 \name{Olya Mandelshtam} gives a more compact tableau formula for the symmetric
 Macdonald polynomials $\macdonaldP_\lambda(\xvec;q,t)$ using coquinv-sorted
@@ -321,29 +344,37 @@ tableau formula and is connected by a bijection to multiline queues; in a
 limit, it recovers the Knop--Sahi formula for Jack polynomials.
 
 
-\subsection[macdonaldPFromE]{From non-symmetric Macdonald $E$ polynomials}
+\subsection[macdonaldPFromE]{From nonsymmetric Macdonald $E$ polynomials}
 
 
-In \cite[Prop.~5.3.1]{HaglundHaimanLoehr2008}, the following expansion is obtained:
+\name{Jim Haglund}, \name{Mark Haiman}, and \name{Nicholas Loehr} obtain the
+following expansion \cite[Prop.~5.3.1]{HaglundHaimanLoehr2008}:
 \begin{equation*}
-\macdonaldP_\lambda(\xvec;q,t) = \prod_{u \in \lambda} \left(1- q^{1+\leg(u)}t^{\arm(u)}\right) 
-\sum_{\gamma \sim \lambda} \frac{ \macdonaldE_{\gamma}(x_1,\dotsc,x_n;q^{-1},t^{-1})}{
+\macdonaldP_\lambda(\xvec;q,t)
+=
+\prod_{u \in \lambda} \left(1- q^{1+\leg(u)}t^{\arm(u)}\right)
+\sum_{\gamma \sim \lambda}
+\frac{ \macdonaldE_{\gamma}(x_1,\dotsc,x_n;q^{-1},t^{-1})}{
 \prod_{v \in \gamma} \left(1- q^{1+\leg(v)}t^{\arm(v)}\right)
 }.
 \end{equation*}
 The polynomial $\macdonaldE_{\gamma}(\xvec;q,t)$
-is a \hyperref[macdonaldE]{non-symmetric Macdonald polynomial}.
+is a \hyperref[macdonaldE]{nonsymmetric Macdonald polynomial}.
 
 The same formula can also be expressed using
 \hyperref[macdonaldEperm]{permuted-basement Macdonald polynomials}:
 \begin{equation*}
-\macdonaldP_\lambda(\xvec;q,t) = \prod_{u \in \lambda} \left(1- q^{1+\leg(u)}t^{\arm(u)}\right) 
-\sum_{\gamma \sim \lambda} \frac{ \macdonaldE^{id}_{\gamma}(x_1,\dotsc,x_n;q,t)}{
+\macdonaldP_\lambda(\xvec;q,t)
+=
+\prod_{u \in \lambda} \left(1- q^{1+\leg(u)}t^{\arm(u)}\right)
+\sum_{\gamma \sim \lambda}
+\frac{ \macdonaldE^{id}_{\gamma}(x_1,\dotsc,x_n;q,t)}{
 \prod_{v \in \gamma} \left(1- q^{1+\leg(v)}t^{\arm(v)}\right)
 },
 \end{equation*}
 since we have the relation
-$\macdonaldE^{id}_{\gamma}(x_1,\dotsc,x_n;q,t) = \macdonaldE_{\gamma}(x_n,\dotsc,x_1;q^{-1},t^{-1})$.
+$\macdonaldE^{id}_{\gamma}(x_1,\dotsc,x_n;q,t)
+= \macdonaldE_{\gamma}(x_n,\dotsc,x_1;q^{-1},t^{-1})$.
 
 A related expression from \cite{ColmenarejoRam2022x} is
 \begin{equation*}
@@ -355,7 +386,8 @@ A related expression from \cite{ColmenarejoRam2022x} is
 where $W_\lambda(t)$ is a normalization constant, so that
 $[x^{\lambda}] \macdonaldP_\lambda =1$.
 Compare this with the formula for
-\hyperref[hallLittlewoodP]{Hall--Littlewood polynomials}, obtained as $q\to 0$.
+\hyperref[hallLittlewoodP]{Hall--Littlewood polynomials}, obtained as
+$q\to 0$.
 
 In fact, an analogue of this formula exists for any fixed basement,
 see \cite[Thm.~29]{Alexandersson2015gbMacdonald}.
@@ -398,12 +430,20 @@ By rescaling, the
 \defin{integral form Macdonald polynomials}\label{integralFormMacdonaldPolynomial}
 are defined via
 \begin{equation*}
-\macdonaldJ_\lambda(\xvec;q,t) = \left( \prod_{\square \in \lambda} 1-q^{\arm(\square)}t^{1+\leg(\square)} \right)  \macdonaldP_\lambda(\xvec;q,t).
+\macdonaldJ_\lambda(\xvec;q,t)
+=
+\left(
+  \prod_{\square \in \lambda} 1-q^{\arm(\square)}t^{1+\leg(\square)}
+\right)
+\macdonaldP_\lambda(\xvec;q,t).
 \end{equation*}
 
 Similarly, the integral-form Jack polynomials are obtained as a limit:
 \[
-\jackJ_\lambda(\xvec;a) = \lim_{t \to 1} \frac{\macdonaldJ_\lambda(\xvec;t^a,t)}{(1-t)^{|\lambda|}}
+\jackJ_\lambda(\xvec;a)
+=
+\lim_{t \to 1}
+\frac{\macdonaldJ_\lambda(\xvec;t^a,t)}{(1-t)^{|\lambda|}}
 \]
 
 The \hyperref[macdonaldH]{modified Macdonald polynomials}
@@ -417,9 +457,9 @@ H_\lambda(\xvec;q,t) = \macdonaldJ_\lambda[\xvec/(1-t);q,t],
 and we use \hyperref[plethysm]{plethystic notation} in the last expression.
 
 
-In \cite{JinLin2026x}, the authors unify several different combinatorial
-formulas and generalize them to superized versions. In particular, their formula specializes to
-the formulas by
+\name{Emma Yu Jin} and \name{Xiaowei Lin} unify several combinatorial
+formulas and generalize them to superized versions \cite{JinLin2026x}.
+In particular, their formula specializes to the formulas by
 Corteel--Mandelshtam--Williams \cite{CorteelMandelshtamWilliams2018x} and
 Corteel--Mandelshtam--Mason--Williams \cite{CorteelMandelshtamMasonWilliams2022}.
 
@@ -432,20 +472,26 @@ Macdonald \cite[p.~354]{Macdonald1987} introduces the
 $K_{\lambda\mu}(q,t)$
 via the relation
 \[
-\macdonaldJ_\mu(\xvec;q,t) = \sum_{\lambda} K_{\lambda\mu}(q,t) \schurS_\lambda[\xvec(1-t)]
+\macdonaldJ_\mu(\xvec;q,t)
+=
+\sum_{\lambda} K_{\lambda\mu}(q,t) \schurS_\lambda[\xvec(1-t)]
 \]
 where
 \[
-\schurS_\lambda[\xvec(1-t)] = \sum_{\rho} \frac{\chi_\rho^\lambda}{z_\rho} \powerSum_\rho(x) 
+\schurS_\lambda[\xvec(1-t)]
+=
+\sum_{\rho} \frac{\chi_\rho^\lambda}{z_\rho} \powerSum_\rho(x)
 \prod_{i=1}^{\length(\rho)} (1-t^{\rho_i}).
 \]
-In \cite{Macdonald1987}, it is conjectured that the $K_{\lambda\mu}(q,t)$
-are polynomials in $\setN[q,t]$.
-This was later confirmed by \name{Mark Haiman} \cite{Haiman2001}, as this property follows
-from \hyperref[macdonaldHSchurPositivity]{the Schur positivity of the modified Macdonald polynomials},
+Macdonald conjectured that the $K_{\lambda\mu}(q,t)$ are polynomials in
+$\setN[q,t]$ \cite{Macdonald1987}.
+\name{Mark Haiman} later confirmed this \cite{Haiman2001}, as the property
+follows from \hyperref[macdonaldHSchurPositivity]{the Schur positivity of the
+modified Macdonald polynomials},
 and the corresponding modified $qt$-Kostka polynomials.
 
-It is still an open problem to find a combinatorial interpretation of $K_{\lambda\mu}(q,t)$.
+It is still an open problem to find a combinatorial interpretation of
+$K_{\lambda\mu}(q,t)$.
 
 \name{Konstantin Matveev} and \name{Yuchen Wei} prove a factorization formula
 for certain
@@ -459,25 +505,32 @@ Macdonald analogue of a special case of a factorization conjecture of
 
 \subsection[macdonaldJHaglundsConjecture]{Haglund's conjecture}
 
-In \cite{Haglund2010}, \name{Jim Haglund} makes
+\name{Jim Haglund} formulates
 \defin{Haglund's Macdonald conjecture}\label{haglundMacdonaldConjecture},
-namely
+in \cite{Haglund2010}:
 \[
-\left\langle  \frac{\macdonaldJ_\lambda(\xvec;q,q^k)}{(1-q)^{|\lambda|}} , \schurS_\mu(\xvec)  \right\rangle \in \setN[q]
+\left\langle
+  \frac{\macdonaldJ_\lambda(\xvec;q,q^k)}{(1-q)^{|\lambda|}},
+  \schurS_\mu(\xvec)
+\right\rangle
+\in \setN[q]
 \]
 for any $k \in 0,1,2,\dotsc$.
-In \cite{HaglundHaimanLoehr2005}, it is proved that the expression
+\name{Jim Haglund}, \name{Mark Haiman}, and \name{Nicholas Loehr} prove that
+the expression
 $\frac{\macdonaldJ_\lambda(\xvec;q,q^k)}{(1-q)^{|\lambda|}}$
-when expanded in the $\monomial_\mu$-basis has coefficients in $\setN[q]$.
+has coefficients in $\setN[q]$ when expanded in the $\monomial_\mu$-basis
+\cite{HaglundHaimanLoehr2005}.
 Haglund's conjecture states that the expression is actually
-\hyperref[schurPositivity]{Schur-positive}.
+\hyperref[schurPositiveDefinition]{Schur-positive}.
 
 \name{Arun Ram} suggests that Haglund's conjecture can be made stronger:
-there is a positivity statement when $\macdonaldJ_\lambda(\xvec;q,q^k)$
-is expanded in the $\macdonaldJ_\lambda(\xvec;q,q^{k-1})$-basis. Note that
+a positivity statement should hold when $\macdonaldJ_\lambda(\xvec;q,q^k)$
+is expanded in the $\macdonaldJ_\lambda(\xvec;q,q^{k-1})$-basis.  Note that
 $\macdonaldJ_\lambda(\xvec;q,q)=\schurS_\lambda$.
 
-Haglund's conjecture has been shown to be true in some special cases, see \cite{Yoo2012,Yoo2015,Bhattacharya2022x}.
+Haglund's conjecture has been proved in some special cases; see
+\cite{Yoo2012,Yoo2015,Bhattacharya2022x}.
 
 
 
@@ -503,7 +556,7 @@ $\macdonaldJ_\lambda(\xvec;q,t)$
 is introduced in \cite{CorteelMandelshtamMasonWilliams2022}.
 The \defin{quasisymmetric Macdonald polynomials}\label{quasisymmetricMacdonaldPolynomial}
 $G_{\alpha}(\xvec;q,t)$
-are defined as sums over certain non-symmetric Macdonald polynomials,
+are defined as sums over certain nonsymmetric Macdonald polynomials,
 such that the following properties hold:
 \begin{itemize}
 \item $\macdonaldJ_\lambda(\xvec;q,t)$ is a positive sum of $G_{\alpha}(\xvec;q,t)$.
@@ -527,11 +580,10 @@ such that the following properties hold:
   Category & Schur \\
 \end{polydata}
 
-In \cite{GonzalesLapointe2019}, \name{Camilo González} and \name{Luc Lapointe}
-introduce the
+\name{Camilo González} and \name{Luc Lapointe} introduce the
 \defin{multi-Macdonald polynomials}\label{multiMacdonaldPolynomial},
 which are indexed by $r$-tuples of
-partitions.
+partitions \cite{GonzalesLapointe2019}.
 They are defined via triangularity relations, similar to the definition of
 \hyperref[macdonaldP]{Macdonald P polynomials}.
 When $r=1$, the usual Macdonald $P$ polynomials are recovered, and when
@@ -543,10 +595,12 @@ The multi-Macdonald polynomials can be expressed as a product of Macdonald
 $P$ polynomials,
 with suitable plethystic substitutions in each factor.
 
-There is an analogue of the \hyperref[macdonaldH]{modified Macdonald polynomials},
-and then an analogue of the $qt$-Kostka polynomials when expanded in the
+The same construction has an analogue of the
+\hyperref[macdonaldH]{modified Macdonald polynomials}, and then an analogue
+of the $qt$-Kostka polynomials when expanded in the
 \hyperref[schurWreath]{Wreath product Schur polynomials}.
-The authors show that the multi-$qt$-Kostka polynomials are in $\setN[q,t]$.
+González and Lapointe show that the multi-$qt$-Kostka polynomials are in
+$\setN[q,t]$.
 
 
 
