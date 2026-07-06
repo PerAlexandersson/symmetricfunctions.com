@@ -1,6 +1,7 @@
 \metatitle{Chromatic symmetric functions in the elementary basis}
-\metadescription{A guide to elementary-basis expansions of chromatic symmetric and chromatic quasisymmetric functions, 
-including the Stanley--Stembridge and Shareshian--Wachs conjectures, q-refined results, 
+\metadescription{A guide to elementary-basis expansions of chromatic symmetric
+and chromatic quasisymmetric functions, including the Stanley--Stembridge and
+Shareshian--Wachs conjectures, q-refined results,
 recursive methods, and known negative examples.}
 \metakeywords{chromatic symmetric functions,e-positivity,Stanley--Stembridge conjecture,
 Shareshian--Wachs conjecture,unit interval graphs}
@@ -10,10 +11,12 @@ Shareshian--Wachs conjecture,unit interval graphs}
 Let $G$ be a graph and let $\chrom_G(\xvec)$ denote its
 \hyperref[chromaticQuasisymmetricDefinition]{chromatic symmetric function}.
 An \defin{$\elementaryE$-expansion} is an expression
+\label{chromaticEExpansionDefinition}
 \[
 \chrom_G(\xvec) = \sum_{\lambda} c_\lambda \elementaryE_\lambda(\xvec).
 \]
-We say that $\chrom_G(\xvec)$ is \defin{$\elementaryE$-positive} if all
+We say that $\chrom_G(\xvec)$ is
+\defin{$\elementaryE$-positive}\label{chromaticEPositive} if all
 $c_\lambda$ are non-negative integers. If $G$ is naturally labeled and
 $\chrom_G(\xvec;q)$ is symmetric, then the stronger $q$-refined question asks
 whether
@@ -24,15 +27,17 @@ whether
 
 The $q$-refined question is only available in families where
 $\chrom_G(\xvec;q)$ is symmetric, most importantly for
-\hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graphs} or circular unit arc digraphs.
+\hyperref[unitIntervalGraph]{unit interval graphs} or
+\hyperref[circularUnitArcDigraph]{circular unit arc digraphs}.
 For general graphs, the default question is the specialization $q=1$.
 
 
 \subsection[chromaticEExpansionConjectures]{The two main conjectures}
 
-The original conjecture was formulated by \name{Richard Stanley}
-and \name{John Stembridge} \cite{StanleyStembridge1993}, and then in the
-language of chromatic symmetric functions by Stanley \cite{Stanley1995}.
+The \hyperref[stanleyStembridgeConjecture]{Stanley--Stembridge conjecture}
+was formulated by \name{Richard Stanley} and \name{John Stembridge}
+\cite{StanleyStembridge1993}, and then in the language of chromatic symmetric
+functions by Stanley \cite{Stanley1995}.
 
 \begin{theorem}[Hikita, \cite{Hikita2024x}]
 Let $P$ be a $(3+1)$-free poset. Then the chromatic symmetric function of
@@ -46,7 +51,8 @@ $q$-chromatic refinement, and this formula specializes positively at $q=1$.
 Thus the theorem settles the Stanley--Stembridge conjecture, but it does not
 settle the following refinement.
 
-Hikita later introduced \defin{$(q,t)$-chromatic symmetric functions} for
+Hikita later introduced \defin{$(q,t)$-chromatic symmetric functions}
+\label{qtChromaticSymmetricFunction} for
 unit interval graphs using level-one polynomial representations of affine
 Hecke algebras of type $A$ \cite{Hikita2025x}.  These functions refine the
 chromatic quasisymmetric functions in the sense that Hikita recovers the
@@ -64,7 +70,8 @@ weighted sum in terms of $P$-tableaux with $1$ in the upper-left corner, and
 introduce a restricted modular law which determines such functions from
 their values on disjoint unions of paths.
 
-\begin{conjecture}[Shareshian--Wachs, \cite[Conj. 4.9]{ShareshianWachs2012}]
+\begin{conjecture}[Shareshian--Wachs, \cite[Conj.~4.9]{ShareshianWachs2012}]
+\label{chromaticEShareshianWachsConjecture}
 If $G$ is a unit interval graph with its natural labeling, then
 \[
 \chrom_G(\xvec;q) = \sum_{\lambda} c_\lambda(q)\elementaryE_\lambda(\xvec)
@@ -91,7 +98,8 @@ The conjecture extends to proper circular unit arc digraphs; see
 \cite{Ellzey2017,AlexanderssonPanova2018}.
 
 
-\begin{conjecture}[See \cite[Conj. 5.1]{ShareshianWachs2016}]
+\begin{conjecture}[See \cite[Conj.~5.1]{ShareshianWachs2016}]
+\label{chromaticEUnimodalityConjecture}
 Write
 \[
 \chrom_G(\xvec;q) = \sum_{j=0}^m q^j a_j(\xvec),
@@ -101,8 +109,8 @@ Then $a_{j+1}(\xvec)-a_j(\xvec)$ is $\elementaryE$-positive for
 all $0 \leq j \lt (m-1)/2$.
 \end{conjecture}
 
-This unimodality conjecture also extends to the circular 
-unit arc digraph setting.
+This unimodality conjecture also extends to the
+\hyperref[circularUnitArcDigraph]{circular unit arc digraph} setting.
 
 \subsection[chromaticEExpansionMethods]{Kinds of elementary expansions}
 
@@ -112,7 +120,7 @@ It is useful to distinguish the following kinds of results.
 \item
 A \emph{combinatorial} formula gives the coefficient of
 $\elementaryE_\lambda$ as the cardinality or weight-enumerator of a set of
-objects. This is the strongest kind of evidence for an eventual
+objects.  This is the strongest kind of evidence for an eventual
 Shareshian--Wachs proof.
 
 \item
@@ -129,7 +137,8 @@ always identify a natural coefficient statistic.
 \item
 A \emph{noncommutative} proof establishes the stronger
 $(\elementaryE)$-positivity of the chromatic symmetric function in
-noncommuting variables, as in \cite{GebhardSagan2001}. This implies ordinary
+\hyperref[schurInNonCom]{noncommuting variables}, as in
+\cite{GebhardSagan2001}.  This implies ordinary
 $\elementaryE$-positivity.
 
 \item
@@ -161,7 +170,7 @@ chains \cite{GebhardSagan2001}.
 \emph{2012--2016.}
 \name{John Shareshian} and \name{Michelle Wachs} introduce the
 $q$-refinement and the Shareshian--Wachs conjecture
-\cite{ShareshianWachs2012,ShareshianWachs2016}. The $q$-refinement is
+\cite{ShareshianWachs2012,ShareshianWachs2016}.  The $q$-refinement is
 symmetric for unit interval graphs and specializes to the ordinary chromatic
 symmetric function at $q=1$.
 
@@ -184,9 +193,10 @@ $(claw,2K_2)$-free graphs \cite{LiYang2021}.
 \item
 \emph{2021--2023.}
 Certain cycle-chord and tadpole-type families are treated using
-noncommutative and recursive methods \cite{WangWang2022}. \name{Foster Tom} gives a signed
+noncommutative and recursive methods \cite{WangWang2022}.
+\name{Foster Tom} gives a signed
 $\elementaryE$-expansion which yields new positive graph families
-\cite{Tom2023x}. Coefficient-level positivity for partitions with at most two
+\cite{Tom2023x}.  Coefficient-level positivity for partitions with at most two
 parts is proved in \cite{AbreuNigro2023x,RokSzenes2023x}.
 
 \item
@@ -274,12 +284,12 @@ Twinning does not preserve $\elementaryE$-positivity for arbitrary graphs
 
 \item
 Cycle-chord graphs are $\elementaryE$-positive
-\cite{WangWang2022,Wang2025}. The proof of the general case uses the
+\cite{WangWang2022,Wang2025}.  The proof of the general case uses the
 composition method of \cite{WangZhou2024x}.
 
 \item
 Graphs obtained by gluing at a single vertex give a flexible source of
-new examples. In particular, gluing sequences of unit interval graphs and
+new examples.  In particular, gluing sequences of unit interval graphs and
 cycles gives $\elementaryE$-positive graphs \cite{TomVailaya2025x}.
 
 \item
@@ -289,7 +299,7 @@ extend to graphs formed by connecting a sequence of cycles and cliques
 
 \item
 Positive $\elementaryE$-expansions are known for KPKP graphs, twinned
-lollipops, and kayak paddle graphs \cite{TangWang2024x}. This refines the
+lollipops, and kayak paddle graphs \cite{TangWang2024x}.  This refines the
 earlier $\elementaryE$-positivity of kayak paddle graphs from
 \cite{AliniaeifardWangWilligenburg2024}.
 
@@ -308,7 +318,7 @@ are doing real work.
 
 \begin{itemize}
 \item
-The star $K_{1,3}$ is already not $\elementaryE$-positive. More generally,
+The star $K_{1,3}$ is already not $\elementaryE$-positive.  More generally,
 large-degree cut vertices and several families of trees obstruct
 $\elementaryE$-positivity \cite{DahlbergSheWilligenburg2020}.
 
@@ -319,7 +329,7 @@ examples in the study of claw-contractible-free graphs
 
 \item
 For $H$-free graph classes, some families are positive and some contain
-counterexamples. See \cite{HamelHoangTuero2019,FoleyHoangMerkel2019} for a
+counterexamples.  See \cite{HamelHoangTuero2019,FoleyHoangMerkel2019} for a
 systematic treatment.
 
 \item
@@ -330,7 +340,7 @@ trees and connected partitions \cite{Tom2026}.
 \item
 Tom proves that trees with a vertex of degree at least $5$, trees with a
 degree-$4$ vertex not adjacent to a leaf, and four-legged spiders are not
-$\elementaryE$-positive \cite{Tom2026}. A quantitative connected-partition
+$\elementaryE$-positive \cite{Tom2026}.  A quantitative connected-partition
 approach to further tree obstructions is developed in \cite{EthanLi2025x}.
 
 \item
@@ -339,7 +349,7 @@ positivity, and hence can destroy $\elementaryE$-positivity
 \cite{LiLiWangYang2021}.
 \end{itemize}
 
-\begin{example}[The smallest star obstruction]
+\begin{example}[The smallest star obstruction]\label{chromaticEStarObstruction}
 For the star graph $K_{1,3}$,
 \[
 \chrom_{K_{1,3}}(\xvec)
@@ -354,17 +364,18 @@ $\elementaryE$-positive.
 \subsection[chromaticEExpansionCoefficientTests]{Coefficient-level tests}
 
 Several papers study individual elementary coefficients rather than a whole
-family of graphs. For example, \cite{ChoHongLee2020x} gives explicit
+family of graphs.  For example, \cite{ChoHongLee2020x} gives explicit
 conditions for when a coefficient in the $\elementaryE$-expansion is positive,
 and \cite{CrewZhang2022x} studies elementary-basis coefficients in relation to
-acyclic orientations and sinks. The change-of-basis perspective in
+\hyperref[acyclicOrientation]{acyclic orientations} and sinks.  The
+change-of-basis perspective in
 \cite{SaganTom2026} gives another way to turn information about particular
 partitions into graph-theoretic positivity statements.
 
 After Hikita's proof, several papers have focused on making the coefficients
-more explicit. The Macdonald expansion of
+more explicit.  The Macdonald expansion of
 \cite{GriffinMellitRomeroWeiglWen2025x} rederives Hikita's formula, while
 \cite{Siegl2025x} studies upper and lower combinatorial bounds for elementary
-coefficients. Finally, \cite{Kravitz2026x} proves that the partitions which
+coefficients.  Finally, \cite{Kravitz2026x} proves that the partitions which
 always have non-negative elementary coefficients for every finite graph are
 precisely the hook partitions.
