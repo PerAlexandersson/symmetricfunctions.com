@@ -1,5 +1,6 @@
 \metatitle{Key polynomials and Demazure atoms}
 \metadescription{An introduction to key polynomials, Demazure characters, Demazure atoms, divided difference definitions, SSAF and right-key models, Kohnert tableaux, products, and Pieri rules.}
+\metakeywords{key polynomial, Demazure character, Demazure atom, right key, Kohnert tableau, Kogan face, flagged Schur polynomial}
 
 \section[key]{Key polynomials}
 
@@ -40,10 +41,11 @@ Schubert varieties in the \hyperref[flagVarieties]{flag variety}; see
 Later, a combinatorial formula using so-called
 \defin{key tableaux}\label{keyTableau} was discovered in
 \cite{Lascoux1990Keys}.
-Key polynomials are also given as a specialization of \hyperref[macdonaldE]{nonsymmetric Macdonald polynomials},
-see \cite{HaglundHaimanLoehr2008}, and this gives several combinatorial
-models for the key polynomials, see the works of \name{Sarah Mason} \cite{Mason2009},
-and also \cite{Kurland2016,AlexanderssonSawhney2019}.
+Key polynomials are also given as a specialization of
+\hyperref[macdonaldE]{nonsymmetric Macdonald polynomials};
+see \cite{HaglundHaimanLoehr2008}.  This gives several combinatorial
+models for the key polynomials; see the work of \name{Sarah Mason}
+\cite{Mason2009}, and also \cite{Kurland2016,AlexanderssonSawhney2019}.
 Another positive model is given by \hyperref[kohnertTableaux]{Kohnert tableaux},
 which label the Kohnert diagrams for the key diagram.
 The same Kohnert-tableau framework gives positive expansions into the
@@ -100,7 +102,7 @@ and let the \defin{isobaric divided difference operator}
 \label{isobaricDividedDifferenceOperator} be
 $\pi_i(f) \coloneqq \partial_i(z_i f)$ for $i=1,\dotsc,n-1$ whenever
 $f \in \setC[z_1,\dotsc,z_n]$.
-One can show that $\pi_i^2 = \pi_i$ and that they satisfy the
+The operators satisfy $\pi_i^2 = \pi_i$ and the
 \hyperref[braidRelations]{braid relations}.
 
 Let $\sigma = s_{i_1} s_{i_2} \dotsc s_{i_\ell}$ be a \hyperref[reducedWord]{reduced word} of a permutation $\sigma \in \symS_n$,
@@ -125,15 +127,15 @@ $\key_{\lambda,\sigma^1}(z) = \key_{\lambda,\sigma^2}(z)$.
 
 This definition shows the close connection between \hyperref[schubert]{Schubert polynomials}
 and key polynomials.
-Notice that if we take $w_0$ to be the longest permutation in $\symS_n$, then
+If $w_0$ is the longest permutation in $\symS_n$, then
 \[
  \schurS_\lambda(z_1,\dotsc,z_n) = \key_{\lambda,w_0}(z_1,\dotsc,z_n),
 \]
-so the key polynomials are a superfamily of the \hyperref[schurS]{Schur polynomials}.
+so key polynomials generalize the \hyperref[schurS]{Schur polynomials}.
 
 
 
-\begin{example}[Taken from \cite{AlexanderssonAlhajjar2018}]
+\begin{example}[From \cite{AlexanderssonAlhajjar2018}]
 
 Let $\lambda = (2,1,0,0)$ and $\sigma = [2,4,3,1] \in \symS_4$ in one-line notation.
 The permutation can be expressed as a reduced word as
@@ -173,7 +175,7 @@ Alternatively, key polynomials are also commonly indexed by \hyperref[weakCompos
 If $\alpha = (\alpha_1,\dotsc,\alpha_n)$ is a weak composition,
 we let $\key_{\alpha}(z)$ be the key polynomial $\key_{\lambda,\sigma}(z)$,
 where $\lambda$ is the partition obtained from $\alpha$ by sorting the elements in decreasing order,
-and $\sigma \in \symS_n$ is a permutation with the property that it sorts $\alpha$
+and $\sigma \in \symS_n$ is a permutation such that it sorts $\alpha$
 into a partition; $\lambda = (\alpha_{\sigma(1)},\alpha_{\sigma(2)},\dotsc,\alpha_{\sigma(n)})$.
 
 For example, $\alpha = (1,0,3,2)$ corresponds to $\lambda = (3,2,1,0)$ and $\sigma = [3, 4, 1, 2]$.
@@ -208,7 +210,8 @@ A \defin{Kogan face} of $\GT(\lambda)$ is obtained by forcing
 a subset of the \emph{left-interlacing} inequalities to equalities:
 $x_{i+1,j} = x_{i,j}$
 for some collection of pairs $(i,j)$ with $1 \leq j \leq i \lt n$.
-To each equality $x_{i+1,j} = x_{i,j}$,  we associate the simple transposition $s_{n-i+j-1}$.
+To each equality $x_{i+1,j} = x_{i,j}$, we associate the simple transposition
+$s_{n-i+j-1}$.
 \end{definition}
 
 \begin{example*}[Equalities and transpositions in a GT-pattern]
@@ -226,10 +229,11 @@ inequality is forced to equality.
 
 \begin{definition}[Reduced Kogan face and type]\label{def:reducedKogan}
 \label{reducedKoganFace}
-Given a Kogan face, we read the associated transpositions row by row from bottom to top.
+Given a Kogan face, we read the associated transpositions row by row from
+bottom to top.
 Within each row, we read from left to right.
 If the resulting word $s_{a_1} s_{a_2} \dotsm s_{a_\ell}$
-is a \hyperref[reducedWord]{reduced word} the Kogan face is called
+is a \hyperref[reducedWord]{reduced word}, the Kogan face is called
 \defin{reduced}.
 Its \defin{type}\label{koganType} is the permutation
 $\sigma = s_{a_1} s_{a_2} \dotsm s_{a_\ell} \in \symS_n$.
@@ -386,7 +390,8 @@ and the key polynomial is a \hyperref[schurFlagged]{flagged Schur polynomial}.
 Fix $\lambda$, $\sigma \in \symS_n$.
 With the above theorem, it follows that the map $k \mapsto \key_{k \lambda,\sigma}(1^n)$
 is a polynomial in $k$.
-This is in fact an \hyperref[ehrhart]{Ehrhart polynomial} of a union of faces in a GT-polytope.
+This is in fact an \hyperref[ehrhart]{Ehrhart polynomial} of a union of faces
+in a GT-polytope.
 Let $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$ denote this polynomial.
 From the definition via divided difference operators,
 one can see that $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$
@@ -394,11 +399,11 @@ is a polynomial in $\setQ[\lambda_1,\dotsc,\lambda_n,k]$.
 
 See \cite{AlexanderssonAlhajjar2018} for the following conjecture.
 \begin{conjecture}[Alexandersson--Alhajjar (2018)]
-The polynomial $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$ has non-negative coefficients.
+The polynomial $P_{\sigma}(\lambda_1,\dotsc,\lambda_n;k)$ has nonnegative coefficients.
 
 Moreover, after setting $a_j = \lambda_1+\lambda_2+\dotsb+\lambda_j$, the function
 $P_{\sigma}(a_1,\dotsc,a_n;k)$ is a polynomial in $\setQ[a_1,\dotsc,a_n,k]$
-with non-negative coefficients.
+with nonnegative coefficients.
 \end{conjecture}
 See also the \hyperref[keyRealRootedHstar]{related conjecture}
 regarding the corresponding $h^*$-polynomial.
@@ -408,8 +413,9 @@ regarding the corresponding $h^*$-polynomial.
 
 In \cite{HaglundHaimanLoehr2008}, the authors presented a combinatorial model for the
 \hyperref[macdonaldE]{nonsymmetric Macdonald polynomials}.
-It is relatively straightforward to see that setting $q=t=0$ in a nonsymmetric Macdonald polynomial
-$\macdonaldE_{\alpha}(\xvec,q,t)$, we recover the key polynomial $\key_\alpha(\xvec)$.
+Setting $q=t=0$ in the nonsymmetric Macdonald polynomial
+$\macdonaldE_{\alpha}(\xvec,q,t)$ recovers the key polynomial
+$\key_\alpha(\xvec)$.
 
 
 From the work of \name{Sarah Mason} \cite{Mason2009},
@@ -432,9 +438,9 @@ The key polynomial $\key_\alpha(\xvec)$ is defined as
 \[
 \key_\alpha(\xvec) = \sum_{T \in \mathrm{SSAF}(\alpha)} \xvec^T.
 \]
-Note that when $\alpha$ is a partition, we sum over fillings with
+When $\alpha$ is a partition, we sum over fillings with
 weakly decreasing rows, and strictly decreasing columns.
-It is then easy to see that this sum is the Schur polynomial $\schurS_{\lambda}(x_1,\dotsc,x_n)$.
+This sum is the Schur polynomial $\schurS_{\lambda}(x_1,\dotsc,x_n)$.
 
 Alternatively, by choosing a different basement,
 we can realize $\key_\alpha(\xvec)$ as a sum over augmented fillings
@@ -450,12 +456,12 @@ Then
 \]
 \end{definition}
 
-In fact, one can find a series of bijections
-proving the equivalence of the two above formulas,
+A series of bijections proves the equivalence of the two above formulas;
 see \cite[Prop.~5.5]{AlexanderssonSawhney2019} (with $t=0$).
-It amounts to proving that interchanging two adjacent rows (including the basement) in
-an augmented diagram in such a way that a longer row is moved upwards,
-preserves the weighted sum of SSAF's with corresponding shape and basement.
+This amounts to proving that interchanging two adjacent rows
+(including the basement) in an augmented diagram in such a way that a
+longer row is moved upwards,
+preserves the weighted sum of SSAFs with corresponding shape and basement.
 
 % Related Rust: rust/sym-poly/multipoly/examples/key_site_example.rs
 \begin{example*}[A small SSAF computation]
@@ -533,8 +539,8 @@ elementary monomials below is closely related to the chain constructions of
 \subsection[keyDefinitionSSYT]{Definition (SSYT)}
 
 A \defin{key tableau}\label{keyTableauSSYTDefinition} is a semistandard
-tableau, with the property
-that the entries in column $j+1$ are a subset of the entries in column $j$, for all $j$.
+tableau such that the entries in column $j+1$ are a subset of the entries in
+column $j$, for all $j$.
 
 Below is the unique key tableau with weight $(1,3,0,1,2,4)$:
 \begin{figure}
@@ -546,9 +552,10 @@ Below is the unique key tableau with weight $(1,3,0,1,2,4)$:
 6 \\
 \end{ytableau}
 \end{figure}
-One can prove that the map that sends a key to its weight is a bijection between the set of key tableaux
-and the set of compositions. Given a composition $\alpha = (\alpha_1,\dotsc,\alpha_\ell)$
-we simply place a cell $j$ in the first $\alpha_j$ columns.
+The map that sends a key to its weight is a bijection between the set of key
+tableaux and the set of compositions.  Given a composition
+$\alpha = (\alpha_1,\dotsc,\alpha_\ell)$, place a cell $j$ in the first
+$\alpha_j$ columns.
 This produces a unique key tableau, $\mathrm{key}(\alpha)$, of shape $\sort(\alpha)$.
 
 \name{Reuven Hodges} and \name{Alexander Yong} characterize
@@ -559,7 +566,8 @@ Coxeter combinatorics to spherical Schubert geometry
 
 Given a semistandard tableau $T$, we can compute its
 \defin{right key}\label{rightKey} $K_+(T)$,
-via a rather involved process. A simpler method is proved in \cite{Mason2009}.
+via a direct but involved process.  A simpler method is proved in
+\cite{Mason2009}.
 The key polynomial can then be computed by
 \[
   \key_\alpha(\xvec) =
@@ -579,7 +587,7 @@ Similarly, the Demazure atoms are given as the sum over
 
 \subsection[keyFromKostant]{Keys via Kostant partition function}
 
-Let $\Phi^+=\{ \evec_i-\evec_j : 1\leq i<j\leq n\}$ be the positive roots of the
+Let $\Phi^+=\{ \evec_i-\evec_j : 1 \leq i < j \leq n\}$ be the positive roots of the
 \hyperref[rootSystem]{root system} of type $A_{n-1}$.
 For a multiset $\Gamma$ of roots in $\Phi^+$, let $\kostantP_\Gamma(\nu)$ be the
 corresponding \hyperref[kostantPartitionFunction]{Kostant partition function},
@@ -626,7 +634,8 @@ The key polynomial $\key_{02}=\pi_1(x_1^2)$ gives
 
 \subsection[keyRepresentation]{Representation theory of $GL_n$}
 
-See introduction in e.g. \cite{FanGuoPengSun2020}.
+For representation-theoretic background, see the introduction of
+\cite{FanGuoPengSun2020}.
 
 
 
@@ -635,7 +644,7 @@ See introduction in e.g. \cite{FanGuoPengSun2020}.
 \subsection[keyProduct]{Products of key polynomials}
 
 A product of key polynomials is not in general key-positive.
-However, in some instances such a product is key-positive, see \cite{Kouno2018}.
+However, in some instances such a product is key-positive; see \cite{Kouno2018}.
 
 \name{Guilherme Zeus Dantas e Moura}'s senior thesis surveys operator,
 tableau, plactic, and crystal models for key and atom polynomials
@@ -777,7 +786,7 @@ Yang--Baxter equation, and the construction also gives algorithms for computing
 Lascoux--Schützenberger keys.
 Using the notation for divided difference operators, let $\theta_i \coloneqq \pi_i -1$.
 These satisfy the braid relations and we have $\theta_i \theta_j = \theta_j \theta_i$
-whenever $|i-j| \geq 2$. However, note that $\theta_i^2 = 0$,
+whenever $|i-j| \geq 2$.  However, $\theta_i^2 = 0$,
 so we must now pay extra attention to choices of permutations.
 
 Let $\lambda$ be a partition with at most $n$ parts, and let $\sigma \in \symS_n$
@@ -787,8 +796,8 @@ defined as
 \begin{equation*}
  \atom_{\lambda,\sigma}(z) \coloneqq \theta_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
 \end{equation*}
-Again, instead of using $(\lambda,\sigma)$ as index, we simply use $\sigma(\lambda)$
-as index.
+Again, instead of using $(\lambda,\sigma)$ as an index, we use
+$\sigma(\lambda)$ as an index.
 Here, we must choose $\sigma$ to be the \hyperref[reducedWord]{shortest permutation} $\sigma$
 which sends $\lambda$ to $\alpha = \sigma(\lambda)$.
 
@@ -807,9 +816,9 @@ Similarly,
   z_1 z_2^3 + z_1 z_3^3 + z_1 z_2 z_3^2 + z_1 z_2^2 z_3.
 \]
 
-Since $\pi_i = \theta_i+1$, one can easily show that key polynomials are
+Since $\pi_i = \theta_i+1$, it follows that key polynomials are
 positive in the Demazure atom basis.
-In fact we have that (see \cite[Thm.~2.8]{Pun2016Thesis})
+Indeed, \cite[Thm.~2.8]{Pun2016Thesis} gives
 \[
 	\key_{\alpha}(z) = \sum_{\beta \leq \alpha} \atom_{\beta}(z),
 \]
@@ -829,7 +838,6 @@ Similarly,
 \emph{The notation used here is not uniform in the literature.}
 
 \begin{example*}[Key polynomials into atoms]
-We have that
 \[
  \key_{202} = \atom_{202}+\atom_{220}
 \]
@@ -839,7 +847,8 @@ and
 \]
 \end{example*}
 
-See \name{Anna Pun}'s PhD thesis for a good overview of Demazure atoms and key polynomials \cite{Pun2016Thesis}.
+See \name{Anna Pun}'s PhD thesis for a good overview of Demazure atoms and
+key polynomials \cite{Pun2016Thesis}.
 
 \name{Sam Armon} studies atom-positivity through Demazure crystals
 \cite{Armon2023x}.  The paper gives a recursive formula for crystal
@@ -855,7 +864,7 @@ A bijective proof of the Cauchy-type identity below is given in
 The proof uses the \hyperref[rsk]{Robinson--Schensted--Knuth correspondence}.
 
 \begin{theorem}[See \cite[Thm.~6]{Lascoux2003}]
-We have that
+We have
 \[
 \prod_{i+j \leq n+1} (1-x_iy_j)^{-1} =
 \sum_{\alpha \in \setN^n} \atom_{w_0\alpha}(\xvec) \key_{\alpha}(\yvec).
@@ -909,10 +918,11 @@ are key-positive.
 \section[keysAndAtomsTypeBCD]{Demazure keys and Demazure atoms in type $B$, $C$ and $D$}
 
 
-In \cite{FuLascoux2009}, \name{Amy Fu} and \name{Alain Lascoux} define divided difference operators
-that allow us to define key polynomials and Demazure atoms in types $B$, $C$ and $D$.
+In \cite{FuLascoux2009}, \name{Amy Fu} and \name{Alain Lascoux} define
+divided difference operators that allow us to define key polynomials and
+Demazure atoms in types $B$, $C$ and $D$.
 
-Let $s_i$ interchange $x_i$ and $x_{i+1}$ for $1\leq i<n$, let $s_n$
+Let $s_i$ interchange $x_i$ and $x_{i+1}$ for $1 \leq i < n$, let $s_n$
 send $x_n$ to $x_n^{-1}$, and let $\tau_n$ send
 $(x_{n-1},x_n)$ to $(x_n^{-1},x_{n-1}^{-1})$.  Fu and Lascoux write
 operators on the right.  With $f^w$ denoting the action of $w$ on $f$,
@@ -921,7 +931,7 @@ their isobaric divided differences are
 \begin{aligned}
 f\pi_i
   &= \frac{x_i f-x_{i+1}f^{s_i}}{x_i-x_{i+1}},
-    &&1\leq i<n,\\
+    &&1 \leq i < n,\\
 f\pi_n^C
   &= \frac{x_n f-x_n^{-1}f^{s_n}}{x_n-x_n^{-1}},\\
 f\pi_n^B
@@ -939,10 +949,12 @@ $D$ Demazure characters by applying products of operators to dominant
 monomials, while the hatted operators give the corresponding atom-like
 family \cite[Sec.~3]{FuLascoux2009}.
 
-In particular, the type $C$ key polynomials contain the \hyperref[schurSymplectic]{symplectic Schur functions}.
+In particular, the type $C$ key polynomials contain the
+\hyperref[schurSymplectic]{symplectic Schur functions}.
 There are operator, crystal-graph, and key-tableau definitions of these polynomials.
 
-See also \cite{RamYip2011}, as key polynomials are specializations of nonsymmetric Macdonald polynomials.
+See also \cite{RamYip2011}, since key polynomials are specializations of
+nonsymmetric Macdonald polynomials.
 
 
 \section[keyTypeBC]{Type $B/C$ key polynomials}
@@ -958,11 +970,13 @@ See also \cite{RamYip2011}, as key polynomials are specializations of nonsymmetr
 \end{polydata}
 
 In \cite{Santos2021}, \name[J. M. Santos]{João Miguel Santos} gives
-combinatorial formulas for the type $C$ key polynomials and Demazure atom polynomials.
+combinatorial formulas for the type $C$ key polynomials and Demazure atom
+polynomials.
 The type $C$ key polynomials expand positively into type $C$ Demazure atoms,
-by summing over an ideal in the Bruhat poset, see \cite[Prop.~53]{Santos2021}.
+by summing over an ideal in the \hyperref[bruhatOrder]{Bruhat poset};
+see \cite[Prop.~53]{Santos2021}.
 This is analogous to the type $A$ setting.
-A crystal characterization is also given, as well as analogs of key tableaux.
+A crystal characterization is also given, as well as analogues of key tableaux.
 
 \name{Valentin Buciumas} and \name{Travis Scrimshaw} construct
 quasi-solvable lattice models for the $\mathrm{Sp}_{2n}$ and
