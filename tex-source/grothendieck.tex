@@ -1,5 +1,6 @@
 \metatitle{Grothendieck polynomials}
 \metadescription{An introduction to Grothendieck polynomials, divided differences, pipe dreams, stable Grothendieck polynomials, set-valued tableaux, Pieri rules, Schur expansions, and dual variants.}
+\metakeywords{Grothendieck polynomial, stable Grothendieck polynomial, set-valued tableau, K-theory, pipe dream, dual Grothendieck polynomial}
 
 \section[grothendieck]{Grothendieck polynomials}
 
@@ -20,7 +21,8 @@
 \end{polydata}
 
 
-The Grothendieck polynomials are closely related to the \hyperref[schubertOperatorformula]{Schubert polynomials}.
+\defin{Grothendieck polynomials}\label{grothendieckPolynomialDefinition}
+are closely related to the \hyperref[schubertOperatorformula]{Schubert polynomials}.
 They are the polynomial representatives naturally attached to
 \hyperref[kTheory]{$K$-theoretic} \hyperref[schubertCalculus]{Schubert calculus}.
 They were introduced by \name{Alain Lascoux} in 1990 \cite{Lascoux1990Grothendieck}.
@@ -35,8 +37,8 @@ vexillary, dominant, and Grassmannian permutations.
 In \cite{BrubakerFrechetteHardtTiborWeber2020x}, the authors
 introduce biaxial Grothendieck polynomials, which generalize both the double Grothendieck polynomials and
 the double dual Grothendieck polynomials.
-They prove several results regarding Grothendieck polynomials, such as branching rules
-and Cauchy identities. They also provide solvable lattice models whose partition
+They prove several results about Grothendieck polynomials, including branching
+rules and Cauchy identities.  They also provide solvable lattice models whose partition
 functions give Grothendieck polynomials and their duals.
 
 \name{Harry Tamvakis} defines skew Grothendieck polynomials for skew elements
@@ -62,7 +64,7 @@ $K$-theoretic Schur $P$- and $Q$-functions.
 Define
 \[
   \partial_i(f)=\frac{f-s_i(f)}{x_i-x_{i+1}},
-  \qquad 1\leq i\leq n-1,
+  \qquad 1 \leq i \leq n-1,
 \]
 as on the \hyperref[schubertOperatorformula]{Schubert-polynomial page}, and let
 \[
@@ -76,7 +78,8 @@ The Grothendieck polynomials are then defined as
  \pi_{\omega^{-1}\omega_0}(x_1^{n-1}x_2^{n-2}\dotsm x_{n-1}).
 \end{equation*}
 
-Note that the lowest-degree homogeneous part of $\grothendieck_\omega(\xvec)$ is given by the Schubert polynomial
+Note that the lowest-degree homogeneous part of
+$\grothendieck_\omega(\xvec)$ is the Schubert polynomial
 $\schubert_\omega(\xvec)$.
 
 
@@ -88,7 +91,8 @@ for Schubert polynomials; see \cite{MeszarosDizier2017}.
 
 
 As with Schubert polynomials, there is a way to describe
-Grothendieck polynomials using \hyperref[schubertPipeDream]{pipe dreams}, see \cite{FominKirillov1994grothendieck,KnutsonMiller2004}.
+Grothendieck polynomials using \hyperref[schubertPipeDream]{pipe dreams};
+see \cite{FominKirillov1994grothendieck,KnutsonMiller2004}.
 The double Grothendieck polynomials are given as
 \[
 \grothendieck^{(\beta)}_\omega(\xvec,\yvec) =
@@ -98,8 +102,8 @@ The double Grothendieck polynomials are given as
 \]
 where we sum over \emph{pipe dreams}
 and $a \oplus b = a+b+\beta ab$.
-Here, $S(P)$ is the set of crosses of the pipe dream (this particular version of the formula is from
-\cite[Thm.~6.1]{Weigandt2021}).
+Here, $S(P)$ is the set of crosses of the pipe dream; this particular version
+of the formula is from \cite[Thm.~6.1]{Weigandt2021}.
 
 
 
@@ -270,8 +274,10 @@ to such a permutation.
 For a paper with many references and results, see \cite{MonicalPechenikScrimshaw2018}.
 
 
-Stable Grothendieck polynomials indexed by Grassmannian permutations are symmetric polynomials.
-They serve as a $K$-theoretic analog of the \hyperref[stanleySym]{Stanley symmetric functions}.
+\defin{Grassmann Grothendieck polynomials}\label{grassmannGrothendieckPolynomialDefinition}
+are the stable Grothendieck polynomials indexed by Grassmannian permutations.
+They are symmetric polynomials and serve as a $K$-theoretic analogue of the
+\hyperref[stanleySym]{Stanley symmetric functions}.
 They can be computed by a combinatorial formula using
 \hyperref[setValuedTableaux]{set-valued tableaux}:
 \begin{align}
@@ -286,8 +292,8 @@ Equivalently, let
 \]
 Thus the unadorned stable Grothendieck polynomial above is the specialization
 \(\beta=-1\).
-The set $\mathrm{SVT}(\lambda)$ consists of all set-valued tableaux of shape $\lambda$,
-where each box is filled with a non-empty set of natural numbers.
+The set $\mathrm{SVT}(\lambda)$ consists of all set-valued tableaux of shape
+$\lambda$, where each box is filled with a nonempty set of natural numbers.
 Rows must be weakly increasing and columns must be strictly increasing.
 The sum of the sizes of the sets in $T$ is denoted $|T|$.
 
@@ -396,7 +402,7 @@ Note that at $\beta=0$, we recover the classical
 where the sum is taken over partitions $\mu$, and $\hat{\lambda}$ is the unique maximal partition of length $k$
 obtained from $\lambda$ by adding at most $j-1$ boxes to the $j$-th row of the Young diagram $\lambda$.
 
-The coefficients $a_{\lambda\mu}$ are non-negative, and
+The coefficients $a_{\lambda\mu}$ are nonnegative, and
 count the number of \emph{increasing tableaux} of shape $\mu/\lambda$.
 These tableaux are strictly increasing along rows and columns,
 and for each $i\geq 1$, row $i$ only contains entries $\leq i-1$.
@@ -444,10 +450,13 @@ in terms of skew Schur polynomials. Here, $\sigma$ and $\mu$ are skew shapes.
 \grothendieckStable_{\sigma}(\xvec) =
 \sum_{\mu \supseteq \sigma} (-1)^{|B(\mu/\sigma)|} a_{\sigma,\mu} \schurS_\mu(\xvec).
 \end{align}
-The motivation behind this formula is the connection with Euler characteristics of certain varieties, see \cite{ChanPflueger2017}.
+The motivation behind this formula is the connection with Euler
+characteristics of certain varieties; see \cite{ChanPflueger2017}.
 
-The coefficients $a_{\sigma,\mu}$ are non-negative integers with an explicit combinatorial interpretation.
-\name{Melody Chan} and \name{Nathan Pflueger} also prove a similar \emph{inverse} formula, for connected skew shapes $\sigma$:
+The coefficients $a_{\sigma,\mu}$ are nonnegative integers with an explicit
+combinatorial interpretation.
+\name{Melody Chan} and \name{Nathan Pflueger} also prove a similar
+\emph{inverse} formula, for connected skew shapes $\sigma$:
 \begin{align}
 \schurS_{\sigma}(\xvec) =
 \sum_{\mu \supseteq \sigma} (-1)^{|A(\mu/\sigma)|} b_{\sigma,\mu} \grothendieckStable_\mu(\xvec).
@@ -655,7 +664,8 @@ They have the same structure constants $c^{\nu}_{\lambda\mu}$ as the usual stabl
 There is also a skew version, a Weyl-type alternant formula, tableau descriptions,
 and operator descriptions.
 
-The $\grothendieckDual^{(a,b)}_\mu$ are Schur-positive, and a
+The $\grothendieckDual^{(a,b)}_\mu$ are
+\hyperref[schurPositiveDefinition]{Schur-positive}, and a
 \hyperref[crystals]{crystal} structure on the canonical stable Grothendieck
 polynomials and their duals is given by \name{Graham Hawkes} and
 \name{Travis Scrimshaw} \cite{HawkesScrimshaw2020}.
@@ -759,7 +769,8 @@ We then let
 \grothendieckStable_{\lambda,f}(\xvec|b) \coloneqq \sum_{T \in SVT(\lambda,f)} \beta^{|T|-|\lambda|}[x|b]^T
 \]
 where the sum runs over all flagged set-valued tableaux of shape $\lambda$
-and flag $f$. This means that the sets in row $i$ may only contain elements from $\{f_1,\dotsc,f_i\}$.
+and flag $f$.  This means that the sets in row $i$ may only contain elements
+from $\{f_1,\dotsc,f_i\}$.
 Furthermore,
 \[
 [x|b]^T \coloneqq \prod_{e\in T} x_{val(e)} \oplus b_{val(e)-r(e)+c(e)}.
@@ -811,8 +822,9 @@ Note that
 \grothendieckDual_\lambda(\xvec) = \schurS_\lambda(\xvec) + \text{lower order terms}.
 \]
 The skew version $\grothendieckDual_{\lambda/\mu}(\xvec)$ is defined in a similar manner.
-One can prove that $\grothendieckDual_{\lambda/\mu}(\xvec)$ is symmetric by using a version
-of the Bender--Knuth involutions, see \cite{GalashinGrinbergLiu2016}.
+One can prove that $\grothendieckDual_{\lambda/\mu}(\xvec)$ is symmetric by
+using a version of the Bender--Knuth involutions; see
+\cite{GalashinGrinbergLiu2016}.
 
 \name{Jason Bandlow} and \name{Jennifer Morse} expand modified
 Hall--Littlewood functions in the dual stable Grothendieck basis
@@ -893,8 +905,10 @@ originally conjectured by
 \name{Darij Grinberg}.
 A proof was later presented by \name[J. S. Kim]{Jang Soo Kim}
 \cite{Kim2021RefinedDualGrothendieckJT}.
-A different proof was obtained independently by \name{Alimzhan Amanov} and \name{Damir Yeliussizov} \cite{AmanovYeliussizov2020}.
-Both approaches use quite novel techniques with \hyperref[lgvLemma]{non-intersecting lattice paths}.
+A different proof was obtained independently by \name{Alimzhan Amanov} and
+\name{Damir Yeliussizov} \cite{AmanovYeliussizov2020}.
+Both approaches use techniques with
+\hyperref[lgvLemma]{non-intersecting lattice paths}.
 
 
 
@@ -962,9 +976,9 @@ The authors define them as
 \grothendieckRefinedDualStable_\lambda(\xvec;\tvec) \coloneqq
 \sum_{T \in RPP(\lambda)}  \xvec^{ev(T)} \tvec^{b(T)}
 \]
-where (as usual), $ev(T)_i$ is the number of columns containing $i$,
-and $b(T)_j$ is the number of boxes in row $j$ whose entry is equal to the entry in
-the box immediately below it.
+where $ev(T)_i$ is the number of columns containing $i$, and $b(T)_j$ is the
+number of boxes in row $j$ whose entry is equal to the entry in the box
+immediately below it.
 
 
 In \cite{Yeliussizov2019}, the
@@ -975,8 +989,15 @@ are defined:
 \coloneqq \sum_{\pi \in PP(\lambda)} \prod_{(i,j) \in \DES(\pi)} x_i z_{\pi(i,j)}.
 \]
 Note that $\grothendieckDual_\lambda(1^n;\zvec) =  \grothendieckDual_\lambda(\zvec)$.
-It is observed that $\grothendieckDual_\lambda(\xvec;\zvec) = \xvec^{\lambda}\grothendieckRefinedDualStable_\lambda(\xvec^{-1},\zvec)$,
-where $\grothendieckRefinedDualStable_\lambda$ is a refined dual stable Grothendieck polynomial.
+Yeliussizov observes that
+\[
+\grothendieckDual_\lambda(\xvec;\zvec)
+=
+\xvec^{\lambda}
+\grothendieckRefinedDualStable_\lambda(\xvec^{-1},\zvec),
+\]
+where $\grothendieckRefinedDualStable_\lambda$ is a refined dual stable
+Grothendieck polynomial.
 
 
 \name{Damir Yeliussizov} proves \cite[Eq.~(11)]{Yeliussizov2019} that
@@ -985,10 +1006,12 @@ where $\grothendieckRefinedDualStable_\lambda$ is a refined dual stable Grothend
 \prod_{i=1}^m \prod_{j=1}^n  \frac{1}{1-x_iz_j}.
 \]
 Yeliussizov proves several new $q$-identities involving
-plane partitions and dual Grothendieck polynomials in \cite{Yeliussizov2019}.
+\hyperref[planePartitions]{plane partitions} and dual Grothendieck polynomials
+in \cite{Yeliussizov2019}.
 \name{Alimzhan Amanov} and \name{Damir Yeliussizov} introduce
 higher-dimensional analogues of dual Grothendieck polynomials
-\cite{AmanovYeliussizov2023}.  These are quasisymmetric functions whose
+\cite{AmanovYeliussizov2023}.  These are
+\hyperref[quasiSymmetricFunctions]{quasisymmetric functions} whose
 specializations enumerate higher-dimensional partitions of fixed shape.
 
 
