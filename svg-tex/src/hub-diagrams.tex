@@ -119,4 +119,33 @@
     {unlabeled edges have braid parameter \(m=3\)};
 \end{tikzpicture}
 
+\tikzsetnextfilename{qsym-nsym-zero-hecke}
+\begin{tikzpicture}[line cap=round,line join=round]
+  \useasboundingbox (-3.55,-1.75) rectangle (3.55,1.75);
+
+  \node[draw=black, rounded corners=3pt, fill=iconblue!14,
+    minimum width=1.85cm, minimum height=0.72cm, align=center] (q) at (-2.05,0.82)
+    {\(\mathrm{QSym}\)\\[-1pt]\scriptsize modules};
+  \node[draw=black, rounded corners=3pt, fill=softgreen!16,
+    minimum width=1.85cm, minimum height=0.72cm, align=center] (n) at (2.05,0.82)
+    {\(\mathrm{NSym}\)\\[-1pt]\scriptsize projectives};
+  \node[draw=black, rounded corners=3pt, fill=softorange!18,
+    minimum width=2.15cm, minimum height=0.72cm, align=center] (h) at (0,-0.82)
+    {\(H_n(0)\)\\[-1pt]\scriptsize type \(A\) 0-Hecke};
+
+  \draw[edge, <->, >=Stealth] (q) -- node[small label, above]
+    {graded dual} (n);
+  \draw[edge, ->, >=Stealth] (h) -- node[small label, left, sloped]
+    {characteristic} (q);
+  \draw[edge, ->, >=Stealth] (h) -- node[small label, right, sloped]
+    {projectives} (n);
+
+  \node[small label, align=center] at (-2.05,-1.45)
+    {\(F_\alpha\) from simples};
+  \node[small label, align=center] at (2.05,-1.45)
+    {ribbons from projectives};
+  \node[small label, align=center] at (0,1.48)
+    {induction and restriction give product and coproduct};
+\end{tikzpicture}
+
 \end{document}

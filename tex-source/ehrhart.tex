@@ -39,6 +39,23 @@ Thus \(h^*_P(t)=1\).  For the unit square \([0,1]^2\),
 so \(h^*_P(t)=1+t\).
 \end{example}
 
+\begin{example}
+For the \(d\)-dimensional cube \([0,1]^d\), the \(h^*\)-polynomial is the
+Eulerian polynomial:
+\[
+\begin{array}{c|l}
+d & h^*_{[0,1]^d}(t)\\
+\hline
+1 & 1\\
+2 & 1+t\\
+3 & 1+4t+t^2\\
+4 & 1+11t+11t^2+t^3.
+\end{array}
+\]
+The coefficients form the Eulerian number triangle \oeis{A008292}.  This is
+one of the quickest ways Ehrhart theory meets permutation statistics.
+\end{example}
+
 \svgimg[width=0.78\textwidth]{svg-images/ehrhart-order-polytopes.svg}{
 Order polytopes connect lattice-point enumeration with descent statistics.}
 
@@ -85,6 +102,16 @@ increasing sequences
 \]
 \end{example}
 
+\begin{example}
+Let \(P_\lambda\) be the Ferrers poset of a partition \(\lambda\).  Linear
+extensions of \(P_\lambda\) are standard Young tableaux of shape \(\lambda\),
+and the \(h^*\)-polynomial of \(\mathcal O(P_\lambda)\) is the descent
+generating polynomial over those tableaux.  For \(\lambda=(n,n)\), this gives
+the Narayana polynomial; the Narayana triangle is \oeis{A001263}.  This is
+the Ehrhart-theoretic form of the example on the
+\hyperref[realRootedTableaux]{real-rooted tableaux page}.
+\end{example}
+
 \subsection[ehrhartWhereItAppears]{Where it appears}
 
 Ehrhart theory appears in several parts of algebraic combinatorics:
@@ -100,6 +127,10 @@ to matroid invariants.
 \item \hyperref[gammaPositivity]{Gamma-positivity} and
 \hyperref[realRootedTableaux]{real-rootedness questions} often ask whether
 the corresponding \(h^*\)-polynomials have stronger positivity properties.
+\item OEIS comparisons are especially useful for \(h^*\)-triangles arising
+from order polytopes, flow polytopes, and lecture-hall-type polytopes, since
+their first rows often coincide with classical Eulerian, Narayana, Catalan,
+or Euler-number triangles.
 \item The \hyperref[transferMatrixMethod]{transfer matrix method} can compute
 Ehrhart series when lattice points are built from finitely many boundary
 states.

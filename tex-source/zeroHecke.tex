@@ -52,12 +52,29 @@ are indexed by compositions \(\alpha\vDash n\), or equivalently by subsets of
 \bottomrule
 \end{array}
 
+\svgimg[width=0.78\textwidth]{svg-images/qsym-nsym-zero-hecke.svg}{
+The QSym--NSym duality as seen through 0-Hecke modules and projectives.}
+
 The \defin{quasisymmetric characteristic}
 \label{quasisymmetricCharacteristic} is the analogue of the
 \hyperref[frobeniusCharacteristic]{Frobenius characteristic}.  It sends the
 simple module \(F^\alpha\) to the
 \hyperref[gessel]{fundamental quasisymmetric function}
 \(\gessel_\alpha\).
+
+\begin{example}
+For \(n=3\), the compositions and descent sets are
+\[
+  (3)\leftrightarrow\varnothing,\qquad
+  (1,2)\leftrightarrow\{1\},\qquad
+  (2,1)\leftrightarrow\{2\},\qquad
+  (1,1,1)\leftrightarrow\{1,2\}.
+\]
+On the simple module \(F^{(1,2)}\), the generator \(T_1\) acts by \(0\) and
+\(T_2\) acts by \(1\).  Its quasisymmetric characteristic is
+\(\gessel_{(1,2)}\).  This is the 0-Hecke analogue of sending an irreducible
+\(\symS_n\)-module to its Frobenius characteristic.
+\end{example}
 
 \subsection[zeroHeckeQSymNSym]{QSym and NSym}
 
@@ -71,7 +88,11 @@ NSym \cite{KrobThibon1997}.
 This gives a representation-theoretic explanation for the
 \hyperref[qsymNSymDuality]{duality between QSym and NSym}.  The fundamental
 quasisymmetric basis comes from simple modules, while the dual
-noncommutative side comes from projectives.
+noncommutative side comes from projectives.  More precisely, indecomposable
+projectives correspond to the \hyperref[nonComRibbonBasis]{noncommutative
+ribbon basis}, which is dual to the fundamental quasisymmetric basis.
+Induction and restriction of 0-Hecke modules give the product and coproduct
+on the corresponding Hopf algebras.
 
 \subsection[zeroHeckeSchurLike]{Schur-like bases}
 

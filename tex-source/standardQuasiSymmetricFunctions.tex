@@ -93,12 +93,37 @@ basis and $\qmonom_\beta$ denotes the monomial quasisymmetric basis.
 Thus product rules in $\spaceQSym$ are dual to coproduct rules in NSym, and
 coproduct rules in $\spaceQSym$ are dual to products in NSym.
 
+\svgimg[width=0.78\textwidth]{svg-images/qsym-nsym-zero-hecke.svg}{
+The QSym--NSym duality and its 0-Hecke representation-theoretic shadow.}
+
 This duality should be compared with the ordinary Hall inner product on
 \hyperref[symmetricFunctionsSpace]{symmetric functions}.  In the symmetric
 world, Schur functions are self-dual.  In the QSym--NSym world, the two sides
 are different algebras: composition-indexed quasisymmetric functions live on
 the commutative side, while noncommutative complete, ribbon, immaculate, and
 noncommutative Schur functions live on the dual side.
+
+The most useful dictionary is:
+\[
+\begin{array}{lll}
+\toprule
+\text{QSym basis} & \text{Dual NSym basis} & \text{What it records}\\
+\midrule
+\qmonom_\alpha & \completeH_\alpha
+  & \text{ordered blocks of a composition}\\
+\gessel_\alpha & R_\alpha
+  & \text{descent sets and ribbon shapes}\\
+\text{dual immaculate} & \text{immaculate}
+  & \text{composition-tableau Schur analogues}\\
+\qPsi_\alpha,\qPhi_\alpha & \Psi_\alpha,\Phi_\alpha
+  & \text{power-sum analogues}\\
+\bottomrule
+\end{array}
+\]
+Here \(R_\alpha\) denotes the noncommutative ribbon basis.  The first row is
+the defining pairing, while the second row is often the practical one: many
+combinatorial generating functions naturally expand in the fundamental
+functions \(\gessel_\alpha\), and their dual statements use ribbons in NSym.
 
 \begin{example}
 For compositions of $2$, the duality gives
@@ -119,6 +144,10 @@ finite-dimensional $0$-Hecke modules identifies with $\spaceQSym$, while the
 Grothendieck group of projective modules identifies with NSym
 \cite{KrobThibon1997}.  Under the quasisymmetric characteristic, simple
 $0$-Hecke modules map to the fundamental quasisymmetric functions.
+Induction of modules corresponds to multiplication, and restriction
+corresponds to coproduct.  This is the direct analogue of how the Frobenius
+characteristic packages induction and restriction for symmetric-group
+representations.
 
 
 \section[qmonom]{Monomial quasisymmetric functions}

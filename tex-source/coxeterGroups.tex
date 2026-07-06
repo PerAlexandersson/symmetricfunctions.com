@@ -101,6 +101,24 @@ Catalan objects from type \(A\) to all finite types.
 roots, coroots, chambers, and Weyl groups.
 \end{itemize}
 
+One practical way to read the type dictionary is to ask what replaces an
+ordinary permutation statistic:
+\[
+\begin{array}{lll}
+\toprule
+\text{Type} & \text{Permutation data} & \text{Typical statistic}\\
+\midrule
+A & \text{ordinary permutations} & \text{descents, inversions, excedances}\\
+B/C & \text{signed permutations} & \text{type \(B\) descents and sign changes}\\
+D & \text{even signed permutations} & \text{type \(D\) descents}\\
+\widetilde A & \text{affine permutations} & \text{cyclic descents and windows}\\
+\bottomrule
+\end{array}
+\]
+This is often the fastest route from a type \(A\) theorem to a type \(B\),
+type \(D\), or affine question: replace the indexing set, replace the descent
+notion, and then check which proof ingredients still survive.
+
 \section[coxeterTypeA]{Type \(A\)}
 
 Type \(A_{n-1}\) is the symmetric group \(\symS_n\).  It is the ambient type
@@ -143,3 +161,9 @@ be modeled by \hyperref[notationAffinePermutations]{affine permutations}.
 Affine type \(A\) is the natural setting for affine Stanley symmetric
 functions, \(k\)-Schur functions, affine Grassmannian combinatorics, and
 related Hecke-algebra constructions.
+
+The affine symmetric group also illustrates why the type translation page is
+useful.  A single affine object can be described as an affine Weyl-group
+element, a bounded window, an alcove walk, a core partition, or a Schubert
+class in the affine Grassmannian.  These descriptions emphasize different
+parts of the same combinatorics.

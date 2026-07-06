@@ -30,6 +30,20 @@ There is a \defin{forgetful morphism}\label{noncommutativeForgetfulMorphism}
 $\chi:\mathrm{NSym}\to\spaceSym$ sending $\completeH_n$ to the ordinary
 \hyperref[completeH]{complete homogeneous symmetric function}.
 
+There are therefore two complementary maps to keep in mind:
+\[
+  \mathrm{NSym}
+  \xrightarrow{\ \chi\ }
+  \spaceSym,
+  \qquad
+  \mathrm{NSym}
+  \cong
+  \spaceQSym^\ast .
+\]
+The first map forgets noncommutativity.  The second identifies NSym with the
+graded dual of \(\spaceQSym\), so that every change of basis in QSym has a
+transpose change of basis in NSym.
+
 \begin{polydata}{nonComHomogeneous}
   Name   & Noncommutative complete homogeneous functions \\
   Space    & NSym \\
@@ -43,6 +57,35 @@ $\chi:\mathrm{NSym}\to\spaceSym$ sending $\completeH_n$ to the ordinary
   PositiveIn & nonComPowerPhi | BallantineDaughertyHicksMason2020 | proof=dual to the $\qPhi$ monomial expansion \\
   NSymQSymDual & qmonom | GelfandKrobLascouxLeclercRetakhThibon1995 | pairing=canonical NSym--QSym pairing \\
 \end{polydata}
+
+\subsection[nonComDualBases]{Dual bases and the forgetful map}
+
+The basic dual pairs are:
+\[
+\begin{array}{lll}
+\toprule
+\text{NSym basis} & \text{Dual QSym basis} & \text{Image under }\chi\\
+\midrule
+\completeH_\alpha
+  & \qmonom_\alpha
+  & \completeH_{\alpha_1}\completeH_{\alpha_2}\dotsm \completeH_{\alpha_\ell}\\
+R_\alpha
+  & \gessel_\alpha
+  & \text{ordinary ribbon Schur function}\\
+\mathfrak S_\alpha
+  & \text{dual immaculate}
+  & \schurS_\alpha\text{ when }\alpha\text{ is a partition}\\
+\Psi_\alpha,\Phi_\alpha
+  & \qPsi_\alpha,\qPhi_\alpha
+  & \text{ordinary power-sum expressions}\\
+\bottomrule
+\end{array}
+\]
+Here \(R_\alpha\) is the
+\defin{noncommutative ribbon basis}\label{nonComRibbonBasis}.  The ribbon
+basis is dual to the fundamental quasisymmetric basis, so it is the NSym
+side of descent-set enumerators.  This is why ribbons appear naturally in the
+\hyperref[zeroHeckeQSymNSym]{0-Hecke categorification} of QSym and NSym.
 
 \begin{polydata}{nonComPowerPsi}
   Name   & Noncommutative power sums (Psi) \\

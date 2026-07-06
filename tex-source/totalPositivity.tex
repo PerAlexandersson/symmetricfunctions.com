@@ -41,6 +41,16 @@ families of nonintersecting paths and is therefore nonnegative.
 A planar network in which nonintersecting path families give nonnegative
 minors.}
 
+If \(M_{i,j}\) is the weighted path sum from source \(s_i\) to sink \(t_j\),
+then a \(2\times2\) minor has the form
+\[
+  M_{i,a}M_{j,b}-M_{i,b}M_{j,a}.
+\]
+The LGV involution cancels the intersecting path pairs, leaving only
+nonintersecting pairs.  In a planar compatible network, the remaining weights
+are nonnegative.  This is the local mechanism behind total nonnegativity of
+the whole path matrix.
+
 This mechanism appears in:
 \begin{itemize}
 \item \hyperref[tnnPathMatrix]{path matrices} for total positivity;
