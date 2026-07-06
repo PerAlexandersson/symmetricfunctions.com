@@ -1,6 +1,11 @@
 \metatitle{Real-rooted polynomials: permutations, set partitions and Stirling permutations}
 
-\metadescription{Examples of Sturm sequences and interlacing from permutation statistics, set partitions, and Stirling permutations: Eulerian polynomials, peaks, descents, derangements, and more.}
+\metadescription{Examples of Sturm sequences and interlacing from permutation
+statistics, set partitions, and Stirling permutations: Eulerian polynomials,
+peaks, descents, derangements, and more.}
+\metakeywords{real-rooted polynomial, Eulerian polynomial, type B Eulerian
+polynomial, derangement polynomial, Stirling permutation, inversion sequence,
+Sturm sequence, interlacing polynomial}
 
 
 \section[realRootedWords]{Permutation statistics, words, and set partitions}
@@ -21,9 +26,9 @@ posets, including
 
 The examples are grouped into Eulerian-type descent polynomials, other
 permutation statistics, set partitions, and Stirling permutations.  The
-subsections are meant as a guide to the methods as much as to the objects: repeated
-themes are derivative recurrences, compatible or interlacing refinements,
-and multivariate stability.
+subsections are meant as a guide to the methods as much as to the objects:
+repeated themes are derivative recurrences, compatible or interlacing
+refinements, and multivariate stability.
 
 
 \subsection[sturmEulerian]{Eulerian-type descent polynomials}
@@ -37,7 +42,7 @@ The \defin{Eulerian polynomials}\label{eulerianPolynomial} are
 \]
 These satisfy
 \[
-A_n(t) = (1+t(n-1))A_{n-1}(t) +  t(1-t) A'_{n-1}(t), \quad A_1(t)=1
+A_n(t) = (1+t(n-1))A_{n-1}(t) + t(1-t) A'_{n-1}(t), \quad A_1(t)=1
 \]
 and this recurrence implies that \(A_j(t)\interl A_{j+1}(t)\) for all \(j\).
 The coefficient \(n-1\) is large enough that this is not a
@@ -46,7 +51,8 @@ root positions must be used more carefully.
 
 This result goes back to \name{Frobenius} \cite{Frobenius1910}.
 
-The proof proceeds as follows. Introduce $\tilde{A}_n(x) \coloneqq x A_n(x)$.
+The proof proceeds as follows.  Introduce
+$\tilde{A}_n(x) \coloneqq x A_n(x)$.
 The recursion then becomes
 \[
 \tilde{A}_n(x) = x(1-x)\tilde{A}'_{n-1}(x) + nx \tilde{A}_{n-1}(x).
@@ -99,7 +105,7 @@ triangular arrays satisfying a super-recurrence generalizing the standard
 Eulerian, Stirling, and Lah recurrences \cite{Shankar2025x}.  The proof uses a
 weighted-lattice-path interpretation and a weight-increasing injection, and it
 also introduces a two-parameter Eulerian analogue with palindromicity and
-questions about \hyperref[gammaPositivity]{gamma-non-negativity} and
+questions about \hyperref[gammaPositivePolynomial]{gamma-nonnegativity} and
 real-rootedness.
 \end{example*}
 
@@ -118,13 +124,15 @@ three-dimensional permutations are counted by the Springer numbers.
 
 
 \begin{example*}[Eulerian polynomials with descents from prescribed set]
-In \cite{AthanasiadisEvangelinou2023xII} the authors show that for any
-$T \subseteq [n-1]$,
+\name{Christos A. Athanasiadis} and
+\name{Katerina Kalampogia-Evangelinou} show that for any $T \subseteq [n-1]$,
 the polynomials
 \[
  A_n^T(x) \coloneqq  \sum_{\substack{\pi \in \symS_n \\ \DES(\pi) \subseteq T}} x^{\des(\pi)}
 \]
-are real-rooted. The proof refines the above polynomials by the value of
+are real-rooted \cite{AthanasiadisEvangelinou2023xII}.  These are
+\defin{restricted Eulerian polynomials}\label{restrictedEulerianPolynomial}.
+The proof refines the above polynomials by the value of
 $\pi(n)$, and then uses a recursion which preserves an interlacing family of
 polynomials.
 \end{example*}
@@ -155,7 +163,8 @@ For \(\pi\in B_n\), set \(\pi(0)\coloneqq 0\), and let \(\des(\pi)\) be the card
 \[
  \{ i \in \{0,1,2,\dotsc,n-1\} : \pi(i) \gt \pi(i+1) \}.
 \]
-The polynomials \(P_n(t)=\sum_{\sigma \in B_n} t^{\des(\sigma)}\) then satisfy the recurrence
+The \defin{type $B$ Eulerian polynomials}\label{typeBEulerianPolynomial}
+\(P_n(t)=\sum_{\sigma \in B_n} t^{\des(\sigma)}\) then satisfy the recurrence
 \begin{equation}
  P_n(t) = ((2n-1)t+1) P_{n-1}(t) + 2t(1-t) P'_{n-1}(t),
 \end{equation}
@@ -185,7 +194,7 @@ by means of interlacing polynomials.
 
 Computations suggest that $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$, but
 this does not follow immediately from the reference above. See also the
-binomial $\svec$-Eulerian polynomials.
+binomial \hyperref[sEulerianPolynomial]{$\svec$-Eulerian polynomials}.
 \end{example*}
 
 
@@ -222,8 +231,9 @@ are real-rooted. The methods use the theory of interlacing sequences of polynomi
 In particular, if $\svec$ is a fixed \emph{sequence} of positive integers,
 then $E^\svec_n(t) \interl E^\svec_{n+1}(t)$.
 
-The proof by Savage and Visontai also shows that the \(s\)-Eulerian
-polynomials are real-rooted.  See also the proof in
+The proof by Savage and Visontai also shows that the
+\defin{\(\svec\)-Eulerian polynomials}\label{sEulerianPolynomial}
+are real-rooted.  See also the proof in
 \cite[Sec.~8.2]{Branden2015}.
 
 
@@ -301,7 +311,9 @@ and gives that all roots of \(Q_n\) are real and that
 
 
 \begin{example*}[Alternating runs]
-In \cite{MaWang2008}, the authors consider the following polynomial (coefficients are \oeis{A059427}):
+\name{Shi-Mei Ma} and \name{Yi Wang} consider the
+\defin{alternating-run polynomial}\label{alternatingRunPolynomial}
+with coefficients \oeis{A059427}:
 \[
   P_n(x) = x \cdot \sum_{\sigma \in \symS_n} x^{\text{peaks}(\sigma)+\text{valleys}(\sigma)}.
 \]
@@ -310,9 +322,10 @@ The polynomials satisfy the recursion
 P_n = x(nx-2x+2)P_{n-1} + x(1-x^2) P'_{n-1}.
 \]
 Ma and Wang's general theorem gives the
-interlacing relation $P_n \interl P_{n+1}$ here as well.
-However, note that there is a root at $x=-1$ with multiplicity $\lfloor n/2 \rfloor -1$.
-See \cite{MaWang2008} for more references---real-rootedness was observed earlier.
+interlacing relation $P_n \interl P_{n+1}$ here as well
+\cite{MaWang2008}.  However, note that $x=-1$ is a root with multiplicity
+$\lfloor n/2 \rfloor -1$.  See \cite{MaWang2008} for more
+references---real-rootedness was observed earlier.
 \end{example*}
 
 
@@ -322,28 +335,31 @@ Define the polynomials
   P_n(t)=\sum_{\sigma\in \mathrm{RS}_n} t^{\des(\sigma)},
 \]
 where the sum is over all \hyperref[namedPermutations]{simsun permutations}.
-It was shown in \cite{ChowShiu2011} that
+\name{Chak-On Chow} and \name{Wai Chee Shiu} prove that
 \begin{equation}
  P_n(t) = ((n-1)t + 1) P_{n-1}(t) + t(1-2t) P'_{n-1}(t), \qquad P_0(t)=1.
 \end{equation}
 From this recursion, it follows that the \(P_n(t)\) are real-rooted and
 interlacing; see \cite[Thm.~2.1 (iii)]{ChowShiu2011}.
-It is also noted that this is the same as counting left peaks in simsun permutations.
+They also note that this is the same as counting left peaks in simsun
+permutations.
 
-Later in \cite{MaYeh2016}, it is proved that interior peaks also give rise
-to real-rooted polynomials.
+\name{Shi-Mei Ma} and \name{Yeong-Nan Yeh} later prove that interior peaks
+also give rise to real-rooted polynomials \cite{MaYeh2016}.
 \end{example*}
 
 
 
 
 \begin{example*}[Descents in run-sorted permutations]
-In \cite{AlexanderssonNabawanda2021}, we show that the polynomials $R_n(t)$
-given by $R_1(t)=R_2(t)=t$ and the recursion
+In joint work with \name{Olivia Nabawanda}, we show that the
+\defin{run-sorted descent polynomials}\label{runSortedDescentPolynomial}
+$R_n(t)$ given by $R_1(t)=R_2(t)=t$ and the recursion
 \begin{equation}
 R_n(t) = t\cdot R'_{n-1}(t) + t\cdot (n-2) R_{n-2}(t),
 \end{equation}
-satisfy $R_{n-1} \interl R_{n}$ for all $n \geq 1$.
+satisfy $R_{n-1} \interl R_{n}$ for all $n \geq 1$
+\cite{AlexanderssonNabawanda2021}.
 The triangle of coefficients can be found in \oeis{A124324}.
 
 The polynomial $R_n(t)$ is the generating function for the number of runs in
@@ -356,7 +372,8 @@ These are therefore closely related to Eulerian polynomials.
 
 
 \begin{example*}[Excedances and derangements, with proof]
-Let $P_n(t)\coloneqq \sum_{\pi \in D(n)} t^{\exc(\pi)}$,
+The \defin{derangement polynomial}\label{derangementPolynomial} is
+$P_n(t)\coloneqq \sum_{\pi \in D(n)} t^{\exc(\pi)}$,
 where $D(n)$ is the set of derangements (fixed-point-free permutations) of size $n$,
 see \oeis{A046739}. Then $P_{n-1} \interl P_n$.
 
@@ -459,8 +476,8 @@ but it does not immediately imply real-rootedness.
 
 \begin{example*}[Type $B$ set partitions]
 
-In \cite{Wang2014}, a type $B$ version (and in general, a colored version)
-of counting blocks in set partitions is considered.
+\name{David Wang} considers a type $B$ version, and more generally a colored
+version, of counting blocks in set partitions \cite{Wang2014}.
 The polynomials considered satisfy the (general) recursion
 \[
   T_n(x) = (x+c) \cdot  T_{n-1}(x) + mx\cdot T'_{n-1}(x),
@@ -473,7 +490,7 @@ where $m$ and $c$ are positive integers.
 \begin{example*}[Ordered partitions]
 Simion considers any multiset $M$ and the number $O(M,k)$ of compositions into
 exactly $k$ parts \cite{Simion1984}.  The polynomial
-$\sum_k O(M,k)x^k$ is shown to be real-rooted.
+$\sum_k O(M,k)x^k$ is real-rooted.
 
 In particular, this implies the real-rootedness of the Touchard polynomials.
 \end{example*}
@@ -489,7 +506,8 @@ The descent number of a \hyperref[permutationsStirling]{Stirling permutation}
 \[
  \{ i : \pi_i \gt \pi_{i+1} \} \cup \{2n\}.
 \]
-The descent-generating polynomials then satisfy the recurrence
+The \defin{Stirling permutation descent polynomials}
+\label{stirlingPermutationDescentPolynomial} satisfy the recurrence
 \begin{equation}
  P_n(t) = (2n+1)t \cdot P_{n-1}(t) + t(1-t) P'_{n-1}(t),
 \end{equation}
@@ -507,7 +525,8 @@ presented below.
 \bottomrule
 \end{array}
 These numbers appear in the Hilbert series of the Whitehouse complex;
-see \cite{Readdy2005}. These polynomials are the $h^*$-polynomials of the
+see \cite{Readdy2005}.  These polynomials are the
+\hyperref[hStarPolynomial]{$h^*$-polynomials} of the
 \hyperref[orderPolytope]{order polytope} defined by the inequalities
 \[
  y_1 \leq y_2 \leq \dotsb \leq y_n \qquad 0 \leq y_j \leq x_j \leq 1 \text{ for } j=1,\dotsc,n.
@@ -535,8 +554,8 @@ Let $(F_n(x))_{n\geq 0}$ be a sequence of polynomials satisfying
   +\alpha_3x(1-x)F'_{n-1}(x),
 \]
 where $\alpha_2,\alpha_3\in\setN\cup\{0\}$. Suppose that each
-$F_n(x)$ is real-rooted with distinct non-positive zeros, and that
-there is an integer $k$ such that, for all $n\geq k$,
+$F_n(x)$ is real-rooted with distinct nonpositive zeros, and that
+some integer $k$ satisfies, for all $n\geq k$,
 \[
   2\alpha_1(n)-n\alpha_3>0,
   \qquad
@@ -548,7 +567,8 @@ Then $F_{n-1}(x)\interl F_n(x)$ for all $n\geq k$.
 
 Dey applies this criterion to the type $A$ and type $B$ Eulerian
 polynomials, to the Stirling permutation polynomials above, and to
-restricted Eulerian polynomials. Thus it is a useful way to upgrade an
+\hyperref[restrictedEulerianPolynomial]{restricted Eulerian polynomials}.
+Thus it is a useful way to upgrade an
 already known real-rootedness proof to a consecutive interlacing
 statement when the recurrence has the form above.
 
@@ -557,7 +577,8 @@ statement when the recurrence has the form above.
 A \defin{quasi-Stirling permutation}\label{quasiStirlingPermutation}
 of size $n$ is a permutation of the multiset
 $\{1,1,2,2,\dotsc,n,n\}$ avoiding the patterns $1212$ and $2121$.
-Let $\widetilde{Q}_n$ be the set of quasi-Stirling permutations of size $n$, and set
+Let $\widetilde{Q}_n$ be the set of quasi-Stirling permutations of size $n$,
+and set
 \[
  \widetilde{Q}_n(t) \coloneqq \sum_{\pi \in \widetilde{Q}_n} t^{\des(\pi)},
 \]
@@ -571,7 +592,8 @@ More generally, for $1 \leq r \leq n$, let
  J_{n,r}(t) \coloneqq \sum_{\pi \in \operatorname{Inj}([n-r],[n])} t^{\exc(\pi)},
 \]
 where $\exc_r(\pi) \coloneqq |\{i:\pi_i \geq i+r\}|$.
-Then $A_{n,r}(t)$ and $J_{n,r}(t)$ also have real, distinct, and nonpositive roots.
+Then $A_{n,r}(t)$ and $J_{n,r}(t)$ also have real, distinct, and nonpositive
+roots.
 The quasi-Stirling case follows from the relation
 \[
  \widetilde{Q}_n(t)=t J_{2n,n+1}(t).
