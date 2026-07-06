@@ -1,5 +1,10 @@
 \metatitle{Chromatic quasisymmetric functions}
-\metadescription{An introduction to chromatic quasisymmetric functions, their definition via proper colorings of graphs, properties such as symmetry, reciprocity, and power-sum positivity, and connections to LLT polynomials and Hessenberg varieties.}
+\metadescription{An introduction to chromatic quasisymmetric functions, their
+definition via proper colorings of graphs, symmetry, reciprocity, positivity,
+and connections to LLT polynomials and Hessenberg varieties.}
+\metakeywords{chromatic quasisymmetric function, chromatic symmetric
+function, unit interval graph, Stanley-Stembridge conjecture, Hessenberg
+variety}
 
 \section[chromaticQuasisymmetric]{Chromatic quasisymmetric functions}
 
@@ -40,7 +45,8 @@ This definition was later refined by \name{John Shareshian}
 and \name{Michelle Wachs} in \cite{ShareshianWachs2012} and \cite{ShareshianWachs2016},
 where the graph $G$ is labeled and a parameter $q$ is introduced.
 
-In Spring 2016, \name{Brittney Ellzey} \cite{Ellzey2017} presented a generalization where labeled graphs are replaced with \emph{oriented graphs}.
+In 2016, \name{Brittney Ellzey} \cite{Ellzey2017} presented a generalization
+where labeled graphs are replaced with \emph{oriented graphs}.
 This model is equivalent to the Shareshian--Wachs model when the orientation
 of the edges has no directed cycle.
 See also \name{Per Alexandersson} and \name{Greta Panova}
@@ -66,12 +72,15 @@ In \cite{Hwang2022x}, \name[B.-H. Hwang]{Byung-Hak Hwang} introduces an
 additional refinement of the chromatic quasisymmetric functions.
 He defines a \enquote{flip} operator on colorings and shows that connected
 components under such flips
-are \hyperref[schurPositivity]{Schur-positive}.  The ascent parameter introduced by Shareshian--Wachs
+are \hyperref[schurPositiveDefinition]{Schur-positive}.  The ascent parameter
+introduced by Shareshian--Wachs
 is preserved by such flips.
 It is conjectured that each such component is positive in the elementary
 symmetric function basis.
-See also \cite{Hwang2023x} for a connection with non-commutative functions.
-A proof for Schur-positivity of the flip-components is also given in \cite{BlasiakErikssonPylyavskyySiegl2022x}.
+See also \cite{Hwang2023x} for a connection with
+\hyperref[nonComFunctions]{noncommutative symmetric functions}.
+A proof for Schur positivity of the flip-components is also given in
+\cite{BlasiakErikssonPylyavskyySiegl2022x}.
 
 
 For a representation-theoretical perspective, see \cite{Skandera2020},
@@ -157,12 +166,14 @@ This labeled model is what was introduced in \cite{ShareshianWachs2012,Shareshia
 
 \subsection[chromaticQuasisymmetricClawFree]{Claw-free graphs}
 
-If $G$ is a claw-free graph, \name{Vesselin Gasharov} (see \cite{Stanley1998}) conjectured that $\chrom_G(\xvec;1)$ is \hyperref[schurPositivity]{Schur-positive}.
-There is no known $q$-analog of this conjecture.
+If $G$ is a claw-free graph, \name{Vesselin Gasharov}
+(see \cite{Stanley1998}) conjectured that $\chrom_G(\xvec;1)$ is
+\hyperref[schurPositiveDefinition]{Schur-positive}.
+There is no known $q$-analogue of this conjecture.
 
 Some progress in this direction has been made in \cite{ShelburneWilligenburg2024x},
 using a type of involution inspired by the \hyperref[gesselSlinkyRule]{slinky rule}.
-They prove \hyperref[schurPositivity]{Schur positivity} for the family of
+They prove \hyperref[schurPositiveDefinition]{Schur positivity} for the family of
 graphs called \defin{generalized nets}\label{generalizedNets}.
 
 \name{Randy Davila}, \name{Houston Schuerger}, and \name{Ben Small}
@@ -174,8 +185,8 @@ only if every induced subgraph $H$ satisfies $Z(H)=Z_+(H)$.
 and \name{Zhong-Xue Zhang} introduce a strengthening of the nice property,
 called the \defin{strongly nice property}\label{stronglyNiceProperty}
 \cite{LiLiYangZhang2024x}.
-They prove that \hyperref[schurPositivity]{Schur positivity} implies strong
-niceness, and that the
+They prove that \hyperref[schurPositiveDefinition]{Schur positivity} implies
+strong niceness, and that the
 graphs whose induced subgraphs are all strongly nice are precisely the
 claw-free graphs.  Thus strong niceness gives a necessary obstruction
 which is well aligned with Gasharov's conjecture.
@@ -184,13 +195,13 @@ Distributive \hyperref[latticePoset]{lattices} give a separate family of
 negative tests when a poset
 is viewed through its incomparability graph.  \name{Grace M. X. Li},
 \name{Dun Qiu}, \name{Arthur L. B. Yang}, and \name{Zhong-Xue Zhang}
-construct distributive lattices which are not nice and hence not
-\hyperref[schurPositivity]{Schur-positive}, and also distributive lattices
-which are nice but still not
-\hyperref[schurPositivity]{Schur-positive} \cite{LiQiuYangZhang2024x}.  Later,
+construct distributive lattices that are not nice and hence not
+\hyperref[schurPositiveDefinition]{Schur-positive}, and also distributive lattices
+that are nice but still not
+\hyperref[schurPositiveDefinition]{Schur-positive} \cite{LiQiuYangZhang2024x}.  Later,
 \name{David G. L. Wang} and \name{K. Zhang} prove that the product lattices
 $m \times 2$ and $m \times 3$ are not
-\hyperref[schurPositivity]{Schur-positive} for $m \geq 8$, and that
+\hyperref[schurPositiveDefinition]{Schur-positive} for $m \geq 8$, and that
 $m \times 3$ is not strongly nice for $m \geq 44$ \cite{WangZhang2025x}.
 
 \subsection[chromaticQuasisymmetricUnitIntervalGraph]{Unit interval graphs}
@@ -268,7 +279,8 @@ The number of Dyck paths of size $n$ with an Abelian unit interval graph is $2^{
 \subsection[chromaticQuasisymmetricSymmetric]{Symmetry}
 
 Whenever $G$ is a unit arc digraph as above, $\chrom_G(\xvec;q)$ is symmetric
-(for labeled graphs, \cite{ShareshianWachs2012,ShareshianWachs2016} and for oriented graphs, \cite{Ellzey2017,AlexanderssonPanova2018}).
+for labeled graphs \cite{ShareshianWachs2012,ShareshianWachs2016} and for
+oriented graphs \cite{Ellzey2017,AlexanderssonPanova2018}.
 Furthermore, the coefficients in $\setZ[q]$ in the monomial basis are palindromic.
 To be precise,
 \[
@@ -330,8 +342,10 @@ introduced by \name{Jim Haglund}, \name{Mark Haiman}
 and \name{Nicholas Loehr} \cite{HaglundHaimanLoehr2005}.
 
 This plethystic relationship is generalized in \cite[Thm.~6.2]{NovelliThibon2019},
-where a non-commutative lift is given. \name[J.-C. Novelli]{Jean-Christophe Novelli} and \name[J.-Y. Thibon]{Jean-Yves Thibon} also introduce
-a non-commutative lift of the unicellular LLT polynomials.
+where a noncommutative lift is given.
+\name[J.-C. Novelli]{Jean-Christophe Novelli} and
+\name[J.-Y. Thibon]{Jean-Yves Thibon} also introduce a noncommutative lift
+of the unicellular LLT polynomials.
 
 \name{Michele D'Adderio}, \name{Roberto Riccardi}, and
 \name{Viola Siconolfi} extend this picture from Dyck graphs to interval
@@ -429,8 +443,9 @@ which treats the case with general $q$.
 
 \subsection[chromaticQuasisymmetricSchurExpansion]{Schur positivity}
 
-In \cite{Gasharov1996}, \name{Vesselin Gasharov} proved that the $\chrom_G(\xvec;1)$
-are \hyperref[schurPositivity]{Schur-positive} with an explicit expansion,
+In \cite{Gasharov1996}, \name{Vesselin Gasharov} proved that the
+$\chrom_G(\xvec;1)$ are
+\hyperref[schurPositiveDefinition]{Schur-positive} with an explicit expansion,
 whenever $G$ is the incomparability graph of a
 \hyperref[threePlusOneFreePoset]{$3+1$-free poset}.
 In particular, this implies the unit-interval case, as those are given as the incomparability graphs
@@ -440,7 +455,8 @@ kind of sign-reversing involution.
 
 Gasharov's result was later extended to the Shareshian--Wachs setting (with a $q$-parameter),
 by using a different involution.
-That is, $\chrom_G(\xvec;q)$ is \hyperref[schurPositivity]{Schur-positive} for unit-interval graphs $G$,
+That is, $\chrom_G(\xvec;q)$ is
+\hyperref[schurPositiveDefinition]{Schur-positive} for unit-interval graphs $G$,
 see \cite[Thm.~6.3]{ShareshianWachs2012}.
 \name{Dongkwan Kim} and \name{Pavlo Pylyavskyy} give a
 Robinson--Schensted correspondence for
@@ -463,11 +479,12 @@ We have the following Schur expansions of chromatic quasisymmetric functions, in
 
 
 \begin{problem}
-Prove that $\chrom_G(\xvec;q)$ is \hyperref[schurPositivity]{Schur-positive} (with coefficients in $\setN[q]$)
+Prove that $\chrom_G(\xvec;q)$ is
+\hyperref[schurPositiveDefinition]{Schur-positive} (with coefficients in $\setN[q]$)
 in the case of \emph{circular} unit arc digraphs.
 This conjecture has been verified for all circular unit arc digraphs up to 10 vertices.
 
-Find a bijective proof of Schur-positivity (using \hyperref[schurPositivityCrystals]{crystals} or
+Find a bijective proof of Schur positivity (using \hyperref[schurPositivityCrystals]{crystals} or
 a version of \hyperref[schurPositivityRSK]{RSK}).
 Gasharov's result provides a hint on how a crystal graph structure might be defined.
 
@@ -518,7 +535,8 @@ symmetric functions \cite{OrellanaScott2014}.
 \subsection[rookTheory]{Connection with rook placements}
 
 Chromatic quasisymmetric functions of unit interval graphs have a strong connection with rook placements.
-Acyclic orientations and rook placements are in bijection, see for example \cite{AlexanderssonPanova2018}.
+Acyclic orientations and rook placements are in bijection; see, for example,
+\cite{AlexanderssonPanova2018}.
 This connection is expanded upon in \cite{ColmenarejoMoralesPanova2023}.
 In particular, some new results in the Abelian case using $q$-hit numbers are given.
 
@@ -546,12 +564,15 @@ boards associated with Dyck paths \cite[Cor.~6.3]{HaglundOhYoo2025}.
 \section[treesChromaticQuasisymmetric]{Chromatic symmetric functions of trees}
 
 
-\name{Richard Stanley} conjectures \cite{Stanley1995} that the chromatic symmetric function of a tree
-uniquely determines the tree. In \cite{WangYubZhang2023x} it is shown that trees with exactly
-two vertices of degree greater than 2 are distinguished by their chromatic symmetric functions.
+\name{Richard Stanley} conjectures \cite{Stanley1995} that the chromatic
+symmetric function of a tree uniquely determines the tree.
+In \cite{WangYubZhang2023x}, trees with exactly two vertices of degree greater
+than $2$ are shown to be distinguished by their chromatic symmetric functions.
 
-For chromatic symmetric functions (CSF) for trees in the star basis, see \cite{PrietoMierOrellanaZamora2023,GonzalezOrellanaTomba2024x}.
-It is shown that trees of diameter less than 5 can be reconstructed from their CSF.
+For tree chromatic symmetric functions in the star basis, see
+\cite{PrietoMierOrellanaZamora2023,GonzalezOrellanaTomba2024x}.
+Trees of diameter less than $5$ can be reconstructed from their chromatic
+symmetric functions.
 Caterpillar graphs are known to be reconstructed from their CSF \cite{LoeblSereni2019}.
 Certain $q$-caterpillar trees can be reconstructed from their CSF \cite{ArunkumarNarayananBVSawant2023x}.
 
@@ -590,24 +611,27 @@ and this rooted version is shown to distinguish non-isomorphic trees, see
 
 
 Chromatic symmetric functions associated with trees are in general not
-\hyperref[schurPositivity]{Schur-positive},
+\hyperref[schurPositiveDefinition]{Schur-positive},
 see the counterexamples presented in \cite{EmmanuellaSandratraRambeloson2020}.
-In fact, no tree on 20 vertices with maximal degree 10 is \hyperref[schurPositivity]{Schur-positive}.
+In fact, no tree on $20$ vertices with maximal degree $10$ is
+\hyperref[schurPositiveDefinition]{Schur-positive}.
 
 
-See also \cite{PrietoMartinWagnerZamora2024x} for various results on polynomial invariants of trees.
+See also \cite{PrietoMartinWagnerZamora2024x} for polynomial invariants of
+trees.
 
 
 \section[chromaticQuasisymmetricGeneralGraphs]{Other families of graphs}
 
 Expanding the CSF in different bases recovers various classical statistics of
-graphs, see \cite{ChanCrew2023}. For coefficients in the elementary basis in
+graphs; see \cite{ChanCrew2023}.  For coefficients in the elementary basis in
 relation to sinks, see \cite{CrewZhang2022x}.
 
 
 The chromatic symmetric functions for certain \enquote{spider graphs}
-are shown to be \hyperref[schurPositivity]{Schur-positive} in \cite{ThibonWang2023x}.
-The approach uses non-commutative ideas.
+are shown to be \hyperref[schurPositiveDefinition]{Schur-positive}
+in \cite{ThibonWang2023x}.
+The approach uses noncommutative ideas.
 
 \name{Esme Bajo}, \name{Matthias Beck}, and
 \name{Andrés R. Vindas-Meléndez} define
@@ -675,7 +699,7 @@ conjecture.
 weighted-graph version of the
 Shareshian--Wachs conjecture \cite{KiemLee2024}.  They prove the
 generalized conjecture, so the corresponding weighted chromatic
-quasisymmetric functions have Schur coefficients which are unimodal
+quasisymmetric functions have Schur coefficients that are unimodal
 polynomials with nonnegative coefficients \cite[Thm.~4.6 and
 Cor.~4.8]{KiemLee2024}.  They also propose a generalized
 Stanley--Stembridge question for elementary positivity in this weighted
@@ -684,9 +708,10 @@ setting.
 
 \section[chromaticQuasisymmetricMisc]{Other results related to chromatic symmetric functions}
 
-In \cite{LinPierson2025x}, the authors study a different multiplicative
-structure (Hopf algebra) on chromatic symmetric functions and show that graph
-complement (of unweighted, triangle-free graphs) corresponds naturally to a Hopf algebra operation.
+\name{Shao Yuan Lin} and \name{Laura Pierson} study a different multiplicative
+Hopf-algebra structure on chromatic symmetric functions and show that graph
+complementation, for unweighted triangle-free graphs, corresponds naturally
+to a Hopf algebra operation \cite{LinPierson2025x}.
 
 Several recent variants move the chromatic symmetric function into larger
 ambient algebras.  Campbell's
