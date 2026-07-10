@@ -112,6 +112,22 @@ then $F$ is real-rooted and $f \interl F$.
 The theorem states more regarding root placements and multiplicities.
 
 
+Favard recurrences give a second standard interlacing source, especially for
+orthogonal polynomial families.
+\begin{theorem}[Favard interlacing, see \cite{Favard1935}]
+\label{favardInterlacing}
+Let \(P_0(t)=1\), \(P_1(t)=t-\alpha_0\), and
+\[
+  P_{n+2}(t)=(t-\alpha_{n+1})P_{n+1}(t)-\beta_{n+1}P_n(t),
+\]
+where \(\alpha_n\in\setR\) and \(\beta_{n+1}>0\).  Then
+\[
+  P_n \interl P_{n+1}
+\]
+for all \(n\).  In particular, each \(P_n\) is real-rooted.
+\end{theorem}
+
+
 The following criterion from \cite[Thm.~2.1]{LiuWang2007} is often useful.
 \begin{theorem}[Liu--Wang, 2007]
 Let $F,f,g \in \setR[t]$ satisfy
