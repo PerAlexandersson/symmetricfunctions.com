@@ -190,11 +190,14 @@ can be defined as
 Athanasiadis conjectured that these are real-rooted,
 and it was later shown by \name{Jim Haglund} and
 \name[P.B. Zhang]{Philip B. Zhang} \cite{HaglundZhang2019} that this holds,
-by means of interlacing polynomials.
+by means of interlacing polynomials.  Their result is stronger: it proves
+real-rootedness for a binomial version of the
+\hyperref[sEulerianPolynomial]{$\svec$-Eulerian polynomials} defined below,
+and the case \(\svec=(2,3,\dotsc,n)\) recovers \(\tilde{A}_n(t)\) via
+Lehmer codes.
 
 Computations suggest that $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$, but
-this does not follow immediately from the reference above. See also the
-binomial \hyperref[sEulerianPolynomial]{$\svec$-Eulerian polynomials}.
+this does not follow immediately from the reference above.
 \end{example*}
 
 
@@ -236,9 +239,37 @@ The proof by Savage and Visontai also shows that the
 are real-rooted.  See also the proof in
 \cite[Sec.~8.2]{Branden2015}.
 
-
-See \cite{HaglundZhang2019} for the binomial Eulerian polynomial analogue of
-the above results.
+\name{Jim Haglund} and \name[P.B. Zhang]{Philip B. Zhang}
+\cite{HaglundZhang2019} prove a binomial analogue of this theorem.
+Define the number of collisions by
+\[
+  \operatorname{coll}(\evec)
+  \coloneqq
+  \left|\left\{0\leq i\leq n :
+  \frac{e_i}{s_i}=\frac{e_{i+1}}{s_{i+1}}\right\}\right|.
+\]
+Their \defin{binomial \(\svec\)-Eulerian polynomial}
+\label{binomialSEulerianPolynomial} is
+\[
+  \widetilde{E}_n^\svec(t)
+  \coloneqq
+  \sum_{\evec\in\mathcal{I}_n^\svec}
+  (1+t)^{\operatorname{coll}(\evec)} t^{\asc(\evec)}.
+\]
+They prove that \(\widetilde{E}_n^\svec(t)\) is real-rooted for every
+positive integer sequence \(\svec\).  More precisely, after refining by the
+last entry \(e_m=k\), the polynomials
+\[
+  p_{m,0}^\svec(t),p_{m,1}^\svec(t),\dotsc,p_{m,s_m-1}^\svec(t)
+\]
+form an interlacing sequence for every \(m\).
+The proof writes the recurrence from \(m-1\) to \(m\) as multiplication by a
+matrix whose entries are \(1\), \(t\), and \(1+t\).  They then use
+\hyperref[realMatrixRecursion]{Brändén's matrix criterion} for interlacing
+preservers: it is enough to check the relevant \(2\times2\) submatrices.
+The \(1,t\)-only cases are known, and the new \(1+t\) cases are checked by
+factoring the small matrices into already known interlacing-preserving
+matrices, together with the convexity closure for interlacing sums.
 \end{example*}
 
 
@@ -259,8 +290,9 @@ see \oeis{A132393}.
 
 \begin{example*}[Higher-order Stirling triangles]
 \name{Bishal Deb} and \name{Alan D. Sokal} introduce higher-order Stirling
-cycle and subset triangles and formulate total-positivity and real-rootedness
-questions for them \cite{DebSokal2025x}.  Their framework asks for total
+cycle and subset triangles and formulate total-positivity and
+\hyperref[realRootedPolynomial]{real-rootedness} questions for them
+\cite{DebSokal2025x}.  Their framework asks for total
 positivity of the triangle, its row reversal, Toeplitz total positivity of row
 sequences, and coefficientwise Hankel total positivity of the row-generating
 polynomials.  Toeplitz total positivity is the

@@ -73,6 +73,87 @@ In terms of the Ehrhart series, palindromicity of the
 \hyperref[gorenstein]{Gorenstein} condition.  This is one reason Ehrhart
 theory often behaves like a discrete shadow of Poincaré duality.
 
+\subsection[hStarInequalities]{Inequalities for \(h^*\)-vectors}
+
+The \hyperref[hStarVector]{\(h^*\)-vector}
+\[
+  h^*(P)=(h^*_0,h^*_1,\dotsc,h^*_d)
+\]
+of a \(d\)-dimensional lattice polytope is not an arbitrary nonnegative
+integer vector.  The first restrictions are the basic ones:
+\[
+  h^*_0=1,\qquad
+  h^*_1=|P\cap \setZ^d|-d-1,\qquad
+  \sum_{i=0}^{d} h_i^*=\operatorname{Vol}(P),
+\]
+where \(\operatorname{Vol}(P)\) is the normalized volume.  If \(s\) is the
+degree of \(h^*_P(t)\), then \(h^*_s\) counts lattice points in a suitable
+interior dilation of \(P\), and in particular
+\[
+  h^*_d=|P^\circ\cap \setZ^d|.
+\]
+This gives the elementary inequality
+\[
+  h^*_d\leq h^*_1.
+\]
+
+There are also less immediate inequalities.  \name{Takayuki Hibi} proved
+\cite{Hibi1994LowerBound} that
+\[
+  h^*_{d-1}+h^*_{d-2}+\dotsb+h^*_{d-i}
+  \leq
+  h^*_2+h^*_3+\dotsb+h^*_{i+1},
+  \qquad 1\leq i\leq d-1.
+\]
+If \(P\) has an interior lattice point, equivalently \(h^*_d>0\), then Hibi
+also proved
+\[
+  h^*_1\leq h^*_i,\qquad 1\leq i\leq d-1.
+\]
+Another family, due to \name{Richard P. Stanley}
+\cite{Stanley1991HilbertFunction}, says that if \(s=\deg h^*_P(t)\), then
+\[
+  h^*_0+h^*_1+\dotsb+h^*_i
+  \leq
+  h^*_s+h^*_{s-1}+\dotsb+h^*_{s-i},
+  \qquad 0\leq i\leq s.
+\]
+These inequalities are useful quick checks when an experimental
+\(h^*\)-vector has been computed.
+
+The two-dimensional case has a particularly concrete form.  Scott's theorem
+\cite{Scott1976ConvexLatticePolygons} characterizes the possible
+\(h^*\)-polynomials \(1+h^*_1t+h^*_2t^2\) of lattice polygons by the
+following alternatives:
+\[
+  h^*_2=0,\qquad
+  h^*_2\leq h^*_1\leq 3h^*_2+3,\qquad
+  \text{or}\qquad (h^*_1,h^*_2)=(7,1).
+\]
+\name{Jaron Treutlein} extended the necessary part of this statement to
+lattice polytopes of degree at most two \cite{Treutlein2010DegreeTwo}.
+
+Finally, \name{Gabriele Balletti} and \name{Akihiro Higashitani}
+\cite{BallettiHigashitani2018Universal}, also available as
+\href{https://arxiv.org/pdf/1703.09600}{arXiv:1703.09600}, proved a universal
+version of Scott's inequality.  If \(P\) is any lattice polytope, in any
+dimension and of any degree, and
+\[
+  h^*_P(t)=1+h^*_1t+h^*_2t^2+\dotsb
+  \qquad\text{satisfies}\qquad h^*_3=0,
+\]
+then one of the following holds:
+\[
+  h^*_2=0,\qquad
+  h^*_1\leq 3h^*_2+3,\qquad
+  \text{or}\qquad (h^*_1,h^*_2)=(7,1).
+\]
+The hypothesis \(h^*_3=0\) is essential: their paper gives a
+five-dimensional example with \(h^*_P(t)=1+8t+t^2+8t^3\), which violates
+Scott's inequality once the \(h^*_3\)-term is present.  Stapledon's work
+\cite{Stapledon2009Inequalities,Stapledon2016Additive} gives further
+families of inequalities, often sharper but less uniform in appearance.
+
 \subsection[ehrhartPosets]{Order polytopes and posets}
 
 For a finite \hyperref[poset]{poset} \(P\), the
@@ -83,6 +164,11 @@ records descents of linear extensions.  The
 \hyperref[chainPolytope]{chain polytope} \(\mathcal C(P)\) has the same
 Ehrhart polynomial as \(\mathcal O(P)\), but its inequalities are controlled
 by chains rather than order relations.
+
+\todo{Add Yakob Kahane's arXiv:2607.11225v1 on fence-poset order
+polynomial coefficients, including the Ehrhart coefficient interpretation for
+base polytopes of Schubert matroids and the relevant \(h^*\)-polynomial
+consequences.}
 
 \begin{example}
 If \(P\) is an antichain on \(d\) elements, then
@@ -104,8 +190,10 @@ increasing sequences
 
 \begin{example}
 Let \(P_\lambda\) be the Ferrers poset of a partition \(\lambda\).  Linear
-extensions of \(P_\lambda\) are standard Young tableaux of shape \(\lambda\),
-and the \(h^*\)-polynomial of \(\mathcal O(P_\lambda)\) is the descent
+extensions of \(P_\lambda\) are
+\hyperref[standardYoungTableau]{standard Young tableaux} of shape \(\lambda\),
+and the \hyperref[hStarPolynomial]{\(h^*\)-polynomial} of
+\(\mathcal O(P_\lambda)\) is the descent
 generating polynomial over those tableaux.  For \(\lambda=(n,n)\), this gives
 the Narayana polynomial; the Narayana triangle is \oeis{A001263}.  This is
 the Ehrhart-theoretic form of the example on the

@@ -66,6 +66,20 @@ if not contains(html, 'href="unittest.htm#testFamily"') then
   fail("rendered unittest HTML did not resolve local hyperref")
 end
 
+if not contains(html, 'href="unittest.htm#testFamily" class="hyperref"') or
+   not contains(html, '>table link</a>') then
+  fail("rendered unittest HTML did not resolve hyperref inside a tabular cell")
+end
+
+if contains(html, '&lt;span') or contains(html, '&lt;strong') then
+  fail("rendered unittest HTML escaped inline HTML inside a tabular cell")
+end
+
+if contains(html, [[\toprule]]) or contains(html, [[\midrule]]) or
+   contains(html, [[\bottomrule]]) then
+  fail("rendered unittest HTML leaked booktabs commands from an array")
+end
+
 if not contains(html, [[\(i\lt{}j\) and \(j\gt{}i.\)]]) then
   fail("raw math angle brackets were not normalized to \\lt{} and \\gt{}")
 end

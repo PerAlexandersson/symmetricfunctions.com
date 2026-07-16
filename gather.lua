@@ -195,6 +195,12 @@ local function render_cell_tex_to_html(tex)
     return tex
   end
 
+  -- Hyperrefs need the site-wide label map, which is only available during
+  -- rendering. Leave them as TeX so render.lua can resolve cross-page links.
+  if rest:find("\\hyperref", 1, true) then
+    return tex
+  end
+
   -- Skip cells that are plain text (no backslashes at all)
   if not rest:find("\\") then
     return tex

@@ -186,6 +186,43 @@ proved in \cite{ChengChouEuFuYao2022x}.
 These formulas are used to prove the Liu--Polo conjecture
 \cite[Rem.~1.4.5]{LiuPolo2021}.
 
+\subsection[petrieNabla]{Nabla and Schur positivity}
+
+The Petrie symmetric functions have a clean sign rule under the
+\hyperref[nablaOperator]{$\nabla$ operator}.
+The following theorem was proved by \name{Menghao Qu}
+\cite{Qu2026xPetrieNabla}.
+
+\begin{theorem}[Qu]
+Let $k\geq 2$, $n\geq 1$, and $r\geq 1$.  Then
+\[
+\begin{cases}
+(-1)^n \nabla^r G(k,n), & \text{if } k\mid n,\\
+(-1)^{n-1} \nabla^r G(k,n), & \text{if } k\nmid n,
+\end{cases}
+\]
+is Schur-positive.
+\end{theorem}
+
+This resolves the sign-pattern problem for $\nabla^r G(k,n)$ posed by
+\name{François Bergeron} and recorded by \name{Darij Grinberg}
+\cite[Conj.~5.2]{Grinberg2020x}.
+
+\begin{example*}
+Since $G(2,n)=\elementaryE_n$, the case $k=2$ recovers the usual
+Schur positivity of $\nabla^r\elementaryE_n$.  In degree $2$,
+\[
+\nabla G(2,2)
+=
+\nabla \elementaryE_2
+=
+\schurS_2 + (q+t)\schurS_{11}.
+\]
+For $k=3$, the same theorem says, for example, that
+$-\nabla^r G(3,3)$ is Schur-positive, while
+$\nabla^r G(3,5)$ is Schur-positive.
+\end{example*}
+
 
 The Petrie symmetric functions have the following property:
 For every $\lambda$, consider the expansion

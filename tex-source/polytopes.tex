@@ -49,8 +49,9 @@ where $H_P(t) = h^*_0 + h^*_1 t + \dotsb + h^*_d t^d$ is the
 The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the
 \defin{$h^*$-vector}\label{hStarVector}; all its entries are nonnegative
 integers, see \cite{Stanley1993} and \cite{Beck2007}.
-For a more focused overview of this material, see the
-\hyperref[ehrhart]{Ehrhart theory page}.
+For inequalities that every \(h^*\)-vector must satisfy, see
+\hyperref[hStarInequalities]{the \(h^*\)-inequalities subsection} on the
+Ehrhart theory page, which gives a more focused overview of this material.
 
 For a $d$-dimensional polytope, we have the following relation between
 entries in the \hyperref[hStarVector]{$h^*$-vector} and the
@@ -88,7 +89,7 @@ of weighted lattice points of polytopes \cite{LoeraEscobarKaplanWang2024x}.
 For many quasi-polynomial weights, the weighted sum over lattice points in
 $P$ is transformed into an ordinary lattice-point count in a higher-dimensional
 polytope.  Their applications include representation-theoretic multiplicities
-such as Kostka coefficients.
+such as \hyperref[kostkaCoefficient]{Kostka coefficients}.
 
 \name{Esme Bajo}, \name{Robert Davis}, \name{Jesús A. De Loera},
 \name{Alexey Garber}, \name{Sofía Garzón Mora}, \name{Katharina Jochemko},
@@ -107,6 +108,19 @@ polytope.
 For example, \cite{HaaseMcAllister2007} construct a rational polygon $Q$
 whose Ehrhart function is a polynomial with linear coefficient $1$,
 but no integral polygon has this property.
+\todo{Expand the Haase--McAllister period-collapse example
+\cite{HaaseMcAllister2007}: spell out the associated \(h^*\)-polynomial and
+the dimension-two obstruction showing that it is not the \(h^*\)-polynomial
+of any lattice polygon, equivalently not the Ehrhart polynomial of any
+same-dimensional lattice polytope.  Check whether the related
+De Loera--McAllister GT-polytope examples \cite{DeLoeraMcAllister2004}
+should be mentioned separately.}
+\todo{Add Clarke--Higashitani--Zaffalon, \emph{Restricted Chain-Order
+Polytopes via Combinatorial Mutations}, arXiv:2211.07995.  Explain that
+combinatorial mutations preserve Ehrhart series, so restricted chain-order
+polytopes give large period-collapse families.  Also note that period collapse
+for many GT-type rational polytopes follows from the flagged skew Schur
+function interpretation of the corresponding stretching functions.}
 
 \name{Dave Anderson} and \name{Aniket Shah} introduce a weighted
 $q$-enumeration of lattice points in a polytope \cite{AndersonShah2023x}.

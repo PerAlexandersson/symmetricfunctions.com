@@ -314,7 +314,7 @@ local function format_bibtex_controls(key, bibtex_entry)
 
   return table.concat({
     '<details class="bibtex-details" data-pagefind-ignore>',
-    '<summary>BibTeX</summary>',
+    '<summary>.bib</summary>',
     '<div class="bibtex-actions">',
     '<button type="button" class="bibtex-copy">',
     '<img src="icons/icon-clone.svg" class="icon" alt="" aria-hidden="true"/> Copy',
@@ -342,7 +342,9 @@ local function format_bibliography_entry(item, key, label, bibtex_entry)
   
   local parts = {}
   table.insert(parts, '<li id="' .. html_escape(entry_id) .. '">')
-  table.insert(parts, '<span class="citeKey">[' .. html_escape(bib_label) .. ']</span> ')
+  table.insert(parts, '<span class="citeMeta"><span class="citeKey">[')
+  table.insert(parts, html_escape(bib_label))
+  table.insert(parts, ']</span></span><span class="citeText">')
   if #authors > 0 then
     local linked_names = {}
     for _, author in ipairs(authors) do
@@ -369,6 +371,7 @@ local function format_bibliography_entry(item, key, label, bibtex_entry)
     table.insert(parts, ' <span class="citeNote">' .. html_escape(item.note) .. '</span>')
   end
 
+  table.insert(parts, '</span>')
   table.insert(parts, format_bibtex_controls(key, bibtex_entry))
   
   table.insert(parts, "</li>")

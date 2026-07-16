@@ -102,7 +102,7 @@ we simply write $\pPartition_{P}(\xvec)$, as this function is then independent
 of the choice of labeling.
 
 See also \hyperref[enrichedPPartitions]{enriched P-partitions}, where peaks
-are used instead of descents.
+are used instead of \hyperref[descentSet]{descents}.
 The analogues of \hyperref[gessel]{fundamental quasisymmetric functions} are the
 \hyperref[peakQSym]{peak quasisymmetric functions}.
 
@@ -118,7 +118,7 @@ $2\lt_P 3$, with the \hyperref[naturalLabeling]{natural labeling} $w(i)=i$:
 \end{array}
 \]
 The two \hyperref[linearExtension]{linear extensions} are $123$ and $213$.
-Their descent sets are
+Their \hyperref[descentSet]{descent sets} are
 $\emptyset$ and $\{1\}$, respectively.  Therefore the fundamental
 quasisymmetric expansion is
 \[
@@ -163,7 +163,8 @@ If $\mathcal{L}(P)$ denotes the set of
 =
 \frac{\sum_{\pi \in \mathcal{L}(P)} x^{1+\des(\pi)}}{(1-x)^{n+1}},
 \]
-where $\des(\pi)=|\DES(\pi)|$ is the number of descents of $\pi$.
+where $\des(\pi)=|\DES(\pi)|$ is the number of
+\hyperref[descentSet]{descents} of $\pi$.
 Equivalently, for the \hyperref[orderPolytope]{order polytope} $\mathcal{O}(P)$,
 \[
 E_{\mathcal{O}(P)}(m)=\Omega_P(m+1)
@@ -172,8 +173,9 @@ E_{\mathcal{O}(P)}(m)=\Omega_P(m+1)
 =
 \frac{\sum_{\pi \in \mathcal{L}(P)} x^{\des(\pi)}}{(1-x)^{n+1}}.
 \]
-In particular, the $h^*$-polynomial of $\mathcal{O}(P)$ is the
-\hyperref[pEulerianPolynomial]{$P$-Eulerian polynomial}.
+In particular, the \hyperref[hStarPolynomial]{$h^*$-polynomial} of
+$\mathcal{O}(P)$ is the \hyperref[pEulerianPolynomial]{$P$-Eulerian
+polynomial}.
 \end{proposition}
 
 For Ferrers posets arising from skew Young diagrams, the
@@ -191,8 +193,9 @@ We have
 \end{proposition}
 
 \begin{remark}
-The $h^*$-polynomial of $\gtp_{a^b}$ is the descent-generating polynomial
-of rectangular \hyperref[standardYoungTableau]{standard Young tableaux},
+\hyperref[hStarPolynomial]{$h^*$-polynomial} of $\gtp_{a^b}$ is the
+\hyperref[descentSet]{descent-generating polynomial} of rectangular
+\hyperref[standardYoungTableau]{standard Young tableaux},
 $\sum_{T \in \SYT(a^b)} z^{\des(T)}$.
 This follows from \cite[Eqs.~(7.96), (7.108)]{StanleyEC2}, together with the
 standard bijection between GT-patterns for rectangular

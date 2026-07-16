@@ -1,34 +1,41 @@
-# CLAUDE.md
+# AGENTS.md
 
 ## Project overview
 
-This is the source for [symmetricfunctions.com](https://symmetricfunctions.com), a reference site for algebraic combinatorics covering symmetric functions, tableaux, polytopes, crystals, and related topics.
+This is the source for [symmetricfunctions.com](https://symmetricfunctions.com),
+a reference site for algebraic combinatorics covering symmetric functions,
+tableaux, polytopes, crystals, and related topics.
 
-Each page is a `.tex` file in `tex-source/` that gets compiled through a custom Lua+Pandoc pipeline into static HTML.
+Each page is a `.tex` file in `tex-source/` that gets compiled through a custom
+Lua+Pandoc pipeline into static HTML.
 
 ## Build commands
 
 ```bash
-make                  # full build (preprocess → gather → meta → render → assets → search)
+make                  # full build
 make Q=1              # quiet build: only errors and warnings printed
 make FILE=foo.tex     # single-file rebuild (uses stale metadata)
+make bib              # rebuild bibliography JSON files
+make svg              # rebuild TikZ-sourced SVG assets and copy assets
 make clean && make    # full rebuild from scratch
 make deploy           # rsync www/ to production server
 make ship             # clean → build → deploy
-make unittest         # run test pipeline on tests/unittest.tex
+make unittest         # run tests/*.tex through the test pipeline
+make lint-html        # scan generated HTML for leaked TeX/table artifacts
+make check            # run unittest and lint-html
 ```
 
 ## Project structure
 
 ```
-tex-source/           .tex source files (one per page, ~70 files)
-bibliography.bib      BibLaTeX entries (~1400 references)
+tex-source/           .tex source files (one per page)
+bibliography.bib      BibLaTeX entries (2,300+ references)
 template.htm          Shared HTML shell (nav, header, footer)
 assets/               Static files: CSS, JS, icons, SVG images
   icons/              FontAwesome SVG icons
   nav-images/         Topic card images (card-{label}.svg)
   svg-images/         TikZ figure outputs
-svg-tex/src/          TikZ source for icons and card images
+svg-tex/src/          TikZ source for icons, figures, and card images
 temp/                 Build intermediates (gitignored)
 www/                  HTML output (gitignored)
 *.lua                 Build pipeline scripts
@@ -45,9 +52,10 @@ Every `.tex` file starts with:
 
 ### Sections and labels
 
-All sections must have a label in brackets: `\section[labelId]{Display Title}`.
-Labels use **camelCase** (e.g., `stanleyMonotonicity`, `ehrhartMacdonaldReciprocity`).
-Kebab-case labels exist in some older files (e.g., `parking-functions`) but camelCase is preferred.
+All sections must have a label in brackets:
+`\section[labelId]{Display Title}`. Labels use **camelCase** (e.g.,
+`stanleyMonotonicity`, `ehrhartMacdonaldReciprocity`). Kebab-case labels exist
+in some older files (e.g., `parking-functions`) but camelCase is preferred.
 
 ### Key macros
 
@@ -63,7 +71,9 @@ Kebab-case labels exist in some older files (e.g., `parking-functions`) but came
 
 ### Environments
 
-Standard theorem-like environments: `definition`, `theorem`, `proposition`, `lemma`, `conjecture`, `remark`, `example`, `proof`, `proof*` (unnumbered).
+Standard theorem-like environments: `definition`, `theorem`, `proposition`,
+`lemma`, `conjecture`, `remark`, `example`, `proof`, and `proof*`
+(unnumbered).
 
 ### Computed examples
 
@@ -108,26 +118,38 @@ row.
 
 ## Bibliography
 
-References go in `bibliography.bib` in BibLaTeX format. The build converts `eprint` fields to arXiv URLs automatically. Use `\cite{Key}` or `\cite[Thm.~3.1]{Key}` in .tex files.
+References go in `bibliography.bib` in BibLaTeX format. The build converts
+`eprint` fields to arXiv URLs for the displayed CSL-JSON bibliography. It also
+extracts source BibTeX entries into `temp/bibtex-entries.json`, which powers
+the inline BibTeX copy/download controls at the end of rendered pages. Use
+`\cite{Key}` or `\cite[Thm.~3.1]{Key}` in `.tex` files.
 
-The bibliography entries can be easily obtained via the following arxiv-id or doi API (examples):
+The bibliography entries can be easily obtained via the following arxiv-id or
+doi API (examples):
 https://arxiv.symmetricfunctions.com/api/bibtex.json?id=2001.00092
 https://arxiv.symmetricfunctions.com/api/bibtex.json?doi=10.1002/jgt.22704
 
 
-## Build pipeline (7 stages)
+## Build pipeline
 
-1. **Preprocess** (`preprocess.lua`): Rewrites section labels, annotates todos with file:line, normalizes macros
-2. **Bibliography**: Converts `.bib` → CSL-JSON via Pandoc
-3. **Gather** (`gather.lua`): Pandoc filter extracting metadata, citations, labels, todos into JSON
-4. **Metadata** (`merge_meta.lua`): Aggregates all labels into `site-labels.json`, validates polydata, generates sitemap
-5. **Render** (`render.lua`): JSON → HTML using template.htm, resolves cross-references
+1. **Preprocess** (`preprocess.lua`): Rewrites section labels, annotates todos
+   with file:line, normalizes macros
+2. **Bibliography**: Converts `.bib` → CSL-JSON via Pandoc and extracts raw
+   BibTeX JSON for reference controls
+3. **Gather** (`gather.lua`): Pandoc filter extracting metadata, citations,
+   labels, and todos into JSON
+4. **Metadata** (`merge_meta.lua`): Aggregates labels into
+   `site-labels.json`, validates polydata, and generates sitemap and relation
+   graph files
+5. **Render** (`render.lua`): JSON → HTML using `template.htm`, resolves
+   cross-references
 6. **Assets**: Copies static files to www/
 7. **Search**: Pagefind builds full-text search index
 
 ## Error handling
 
-- `make Q=1` suppresses all progress/info/todo messages; only `[ERROR]` and `[WARN]` print
+- `make Q=1` suppresses all progress/info/todo messages; only `[ERROR]` and
+  `[WARN]` print
 - Normal `make` shows progress, todos, and warnings in color
 - Pandoc runs with `--fail-if-warnings` — any warning stops the build
 - Missing cross-reference labels print `[ERROR] hyperref to unknown label`
@@ -135,10 +157,17 @@ https://arxiv.symmetricfunctions.com/api/bibtex.json?doi=10.1002/jgt.22704
 
 ## Common tasks
 
-**Adding a new page**: Create `tex-source/newpage.tex` with `\metatitle` and `\metadescription`. Add a `\topiccard{newpage}{Title}{Description}` to `tex-source/index.tex`. Create a matching card SVG in `assets/nav-images/card-newpage.svg`.
+**Adding a new page**: Create `tex-source/newpage.tex` with `\metatitle` and
+`\metadescription`. Add a `\topiccard{newpage}{Title}{Description}` to
+`tex-source/index.tex`. Add or update the matching card source in
+`svg-tex/src/` and run `make svg`; the generated card SVG belongs in
+`assets/nav-images/`.
 
-**Adding a reference**: Add a BibLaTeX entry to `bibliography.bib`, then use `\cite{Key}` in .tex files.
+**Adding a reference**: Add a BibLaTeX entry to `bibliography.bib`, then use
+`\cite{Key}` in `.tex` files.
 
-**Cross-linking**: Use `\hyperref[label]{link text}` where `label` is any section label on any page. The build resolves these across all pages.
+**Cross-linking**: Use `\hyperref[label]{link text}` where `label` is any
+section label on any page. The build resolves these across all pages.
 
-**Renaming a label**: Grep for the old label across all .tex files to update any `\hyperref` references.
+**Renaming a label**: Grep for the old label across all `.tex` files to update
+any `\hyperref` references.

@@ -67,16 +67,36 @@ and corresponds to transposing the (English) Young diagram.
 Thus, the conjugate of $(7,5,5,4,3)$ is $(5,5,5,4,3,1,1)$, which is simply
 the sizes of the columns.
 
-\subsection[compositions]{Compositions}
+\subsection[compositions]{Compositions and weak compositions}
 
-A \defin{composition}\label{compositionDefinition} of $n$ is a vector with
+A \defin{composition}\label{compositionDefinition}\label{weakCompositions}
+of $n$ is a vector with
 positive integer entries summing to $n$.
 Hence, every partition is a composition.  These are also sometimes called
 \emph{strong compositions}.
 It is a classical exercise to show that there are $2^{n-1}$ compositions of $n$.
 
+\begin{example*}[Compositions of 4]
+The compositions of $4$ are
+\[
+(4),
+(3,1),
+(1,3),
+(2,2),
+(2,1,1),
+(1,2,1),
+(1,1,2),
+(1,1,1,1).
+\]
+\end{example*}
+
 A \defin{weak composition}\label{weakCompositionDefinition} of $n$ is a vector
 with non-negative integer entries summing to $n$.
+Weak compositions are often considered with a fixed length.  For example,
+the weak compositions of $3$ of length $2$ are
+\[
+(3,0),\quad (2,1),\quad (1,2),\quad (0,3).
+\]
 
 
 \subsection[partialOrderingsOnPartitions]{Partial orderings on partitions}\label{dominanceOrder}
@@ -175,30 +195,6 @@ For a proof, see \name{Alejandro Morales}--\name{Igor Pak}--\name{Greta Panova} 
 An extension to \hyperref[schurCylindric]{cylindric diagrams} is conjectured in \cite{SuzukiToyosawa2021x}.
 
 
-\section[weakCompositions]{Compositions and weak compositions}
-
-Similar to partitions, a \hyperref[compositionDefinition]{composition} of $n$
-is an integer vector of positive
-integers summing to $n$. For example, 
-\begin{example*}[Compositions of 4]
-There are $2^{n-1}$ compositions of $n$. For example,
-\[
-(4), 
-(3,1), 
-(1,3), 
-(2,2), 
-(2,1,1),
-(1,2,1),
-(1,1,2),
-(1,1,1,1)
-\]
-are the compositions of $4$.
-\end{example*}
-
-A \hyperref[weakCompositionDefinition]{weak composition} allows parts to be
-equal to $0$.
-
-
 \section[notationPermutations]{Permutations and words}
 
 The set of permutations of $n$ elements is denoted $\symS_n$.
@@ -228,12 +224,16 @@ For permutations, we also define \defin{charge}\label{permutationChargeStatistic
 The latter statistic is called \defin{cocharge}\label{permutationCochargeStatistic}.
 
 \begin{lemma}
-Then
+For every permutation $\pi$,
 \[
-\charge(\pi) = \inv \circ \mathrm{foata} \circ \rev \circ (\cdot)^{-1} \circ \pi,
+\charge(\pi) = \inv\!\left(\mathrm{foata}(\rev(\pi^{-1}))\right),
 \]
 where $\mathrm{foata}$ denotes the map sending major index to inversions \cite{Foata1968}.
 \end{lemma}
+
+For charge on words and tableaux, and its role in
+\hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials}, see the
+\hyperref[kostkaFoulkes]{Kostka--Foulkes page}.
 
 
 
@@ -350,8 +350,9 @@ The standard Young tableaux are
 
 \subsection[prelimTableauxAsPolytope]{SSYT as lattice points in a polytope}
 
-Semistandard Young tableaux are in bijection with \hyperref[gtpatternsAsSSYT]{Gelfand--Tsetlin patterns},
-which are lattice points in Gelfand--Tsetlin polytopes.
+Semistandard Young tableaux are in bijection with
+\hyperref[gtpatternsAsSSYT]{Gelfand--Tsetlin patterns}, which are lattice
+points in \hyperref[gtPolytope]{Gelfand--Tsetlin polytopes}.
 
 
 \subsection[companionMap]{The companion map}

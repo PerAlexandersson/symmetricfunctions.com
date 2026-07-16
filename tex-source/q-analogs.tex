@@ -1,5 +1,5 @@
 \metatitle{Q-analogs, q-Lucas theorem and q-Catalan numbers}
-\metadescription{Q-analogs, q-hook formula, q-Lucas theorem, q-Catalan numbers and q-Narayana numbers}
+\metadescription{Q-analogs, q-derangement numbers, shuffle formulas, q-hook formula, q-Lucas theorem, q-Catalan numbers and q-Narayana numbers}
 
 
 \section[qAnalogs]{$q$-analogs}
@@ -40,6 +40,72 @@ for the $q$-multinomial coefficients:
 \]
 For proofs, see the lecture notes by \name{Dominique Foata} and
 \name{Guo-Niu Han} \cite{FoataHan2011QSeries}.
+
+\subsection[qDerangementsAndShuffles]{$q$-derangements and shuffles}
+
+Let $D_n \subseteq \symS_n$ be the set of derangements, that is,
+permutations with no fixed points.  The \defin{$q$-derangement number}
+\label{qDerangementNumber} is
+\[
+  d_n(q) \coloneqq \sum_{\sigma \in D_n} q^{\maj(\sigma)}.
+\]
+\name{Ira M. Gessel} and \name{Christophe Reutenauer} derived the following
+formula from their quasisymmetric generating function for permutations with
+fixed cycle structure and \hyperref[descentSet]{descent set}
+\cite{GesselReutenauer1993}.  A
+combinatorial proof was later given by \name{Michelle L. Wachs}
+\cite{Wachs1989QDerangement}.  A recent direct proof using decorated
+permutations is due to \name{Kathy Q. Ji} \cite{Ji2026x}.
+
+\begin{theorem}[Gessel--Reutenauer--Wachs]
+For $n \geq 0$,
+\[
+  d_n(q) =
+  \sum_{k=0}^n (-1)^k q^{\binom{k}{2}}\frac{[n]_q!}{[k]_q!}.
+\]
+\end{theorem}
+
+The key refinement in Wachs's proof is to count permutations by their
+\defin{derangement part}\label{derangementPart}.  If
+\(\pi \in \symS_n\), then \(\operatorname{dp}(\pi)\) is the reduction of
+the subword of non-fixed points of \(\pi\).  For example,
+\[
+  \operatorname{dp}(1\,5\,3\,7\,6\,2\,9\,8\,4)=3\,5\,4\,1\,6\,2.
+\]
+
+\begin{proposition}[Wachs, \cite{Wachs1989QDerangement}]
+Let \(0 \leq k \leq n\) and let \(\sigma \in D_k\).  Then
+\[
+  \sum_{\substack{\pi \in \symS_n\\ \operatorname{dp}(\pi)=\sigma}}
+  q^{\maj(\pi)}
+  =
+  q^{\maj(\sigma)}\qbinom{n}{k}_q.
+\]
+\end{proposition}
+
+Summing over all derangements \(\sigma \in D_k\) gives
+\[
+  [n]_q! = \sum_{k=0}^n \qbinom{n}{k}_q d_k(q),
+\]
+and the formula for \(d_n(q)\) follows by \(q\)-binomial inversion.
+
+The shuffle identity used in this proof is due to
+\name{Adriano M. Garsia} and \name{Ira M. Gessel}
+\cite[Thm.~3.1]{GarsiaGessel1979}.  Let \(\alpha\) and \(\beta\) be two
+words with disjoint letter sets.  A shuffle of \(\alpha\) and \(\beta\) is
+an interleaving that preserves the internal order of the letters in each
+word.  Write \(\operatorname{Sh}(\alpha,\beta)\) for the set of such
+shuffles.
+
+\begin{theorem}[Garsia--Gessel shuffle formula]
+If \(\alpha\) and \(\beta\) have lengths \(m\) and \(n\), respectively, then
+\[
+  \sum_{\gamma \in \operatorname{Sh}(\alpha,\beta)} q^{\maj(\gamma)}
+  =
+  q^{\maj(\alpha)+\maj(\beta)}
+  \qbinom{m+n}{m}_q.
+\]
+\end{theorem}
 
 We define the \defin{Pochhammer symbol}\label{pochhammerSymbol} as
 $(a)_n \coloneqq a(a+1)\dotsm (a+n-1)$ and the
@@ -306,6 +372,7 @@ Then
 \sum_{\pi \in W_\lambda} q^{\inv(\pi)}=
 \sum_{\pi \in W_\lambda} q^{\charge(\pi)}.
 \]
+Here \(\charge\) denotes the \hyperref[chargeStatistic]{charge statistic}.
 \end{theorem}
 
 
@@ -341,14 +408,16 @@ f^{(m,\lambda)}_{n}(q) = q^{\binom{n+1}{2}}\schurS_{\lambda}(1,q,q^2,\dotsc,q^{m
 In \cite{Chen2020}, the author studies the major-index distribution of
 so-called \hyperref[cspIncreasingTableau]{increasing tableaux}, introduced by
 \name{Oliver Pechenik} \cite{Pechenik2014}.  In particular, \name{Xiang Chen}
-provides nice $q$-binomial formulas in the case of two-row skew shapes.
+provides nice \hyperref[qBinomialCoefficient]{$q$-binomial} formulas in the
+case of two-row skew shapes.
 
 
 
 \begin{theorem}[See \cite[Cor. 4.9(ii)]{Huang2013}]
 Let $D \subseteq [n-1]$, and let $\alpha = comp(D)$
 be the \hyperref[gesselDefinitionSubsets]{composition defined by $D$}.
-Furthermore, let $\SYT(\alpha)$ be the set of \emph{ribbon \hyperref[prelimTableaux]{standard Young tableaux}}
+Furthermore, let $\SYT(\alpha)$ be the set of ribbon
+\hyperref[standardYoungTableau]{standard Young tableaux}
 such that row $i$ from the bottom has length $\alpha_i$.
 We let $D = \{s_1,\dotsc,s_\ell\}$ and $s_0 \coloneqq 0$ and note that
 $s_j = \alpha_1+ \dotsb + \alpha_j$.

@@ -1,5 +1,6 @@
 \metatitle{Permutation patterns}
-\metadescription{Permutation patterns, avoidance classes, direct sums and skew sums.}
+\metadescription{Permutation patterns, arrow patterns, shallow permutations,
+avoidance classes, direct sums and skew sums.}
 
 
 \section[permutationPattern]{Permutation patterns}
@@ -53,6 +54,38 @@ For a recent survey of some open problems regarding permutation patterns, see \c
 \cite{DomagalskiElizaldeLiangMinnichSaganSchmidtSietsema2022}.  The cyclic
 setting treats permutations up to rotation and leads to cyclic analogues of
 classical avoidance questions.
+
+
+\subsection[arrowPatterns]{Arrow patterns and shallow permutations}
+
+Arrow patterns are variants of permutation patterns designed to remember some
+information from cycle notation while still being checked through one-line
+notation.  An arrow pattern consists of an ordinary pattern together with
+arrows between labels, and an occurrence must realize both the usual
+order-isomorphism and the corresponding arrows under the permutation map.
+
+\name{Yosef Berman} and \name{Bridget Eileen Tenner} introduced arrow
+patterns in their study of pattern-functions and shallow permutations
+\cite{BermanTenner2022}.  Let $I(\pi)$ be the inversion number, let
+$T(\pi)$ be the reflection length, and let
+$D(\pi)=\sum_i |\pi_i-i|$ be the total displacement.  The
+Diaconis--Graham inequalities say
+\[
+  I(\pi)+T(\pi) \leq D(\pi) \leq 2I(\pi).
+\]
+A permutation is \defin{shallow} if equality holds in the lower bound.
+These permutations can be characterized by pattern avoidance conditions in
+cycle form.  Shallow permutations avoiding a classical pattern of length
+three were enumerated by \name{Kassie Archer}, \name{Aaron Geary}, and
+\name{Robert P. Laudone} \cite{ArcherGearyLaudone2026}.
+
+\name{Kassie Archer} and \name{Robert P. Laudone} initiated a systematic
+study of arrow-pattern avoidance, including arrow-Wilf equivalence and
+enumeration of several avoidance classes \cite{ArcherLaudone2026x}.
+\name{Shishuo Fu} and \name{Zhenghe Yang} then studied simultaneous
+avoidance of a classical pattern of length $3$ and an arrow pattern of
+length $3$, resolving three conjectures of Archer--Laudone
+\cite{FuYang2026x}.
 
 
 \subsection[directSumPermutations]{Direct sums and skew sums of permutations}

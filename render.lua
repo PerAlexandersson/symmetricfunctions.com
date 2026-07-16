@@ -257,11 +257,85 @@ end
 
 
 --- Renders a LaTeX table inline element.
+local function render_table_hyperref(label, text)
+  local source_loc = label:match("@@([%w%.%-_/]+:%d+)$") or ""
+  label = label:gsub("@@[%w%.%-_/]+:%d+$", "")
+
+  local entry = SITE_LABELS_MAP[label]
+  local url
+  if not entry then
+    if source_loc ~= "" then
+      print_error("%s: hyperref to unknown label '%s' (text: %s)",
+        source_loc, label, text)
+    else
+      print_error("hyperref to unknown label '%s' (text: %s)", label, text)
+    end
+    url = "#" .. label
+  else
+    url = entry.href or ("#" .. label)
+  end
+
+  local attr = { "", { "hyperref" }, {} }
+  if source_loc ~= "" then
+    attr[3][#attr[3] + 1] = { "data-source-loc", source_loc }
+  end
+
+  url = sanitize_href(url, source_loc)
+  return '<a href="' .. html_escape(url) .. '"' .. render_attr(attr) .. '>'
+      .. html_escape(text) .. '</a>'
+end
+
+local function render_latex_table_cell(content)
+  local s = tostring(content or "")
+  if not s:find("\\hyperref", 1, true) then
+    return nil
+  end
+
+  local out = {}
+  local pos = 1
+
+  while true do
+    local start_pos, end_pos, label, body =
+      s:find("\\hyperref%s*%[([^%]]+)%]%s*(%b{})", pos)
+    if not start_pos then
+      out[#out + 1] = html_escape(s:sub(pos))
+      break
+    end
+
+    out[#out + 1] = html_escape(s:sub(pos, start_pos - 1))
+    out[#out + 1] = render_table_hyperref(label, body:sub(2, -2))
+    pos = end_pos + 1
+  end
+
+  return table.concat(out), true
+end
+
 local function render_latex_table_inline(body)
-  local html, err = transform_tex_snippet(body)
+  local html, err = transform_tex_snippet(body, {
+    cell_renderer = render_latex_table_cell
+  })
   if err then
     print_error("Failed to convert LaTeX table (inline): %s", err)
     return "<code class='tex-error'>" .. html_escape(body) .. "</code>"
+  end
+  return html
+end
+
+local function render_booktabs_array_math(body)
+  local src = tostring(body or ""):match("^%s*(.-)%s*$")
+  if src == "" then return nil end
+  if not src:match("^\\begin%s*%{%s*array%s*%}") then return nil end
+  if not src:match("\\end%s*%{%s*array%s*%}%s*$") then return nil end
+  if not (src:find("\\toprule", 1, true)
+      or src:find("\\midrule", 1, true)
+      or src:find("\\bottomrule", 1, true)) then
+    return nil
+  end
+
+  local html, err = transform_tex_snippet(src)
+  if err then
+    print_error("Failed to convert booktabs array: %s", err)
+    return nil
   end
   return html
 end
@@ -297,8 +371,13 @@ function render_inlines_html(inlines)
     elseif t == "Math" then
       local kind = c[1].t
       local body = c[2] or ""
-      local delim = (kind == "DisplayMath") and {"\\[", "\\]"} or {"\\(", "\\)"}
-      table.insert(buffer, delim[1] .. body .. delim[2])
+      local table_html = render_booktabs_array_math(body)
+      if table_html then
+        table.insert(buffer, table_html)
+      else
+        local delim = (kind == "DisplayMath") and {"\\[", "\\]"} or {"\\(", "\\)"}
+        table.insert(buffer, delim[1] .. body .. delim[2])
+      end
     elseif t == "Link" then
       table.insert(buffer, render_link(c[1], c[2], c[3]))
     elseif t == "RawInline" then
@@ -362,7 +441,9 @@ end
 
 --- Renders a LaTeX table block element.
 local function render_latex_table_block(body)
-  local html, err = transform_tex_snippet(body)
+  local html, err = transform_tex_snippet(body, {
+    cell_renderer = render_latex_table_cell
+  })
   if err then
     print_error("Failed to convert LaTeX table (block): %s", err)
     return "<pre class='tex-error'>" .. html_escape(body) .. "</pre>\n"

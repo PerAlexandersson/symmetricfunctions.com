@@ -84,6 +84,18 @@ The \defin{Schubert polynomials} are then defined as
 \end{equation*}
 
 
+\subsection[schubertOrthodontia]{Orthodontia formula}
+
+\name{Peter Magyar} gives a Demazure-operator formula for Schubert
+polynomials using Bott--Samelson varieties
+\cite{Magyar1998SchubertBottSamelson}.  In later combinatorial work, this
+is often phrased as Magyar's \defin{orthodontia formula}: one applies an
+algorithm to the diagram and records a word of Demazure operators whose
+product recovers the Schubert polynomial.  The
+\hyperref[grothendieckOrthodontia]{Grothendieck orthodontia formula} is the
+$K$-theoretic analogue.
+
+
 \subsection[schubertReducedwordFormula]{Reduced word formula}
 Let $RW(\omega)$ be the set of reduced words of $\omega$.
 
@@ -126,7 +138,9 @@ and $\alpha = 111235$ is $a$-compatible.
 We mark the corresponding entries in $D(a,\alpha)$ with a cross, $+$, in the rc-graph:
 
 \begin{figure}
-\svgimg[width=0.35\textwidth]{svg-images/pipe-dream-schubert-314652.svg}{A pipe dream for the permutation 314652.}
+\svgimg[width=0.35\textwidth]{svg-images/pipe-dream-schubert-314652.svg}{
+A pipe dream for the permutation 314652, with rows and columns indexed from
+the upper-left corner.}
 \end{figure}
 
 Here
@@ -164,6 +178,9 @@ Grassmannian case, and is compatible with generalized chute moves.
 
 \subsection[schubertBumplessPipeDream]{Bumpless pipe dreams}
 
+\todo{Add good worked examples with pipe dreams and bumpless pipe dreams,
+preferably for the same small permutation.}
+
 The notion of \defin{bumpless pipe dreams}\label{bumplessPipeDream} was introduced by
 \name{Thomas Lam}, \name{Seung Jin Lee}, and \name{Mark Shimozono} in \cite{LamLeeShimozono2018x}.
 They prove the following formula for the \hyperref[schubertDouble]{double Schubert polynomials}:
@@ -181,6 +198,10 @@ signed sums of Schubert polynomials; in the other, Schubert polynomials expand
 positively in the Grothendieck basis.  The bumpless pipe dream model also
 extends to a formula for expanding back stable Grothendieck polynomials in the
 back stable Schubert basis \cite[Thm.~8.1]{Weigandt2025x}.
+\todo{Add Lascoux's 2004 expansion of Schubert polynomials into Grothendieck
+polynomials \cite{Lascoux2004}.}
+\todo{Add Anna Weigandt's bumpless-pipe-dream formula analogue of Lascoux's
+Schubert-to-Grothendieck expansion.}
 \name{Thomas Lam}, \name{Seung Jin Lee}, and \name{Mark Shimozono} develop
 the corresponding back stable $K$-theoretic Schubert calculus
 \cite{LamLeeShimozono2022}.  This includes back stable Grothendieck

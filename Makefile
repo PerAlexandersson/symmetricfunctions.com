@@ -8,7 +8,7 @@ MAKEFLAGS += -j8
 include config.mk
 include config_test.mk
 
-.PHONY: all gather meta bib render copy-assets svg clean unittest deploy search
+.PHONY: all gather meta bib render copy-assets svg clean unittest lint-html check deploy search
 .DELETE_ON_ERROR:
 .SECONDARY: $(PRE_TEX)
 
@@ -169,6 +169,15 @@ $(TEST_CHECK): $(TEST_JSON) $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_HTM
 	  TEST_HTML="$(TEST_HTML)" \
 	  $(LUA) tests/check_unittest.lua
 	@touch $@
+
+# === GENERATED HTML LINT ===
+.PHONY: lint-html
+lint-html: $(HTML_FILES) tests/lint_html.lua
+	$(LOG) "Linting generated HTML ..."
+	@WWW_DIR="$(WWW_DIR)" $(LUA) tests/lint_html.lua $(HTML_FILES)
+
+.PHONY: check
+check: unittest lint-html
 
 # === CLEAN ===
 .PHONY: clean

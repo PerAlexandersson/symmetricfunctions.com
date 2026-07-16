@@ -615,34 +615,66 @@
   /* Biblio & Lists */
   #bibliography ol { list-style: none; margin: 0; padding: 0; }
   #bibliography li {
-    position: relative; margin: 0.25em 0 0.75em; padding-left: 6.5em; line-height: 1.45;
+    display: grid;
+    grid-template-columns: 10.8em minmax(0, 1fr);
+    column-gap: 0.75em;
+    align-items: start;
+    position: relative;
+    margin: 0.25em 0 0.75em;
+    line-height: 1.45;
   }
-  #bibliography li > .citeKey {
-    position: absolute; left: 0; top: 0; width: 6em; text-align: left; font-weight: bold; color: var(--c-text-main);
+  #bibliography li > .citeMeta {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    white-space: nowrap;
   }
-  #bibliography li > .citeJournal, #bibliography li > .citeBooktitle { font-style: italic; }
-  #bibliography li > .citeVolume { font-weight: 700; }
+  #bibliography li .citeKey {
+    font-weight: bold;
+    color: var(--c-text-main);
+  }
+  #bibliography li > .citeText {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+  #bibliography li > .citeText > .citeJournal,
+  #bibliography li > .citeText > .citeBooktitle { font-style: italic; }
+  #bibliography li > .citeText > .citeVolume { font-weight: 700; }
   .bibtex-details {
-    margin-top: 0.45rem;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    height: 0;
+    margin: 0;
     font-family: system-ui, -apple-system, sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+  .bibtex-details[open] {
+    height: auto;
+    margin-top: 0.45rem;
   }
   .bibtex-details > summary {
     display: inline-flex;
     align-items: center;
     width: fit-content;
+    position: absolute;
+    left: 7.4em;
+    top: 0;
     cursor: pointer;
     user-select: none;
-    color: var(--c-link);
-    border: 1px solid var(--c-border);
-    border-radius: 4px;
-    padding: 0.15rem 0.45rem;
-    background: var(--c-bg-surface);
+    list-style: none;
+    color: var(--c-text-sub);
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    line-height: 1.45;
   }
+  .bibtex-details > summary::-webkit-details-marker { display: none; }
   .bibtex-details > summary:hover,
   .bibtex-details > summary:focus-visible {
     color: var(--c-brand);
-    border-color: var(--c-brand);
+    text-decoration: underline;
   }
   .bibtex-actions {
     display: flex;
@@ -685,6 +717,21 @@
     0% { background-color: rgba(255, 230, 0, 0.5); } 100% { background-color: transparent; }
   }
   #bibliography li:target { animation: citeFade 3s ease-out; }
+
+  @media(max-width: 600px) {
+    #bibliography li {
+      grid-template-columns: 1fr;
+      row-gap: 0.1em;
+    }
+    #bibliography li > .citeText {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .bibtex-details {
+      grid-column: 1;
+      grid-row: 3;
+    }
+  }
   
   ul, ol { margin-top: 0.5rem; margin-bottom: 0.8rem; padding-left: 2rem; }
   li { margin-bottom: 0.25rem; }

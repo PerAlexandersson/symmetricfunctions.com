@@ -63,17 +63,73 @@ local function split_cells_preserve_empties(s, sep)
   sep = sep or "&"
   local out, i, n, m = {}, 1, #s, #sep
   if n == 0 then return { "" } end
-  while true do
-    local j = string.find(s, sep, i, true)
-    if j then
-      out[#out + 1] = string.sub(s, i, j - 1)
-      i = j + m
-      if i > n + 1 then out[#out + 1] = ""; break end
+
+  local buf = {}
+  local depth = 0
+  local in_tag = false
+  local quote = nil
+
+  local function starts_html_entity(pos)
+    local candidate = s:sub(pos)
+    return candidate:match("^&[#%w][#%w]+;") ~= nil
+  end
+
+  while i <= n do
+    local ch = s:sub(i, i)
+    local prev = (i > 1) and s:sub(i - 1, i - 1) or ""
+
+    if in_tag then
+      table.insert(buf, ch)
+      if quote then
+        if ch == quote then quote = nil end
+      elseif ch == '"' or ch == "'" then
+        quote = ch
+      elseif ch == ">" then
+        in_tag = false
+      end
+      i = i + 1
+    elseif ch == "<" and s:sub(i):match("^</?[%a][^>]*>") then
+      in_tag = true
+      table.insert(buf, ch)
+      i = i + 1
+    elseif ch == "{" then
+      depth = depth + 1
+      table.insert(buf, ch)
+      i = i + 1
+    elseif ch == "}" then
+      depth = math.max(0, depth - 1)
+      table.insert(buf, ch)
+      i = i + 1
+    elseif s:sub(i, i + m - 1) == sep and depth == 0 and prev ~= "\\" and
+        not starts_html_entity(i) then
+      out[#out + 1] = table.concat(buf)
+      buf = {}
+      i = i + m
+      if i > n + 1 then out[#out + 1] = "" end
     else
-      out[#out + 1] = string.sub(s, i); break
+      table.insert(buf, ch)
+      i = i + 1
     end
   end
+
+  out[#out + 1] = table.concat(buf)
   return out
+end
+
+local function looks_like_trusted_html_fragment(s)
+  s = tostring(s or "")
+  return s:find("<span", 1, true) ~= nil
+      or s:find("</span>", 1, true) ~= nil
+      or s:find("<a ", 1, true) ~= nil
+      or s:find("</a>", 1, true) ~= nil
+      or s:find("<em>", 1, true) ~= nil
+      or s:find("</em>", 1, true) ~= nil
+      or s:find("<strong>", 1, true) ~= nil
+      or s:find("</strong>", 1, true) ~= nil
+      or s:find("<code>", 1, true) ~= nil
+      or s:find("</code>", 1, true) ~= nil
+      or s:find("<q>", 1, true) ~= nil
+      or s:find("</q>", 1, true) ~= nil
 end
 
 local function split_yshort_row(row)
@@ -122,7 +178,14 @@ end
 local function format_cell(content, row, col, opts)
   opts = opts or {}
   local delimiter = opts.delimiter or ""
+  local delimiter_left = delimiter
+  local delimiter_right = delimiter
+  if type(delimiter) == "table" then
+    delimiter_left = delimiter[1] or ""
+    delimiter_right = delimiter[2] or delimiter_left
+  end
   local align = opts.align or ""
+  local cell_renderer = opts.cell_renderer
   
   -- Neighbor flags for border logic
   local has_north = opts.has_north
@@ -174,6 +237,17 @@ local function format_cell(content, row, col, opts)
       table.insert(classes, "border-e")
     end
 
+  local escape_ent = true
+  if cell_renderer and trim(ent) ~= "" then
+    local rendered, is_html = cell_renderer(ent)
+    if rendered then
+      ent = rendered
+      escape_ent = not is_html
+    end
+  end
+  if escape_ent and looks_like_trusted_html_fragment(ent) then
+    escape_ent = false
+  end
 
   -- Alignment
   if align == "l" or align == "c" or align == "r" then
@@ -183,15 +257,17 @@ local function format_cell(content, row, col, opts)
   -- Empty handling
   if trim(ent) == "" then
     ent = "&nbsp;"
-    delimiter = ""
-  else
+    delimiter_left = ""
+    delimiter_right = ""
+  elseif escape_ent then
     ent = html_escape(ent)
   end
   
   local cls_attr = (#classes > 0) and (' class="' .. table.concat(classes, " ") .. '"') or ""
   local style_attr = ' style="' .. table.concat(styles, "; ") .. '"'
   
-  return string.format("<span%s%s>%s%s%s</span>", cls_attr, style_attr, delimiter, ent, delimiter)
+  return string.format("<span%s%s>%s%s%s</span>", cls_attr, style_attr,
+    delimiter_left, ent, delimiter_right)
 end
 
 --- Renders matrix to HTML with CSS Grid
@@ -253,7 +329,8 @@ local function render_matrix(matrix, specList, opts, col_count)
           has_north = has_north,
           has_west = has_west,
           has_south = has_south,
-          has_east = has_east
+          has_east = has_east,
+          cell_renderer = opts.cell_renderer
         })
         table.insert(html, cell_html)
       end
@@ -266,8 +343,9 @@ end
 
 -- ========== PARSERS ==========
 
-local function tex_tabular_to_span(s, type_, spec)
+local function tex_tabular_to_span(s, type_, spec, opts)
   if not s or s == "" then return "", "Empty content" end
+  opts = opts or {}
   
   -- Parse column specs
   local specList = {}
@@ -304,12 +382,13 @@ local function tex_tabular_to_span(s, type_, spec)
   -- is_solid_cell handles \none checks.
   local width = pad_matrix_to_rectangle(matrix, "\\none")
   
-  local delim = (type_ == "array") and "$" or ""
+  local delim = (type_ == "array") and { "\\(", "\\)" } or ""
   
   return render_matrix(matrix, specList, { 
     type = type_, 
     delimiter = delim, 
-    is_block = true 
+    is_block = true,
+    cell_renderer = opts.cell_renderer
   }, width)
 end
 
@@ -360,8 +439,9 @@ end
 
 -- ========== MAIN ENTRY ==========
 
-local function transform_tex_snippet(s)
+local function transform_tex_snippet(s, opts)
   if type(s) ~= "string" or s == "" then return nil, "Invalid input" end
+  opts = opts or {}
   local src = trim(s)
   
   -- \ytableaushort{...}
@@ -386,11 +466,11 @@ local function transform_tex_snippet(s)
   
   -- \begin{tabular}
   local tcols, tbody = src:match("^%s*\\begin%s*%{tabular%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{tabular%}%s*$")
-  if tcols then return tex_tabular_to_span(tbody, "tabular", tcols:sub(2, -2)) end
+  if tcols then return tex_tabular_to_span(tbody, "tabular", tcols:sub(2, -2), opts) end
   
   -- \begin{rawtabular}
   local rcols, rbody = src:match("^%s*\\begin%s*%{rawtabular%}%s*(%b{})%s*([%s%S]-)%s*\\end%s*%{rawtabular%}%s*$")
-  if rcols then return tex_tabular_to_span(rbody, "tabular", rcols:sub(2, -2)) end
+  if rcols then return tex_tabular_to_span(rbody, "tabular", rcols:sub(2, -2), opts) end
   
   return nil, "Unknown format"
 end

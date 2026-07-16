@@ -1,6 +1,6 @@
 \metatitle{Pólya frequency sequences and total positivity}
 
-\metadescription{Pólya frequency sequences, totally non-negative matrices, Toeplitz matrices, Edrei--Thoma theory, and real-rootedness applications.}
+\metadescription{Pólya frequency sequences, totally non-negative matrices, Toeplitz matrices, Riordan arrays, Edrei--Thoma theory, and real-rootedness applications.}
 
 
 \section[polyaFrequency]{Pólya frequency sequences}
@@ -8,7 +8,8 @@
 Pólya frequency sequences give a coefficient-level way to recognize
 \hyperref[realRootedPolynomial]{real-rooted polynomials} with non-negative
 coefficients.  The basic idea is to put the coefficients into a Toeplitz
-matrix and ask for total non-negativity.  This puts real-rootedness in the
+matrix and ask for \hyperref[totallyNonnegative]{total non-negativity}.  This
+puts real-rootedness in the
 same framework as planar
 networks, \hyperref[interlacingPolynomials]{interlacing polynomials},
 \hyperref[stablePolynomial]{stable polynomials}, and
@@ -93,7 +94,7 @@ See \cite{Karlin1968} for a full treatment.
 \end{theorem}
 
 This theorem is often the fastest way to move between real-rootedness and
-matrix total positivity.  If a construction takes a TNN Toeplitz matrix to
+matrix \hyperref[totalPositivity]{total positivity}.  If a construction takes a TNN Toeplitz matrix to
 another TNN Toeplitz matrix, it automatically preserves real-rootedness of
 the corresponding polynomial.
 
@@ -265,6 +266,120 @@ exponential cost of checking all minors directly.
 TNN matrices are also closed under Hadamard products, see \cite{Wagner1992}.
 See \cite{BrandenLeite2024x} for applications related to chains in posets,
 and \cite{FallatJohnson2011} for a comprehensive treatment.
+
+\subsection[pfRiordanArrays]{Riordan arrays from PF data}
+
+The PF viewpoint also interacts well with
+\defin{Riordan arrays}\label{riordanArrayPF}.  If
+\[
+  g(z)=\sum_{n\geq 0}g_nz^n,\qquad
+  f(z)=\sum_{n\geq 0}f_nz^n,
+\]
+then the Riordan array
+\[
+  \mathcal R(g,f)=(r_{n,k})_{n,k\geq 0}
+\]
+is defined by saying that the \(k\)th column has generating function
+\[
+  \sum_{n\geq 0} r_{n,k}z^n=g(z)f(z)^k.
+\]
+Thus a Toeplitz matrix is the special case \(\mathcal R(g,z)\).
+
+\begin{theorem}[Chen--Wang, \cite[Thm.~2.1]{ChenWang2019Riordan}]
+\label{pfRiordanArrayCriterion}
+If the coefficient sequences of \(g(z)\) and \(f(z)\) are PF, then the
+Riordan array \(\mathcal R(g,f)\) is totally non-negative.
+\end{theorem}
+
+This gives two complementary kinds of structure:
+\[
+  \text{PF input}
+  \quad\Longrightarrow\quad
+  \text{TNN Riordan array},
+\]
+and, separately,
+\[
+  \text{Riordan description}
+  \quad\Longrightarrow\quad
+  \text{row recurrences and row relations}
+  \quad\Longrightarrow\quad
+  \text{real-rootedness and interlacing}.
+\]
+The second implication is the one responsible for the root statements in the
+examples below.  The PF condition explains the total-positivity of the
+coefficient array; the real-rootedness usually comes from a recurrence,
+explicit zero formula, or an interlacing comparison between row polynomials.
+
+\begin{example*}[Delannoy and coordination triangles]
+\name{Huyile Liang}, \name{Yanni Pei}, and \name{Yi Wang}
+\cite{LiangPeiWang2023Coordination} use this perspective for coordination
+numbers of cubic lattices.  The Delannoy triangle is
+\[
+  \mathcal R\left(\frac{1}{1-z},\frac{z(1+z)}{1-z}\right).
+\]
+Since both coefficient sequences are PF, the triangle is TNN by
+\hyperref[pfRiordanArrayCriterion]{the Riordan-array criterion}; in fact it
+is lower-triangular strictly totally positive in the sense that every minor
+not forced to vanish by triangular support is positive.
+
+If \(d_n(x)\) is the \(n\)th row polynomial of this triangle, then
+\[
+  d_0(x)=1,\qquad d_1(x)=1+x,\qquad
+  d_n(x)=(1+x)d_{n-1}(x)+x d_{n-2}(x)\quad(n\geq 2).
+\]
+The zeros of \(d_n(x)\) are explicit, real, and lie in
+\[
+  \bigl(-3-2\sqrt{2},\,-3+2\sqrt{2}\bigr).
+\]
+
+The cubic-lattice coordination triangle is
+\[
+  \mathcal R\left(\frac{1+z}{1-z},\frac{z(1+z)}{1-z}\right).
+\]
+Its row polynomial \(c_n(x)\) satisfies
+\[
+  c_n(x)=d_n(x)+d_{n-1}(x),
+\]
+and Liang--Pei--Wang prove that \(c_{n-1}(x)\) interlaces \(c_n(x)\).
+All zeros of \(c_n(x)\) are real and lie in the same Delannoy interval.
+\end{example*}
+
+\begin{example*}[A one-parameter Delannoy family]
+For \(m\geq 1\), set
+\[
+  \widehat L^{(m)}
+  =
+  \mathcal R\left(
+    \frac{1+(m-1)z}{1-z},
+    \frac{z(1+z)}{1-z}
+  \right).
+\]
+Again the PF criterion gives total non-negativity.  If
+\(\ell^{(m)}_n(x)\) denotes the \(n\)th row polynomial, then
+\[
+  \ell^{(m)}_n(x)=d_n(x)+(m-1)d_{n-1}(x)\quad(n\geq 1).
+\]
+For \(m\geq 2\), these polynomials have real simple zeros and form an
+interlacing chain \cite[Rem.~29]{LiangPeiWang2023Coordination}.
+\end{example*}
+
+\begin{example*}[Type \(B\) Narayana rows]
+The same PF/TNN method also explains the total positivity of the type \(B\)
+Narayana triangle
+\[
+  N_B(n,k)=\binom{n}{k}^2 .
+\]
+\name{Yi Wang} and \name{Arthur L. B. Yang}
+\cite{WangYang2018NarayanaMatrices} prove that the type \(A\) and type \(B\)
+Narayana triangles are TNN, and that the corresponding Narayana squares are
+strictly totally positive.  The row polynomials
+\[
+  \sum_{k=0}^{n}\binom{n}{k}^2x^k
+\]
+are the \hyperref[realRootedCatalan]{type \(B\) Narayana polynomials}, hence
+are real-rooted.  Liang--Pei--Wang point out that this triangle is also the
+coordinator triangle for root lattices of type \(A\).
+\end{example*}
 
 \subsection[polyaFrequencyExamples]{Examples}
 

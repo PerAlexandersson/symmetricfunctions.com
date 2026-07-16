@@ -24,13 +24,15 @@ The following pages cover more specialized topics:
 \item \hyperref[realRootedCatalan]{Catalan families}:
   Narayana polynomials, ballot polynomials, Motzkin polynomials.
 \item \hyperref[realRootedTableaux]{Tableaux and polytopes}:
-  descent polynomials of standard Young tableaux, Ehrhart polynomials.
+  descent polynomials of \hyperref[standardYoungTableau]{standard Young tableaux},
+  Ehrhart polynomials.
 \item \hyperref[realRootedMatching]{Graph polynomials}:
   matching polynomials, independence polynomials, rook polynomials.
 \item \hyperref[stablePolynomial]{Stable polynomials}:
   multivariate stability and the half-plane property.
 \item \hyperref[lorentzianPolynomial]{Lorentzian polynomials}:
-  ultralog-concavity and the symmetric decomposition of $h^*$-polynomials.
+  ultralog-concavity and the symmetric decomposition of
+  \hyperref[hStarPolynomial]{$h^*$-polynomials}.
 \item \hyperref[gammaPositivity]{Gamma-positive polynomials}:
   palindromic polynomials, the Foata--Strehl action, and Gal's conjecture.
 \end{itemize}
@@ -401,7 +403,8 @@ we have
 E(P \sqcup Q, t) = E(P,t) \diamond E(Q,t),
 \]
 where $\diamond$ is the \hyperref[diamondProduct]{diamond product} above.
-These operations preserve real-rootedness, so all series-parallel posets have
+These operations preserve \hyperref[realRootedPolynomial]{real-rootedness}, so
+all series-parallel posets have
 real-rooted Eulerian polynomials,
 see \cite{Wagner1992,Wagner1992en}.
 This result extends to labeled posets, see \cite{Branden2004operators}.
@@ -436,7 +439,8 @@ and
 \]
 \end{theorem}
 
-The proof is a clean interlacing induction using a recurrence for the
+The proof is a clean \hyperref[interlacingPolynomials]{interlacing} induction
+using a recurrence for the
 non-nesting rook polynomials.  The constant words recover the Narayana
 polynomials, while the regular snake words recover the
 \defin{Delannoy row polynomials}\label{delannoyRowPolynomials} \(P_n(t)\),
@@ -446,7 +450,8 @@ polynomials satisfy
   P_0(t)=1,\qquad P_1(t)=1+t,\qquad
   P_n(t)=(1+t)P_{n-1}(t)+tP_{n-2}(t) \quad (n\geq 2).
 \]
-Thus the Delannoy row polynomials are \(h^*\)-polynomials of order polytopes
+Thus the Delannoy row polynomials are
+\hyperref[hStarPolynomial]{\(h^*\)-polynomials} of order polytopes
 of regular snake posets.  This is a different family from the zig-zag
 Eulerian polynomials \(Z_m(t)\) discussed on the
 \hyperref[gammaPositivity]{gamma-positivity page}; those polynomials are known

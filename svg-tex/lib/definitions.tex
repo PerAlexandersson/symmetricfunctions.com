@@ -13,9 +13,8 @@
 
 \tikzset{
   pipe dream cell/.style={draw=black!35, line width=0.35pt, fill=white},
-  pipe dream dot/.style={font=\scriptsize, text=black!45},
-  pipe dream cross/.style={font=\small\bfseries, text=black},
-  pipe dream label/.style={font=\scriptsize, text=black!70}
+  pipe dream dot/.style={fill=black!45},
+  pipe dream cross/.style={draw=black, line width=0.7pt}
 }
 
 % Draw a staircase-shaped pipe dream grid.
@@ -36,18 +35,14 @@
     \pgfmathtruncatemacro{\pdn}{#2}
     \foreach \row in {1,...,\pdn} {
       \pgfmathtruncatemacro{\pdlast}{\pdn-\row+1}
-      \node[pipe dream label] at (-0.45,-\row+0.5) {\row};
       \foreach \col in {1,...,\pdlast} {
         \draw[pipe dream cell] (\col-1,-\row+1) rectangle (\col,-\row);
-        \node[pipe dream dot] at (\col-0.5,-\row+0.5) {$\cdot$};
+        \fill[pipe dream dot] (\col-0.5,-\row+0.5) circle (0.45pt);
       }
     }
-    \foreach \col in {1,...,\pdn} {
-      \node[pipe dream label] at (\col-0.5,0.35) {\col};
-    }
     \foreach \row/\col in {#3} {
-      \node[pipe dream cross] at (\col-0.5,-\row+0.5) {$+$};
+      \draw[pipe dream cross] (\col-0.68,-\row+0.5) -- (\col-0.32,-\row+0.5);
+      \draw[pipe dream cross] (\col-0.5,-\row+0.68) -- (\col-0.5,-\row+0.32);
     }
   \end{tikzpicture}%
 }
-

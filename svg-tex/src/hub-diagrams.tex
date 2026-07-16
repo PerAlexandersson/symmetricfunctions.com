@@ -12,7 +12,6 @@
   dot/.style={circle, draw=black, fill=white, line width=0.5pt,
     inner sep=0pt, minimum size=5pt},
   blue dot/.style={dot, fill=iconblue!75},
-  small label/.style={font=\scriptsize\sffamily},
   edge/.style={line width=0.9pt, line cap=round, line join=round},
   path edge/.style={edge, draw=iconblue, line width=2pt, -{Stealth[length=4pt]}}
 }
@@ -21,15 +20,13 @@
 
 \tikzsetnextfilename{ehrhart-order-polytopes}
 \begin{tikzpicture}[line cap=round,line join=round]
-  \useasboundingbox (-3.65,-1.35) rectangle (3.65,1.35);
+  \useasboundingbox (-3.25,-1.05) rectangle (3.25,1.05);
 
-  \node[small label] at (-2.65,1.1) {chain};
   \node[blue dot] (c1) at (-3.0,0.55) {};
   \node[blue dot] (c2) at (-3.0,0.0) {};
   \node[blue dot] (c3) at (-3.0,-0.55) {};
   \draw[edge] (c1) -- (c2) -- (c3);
 
-  \node[small label] at (0,1.1) {order polytope};
   \fill[iconblue!18] (-0.75,-0.75) -- (0.75,-0.75) -- (0.75,0.75) -- cycle;
   \draw[edge] (-0.75,-0.75) -- (0.75,-0.75) -- (0.75,0.75) -- cycle;
   \foreach \p in {(-0.75,-0.75),(0.75,-0.75),(0.75,0.75)} {
@@ -42,22 +39,18 @@
   \draw[-{Stealth[length=5pt]}, edge] (-2.55,0) -- (-1.15,0);
   \draw[-{Stealth[length=5pt]}, edge] (1.05,0) -- (2.35,0);
 
-  \node[small label] at (2.9,1.1) {$h^*(t)$};
   \draw[edge] (2.35,-0.72) -- (2.35,0.72) -- (3.45,0.72);
   \draw[softgreen, line width=5pt] (2.55,-0.55) -- (2.55,0.25);
   \draw[softorange, line width=5pt] (2.9,-0.55) -- (2.9,0.45);
   \draw[softred, line width=5pt] (3.25,-0.55) -- (3.25,-0.05);
-  \node[small label] at (2.9,-0.98) {descents of linear extensions};
 \end{tikzpicture}
 
 \tikzsetnextfilename{total-positivity-network}
 \begin{tikzpicture}[line cap=round,line join=round]
-  \useasboundingbox (-3.4,-1.55) rectangle (3.4,1.55);
+  \useasboundingbox (-3.1,-1.2) rectangle (3.1,1.2);
 
   \foreach \i/\y in {1/1,2/0,3/-1} {
-    \node[small label, anchor=east] at (-3.05,\y) {$s_\i$};
     \node[blue dot] (s\i) at (-2.75,\y) {};
-    \node[small label, anchor=west] at (3.05,\y) {$t_\i$};
     \node[blue dot] (t\i) at (2.75,\y) {};
   }
 
@@ -77,88 +70,90 @@
 
   \draw[path edge] (s1) -- (a) -- (c) -- (d) -- (t1);
   \draw[path edge] (s3) -- (b) -- (e) -- (t3);
-
-  \node[small label, align=center] at (0,-1.3)
-    {nonintersecting paths give nonnegative minors};
 \end{tikzpicture}
 
 \tikzsetnextfilename{coxeter-types-diagrams}
 \begin{tikzpicture}[line cap=round,line join=round]
-  \useasboundingbox (-3.75,-1.65) rectangle (3.75,1.65);
+  \useasboundingbox (-2.6,-1.15) rectangle (2.6,1.15);
 
-  \node[small label, anchor=east] at (-2.75,1.05) {$A_3$};
-  \foreach \x in {-2.35,-1.75,-1.15} {
-    \node[blue dot] at (\x,1.05) {};
+  \foreach \x in {-2.15,-1.55,-0.95} {
+    \node[blue dot] at (\x,0.72) {};
   }
-  \draw[edge] (-2.35,1.05) -- (-1.75,1.05) -- (-1.15,1.05);
+  \draw[edge] (-2.15,0.72) -- (-1.55,0.72) -- (-0.95,0.72);
 
-  \node[small label, anchor=east] at (0.4,1.05) {$B_3/C_3$};
-  \foreach \x in {0.8,1.4,2.0} {
-    \node[blue dot] at (\x,1.05) {};
+  \foreach \x in {0.7,1.3,1.9} {
+    \node[blue dot] at (\x,0.72) {};
   }
-  \draw[edge] (0.8,1.05) -- (1.4,1.05);
-  \draw[edge] (1.4,1.11) -- (2.0,1.11);
-  \draw[edge] (1.4,0.99) -- (2.0,0.99);
-  \node[small label] at (1.7,1.36) {$4$};
+  \draw[edge] (0.7,0.72) -- (1.3,0.72);
+  \draw[edge] (1.3,0.79) -- (1.9,0.79);
+  \draw[edge] (1.3,0.65) -- (1.9,0.65);
 
-  \node[small label, anchor=east] at (-2.75,-0.45) {$D_4$};
-  \node[blue dot] (d0) at (-1.75,-0.45) {};
-  \node[blue dot] (d1) at (-2.35,-0.45) {};
-  \node[blue dot] (d2) at (-1.15,-0.45) {};
-  \node[blue dot] (d3) at (-1.75,0.15) {};
+  \node[blue dot] (d0) at (-1.55,-0.55) {};
+  \node[blue dot] (d1) at (-2.15,-0.55) {};
+  \node[blue dot] (d2) at (-0.95,-0.55) {};
+  \node[blue dot] (d3) at (-1.55,0.05) {};
   \draw[edge] (d1) -- (d0) -- (d2);
   \draw[edge] (d0) -- (d3);
 
-  \node[small label, anchor=east] at (0.4,-0.45) {$\widetilde A_2$};
-  \node[blue dot] (a1) at (0.95,-0.85) {};
-  \node[blue dot] (a2) at (1.95,-0.85) {};
-  \node[blue dot] (a3) at (1.45,0.0) {};
+  \node[blue dot] (a1) at (0.8,-0.9) {};
+  \node[blue dot] (a2) at (1.8,-0.9) {};
+  \node[blue dot] (a3) at (1.3,-0.05) {};
   \draw[edge] (a1) -- (a2) -- (a3) -- (a1);
 
-  \node[small label, align=center] at (0,-1.35)
-    {unlabeled edges have braid parameter \(m=3\)};
 \end{tikzpicture}
 
 \tikzsetnextfilename{qsym-nsym-zero-hecke}
 \begin{tikzpicture}[line cap=round,line join=round]
-  \useasboundingbox (-3.55,-1.75) rectangle (3.55,1.75);
+  \useasboundingbox (-2.55,-1.45) rectangle (2.55,1.45);
 
-  \node[draw=black, rounded corners=3pt, fill=iconblue!14,
-    minimum width=1.85cm, minimum height=0.72cm, align=center] (q) at (-2.05,0.82)
-    {\(\mathrm{QSym}\)\\[-1pt]\scriptsize modules};
-  \node[draw=black, rounded corners=3pt, fill=softgreen!16,
-    minimum width=1.85cm, minimum height=0.72cm, align=center] (n) at (2.05,0.82)
-    {\(\mathrm{NSym}\)\\[-1pt]\scriptsize projectives};
-  \node[draw=black, rounded corners=3pt, fill=softorange!18,
-    minimum width=2.15cm, minimum height=0.72cm, align=center] (h) at (0,-0.82)
-    {\(H_n(0)\)\\[-1pt]\scriptsize type \(A\) 0-Hecke};
+  \node[draw=black, rounded corners=4pt, fill=iconblue!14,
+    minimum width=1.18cm, minimum height=0.78cm] (q) at (-1.65,0.62) {};
+  \node[draw=black, rounded corners=4pt, fill=softgreen!16,
+    minimum width=1.18cm, minimum height=0.78cm] (n) at (1.65,0.62) {};
+  \node[draw=black, rounded corners=4pt, fill=softorange!18,
+    minimum width=1.28cm, minimum height=0.82cm] (h) at (0,-0.75) {};
 
-  \draw[edge, <->, >=Stealth] (q) -- node[small label, above]
-    {graded dual} (n);
-  \draw[edge, ->, >=Stealth] (h) -- node[small label, left, sloped]
-    {characteristic} (q);
-  \draw[edge, ->, >=Stealth] (h) -- node[small label, right, sloped]
-    {projectives} (n);
+  \draw[edge, <->, >=Stealth] (q) -- (n);
+  \draw[edge, ->, >=Stealth] (h) -- (q);
+  \draw[edge, ->, >=Stealth] (h) -- (n);
 
-  \node[small label, align=center] at (-2.05,-1.45)
-    {\(F_\alpha\) from simples};
-  \node[small label, align=center] at (2.05,-1.45)
-    {ribbons from projectives};
-  \node[small label, align=center] at (0,1.48)
-    {induction and restriction give product and coproduct};
+  \begin{scope}[shift={(-1.98,0.82)}, scale=0.18]
+    \foreach \x/\y in {0/0,1/0,0/-1,0/-2,1/-2} {
+      \filldraw[fill=iconblue!48, draw=black, line width=0.45pt]
+        (\x,\y) rectangle ++(1,-1);
+    }
+  \end{scope}
+  \begin{scope}[shift={(1.28,0.82)}, scale=0.2]
+    \foreach \x/\y/\c in {0/0/softgreen,1/0/softgreen,0/-1/softgreen} {
+      \filldraw[fill=\c!45, draw=black, line width=0.45pt,
+        rounded corners=0.5pt] (\x,\y) rectangle ++(0.78,-0.5);
+    }
+  \end{scope}
+  \begin{scope}[shift={(-0.29,-0.55)}, scale=0.35]
+    \node[blue dot, minimum size=4pt] (a) at (0,0) {};
+    \node[blue dot, minimum size=4pt] (b) at (0.72,0) {};
+    \node[blue dot, minimum size=4pt] (c) at (0,-0.62) {};
+    \node[blue dot, minimum size=4pt] (d) at (0.72,-0.62) {};
+    \draw[edge, ->, >=Stealth] (a) -- (b);
+    \draw[edge, ->, >=Stealth] (a) -- (c);
+    \draw[edge, ->, >=Stealth] (b) -- (d);
+    \draw[edge, ->, >=Stealth] (c) -- (d);
+  \end{scope}
 \end{tikzpicture}
 
 \tikzsetnextfilename{hive-rhombus-inequalities}
 \begin{tikzpicture}[line cap=round,line join=round]
-  \useasboundingbox (-3.45,-1.45) rectangle (3.45,1.45);
+  \useasboundingbox (-2.25,-1.35) rectangle (2.25,1.35);
 
-  \begin{scope}[scale=0.55, shift={(-2.1,-1.7)}]
+  \begin{scope}[scale=0.63, shift={(-2.0,-1.9)}]
     \foreach \i in {0,...,4} {
       \foreach \j in {0,...,\i} {
         \coordinate (h\i\j) at ({\j+0.5*(4-\i)},{0.86*\i});
-        \node[blue dot] at (h\i\j) {};
       }
     }
+    \fill[softorange!32] (h11) -- (h21) -- (h32) -- (h22) -- cycle;
+    \fill[softgreen!30] (h10) -- (h20) -- (h31) -- (h21) -- cycle;
+    \fill[softred!24] (h21) -- (h31) -- (h42) -- (h32) -- cycle;
     \foreach \i in {0,...,3} {
       \pgfmathtruncatemacro{\next}{\i+1}
       \foreach \j in {0,...,\i} {
@@ -172,16 +167,18 @@
         \draw[edge] (h\i\j) -- (h\i\the\numexpr\j+1\relax);
       }
     }
-    \fill[softorange!28] (h21) -- (h31) -- (h42) -- (h32) -- cycle;
-    \draw[softorange, line width=2pt] (h21) -- (h31) -- (h42) -- (h32)
+    \draw[softorange, line width=2.1pt] (h11) -- (h21) -- (h32) -- (h22)
       -- cycle;
+    \draw[softgreen, line width=2.1pt] (h10) -- (h20) -- (h31) -- (h21)
+      -- cycle;
+    \draw[softred, line width=2.1pt] (h21) -- (h31) -- (h42) -- (h32)
+      -- cycle;
+    \foreach \i in {0,...,4} {
+      \foreach \j in {0,...,\i} {
+        \node[blue dot] at (h\i\j) {};
+      }
+    }
   \end{scope}
-
-  \node[small label, align=center] at (1.45,0.55)
-    {each small rhombus gives\\a concavity inequality};
-  \node[small label, align=center] at (1.45,-0.35)
-    {\(a+d\geq b+c\)};
-  \draw[edge, ->, >=Stealth] (0.25,0.2) -- (-0.42,0.22);
 \end{tikzpicture}
 
 \end{document}

@@ -47,7 +47,7 @@ variables recover ordinary counts.
 Let $a_n$ be the number of binary words of length $n$ with no consecutive ones.
 We use two states, recording whether the last letter is $0$ or $1$.  If
 \[
-  b_n =
+  \bvec_n =
   \begin{pmatrix}
   b_n^{(0)}\\
   b_n^{(1)}
@@ -55,13 +55,13 @@ We use two states, recording whether the last letter is $0$ or $1$.  If
 \]
 records the number of valid words ending in $0$ and $1$, then
 \[
-  b_{n+1}
+  \bvec_{n+1}
   =
   \begin{pmatrix}
   1 & 1\\
   1 & 0
   \end{pmatrix}
-  b_n .
+  \bvec_n .
 \]
 Thus $a_n=b_n^{(0)}+b_n^{(1)}$, and one obtains
 \[
@@ -145,7 +145,10 @@ pairs $12$ and $34$.  The shaded cells in the following figure are precisely
 the rows recorded by the boundary state.
 
 \begin{figure}
-\svgimg[width=0.9\textwidth]{svg-images/transfer-matrix-boundary-states.svg}{The five boundary states for height-four tilings by unit squares and $2\times2$ squares.}
+\svgimg[width=0.55\textwidth]{svg-images/transfer-matrix-boundary-states.svg}{
+The five boundary states for height-four tilings by unit squares and
+$2\times2$ squares, shown from left to right as \(\emptyset\), \(12\),
+\(23\), \(34\), and \(1234\).}
 \end{figure}
 
 Using column vectors, with rows indexed by the next state and columns indexed
@@ -163,6 +166,18 @@ by the current state in the order above, the transfer matrix is
 For example, from the empty state one may start no large square, one large
 square in rows $12$, $23$, or $34$, or two large squares in rows $12$ and
 $34$. This explains the first column of $A(t)$.
+
+For \(n=2\), the coefficient \(P_2(t)=1+3t+t^2\) has the following direct
+interpretation.  There is one tiling using no \(2\times2\) square, three
+tilings using one \(2\times2\) square, and one tiling using two \(2\times2\)
+squares.
+
+\begin{figure}
+\svgimg[width=0.7\textwidth]{svg-images/transfer-matrix-tilings-4x2.svg}{
+The five tilings of a $4\times2$ rectangle by unit squares and $2\times2$
+squares, ordered by large-square row sets \(\emptyset\), \(12\), \(23\),
+\(34\), and \(12,34\).}
+\end{figure}
 
 The desired polynomial is the empty-to-empty entry
 \[

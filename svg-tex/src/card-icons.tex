@@ -1,4 +1,5 @@
 \documentclass[tikz, border=0mm]{standalone}
+\usepackage{amsfonts}
 \usetikzlibrary{calc}
 \newcommand{\tikzsetnextfilename}[1]{}
 
@@ -733,28 +734,8 @@
 \begin{tikzpicture}[icon]
   \cardframe
 
-  % A small Schubert-calculus icon: a 2x3 Grassmannian rectangle with
-  % two incidence lines meeting in a highlighted Schubert cell.
-  \begin{scope}[xscale=0.34,yscale=0.34,shift={(-1.55,-1.05)}]
-    % 2 by 3 rectangle of Schubert boxes
-    \foreach \x in {0,1,2} {
-      \foreach \y in {0,1} {
-        \filldraw[white, draw=black] (\x,\y) rectangle ++(1,1);
-      }
-    }
-
-    % Partition (2,1)
-    \filldraw[iconblue, draw=black] (0,1) rectangle ++(1,1);
-    \filldraw[iconblue, draw=black] (1,1) rectangle ++(1,1);
-    \filldraw[iconblue, draw=black] (0,0) rectangle ++(1,1);
-
-    % Incidence lines
-    \draw[black, thinner] (-0.15,-0.15) -- (3.15,2.15);
-    \draw[black, thinner] (-0.15,2.15) -- (3.15,-0.15);
-
-    % Intersection point
-    \node[node-blue] at (1.5,1) {};
-  \end{scope}
+  \node[text=iconblue, font=\boldmath\fontsize{32}{32}\selectfont] at (0,0)
+    {$\mathfrak{S}_w$};
 \end{tikzpicture}
 
 
@@ -1019,30 +1000,8 @@
 \begin{tikzpicture}[icon]
   \cardframe
 
-  % Grothendieck-group relation: a middle object split into subobject
-  % and quotient, drawn as bundle-like blocks.
-  \draw[black, thinner, ->, >=stealth] (-0.65,0.35) -- (-0.18,0.35);
-  \draw[black, thinner, ->, >=stealth] (0.18,0.35) -- (0.65,0.35);
-
-  \filldraw[white, draw=black, rounded corners=0.08cm]
-    (-0.82,0.18) rectangle (-0.55,0.52);
-  \filldraw[iconblue, draw=black, rounded corners=0.08cm]
-    (-0.16,0.12) rectangle (0.16,0.58);
-  \filldraw[white, draw=black, rounded corners=0.08cm]
-    (0.55,0.18) rectangle (0.82,0.52);
-
-  \draw[black, thinner] (-0.55,-0.35) -- (-0.15,-0.35);
-  \draw[black, thinner] (0.15,-0.35) -- (0.55,-0.35);
-  \draw[black, thinner] (0,-0.55) -- (0,-0.15);
-
-  \begin{scope}[yshift=-0.35cm]
-    \filldraw[white, draw=black, rounded corners=0.07cm]
-      (-0.72,-0.18) rectangle (-0.38,0.18);
-    \filldraw[iconblue, draw=black, rounded corners=0.07cm]
-      (-0.17,-0.18) rectangle (0.17,0.18);
-    \filldraw[white, draw=black, rounded corners=0.07cm]
-      (0.38,-0.18) rectangle (0.72,0.18);
-  \end{scope}
+  \node[text=iconblue, font=\boldmath\fontsize{70}{70}\selectfont] at (0,0)
+    {$K$};
 \end{tikzpicture}
 
 
@@ -1085,7 +1044,6 @@
 \begin{tikzpicture}[icon]
   \cardframe
 
-  % The standard involution is the most recognizable operator here.
   \node[text=iconblue, font=\boldmath\fontsize{74}{74}\selectfont] at (0,0.02)
     {$\omega$};
 \end{tikzpicture}
@@ -1241,6 +1199,23 @@
   \foreach \p in {a,b,c,d,e} {
     \node[node-blue] at (\p) {};
   }
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-about}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % Atom-like cue for site background and project information.
+  \begin{scope}[line width=0.65mm]
+    \draw[iconblue] (0,0) ellipse (0.62 and 0.2);
+    \draw[iconblue, rotate=60] (0,0) ellipse (0.62 and 0.2);
+    \draw[iconblue, rotate=-60] (0,0) ellipse (0.62 and 0.2);
+  \end{scope}
+  \node[node-blue, minimum size=8pt] at (0,0) {};
+  \node[node-black, minimum size=5pt] at (0.62,0) {};
+  \node[node-black, minimum size=5pt] at (-0.31,0.54) {};
+  \node[node-black, minimum size=5pt] at (-0.31,-0.54) {};
 \end{tikzpicture}
 
 

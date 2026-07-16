@@ -42,46 +42,50 @@ root systems, Weyl groups, Lie groups, Hecke algebras, Schubert calculus, and
 families of combinatorial objects.  The following table records the most
 common translations.
 
-\begin{array}{llll}
+\begin{tabular}{llll}
 \toprule
-\text{Type} & \text{Weyl group} & \text{Combinatorial model} & \text{Typical pages}\\
+Type & Weyl group & Combinatorial model & Typical pages\\
 \midrule
-A_{n-1}
-  & \symS_n
-  & \text{permutations}
-  & \text{\hyperref[permutationMatrix]{permutations}, \hyperref[schubert]{Schubert}}\\
-B_n
-  & \symB_n
-  & \text{signed permutations}
-  & \text{\hyperref[permutationsTypeB]{type \(B\) permutations}}\\
-C_n
-  & \symB_n
-  & \text{signed permutations}
-  & \text{\hyperref[schurSymplectic]{symplectic Schur}}\\
-D_n
-  & \symD_n
-  & \text{even signed permutations}
-  & \text{\hyperref[weylLieGroups]{root systems}}\\
-\widetilde A_{n-1}
-  & \text{affine symmetric group}
-  & \text{affine permutations}
-  & \text{\hyperref[notationAffinePermutations]{affine permutations}}\\
+$A_{n-1}$
+  & $\symS_n$
+  & permutations
+  & \hyperref[permutationMatrix]{permutations}, \hyperref[schubert]{Schubert}\\
+$B_n$
+  & $\symB_n$
+  & signed permutations
+  & \hyperref[permutationsTypeB]{type B permutations}\\
+$C_n$
+  & $\symB_n$
+  & signed permutations
+  & \hyperref[schurSymplectic]{symplectic Schur}\\
+$D_n$
+  & $\symD_n$
+  & even signed permutations
+  & \hyperref[weylLieGroups]{root systems}\\
+$\widetilde A_{n-1}$
+  & affine symmetric group
+  & affine permutations
+  & \hyperref[notationAffinePermutations]{affine permutations}\\
 \bottomrule
-\end{array}
+\end{tabular}
 
-\svgimg[width=0.78\textwidth]{svg-images/coxeter-types-diagrams.svg}{
+\begin{example}[Coxeter diagrams]
+\svgimg[width=0.55\textwidth]{svg-images/coxeter-types-diagrams.svg}{
+Coxeter diagrams for type A, type B/C, type D, and affine type A.}
+
 Small Coxeter diagrams for type \(A\), type \(B/C\), type \(D\), and affine
-type \(A\).}
+type \(A\).  An unlabeled edge denotes braid parameter \(m=3\), while the
+doubled edge in type \(B/C\) records \(m=4\).
+\end{example}
 
 Types \(B_n\) and \(C_n\) have different crystallographic root systems but the
 same Weyl group, the hyperoctahedral group.  This is why type \(B\) and type
 \(C\) combinatorics often share signed-permutation models while differing in
 root-length conventions, representation theory, or geometry.
 
-In these diagrams an unlabeled edge denotes braid parameter \(m=3\), while
-the doubled edge in type \(B/C\) records \(m=4\).  The diagram is often the
-fastest translation layer between a presentation by generators and relations
-and the corresponding root-system or Weyl-group model.
+The diagram is often the fastest translation layer between a presentation by
+generators and relations and the corresponding root-system or Weyl-group
+model.
 
 \section[coxeterCombinatorics]{Coxeter combinatorics}
 
@@ -103,18 +107,16 @@ roots, coroots, chambers, and Weyl groups.
 
 One practical way to read the type dictionary is to ask what replaces an
 ordinary permutation statistic:
-\[
-\begin{array}{lll}
+\begin{tabular}{lll}
 \toprule
-\text{Type} & \text{Permutation data} & \text{Typical statistic}\\
+Type & Permutation data & Typical statistic\\
 \midrule
-A & \text{ordinary permutations} & \text{descents, inversions, excedances}\\
-B/C & \text{signed permutations} & \text{type \(B\) descents and sign changes}\\
-D & \text{even signed permutations} & \text{type \(D\) descents}\\
-\widetilde A & \text{affine permutations} & \text{cyclic descents and windows}\\
+$A$ & ordinary permutations & descents, inversions, excedances\\
+$B/C$ & signed permutations & type B descents and sign changes\\
+$D$ & even signed permutations & type D descents\\
+$\widetilde A$ & affine permutations & cyclic descents and windows\\
 \bottomrule
-\end{array}
-\]
+\end{tabular}
 This is often the fastest route from a type \(A\) theorem to a type \(B\),
 type \(D\), or affine question: replace the indexing set, replace the descent
 notion, and then check which proof ingredients still survive.
@@ -122,8 +124,10 @@ notion, and then check which proof ingredients still survive.
 \section[coxeterTypeA]{Type \(A\)}
 
 Type \(A_{n-1}\) is the symmetric group \(\symS_n\).  It is the ambient type
-for ordinary Schur functions, Schubert polynomials, RSK, Young tableaux,
-ordinary parking functions, and most of the basic examples on this site.
+for ordinary \hyperref[schurFunction]{Schur functions},
+\hyperref[schubert]{Schubert polynomials}, \hyperref[rskCorrespondence]{RSK},
+\hyperref[prelimTableaux]{Young tableaux}, ordinary parking functions, and
+most of the basic examples on this site.
 
 In type \(A\), the root system can be realized as
 \[

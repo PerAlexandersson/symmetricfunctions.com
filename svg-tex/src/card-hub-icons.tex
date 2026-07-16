@@ -42,58 +42,36 @@
 \tikzsetnextfilename{card-coxeterGroups}
 \begin{tikzpicture}[icon]
   \cardframe
-  \begin{scope}[shift={(-0.62,0.35)}]
-    \draw (-0.12,0) -- (0.28,0) -- (0.68,0);
-    \foreach \x in {-0.12,0.28,0.68} {
-      \node[node-blue] at (\x,0) {};
-    }
-  \end{scope}
-  \begin{scope}[shift={(-0.58,-0.2)}]
-    \draw (-0.12,0) -- (0.26,0);
-    \draw (0.26,0.055) -- (0.66,0.055);
-    \draw (0.26,-0.055) -- (0.66,-0.055);
-    \foreach \x in {-0.12,0.26,0.66} {
-      \node[node-blue] at (\x,0) {};
-    }
-  \end{scope}
-  \begin{scope}[shift={(0.05,-0.52)}, scale=0.72]
-    \coordinate (c) at (0,0);
-    \coordinate (a) at (-0.45,0);
-    \coordinate (b) at (0.45,0);
-    \coordinate (d) at (0,0.45);
-    \draw (a) -- (c) -- (b);
-    \draw (c) -- (d);
-    \foreach \p in {a,b,c,d} {
-      \node[node-blue] at (\p) {};
-    }
-  \end{scope}
+  \coordinate (a) at (-0.62,0);
+  \coordinate (b) at (-0.12,0);
+  \coordinate (c) at (0.46,0.38);
+  \coordinate (d) at (0.46,-0.38);
+  \draw (a) -- (b) -- (c);
+  \draw (b) -- (d);
+  \foreach \p in {a,b,c,d} {
+    \node[node-blue, minimum size=8pt] at (\p) {};
+  }
 \end{tikzpicture}
 
 \tikzsetnextfilename{card-ehrhart}
 \begin{tikzpicture}[icon]
   \cardframe
-  \begin{scope}[shift={(-0.58,-0.58)}, scale=0.47]
-    \draw[step=0.5, fine, gray!55] (0,0) grid (2.5,2.5);
-    \fill[iconblue!35, draw=black, line width=0.55mm]
-      (0.5,0.5) -- (2.0,0.5) -- (2.0,1.5) -- (1.0,2.0) -- (0.5,1.0)
-      -- cycle;
-    \foreach \x in {0,0.5,...,2.5} {
-      \foreach \y in {0,0.5,...,2.5} {
-        \fill[black] (\x,\y) circle (0.045);
-      }
+  \fill[iconblue!14, draw=black, line width=0.7mm]
+    (-0.62,-0.62) rectangle (0.62,0.62);
+  \foreach \x in {-0.62,0,0.62} {
+    \foreach \y in {-0.62,0,0.62} {
+      \fill[black] (\x,\y) circle (0.045);
     }
-  \end{scope}
-  \draw[iconblue, ->, >=Stealth, line width=0.8mm]
-    (0.25,-0.25) to[out=20,in=-140] (0.62,0.22);
-  \draw[black, thinner] (0.38,0.18) -- (0.5,0.43) -- (0.63,0.18)
-    -- (0.76,0.43);
-  \draw[iconblue, thinner] (0.38,0.18) -- (0.76,0.18);
+  }
+  \foreach \p in {(-0.62,-0.62),(-0.62,0.62),(0.62,-0.62),(0.62,0.62)} {
+    \node[node-blue, minimum size=8pt] at \p {};
+  }
 \end{tikzpicture}
 
 \tikzsetnextfilename{card-quasiSymmetricFunctions}
 \begin{tikzpicture}[icon]
   \cardframe
-  \begin{scope}[shift={(-0.54,0.62)}, scale=0.42]
+  \begin{scope}[shift={(-0.62,0.48)}, scale=0.42]
     \foreach \x/\y/\w in {0/0/2,0/-1/1,0/-2/3} {
       \foreach \i in {0,...,\w} {
         \ifnum\i<\w
@@ -103,30 +81,20 @@
       }
     }
   \end{scope}
-  \begin{scope}[shift={(0.16,0.45)}, scale=0.34]
-    \filldraw[fill=icongreen!65, draw=black, line width=0.6mm]
-      (0,0) rectangle (1,-1);
-    \filldraw[fill=icongreen!45, draw=black, line width=0.6mm]
-      (1,0) rectangle (2,-1);
-    \filldraw[fill=icongreen!25, draw=black, line width=0.6mm]
-      (0,-1) rectangle (1,-2);
-  \end{scope}
-  \draw[black, thinner, ->, >=Stealth] (-0.12,0.08) -- (0.32,0.08);
-  \draw[black, thinner, ->, >=Stealth] (0.33,-0.18) -- (-0.1,-0.42);
 \end{tikzpicture}
 
 \tikzsetnextfilename{card-slideM}
 \begin{tikzpicture}[icon]
   \cardframe
-  \begin{scope}[shift={(-0.58,0.48)}, scale=0.38]
+  \begin{scope}[shift={(-0.78,0.46)}, scale=0.25]
     \foreach \x/\y in {0/0,1/0,0/-1,2/-1,3/-1,1/-2,2/-2} {
       \filldraw[fill=iconblue!52, draw=black, line width=0.55mm]
         (\x,\y) rectangle ++(1,-1);
     }
   \end{scope}
-  \draw[iconblue, ->, >=Stealth, line width=0.85mm]
-    (-0.33,-0.42) -- (0.42,-0.42);
-  \begin{scope}[shift={(-0.08,0.23)}, scale=0.25]
+  \draw[iconblue, ->, >=Stealth, line width=0.75mm]
+    (-0.18,-0.18) -- (0.2,-0.18);
+  \begin{scope}[shift={(-0.16,0.45)}, scale=0.23]
     \foreach \x/\y in {0/0,1/0,2/0,0/-1,1/-1,2/-1,3/-1,1/-2} {
       \filldraw[fill=iconorange!60, draw=black, line width=0.55mm]
         (\x,\y) rectangle ++(1,-1);
@@ -156,7 +124,7 @@
 \tikzsetnextfilename{card-spechtModules}
 \begin{tikzpicture}[icon]
   \cardframe
-  \begin{scope}[shift={(-0.68,0.45)}, scale=0.38]
+  \begin{scope}[shift={(-0.66,0.46)}, scale=0.29]
     \filldraw[fill=iconblue!55, draw=black, line width=0.55mm]
       (0,0) rectangle ++(1,-1);
     \filldraw[fill=iconblue!30, draw=black, line width=0.55mm]
@@ -165,9 +133,9 @@
       (0,-1) rectangle ++(1,-1);
     \draw[iconorange, line width=0.8mm] (0.5,0.18) -- (0.5,-2.18);
   \end{scope}
-  \draw[black, thinner, ->, >=Stealth] (-0.17,0.08) -- (0.22,0.08);
-  \node[font=\large] at (0.02,-0.35) {$-$};
-  \begin{scope}[shift={(0.32,0.45)}, scale=0.38]
+  \draw[black, fine, ->, >=Stealth] (-0.12,0.1) -- (0.12,0.1);
+  \draw[black, fine] (-0.08,-0.25) -- (0.08,-0.25);
+  \begin{scope}[shift={(0.22,0.46)}, scale=0.29]
     \filldraw[fill=iconorange!60, draw=black, line width=0.55mm]
       (0,0) rectangle ++(1,-1);
     \filldraw[fill=iconblue!30, draw=black, line width=0.55mm]
@@ -177,7 +145,7 @@
     \draw[iconorange, line width=0.8mm] (0.5,0.18) -- (0.5,-2.18);
   \end{scope}
   \draw[iconblue, line width=0.85mm, rounded corners=0.05cm]
-    (-0.58,-0.48) -- (-0.18,-0.68) -- (0.34,-0.68) -- (0.66,-0.48);
+    (-0.58,-0.5) -- (-0.18,-0.68) -- (0.34,-0.68) -- (0.62,-0.5);
 \end{tikzpicture}
 
 \tikzsetnextfilename{card-zeroHeckeAlgebra}
@@ -191,43 +159,39 @@
   \draw[black, thinner, ->, >=Stealth] (c) -- (d);
   \draw[black, thinner, ->, >=Stealth] (a) -- (c);
   \draw[black, thinner, ->, >=Stealth] (b) -- (d);
-  \draw[iconblue, line width=0.8mm, ->, >=Stealth]
-    (-0.12,0) arc (145:-145:0.26);
-  \draw[iconblue, line width=0.8mm, ->, >=Stealth]
-    (0.12,0) arc (-35:215:0.26);
+  \draw[iconblue, line width=0.55mm, ->, >=Stealth]
+    (-0.2,0.02) arc (160:-155:0.18);
+  \draw[iconblue, line width=0.55mm, ->, >=Stealth]
+    (0.2,-0.02) arc (-20:195:0.18);
 \end{tikzpicture}
 
 \tikzsetnextfilename{card-symmetricFunctions}
 \begin{tikzpicture}[icon]
   \cardframe
-  \begin{scope}[shift={(-0.62,0.58)}, scale=0.42]
+  \begin{scope}[shift={(-0.58,0.56)}, scale=0.43]
     \foreach \x/\y in {0/0,1/0,2/0,0/-1,1/-1,0/-2} {
       \filldraw[fill=iconblue!50, draw=black, line width=0.55mm]
         (\x,\y) rectangle ++(1,-1);
     }
   \end{scope}
-  \draw[black, thinner, ->, >=Stealth] (0.12,0.42) arc (130:-160:0.45);
-  \draw[black, thinner, ->, >=Stealth] (-0.12,-0.42) arc (-50:240:0.45);
-  \foreach \p in {(0.46,0.46),(0.62,0.1),(0.36,-0.36)} {
-    \node[node-blue] at \p {};
-  }
 \end{tikzpicture}
 
 \tikzsetnextfilename{card-nonComFunctions}
 \begin{tikzpicture}[icon]
   \cardframe
-  \foreach \x/\y/\c in {-0.63/0.36/iconblue,-0.18/0.36/icongreen,0.27/0.36/iconorange} {
+  \foreach \x/\y/\c in {-0.58/0.42/iconblue,-0.16/0.42/icongreen,0.26/0.42/iconorange} {
     \filldraw[fill=\c!65, draw=black, line width=0.55mm, rounded corners=0.04cm]
       (\x,\y) rectangle ++(0.38,-0.3);
   }
-  \foreach \x/\y/\c in {-0.42/-0.16/icongreen,0.03/-0.16/iconblue,0.48/-0.16/iconorange} {
+  \foreach \x/\y/\c in {-0.58/-0.22/icongreen,-0.16/-0.22/iconblue,0.26/-0.22/iconorange} {
     \filldraw[fill=\c!65, draw=black, line width=0.55mm, rounded corners=0.04cm]
       (\x,\y) rectangle ++(0.38,-0.3);
   }
-  \draw[black, thinner, ->, >=Stealth] (-0.45,0.05) -- (-0.25,-0.08);
-  \draw[black, thinner, ->, >=Stealth] (-0.0,0.05) -- (0.2,-0.08);
-  \draw[black, thinner] (-0.55,-0.6) -- (0.55,-0.6);
-  \draw[iconblue, thinner, ->, >=Stealth] (0.38,-0.6) -- (0.62,-0.6);
+  \draw[black, fine, ->, >=Stealth] (-0.39,0.08) -- (-0.39,-0.12);
+  \draw[black, fine, ->, >=Stealth] (0.03,0.08) -- (0.03,-0.12);
+  \draw[black, fine, ->, >=Stealth] (0.45,0.08) -- (0.45,-0.12);
+  \draw[iconblue, line width=0.65mm, ->, >=Stealth]
+    (-0.12,-0.65) -- (0.25,-0.65);
 \end{tikzpicture}
 
 \tikzsetnextfilename{card-wordList}
@@ -247,7 +211,7 @@
 \tikzsetnextfilename{card-hivePolytopes}
 \begin{tikzpicture}[icon]
   \cardframe
-  \begin{scope}[scale=0.34, shift={(-1.5,-1.45)}]
+  \begin{scope}[scale=0.31, shift={(-1.72,-1.35)}]
     \foreach \i in {0,...,4} {
       \foreach \j in {0,...,\i} {
         \coordinate (p\i\j) at ({\j+0.5*(4-\i)},{0.86*\i});
