@@ -180,21 +180,20 @@ Then $\jdt(T)$ is the same as the insertion tableau $\ins(w)$.
 In fact, \hyperref[rowInsertion]{row-insertion} can be emulated via jeu-de-taquin.
 
 \begin{example*}[Row insertion as jeu-de-taquin]
-For the word $w=213$, ordinary row insertion gives
-\[
-\emptyset \leftarrow 2 = \ytableaushort{2},
-\qquad
-\ytableaushort{2}\leftarrow 1 = \ytableaushort{1,2},
-\qquad
-\ytableaushort{1,2}\leftarrow 3 = \ytableaushort{13,2}.
-\]
+For the word $w=213$, ordinary row insertion gives the following successive
+tableaux.
+\begin{figure}
+\ytableaushort{2}
+\ytableaushort{1,2}
+\ytableaushort{13,2}
+\end{figure}
 The same tableau is obtained by placing the letters of $w$ on the
-anti-diagonal skew shape from the theorem above and rectifying:
-\[
+anti-diagonal skew shape from the theorem above and rectifying the first
+tableau below to the second.
+\begin{figure}
 \ytableaushort{{\none}{\none}3,{\none}1,2}
-\xrightarrow{\jdt}
-\ytableaushort{13,2}.
-\]
+\ytableaushort{13,2}
+\end{figure}
 \end{example*}
 
 For a skew SSYT $T$, $\ins(\rw(T)) = \jdt(T)$.  In other words,

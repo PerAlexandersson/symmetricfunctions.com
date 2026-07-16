@@ -7,12 +7,32 @@
 	<meta name="description" content="Search the symmetric functions catalog." />
 	<meta name="robots" content="noindex, follow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		try {
+			var themePreference = localStorage.getItem('symcat-theme');
+			if (!themePreference) {
+				var themeCookie = document.cookie.match(/(?:^|;\s*)symcat-theme=(dark|light)\b/);
+				themePreference = themeCookie ? themeCookie[1] : null;
+			}
+			if (!themePreference) {
+				var oldThemePreference = localStorage.getItem('dark-mode');
+				if (oldThemePreference === 'on') themePreference = 'dark';
+				if (oldThemePreference === 'off') themePreference = 'light';
+			}
+			if (themePreference === 'dark') {
+				document.documentElement.classList.add('dark');
+			} else if (themePreference === 'light') {
+				document.documentElement.classList.add('light');
+			}
+		} catch (e) {}
+	</script>
 	<link rel="icon" type="image/svg+xml" href="svg-images/logo.svg">
 	<link rel="apple-touch-icon" href="icons/icon.png">
 	<link rel="alternate icon" href="icons/favicon.png">
 	<link rel="stylesheet" href="./style.css">
 	<link href="./_pagefind/pagefind-ui.css" rel="stylesheet">
 	<script src="./_pagefind/pagefind-ui.js"></script>
+	<script src="./site.js" defer></script>
 	<script>
 	  window.addEventListener('DOMContentLoaded', function() {
 	    new PagefindUI({ element: "#search", showImages: false, resetStyles: false });
@@ -35,8 +55,15 @@
     <nav id="topnav" aria-label="Main navigation">
       <a href="index.htm" class="toplink"><img src="icons/icon-home.svg" alt="Home" class="topnav-icon"/> Index</a>
       <a href="polynomialList.htm" class="toplink"><img src="icons/icon-database.svg" alt="Symmetric functions" class="topnav-icon"/> Symmetric functions</a>
+      <a href="polynomial-relations.htm" class="toplink"><img src="icons/icon-chart-line.svg" alt="Relations" class="topnav-icon"/> Relations</a>
       <a href="search.htm" class="toplink"><img src="icons/icon-search.svg" alt="Search" class="topnav-icon"/> Search</a>
+      <a href="https://www.arxiv.symmetricfunctions.com" class="toplink" target="_blank" rel="noopener" style="background-color:#b31b1b;color:#fff;"><img src="icons/icon-book.svg" alt="arXiv" class="topnav-icon" style="filter:brightness(0) invert(1);"/> arXiv++</a>
+      <a href="https://poly.symmetricfunctions.com" class="toplink" target="_blank" rel="noopener" style="background-color:#2a6496;color:#fff;"><img src="icons/icon-crosshairs.svg" alt="Poly" class="topnav-icon" style="filter:brightness(0) invert(1);"/> Polynomials</a>
       <a href="https://ko-fi.com/W7W41VN3WK" class="toplink" target="_blank" rel="noopener" style="background-color:#f48525;color:#fff;">&#9749; Support</a>
+      <button type="button" class="toplink theme-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+      </button>
     </nav>
 </header>
 

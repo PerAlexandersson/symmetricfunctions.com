@@ -4,9 +4,9 @@
 \section[schubertCalculus]{Schubert calculus}
 
 \defin{Schubert calculus}\label{schubertCalculusDefinition} is the use of
-\hyperref[schubertVarietyDefinition]{Schubert varieties} and their intersection
+\hyperref[schubertVarietiesAndMatroids]{Schubert varieties} and their intersection
 products to solve enumerative problems.  In the most classical case, this means
-computing in the cohomology ring of a \hyperref[grassmannian]{Grassmannian}.
+computing in the cohomology ring of a \hyperref[grassmannianVarieties]{Grassmannian}.
 The combinatorics is governed by partitions, Young diagrams,
 \hyperref[schurS]{Schur polynomials},
 \hyperref[schubertCalculusPieri]{Pieri rules},
@@ -29,7 +29,8 @@ Let $V$ be an $n$-dimensional complex vector space.  The
 \defin{Grassmannian}\label{grassmannianDefinition} $\operatorname{Gr}(k,V)$,
 often written
 $\operatorname{Gr}(k,n)$, is the space of $k$-dimensional linear subspaces
-$W\subseteq V$.
+$W\subseteq V$; see also the \hyperref[grassmannianVarieties]{varieties page}
+for the Plücker-coordinate viewpoint.
 
 The projective interpretation is often the most concrete.  A $k$-dimensional
 linear subspace of $V=\setC^n$ gives a projective $(k-1)$-plane in
@@ -78,7 +79,9 @@ The corresponding \defin{Schubert variety}\label{schubertVarietyDefinition} is
   \right\}.
 \]
 Its cohomology class is denoted $\sigma_\lambda$, and its codimension is
-$|\lambda|$.
+$|\lambda|$.  These are the Grassmannian instances of the
+\hyperref[schubertVarietyGeometryDefinition]{Schubert varieties} described on
+the varieties page.
 
 The Schubert classes form an additive basis:
 \[
@@ -173,6 +176,9 @@ classes $\sigma_r$:
   \det\left(\sigma_{\lambda_i+j-i}\right)_{1\leq i,j\leq k},
 \]
 where $\sigma_0=1$ and $\sigma_r=0$ if $r<0$ or $r>n-k$.
+For the flag-variety polynomial analogue, compare the
+\hyperref[schubertDoubleGiambelliFormula]{Giambelli formula for double
+Schubert polynomials}.
 
 \begin{example*}[A Giambelli computation]
 In any Grassmannian whose rectangle contains $(2,1)$, we have
@@ -300,7 +306,7 @@ Then
   \end{cases}
 \]
 
-\begin{example*}
+\begin{example*}[A dual Schubert class in $\operatorname{Gr}(2,4)$]
 In $\operatorname{Gr}(2,4)$, the dual of $(1)$ is $(2,1)$, so
 \[
   \sigma_1\sigma_{2,1}=\sigma_{2,2}.
@@ -312,15 +318,17 @@ point-in-plane condition cut out one line.
 
 \section[schubertCalculusFlagVariety]{Flag varieties and Schubert polynomials}
 
-Schubert calculus on the \hyperref[completeFlagDefinition]{complete flag
+Schubert calculus on the \hyperref[flagVarieties]{complete flag
 variety} is indexed by permutations
 rather than by partitions.  The polynomial representatives are the
 \hyperref[schubert]{Schubert polynomials} $\schubert_w(\xvec)$ introduced by
 \name{Alain Lascoux} and \name{M.-P. Schützenberger}
 \cite{LascouxSchutzenberger1982}.
 
-For the full \hyperref[completeFlagDefinition]{flag variety} in $\setC^3$, with permutations written in one-line
-notation, the six Schubert polynomials are
+For the full \hyperref[flagVarieties]{flag variety} in $\setC^3$, with
+permutations written in one-line notation, the six
+\hyperref[schubertOperatorformula]{divided-difference Schubert polynomials}
+are
 \[
 \begin{array}{c|c}
 w & \schubert_w(x_1,x_2)\\
@@ -342,7 +350,9 @@ Therefore
   \schubert_{312}+\schubert_{231}.
 \]
 This is the flag-variety analogue of a Schubert-class multiplication
-computation.
+computation; Grassmannian permutations recover the Schur-polynomial subcase,
+as explained on the \hyperref[grassmannianPermutation]{Schubert polynomial}
+page.
 
 More generally, the problem of finding a positive combinatorial rule for the
 structure constants

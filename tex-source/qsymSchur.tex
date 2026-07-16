@@ -274,13 +274,13 @@ quasisymmetric Schur $Q$-functions expand positively in the
 \begin{example*}[A standard peak composition tableau]
 Rows in a peak composition diagram are indexed from bottom to top.  Thus the
 following displayed tableau has peak shape $(4,3,1)$:
-\[
+\begin{figure}
 \begin{ytableau}
 8 \\
 5&6&7 \\
 1&2&3&4
 \end{ytableau}
-\]
+\end{figure}
 It is a \defin{standard peak composition tableau}\label{standardPeakCompositionTableau}.
 Its upward descent set is
 $\{4,7\}$, so its peak composition is $(4,3,1)$.  Hence this tableau
@@ -555,12 +555,11 @@ later give a $0$-Hecke-module interpretation of this positivity
 % /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/dual_immaculate_site_example.rs
 \begin{example*}[A small dual immaculate expansion]
 For $\alpha=(2,1)$, the \defin{standard immaculate tableaux}\label{standardImmaculateTableau}
-are
-\[
+are the following two tableaux.
+\begin{figure}
 \ytableaushort{12,3}
-\qquad\text{and}\qquad
-\ytableaushort{13,2}.
-\]
+\ytableaushort{13,2}
+\end{figure}
 Their descent sets are $\{2\}$ and $\{1\}$, respectively, so their descent
 compositions are $(2,1)$ and $(1,2)$.  Hence
 \[
@@ -639,7 +638,7 @@ Equivalently,
 \]
 \end{theorem}
 
-\begin{example*}
+\begin{example*}[Immaculate hook lengths for $(2,1,2)$]
 For $\alpha=(2,1,2)$, the immaculate hook lengths are
 \[
   \begin{array}{cc}
@@ -654,15 +653,12 @@ and therefore
   \frac{5!}{5\cdot 1\cdot 3\cdot 2\cdot 1}=4.
 \]
 Indeed, the four standard immaculate tableaux of this shape are
-\[
+\begin{figure}
 \ytableaushort{12,3,45}
-\qquad
 \ytableaushort{13,2,45}
-\qquad
 \ytableaushort{14,2,35}
-\qquad
-\ytableaushort{15,2,34}.
-\]
+\ytableaushort{15,2,34}
+\end{figure}
 \end{example*}
 \name{Sarah Mason} and \name{Tianhao Xie} classify when skew immaculate
 functions are nonzero \cite{MasonXie2026}.  Their results compare the matrix
@@ -750,14 +746,13 @@ The functions $\rsdiSchur_\alpha$ are positive in the
 % Related Rust: /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/src/schur_qsym.rs
 % tests test_row_strict_dual_immaculate_paper_example_310 and
 % test_row_strict_dual_immaculate_matches_psi_small_degrees.
-\begin{example*}
+\begin{example*}[Row-strict dual immaculate example]
 For $\alpha=(1,2)$, the two packed row-strict immaculate tableaux, using
-entries $\{1,\dotsc,k\}$ for some $k$, are
-\[
+entries $\{1,\dotsc,k\}$ for some $k$, are the following.
+\begin{figure}
 \ytableaushort{1,12}
-\qquad
-\ytableaushort{1,23}.
-\]
+\ytableaushort{1,23}
+\end{figure}
 They have contents $(2,1)$ and $(1,1,1)$, respectively, and hence
 \[
   \rsdiSchur_{(1,2)}(\xvec)

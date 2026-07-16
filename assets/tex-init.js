@@ -58,6 +58,7 @@ window.KATEX_MACROS = {
         "\\det": "{\\mathrm{det}}",
         "\\dinv": "{\\mathrm{dinv}}",
         "\\exc": "{\\mathrm{exc}}",
+        "\\extSchur": "{\\mathcal{E}}",
         "\\fix": "{\\mathrm{fix}}",
         "\\ht": "{\\mathrm{ht}}",
         "\\ins": "{\\mathrm{ins}}",

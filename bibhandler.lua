@@ -198,6 +198,10 @@ local function is_safe_bibliography_url(url)
   return scheme == "http" or scheme == "https"
 end
 
+local function is_arxiv_container_title(container_title)
+  return tostring(container_title or ""):lower():match("arxiv") ~= nil
+end
+
 --- Scans item fields to find an arXiv ID.
 -- Priority: item.eprint > item.arxivid > regex in URL > regex in note
 local function find_arxiv_id(item)
@@ -265,8 +269,9 @@ local function format_venue_info(item)
   local month = extract_month(item)
   local arxivid = find_arxiv_id(item)
 
-  -- if it is arxiv preprint, then venue is arxiv. 
-  if arxivid then
+  -- Use arXiv as the venue only for actual preprints.  Published articles may
+  -- still carry an arXiv URL/eprint, but their journal data should be shown.
+  if arxivid and (container_title == "" or is_arxiv_container_title(container_title)) then
     container_title = "arXiv:" .. arxivid
   end
   

@@ -18,60 +18,6 @@
 
 \begin{document}
 
-\tikzsetnextfilename{ehrhart-order-polytopes}
-\begin{tikzpicture}[line cap=round,line join=round]
-  \useasboundingbox (-3.25,-1.05) rectangle (3.25,1.05);
-
-  \node[blue dot] (c1) at (-3.0,0.55) {};
-  \node[blue dot] (c2) at (-3.0,0.0) {};
-  \node[blue dot] (c3) at (-3.0,-0.55) {};
-  \draw[edge] (c1) -- (c2) -- (c3);
-
-  \fill[iconblue!18] (-0.75,-0.75) -- (0.75,-0.75) -- (0.75,0.75) -- cycle;
-  \draw[edge] (-0.75,-0.75) -- (0.75,-0.75) -- (0.75,0.75) -- cycle;
-  \foreach \p in {(-0.75,-0.75),(0.75,-0.75),(0.75,0.75)} {
-    \node[blue dot] at \p {};
-  }
-  \foreach \x/\y in {-0.25/-0.25,0.25/-0.25,0.25/0.25} {
-    \fill[black] (\x,\y) circle (1pt);
-  }
-
-  \draw[-{Stealth[length=5pt]}, edge] (-2.55,0) -- (-1.15,0);
-  \draw[-{Stealth[length=5pt]}, edge] (1.05,0) -- (2.35,0);
-
-  \draw[edge] (2.35,-0.72) -- (2.35,0.72) -- (3.45,0.72);
-  \draw[softgreen, line width=5pt] (2.55,-0.55) -- (2.55,0.25);
-  \draw[softorange, line width=5pt] (2.9,-0.55) -- (2.9,0.45);
-  \draw[softred, line width=5pt] (3.25,-0.55) -- (3.25,-0.05);
-\end{tikzpicture}
-
-\tikzsetnextfilename{total-positivity-network}
-\begin{tikzpicture}[line cap=round,line join=round]
-  \useasboundingbox (-3.1,-1.2) rectangle (3.1,1.2);
-
-  \foreach \i/\y in {1/1,2/0,3/-1} {
-    \node[blue dot] (s\i) at (-2.75,\y) {};
-    \node[blue dot] (t\i) at (2.75,\y) {};
-  }
-
-  \node[dot] (a) at (-1.55,0.6) {};
-  \node[dot] (b) at (-1.25,-0.65) {};
-  \node[dot] (c) at (0.0,0.15) {};
-  \node[dot] (d) at (1.15,0.7) {};
-  \node[dot] (e) at (1.35,-0.55) {};
-
-  \draw[edge] (s1) -- (a) -- (c) -- (d) -- (t1);
-  \draw[edge] (s2) -- (a);
-  \draw[edge] (s2) -- (b) -- (c);
-  \draw[edge] (c) -- (e) -- (t2);
-  \draw[edge] (b) -- (e) -- (t3);
-  \draw[edge] (d) -- (t2);
-  \draw[edge] (s3) -- (b);
-
-  \draw[path edge] (s1) -- (a) -- (c) -- (d) -- (t1);
-  \draw[path edge] (s3) -- (b) -- (e) -- (t3);
-\end{tikzpicture}
-
 \tikzsetnextfilename{coxeter-types-diagrams}
 \begin{tikzpicture}[line cap=round,line join=round]
   \useasboundingbox (-2.6,-1.15) rectangle (2.6,1.15);
@@ -100,45 +46,6 @@
   \node[blue dot] (a3) at (1.3,-0.05) {};
   \draw[edge] (a1) -- (a2) -- (a3) -- (a1);
 
-\end{tikzpicture}
-
-\tikzsetnextfilename{qsym-nsym-zero-hecke}
-\begin{tikzpicture}[line cap=round,line join=round]
-  \useasboundingbox (-2.55,-1.45) rectangle (2.55,1.45);
-
-  \node[draw=black, rounded corners=4pt, fill=iconblue!14,
-    minimum width=1.18cm, minimum height=0.78cm] (q) at (-1.65,0.62) {};
-  \node[draw=black, rounded corners=4pt, fill=softgreen!16,
-    minimum width=1.18cm, minimum height=0.78cm] (n) at (1.65,0.62) {};
-  \node[draw=black, rounded corners=4pt, fill=softorange!18,
-    minimum width=1.28cm, minimum height=0.82cm] (h) at (0,-0.75) {};
-
-  \draw[edge, <->, >=Stealth] (q) -- (n);
-  \draw[edge, ->, >=Stealth] (h) -- (q);
-  \draw[edge, ->, >=Stealth] (h) -- (n);
-
-  \begin{scope}[shift={(-1.98,0.82)}, scale=0.18]
-    \foreach \x/\y in {0/0,1/0,0/-1,0/-2,1/-2} {
-      \filldraw[fill=iconblue!48, draw=black, line width=0.45pt]
-        (\x,\y) rectangle ++(1,-1);
-    }
-  \end{scope}
-  \begin{scope}[shift={(1.28,0.82)}, scale=0.2]
-    \foreach \x/\y/\c in {0/0/softgreen,1/0/softgreen,0/-1/softgreen} {
-      \filldraw[fill=\c!45, draw=black, line width=0.45pt,
-        rounded corners=0.5pt] (\x,\y) rectangle ++(0.78,-0.5);
-    }
-  \end{scope}
-  \begin{scope}[shift={(-0.29,-0.55)}, scale=0.35]
-    \node[blue dot, minimum size=4pt] (a) at (0,0) {};
-    \node[blue dot, minimum size=4pt] (b) at (0.72,0) {};
-    \node[blue dot, minimum size=4pt] (c) at (0,-0.62) {};
-    \node[blue dot, minimum size=4pt] (d) at (0.72,-0.62) {};
-    \draw[edge, ->, >=Stealth] (a) -- (b);
-    \draw[edge, ->, >=Stealth] (a) -- (c);
-    \draw[edge, ->, >=Stealth] (b) -- (d);
-    \draw[edge, ->, >=Stealth] (c) -- (d);
-  \end{scope}
 \end{tikzpicture}
 
 \tikzsetnextfilename{hive-rhombus-inequalities}

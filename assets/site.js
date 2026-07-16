@@ -44,6 +44,108 @@
     }
   }
 
+  function getStoredPreference(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setStoredPreference(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {}
+  }
+
+  function getCookiePreference(key) {
+    var match = document.cookie.match(new RegExp('(?:^|;\\s*)' + key + '=(dark|light)\\b'));
+    return match ? match[1] : null;
+  }
+
+  function setCookiePreference(key, value) {
+    var secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    var domain = '';
+    if (window.location.hostname === 'symmetricfunctions.com' ||
+        window.location.hostname.endsWith('.symmetricfunctions.com')) {
+      domain = '; Domain=.symmetricfunctions.com';
+    }
+    document.cookie = key + '=' + value + '; max-age=31536000; path=/' + domain + '; SameSite=Lax' + secure;
+  }
+
+  function getThemePreference() {
+    var saved = getStoredPreference('symcat-theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+
+    var cookie = getCookiePreference('symcat-theme');
+    if (cookie) return cookie;
+
+    var legacy = getStoredPreference('dark-mode');
+    if (legacy === 'on') return 'dark';
+    if (legacy === 'off') return 'light';
+
+    return null;
+  }
+
+  function setThemePreference(value) {
+    setStoredPreference('symcat-theme', value);
+    setStoredPreference('dark-mode', value === 'dark' ? 'on' : 'off');
+    setCookiePreference('symcat-theme', value);
+  }
+
+  function prefersDarkMode() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  function isDarkModeActive() {
+    var root = document.documentElement;
+    if (root.classList.contains('dark')) return true;
+    if (root.classList.contains('light')) return false;
+    return prefersDarkMode();
+  }
+
+  function updateDarkModeLabel() {
+    var toggle = document.getElementById('dark-mode-toggle');
+    if (!toggle) return;
+
+    var isDark = isDarkModeActive();
+    toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+
+  function toggleDarkMode() {
+    var root = document.documentElement;
+    var switchToLight = isDarkModeActive();
+    var newPreference = switchToLight ? 'light' : 'dark';
+
+    root.classList.toggle('dark', newPreference === 'dark');
+    root.classList.toggle('light', newPreference === 'light');
+    setThemePreference(newPreference);
+    updateDarkModeLabel();
+  }
+
+  function initDarkMode() {
+    var saved = getThemePreference();
+    var root = document.documentElement;
+
+    root.classList.toggle('dark', saved === 'dark');
+    root.classList.toggle('light', saved === 'light');
+    updateDarkModeLabel();
+
+    var toggle = document.getElementById('dark-mode-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', toggleDarkMode);
+    }
+
+    window.addEventListener('storage', function (event) {
+      if (event.key !== 'symcat-theme' && event.key !== 'dark-mode') return;
+      var current = getThemePreference();
+      root.classList.toggle('dark', current === 'dark');
+      root.classList.toggle('light', current === 'light');
+      updateDarkModeLabel();
+    });
+  }
+
   function initCookieDialog() {
     if (document.cookie.indexOf("cookieaccepted=") >= 0) {
       return; // Already accepted, do nothing
@@ -338,6 +440,7 @@
     initBibtexControls();
     initHeaderAnchors();
     initFamilyIndexTable();
+    initDarkMode();
 
     var btn = document.getElementById("tocButton");
     if (btn) {

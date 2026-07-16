@@ -93,6 +93,7 @@
     --c-brand-light: hsl(var(--hue-brand), 80%, 30%); /* Darker accent for bg */
     
     --c-link:        hsl(var(--hue-link), 80%, 65%); /* Lighter blue for readability */
+    --c-link-dark:   hsl(var(--hue-link), 80%, 50%);
     --c-defin:       hsl(var(--hue-link), 80%, 70%);
 
     --math-env-bar:  hsl(var(--hue-neutral), 20%, 30%);
@@ -107,6 +108,73 @@
 
     color-scheme: dark;
     }
+  }
+
+  :root.dark {
+    --c-bg-body:     hsl(var(--hue-neutral), 20%, 10%);
+    --c-bg-surface:  hsl(var(--hue-neutral), 20%, 14%);
+    --c-bg-nav:      hsl(var(--hue-neutral), 20%, 14%);
+    --c-bg-header:   hsl(var(--hue-neutral), 20%, 12%);
+
+    --c-border:      hsl(var(--hue-neutral), 15%, 25%);
+    --c-bg-gray:     hsl(var(--hue-neutral), 15%, 18%);
+    --c-rule:        hsl(var(--hue-neutral), 10%, 60%);
+
+    --c-text-main:   hsl(var(--hue-neutral), 10%, 90%);
+    --c-text-sub:    hsl(var(--hue-neutral), 10%, 70%);
+    --c-text-muted:  hsl(var(--hue-neutral), 10%, 50%);
+    --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 60%);
+
+    --c-brand:       hsl(var(--hue-brand), 90%, 60%);
+    --c-brand-light: hsl(var(--hue-brand), 80%, 30%);
+
+    --c-link:        hsl(var(--hue-link), 80%, 65%);
+    --c-link-dark:   hsl(var(--hue-link), 80%, 50%);
+    --c-defin:       hsl(var(--hue-link), 80%, 70%);
+
+    --math-env-bar:  hsl(var(--hue-neutral), 20%, 30%);
+    --math-accent:   hsl(var(--hue-link), 80%, 70%);
+
+    --c-data-red:    hsl(0, 85%, 65%);
+    --c-data-black:  hsl(var(--hue-neutral), 10%, 80%);
+    --c-data-blue:   hsl(220, 90%, 65%);
+
+    --c-tableau-border: hsl(215, 20%, 80%);
+
+    color-scheme: dark;
+  }
+
+  :root.light {
+    --c-brand:       hsl(var(--hue-brand), 90%, 55%);
+    --c-brand-light: hsl(var(--hue-brand), 90%, 75%);
+
+    --c-link:        hsl(var(--hue-link), 90%, 48%);
+    --c-link-dark:   hsl(var(--hue-link), 90%, 35%);
+    --c-defin:       hsl(var(--hue-link), 80%, 45%);
+
+    --math-env-bar:  hsl(var(--hue-neutral), 20%, 85%);
+    --math-accent:   hsl(var(--hue-link), 80%, 50%);
+
+    --c-data-red:    hsl(0, 85%, 60%);
+    --c-data-black:  hsl(215, 20%, 20%);
+    --c-data-blue:   hsl(220, 90%, 55%);
+
+    --c-bg-body:     hsl(var(--hue-neutral), 15%, 94%);
+    --c-bg-surface:  hsl(0, 0%, 100%);
+    --c-bg-nav:      hsl(0, 0%, 100%);
+    --c-bg-header:   hsl(var(--hue-neutral), 15%, 97%);
+
+    --c-border:      hsl(var(--hue-neutral), 15%, 82%);
+    --c-bg-gray:     hsl(var(--hue-neutral), 10%, 90%);
+    --c-rule:        hsl(var(--hue-neutral), 15%, 20%);
+    --c-tableau-border: hsl(215, 20%, 20%);
+
+    --c-text-main:   hsl(var(--hue-neutral), 20%, 20%);
+    --c-text-sub:    hsl(var(--hue-neutral), 15%, 40%);
+    --c-text-muted:  hsl(var(--hue-neutral), 10%, 60%);
+    --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 50%);
+
+    color-scheme: light;
   }
   
   /* ==========================================================================
@@ -216,8 +284,12 @@
     opacity: 0.6;
   }
 
+  :root.dark img:not(.topnav-icon):not(.no-invert) {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
   @media (prefers-color-scheme: dark) {
-    img:not(.topnav-icon):not(.no-invert) { filter: invert(1) hue-rotate(180deg); }
+    :root:not(.light) img:not(.topnav-icon):not(.no-invert) { filter: invert(1) hue-rotate(180deg); }
   }
   
   /* ==========================================================================
@@ -357,6 +429,8 @@
 
 
   .toplink {
+    appearance: none;
+    border: 1px solid var(--c-border);
     font-family: system-ui, sans-serif;
     font-size: 0.9rem;
     color: var(--c-text-sub);
@@ -365,7 +439,12 @@
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     font-weight: 600;
     border-radius: 50px;
-    padding: 0.5em 1.2em;
+    padding: 0.48em 0.98em 0.48em 0.78em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38em;
+    line-height: 1.1;
+    cursor: pointer;
   }
 
   .toplink:hover {
@@ -374,6 +453,43 @@
     color: var(--c-brand);
     transform: translateY(-1px);
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .toplink:focus-visible {
+    outline: 2px solid var(--c-link);
+    outline-offset: 2px;
+  }
+
+  .toplink .topnav-icon {
+    flex: 0 0 auto;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  .theme-toggle {
+    color: var(--c-text-sub);
+    min-width: 2.45rem;
+    justify-content: center;
+    padding-left: 0.68em;
+    padding-right: 0.68em;
+  }
+
+  .theme-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    display: block;
+    flex: 0 0 auto;
+  }
+
+  .theme-icon-moon { display: none; }
+  .theme-icon-sun { display: block; }
+
+  :root.dark .theme-icon-sun { display: none; }
+  :root.dark .theme-icon-moon { display: block; }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) .theme-icon-sun { display: none; }
+    :root:not(.light) .theme-icon-moon { display: block; }
   }
   
   /* ==========================================================================
@@ -487,8 +603,12 @@
     margin-left: 0.8rem;
     opacity: 0.8;
   }
+  :root.dark .topic-card img:not(.no-invert) {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
   @media (prefers-color-scheme: dark) {
-    .topic-card img:not(.no-invert) { filter: invert(1) hue-rotate(180deg); }
+    :root:not(.light) .topic-card img:not(.no-invert) { filter: invert(1) hue-rotate(180deg); }
   }
 
   /* ==========================================================================
@@ -1287,9 +1407,9 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     
-    /* Hide scrollbars */
-    scrollbar-width: none;   
-    -ms-overflow-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-border) transparent;
+    -ms-overflow-style: auto;
     
     /* 1. Layout: Bleed to edges */
     margin-left: -1.25rem;
@@ -1298,24 +1418,40 @@
     
     /* 2. THE VISUAL CUE: Fade the right edge */
     /* This creates a gradient from Black (Visible) to Transparent (Invisible) */
-    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 5.5rem), transparent 100%);
+    mask-image: linear-gradient(to right, black 0, black calc(100% - 5.5rem), transparent 100%);
     
     /* 3. Important: Extra padding at the end */
     /* This ensures the last button isn't hidden under the fade when you reach the end */
-    padding-right: 2.5rem; 
+    padding-right: 4rem;
     padding-bottom: 0.5rem;
+    position: relative;
   }
 
-  /* Hide Chrome/Safari Scrollbar */
-  #topnav::-webkit-scrollbar { display: none; }
+  #topnav::-webkit-scrollbar {
+    display: block;
+    height: 0.35rem;
+  }
+
+  #topnav::-webkit-scrollbar-track { background: transparent; }
+
+  #topnav::-webkit-scrollbar-thumb {
+    background: var(--c-border);
+    border-radius: 999px;
+  }
 
   /* Adjust the buttons themselves */
   #topnav .toplink {
     flex-shrink: 0;          /* Prevent them from squishing */
     white-space: nowrap;     /* Force text to stay on one line */
     font-size: 0.85rem;      /* Slightly smaller */
-    padding: 0.4em 0.8em;    /* Tighter padding */
+    padding: 0.38em 0.72em 0.38em 0.58em;    /* Tighter padding */
+  }
+
+  #topnav .theme-toggle {
+    min-width: 2.25rem;
+    padding-left: 0.55em;
+    padding-right: 0.55em;
   }
 
 

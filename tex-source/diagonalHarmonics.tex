@@ -10,11 +10,11 @@ polynomial, nabla operator, parking functions}
 For background, see the canonical sources by \name{Jim Haglund}
 \cite{qtCatalanBook}, and \name{François Bergeron} \cite{Bergeron2009}.
 There has been substantial development since the writing of these books.
-\name{Brendon Rhoades} surveys symmetric-function identities tied to Delta
-operators and their representation-theoretic and geometric realizations
+\name{Brendon Rhoades} surveys symmetric-function identities tied to
+\hyperref[deltaOperator]{Delta operators} and their representation-theoretic and geometric realizations
 \cite{Rhoades2022Delta}.
 \name{Adriano Garsia}, \name{Jim Haglund}, and \name{Marino Romero} introduce
-several symmetric-function tools for Delta operators in
+several symmetric-function tools for \hyperref[deltaOperator]{Delta operators} in
 \cite{GarsiaHaglundRomero2018}.  For generalized coinvariant algebras and
 \hyperref[setPartitions]{ordered set partitions} related to the Delta
 conjecture, see
@@ -70,7 +70,8 @@ characteristic.
 settling conjectures of Garsia and Haiman
 \cite{Haiman1994,Haiman2002}.  The
 \hyperref[dhShuffleTheorem]{Shuffle theorem} gives a combinatorial expression
-for \(\nabla\elementaryE_n\).
+for \(\nabla\elementaryE_n\), where \(\nabla\) is the
+\hyperref[nablaOperator]{Macdonald eigenoperator defined below}.
 
 \begin{example*}[The case \(n=2\)]
 For \(n=2\), the harmonic space has basis
@@ -220,7 +221,8 @@ coinvariants indexed by $m$-\hyperref[qtCatalan]{Dyck paths}.
 the Fields conjectures for the superspace coinvariant ring
 \cite{MuraiRhoadesWilson2025x}.  They identify its ungraded
 $\symS_n$-module structure with a sign-twisted permutation action on ordered
-set partitions, and compute the bigraded Frobenius characteristic.
+set partitions, and compute the \hyperref[frobeniusCharacteristic]{bigraded
+Frobenius characteristic}.
 
 \name{Jesse Kim} constructs a combinatorial basis for the fermionic diagonal
 coinvariant ring using noncrossing partitions \cite{Kim2023Fermionic}.  The
@@ -333,7 +335,8 @@ We have the identity
 \]
 where the sum is taken over word parking functions.  The statistic
 \(\mathrm{ides}(\pi)\) records the inverse descent set of the parking
-function reading word.
+function reading word.  The functions \(\gessel_{n,S}\) are the
+\hyperref[gessel]{Gessel fundamental quasisymmetric functions}.
 \end{theorem}
 
 Applying the zeta map, as defined in \cite[p.~82]{qtCatalanBook},
@@ -378,9 +381,9 @@ sum ranges over lattice paths under any line, not just a diagonal.
 \name{Jonah Blasiak}, \name{Mark Haiman}, \name{Jennifer Morse},
 \name{Anna Pun}, and \name{George H. Seelinger} prove a nonsymmetric
 shuffle theorem in \cite{BlasiakHaimanMorsePunSeelinger2025Shuffle}.
-Their framework uses modified nonsymmetric Macdonald polynomials, a
-nonsymmetric nabla operator, and nonsymmetric analogues of flagged LLT
-polynomials, and it supplies a natural setting for atom-positivity
+Their framework uses modified \hyperref[nonSymmetricMacdonaldPolynomial]{nonsymmetric
+Macdonald polynomials}, a nonsymmetric nabla operator, and nonsymmetric
+analogues of \hyperref[flaggedLLT]{flagged LLT polynomials}, and it supplies a natural setting for atom-positivity
 questions around nonsymmetric diagonal harmonics.
 
 
@@ -507,7 +510,7 @@ D_k F[X] \coloneqq [z^k] F\left[ X + \frac{(1-q)(1-t)}{z} \right] \sum_{j \geq 0
 The construction of the $Q_{m,n}$ is involved, and different normalizations
 in the literature can introduce sign differences.
 
-\name{Eugene Gorsky} and \name{Andrei Negu\c{t}} prove the first identity
+\name{Eugene Gorsky} and \name{Andrei Neguț} prove the first identity
 below for coprime $m,n$ \cite{GorskyNegut2015}; \name{Dun Qiu} and
 \name{Jeffrey Remmel} prove the second \cite{QiuRemmel2018x}:
 \[
@@ -578,9 +581,9 @@ $(\pi_1,\dotsc,\pi_r)$ with $\pi_1$ equal to the diagonal path and with every
 triple satisfying a compatible $\nu$-Tamari interval condition.
 
 For $n\leq 4$ and any number $r$ of variable sets, they show that the
-$q,t$-Frobenius characteristic of the multivariate diagonal harmonic space
+$q,t$-\hyperref[frobeniusCharacteristic]{Frobenius characteristic} of the multivariate diagonal harmonic space
 $\mathcal{DH}_{n,r}$ is given by a sum over Hopf chains, weighted by a collar
-statistic and by LLT polynomials.  When $r=3$, the construction specializes to
+statistic and by \hyperref[LLT]{LLT polynomials}.  When $r=3$, the construction specializes to
 the Tamari-interval conjectural picture of \name{François Bergeron} and
 \name[Louis-Francois Preville-Ratelle]{Louis-François Préville-Ratelle}, where
 the length of a longest chain in a Tamari interval is one of the expected
@@ -632,7 +635,7 @@ lowest diagonal which contains a car. Thus, if the path is a
 \hyperref[qtCatalan]{Dyck path} (and the preference function is a parking function),
 the area coincides with the classical notion of area.
 The \defin{dinv}\label{preferenceFunctionDinv} statistic is similar to the
-inv-statistic for LLT polynomials,
+inv-statistic for \hyperref[LLT]{LLT polynomials},
 but one must add the number of cars strictly below the $x=y$ diagonal.
 
 \name{Emily Sergel} gave a proof of the square path conjecture \cite{Sergel2017}.
@@ -837,7 +840,7 @@ is about a combinatorial interpretation of
   \frac{[n-k]_t}{[n]_t} \Delta_{\completeH_m} \Delta_{\elementaryE_{n-k}} \omega(\powerSum_n).
 \]
 Remark~3.14 of \cite{DAdderioIraciWyngaerd2019} shows that this, if the
-conjecture is true, can be expressed as a sum of LLT polynomials.
+conjecture is true, can be expressed as a sum of \hyperref[LLT]{LLT polynomials}.
 
 The full Delta square conjectures remain open in general.  The valley version
 was formulated in \cite{IraciWyngaerd2021}, and the implications from the
