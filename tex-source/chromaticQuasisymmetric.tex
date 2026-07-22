@@ -113,9 +113,15 @@ This labeled model is what was introduced in \cite{ShareshianWachs2012,Shareshia
 \subsection[chromaticQuasisymmetricClawFree]{Claw-free graphs}
 
 If $G$ is a claw-free graph, \name{Vesselin Gasharov} (see \cite{Stanley1998}) conjectured that $\chrom_G(\xvec;1)$ is \hyperref[schurPositivity]{Schur-positive}.
+This conjecture is false.  A counterexample on 12 vertices is obtained as follows: start with a 4-cycle, attach triangles at two opposite vertices and pendant edges at the other two, and take the line graph $G$ of the resulting graph.  Then
+\[
+[s_{(3,3,3,3)}]\chrom_G(\xvec;1)=-64.
+\]
+A compact proof and two exact independent verifiers are available
+\href{https://github.com/infinityscroll/claw-free-schur-counterexample/tree/v1.0.0}{here}.
 There is no known $q$-analog of this conjecture.
 
-Some progress in this direction has been made in \cite{ShelburneWilligenburg2024x},
+Earlier progress in this direction includes \cite{ShelburneWilligenburg2024x},
 using a type of involution inspired by the \hyperref[gesselSlinkyRule]{slinky rule}.
 They prove Schur positivity for the family of graphs called \defin{generalized nets}.
 
