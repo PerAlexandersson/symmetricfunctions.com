@@ -581,6 +581,32 @@ and $g(x)$ be real-rooted polynomials.  Then
 is real-rooted.
 \end{theorem}
 
+\begin{corollary}[Hermite--Poulain preserves interleaving]
+\label{hermitePoulainInterlacing}
+Let $f_1,f_2,g\in\setR[x]$, and assume that $g$ is real-rooted.
+If $f_1$ and $f_2$ are real-rooted and interleave, then
+$f_1(d/dx)g$ and $f_2(d/dx)g$ also interleave.
+\end{corollary}
+\begin{proof*}
+By the \hyperref[obreschkoffDedieu]{Obreschkoff--Dedieu theorem}, the
+assumption on $f_1$ and $f_2$ is equivalent to saying that every polynomial
+in the pencil
+\[
+  \alpha f_1+\beta f_2,\qquad \alpha,\beta\in\setR,
+\]
+is real-rooted or zero.  Applying the Hermite--Poulain theorem to this
+polynomial and to $g$ gives
+\[
+  (\alpha f_1+\beta f_2)\!\left(\frac{d}{dx}\right)g
+  =
+  \alpha f_1\!\left(\frac{d}{dx}\right)g
+  +\beta f_2\!\left(\frac{d}{dx}\right)g,
+\]
+which is real-rooted or zero for all real $\alpha$ and $\beta$.
+Applying Obreschkoff--Dedieu once more shows that
+$f_1(d/dx)g$ and $f_2(d/dx)g$ interleave.  This proves the claim.
+\end{proof*}
+
 \name[D.G. Wagner]{David Wagner} proves the following result
 \cite{Wagner1992}.
 \begin{theorem}

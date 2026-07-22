@@ -34,7 +34,7 @@ local _STEM = _BASENAME:gsub("%.[^.]+$", "")
 -- Observe that proof -> symproof as pandoc eats that command
 local theorem_envs = {
   "definition", "proposition",
-  "theorem", "problem",
+  "theorem", "corollary", "problem",
   "example", "lemma",
   "conjecture", "remark",
   "symproof",

@@ -109,6 +109,10 @@
     if (!toggle) return;
 
     var isDark = isDarkModeActive();
+    var moonIcon = toggle.querySelector('.theme-icon-moon');
+    var sunIcon = toggle.querySelector('.theme-icon-sun');
+    if (moonIcon) moonIcon.toggleAttribute('hidden', !isDark);
+    if (sunIcon) sunIcon.toggleAttribute('hidden', isDark);
     toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
     toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
   }

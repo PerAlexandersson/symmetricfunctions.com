@@ -1,10 +1,10 @@
 \metatitle{Polytopes}
 \metadescription{An introduction to lattice polytopes, Ehrhart polynomials,
-order polytopes, generalized permutohedra, flow and root polytopes, IDP,
-Gorenstein and reflexive polytopes, and magic positivity.}
+order polytopes, hypersimplices, generalized permutohedra, flow and root
+polytopes, IDP, Gorenstein and reflexive polytopes, and magic positivity.}
 \metakeywords{lattice polytope, Ehrhart polynomial, h-star polynomial,
-order polytope, chain polytope, generalized permutohedron, flow polytope,
-root polytope, reflexive polytope, Gorenstein polytope}
+order polytope, chain polytope, hypersimplex, generalized permutohedron,
+flow polytope, root polytope, reflexive polytope, Gorenstein polytope}
 
 
 
@@ -166,6 +166,46 @@ See \cite{Beck2007} for an alternative proof.
 
 
 \section[polytopeFamilies]{Families of polytopes}
+
+
+\subsection[hypersimplex]{Hypersimplices}
+
+For $0<k<n$, the \defin{hypersimplex}\label{hypersimplexDefinition}
+$\Delta_{k,n}$ is
+\[
+  \Delta_{k,n}
+  \coloneqq
+  \left\{ x\in[0,1]^n : x_1+x_2+\dotsb+x_n=k \right\}.
+\]
+It is the \hyperref[matroidBasePolytope]{base polytope} of the uniform
+matroid $U_{k,n}$, and hence a
+\hyperref[generalizedPermutohedron]{generalized permutohedron}.
+Its normalized volume is the Eulerian number $A_{k,n-1}$.
+
+\name{Nan Li} proved a conjecture of \name{Richard P. Stanley} giving a
+descent--exceedance interpretation of the
+\hyperref[hStarPolynomial]{$h^*$-polynomial} of hypersimplices
+\cite{Li2012}.  More precisely, for the half-open hypersimplex
+\[
+  \widetilde{\Delta}_{k,n}
+  \coloneqq
+  \left\{
+    x\in[0,1]^{n-1} :
+    k-1 < x_1+x_2+\dotsb+x_{n-1} \leq k
+  \right\},
+\]
+one has
+\[
+  h^*(\widetilde{\Delta}_{k,n};t)
+  =
+  \sum_{\substack{w\in\symS_{n-1}\\
+                  \operatorname{exc}(w)=k-1}}
+  t^{\operatorname{des}(w)}.
+\]
+The proof uses a shelling of a unimodular triangulation of the hypersimplex.
+A second shelling gives another formula using descents and Li's cover
+statistic, and the construction extends to generalized hypersimplices related
+to algebras of Veronese type \cite[Thms.~1.2, 1.3 and 7.3]{Li2012}.
 
 
 \subsection[orderPolytope]{Order polytopes}

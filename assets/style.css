@@ -481,6 +481,8 @@
     flex: 0 0 auto;
   }
 
+  .theme-icon[hidden] { display: none !important; }
+
   .theme-icon-moon { display: none; }
   .theme-icon-sun { display: block; }
 
@@ -1416,12 +1418,10 @@
     margin-right: -1.25rem;
     padding-left: 1.25rem;
     
-    /* 2. THE VISUAL CUE: Fade the right edge */
-    /* This creates a gradient from Black (Visible) to Transparent (Invisible) */
-    -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 5.5rem), transparent 100%);
-    mask-image: linear-gradient(to right, black 0, black calc(100% - 5.5rem), transparent 100%);
-    
-    /* 3. Important: Extra padding at the end */
+    /* Avoid masks here: iOS Safari can lose taps on controls inside masked
+       horizontal scrollers. */
+
+    /* 2. Important: Extra padding at the end */
     /* This ensures the last button isn't hidden under the fade when you reach the end */
     padding-right: 4rem;
     padding-bottom: 0.5rem;
@@ -1449,6 +1449,7 @@
   }
 
   #topnav .theme-toggle {
+    order: -1;
     min-width: 2.25rem;
     padding-left: 0.55em;
     padding-right: 0.55em;
