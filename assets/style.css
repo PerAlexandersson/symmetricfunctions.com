@@ -53,6 +53,7 @@
   
   /* Navigation */
   --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 50%);
+  --topnav-icon-filter: none;
 
   /* Ratings */
   --c-rating-from: hsl(45, 100%, 50%);
@@ -87,6 +88,7 @@
     --c-text-sub:    hsl(var(--hue-neutral), 10%, 70%);
     --c-text-muted:  hsl(var(--hue-neutral), 10%, 50%);
     --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 60%);
+    --topnav-icon-filter: brightness(0) invert(1);
 
     /* Colors: Brighten/Desaturate slightly for contrast on dark */
     --c-brand:       hsl(var(--hue-brand), 90%, 60%); 
@@ -124,6 +126,7 @@
     --c-text-sub:    hsl(var(--hue-neutral), 10%, 70%);
     --c-text-muted:  hsl(var(--hue-neutral), 10%, 50%);
     --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 60%);
+    --topnav-icon-filter: brightness(0) invert(1);
 
     --c-brand:       hsl(var(--hue-brand), 90%, 60%);
     --c-brand-light: hsl(var(--hue-brand), 80%, 30%);
@@ -173,6 +176,7 @@
     --c-text-sub:    hsl(var(--hue-neutral), 15%, 40%);
     --c-text-muted:  hsl(var(--hue-neutral), 10%, 60%);
     --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 50%);
+    --topnav-icon-filter: none;
 
     color-scheme: light;
   }
@@ -464,6 +468,7 @@
     flex: 0 0 auto;
     margin: 0;
     vertical-align: middle;
+    filter: var(--topnav-icon-filter);
   }
 
   .theme-toggle {

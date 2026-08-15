@@ -9,6 +9,13 @@
     document.cookie = "cookieaccepted=1; expires=Thu, 18 Dec 2030 12:00:00 UTC; path=/; SameSite=Lax" + secure;
   }
 
+  function writeToClipboard(text) {
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      return navigator.clipboard.writeText(text);
+    }
+    return Promise.reject(new Error('Clipboard API unavailable'));
+  }
+
   // KaTeX initialization (macros expected from katex-macros.js in window.KATEX_MACROS)
   function initKatex() {
     if (typeof renderMathInElement !== 'function') return;
@@ -189,6 +196,14 @@
     toc.setAttribute("aria-hidden", String(expanded));
   }
 
+  function closeSideBar() {
+    var btn = document.getElementById("tocButton");
+    if (btn && btn.getAttribute("aria-expanded") === "true") {
+      toggleSideBar();
+      btn.focus();
+    }
+  }
+
   // Wire up TOC list items to close sidebar on click (delegation safe)
   function initTOCListeners() {
     var tocList = document.getElementById("tocLinkList"); // Ensure your UL has this ID or use "#tocContainer"
@@ -211,11 +226,6 @@
     });
   }
 
-  function initScrollBehavior() {
-    // TOC button is always visible — no scroll-hide behaviour
-  }
-
-
 // Initialize Copy-to-Clipboard buttons on all <pre> blocks
   function initCopyButtons() {
     // Find all <pre> tags
@@ -230,7 +240,7 @@
         var button = document.createElement('button');
         button.className = 'copy-btn';
         
-        button.innerHTML = '<img src="icons/icon-clone.svg" class="copy icon" />'; 
+        button.innerHTML = '<img src="icons/icon-clone.svg" class="copy icon" alt="" aria-hidden="true"/>';
         button.setAttribute('aria-label', 'Copy to clipboard');
 
         // Add Click Logic
@@ -239,15 +249,15 @@
             var text = code ? code.innerText : pre.innerText;
 
             // The modern clipboard API
-            navigator.clipboard.writeText(text).then(function() {
+            writeToClipboard(text).then(function() {
                 // Success Feedback
-                button.innerHTML = '<img src="icons/icon-heart.svg" class="heart icon" />';
+                button.innerHTML = '<img src="icons/icon-heart.svg" class="heart icon" alt="" aria-hidden="true"/>';
                 button.style.color = 'red';
                 button.style.borderColor = 'red';
                 
                 // Reset after 2 seconds
                 setTimeout(function() {
-                    button.innerHTML = '<img src="icons/icon-clone.svg" class="copy icon" />';
+                    button.innerHTML = '<img src="icons/icon-clone.svg" class="copy icon" alt="" aria-hidden="true"/>';
                     button.style.color = '';
                     button.style.borderColor = '';
                 }, 2000);
@@ -287,9 +297,9 @@
       var copyButton = e.target.closest('.bibtex-copy');
       if (copyButton) {
         var text = getBibtexText(copyButton);
-        if (!text || !navigator.clipboard) return;
+        if (!text) return;
 
-        navigator.clipboard.writeText(text).then(function () {
+        writeToClipboard(text).then(function () {
           setTemporaryButtonHtml(
             copyButton,
             '<img src="icons/icon-check-circle.svg" class="icon" alt="" aria-hidden="true"/> Copied',
@@ -333,9 +343,11 @@
       if (!anchor) return;
       e.preventDefault();
       var url = anchor.href;
-      navigator.clipboard.writeText(url).then(function () {
+      writeToClipboard(url).then(function () {
         anchor.textContent = '\u2713';
         setTimeout(function () { anchor.textContent = '#'; }, 1500);
+      }).catch(function (err) {
+        console.error('Failed to copy permalink!', err);
       });
     });
   }
@@ -439,7 +451,6 @@
     initKatex();
     initCookieDialog();
     initTOCListeners();
-    initScrollBehavior();
     initCopyButtons();
     initBibtexControls();
     initHeaderAnchors();
@@ -450,6 +461,11 @@
     if (btn) {
         btn.addEventListener('click', toggleSideBar);
     }
+    var overlay = document.getElementById("menuOverlay");
+    if (overlay) overlay.addEventListener('click', closeSideBar);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeSideBar();
+    });
   });
 
 })();
