@@ -166,15 +166,54 @@ This labeled model is what was introduced in \cite{ShareshianWachs2012,Shareshia
 
 \subsection[chromaticQuasisymmetricClawFree]{Claw-free graphs}
 
-If $G$ is a claw-free graph, \name{Vesselin Gasharov}
-(see \cite{Stanley1998}) conjectured that $\chrom_G(\xvec;1)$ is
-\hyperref[schurPositiveDefinition]{Schur-positive}.
-There is no known $q$-analogue of this conjecture.
+\name{Richard Stanley} recorded the conjecture, credited to
+\name{Vesselin Gasharov}, that $\chrom_G(\xvec;1)$ is
+\hyperref[schurPositiveDefinition]{Schur-positive} whenever $G$ is claw-free
+\cite{Stanley1998}.  This conjecture is false.  \name{Jacob P. Matherne} and
+\name[Alejandro H. Morales]{Alejandro H.~Morales} give two line graphs whose
+chromatic symmetric functions have negative Schur coefficients
+\cite{MatherneMorales2026x}.  Namely, let $G_i=L(H_i)$, where
+\[
+\begin{aligned}
+E(H_1)=\{&(1,8),(2,7),(3,6),(3,10),(4,5),(4,9),\\
+        &(5,9),(6,10),(7,9),(7,10),(8,9),(8,10)\},
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+E(H_2)=\{&(1,8),(2,5),(2,10),(3,7),(3,10),(4,6),\\
+        &(4,9),(5,9),(6,9),(7,10),(8,9),(8,10)\}.
+\end{aligned}
+\]
+Then $G_1$ and $G_2$ have $12$ vertices, with $22$ and $21$ edges,
+respectively, and the relevant Schur coefficients are
+\[
+[\schurS_{3333}]\chrom_{G_1}(\xvec;1)=-64,
+\qquad
+[\schurS_{3333}]\chrom_{G_2}(\xvec;1)=-40.
+\]
+Since every line graph is claw-free, these are counterexamples to the general
+conjecture.
 
-Some progress in this direction has been made in \cite{ShelburneWilligenburg2024x},
-using a type of involution inspired by the \hyperref[gesselSlinkyRule]{slinky rule}.
-They prove \hyperref[schurPositiveDefinition]{Schur positivity} for the family of
-graphs called \defin{generalized nets}\label{generalizedNets}.
+Independently, \name{Jitendra Prajapati} gives a short computation by hand for
+the counterexample with coefficient $-64$, verifies it by exact implementations,
+and reports an exhaustive census showing that every connected claw-free graph
+on at most $11$ vertices is \hyperref[schurPositiveDefinition]{Schur-positive}
+\cite{Prajapati2026x}.  The same census finds exactly two non-Schur-positive
+isomorphism classes on $12$ vertices, with the two coefficients $-64$ and
+$-40$ above.
+\name{David G. L. Wang}, \name{K. Zhang}, and \name{T. Y. Zhao} combine this
+census with further exact computations and construct an infinite family of
+connected line graphs whose chromatic symmetric functions are not
+\hyperref[schurPositiveDefinition]{Schur-positive}
+\cite{WangZhangZhao2026x}.
+
+Positive results remain for special claw-free families.  Using an involution
+inspired by the \hyperref[gesselSlinkyRule]{slinky rule}, the authors of
+\cite{ShelburneWilligenburg2024x} prove
+\hyperref[schurPositiveDefinition]{Schur positivity} for the family of graphs
+called \defin{generalized nets}\label{generalizedNets}.
 
 \name{Randy Davila}, \name{Houston Schuerger}, and \name{Ben Small}
 characterize claw-free graphs using zero forcing invariants
@@ -188,8 +227,9 @@ called the \defin{strongly nice property}\label{stronglyNiceProperty}
 They prove that \hyperref[schurPositiveDefinition]{Schur positivity} implies
 strong niceness, and that the
 graphs whose induced subgraphs are all strongly nice are precisely the
-claw-free graphs.  Thus strong niceness gives a necessary obstruction
-which is well aligned with Gasharov's conjecture.
+claw-free graphs.  Thus hereditary strong niceness captures the claw-free
+condition, but the line-graph counterexamples above show that it is not
+sufficient for Schur positivity.
 
 Distributive \hyperref[latticePoset]{lattices} give a separate family of
 negative tests when a poset

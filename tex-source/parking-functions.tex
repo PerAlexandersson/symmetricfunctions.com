@@ -84,6 +84,71 @@ east steps to form a Dyck path.
 Conversely, reading which column each label appears in recovers the parking
 function; see \cite{Yan2015} and \cite{qtCatalanBook} for details.
 
+\section[preferenceFunctions]{Preference functions and square paths}
+
+A \defin{preference function}\label{preferenceFunctionDefinition}
+of size \(n\) is a map \(f:[n]\to[n]\).
+Thus every parking function is a preference function, but not conversely.
+The same column construction sends \(f\) to a path in the \(n\times n\)
+square, without requiring the path to stay above the main diagonal.
+In column \(i\), write the labels in \(f^{-1}(i)\), increasing from
+bottom to top, and draw the unique North-East path whose North steps have
+the labels immediately to their right.
+The preference function is a parking function exactly when this path is a
+\hyperref[qtCatalan]{Dyck path}.
+
+The \defin{reading word}\label{preferenceFunctionReadingWord} of a
+preference function is obtained by reading the cars diagonal by diagonal,
+from northeast to southwest, and within each diagonal from top to bottom.
+Equivalently, one first reads the highest diagonals \(y=x+r\), and in each
+diagonal reads from right to left.
+
+The \defin{dinv statistic}\label{preferenceFunctionDinvStatistic} is the sum
+of three contributions:
+\begin{itemize}
+  \item a \defin{primary inversion}: two cars on the same diagonal, where the
+        left car has smaller label;
+  \item a \defin{secondary inversion}: two cars on adjacent diagonals, where
+        the northwest car has larger label than the southeast car;
+  \item the number of cars strictly below the main diagonal \(y=x\).
+\end{itemize}
+For paths that stay above the diagonal, the last term vanishes and this agrees
+with the usual parking-function dinv statistic used in the Shuffle theorem.
+
+\begin{example*}[Reading word and dinv]
+Let \(f=(5,2,5,2,2,3)\).  The nonempty columns are
+\[
+f^{-1}(2)=\{2,4,5\},\qquad
+f^{-1}(3)=\{6\},\qquad
+f^{-1}(5)=\{1,3\}.
+\]
+The corresponding square path is \(P=\mathtt{ennneneennee}\), and its reading
+word is
+\[
+\mathrm{rw}(f)=365142.
+\]
+Here the cars \(5\) and \(6\) form a primary inversion, the pairs
+\(\{1,5\}\) and \(\{1,6\}\) form secondary inversions, and the car \(2\) lies
+strictly below the main diagonal.  Hence \(\dinv(f)=1+2+1=4\).
+\end{example*}
+
+A \defin{word preference function}\label{wordPreferenceFunctionDefinition}
+is the same square-path object, but with positive integer labels that may
+repeat globally, still strictly increasing from bottom to top in each column.
+Its monomial is
+\[
+  \xvec_g \coloneqq \prod_{\text{cars } c} x_c.
+\]
+The \defin{standardized reading word}
+\label{standardizedReadingWordPreferenceFunction}
+is the permutation obtained by ordering smaller labels before larger labels,
+and breaking ties by their order in the reading word.
+A \defin{word parking function}\label{wordParkingFunctionDefinition}
+is a word preference function whose supporting path is a Dyck path.
+This word version is useful because it converts sums in
+\hyperref[gessel]{Gessel fundamental quasisymmetric functions} into monomial
+symmetric-function expansions.
+
 
 \section[parkingFunctionsLabeledTrees]{Bijection with rooted labeled trees}
 

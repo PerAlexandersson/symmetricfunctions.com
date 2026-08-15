@@ -15,7 +15,11 @@ There has been substantial development since the writing of these books.
 \cite{Rhoades2022Delta}.
 \name{Adriano Garsia}, \name{Jim Haglund}, and \name{Marino Romero} introduce
 several symmetric-function tools for \hyperref[deltaOperator]{Delta operators} in
-\cite{GarsiaHaglundRomero2018}.  For generalized coinvariant algebras and
+\cite{GarsiaHaglundRomero2018}.
+\name{Michele D'Adderio}, \name{Alessandro Iraci}, and
+\name{Anna Vanden Wyngaerd} prove decorated Dyck-path and parallelogram-polyomino
+formulas for important Delta-conjecture scalar products
+\cite{DAdderioIraciWyngaerd2022}.  For generalized coinvariant algebras and
 \hyperref[setPartitions]{ordered set partitions} related to the Delta
 conjecture, see
 \cite{HaglundRhoadesShimozono2018,Griffin2021}.
@@ -407,6 +411,49 @@ The authors show in \cite[Thm.~6.1]{AvalDAdderioDukesHicksBorgne2014} that
 N_{a,b}(q,t) =
 (qt)^{a} \langle \nabla \elementaryE_{a-1}, \completeH_{b-1} \completeH_{a-b} \rangle.
 \]
+The specialization at \(q=t=1\) can also be seen directly from the Shuffle
+theorem.
+\begin{proposition}[Narayana coefficient at \(q=t=1\)]
+For \(0\leq k\leq n\),
+\[
+\left.
+\langle \nabla \elementaryE_n,\completeH_k\completeH_{n-k}\rangle
+\right|_{q=t=1}
+=
+\frac{1}{n+1}\binom{n+1}{k+1}\binom{n+1}{k}.
+\]
+\end{proposition}
+\begin{proof*}
+By the Shuffle theorem and Hall duality, the scalar product is the number of
+\hyperref[wordParkingFunctionDefinition]{word parking functions} of size \(n\)
+with monomial \(x_1^k x_2^{n-k}\).
+With only the labels \(1\) and \(2\), every column has height at most two.
+If the supporting Dyck path has \(j\) columns of height two, then the number
+of such paths is the Motzkin-triangle number
+\[
+  \frac{n!}{(n-2j)!j!(j+1)!}.
+\]
+The \(j\) two-car columns must contain both labels, and among the remaining
+\(n-2j\) one-car columns we choose \(k-j\) columns to carry label \(1\).
+Thus the desired number is
+\[
+\sum_{j\geq 0}
+\frac{n!}{(n-2j)!j!(j+1)!}\binom{n-2j}{k-j}.
+\]
+Multiplying by \(n+1\), rewriting the summand, and applying Vandermonde gives
+\[
+\begin{aligned}
+(n+1)\sum_{j\geq 0}
+\frac{n!}{(n-2j)!j!(j+1)!}\binom{n-2j}{k-j}
+&=
+\binom{n+1}{k+1}
+\sum_{j\geq 0}\binom{k+1}{j+1}\binom{n-k}{j}  \\
+&=
+\binom{n+1}{k+1}\binom{n+1}{k}.
+\end{aligned}
+\]
+\end{proof*}
+
 \name{Eugene Gorsky}, \name{Mikhail Mazin}, and \name{Monica Vazirani}
 study recursions for rational $q,t$-Catalan numbers
 \cite{GorskyMazinVazirani2020}.  \name{François Bergeron} gives a broad list of
@@ -611,6 +658,8 @@ is placed in row $j$.
 Then there is a unique lattice path from $(0,0)$ to $(n,n)$ using North and East
 steps, such that the numbers are written immediately to the right of the North
 steps.
+See \hyperref[preferenceFunctions]{preference functions and square paths}
+for a more detailed definition of the reading word and dinv statistic.
 
 \begin{example*}[Path from preference function]
 For example, the
@@ -646,6 +695,96 @@ We have the expansion in the \hyperref[gessel]{fundamental quasisymmetric functi
 \]
 where the sum is taken over all preference functions of size $n$.
 \end{theorem}
+
+Since \(\omega(\powerSum_n)=(-1)^{n-1}\powerSum_n\), the left-hand side is
+\(\nabla\omega(\powerSum_n)\).  It is tempting to call some of the
+coefficients below type \(B\) Narayana numbers, because the specialization
+at \(q=t=1\) gives the classical type \(B\) Narayana numbers
+\(\binom{n}{k}^2\).  This should be understood only as an analogy:
+the finite-reflection-group type \(B\) Catalan story has different
+combinatorics, involving shifted or reflection-group paths
+\cite{Stump2010FussCatalan,Lu2019TypeBCatalan}.
+
+\begin{proposition}[Square-path Narayana coefficients at \(q=t=1\)]
+For \(0\leq k\leq n\),
+\[
+\left.
+\langle \nabla\omega(\powerSum_n),
+\completeH_k\completeH_{n-k}\rangle
+\right|_{q=t=1}
+=
+\binom{n}{k}^2.
+\]
+\end{proposition}
+\begin{proof*}
+By Sergel's theorem, the word version of the expansion, and Hall duality,
+the scalar product at \(q=t=1\) counts
+\hyperref[wordPreferenceFunctionDefinition]{word preference functions} of size
+\(n\) with monomial \(x_1^kx_2^{n-k}\).
+With only labels \(1\) and \(2\), each of the \(n\) columns is one of
+\[
+\emptyset,\qquad \{1\},\qquad \{2\},\qquad \{1,2\}.
+\]
+Suppose there are \(j\) columns of type \(\{1,2\}\).  Then there are
+\(k-j\) columns of type \(\{1\}\), \(n-k-j\) columns of type \(\{2\}\),
+and \(j\) empty columns.  Hence the number is
+\[
+\sum_{j\geq 0}
+\binom{n}{j}\binom{n-j}{n-2j}\binom{n-2j}{k-j}.
+\]
+This simplifies to
+\[
+\binom{n}{k}\sum_{j\geq0}\binom{k}{j}\binom{n-k}{j}
+=\binom{n}{k}^2
+\]
+by Vandermonde's identity.
+\end{proof*}
+
+\begin{proposition}[Specialization at \(t=1/q\)]
+Let
+\[
+  S_{n,k}(q,t)\coloneqq
+  \langle \nabla\omega(\powerSum_n),
+  \completeH_k\completeH_{n-k}\rangle.
+\]
+Then
+\[
+  q^{k(n-k)}S_{n,k}(q,q^{-1})
+  =
+  \qbinom{n}{k}_q^2.
+\]
+\end{proposition}
+\begin{proof*}
+This is a coefficient extraction from
+\cite[Thm.~4.30]{DAdderioIraciWyngaerd2022}.  Since
+\(\nabla=\Delta_{\elementaryE_n}\) on homogeneous symmetric functions of
+degree \(n\), their theorem gives
+\[
+\left.\nabla\omega(\powerSum_n)\right|_{t=1/q}
+=
+q^{-\binom{n}{2}}\elementaryE_n[X[n]_q].
+\]
+The coefficient dual to \(\completeH_k\completeH_{n-k}\) is the coefficient of
+the monomial \(x_1^kx_2^{n-k}\).  Choosing the \(k\) \(q\)-weights attached to
+\(x_1\) and the \(n-k\) \(q\)-weights attached to \(x_2\) gives
+\[
+\left[x_1^kx_2^{n-k}\right]
+q^{-\binom{n}{2}}\elementaryE_n[X[n]_q]
+=
+q^{-k(n-k)}\qbinom{n}{k}_q^2.
+\]
+\end{proof*}
+
+The same result of D'Adderio--Iraci--Vanden Wyngaerd gives the sign-character
+specialization
+\[
+\left.
+\langle \nabla\omega(\powerSum_n),\elementaryE_n\rangle
+\right|_{t=1/q}
+=
+q^{-\binom{n}{2}}\frac{1}{1+q^n}\qbinom{2n}{n}_q,
+\]
+see \cite[Prop.~8.3]{DAdderioIraciWyngaerd2022}.
 
 This expression can also be written as a sum over vertical-strip
 \hyperref[lltDefinitionTuples]{LLT polynomials}.
