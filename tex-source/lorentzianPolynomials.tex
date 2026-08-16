@@ -85,8 +85,49 @@ function of any loopless multigraph on $[n+1]$ are Lorentzian, and they give
 limits on how far such log-concavity phenomena can be extended.
 
 
-It is conjectured that the corresponding statement holds also for skew Schur polynomials, \hyperref[key]{key polynomials}
-and \hyperref[schubert]{Schubert polynomials}.
+The skew Schur case of this conjecture is now a theorem.  If
+\(f=\sum_\alpha c_\alpha\xvec^\alpha\), write
+\[
+  \mathcal{N}(f)
+  \coloneqq
+  \sum_\alpha\frac{c_\alpha}{\alpha!}\xvec^\alpha.
+\]
+
+\begin{theorem}[Zhang, \cite{Zhang2026x}]
+\label{lorentzianSkewSchur}
+For partitions \(\mu\subseteq\lambda\) and \(n\geq1\), the normalized skew
+Schur polynomial
+\[
+  \mathcal{N}\bigl(
+    \schurS_{\lambda/\mu}(x_1,\dotsc,x_n)
+  \bigr)
+\]
+is Lorentzian.
+\end{theorem}
+
+The central step comes from Schubert polynomials.  Every finite-variable skew
+Schur polynomial is a
+\hyperref[skewSchurFiniteSchubertSpecialization]{zero-specialization of a
+Schubert polynomial} indexed by a stabilized \(321\)-avoiding permutation.
+Schubert polynomials are dually Lorentzian, and that property survives the
+specialization.  A rectangular-complement identity then turns dual
+Lorentzianity into Lorentzianity of the normalization.
+
+\name{Khai-Hoan Nguyen-Dang} independently proves the stronger geometric
+statement that normalized skew Schur polynomials are realizable volume
+polynomials over \(\setC\) \cite{NguyenDang2026x}.  The same result holds for
+skew Schur \(P\)- and \(Q\)-polynomials, and nonzero instances admit smooth
+irreducible projective realizations with semiample divisors.
+
+\begin{problem}
+Find a direct combinatorial proof that normalized skew Schur polynomials are
+Lorentzian.  The known proofs use Schubert geometry or volume
+realizations rather than a tableau-level Lorentzian argument.
+\end{problem}
+
+The corresponding normalized-Lorentzian questions for
+\hyperref[key]{key polynomials} and more general
+\hyperref[schubert]{Schubert polynomials} remain open.
 In \cite{ChenFanYe2024x}, 0-1-\hyperref[grothendieck]{Grothendieck polynomials}
 are shown to be Lorentzian.
 

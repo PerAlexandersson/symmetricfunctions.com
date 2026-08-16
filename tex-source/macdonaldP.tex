@@ -59,12 +59,11 @@ $\theta$-analogues of non-intersecting Bernoulli random walks.  At
 $\theta=1$ this recovers the lozenge-tiling variational picture of
 \name{Henry Cohn}, \name{Richard Kenyon}, and \name{James Propp}.
 
-\name{Sylvie Corteel}, \name{Olya Mandelshtam}, and \name{Lauren Williams}
-give combinatorial formulas for Koornwinder polynomials, also known as
-Macdonald polynomials of type $\tilde{C}$, in terms of rhombic staircase
-tableaux \cite{CorteelMandelshtamWilliams2024}.  Their formulas also cover
-open-boundary ASEP polynomials related to nonsymmetric Koornwinder
-polynomials.
+The \hyperref[koornwinderPolynomial]{Koornwinder polynomials} are the universal
+classical-type Macdonald family.  Their symmetric, nonsymmetric, and relative
+versions, together with rhombic-staircase and compressed set-valued tableau
+formulas, are discussed on their own page
+\cite{CorteelMandelshtamWilliams2024,ColmenarejoGagnonRam2026x}.
 \name{Grigori Olshanski} relates Macdonald polynomials to an extended
 Gelfand--Tsetlin graph \cite{Olshanski2021}.  This puts Macdonald-positive
 kernels and coherent systems into the branching-graph framework.
@@ -242,6 +241,43 @@ with modified partially symmetric Macdonald polynomials
 \cite{OrrWeising2024x}.  This confirms the Goodberry--Orr conjectural
 geometric interpretation and gives an explicit formula for the induced
 involution on the polynomial representation.
+
+An \(m\)-partition is a pair \(\Lambda=(\mathbf a;\lambda)\), where
+\(\mathbf a\) is a weak composition with \(m\) parts and \(\lambda\) is a
+partition.  \name{Luc Lapointe} and \name{Luis Pena} give a tableau model for
+the \(m\)-symmetric Schur functions \(s_\Lambda(\xvec;0)\)
+\cite{LapointePena2026Keysx}.  Their restricted
+\hyperref[rsk]{RSK correspondence} proves the Cauchy identity
+\[
+ \frac{1}{
+   \displaystyle
+   \prod_{i+j\leq m+1}(1-x_i y_j)
+   \prod_{i,j\geq1}(1-x_i y_j)}
+ =
+ \sum_\Lambda
+ s_\Lambda(\xvec;0)s_\Lambda^*(\yvec).
+\]
+The dual functions are key polynomials.  The proof uses a new global
+\hyperref[keyRightKeyDecreasingWords]{characterization of right keys}.
+
+The same authors prove the \(m\)-symmetric Macdonald positivity conjecture at
+\(t=1\) \cite{LapointePena2026Macdonaldx}.  In particular, the coefficients in
+\[
+ \lim_{t\to1}
+ J_\Lambda\!\left[\frac{X}{1-t};q,t\right]
+ =
+ \sum_\Omega K_{\Omega\Lambda}(q,1)s_\Omega(\xvec;1)
+\]
+belong to \(\setN[q]\).  When \(\Omega\) is dominant, they obtain the positive
+formula
+\[
+ K_{\Omega\Lambda}(q,1)
+ =
+ \sum_{\operatorname{sh}(T)=\Omega}
+ q^{\operatorname{maj}_{\widetilde{\Lambda}}(T_{\mathbf a})},
+\]
+over standard fillings of \(\Omega\); symmetry in the first \(m\) entries
+reduces the general case to this one.
 
 \name{Manuel Concha} and \name{Luc Lapointe} study
 \defin{bisymmetric Macdonald polynomials}\label{bisymmetricMacdonaldPolynomial}

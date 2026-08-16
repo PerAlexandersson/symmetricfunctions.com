@@ -1,0 +1,169 @@
+\metatitle{Koornwinder polynomials}
+\metadescription{Symmetric, nonsymmetric, and relative Koornwinder polynomials,
+their double-affine Hecke algebra definition, specializations, and
+combinatorial formulas.}
+\metakeywords{Koornwinder polynomial, Macdonald-Koornwinder polynomial,
+Askey-Wilson polynomial, double affine Hecke algebra, signed permutation,
+alcove walk, set-valued tableau}
+
+
+\section[koornwinderPolynomial]{Koornwinder polynomials}
+
+\begin{polydata}{koornwinderPolynomial}
+  Name     & Koornwinder polynomials \\
+  Space    & Other \\
+  Basis    & True \\
+  Rating   & 3 \\
+  Bib      & Koornwinder1992BC \\
+  Year     & 1992 \\
+  Symbol   & \(P_\lambda^{\mathrm K}(\xvec;q,t;a,b,c,d)\) \\
+  Category & Macdonald \\
+\end{polydata}
+
+The \defin{Koornwinder polynomials}\label{koornwinderPolynomialDefinition},
+also called \defin{Macdonald--Koornwinder polynomials}, are the Macdonald
+polynomials for the nonreduced affine root system
+\((C_n^\vee,C_n)\) \cite{Koornwinder1992BC}.  They form the universal
+classical-type Macdonald family:
+the Macdonald polynomials for every classical affine root system arise by
+specializing their parameters \cite{ColmenarejoGagnonRam2026x}.
+For \(n=1\), they are the Askey--Wilson polynomials.
+
+Unlike type \(A\) \hyperref[macdonaldP]{Macdonald \(P\) polynomials},
+Koornwinder polynomials are Laurent polynomials.  They depend on six
+parameters, customarily written \(q,t,a,b,c,d\).  Other common conventions use
+square-root parameters
+\(q^{1/2},t^{1/2},t_0^{1/2},u_0^{1/2},t_n^{1/2},u_n^{1/2}\).
+
+
+\subsection[koornwinderDefinition]{Eigenfunction and triangularity definition}
+
+Let
+
+\[
+  W_{\mathrm{fin}}=\symS_n\ltimes(\setZ/2\setZ)^n
+\]
+
+be the signed permutation group.  It permutes the variables and replaces
+individual \(x_i\) by \(x_i^{-1}\).  For a partition
+\(\lambda=(\lambda_1\geq\dotsb\geq\lambda_n\geq0)\), let
+
+\[
+  m_\lambda^{BC}(\xvec)
+  \coloneqq
+  \sum_{\alpha\in W_{\mathrm{fin}}\lambda}\xvec^\alpha
+\]
+
+be the corresponding orbit sum, with each distinct orbit element included
+once.
+
+The symmetric Koornwinder polynomial \(P_\lambda^{\mathrm K}\) is the unique
+\(W_{\mathrm{fin}}\)-invariant Laurent polynomial which is triangular,
+
+\[
+  P_\lambda^{\mathrm K}
+  =
+  m_\lambda^{BC}
+  +\sum_{\mu\lhd\lambda}c_{\lambda\mu}(q,t;a,b,c,d)m_\mu^{BC},
+\]
+
+and is a joint eigenfunction of the commuting Koornwinder difference
+operators.  Equivalently, the family is triangular and orthogonal for the
+Koornwinder inner product.  This is the type \(BC\) analogue of the
+\hyperref[macdonaldPEigenvectors]{eigenfunction characterization of Macdonald
+polynomials}.
+
+\begin{example}
+The first orbit sums make the shape of the family visible:
+\[
+  P_{\varnothing}^{\mathrm K}=1,
+  \qquad
+  P_{(1)}^{\mathrm K}
+  =\sum_{i=1}^n(x_i+x_i^{-1})+c,
+\]
+where \(c\) is a rational function of the six parameters.  Similarly, the
+leading orbit of \(P_{(1,1)}^{\mathrm K}\) is
+\[
+  \sum_{1\leq i<j\leq n}
+  (x_ix_j+x_ix_j^{-1}+x_i^{-1}x_j+x_i^{-1}x_j^{-1}).
+\]
+Lower orbit sums are determined by the eigenvalue equations.
+\end{example}
+
+
+\subsection[koornwinderNonsymmetric]{Electronic and relative polynomials}
+
+The nonsymmetric version is indexed by \(\mu\in\setZ^n\).  Following the
+terminology of \name{Laura Colmenarejo} and \name{Arun Ram}, it is useful to
+call \(E_\mu^{\mathrm K}\) the \defin{electronic Koornwinder polynomial} and
+\(P_\lambda^{\mathrm K}\) the \defin{bosonic Koornwinder polynomial}; compare
+the corresponding terminology on the
+\hyperref[macdonaldP]{Macdonald page} \cite{ColmenarejoRam2022x}.
+
+The electronic polynomial is characterized by
+\[
+  Y_jE_\mu^{\mathrm K}=\gamma_{\mu,j}E_\mu^{\mathrm K},
+  \qquad
+  [\xvec^\mu]E_\mu^{\mathrm K}=1,
+\]
+where \(Y_1,\dotsc,Y_n\) are the commuting Cherednik operators for the
+double-affine Hecke algebra of type \((C_n^\vee,C_n)\), and the eigenvalues
+\(\gamma_{\mu,j}\) are explicit monomials in the six parameters.
+
+For a signed permutation \(z\in W_{\mathrm{fin}}\), the
+\defin{relative Koornwinder polynomial} \(E_\mu^z\) is a normalized Hecke
+operator translate of \(E_\mu^{\mathrm K}\), with leading monomial
+\(\xvec^{z\mu}\).  These are the type \(BC\) analogues of
+\hyperref[macdonaldEperm]{permuted-basement Macdonald polynomials};
+they also occur as open-boundary ASEP polynomials.  For dominant
+\(\lambda\), symmetrization gives
+\[
+  P_\lambda^{\mathrm K}
+  =\sum_{w\in W_{\mathrm{fin}}}E_\lambda^w.
+\]
+
+
+\subsection[koornwinderCombinatorialFormulas]{Combinatorial formulas}
+
+\name{Laura Colmenarejo}, \name{Lucas Gagnon}, and \name{Arun Ram} give three
+parallel formulas for all relative Koornwinder polynomials
+\cite{ColmenarejoGagnonRam2026x}:
+
+\begin{itemize}
+\item a creation formula written with the
+  \hyperref[dividedDifferenceOperators]{divided-difference operators} familiar
+  from \hyperref[schubert]{Schubert calculus};
+\item an alcove-walk formula reparametrized by uncompressed set-valued
+  tableaux; and
+\item a compressed set-valued tableau formula obtained by
+  \enquote{across-the-\(0\)-gap} and \enquote{around-the-end} compression.
+\end{itemize}
+
+The relative family is essential here: it plays the same role as a variable
+basement in type \(A\).  The box-greedy reduced word and its coroot sequence
+replace the arm-and-leg data that organize the usual Macdonald tableau
+formula.
+
+\name{Sylvie Corteel}, \name{Olya Mandelshtam}, and
+\name{Lauren Williams} give a different formula using rhombic staircase
+tableaux \cite{CorteelMandelshtamWilliams2024}.  The precise combinatorial
+relation between the compressed set-valued tableaux and the rhombic
+staircase tableaux is currently open.
+
+
+\subsection[koornwinderSpecializations]{Specializations and nearby families}
+
+\begin{itemize}
+\item For \(n=1\), \(P_{(r)}^{\mathrm K}\) is an Askey--Wilson polynomial.
+\item Classical-type Macdonald polynomials are obtained by parameter
+  specialization.
+\item Hall--Littlewood limits of types \(B\) and \(C\) arise from the
+  corresponding \(q=0\) specializations.
+\item Relative Koornwinder polynomials specialize to families related to the
+  open-boundary asymmetric exclusion process.
+\end{itemize}
+
+See the pages on \hyperref[rootSystem]{root systems},
+\hyperref[coxeterGroups]{Coxeter groups}, and
+\hyperref[macdonaldE]{nonsymmetric Macdonald polynomials} for the surrounding
+type-\(A\) and Weyl-group background.

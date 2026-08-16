@@ -150,6 +150,57 @@ Then
 
 \subsection[plethysmOther]{Other identities}
 
+\subsubsection[bosonicPlethysmCluster]{Bosonic plethysm and cluster algebras}
+
+The \defin{bosonic plethysm coefficients} are the multiplicities
+\[
+  \schurS_\mu[\schurS_2]
+  =
+  \sum_\lambda a^\lambda_{\mu,(2)}\schurS_\lambda,
+\]
+equivalently the multiplicities of
+\(\mathbb{S}_\lambda V\) in
+\(\mathbb{S}_\mu(\operatorname{Sym}^2V)\).
+
+Let \(V=\setC^\ell\), \(W=\setC^m\), and let \(U_V\) be a maximal unipotent
+subgroup of \(\GL(V)\).  \name{Yelin Fan} and \name{Jiarui Fei} identify the
+highest-weight algebra
+\[
+  R_{\ell,m}
+  =
+  \operatorname{Sym}(\operatorname{Sym}^2V\otimes W)^{U_V}
+\]
+with an upper cluster algebra \(\mathcal{U}(\Sigma_{\ell,m})\) having
+polynomial frozen coefficients \cite{FanFei2026x}.  The seed is
+skew-symmetrizable and admits a reddening sequence, so theta functions
+extending across the frozen boundary form a basis indexed by lattice points
+in a rational polyhedral cone \(C_{\ell,m}\).
+
+For a weak composition \(\alpha=(\alpha_1,\dotsc,\alpha_m)\), put
+\[
+  b^\lambda_{\alpha,(2)}
+  =
+  \dim\operatorname{Hom}_{\GL(V)}
+  \left(
+    \mathbb{S}_\lambda V,
+    \bigotimes_{r=1}^m
+    \operatorname{Sym}^{\alpha_r}(\operatorname{Sym}^2V)
+  \right).
+\]
+These nonnegative multiplicities are lattice-point counts in weight fibers of
+\(C_{\ell,m}\).  If
+\(\alpha^\sigma(\mu)_i=\mu_i-i+\sigma(i)\), then Jacobi--Trudi gives
+\[
+  a^\lambda_{\mu,(2)}
+  =
+  \sum_{\sigma\in\symS_m}
+  \operatorname{sgn}(\sigma)
+  b^\lambda_{\alpha^\sigma(\mu),(2)}.
+\]
+Thus symmetric-square plethysm is an explicit finite alternating sum of
+polyhedral lattice-point counts.  The construction does not yet give a
+positive combinatorial rule for \(a^\lambda_{\mu,(2)}\) itself.
+
 \begin{proposition}
 We have
 \[

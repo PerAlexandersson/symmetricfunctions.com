@@ -428,6 +428,46 @@ Furthermore, the \hyperref[stanleySym]{Stanley symmetric functions}
 are obtained as a stable limit of the Schubert polynomial.
 
 
+\subsection[skewSchurAsSchubert]{Skew Schur polynomials as Schubert specializations}
+
+The flagged-skew-Schur description of \(321\)-avoiding Schubert polynomials
+has the following useful converse
+\cite{BilleyJockuschStanley1993,Zhang2026x}.
+
+\begin{lemma}
+For every nonempty skew shape \(D\), there is a \(321\)-avoiding permutation
+\(w\) with associated skew shape \(\Sigma_w\) such that
+\[
+  \schurS_{\Sigma_w}(x_1,\dotsc,x_n)
+  =
+  \schurS_D(x_1,\dotsc,x_n)
+\]
+for every \(n\geq1\).
+\end{lemma}
+
+After adding sufficiently many initial fixed points, the equality becomes an
+actual specialization of a Schubert polynomial.
+
+\begin{proposition}
+\label{skewSchurFiniteSchubertSpecialization}
+Let \(D\) be a skew shape and \(n\geq1\).  There are integers \(p,m_0\geq1\)
+and a \(321\)-avoiding permutation \(w\in\symS_p\) such that, for every
+\(m\geq m_0\),
+\[
+  \schurS_D(x_1,\dotsc,x_n)
+  =
+  \schubert_{\operatorname{id}_m\times w}
+  (x_1,\dotsc,x_n,0,\dotsc,0).
+\]
+\end{proposition}
+
+This bridge transfers properties preserved by nonnegative linear
+specializations from Schubert polynomials to finite-variable skew Schur
+polynomials.  In particular, because Schubert polynomials are dually
+Lorentzian, it is the main input in the proof that normalized
+\hyperref[schurSkew]{skew Schur polynomials are Lorentzian}.
+
+
 \subsection[schubertMurnaghanNakayama]{Murnaghan--Nakayama rule}
 
 In \cite{MorrisonSottile2018}, \name{Kevin N. Morrison} and \name{Frank Sottile}

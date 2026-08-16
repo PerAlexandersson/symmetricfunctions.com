@@ -62,11 +62,34 @@ that the $\macdonaldH_{\lambda}(\xvec;q,t)$ are Schur-positive.
 Kato's categorification gives the stronger refinement that
 $\macdonaldH_\lambda(\xvec;q,t)$ is $k$-Schur-positive when $\lambda$ is
 $k$-bounded \cite[Cor.~9.4]{Kato2025x}.
-\name{Donghyun Kim}, \name{Seung Jin Lee}, and \name{Jaeseong Oh} study
-Butler's conjecture on divided differences of modified Macdonald polynomials
-\cite{KimLeeOh2026}.  They introduce a column-exchange rule for LLT
-equivalence, give a positive monomial expansion for the divided difference,
-and prove Butler's Schur-positivity conjecture in several special cases.
+\name{Donghyun Kim}, \name{Seung Jin Lee}, and \name{Jaeseong Oh} introduced
+a column-exchange rule for LLT equivalence, proved monomial positivity, and
+settled several cases of Butler's conjecture
+\cite{KimLeeOh2026}.  The full conjecture has now been proved by
+\name{Peter L. Guo}, \name{Mingyang Kang}, and \name{Rui Xiong}
+\cite{GuoKangXiong2026x}.
+
+\begin{theorem}[Butler positivity]
+Let \(\nu\vdash n+1\), and let \(\lambda,\mu\subset\nu\) be distinct
+partitions of \(n\), each obtained by deleting one cell.  Put
+\[
+  T_\rho=t^{n(\rho)}q^{n(\rho')}.
+\]
+Then the Macdonald intersection polynomial
+\[
+  I_{\lambda,\mu}(X;q,t)
+  \coloneqq
+  \frac{
+    T_\lambda\macdonaldH_\mu(X;q,t)
+    -T_\mu\macdonaldH_\lambda(X;q,t)}
+  {T_\lambda-T_\mu}
+\]
+is Schur-positive with coefficients in \(\setN[q,t]\).
+\end{theorem}
+
+More strongly, \(I_{\lambda,\mu}\) is the bigraded Frobenius characteristic
+of an \(\symS_n\)-module.  The construction uses the Procesi bundle on the
+Hilbert scheme of points in the plane.
 
 
 \subsection[macdonaldHDefinitionViaMacdonaldJ]{Definition}
