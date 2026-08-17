@@ -2,25 +2,64 @@
 
 ## Current scope
 
-Completed: audit and integrate the thirteen supplied papers on
-real-rootedness, interlacing, gamma-positivity, Lorentzian polynomials, and
-character polynomials.
+Triage the 55-paper symmetric-function backlog supplied by the user.  Add only
+papers with concrete definitions, formulas, theorems, counterexamples, or new
+families that fit SymCat; record intentionally skipped papers and resolve all
+bibliography-key collisions.
 
 ## Ownership
 
-No files are actively owned by the editor worker; the preprint audit is
-complete.
+The editor worker owns `HANDOFF.md`, `bibliography.bib`, and these content
+files during the backlog triage: `assaf.tex`, `cycleIndexPolynomial.tex`,
+`diagonalHarmonics.tex`, `grothendieck.tex`, `hallLittlewood.tex`,
+`hivePolytopes.tex`, `key.tex`, `latticeModel.tex`,
+`littlewoodRichardson.tex`, `loopSchur.tex`, `newtonPolytopes.tex`,
+`nonCommutativeFunctions.tex`, `qsymSchur.tex`, `representationTheory.tex`,
+`rsk.tex`, `schubertVariations.tex`, `schur.tex`, `schurShifted.tex`,
+`schurMisc.tex`, `schurZeta.tex`, `touchardRiordan.tex`, and `whittaker.tex`.
 
 ## Starting state
 
 - The SymCat worktree was clean at the start.
-- Local `master` was already three commits ahead of `origin/master`; those
+- Local `master` was already six commits ahead of `origin/master`; those
   pre-existing commits must be preserved and not rewritten.
-- No project `HANDOFF.md` existed before this task.
-- No paper/PDF MCP servers are configured in this host session. The fallback is
-  the live arXiv++ REST/BibTeX API, primary arXiv PDFs, and `pdf2txt.py`.
+- `paper-cache` was registered but unavailable through the current tool
+  session, so the audit used primary arXiv PDFs, `pdf2txt.py`, and the live
+  arXiv++ REST/BibTeX API.
 
 ## Status
+
+The 55-paper backlog triage is complete.  Fifteen supplied arXiv IDs were
+already present; the audit added 33 references and theorem-level coverage on
+the relevant existing pages.  No new standalone page was needed.  The new
+families fit naturally into the hive, Hall--Littlewood, loop-Schur,
+Schur-$Q$, Schur-zeta, and related pages.
+
+Seven absent papers were intentionally skipped: Romik--Śniady on infinite
+RSK (peripheral to the current finite RSK page), Thomas--Tung on injective
+partition maps and Green--Holmes--Im on quiver multisymmetric polynomials
+(too peripheral), Mickler on Jack LR coefficients (mainly conjectural),
+Mironov--Morozov--Popolitov on twisted Cherednik systems (too
+mathematical-physics-specific), and Campbell plus Baolahy--Benjamin on
+Kronecker products (not enough durable new structure beyond the existing
+Kronecker section).
+
+Collision-free keys were assigned to the two new Lee papers and the new
+Qiu--Zhang paper.  The DOI attached to Cai--Jiang--Jing--Li--Ye by arXiv was
+for an unrelated article; it was corrected to the publisher DOI
+`10.1017/fms.2026.10256`.
+
+`paper-cache` is registered in `codex mcp list`, but no paper-cache callable
+is exposed in this Codex tool session and the server has no standalone query
+CLI.  This expected MCP is therefore unavailable for the task; the fallback
+is primary arXiv PDFs, `pdf2txt.py`, and the live arXiv++ BibTeX endpoint.
+
+Verification completed with `make bib Q=1`, `make Q=1`, and
+`make check Q=1`.  The two warnings from `make check` remain the pre-existing
+unit-test fixtures whose synthetic polydata relations intentionally omit
+bibliography keys.
+
+## Completed real-rootedness preprint audit
 
 The preprint audit is complete.  No paper/PDF MCP servers were configured in
 this host session (`codex mcp list` was empty), so the primary arXiv PDFs and
