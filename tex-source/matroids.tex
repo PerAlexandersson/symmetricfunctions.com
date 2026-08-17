@@ -670,6 +670,35 @@ the complete tripartite graphs $K_{1,1,n}$.  Their formulas give the
 corresponding non-equivariant inverse Kazhdan--Lusztig polynomials and imply
 log-concavity for this family.
 
+Let $T_n=K_{1,1,n}$, and write $P_n(x)=P_{T_n}(x)$ for the ordinary matroid
+Kazhdan--Lusztig polynomial.  The graphic matroid of $T_n$ is the
+\defin{thagomizer matroid}\label{thagomizerMatroid}.
+
+\begin{theorem}[Zhang, \cite{Zhang2026MatroidKLx}]
+\label{thagomizerKazhdanLusztigRealRooted}
+For $n\geq 2$ and $0\leq\lambda\leq n/2$, the polynomial
+\[
+  P_n(x)+\lambda x
+\]
+has exactly $\lfloor n/2\rfloor$ zeros, all simple and negative.  In
+particular, $P_{T_n}(x)=P_n(x)$ and
+$P_{K_{2,n}}(x)=P_n(x)+x$ are real-rooted.
+
+The corresponding matroid $Z$-polynomials agree, and
+\[
+  Z_{T_n}(x)=Z_{K_{2,n}}(x)
+\]
+has $n+1$ distinct negative zeros.
+\end{theorem}
+
+The first polynomial also has the Catalan permutation interpretation
+\[
+  P_n(x)=\sum_{\pi\in\symS_n(321)}x^{\des(\pi)},
+\]
+where $\symS_n(321)$ denotes the set of $321$-avoiding permutations.  The
+proof of the polynomial-pencil result uses a transformation to Chebyshev
+polynomials and strict interlacing at their zeros.
+
 
 
 \section[matroidChowPolynomials]{Chow polynomials}
@@ -693,7 +722,8 @@ maximally ranked posets \cite{BrandenVecchi2025Uniform}.
 \name{Elena Hoster} and \name{Christian Stump} prove the same real-rootedness
 for finite graded simplicial posets with a top element and positive
 $h$-vector, including the lattices of flats of uniform matroids
-\cite{HosterStump2025x}.
+\cite{HosterStump2025x}.  For the dual of such a poset, they also prove that
+the Chow polynomial interlaces the augmented Chow polynomial.
 
 
 \section[polymatroids]{Polymatroids}

@@ -173,8 +173,32 @@ They in fact show that the corresponding operator preserves
 real-rootedness, using the method of \name{Julius Borcea} and
 \name{Petter Brändén} on \hyperref[stablePolynomial]{stable polynomials}.
 
-The analogous polynomials for type \(D\) are proved to be real-rooted, but
-are only conjectured to form interlacing pairs; see \cite[Section~5]{Chow2022}.
+The analogous polynomials for type \(D\) are real-rooted, but consecutive
+type \(D\) polynomials are only conjectured to form interlacing pairs; see
+\cite[Section~5]{Chow2022}.
+
+There is, however, a refined within-rank relation among the three classical
+types.  Write $A_n(t)$, $B_n(t)=P_n(t)$, and $D_n(t)$ for the Eulerian
+polynomials of types $A$, $B$, and $D$, respectively; in particular,
+$D_n(t)$ is the \defin{type $D$ Eulerian polynomial}
+\label{typeDEulerianPolynomial}.  For $n\geq 2$, Stembridge's identity is
+\[
+  D_n(t)=B_n(t)-n2^{n-1}tA_{n-1}(t).
+\]
+
+\begin{theorem}[Ma, \cite[Thm.~1]{Ma2026x}]
+\label{halfInterlacingEulerian}
+For every $n\geq 3$, the type $D$ Eulerian polynomial $D_n(t)$ has only
+simple negative zeros.  Moreover, the zeros of $A_{n-1}(t)$, $B_n(t)$, and
+$D_n(t)$ interlace separately on $(-\infty,-1)$ and $(-1,0)$.  The only
+break from ordinary interlacing occurs across the middle at $-1$; this is
+called the \defin{half interlacing property}.
+\end{theorem}
+
+The polynomial $D_2(t)=(1+t)^2$ is the exceptional repeated-root case.
+When $n$ is odd, all three polynomials have the common zero $-1$.  This
+within-rank half interlacing is distinct from the open consecutive
+interlacing question for $D_n(t)$ and $D_{n+1}(t)$.
 \end{example*}
 
 

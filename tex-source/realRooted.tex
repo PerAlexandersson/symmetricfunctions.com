@@ -1,6 +1,7 @@
 \metatitle{Real-rooted and stable polynomials}
 
-\metadescription{Polynomials with real roots, and their multivariate analogues. Also, Lorentzian polynomials.}
+\metadescription{Real-rooted polynomials, classical root criteria, and
+their multivariate analogues. Also, Lorentzian polynomials.}
 
 
 \section[polynomialRootIntro]{Introduction}
@@ -83,6 +84,70 @@ lattice method for proving log-concavity and log-convexity
 Young's lattice intervals, order polynomials, Schur and Schur \(Q\)-function
 specializations, Lucas sequences, descent and peak polynomials, pattern
 avoidance, set partitions, and noncrossing partitions.
+
+
+\subsection[classicalRootCriteria]{Classical criteria and root counts}
+
+Several classical criteria extract root information directly from the
+coefficients.  Descartes' rule bounds roots of each sign, the
+Hermite--Sylvester theorem gives an exact semidefinite certificate for
+real-rootedness, and \hyperref[sturmRootCounting]{Sturm's theorem} counts
+roots in any interval.
+
+For a real polynomial
+\[
+  f(t)=a_nt^n+a_{n-1}t^{n-1}+\dotsb+a_0,
+\]
+let $V(f)$ be the number of sign changes in
+$(a_n,a_{n-1},\dotsc,a_0)$ after the zero entries are omitted.
+
+\begin{theorem}[Descartes' rule of signs]
+\label{descartesRuleOfSigns}
+Let $N_+(f)$ be the number of positive real zeros of $f$, counted with
+multiplicity.  Then
+\[
+  V(f)-N_+(f)
+\]
+is a non-negative even integer.  The corresponding statement for negative
+zeros is obtained by applying the rule to $f(-t)$.
+\end{theorem}
+
+For the Hermite--Sylvester criterion, normalize $f$ to be monic and write
+\[
+  f(t)=t^n+c_1t^{n-1}+\dotsb+c_n
+       =\prod_{j=1}^n(t-r_j),
+\]
+where the roots are repeated according to multiplicity.  Define the
+\defin{Newton sums}\label{polynomialNewtonSums}
+\[
+  s_k(f)=\sum_{j=1}^n r_j^k,
+  \qquad s_0(f)=n.
+\]
+These power sums do not require knowing the roots.  The
+\hyperref[standardNewton]{Newton identities} express them recursively in the
+coefficients:
+\[
+  s_k+c_1s_{k-1}+\dotsb+c_{k-1}s_1+kc_k=0
+  \qquad (1\leq k\leq n),
+\]
+and
+\[
+  s_k+c_1s_{k-1}+\dotsb+c_ns_{k-n}=0
+  \qquad (k>n).
+\]
+
+\begin{theorem}[Hermite--Sylvester, \cite{Nathanson2019x}]
+\label{hermiteSylvesterTheorem}
+Let $f\in\setR[t]$ be monic of degree $n$, and form its
+\defin{Hermite matrix}\label{hermiteMatrix}
+\[
+  H_f=\bigl(s_{i+j}(f)\bigr)_{0\leq i,j\leq n-1}.
+\]
+Then $f$ is real-rooted if and only if $H_f$ is positive semidefinite.
+\end{theorem}
+
+Thus Hermite--Sylvester is a criterion purely in the coefficients of $f$:
+Newton's identities determine every entry of $H_f$ up to $s_{2n-2}$.
 
 
 

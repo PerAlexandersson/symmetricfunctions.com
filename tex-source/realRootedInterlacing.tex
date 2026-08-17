@@ -147,7 +147,9 @@ $b(r) \lt 0$ whenever $f(r)=0$, then $f$ strictly interlaces $F$.
 \subsection[sturmSequence]{Sturm sequences}
 
 
-It is fairly common to see sequences of polynomials, $\{ P_n(t) \}_{n \geq 0}$
+There are two related uses of the term Sturm sequence.  In enumerative
+combinatorics, it is fairly common to see sequences of polynomials
+$\{ P_n(t) \}_{n \geq 0}$
 with the property that $P_j(t) \interl P_{j+1}(t)$ for all $j$.
 If the leading coefficient is always positive and $\deg(P_n)=n$,
 this is called a \defin{Sturm sequence}\label{sturmSequenceDefinition},
@@ -162,6 +164,34 @@ is defined in the analogous manner.
 
 There are many Sturm sequences on \hyperref[realRootedWords]{permutations}
 and \hyperref[realRootedCatalan]{Catalan objects}.
+
+The classical Sturm sequence, or \defin{Sturm chain}, instead starts from one
+polynomial $f$.  Set $S_0=f$, $S_1=f'$, and recursively take the negative
+remainders
+\[
+  S_{j+1}=-\operatorname{rem}(S_{j-1},S_j)
+\]
+until the remainder is zero.  For a real number $x$, let $V_f(x)$ be the
+number of sign changes in
+\[
+  S_0(x),S_1(x),\dotsc
+\]
+after zero entries are omitted.
+
+\begin{theorem}[Sturm's theorem]
+\label{sturmRootCounting}
+If $a<b$ and neither endpoint is a zero of $f$, then the number of distinct
+real zeros of $f$ in $(a,b)$ is
+\[
+  V_f(a)-V_f(b).
+\]
+\end{theorem}
+
+In particular, evaluating the signs at $-\infty$ and $+\infty$ gives the
+total number of distinct real zeros.  This provides an exact coefficient-based
+test for \hyperref[realRootedPolynomial]{real-rootedness}: if $g$ is the
+squarefree part of $f$, then $f$ is real-rooted if and only if Sturm's theorem
+counts $\deg(g)$ distinct real zeros of $g$.
 
 
 \subsection[bezoutMatrix]{Bézout matrices and Hurwitz--Lace}
@@ -261,81 +291,6 @@ Ferrers diagrams can be proved to be real-rooted using this method.
 Suppose $f_1 \interl f_2 \interl \dotsb \interl f_n$ and $f_1 \interl f_n$.
 Then $\{f_1,\dotsc,f_n\}$ is an interlacing sequence.
 \end{proposition}
-
-
-\subsection[fullyInterlacingLace]{Fully interlacing sequences and the $\operatorname{Lace}$ matrix}
-
-A stronger coefficient-level version of interlacing was introduced by
-\name{Christos A. Athanasiadis} and \name{David G. Wagner}
-\cite{AthanasiadisWagner2024x}.
-
-\begin{definition}[The $\operatorname{Lace}$ matrix]
-Let $A=(A_{ij}(x))$ be a $p \times q$ matrix of formal power series, indexed by
-$0 \leq i \lt p$ and $0 \leq j \lt q$, and write
-\[
- A_{ij}(x)=\sum_{n\geq 0} a_{ij}(n)x^n,
-\]
-with $a_{ij}(n)=0$ for $n \lt 0$.
-The infinite \defin{Lace matrix}\label{laceMatrix}
-$\operatorname{Lace}(A)$ has integer rows and columns.
-If
-\[
- u=pu' + i,\qquad v=qv' + j,\qquad 0\leq i \lt p,\quad 0\leq j \lt q,
-\]
-then
-\[
- \operatorname{Lace}(A)_{u,v}=a_{ij}(v'-u').
-\]
-Equivalently, $\operatorname{Lace}(A)$ is the block Toeplitz
-coefficient-convolution matrix associated to multiplication by $A$.
-\end{definition}
-
-For a column vector $A=(A_0,A_1,\dotsc,A_{p-1})^T$, Athanasiadis--Wagner call
-the sequence \defin{fully interlacing}\label{fullyInterlacingSequence}
-if $\operatorname{Lace}(A)$ is
-\hyperref[totallyNonnegative]{totally nonnegative}.  Thus every finite minor
-of this infinite coefficient-convolution matrix is nonnegative.
-
-Full interlacing implies ordinary pairwise interlacing, but the converse is
-false.  The distinction is useful: pairwise interlacing is a root-level
-condition, whereas full interlacing is a total-nonnegativity condition on a
-structured coefficient matrix.
-
-
-Whenever the product $AB$ is defined,
-\[
- \operatorname{Lace}(AB)=\operatorname{Lace}(A)\operatorname{Lace}(B).
-\]
-This is convenient, since totally nonnegative matrices are closed under
-multiplication.
-
-
-\begin{example*}[Pairwise interlacing need not be fully interlacing]
-The following example is from \cite[Ex.~3.4]{AthanasiadisWagner2024x}.  Let
-\[
- P(x)=t+x,\qquad Q(x)=(b+x)(d+x),\qquad R(x)=(a+x)(c+x).
-\]
-If
-\[
- a \leq b \leq t \leq c \leq d,
-\]
-then $P,Q,R$ are pairwise interlacing.  However, the $3\times 3$ minor
-\[
- \begin{pmatrix}
- t   & 1   & 0 \\
- bd  & b+d & 1 \\
- ac  & a+c & 1
- \end{pmatrix}
-\]
-of $\operatorname{Lace}((P,Q,R)^T)$ has determinant
-\[
- t(b+d-a-c)-(bd-ac),
-\]
-which can be negative.  For example, with
-$a=1$, $b=2$, $t=2$, $c=3$, and $d=4$, this determinant is $-1$.
-Thus ordinary pairwise interlacing does not imply full interlacing.
-\end{example*}
-
 
 
 \subsection[realMatrixRecursion]{Matrices preserving interlacing sequences}
@@ -491,6 +446,78 @@ form an interlacing family.  The root polynomial is the $k$th derivative
 of the characteristic polynomial of $A$.  This refines the Cauchy
 interlacing theorem from a single principal submatrix to a whole tree of
 principal submatrices.
+
+
+\subsection[fullyInterlacingLace]{Fully interlacing sequences and the $\operatorname{Lace}$ matrix}
+
+A stronger coefficient-level version of interlacing was introduced by
+\name{Christos A. Athanasiadis} and \name{David G. Wagner}
+\cite{AthanasiadisWagner2024x}.
+
+\begin{definition}[The $\operatorname{Lace}$ matrix]
+Let $A=(A_{ij}(x))$ be a $p \times q$ matrix of formal power series, indexed by
+$0 \leq i \lt p$ and $0 \leq j \lt q$, and write
+\[
+ A_{ij}(x)=\sum_{n\geq 0} a_{ij}(n)x^n,
+\]
+with $a_{ij}(n)=0$ for $n \lt 0$.
+The infinite \defin{Lace matrix}\label{laceMatrix}
+$\operatorname{Lace}(A)$ has integer rows and columns.
+If
+\[
+ u=pu' + i,\qquad v=qv' + j,\qquad 0\leq i \lt p,\quad 0\leq j \lt q,
+\]
+then
+\[
+ \operatorname{Lace}(A)_{u,v}=a_{ij}(v'-u').
+\]
+Equivalently, $\operatorname{Lace}(A)$ is the block Toeplitz
+coefficient-convolution matrix associated to multiplication by $A$.
+\end{definition}
+
+For a column vector $A=(A_0,A_1,\dotsc,A_{p-1})^T$, Athanasiadis--Wagner call
+the sequence \defin{fully interlacing}\label{fullyInterlacingSequence}
+if $\operatorname{Lace}(A)$ is
+\hyperref[totallyNonnegative]{totally nonnegative}.  Thus every finite minor
+of this infinite coefficient-convolution matrix is nonnegative.
+
+Full interlacing implies ordinary pairwise interlacing, but the converse is
+false.  The distinction is useful: pairwise interlacing is a root-level
+condition, whereas full interlacing is a total-nonnegativity condition on a
+structured coefficient matrix.
+
+Whenever the product $AB$ is defined,
+\[
+ \operatorname{Lace}(AB)=\operatorname{Lace}(A)\operatorname{Lace}(B).
+\]
+This is convenient, since totally nonnegative matrices are closed under
+multiplication.
+
+\begin{example*}[Pairwise interlacing need not be fully interlacing]
+The following example is from \cite[Ex.~3.4]{AthanasiadisWagner2024x}.  Let
+\[
+ P(x)=t+x,\qquad Q(x)=(b+x)(d+x),\qquad R(x)=(a+x)(c+x).
+\]
+If
+\[
+ a \leq b \leq t \leq c \leq d,
+\]
+then $P,Q,R$ are pairwise interlacing.  However, the $3\times 3$ minor
+\[
+ \begin{pmatrix}
+ t   & 1   & 0 \\
+ bd  & b+d & 1 \\
+ ac  & a+c & 1
+ \end{pmatrix}
+\]
+of $\operatorname{Lace}((P,Q,R)^T)$ has determinant
+\[
+ t(b+d-a-c)-(bd-ac),
+\]
+which can be negative.  For example, with
+$a=1$, $b=2$, $t=2$, $c=3$, and $d=4$, this determinant is $-1$.
+Thus ordinary pairwise interlacing does not imply full interlacing.
+\end{example*}
 
 
 \section[interlacingTransforms]{Preserving operators and symmetric decompositions}
