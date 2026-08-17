@@ -48,3 +48,7 @@ Verification completed with make bib Q=1, make Q=1, and make check Q=1.
 
 The two warnings from make check are the pre-existing unit-test fixtures whose
 synthetic polydata relations intentionally omit bibliography keys.
+
+On 2026-08-17, the Coxeter-groups page gained a brief definition of
+crystallographic root systems and Coxeter groups, including the root-lattice
+criterion and the standard finite noncrystallographic families.

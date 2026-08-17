@@ -22,6 +22,22 @@ Finite Weyl groups are Coxeter groups coming from
 \hyperref[rootSystem]{root systems}.  Every Weyl group is a finite Coxeter
 group, but not every finite Coxeter group is crystallographic.
 
+A root system \(\Phi\) is \defin{crystallographic} if its Cartan integers
+\[
+  \langle\beta,\alpha^\vee\rangle
+  =
+  \frac{2(\beta,\alpha)}{(\alpha,\alpha)}
+\]
+are integers for all \(\alpha,\beta\in\Phi\).  Equivalently, the reflections
+preserve the lattice spanned over \(\setZ\) by a choice of simple roots, and
+every root has integral coordinates in that lattice.  A
+\defin{crystallographic Coxeter group}\label{crystallographicCoxeterGroup} is
+one which is realized as the Weyl group of such a crystallographic root
+system.  Thus \enquote{arising from a root system} is essentially the right
+idea, provided that the root system satisfies this integrality condition.
+Finite Coxeter groups of types \(H_3\), \(H_4\), and \(I_2(m)\) for
+\(m\notin\{3,4,6\}\) are the standard noncrystallographic examples.
+
 \begin{example}
 The symmetric group \(\symS_n\) is the Coxeter group of type \(A_{n-1}\).
 The simple reflections are the adjacent transpositions
