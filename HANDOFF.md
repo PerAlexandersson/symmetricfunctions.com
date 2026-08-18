@@ -2,20 +2,20 @@
 
 ## Current scope
 
-Perform a site-wide editorial audit for definite mathematical errors,
-terminology and notation mistakes, misplaced prose, duplicate labels, and
-misleading page metadata.  Keep this pass to high-confidence corrections;
-record larger reorganization candidates rather than splitting established
-pages opportunistically.
+Add direct, local citations at the attributed statements identified by the
+completed Claude editorial audit.  Check whether the stronger Macdonald
+positivity conjecture attributed to Arun Ram has a published primary source,
+and preserve all existing uncommitted work.
 
 ## Ownership
 
-The editor worker owns `HANDOFF.md` and the following files during this audit:
-`assaf.tex`, `cycleIndexPolynomial.tex`, `gtpatterns.tex`,
-`hallLittlewood.tex`, `jack.tex`, `loopSchur.tex`, `ncSchur.tex`, `posets.tex`,
-`schurKP.tex`, `schurMisc.tex`, `permutationFamilies.tex`,
-`permutationGeneralizations.tex`, `permutationPatterns.tex`, `permutations.tex`,
-and `schubert.tex`.
+The editor worker owns `HANDOFF.md`, `tex-source/lorentzianPolynomials.tex`,
+`tex-source/cylindricSchur.tex`, `tex-source/realRootedGraphs.tex`,
+`tex-source/stablePolynomials.tex`, and `tex-source/cspMisc.tex` for this
+follow-up.  `tex-source/macdonaldP.tex` remains read-only unless a reliable
+published source for the Arun Ram attribution is found.  Existing changes to
+`permutationFamilies.tex`, `realRootedInterlacing.tex`, and `bibliography.bib`
+are preserved and are outside this follow-up's ownership.
 
 ## Starting state
 
@@ -27,6 +27,85 @@ and `schubert.tex`.
   primary arXiv papers instead.
 
 ## Current status
+
+The citation-localization follow-up is complete.  Direct citations were added
+to the foundational Lorentzian-polynomial attribution (`BrandenHuh2020`),
+Postnikov's cylindric-shape notation (`Postnikov2005`), the Wan--Wang--
+Mohammadian Laplacian-matching results (`WanWangMohammadian2022`), the
+Haglund--Visontai Stirling-permutation refinement (`HaglundVisontai2012`), and
+Rhoades's nonnegative-integer-matrix biCSP result (`Rhoades2010b`).  All five
+keys were already present, so `bibliography.bib` was not changed in this
+follow-up.  Searches of the primary arXiv literature found the standard
+Haglund conjecture and its partial results, but no published source for the
+stronger transition-positivity conjecture attributed to Arun Ram; the existing
+attribution in `macdonaldP.tex` was therefore left unchanged rather than given
+a misleading citation.  Focused renders of all five edited pages,
+`git diff --check`, `make Q=1`, and `make check Q=1` all pass, and the rendered
+citation links were spot-checked.
+
+The requested read-only Claude editorial audit is complete.  Claude Sonnet
+used corpus-wide scans plus targeted inspection across all 141 TeX sources,
+the 2,447 generated labels, and the bibliography.  It found no broken
+hyperrefs, missing citation keys, duplicate labels, malformed OEIS identifiers,
+convincing spelling errors, duplicated misplaced prose, or unsupported hedge
+language.  Claude made no file changes and ran no builds or network commands.
+
+Claude returned six possible uncited attributions.  Local verification reduced
+these to two useful follow-ups.  The Lorentzian-polynomial introduction should
+cite the already-present key `BrandenHuh2020` directly.  The stronger Macdonald
+positivity conjecture attributed to Arun Ram in `macdonaldP.tex` should either
+receive a published citation or be identified as a personal communication.
+The other four reports were already supported by nearby citations or existing
+keys: `Postnikov2005`, `WanWangMohammadian2022`, and `HaglundVisontai2012`; the
+Rhoades nonnegative-matrix statement appears continuous with the immediately
+preceding `Rhoades2010b` citation, though repeating that citation locally would
+improve clarity.  No content patch was applied in this audit-only turn.
+
+The fixed-point/excedance addition to `realRootedInterlacing.tex` is complete.
+It records
+`d_{n,k}(x) = D(x^k(1+x)^{n-k})` as the excedance enumerator for
+permutations whose fixed points lie in `[n-k]`, and proves by fixed-point
+deletion and inclusion-exclusion that forbidding fixed points on any set `S`
+gives the same polynomial whenever `|S|=k`.  The Brändén--Solus root-order
+theorem is then applied pairwise to show that
+`(d_{n,k}(x))_{0 <= k <= n}` is an interlacing sequence, so every member is
+real-rooted.  The text also notes the individual fixed-point weights already
+present in the proof of Brändén--Solus Lemma 3.5 and distinguishes this earlier
+row result from the later Liu--Yan column Sturm refinement.
+
+Both requested bibliography keys were already present.  The Brändén--Solus
+entry now also records arXiv `1808.04141`; the Athanasiadis entry already
+recorded `2302.00754`.  The theorem statements and numbering were checked
+against the primary arXiv HTML for both papers.  `paper-cache`, `polytool`, and
+`polynomial-lab` are registered, but no callable for them is exposed in this
+tool session; this was an editorial incorporation of published results rather
+than a new proof search, so no polynomial-lab ledger or computational fallback
+was needed.
+
+Verification completed with `make bib Q=1`, the focused
+`make FILE=realRootedInterlacing.tex Q=1`, `git diff --check`, `make Q=1`, and
+`make check Q=1`.  The two `make check` warnings are the pre-existing unit-test
+fixtures whose synthetic polydata relations omit bibliography keys.  The
+uncommitted permutation-family table and alphabetical reorganization remain
+intact and were not modified during this follow-up.
+
+The named permutation-families follow-up is complete.  The page now has an
+alphabetized enumeration table for all 18 listed families with a single
+specified counting sequence, giving the counts in `S_2` through `S_9` and
+working OEIS links.  Shifted indexing is normalized by permutation size and
+explained explicitly; this covers flattened, bigrassmannian, layered,
+separable, and simsun permutations.  The accompanying definitions were also
+sorted alphabetically and use layered as the primary name for Richardson
+permutations.  The OEIS values were checked against the official sequence
+pages.  Verification completed with `git diff --check`, `make Q=1`, and
+`make check Q=1`, and the rendered table and links were spot-checked in
+`www/permutationFamilies.htm`.
+
+The most substantial remaining omissions from the named-family overview are
+involutions (including fixed-point-free involutions), simple and sum/skew
+indecomposable permutations, stack-sortable permutations, and smooth
+permutations.  These are better candidates for a focused subsequent addition
+than further extending the present table without definitions and references.
 
 The editorial audit and high-confidence correction batch are complete and
 ready for review.  The loop-Schur page now has the correct terminal summation

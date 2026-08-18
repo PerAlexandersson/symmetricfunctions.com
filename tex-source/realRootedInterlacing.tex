@@ -697,6 +697,44 @@ then \cite[Cor.~3.7]{BrandenSolus2018} gives
 \[
  A_n \prec D(p) \prec d_n.
 \]
+
+For $0\leq k\leq n$, define
+\[
+ d_{n,k}(x)
+ \coloneqq D\bigl(x^k(1+x)^{n-k}\bigr)
+ =\sum_{\substack{\pi\in\symS_n\\
+                   \operatorname{Fix}(\pi)\subseteq[n-k]}}
+    x^{\exc(\pi)}.
+\]
+The excedance interpretation is due to \name{Christos A. Athanasiadis}
+\cite[Prop.~4.1(a)]{Athanasiadis2025EulerianTransformation}.  Thus
+$d_{n,0}(x)=A_n(x)$, while $d_{n,n}(x)=d_n(x)$.
+
+More generally, suppose that fixed points are forbidden on any specified set
+$S\subseteq[n]$ with $|S|=k$.  Fixed-point deletion preserves the excedance
+number, so inclusion-exclusion gives
+\[
+ \sum_{\substack{\pi\in\symS_n\\
+                  \operatorname{Fix}(\pi)\cap S=\varnothing}}
+ x^{\exc(\pi)}
+ =\sum_{T\subseteq S}(-1)^{|T|}A_{n-|T|}(x)
+ =\sum_{i=0}^k(-1)^i\binom{k}{i}A_{n-i}(x)
+ =d_{n,k}(x).
+\]
+Consequently, only the cardinality of the forbidden set matters.
+
+The polynomials $x^k(1+x)^{n-k}$ form a chain in root order.  Hence, for
+every $0\leq i<j\leq n$, \cite[Thm.~3.6 and Cor.~3.7]{BrandenSolus2018}
+imply $d_{n,i}(x)\prec d_{n,j}(x)$; in particular,
+\[
+ d_{n,0}(x)\prec d_{n,1}(x)\prec\dotsb\prec d_{n,n}(x).
+\]
+Therefore $(d_{n,k}(x))_{0\leq k\leq n}$ is an interlacing sequence and
+every $d_{n,k}(x)$ is real-rooted.  The proof of
+\cite[Lem.~3.5]{BrandenSolus2018} already keeps separate parameters for the
+individual fixed points, giving a stronger fixed-point-weight refinement
+before specialization.
+
 This is one route to the interlacing results for colored
 \hyperref[ex:eulerianSturm]{Eulerian} and colored derangement polynomials on
 \hyperref[realRootedWords]{the permutation page}.
@@ -717,22 +755,15 @@ polynomials with nonnegative coefficients; see
 \name{Lily Li Liu} and \name{Xue Yan}
 \cite{LiuYan2025InterlacingEulerianDerangement} refine this picture by
 studying the triangular matrices arising from binomial-type transforms.
-For the derangement transformation, if
+For the derangement transformation, for every fixed $k$ the column
 \[
-  D(t^k(1+t)^{n-k})=d_{n,k}(t),
+  d_{k,k}(x),\,d_{k+1,k}(x),\,d_{k+2,k}(x),\dotsc
 \]
-then, for every fixed $k$, the column
-\[
-  d_{k,k}(t),\,d_{k+1,k}(t),\,d_{k+2,k}(t),\dotsc
-\]
-is a generalized Sturm sequence, and for every fixed $n$ the row
-\[
-  d_{n,0}(t),\,d_{n,1}(t),\,\dotsc,\,d_{n,n}(t)
-\]
-is an interlacing sequence of real-rooted polynomials.  They prove
-analogous statements for the type $B$ and $r$-colored derangement
-transformations, and obtain sufficient conditions for such row and
-column interlacing in a more general recurrence setup.
+is a generalized Sturm sequence.  Their recurrence framework also recovers
+the fixed-$n$ row interlacing above.  They prove analogous statements for the
+type $B$ and $r$-colored derangement transformations, and obtain sufficient
+conditions for such row and column interlacing in a more general recurrence
+setup.
 
 
 

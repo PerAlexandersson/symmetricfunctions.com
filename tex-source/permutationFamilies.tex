@@ -7,9 +7,64 @@
 See the \hyperref[permutationPattern]{permutation patterns page}
 for background on pattern containment and avoidance.
 
+\subsection[permutationFamilyEnumeration]{Enumeration}
+
+The following table gives the number of permutations in each family in
+$\symS_n$.  The entries are indexed by permutation size, even when the linked
+OEIS sequence uses a shifted index.  For alternating permutations, the table
+counts either one of the two orientations.
+
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Family & OEIS & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\midrule
+Alternating (one orientation) & \oeis{A000111}
+  & 1 & 2 & 5 & 16 & 61 & 272 & 1385 & 7936 \\
+Baxter & \oeis{A001181}
+  & 2 & 6 & 22 & 92 & 422 & 2074 & 10754 & 58202 \\
+Bigrassmannian & \oeis{A050407}
+  & 2 & 5 & 11 & 21 & 36 & 57 & 85 & 121 \\
+Boolean & \oeis{A001519}
+  & 2 & 5 & 13 & 34 & 89 & 233 & 610 & 1597 \\
+Derangements & \oeis{A000166}
+  & 1 & 2 & 9 & 44 & 265 & 1854 & 14833 & 133496 \\
+Dominant & \oeis{A000108}
+  & 2 & 5 & 14 & 42 & 132 & 429 & 1430 & 4862 \\
+Fireworks & \oeis{A000110}
+  & 2 & 5 & 15 & 52 & 203 & 877 & 4140 & 21147 \\
+Flattened & \oeis{A000110}
+  & 1 & 2 & 5 & 15 & 52 & 203 & 877 & 4140 \\
+Fully commutative & \oeis{A000108}
+  & 2 & 5 & 14 & 42 & 132 & 429 & 1430 & 4862 \\
+Grassmannian & \oeis{A000325}
+  & 2 & 5 & 12 & 27 & 58 & 121 & 248 & 503 \\
+King & \oeis{A002464}
+  & 0 & 0 & 2 & 14 & 90 & 646 & 5242 & 47622 \\
+Layered (Richardson) & \oeis{A000079}
+  & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256 \\
+Parity-alternating & \oeis{A010551}
+  & 1 & 2 & 4 & 12 & 36 & 144 & 576 & 2880 \\
+Separable & \oeis{A006318}
+  & 2 & 6 & 22 & 90 & 394 & 1806 & 8558 & 41586 \\
+Simsun & \oeis{A000111}
+  & 2 & 5 & 16 & 61 & 272 & 1385 & 7936 & 50521 \\
+Skew-merged & \oeis{A029759}
+  & 2 & 6 & 22 & 86 & 340 & 1340 & 5254 & 20518 \\
+Vexillary & \oeis{A005802}
+  & 2 & 6 & 23 & 103 & 513 & 2761 & 15767 & 94359 \\
+Wachs & \oeis{A359039}
+  & 2 & 4 & 8 & 24 & 48 & 192 & 384 & 1920 \\
+\bottomrule
+\end{tabular}
+
+\subsection[permutationFamilyDescriptions]{Definitions and characterizations}
+
+The families are listed alphabetically.
+
 \begin{itemize}
 
-\item \defin{Up-down}\label{permUpDown} permutations have, in one-line
+\item \defin{Alternating permutations}\label{permUpDown} come in two
+orientations.  \defin{Up-down} permutations have, in one-line
 notation, $\pi_1 \lt \pi_2 \gt \pi_3 \lt \pi_4 \gt \dotsb$.
 \defin{Down-up} permutations have
 $\pi_1 \gt \pi_2 \lt \pi_3 \gt \pi_4 \lt \dotsb$.
@@ -17,14 +72,14 @@ Each orientation is enumerated by the Euler numbers \oeis{A000111}.
 If both orientations are included, then for $n\gt 1$ the count is twice an
 Euler number, as in \oeis{A001250}.
 
-\item \defin{Derangements} --- permutations with no fixed point, \oeis{A000166}.
-
-\item \defin{Dominant} --- 132-avoiding.
-Enumerated by the Catalan numbers, \oeis{A000108}.
-
 \item \defin{Baxter} --- avoids the vincular patterns $2\text{-}41\text{-}3$
 and $3\text{-}14\text{-}2$, see \cite{DulucqGuibert1998} and
 \oeis{A001181}.
+
+\item A permutation $\pi$ is \defin{bigrassmannian} if both $\pi$ and
+$\pi^{-1}$ are Grassmannian.  The number of such permutations in $\symS_n$,
+including the identity, is $1+\binom{n+1}{3}$; see \oeis{A050407}, with its
+index shifted by two.
 
 \item \defin{Boolean} --- 321-avoiding and 3412-avoiding, see
 \cite{Tenner2007,GunawanPanRussellTenner2022x}.
@@ -33,28 +88,24 @@ A permutation is boolean if and only if the order ideal it defines in the
 see \cite[Thm.~4.3]{Tenner2007}.
 Enumerated by odd-indexed Fibonacci numbers, \oeis{A001519}.
 
-\item \defin{Fireworks} --- Same as 3-12 avoiding, see
+\item \defin{Derangements} --- permutations with no fixed point, \oeis{A000166}.
+
+\item \defin{Dominant} --- 132-avoiding.
+Enumerated by the Catalan numbers, \oeis{A000108}.
+
+\item \defin{Fireworks} --- same as 3-12 avoiding, see
 \cite{ChouSetiabrata2025x}. This means that the initial terms of decreasing
 runs are increasing.  Fireworks permutations are enumerated by the Bell
 numbers \oeis{A000110}.
 
+\item \defin{Flattened permutations}, where runs are in lex order.
+The flattened permutations in $\symS_n$ are enumerated by the shifted Bell
+number $B_{n-1}$; see \oeis{A000110} and
+\cite[Prop.~16]{NabawandaRakotondrajaoBamunoba2020}.
+
 \item \defin{Fully commutative} --- 321-avoiding, see
 \cite{BilleyJockuschStanley1993,GunawanPanRussellTenner2022x}.
 Enumerated by the Catalan numbers, \oeis{A000108}.
-
-\item A \defin{simsun permutation} is a permutation such that, after restricting
-to entries $1,2,\dotsc,k$, it does not have a double descent, that is,
-$\pi(i)\gt \pi(i+1) \gt \pi(i+2)$, see \cite{MaYeh2016}.
-The number of simsun permutations in $\symS_n$ is the Euler number $E_{n+1}$;
-see \oeis{A000111}.
-
-\item \defin{King permutations} are permutations in which no two adjacent
-entries differ by $1$ in one-line notation.
-This can be described via mesh-pattern avoidance, see \oeis{A002464}.
-
-\item \label{vexillary}
-A permutation is \defin{vexillary} if it avoids the pattern 2143; see
-\oeis{A005802}.
 
 \item A permutation is \defin{Grassmann} (or \defin{Grassmannian}) if it has
 at most one descent.
@@ -64,24 +115,20 @@ There are $2^n-n$ Grassmannian permutations in $\symS_n$; see
 \hyperref[grassmannianPermutation]{the Schubert polynomial page} for more
 details.
 
-\item A permutation $\pi$ is \defin{bigrassmannian} if both $\pi$ and
-$\pi^{-1}$ are Grassmannian.  The number of such permutations in $\symS_n$,
-including the identity, is $1+\binom{n+1}{3}$; see \oeis{A050407}, with its
-index shifted by two.
+\item \defin{King permutations} are permutations in which no two adjacent
+entries differ by $1$ in one-line notation.
+This can be described via mesh-pattern avoidance, see \oeis{A002464}.
 
-\item \defin{Separable} permutations are those which avoid $2413$ and $3142$,
-see \oeis{A006318}.
-For reference, see \cite{West1995}.
-
-\item \defin{Skew-merged} permutations avoid $2143$ and $3412$. These are
-exactly the ones formed as the union of an increasing sequence and a decreasing
-sequence; see \cite[Thm.~2.9]{Stankova1994}, \oeis{A029759}.
-See \cite{Atkinson1998} for exact enumeration and connection with RSK.
-
-\item \defin{Flattened permutations}, where runs are in lex order.
-The flattened permutations in $\symS_n$ are enumerated by the shifted Bell
-number $B_{n-1}$; see \oeis{A000110} and
-\cite[Prop.~16]{NabawandaRakotondrajaoBamunoba2020}.
+\item For a composition $(k_1,k_2,\dotsc,k_m)$ of $n$, the corresponding
+\defin{layered permutation}, also called a \defin{Richardson permutation}, is
+\[
+  w_0^{(k_1)}\oplus w_0^{(k_2)}\oplus\dotsb\oplus w_0^{(k_m)},
+\]
+the \hyperref[directSumPermutations]{direct sum} of the longest permutations
+$w_0^{(k_i)}\in\symS_{k_i}$; see \cite{MerzonSmirnov2015}.
+Equivalently, layered permutations avoid both 231 and 312.  There are
+$2^{n-1}$ layered permutations in $\symS_n$, one for every composition of
+$n$; see \oeis{A000079}.
 
 \item \defin{Parity-alternating permutations} are permutations satisfying
 $\pi(i)\equiv i\pmod 2$, see \cite{KebedeRakotondrajao2021}.
@@ -92,17 +139,24 @@ where we demand that $\pi(i) \equiv i \pmod k$.
 For pattern avoidance in modulo-$k$ alternating permutations, see
 \cite{AlexanderssonFufaGetachewQiu2022x}.
 
+\item \defin{Separable} permutations are those which avoid $2413$ and $3142$,
+see \oeis{A006318}.
+For reference, see \cite{West1995}.
 
-\item For a composition $(k_1,k_2,\dotsc,k_m)$ of $n$, the corresponding
-\defin{Richardson permutation}, also called a \defin{layered permutation}, is
-\[
-  w_0^{(k_1)}\oplus w_0^{(k_2)}\oplus\dotsb\oplus w_0^{(k_m)},
-\]
-the \hyperref[directSumPermutations]{direct sum} of the longest permutations
-$w_0^{(k_i)}\in\symS_{k_i}$; see \cite{MerzonSmirnov2015}.
-Equivalently, layered permutations avoid both 231 and 312.  There are
-$2^{n-1}$ layered permutations in $\symS_n$, one for every composition of
-$n$; see \oeis{A000079}.
+\item A \defin{simsun permutation} is a permutation such that, after restricting
+to entries $1,2,\dotsc,k$, it does not have a double descent, that is,
+$\pi(i)\gt \pi(i+1) \gt \pi(i+2)$, see \cite{MaYeh2016}.
+The number of simsun permutations in $\symS_n$ is the Euler number $E_{n+1}$;
+see \oeis{A000111}.
+
+\item \defin{Skew-merged} permutations avoid $2143$ and $3412$. These are
+exactly the ones formed as the union of an increasing sequence and a decreasing
+sequence; see \cite[Thm.~2.9]{Stankova1994}, \oeis{A029759}.
+See \cite{Atkinson1998} for exact enumeration and connection with RSK.
+
+\item \label{vexillary}
+A permutation is \defin{vexillary} if it avoids the pattern 2143; see
+\oeis{A005802}.
 
 \item \defin{Wachs permutations} --- \oeis{A359039}.
 These are the permutations in $\symS_n$ defined as
