@@ -28,6 +28,15 @@ are preserved and are outside this follow-up's ownership.
 
 ## Current status
 
+Commit `10eaccd` was deployed to the configured production `public_html`
+directory on 2026-08-18.  The environment did not have `rsync`, so after the
+standard `make deploy` failed before transferring any files, the complete
+`www/` tree was copied as a compressed archive over the same configured SSH
+connection.  This preserves the deploy target's overwrite-without-deletion
+behavior.  The public permutation-family, interlacing, and Lorentzian pages
+were fetched successfully, and their remote SHA-256 checksums exactly match
+the local build.
+
 The citation-localization follow-up is complete.  Direct citations were added
 to the foundational Lorentzian-polynomial attribution (`BrandenHuh2020`),
 Postnikov's cylindric-shape notation (`Postnikov2005`), the Wan--Wang--
