@@ -13,6 +13,8 @@ satisfying $\pi(i+n)=\pi(i)+n$ for all $i\in \setZ$ and $\pi(1)+\pi(2)+\dotsb+\p
 A \defin{Cayley permutation} of length $n$ is a word
 $w=(w_1,\dotsc,w_n)$ of positive integers whose set of values is $[k]$ for
 some $k$.  Equivalently, these are packed words.
+They are enumerated by the ordered Bell, or Fubini, numbers
+\oeis{A000670}.
 
 \name{Giulio Cerbai} and \name{Anders Claesson} count fixed-point-free Cayley
 permutations using two-sort species and differential equations for the
@@ -24,8 +26,11 @@ connected.
 
 \section[permutationsTypeB]{Permutations of type $B$}
 
-The set of permutations of type $B$, is defined as the permutations on $B_n \coloneqq \{\pm 1, \pm 2,\dotsc, \pm n\}$
-with the property that $\pi(-i)=-\pi(i)$. This is also known as the \hyperref[weylLieGroups]{hyperoctahedral group}.
+The permutations of type $B$ are the permutations of
+$B_n\coloneqq\{\pm1,\pm2,\dotsc,\pm n\}$ satisfying
+$\pi(-i)=-\pi(i)$.  They form the
+\hyperref[weylLieGroups]{hyperoctahedral group}, which has order
+$2^n n!$; see \oeis{A000165}.
 
 \name{Eli Bagno}, \name{Riccardo Biagioli}, \name{Frédéric Jouhet}, and
 \name{Yuval Roichman} study fully commutative elements in type $B$ through
@@ -49,6 +54,7 @@ The set of all such objects is the wreath product
 \[
   C_r \wr \symS_n \cong (\setZ/r\setZ)^n \rtimes \symS_n.
 \]
+In particular, there are $r^n n!$ colored permutations of size $n$.
 For example,
 \[
   3^{(2)}\,1^{(0)}\,2^{(1)}
@@ -75,4 +81,4 @@ additional property that between the two entries equal to $i \in [n]$, only
 entries larger than $i$ may appear.
 For example, $12234431$ is an element in $Q_n$.
 
-The cardinality is $|Q_n| = (2n-1)!!$.
+The cardinality is $|Q_n|=(2n-1)!!$; see \oeis{A001147}.

@@ -8,7 +8,7 @@ avoidance classes, direct sums and skew sums.}
 A permutation $\pi \in \symS_n$ is said to \defin{contain} the pattern $\sigma \in \symS_k$,
 if there is a subsequence of $\pi$ which is order-isomorphic to $\sigma$.
 For example, $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$ contains the pattern $[2,3,1]$
-as the subsequence $3, 6, 2$ in $\pi$ have its elements in the same relative order.
+because the subsequence $3,6,2$ has the same relative order as $2,3,1$.
 
 \begin{example*}[A permutation in $\symS_8$ and the pattern 231]
 The permutation matrices associated with $\pi = [1, 8, 5, 3, 7, 4, 6, 2]$
@@ -93,8 +93,12 @@ length $3$, resolving three conjectures of Archer--Laudone
 Given $\pi \in \symS_m$ and $\sigma \in \symS_n$, we define the \defin{direct sum}
 and the \defin{skew sum} of $\pi$ and $\sigma$ as
 \begin{align}
- \pi \ast \sigma \coloneqq & [pi_1,\dotsc,\pi_m,\sigma_1+m,\dotsc,\sigma_n+m]  \in \symS_{m+n} \\
- \pi \times \sigma \coloneqq & [pi_1+n,\dotsc,\pi_m+n,\sigma_1,\dotsc,\sigma_n]  \in \symS_{m+n}
+ \pi \oplus \sigma \coloneqq {}&
+ [\pi_1,\dotsc,\pi_m,\sigma_1+m,\dotsc,\sigma_n+m]
+ \in \symS_{m+n}, \\
+ \pi \ominus \sigma \coloneqq {}&
+ [\pi_1+n,\dotsc,\pi_m+n,\sigma_1,\dotsc,\sigma_n]
+ \in \symS_{m+n}.
 \end{align}
 Note that these operations are not commutative, but they are associative.
 
@@ -108,8 +112,10 @@ Here are some of the most common ones:
 \item \hyperref[vexillary]{Vexillary} (2143-avoiding), see \oeis{A005802}.
 \item \defin{Grassmannian} (at most one descent), see \oeis{A000325}.
 \item \defin{Separable} (avoids $2413$ and $3142$), see \oeis{A006318}.
-\item \defin{Baxter} (avoids $2\text{-}14\text{-}3$ and $3\text{-}41\text{-}2$).
-\item \defin{Fully commutative} (321-avoiding), counted by Catalan numbers.
+\item \defin{Baxter} (avoids $2\text{-}41\text{-}3$ and
+$3\text{-}14\text{-}2$), see \oeis{A001181}.
+\item \defin{Fully commutative} (321-avoiding), counted by Catalan numbers
+\oeis{A000108}.
 \end{itemize}
 For a comprehensive list including non-pattern-based families,
 see the \hyperref[namedPermutations]{named families of permutations} page.

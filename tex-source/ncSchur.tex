@@ -23,22 +23,24 @@ functions.
 
 
 The graded \defin{Hopf algebra of symmetric functions in noncommuting variables}
-\label{NCSymHopfAlgebra}, $\mathrm{NCSym}$,
+\label{NCSymHopfAlgebra} is
 \[
-\mathrm{NCSym}  = \mathrm{NCSym}^0 \oplus \mathrm{NCSym}^1 \oplus \cdots \subset
+\mathrm{NCSym} = \mathrm{NCSym}^0 \oplus \mathrm{NCSym}^1 \oplus \dotsb
+\subset
 \setQ \langle \langle x_1, x_2, \dotsc \rangle\rangle
-\]
-where $\langle \langle\cdot \rangle\rangle$ means that the variables do not
-commute, $\mathrm{NCSym}^0 = \mathrm{span} \{1\}$ and the $n$th graded piece
+\].
+Here $\langle\langle x_1,x_2,\dotsc\rangle\rangle$ denotes formal power
+series in noncommuting variables, $\mathrm{NCSym}^0=\mathrm{span}\{1\}$,
+and the $n$th graded piece
 for $n\geq 1$ has the following bases \cite{RosasBruce2006}, known respectively as
 the $n$th graded piece of the
 \defin{$m$-, $p$-, $e$-, $h$-basis of $\mathrm{NCSym}$}
 \label{NCSymStandardBases},
 \[
-\mathrm{NCSym}^n = \mathrm{span}\{ m_\pi : \pi\vDash [n]\}
-= \mathrm{span}\{ p_\pi : \pi\vDash [n]\}
-= \mathrm{span}\{ e_\pi : \pi\vDash [n]\}
-= \mathrm{span}\{  {h_\pi} : \pi\vDash [n]\}
+\mathrm{NCSym}^n = \mathrm{span}\{ m_\pi : \pi\vdash [n]\}
+= \mathrm{span}\{ p_\pi : \pi\vdash [n]\}
+= \mathrm{span}\{ e_\pi : \pi\vdash [n]\}
+= \mathrm{span}\{  {h_\pi} : \pi\vdash [n]\}
 \]
 where these functions are defined below, and $\pi$ is a
 \hyperref[setPartitions]{set partition} of $[n]$.
@@ -297,7 +299,7 @@ h_{[\lambda _i -\mu_j - i + j]}\right) _{1\leq i,j \leq \ell(\lambda)}.
 Moreover, if $\mu = \emptyset$, then we call $s_{(\delta, \lambda)}$ a
 \defin{Schur function in noncommuting variables}\label{SchurNoncommuting}.
 
-Furthermore, if $\pi \vDash [n]$ and
+Furthermore, if $\pi \vdash [n]$ and
 $\lambda (\pi) = \lambda _1 \lambda _2 \dotsm \lambda _{\ell(\pi)}$, then the
 \defin{standard Schur function in noncommuting variables}
 \label{standardSchurNoncommuting} $s_\pi$ is defined to be
@@ -336,7 +338,7 @@ s_{13|2}
 \end{example*}
 
 \begin{theorem}
-The set $\{ s_\pi \} _{\pi \vDash [n], {n\geq 0}}$ is a basis for
+The set $\{s_\pi : \pi\vdash[n],\ n\geq 0\}$ is a basis for
 $\mathrm{NCSym}$.
 \end{theorem}
 

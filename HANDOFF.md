@@ -2,32 +2,92 @@
 
 ## Current scope
 
-Triage the 55-paper symmetric-function backlog supplied by the user.  Add only
-papers with concrete definitions, formulas, theorems, counterexamples, or new
-families that fit SymCat; record intentionally skipped papers and resolve all
-bibliography-key collisions.
+Perform a site-wide editorial audit for definite mathematical errors,
+terminology and notation mistakes, misplaced prose, duplicate labels, and
+misleading page metadata.  Keep this pass to high-confidence corrections;
+record larger reorganization candidates rather than splitting established
+pages opportunistically.
 
 ## Ownership
 
-The editor worker owns `HANDOFF.md`, `bibliography.bib`, and these content
-files during the backlog triage: `assaf.tex`, `cycleIndexPolynomial.tex`,
-`diagonalHarmonics.tex`, `grothendieck.tex`, `hallLittlewood.tex`,
-`hivePolytopes.tex`, `key.tex`, `latticeModel.tex`,
-`littlewoodRichardson.tex`, `loopSchur.tex`, `newtonPolytopes.tex`,
-`nonCommutativeFunctions.tex`, `qsymSchur.tex`, `representationTheory.tex`,
-`rsk.tex`, `schubertVariations.tex`, `schur.tex`, `schurShifted.tex`,
-`schurMisc.tex`, `schurZeta.tex`, `touchardRiordan.tex`, and `whittaker.tex`.
+The editor worker owns `HANDOFF.md` and the following files during this audit:
+`assaf.tex`, `cycleIndexPolynomial.tex`, `gtpatterns.tex`,
+`hallLittlewood.tex`, `jack.tex`, `loopSchur.tex`, `ncSchur.tex`, `posets.tex`,
+`schurKP.tex`, `schurMisc.tex`, `permutationFamilies.tex`,
+`permutationGeneralizations.tex`, `permutationPatterns.tex`, `permutations.tex`,
+and `schubert.tex`.
 
 ## Starting state
 
-- The SymCat worktree was clean at the start.
-- Local `master` was already six commits ahead of `origin/master`; those
+- The SymCat worktree was clean at the start of this audit.
+- Local `master` was already seven commits ahead of `origin/master`; those
   pre-existing commits must be preserved and not rewritten.
-- `paper-cache` was registered but unavailable through the current tool
-  session, so the audit used primary arXiv PDFs, `pdf2txt.py`, and the live
-  arXiv++ REST/BibTeX API.
+- `paper-cache` is registered but unavailable through the current tool
+  session.  The two source-sensitive corrections were checked against the
+  primary arXiv papers instead.
 
-## Status
+## Current status
+
+The editorial audit and high-confidence correction batch are complete and
+ready for review.  The loop-Schur page now has the correct terminal summation
+indices, consistent tableau-weight notation, and the correct output partition
+and variable-length bound in the Murnaghan--Nakayama rule.  These substantive
+corrections were checked against Ross's primary paper (arXiv:1208.4369).
+
+The NCSym page now uses the set-partition symbol `\vdash` rather than the
+composition symbol `\vDash`, and its opening definition is a complete
+sentence that identifies formal power series in noncommuting variables.  The
+notation was checked against Aliniaeifard--Li--van Willigenburg
+(arXiv:2105.09964).  Duplicate section/definition labels and a missing umlaut
+were fixed on the posets page.  The Gelfand--Tsetlin and Jack pages now refer
+to tableau entries rather than incorrectly calling their values contents.
+
+The Adin--Bauer paragraph was moved from the general Hall--Littlewood
+introduction into the existing Hall--Littlewood--Schubert subsection.  Page
+metadata was broadened for the slide/forest/lock, cycle-index/higher-Lie, and
+miscellaneous Schur-family pages; the K-theoretic Schur P/Q description no
+longer contains rendering macros.
+
+The most plausible future structural change is to split `schurMisc.tex` into
+a classical symplectic/orthogonal and Schur-P/Q page and a page for newer
+miscellaneous families.  This audit changed its misleading metadata but did
+not split the established URL or disturb its cross-references.  No other page
+move was compelling enough to justify that churn in this pass.
+
+Verification completed with `git diff --check`, `make Q=1`, and
+`make check Q=1`.  The generated HTML was spot-checked for the corrected
+loop-Schur theorem, NCSym notation, metadata titles, and Hall--Littlewood
+subsection placement.
+
+The second pass through the permutation pages is complete.  The configured
+`oeis` MCP server appears in `codex mcp list`, but no OEIS callable is exposed
+in this tool session; all sequence matches were therefore verified directly
+against the official OEIS pages.
+
+The permutation-family page gained verified OEIS references for Baxter,
+fireworks, bigrassmannian, parity-alternating, and Richardson/layered
+permutations.  The flattened-permutation count was sharpened from an
+unqualified Bell number to the shifted value $B_{n-1}$.  The inaccurate André
+description was replaced by an explicit convention for counting both
+orientations of alternating permutations.  The Baxter vincular patterns and
+Boolean avoidance patterns were corrected, and the false statement that
+bigrassmannian permutations are exactly the 2413-avoiders was removed.
+
+The pattern page now uses the standard $\oplus$ and $\ominus$ notation for
+direct and skew sums and no longer renders `pi_1` literally.  The dependent
+Schubert factorization was updated to the same notation.  On the basic
+permutations page, Lehmer-code entries are now correctly identified with
+columns of the site's bottom-indexed Rothe diagram rather than rows.  The
+generalizations page gained verified counts and OEIS links for Cayley, type
+$B$, and Stirling permutations.
+
+The four closed counts added or clarified on the named-families page were
+also checked by direct enumeration through $n=7$.  The Richardson definition
+was checked against Merzon--Smirnov (arXiv:1410.6857).  Verification completed
+with `git diff --check`, `make Q=1`, and `make check Q=1`; the affected
+generated HTML pages were spot-checked for OEIS links and notation.
+
+## Completed backlog-triage status
 
 The 55-paper backlog triage is complete.  Fifteen supplied arXiv IDs were
 already present; the audit added 33 references and theorem-level coverage on

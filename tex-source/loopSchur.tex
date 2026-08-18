@@ -34,13 +34,13 @@ and the \defin{loop homogeneous symmetric functions}
 are defined as
 \[
 \elementaryE_{k}^{(r)}(\xvec) \coloneqq \sum_{1\leq i_1 \lt i_2 \lt \dotsc \lt i_k \leq m}
-x_{i_1}^{(r)} x_{i_2}^{(r+1)} \dotsb x_{i_r}^{(r+k-1)}
+x_{i_1}^{(r)} x_{i_2}^{(r+1)} \dotsb x_{i_k}^{(r+k-1)}
 \]
 \[
 \completeH_{k}^{(r)}(\xvec) \coloneqq \sum_{1\leq i_1 \leq i_2 \leq \dotsc \leq i_k \leq m}
-x_{i_1}^{(r)} x_{i_2}^{(r-1)} \dotsb x_{i_r}^{(r-k+1)}
+x_{i_1}^{(r)} x_{i_2}^{(r-1)} \dotsb x_{i_k}^{(r-k+1)}
 \]
-where the upper indices is taken modulo $n$.
+where the upper indices are taken modulo $n$.
 The superscript is commonly referred to as the \defin{color}.
 Note that for $n=1$, we recover the usual symmetric functions.
 
@@ -65,12 +65,13 @@ Given a square $(i,j)$, (row, column) in a (skew) Young diagram,
 define its content as $c(i,j)\coloneqq i-j$ mod $n$.
 If $T \in \SSYT(\lambda/\mu)$, let 
 \[
-wr_r(T) \coloneqq \prod_{(i,j)\in \lambda/\mu} x_{T(i,j)}^{(r+c(i,j))}.
+\mathrm{wt}_r(T) \coloneqq
+\prod_{(i,j)\in \lambda/\mu} x_{T(i,j)}^{(r+c(i,j))}.
 \]
 The \defin{loop Schur polynomial} is then defined as
 \[
 \schurS^{(r)}_{\lambda/\mu}(x_1,\dotsc,x_m) \coloneqq 
-\sum_{T \in \SSYT(\lambda/\mu)} wt_r(T).
+\sum_{T \in \SSYT(\lambda/\mu)} \mathrm{wt}_r(T).
 \]
 
 \begin{example}
@@ -91,7 +92,7 @@ The two tableaux are
 2^{(3)} & 2^{(2)}
 \end{ytableau}
 \end{figure}
-where the superscript indicate the color.
+where the superscripts indicate the colors.
 \end{example}
 
 \begin{problem}
@@ -156,9 +157,9 @@ Then
 \powerSum_k(x_1,\dotsc,x_m) \schurS^{(r)}_{\lambda}(x_1,\dotsc,x_m)
 =
 \sum (-1)^{\mathrm{ht}(\mu/\lambda)}
-\schurS^{(r)}_{\lambda}(x_1,\dotsc,x_m)
+\schurS^{(r)}_{\mu}(x_1,\dotsc,x_m)
 \]
-where the sum is over all partitions $\mu$ with at most $n$
+where the sum is over all partitions $\mu$ with at most $m$
 parts, such that $\mu/\lambda$ is a ribbon of size $kn$.
 \end{theorem}
 For notation and terminology, see 
