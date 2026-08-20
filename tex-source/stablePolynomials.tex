@@ -343,22 +343,75 @@ nonnegative coefficients.  Then $P$ is \hyperref[lorentzianPolynomial]{Lorentzia
 \end{theorem}
 
 
-\begin{theorem}[Determinantal stability, see \cite[Prop. 2.4]{BorceaBranden2008MixedDeterminants}]
-Let $A_0,A_1,\dotsc,A_n$ be real symmetric matrices, and suppose that
-$A_1,\dotsc,A_n$ are positive semidefinite.  Then
+\subsection[determinantalStability]{Determinantal stability and the Lax theorem}
+
+\begin{theorem}[Borcea--Brändén,
+\cite[Prop.~1.12]{BorceaBranden2010}; see also
+\cite[Prop.~2.4]{BorceaBranden2008MixedDeterminants}]
+Let $A,B_1,\dotsc,B_n$ be Hermitian $m\times m$ matrices, and suppose that
+$B_1,\dotsc,B_n$ are positive semidefinite.  Then
 \[
- \det(A_0+z_1A_1+\dotsb+z_nA_n)
+ \det(A+z_1B_1+\dotsb+z_nB_n)
 \]
-is real stable or identically zero.
+is stable, in fact real stable, or identically zero.
 \end{theorem}
 
+For real values of the variables, the matrix pencil is Hermitian and its
+determinant is real, so the determinant polynomial has real coefficients.
+The proof rests on the interaction between the upper half-plane and positive
+semidefiniteness.  Suppose that all $\operatorname{Im}(z_i)>0$ and that
+$M=A+\sum_i z_iB_i$ is singular.  For a nonzero vector $v$ in its kernel,
+\[
+ 0=\operatorname{Im}(v^*Mv)
+  =\sum_i \operatorname{Im}(z_i)v^*B_iv.
+\]
+Every summand is nonnegative, so $B_iv=0$ for every $i$, and then $Av=0$.
+Thus $v$ lies in the kernel of every matrix in the pencil, making the
+determinant identically zero.  Hence a nonzero determinant of this form cannot
+vanish when all variables lie in the upper half-plane.
 
-\begin{theorem}[See \cite{BorceaBranden2010}]
-A polynomial in two variables $P(z,w) \in \setR[z,w]$ is stable if and only
-if it can be expressed as $\pm \det(zA+wB+C)$, where $A,B,C$ are real
-$n \times n$ matrices, $A$ and $B$ are positive semidefinite, and $C$ is
-symmetric.
+
+\begin{theorem}[Borcea--Brändén,
+\cite[Thm.~1.13 and Cor.~6.7]{BorceaBranden2010}]
+Let $P(z,w)\in\setR[z,w]$ have degree $d$.  Then $P$ is real stable if and
+only if there are real symmetric $d\times d$ matrices $A,B,C$, with $B$ and
+$C$ positive semidefinite, such that
+\[
+ P(z,w)=\pm\det(A+zB+wC).
+\]
 \end{theorem}
+
+This converse is the two-variable stable-polynomial form of the classical Lax
+theorem.  In its ternary form, the theorem states that if a homogeneous
+$h(x,y,t)\in\setR[x,y,t]$ of degree $d$ is hyperbolic with respect to
+$(1,0,0)$, then
+\[
+ h(x,y,t)=h(1,0,0)\det(xI+yB+tC)
+\]
+for real symmetric $d\times d$ matrices $B,C$.  The Lax conjecture was proved
+by \name{J. William Helton} and \name{Victor Vinnikov}, and by
+\name{Adrian Lewis}, \name{Pablo Parrilo}, and \name{Motakuri Ramana}
+\cite{HeltonVinnikov2007,LewisParriloRamana2005}.
+
+To obtain the bivariate converse, one homogenizes $P$ to
+\[
+ P_H(z,w,t)\coloneqq t^dP(z/t,w/t).
+\]
+Stability makes $P_H$ hyperbolic with respect to every direction
+$(a,b,0)$ with $a,b>0$.  Applying the ternary Lax theorem and using all these
+directions forces the matrices multiplying $z$ and $w$ to be positive
+semidefinite, which gives the representation above.
+
+The bivariate conclusion does not extend to a polynomial-level statement in
+arbitrarily many variables.  \name{Petter Brändén} used the stable
+basis-generating polynomial $h_{V_8}$ of the Vámos matroid to construct the
+real-zero polynomial $p(\xvec)=h_{V_8}(\mathbf{1}+\xvec)$, for which no
+positive power $p^N$ has a determinantal representation
+\cite[Thm.~3.3]{Branden2011}.  Consequently, $h_{V_8}$ and its powers need not
+themselves have the analogous homogeneous determinant representation.  This
+does not disprove the generalized cone-level Lax conjecture: that conjecture
+asks only whether every hyperbolicity cone is spectrahedral, possibly through
+a different defining polynomial, and remains open.
 
 
 \begin{example*}[The monotone column permanent conjecture]

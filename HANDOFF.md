@@ -2,31 +2,60 @@
 
 ## Current scope
 
-Add direct, local citations at the attributed statements identified by the
-completed Claude editorial audit.  Check whether the stronger Macdonald
-positivity conjecture attributed to Arun Ram has a published primary source,
-and preserve all existing uncommitted work.
+Expand the determinantal-stability material on `stablePolynomials.tex` into a
+concise contextual subsection.  State the Hermitian/positive-semidefinite
+Borcea--Brändén theorem and proof idea, explain the precise bivariate Lax
+relationship, and distinguish Brändén's polynomial-level obstruction from the
+open generalized cone-level Lax conjecture.  Commit the completed batch, but
+do not deploy it without a separate request.
 
 ## Ownership
 
-The editor worker owns `HANDOFF.md`, `tex-source/lorentzianPolynomials.tex`,
-`tex-source/cylindricSchur.tex`, `tex-source/realRootedGraphs.tex`,
-`tex-source/stablePolynomials.tex`, and `tex-source/cspMisc.tex` for this
-follow-up.  `tex-source/macdonaldP.tex` remains read-only unless a reliable
-published source for the Arun Ram attribution is found.  Existing changes to
-`permutationFamilies.tex`, `realRootedInterlacing.tex`, and `bibliography.bib`
-are preserved and are outside this follow-up's ownership.
+The editor worker owns only `HANDOFF.md`, `tex-source/stablePolynomials.tex`,
+and, if missing references must be added, `bibliography.bib`.  The worktree was
+clean at the start of this task; all other files remain outside this worker's
+scope.
 
 ## Starting state
 
-- The SymCat worktree was clean at the start of this audit.
-- Local `master` was already seven commits ahead of `origin/master`; those
+- The SymCat worktree was clean at the start of this task.
+- Local `master` was already ten commits ahead of `origin/master`; those
   pre-existing commits must be preserved and not rewritten.
 - `paper-cache` is registered but unavailable through the current tool
-  session.  The two source-sensitive corrections were checked against the
-  primary arXiv papers instead.
+  session.  The cited theorem statements are being checked against the primary
+  arXiv texts instead.  This is an editorial account of published results, not
+  a new real-rootedness proof search, so `polytool` and `polynomial-lab` are not
+  needed.
 
 ## Current status
+
+The determinantal-stability follow-up is complete and committed locally, but
+remains undeployed.  `stablePolynomials.tex` now has a labelled
+`determinantalStability` subsection stating the Borcea--Brändén Hermitian/PSD
+matrix-pencil theorem, including the alternative that the determinant is
+identically zero.  A short kernel argument explains the theorem: a zero in the
+product upper half-plane forces a common kernel vector for the Hermitian
+constant matrix and every PSD coefficient matrix.
+
+The subsection also states the exact bivariate converse from Borcea--Brändén
+Theorem 1.13/Corollary 6.7 and explains its derivation from the ternary Lax
+theorem by homogenization.  It records the Helton--Vinnikov and
+Lewis--Parrilo--Ramana proofs, then cites Brändén's Vámos-matroid obstruction
+to representing a real-zero/hyperbolic polynomial or any positive power.  The
+text explicitly distinguishes this failed polynomial-level strengthening from
+the open generalized cone-level Lax conjecture.  Missing bibliography entries
+`HeltonVinnikov2007`, `LewisParriloRamana2005`, and `Branden2011` were added;
+the two Borcea--Brändén entries were already present.
+
+Primary statements were checked against arXiv `math/0607755`,
+`math/0606360`, `math/0306180`, `math/0304104`, and `1004.1382`.
+`paper-cache` is registered but has no callable in this session, as noted in
+the starting state.  Verification passes with `make bib Q=1`,
+`make FILE=stablePolynomials.tex Q=1`, `git diff --check`, `make Q=1`, and
+`make check Q=1`; the only check output is the two pre-existing unit-test
+warnings for synthetic polydata relations without bibliography keys.  The
+rendered subsection, table-of-contents anchor, theorem citations, and three new
+bibliography records were spot-checked in `www/stablePolynomials.htm`.
 
 Commit `10eaccd` was deployed to the configured production `public_html`
 directory on 2026-08-18.  The environment did not have `rsync`, so after the
