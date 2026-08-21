@@ -20,6 +20,8 @@ Family & OEIS & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
 \midrule
 Alternating (one orientation) & \oeis{A000111}
   & 1 & 2 & 5 & 16 & 61 & 272 & 1385 & 7936 \\
+Ballot & \oeis{A000246}
+  & 1 & 3 & 9 & 45 & 225 & 1575 & 11025 & 99225 \\
 Baxter & \oeis{A001181}
   & 2 & 6 & 22 & 92 & 422 & 2074 & 10754 & 58202 \\
 Bigrassmannian & \oeis{A050407}
@@ -71,6 +73,17 @@ $\pi_1 \gt \pi_2 \lt \pi_3 \gt \pi_4 \lt \dotsb$.
 Each orientation is enumerated by the Euler numbers \oeis{A000111}.
 If both orientations are included, then for $n\gt 1$ the count is twice an
 Euler number, as in \oeis{A001250}.
+
+\item A permutation $\pi$ is a \defin{ballot permutation} if every prefix has
+no more descents than ascents; equivalently, for every $j$,
+\[
+  \#\{i<j:\pi_i>\pi_{i+1}\}
+  \leq
+  \#\{i<j:\pi_i<\pi_{i+1}\}.
+\]
+The number of ballot permutations is given by \oeis{A000246}; see
+\cite{LinWangZhao2022Ballot} for a decomposition and bijection with odd-order
+permutations.
 
 \item \defin{Baxter} --- avoids the vincular patterns $2\text{-}41\text{-}3$
 and $3\text{-}14\text{-}2$, see \cite{DulucqGuibert1998} and

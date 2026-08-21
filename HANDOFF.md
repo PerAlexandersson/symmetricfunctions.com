@@ -2,6 +2,14 @@
 
 ## Current scope
 
+The named-permutations page now includes ballot permutations.  The definition
+is stated using the prefix condition that descents never outnumber ascents,
+and the enumeration table records the values for sizes $2$ through $9$ from
+OEIS A000246.  The page cites Lin--Wang--Zhao, *A decomposition of ballot
+permutations, pattern avoidance and Gessel walks* (JCTA 2022), with its DOI
+and arXiv link in `bibliography.bib`.  Focused and full builds pass; the only
+check output is the two pre-existing synthetic-polydata warnings.
+
 Expand the determinantal-stability material on `stablePolynomials.tex` into a
 concise contextual subsection.  State the Hermitian/positive-semidefinite
 Borcea--Brändén theorem and proof idea, explain the precise bivariate Lax
