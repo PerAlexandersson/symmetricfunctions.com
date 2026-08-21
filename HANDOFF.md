@@ -2,27 +2,17 @@
 
 ## Current scope
 
-The named-permutations page now includes ballot permutations.  The definition
-is stated using the prefix condition that descents never outnumber ascents,
-and the enumeration table records the values for sizes $2$ through $9$ from
-OEIS A000246.  The page cites Lin--Wang--Zhao, *A decomposition of ballot
-permutations, pattern avoidance and Gessel walks* (JCTA 2022), with its DOI
-and arXiv link in `bibliography.bib`.  Focused and full builds pass; the only
-check output is the two pre-existing synthetic-polydata warnings.
-
-Expand the determinantal-stability material on `stablePolynomials.tex` into a
-concise contextual subsection.  State the Hermitian/positive-semidefinite
-Borcea--Brändén theorem and proof idea, explain the precise bivariate Lax
-relationship, and distinguish Brändén's polynomial-level obstruction from the
-open generalized cone-level Lax conjecture.  Commit the completed batch, but
-do not deploy it without a separate request.
+Add the published paper *Hybrid pipe dreams for key polynomials* to the key
+polynomials page, with a cross-reference to the existing Schubert pipe-dream
+subsection.  Preserve the already completed and committed stable-polynomials
+work and do not deploy or commit this new batch unless separately requested.
 
 ## Ownership
 
-The editor worker owns only `HANDOFF.md`, `tex-source/stablePolynomials.tex`,
-and, if missing references must be added, `bibliography.bib`.  The worktree was
-clean at the start of this task; all other files remain outside this worker's
-scope.
+The editor worker owns only `HANDOFF.md`, `tex-source/key.tex`,
+`tex-source/schubert.tex`, and, if missing references must be added,
+`bibliography.bib`.  The worktree was clean at the start of this task; all
+other files remain outside this worker's scope.
 
 ## Starting state
 
@@ -36,6 +26,21 @@ scope.
   needed.
 
 ## Current status
+
+The hybrid-pipe-dream citation task is complete and remains uncommitted and
+undeployed.  `key.tex` now cites Xiao--Xiong--Zhang, *Hybrid pipe dreams for
+key polynomials*, Advances in Applied Mathematics 173 (2026), 102979, DOI
+`10.1016/j.aam.2025.102979`, with arXiv preprint `2411.01637`.  The paragraph
+summarizes the hybrid tile models and their local weight-preserving bijections,
+and links directly to the existing `schubertPipeDream` subsection for the
+classical Schubert pipe-dream formula.  The new bibliography key is
+`XiaoXiongZhang2026`.
+
+Verification passes with `make bib Q=1`, `make FILE=key.tex Q=1`,
+`git diff --check`, `make Q=1`, and `make check Q=1`.  The rendered key page,
+cross-page pipe-dream link, and published bibliography record were spot-
+checked in `www/key.htm`; the only check output is the two pre-existing
+synthetic-polydata warnings.
 
 The determinantal-stability follow-up is complete and committed locally, but
 remains undeployed.  `stablePolynomials.tex` now has a labelled
