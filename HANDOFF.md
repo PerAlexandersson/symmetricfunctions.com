@@ -2,15 +2,16 @@
 
 ## Current scope
 
-Add a short proof that the descent polynomial of parking functions is
-real-rooted.  The proof transfers the descent distribution to words and then
-uses the standard final-letter interlacing recurrence.  Build and commit the
-website change, but do not deploy it.
+Move the parking-function descent proof to the real-rootedness results
+catalogue, where users will find it among the other Eulerian-type descent and
+interlacing examples.  Keep a short cross-reference on the parking-functions
+page, then build, commit, and deploy the corrected placement.
 
 ## Ownership
 
 The host supervisor owns only `HANDOFF.md`,
-`tex-source/parking-functions.tex`, and `bibliography.bib` for this task.
+`tex-source/parking-functions.tex`, and `tex-source/realRootedWords.tex` for
+this follow-up.
 The worktree was clean at the start; all other files remain outside scope.
 
 ## Starting state
@@ -25,17 +26,16 @@ The worktree was clean at the start; all other files remain outside scope.
 
 ## Current status
 
-The parking-function descent task is complete and ready to commit.  The new
-section defines the descent polynomial (OEIS A333829), states real-rootedness,
-and proves it by the Diaconis--Hicks descent-set transfer followed by the
-final-letter $t/1$ interlacing recurrence for words.  The published reference
-`DiaconisHicks2017` was added to `bibliography.bib`.  Verification passes with
-`make bib Q=1`, `make FILE=parking-functions.tex Q=1`, `make Q=1`,
-`make check Q=1`, and `git diff --check`; the only output is the two
-pre-existing synthetic-polydata warnings.  Content commit `077cf98` was
-deployed with the configured `make deploy` target on 2026-08-23.  A
-cache-busted fetch of the public parking-functions page confirms the new
-section, OEIS link, theorem anchor, and proof are live.
+The placement follow-up is complete and ready to commit.  The full definition,
+examples, transfer identity, and interlacing proof now appear immediately
+after the multiset Eulerian polynomials in `realRootedWords.tex`;
+`parking-functions.tex` retains a short cross-reference.  The full build,
+cross-page label resolution, rendered pages, `make check Q=1`, and
+`git diff --check` all pass.
+
+The initial placement was committed as `077cf98` and deployed on 2026-08-23;
+this follow-up supersedes that location without changing the mathematics or
+the published `DiaconisHicks2017` bibliography entry.
 
 The hybrid-pipe-dream citation task is complete and remains uncommitted and
 undeployed.  `key.tex` now cites Xiao--Xiong--Zhang, *Hybrid pipe dreams for

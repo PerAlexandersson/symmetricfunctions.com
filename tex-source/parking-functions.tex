@@ -69,55 +69,13 @@ and \name{Alexander N. Wilson} give a Pollak-style proof of this enumeration
 \cite{HarrisMoriWilson2025x}.
 
 
-\section[parkingFunctionDescents]{Descents and real-rootedness}
-
-For a word $a=(a_1,\dotsc,a_n)$, let
+The descent polynomial
 \[
- \des(a) \coloneqq \bigl|\{i\in[n-1]:a_i>a_{i+1}\}\bigr|.
+ D_n(t) \coloneqq \sum_{a\in\mathrm{PF}_n}t^{\des(a)}
 \]
-The \defin{descent polynomial of parking functions}
-\label{parkingFunctionDescentPolynomial} is
-\[
- D_n(t) \coloneqq \sum_{a\in\mathrm{PF}_n} t^{\des(a)}.
-\]
-Its coefficients form the triangle \oeis{A333829}; for example,
-\[
- D_2(t)=2+t,\qquad D_3(t)=5+10t+t^2,\qquad
- D_4(t)=14+73t+37t^2+t^3.
-\]
-
-\begin{theorem}
-\label{parkingFunctionDescentsRealRooted}
-For every $n\geq 1$, the polynomial $D_n(t)$ is real-rooted.
-\end{theorem}
-
-\begin{proof}
-Let
-\[
- W_{n,m}(t) \coloneqq \sum_{w\in[m]^n}t^{\des(w)}.
-\]
-The descent-set equidistribution of \name{Persi Diaconis} and
-\name{Angela Hicks} \cite[Thm.~8]{DiaconisHicks2017} gives
-\[
- D_n(t)=\frac{1}{n+1}W_{n,n+1}(t).
-\]
-It therefore suffices to prove that $W_{n,m}(t)$ is real-rooted.
-
-Refine $W_{n,m}(t)$ by the final letter.  Let $F_{r,j}(t)$ enumerate the
-words in $[m]^r$ ending in $m+1-j$, so that $F_{1,j}(t)=1$.  Appending the
-final letter gives
-\[
- F_{r+1,j}(t)
- =t\sum_{i<j}F_{r,i}(t)+\sum_{i\geq j}F_{r,i}(t).
-\]
-The coefficient matrix has $t$ below the diagonal and $1$ on and above it;
-its $2{\times}2$ submatrices satisfy the
-\hyperref[realMatrixRecursion]{matrix criterion for interlacing sequences}.
-Starting from $(1,\dotsc,1)$, it follows inductively that
-$F_{r,1},\dotsc,F_{r,m}$ have a common interlacing.  Hence their sum
-$W_{r,m}(t)$ is real-rooted, and multiplication by the positive scalar
-$1/(n+1)$ proves the claim.
-\end{proof}
+is real-rooted.  Its coefficients form \oeis{A333829}; see
+\hyperref[parkingFunctionDescentsRealRooted]{parking-function descents} for
+the descent-set transfer to words and the short interlacing proof.
 
 
 \section[parkingFunctionsLabeledDyck]{Bijection with labeled Dyck paths}
