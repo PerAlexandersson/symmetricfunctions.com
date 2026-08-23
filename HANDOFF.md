@@ -2,16 +2,15 @@
 
 ## Current scope
 
-Move the parking-function descent proof to the real-rootedness results
-catalogue, where users will find it among the other Eulerian-type descent and
-interlacing examples.  Keep a short cross-reference on the parking-functions
-page, then build, commit, and deploy the corrected placement.
+Tighten the parking-function descent proof to match the surrounding catalogue
+style and link each nontrivial implication to the relevant theorem already
+present on SymCat.
 
 ## Ownership
 
 The host supervisor owns only `HANDOFF.md`,
-`tex-source/parking-functions.tex`, and `tex-source/realRootedWords.tex` for
-this follow-up.
+`tex-source/realRootedWords.tex`, and `tex-source/realRootedInterlacing.tex`
+for this follow-up.
 The worktree was clean at the start; all other files remain outside scope.
 
 ## Starting state
@@ -25,6 +24,13 @@ The worktree was clean at the start; all other files remain outside scope.
   proof, so `polytool` and `polynomial-lab` are not needed.
 
 ## Current status
+
+The proof-style follow-up is complete and ready to commit.  The revised entry
+removes the dispensable initial examples, retains only the transfer and
+final-letter recurrence, and links directly to the labelled matrix-preserving
+interlacing theorem and Chudnovsky--Seymour compatibility theorem.  A new
+label was added to the latter theorem for this exact cross-reference.  The
+full build, rendered links, `make check Q=1`, and `git diff --check` pass.
 
 The placement follow-up is complete and ready to commit.  The full definition,
 examples, transfer identity, and interlacing proof now appear immediately

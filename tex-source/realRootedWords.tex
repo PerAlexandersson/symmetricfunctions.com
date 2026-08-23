@@ -101,18 +101,12 @@ use multivariate generalizations of MacMahon's identity above.
 
 \begin{example*}[Parking-function descents]
 
-For a word $a=(a_1,\dotsc,a_n)$, let
+The descent polynomial of \hyperref[parkingFunctions]{parking functions} is
 \[
- \des(a) \coloneqq \bigl|\{i\in[n-1]:a_i>a_{i+1}\}\bigr|,
- \qquad
  D_n(t) \coloneqq \sum_{a\in\mathrm{PF}_n}t^{\des(a)}.
 \]
-The coefficients of $D_n(t)$ form \oeis{A333829}; the first examples are
-\[
- D_2(t)=2+t,\qquad D_3(t)=5+10t+t^2,\qquad
- D_4(t)=14+73t+37t^2+t^3.
-\]
-For every $n\geq 1$, the polynomial $D_n(t)$ is real-rooted.
+Its coefficients form \oeis{A333829}.  For every $n\geq 1$, the polynomial
+$D_n(t)$ is real-rooted.
 \label{parkingFunctionDescentsRealRooted}
 
 Indeed, set
@@ -124,19 +118,19 @@ The descent-set equidistribution of \name{Persi Diaconis} and
 \[
  D_n(t)=\frac{1}{n+1}W_{n,n+1}(t).
 \]
-To prove that the word polynomial is real-rooted, let $F_{r,j}(t)$ enumerate
-the words in $[m]^r$ ending in $m+1-j$.  Appending the final letter gives
+For the word side, let $F_{r,j}(t)$ enumerate the words in $[m]^r$ ending in
+$m+1-j$.  Appending the final letter gives
 \[
  F_{1,j}(t)=1,\qquad
  F_{r+1,j}(t)
  =t\sum_{i<j}F_{r,i}(t)+\sum_{i\geq j}F_{r,i}(t).
 \]
 The coefficient matrix has $t$ below the diagonal and $1$ on and above it;
-its $2{\times}2$ submatrices satisfy the
-\hyperref[realMatrixRecursion]{matrix criterion for interlacing sequences}.
-Consequently, $F_{r,1},\dotsc,F_{r,m}$ have a common interlacing, so their sum
-$W_{r,m}(t)$ is real-rooted.  The displayed transfer identity now proves the
-claim.
+the \hyperref[matrixPreservesInterlacingSequences]{matrix interlacing
+criterion} shows that $F_{r,1},\dotsc,F_{r,m}$ have a common interlacing.
+The \hyperref[commonInterlacingCompatibilityTheorem]{compatibility theorem}
+then implies that their sum $W_{r,m}(t)$ is real-rooted.  The transfer identity
+proves the claim.
 \end{example*}
 
 \begin{example*}[Log-concavity from triangular-array recurrences]
