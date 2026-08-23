@@ -32,7 +32,10 @@ final-letter $t/1$ interlacing recurrence for words.  The published reference
 `DiaconisHicks2017` was added to `bibliography.bib`.  Verification passes with
 `make bib Q=1`, `make FILE=parking-functions.tex Q=1`, `make Q=1`,
 `make check Q=1`, and `git diff --check`; the only output is the two
-pre-existing synthetic-polydata warnings.
+pre-existing synthetic-polydata warnings.  Content commit `077cf98` was
+deployed with the configured `make deploy` target on 2026-08-23.  A
+cache-busted fetch of the public parking-functions page confirms the new
+section, OEIS link, theorem anchor, and proof are live.
 
 The hybrid-pipe-dream citation task is complete and remains uncommitted and
 undeployed.  `key.tex` now cites Xiao--Xiong--Zhang, *Hybrid pipe dreams for
