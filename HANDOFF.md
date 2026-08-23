@@ -2,30 +2,37 @@
 
 ## Current scope
 
-Add the published paper *Hybrid pipe dreams for key polynomials* to the key
-polynomials page, with a cross-reference to the existing Schubert pipe-dream
-subsection.  Preserve the already completed and committed stable-polynomials
-work and do not deploy or commit this new batch unless separately requested.
+Add a short proof that the descent polynomial of parking functions is
+real-rooted.  The proof transfers the descent distribution to words and then
+uses the standard final-letter interlacing recurrence.  Build and commit the
+website change, but do not deploy it.
 
 ## Ownership
 
-The editor worker owns only `HANDOFF.md`, `tex-source/key.tex`,
-`tex-source/schubert.tex`, and, if missing references must be added,
-`bibliography.bib`.  The worktree was clean at the start of this task; all
-other files remain outside this worker's scope.
+The host supervisor owns only `HANDOFF.md`,
+`tex-source/parking-functions.tex`, and `bibliography.bib` for this task.
+The worktree was clean at the start; all other files remain outside scope.
 
 ## Starting state
 
 - The SymCat worktree was clean at the start of this task.
-- Local `master` was already ten commits ahead of `origin/master`; those
+- Local `master` was already thirteen commits ahead of `origin/master`; those
   pre-existing commits must be preserved and not rewritten.
-- `paper-cache` is registered but unavailable through the current tool
-  session.  The cited theorem statements are being checked against the primary
-  arXiv texts instead.  This is an editorial account of published results, not
-  a new real-rootedness proof search, so `polytool` and `polynomial-lab` are not
-  needed.
+- No live Docker worker currently owns the website project.  The transfer
+  theorem was checked against Diaconis--Hicks, *Probabilizing parking
+  functions*, Theorem 8.  This is an editorial presentation of an existing
+  proof, so `polytool` and `polynomial-lab` are not needed.
 
 ## Current status
+
+The parking-function descent task is complete and ready to commit.  The new
+section defines the descent polynomial (OEIS A333829), states real-rootedness,
+and proves it by the Diaconis--Hicks descent-set transfer followed by the
+final-letter $t/1$ interlacing recurrence for words.  The published reference
+`DiaconisHicks2017` was added to `bibliography.bib`.  Verification passes with
+`make bib Q=1`, `make FILE=parking-functions.tex Q=1`, `make Q=1`,
+`make check Q=1`, and `git diff --check`; the only output is the two
+pre-existing synthetic-polydata warnings.
 
 The hybrid-pipe-dream citation task is complete and remains uncommitted and
 undeployed.  `key.tex` now cites Xiao--Xiong--Zhang, *Hybrid pipe dreams for
