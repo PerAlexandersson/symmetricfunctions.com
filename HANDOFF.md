@@ -31,7 +31,9 @@ examples, transfer identity, and interlacing proof now appear immediately
 after the multiset Eulerian polynomials in `realRootedWords.tex`;
 `parking-functions.tex` retains a short cross-reference.  The full build,
 cross-page label resolution, rendered pages, `make check Q=1`, and
-`git diff --check` all pass.
+`git diff --check` all pass.  Commit `317e71b` was deployed on 2026-08-23;
+cache-busted public fetches confirm both the catalogue proof and the
+parking-page cross-reference are live.
 
 The initial placement was committed as `077cf98` and deployed on 2026-08-23;
 this follow-up supersedes that location without changing the mathematics or
