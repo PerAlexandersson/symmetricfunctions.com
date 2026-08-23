@@ -31,6 +31,8 @@ final-letter recurrence, and links directly to the labelled matrix-preserving
 interlacing theorem and Chudnovsky--Seymour compatibility theorem.  A new
 label was added to the latter theorem for this exact cross-reference.  The
 full build, rendered links, `make check Q=1`, and `git diff --check` pass.
+Commit `c8e3d23` was deployed on 2026-08-23; cache-busted public fetches
+confirm that both theorem links resolve to their exact statements.
 
 The placement follow-up is complete and ready to commit.  The full definition,
 examples, transfer identity, and interlacing proof now appear immediately
