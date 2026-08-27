@@ -2,28 +2,31 @@
 
 ## Current scope
 
-Tighten the parking-function descent proof to match the surrounding catalogue
-style and link each nontrivial implication to the relevant theorem already
-present on SymCat.
+The Petersen attribution correction on `gammaPositivity.tex` is complete.
 
 ## Ownership
 
-The host supervisor owns only `HANDOFF.md`,
-`tex-source/realRootedWords.tex`, and `tex-source/realRootedInterlacing.tex`
-for this follow-up.
-The worktree was clean at the start; all other files remain outside scope.
+No files are currently owned for this completed follow-up.
 
 ## Starting state
 
-- The SymCat worktree was clean at the start of this task.
-- Local `master` was already thirteen commits ahead of `origin/master`; those
+- The SymCat worktree was clean at the start of this task, and no live worker
+  owns the website project.
+- Local `master` was already nineteen commits ahead of `origin/master`; those
   pre-existing commits must be preserved and not rewritten.
-- No live Docker worker currently owns the website project.  The transfer
-  theorem was checked against Diaconis--Hicks, *Probabilizing parking
-  functions*, Theorem 8.  This is an editorial presentation of an existing
-  proof, so `polytool` and `polynomial-lab` are not needed.
+- Petersen's *Eulerian Numbers*, Observation 4.2, gives the exact
+  real-rootedness equivalence used on the page.  Brändén and Gal are retained
+  as earlier related sources.  This is a citation correction, so `polytool`
+  and `polynomial-lab` are not needed.
 
 ## Current status
+
+The gamma-positivity page now attributes the exact real-rootedness equivalence
+to T. Kyle Petersen, *Eulerian Numbers*, Observation 4.2.  Brändén's Lemma 4.1
+and Gal's Remark 3.1.1 remain cited as earlier related forms.  The new book
+entry resolves to the Springer DOI.  `make bib Q=1`, the focused page build,
+`make check Q=1`, and `git diff --check` pass; the two `make check` warnings
+are the pre-existing synthetic-polydata fixtures.  The change is not deployed.
 
 The proof-style follow-up is complete and ready to commit.  The revised entry
 removes the dispensable initial examples, retains only the transfer and
