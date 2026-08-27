@@ -26,7 +26,9 @@ to T. Kyle Petersen, *Eulerian Numbers*, Observation 4.2.  Brändén's Lemma 4.1
 and Gal's Remark 3.1.1 remain cited as earlier related forms.  The new book
 entry resolves to the Springer DOI.  `make bib Q=1`, the focused page build,
 `make check Q=1`, and `git diff --check` pass; the two `make check` warnings
-are the pre-existing synthetic-polydata fixtures.  The change is not deployed.
+are the pre-existing synthetic-polydata fixtures.  A full `make all` and
+`make deploy` succeeded on 2026-08-27; a cache-busted public fetch confirms
+that the Petersen attribution and bibliography entry are live.
 
 The proof-style follow-up is complete and ready to commit.  The revised entry
 removes the dispensable initial examples, retains only the transfer and
