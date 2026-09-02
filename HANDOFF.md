@@ -36,7 +36,11 @@ were checked against the cached primary PDFs for `2609.00781v1` and
 `polytopes.tex` and `realRooted.tex`, `make Q=1`, `make check Q=1`, and
 `git diff --check`.  The rendered section, cross-page link, citations, arXiv
 URLs, and embedded BibTeX records were spot-checked in `www/polytopes.htm`.
-The update is ready to commit and deploy.
+Content commit `bd1b441` was deployed with `make deploy` on 2026-09-02.
+Cache-busted public fetches confirm that both theorem statements, the
+row-interlacing conjecture, both arXiv bibliography records, and the
+real-rootedness overview link are live.  The public and local
+`polytopes.htm` files have matching SHA-256 checksums.
 
 The gamma-positivity page now attributes the exact real-rootedness equivalence
 to T. Kyle Petersen, *Eulerian Numbers*, Observation 4.2.  Brändén's Lemma 4.1
