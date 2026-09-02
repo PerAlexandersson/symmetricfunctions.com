@@ -2,24 +2,41 @@
 
 ## Current scope
 
-The Petersen attribution correction on `gammaPositivity.tex` is complete.
+The 2026-09-01 preprints of Qiqi Xiao and Peter L. Guo--Mingyang Kang have
+been added to the polytopes catalogue.
 
 ## Ownership
 
-No files are currently owned for this completed follow-up.
+No files remain actively owned for this completed update.
 
 ## Starting state
 
 - The SymCat worktree was clean at the start of this task, and no live worker
-  owns the website project.
-- Local `master` was already nineteen commits ahead of `origin/master`; those
+  owned the website project.
+- Local `master` was already twenty-one commits ahead of `origin/master`; those
   pre-existing commits must be preserved and not rewritten.
-- Petersen's *Eulerian Numbers*, Observation 4.2, gives the exact
-  real-rootedness equivalence used on the page.  Brändén and Gal are retained
-  as earlier related sources.  This is a citation correction, so `polytool`
-  and `polynomial-lab` are not needed.
+- The theorem statements were checked against arXiv `2609.00781v1` and
+  `2609.01086v1`.  This is an editorial catalogue update rather than a new
+  proof search, so `polytool` and `polynomial-lab` are not needed.
 
 ## Current status
+
+The polytopes page now defines face (h)-polynomials separately from
+(h^*)-polynomials and states the Guo--Kang realization theorem for monic
+palindromic real-rooted polynomials with nonnegative integer coefficients.
+It also defines the toric (g)-contribution polynomials, states Xiao's
+real-rootedness and adjacent-rank interlacing theorem, and records her
+row-interlacing conjecture and its consequence for simple polytopes with
+nonnegative gamma-vectors.  The real-rootedness overview links directly to
+the new section.  The bibliography keys are `GuoKang2026x` and `Xiao2026x`.
+
+The arXiv metadata came from the site's BibTeX endpoint, while the statements
+were checked against the cached primary PDFs for `2609.00781v1` and
+`2609.01086v1`.  Verification passes with `make bib Q=1`, focused builds of
+`polytopes.tex` and `realRooted.tex`, `make Q=1`, `make check Q=1`, and
+`git diff --check`.  The rendered section, cross-page link, citations, arXiv
+URLs, and embedded BibTeX records were spot-checked in `www/polytopes.htm`.
+The update is ready to commit and deploy.
 
 The gamma-positivity page now attributes the exact real-rootedness equivalence
 to T. Kyle Petersen, *Eulerian Numbers*, Observation 4.2.  Brändén's Lemma 4.1
