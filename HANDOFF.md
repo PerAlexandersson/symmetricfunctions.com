@@ -2,6 +2,44 @@
 
 ## Current scope
 
+The 2026-09-02 preprint of Khai-Hoan Nguyen-Dang and Zhenpeng Wang on
+realizable-volume models for Schubert, Grothendieck, and Lascoux polynomials
+has been added to the Lorentzian-polynomials catalogue.  The update is
+verified and ready to commit, but it has not been deployed.
+
+## Ownership
+
+No files remain actively owned for this completed update.
+
+## Starting state
+
+- No live worker owned the website project, and the worktree was clean.
+- Local `master` was already twenty-three commits ahead of `origin/master`;
+  those pre-existing commits were preserved unchanged.
+- The paper was checked through the `arxiv-symmetricfunctions` index and the
+  cached primary PDF/text for arXiv `2609.02850v1`.
+
+## Current status
+
+The Lorentzian-polynomials page now records Nguyen-Dang--Wang Theorem 1.1:
+factorially normalized key polynomials, Demazure atoms, ordinary Schubert
+polynomials, sign-corrected homogeneous Grothendieck components, and
+homogeneous Lascoux and Lascoux-atom layers are realizable-volume polynomials;
+over the complex numbers, each nonzero polynomial in this list is Lorentzian.
+The surrounding paragraph records the packet construction, the exact
+Huh--Matherne--Mészáros--St. Dizier conjecture numbers, the related saturated
+Newton-polytope consequences, and the ordinary single-alphabet type-A scope.
+The obsolete statement that the key and Schubert cases remain open was
+removed.  The bibliography key is `NguyenDangWang2026x`.
+
+Verification passes with `make bib Q=1`, the focused Lorentzian-page build,
+`make Q=1`, `make check Q=1`, and `git diff --check`.  The rendered theorem,
+cross-page links, arXiv bibliography record, and embedded BibTeX entry were
+spot-checked in `www/lorentzianPolynomials.htm`.  The two test warnings are the
+pre-existing synthetic-polydata fixtures.
+
+## Previous completed scope
+
 The 2026-09-01 preprints of Qiqi Xiao and Peter L. Guo--Mingyang Kang have
 been added to the polytopes catalogue.
 
