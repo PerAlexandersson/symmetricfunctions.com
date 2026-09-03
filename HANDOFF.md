@@ -6,7 +6,8 @@ The 2026-09-02 preprint of Khai-Hoan Nguyen-Dang and Zhenpeng Wang on
 realizable-volume models for Schubert, Grothendieck, and Lascoux polynomials
 has been added to the Lorentzian-polynomials catalogue.  The update is
 committed as `765cdcb`, with follow-up editorial corrections committed after
-independent verification.  Nothing has been deployed.
+independent verification.  The complete verified site build was deployed on
+2026-09-03.
 
 ## Independent verification (2026-09-03)
 
@@ -50,7 +51,11 @@ The corrections pass `make FILE=lorentzianPolynomials.tex Q=1`, `make Q=1`,
 and `make check Q=1` with no errors, and the rendered definition, styled
 `\defin` term, `\symS_n` notation, and all four cross-page links were
 spot-checked in `www/lorentzianPolynomials.htm`.  The corrections are
-committed but not deployed.
+committed and deployed.  A cache-busted public fetch confirms the theorem,
+definition, author links, four cross-page links, and arXiv bibliography entry
+are live.  The public and local `lorentzianPolynomials.htm` files have the
+same SHA-256 checksum,
+`a57c4138f062ad8a76bd8f8d60317e15dd0dc2ec597d6f063369ee056d89e030`.
 
 ## Ownership
 
@@ -69,7 +74,7 @@ No files remain actively owned for this completed update.
 The Lorentzian-polynomials page now records Nguyen-Dang--Wang Theorem 1.1:
 factorially normalized key polynomials, Demazure atoms, ordinary Schubert
 polynomials, sign-corrected homogeneous Grothendieck components, and
-homogeneous Lascoux and Lascoux-atom layers are realizable-volume polynomials;
+homogeneous Lascoux and Lascoux-atom layers are realizable volume polynomials;
 over the complex numbers, each nonzero polynomial in this list is Lorentzian.
 The surrounding paragraph records the packet construction, the exact
 Huh--Matherne--Mészáros--St. Dizier conjecture numbers, the related saturated
