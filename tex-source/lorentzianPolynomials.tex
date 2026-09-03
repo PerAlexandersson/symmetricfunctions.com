@@ -120,20 +120,32 @@ polynomials over \(\setC\) \cite{NguyenDang2026x}.  The same result holds for
 skew Schur \(P\)- and \(Q\)-polynomials, and nonzero instances admit smooth
 irreducible projective realizations with semiample divisors.
 
+Here, a homogeneous polynomial of degree \(d\) in \(x_1,\dotsc,x_n\) is a
+\defin{realizable volume polynomial} over a field if it is a nonnegative
+rational multiple of the volume polynomial
+\[
+  (x_1,\dotsc,x_n) \mapsto \frac{1}{d!}\int_X (x_1 D_1 + \dotsb + x_n D_n)^d
+\]
+of semiample Cartier divisor classes \(D_1,\dotsc,D_n\) on a \(d\)-dimensional
+integral projective variety \(X\) over that field.  Over \(\setC\), semiample
+classes are nef, so every realizable volume polynomial is Lorentzian
+\cite[Thm.~4.6]{BrandenHuh2020}.
+
 \begin{problem}
 Find a direct combinatorial proof that normalized skew Schur polynomials are
 Lorentzian.  The known proofs use Schubert geometry or volume
 realizations rather than a tableau-level Lorentzian argument.
 \end{problem}
 
-The corresponding questions for key and ordinary Schubert polynomials were
+The corresponding questions for \hyperref[key]{key polynomials} and ordinary
+\hyperref[schubert]{Schubert polynomials} were
 settled in a stronger geometric form by \name{Khai-Hoan Nguyen-Dang} and
 \name{Zhenpeng Wang}.
 
 \begin{theorem}[Nguyen-Dang--Wang, \cite[Thm.~1.1]{NguyenDangWang2026x}]
-Let $\alpha$ be a weak composition and let $w\in\mathfrak{S}_n$.  Then
+Let $\alpha$ be a weak composition and let $w\in\symS_n$.  Then
 $\mathcal{N}(\key_\alpha)$, $\mathcal{N}(\atom_\alpha)$, and
-$\mathcal{N}(\schubert_w)$ are realizable-volume polynomials over every
+$\mathcal{N}(\schubert_w)$ are realizable volume polynomials over every
 field.  The same conclusion holds for the factorial normalization of every
 sign-corrected homogeneous component of $\grothendieck_w$ and for every
 homogeneous Lascoux and Lascoux-atom layer.
@@ -145,8 +157,9 @@ The construction first realizes the corresponding homogeneous Lascoux,
 Lascoux-atom, and positive Grothendieck packets; the polynomials in the theorem
 occur as volume minors of these packets.  This proves Conjectures 15, 21, 22,
 and 23 of \cite{HuhMatherneMezarosDizier2022}.  It also proves the relevant
-saturated-Newton-polytope conjectures for Demazure atoms and for ordinary
-Grothendieck, Lascoux, and Lascoux-atom polynomials
+saturated-Newton-polytope conjectures for
+\hyperref[demazureAtom]{Demazure atoms} and for ordinary
+Grothendieck, \hyperref[lascoux]{Lascoux}, and Lascoux-atom polynomials
 \cite{MonicalTokcanYong2019}.  The result concerns ordinary single-alphabet
 type $A$ polynomials, not arbitrary double Schubert or double Grothendieck
 polynomials.

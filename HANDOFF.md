@@ -5,7 +5,8 @@
 The 2026-09-02 preprint of Khai-Hoan Nguyen-Dang and Zhenpeng Wang on
 realizable-volume models for Schubert, Grothendieck, and Lascoux polynomials
 has been added to the Lorentzian-polynomials catalogue.  The update is
-committed as `765cdcb` but has not been deployed.
+committed as `765cdcb`, with follow-up editorial corrections committed after
+independent verification.  Nothing has been deployed.
 
 ## Independent verification (2026-09-03)
 
@@ -25,20 +26,31 @@ in `assets/tex-init.js`, and an independent `make Q=1` plus `make check Q=1`
 passed with no errors; the rendered theorem, citation links, and bibliography
 anchor were re-spot-checked in `www/lorentzianPolynomials.htm`.
 
-No blocking errors were found.  Three minor editorial points are left to the
-owner's discretion before or after deployment:
+No blocking errors were found.  Three minor editorial points were identified
+and subsequently fixed by the verifying worker on 2026-09-03:
 
-- The theorem writes the symmetric group as `\mathfrak{S}_n`, which is the
-  same glyph the site's `\schubert` macro produces for the Schubert
-  polynomial in the same sentence, and the site convention elsewhere is
-  `\symS_n` (used throughout `key.tex` and `schubert.tex`).  This is the only
-  symmetric-group use of `\mathfrak{S}` in the corpus.
-- The replaced paragraph carried `\hyperref[key]{...}` and
-  `\hyperref[schubert]{...}` cross-page links; the new text names key and
-  Schubert polynomials without links, a small navigation regression.
-- The page uses both "realizable volume polynomials" (earlier Nguyen-Dang
-  paragraph) and "realizable-volume polynomials" (new theorem), and the term
-  is not defined on the page.
+- The theorem's symmetric group is now written `\symS_n` per site convention,
+  removing the glyph collision with the `\schubert` macro (`\mathfrak{S}`) in
+  the same sentence.  The corpus again has no symmetric-group use of
+  `\mathfrak{S}`.
+- Cross-page links were restored and extended: the lead-in paragraph links to
+  the key and Schubert pages, and the consequences paragraph links to the
+  Demazure-atom and Lascoux sections.  All four resolve
+  (`key.htm#key`, `schubert.htm#schubert`, `key.htm#demazureAtom`,
+  `lascoux.htm#lascoux`).
+- The page now uses "realizable volume polynomial" consistently and defines
+  the term after its first use: a nonnegative rational multiple of the volume
+  polynomial of semiample Cartier divisor classes on a `d`-dimensional
+  integral projective variety, with the nef/Lorentzian consequence over the
+  complex numbers cited to `BrandenHuh2020` Theorem 4.6.  The definition
+  matches Definition 2.5 of arXiv `2609.02850v1`; no bibliography change was
+  needed.
+
+The corrections pass `make FILE=lorentzianPolynomials.tex Q=1`, `make Q=1`,
+and `make check Q=1` with no errors, and the rendered definition, styled
+`\defin` term, `\symS_n` notation, and all four cross-page links were
+spot-checked in `www/lorentzianPolynomials.htm`.  The corrections are
+committed but not deployed.
 
 ## Ownership
 
