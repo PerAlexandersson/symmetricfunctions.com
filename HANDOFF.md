@@ -5,7 +5,40 @@
 The 2026-09-02 preprint of Khai-Hoan Nguyen-Dang and Zhenpeng Wang on
 realizable-volume models for Schubert, Grothendieck, and Lascoux polynomials
 has been added to the Lorentzian-polynomials catalogue.  The update is
-verified and ready to commit, but it has not been deployed.
+committed as `765cdcb` but has not been deployed.
+
+## Independent verification (2026-09-03)
+
+A second worker re-verified commit `765cdcb` without editing any content
+files.  The theorem statement, the packet/volume-minor description, and the
+ordinary single-alphabet type-A scope match the cached primary text of arXiv
+`2609.02850v1` (paper-cache entry 244).  The conjecture attributions were
+checked directly against the primary sources rather than the preprint's own
+claims: Conjectures 15, 21, 22, and 23 of arXiv `1906.09633` are exactly the
+normalized Schubert, sign-corrected homogeneous Grothendieck component,
+homogenized Grothendieck packet, and normalized key statements, and
+Conjectures 3.14 and 5.5--5.7 of arXiv `1703.02583` are exactly the
+saturated-Newton-polytope statements for Demazure atoms, Grothendieck,
+Lascoux, and Lascoux-atom polynomials.  Both bibliography keys resolve, the
+`\key`, `\atom`, `\schubert`, `\grothendieck`, and `\setC` macros are defined
+in `assets/tex-init.js`, and an independent `make Q=1` plus `make check Q=1`
+passed with no errors; the rendered theorem, citation links, and bibliography
+anchor were re-spot-checked in `www/lorentzianPolynomials.htm`.
+
+No blocking errors were found.  Three minor editorial points are left to the
+owner's discretion before or after deployment:
+
+- The theorem writes the symmetric group as `\mathfrak{S}_n`, which is the
+  same glyph the site's `\schubert` macro produces for the Schubert
+  polynomial in the same sentence, and the site convention elsewhere is
+  `\symS_n` (used throughout `key.tex` and `schubert.tex`).  This is the only
+  symmetric-group use of `\mathfrak{S}` in the corpus.
+- The replaced paragraph carried `\hyperref[key]{...}` and
+  `\hyperref[schubert]{...}` cross-page links; the new text names key and
+  Schubert polynomials without links, a small navigation regression.
+- The page uses both "realizable volume polynomials" (earlier Nguyen-Dang
+  paragraph) and "realizable-volume polynomials" (new theorem), and the term
+  is not defined on the page.
 
 ## Ownership
 
