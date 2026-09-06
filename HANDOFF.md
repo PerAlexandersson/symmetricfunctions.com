@@ -1,5 +1,19 @@
 # Handoff
 
+## Current scope (2026-09-06, gamma-positivity criterion correction)
+
+The gamma-positivity page now identifies the criterion as a corrected form of
+Petersen Observation 4.2, whose printed equivalence is over-strong.  For a
+palindromic polynomial with non-negative coefficients, real-rootedness is
+equivalent to the gamma-polynomial having only real non-positive zeros.  The
+page also gives the equivalent gamma-positive formulation and the
+counterexample `1+x+x^2`, whose gamma-polynomial is `1-x`.
+
+`make FILE=gammaPositivity.tex Q=1`, `make check Q=1`, and
+`git diff --check` pass.  The corrected equivalences, counterexample, and
+Petersen--Brändén--Gal citations were spot-checked in the rendered page.  No
+files remain actively owned, and the correction is not deployed.
+
 ## Current scope (2026-09-06, skew-GT Ehrhart positivity)
 
 The Ehrhart and GT pages now replace the proved skew-GT positivity conjecture

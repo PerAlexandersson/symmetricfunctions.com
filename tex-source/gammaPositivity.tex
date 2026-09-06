@@ -41,14 +41,19 @@ summand, so $p(x)$ is unimodal.
 
 \begin{itemize}
 
-\item An observation of \name{T. Kyle Petersen}
-\cite[Observation~4.2]{Petersen2015EulerianNumbers} states that a palindromic
-polynomial $p(x)$ is real-rooted if and only if $\gamma_p(x)$ is real-rooted.
-Under our standing non-negativity assumption, the roots are non-positive and
-the gamma-coefficients are non-negative.  Thus a real-rooted palindromic
-polynomial is gamma-positive and has a real-rooted gamma-polynomial.  See also
-\cite[Lemma~4.1]{Branden2004Poset} and \cite[Remark~3.1.1]{Gal2005} for earlier
-related forms of this criterion.
+\item A corrected form of Observation~4.2 in \name{T. Kyle Petersen}'s book
+\cite[Observation~4.2]{Petersen2015EulerianNumbers} is the following
+criterion.  If $p(x)$ is palindromic with non-negative coefficients, then
+$p(x)$ is real-rooted if and only if $\gamma_p(x)$ has only real non-positive
+zeros.  Equivalently, if $p(x)$ is gamma-positive, then $p(x)$ is real-rooted
+if and only if $\gamma_p(x)$ is real-rooted.  The root-location condition
+cannot be omitted: the polynomial
+\[
+  p(x)=1+x+x^2=(1+x)^2-x
+\]
+has non-negative coefficients and $\gamma_p(x)=1-x$ is real-rooted, but
+$p(x)$ is not real-rooted.  See also \cite[Lemma~4.1]{Branden2004Poset} and
+\cite[Remark~3.1.1]{Gal2005} for earlier related forms of the criterion.
 
 \item \name{Świętosław Gal} conjectured \cite{Gal2005} that the
 $h$-polynomial of any flag simplicial sphere is gamma-positive.
