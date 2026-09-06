@@ -339,18 +339,27 @@ Ehr(\gtp_{\lambda};k) = \prod_{1 \leq i \lt j \leq m } \frac{k(\lambda_i - \lamb
 \]
 
 
-\begin{conjecture}[Alexandersson, Alhajjar \cite{AlexanderssonAlhajjar2018}]
-The Ehrhart polynomial of $\gtp_{\lambda\mu}$ has nonnegative coefficients.
+\begin{theorem}[Jochemko--Menon {\cite[Thm.~3.5]{JochemkoMenon2026x}}]
+The Ehrhart polynomial of $\gtp_{\lambda/\mu}$ has nonnegative coefficients.
 Equivalently, the function
 \[
 f(k) = \schurS_{k\lambda/k\mu}(1^m)
 \]
 is a polynomial in $k$ with nonnegative coefficients.
-\end{conjecture}
+This proves a conjecture of \name{Per Alexandersson} and
+\name{Elie Alhajjar} \cite{AlexanderssonAlhajjar2018}.
+\end{theorem}
 For example, $m=3$, $\lambda=321$ and $\mu=1$ gives the Ehrhart polynomial
 \[
 Ehr(\gtp_{321/1},k) = \frac{1}{2} (k^5+6 k^4+14 k^3+16 k^2+9 k+2).
 \]
+
+Jochemko and Menon's argument also gives positivity for unsliced flagged
+faces in which the entries allowed in every tableau row form an interval
+\cite[Sec.~3.2]{JochemkoMenon2026x}.  This does not settle the
+\hyperref[flaggedSchurKostka]{flagged Kostka positivity conjecture}: fixing a
+weight intersects such a face with an affine slice, and the resulting
+rational polytope need not inherit coefficientwise Ehrhart positivity.
 
 Adding an extra row to $\lambda/\mu$ gives
 \[

@@ -230,16 +230,23 @@ have more positive Ehrhart polynomials than arbitrary polytopes.  This should
 be treated as a conjectural pattern, since Ehrhart positivity is false for
 general lattice polytopes and even for many natural-looking families.
 
-\begin{conjecture}
+\begin{theorem}[Jochemko--Menon {\cite[Thm.~3.5]{JochemkoMenon2026x}}]
 The Ehrhart polynomial of the skew Gelfand--Tsetlin polytope
 \(\gtp_{\lambda/\mu}\) has nonnegative coefficients.  Equivalently,
 \[
   k\mapsto \schurS_{k\lambda/k\mu}(1^m)
 \]
-has nonnegative coefficients as a polynomial in \(k\).  This is the
-\hyperref[gtKostkaEhrhart]{Alexandersson--Alhajjar conjecture} on the
+has nonnegative coefficients as a polynomial in \(k\).
+\name{Katharina Jochemko} and \name{Krishna Menon} thereby prove the
+\hyperref[gtKostkaEhrhart]{Alexandersson--Alhajjar conjecture} stated on the
 Gelfand--Tsetlin page \cite{AlexanderssonAlhajjar2018}.
-\end{conjecture}
+\end{theorem}
+
+Their method also proves Ehrhart positivity for the unsliced row-interval
+flagged faces of skew GT polytopes \cite[Sec.~3.2]{JochemkoMenon2026x}.
+It does not imply positivity after fixing the tableau content: that operation
+extracts one stretched monomial coefficient and intersects the flagged face
+with the rational affine weight slice.
 
 The King--Tollu--Toumazet conjecture predicts that every coefficient of the
 stretched Littlewood--Richardson polynomial

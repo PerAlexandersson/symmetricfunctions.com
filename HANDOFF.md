@@ -1,5 +1,19 @@
 # Handoff
 
+## Current scope (2026-09-06, skew-GT Ehrhart positivity)
+
+The Ehrhart and GT pages now replace the proved skew-GT positivity conjecture
+by Jochemko--Menon's Theorem 3.5.  Those pages and the flagged-Schur page also
+state explicitly that the unsliced flagged result from Section 3.2 does not
+settle fixed-content flagged Kostka positivity.  The primary-source
+bibliography record is `JochemkoMenon2026x`.
+
+`make bib Q=1`, all three focused page builds, `make Q=1`, `make check Q=1`,
+and `git diff --check` pass.  The theorem, caveat, cross-page link, citation,
+and embedded BibTeX were spot-checked in all three rendered pages.  The two
+check warnings are the pre-existing synthetic-polydata fixtures.  No files
+remain actively owned, and the update is not deployed.
+
 ## Current scope (2026-09-06, order-polytope example)
 
 The sharp fourteen-dimensional non-Ehrhart-positive order polytope
