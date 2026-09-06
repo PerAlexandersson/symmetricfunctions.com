@@ -1,5 +1,18 @@
 # Handoff
 
+## Current scope (2026-09-06, Pahuja RSK correction)
+
+The RSK page still describes Pahuja's study of fixed-RSK-shape matrices with
+the minimum number of inversions, but no longer presents the proposed
+symmetric-Hankel characterization as an open conjecture.  It now records that
+the author subsequently found a counterexample and is preparing a revision,
+without speculating about a corrected result.
+
+`make FILE=rsk.tex Q=1`, `make check Q=1`, and `git diff --check` pass.  The
+rendered passage, author link, citation anchor, arXiv link, and bibliography
+entry were spot-checked in `www/rsk.htm`.  No files remain actively owned, and
+the correction is not deployed.
+
 ## Current scope (2026-09-06, gamma-positivity criterion correction)
 
 The gamma-positivity page now identifies the criterion as a corrected form of
