@@ -1,9 +1,11 @@
 \metatitle{Interlacing polynomials}
 
 \metadescription{Theory of interlacing and interleaving roots, Sturm
-sequences, compatible polynomials, and operators preserving real-rootedness.}
+sequences, Hurwitz stability, compatible polynomials, and operators preserving
+real-rootedness.}
 \metakeywords{interlacing polynomials, interleaving roots, Sturm sequence,
-compatible polynomials, real-rootedness preservers, Lace matrix}
+Hurwitz stability, compatible polynomials, real-rootedness preservers, Lace
+matrix}
 
 
 \section[interlacingPolynomials]{Interlacing and interleaving roots}
@@ -238,6 +240,44 @@ if and only if $p_1 \interl p_0$.
 
 This criterion packages interlacing roots as total nonnegativity of a
 structured Hurwitz matrix.
+
+\begin{definition}[Hurwitz stability]
+A nonzero polynomial $P\in\setR[t]$ is
+\defin{weakly Hurwitz stable}\label{weakHurwitzStablePolynomial}
+if every zero $z$ of $P$ satisfies $\operatorname{Re}(z)\leq 0$.
+It is \defin{strictly Hurwitz stable}\label{strictHurwitzStablePolynomial}
+if every zero satisfies $\operatorname{Re}(z)<0$.
+The unqualified term ``Hurwitz stable'' is also commonly used for the strict
+version.
+\end{definition}
+
+\begin{proposition}[Hurwitz stability implies coefficient positivity]
+\label{hurwitzImpliesCoefficientPositivity}
+Let $P\in\setR[t]$ have positive leading coefficient.  If $P$ is weakly
+Hurwitz stable, then all coefficients of $P$ are nonnegative.  If $P$ is
+strictly Hurwitz stable, then all its coefficients are positive.
+\end{proposition}
+
+\begin{proof}
+Over the reals, $P$ is a positive constant times a product of linear factors
+$t+a$, with $a\geq 0$, and quadratic factors
+\[
+ (t-z)(t-\overline z)
+ =t^2-2\operatorname{Re}(z)t+|z|^2
+\]
+coming from nonreal conjugate pairs.  Every factor has nonnegative
+coefficients when its zeros lie in the closed left half-plane.  In the strict
+case every displayed coefficient is positive, and the same conclusions hold
+for their product.
+\end{proof}
+
+The converse fails even when every coefficient is positive.  For example,
+\[
+ (t+3)(t^2-2t+10)=t^3+t^2+4t+30
+\]
+has positive coefficients but has the two zeros $1\pm3i$ in the open right
+half-plane.  Thus Hurwitz stability is a sufficient certificate for
+coefficient positivity, but is strictly stronger than coefficient positivity.
 
 \begin{theorem}[Hermite--Biehler, see \cite{Holtz2003}]
 \label{hermiteBiehlerTheorem}

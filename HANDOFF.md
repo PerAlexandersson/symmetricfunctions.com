@@ -1,6 +1,26 @@
 # Handoff
 
-## Current scope
+## Current scope (2026-09-06)
+
+The interlacing page now defines weak and strict Hurwitz stability and proves
+that, for a real polynomial with positive leading coefficient, weak Hurwitz
+stability implies nonnegative coefficients and strict Hurwitz stability
+implies positive coefficients.  The factored example
+`(t+3)(t^2-2t+10)` shows that the converse fails even for strictly positive
+coefficients.  Page metadata now includes Hurwitz stability.
+
+## Ownership
+
+No files remain actively owned for this completed addition.
+
+## Verification
+
+`make FILE=realRootedInterlacing.tex Q=1`, `make Q=1`, `make check Q=1`, and
+`git diff --check` pass.  The rendered definition, proposition, proof,
+counterexample, and three new labels were spot-checked in
+`www/realRootedInterlacing.htm`.  The update is not deployed.
+
+## Previous completed scope (2026-09-03)
 
 The 2026-09-02 preprint of Khai-Hoan Nguyen-Dang and Zhenpeng Wang on
 realizable-volume models for Schubert, Grothendieck, and Lascoux polynomials
