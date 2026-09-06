@@ -1,6 +1,29 @@
 # Handoff
 
-## Current scope (2026-09-06)
+## Current scope (2026-09-06, order-polytope example)
+
+The sharp fourteen-dimensional non-Ehrhart-positive order polytope
+`O(P_{7,7})` is now in the order-polytope catalogue.  The example gives its
+defining ordinal sum, first Ehrhart coefficients, negative linear coefficient,
+minimal-dimension statement, and the contrast
+`h^*_{O(P_{7,7})}(t)=A_7(t)^2`.  The Liu--Tsuchiya bibliography record now
+uses its published metadata, and the dimension-at-most-thirteen theorem has a
+new published bibliography record.
+
+## Ownership
+
+No files remain actively owned for this completed addition.
+
+## Verification
+
+`make bib Q=1`, `make FILE=polytopes.tex Q=1`, `make Q=1`,
+`make check Q=1`, and `git diff --check` pass.  The rendered example,
+cross-page links, both citation anchors, published DOI links, and embedded
+BibTeX records were spot-checked in `www/polytopes.htm`.  The two check
+warnings are the pre-existing synthetic-polydata fixtures.  The update is not
+deployed.
+
+## Previous completed scope (2026-09-06, Hurwitz stability)
 
 The interlacing page now defines weak and strict Hurwitz stability and proves
 that, for a real polynomial with positive leading coefficient, weak Hurwitz
@@ -9,11 +32,11 @@ implies positive coefficients.  The factored example
 `(t+3)(t^2-2t+10)` shows that the converse fails even for strictly positive
 coefficients.  Page metadata now includes Hurwitz stability.
 
-## Ownership
+### Ownership
 
 No files remain actively owned for this completed addition.
 
-## Verification
+### Verification
 
 `make FILE=realRootedInterlacing.tex Q=1`, `make Q=1`, `make check Q=1`, and
 `git diff --check` pass.  The rendered definition, proposition, proof,

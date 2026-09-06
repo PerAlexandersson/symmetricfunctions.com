@@ -300,6 +300,29 @@ x_i \leq x_j \text{ if } i <_P j
 There are order polytopes with negative Ehrhart coefficients,
 see \cite[Fig.~3.87]{StanleyEC1} and \cite{Alexandersson2019CounterExamples}.
 
+\begin{example}[The smallest-dimensional negative order-polytope example]
+Let $A_7$ be a seven-element antichain and let
+$P_{7,7}=A_7\oplus A_7$ be the ordinal sum.  Thus $P_{7,7}$ has seven
+minimal elements and seven maximal elements, with every minimal element below
+every maximal element.  Its order polytope has dimension $14$ and
+\[
+ E_{\mathcal O(P_{7,7})}(k)
+ =1-\frac{3041}{1430}k+\frac{18397}{4290}k^2+\dotsb,
+\]
+so it is not Ehrhart positive
+\cite[Ex.~3.2 and Table~1]{LiuTsuchiya2018}.
+
+This dimension is sharp: every order polytope of dimension at most $13$ is
+Ehrhart positive \cite[Thm.~3.1]{LiuXinZhang2026Dimension13}.  In contrast,
+its \hyperref[hStarPolynomial]{$h^*$-polynomial} is
+\[
+ h^*_{\mathcal O(P_{7,7})}(t)=A_7(t)^2,
+\]
+where $A_7(t)$ is the \hyperref[eulerianPolynomial]{Eulerian polynomial}.
+Thus the $h^*$-coefficients are nonnegative even though the ordinary Ehrhart
+polynomial has a negative coefficient.
+\end{example}
+
 
 Let $Z_n$ be the zig-zag poset with cover relations
 $z_1<z_2>z_3<z_4>\dotsb$.  The
