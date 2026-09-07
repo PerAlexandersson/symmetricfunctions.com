@@ -107,6 +107,7 @@ end
 
 local error_count = 0
 local max_errors = tonumber(os.getenv("LINT_HTML_MAX_ERRORS") or "200") or 200
+local www_dir = os.getenv("WWW_DIR") or "www"
 
 local function report(path, lineno, label, line)
   error_count = error_count + 1
@@ -134,6 +135,51 @@ for _, path in ipairs(files) do
   else
     error_count = error_count + 1
   end
+end
+
+local sitemap_path = www_dir .. "/sitemap.xml"
+local sitemap = read_file(sitemap_path)
+if sitemap then
+  local canonical_prefix = "https://www.symmetricfunctions.com/"
+  local excluded_slugs = {
+    ["403.htm"] = true,
+    ["404.htm"] = true,
+  }
+  for url in sitemap:gmatch("<loc>(.-)</loc>") do
+    local slug = url:match("^" .. canonical_prefix:gsub("([^%w])", "%%%1") .. "(.+)$")
+    if not slug then
+      report(sitemap_path, 1, "sitemap URL is outside the canonical site", url)
+    elseif excluded_slugs[slug] then
+      report(sitemap_path, 1, "error document included in sitemap", url)
+    else
+      local page_path = www_dir .. "/" .. slug
+      local page = read_file(page_path)
+      if not page then
+        error_count = error_count + 1
+      else
+        local canonical = page:match('<link%s+rel="canonical"%s+href="([^"]+)"%s*/?>')
+        if canonical ~= url then
+          report(
+            page_path,
+            1,
+            "canonical URL does not match sitemap URL",
+            string.format("expected %s, found %s", url, canonical or "none")
+          )
+        end
+        local og_url = page:match('<meta%s+property="og:url"%s+content="([^"]+)"%s*/?>')
+        if og_url ~= url then
+          report(
+            page_path,
+            1,
+            "Open Graph URL does not match sitemap URL",
+            string.format("expected %s, found %s", url, og_url or "none")
+          )
+        end
+      end
+    end
+  end
+else
+  error_count = error_count + 1
 end
 
 if error_count > max_errors then

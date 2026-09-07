@@ -718,10 +718,16 @@ local function generate_outputs(data)
   -- Write sitemap XML
   local sitemap_pages = {}
   local has_relation_page = false
+  local sitemap_excluded = {
+    ["403.htm"] = true,
+    ["404.htm"] = true,
+  }
   for _, page in ipairs(data.pages) do
-    sitemap_pages[#sitemap_pages + 1] = page
-    if page.slug == "polynomial-relations.htm" then
-      has_relation_page = true
+    if not sitemap_excluded[page.slug] then
+      sitemap_pages[#sitemap_pages + 1] = page
+      if page.slug == "polynomial-relations.htm" then
+        has_relation_page = true
+      end
     end
   end
   if not has_relation_page then

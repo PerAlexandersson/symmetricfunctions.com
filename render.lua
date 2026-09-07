@@ -689,7 +689,7 @@ local pandoc_doc = file_reading.load_json_file(filename, "json pandoc document")
 local meta      = pandoc_doc.meta or {}
 local title     = get_meta(meta, "metatitle", "Untitled")
 local desc      = get_meta(meta, "metadescription", title)
-local canonical = get_meta(meta, "canonical", "index.htm")
+local canonical = get_meta(meta, "canonical", filestem .. ".htm")
 local citations = meta.citations and (meta.citations.c or meta.citations) or {}
 local custom_css= get_meta(meta, "custom_css", "")
 

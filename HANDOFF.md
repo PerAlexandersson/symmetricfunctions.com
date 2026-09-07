@@ -1,5 +1,19 @@
 # Handoff
 
+## Current scope (2026-09-07, canonical URL repair)
+
+Rendered pages now default to their own `<filestem>.htm` canonical URL instead
+of `index.htm`; the same corrected value feeds `og:url`. The sitemap excludes
+`403.htm` and `404.htm`. The HTML lint now checks every sitemap entry against
+the corresponding page's canonical and Open Graph URLs and rejects error-page
+entries.
+
+`make Q=1`, `make check Q=1`, and `git diff --check` pass. The sitemap has 140
+unique page URLs, and `index.htm`, `schur.htm`, `ehrhart.htm`, and the generated
+polynomial-relations page were spot-checked. The only check output is the two
+pre-existing synthetic-polydata warnings. No files remain actively owned, and
+the correction is not deployed.
+
 ## Current scope (2026-09-06, Pahuja RSK correction)
 
 The RSK page still describes Pahuja's study of fixed-RSK-shape matrices with

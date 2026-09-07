@@ -172,7 +172,7 @@ $(TEST_CHECK): $(TEST_JSON) $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_HTM
 
 # === GENERATED HTML LINT ===
 .PHONY: lint-html
-lint-html: $(HTML_FILES) tests/lint_html.lua
+lint-html: $(HTML_FILES) $(SITEMAP_XML) tests/lint_html.lua
 	$(LOG) "Linting generated HTML ..."
 	@WWW_DIR="$(WWW_DIR)" $(LUA) tests/lint_html.lua $(HTML_FILES)
 
