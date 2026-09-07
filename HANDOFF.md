@@ -11,8 +11,11 @@ entries.
 `make Q=1`, `make check Q=1`, and `git diff --check` pass. The sitemap has 140
 unique page URLs, and `index.htm`, `schur.htm`, `ehrhart.htm`, and the generated
 polynomial-relations page were spot-checked. The only check output is the two
-pre-existing synthetic-polydata warnings. No files remain actively owned, and
-the correction is not deployed.
+pre-existing synthetic-polydata warnings. The correction was deployed on
+2026-09-07. Cache-busted public fetches of those four pages and `sitemap.xml`
+match the local files byte-for-byte; their live canonical URLs are correct and
+the live sitemap contains neither error document. No files remain actively
+owned.
 
 ## Current scope (2026-09-06, Pahuja RSK correction)
 
