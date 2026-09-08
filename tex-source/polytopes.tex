@@ -368,12 +368,57 @@ polytopes together with
 
 \subsection[markedOrderPolytope]{Marked order polytopes}
 
-The \defin{marked order polytope}\label{markedOrderPolytopeDefinition}
-generalizes the \hyperref[orderPolytopeDefinition]{order polytope}; see
+Let $P$ be a finite poset, let $A\subseteq P$, and let
+$\lambda:A\to\setZ$ be order preserving.  The
+\defin{marked order polytope}\label{markedOrderPolytopeDefinition}
+is
+\[
+ \mathcal O_{P,A}(\lambda)
+ =
+ \left\{
+   \widehat\lambda:P\to\setR:
+   \widehat\lambda\text{ is order preserving and }
+   \widehat\lambda|_A=\lambda
+ \right\}.
+\]
+When $A$ contains all minimal and maximal elements of $P$, this is a bounded
+lattice polytope.  It generalizes the
+\hyperref[orderPolytopeDefinition]{order polytope}; see
 \cite{ArdilaBliemSalazar2011}.
-It is obtained by replacing the conditions $0 \leq x_i \leq 1$ with
-$a_i \leq x_i \leq b_i$ for $1\leq i \leq n$,
-where the $a_i$ and $b_i$ are constants.
+
+\begin{theorem}[Jochemko--Menon
+  {\cite[Thms.~1.3--1.5]{JochemkoMenon2026x}}]
+\label{markedOrderPolytopePositivity}
+Suppose $P$ belongs to a family $\mathcal F$ of posets closed under taking
+ideals and filters, and the linear coefficient of the order polynomial of
+every poset in $\mathcal F$ is nonnegative.  Then
+$\mathcal O_{P,A}(\lambda)$ is Ehrhart positive whenever
+$A\supseteq\min(P)\cup\max(P)$.
+
+More strongly, on a chamber with
+$\lambda(a_0)\leq\dotsb\leq\lambda(a_r)$ for a natural labeling
+$A=\{a_0,\dotsc,a_r\}$, its lattice-point count is a polynomial with
+nonnegative coefficients in the gaps
+$t_i=\lambda(a_i)-\lambda(a_{i-1})$.  In particular, this applies to every
+integrally marked order polytope whose underlying poset is the cell poset of
+a skew shape.
+\end{theorem}
+
+The source of the positivity is an ideal-chain decomposition
+\cite[Prop.~2.1]{JochemkoMenon2026x}.  For positive gaps, the lattice points
+split, over strict chains of order ideals
+$I_0\subsetneq\dotsb\subsetneq I_r$ with
+$a_i\in I_i\setminus I_{i-1}$, into independent lattice points of unmarked
+order polytopes.  Equivalently, with $I_{-1}=\varnothing$,
+\[
+ \Omega_{P,A}(\lambda)
+ =
+ \sum_I \prod_{i=1}^r
+ \Omega_{I_i\setminus(I_{i-1}\cup\mathord\uparrow a_i)}(t_i).
+\]
+The closure hypothesis keeps every poset in these factors inside
+$\mathcal F$; positivity of their order polynomials then makes every summand
+coefficientwise nonnegative.
 
 \name{Jan Stricker} studies $2$-levelness for marked order, marked chain, and
 marked chain-order polytopes, and gives an exact formula for the
@@ -641,6 +686,35 @@ Let $y=(y_1,\dotsc,y_n)\in \setZ_{>0}^n$.  The
     \text{ for } k=1,\dotsc,n
   \right\}.
 \]
+A broader marked-order model is obtained as follows.  For
+$\mathbf y,\mathbf z\in\setZ_{\geq0}^k$ and $m\geq1$, set
+$\widetilde y_i=y_1+\dotsb+y_i$ and
+$\widetilde z_i=z_1+\dotsb+z_i$.  The
+\defin{$m$-generalized Pitman--Stanley polytope}
+\label{generalizedPitmanStanleyPolytope}
+$\operatorname{PS}_k^m(\mathbf y,\mathbf z)$ consists of the
+$(x_{i,j})\in\setR^{km}$ satisfying
+\[
+ \widetilde z_i\leq x_{i,1}\leq\dotsb\leq x_{i,m}
+ \leq\widetilde y_i,
+ \qquad
+ x_{i,j}\leq x_{i+1,j}.
+\]
+Here the first inequalities hold for $i\in[k]$, and the second for
+$i\in[k-1]$ and $j\in[m]$.
+
+\begin{theorem}[Jochemko--Menon
+  {\cite[Thms.~3.2--3.3]{JochemkoMenon2026x}}]
+For every $\mathbf y,\mathbf z\in\setZ_{\geq0}^k$ and $m\geq1$,
+$\operatorname{PS}_k^m(\mathbf y,\mathbf z)$ is Ehrhart positive.  When
+$\mathbf z=\mathbf0$, the stronger multivariate statement holds:
+\[
+ \left|\operatorname{PS}_k^m(\mathbf y,\mathbf0)
+ \cap\setZ^{km}\right|
+\]
+is a polynomial in $\mathbf y$ with nonnegative rational coefficients.
+\end{theorem}
+
 \name{Nicolas Avila}, \name{Luis Ferroni}, and
 \name{Alejandro H. Morales} prove that the Ehrhart polynomial
 $E_{\Pi_n(y)}(m)$ is magic positive \cite{AvilaFerroniMorales2026}.

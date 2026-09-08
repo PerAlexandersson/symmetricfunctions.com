@@ -349,13 +349,25 @@ is a polynomial in $k$ with nonnegative coefficients.
 This proves a conjecture of \name{Per Alexandersson} and
 \name{Elie Alhajjar} \cite{AlexanderssonAlhajjar2018}.
 \end{theorem}
+The proof uses the
+\hyperref[markedOrderPolytopePositivity]{ideal-chain decomposition for marked
+order polytopes}, but the general closure criterion does not apply directly:
+ideals and filters of the GT poset lead to shifted skew shapes, whose Ehrhart
+positivity is not known.  Jochemko and Menon instead show that the particular
+unmarked pieces in this decomposition are cell posets of ordinary skew shapes
+\cite[Sec.~1 and proof of Thm.~3.5]{JochemkoMenon2026x}.
+
 For example, $m=3$, $\lambda=321$ and $\mu=1$ gives the Ehrhart polynomial
 \[
 Ehr(\gtp_{321/1},k) = \frac{1}{2} (k^5+6 k^4+14 k^3+16 k^2+9 k+2).
 \]
 
-Jochemko and Menon's argument also gives positivity for unsliced flagged
-faces in which the entries allowed in every tableau row form an interval
+Their argument also gives positivity for the following unsliced flagged
+faces.  In the paper's indexing, let
+$\mathbf a,\mathbf b\in\setZ_{\geq0}^k$ be weakly increasing with
+$0\leq a_i<b_i\leq m+1$, and restrict row $i$ to entries in
+$[a_i+1,b_i]$.  The corresponding face is a marked order polytope obtained
+by identifying the coordinates forced equal, and it is Ehrhart positive
 \cite[Sec.~3.2]{JochemkoMenon2026x}.  This does not settle the
 \hyperref[flaggedSchurKostka]{flagged Kostka positivity conjecture}: fixing a
 weight intersects such a face with an affine slice, and the resulting

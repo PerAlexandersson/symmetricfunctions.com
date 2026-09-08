@@ -1,5 +1,34 @@
 # Handoff
 
+## Current scope (2026-09-08, marked-order-polytope Ehrhart positivity)
+
+The polytope page now gives Jochemko--Menon's ideal-chain decomposition and
+their general positivity criterion, including the exact marking and
+ideal/filter-closure hypotheses and the skew-shape marked-order consequence.
+It also defines the $m$-generalized Pitman--Stanley polytope and records both
+its ordinary Ehrhart positivity and the stronger multivariate result when the
+lower marking is zero.  The Ehrhart and GT pages explain why the general
+closure criterion does not apply directly to skew GT posets, while preserving
+the existing skew-GT theorem.  The GT and flagged-Schur pages now state the
+precise weakly increasing row-interval hypotheses for the unsliced flagged
+faces and retain the fixed-content affine-slice caveat.  The bibliography now
+points to arXiv `2604.08394v2`.
+
+### Ownership
+
+No files remain actively owned for this completed update.
+
+### Verification
+
+The statements were checked against the cached primary v2 PDF (paper-cache
+entry 251) and arXiv's v2 HTML.  `make bib Q=1`, focused builds of
+`polytopes.tex`, `ehrhart.tex`, `gtpatterns.tex`, and `schurFlagged.tex`,
+`make Q=1`, `make check Q=1`, and `git diff --check` pass.  The rendered
+definition, decomposition formula, theorem hypotheses, cross-page links,
+flagged-face caveat, v2 bibliography link, and embedded BibTeX were
+spot-checked.  The only check output is the two pre-existing synthetic
+polydata warnings.  The update is not deployed.
+
 ## Current scope (2026-09-07, canonical URL repair)
 
 Rendered pages now default to their own `<filestem>.htm` canonical URL instead
