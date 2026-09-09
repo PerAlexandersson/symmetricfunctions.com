@@ -1,5 +1,14 @@
 # Handoff
 
+## Current scope (2026-09-09, real-rootedness toolkit expansion)
+
+The current committed site state is preserved by the local annotated tag
+`pre-real-rootedness-expansion-20260909` at `b7bf593`.  The active worker owns
+`HANDOFF.md`, `bibliography.bib`, and the real-rootedness, interlacing,
+stable-polynomial, and transfer-matrix source pages while adding concise,
+primary-source-checked method and landmark coverage.  No build, deployment,
+push, or external communication has been performed.
+
 ## Current scope (2026-09-09, real-rootedness coverage survey)
 
 Private Docker session `01a08514-37bd-7ab2-938e-e25280b399e3` (role

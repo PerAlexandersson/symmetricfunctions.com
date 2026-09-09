@@ -29,11 +29,20 @@ A univariate polynomial with real coefficients
 is stable if and only if all its roots are real.
 \end{definition}
 
+The Lee--Yang circle theorem is a foundational circular-domain analogue.
+For a finite ferromagnetic Ising model in a uniform external field, every zero
+of the partition function, viewed as a polynomial in the fugacity, lies on the
+unit circle \cite{LeeYang1952}.  A Möbius transformation between the disk and
+the upper half-plane transports such zero-free regions into the language of
+stability; this viewpoint underlies the modern Lee--Yang program
+\cite{BorceaBranden2009I}.
 
 
 
 
-\begin{definition}[Strongly Rayleigh]\label{stronglyRayleigh}
+
+\begin{definition}[Strongly Rayleigh, \cite{BorceaBrandenLiggett2008}]
+\label{stronglyRayleigh}
 A measure $\mu$ on the set of subsets of $[n]$ is called
 \defin{strongly Rayleigh} if
 \[
@@ -222,6 +231,35 @@ their univariate specializations satisfy ultra-log-concavity and Mason-type
 inequalities \cite[Thm.~1.3]{FangMa2026x}.
 
 
+\subsection[gurvitsCapacity]{Capacity and coefficient bounds}
+
+For a homogeneous polynomial $p\in\setR[x_1,\dotsc,x_n]$ of degree $n$ with
+nonnegative coefficients, define its \defin{capacity}\label{stableCapacity} by
+\[
+  \operatorname{Cap}(p)
+  \coloneqq
+  \inf_{x_1,\dotsc,x_n>0}\frac{p(x_1,\dotsc,x_n)}{x_1\dotsm x_n}.
+\]
+
+\begin{theorem}[Gurvits, \cite[Thm.~2.4 and Cor.~2.5]{Gurvits2008}]
+If $p$ is real stable, then
+\[
+  \frac{\partial^n p}{\partial x_1\dotsm\partial x_n}(0)
+  \geq \frac{n!}{n^n}\operatorname{Cap}(p).
+\]
+\end{theorem}
+
+This turns stability into a coefficient lower bound and behaves well under
+successive differentiation.  For a doubly stochastic matrix
+$A=(a_{ij})$, the polynomial
+\[
+  p_A(\xvec)=\prod_{i=1}^n\left(\sum_{j=1}^n a_{ij}x_j\right)
+\]
+is real stable and has capacity one, while the coefficient of
+$x_1\dotsm x_n$ is $\operatorname{per}(A)$.  The theorem therefore gives the
+van der Waerden bound $\operatorname{per}(A)\geq n!/n^n$.
+
+
 
 \subsection[stabilitymultiaffine]{Multi-affine stability}
 
@@ -369,6 +407,40 @@ Every summand is nonnegative, so $B_iv=0$ for every $i$, and then $Av=0$.
 Thus $v$ lies in the kernel of every matrix in the pencil, making the
 determinant identically zero.  Hence a nonzero determinant of this form cannot
 vanish when all variables lie in the upper half-plane.
+
+
+\subsubsection[mixedCharacteristicPolynomial]{Mixed characteristic polynomials and barriers}
+
+For positive semidefinite Hermitian matrices $A_1,\dotsc,A_m$, define
+\[
+ \mu[A_1,\dotsc,A_m](x)
+ \coloneqq
+ \left.
+ \prod_{i=1}^m(1-\partial_{z_i})
+ \det\left(xI+\sum_{i=1}^m z_iA_i\right)
+ \right|_{z_1=\dotsb=z_m=0}.
+\]
+This is the \defin{mixed characteristic polynomial}
+\label{mixedCharacteristicPolynomialDefinition}.
+
+\begin{theorem}[Marcus--Spielman--Srivastava,
+\cite[Cor.~4.4 and Thm.~5.1]{MarcusSpielmanSrivastava2015II}]
+\label{mixedCharacteristicPolynomialBound}
+The polynomial $\mu[A_1,\dotsc,A_m](x)$ is real-rooted.  If additionally
+\[
+  \sum_{i=1}^m A_i=I
+  \qquad\text{and}\qquad
+  \operatorname{tr}(A_i)\leq\epsilon\quad\text{for every $i$},
+\]
+then its largest zero is at most $(1+\sqrt{\epsilon})^2$.
+\end{theorem}
+
+Real-rootedness follows by applying the stability-preserving operators
+$1-\partial_{z_i}$ to the determinantal polynomial.  The root bound is proved
+by tracking logarithmic-derivative barrier functions as these operators are
+applied.  Together with \hyperref[interlacingFamilies]{interlacing
+families}, this is the main polynomial tool in the solution of the
+Kadison--Singer problem.
 
 
 \begin{theorem}[Borcea--Brändén,
@@ -535,8 +607,8 @@ is a useful reference for the theory and applications of multivariate
 stable polynomials, including the Borcea--Brändén classification of
 stability preservers, matrix applications, and probabilistic applications.
 
-\begin{theorem}[Strongly Rayleigh measures are negatively associated, see
-\cite{Wagner2009StableSurvey}]
+\begin{theorem}[Borcea--Brändén--Liggett,
+\cite[Thm.~4.9]{BorceaBrandenLiggett2008}]
 Let $\mu$ be a probability measure on subsets of $[n]$ whose generating
 polynomial
 \[
@@ -546,6 +618,12 @@ is real stable.  Then every measure obtained from $\mu$ by applying
 positive external fields is negatively associated: increasing functions
 depending on disjoint coordinate sets have nonpositive covariance.
 \end{theorem}
+
+In fact the conclusion is the stronger property CNA+: it persists after
+conditioning, projection, and positive external fields.  Determinantal
+measures induced by positive contractions are strongly Rayleigh; this includes
+product measures and uniform random spanning-tree measures
+\cite[Prop.~3.5]{BorceaBrandenLiggett2008}.
 
 
 

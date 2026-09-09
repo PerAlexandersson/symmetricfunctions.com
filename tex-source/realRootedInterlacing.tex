@@ -76,6 +76,9 @@ that $f \interl \lambda f + \mu g \interl g$ for all $\lambda, \mu \geq 0$.
 
 As an example, if $f$ is real-rooted, then $f' \interl f$.
 Hence, recursions involving the derivative play well with interlacing roots.
+The next three criteria cover derivative recurrences, two-term recurrences,
+and affine combinations, respectively.  Vector recurrences are treated by the
+\hyperref[matrixPreservesInterlacingSequences]{matrix criterion} below.
 
 
 \begin{theorem}[Cauchy interlacing theorem, see \cite{Godsil2017,Fisk2005x}]
@@ -100,15 +103,16 @@ characteristic polynomial of $A$.
 
 
 A useful derivative criterion is due to \name{Shi-Mei Ma} and
-\name{Yi Wang} \cite{MaWang2008}.
-\begin{theorem}[Ma and Wang, 2008]
+\name{Yi Wang} \cite[Thm.~2]{MaWang2008}.
+\begin{theorem}[Ma--Wang, 2008]
+\label{maWangDerivativeCriterion}
 Suppose $f$ and $F$ are polynomials with positive leading coefficients,
 such that
 \[
  F(x) = u(x) f(x) + v(x) f'(x), \qquad  \deg(f) \leq \deg(F) \leq \deg(f) + 1
  \]
 with $u(x),v(x)$ having real coefficients.
-If $f$ is real-rooted and $v(r) \neq 0$ whenever $f(r)=0$,
+If $f$ is real-rooted and $v(r) \leq 0$ whenever $f(r)=0$,
 then $F$ is real-rooted and $f \interl F$.
 \end{theorem}
 The theorem states more regarding root placements and multiplicities.
@@ -143,6 +147,22 @@ If $b(r) \leq 0$ whenever $f(r)=0$, then $F$ is real-rooted and $f \interl F$.
 In particular, if $g$ strictly interlaces $f$ and
 $b(r) \lt 0$ whenever $f(r)=0$, then $f$ strictly interlaces $F$.
 \end{theorem}
+
+
+The following affine-coefficient criterion is useful when neither summand is
+a derivative.
+\begin{theorem}[Wang--Yeh, 2005, \cite[Thm.~1]{WangYeh2005}]
+\label{wangYehAffineCriterion}
+Let $f,g\in\setR[x]$ be real-rooted polynomials with positive leading
+coefficients and $g\interl f$.  If $a,b,c,d\in\setR$ satisfy $ad\geq bc$, then
+\[
+  (bx+a)f(x)+(dx+c)g(x)
+\]
+is real-rooted or zero.
+\end{theorem}
+By applying this criterion to row-generating polynomials, Wang and Yeh also
+give conditions ensuring that bilinear triangular recurrences produce
+\hyperref[polyaFrequency]{Pólya frequency sequences}.
 
 
 
@@ -467,6 +487,7 @@ This is especially useful when a Christoffel--Darboux identity gives a
 closed form for the difference quotient above.
 
 \begin{theorem}[Interlacing families, see \cite{Lau2022InterlacingFamilies}]
+\label{interlacingFamilies}
 Let $T$ be a rooted tree whose leaves are labeled by real-rooted
 polynomials of the same degree and with positive leading coefficients.
 Label every internal vertex by the sum of the polynomials labeling its
@@ -487,6 +508,22 @@ form an interlacing family.  The root polynomial is the $k$th derivative
 of the characteristic polynomial of $A$.  This refines the Cauchy
 interlacing theorem from a single principal submatrix to a whole tree of
 principal submatrices.
+
+The method was introduced by \name{Adam Marcus}, \name{Daniel Spielman}, and
+\name{Nikhil Srivastava} for graph signings.  The Godsil--Gutman identity says
+that the expected characteristic polynomial of a uniformly random signed
+adjacency matrix is the \hyperref[realRootedMatching]{matching polynomial}.
+They proved that the signed characteristic polynomials form an interlacing
+family.  Combined with the matching-polynomial root bound, this selects a
+signing whose largest eigenvalue is at most $2\sqrt{d-1}$ for a graph of
+maximum degree $d$.  Applied repeatedly to $2$-lifts of bipartite graphs, this
+gives infinite families of bipartite Ramanujan graphs of every degree
+\cite{MarcusSpielmanSrivastava2015I}.
+
+Their sequel combines interlacing families with
+\hyperref[mixedCharacteristicPolynomial]{mixed characteristic polynomials and
+barrier functions}; this yields a positive solution of the Kadison--Singer
+problem \cite{MarcusSpielmanSrivastava2015II}.
 
 
 \subsection[fullyInterlacingLace]{Fully interlacing sequences and the $\operatorname{Lace}$ matrix}

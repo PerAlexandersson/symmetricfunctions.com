@@ -202,3 +202,32 @@ n & P_n(t) \\ \hline
 5 & 1+12t+37t^2+34t^3+9t^4 .
 \end{array}
 \]
+
+
+\subsection[berahaKahaneWeiss]{Limiting zero sets}
+
+Transfer matrices also give an asymptotic tool for locating complex zeros.
+After diagonalization, a sequence often has the form
+\[
+  f_n(z)=\sum_{k=1}^m \alpha_k(z)\lambda_k(z)^n,
+\]
+where the $\lambda_k$ are transfer-matrix eigenvalues.
+
+\begin{theorem}[Beraha--Kahane--Weiss,
+see \cite{Beraha75limits,Sokal2004ChromaticRoots}]
+Let the functions $\alpha_k$ and the nonvanishing functions $\lambda_k$ be
+analytic on a connected open set $D$.  Suppose that no two distinct
+$\lambda_k,\lambda_\ell$ satisfy
+$\lambda_k\equiv\omega\lambda_\ell$ for a constant $|\omega|=1$.
+Then the limit points in $D$ of zeros of $f_n$ are precisely the points where
+either
+\begin{itemize}
+\item one $\lambda_k$ is uniquely dominant in modulus and $\alpha_k=0$; or
+\item at least two of the $\lambda_k$ are dominant in modulus.
+\end{itemize}
+\end{theorem}
+
+Thus isolated limiting zeros arise from vanishing amplitudes, while curves of
+limiting zeros usually arise where dominant eigenvalues have equal modulus.
+This theorem concerns asymptotic complex root location; it does not by itself
+imply real-rootedness of any fixed $f_n$.
