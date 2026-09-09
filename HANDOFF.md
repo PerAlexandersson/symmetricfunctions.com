@@ -2,12 +2,23 @@
 
 ## Current scope (2026-09-09, real-rootedness toolkit expansion)
 
-The current committed site state is preserved by the local annotated tag
-`pre-real-rootedness-expansion-20260909` at `b7bf593`.  The active worker owns
-`HANDOFF.md`, `bibliography.bib`, and the interlacing, stable-polynomial,
-transfer-matrix, polytope, word, graph, and matroid source pages while adding
-concise, primary-source-checked real-rootedness coverage.  No deployment, push,
-or external communication has been performed.
+The pre-expansion state is preserved by the local annotated tag
+`pre-real-rootedness-expansion-20260909` at `b7bf593`.  Commits `105f165`,
+`6c8d006`, and `c797d66` add concise proof-tool and landmark coverage, replace
+the stale toric fixed-row conjecture by its theorem, and add selected P1
+combinatorial results.  The Ma--Wang hypothesis is corrected from the false
+condition `v(r) != 0` to `v(r) <= 0`.
+
+`make bib Q=1`, focused page builds, `make Q=1`, `make check Q=1`, and
+`git diff --check` pass.  Rendered theorem statements, labels, cross-links,
+citation anchors, and embedded BibTeX were spot-checked; all arXiv links and six
+of eight DOI links returned HTTP 200, while the valid APS and PNAS DOI targets
+returned automated HTTP 403.  No files remain owned.  No deployment, push, or
+external communication was performed.
+
+To keep the existing pages compact, the broader UMEL-shellability,
+subdivision, lattice-width, graph-$\tau$, and gamma-boundary additions remain
+in `suggestions/real-rootedness-survey/REPORT.md` for later editorial batches.
 
 ## Current scope (2026-09-09, real-rootedness coverage survey)
 
