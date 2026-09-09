@@ -1,5 +1,20 @@
 # Handoff
 
+## Current scope (2026-09-09, real-rootedness coverage survey)
+
+A new private Docker worker with role `real-rooted-survey` is being launched
+for the user's deep survey of real-rootedness results missing from SymCat.
+The assignment is in `suggestions/real-rootedness-survey/BRIEF.md`.
+
+Ownership: the survey worker owns new research notes in that directory and
+this opening status section after launch. The host's setup edits are complete.
+No website source, bibliography, generated output, or deployment is in scope.
+Deliver a cited, prioritized report, candidate ledger, and search notes;
+distinguish missing results from existing or locally undeployed coverage.
+
+Verification: project worktree was clean before these setup notes; no existing
+SymCat worker was present in the supervisor inventory. Research is pending.
+
 ## Current scope (2026-09-08, marked-order-polytope Ehrhart positivity)
 
 The polytope page now gives Jochemko--Menon's ideal-chain decomposition and
