@@ -164,3 +164,16 @@ The dated handoff history prevented the following false positives:
 - Publisher metadata were verified where readily available. Preprints without a
   journal reference should retain the versioned arXiv identifier and survey date.
 
+## Final reproducibility checks
+
+- A final exact-identifier search across `tex-source/` and `bibliography.bib`
+  returned no hits for the recommended recent papers; the existing Xiao
+  conjecture remains at `tex-source/polytopes.tex:99-108`.
+- All 21 numbered sources in `REPORT.md` have one definition and at least one
+  in-text use. All 25 arXiv/publisher links returned HTTP 200 on 2026-09-09.
+  The remaining DOI resolver, `10.5070/C63160425`, returned HTTP 403 to the
+  automated request; its bibliographic metadata and paper were independently
+  checked, so this is recorded as an access response rather than a broken DOI.
+- `CANDIDATES.tsv` has 40 data rows and exactly seven tab-separated fields on
+  every row. The final report contains no control characters, and
+  `git diff --check` reports no whitespace errors in the owned files.
