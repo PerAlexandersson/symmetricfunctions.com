@@ -1,5 +1,25 @@
 # Handoff
 
+## Current scope (2026-09-09, PF and interlacing proof tools)
+
+The PF page now states the Wang--Yeh coefficient transform and bilinear
+triangular-recurrence criteria.  The real-rootedness page includes the
+finite-degree multiplier-sequence test, and the interlacing page records
+Fisk's constant-TNN mixing rule; Fisk is also credited for the earlier
+mutual-interlacing theorem for Veronese sections.
+
+The previous blanket claim that Hadamard products preserve TNN was false:
+Wagner explicitly gives counterexamples even for arbitrary TNN Toeplitz
+matrices.  The page now distinguishes the finite-support Schur--Pólya case
+and Wagner's polynomial-diagonal case.
+
+The statements were checked against the cached primary papers
+math/0611825, math/0403364, and Fisk's math/0612833, and against the
+publisher abstract for Wagner's 1992 paper.  Focused builds, make Q=1,
+make check Q=1, and git diff --check pass; rendered labels, cross-links,
+citation anchors, and BibTeX controls were spot-checked.  No files remain
+owned.  No deployment or push was performed.
+
 ## Current scope (2026-09-09, real-rootedness toolkit expansion)
 
 The pre-expansion state is preserved by the local annotated tag

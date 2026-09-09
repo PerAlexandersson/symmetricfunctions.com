@@ -162,7 +162,7 @@ is real-rooted or zero.
 \end{theorem}
 By applying this criterion to row-generating polynomials, Wang and Yeh also
 give conditions ensuring that bilinear triangular recurrences produce
-\hyperref[polyaFrequency]{Pólya frequency sequences}.
+\hyperref[wangYehPfPreserver]{Pólya frequency sequences}.
 
 
 
@@ -375,6 +375,21 @@ $\lambda, \mu > 0$, we have
 \]
 \end{enumerate}
 \end{theorem}
+
+For a constant matrix, total non-negativity gives a simpler sufficient test.
+\begin{corollary}[TNN mixing, \cite[Thm.~3.7]{Fisk2006x}]
+\label{tnnMixingInterlacing}
+Let \(f_1,\dotsc,f_n\) be an interlacing sequence and let \(A\) be an
+\(m\times n\) totally non-negative real matrix.  Then the nonzero coordinates
+of
+\[
+  A(f_1,\dotsc,f_n)^{\mathsf T}
+\]
+form an interlacing sequence in row order.
+\end{corollary}
+Thus a coefficient matrix supplied by a
+\hyperref[tnnPathMatrix]{planar network} can be used directly to mix an
+interlacing refinement.
 
 
 \begin{example*}[Small matrices preserving interleaving sequences]

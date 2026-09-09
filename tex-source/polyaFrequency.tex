@@ -133,6 +133,33 @@ For finite sequences, this is the coefficient-sequence version of the fact
 that the product of two polynomials with only real non-positive zeros again
 has only real non-positive zeros.
 
+\begin{theorem}[Wang--Yeh PF preserver, \cite[Cor.~2]{WangYeh2005}]
+\label{wangYehPfPreserver}
+Let \(x_0,x_1,\dotsc,x_{n-1}\) be a finite PF sequence, and set
+\(x_{-1}=x_n=0\).  For real \(a,b,c,d\), define
+\[
+  y_k=(a+c(k-1))x_{k-1}+(b+dk)x_k,
+  \qquad 0\leq k\leq n.
+\]
+If \(ad\geq bc\) and every \(y_k\) is non-negative, then
+\(y_0,y_1,\dotsc,y_n\) is a PF sequence.
+\end{theorem}
+
+This gives a direct row-recursion test.  Suppose a non-negative triangular
+array, with \(A(0,0)=1\), satisfies
+\[
+ A(n,k)=(rn+sk+t)A(n-1,k-1)+(an+bk+c)A(n-1,k).
+\]
+If
+\[
+ rb\geq as
+ \qquad\text{and}\qquad
+ (r+s+t)b\geq(a+c)s,
+\]
+then every row \((A(n,0),\dotsc,A(n,n))\) is PF
+\cite[Cor.~3]{WangYeh2005}.  This single criterion covers the binomial,
+Stirling, and Eulerian triangles, among many others.
+
 \subsection[edreiThomaTheorem]{Edrei--Thoma theorem}
 
 The infinite-sequence version has a precise analytic form.
@@ -217,7 +244,8 @@ shows that \(\mathcal{S}^r_i(f)\) is real-rooted.
   \bigr)
 \]
 is fully interlacing.  Thus Veronese sections produce an interlacing family
-of polynomials, not only separate real-rooted polynomials.
+of polynomials, not only separate real-rooted polynomials.  The earlier
+mutual-interlacing version appears in \cite[Thm.~7.65]{Fisk2006x}.
 
 \begin{example*}[Rows of Pascal's triangle]
 The polynomial
@@ -263,7 +291,11 @@ with all multipliers non-negative and no entry becoming negative.  This gives
 an \(O(n^2m)\) algorithm for an \(n\times m\) matrix, compared to the
 exponential cost of checking all minors directly.
 
-TNN matrices are also closed under Hadamard products, see \cite{Wagner1992}.
+Hadamard products do not preserve TNN in general, even for arbitrary TNN
+Toeplitz matrices.  Two useful positive cases are the finite-support
+\hyperref[hadamardProductTheorems]{Schur--Pólya theorem} and Wagner's theorem
+for lower-triangular TNN Toeplitz matrices whose diagonal sequences are
+polynomial functions of the diagonal index \cite{Wagner1992}.
 See \cite{BrandenLeite2024x} for applications related to chains in posets,
 and \cite{FallatJohnson2011} for a comprehensive treatment.
 
