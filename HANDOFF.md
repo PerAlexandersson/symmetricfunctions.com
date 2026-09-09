@@ -17,8 +17,9 @@ The statements were checked against the cached primary papers
 math/0611825, math/0403364, and Fisk's math/0612833, and against the
 publisher abstract for Wagner's 1992 paper.  Focused builds, make Q=1,
 make check Q=1, and git diff --check pass; rendered labels, cross-links,
-citation anchors, and BibTeX controls were spot-checked.  No files remain
-owned.  No deployment or push was performed.
+citation anchors, and BibTeX controls were spot-checked.  A clean `make ship`
+build and deployment completed on 2026-09-09, and the changed live pages were
+spot-checked.  No files remain owned.  No push was performed.
 
 ## Current scope (2026-09-09, real-rootedness toolkit expansion)
 
