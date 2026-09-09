@@ -93,20 +93,24 @@ $g_{n+1,j+1}(x)$.
 \end{theorem}
 
 The theorem proves the real-rootedness conjecture of Ehrenborg, Hetyei, and
-Readdy.  The following row-wise strengthening would also control their
-nonnegative linear combinations.
+Readdy.  Alexandersson subsequently proved Xiao's row-wise strengthening.
 
-\begin{conjecture}[Xiao, \cite[Conj.~4.2]{Xiao2026x}]
-For every $n\geq0$, the sequence
+\begin{theorem}[Alexandersson, \cite[Thm.~8.1]{Alexandersson2026ParkingSmirnov}]
+Let $n\geq2$ and $m=\lfloor n/2\rfloor$.  Then $g_{n,m}(x)/x$ interlaces
+every $g_{n,j}(x)$, and the sequence
 \[
-  \bigl(g_{n,0}(x),g_{n,1}(x),\dotsc,
-  g_{n,\lfloor n/2\rfloor}(x)\bigr)
+  \bigl(g_{n,0}(x),g_{n,1}(x),\dotsc,g_{n,m}(x)\bigr)
 \]
-is an interlacing sequence.
-\end{conjecture}
+is an interlacing sequence.  Consequently, every nonzero nonnegative linear
+combination of these polynomials is real-rooted.
+\end{theorem}
 
-If this conjecture holds, then every simple polytope with a nonnegative
-gamma-vector has a real-rooted toric $g$-polynomial.
+In particular, every simple polytope with a nonnegative
+\hyperref[gammaPolynomial]{gamma-vector} has a real-rooted toric
+$g$-polynomial.  The same theorem gives real-rooted weak-ascent and
+strict-descent enumerators for weakly $123$-avoiding
+\hyperref[parkingFunctionDescentsRealRooted]{parking functions}
+\cite[Cor.~8.4]{Alexandersson2026ParkingSmirnov}.
 
 
 
