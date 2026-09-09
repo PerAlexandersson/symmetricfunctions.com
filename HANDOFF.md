@@ -3,15 +3,20 @@
 ## Current scope (2026-09-09, real-rootedness coverage survey)
 
 Private Docker session `01a08514-37bd-7ab2-938e-e25280b399e3` (role
-`real-rooted-survey`) is conducting the read-only editorial survey described in
-`suggestions/real-rootedness-survey/BRIEF.md`. It owns new research files in
-that directory and this opening section only; no website source, bibliography,
-generated output, build, deployment, or external communication is in scope.
+`real-rooted-survey`) completed the read-only editorial survey in
+`suggestions/real-rootedness-survey/`. Its deliverables are `REPORT.md` (ranked
+gap report and insertion text), `CANDIDATES.tsv` (40-item ledger), and
+`SEARCH-LOG.md` (reproducible coverage and limitations). `BRIEF.md` is unchanged.
 
-Status: research in progress. The deep-research skill was loaded. The
-arxiv-symmetricfunctions, paper-cache, polynomial-lab, and polytool MCP servers
-are registered and callable; broad web search is available. Starting commit is
-`7d26612`, with a clean worktree and local `master` 36 commits ahead of origin.
+The deep-research skill, arxiv-symmetricfunctions index, paper-cache, and broad
+web search were used; no relevant research tool was unavailable. The 21 primary
+sources and theorem locations were checked, all report links were tested (one
+valid DOI returned an automated 403), current source/bibliography coverage was
+rechecked, Pandoc parses the report, and TSV shape/control-character/whitespace
+checks pass. Research checkpoints are `a218d01` and `0663f63`; the closing
+handoff is committed separately. No website source, bibliography, generated output,
+build, deployment, push, or external communication was performed. No blockers
+remain; late arXiv v1 items should be version-checked before future insertion.
 
 ## Current scope (2026-09-08, marked-order-polytope Ehrhart positivity)
 

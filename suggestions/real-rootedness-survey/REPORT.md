@@ -1,7 +1,9 @@
 # Real-rootedness coverage survey
 
-**Editorial gap report for symmetricfunctions.com**  
-**Survey date:** 2026-09-09  
+**Editorial gap report for symmetricfunctions.com**
+
+**Survey date:** 2026-09-09
+
 **Scope:** source and live-site review only; no website changes are proposed as
 already made.
 
