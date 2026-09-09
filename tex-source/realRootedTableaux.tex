@@ -37,37 +37,42 @@ For a non-skew shape $\lambda$ with $n$ boxes, the descent-generating polynomial
 \[
    W_\lambda(t) \coloneqq \sum_{T \in \SYT(\lambda)} t^{\des(T)}
 \]
-is real-rooted \cite[Thm. 5.2.3]{Brenti1989}.
+is real-rooted \cite[p.~60, proof of Thm.~5.3.2]{Brenti1989}.
 The argument proceeds in two steps.
 First, \cite[Eq. (7.96)]{StanleyEC2} gives the identity
 \[
-  \sum_{m \geq 0} \schurS_{\lambda}(1^m)\,z^m = \frac{W_\lambda(z)}{(1-z)^{n+1}},
+  \sum_{m \geq 0} \schurS_{\lambda}(1^{m+1})\,z^m
+  = \frac{W_\lambda(z)}{(1-z)^{n+1}},
 \]
-which identifies $W_\lambda(z)$ as the \hyperref[ehrhart]{$h^*$-polynomial} of the
-associated order polytope, and $m \mapsto \schurS_\lambda(1^m)$ as its Ehrhart polynomial.
+which identifies $W_\lambda(z)$ as the numerator of the rational generating
+function for the shifted column-strict order polynomial
+$m \mapsto \schurS_\lambda(1^{m+1})$.
 Second, the hook-content formula gives
 \[
-  \schurS_\lambda(1^m) = \prod_{u \in \lambda} \frac{m + c(u)}{h(u)},
+  \schurS_\lambda(1^{m+1})
+  = \prod_{u \in \lambda} \frac{m+1+c(u)}{h(u)},
 \]
 where $c(u)$ is the content and $h(u)$ the hook length of cell $u$.
-Each factor is linear in $m$, so the relevant Ehrhart/order polynomial is
-real-rooted.  By
-\hyperref[brentiEhrhartCriterion]{Brenti's Ehrhart criterion}, the numerator
-is real-rooted, giving real-rootedness of $W_\lambda(t)$.
+Brenti's theorem for column-strict labeled Ferrers posets applies to this
+order polynomial and gives real-rootedness of $W_\lambda(t)$.
 
-This argument does not extend to skew shapes: the Ehrhart polynomial of $\lambda/\mu$
-need not be real-rooted, so Brenti's criterion does not apply (see the remark below).
+This argument does not extend to skew shapes: the corresponding order
+polynomial need not be real-rooted, so Brenti's theorem does not apply
+(see the remark below).
 
 \cite{Branden2004operators} shows moreover that $W_\lambda(t)$ \hyperref[interlacingPolynomials]{interlaces}
 $W_{\lambda^+}(t)$ whenever $\lambda^+$ is obtained from $\lambda$ by adding a box.
-In particular, for $\lambda=(n,n)$, $W_\lambda(t)$ is the \hyperref[realRootedCatalan]{Narayana polynomial} $N_n(t)$.
+In particular, for $\lambda=(n,n)$, $W_\lambda(t)$ is the peak-counting
+\hyperref[realRootedCatalan]{Narayana polynomial} $P_n(t)$.
 \end{example*}
 
 
 \begin{remark*}[Skew shapes]
-For skew shapes $\lambda/\mu$, the identity $\sum_{m\geq 0} \schurS_{\lambda/\mu}(1^m)\,z^m = W_{\lambda/\mu}(z)/(1-z)^{n+1}$
-still holds, but the Ehrhart polynomial $m \mapsto \schurS_{\lambda/\mu}(1^m)$ need not be real-rooted,
-so \hyperref[brentiEhrhartCriterion]{Brenti's criterion} does not apply.
+For skew shapes $\lambda/\mu$, the identity
+$\sum_{m\geq 0} \schurS_{\lambda/\mu}(1^{m+1})\,z^m
+=W_{\lambda/\mu}(z)/(1-z)^{n+1}$ still holds, but the shifted order polynomial
+$m \mapsto \schurS_{\lambda/\mu}(1^{m+1})$ need not be real-rooted,
+so Brenti's column-strict Ferrers-poset theorem does not apply.
 Whether $W_{\lambda/\mu}(t)$ is nevertheless real-rooted for all skew shapes is open.
 \end{remark*}
 

@@ -145,24 +145,33 @@ We also get gamma-positivity for the
 
 
 \begin{theorem}[Narayana polynomials, \cite{Branden2006}]
-The \hyperref[realRootedCatalan]{Narayana polynomials}
+The peak-counting \hyperref[realRootedCatalan]{Narayana polynomial} is
 \[
- N_n(x) = \frac{1}{n}\sum_{k=1}^n \binom{n}{k}\binom{n}{k-1} x^k
+ P_n(x) = \frac{1}{n}\sum_{k=1}^n
+ \binom{n}{k}\binom{n}{k-1} x^k.
 \]
-are palindromic and gamma-positive.  The gamma-coefficients are the Narayana
-numbers of the second kind.
-Since $N_n(x)$ is also real-rooted (see \cite{Branden2006}), the gamma-positivity follows
-from the real-rooted criterion above.
+It is symmetric with center $(n+1)/2$, so the normalization
+$N_n(x)\coloneqq P_n(x)/x$ is palindromic of degree $n-1$.
+Since $P_n(x)$, and hence $N_n(x)$, is real-rooted, the normalized polynomial
+$N_n(x)$ is gamma-positive by the real-rooted criterion above.
 \end{theorem}
 
 
-\begin{theorem}[Descent polynomials of standard Young tableaux]
+\begin{theorem}[Rectangular standard Young tableaux]
 Let $W_\lambda(t) = \sum_{T \in \SYT(\lambda)} t^{\des(T)}$.
-For any shape $\lambda$, $W_\lambda(t)$ is palindromic and gamma-positive.
-This follows because $W_\lambda(t)$ is real-rooted
-(see \cite{Brenti1989} and the discussion in \hyperref[realRootedTableaux]{tableaux examples}),
-combined with the criterion that palindromic real-rooted polynomials are
-gamma-positive.
+For every non-skew shape $\lambda$, the polynomial $W_\lambda(t)$ is
+real-rooted, but it need not be palindromic; for example,
+$W_{(3,2)}(t)=2t+3t^2$.
+If $\lambda=(k^n)$ is rectangular, then
+\[
+  t^{1-n}W_{(k^n)}(t)
+\]
+is a rectangular Narayana polynomial.  It is palindromic and real-rooted,
+and therefore gamma-positive; see \cite[Eq.~(11)]{Elizalde2025Canon} for
+palindromicity and \cite[Thm.~3.1]{ChenYangZhang2018Rectangular} for
+real-rootedness.
+See \hyperref[realRootedTableaux]{the tableaux page} for the general
+real-rootedness theorem and the normalization of its generating function.
 \end{theorem}
 
 

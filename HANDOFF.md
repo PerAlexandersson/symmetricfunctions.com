@@ -1,5 +1,16 @@
 # Handoff
 
+## Current scope (2026-09-09, canon and type-B clarification)
+
+Completed corrections to the shifted SYT generating function and Narayana/SYT
+gamma normalizations, and added the canon-permutation real-rootedness
+consequence with its limits.  The words page now also records the
+Alexandersson--Beyene--Mantaci recurrence, interlacing, and separated-family
+real-rootedness results, while distinguishing their gamma-positive
+signed-permutation result.  Statements were checked against the primary papers;
+`make Q=1`, `make check Q=1`, and `git diff --check` pass.  No deployment or
+push was performed, and no files remain owned by this pass.
+
 ## Current scope (2026-09-09, PF and interlacing proof tools)
 
 The PF page now states the Wang--Yeh coefficient transform and bilinear

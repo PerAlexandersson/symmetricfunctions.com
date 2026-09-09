@@ -105,6 +105,38 @@ real-rooted, and increasing one multiplicity gives an interlacing in each
 family \cite[Thms.~1.4--1.5]{Yan2026ColoredMultiset}.
 \end{example*}
 
+\begin{example*}[Canon permutations]
+A \defin{canon permutation}\label{canonPermutation} of
+$\{1^k,2^k,\dotsc,n^k\}$ is a multiset permutation for which the subsequence
+formed by the $j$th copy of every letter is the same permutation
+$\sigma\in\symS_n$ for every $j\in[k]$.
+Write
+\[
+ C_n^k(t)\coloneqq\sum_{\pi}t^{\des(\pi)}.
+\]
+Elizalde proved the factorization
+\[
+ C_n^k(t)=A_n(t)N_{n,k}(t),
+ \qquad
+ C_n^{k,\sigma}(t)=t^{\des(\sigma)}N_{n,k}(t),
+\]
+where $N_{n,k}(t)=t^{1-n}W_{(k^n)}(t)$ is a rectangular Narayana
+polynomial \cite[Eq.~(5) and Thm.~3.1]{Elizalde2025Canon}.
+Rectangular Narayana polynomials are real-rooted
+\cite[Thm.~3.1]{ChenYangZhang2018Rectangular}, as are the Eulerian
+polynomials.  Thus $C_n^k(t)$ and every fixed-$\sigma$ refinement
+$C_n^{k,\sigma}(t)$ are real-rooted for all $n,k\geq1$.
+
+This is separate from the colored-multiset theorem of Deligeorgaki, Han, and
+Solus above.  Beck and Deligeorgaki's labeled-poset explanation and the
+gamma-positivity result are discussed on the
+\hyperref[gammaPositivity]{gamma-positivity page}.
+The more general poset factorization there does not by itself imply
+real-rootedness.  Likewise, the finer polynomials obtained by fixing a Dyck
+path need not be real-rooted; see
+\cite[Remark~3.3]{DeligeorgakiMenon2026x}.
+\end{example*}
+
 \begin{example*}[Parking-function descents]
 
 The descent polynomial of \hyperref[parkingFunctions]{parking functions} is
@@ -614,6 +646,23 @@ The polynomials considered satisfy the (general) recursion
   T_n(x) = (x+c) \cdot  T_{n-1}(x) + mx\cdot T'_{n-1}(x),
 \]
 where $m$ and $c$ are positive integers.
+
+\name{Per Alexandersson}, \name{Fufa Beyene}, and \name{Roberto Mantaci}
+study type $B$ set partitions without a zero block
+\cite{AlexanderssonBeyeneMantaci2026x}.  If $b_{n,k}$ counts the
+merging-free ones with $k$ blocks and
+$M_n(t)=\sum_k b_{n,k}t^k$, then
+\[
+ M_n(t)=2tM'_{n-1}(t)+2(n-2)tM_{n-2}(t),\qquad n\geq2,
+\]
+with $M_0(t)=1$ and $M_1(t)=t$.
+The polynomials $M_n(t)$ are real-rooted and consecutive members interlace
+\cite[Prop.~27 and Cor.~28]{AlexanderssonBeyeneMantaci2026x};
+the paper also proves real-rootedness for the block polynomials of type $B$
+partitions that are both merging-free and separated
+\cite[Thm.~33]{AlexanderssonBeyeneMantaci2026x}.
+Its flattened signed-permutation descent polynomial is proved
+gamma-positive, but is not asserted there to be real-rooted.
 
 \end{example*}
 
