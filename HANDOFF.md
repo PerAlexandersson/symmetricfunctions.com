@@ -4,10 +4,10 @@
 
 The current committed site state is preserved by the local annotated tag
 `pre-real-rootedness-expansion-20260909` at `b7bf593`.  The active worker owns
-`HANDOFF.md`, `bibliography.bib`, and the real-rootedness, interlacing,
-stable-polynomial, transfer-matrix, and polytope source pages while adding
-concise, primary-source-checked method and landmark coverage.  No deployment,
-push, or external communication has been performed.
+`HANDOFF.md`, `bibliography.bib`, and the interlacing, stable-polynomial,
+transfer-matrix, polytope, word, graph, and matroid source pages while adding
+concise, primary-source-checked real-rootedness coverage.  No deployment, push,
+or external communication has been performed.
 
 ## Current scope (2026-09-09, real-rootedness coverage survey)
 

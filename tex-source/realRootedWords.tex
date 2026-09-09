@@ -97,6 +97,12 @@ MacMahon's multiset Eulerian polynomials and colored Eulerian polynomials
 give sufficient conditions for self-interlacing; this implies real-rootedness,
 log-concavity, alternating increase, and bi-gamma-positivity.  Their proofs
 use multivariate generalizations of MacMahon's identity above.
+
+\name{Xue Yan} subsequently proved real-rootedness for all positive
+multiplicity and color vectors, without the self-interlacing restrictions
+above.  Both the descent polynomial and its sentinel-ascent analogue are
+real-rooted, and increasing one multiplicity gives an interlacing in each
+family \cite[Thms.~1.4--1.5]{Yan2026ColoredMultiset}.
 \end{example*}
 
 \begin{example*}[Parking-function descents]
@@ -131,6 +137,10 @@ criterion} shows that $F_{r,1},\dotsc,F_{r,m}$ have a common interlacing.
 The \hyperref[commonInterlacingCompatibilityTheorem]{compatibility theorem}
 then implies that their sum $W_{r,m}(t)$ is real-rooted.  The transfer identity
 proves the claim.
+
+Restricting to Smirnov words, whose adjacent letters differ, instead gives the
+real-rooted \hyperref[noncrossingChowPolynomial]{Chow polynomials of
+noncrossing partition lattices}.
 \end{example*}
 
 \begin{example*}[Log-concavity from triangular-array recurrences]
@@ -138,9 +148,32 @@ proves the claim.
 triangular arrays satisfying a super-recurrence generalizing the standard
 Eulerian, Stirling, and Lah recurrences \cite{Shankar2025x}.  The proof uses a
 weighted-lattice-path interpretation and a weight-increasing injection, and it
-also introduces a two-parameter Eulerian analogue with palindromicity and
-questions about \hyperref[gammaPositivePolynomial]{gamma-nonnegativity} and
-real-rootedness.
+also introduces a two-parameter Eulerian analogue with palindromicity.
+
+For the $r=1$ specialization, Alexandersson settles the real-rootedness
+question.  If $\ell\geq1$, set $E^{(\ell)}_{1,0}=1$, with entries outside the
+row equal to zero, and define
+\[
+ E^{(\ell)}_{n,k}=(k+1)^\ell E^{(\ell)}_{n-1,k}
+ +(n-k)^\ell E^{(\ell)}_{n-1,k-1},
+\]
+Then $E_n^{(\ell)}(t)=\sum_kE^{(\ell)}_{n,k}t^k$ has only nonpositive real
+zeros and interlaces $E_{n+1}^{(\ell)}(t)$.  Its
+\hyperref[gammaPolynomial]{gamma polynomial} is also real-rooted with
+nonnegative coefficients \cite[Thm.~5.1]{Alexandersson2026Eulerian}.
+\end{example*}
+
+\begin{example*}[Rook-Eulerian polynomials]
+Let $\lambda=(\lambda_1,\dotsc,\lambda_n)$ be a
+\hyperref[rookPolynomial]{Ferrers board} with
+$\lambda_i\geq i$, and let $Q_\lambda(t)$ enumerate row-complete nonattacking
+rook placements by ascents.  The refinements by the column occupied in the
+first row form an interlacing sequence, so $Q_\lambda(t)$ is real-rooted.  The
+multivariate ascent-set enumerator is
+\hyperref[samePhaseStable]{same-phase stable}
+\cite[Thms.~12--13]{AlexanderssonJalQuemener2025x}.  For complete placements,
+these objects form a lower \hyperref[bruhatOrder]{Bruhat interval} below a
+$312$-avoiding permutation.
 \end{example*}
 
 \begin{example*}[Multi-dimensional permutations]
@@ -494,6 +527,14 @@ It follows that \(P_{n-1}\interl P_n\).
 
 See also \cite{LiuWang2007} where this is proved using a different recursion.
 \end{example*}
+
+The descent distribution is a different normalization.  Writing
+$\mathcal{D}_n$ for the derangements in $\symS_n$, the polynomial
+\[
+  D_n^{\des}(t)=\sum_{\pi\in\mathcal{D}_n}t^{\des(\pi)}
+\]
+has only nonpositive real zeros for every $n\geq2$
+\cite[Thm.~2.1]{Alexandersson2026Eulerian}.
 
 
 \section[sturmSetPartitions]{Set partitions}

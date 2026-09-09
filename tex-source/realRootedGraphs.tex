@@ -297,3 +297,20 @@ real zeros \cite{BrandenLeite2025x}.  They prove it for perfect matroid
 designs, Dowling lattices, and a class containing lattices of flats of
 \hyperref[pavingMatroid]{paving matroids}, and analyze how the property behaves under several lattice
 operations.
+
+\begin{theorem}[Alexandersson,
+\cite[Thms.~1.1 and 4.2]{Alexandersson2026ParkingSmirnov}]
+\label{noncrossingChowPolynomial}
+Let $\operatorname{Smir}_{n,m}$ be the words in $[m]^n$ whose adjacent letters
+differ.  Then
+\[
+ H_{NC_{n+1}}(t)=\frac{1}{n+1}
+ \sum_{w\in\operatorname{Smir}_{n,n+1}}t^{\des(w)}
+\]
+is the Chow polynomial of the noncrossing partition lattice $NC_{n+1}$ and is
+real-rooted for every $n\geq1$.  More strongly, for fixed $n$ and $m\geq2$,
+the refinements by final letter form an interlacing sequence.
+\end{theorem}
+The proof uses the same last-letter recurrence and
+\hyperref[matrixPreservesInterlacingSequences]{matrix interlacing criterion}
+as the word-enumerator argument above.
