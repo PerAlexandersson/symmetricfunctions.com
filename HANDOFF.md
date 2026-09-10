@@ -1,5 +1,22 @@
 # Handoff
 
+## Current scope (2026-09-10, cached-paper real-zero survey)
+
+Completed the 46-paper read-only audit in `/workspace/real-zeros-survey/`:
+`rr-conjectures.md`, `rr-theory.md`, `rr-families.md`, and `rr-misc.md`.  Every
+paper was cached and text-extracted through paper-cache; direct PDF ingestion
+recovered from temporary arXiv metadata rate limits.  The reports separate
+proved families, reusable tools, open/disproved conjectures, adjacent results,
+and present/partial/missing site coverage.
+
+All 46 versioned arXiv links return HTTP 200; DOI redirects were checked (four
+publisher targets block automation with HTTP 403 and three eScholarship
+targets return HTTP 202).  Pandoc parses all four files, their numbered
+footnotes resolve, the 46-row ledger is complete, and the leading gap claims
+were rechecked against the checkout and live pages.  No relevant research tool
+was unavailable.  No TeX, bibliography, build, deployment, push, or external
+communication was performed; no blockers remain.
+
 ## Current scope (2026-09-10, type-B OEIS audit)
 
 Completed the audit in
