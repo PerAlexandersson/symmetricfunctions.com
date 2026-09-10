@@ -1,5 +1,18 @@
 # Handoff
 
+## Current scope (2026-09-10, type-B OEIS audit)
+
+Completed the audit in
+`oeis-todo/alexandersson-beyene-mantaci-type-b.md`.  Five coefficient triangles
+have no exact OEIS match; the note gives definitions, recurrences, ten checked
+rows, scalar matches, and submission priorities.  It also records five existing
+entries needing the paper/new interpretation and four already-current entries.
+A075497 and A217924 were the two non-obvious matches; A085852 is only a near
+match and diverges in row 6.  Recurrence and gamma-expansion rows were checked
+independently, all cited links return HTTP 200, Pandoc parses the note, and
+`git diff --check` passes.  No external OEIS submission, website deployment, or
+push was performed; ownership is released.
+
 ## Current scope (2026-09-10, Ferroni Ehrhart counterexamples)
 
 Added the requested two-sentence note to the integer-decomposition section
