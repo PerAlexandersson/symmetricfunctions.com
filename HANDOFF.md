@@ -1,5 +1,20 @@
 # Handoff
 
+## Current scope (2026-09-10, Ferroni Ehrhart counterexamples)
+
+Added the requested two-sentence note to the integer-decomposition section
+of polytopes.tex: smooth IDP counterexamples to h-star unimodality and the
+related Gorenstein h-star / IDP Ehrhart-series log-concavity counterexamples.
+Checked arXiv 2609.10513v1, introduction Theorems 1.2--1.4 and the smoothness
+discussion, against the primary HTML; metadata came from the read-only arXiv
+index and the site's BibTeX API. The API's colliding Ferroni2026x key was
+renamed Ferroni2026Unimodality. No construction formulas were added.
+
+make bib Q=1, make FILE=polytopes.tex Q=1, make check Q=1 and git diff --check
+pass (only the two existing synthetic-polydata warnings). Rendered prose,
+cross-links, citation anchor, v1 arXiv link and embedded BibTeX were checked.
+No deployment or push performed. Ownership of all three files is released.
+
 ## Current scope (2026-09-09, canon and type-B clarification)
 
 Completed corrections to the shifted SYT generating function and Narayana/SYT
