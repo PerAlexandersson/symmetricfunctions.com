@@ -22,7 +22,8 @@ gamma normalizations, and added the canon-permutation real-rootedness
 consequence with its limits.  The words page now also records the
 Alexandersson--Beyene--Mantaci recurrence, interlacing, and separated-family
 real-rootedness results, while distinguishing their gamma-positive
-signed-permutation result.  Statements were checked against the primary papers;
+and real-rooted signed-permutation result.  Statements were checked against
+versions 2 and 3 of the primary preprint;
 `make Q=1`, `make check Q=1`, and `git diff --check` pass.  No deployment or
 push was performed, and no files remain owned by this pass.
 
