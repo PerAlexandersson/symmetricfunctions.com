@@ -299,6 +299,26 @@ The polynomial $D_2(t)=(1+t)^2$ is the exceptional repeated-root case.
 When $n$ is odd, all three polynomials have the common zero $-1$.  This
 within-rank half interlacing is distinct from the open consecutive
 interlacing question for $D_n(t)$ and $D_{n+1}(t)$.
+
+There is also a $q$-refinement.  For an even signed permutation
+$\sigma=(\sigma_1,\dotsc,\sigma_n)$, let
+\[
+ \DES_D(\sigma)=
+ \{0:\sigma_1+\sigma_2<0\}
+ \cup\{i\in[n-1]:\sigma_i>\sigma_{i+1}\},
+ \qquad
+ \operatorname{neg}_D(\sigma)=|\{i\geq2:\sigma_i<0\}|,
+\]
+and set
+\[
+ D_n(t;q)=\sum_{\sigma\in D_n}
+ q^{\operatorname{neg}_D(\sigma)}t^{|\DES_D(\sigma)|}.
+\]
+For every $n\geq2$ and $q>0$, this polynomial is real-rooted.  The proof
+uses a last-entry refinement whose transition matrix preserves mutual
+interlacing \cite[Thm.~3.8]{YangZhang2014x}.  The same method proves that
+the affine Eulerian polynomial of every irreducible finite Weyl group is
+real-rooted \cite[Thm.~4.6]{YangZhang2014x}.
 \end{example*}
 
 

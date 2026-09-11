@@ -512,6 +512,12 @@ $i,j$.  Many generalized permutohedra can be described by
 \hyperref[matroidBasePolytope]{matroid base polytopes} are generalized
 permutohedra.
 
+The \defin{biEulerian polynomial}\label{biEulerianPolynomial} $B_n(t)$
+counts bipermutations by descents and is the $h$-polynomial of the
+bipermutahedral fan.  It is real-rooted
+\cite[Thm.~6.3]{Ardila2022Bipermutahedron}; hence this fan has a log-concave
+and unimodal $h$-vector.
+
 
 \subsection[birkhoffPolytope]{Birkhoff polytopes}
 
@@ -561,6 +567,24 @@ The related \defin{symmetric edge polytope}\label{symmetricEdgePolytope} is
 Symmetric edge polytopes often appear in
 \hyperref[ehrhart]{Ehrhart-theoretic} questions, for
 example in gamma-positivity and magic positivity problems.
+
+\begin{theorem}[Real-rooted symmetric-edge $h^*$-polynomials]
+For $a,b\geq0$, let
+\[
+ h^*_{a,b}(t)=h^*(P_{K_{a+1,b+1}}^{\pm},t).
+\]
+Then $h^*_{a,b}(t)$ is real-rooted, and for $b\geq1$,
+\[
+ h^*_{a,b-1}(t)\interl h^*_{a,b}(t)
+\]
+\cite[Thm.~4.8]{HigashitaniJochemkoMichalek2019}.
+
+If $G$ is a cactus graph and $\widehat G$ is its suspension, then
+$h^*(P_{\widehat G}^{\pm},t)$ is real-rooted
+\cite[Thm.~1.2]{OhsugiTsuchiya2021}.
+\end{theorem}
+The cactus result uses matching-generating polynomials, linking it to the
+\hyperref[realRootedMatching]{matching-polynomial method}.
 
 
 \subsection[perfectMatchingPolytope]{Perfect matching polytopes}

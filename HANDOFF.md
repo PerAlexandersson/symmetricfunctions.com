@@ -2,11 +2,19 @@
 
 ## Current scope (2026-09-11, main real-zero theory and families)
 
-Active editorial pass owns `realRooted.tex`, `realRootedInterlacing.tex`,
-`realRootedWords.tex`, `polytopes.tex`, `matroids.tex`, `posets.tex`,
-`bibliography.bib`, and this opening handoff section.  The scope is the
-highest-value reusable theorems and concrete real-rooted/interlacing families
-from the completed cached-paper survey.  Deployment and push are not in scope.
+Completed the main theory/family pass.  Added the shelling, mixed-sign
+compatibility, Veronese/symmetric-decomposition, colored-barycentric, and
+Hadamard-power results; added the type-D/affine Eulerian, Baxter--Hoggatt,
+symmetric-edge, biEulerian, chain-polynomial, and totally-nonnegative Chow
+families with cross-links.  Statements were rechecked against cached primary
+papers and publication metadata against the direct arXiv index and publisher
+records.  The paper-cache bridge to that index failed because `pymysql` was
+unavailable, but the local cache and direct index remained available.
+`make bib Q=1`, all affected-page builds, `make Q=1`, `make check Q=1`,
+rendered-page inspection, and `git diff --check` pass.  ArXiv links resolve;
+DOI metadata was verified although three publisher targets return HTTP 403
+and two eScholarship targets return HTTP 202 to automated requests.  No deploy
+or push was performed; ownership is released and there are no blockers.
 
 ## Current scope (2026-09-11, real-zero attribution and references)
 
