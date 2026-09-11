@@ -1,5 +1,16 @@
 # Handoff
 
+## Current scope (2026-09-11, real-zero attribution and references)
+
+Completed the focused correction pass.  Restored Theo Douvropoulos's omitted
+authorship and published citation for the restricted-Eulerian result; clarified
+the Gaetz--Pierson conjecture and recorded Iskander's counterexample.  Confirmed
+versions/publication data were refreshed, and the unused duplicate
+`WangZhang2023x` entry was removed.  `make bib Q=1`, affected-page builds,
+`make Q=1`, `make check Q=1`, rendered-reference inspection, URL checks, and
+`git diff --check` pass.  No deployment or push was performed; ownership is
+released and there are no blockers.
+
 ## Current scope (2026-09-10, cached-paper real-zero survey)
 
 Completed the 46-paper read-only audit in `/workspace/real-zeros-survey/`:
