@@ -358,6 +358,26 @@ Here we use the zero convention for interleaving, so the conclusion also
 covers the case where one of the Hadamard products is zero.
 \end{theorem}
 
+The next result concerns the coefficientwise product of ordinary generating
+series, rather than the finite polynomial product $f\odot g$ above.  For a
+nonzero polynomial $p$ of degree $d$, define $W(p)$ by
+\[
+ \sum_{n\geq0}p(n)x^n=\frac{W(p)(x)}{(1-x)^{d+1}}.
+\]
+Call a polynomial \defin{LC-NIZ}\label{lcNizPolynomial} if its coefficients
+are nonnegative and log-concave and its positive support is an interval.
+
+\begin{theorem}[Liu--Mao, \cite[Thm.~1.2]{LiuMao2026Hadamard}]
+If $W(p)$ and $W(q)$ are LC-NIZ, then $W(pq)$ is LC-NIZ.
+\end{theorem}
+
+The proof interprets LC-NIZ as \hyperref[pfTwoLogConcavity]{$\mathrm{PF}_2$}
+and uses a specific reverse-regular order-two binomial kernel whose matrix and
+transpose preserve LC-NIZ
+\cite[Prop.~2.4 and Cor.~3.6]{LiuMao2026Hadamard}.
+The no-internal-zeros condition is essential: log-concavity alone does not
+suffice \cite[Rem.~4.2]{LiuMao2026Hadamard}.
+
 \begin{theorem}[Schur, see {\cite{Schur1914} and \cite[Thm.~1]{Branden2004operators}}]
 Let
 \[

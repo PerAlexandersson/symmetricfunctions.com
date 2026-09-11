@@ -1,5 +1,21 @@
 # Handoff
 
+## Current scope (2026-09-11, Hadamard LC-NIZ preservation)
+
+Completed Liu--Mao's LC-NIZ preservation addition.  The real-rootedness page
+distinguishes the series Hadamard product from finite coefficientwise products,
+defines the numerator transform $W$, states the exact preservation theorem,
+records the PF2/reverse-regular-kernel proof tool, and notes that no internal
+zeros is essential.  The polytope page gives the finite Cartesian-product
+$h^*$ consequence.  No real-rootedness claim or conjecture was inferred.
+
+The v1 paper was cached and perused through its proof and Ehrhart application.
+Current arXiv metadata, both theorem locations, rendered cross-links, citation
+anchors, embedded BibTeX, and source URLs were checked.  `make bib Q=1`, both
+affected-page builds, `make Q=1`, `make check Q=1`, and `git diff --check`
+pass.  No deployment or push was performed; ownership is released and there
+are no blockers.
+
 ## Current scope (2026-09-11, elephant and Stirling-code polynomials)
 
 Completed the elephant-polynomial and Stirling-code additions.  The elephant
