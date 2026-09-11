@@ -2,12 +2,12 @@
 
 ## Current scope (2026-09-11, gamma real-rootedness correction)
 
-Completed Leonardo Saud Maia Leite's correction to Petersen's
-gamma-polynomial criterion.  The page now gives the exact $1/4$ root bound,
-its change-of-variables explanation, the nonnegative and gamma-positive
-corollaries, and an example showing the bound is essential.  It also removes
-the unintended nonnegative-coefficient restriction from the definition of a
-palindromic polynomial.
+Completed the correction to Petersen's gamma-polynomial criterion.  The page
+now attributes the argument to Petersen's Section 4.6 and gives the exact
+$1/4$ root bound, its change-of-variables explanation, the nonnegative and
+gamma-positive corollaries, and an example showing the bound is essential.
+It also removes the unintended nonnegative-coefficient restriction from the
+definition of a palindromic polynomial.
 
 The printed statement and proof in Section 4.6, the author's October 2024
 errata, the exact change of variables, rendered attribution, citation anchor,
