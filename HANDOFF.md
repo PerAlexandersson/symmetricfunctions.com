@@ -1,5 +1,22 @@
 # Handoff
 
+## Current scope (2026-09-11, elephant and Stirling-code polynomials)
+
+Completed the elephant-polynomial and Stirling-code additions.  The elephant
+example states the full real parameter family, the random-walk subrange,
+the $a=0$ degeneration, the $a=-1$ degree exception, and the real-rooted
+rotation for $a<0$, with OEIS links for the $a=-1/2$ and $a=-1$
+specializations.  The up-down-run example gives the exact recurrence, zero
+multiplicities, interlacing, odd/even refinements, and OEIS A186370.  No
+conjecture was added.
+
+Both primary v2 papers and current metadata were checked.  Small recurrence
+rows and consecutive interlacing were independently verified with `polytool`.
+`make bib Q=1`, both affected-page builds, `make Q=1`, `make check Q=1`,
+rendered-page inspection, URL checks, and `git diff --check` pass.  No
+deployment or push was performed; ownership is released and there are no
+blockers.
+
 ## Current scope (2026-09-11, theorem-family and OEIS follow-up)
 
 Completed the theorem-only follow-up.  Added the cyclic-path, even-top descent,

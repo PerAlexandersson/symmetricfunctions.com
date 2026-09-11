@@ -542,6 +542,35 @@ $\lfloor n/2 \rfloor -1$.  See \cite{MaWang2008} for more
 references---real-rootedness was observed earlier.
 \end{example*}
 
+\begin{example*}[Up-down runs and Stirling permutation codes]
+Let $T(n,k)$ count permutations in $\symS_n$ with $k$ up-down runs after a
+leading zero is adjoined; these numbers form \oeis{A186370}.  If
+\[
+ U_n(x)=\sum_kT(n,k)x^k, \qquad f_n(x)=\frac{2U_n(x)}x,
+\]
+then the \hyperref[permutationsStirling]{Stirling-permutation-code}
+expansion separates the odd and even run counts as
+\[
+ f_n(x)=2\xi_n(x^2)+x\zeta_n(x^2),
+\]
+where
+$\xi_n(t)=\sum_kT(n,2k+1)t^k$ and
+$\zeta_n(t)=2\sum_kT(n,2k+2)t^k$.
+The polynomials satisfy
+\[
+ f_{n+1}(x)=(1+x+(n-1)x^2)f_n(x)+x(1-x^2)f'_n(x),
+ \qquad f_1(x)=2.
+\]
+Every zero of $f_n$ lies in $[-1,0)$, and $f_n$ weakly interlaces
+$f_{n+1}$.  More precisely, $-1$ has multiplicity $\lfloor n/2\rfloor$
+and the remaining $\lfloor(n-1)/2\rfloor$ zeros are simple and lie in
+$(-1,0)$.  The polynomials $\xi_n$ and $\zeta_n$ also have only simple
+negative zeros; $\zeta_{2m}$
+\hyperref[alternatesLeftOf]{alternates left of} $\xi_{2m}$, while
+$\zeta_{2m+1}$ interlaces $\xi_{2m+1}$
+\cite[Thm.~6]{MaQiYehYeh2024x}.
+\end{example*}
+
 
 \begin{example*}[Descents and left peaks in simsun permutations]
 Define the polynomials

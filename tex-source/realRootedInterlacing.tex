@@ -240,6 +240,26 @@ The coefficient triangles for $m=1,2,3$ are, respectively,
 last case are the Baxter numbers \oeis{A001181}.
 \end{example*}
 
+\begin{example*}[Elephant polynomials]
+\label{elephantPolynomials}
+For a real parameter $a$, define $R_1(x)=x$ and
+\[
+ R_{n+1}(x)=xR_n(x)-\frac an(1-x^2)R'_n(x).
+\]
+If $a>0$, then $R_n$ has $n$ distinct zeros in $(-1,1)$, and consecutive
+polynomials interlace.  At $a=0$, one has $R_n(x)=x^n$.
+
+If $a<0$, the rotated polynomial
+$S_n(x)=(-\mathrm{i})^nR_n(\mathrm{i}x)$ is real-rooted, and consecutive
+$S_n$ interlace.  Its zeros are distinct: there are $n$ of them unless
+$a=-1$, when there are $|n-2|$ and $S_2$ is constant
+\cite[Props.~1--2]{GuerinLaulinRaschel2024x}.  The parameter comes from the
+elephant random walk as $a=2p-1$ for $p\in[0,1]$, although the polynomial
+family is defined for every $a\in\setR$.  The specialization $a=-1/2$ uses
+the even columns of Pascal's triangle \oeis{A034839}; at $a=-1$, a
+reciprocal rescaling gives the triangle \oeis{A101280}.
+\end{example*}
+
 
 \subsection[bezoutMatrix]{Bézout matrices and Hurwitz--Lace}
 
