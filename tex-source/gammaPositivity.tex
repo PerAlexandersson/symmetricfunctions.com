@@ -7,8 +7,8 @@
 
 See the survey by \name{Christos Athanasiadis} \cite{Athanasiadis2018}.
 
-A polynomial $p(x)$ of degree $n$ with non-negative coefficients
-is \defin{palindromic}\label{palindromicPolynomial}
+A polynomial $p(x)$ of degree $n$ is
+\defin{palindromic}\label{palindromicPolynomial}
 (or \defin{symmetric}\label{symmetricPolynomial}) if
 $x^n p(x^{-1}) = p(x)$.
 A palindromic polynomial $p(x)$ is said to be
@@ -41,18 +41,31 @@ summand, so $p(x)$ is unimodal.
 
 \begin{itemize}
 
-\item A corrected form of Observation~4.2 in \name{T. Kyle Petersen}'s book
-\cite[Observation~4.2]{Petersen2015EulerianNumbers} is the following
-criterion.  If $p(x)$ is palindromic with non-negative coefficients, then
-$p(x)$ is real-rooted if and only if $\gamma_p(x)$ has only real non-positive
-zeros.  Equivalently, if $p(x)$ is gamma-positive, then $p(x)$ is real-rooted
-if and only if $\gamma_p(x)$ is real-rooted.  The root-location condition
-cannot be omitted: the polynomial
+\item Correcting Observation~4.2 in \name{T. Kyle Petersen}'s book,
+\name{Leonardo Saud Maia Leite} observed that the argument in
+\cite[Section~4.6]{Petersen2015EulerianNumbers} gives the sharper criterion
+\[
+  p(x) \text{ is real-rooted}
+  \quad\Longleftrightarrow\quad
+  \text{every zero of }\gamma_p(x)\text{ belongs to }(-\infty,1/4].
+\]
+Here $p(x)$ is any palindromic polynomial with center of symmetry $n/2$;
+non-negative coefficients are not required.  The criterion follows from
+\[
+  p(x)=(1+x)^n\gamma_p\!\left(\frac{x}{(1+x)^2}\right),
+\]
+since $x\mapsto x/(1+x)^2$ has real inverse branches precisely on
+$(-\infty,1/4]$; any remaining zeros of $p(x)$ occur at $x=-1$.
+For $p(x)$ with non-negative coefficients, this says that $p(x)$ is
+real-rooted if and only if $\gamma_p(x)$ has only real non-positive zeros.
+In particular, if $p(x)$ is gamma-positive, then $p(x)$ is real-rooted if
+and only if $\gamma_p(x)$ is real-rooted.  The bound $1/4$ is essential: the
+polynomial
 \[
   p(x)=1+x+x^2=(1+x)^2-x
 \]
-has non-negative coefficients and $\gamma_p(x)=1-x$ is real-rooted, but
-$p(x)$ is not real-rooted.  See also \cite[Lemma~4.1]{Branden2004Poset} and
+has $\gamma_p(x)=1-x$, whose zero is $1\gt 1/4$, and $p(x)$ is not real-rooted.
+See also \cite[Lemma~4.1]{Branden2004Poset} and
 \cite[Remark~3.1.1]{Gal2005} for earlier related forms of the criterion.
 
 \item \name{Świętosław Gal} conjectured \cite{Gal2005} that the

@@ -1,5 +1,20 @@
 # Handoff
 
+## Current scope (2026-09-11, gamma real-rootedness correction)
+
+Completed Leonardo Saud Maia Leite's correction to Petersen's
+gamma-polynomial criterion.  The page now gives the exact $1/4$ root bound,
+its change-of-variables explanation, the nonnegative and gamma-positive
+corollaries, and an example showing the bound is essential.  It also removes
+the unintended nonnegative-coefficient restriction from the definition of a
+palindromic polynomial.
+
+The printed statement and proof in Section 4.6, the author's October 2024
+errata, the exact change of variables, rendered attribution, citation anchor,
+and formulas were checked.  `make FILE=gammaPositivity.tex Q=1`, `make Q=1`,
+`make check Q=1`, and `git diff --check` pass.  No deployment or push was
+performed; ownership is released and there are no blockers.
+
 ## Current scope (2026-09-11, Hadamard LC-NIZ preservation)
 
 Completed Liu--Mao's LC-NIZ preservation addition.  The real-rootedness page
