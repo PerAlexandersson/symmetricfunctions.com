@@ -12,8 +12,9 @@ definition of a palindromic polynomial.
 The printed statement and proof in Section 4.6, the author's October 2024
 errata, the exact change of variables, rendered attribution, citation anchor,
 and formulas were checked.  `make FILE=gammaPositivity.tex Q=1`, `make Q=1`,
-`make check Q=1`, and `git diff --check` pass.  No deployment or push was
-performed; ownership is released and there are no blockers.
+`make check Q=1`, and `git diff --check` pass.  Commits through `746cd06` were
+pushed and deployed, and the corrected criterion was verified on the live
+page.  Ownership is released and there are no blockers.
 
 ## Current scope (2026-09-11, Hadamard LC-NIZ preservation)
 
@@ -28,8 +29,8 @@ The v1 paper was cached and perused through its proof and Ehrhart application.
 Current arXiv metadata, both theorem locations, rendered cross-links, citation
 anchors, embedded BibTeX, and source URLs were checked.  `make bib Q=1`, both
 affected-page builds, `make Q=1`, `make check Q=1`, and `git diff --check`
-pass.  No deployment or push was performed; ownership is released and there
-are no blockers.
+pass.  The addition was pushed and deployed with the gamma correction on
+2026-09-11; ownership is released and there are no blockers.
 
 ## Current scope (2026-09-11, elephant and Stirling-code polynomials)
 
