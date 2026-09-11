@@ -1,5 +1,13 @@
 # Handoff
 
+## Current scope (2026-09-11, main real-zero theory and families)
+
+Active editorial pass owns `realRooted.tex`, `realRootedInterlacing.tex`,
+`realRootedWords.tex`, `polytopes.tex`, `matroids.tex`, `posets.tex`,
+`bibliography.bib`, and this opening handoff section.  The scope is the
+highest-value reusable theorems and concrete real-rooted/interlacing families
+from the completed cached-paper survey.  Deployment and push are not in scope.
+
 ## Current scope (2026-09-11, real-zero attribution and references)
 
 Completed the focused correction pass.  Restored Theo Douvropoulos's omitted

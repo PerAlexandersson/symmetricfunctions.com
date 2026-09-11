@@ -347,6 +347,21 @@ In particular, \hyperref[realRootedMatching]{rook polynomials} associated with
 Ferrers diagrams can be proved to be real-rooted using this method.
 
 
+\begin{theorem}[Shelling--interlacing criterion,
+{\cite[Thm.~3.1]{HlavacekSolus2022}}]
+\label{shellingInterlacingCriterion}
+Let $C$ be a shellable polytopal complex with facets $F_1,\dotsc,F_s$, and
+let $C'\to C$ be a subdivision.  If the $h$-polynomials of the relative
+subdivision pieces associated with the facets can be ordered as an
+interlacing sequence, then $h(C',x)$ is real-rooted.
+\end{theorem}
+The interlacing hypothesis is essential: an arbitrary positive sum of
+real-rooted polynomials need not be real-rooted.  A useful specialization is
+that the barycentric subdivision of every cubical complex admitting a stable
+shelling has a real-rooted $h$-polynomial
+\cite[Thm.~4.7]{HlavacekSolus2022}.
+
+
 \begin{proposition}[\cite{Wagner1992}]
 Suppose $f_1 \interl f_2 \interl \dotsb \interl f_n$ and $f_1 \interl f_n$.
 Then $\{f_1,\dotsc,f_n\}$ is an interlacing sequence.
@@ -474,9 +489,17 @@ sufficient criterion for two real-rooted polynomials with opposite signs of
 their leading coefficients to be compatible, and a direct induction proof of
 the pairwise-compatible positive-leading-coefficient case.
 
-This theorem can be generalized to polynomials with arbitrary real
-coefficients, allowing negative leading coefficients; see
-\cite{LeakeRyder2024x}.
+\begin{theorem}[Mixed-sign compatibility,
+{\cite[Thm.~1.2]{LeakeRyder2024x}}]
+Let $f_1,\dotsc,f_n\in\setR[x]$ be real-rooted; their leading coefficients
+may have different signs.  Then the family is compatible if and only if
+every triple $(f_i,f_j,f_k)$ is compatible.  If no convex combination of the
+$f_i$ is zero, these conditions are also equivalent to the existence of a
+real-rooted polynomial $g$ such that every $f_i$ is in proper position with
+$g$.
+\end{theorem}
+Thus mixed signs require a triple test rather than the pairwise test in the
+positive-leading-coefficient case.
 
 Another useful technique is presented in \cite{Bencs2014},
 where Christoffel--Darboux type identities are used to show interlacing.
@@ -674,6 +697,51 @@ forces the symmetric pieces of the decomposition to be real-rooted as well.
 This is one reason the theorem shows up naturally for reflexive
 $h^*$-polynomials; see \hyperref[magicPositiveEhrhart]{magic positivity} on
 the polytope page.
+
+For integers $r\geq1$ and $d\geq0$, define the
+\defin{Veronese numerator operator}\label{veroneseNumeratorOperator}
+$U_r^{d+1}$ by
+\[
+ \sum_{n\geq0}a_{rn}t^n
+ =\frac{U_r^{d+1}h(t)}{(1-t)^{d+1}}
+ \qquad\text{whenever}\qquad
+ \sum_{n\geq0}a_nt^n=\frac{h(t)}{(1-t)^{d+1}}.
+\]
+
+\begin{theorem}[Jochemko,
+{\cite[Thms.~1.1--1.2]{Jochemko2022SymmetricDecompositions}}]
+\label{jochemkoVeroneseSymmetricDecomposition}
+Let $h(t)=h_0+\dotsb+h_st^s$, where $s\leq d$, have nonnegative
+coefficients, and put $h_i=0$ outside $0\leq i\leq s$.  Suppose that
+\[
+ \sum_{j=0}^i h_j\geq\sum_{j=0}^{i-1}h_{d-j}
+ \quad\text{and}\quad
+ \sum_{j=0}^i h_j\leq\sum_{j=0}^i h_{s-j}
+ \qquad\text{for every }i\geq0.
+\]
+Then $U_r^{d+1}h$ has a nonnegative real-rooted symmetric decomposition for
+$r\geq\max\{s,d+1-s\}$.  If instead $h(t)=t^sh(1/t)$, its symmetric
+decomposition is nonnegative and interlacing in the same range.
+\end{theorem}
+For a $d$-dimensional lattice polytope, $U_r^{d+1}h_P^*=h_{rP}^*$.
+Consequently every such dilation in the stated range has a real-rooted
+symmetric decomposition; it is interlacing when $P$ is Gorenstein
+\cite[Cor.~6.1--6.2]{Jochemko2022SymmetricDecompositions}.
+
+There is a parallel tool for colored barycentric subdivisions.  Given
+$h(x)=\sum_{i=0}^n c_ix^i$, set
+\[
+ f(x)=\sum_{i=0}^n c_ix^i(1+x)^{n-i},
+ \qquad
+ f(0)+\sum_{m\geq1}\bigl(f(rm)-f(rm-1)\bigr)x^m
+ =\frac{D_{n,r}h(x)}{(1-x)^n}.
+\]
+For every $r\geq1$, $D_{n,r}h$ is real-rooted whenever the $c_i$ are
+nonnegative.  If additionally
+$\sum_{j=0}^i c_j\leq\sum_{j=0}^i c_{n-j}$ for
+$0\leq i\leq\lfloor n/2\rfloor$, its symmetric decomposition is also
+nonnegative and real-rooted
+\cite[Thm.~1.3]{AthanasiadisTzanaki2021}.
 
 
 
