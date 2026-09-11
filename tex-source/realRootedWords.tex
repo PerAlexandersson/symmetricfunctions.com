@@ -195,6 +195,22 @@ zeros and interlaces $E_{n+1}^{(\ell)}(t)$.  Its
 nonnegative coefficients \cite[Thm.~5.1]{Alexandersson2026Eulerian}.
 \end{example*}
 
+\begin{example*}[Cyclic and even-top descents]
+For northeast paths from $(0,0)$ to $(n,n)$, let $\operatorname{cdes}(w)$
+count cyclic occurrences of a north step followed by an east step.  Then
+\[
+ C_n(t)=\sum_wt^{\operatorname{cdes}(w)}
+ =2\sum_{k=1}^n\binom nk\binom{n-1}{k-1}t^k.
+\]
+Its coefficients are \oeis{A335340}; $C_n(t)$ has a simple zero at $0$
+and $n-1$ simple negative zeros.
+
+If $R_N(t)$ enumerates permutations by descents whose top entry is even,
+then its coefficient triangle is \oeis{A134434}.  For $N\geq2$, all zeros
+of $R_N(t)$ are simple and negative, and consecutive polynomials strictly
+interlace \cite[Thms.~3.1 and~4.1]{Alexandersson2026Eulerian}.
+\end{example*}
+
 \begin{example*}[Rook-Eulerian polynomials]
 Let $\lambda=(\lambda_1,\dotsc,\lambda_n)$ be a
 \hyperref[rookPolynomial]{Ferrers board} with
@@ -281,7 +297,8 @@ There is, however, a refined within-rank relation among the three classical
 types.  Write $A_n(t)$, $B_n(t)=P_n(t)$, and $D_n(t)$ for the Eulerian
 polynomials of types $A$, $B$, and $D$, respectively; in particular,
 $D_n(t)$ is the \defin{type $D$ Eulerian polynomial}
-\label{typeDEulerianPolynomial}.  For $n\geq 2$, Stembridge's identity is
+\label{typeDEulerianPolynomial}; its coefficient triangle is
+\oeis{A066094}.  For $n\geq 2$, Stembridge's identity is
 \[
   D_n(t)=B_n(t)-n2^{n-1}tA_{n-1}(t).
 \]
@@ -460,6 +477,17 @@ associated quasisymmetric functions.
 
 \subsection[peakRunDerangementPolynomials]{Peaks, runs, and derangements}
 
+\begin{example*}[Increasing runs in ternary words]
+Let
+\[
+ W_n(t)=\sum_{w\in\{0,1,2\}^n}t^{\operatorname{run}(w)},
+\]
+where $\operatorname{run}(w)$ counts maximal strictly increasing consecutive
+factors.  The coefficient triangle is \oeis{A120987}.  Every $W_n(t)$ is
+real-rooted, and $W_n(t)$ and $W_{n+1}(t)$ weakly interlace
+\cite[Thm.~6.1]{Alexandersson2026Eulerian}.
+\end{example*}
+
 
 \begin{example*}[Peak polynomials, peaks in permutations]\label{ex:peakSturm}
 
@@ -483,6 +511,16 @@ give a real-rootedness preserver through the stable-operator criterion.
 However, the Ma--Wang theorem \cite{MaWang2008} applies to the recurrence,
 and gives that all roots of \(Q_n\) are real and that
 \(Q_n\interl Q_{n+1}\).
+
+More precisely, for $n\geq3$, $P_n$ has $\lfloor(n-1)/2\rfloor$ simple
+negative zeros, and consecutive polynomials strictly alternate.  If
+$\operatorname{pkv}(\sigma)$ is the set of values appearing at peaks, then
+\[
+ \widehat P_n(\mathbf x)=
+ \sum_{\sigma\in\symS_n}\prod_{j\in\operatorname{pkv}(\sigma)}x_j
+\]
+is stable; its consecutive positive weighted diagonal specializations
+interlace \cite[Thms.~6.2--6.3]{Alexandersson2026Eulerian}.
 \end{example*}
 
 

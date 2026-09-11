@@ -1,5 +1,20 @@
 # Handoff
 
+## Current scope (2026-09-11, theorem-family and OEIS follow-up)
+
+Completed the theorem-only follow-up.  Added the cyclic-path, even-top descent,
+and ternary increasing-run families; sharpened the peak and generalized
+Narayana zero statements; and linked exact OEIS arrays for these, type $D$
+Eulerian, and the first three Hoggatt specializations.  A restricted type-$D$
+noncrossing-chain sequence is clearly marked as a subset.  No open conjecture
+was added.  Also corrected the nonexistent colored-multiset v2 link to v1.
+
+Statements were checked against the cached primary papers, current arXiv
+metadata, and OEIS records.  `make bib Q=1`, all four affected-page builds,
+`make Q=1`, `make check Q=1`, rendered-link inspection, URL checks, and
+`git diff --check` pass.  No deployment or push was performed; ownership is
+released and there are no blockers.
+
 ## Current scope (2026-09-11, main real-zero theory and families)
 
 Completed the main theory/family pass.  Added the shelling, mixed-sign
