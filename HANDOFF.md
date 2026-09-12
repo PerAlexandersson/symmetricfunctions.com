@@ -1,5 +1,26 @@
 # Handoff
 
+## Current scope (2026-09-12, Eulerian-polynomials reference page)
+
+Completed the dedicated classical Eulerian-polynomials page.  It fixes the
+descent normalization before giving the main recurrences, generating
+functions, Worpitzky and Stirling formulas, symmetry and special values,
+Frobenius interlacing, PF/TNN and limit-law consequences, gamma-positivity,
+polytope interpretations, and concise q/Coxeter/poset generalizations.  The
+page has curated OEIS links, a new navigation card, an exact open-access
+Foata--Schützenberger bibliography entry, and Petersen's modern monograph.
+The old canonical label and all incoming cross-links are preserved.
+
+The formulas and attributions were checked against the primary
+Foata--Schützenberger edition, the Frobenius scan, Petersen's contents and
+author-uploaded text, and current OEIS records.  The binomial recurrence and
+Stirling expansion were checked exactly through n=8.  `make svg Q=1`,
+`make bib Q=1`, focused builds of all three affected pages, `make Q=1`,
+`make check Q=1`, rendered HTML/anchor/reference inspection, visual card
+inspection, and `git diff --check` pass; only the two pre-existing synthetic
+polydata warnings remain.  No deployment, Lean, or Rust work was performed;
+ownership is released and there are no blockers.
+
 ## Current scope (2026-09-12, Cui--Zhu site additions)
 
 Completed the Cui--Zhu additions from arXiv 2308.05167v1.  The standard

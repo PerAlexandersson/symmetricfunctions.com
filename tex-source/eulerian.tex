@@ -1,0 +1,237 @@
+\metatitle{Eulerian polynomials}
+
+\metadescription{Eulerian polynomials and numbers: descents, recurrences,
+generating functions, Worpitzky's identity, real roots, gamma-positivity,
+Pólya frequency sequences, asymptotic normality, and polytope connections.}
+
+\metakeywords{Eulerian polynomial, Eulerian number, permutation descent,
+Worpitzky identity, real-rooted polynomial, gamma-positive polynomial,
+Pólya frequency sequence, permutohedron, hypersimplex}
+
+
+\section[eulerian]{Eulerian polynomials}
+
+For a permutation $\sigma=\sigma_1\sigma_2\dotsb\sigma_n\in\symS_n$, a
+\defin{descent} is an index $i\in[n-1]$ such that
+$\sigma_i>\sigma_{i+1}$.  Write $\des(\sigma)$ for the number of descents.
+
+\begin{definition}[Eulerian polynomials and numbers]
+\label{eulerianPolynomial}\label{eulerianPolynomialDefinition}
+For $n\geq1$, the \defin{Eulerian polynomial} is
+\[
+ A_n(t)\coloneqq\sum_{\sigma\in\symS_n}t^{\des(\sigma)}
+ =\sum_{k=0}^{n-1}A(n,k)t^k,
+\]
+where the \defin{Eulerian number} $A(n,k)$ counts permutations in $\symS_n$
+with $k$ descents.  We set $A_0(t)=1$ and take $A(n,k)=0$ outside
+$0\leq k\leq n-1$.
+\end{definition}
+
+The first polynomials are
+\[
+\begin{array}{c|l}
+n&A_n(t)\\
+\hline
+0&1\\
+1&1\\
+2&1+t\\
+3&1+4t+t^2\\
+4&1+11t+11t^2+t^3\\
+5&1+26t+66t^2+26t^3+t^4.
+\end{array}
+\]
+Their coefficients form the Eulerian triangle \oeis{A008292}; the version
+with a row for $n=0$ and a terminal zero is \oeis{A173018}.  The same numbers
+enumerate permutations by excedances.  Inversion also shows that descents of
+$\sigma^{-1}$ have the same distribution, although
+$\des(\sigma)$ and $\des(\sigma^{-1})$ need not agree for an individual
+permutation.
+
+The classical monograph of Foata and Schützenberger
+\cite{FoataSchutzenberger1970} develops the combinatorial theory of Eulerian
+polynomials.  Petersen's modern account \cite{Petersen2015EulerianNumbers}
+continues through gamma-positivity, polytopes, and Coxeter groups.  See also
+\cite[Sec.~1.4]{StanleyEC1}.
+
+
+\subsection[eulerianRecurrences]{Recurrences}
+
+Inserting $n$ into a permutation of $[n-1]$ gives
+\begin{equation}
+ A(n,k)=(k+1)A(n-1,k)+(n-k)A(n-1,k-1).
+\end{equation}
+Indeed, a permutation with $k$ descents has $k+1$ insertion slots that
+preserve this number.  A permutation with $k-1$ descents has $n-k$ slots
+that create one new descent.
+Multiplying by $t^k$ and summing gives the differential recurrence
+\begin{equation}
+ A_{n+1}(t)=(1+nt)A_n(t)+t(1-t)A'_n(t),
+ \qquad A_0(t)=1.
+\end{equation}
+One also has the binomial recurrence
+\[
+ A_n(t)=\sum_{j=0}^{n-1}\binom{n}{j}A_j(t)(t-1)^{n-1-j}
+ \qquad(n\geq1).
+\]
+
+
+\subsection[eulerianGeneratingFunctions]{Generating functions and power sums}
+
+The exponential generating function is
+\begin{equation}
+ \sum_{n\geq0}A_n(t)\frac{x^n}{n!}
+ =\frac{t-1}{t-\exp((t-1)x)}.
+\end{equation}
+As an identity of formal power series in $t$,
+\begin{equation}
+ \frac{A_n(t)}{(1-t)^{n+1}}
+ =\sum_{j\geq0}(j+1)^n t^j.
+\end{equation}
+For $|t|<1$ this is also an analytic identity.  Thus, for $n\geq1$,
+\[
+ \operatorname{Li}_{-n}(t)
+ =\sum_{j\geq1}j^nt^j
+ =\frac{tA_n(t)}{(1-t)^{n+1}}.
+\]
+This normalization explains why some references attach a factor $t$ to the
+Eulerian polynomial: their numerator is $tA_n(t)$ rather than $A_n(t)$.
+
+
+\subsection[eulerianWorpitzky]{Worpitzky's identity and explicit formulas}
+
+The Eulerian numbers are the connection coefficients in
+\defin{Worpitzky's identity}
+\begin{equation}
+ x^n=\sum_{k=0}^{n-1}A(n,k)\binom{x+k}{n}.
+\end{equation}
+Equivalently, inclusion--exclusion gives
+\begin{equation}
+ A(n,k)=\sum_{j=0}^{k}(-1)^j\binom{n+1}{j}(k+1-j)^n.
+\end{equation}
+If $S(n,k)$ denotes a Stirling number of the second kind, then
+\begin{equation}
+ A_n(t)=\sum_{k=1}^{n}k!S(n,k)t^{k-1}(1-t)^{n-k}
+ \qquad(n\geq1).
+\end{equation}
+The exponent $k-1$ in this formula is another place where the shifted and
+unshifted Eulerian conventions must not be mixed.
+
+
+\subsection[eulerianSymmetry]{Symmetry and special values}
+
+Complementing every value, or reversing the one-line notation, exchanges
+descents and ascents.  Hence
+\begin{equation}
+ A(n,k)=A(n,n-1-k),
+ \qquad
+ t^{n-1}A_n(1/t)=A_n(t).
+\end{equation}
+In particular, $A_n(t)$ is palindromic of degree $n-1$.  Two useful
+evaluations are
+\[
+ A_n(1)=n!,
+ \qquad
+ A_{2m}(-1)=0 \quad(m\geq1).
+\]
+For odd indices,
+\[
+ A_{2m+1}(-1)=(-1)^m E_{2m+1},
+\]
+where $E_n$ is the Euler zigzag number \oeis{A000111}.  Thus the nonzero
+absolute values are the tangent numbers \oeis{A000182}; see
+\cite[Ch.~5]{FoataSchutzenberger1970}.
+
+
+\subsection[eulerianZeros]{Zeros, interlacing, and limit laws}
+
+\begin{theorem}[Frobenius, \cite{Frobenius1910}]
+For $n\geq2$, the polynomial $A_n(t)$ has $n-1$ simple, strictly negative
+zeros.  Moreover, the zeros of $A_n(t)$ strictly interlace those of
+$A_{n+1}(t)$.
+\end{theorem}
+
+The differential recurrence above gives a short inductive proof; see the
+\hyperref[ex:eulerianSturm]{Eulerian Sturm-sequence example} for the root
+argument.  Real-rootedness implies log-concavity and unimodality of every
+Eulerian row.  By the
+\hyperref[aissenSchoenbergWhitney]{Aissen--Schoenberg--Whitney theorem}, each
+row $(A(n,0),\dotsc,A(n,n-1))$, extended by zeros, is also a
+\hyperref[polyaFrequencySequenceDefinition]{Pólya frequency sequence}.
+Consequently its Toeplitz matrix is totally non-negative; this is a TNN
+statement, not a strict total-positivity statement.
+
+If $D_n$ is the number of descents of a uniformly random permutation in
+$\symS_n$, then, for $n\geq2$,
+\[
+ \operatorname{E}(D_n)=\frac{n-1}{2},
+ \qquad
+ \operatorname{Var}(D_n)=\frac{n+1}{12}.
+\]
+Furthermore,
+\[
+ \frac{D_n-(n-1)/2}{\sqrt{(n+1)/12}}
+ \mathrel{\xrightarrow{\mathrm d}}\mathcal N(0,1).
+\]
+This is a classical instance of the
+\hyperref[realRootedNormality]{central and local limit theory} for
+real-rooted coefficient arrays; see \cite{Bender1973}.
+
+
+\subsection[eulerianGamma]{Gamma-positivity}
+
+The palindromic symmetry above can be strengthened.  For $n\geq1$ there are
+non-negative integers $\gamma_{n,k}$ such that
+\begin{equation}
+ A_n(t)=\sum_{k=0}^{\lfloor(n-1)/2\rfloor}
+ \gamma_{n,k}t^k(1+t)^{n-1-2k}.
+\end{equation}
+Thus $A_n(t)$ is \hyperref[gammaPositivePolynomial]{gamma-positive}; its
+gamma-vectors form \oeis{A101280}.  The
+\hyperref[foataStrehlAction]{Foata--Strehl valley-hopping action} gives a
+combinatorial proof and interpretation of the coefficients
+\cite{FoataSchutzenberger1970}.  See
+\cite[Ch.~4]{Petersen2015EulerianNumbers} for a modern account.
+
+
+\subsection[eulerianGeometry]{Polytope connections}
+
+Eulerian polynomials occur naturally as $h$- and $h^*$-polynomials.
+\begin{itemize}
+\item The $h$-polynomial of the
+\hyperref[permutohedron]{permutohedron $\operatorname{Perm}_n$} is $A_n(t)$.
+Equivalently, the Eulerian numbers form its $h$-vector.
+
+\item The \hyperref[hStarPolynomial]{$h^*$-polynomial} of the cube
+$[0,1]^n$ is $A_n(t)$.  Indeed, its Ehrhart series is
+\[
+ \sum_{m\geq0}(m+1)^nt^m=\frac{A_n(t)}{(1-t)^{n+1}},
+\]
+which is the power-sum identity above.
+
+\item The normalized volume of the
+\hyperref[hypersimplex]{hypersimplex $\Delta_{k,n}$} is
+$A(n-1,k-1)$.  More refined descent--excedance formulas describe its
+$h^*$-polynomial; see \cite{Li2012}.
+\end{itemize}
+
+
+\subsection[eulerianGeneralizations]{Generalizations}
+
+Several standard extensions retain part of this structure.  Joint
+distributions such as
+\[
+ \sum_{\sigma\in\symS_n}q^{\maj(\sigma)}t^{\des(\sigma)}
+\]
+give $q$-Eulerian, or Euler--Mahonian, polynomials and specialize to $A_n(t)$
+at $q=1$; conventions vary, so the statistic and shift should always be
+stated.  See \cite{ShareshianWachs2007} and the
+\hyperref[eulerianSymmetric]{Eulerian quasisymmetric-function page}.
+
+For a finite Coxeter group $W$, one similarly considers
+$\sum_{w\in W}t^{\des_W(w)}$.  The classical polynomials above are type
+$A$; the type $B$ and type $D$ coefficient triangles are respectively
+\oeis{A060187} and \oeis{A066094}.  See the
+\hyperref[ex:typeBEulerianSturm]{type $B$ and $D$ real-rootedness discussion}
+and the \hyperref[coxeterTypeB]{Coxeter-groups page}.  Descent polynomials of
+linear extensions give the broader class of
+\hyperref[pEulerianPolynomial]{$P$-Eulerian polynomials}.

@@ -1,0 +1,34 @@
+\documentclass[tikz,border=0mm]{standalone}
+
+\definecolor{iconblue}{RGB}{70,140,255}
+
+\begin{document}
+\begin{tikzpicture}[
+  line cap=round,
+  line join=round,
+  dot/.style={circle, draw=black, fill=white, line width=0.55mm,
+    minimum size=6pt, inner sep=0pt},
+  descent/.style={iconblue, line width=1.2mm}
+]
+  \useasboundingbox (-1,-1) rectangle (1,1);
+  \draw[line width=1.2mm, rounded corners=0.25cm]
+    (-0.9,-0.9) rectangle (0.9,0.9);
+
+  % The permutation 24153, with its two descents highlighted.
+  \coordinate (p1) at (-0.68,-0.22);
+  \coordinate (p2) at (-0.34,0.55);
+  \coordinate (p3) at (0,-0.58);
+  \coordinate (p4) at (0.34,0.76);
+  \coordinate (p5) at (0.68,0.18);
+  \draw[black, line width=0.65mm] (p1)--(p2)--(p3)--(p4)--(p5);
+  \draw[descent] (p2)--(p3);
+  \draw[descent] (p4)--(p5);
+  \foreach \p in {p1,p2,p3,p4,p5} {
+    \node[dot] at (\p) {};
+  }
+  \node[fill=iconblue, circle, minimum size=3.5pt, inner sep=0pt]
+    at (p2) {};
+  \node[fill=iconblue, circle, minimum size=3.5pt, inner sep=0pt]
+    at (p4) {};
+\end{tikzpicture}
+\end{document}
