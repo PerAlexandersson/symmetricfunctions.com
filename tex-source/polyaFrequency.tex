@@ -265,6 +265,39 @@ A matrix is TNN if and only if it can be obtained from a fully compatible
 planar directed graph with non-negative edge weights.
 \end{theorem}
 
+The following result gives a structured family in which the same path model
+controls the array, its rows, and its columns.
+
+\begin{theorem}[Cui--Zhu, \cite[Thm.~1.7]{CuiZhu2023x}]
+\label{cuiZhuWeightedPaths}
+Fix \(t\geq 0\) and \(\ell\geq 1\).  Give each vertical step from height
+\(h-1\) to \(h\) a weight \(b_h\geq 0\).  For \(0\leq i\leq\ell\), give
+every jump \((1,t+i)\) weight \(a_i\geq 0\), where
+\[
+ \sum_{i=0}^{\ell}a_i u^i
+ =\prod_{j=1}^{\ell}(\alpha_j u+\beta_j),
+ \qquad \alpha_j,\beta_j\geq 0.
+\]
+Let \(M_{n,k}\) be the total weight of paths from \((0,0)\) to \((k,n)\).
+Then \(M=(M_{n,k})_{n,k\geq 0}\) is TNN.  If \(t\geq 1\), the Toeplitz
+matrix of every row of \(M\) is TNN, so every row is PF.
+
+If \(b_h=\gamma\geq 0\) for every \(h\), the Toeplitz matrix of every column
+is also TNN, and
+\[
+ M=\mathcal R\left(
+   \frac{1}{1-\gamma z},
+   \frac{z^t\prod_{j=1}^{\ell}(\alpha_jz+\beta_j)}{1-\gamma z}
+ \right).
+\]
+\end{theorem}
+
+The fixed factorization is essential: the jump-weight polynomial is the same
+at every height, hence has the same non-positive zeros throughout the path
+model.  The \hyperref[jacobiStirlingSpecializations]{first-kind
+Jacobi--Stirling triangle} is a bidiagonal specialization of the related
+height-dependent path construction in \cite[Sec.~7.6]{CuiZhu2023x}.
+
 \begin{theorem}[Characterization of TNN lower unitriangular matrices, \cite{BrandenLeite2024x}]
 \label{tnnLowerUnitriangularMatrix}
 Let \(\Gamma_N\) be the directed graph on

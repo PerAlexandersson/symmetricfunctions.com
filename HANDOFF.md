@@ -1,5 +1,25 @@
 # Handoff
 
+## Current scope (2026-09-12, Cui--Zhu site additions)
+
+Completed the Cui--Zhu additions from arXiv 2308.05167v1.  The standard
+symmetric-functions page now gives the two Jacobi--Stirling specializations,
+recurrences, signed inverse, corrected Legendre--Stirling specialization
+z=1, and the first-kind row factorization with its PF and TNN consequences.
+The PF page gives a compact numerical form of the paper's fixed-factor
+weighted-path theorem, including its row/column Toeplitz and Riordan
+consequences.  All nonnegative-minor claims use the site's TNN terminology.
+
+The statements and strict z>-1 hypothesis were checked against the primary
+arXiv v1 HTML; the arXiv index and the site's BibTeX API confirmed the metadata
+and exact bibliography entry.  paper-cache add_arxiv was temporarily blocked
+by an arXiv API HTTP 429, but no fallback source was needed.  make bib Q=1,
+both focused page builds, make Q=1, make check Q=1, rendered formulas,
+cross-page anchors, citations, embedded BibTeX, the source URL, and
+git diff --check pass.  The only check output is the two pre-existing
+synthetic-polydata warnings.  No deployment, Lean, or Rust work was performed;
+ownership is released and there are no blockers.
+
 ## Current scope (2026-09-12, Cui--Zhu paper triage)
 
 Completed a read-only editorial/formalization triage of Cui--Zhu,

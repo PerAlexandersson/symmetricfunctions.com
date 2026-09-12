@@ -571,6 +571,49 @@ specialization \cite{SaganSwanson2022x}:
 They also prove additional identities.
 
 
+\subsection[jacobiStirlingSpecializations]{Jacobi--Stirling specializations}
+
+Fix $z>-1$.  The \defin{Jacobi--Stirling numbers of the first and second
+kind}, denoted respectively by
+$\operatorname{Jc}_n^k(z)$ and $\operatorname{JS}_n^k(z)$, satisfy
+\begin{align*}
+ \operatorname{Jc}_n^k(z)
+ &= \operatorname{Jc}_{n-1}^{k-1}(z)
+    +(n-1)(n-1+z)\operatorname{Jc}_{n-1}^k(z), \\
+ \operatorname{JS}_n^k(z)
+ &= \operatorname{JS}_{n-1}^{k-1}(z)
+    +k(k+z)\operatorname{JS}_{n-1}^k(z).
+\end{align*}
+Here both triangles have entry $1$ at $(0,0)$, and their entries vanish
+outside $0\leq k\leq n$.  They are specializations of the elementary and
+complete homogeneous symmetric functions:
+\begin{align*}
+ \operatorname{Jc}_n^k(z)
+ &= \elementaryE_{n-k}\bigl(1(1+z),2(2+z),\dotsc,(n-1)(n-1+z)\bigr), \\
+ \operatorname{JS}_n^k(z)
+ &= \completeH_{n-k}\bigl(1(1+z),2(2+z),\dotsc,k(k+z)\bigr).
+\end{align*}
+At $z=1$, these become the Legendre--Stirling numbers of the two kinds.
+The two lower-unitriangular matrices are signed inverses:
+\[
+ \sum_{k=j}^{i}(-1)^{k+j}
+ \operatorname{JS}_i^k(z)\operatorname{Jc}_k^j(z)=\delta_{i,j}.
+\]
+See \cite[Secs.~7.5--7.8]{CuiZhu2023x}.
+
+For the first kind, the elementary-symmetric generating identity gives
+\[
+ \sum_{k=0}^n \operatorname{Jc}_n^k(z)x^k
+ =x\prod_{i=1}^{n-1}\bigl(x+i(i+z)\bigr).
+\]
+Thus all its zeros are non-positive.  Its coefficients form a
+\hyperref[polyaFrequencySequenceDefinition]{Pólya frequency sequence}, and
+Cui--Zhu's lattice-path construction shows that both the full first-kind
+triangle and the Toeplitz matrix of every row are
+\hyperref[totallyNonnegativeMatrix]{totally non-negative}
+\cite[Sec.~7.6]{CuiZhu2023x}.
+
+
 
 
 \section[symmetricTransitionMatrices]{Transition matrices}
