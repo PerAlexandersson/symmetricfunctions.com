@@ -1,5 +1,17 @@
 # Handoff
 
+## Current scope (2026-09-12, Cui--Zhu paper triage)
+
+Completed a read-only editorial/formalization triage of Cui--Zhu,
+*Total positivity from a kind of lattice paths* (arXiv:2308.05167v1).  The
+ranked website additions, exact Jacobi--Stirling specializations, terminology
+warning, and five-stage Lean route are recorded in
+`suggestions/cui-zhu-lattice-path-total-positivity-2308.05167.md`.  No TeX,
+bibliography, generated output, deployment, or external communication was
+performed.  The host `arxiv-symmetricfunctions` MCP failed to initialize, so
+the primary arXiv PDF and local checkouts were used directly.  Ownership is
+released and there are no blockers.
+
 ## Current scope (2026-09-11, gamma real-rootedness correction)
 
 Completed the correction to Petersen's gamma-polynomial criterion.  The page
