@@ -1,5 +1,19 @@
 # Handoff
 
+## Current scope (2026-09-12, Eulerian cross-links)
+
+Completed focused bidirectional cross-linking between the Eulerian page and
+the real-rootedness, interlacing, stable-polynomial, gamma-positivity, and PF
+pages.  The polytope and Ehrhart pages now link the cube, hypersimplex, and
+permutohedron appearances to the relevant Eulerian material.  The
+hypersimplex volume notation was also aligned with the site's descent
+normalization as $A(n-1,k-1)$.
+
+Focused builds of all eight affected pages, `make Q=1`, `make check Q=1`,
+rendered bidirectional-link inspection, and `git diff --check` pass.  No
+deployment, Lean, or Rust work was performed; ownership is released and there
+are no blockers.
+
 ## Current scope (2026-09-12, Eulerian-polynomials reference page)
 
 Completed the dedicated classical Eulerian-polynomials page.  It fixes the
