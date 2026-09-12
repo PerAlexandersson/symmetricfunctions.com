@@ -1,5 +1,27 @@
 # Handoff
 
+## Current scope (2026-09-12, independent Eulerian-link audit)
+
+Completed an independent audit of all 90 site-wide Eulerian mentions.  Added
+four useful links: the Eulerian quasisymmetric refinement, run-sorted descent
+comparison, a remaining interlacing-survey pointer, and the Schur-$P$
+alternating-permutation connection.  Compound families such as
+Chow--Eulerian, homogeneous Eulerian, mixed Eulerian, and $P$-Eulerian objects
+remain routed to their own theory rather than the classical page.
+
+All four focused builds, `make Q=1`, `make check Q=1`, rendered-link
+inspection, and `git diff --check` pass.  This follow-up was not deployed.  No
+Lean or Rust work was performed; ownership is released and there are no
+blockers.
+
+## Current scope (2026-09-12, Eulerian deployment)
+
+Deployed the verified Eulerian page and cross-link commits through `9c157a0`.
+The live origin serves `eulerian.htm`, the canonical `eulerianPolynomial`
+anchor, the navigation card, and the new links from the real-rootedness page.
+No Lean or Rust work was performed; ownership is released and there are no
+blockers.
+
 ## Current scope (2026-09-12, Eulerian cross-links)
 
 Completed focused bidirectional cross-linking between the Eulerian page and
