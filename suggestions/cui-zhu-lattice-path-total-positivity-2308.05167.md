@@ -85,13 +85,15 @@ zeros for every height.  Do not weaken this condition in the site statement.
 
 ## Lean targets, in recommended order
 
-1. **Finite linear-factor PF lemma (small, reusable).**  For a finite family
-   of nonnegative real weights `w i`, prove that
+1. **Finite linear-factor PF bridge (small, reusable).**  For a finite family
+   of nonnegative real weights `w i`, package that
    `prod i, (X + C (w i))` is an `IsPFPolynomial`, together with its coefficient
    formula in terms of elementary symmetric polynomials.  The local library
-   already has `IsPFPolynomial` for a nonnegative linear factor and closure
-   under multiplication, so the PF proof should be short.  The coefficient
-   identity is the reusable algebraic part.
+   already has `IsPolyaFreqSeq.prod_X_sub_C`, `IsPFPolynomial` for a
+   nonnegative linear factor, and multiplication closure, so the PF fact is
+   largely present.  The useful new content is a convenient polynomial-level
+   wrapper plus the coefficient identity needed by the Jacobi--Stirling
+   specialization.
 
 2. **First-kind Jacobi--Stirling rows (small/medium).**  Define the triangle by
    its recurrence or elementary-symmetric specialization.  For `z >= -1`,
@@ -133,4 +135,3 @@ direction for the existing total-nonnegative matrix work are settled.
 - `RealRooted` already exposes `Matrix.IsTotallyNonneg`, `IsPolyaFreqSeq`,
   `IsPFPolynomial`, multiplication closure, and `MvPolynomial.esymm`, but no
   Jacobi--Stirling declarations were found.
-
