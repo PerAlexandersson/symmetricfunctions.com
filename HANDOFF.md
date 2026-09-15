@@ -1,5 +1,25 @@
 # Handoff
 
+## Completed scope (2026-09-15, rowmotion/promotion page and preprints)
+
+Added a dedicated rowmotion-and-promotion page with definitions via adjacent
+involutions and order-ideal toggles, actual V-poset diagrams, worked promotion
+and rowmotion orbits, toggle conjugacy, product-of-chains cyclic sieving, and
+the new rational alt-Tamari invariance and homomesy results from arXiv
+`2609.12983v1`.  The existing poset, tableau-operator, and Catalan-CSP pages
+now route to this page, and the index has a generated TikZ-backed navigation
+card.  The higher-Specht results from arXiv `2609.12255v1` were added to the
+Specht-module page, including the three-row/hook basis theorem, nonvanishing
+criteria, and known failure boundary.  Both papers were checked from their
+cached primary texts and have full bibliography entries.
+
+`make svg Q=1`, `make bib Q=1`, `make Q=1`, `make check Q=1`, rendered
+anchor/citation inspection, visual inspection of all three new SVGs, line-
+length review, and `git diff --check` pass.  The shared Rust library already
+contained rowmotion; linear-extension promotion, validation, and orbit APIs
+were added and verified in Rust commits `48543b5` and `eb47505`.  No deployment
+was performed.  All site and Rust file ownership is released.
+
 ## Current scope (2026-09-15, preprint-triage follow-up)
 
 RealRooted issue #796 now treats Liu--Zhang's central stable-eigenfunction

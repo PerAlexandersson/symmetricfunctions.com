@@ -156,6 +156,82 @@ The dimension of $S^\lambda$ is the number $f^\lambda$ of standard Young
 tableaux of shape $\lambda$, given by the
 \hyperref[hookFormula]{hook formula}.
 
+\subsection[higherSpechtPolynomials]{Higher Specht polynomials}
+
+Specht polynomials realize the same irreducible modules inside a polynomial
+ring.  If $T$ is a tableau, its \defin{Specht polynomial} is
+\[
+  g_T
+  \coloneqq
+  \prod_{C\text{ a column of }T}
+  \prod_{\substack{i\text{ above }j\\i,j\in C}}(x_i-x_j).
+\]
+As $T$ ranges over the standard tableaux of shape $\lambda$, these
+polynomials span a copy of $S^\lambda$.
+
+Higher Specht polynomials replace the row-number exponents behind $g_T$ by a
+more general filling.  Let $A$ be a filling of $\lambda$ by nonnegative
+integers and define
+\[
+  x_T^A\coloneqq\prod_{b\in\lambda}x_{T(b)}^{A(b)},
+  \qquad
+  \varepsilon_T
+  \coloneqq
+  \sum_{\tau\in C_T}\sum_{\sigma\in R_T}
+  \sign(\tau)\tau\sigma.
+\]
+The corresponding \defin{higher Specht polynomial} is
+\[
+  \defin{F_T^A}\coloneqq\varepsilon_T(x_T^A).
+\]
+A higher Specht basis of an $\symS_n$-module is a basis partitioned into
+families indexed by partitions, with each family transforming like the
+standard Specht-polynomial basis of the corresponding irreducible module.
+
+For a standard tableau $S$, let $\operatorname{cc}(S)$ be its cellwise
+cocharge filling and abbreviate
+$F_T^S\coloneqq F_T^{\operatorname{cc}(S)}$.  These polynomials give the
+classical higher Specht basis of the coinvariant ring and also provide
+candidates for many generalized coinvariant rings.
+
+The \defin{Garsia--Procesi module} attached to $\mu\vdash n$ is the quotient
+\[
+  R_\mu\coloneqq\setC[x_1,\dotsc,x_n]/I_\mu,
+\]
+where $I_\mu$ is the Tanisaki ideal.  It is isomorphic to the cohomology of
+the \hyperref[springerFibers]{Springer fiber} of Jordan type $\mu$, with its
+Springer $\symS_n$-action.  Write $\operatorname{ctype}(S)$ for the partition
+obtained from the \hyperref[catabolism]{catabolizability} algorithm.
+
+\begin{theorem}[Chou--Gillespie--Hanada,
+\cite[Thm.~1.4]{ChouGillespieHanada2026x}]
+Let $\mu$ have at most three rows, or let $\mu$ be a hook.  Then
+\[
+  \mathcal B_\mu
+  =
+  \left\{F_T^S:
+  S,T\text{ are standard tableaux of size }n,\quad
+  \operatorname{shape}(S)=\operatorname{shape}(T),\
+  \operatorname{ctype}(S)\trianglerighteq\mu\right\}
+\]
+projects to a higher Specht basis of $R_\mu$.  For these shapes, this basis
+agrees with the earlier Gillespie--Rhoades construction.
+\end{theorem}
+
+The same paper gives useful nonvanishing tests before passing to a quotient.
+For fixed $A$, either all $F_T^A$ are zero or all are nonzero; in the latter
+case they span a copy of $S^\lambda$.  A semistandard exponent filling $A$
+always gives nonzero polynomials.  When $\lambda$ has two columns,
+$F_T^A\neq0$ precisely when entries of $A$ can be permuted within rows so
+that neither column contains a repeated entry
+\cite[Prop.~1.6, Cor.~1.14, Prop.~3.26]{ChouGillespieHanada2026x}.
+
+The shape restriction in the basis theorem reflects a real change in the
+known constructions.  The Gillespie--Rhoades candidate can contain the zero
+polynomial for the five-row shape $(2,2,2,2,2)$, and the two candidate bases
+already differ for the four-row shape $(2,2,2,2)$.  The Chou--Hanada basis
+remains conjectural for general shapes.
+
 \subsection[spechtZeroHeckeComparison]{Comparison with the 0-Hecke picture}
 
 The \hyperref[zeroHeckeAlgebra]{0-Hecke algebra} gives a useful parallel to

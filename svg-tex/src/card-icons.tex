@@ -1202,6 +1202,23 @@
 \end{tikzpicture}
 
 
+\tikzsetnextfilename{card-rowmotionPromotion}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A three-element poset together with a cyclic action.
+  \coordinate (a) at (-0.48,-0.48);
+  \coordinate (b) at (0.48,-0.48);
+  \coordinate (c) at (0,0.38);
+  \draw[black!60, line width=0.7mm] (a) -- (c) -- (b);
+  \node[node-blue] at (a) {};
+  \node[node-blue] at (b) {};
+  \node[node-black] at (c) {};
+  \draw[iconblue, ->, >=stealth, line width=0.75mm]
+    (0.45,0.52) arc (25:155:0.50);
+\end{tikzpicture}
+
+
 \tikzsetnextfilename{card-about}
 \begin{tikzpicture}[icon]
   \cardframe
