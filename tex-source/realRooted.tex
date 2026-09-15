@@ -577,6 +577,35 @@ This is also the first nontrivial row \(1,3,1\) of the Delannoy triangle
 \hyperref[transferMatrixWeightedTilings]{weighted transfer-matrix tiling}
 example.
 
+\subsection[antichainBoxStability]{Antichain polynomials of three-chain products}
+
+For a finite poset $P$, let
+\[
+  N_P(x)\coloneqq
+  \sum_{A\text{ an antichain of }P}x^{|A|}
+\]
+be its antichain polynomial.  In the product
+$[2]\times[n]\times[k]$, retain the two layers separately by setting
+\[
+  A_{n,k}(u,v)
+  \coloneqq
+  \sum_A u^{|A\cap(\{1\}\times[n]\times[k])|}
+  v^{|A\cap(\{2\}\times[n]\times[k])|}.
+\]
+
+\begin{theorem}[Jiang, \cite[Thms.~1.1--1.3]{Jiang2026x}]
+For all positive $n,k$, the polynomial $A_{n,k}(u,v)$ is real stable, and
+$N_{[2]\times[n]\times[k]}(x)=A_{n,k}(x,x)$ has only simple, strictly
+negative zeros.  Consequently, its coefficients form a strictly log-concave
+and unimodal P{\'o}lya-frequency sequence.  For $k=m+1$ and $n=m$, the
+polynomial is palindromic of degree $2m$ and every coefficient in its
+gamma expansion is strictly positive.
+\end{theorem}
+
+Permuting the factors covers every three-dimensional box with a side of
+length two.  The condition cannot be extended uniformly to all boxes:
+$N_{[3]\times[3]\times[3]}(x)$ is not real-rooted.
+
 
 
 \section[realRootedNormality]{Normality in the limit}

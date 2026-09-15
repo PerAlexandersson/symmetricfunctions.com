@@ -347,6 +347,28 @@ $\supp(P) \coloneqq \{\alpha : c_\alpha \neq 0\}$.
 If $P$ is stable, then $\supp(P)$ is a jump system.
 \end{theorem}
 
+For multiaffine polynomials, stability controls more than the underlying
+support.  Suppose
+\[
+  f(\zvec)=\sum_{S\subseteq[n]}a_S\zvec^S
+\]
+is real stable and $a_\emptyset>0$.  Then the coefficient signs
+$S\mapsto\sign(a_S)$ orient the $\Delta$-matroid $\supp(f)$
+\cite[Thm.~3.1]{Chin2026x}.  The construction is compatible with changing the
+reference feasible set through stability-preserving inversions.
+
+There is also a tropical analogue.  If the coefficients $c_S$ lie in the
+complex Puiseux series and $\sum_Sc_S\zvec^S$ is multiaffine and stable, then
+\[
+  S\longmapsto\operatorname{val}(c_S)
+\]
+is a valuated $\Delta$-matroid \cite[Thm.~4.1]{Chin2026x}.  Here valuated
+$\Delta$-matroid means that every cell in the induced regular subdivision is
+a $\Delta$-matroid polytope.  The supports need not satisfy strong exchange,
+so this conclusion does not automatically give the stronger constant-parity
+version of valuated $\Delta$-matroids.  See also the
+\hyperref[deltaMatroid]{matroid page}.
+
 
 \begin{theorem}[See \cite{ChoeOxleySokalWagner2004}]
 If $P$ is homogeneous and multi-affine stable,

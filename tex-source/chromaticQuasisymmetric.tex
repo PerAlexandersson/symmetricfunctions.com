@@ -624,6 +624,26 @@ symmetric functions.
 Caterpillar graphs are known to be reconstructed from their CSF \cite{LoeblSereni2019}.
 Certain $q$-caterpillar trees can be reconstructed from their CSF \cite{ArunkumarNarayananBVSawant2023x}.
 
+Another approach differentiates in the power-sum coordinates.  Define
+\[
+  \Phi_T
+  \coloneqq
+  \left.\frac{\partial X_T}{\partial\powerSum_1}\right|_{\powerSum_1=0}.
+\]
+A tree is \defin{proper} if every non-leaf vertex is adjacent to a leaf.
+Contracting all leaf edges gives its weighted skeleton, whose vertex weights
+remember how many leaves were absorbed.  \name{Saad A. Awan} proves that
+$\Phi_T$ distinguishes every proper tree whose repeated skeleton weights
+occur only at skeleton leaves \cite[Thm.~1]{Awan2026x}.  He also gives an
+equivalent reformulation of Stanley's full tree question: if $C_q(T)$ is
+obtained by attaching $q-1$ leaves to every vertex, then for every fixed
+$q\geq2$, one has \cite[Thm.~2]{Awan2026x}
+\[
+  \Phi_{C_q(T)}=\Phi_{C_q(T')}
+  \quad\Longleftrightarrow\quad
+  X_T=X_{T'}.
+\]
+
 \name{Nima Amoei Mobaraki}, \name{Yasaman Gerivani}, and
 \name{Sina Ghasemi Nezhad} develop a framework for calculating chromatic
 symmetric functions in forest bases \cite{MobarakiGerivaniNezhad2024x}.
@@ -674,6 +694,25 @@ trees.
 Expanding the CSF in different bases recovers various classical statistics of
 graphs; see \cite{ChanCrew2023}.  For coefficients in the elementary basis in
 relation to sinks, see \cite{CrewZhang2022x}.
+
+\name{Anatol Kirillov}, \name{Gleb Nenashev}, \name{Boris Shapiro}, and
+\name{Arkady Vaintrob} introduce the \defin{loopy polynomial} $L_G$, whose
+deletion--contraction recurrence retains a contracted edge as a loop
+\cite{KirillovNenashevShapiroVaintrob2026x}.  The Tutte polynomial is a
+specialization of $L_G$, while $L_G$ determines Stanley's chromatic
+symmetric function for every graph
+\cite[Cor.~2.6 and Thm.~5.4]{KirillovNenashevShapiroVaintrob2026x}.
+For loopless graphs it also determines the degree sequence, induced-edge
+profiles, and independence polynomial; for simple graphs it determines the
+clique and matching polynomials.
+
+Separating component size from external activity gives a refined loopy
+polynomial equivalent to both the extended $U$-polynomial and the extended
+polychromate \cite[Thm.~6.3]{KirillovNenashevShapiroVaintrob2026x}.  The
+authors conjecture that the ordinary loopy and $U$-polynomials have the same
+distinguishing power on simple graphs and verify this through eleven
+vertices.  The analogous statement fails for loopless multigraphs
+\cite[Thm.~8.10]{KirillovNenashevShapiroVaintrob2026x}.
 
 
 \name{Jean-Yves Thibon} and \name{David G. L. Wang} prove that the chromatic

@@ -327,6 +327,16 @@ one may specify signed circuits or a chirotope satisfying the oriented-matroid
 axioms.  For a real matrix, the signs of its maximal minors define a realizable
 oriented matroid; see \cite{Oxley2011} for background.
 
+A tope of a simple rank-$r$ oriented matroid is \defin{simplicial} when it
+has exactly $r$ facets.  The Las Vergnas simplex conjecture predicted that
+every simple oriented matroid has a simplicial tope.  \name{Qiyuan Gu} and
+\name{Kolja Knauer} disprove this by constructing a simple rank-$7$ oriented
+matroid on $24$ elements with no simplicial tope
+\cite[Thm.~1.2]{GuKnauer2026x}.  They also disprove the Cordovil--Las Vergnas
+connectivity conjecture: for every $r\geq7$ and $n\geq r+17$, the mutation
+graphs on uniform rank-$r$ oriented matroids with $n$ elements are
+disconnected \cite[Thm.~1.6]{GuKnauer2026x}.
+
 
 \subsection[rigidityMatroid]{Rigidity matroids}
 
@@ -657,6 +667,14 @@ Kazhdan--Lusztig polynomials for matroids through the inverse
 Kazhdan--Lusztig--Stanley functions \cite{GaoXie2021}.  They compute them
 for boolean and uniform matroids, and derive a formula for the ordinary
 Kazhdan--Lusztig polynomials of uniform matroids from the inverse theory.
+Their conjecture that the coefficients of every inverse matroid
+Kazhdan--Lusztig polynomial are log-concave is false.  \name{Elias Badalov}
+constructs, over every prescribed finite field, simple $3$-connected matroids
+whose inverse-polynomial coefficients are positive and strictly decreasing
+but whose negative internal Tur{\'a}n determinants occur at any prescribed
+nonempty finite set of indices contained in $\{2,3,\dotsc\}$
+\cite[Thm.~C]{Badalov2026x}.  The universal Tur{\'a}n inequality at the first
+internal index remains open.
 \name{Alice L. L. Gao}, \name{Nicholas Proudfoot},
 \name{Arthur L. B. Yang}, and \name{Zhong-Xue Zhang} study leading
 Kazhdan--Lusztig coefficients for braid matroids
@@ -949,6 +967,14 @@ $r$-subsets of $E$, with values in $\setR\cup\{\infty\}$, whose finite support
 is the set of bases of a matroid and whose values satisfy the tropical
 Pl{\"u}cker relations.
 \end{definition}
+
+The \hyperref[stablePolynomial]{stable-polynomial support theorem} extends to
+the signed and valuated setting.  For a multiaffine real stable polynomial,
+the signs of its nonzero coefficients define an oriented
+$\Delta$-matroid.  For a multiaffine stable polynomial over the complex
+Puiseux series, the coefficient valuations define a valuated
+$\Delta$-matroid in the regular-subdivision sense
+\cite[Thms.~3.1 and~4.1]{Chin2026x}.
 
 \begin{definition}[Flag matroid]\label{flagMatroid}
 A \defin{flag matroid} is a compatible sequence of matroids

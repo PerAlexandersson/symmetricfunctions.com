@@ -353,6 +353,52 @@ A \hyperref[gtpatterns]{Gelfand--Tsetlin pattern}-type combinatorial formula is 
 where marked GT-patterns are used to give the monomial expansion of $\grothendieckStable_\lambda$.
 See also \cite{MonicalPechenikScrimshaw2018}, where they give an alternative proof of this.
 
+\subsection[grothendieckStableZeroHecke]{Homogeneous components and 0-Hecke modules}
+
+At $\beta=1$, the set-valued tableau formula is unsigned.  For $m\geq
+|\lambda|$, let $G_{\lambda,m}^{(1)}$ be the homogeneous component of degree
+$m$.  If $\operatorname{StdSVT}_m(\lambda)$ denotes the standard set-valued
+tableaux of shape $\lambda$ with $m$ entries, then \name{Young-Hun Kim}
+proves \cite[Thm.~3.6]{Kim2026x}
+\[
+  G_{\lambda,m}^{(1)}
+  =
+  \sum_{T\in\operatorname{StdSVT}_m(\lambda)}
+  \gessel_{\operatorname{comp}(\DES(T))}.
+\]
+
+He equips the span of these tableaux with an
+$H_m(0)$-action whose \hyperref[quasisymmetricCharacteristic]{quasisymmetric
+characteristic} is $G_{\lambda,m}^{(1)}$ \cite[Thm.~3.13]{Kim2026x}.
+Moreover, this module decomposes as a direct sum of
+\hyperref[weakOrder]{weak Bruhat interval} modules
+\cite[Thm.~4.12]{Kim2026x}.  This realizes each homogeneous component by a
+combinatorial module rather than merely by a sum of one-dimensional simple
+modules.
+
+\subsection[grothendieckTableauxGeometry]{Set-valued tableaux, cells, and crystals}
+
+\name{Evgeny Smirnov} constructs an explicit weight-preserving bijection
+between set-valued tableaux of shape $\lambda$ and the efficient cells in a
+cellular decomposition of the \hyperref[gtPolytope]{Gelfand--Tsetlin
+polytope} \cite[Thm.~4.3.1]{Smirnov2026x}.  Under this bijection, the number
+of excess tableau entries is the dimension of the cell.  Consequently,
+Buch's tableau formula and the cellular formula for
+$G_\lambda^{(\beta)}$ agree term by term.  Transported square-root crystal
+operators alternate between two adjacent cell dimensions along double
+strings, although consecutive cells need not be incident
+\cite[Thms.~6.1.1 and~6.2.2]{Smirnov2026x}.
+
+For a skew shape $\lambda/\mu$, \name{Tatsushi Shimazaki} gives
+weight-preserving bijections among semistandard set-valued tableaux, marked
+Gelfand--Tsetlin patterns, and decorated states of the five-vertex model
+\cite[Thms.~4.6 and~5.11]{Shimazaki2026Crystals}.  Tableau excess becomes the
+number of marks or nontrivial bumps, and the ordinary type $A$ crystal
+operators correspond to local moves on the lattice-model states
+\cite[Thm.~6.9]{Shimazaki2026Crystals}.  Fibers with fixed minimum or maximum
+tableau are graded Boolean lattices, and the sign-reversing involution moves
+along one Boolean edge whenever it is nontrivial.
+
 
 \subsection[grothendieckStableWeyl]{Weyl identity}
 

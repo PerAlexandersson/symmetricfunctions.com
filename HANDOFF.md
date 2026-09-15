@@ -1,5 +1,39 @@
 # Handoff
 
+## Completed scope (2026-09-15, community-interest preprint integration)
+
+Reviewed current combinatorics preprints through the
+`arxiv-symmetricfunctions` API and checked the selected papers against their
+cached primary texts.  Twelve papers with durable theorem-level results now
+have concise placements on their natural reference pages:
+
+- Gorin's Macdonald coherent-measure law of large numbers;
+- Chin's oriented and valuated delta-matroids from stable polynomials;
+- Kim's 0-Hecke model for homogeneous stable Grothendieck components;
+- Jiang's real stability for antichain polynomials of three-chain products;
+- Shimazaki's set-valued-tableau, five-vertex, and crystal bijections;
+- Oh's classification of cyclic-induction Schur-positive Boolean sums;
+- Smirnov's tableau-to-Gelfand--Tsetlin-cell bijection;
+- Awan's first-derivative invariant for chromatic tree reconstruction;
+- Kirillov--Nenashev--Shapiro--Vaintrob's loopy polynomial;
+- Badalov's counterexamples to inverse matroid KL log-concavity;
+- Fang--Gao's type C transpositions and strong marked tableaux; and
+- Gu--Knauer's oriented-matroid simpliciality and mutation counterexamples.
+
+The additions preserve important boundaries: the first inverse-KL
+Turán inequality remains open, Fang--Gao do not prove the type C
+$k$-Schur conjecture, and Chin's valuated result uses the
+regular-subdivision definition rather than the stronger constant-parity
+version.  Narrow computational results and papers without a natural site
+home were left out.
+
+`make bib Q=1`, focused page builds, `make Q=1`, `make check Q=1`, rendered
+citation and cross-reference inspection, line-length review, and
+`git diff --check` pass.  The only check output is the two pre-existing
+synthetic-polydata warnings.  No Rust, image, index, or asset source was
+changed; no generated output was tracked and no deployment was performed.
+Ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-15, rowmotion/promotion page and preprints)
 
 Added a dedicated rowmotion-and-promotion page with definitions via adjacent
