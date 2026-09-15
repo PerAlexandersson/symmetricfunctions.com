@@ -101,3 +101,21 @@ In practice, the useful question is often not "are all minors nonnegative?"
 but "which structured matrix has the desired minors?"  Once the matrix is
 identified as a path matrix, Toeplitz matrix, or product of elementary TNN
 matrices, the desired positivity follows from closure properties.
+
+\subsection[hankelTotalPositivityContinuedFractions]{Hankel matrices and continued fractions}
+
+A polynomial sequence \((a_n)_{n\geq0}\) is
+\defin{coefficientwise Hankel-totally nonnegative}\label{hankelTNN}
+if every minor of the Hankel matrix
+\[
+  \bigl(a_{i+j}\bigr)_{i,j\geq0}
+\]
+has nonnegative coefficients.  Stieltjes and Jacobi continued fractions often
+prove this property by realizing \((a_n)\) as the moments of weighted paths.
+
+\name{Chao Xu} and \name{Jiang Zeng} derive Jacobi continued fractions for
+multivariate \((p,q)\)-refinements of bi-Stirling Eulerian polynomials
+\cite{XuZeng2026x}.  Their weighted Motzkin-path models give gamma-positive
+expansions and prove coefficientwise Hankel total nonnegativity for two
+alternating-permutation families and for a generalized Eulerian family
+\cite[Thms.~7.2, 7.4, and~7.7]{XuZeng2026x}.

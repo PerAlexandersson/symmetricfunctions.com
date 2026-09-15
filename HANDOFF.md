@@ -1,5 +1,29 @@
 # Handoff
 
+## Current scope (2026-09-15, new-preprint triage)
+
+Completed the read-through of eight user-supplied preprints.  Seven concise
+theorem-level references were added to the relevant matroid,
+total-positivity, chromatic-symmetric, Lorentzian, powered-Eulerian, Laurent
+symmetric-function, and key-polynomial pages.  The existing Thibon--Wang
+record was updated to v2 rather than duplicated.  Liu--Zhang
+arXiv:2609.15201v1 was held out pending an independent audit of its central
+AI-assisted stability argument; the evidence and editorial defects are
+recorded in `suggestions/preprints-2026-09-15.md`.
+
+RealRooted issues #794 and #795 record the two low-priority formalization
+targets.  The report also contains the unsent Shankar attribution email draft
+and explains why the general gamma-polynomial equivalence should not be
+reopened: it is already checked in Lean.
+
+`make bib Q=1`, all seven focused page builds, `make Q=1`,
+`make check Q=1`, rendered citation/link inspection, and
+`git diff --check` pass.  The two check warnings are the pre-existing
+synthetic-polydata warnings from the unit test.  No deployment was performed.
+The focused commit is local: the routine push to `origin/master` failed because
+this environment has no accepted SSH key.  Ownership is released; pushing the
+commit is the only remaining infrastructure step.
+
 ## Current scope (2026-09-12, audited-link deployment)
 
 Deployed the independently audited Eulerian cross-links through `fc734eb`.
