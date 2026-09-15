@@ -1,5 +1,20 @@
 # Handoff
 
+## Deployment blocked (2026-09-15, current verified site)
+
+The user authorized deployment of the verified tree at `3fcbddc`.  A standard
+`make deploy` attempt failed during SSH authentication before transferring any
+files.  The Docker worker's `/ssh-agent` bind is a deleted host-keyring socket:
+the socket path exists, but `ssh-add -l` returns `Connection refused`, and the
+container has no private identity files.  A cache-busted public fetch confirms
+that the new Macdonald addition is not live.
+
+Run `make deploy` from the host checkout with a live SSH agent, or recreate the
+Docker app from a host shell with a live agent so `/ssh-agent` is rebound.  Do
+not retry in this container until that socket is repaired.  No production
+files were changed, ownership is released, and SSH authentication is the only
+blocker.
+
 ## Completed scope (2026-09-15, community-interest preprint integration)
 
 Reviewed current combinatorics preprints through the
