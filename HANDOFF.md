@@ -32,7 +32,9 @@ citation and cross-reference inspection, line-length review, and
 `git diff --check` pass.  The only check output is the two pre-existing
 synthetic-polydata warnings.  No Rust, image, index, or asset source was
 changed; no generated output was tracked and no deployment was performed.
-Ownership is released and there are no blockers.
+The focused site commit is `fdfa729`, pushed non-forced to canonical `master`
+over authenticated HTTPS through `gh`; the configured SSH remote was not
+changed.  Ownership is released and there are no blockers.
 
 ## Completed scope (2026-09-15, rowmotion/promotion page and preprints)
 
