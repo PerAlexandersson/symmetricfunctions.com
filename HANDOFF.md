@@ -1,5 +1,17 @@
 # Handoff
 
+## Current scope (2026-09-15, preprint-triage follow-up)
+
+RealRooted issue #796 now treats Liu--Zhang's central stable-eigenfunction
+construction as an adversarial formalization audit.  The site still withholds
+the paper's claimed resolution pending that audit.  The Shankar attribution
+email was corrected to distinguish the classical gamma criterion from the
+family-specific all-power result in Alexandersson's Theorem 5.1 and was sent
+to `umeshshankar@outlook.com`.  The triage report records both actions.  No
+website source or generated output changed; ownership is released.  This
+follow-up and the earlier preprint commit remain local because the configured
+SSH key is not accepted by the origin.
+
 ## Current scope (2026-09-15, new-preprint triage)
 
 Completed the read-through of eight user-supplied preprints.  Seven concise

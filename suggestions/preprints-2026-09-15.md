@@ -75,8 +75,11 @@ verification known to us. The draft also contains visible editorial defects,
 including “thereby proving Theorem 1.1” when the cited item is Conjecture 1.1
 and “Section Section 2.” We should therefore wait for a specialist check or a
 revised version before adding its claimed resolution to the public reference
-pages. No Lean issue is warranted until that mathematical audit has been
-done.
+pages. We opened RealRooted issue
+[#796](https://github.com/PerAlexandersson/RealRooted/issues/796) precisely as
+that mathematical audit: it targets the stable eigenfunction theorem and
+requires any failed hypothesis or limit step to be recorded rather than
+silently assumed.
 
 ## Relation to the deco project
 
@@ -99,10 +102,11 @@ project's interval-preserver work, but it does not settle the open
 
 ## Lean triage
 
-Two sufficiently scoped, very-low-priority application issues were opened:
+Three sufficiently scoped, very-low-priority issues were opened:
 
 - [#794: Powered Eulerian stability and strict interlacing](https://github.com/PerAlexandersson/RealRooted/issues/794).
 - [#795: Uniform-matroid refined Hodge--Poincaré real-rootedness](https://github.com/PerAlexandersson/RealRooted/issues/795).
+- [#796: Audit Liu--Zhang stable eigenfunction and Morris constant term](https://github.com/PerAlexandersson/RealRooted/issues/796).
 
 The general equivalence relating real-rooted palindromic polynomials and their
 gamma polynomials is already checked as
@@ -118,35 +122,26 @@ No issue was opened for the other papers:
   applications of the current RealRooted library.
 - Bathija--Rohatgi--Soskin requires \(M\)-convex and polyhedral dual-cone
   infrastructure not presently in scope.
-- Liu--Zhang should be independently audited before being made a
-  formalization target.
+- Liu--Zhang is being treated as an adversarial formalization audit rather
+  than as a verified theorem to import.
 
-## Draft attribution email
+## Attribution email sent to Umesh Shankar
 
-Subject: Small attribution clarification in arXiv:2609.15651
+Subject: Small attribution point in arXiv:2609.15651
 
 Dear Umesh,
 
-Thank you for citing my preprint in your new paper. I noticed one attribution
-point that may be worth clarifying in the next version. My Theorem 5.1 proves
-the family-specific real-rootedness and consecutive interlacing for the
-powered Eulerian polynomials. The final step asserting real-rootedness and
-nonnegative coefficients of the associated gamma polynomial uses the older
-general gamma-polynomial equivalence, cited there as Petersen's *Eulerian
-Numbers*, Observation 4.2.
-
-Could you perhaps separate these two contributions? For example, the sentence
-in Section 3.3 could say:
-
-> By the standard gamma-polynomial equivalence
-> [Petersen, Observation 4.2], Alexandersson's real-rootedness theorem also
-> implies that \(\Gamma_{n,\ell}\) is real-rooted with nonnegative
-> coefficients.
-
-The current wording is not false as a statement about this particular family,
-but it can be read as attributing the general gamma-polynomial implication to
-me.
+Thank you for citing my preprint. One small attribution point: in Section 3.3,
+the sentence saying that Theorem C(i) recovers the known gamma-positivity of
+\(A_{n,\ell}\) currently cites only Brändén's general criterion. For
+\(\ell>2\), as far as I know, the family-specific gamma-positivity first
+follows from Theorem 5.1 of my preprint; your earlier paper proves \(\ell=2\)
+and records the remaining cases as conjectural or computational. Could you
+therefore also cite [1, Theorem 5.1] in that sentence, while retaining Brändén
+or Petersen for the general implication?
 
 Best wishes,
 
 Per
+
+This message was delivered to `umeshshankar@outlook.com` on 2026-09-15.
