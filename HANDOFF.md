@@ -18,9 +18,10 @@ anchor/citation inspection, visual inspection of all three new SVGs, line-
 length review, and `git diff --check` pass.  The shared Rust library already
 contained rowmotion; linear-extension promotion, validation, and orbit APIs
 were added and verified in Rust commits `48543b5` and `eb47505`.  No deployment
-was performed.  The focused site commit is `9f06677`; the routine push to
-`origin/master` failed because this environment has no accepted GitHub SSH key.
-All site and Rust file ownership is released.
+was performed.  The focused site commit is `9f06677`.  After the configured
+SSH transport was rejected, the site checkpoint was pushed non-forced to
+canonical `master` over authenticated HTTPS through `gh`; the SSH remote was
+not changed.  All site and Rust file ownership is released.
 
 ## Current scope (2026-09-15, preprint-triage follow-up)
 
