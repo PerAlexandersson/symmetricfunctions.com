@@ -19,8 +19,10 @@ the original Lapointe--Lascoux--Morse family.  The bibliography is pinned to
 v3.  `make bib Q=1`, both focused builds, `make Q=1`, `make check Q=1`,
 rendered citation/relation inspection, the stale-claim audit, line-length
 review, and `git diff --check` pass.  The only check output is the two
-pre-existing synthetic-polydata warnings.  No deployment was performed;
-ownership is released and there are no blockers.
+pre-existing synthetic-polydata warnings.  The focused commit is `d5c07bf`,
+pushed non-forced to canonical `master` over authenticated HTTPS through
+`gh`.  No deployment was performed; ownership is released and there are no
+blockers.
 
 ## Deployment blocked (2026-09-15, current verified site)
 
