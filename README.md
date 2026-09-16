@@ -129,8 +129,18 @@ pipeline changes.
 
 ## Deployment
 
-`make deploy` rsyncs `www/` to the production server. Do not deploy unless the
-deployment is intentional.
+`make deploy` directly rsyncs `www/` to the production server and requires
+host SSH access.  From Docker, an explicitly authorized deployment should use
+the constrained host bridge after a clean verified build:
+
+```bash
+/workspace/supervisor-tool symmetricfunctions-deploy status
+/workspace/supervisor-tool symmetricfunctions-deploy run --json
+```
+
+Check status first.  The bridge pins the source and destination, deploys only
+the existing `www/` tree, and does not build, commit, push, or expose the host
+SSH key.  Do not deploy unless the deployment is intentional.
 
 ## GitHub
 

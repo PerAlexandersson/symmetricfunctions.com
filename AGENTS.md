@@ -18,12 +18,23 @@ make FILE=foo.tex     # single-file rebuild (uses stale metadata)
 make bib              # rebuild bibliography JSON files
 make svg              # rebuild TikZ-sourced SVG assets and copy assets
 make clean && make    # full rebuild from scratch
-make deploy           # rsync www/ to production server
+make deploy           # direct rsync; requires host SSH access
 make ship             # clean → build → deploy
 make unittest         # run tests/*.tex through the test pipeline
 make lint-html        # scan generated HTML for leaked TeX/table artifacts
 make check            # run unittest and lint-html
 ```
+
+For an explicitly authorized deployment from Docker, use the constrained host
+bridge after a clean verified build:
+
+```bash
+/workspace/supervisor-tool symmetricfunctions-deploy status
+/workspace/supervisor-tool symmetricfunctions-deploy run --json
+```
+
+Check status first.  The bridge pins the source and production destination and
+does not build, commit, push, or expose the host SSH key.
 
 ## Project structure
 

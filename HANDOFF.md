@@ -24,20 +24,22 @@ pushed non-forced to canonical `master` over authenticated HTTPS through
 `gh`.  No deployment was performed; ownership is released and there are no
 blockers.
 
-## Deployment blocked (2026-09-15, current verified site)
+## Deployment bridge available (2026-09-16)
 
-The user authorized deployment of the verified tree at `3fcbddc`.  A standard
-`make deploy` attempt failed during SSH authentication before transferring any
-files.  The Docker worker's `/ssh-agent` bind is a deleted host-keyring socket:
-the socket path exists, but `ssh-add -l` returns `Connection refused`, and the
-container has no private identity files.  A cache-busted public fetch confirms
-that the new Macdonald addition is not live.
+Explicitly authorized Docker deployments now use the constrained host bridge:
 
-Run `make deploy` from the host checkout with a live SSH agent, or recreate the
-Docker app from a host shell with a live agent so `/ssh-agent` is rebound.  Do
-not retry in this container until that socket is repaired.  No production
-files were changed, ownership is released, and SSH authentication is the only
-blocker.
+```bash
+/workspace/supervisor-tool symmetricfunctions-deploy status
+/workspace/supervisor-tool symmetricfunctions-deploy run --json
+```
+
+Run the second command only after a clean verified build.  The bridge pins the
+site checkout and production destination, keeps the SSH key on Euler, and
+deploys only the existing `www/` tree.  A read-only status check at `ca08393`
+returned `ready` with all checks passing.
+
+The Kato v3 correction has not been deployed, as explicitly requested.  No
+production files changed during this documentation update.
 
 ## Completed scope (2026-09-15, community-interest preprint integration)
 
