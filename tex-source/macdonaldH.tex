@@ -14,7 +14,8 @@
   Symbol   & $\macdonaldH_\lambda(\xvec;q,t)$ \\
   Category & Schur \\
   PositiveIn & LLT | HaglundHaimanLoehr2005 | semiring=NN[t] \\
-  PositiveIn & kSchur | Kato2025x | scope=k-bounded partitions; semiring=NN[q,t]; proof=Cor. 9.4 \\
+  PositiveIn & kSchur | Kato2025x | scope=m<=max(2k,19); proof=Cor. 10.12 \\
+  PositiveIn & kSchur | Kato2025x | status=conjecture; note=Conj. 9.1; proof=Cor. 10.11 \\
   PositiveIn & schurS | Haiman2001 | semiring=NN[q,t] \\
   SpecializesTo & hallLittlewoodH | Macdonald1987 | map=q=0 \\
 \end{polydata}
@@ -59,9 +60,15 @@ coefficients, including special cases for two-row shapes.
 It is a major open problem in algebraic combinatorics to give a combinatorial
 proof (\hyperref[schurPositivity]{by using RSK, dual equivalence or crystals})
 that the $\macdonaldH_{\lambda}(\xvec;q,t)$ are Schur-positive.
-Kato's categorification gives the stronger refinement that
-$\macdonaldH_\lambda(\xvec;q,t)$ is $k$-Schur-positive when $\lambda$ is
-$k$-bounded \cite[Cor.~9.4]{Kato2025x}.
+\name{Syu Kato} constructs Chen--Haiman modules whose graded characters are
+$k$-Schur functions and proves an unconditional affine Demazure filtration
+for the Garsia--Haiman modules \cite[Thm.~4.12 and Cor.~10.10]{Kato2025x}.
+If $\lambda$ is a $k$-bounded partition of size $m$, the resulting
+$k$-Schur positivity is conditional on Conjecture 9.1 in general
+\cite[Cor.~10.11]{Kato2025x}.  It is unconditional when
+$m\leq\max\{2k,19\}$ \cite[Thm.~10.1 and Cor.~10.12]{Kato2025x}.  See the
+\hyperref[kSchurMacdonald]{discussion on the $k$-Schur page} for the status
+of the revised argument.
 \name{Donghyun Kim}, \name{Seung Jin Lee}, and \name{Jaeseong Oh} introduced
 a column-exchange rule for LLT equivalence, proved monomial positivity, and
 settled several cases of Butler's conjecture

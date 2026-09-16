@@ -335,10 +335,36 @@ explicit combinatorial expansion of $\kSchur^{(k)}_\lambda(\xvec)$ into
 
 \subsection[kSchurMacdonald]{Relation to modified Macdonald polynomials}
 
-\name{Syu Kato} \cite{Kato2025x} shows that Garcia--Haiman modules can be
-decomposed into certain modules whose characters are $k$-Schur functions.
-This implies that a \hyperref[macdonaldH]{modified Macdonald polynomial}
-indexed by a $k$-bounded partition expands positively into $k$-Schur
-functions.  That is, it can be expressed as a linear combination of
-$\kSchur^{(k)}_\lambda$ with coefficients in $\setN[q,t]$; see
-\cite[Cor.~9.4]{Kato2025x}.
+\name{Syu Kato} constructs Chen--Haiman modules whose graded characters are
+$k$-Schur functions and proves their branching filtrations and
+extension-orthogonality properties
+\cite[Thm.~4.12 and Cors.~7.5, 7.6, and~7.10]{Kato2025x}.  Independently of the
+conjecture below, Garsia--Haiman modules indexed by $k$-bounded partitions
+admit filtrations by level-$k$ affine Demazure modules
+\cite[Cor.~10.10]{Kato2025x}.
+
+Let $\lambda$ be a $k$-bounded partition of size $m$.  A filtration of its
+Garsia--Haiman module by Chen--Haiman modules, and hence the expansion
+\[
+  \macdonaldH_\lambda(\xvec;q,t)
+  \in
+  \sum_{\substack{|\mu|=m \\ \mu_1\leq k}}
+  \setN[q,t]\,\kSchur^{(k)}_\mu,
+\]
+is conditional on Conjecture 9.1 of the revised manuscript in general
+\cite[Cor.~10.11]{Kato2025x}.  Kato proves this conjecture, and therefore the
+displayed $k$-Schur positivity, whenever
+$m\leq\max\{2k,19\}$ \cite[Thm.~10.1 and Cor.~10.12]{Kato2025x}.
+
+\begin{remark}
+Versions v1 and v2 of \cite{Kato2025x} claimed the $k$-Schur positivity
+unconditionally.  Version v3 withdraws that claim because the required
+filtration-inheritance step was incomplete.  Hypothesis 9.2 is a sufficient
+condition for Conjecture 9.1 and proves the range $m\leq2k$, but it is not
+valid in general: its first counterexamples occur at $m=20$ for $k=4,5$.
+The Chen--Haiman module results and affine Demazure filtration above do not
+depend on this hypothesis.  The positivity statement uses the
+Catalan-function definition of $k$-Schur functions adopted on this page;
+version v3 also notes that its equivalence with the original
+Lapointe--Lascoux--Morse family remains open.
+\end{remark}

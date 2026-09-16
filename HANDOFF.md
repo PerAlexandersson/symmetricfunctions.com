@@ -1,5 +1,27 @@
 # Handoff
 
+## Completed scope (2026-09-16, Kato v3 correction audit)
+
+Audited mailbox UID 43 and the cached primary text of Kato,
+arXiv `2505.23202v3` (paper-cache record 397), against every site citation.
+The $k$-Schur and modified-Macdonald pages had repeated the withdrawn
+unconditional claim and cited the obsolete Corollary 9.4.  They now distinguish
+the unconditional Chen--Haiman module and affine Demazure results from general
+$k$-Schur positivity, which is conditional on Conjecture 9.1 in v3 and proved
+when $m\leq\max\{2k,19\}$.  The email's “Conjecture 9.2” corresponds in the
+manuscript to Hypothesis 9.2, a sufficient condition that is not valid in
+general.
+
+The polynomial relation metadata now has a proved bounded-range edge and a
+separate conjectural general edge.  An editorial remark records the v1--v2
+withdrawal, the first failures of Hypothesis 9.2, and the convention caveat for
+the original Lapointe--Lascoux--Morse family.  The bibliography is pinned to
+v3.  `make bib Q=1`, both focused builds, `make Q=1`, `make check Q=1`,
+rendered citation/relation inspection, the stale-claim audit, line-length
+review, and `git diff --check` pass.  The only check output is the two
+pre-existing synthetic-polydata warnings.  No deployment was performed;
+ownership is released and there are no blockers.
+
 ## Deployment blocked (2026-09-15, current verified site)
 
 The user authorized deployment of the verified tree at `3fcbddc`.  A standard
