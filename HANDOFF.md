@@ -25,7 +25,8 @@ $H_{\lambda/\mu}$.  `make bib Q=1`, all five focused page builds,
 line-length review, and `git diff --check` pass.  The only check output is the
 two pre-existing synthetic-polydata warnings.  No Rust, images, generated
 output, or deployment is involved.  Ownership is released and there are no
-blockers.
+blockers.  The focused source commit is `0f3292a`, pushed non-forced to
+canonical `master` over authenticated HTTPS through `gh`.
 
 ## Completed scope (2026-09-16, Kato v3 correction audit)
 
