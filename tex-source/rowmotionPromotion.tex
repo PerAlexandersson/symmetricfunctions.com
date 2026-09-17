@@ -62,11 +62,6 @@ and this definition agrees with the
 \hyperref[tableauPromotion]{tableau promotion operator}.  The convention for
 promotion is not uniform in the literature; some authors use its inverse.
 
-% Related Rust: rust/combinatoric-core/src/poset.rs
-The methods \texttt{promotion\_linear\_extension},
-\texttt{promotion\_orbit}, and \texttt{promotion\_orbits} in the shared Rust
-library compute this action exactly.
-
 \section[orderIdealToggles]{Order-ideal toggles}
 
 For $p\in P$, the \defin{toggle at $p$}\label{orderIdealToggle} is the
@@ -101,9 +96,9 @@ so $t_{p_n}$ is applied first.  In particular, rowmotion is a bijection
 \cite{StrikerWilliams2012}.
 
 \begin{example*}[Two rowmotion orbits]
-Return to the poset $a,b\lt c$.  Blue vertices in the figure are the elements
-of an order ideal.  The five ideals split into an orbit of size three and an
-orbit of size two:
+Return to the poset $a,b\lt c$.  Blue vertices in the figure belong to the
+order ideal, while white vertices lie outside it.  The five ideals split into
+an orbit of size three and an orbit of size two:
 \[
   \emptyset\longmapsto\{a,b\}\longmapsto\{a,b,c\}
   \longmapsto\emptyset,
@@ -117,10 +112,6 @@ The two rowmotion orbits of order ideals of the V-shaped poset.}
 For instance, the minimal elements outside $\{a\}$ consist only of $b$, so
 the generated ideal is $\{b\}$.
 \end{example*}
-
-The shared Rust library implements the same definition through
-\texttt{rowmotion\_order\_ideal}, \texttt{rowmotion\_orbit}, and
-\texttt{rowmotion\_orbits}.
 
 \section[rowmotionPromotionConjugacy]{Promotion and rowmotion through toggles}
 

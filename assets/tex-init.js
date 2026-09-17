@@ -40,6 +40,7 @@ window.KATEX_MACROS = {
         "\\qvec": "{\\mathbf{q}}",
         "\\svec": "{\\mathbf{s}}",
         "\\tvec": "{\\mathbf{t}}",
+        "\\wvec": "{\\mathbf{w}}",
         "\\xvec": "{{x}}",
         "\\yvec": "{{y}}",
         "\\zvec": "{{z}}",

@@ -1,5 +1,25 @@
 # Handoff
 
+## Completed scope (2026-09-17, enlarged growth diagram)
+
+Replaced the two-by-two RSK figure by the full eight-by-eight growth diagram
+of the involution `35172846`.  All 64 matrix entries are centered in their
+cells, all 81 vertices carry partitions, and the shaded central cell exhibits
+the nontrivial update from southwest label `(1,1)` and equal incoming labels
+`(2,1)` to northeast label `(2,2)`.  The prose records the common boundary
+tableau of shape `(4,4)`, and reusable row macros keep the TikZ data aligned.
+
+Added `\wvec` to the shared KaTeX registry.  Removed both public-facing Rust
+implementation notes and the source-level local Rust path from the
+rowmotion-and-promotion page.  Its prose now states that blue vertices lie in
+the ideal and white vertices lie outside, so the SVG needs no legend text.
+
+`make svg Q=1`, both focused page builds, the Grothendieck focused build,
+`make Q=1`, `make check Q=1`, rendered HTML inspection, direct KaTeX-registry
+assertions, an independent partition check, visual SVG inspection, stale
+local-reference searches, and `git diff --check` pass.  No bibliography or
+deployment is involved.  Ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-17, figure and display-math follow-up)
 
 Centered the RSK and hybrid-Grothendieck SVGs through the site's figure

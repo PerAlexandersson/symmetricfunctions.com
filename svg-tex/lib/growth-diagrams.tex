@@ -6,11 +6,15 @@
   growth diagram highlight/.style={fill=black!8},
   growth diagram vertex/.style={
     fill=white,
-    inner sep=1.5pt,
+    anchor=center,
+    inner xsep=1.5pt,
+    inner ysep=0.8pt,
     rounded corners=1pt,
     font=\small
   },
   growth diagram entry/.style={
+    anchor=center,
+    inner sep=0pt,
     font=\small,
     text=black!70
   }
@@ -28,7 +32,7 @@
 
 % \growthDiagramEntry[options]{x}{y}{entry}
 \newcommand{\growthDiagramEntry}[4][]{%
-  \node[growth diagram entry,#1] at ({#2+0.5},{#3+0.5}) {#4};%
+  \node[growth diagram entry,#1] at ({#2+0.5},{#3+0.5}) {$#4$};%
 }
 
 % \growthDiagramVertex[options]{x}{y}{partition}

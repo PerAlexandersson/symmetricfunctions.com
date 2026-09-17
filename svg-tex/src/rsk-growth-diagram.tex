@@ -4,33 +4,67 @@
 \newcommand{\tikzsetnextfilename}[1]{}
 \input{growth-diagrams}
 
+\newcommand{\growthDiagramEntryRow}[2]{%
+  \foreach [count=\x from 0] \cellvalue in {#2} {%
+    \ifnum\cellvalue=1
+      \growthDiagramEntry[font=\small\bfseries,text=black]{\x}{#1}{\cellvalue}%
+    \else
+      \growthDiagramEntry{\x}{#1}{\cellvalue}%
+    \fi
+  }%
+}
+
+\newcommand{\growthDiagramVertexRow}[2]{%
+  \foreach [count=\x from 0] \shape in {#2} {%
+    \growthDiagramVertex{\x}{#1}{\shape}%
+  }%
+}
+
 \begin{document}
 
 \tikzsetnextfilename{rsk-growth-diagram}
-\begin{tikzpicture}[x=2.45cm,y=1.65cm]
-  \growthDiagramHighlight{1}{1}
-  \growthDiagramGrid{2}{2}
+\begin{tikzpicture}[x=1.55cm,y=1.12cm]
+  \tikzset{
+    growth diagram vertex/.append style={font=\scriptsize},
+    growth diagram entry/.append style={font=\scriptsize}
+  }
+  \growthDiagramHighlight{4}{4}
+  \growthDiagramGrid{8}{8}
 
-  \growthDiagramEntry{0}{0}{$0$}
-  \growthDiagramEntry{1}{0}{$1$}
-  \growthDiagramEntry{0}{1}{$1$}
-  \growthDiagramEntry{1}{1}{$0$}
+  \growthDiagramEntryRow{0}{0,0,1,0,0,0,0,0}
+  \growthDiagramEntryRow{1}{0,0,0,0,1,0,0,0}
+  \growthDiagramEntryRow{2}{1,0,0,0,0,0,0,0}
+  \growthDiagramEntryRow{3}{0,0,0,0,0,0,1,0}
+  \growthDiagramEntryRow{4}{0,1,0,0,0,0,0,0}
+  \growthDiagramEntryRow{5}{0,0,0,0,0,0,0,1}
+  \growthDiagramEntryRow{6}{0,0,0,1,0,0,0,0}
+  \growthDiagramEntryRow{7}{0,0,0,0,0,1,0,0}
 
-  \growthDiagramVertex{0}{0}{\varnothing}
-  \growthDiagramVertex{1}{0}{\varnothing}
-  \growthDiagramVertex{2}{0}{\varnothing}
-  \growthDiagramVertex{0}{1}{\varnothing}
-  \growthDiagramVertex{1}{1}{\varnothing}
-  \growthDiagramVertex{2}{1}{(1)}
-  \growthDiagramVertex{0}{2}{\varnothing}
-  \growthDiagramVertex{1}{2}{(1)}
-  \growthDiagramVertex{2}{2}{(1,1)}
+  \growthDiagramVertexRow{0}{{\varnothing},{\varnothing},{\varnothing},
+    {\varnothing},{\varnothing},{\varnothing},{\varnothing},{\varnothing},
+    {\varnothing}}
+  \growthDiagramVertexRow{1}{{\varnothing},{\varnothing},{\varnothing},
+    {(1)},{(1)},{(1)},{(1)},{(1)},{(1)}}
+  \growthDiagramVertexRow{2}{{\varnothing},{\varnothing},{\varnothing},
+    {(1)},{(1)},{(2)},{(2)},{(2)},{(2)}}
+  \growthDiagramVertexRow{3}{{\varnothing},{(1)},{(1)},{(1,1)},
+    {(1,1)},{(2,1)},{(2,1)},{(2,1)},{(2,1)}}
+  \growthDiagramVertexRow{4}{{\varnothing},{(1)},{(1)},{(1,1)},
+    {(1,1)},{(2,1)},{(2,1)},{(3,1)},{(3,1)}}
+  \growthDiagramVertexRow{5}{{\varnothing},{(1)},{(2)},{(2,1)},
+    {(2,1)},{(2,2)},{(2,2)},{(3,2)},{(3,2)}}
+  \growthDiagramVertexRow{6}{{\varnothing},{(1)},{(2)},{(2,1)},
+    {(2,1)},{(2,2)},{(2,2)},{(3,2)},{(4,2)}}
+  \growthDiagramVertexRow{7}{{\varnothing},{(1)},{(2)},{(2,1)},
+    {(3,1)},{(3,2)},{(3,2)},{(3,3)},{(4,3)}}
+  \growthDiagramVertexRow{8}{{\varnothing},{(1)},{(2)},{(2,1)},
+    {(3,1)},{(3,2)},{(4,2)},{(4,3)},{(4,4)}}
 
   \draw[-{Stealth[length=2.2mm]},line width=0.7pt]
-    (0,2.35) -- (2,2.35)
+    (0,8.55) -- (8,8.55)
     node[midway,above] {$P$};
   \draw[-{Stealth[length=2.2mm]},line width=0.7pt]
-    (2.33,0) -- (2.33,2)
+    (8.42,0) -- (8.42,8)
     node[midway,right] {$Q$};
 \end{tikzpicture}
 

@@ -583,24 +583,23 @@ Applying the rule from southwest to northeast determines the whole diagram;
 the chains along its top and right boundaries encode the insertion and
 recording tableaux.
 
-\begin{example*}[A $2\times2$ growth diagram]
+\begin{example*}[An $8\times8$ growth diagram]
 Reading matrix rows from the bottom of the diagram upward, the cell entries
-below form the permutation matrix
-$\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$ of $21$.
-The shaded cell illustrates the local rule: its two
-incoming labels are both $(1)$, while its southwest label is empty and its
-entry is $0$, so its northeast label is $(1,1)$.
+below form the permutation matrix of $35172846$.  Every cell contains a matrix
+entry and every vertex carries its partition.  The shaded central cell
+illustrates the local rule: its two incoming labels are both $(2,1)$, its
+southwest label is $(1,1)$, and its entry is $0$, so its northeast label is
+$(2,2)$.
 
 \begin{figure}
-\svgimg[width=0.68\textwidth]{svg-images/rsk-growth-diagram.svg}{
-The growth diagram of the two-by-two anti-identity matrix.  Empty partitions
-label the left and bottom boundaries, and the top and right boundary chains
-both end at (1,1).}
+\svgimg[width=0.98\textwidth]{svg-images/rsk-growth-diagram.svg}{
+The eight-by-eight growth diagram of the permutation 35172846, with a matrix
+entry centered in every cell and a partition at every vertex.}
 \end{figure}
 
-Both boundary chains are
-$\varnothing\subset(1)\subset(1,1)$, and hence the diagram gives
-$P=Q=$ \ytableaushort{1,2}, as expected for the permutation $21$.
+The permutation is an involution, so the two boundary chains agree.  They give
+the shape $(4,4)$ and the pair
+$P=Q=$ \ytableaushort{1246,3578}.
 \end{example*}
 
 \name{Leonid Petrov} derives this local rule from the
