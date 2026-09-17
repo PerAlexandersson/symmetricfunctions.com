@@ -4,10 +4,20 @@
 \newcommand{\tikzsetnextfilename}[1]{}
 \input{growth-diagrams}
 
+\definecolor{matrixblue}{RGB}{70,140,255}
+
 \newcommand{\growthDiagramEntryRow}[2]{%
   \foreach [count=\x from 0] \cellvalue in {#2} {%
     \ifnum\cellvalue=1
-      \growthDiagramEntry[font=\scriptsize\bfseries,text=black]{\x}{#1}{\cellvalue}%
+      \growthDiagramEntry[
+        circle,
+        draw=matrixblue,
+        fill=matrixblue!35,
+        line width=0.6pt,
+        minimum size=5mm,
+        font=\scriptsize\bfseries,
+        text=black
+      ]{\x}{#1}{\cellvalue}%
     \else
       \growthDiagramEntry{\x}{#1}{\cellvalue}%
     \fi
@@ -40,37 +50,37 @@
     }
   }
   % The shared grid primitive draws one line at each integer coordinate.
-  \growthDiagramHighlight{4}{4}
+  \growthDiagramHighlight{4}{3}
   \growthDiagramGrid{8}{8}
 
-  \growthDiagramEntryRow{0}{0,0,1,0,0,0,0,0}
-  \growthDiagramEntryRow{1}{0,0,0,0,1,0,0,0}
-  \growthDiagramEntryRow{2}{1,0,0,0,0,0,0,0}
-  \growthDiagramEntryRow{3}{0,0,0,0,0,0,1,0}
-  \growthDiagramEntryRow{4}{0,1,0,0,0,0,0,0}
-  \growthDiagramEntryRow{5}{0,0,0,0,0,0,0,1}
-  \growthDiagramEntryRow{6}{0,0,0,1,0,0,0,0}
-  \growthDiagramEntryRow{7}{0,0,0,0,0,1,0,0}
+  \growthDiagramEntryRow{0}{0,0,0,0,1,0,0,0}
+  \growthDiagramEntryRow{1}{0,0,0,0,0,0,1,0}
+  \growthDiagramEntryRow{2}{0,0,1,0,0,0,0,0}
+  \growthDiagramEntryRow{3}{1,0,0,0,0,0,0,0}
+  \growthDiagramEntryRow{4}{0,0,0,0,0,0,0,1}
+  \growthDiagramEntryRow{5}{0,1,0,0,0,0,0,0}
+  \growthDiagramEntryRow{6}{0,0,0,0,0,1,0,0}
+  \growthDiagramEntryRow{7}{0,0,0,1,0,0,0,0}
 
   \growthDiagramVertexRow{0}{{\varnothing},{\varnothing},{\varnothing},
     {\varnothing},{\varnothing},{\varnothing},{\varnothing},{\varnothing},
     {\varnothing}}
   \growthDiagramVertexRow{1}{{\varnothing},{\varnothing},{\varnothing},
-    {1},{1},{1},{1},{1},{1}}
+    {\varnothing},{\varnothing},{1},{1},{1},{1}}
   \growthDiagramVertexRow{2}{{\varnothing},{\varnothing},{\varnothing},
-    {1},{1},{2},{2},{2},{2}}
-  \growthDiagramVertexRow{3}{{\varnothing},{1},{1},{11},
-    {11},{21},{21},{21},{21}}
+    {\varnothing},{\varnothing},{1},{1},{2},{2}}
+  \growthDiagramVertexRow{3}{{\varnothing},{\varnothing},{\varnothing},
+    {1},{1},{11},{11},{21},{21}}
   \growthDiagramVertexRow{4}{{\varnothing},{1},{1},{11},
-    {11},{21},{21},{31},{31}}
-  \growthDiagramVertexRow{5}{{\varnothing},{1},{2},{21},
-    {21},{22},{22},{32},{32}}
+    {11},{111},{111},{211},{211}}
+  \growthDiagramVertexRow{5}{{\varnothing},{1},{1},{11},
+    {11},{111},{111},{211},{311}}
   \growthDiagramVertexRow{6}{{\varnothing},{1},{2},{21},
-    {21},{22},{22},{32},{42}}
+    {21},{211},{211},{221},{321}}
   \growthDiagramVertexRow{7}{{\varnothing},{1},{2},{21},
-    {31},{32},{32},{33},{43}}
+    {21},{211},{311},{321},{331}}
   \growthDiagramVertexRow{8}{{\varnothing},{1},{2},{21},
-    {31},{32},{42},{43},{44}}
+    {31},{311},{321},{322},{332}}
 
   \draw[-{Stealth[length=2.2mm]},line width=0.7pt]
     (0,8.52) -- (8,8.52)

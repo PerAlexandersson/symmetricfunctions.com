@@ -1,5 +1,22 @@
 # Handoff
 
+## Completed scope (2026-09-17, generic growth-diagram example)
+
+Replaced the involutive permutation by `57318264`.  Its top and right boundary
+chains are now visibly different and yield distinct insertion and recording
+tableaux of common shape `(3,3,2)`.  Every `1` has a pale blue circular marker;
+the site's existing image inversion and hue rotation adapt the complete SVG
+for explicit or system-preferred dark mode.
+
+A source-data audit extracted all 64 displayed entries and 81 displayed
+partitions, then independently reapplied Fomin's local rule at every cell.
+There are no mismatches.  It also confirmed the permutation, the two boundary
+chains, and both tableaux.  `make svg Q=1`, the focused RSK build,
+`make Q=1`, `make check Q=1`, visual inspection, and `git diff --check` pass.
+No bibliography or unrelated page changed.  Ownership is released and there
+are no blockers; direct deployment remains authorized for this debugging
+checkpoint.
+
 ## Completed scope (2026-09-17, growth-grid unit correction)
 
 Corrected the actual source of the growth-diagram misalignment: TikZ's default
