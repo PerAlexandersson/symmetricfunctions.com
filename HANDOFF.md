@@ -1,5 +1,19 @@
 # Handoff
 
+## Completed scope (2026-09-17, growth-grid unit correction)
+
+Corrected the actual source of the growth-diagram misalignment: TikZ's default
+physical one-centimeter grid step did not follow the figure's 1.25-centimeter
+coordinate units, producing eleven grid lines against nine partition
+positions.  The shared primitive now draws vertical and horizontal lines at
+explicit integer coordinates.  The regenerated eight-by-eight cell grid has
+exactly nine lines and nine partition positions in each direction.
+
+The focused RSK build, `make Q=1`, `make check Q=1`, visual inspection,
+coordinate-count inspection, and `git diff --check` pass.  No prose,
+bibliography, or unrelated asset changed.  Ownership is released and there
+are no blockers; deployment is explicitly authorized for this checkpoint.
+
 ## Completed scope (2026-09-17, diagram alignment and larger rowmotion example)
 
 The eight-by-eight RSK growth diagram now uses equal horizontal and vertical

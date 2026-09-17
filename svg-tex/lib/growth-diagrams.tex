@@ -22,7 +22,14 @@
 
 % \growthDiagramGrid[options]{columns}{rows}
 \newcommand{\growthDiagramGrid}[3][]{%
-  \draw[growth diagram grid,#1] (0,0) grid (#2,#3);%
+  \foreach \growthDiagramX in {0,...,#2} {%
+    \draw[growth diagram grid,#1]
+      (\growthDiagramX,0) -- (\growthDiagramX,#3);%
+  }%
+  \foreach \growthDiagramY in {0,...,#3} {%
+    \draw[growth diagram grid,#1]
+      (0,\growthDiagramY) -- (#2,\growthDiagramY);%
+  }%
 }
 
 % \growthDiagramHighlight[options]{x}{y}
