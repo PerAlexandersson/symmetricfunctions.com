@@ -1,5 +1,32 @@
 # Handoff
 
+## Completed scope (2026-09-17, three current preprints)
+
+Reviewed arXiv `2608.14836v2`, `2609.18151v1`, and `2609.18502v1` through
+the `arxiv-symmetricfunctions` API and their cached primary texts
+(paper-cache records 414--416).  Added bibliography entries and placed their
+durable theorem-level contributions on the nearest existing reference pages:
+
+- D'Adderio--Interdonato--Iraci--Pagaria's explicit Neguț operators, extended
+  Theta action, commutation relations, and $q=1$ Theta-conjecture theorem on
+  `diagonalHarmonics.tex`, with the scope of the companion Lean development
+  stated explicitly;
+- Kundu's Demazure crystal on flagged set-valued reverse plane partitions and
+  its key, Schur, stable-Grothendieck, and dual-stable-Grothendieck expansions
+  on `grothendieck.tex`, with a cross-reference from `crystals.tex`; and
+- Petrov's deterministic Yang--Baxter matching for RSK, its three-dimensional
+  $R$ interpretation, and probabilistic deformations on `rsk.tex`, with a
+  concise cross-reference from `latticeModel.tex`.
+
+The review also corrected the pre-existing notation for the hybrid
+Grothendieck polynomial from $G_{\lambda/\mu}$ to the authors' notation
+$H_{\lambda/\mu}$.  `make bib Q=1`, all five focused page builds,
+`make Q=1`, `make check Q=1`, rendered citation/cross-reference inspection,
+line-length review, and `git diff --check` pass.  The only check output is the
+two pre-existing synthetic-polydata warnings.  No Rust, images, generated
+output, or deployment is involved.  Ownership is released and there are no
+blockers.
+
 ## Completed scope (2026-09-16, Kato v3 correction audit)
 
 Audited mailbox UID 43 and the cached primary text of Kato,

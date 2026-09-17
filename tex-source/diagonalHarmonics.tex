@@ -163,6 +163,26 @@ $t=1$.
 operators \cite{DAdderioRomero2020x}.  These identities clarify how the Theta
 operators interact with Delta operators and \hyperref[plethysm]{plethystic substitutions}.
 
+\name{Michele D'Adderio}, \name{Giovanni Interdonato},
+\name{Alessandro Iraci}, and \name{Roberto Pagaria} give an explicit
+realization of the Neguț operators $D_\gamma$ inside the Carlsson--Mellit
+Dyck path algebra $\mathbb{A}_{q,t}$
+\cite[Thms.~4.11 and~4.20]{DAdderioInterdonatoIraciPagaria2026x}.  Their
+formula computes $D_\gamma F$ for an arbitrary symmetric function $F$ with a
+number of operator steps linear in the length of $\gamma$, and recovers the
+\hyperref[rationalShuffle]{rational shuffle theorem} without passing through
+the elliptic Hall algebra.
+
+They also extend the Theta operators to an endomorphism of
+$\mathbb{A}_{q,t}$ and derive explicit commutation rules with $D_\gamma$
+\cite[Thms.~5.1, 5.12, and~5.14]{DAdderioInterdonatoIraciPagaria2026x}.
+As an application, they prove the Theta conjecture at $q=1$, giving the
+rise-and-valley-decorated Dyck-path formula for
+$\Theta_{e_k}\Theta_{e_l}\nabla e_{n-k-l}$
+\cite[Thm.~6.1]{DAdderioInterdonatoIraciPagaria2026x}.  The accompanying Lean
+development checks finite algebraic identities and the main bijective step,
+but not the complete symmetric-function construction.
+
 \subsection[dhOperators]{Relations among the operators}
 
 For \(1\leq k\leq n\), the two Delta operators above are related by

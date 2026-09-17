@@ -47,6 +47,25 @@ See the \hyperref[evacuation]{evacuation} section for how RSK interacts with
 evacuation.
 The standard transpose, inverse, and reversal symmetries are collected in the
 \hyperref[rskProperties]{properties section} below.
+
+\subsection[rskYangBaxter]{RSK from the Yang--Baxter equation}
+
+\name{Leonid Petrov} derives RSK directly from the
+\hyperref[YangBaxter]{Yang--Baxter equation} for a Schur vertex model
+\cite{Petrov2026x}.  For fixed boundary data, the summands on the two sides
+have a unique weight-preserving matching \cite[Lem.~3.2]{Petrov2026x}.
+Dragging the Yang--Baxter cross through the grid applies this local matching
+cell by cell and reproduces Fomin's growth-diagram rule, hence ordinary RSK
+\cite[Prop.~3.5]{Petrov2026x}.
+
+In natural coordinates, the local matching is the combinatorial
+three-dimensional $R$, an involutive set-theoretic solution of the
+Zamolodchikov tetrahedron equation \cite[Prop.~4.5]{Petrov2026x}.  Closing one
+coordinate periodically instead produces the combinatorial $R$-matrices for
+one-row crystals.  For Hall--Littlewood and $q$-Whittaker deformations the
+matching is no longer deterministic; probabilistic couplings lead to
+randomized RSK dynamics, $q$-PushTASEP, and the stochastic six-vertex model.
+
 \name{Son Nguyen}, \name{Joseph Vulakh}, and \name{Dora Woodruff} define a
 generalization of RSK for $d$-complete \hyperref[posets]{posets}
 \cite{NguyenVulakhWoodruff2025DCompleteRSK}.  Their construction gives an
