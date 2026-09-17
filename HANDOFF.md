@@ -1,5 +1,23 @@
 # Handoff
 
+## Completed scope (2026-09-17, published Macdonald-characters paper)
+
+Reviewed mailbox UID 47 and the primary manuscript of Ben Dali--D'Adderio,
+arXiv `2404.03904` (paper-cache record 418).  The existing Macdonald-page
+paragraph now identifies the proved creation formula, shifted-symmetric basis
+and characterization, and Jack-character limit with theorem locators.  It also
+states explicitly that the two-parameter Matchings--Jack and $b$-positivity
+extensions are conjectures.  The Jack-character section links back through the
+proved specialization, without duplicating the Macdonald discussion.
+
+Updated the bibliography from its arXiv-only record to the verified Selecta
+Mathematica publication metadata: volume 32, issue 5 (2026), DOI
+`10.1007/s00029-026-01201-6`.  `make bib Q=1`, both focused builds,
+`make Q=1`, `make check Q=1`, rendered citation/cross-reference inspection,
+and `git diff --check` pass.  The only check output is the two pre-existing
+synthetic-polydata warnings.  No figures or deployment are involved;
+ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-17, growth-diagram display size)
 
 Reduced the displayed RSK growth diagram from 98% to 78% of the text width, a

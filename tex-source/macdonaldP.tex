@@ -152,14 +152,28 @@ than as a separate scalar symmetric-function basis.
 \subsection[macdonaldPCreationCharacters]{Creation formula and Macdonald characters}
 
 \name{Houcine Ben Dali} and \name{Michele D'Adderio} introduce an operator
-$\Gamma$ which gives a creation formula for Macdonald polynomials
-\cite{DaliDAdderio2024x}.  The formula connects the Bergeron--Garsia--
-Haiman--Tesler operator viewpoint with shifted Macdonald polynomials, and is
-used to define
-\defin{two-parameter Macdonald characters}\label{macdonaldCharacter},
-which generalize \hyperref[jackCharacters]{Jack characters}.  They also
-formulate positivity conjectures extending Goulden--Jackson type conjectures
-for Jack polynomials.
+$\Gamma$ whose positive modes successively create the integral-form Macdonald
+polynomial $\macdonaldJ_\lambda$ from $1$
+\cite[Thms.~1.1--1.2]{DaliDAdderio2024x}.  The formula exposes the dependence
+on $\lambda$ through the alphabet $(q^{\lambda_1},q^{\lambda_2},\dotsc)$ and
+connects the Bergeron--Garsia--Haiman--Tesler operator viewpoint with
+\hyperref[macdonaldPi]{shifted Macdonald polynomials}.
+
+The same construction defines
+\defin{two-parameter Macdonald characters}\label{macdonaldCharacter}.
+They are shifted symmetric functions and form a basis of the shifted symmetric
+functions \cite[Thm.~1.5 and Cor.~4.4]{DaliDAdderio2024x}; they are also
+characterized by their degree, vanishing on sufficiently small Young diagrams,
+and top homogeneous component \cite[Thm.~4.5]{DaliDAdderio2024x}.
+After the reparametrization $q=1+\gamma\alpha$ and $t=1+\gamma$, their
+$\gamma\to0$ limit recovers \hyperref[jackCharacters]{Jack characters}
+\cite[Prop.~5.4]{DaliDAdderio2024x}.
+
+The associated positivity statements are conjectural.  In particular, the
+paper proposes two-parameter extensions of the Goulden--Jackson
+Matchings--Jack conjecture and $b$-conjecture
+\cite[Conjs.~7--8]{DaliDAdderio2024x}; setting $\gamma=0$ returns their Jack
+counterparts.
 
 
 \subsection[macdonaldPUniqueDefinition]{Inner product characterization}
