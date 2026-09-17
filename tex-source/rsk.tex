@@ -2,9 +2,10 @@
 
 \metadescription{Background and properties of the
 Robinson--Schensted--Knuth correspondence, including row insertion, dual RSK,
-Burge insertion, Knuth relations, and geometric RSK.}
+Burge insertion, growth diagrams, Knuth relations, and geometric RSK.}
 \metakeywords{RSK correspondence, Robinson-Schensted-Knuth correspondence,
-row insertion, Knuth relations, Burge correspondence, geometric RSK}
+row insertion, growth diagrams, Yang-Baxter equation, Knuth relations, Burge
+correspondence, geometric RSK}
 
 
 
@@ -47,38 +48,6 @@ See the \hyperref[evacuation]{evacuation} section for how RSK interacts with
 evacuation.
 The standard transpose, inverse, and reversal symmetries are collected in the
 \hyperref[rskProperties]{properties section} below.
-
-\subsection[rskYangBaxter]{RSK from the Yang--Baxter equation}
-
-\name{Leonid Petrov} derives RSK directly from the
-\hyperref[YangBaxter]{Yang--Baxter equation} for a Schur vertex model
-\cite{Petrov2026x}.  For fixed boundary data, the summands on the two sides
-have a unique weight-preserving matching \cite[Lem.~3.2]{Petrov2026x}.
-Dragging the Yang--Baxter cross through the grid applies this local matching
-cell by cell and reproduces Fomin's growth-diagram rule, hence ordinary RSK
-\cite[Prop.~3.5]{Petrov2026x}.
-
-In natural coordinates, the local matching is the combinatorial
-three-dimensional $R$, an involutive set-theoretic solution of the
-Zamolodchikov tetrahedron equation \cite[Prop.~4.5]{Petrov2026x}.  Closing one
-coordinate periodically instead produces the combinatorial $R$-matrices for
-one-row crystals.  For Hall--Littlewood and $q$-Whittaker deformations the
-matching is no longer deterministic; probabilistic couplings lead to
-randomized RSK dynamics, $q$-PushTASEP, and the stochastic six-vertex model.
-
-\name{Son Nguyen}, \name{Joseph Vulakh}, and \name{Dora Woodruff} define a
-generalization of RSK for $d$-complete \hyperref[posets]{posets}
-\cite{NguyenVulakhWoodruff2025DCompleteRSK}.  Their construction gives an
-elementary combinatorial proof of the \hyperref[posetHookFormulas]{hook length
-formula} for $d$-complete posets.
-\name{Rahul Singh} develops a Robinson--Schensted correspondence for partial
-permutations using the \hyperref[varieties]{Steinberg variety} of
-\hyperref[schubertVarietiesAndMatroids]{matrix Schubert varieties}
-\cite{Singh2020PartialPermutationsRSK}.  The correspondence sends a partial
-permutation to an admissible signed Young diagram together with two standard
-\hyperref[prelimTableaux]{Young tableaux}.
-
-
 
 \subsection[rowInsertion]{Row insertion}
 
@@ -595,6 +564,61 @@ The second statement follows similarly.
 \end{proof*}
 
 
+\section[rskYangBaxter]{Growth diagrams and the Yang--Baxter equation}
+
+A \defin{growth diagram} places a partition at every vertex of a grid and a
+nonnegative integer in every cell.  The partitions on the left and bottom
+boundaries are empty, and adjacent vertex labels differ by a horizontal strip.
+For one cell, let $\kappa$, $\lambda$, and $\mu$ be its southwest, northwest,
+and southeast labels, let $k$ be its entry, and let $\nu$ be its northeast
+label.  Fomin's local rule \cite[Eq.~(1.1)]{Petrov2026x} determines $\nu$ by
+\[
+ \nu_1=\max(\lambda_1,\mu_1)+k,
+ \qquad
+ \nu_{c+1}=\max(\lambda_{c+1},\mu_{c+1})
+ +\min(\lambda_c,\mu_c)-\kappa_c
+ \quad(c\geq 1).
+\]
+Applying the rule from southwest to northeast determines the whole diagram;
+the chains along its top and right boundaries encode the insertion and
+recording tableaux.
+
+\begin{example*}[A $2\times2$ growth diagram]
+Reading matrix rows from the bottom of the diagram upward, the cell entries
+below form the permutation matrix
+$\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$ of $21$.
+The shaded cell illustrates the local rule: its two
+incoming labels are both $(1)$, while its southwest label is empty and its
+entry is $0$, so its northeast label is $(1,1)$.
+
+\svgimg[width=0.68\textwidth]{svg-images/rsk-growth-diagram.svg}{
+The growth diagram of the two-by-two anti-identity matrix.  Empty partitions
+label the left and bottom boundaries, and the top and right boundary chains
+both end at (1,1).}
+
+Both boundary chains are
+$\varnothing\subset(1)\subset(1,1)$, and hence the diagram gives
+$P=Q=$ \ytableaushort{1,2}, as expected for the permutation $21$.
+\end{example*}
+
+\name{Leonid Petrov} derives this local rule from the
+\hyperref[YangBaxter]{Yang--Baxter equation} for a Schur vertex model
+\cite{Petrov2026x}.  For fixed boundary data, the summands on the two sides of
+the equation have a unique weight-preserving matching
+\cite[Lem.~3.2]{Petrov2026x}.  Moving the Yang--Baxter cross across the grid
+applies that matching cell by cell and produces the growth diagram, hence RSK
+\cite[Prop.~3.5]{Petrov2026x}.
+
+In natural coordinates, the same local matching is the combinatorial
+three-dimensional $R$, an involutive set-theoretic solution of the
+Zamolodchikov tetrahedron equation \cite[Prop.~4.5]{Petrov2026x}.  Closing one
+coordinate periodically instead gives the combinatorial $R$-matrices for
+one-row crystals.  For Hall--Littlewood and $q$-Whittaker deformations the
+matching is no longer deterministic: probabilistic couplings give the
+\hyperref[probabilisticRSK]{randomized RSK dynamics} behind $q$-PushTASEP and
+the stochastic six-vertex model.
+
+
 \section[skewRSK]{Skew RSK}
 
 \name{Bruce Sagan} and \name{Richard Stanley} introduce several analogues of
@@ -849,6 +873,19 @@ insertion algorithms and growth rules.
 \section[otherRSK]{Further RSK variants and applications}
 
 \begin{itemize}
+\item \name{Son Nguyen}, \name{Joseph Vulakh}, and \name{Dora Woodruff}
+define a generalization of RSK for $d$-complete \hyperref[posets]{posets}
+\cite{NguyenVulakhWoodruff2025DCompleteRSK}.  Their construction gives an
+elementary combinatorial proof of the \hyperref[posetHookFormulas]{hook-length
+formula} for $d$-complete posets.
+
+\item \name{Rahul Singh} develops a Robinson--Schensted correspondence for
+partial permutations using the \hyperref[varieties]{Steinberg variety} of
+\hyperref[schubertVarietiesAndMatroids]{matrix Schubert varieties}
+\cite{Singh2020PartialPermutationsRSK}.  It sends a partial permutation to an
+admissible signed Young diagram together with two standard
+\hyperref[prelimTableaux]{Young tableaux}.
+
 \item \name{Jonathan S. Bloom} and \name{Dan Saracino} use
 \name{Hugh Thomas} and \name{Alexander Yong}'s $K$-infusion operator to build
 new RSK-type variants for words \cite{BloomSaracino2022x}.  Their

@@ -152,6 +152,16 @@ harmonics.
 eigenoperator from which the usual nabla operator, Delta operators, and several
 other Macdonald eigenoperators are obtained by specialization.
 
+\subsection[dhThetaNegut]{Theta and Neguț operators}
+
+\defin{Theta operators} are degree-raising operators on symmetric functions that
+package decorated refinements of Delta-operator expressions.  In particular,
+the operators $\Theta_{\elementaryE_k}$ record decorations on rises and valleys
+in several extensions of the Delta conjecture.  The rational shuffle theorem
+uses a second family, the \defin{Neguț operators} $D_\gamma$, indexed by
+integer sequences $\gamma$; their action on the constant function $1$
+produces the corresponding Catalanimal symmetric functions.
+
 \name{Alessandro Iraci} and \name{Marino Romero} give elementary symmetric
 function expansions for a large family of Delta and Theta operator expressions
 at $t=1$ \cite{IraciRomero2024DeltaTheta}.  Their formulas are indexed by
@@ -178,10 +188,9 @@ $\mathbb{A}_{q,t}$ and derive explicit commutation rules with $D_\gamma$
 \cite[Thms.~5.1, 5.12, and~5.14]{DAdderioInterdonatoIraciPagaria2026x}.
 As an application, they prove the Theta conjecture at $q=1$, giving the
 rise-and-valley-decorated Dyck-path formula for
-$\Theta_{e_k}\Theta_{e_l}\nabla e_{n-k-l}$
-\cite[Thm.~6.1]{DAdderioInterdonatoIraciPagaria2026x}.  The accompanying Lean
-development checks finite algebraic identities and the main bijective step,
-but not the complete symmetric-function construction.
+$\Theta_{\elementaryE_k}\Theta_{\elementaryE_\ell}
+\nabla \elementaryE_{n-k-\ell}$
+\cite[Thm.~6.1]{DAdderioInterdonatoIraciPagaria2026x}.
 
 \subsection[dhOperators]{Relations among the operators}
 

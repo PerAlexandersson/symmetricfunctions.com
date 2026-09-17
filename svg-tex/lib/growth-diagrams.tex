@@ -1,0 +1,37 @@
+% Reusable primitives for partition-labelled growth diagrams.
+% Coordinates refer to grid vertices; cell entries use the southwest corner.
+
+\tikzset{
+  growth diagram grid/.style={draw=black!60, line width=0.65pt},
+  growth diagram highlight/.style={fill=black!8},
+  growth diagram vertex/.style={
+    fill=white,
+    inner sep=1.5pt,
+    rounded corners=1pt,
+    font=\small
+  },
+  growth diagram entry/.style={
+    font=\small,
+    text=black!70
+  }
+}
+
+% \growthDiagramGrid[options]{columns}{rows}
+\newcommand{\growthDiagramGrid}[3][]{%
+  \draw[growth diagram grid,#1] (0,0) grid (#2,#3);%
+}
+
+% \growthDiagramHighlight[options]{x}{y}
+\newcommand{\growthDiagramHighlight}[3][]{%
+  \path[growth diagram highlight,#1] (#2,#3) rectangle ++(1,1);%
+}
+
+% \growthDiagramEntry[options]{x}{y}{entry}
+\newcommand{\growthDiagramEntry}[4][]{%
+  \node[growth diagram entry,#1] at ({#2+0.5},{#3+0.5}) {#4};%
+}
+
+% \growthDiagramVertex[options]{x}{y}{partition}
+\newcommand{\growthDiagramVertex}[4][]{%
+  \node[growth diagram vertex,#1] at (#2,#3) {$#4$};%
+}

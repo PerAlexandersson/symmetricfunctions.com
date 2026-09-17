@@ -1,0 +1,42 @@
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{amsmath,amssymb}
+\usetikzlibrary{arrows.meta,positioning}
+\newcommand{\tikzsetnextfilename}[1]{}
+\input{growth-diagrams}
+
+\begin{document}
+
+\tikzsetnextfilename{rsk-growth-diagram}
+\begin{tikzpicture}[x=2.45cm,y=1.65cm]
+  \growthDiagramHighlight{1}{1}
+  \growthDiagramGrid{2}{2}
+
+  \growthDiagramEntry{0}{0}{$0$}
+  \growthDiagramEntry{1}{0}{$1$}
+  \growthDiagramEntry{0}{1}{$1$}
+  \growthDiagramEntry{1}{1}{$0$}
+
+  \growthDiagramVertex{0}{0}{\varnothing}
+  \growthDiagramVertex{1}{0}{\varnothing}
+  \growthDiagramVertex{2}{0}{\varnothing}
+  \growthDiagramVertex{0}{1}{\varnothing}
+  \growthDiagramVertex{1}{1}{\varnothing}
+  \growthDiagramVertex{2}{1}{(1)}
+  \growthDiagramVertex{0}{2}{\varnothing}
+  \growthDiagramVertex{1}{2}{(1)}
+  \growthDiagramVertex{2}{2}{(1,1)}
+
+  \draw[-{Stealth[length=2.2mm]},line width=0.7pt]
+    (0,2.35) -- (2,2.35)
+    node[midway,above] {top boundary encodes $P$};
+  \draw[-{Stealth[length=2.2mm]},line width=0.7pt]
+    (2.33,0) -- (2.33,2)
+    node[midway,right,rotate=90,anchor=south] {right boundary encodes $Q$};
+
+  \node[below=3mm of current bounding box.south,align=center,font=\small]
+    {In the shaded cell,
+     $\kappa=\varnothing$, $\lambda=\mu=(1)$, $k=0$, and
+     $\nu=(1,1)$.};
+\end{tikzpicture}
+
+\end{document}

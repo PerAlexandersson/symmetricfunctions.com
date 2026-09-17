@@ -544,12 +544,44 @@ Reiner--Shimozono key expansion of flagged skew Schur functions.
 \end{polydata}
 
 \name{Peter L. Guo}, \name{Mingyang Kang}, and \name{Jiaji Liu} introduce
-hybrid Grothendieck polynomials
+\defin{hybrid Grothendieck polynomials}
 $H_{\lambda/\mu}(\xvec;\tvec;\wvec)$ as generating functions over
-set-valued \hyperref[planePartitions]{reverse plane partitions}
-\cite{GuoKangLiu2025x}.  They specialize
-to refined stable Grothendieck and refined dual stable Grothendieck
-polynomials, admit a Schur expansion from a crystal structure, and have
+\defin{set-valued reverse plane partitions}
+\cite{GuoKangLiu2025x}.  Such a filling assigns a nonempty finite set to
+each box, with the maximum in one box at most the minimum in the box directly
+to its right or below; singleton sets recover ordinary
+\hyperref[planePartitions]{reverse plane partitions}.  For a filling $T$, the statistic
+\defin{$\operatorname{wt}_i(T)$} counts the columns containing $i$,
+\defin{$\operatorname{ceq}_i(T)$} counts vertical equalities in row $i$, and
+\defin{$\operatorname{ex}_i(T)$} counts the entries beyond the first in row $i$.
+Thus
+\[
+H_{\lambda/\mu}(\xvec;\tvec;\wvec)
+=\sum_T
+ \xvec^{\operatorname{wt}(T)}
+ \tvec^{\operatorname{ceq}(T)}
+ \wvec^{\operatorname{ex}(T)}.
+\]
+Setting $\tvec=\mathbf{0}$ and replacing $\wvec$ by $-\wvec$ gives the
+refined stable Grothendieck polynomial, while $\wvec=\mathbf{0}$ gives the
+refined dual stable Grothendieck polynomial.
+
+\begin{example*}[A hybrid weight]
+The following set-valued reverse plane partition of shape $(2,1)$ uses entries
+at most $3$.
+\svgimg[width=0.58\textwidth]{svg-images/hybrid-grothendieck-example.svg}{
+A set-valued reverse plane partition of shape (2,1), together with its weight,
+column-equality, and excess vectors.}
+The two occurrences of $2$ lie in different columns, the equality between the
+two left boxes contributes $t_1$, and each row has one excess entry.  Hence
+this filling contributes
+\[
+ t_1w_1w_2x_1x_2^2x_3
+\]
+to $H_{(2,1)}(x_1,x_2,x_3;\tvec;\wvec)$.
+\end{example*}
+
+These polynomials admit a Schur expansion from a crystal structure and have
 saturated Newton polytopes in straight shape.
 
 \name{Siddheswar Kundu} equips the flagged set-valued reverse plane
@@ -560,7 +592,11 @@ on flagged set-valued tableaux and flagged reverse plane partitions, and
 gives an explicit key-polynomial expansion of the flagged hybrid polynomial
 \cite[Cor.~2]{Kundu2026x}.  Removing the flag yields a Schur expansion and,
 by rectification, expansions in both stable and dual stable Grothendieck
-polynomials \cite[Cor.~3 and Sec.~4]{Kundu2026x}.
+polynomials \cite[Cor.~3 and Sec.~4]{Kundu2026x}.  The Schur and stable
+Grothendieck coefficients are polynomials in $\tvec$ and $\wvec$ with
+nonnegative integer coefficients.  The dual stable Grothendieck expansion is
+instead signed, with sign $(-1)^{|\operatorname{ex}(S)|}$ for a set-valued
+tableau $S$.
 
 \name{Shinsuke Iwao} gives a fermionic description of flagged skew
 Grothendieck polynomials \cite{Iwao2023x}.  These are $K$-theoretic analogues
