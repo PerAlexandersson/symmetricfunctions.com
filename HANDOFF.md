@@ -1,5 +1,22 @@
 # Handoff
 
+## Completed scope (2026-09-17, figure and display-math follow-up)
+
+Centered the RSK and hybrid-Grothendieck SVGs through the site's figure
+environment, and removed explanatory prose from those SVGs and the rowmotion
+legend.  The promotion example now uses `[2]\times[3]`: its five linear
+extensions and both promotion orbits are stated in the prose and drawn as
+compact labeled Hasse diagrams.  A reusable TikZ macro fixes the geometry of
+all five copies.  The orbit transitions were also checked independently.
+
+The shared KaTeX macro table now defines `\defin` as bold mathematical content,
+so the existing promotion and rowmotion definitions render inside display
+math as well as in ordinary prose.  `make svg Q=1`, all three focused page
+builds, `make Q=1`, `make check Q=1`, rendered-wrapper inspection, a direct
+KaTeX-registry assertion, SVG prose searches, visual inspection of all four
+affected figures, and `git diff --check` pass.  No bibliography or deployment
+is involved.  Ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-17, exposition and TikZ examples)
 
 Revised the three preprint additions using the combinatorics-writing guidance.

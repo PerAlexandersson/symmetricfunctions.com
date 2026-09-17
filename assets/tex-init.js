@@ -13,6 +13,7 @@ window.KATEX_MACROS = {
         "\\rskDualArrow": "{\\;\\xrightarrow{\\scriptstyle{RSK'}}\\;}",
         "\\rskbArrow": "{\\;\\xrightarrow{\\scriptstyle{bRSK}}\\;}",
         "\\rskbDualArrow": "{\\;\\xrightarrow{\\scriptstyle{bRSK'}}\\;}",
+        "\\defin": "{\\boldsymbol{#1}}",
         "\\revCompl": "{\\mathrm{RC}}",
         "\\promotion": "{\\partial}",
         "\\evac": "{\\epsilon}",

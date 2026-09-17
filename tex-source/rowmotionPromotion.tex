@@ -36,13 +36,24 @@ the empty position, place $n+1$ at the last position, and subtract $1$ from
 every label.  The elements visited by the empty position form the
 \defin{promotion chain}.
 
-\begin{example*}[Promotion on a three-element poset]
-Let $P$ have relations $a\lt c$ and $b\lt c$.  The labels in the following
-two Hasse diagrams encode the linear extensions $(a,b,c)$ and $(b,a,c)$.
-Promotion interchanges them, so $\mathcal L(P)$ is one orbit of size two.
+\begin{example*}[Promotion on a product of chains]
+Let $P=[2]\times[3]$, ordered coordinatewise, and name its elements
+\[
+ a=(1,1),\quad b=(1,2),\quad c=(1,3),\quad
+ d=(2,1),\quad e=(2,2),\quad f=(2,3).
+\]
+Its five linear extensions split into two promotion orbits:
+\[
+ abcdef\longmapsto abdecf\longmapsto adbcef\longmapsto abcdef,
+ \qquad
+ abdcef\longleftrightarrow adbecf.
+\]
+The vertex labels below give the positions of the elements in each word; the
+three-cycle is in the top row and the two-cycle is in the bottom row.
 \begin{figure}
-\svgimg[width=0.52\textwidth]{svg-images/rowmotion-promotion-linear-extensions.svg}{
-Two labeled copies of the V-shaped poset, interchanged by promotion.}
+\svgimg[width=0.66\textwidth]{svg-images/rowmotion-promotion-linear-extensions.svg}{
+The two promotion orbits of linear extensions of the two-by-three product of
+chains, shown as five labeled Hasse diagrams.}
 \end{figure}
 \end{example*}
 
