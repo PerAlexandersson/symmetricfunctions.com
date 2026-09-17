@@ -25,7 +25,8 @@ rendered HTML inspection, grayscale figure inspection, added-line-length
 review, and `git diff --check` pass.  Both TikZ sources compile through the
 project's temporary PDF stage to tracked SVG assets.  No Rust, bibliography,
 template, unrelated page, or deployment is involved.  Ownership is released
-and there are no blockers.
+and there are no blockers.  The focused source-and-figure commit is `1e0f0b1`,
+pushed non-forced to canonical `master` over authenticated HTTPS through `gh`.
 
 ## Completed scope (2026-09-17, three current preprints)
 
