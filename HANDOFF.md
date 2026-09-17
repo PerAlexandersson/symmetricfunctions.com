@@ -1,5 +1,14 @@
 # Handoff
 
+## Completed scope (2026-09-17, growth-diagram display size)
+
+Reduced the displayed RSK growth diagram from 98% to 78% of the text width, a
+20.4% linear reduction, while retaining the centered figure wrapper.  The
+focused RSK build, `make Q=1`, `make check Q=1`, rendered-width inspection,
+and `git diff --check` pass.  The source SVG and mathematical content are
+unchanged.  Ownership is released and there are no blockers; direct
+deployment remains authorized for this debugging checkpoint.
+
 ## Completed scope (2026-09-17, generic growth-diagram example)
 
 Replaced the involutive permutation by `57318264`.  Its top and right boundary
