@@ -40,13 +40,24 @@
   \end{scope}%
 }
 
-\newcommand{\idealvee}[5]{%
-  \begin{scope}[xshift=#1]
-    \draw[poset edge] (-0.55,0) -- (0,0.82) -- (0.55,0);
-    \node[poset node,minimum size=5.8mm,#2] at (-0.55,0) {};
-    \node[poset node,minimum size=5.8mm,#3] at (0.55,0) {};
-    \node[poset node,minimum size=5.8mm,#4] at (0,0.82) {};
-    \node[below] at (0,-0.38) {#5};
+\newcommand{\idealtwobythree}[8]{%
+  \begin{scope}[xshift=#1,yshift=#2]
+    \coordinate (a) at (0,0);
+    \coordinate (b) at (-0.25,0.36);
+    \coordinate (c) at (-0.50,0.72);
+    \coordinate (d) at (0.25,0.36);
+    \coordinate (e) at (0,0.72);
+    \coordinate (f) at (-0.25,1.08);
+    \draw[poset edge]
+      (a) -- (b) -- (c) -- (f)
+      (a) -- (d) -- (e) -- (f)
+      (b) -- (e);
+    \node[poset node,minimum size=4mm,font=\tiny,#3] at (a) {$a$};
+    \node[poset node,minimum size=4mm,font=\tiny,#4] at (b) {$b$};
+    \node[poset node,minimum size=4mm,font=\tiny,#5] at (c) {$c$};
+    \node[poset node,minimum size=4mm,font=\tiny,#6] at (d) {$d$};
+    \node[poset node,minimum size=4mm,font=\tiny,#7] at (e) {$e$};
+    \node[poset node,minimum size=4mm,font=\tiny,#8] at (f) {$f$};
   \end{scope}%
 }
 
@@ -70,20 +81,27 @@
 
 \tikzsetnextfilename{rowmotion-promotion-order-ideals}
 \begin{tikzpicture}
-  \idealvee{0cm}{}{}{}{$\varnothing$}
-  \idealvee{3cm}{chosen}{chosen}{}{$\{a,b\}$}
-  \idealvee{6cm}{chosen}{chosen}{chosen}{$\{a,b,c\}$}
-  \draw[action] (0.8,0.52) -- (2.2,0.52);
-  \draw[action] (3.8,0.52) -- (5.2,0.52);
+  \idealtwobythree{0cm}{0cm}{}{}{}{}{}{}
+  \idealtwobythree{1.7cm}{0cm}{chosen}{}{}{}{}{}
+  \idealtwobythree{3.4cm}{0cm}{chosen}{chosen}{}{chosen}{}{}
+  \idealtwobythree{5.1cm}{0cm}{chosen}{chosen}{chosen}{chosen}{chosen}{}
+  \idealtwobythree{6.8cm}{0cm}{chosen}{chosen}{chosen}{chosen}{chosen}{chosen}
+  \foreach \x in {0,1.7,3.4,5.1} {
+    \draw[action] ({\x+0.62},0.54) -- ({\x+1.08},0.54);
+  }
   \draw[action]
-    (6.25,1.18) .. controls (5.2,2.15) and (0.8,2.15) .. (0.05,1.27);
+    (6.8,1.30) .. controls (5.8,1.95) and (1.0,1.95) .. (0,1.30);
 
-  \begin{scope}[yshift=-2.15cm]
-    \idealvee{1.5cm}{chosen}{}{}{$\{a\}$}
-    \idealvee{4.5cm}{}{chosen}{}{$\{b\}$}
-    \draw[action] (2.3,0.62) -- (3.7,0.62);
-    \draw[action] (3.7,0.30) -- (2.3,0.30);
-  \end{scope}
+  \idealtwobythree{0cm}{-2.25cm}{chosen}{chosen}{}{}{}{}
+  \idealtwobythree{1.7cm}{-2.25cm}{chosen}{chosen}{chosen}{chosen}{}{}
+  \idealtwobythree{3.4cm}{-2.25cm}{chosen}{chosen}{}{chosen}{chosen}{}
+  \idealtwobythree{5.1cm}{-2.25cm}{chosen}{chosen}{chosen}{}{}{}
+  \idealtwobythree{6.8cm}{-2.25cm}{chosen}{}{chosen}{}{}{}
+  \foreach \x in {0,1.7,3.4,5.1} {
+    \draw[action] ({\x+0.62},-1.71) -- ({\x+1.08},-1.71);
+  }
+  \draw[action]
+    (6.8,-2.47) .. controls (5.8,-3.12) and (1.0,-3.12) .. (0,-2.47);
 
 \end{tikzpicture}
 

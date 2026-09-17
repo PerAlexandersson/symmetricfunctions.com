@@ -1,5 +1,25 @@
 # Handoff
 
+## Completed scope (2026-09-17, diagram alignment and larger rowmotion example)
+
+The eight-by-eight RSK growth diagram now uses equal horizontal and vertical
+units.  Cell entries sit at half-integer coordinates, vertex labels sit at
+integer coordinates in uniform boxes, and partitions use compact words such
+as `44` for `(4,4)`.  The page explains this notation outside the figure.  An
+independent recurrence check confirms the matrix entries, all vertex labels,
+the highlighted cell, and both boundary chains; there is no indexing shift.
+
+The rowmotion example now uses all ten order ideals of `[2]\times[3]`, split
+into two independently checked five-cycles.  Its ten Hasse diagrams use much
+smaller nodes, put the element names inside the vertices, and render at 58%
+page width.  The blue/white key and orbit contents remain in the prose.
+
+`make svg Q=1`, both focused page builds, `make Q=1`, `make check Q=1`,
+rendered HTML inspection, visual inspection of both regenerated figures, and
+`git diff --check` pass.  No bibliography is involved.  Ownership is released
+and there are no blockers; deployment is explicitly authorized for this
+checkpoint.
+
 ## Completed scope (2026-09-17, enlarged growth diagram)
 
 Replaced the two-by-two RSK figure by the full eight-by-eight growth diagram

@@ -95,22 +95,26 @@ precisely,
 so $t_{p_n}$ is applied first.  In particular, rowmotion is a bijection
 \cite{StrikerWilliams2012}.
 
-\begin{example*}[Two rowmotion orbits]
-Return to the poset $a,b\lt c$.  Blue vertices in the figure belong to the
-order ideal, while white vertices lie outside it.  The five ideals split into
-an orbit of size three and an orbit of size two:
+\begin{example*}[Rowmotion on a product of chains]
+Return to $P=[2]\times[3]$ with the element names used in the promotion
+example.  Its ten order ideals split into two rowmotion orbits of size five:
 \[
-  \emptyset\longmapsto\{a,b\}\longmapsto\{a,b,c\}
-  \longmapsto\emptyset,
-  \qquad
-  \{a\}\longleftrightarrow\{b\}.
+  \emptyset\longmapsto\{a\}\longmapsto\{a,b,d\}
+  \longmapsto\{a,b,c,d,e\}\longmapsto P\longmapsto\emptyset,
 \]
+\[
+  \{a,b\}\longmapsto\{a,b,c,d\}\longmapsto\{a,b,d,e\}
+  \longmapsto\{a,b,c\}\longmapsto\{a,d\}\longmapsto\{a,b\}.
+\]
+Blue vertices in the figure belong to the order ideal, while white vertices
+lie outside it; the element names are written inside the vertices.
 \begin{figure}
-\svgimg[width=0.78\textwidth]{svg-images/rowmotion-promotion-order-ideals.svg}{
-The two rowmotion orbits of order ideals of the V-shaped poset.}
+\svgimg[width=0.58\textwidth]{svg-images/rowmotion-promotion-order-ideals.svg}{
+The two rowmotion orbits of order ideals of the two-by-three product of
+chains.  Element names appear inside the colored vertices.}
 \end{figure}
-For instance, the minimal elements outside $\{a\}$ consist only of $b$, so
-the generated ideal is $\{b\}$.
+For instance, the minimal elements outside $\{a\}$ are $b$ and $d$, and the
+ideal they generate is $\{a,b,d\}$.
 \end{example*}
 
 \section[rowmotionPromotionConjugacy]{Promotion and rowmotion through toggles}
