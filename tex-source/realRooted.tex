@@ -69,6 +69,43 @@ Finally, if $P$ has only real roots, it is called
 \defin{real-rooted}\label{realRootedPolynomial}.
 Every real-rooted polynomial satisfies the Newton inequalities, see e.g. \cite{Branden2015}.
 
+\begin{example*}[Infinite log-concavity of the Boros--Moll sequences]
+For a finite sequence $a=(a_i)$, extend $a$ by zeros and define
+\[
+  \mathcal L(a)_i \coloneqq a_i^2-a_{i-1}a_{i+1}.
+\]
+Thus $a$ is log-concave when \(\mathcal L(a)\) is nonnegative, and it is
+\defin{infinitely log-concave}\label{infinitelyLogConcave} when every iterate
+\(\mathcal L^r(a)\) is nonnegative.
+
+The Boros--Moll coefficients are
+\[
+  d_i(n)=4^{-n}\sum_{k=i}^n
+  2^k\binom{2n-2k}{n-k}\binom{n+k}{k}\binom{k}{i},
+  \qquad 0\leq i\leq n.
+\]
+Although the polynomial \(\sum_i d_i(n)x^i\) is generally not real-rooted,
+the polynomial formed from its first log-concavity transform,
+\[
+  M_n(x)\coloneqq \sum_{i=0}^n
+  \bigl(d_i(n)^2-d_{i-1}(n)d_{i+1}(n)\bigr)x^i,
+\]
+has distinct negative zeros.  Moreover, these zeros strictly interlace those
+of
+\[
+  N_n(x)\coloneqq \sum_{i=0}^n
+  \frac{1}{i+1}\binom{n}{i}\binom{n+1}{i}x^i
+  =\frac{P_{n+1}(x)}{x},
+\]
+where $P_{n+1}$ is the \hyperref[ex:narayanaSturm]{Narayana polynomial}.
+This proves a conjecture of Chen, Yang, and Zhang and, together with a
+real-rootedness-preservation theorem of Brändén, implies that every
+Boros--Moll row $(d_0(n),\dotsc,d_n(n))$ is infinitely log-concave
+\cite[Thm.~1.1 and Cor.~1.2]{XieZhang2026InfiniteLogConcavity}.
+The integer-scaled coefficients $4^n d_i(n)$ form the triangle
+\oeis{A126936}.
+\end{example*}
+
 
 In \cite{Wang2002}, a conjecture by \name{Rodica Simion} is proved:
 a sequence of lattice path counts is log-concave.

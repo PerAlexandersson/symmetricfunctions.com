@@ -1,5 +1,27 @@
 # Handoff
 
+## Completed scope (2026-09-18, Boros--Moll infinite log-concavity)
+
+Added Xie--Zhang, arXiv `2609.20653v1`, to the main real-rootedness page and
+bibliography.  The new example defines the nonlinear log-concavity transform
+and infinite log-concavity, gives the Boros--Moll coefficient formula, and
+states the paper's strict interlacing of the first transformed polynomial
+with the fixed-rank Narayana polynomial.  It cross-links that comparison
+polynomial to the existing Catalan-family example and identifies the
+integer-scaled coefficient triangle as OEIS A126936.
+
+Opened low-priority RealRooted issue
+`PerAlexandersson/RealRooted#847`, labeled `application` and `reference`.  It
+records the precise gap between the existing Narayana formalization and the
+new fixed-rank Boros--Moll interlacing theorem, along with a staged approach
+and the paper's analytic/computational proof split.  No RealRooted files were
+changed.
+
+`make bib Q=1`, the focused page build, `make Q=1`, `make check Q=1`, rendered
+citation/cross-reference inspection, and `git diff --check` pass.  The only
+check output is the two pre-existing synthetic-polydata warnings.  No figures
+or deployment are involved; ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-17, published Macdonald-characters paper)
 
 Reviewed mailbox UID 47 and the primary manuscript of Ben Dali--D'Adderio,
