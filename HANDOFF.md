@@ -1,5 +1,38 @@
 # Handoff
 
+## Completed scope (2026-09-18, Lascoux tableauhedron)
+
+Added a compact subsection on Lascoux's 2012 tableauhedron lecture to
+`key.tex`, with cross-links from the Eulerian-polynomial and
+Gelfand--Tsetlin pages.  The subsection treats the object as a
+tableau/crystal graph and weighted Eulerian incidence structure: it records
+left and right keys, defines compatible tableau chains, gives the associated
+key--Ehrhart/Hilbert numerator, and states Lascoux's matrix Euler relation.
+The worked `s_1s_2` example for `lambda=(4,2,0)` reproduces the five edge
+multiplicities and the relation `2*2=1*3+1*1`; the later tableau-valued
+relation `2t_3 ~ t_2t_5+t_2t_6` is also recorded with its precise scope.
+
+The exposition explicitly does not call the tableauhedron a convex polytope.
+It also records that Lascoux's `d_i` operators fail the braid relations, so a
+reduced word is part of the raw graph/incidence presentation and the source
+does not construct a canonical Euler quotient.  A disposable exact `A_2`
+check supported this distinction: for `lambda=(4,2,0)`, the `121` and `212`
+products agree on the highest-tableau input from Lascoux's proposition, but
+differ by six formal terms on the nearby tableau with rows `1111/23`; the
+difference becomes zero after evaluating left keys as key polynomials and
+right tableaux by weight.  No experiment code was retained.
+
+The eight `n=4` numerators on Lascoux's p. 25 were rechecked against the
+`rho_4` table in the read-only Key-HStar-Bruhat-Interlacing notes and agree
+exactly.  The current LS-path and statistic-preserving parking notes were
+read only for context; no research-project file was changed.
+
+Added the primary lecture-slides bibliography entry.  `make bib Q=1`, focused
+builds for all three affected pages, `make Q=1`, `make check Q=1`, rendered
+citation/cross-reference inspection, and `git diff --check` pass.  The only
+check output is the two pre-existing synthetic-polydata warnings.  No figures
+or deployment are involved; ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-18, Boros--Moll infinite log-concavity)
 
 Added Xie--Zhang, arXiv `2609.20653v1`, to the main real-rootedness page and

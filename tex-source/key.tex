@@ -1,6 +1,9 @@
 \metatitle{Key polynomials and Demazure atoms}
-\metadescription{An introduction to key polynomials, Demazure characters, Demazure atoms, divided difference definitions, SSAF and right-key models, Kohnert tableaux, products, and Pieri rules.}
-\metakeywords{key polynomial, Demazure character, Demazure atom, right key, Kohnert tableau, Kogan face, flagged Schur polynomial}
+\metadescription{An introduction to key polynomials, Demazure characters,
+Demazure atoms, right-key models, Kohnert tableaux, Lascoux's tableauhedron,
+products, and Pieri rules.}
+\metakeywords{key polynomial, Demazure character, Demazure atom, right key,
+Kohnert tableau, Kogan face, tableauhedron, flagged Schur polynomial}
 
 \section[key]{Key polynomials}
 
@@ -674,6 +677,105 @@ More explicitly, their tensor product rule decomposes the tensor product of a
 highest-weight line with a Demazure module into Demazure components indexed
 by the LS paths whose concatenations remain dominant
 \cite[Cor.~10, Prop.~12]{LakshmibaiLittelmannMagyar2002}.
+
+
+\subsection[lascouxTableauhedron]{Lascoux's tableauhedron}
+
+\name{Alain Lascoux} uses the name \defin{tableauhedron}
+\label{lascouxTableauhedronDefinition} for a tableau/crystal construction
+that behaves like a weighted Eulerian incidence structure
+\cite[pp.~13--24]{Lascoux2012Tableauhedron}.
+Let $\lambda$ be a strict partition and choose a reduced word
+$w=s_{i_1}\dotsm s_{i_\ell}$.  On the crystal of tableaux of shape
+$\lambda$, the reflection $s_i$ reverses an $i$-string, while $\pi_i$ sends
+the head of that string to the sum of all its elements.  Lascoux combines
+these actions in
+\[
+ d_i=\overline{\pi}_i\otimes s_i+1\otimes\pi_i
+    =\pi_i\otimes s_i+1\otimes\theta_i,
+ \qquad
+ \theta_i=\overline{\pi}_i-s_i=\pi_i-1-s_i.
+\]
+The expansion of $d_{i_1}\dotsm d_{i_\ell}$ records tableaux $T$ with
+prescribed endpoints: their \defin{left key} $K_-(T)$ and
+\hyperref[rightKey]{right key} $K_+(T)$.  In particular, the terms ending at
+$w$ have $K_+(T)=\lambda w$, while the first tensor factor records
+$K_-(T)$.
+
+For key labels $\sigma$ and $\zeta$ in the orbit of $\lambda$, define the
+weighted incidence matrix
+\[
+ \mathcal E[\sigma,\zeta]
+   \coloneqq
+   \sum_{\substack{T:\ K_-(T)=\sigma\\K_+(T)=\zeta}}
+   \xvec^{\operatorname{wt}(T)}.
+\]
+Filter $\mathcal E=\mathcal E_0+\mathcal E_1+\dotsb$ by the distance between
+the two keys.  If
+$f^\clubsuit(x_1,\dotsc,x_n)=f(x_1^{-1},\dotsc,x_n^{-1})$, then Lascoux's
+weighted Euler relation is \cite[p.~22]{Lascoux2012Tableauhedron}
+\[
+ \mathcal E^{-1}
+ =\mathcal E_0^\clubsuit-\mathcal E_1^\clubsuit
+  +\mathcal E_2^\clubsuit-\mathcal E_3^\clubsuit+\dotsb.
+\]
+
+\begin{example*}[The $s_1s_2$ tableauhedron]
+Take $\lambda=(4,2,0)$ and let $T_\lambda$ be the highest tableau shown below.
+\begin{figure}
+\begin{ytableau}
+1&1&1&1\\
+2&2
+\end{ytableau}
+\end{figure}
+For the word $s_1s_2$, the key vertices are $420$, $240$, $402$, and $204$.
+After tableau weights are specialized to $1$, the nonzero incidence
+multiplicities are
+\[
+ \begin{aligned}
+ m(420,240)&=1, & m(420,402)&=1, & m(420,204)&=2,\\
+ m(240,204)&=3, & m(402,204)&=1.
+ \end{aligned}
+\]
+The rank-two Euler relation becomes \cite[pp.~17--18]{Lascoux2012Tableauhedron}
+\[
+ 2\cdot2=1\cdot3+1\cdot1.
+\]
+The tableau-valued relation used in Lascoux's $n=4$ Hilbert-numerator
+calculation is $2t_3\sim t_2t_5+t_2t_6$, where the $t_i$ are the six
+non-key tableaux displayed there; it removes a negative intermediate term
+before specialization \cite[pp.~27--28]{Lascoux2012Tableauhedron}.
+\end{example*}
+
+A \defin{compatible chain of tableaux} is a sequence
+$T_1,\dotsc,T_m$ satisfying
+\[
+ K_+(T_j)\leq K_-(T_{j+1})
+ \qquad(1\leq j<m).
+\]
+These chains are the standard-monomial objects behind the Hilbert function
+\[
+ L_{\lambda,w}(m)\coloneqq \key_{m\lambda,w}(1^n).
+\]
+Writing $d=\deg_m L_{\lambda,w}(m)$ defines the
+\defin{key--Ehrhart numerator} $E_{\lambda,w}(z)$ by
+\[
+ \sum_{m\geq0}L_{\lambda,w}(m)z^m
+ =\frac{E_{\lambda,w}(z)}{(1-z)^{d+1}}.
+\]
+Lascoux proposes the tableauhedron as a structure for understanding this
+positive Hilbert numerator, while noting that its direct description in
+tableauhedron terms remains to be written
+\cite[pp.~24--26]{Lascoux2012Tableauhedron}.  The same dilation count has a
+separate \hyperref[keyEhrhart]{union-of-GT-faces model}.
+
+Despite its name, the tableauhedron in this source is not presented as an
+established convex polytope.  There is also an essential reduced-word caveat:
+the operators $d_i$ do not satisfy the braid relations.  Consequently, the
+raw graph or incidence presentation may depend on the chosen reduced word.
+The Euler relations explain cancellations after evaluation, but the source
+does not construct a reduced-word-independent Euler quotient, much less a
+canonical polytope \cite[pp.~14, 19--22]{Lascoux2012Tableauhedron}.
 
 
 
