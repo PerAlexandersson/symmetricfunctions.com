@@ -210,6 +210,8 @@ For \(1\leq k\leq n\), the two Delta operators above are related by
 
 \subsection[dhShuffleProps]{Properties of $\mathcal{DH}_n$}
 
+\subsubsection[diagonalCoinvariantHilbertFrobenius]{Hilbert and Frobenius series}
+
 Let \(\mathcal{F}_{\mathcal{DH}_n}(q,t)\) be the bigraded
 \hyperref[frobeniusCharacteristic]{Frobenius characteristic} of
 \(\mathcal{DH}_n\).  By Haiman's theorem,
@@ -242,6 +244,8 @@ combinatorial formula for the Schur expansion of
 A combinatorial Schur expansion for the relevant vertical-strip
 \hyperref[LLT]{LLT polynomials} would solve this problem as well.
 
+\subsubsection[diagonalSuperspaceCoinvariants]{Bases and superspace coinvariants}
+
 \name{Yuhan Jiang} constructs an explicit vector-space basis for the
 alternating component of the diagonal coinvariant ring in terms of bivariate
 Vandermonde determinants indexed by \hyperref[qtCatalan]{Dyck paths}
@@ -272,6 +276,7 @@ $\GL_n(\mathbb F_q)$, extending them to subgroups containing
 $\mathrm{SL}_n(\mathbb F_q)$ \cite{RhoadesWilson2026x}.
 
 For the diagonal superspace coinvariant ring $R_n^{(2,1)}$,
+\label{diagonalSuperspaceSignComponent}
 \name{Nicolle González}, \name{John Lentfer}, and \name{Hanna Mularczyk}
 identify the triply graded sign component with that of
 $R_n^{(2,0)}\otimes R_n^{(0,1)}$.  Its Hilbert series is the little Schröder
@@ -303,6 +308,8 @@ algebras, see \name{Brendon Rhoades}, \name{Tianyi Yu}, and
 \cite{GillespieRhoades2021}, and \name{Matja{\v{z}} Konvalinka} and
 \name{Vasu Tewari} on natural extensions of the parking space
 \cite{KonvalinkaTewari2021}.
+
+\subsubsection[diagonalCoinvariantExamplesSpecializations]{Examples and specializations}
 
 \begin{example*}[Example of $\nabla \elementaryE_n$ in the Schur basis]
 For $n=1,2,3$ we have the following Schur expansions
@@ -545,6 +552,8 @@ so we have the shuffle theorem as a special case.
   PositiveIn & LLT | BergeronGarsiaLevenXin2015 | scope=vertical-strip LLT polynomials \\
 \end{polydata}
 
+\subsection[hikitaPolynomialDefinition]{Definition and extensions}
+
 Using notation similar to that of \cite[Eq.~(11.97)]{Haglund2015},
 and \cite{QiuRemmel2018x}, we set, for coprime $m,n$,
 \[
@@ -596,6 +605,8 @@ specialization of $L_{M,N}$ and relates the construction conjecturally to
 elliptic Hall algebra operators.
 
 
+\subsection[hikitaOperators]{The operators $Q_{m,n}$}
+
 The operators $Q_{m,n}$ are defined recursively via the
 Bergeron--Garsia operators \defin{$D_k$}\label{bergeronGarsiaOperator}
 (acting on $F \in \spaceSym$)
@@ -622,6 +633,8 @@ the zeta map sends the pair of statistics
 $(\dinv,\area)$ to $(\area,\bounce)$.
 
 
+\subsection[rationalShuffleTheorem]{The rational shuffle theorem}
+
 \name{Anton Mellit} proved the following theorem \cite{Mellit2016x}.
 \begin{theorem}[The (extended) rational shuffle theorem]
 For coprime $m,n$ and $k \geq 0$, we have
@@ -632,6 +645,8 @@ For coprime $m,n$ and $k \geq 0$, we have
 In fact, he proves the compositional refinement
 stated in \cite[Conj.~3.3]{BergeronGarsiaLevenXin2015}.
 
+
+\subsection[hikitaGeometrySpecializations]{Geometry and specializations}
 
 \name{Tatsuyuki Hikita} shows that $B_{m,n}(\xvec;q,t)$
 is the Frobenius character of the action in the homology of a
@@ -694,6 +709,8 @@ The square path conjecture was formulated by \name{Nicholas Loehr} and
 It provides a combinatorial expression for $\nabla \powerSum_n$
 as a sum over preference functions.
 
+\subsection[squarePathPreferenceFunctions]{Preference functions and statistics}
+
 A \defin{preference function}\label{preferenceFunction} is a map
 $f:[n] \to [n]$.
 A \hyperref[parkingFunctions]{parking function} is any preference function such
@@ -737,6 +754,8 @@ The \defin{dinv}\label{preferenceFunctionDinv} statistic is similar to the
 inv-statistic for \hyperref[LLT]{LLT polynomials},
 but one must add the number of cars strictly below the $x=y$ diagonal.
 
+\subsection[squarePathTheorem]{The square paths theorem}
+
 \name{Emily Sergel} gave a proof of the square path conjecture \cite{Sergel2017}.
 \begin{theorem}[Sergel (2017)]
 We have the expansion in the \hyperref[gessel]{fundamental quasisymmetric functions}
@@ -745,6 +764,8 @@ We have the expansion in the \hyperref[gessel]{fundamental quasisymmetric functi
 \]
 where the sum is taken over all preference functions of size $n$.
 \end{theorem}
+
+\subsection[squarePathSpecializations]{Narayana coefficients and specializations}
 
 Since \(\omega(\powerSum_n)=(-1)^{n-1}\powerSum_n\), the left-hand side is
 \(\nabla\omega(\powerSum_n)\).  It is tempting to call some of the
@@ -835,6 +856,8 @@ specialization
 q^{-\binom{n}{2}}\frac{1}{1+q^n}\qbinom{2n}{n}_q,
 \]
 see \cite[Prop.~8.3]{DAdderioIraciWyngaerd2022}.
+
+\subsection[squarePathLLTSchedules]{LLT expansions and schedules}
 
 This expression can also be written as a sum over vertical-strip
 \hyperref[lltDefinitionTuples]{LLT polynomials}.

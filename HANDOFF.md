@@ -1,5 +1,21 @@
 # Handoff
 
+## Completed scope (2026-09-22, structural headings and anchors)
+
+Added or re-leveled 45 descriptive headings across the long
+`realRootedWords`, `stablePolynomials`, `diagonalHarmonics`, `qsymSchur`,
+`realRootedCatalan`, `macdonaldEperm`, and `polytopes` pages.  The largest
+catch-all blocks now expose stable camelCase anchors for their principal
+families, definitions, formulas, examples, and applications.  Added precise
+anchors for mixed RSK, the symplectic Rajchgot index, the Hibi--Li
+face-number conjecture, and the diagonal superspace sign component.
+
+No established label was renamed or removed.  The full build regenerated
+`temp/site-labels.json`, where the new anchors resolve to their intended
+pages.  `make Q=1`, `make check Q=1`, rendered-anchor inspection, global
+duplicate-label inspection, and `git diff --check` pass.  No deployment is
+authorized or performed; ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-22, current arXiv coverage)
 
 Added compact, search-oriented coverage of seven current preprints: matroid

@@ -23,6 +23,8 @@ function, dual immaculate function, extended Schur function, 0-Hecke algebra}
   TransformsTo & rsqSchur | MasonRemmel2013 | map=omega \\
 \end{polydata}
 
+\subsection[quasisymmetricSchurDefinition]{Definition and refinements}
+
 The \defin{quasisymmetric Schur functions}\label{quasisymmetricSchurFunction},
 $\{\qSchur_\alpha \}$, were
 introduced by \name{James Haglund}, \name{Kurt Luoto}, \name{Sarah Mason},
@@ -71,6 +73,8 @@ $\gamma$ obtained by inserting $0$s between parts of $\alpha$.
 \end{definition}
 
 
+
+\subsection[quasisymmetricSchurTableaux]{Reverse composition tableaux and fundamental expansions}
 
 We can compute the expansion of $\qSchur_\alpha$ in terms of
 \hyperref[gessel]{fundamental quasisymmetric functions} by using standard
@@ -524,6 +528,8 @@ The last identity follows from $\psi=\omega\circ\rho=\rho\circ\omega$ on
   TransformsTo & rsdiSchur | NieseSundaramWilligenburgVegaWang2023 | map=psi \\
 \end{polydata}
 
+\subsection[dualImmaculateDefinition]{Definition and positive expansions}
+
 The \defin{dual immaculate Schur functions}\label{dualImmaculateSchurFunction}
 (and their skew version),
 $\{\diSchur_\alpha\}$, were introduced in \cite{BergBergeronSaliolaSerranoZabrocki2014}.
@@ -557,6 +563,8 @@ the dual immaculate functions expand positively in the
 \cite{AllenHallamMason2018}.  \name{So-Yeon Lee} and \name{Young-Tak Oh}
 later give a $0$-Hecke-module interpretation of this positivity
 \cite{LeeOh2025x}.
+
+\subsection[dualImmaculateExamples]{Examples and monomial expansions}
 
 % Related Rust:
 % /home/paxinum/Dropbox/AI-projects/rust/sym-poly/qsym/examples/dual_immaculate_site_example.rs
@@ -614,6 +622,8 @@ families.
 families into parallel Young and reverse versions.
 
 
+\subsection[dualImmaculateHookFormula]{The immaculate hook formula}
+
 \begin{theorem}
 Let $\alpha=(\alpha_1,\dotsc,\alpha_\ell)$ be a composition of $n$.
 For a cell $c=(i,j)$ in the diagram of $\alpha$, define its
@@ -667,6 +677,8 @@ Indeed, the four standard immaculate tableaux of this shape are
 \ytableaushort{15,2,34}
 \end{figure}
 \end{example*}
+\subsection[dualImmaculateVariants]{Skew, colored, and lexical variants}
+
 \name{Sarah Mason} and \name{Tianhao Xie} classify when skew immaculate
 functions are nonzero \cite{MasonXie2026}.  Their results compare the matrix
 definition of skew immaculate functions with the Hopf-algebraic definition, and
