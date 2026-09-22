@@ -369,6 +369,11 @@ polytopes together with
 \cite{Stanley86TwoPosetPolytopes}; the two have the same
 \hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial}.
 
+\name{Ghislain Fourier} proves the Hibi--Li face-number conjecture
+$f_k(\mathcal O(P))\leq f_k(\mathcal C(P))$ and the stronger coefficientwise
+monotonicity along admissible chain--order polytopes
+\cite[Thm.~1.1]{Fourier2026HibiLi}.
+
 
 
 \subsection[markedOrderPolytope]{Marked order polytopes}
@@ -434,6 +439,22 @@ polynomial for the corresponding marked chain and marked chain-order
 polytopes.
 
 The \hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes} are marked order polytopes.
+
+
+\subsection[sylvesterSimplex]{Sylvester simplices}
+
+For the Sylvester sequence $s_0=1$ and
+$s_i=1+\prod_{j=0}^{i-1}s_j$, define the \defin{Sylvester simplex}
+\[
+ \operatorname{Sylv}_d^k
+ =\operatorname{conv}\bigl(
+  0,s_1e_1,\dotsc,s_{d-1}e_{d-1},(k+1)(s_d-1)e_d
+ \bigr).
+\]
+It has $k$ interior lattice points and admits a flag, regular, unimodular
+triangulation.  Its $h^*$-vector is unimodal, and for $d\leq6$ its Ehrhart
+polynomial is \hyperref[magicPositivePolynomial]{magic positive}
+\cite[Thms.~3.5, 5.8 and Cor.~6.2]{CaicedoCastilloJuhnkePoullot2026x}.
 
 
 \subsection[crossPolytope]{Cross-polytopes}

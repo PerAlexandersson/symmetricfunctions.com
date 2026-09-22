@@ -1,5 +1,23 @@
 # Handoff
 
+## Completed scope (2026-09-22, current arXiv coverage)
+
+Added compact, search-oriented coverage of seven current preprints: matroid
+Snapper polynomials, mixed RSK, symplectic Grothendieck regularity, Almkvist
+unimodality, Sylvester simplices, Hibi--Li face numbers, and diagonal
+superspace sign components.  The entries appear on the existing `matroids`,
+`rsk`, `grothendieck`, `q-analogs`, `polytopes`, and `diagonalHarmonics`
+pages.
+
+All seven bibliography records came from the read-only
+`arxiv-symmetricfunctions` BibTeX API for the exact cited versions.  Claims
+and theorem locators were checked against primary manuscripts cached through
+`paper-cache`; keyword-only matches were excluded.  `make bib Q=1`,
+`make Q=1`, `make check Q=1`, rendered-page inspection, and
+`git diff --check` pass.  The only check output is the two pre-existing
+synthetic-polydata warnings.  No deployment is authorized or performed;
+ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-18, Lascoux tableauhedron)
 
 Added a compact subsection on Lascoux's 2012 tableauhedron lecture to
