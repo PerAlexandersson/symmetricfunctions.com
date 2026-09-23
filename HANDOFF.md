@@ -1,5 +1,14 @@
 # Handoff
 
+## Completed scope (2026-09-23, concise back stable page)
+
+Shortened `backStableSchubert.tex` from 233 to 141 source lines to match the
+compact style requested by the user.  The revision retains every public label,
+the main definitions and formulas, all source-backed claims, and the links
+used by other SymCat pages.  `make Q=1`, `make check Q=1`, rendered-heading
+and anchor inspection, and `git diff --check` pass.  No deployment is
+authorized or performed; ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-23, back stable Schubert hub)
 
 Added `backStableSchubert.tex`, a compact reference page for back stable
