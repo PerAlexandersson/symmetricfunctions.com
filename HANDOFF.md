@@ -1,5 +1,25 @@
 # Handoff
 
+## Completed scope (2026-09-23, back stable Schubert hub)
+
+Added `backStableSchubert.tex`, a compact reference page for back stable
+Schubert polynomials and their ambient ring.  Stable public anchors cover the
+polynomial definition, ring, standard elementary and complete homogeneous
+monomial bases, stabilization, Dynkin reversal, Stanley symmetric function
+orbit sums, and shifted specializations that count reduced pipe dreams.
+
+The page summarizes Rodriguez's arXiv `2609.25445v1`, with its bibliography
+record copied from the site's BibTeX API and mathematical claims checked
+against the cached primary manuscript.  It also cites the original
+Lam--Lee--Shimozono basis theorem and the earlier standard elementary
+monomial literature.  Added a generated navigation card and focused links
+from the Schubert, Schubert-variations, Stanley-symmetric, and Grothendieck
+pages; no existing public label was renamed or removed.
+
+`make svg Q=1`, `make bib Q=1`, `make Q=1`, `make check Q=1`, rendered-link
+and anchor inspection, and `git diff --check` pass.  No deployment is
+authorized or performed; ownership is released and there are no blockers.
+
 ## Completed scope (2026-09-22, structural headings and anchors)
 
 Added or re-leveled 45 descriptive headings across the long

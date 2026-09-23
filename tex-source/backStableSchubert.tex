@@ -1,0 +1,233 @@
+\metatitle{Back stable Schubert polynomials}
+\metadescription{Back stable Schubert polynomials, their ambient ring,
+standard elementary and complete homogeneous monomial bases, Dynkin reversal,
+Stanley symmetric function orbit sums, and shifted specializations.}
+\metakeywords{back stable Schubert polynomial, standard elementary monomial,
+Stanley symmetric function, Dynkin reversal, reduced pipe dream}
+
+
+\section[backStableSchubert]{Back stable Schubert polynomials}
+
+\begin{polydata}{schubertBackStable}
+  Name     & Back stable Schubert polynomials \\
+  Space    & All \\
+  Basis    & True \\
+  Rating   & 1 \\
+  Bib      & LamLeeShimozono2018x \\
+  Year     & 2018 \\
+  Symbol   & $\overleftarrow{\schubert}_w$ \\
+  Keywords & back-stable, schubert, pipe-dreams \\
+  Category & Schubert \\
+  SpecializesTo & schubert | LamLeeShimozono2018x | map=positive-variable projection \\
+\end{polydata}
+
+Let $\symS_{\setZ}$ be the permutations of $\setZ$ with finite support, and
+let the shift $\gamma$ act by
+\[
+  \gamma(s_i)=s_{i+1},
+  \qquad
+  \gamma(x_i)=x_{i+1}.
+\]
+If the support of $w\in\symS_{\setZ}$ lies in $[p,q]$, translate its ordinary
+\hyperref[schubert]{Schubert polynomial} to that interval by
+\[
+  \schubert_w^{[p,q]}
+  \coloneqq
+  \gamma^{p-1}\schubert_{\gamma^{1-p}(w)}.
+\]
+The \defin{back stable Schubert polynomial}
+\label{backStableSchubertPolynomial} is the coefficientwise limit
+\[
+  \overleftarrow{\schubert}_w
+  \coloneqq
+  \lim_{\substack{p\to-\infty\\q\to\infty}}\schubert_w^{[p,q]}.
+\]
+For $w\in\symS_\infty$, this may be written more naturally as
+\[
+  \overleftarrow{\schubert}_w
+  =
+  \lim_{m\to\infty}
+  \gamma^{-m}\schubert_{1^m\times w},
+\]
+where $1^m\times w$ adjoins $m$ fixed points to the left of $w$
+\cite[Sec.~2.3]{Rodriguez2026x}.
+
+
+\subsection[backStableSchubertRing]{The back stable Schubert ring}
+
+Let $\Lambda^-$ be the ring of symmetric functions in the variables
+$\dotsc,x_{-1},x_0$.  The natural ambient ring is
+\[
+  \mathcal R
+  \coloneqq
+  \Lambda^-\otimes_{\setQ}\setQ[x_i:i\in\setZ].
+\]
+Infinite dependence is allowed only through the symmetric-function factor.
+
+\begin{theorem}[Lam--Lee--Shimozono,
+  \cite[Thm.~3.5]{LamLeeShimozono2018x}]
+The family
+\[
+  \{\overleftarrow{\schubert}_w:w\in\symS_{\setZ}\}
+\]
+is a linear basis of $\mathcal R$.
+\end{theorem}
+
+The projection that kills the nonpositive variables recovers the ordinary
+Schubert polynomial for $w\in\symS_\infty$.  For example,
+\[
+  \overleftarrow{\schubert}_{312}
+  =
+  \sum_{i\leq j\leq1}x_ix_j,
+\]
+whose positive-variable projection is
+$\schubert_{312}(x_1,x_2,\dotsc)$.
+Back stable Schubert polynomials also have
+\hyperref[bumplessPipeDream]{bumpless pipe-dream} formulas.  Their double
+versions and enriched extensions are described with the other
+\hyperref[schubertDouble]{Schubert polynomial variations}.
+
+
+\subsection[backStableStandardMonomials]{Back stable standard monomial bases}
+
+For an ordinary finitely supported sequence
+$\alpha=(\alpha_1,\alpha_2,\dotsc)$ with $0\leq\alpha_i\leq i$, the product
+\[
+  e_\alpha
+  \coloneqq
+  \prod_{i\geq1}e_{\alpha_i}(x_1,\dotsc,x_i)
+\]
+is a \defin{standard elementary monomial}
+\label{standardElementaryMonomial}.  These monomials form a basis of the
+ordinary polynomial ring; see
+\cite{FominGelfandPostnikov1997,Winkel1998}.
+
+Let $\mathcal C$ be the finitely supported tuples of nonnegative integers
+indexed by $\setZ$.  For $\alpha\in\mathcal C$, define
+\[
+  \overleftarrow{e}_\alpha
+  \coloneqq
+  \prod_{i\in\setZ}e_{\alpha_i}(\dotsc,x_{i-1},x_i),
+  \qquad
+  \overleftarrow{h}_\alpha
+  \coloneqq
+  \prod_{i\in\setZ}h_{\alpha_i}(\dotsc,x_{i-1},x_i).
+\]
+These are the \defin{back stable standard elementary monomials}
+\label{backStableSEM} and the \defin{back stable complete homogeneous
+monomials}\label{backStableCHM}.
+
+\begin{theorem}[Rodriguez,
+  \cite[Thm.~3.3 and Cor.~4.5]{Rodriguez2026x}]
+Each of
+\[
+  \{\overleftarrow{e}_\alpha:\alpha\in\mathcal C\},
+  \qquad
+  \{\overleftarrow{h}_\alpha:\alpha\in\mathcal C\}
+\]
+is a linear basis of $\mathcal R$.
+\end{theorem}
+
+Consequently there are unique back stable SEM coefficients
+$\overleftarrow{\kappa}^w_\alpha$ such that
+\[
+  \overleftarrow{\schubert}_w
+  =
+  \sum_{\alpha\in\mathcal C}
+  \overleftarrow{\kappa}^w_\alpha\,\overleftarrow{e}_\alpha.
+\]
+These coefficients can have either sign.
+
+
+\subsection[backStableSEMStabilization]{Stabilization of standard elementary expansions}
+
+For $\alpha\in\mathcal C$, set
+\[
+  d(\alpha)
+  \coloneqq
+  \max_{\alpha_i\neq0}(\alpha_i-i).
+\]
+When $\gamma^m(w)\in\symS_\infty$, the ordinary standard elementary
+expansion is recovered by \cite[Thm.~3.7]{Rodriguez2026x}
+\[
+  \schubert_{\gamma^m(w)}
+  =
+  \sum_{\substack{\alpha\in\mathcal C\\d(\alpha)\leq m}}
+  \overleftarrow{\kappa}^w_\alpha\,e_{\gamma^m(\alpha)}.
+\]
+Thus a single back stable expansion records all sufficiently left-stabilized
+ordinary expansions.
+
+
+\subsection[backStableDynkinReversal]{Dynkin reversal}
+
+The involution $\widetilde\omega:\mathcal R\to\mathcal R$ is determined by
+\[
+  \widetilde\omega(e_r)=h_r,
+  \qquad
+  \widetilde\omega(x_i)=-x_{1-i}.
+\]
+If $w=s_{a_1}\dotsm s_{a_{\ell(w)}}$, define its
+\defin{Dynkin reversal}\label{dynkinReversal} by
+\[
+  \widehat w=s_{-a_1}\dotsm s_{-a_{\ell(w)}}.
+\]
+For $\alpha\in\mathcal C$, set $\widehat\alpha_i=\alpha_{-i}$.  Then
+\[
+  \widetilde\omega(\overleftarrow{\schubert}_w)
+    =\overleftarrow{\schubert}_{\widehat w},
+  \qquad
+  \widetilde\omega(\overleftarrow{e}_\alpha)
+    =\overleftarrow{h}_{\widehat\alpha}.
+\]
+It follows that the back stable SEM coefficient of
+$\overleftarrow{\schubert}_w$ at $\alpha$ equals the back stable complete
+homogeneous coefficient of
+$\overleftarrow{\schubert}_{\widehat w}$ at $\widehat\alpha$
+\cite[Thms.~4.3--4.6]{Rodriguez2026x}.
+
+
+\subsection[backStableStanleyOrbitSums]{Orbit sums and Stanley symmetric functions}
+
+Let $\operatorname{par}(\alpha)$ be the partition obtained by sorting the
+nonzero entries of $\alpha$.  For the
+\hyperref[stanleySym]{Stanley symmetric function} $F_w$, we have
+\cite[Thm.~5.4]{Rodriguez2026x}
+\[
+  \sum_{\operatorname{par}(\alpha)=\lambda}
+  \overleftarrow{\kappa}^w_\alpha
+  =
+  [e_\lambda]F_w.
+\]
+Thus the back stable coefficients refine the elementary coefficients of
+$F_w$ by remembering the positions of the parts.  Dynkin reversal gives the
+corresponding statement for complete homogeneous coefficients.
+
+
+\subsection[backStableShiftedSpecialization]{Shifted specialization and reduced pipe dreams}
+
+For $w\in\symS_{\setZ}$, Rodriguez studies the polynomial
+\[
+  \mathcal T_w(t)
+  \coloneqq
+  \frac{1}{\ell(w)!}
+  \sum_{(a_1,\dotsc,a_{\ell(w)})\in\operatorname{Red}(w)}
+  \prod_{j=1}^{\ell(w)}(t+a_j).
+\]
+For $w\in\symS_\infty$ and $t\in\setZ_{\geq0}$,
+\[
+  \mathcal T_w(t)
+  =
+  \schubert_{1^t\times w}(1)
+  =
+  |\operatorname{RP}(1^t\times w)|,
+\]
+the number of reduced \hyperref[pipeDream]{pipe dreams} after adjoining
+$t$ fixed points.  Moreover \cite[Def.~6.1 and Prop.~6.3]{Rodriguez2026x},
+\[
+  \mathcal T_w(t)
+  =
+  \sum_{\alpha\in\mathcal C}
+  \overleftarrow{\kappa}^w_\alpha
+  \prod_{i\in\setZ}\binom{t+i}{\alpha_i}.
+\]
