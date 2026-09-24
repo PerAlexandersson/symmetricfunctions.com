@@ -21,8 +21,11 @@ Both bibliography records came directly from the read-only
 checked against the primary manuscripts cached as paper-cache records 448
 and 449.  `make bib Q=1`, `make Q=1`, `make check Q=1`, rendered-heading,
 anchor, citation, and cross-link inspection, and `git diff --check` pass.  No
-deployment is authorized or performed; ownership is released and there are
-no blockers.
+database mutation or migration was involved.  The user authorized deployment
+of source commit `29bf8d6`; the constrained bridge completed with exit code 0
+under request `20260924T081243-96919e370ef6`.  The live Ehrhart, polytopes,
+key, and Lascoux pages expose the new anchors, cross-links, and citations.
+Ownership is released and there are no blockers.
 
 ## Completed scope (2026-09-23, concise back stable page)
 
