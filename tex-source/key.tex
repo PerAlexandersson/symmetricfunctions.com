@@ -789,15 +789,34 @@ However, in some instances such a product is key-positive; see \cite{Kouno2018}.
 \name{Guilherme Zeus Dantas e Moura}'s senior thesis surveys operator,
 tableau, plactic, and crystal models for key and atom polynomials
 \cite{DantasEMoura2024Thesis}.  The product-coefficient problem is a central
-motivation: products of two key polynomials need not be key-positive, but the
-expansion of a product of two key polynomials in the Demazure atom basis is
-expected to have nonnegative coefficients.
+motivation.
 
+\subsubsection[reinerShimozonoConjecture]{The Reiner--Shimozono conjecture}
 
-\begin{conjecture}[Attributed to unpublished work by Reiner--Shimozono]
-A product of two key polynomials expands positively into Demazure atoms.
-\end{conjecture}
-See \cite{Pun2016Thesis} for special cases of this result (she verifies the conjecture in $\setZ[x_1,x_2,x_3]$).
+The Reiner--Shimozono conjecture predicted that every product of two key
+polynomials expands positively into Demazure atoms.  \name{Reuven Hodges}
+constructs an infinite family of
+\defin{Reiner--Shimozono counterexamples}
+\label{reinerShimozonoCounterexamples}.  For compositions $a,b,c$ in
+$4(p+q-1)$ variables, his family satisfies
+\[
+  [\atom_c](\key_a\key_b)
+  =
+  N(p+q-1,p)\bigl(2-(p-2)(q-2)\bigr),
+\]
+where $N(r,k)$ is a Narayana number \cite[Thm.~1.1]{Hodges2026x}.  Thus the
+coefficient is negative exactly when $(p-2)(q-2)>2$; the first examples in
+the family occur in 28 variables and have coefficients $-105$ and $-350$.
+The three-variable positivity theorem of \name{Anna Pun} remains valid
+\cite{Pun2016Thesis}.
+
+The same counterexamples disprove Polo's conjecture that tensor products of
+section modules on \hyperref[schubertVarietyDefinition]{Schubert varieties}
+admit Schubert filtrations
+\cite[Cor.~1.2]{Hodges2026x}.  Hodges also gives an exact coefficient formula
+and a polynomial-time sufficient test for positivity on a large family of
+atom coefficients.  The $K$-theoretic consequence is recorded under
+\hyperref[lascouxProductAtomCounterexamples]{products and Lascoux atoms}.
 
 \name{Timothy C. Miller} proves a positive combinatorial rule for multiplying
 a permuted-basement Demazure atom by a Schur polynomial

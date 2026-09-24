@@ -1,5 +1,29 @@
 # Handoff
 
+## Completed scope (2026-09-24, two current preprints)
+
+Added compact coverage of Konoike's zonotope-average formula for integral
+cyclic polytopes to `ehrhart.tex`, with a cross-link from the existing magic
+positivity section in `polytopes.tex`.  The new result records magic
+positivity of the Ehrhart polynomial and real-rootedness, log-concavity, and
+unimodality of the corresponding (h^*)-polynomial.
+
+Updated `key.tex` to mark the Reiner--Shimozono atom-positivity conjecture as
+false.  The replacement records Hodges's infinite counterexample family, its
+Narayana-factor coefficient formula, the first 28-variable negative
+coefficients, the surviving three-variable theorem, and the failure of
+Polo's Schubert-filtration conjecture.  Added the resulting (K)-theoretic
+counterexample under products and Lascoux atoms in `lascoux.tex`, with
+reciprocal stable cross-links.
+
+Both bibliography records came directly from the read-only
+`arxiv.symmetricfunctions.com` BibTeX API.  Claims and theorem locators were
+checked against the primary manuscripts cached as paper-cache records 448
+and 449.  `make bib Q=1`, `make Q=1`, `make check Q=1`, rendered-heading,
+anchor, citation, and cross-link inspection, and `git diff --check` pass.  No
+deployment is authorized or performed; ownership is released and there are
+no blockers.
+
 ## Completed scope (2026-09-23, concise back stable page)
 
 Shortened `backStableSchubert.tex` from 233 to 141 source lines to match the
