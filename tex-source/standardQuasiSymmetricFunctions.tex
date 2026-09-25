@@ -147,6 +147,29 @@ characteristic packages induction and restriction for symmetric-group
 representations.
 
 
+\subsection[qsymToricRichardsonGeometry]{Toric Richardson varieties}
+
+For a binary word $s$, let $X_s$ be the associated toric Richardson variety
+in a Grassmannian.  The variety $X_s$ has a torus-invariant affine paving with
+cells indexed by the subwords of $s$, where subword means a not necessarily
+consecutive subsequence.  Its integral cohomology has the presentation
+\[
+ H^*(X_s,\setZ) \cong
+ \spaceQSym/(\gessel_w : w\text{ is not a subword of }s).
+\]
+The fundamental function $\gessel_t$ is dual to the closure of the cell
+indexed by $t$
+\cite[Thms.~I and~III]{GonzalesLeLowen2026x}.
+
+Under the dual homology description, torus-invariant subvarieties map to
+generalized \hyperref[nonComRibbonBasis]{noncommutative ribbon functions};
+effectiveness is equivalent to ribbon positivity.  Taking a direct limit over the words $s$
+gives the \defin{infinite quasisymmetric Grassmannian}
+\label{infiniteQuasisymmetricGrassmannian}, whose cohomology and homology are
+the Hopf algebras QSym and NSym, respectively
+\cite[Thms.~II and~IV]{GonzalesLeLowen2026x}.
+
+
 \section[qmonom]{Monomial quasisymmetric functions}
 
 \begin{polydata}{qmonom}
@@ -349,21 +372,6 @@ Under the Hopf isomorphism $[ \pi]_{\DES}\mapsto
 \]
 \end{example*}
 
-\name{Olivier Bouillot}, \name{Jean-Christophe Novelli}, and
-\name{Jean-Yves Thibon} construct new bases of $\spaceQSym$ and
-$\mathrm{WQSym}$
-from a two-parameter deformation of the quasi-shuffle
-\cite{BouillotNovelliThibon2022x}.  The deformation is defined using the
-formal group law associated with the exponential generating function of the
-homogeneous Eulerian polynomials, and the product rule in the new bases is
-given by this operation.
-
-\name{Hugo Mlodecki} constructs an explicit bidendriform automorphism of the
-Hopf algebra of word quasisymmetric functions $\mathrm{WQSym}$
-\cite{Mlodecki2024}.  The construction uses decompositions of packed words
-through red and blue biplane forests and gives a concrete self-duality map
-compatible with the bidendriform structure.
-
 \name{Nantel Bergeron}, \name{Kelvin Chan}, \name{Farhad Soltani}, and
 \name{Mike Zabrocki} study quasisymmetric polynomials in anticommuting
 variables \cite{BergeronChanSoltaniZabrocki2023}.  The quotient of the
@@ -425,6 +433,41 @@ The following table shows the monomial expansion of $\qRho_\alpha$.
 \end{example*}
 
 The authors also give formulas for computing product and coproduct.
+
+
+\section[wordQuasiSymmetricFunctions]{Word quasisymmetric functions}
+
+The Hopf algebra $\mathrm{WQSym}$ of word quasisymmetric functions has bases
+indexed by packed words.  \name{Olivier Bouillot},
+\name{Jean-Christophe Novelli}, and \name{Jean-Yves Thibon} construct new
+bases of $\spaceQSym$ and $\mathrm{WQSym}$ from a two-parameter deformation
+of the quasi-shuffle \cite{BouillotNovelliThibon2022x}.  The deformation is
+defined using a formal group law, and also gives the product rule in the new
+bases.
+
+\name{Hugo Mlodecki} constructs an explicit bidendriform automorphism of
+$\mathrm{WQSym}$ \cite{Mlodecki2024}.  Its packed-word decompositions give a
+concrete self-duality map compatible with the bidendriform structure.
+
+\subsection[chromaticWordQuasisymmetricMatroid]{Chromatic word-quasisymmetric functions of matroids}
+
+For a labeled matroid $M$ on $[d]$, a map
+$f:[d]\longrightarrow\setZ_{>0}$ is \defin{$M$-generic} if $M$ has a unique
+maximum-weight basis.  Its chromatic word-quasisymmetric function is
+\[
+ \psi(M)=\sum_{f\text{ is }M\text{-generic}}
+ w_{f(1)}w_{f(2)}\dotsm w_{f(d)} \in \mathrm{WQSym}.
+\]
+This is a valuative Hopf-algebra morphism, and commutativization recovers the
+Billera--Jia--Reiner quasisymmetric function.  The construction depends on
+the labeling, so it is not a matroid-isomorphism invariant
+\cite{PenaguiaoRehberg2026x}.
+
+In degree $d$, its image has rank between $2^d-d$ and $d!$.  The lower bound
+comes from linearly independent functions of
+\hyperref[schubertMatroidDefinition]{Schubert matroids}; equality with the
+upper bound is conjectured
+\cite[Thms.~1.1--1.2 and Conj.~1.3]{PenaguiaoRehberg2026x}.
 
 
 \section[standardQuasiInvolution]{Involutions on quasisymmetric functions}

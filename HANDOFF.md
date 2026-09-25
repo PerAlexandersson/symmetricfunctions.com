@@ -1,5 +1,25 @@
 # Handoff
 
+## Completed scope (2026-09-25, QSym geometry, word-QSym, and LLT positivity)
+
+Added compact coverage of arXiv `2609.30257v1`, `2609.29927v1`, and
+`2609.29957v1`.  New stable headings cover toric Richardson varieties and the
+infinite quasisymmetric Grassmannian, word quasisymmetric functions and their
+labeled-matroid invariant, snake-matroid shard polytopes, and single-row
+Macdonald-cumulant LLT positivity.  Short reciprocal links connect the QSym,
+NSym, lattice-path-matroid, matroid, modified-Macdonald, LLT, and diagonal
+harmonics pages.  Existing public labels remain in place.
+
+All three bibliography records came directly from the read-only
+`arxiv.symmetricfunctions.com` BibTeX API.  Claims and theorem locators were
+checked against the primary manuscripts cached as paper-cache records 455,
+457, and 458.  `make bib Q=1`, `make Q=1`, `make check Q=1`, rendered-heading,
+anchor, citation, and cross-link inspection, and `git diff --check` pass.  The
+two warnings from `make check` are the existing missing-bibliography fixtures
+in `tests/unittest.tex`.  No database mutation or migration was involved.  No
+deployment is authorized or performed; ownership is released and there are
+no blockers.
+
 ## Completed scope (2026-09-24, two current preprints)
 
 Added compact coverage of Konoike's zonotope-average formula for integral
