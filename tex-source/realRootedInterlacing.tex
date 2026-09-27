@@ -440,20 +440,7 @@ $\lambda, \mu > 0$, we have
 \end{enumerate}
 \end{theorem}
 
-The theorem is a $2\times2$-submatrix criterion, not an all-minors
-condition. For a constant matrix it has the following exact form.
-
-\begin{corollary}[TP2 criterion, \cite[Cor.~7.8.6]{Branden2015}]
-\label{tpTwoInterlacingCriterion}
-A constant real matrix $G$ maps $\mathscr F_n^+$ to $\mathscr F_m^+$ if and
-only if it is \defin{TP2}: every entry and every $2\times2$ minor is
-nonnegative.
-\end{corollary}
-
-Total nonnegativity asks for every square minor to be nonnegative, so it is
-stronger than TP2 once matrices with three rows and three columns are allowed.
-It still gives the useful sufficient test below.
-
+For a constant matrix, total non-negativity gives a simpler sufficient test.
 \begin{corollary}[TNN mixing, \cite[Thm.~3.7]{Fisk2006x}]
 \label{tnnMixingInterlacing}
 Let \(f_1,\dotsc,f_n\) be an interlacing sequence and let \(A\) be an
@@ -467,47 +454,37 @@ form an interlacing sequence in row order.
 Thus a coefficient matrix supplied by a
 \hyperref[tnnPathMatrix]{planar network} can be used directly to mix an
 interlacing refinement.
-This should also be distinguished from a
-\hyperref[fullyInterlacingLace]{fully interlacing matrix}: there every minor
-of the infinite coefficient-convolution matrix $\operatorname{Lace}(G)$ must
-be nonnegative.
 
 
-\begin{example*}[All small matrices over $\{0,1,t\}$]
+\begin{example*}[Small matrices preserving interleaving sequences]
 \label{smallInterlacingMatrices}
 
-There are 81 matrices with entries in $\{0,1,t\}$. Remove those whose rows
-are equal and those where one row is $(0,0)$. The eight possible nonzero rows
-are
-\[
-\begin{aligned}
-r_1&=(0,1), & r_2&=(0,t), & r_3&=(1,0), & r_4&=(1,1),\\
-r_5&=(1,t), & r_6&=(t,0), & r_7&=(t,1), & r_8&=(t,t).
-\end{aligned}
-\]
-Thus the 56 remaining matrices are exactly
-$G_{ij}=\begin{pmatrix}r_i\\r_j\end{pmatrix}$ with $i\ne j$.
-The table lists all of them: ``yes'' means that $G_{ij}$ satisfies the pencil
-criterion above, while ``no'' means that it does not.
-\[
-\begin{array}{c|cccccccc}
-\text{top}\backslash\text{bottom}
- &r_1&r_2&r_3&r_4&r_5&r_6&r_7&r_8\\
-\hline
-r_1& -&\mathrm{yes}&\mathrm{no}&\mathrm{no}&\mathrm{no}&\mathrm{yes}&\mathrm{yes}&\mathrm{yes}\\
-r_2& \mathrm{no}&-&\mathrm{no}&\mathrm{no}&\mathrm{no}&\mathrm{no}&\mathrm{no}&\mathrm{no}\\
-r_3& \mathrm{yes}&\mathrm{no}&-&\mathrm{yes}&\mathrm{no}&\mathrm{yes}&\mathrm{yes}&\mathrm{no}\\
-r_4& \mathrm{yes}&\mathrm{no}&\mathrm{no}&-&\mathrm{no}&\mathrm{yes}&\mathrm{yes}&\mathrm{yes}\\
-r_5& \mathrm{no}&\mathrm{no}&\mathrm{no}&\mathrm{no}&-&\mathrm{no}&\mathrm{no}&\mathrm{no}\\
-r_6& \mathrm{no}&\mathrm{yes}&\mathrm{no}&\mathrm{no}&\mathrm{no}&-&\mathrm{no}&\mathrm{yes}\\
-r_7& \mathrm{no}&\mathrm{yes}&\mathrm{no}&\mathrm{no}&\mathrm{no}&\mathrm{yes}&-&\mathrm{yes}\\
-r_8& \mathrm{no}&\mathrm{yes}&\mathrm{no}&\mathrm{no}&\mathrm{no}&\mathrm{no}&\mathrm{no}&-
-\end{array}
-\]
-There are 18 ``yes'' entries. The two entries $G_{12}$ and $G_{36}$ use a
-zero polynomial on one side of the pencil comparison. They are valid under
-the convention that zero interlaces every real-rooted polynomial; a checker
-which requires both sides to be nonzero will incorrectly return 16.
+There are 81 matrices with entries in $\{0,1,t\}$. Remove those whose first
+and last rows are equal and those where one row is $(0,0)$. This leaves 56
+matrices; among them, the following 18 satisfy the conditions in the theorem
+above. The nested lists give the two rows of each matrix.
+\begin{lstlisting}
+[
+  [[0, 1], [0, t]],
+  [[0, 1], [t, 0]],
+  [[1, 0], [0, 1]],
+  [[1, 0], [t, 0]],
+  [[t, 0], [0, t]],
+  [[0, 1], [t, 1]],
+  [[0, 1], [t, t]],
+  [[1, 0], [1, 1]],
+  [[1, 0], [t, 1]],
+  [[1, 1], [0, 1]],
+  [[1, 1], [t, 0]],
+  [[t, 0], [t, t]],
+  [[t, 1], [0, t]],
+  [[t, 1], [t, 0]],
+  [[t, t], [0, t]],
+  [[1, 1], [t, 1]],
+  [[1, 1], [t, t]],
+  [[t, 1], [t, t]]
+]
+\end{lstlisting}
 \end{example*}
 
 

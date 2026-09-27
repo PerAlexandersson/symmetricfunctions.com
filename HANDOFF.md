@@ -1,25 +1,18 @@
 # Handoff
 
-## Completed scope (2026-09-27, small interlacing-matrix catalogue)
+## Completed scope (2026-09-27, copyable interlacing-matrix list)
 
-Replaced the partial list of 18 preserving matrices on
-`realRootedInterlacing.tex` with an `8`-by-`8` classification table covering
-all 56 ordered pairs of distinct nonzero rows over `{0,1,t}`.  The table has
-18 passing and 38 failing entries and a stable `smallInterlacingMatrices`
-anchor.  The text now separates Brändén's polynomial `2`-by-`2` pencil
-criterion, its exact constant-matrix TP2 specialization, ordinary total
-nonnegativity, and the stronger all-minors Lace condition.
+Reverted the over-broad 56-case classification from source commit `41acf76`
+after the user clarified the request.  The page again shows only the 18
+matrices satisfying Brändén's criterion, now as a compact nested-list code
+block.  The site's existing code-block control provides one-click copying.
+Retained the useful stable `smallInterlacingMatrices` anchor, but removed the
+added TP2/Lace comparison and all 38 failing cases.
 
-The theorem statements and conventions were checked against primary sources
-cached as paper-cache records 330 and 12.  In particular, `G_12` and `G_36`
-pass only because Brändén allows zero to interlace a real-rooted polynomial.
-The existing Rust `matrix2x2_classify` experiment is a finite diagnostic and
-rejects those zero-sided comparisons, so it reports 16 rather than 18;
-polytool's maintained Lace routines address the distinct all-minors
-condition.  No Rust source was changed.  The focused build, `make Q=1`,
-`make check Q=1`, rendered anchor/table inspection, exact `18+38` table
-count, and `git diff --check` pass.  No deployment is authorized or
-performed; ownership is released and there are no blockers.
+The focused build, `make Q=1`, `make check Q=1`, rendered code-block and
+anchor inspection, and `git diff --check` pass.  No Rust source was changed.
+No deployment is authorized or performed; ownership is released and there
+are no blockers.
 
 ## Completed scope (2026-09-25, QSym geometry, word-QSym, and LLT positivity)
 
