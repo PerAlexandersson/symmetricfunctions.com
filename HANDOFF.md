@@ -11,8 +11,13 @@ added TP2/Lace comparison and all 38 failing cases.
 
 The focused build, `make Q=1`, `make check Q=1`, rendered code-block and
 anchor inspection, and `git diff --check` pass.  No Rust source was changed.
-No deployment is authorized or performed; ownership is released and there
-are no blockers.
+The user authorized deployment of source commit `6eac4de`; the constrained
+bridge completed with exit code 0 under request
+`20260928T053613-6b67d5afd820`.  The live homepage and interlacing page return
+HTTP 200, and the live page and `site.js` match their local SHA-256 checksums.
+The live page contains the stable anchor and both endpoints of the 18-matrix
+code block.  No database mutation or migration was involved.  Ownership is
+released and there are no blockers.
 
 ## Completed scope (2026-09-25, QSym geometry, word-QSym, and LLT positivity)
 
