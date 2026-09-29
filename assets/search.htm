@@ -35,7 +35,13 @@
 <script src="./site.js?v=20260815-nav-icons" defer></script>
 	<script>
 	  window.addEventListener('DOMContentLoaded', function() {
-	    new PagefindUI({ element: "#search", showImages: false, resetStyles: false });
+	    var pagefindUI = new PagefindUI({
+	      element: "#search",
+	      showImages: false,
+	      resetStyles: false
+	    });
+	    var query = new URLSearchParams(window.location.search).get("q");
+	    if (query) pagefindUI.triggerSearch(query);
 	  });
 	</script>
 	<style>

@@ -1,5 +1,30 @@
 # Handoff
 
+## Active ownership — final pre-deploy fixes (2026-09-29)
+
+Codex owns `template.htm`, the focused generated-HTML regression surface under
+`tests/`, this handoff, and any directly related website documentation needed
+to replace the broken JSON-LD SearchAction URL.  The checkout started clean on
+`master` at `3509698`, matching `origin/master`; no `.tex` content is in scope.
+The user explicitly authorized a verified rebuild and constrained deployment
+after both this website fix and the separately owned Pagefind bridge change
+pass review-quality checks.
+
+The generated JSON-LD SearchAction now targets
+`https://www.symmetricfunctions.com/search.htm?q={search_term_string}`.  The
+real search page reads that `q` parameter and hands it to Pagefind's
+`triggerSearch`, so the structured action both resolves and performs the
+requested search.  The generated-HTML lint rejects the former
+`topicsindex.htm` target and requires both the new target and query handoff.
+
+Focused render/copy/lint checks pass.  `make Q=1`, `make check Q=1`, and
+`git diff --check` pass from the final pre-deploy source; the check emits only
+the two expected synthetic-relation warnings.  The rebuilt index contains the
+new SearchAction, `www/search.htm` contains the Pagefind query handoff,
+`www/_pagefind/pagefind-entry.json` reports 145 English pages, and
+`www/unittest.htm` is absent.  No `.tex` content changed.  Deployment remains
+pending the separately verified bridge checkpoint and clean commits.
+
 ## Completed scope — ownership released (2026-09-29, accepted build-pipeline fixes)
 
 Codex owned `Makefile`, `config.mk`, `config_test.mk`, the Lua build-pipeline

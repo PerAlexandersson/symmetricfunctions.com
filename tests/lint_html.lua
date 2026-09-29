@@ -210,6 +210,35 @@ for _, path in ipairs(html_files_from_dir(www_dir)) do
   end
 end
 
+local homepage_path = www_dir .. "/index.htm"
+local homepage = read_file(homepage_path)
+local search_action_target =
+  '"target": "https://www.symmetricfunctions.com/search.htm?q={search_term_string}"'
+if homepage then
+  if not homepage:find(search_action_target, 1, true) then
+    report(homepage_path, 1, "JSON-LD SearchAction target is missing", search_action_target)
+  end
+  if homepage:find("topicsindex.htm?q=", 1, true) then
+    report(homepage_path, 1, "JSON-LD SearchAction targets a missing page", "topicsindex.htm")
+  end
+else
+  error_count = error_count + 1
+end
+
+local search_path = www_dir .. "/search.htm"
+local search_page = read_file(search_path)
+if search_page then
+  if not search_page:find('new URLSearchParams(window.location.search).get("q")',
+      1, true) then
+    report(search_path, 1, "search page does not read the SearchAction query", "q")
+  end
+  if not search_page:find("pagefindUI.triggerSearch(query)", 1, true) then
+    report(search_path, 1, "search page does not submit the SearchAction query", "query")
+  end
+else
+  error_count = error_count + 1
+end
+
 local sitemap_path = www_dir .. "/sitemap.xml"
 local sitemap = read_file(sitemap_path)
 if sitemap then
