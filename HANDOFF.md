@@ -1,14 +1,14 @@
 # Handoff
 
-## Active ownership — final pre-deploy fixes (2026-09-29)
+## Completed scope — SearchAction and scoped Pagefind deployment (2026-09-29)
 
-Codex owns `template.htm`, the focused generated-HTML regression surface under
+Codex owned `template.htm`, the focused generated-HTML regression surface under
 `tests/`, this handoff, and any directly related website documentation needed
 to replace the broken JSON-LD SearchAction URL.  The checkout started clean on
 `master` at `3509698`, matching `origin/master`; no `.tex` content is in scope.
-The user explicitly authorized a verified rebuild and constrained deployment
-after both this website fix and the separately owned Pagefind bridge change
-pass review-quality checks.
+The user explicitly authorized the verified rebuild and constrained deployment
+after this website fix and the separately owned Pagefind bridge change passed
+review-quality checks.
 
 The generated JSON-LD SearchAction now targets
 `https://www.symmetricfunctions.com/search.htm?q={search_term_string}`.  The
@@ -22,8 +22,19 @@ Focused render/copy/lint checks pass.  `make Q=1`, `make check Q=1`, and
 the two expected synthetic-relation warnings.  The rebuilt index contains the
 new SearchAction, `www/search.htm` contains the Pagefind query handoff,
 `www/_pagefind/pagefind-entry.json` reports 145 English pages, and
-`www/unittest.htm` is absent.  No `.tex` content changed.  Deployment remains
-pending the separately verified bridge checkpoint and clean commits.
+`www/unittest.htm` is absent.  No `.tex` content changed.
+
+The host supervisor restarted the dedicated bridge and deployed exact website
+commit `cad09a284e9c0ea16fa45058fa37843ba5674362`.  Receipt
+`20260929T095826-36e7487198d2` reports `delivery_state=deployed`; the `site`,
+`pagefind`, and `pagefind-verify` steps all completed and
+`pagefind_manifest_match=true`.  Independent live checks find the new
+SearchAction target on the homepage and both
+`URLSearchParams(window.location.search).get("q")` and
+`pagefindUI.triggerSearch(query)` on `search.htm`.  The live Pagefind entry
+reports `page_count=145`, `unittest.htm` returns HTTP 404, deleted old shard
+`index/en_137884b.pf_index` returns HTTP 404, and current shard
+`index/en_01bd27f.pf_index` returns HTTP 200.  Ownership is released.
 
 ## Completed scope — ownership released (2026-09-29, accepted build-pipeline fixes)
 
