@@ -68,15 +68,28 @@ local function split_cells_preserve_empties(s, sep)
   local depth = 0
   local in_tag = false
   local quote = nil
+  local in_dollar_math = false
+  local in_paren_math = false
+  local environment_depth = 0
 
   local function starts_html_entity(pos)
     local candidate = s:sub(pos)
     return candidate:match("^&[#%w][#%w]+;") ~= nil
   end
 
+  local function is_escaped(pos)
+    local count = 0
+    pos = pos - 1
+    while pos >= 1 and s:sub(pos, pos) == "\\" do
+      count = count + 1
+      pos = pos - 1
+    end
+    return count % 2 == 1
+  end
+
   while i <= n do
     local ch = s:sub(i, i)
-    local prev = (i > 1) and s:sub(i - 1, i - 1) or ""
+    local tail = s:sub(i)
 
     if in_tag then
       table.insert(buf, ch)
@@ -100,8 +113,29 @@ local function split_cells_preserve_empties(s, sep)
       depth = math.max(0, depth - 1)
       table.insert(buf, ch)
       i = i + 1
-    elseif s:sub(i, i + m - 1) == sep and depth == 0 and prev ~= "\\" and
-        not starts_html_entity(i) then
+    elseif tail:match("^\\begin%s*%b{}") then
+      environment_depth = environment_depth + 1
+      table.insert(buf, ch)
+      i = i + 1
+    elseif tail:match("^\\end%s*%b{}") then
+      environment_depth = math.max(0, environment_depth - 1)
+      table.insert(buf, ch)
+      i = i + 1
+    elseif tail:sub(1, 2) == "\\(" then
+      in_paren_math = true
+      table.insert(buf, ch)
+      i = i + 1
+    elseif tail:sub(1, 2) == "\\)" then
+      in_paren_math = false
+      table.insert(buf, ch)
+      i = i + 1
+    elseif ch == "$" and not is_escaped(i) then
+      in_dollar_math = not in_dollar_math
+      table.insert(buf, ch)
+      i = i + 1
+    elseif s:sub(i, i + m - 1) == sep and depth == 0
+        and environment_depth == 0 and not in_dollar_math and not in_paren_math
+        and not is_escaped(i) and not starts_html_entity(i) then
       out[#out + 1] = table.concat(buf)
       buf = {}
       i = i + m
@@ -132,6 +166,23 @@ local function looks_like_trusted_html_fragment(s)
       or s:find("</q>", 1, true) ~= nil
 end
 
+local function html_escape_preserving_entities(s)
+  s = tostring(s or "")
+  local out = {}
+  local pos = 1
+  while pos <= #s do
+    local first, last = s:find("&[#%w][#%w]+;", pos)
+    if not first then
+      out[#out + 1] = html_escape(s:sub(pos))
+      break
+    end
+    out[#out + 1] = html_escape(s:sub(pos, first - 1))
+    out[#out + 1] = s:sub(first, last)
+    pos = last + 1
+  end
+  return table.concat(out)
+end
+
 local function split_yshort_row(row)
   row = trim(row or "")
   local toks = {}
@@ -150,6 +201,15 @@ local function split_yshort_row(row)
       local tok = row:sub(i, j - 1)
       if tok ~= "" then table.insert(toks, tok) end
       i = j
+    elseif ch == "\\" then
+      local control_word = row:sub(i):match("^(\\[A-Za-z]+)")
+      if control_word then
+        table.insert(toks, control_word)
+        i = i + #control_word
+      else
+        table.insert(toks, ch)
+        i = i + 1
+      end
     else
       table.insert(toks, ch)
       i = i + 1
@@ -260,7 +320,7 @@ local function format_cell(content, row, col, opts)
     delimiter_left = ""
     delimiter_right = ""
   elseif escape_ent then
-    ent = html_escape(ent)
+    ent = html_escape_preserving_entities(ent)
   end
   
   local cls_attr = (#classes > 0) and (' class="' .. table.concat(classes, " ") .. '"') or ""

@@ -7,11 +7,10 @@
 -- 3. Normalizes block-level macros (bigskip, ytableaushort) with blank lines
 -- 4. Rewrites various LaTeX commands for better Pandoc compatibility
 --
--- Usage: lua preprocess.lua [source.tex] [--no-url-rewrite] < in.tex > out.pre.tex
+-- Usage: lua preprocess.lua [source.tex] < in.tex > out.pre.tex
 -- ============================================================================
 
 local utils = dofile("utils.lua")
-local normalize_url = utils.normalize_url
 local trim = utils.trim
 
 -- ============================================================================
@@ -46,6 +45,97 @@ local args, source_filename = parse_arguments()
 -- ============================================================================
 
 local input = io.read("*a")
+
+-- Protect regions in which TeX must remain byte-for-byte literal.  Each mask
+-- retains the original number of newlines so source annotations after it keep
+-- their real line numbers.
+local protected_regions = {}
+
+local function newline_string(text)
+  return (text:gsub("[^\n]", ""))
+end
+
+local function mask_region(text)
+  local index = #protected_regions + 1
+  local token = string.format("@@PREPROCESS_PROTECTED_%06d@@", index)
+  local masked = token .. newline_string(text)
+  protected_regions[index] = { masked = masked, original = text }
+  return masked
+end
+
+local function mask_protected_text(text)
+  local out = {}
+  local i, n = 1, #text
+
+  while i <= n do
+    local matched = false
+    for _, env in ipairs({ "verbatim", "verbatim*", "lstlisting" }) do
+      local begin_token = "\\begin{" .. env .. "}"
+      if text:sub(i, i + #begin_token - 1) == begin_token then
+        local end_token = "\\end{" .. env .. "}"
+        local end_start = text:find(end_token, i + #begin_token, true)
+        local finish = end_start and (end_start + #end_token - 1) or n
+        out[#out + 1] = mask_region(text:sub(i, finish))
+        i = finish + 1
+        matched = true
+        break
+      end
+    end
+
+    if not matched and text:sub(i, i + 4) == "\\verb" then
+      local delimiter_pos = i + 5
+      if text:sub(delimiter_pos, delimiter_pos) == "*" then
+        delimiter_pos = delimiter_pos + 1
+      end
+      local delimiter = text:sub(delimiter_pos, delimiter_pos)
+      if delimiter ~= "" and not delimiter:match("[%a%s]") then
+        local close = text:find(delimiter, delimiter_pos + 1, true) or n
+        out[#out + 1] = mask_region(text:sub(i, close))
+        i = close + 1
+        matched = true
+      end
+    end
+
+    if not matched and text:sub(i, i) == "%" then
+      local backslashes = 0
+      local j = i - 1
+      while j >= 1 and text:sub(j, j) == "\\" do
+        backslashes = backslashes + 1
+        j = j - 1
+      end
+      if backslashes % 2 == 0 then
+        local newline = text:find("\n", i, true)
+        local finish = newline and (newline - 1) or n
+        out[#out + 1] = mask_region(text:sub(i, finish))
+        i = finish + 1
+        matched = true
+      end
+    end
+
+    if not matched then
+      out[#out + 1] = text:sub(i, i)
+      i = i + 1
+    end
+  end
+
+  return table.concat(out)
+end
+
+local function replace_plain(text, needle, replacement)
+  local out, pos = {}, 1
+  while true do
+    local start_pos, end_pos = text:find(needle, pos, true)
+    if not start_pos then
+      out[#out + 1] = text:sub(pos)
+      return table.concat(out)
+    end
+    out[#out + 1] = text:sub(pos, start_pos - 1)
+    out[#out + 1] = replacement
+    pos = end_pos + 1
+  end
+end
+
+input = mask_protected_text(input)
 
 -- ============================================================================
 -- STEP 1: Annotate \todo{...} with filename:lineno
@@ -106,7 +196,7 @@ local function annotate_cites(text, fname)
   local n = #text
 
   while i <= n do
-    local cite_start, cite_end = text:find("\\cite", i, true)
+    local cite_start = text:find("\\cite", i, true)
     if not cite_start then
       table.insert(out, text:sub(i))
       break
@@ -117,9 +207,10 @@ local function annotate_cites(text, fname)
     table.insert(out, chunk)
     for _ in chunk:gmatch("\n") do line = line + 1 end
 
-    -- Copy \cite
-    table.insert(out, "\\cite")
-    local j = cite_end + 1
+    local command = text:sub(cite_start):match("^(\\cite[%a]*%*?)") or "\\cite"
+    local citation_line = line
+    table.insert(out, command)
+    local j = cite_start + #command
 
     -- Skip optional whitespace
     while j <= n and text:sub(j, j):match("%s") do
@@ -128,8 +219,8 @@ local function annotate_cites(text, fname)
       j = j + 1
     end
 
-    -- Skip optional [...]
-    if j <= n and text:sub(j, j) == "[" then
+    -- Preserve all optional arguments (multi-note cites use two).
+    while j <= n and text:sub(j, j) == "[" do
       local depth = 1
       table.insert(out, "[")
       j = j + 1
@@ -163,7 +254,7 @@ local function annotate_cites(text, fname)
       end
       -- brace_start .. j-1 is the full {keys}
       local body = text:sub(brace_start + 1, j - 2) -- without braces
-      local loc = string.format("@@%s:%d", fname, line)
+      local loc = string.format("@@%s:%d", fname, citation_line)
       table.insert(out, "{" .. body .. loc .. "}")
     end
 
@@ -630,27 +721,21 @@ input = input
     :gsub("\\begin%s*{%s*figure%s*}", "\\begin{symfig}")
     :gsub("\\end%s*{%s*figure%s*}", "\\end{symfig}")
 
--- Rename proof environments to symproof (including starred variants)
+-- Rename only proof environment delimiters to symproof.  Ordinary brace
+-- groups containing the word "proof" are content and must stay untouched.
 input = input
-    :gsub("{%s*proof%s*}", "{symproof}")
-    :gsub("{%s*proof%*%s*}", "{symproof*}")
+    :gsub("\\begin%s*{%s*proof%s*}", "\\begin{symproof}")
+    :gsub("\\end%s*{%s*proof%s*}", "\\end{symproof}")
+    :gsub("\\begin%s*{%s*proof%*%s*}", "\\begin{symproof*}")
+    :gsub("\\end%s*{%s*proof%*%s*}", "\\end{symproof*}")
 
 -- Rename tabular to rawtabular to prevent Pandoc from processing it
 input = input
     :gsub("\\begin%s*{%s*tabular%s*}(%b{})", "\\begin{rawtabular}%1")
     :gsub("\\end%s*{%s*tabular%s*}", "\\end{rawtabular}")
 
--- Rewrite \url{URL} to \href{normalized-URL}{display-URL}
--- Adds https:// scheme if missing and creates clean display text
-if not args["--no-url-rewrite"] then
-  input = input:gsub("\\url%s*(%b{})",
-    function(braced)
-      local raw = braced:sub(2, -2)
-      if raw == "" then return braced end  -- Skip empty URLs
-      local href, display = normalize_url(raw)
-      return string.format("\\href{%s}{%s}", href, display)
-    end)
-end
+-- Keep \url intact. Pandoc parses its argument verbatim; gather.lua handles
+-- scheme normalization and display shortening without reparsing URL bytes.
 
 -- Keep \filelink intact; gather.lua lowers it to a link with class="dataFile".
 
@@ -666,9 +751,10 @@ input = input
 -- STEP 4: Typographical Fixes (Math Punctuation)
 -- ============================================================================
 
--- Rewrite $stuff$. to $stuff.$ (and , :)
+-- Rewrite $stuff$. to $stuff.$ (and likewise for comma).  A colon remains
+-- outside math because TeX treats ':' as a relation symbol.
 -- assumption: $ is exclusively used for math delimiters.
-input = input:gsub("(%b$$)([%.,:])", function(math_seq, punct)
+input = input:gsub("(%b$$)([.,])", function(math_seq, punct)
   -- If it is display math ($$ ... $$), do nothing.
   if math_seq:sub(2,2) == "$" then
     return math_seq .. punct
@@ -679,9 +765,14 @@ input = input:gsub("(%b$$)([%.,:])", function(math_seq, punct)
   end
 end)
 
--- Rewrite \(stuff\). to \(stuff.\) (and , :)
--- Matches: \( ... \) followed optionally by whitespace, then . , or :
-input = input:gsub("\\%((.-)\\%)%s*([%.,:])", "\\(%1%2\\)")
+-- Rewrite \(stuff\). to \(stuff.\) (and likewise for comma).
+input = input:gsub("\\%((.-)\\%)%s*([.,])", "\\(%1%2\\)")
+
+-- Restore comments, verbatim/lstlisting environments, and \verb spans after
+-- every transformation has run.
+for _, region in ipairs(protected_regions) do
+  input = replace_plain(input, region.masked, region.original)
+end
 
 -- ============================================================================
 -- Output

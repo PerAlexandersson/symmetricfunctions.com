@@ -20,7 +20,7 @@ make svg              # rebuild TikZ-sourced SVG assets and copy assets
 make clean && make    # full rebuild from scratch
 make deploy           # direct rsync; requires host SSH access
 make ship             # clean → build → deploy
-make unittest         # run tests/*.tex through the test pipeline
+make unittest         # render tests/*.tex under temp/test-www and run checks
 make lint-html        # scan generated HTML for leaked TeX/table artifacts
 make check            # run unittest and lint-html
 ```

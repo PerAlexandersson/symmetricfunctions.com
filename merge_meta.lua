@@ -75,24 +75,42 @@ local function get_stem(path)
 end
 
 
---- Writes string to file atomically.
+--- Writes string atomically, leaving an existing file untouched when the
+--- bytes are unchanged.
 -- @param path string Output file path
 -- @param content string Content to write
--- @return boolean, string|nil Success status and error message if failed
+-- @return boolean, string|nil, boolean Success, error, and changed status
 local function write_file(path, content)
-  local file, err = io.open(path, "w")
+  local current = io.open(path, "rb")
+  if current then
+    local old_content = current:read("*a")
+    current:close()
+    if old_content == content then
+      return true, nil, false
+    end
+  end
+
+  local unique = tostring({}):gsub("^table:%s*", ""):gsub("[^%w]", "")
+  local temporary_path = path .. ".tmp." .. unique
+  local file, err = io.open(temporary_path, "wb")
   if not file then
-    return false, err
+    return false, err, false
   end
-  
+
   local success, write_err = file:write(content)
-  file:close()
-  
-  if not success then
-    return false, write_err
+  local close_success, close_err = file:close()
+  if not success or not close_success then
+    os.remove(temporary_path)
+    return false, write_err or close_err, false
   end
-  
-  return true
+
+  local renamed, rename_err = os.rename(temporary_path, path)
+  if not renamed then
+    os.remove(temporary_path)
+    return false, rename_err, false
+  end
+
+  return true, nil, true
 end
 
 
@@ -629,14 +647,15 @@ end
 -- @return boolean Success status
 local function write_json_file(path, data, description)
   local json_content = json_encode(data)
-  local success, err = write_file(path, json_content)
+  local success, err, changed = write_file(path, json_content)
   
   if not success then
     print_error("Failed to write %s: %s", path, err)
     return false
   end
   
-  print_info("Generated %s (%d %s)", path, table_size(data), description)
+  print_info("%s %s (%d %s)", changed and "Generated" or "Unchanged",
+             path, table_size(data), description)
   return true
 end
 
@@ -647,14 +666,15 @@ end
 -- @param description string Human-readable description for logging
 -- @return boolean Success status
 local function write_xml_file(path, content, count, description)
-  local success, err = write_file(path, content)
+  local success, err, changed = write_file(path, content)
   
   if not success then
     print_error("Failed to write %s: %s", path, err)
     return false
   end
   
-  print_info("Generated %s (%d %s)", path, count, description)
+  print_info("%s %s (%d %s)", changed and "Generated" or "Unchanged",
+             path, count, description)
   return true
 end
 
@@ -746,9 +766,10 @@ local function generate_outputs(data)
   local www_dir = os.getenv("WWW_DIR") or "www"
   local goto_path = www_dir .. "/goto.htm"
   local goto_content = generate_goto_html(data.labels)
-  local ok, err = write_file(goto_path, goto_content)
+  local ok, err, changed = write_file(goto_path, goto_content)
   if ok then
-    print_info("Generated %s (%d labels)", goto_path, table_size(data.labels))
+    print_info("%s %s (%d labels)", changed and "Generated" or "Unchanged",
+               goto_path, table_size(data.labels))
   else
     print_error("Failed to write %s: %s", goto_path, err)
     all_success = false
@@ -764,9 +785,10 @@ local function generate_outputs(data)
   end
 
   local graph_html = relation_graph.render_page(graph)
-  local graph_ok, graph_err = write_file(RELATION_GRAPH_HTML, graph_html)
+  local graph_ok, graph_err, graph_changed = write_file(RELATION_GRAPH_HTML, graph_html)
   if graph_ok then
-    print_info("Generated %s (%d relations)",
+    print_info("%s %s (%d relations)",
+               graph_changed and "Generated" or "Unchanged",
                RELATION_GRAPH_HTML, graph.stats.edge_count)
   else
     print_error("Failed to write %s: %s", RELATION_GRAPH_HTML, graph_err)

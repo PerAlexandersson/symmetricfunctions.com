@@ -9,6 +9,7 @@ local pandoc = pandoc
 
 local utils = dofile("utils.lua")
 local trim = utils.trim
+local normalize_url = utils.normalize_url
 local capitalize_first = utils.capitalize_first
 local slugify = utils.slugify
 local set_add = utils.set_add
@@ -90,8 +91,7 @@ local function make_filter()
     Header    = Header,
     Image     = Image,
     Link      = Link,
-    Cite      = Cite,
-    Quoted    = Quoted
+    Cite      = Cite
   }
 end
 
@@ -276,15 +276,43 @@ local function process_tabular_cells(body)
       local cells = {}
       local buf = {}
       local depth = 0
+      local environment_depth = 0
+      local in_dollar_math = false
+      local in_paren_math = false
+
+      local function escaped_at(pos)
+        local count = 0
+        pos = pos - 1
+        while pos >= 1 and row_text:sub(pos, pos) == "\\" do
+          count = count + 1
+          pos = pos - 1
+        end
+        return count % 2 == 1
+      end
+
       for i = 1, #row_text do
         local ch = row_text:sub(i, i)
+        local tail = row_text:sub(i)
+        if tail:match("^\\begin%s*%b{}") then
+          environment_depth = environment_depth + 1
+        elseif tail:match("^\\end%s*%b{}") then
+          environment_depth = math.max(0, environment_depth - 1)
+        elseif tail:sub(1, 2) == "\\(" then
+          in_paren_math = true
+        elseif tail:sub(1, 2) == "\\)" then
+          in_paren_math = false
+        elseif ch == "$" and not escaped_at(i) then
+          in_dollar_math = not in_dollar_math
+        end
+
         if ch == "{" then
           depth = depth + 1
           table.insert(buf, ch)
         elseif ch == "}" then
           depth = math.max(0, depth - 1)
           table.insert(buf, ch)
-        elseif ch == "&" and depth == 0 then
+        elseif ch == "&" and depth == 0 and environment_depth == 0
+            and not in_dollar_math and not in_paren_math and not escaped_at(i) then
           table.insert(cells, table.concat(buf))
           buf = {}
         else
@@ -499,6 +527,28 @@ local function parse_polydata_body(body)
   return map
 end
 
+local function latex_to_unicode(s)
+  local ok, doc = pcall(pandoc.read, tostring(s or ""), "latex")
+  if not ok then
+    print_error("Could not parse name as LaTeX: %s", tostring(s or ""))
+    return tostring(s or "")
+  end
+  return trim(pandoc.utils.stringify(doc))
+end
+
+local function first_unicode_codepoint(s)
+  s = tostring(s or ""):gsub("^[%s%p]+", "")
+  if s == "" then return "" end
+  local next_pos = utf8.offset(s, 2)
+  return next_pos and s:sub(1, next_pos - 1) or s
+end
+
+local function percent_encode(s)
+  return (tostring(s or ""):gsub("[^A-Za-z0-9%-._~]", function(byte)
+    return string.format("%%%02X", byte:byte())
+  end))
+end
+
 function parse_name(s)
   -- Try to match pattern with optional argument first: \name[Short Name]{Full Name}
   local opt_part, main_part = s:match("^%s*\\name%s*(%b[])%s*(%b{})%s*$")
@@ -513,12 +563,12 @@ function parse_name(s)
   end
 
   -- The mandatory argument is now the Full Name
-  local full_name = trim(main_part:sub(2, -2))
+  local full_name = latex_to_unicode(main_part:sub(2, -2))
   local display_text = ""
 
   if opt_part then
     -- If optional argument exists, use it directly for display
-    display_text = trim(opt_part:sub(2, -2))
+    display_text = latex_to_unicode(opt_part:sub(2, -2))
   else
     -- Auto-generate abbreviated form
     -- Split by spaces to get name parts
@@ -544,12 +594,12 @@ function parse_name(s)
           -- Split by hyphen and abbreviate each part
           local hyphen_parts = {}
           for hp in name_part:gmatch("[^-]+") do
-            table.insert(hyphen_parts, hp:sub(1, 1) .. ".")
+            table.insert(hyphen_parts, first_unicode_codepoint(hp) .. ".")
           end
           table.insert(first_abbrevs, table.concat(hyphen_parts, "-"))
         else
           -- Simple first/middle name - just take first letter
-          table.insert(first_abbrevs, name_part:sub(1, 1) .. ".")
+          table.insert(first_abbrevs, first_unicode_codepoint(name_part) .. ".")
         end
       end
 
@@ -559,7 +609,7 @@ function parse_name(s)
   end
 
   -- Construct the search query using the Full Name
-  local search_query = full_name:gsub(" ", "+") .. "+mathematics"
+  local search_query = percent_encode(full_name .. " mathematics")
   local url = "https://scholar.google.com/scholar?q=" .. search_query
 
   return pandoc.Link(
@@ -729,13 +779,9 @@ function Cite(el)
   local cite_parts = {}
   local any_missing = false
   local cite_loc_first = ""
-  local extra = ""
-
-  -- Check for optional extra text in citation suffix (e.g., \cite[Thm.~3]{key})
-  if el.citations and #el.citations > 0 then
-    local suf = pandoc.utils.stringify(el.citations[1].suffix or {})
-    if suf ~= "" then extra = suf end
-  end
+  local citation_nodes = el.citations or {}
+  local prefix = (#citation_nodes > 0 and citation_nodes[1].prefix) or {}
+  local suffix = (#citation_nodes > 0 and citation_nodes[#citation_nodes].suffix) or {}
 
   for _, c in ipairs(el.citations or {}) do
     if c.id and c.id ~= "" then
@@ -743,6 +789,16 @@ function Cite(el)
       local cite_loc = c.id:match("@@([%w%.%-_/]+:%d+)$") or ""
       local key = c.id:gsub("@@[%w%.%-_/]+:%d+$", "")
       if cite_loc_first == "" then cite_loc_first = cite_loc end
+      local mode = tostring(c.mode or "NormalCitation")
+      if mode ~= "NormalCitation" then
+        if cite_loc ~= "" then
+          print_error("%s: Unsupported citation mode %s for key: %s",
+                      cite_loc, mode, key)
+        else
+          print_error("Unsupported citation mode %s for key: %s", mode, key)
+        end
+        any_missing = true
+      end
       local lbl = get_bibliography_label(key)
       if not lbl then
         if cite_loc ~= "" then
@@ -766,24 +822,26 @@ function Cite(el)
   end
 
   local inlines = { pandoc.Str("[") }
-  if extra ~= "" then
-    inlines[#inlines + 1] = pandoc.Str(extra)
-    inlines[#inlines + 1] = pandoc.Str(", ")
+  for _, node in ipairs(prefix) do
+    inlines[#inlines + 1] = node
+  end
+  if #prefix > 0 then
+    inlines[#inlines + 1] = pandoc.Space()
   end
   for i, node in ipairs(cite_parts) do
     if i > 1 then inlines[#inlines + 1] = pandoc.Str(", ") end
     inlines[#inlines + 1] = node
   end
+  if #suffix > 0 then
+    inlines[#inlines + 1] = pandoc.Str(", ")
+    for _, node in ipairs(suffix) do
+      inlines[#inlines + 1] = node
+    end
+  end
   inlines[#inlines + 1] = pandoc.Str("]")
 
   local classes = any_missing and { "citeSpan", "missing" } or { "citeSpan" }
   return pandoc.Span(inlines, pandoc.Attr("", classes))
-end
-
-function Quoted(el)
-  local walked_span = pandoc.walk_inline(pandoc.Span(el.content or {}), make_filter())
-  el.content = walked_span.content or {}
-  return el
 end
 
 -----------------
@@ -797,6 +855,26 @@ function Link(el)
 
   el.classes = el.classes or {}
   el.attributes = el.attributes or {}
+
+  local function has_class(class_name)
+    for _, existing in ipairs(el.classes) do
+      if existing == class_name then return true end
+    end
+    return false
+  end
+
+  local is_autolink = has_class("uri") or text == url
+  if is_autolink and type(url) == "string" then
+    local href, display = normalize_url(url)
+    url = href
+    if type(el.target) == "table" then
+      el.target[1] = href
+    else
+      el.target = href
+    end
+    el.content = { pandoc.Str(display) }
+    text = display
+  end
 
   local link_loc = ""
   if type(url) == "string" then
@@ -814,12 +892,16 @@ function Link(el)
     end
   end
 
-  if url:match("^https?://oeis%.org/") then
-    table.insert(el.classes, "oeis")
-  elseif url:match("^#") then
-    table.insert(el.classes, "hyperref") -- internal anchors
-  else
-    table.insert(el.classes, "href")     -- generic external link
+  local already_classified = has_class("cite") or has_class("hyperref")
+      or has_class("href") or has_class("oeis")
+  if not already_classified then
+    if url:match("^https?://oeis%.org/") then
+      table.insert(el.classes, "oeis")
+    elseif url:match("^#") then
+      table.insert(el.classes, "hyperref") -- internal anchors
+    else
+      table.insert(el.classes, "href")     -- generic external link
+    end
   end
   record_link(url, text)
 

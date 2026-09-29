@@ -32,16 +32,28 @@ A \defin{definition}. \emph{Emphasis} \texttt{texttt}.
 \item One single cite:  \cite{Cauchy1815}
 \item One single cite: \cite[p. 15]{Schur1901}.
 \item Several cites: \cite{Cauchy1815,Macdonald1995,StanleyEC2}.
+\item Multi-cite suffix: \cite[Thm.~3.1]{Cauchy1815,Schur1901}.
+\item Prefix and suffix: \cite[see][p.~4]{Cauchy1815}.
+\item Quoted cite: ``see \cite{Cauchy1815}''.
+\item Quoted href: ``\href{https://example.com}{example}''.
 \end{itemize}
+
+Unicode names: \name{Świętosław Gal},
+\name{Nicolle Gonz{\'a}lez},
+\name{{\'E}tienne T{\'e}treault}, and
+\name{Marcel-Paul Schützenberger}.
+Optional name display: \name[{\v S}. Gal]{Świętosław Gal}.
 
 Here \hyperref[testFamily]{is an internal link},
 and here is a link with title: \href{https://en.wikipedia.org/wiki/Lindstr%C3%B6m%E2%80%93Gessel%E2%80%93Viennot_lemma}{TestURL}.
 One can also do \url{www.google.com}.
+Special URL: \url{https://example.com/~u/a_b%20c#f}.
 There is a file link: \filelink{files/jack-rook-hit-data.txt}{jack-rook-hit-data.txt}.
 Raw angle brackets in math are normalized: $i<j$ and \(j>i\).
 
 \begin{tabular}{ll}
 Table link & \hyperref[testFamily]{table link}\\
+A \& B & C\\
 \end{tabular}
 
 \begin{tabular}{lll}
@@ -58,6 +70,12 @@ Left & Right\\
 \end{array}
 \]
 
+\begin{alignat*}{2}
+a &< b
+\end{alignat*}
+
+\svgimg{svg-images/logo.svg}{Young's lattice}
+
 We can link OEIS: \oeis{A000128}
 
 
@@ -68,6 +86,7 @@ The best unittest is the best.
 So I said: \enquote{This is my quote}.
 
 \begin{figure}
+\ytableaushort{\none 12,3}
 \ytableaushort{{\none}{\none}23,{\none}{\none}4,11}
 \ytableaushort{{\none}{\none}23,{\none}14,1}
 \ytableaushort{{\none}{\none}23,114}
@@ -138,6 +157,8 @@ NN[n_] := NN[n] = Expand[
 
 
 \subsection[testSubsection]{Subsection test}
+
+\subsection[testRichToc]{The \emph{key} and \name{Alain Lascoux} \& co polynomials}
 
 
 \begin{example}[Example with tableaux]

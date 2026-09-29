@@ -16,13 +16,18 @@ local function contains(haystack, needle)
   return tostring(haystack or ""):find(needle, 1, true) ~= nil
 end
 
-local labels_path = os.getenv("LABELS_JSON") or "temp/test-site-labels.json"
-local polydata_path = os.getenv("POLYDATA_JSON") or "temp/test-site-polydata.json"
-local html_path = (os.getenv("TEST_HTML") or "www/unittest.htm"):match("%S+")
+local labels_path = os.getenv("LABELS_JSON") or "temp/test-www/meta/site-labels.json"
+local polydata_path = os.getenv("POLYDATA_JSON") or "temp/test-www/meta/site-polydata.json"
+local html_path = (os.getenv("TEST_HTML") or "temp/test-www/unittest.htm"):match("%S+")
+local www_dir = os.getenv("WWW_DIR") or "www"
 
 local labels = file_reading.load_json_file(labels_path, "test labels", true)
 local polydata = file_reading.load_json_file(polydata_path, "test polydata", true)
 local html = file_reading.read_file(html_path, "test html", true)
+
+if file_reading.file_exists(www_dir .. "/unittest.htm") then
+  fail("unit-test HTML leaked into the deployable www directory")
+end
 
 if not labels.testFamily then
   fail("missing testFamily label")
@@ -82,6 +87,66 @@ end
 
 if not contains(html, [[\(i\lt{}j\) and \(j\gt{}i.\)]]) then
   fail("raw math angle brackets were not normalized to \\lt{} and \\gt{}")
+end
+
+if not contains(html, "a &amp;&lt; b") then
+  fail("raw angle bracket in an unlisted display-math environment was not escaped")
+end
+
+for _, expected_name in ipairs({
+  "Ś. Gal",
+  "N. González",
+  "É. Tétreault",
+  "M.-P. Schützenberger",
+  "Š. Gal",
+}) do
+  if not contains(html, ">" .. expected_name .. "</a>") then
+    fail("Unicode name did not render correctly: " .. expected_name)
+  end
+end
+
+if contains(html, "�") or contains(html, [[Gonz{\'a}lez]])
+    or contains(html, [[T{\'e}treault]]) then
+  fail("Unicode name rendering leaked replacement characters or raw TeX")
+end
+
+if not contains(html, "q=%C5%9Awi%C4%99tos%C5%82aw%20Gal%20mathematics") then
+  fail("Scholar query was not percent-encoded")
+end
+
+if not contains(html, 'href="https://example.com/~u/a_b%20c#f"') or
+   not contains(html, '>example.com/~u/a_b%20c#f</a>') then
+  fail("special-character URL did not retain its href and display text")
+end
+
+local plain_html = html:gsub("<[^>]->", ""):gsub("\194\160", " ")
+if not contains(plain_html, "[Cau15, Sch01, Thm. 3.1]") then
+  fail("multi-cite suffix was not rendered after the final citation")
+end
+if not contains(plain_html, "[see Cau15, p. 4]") then
+  fail("citation prefix/suffix was not preserved")
+end
+
+if not contains(html, '>A &amp; B</span>') or
+   not contains(html, "grid-template-columns: repeat(2, auto)") then
+  fail("escaped ampersand split a two-column table")
+end
+
+if not contains(html,
+    '<li><a href="#testRichToc" class="subsection">The key and A. Lascoux &amp; co polynomials</a></li>') then
+  fail("rich TOC entry was incomplete or not escaped")
+end
+
+if not contains(html, 'alt="Young&#39;s lattice"') or
+   contains(html, 'alt="Young&amp;#39;s lattice"') then
+  fail("image alt text was not escaped exactly once")
+end
+
+if not contains(html,
+    'grid-template-rows: repeat(2, auto); grid-template-columns: repeat(3, auto)">\n' ..
+    '<span class="cell-none border-s border-e" style="grid-row: 1; grid-column: 1">&nbsp;</span>\n' ..
+    '<span class="border-n border-s border-e" style="grid-row: 1; grid-column: 2">$1$</span>') then
+  fail("bare \\none was not tokenized as one tableau cell")
 end
 
 if not contains(html, 'class="bibtex-details"') then

@@ -1,0 +1,22 @@
+% Protected comment: \cite{Missing} $x$. {proof} \url{https://x/%20}
+\begin{verbatim}
+\cite{Missing}
+$x$.
+{proof}
+\url{https://example.com/a%20b}
+\end{verbatim}
+\begin{lstlisting}
+\hyperref[missing]{proof} $y$.
+\end{lstlisting}
+Inline \verb|\cite{Missing} $z$. {proof}| text.
+\hyperref[testFamily]{proof}
+\begin{proof}
+Actual proof.
+\end{proof}
+$f$: value
+$f$.
+\(g\): value
+\(g\).
+$p$% This comment must not become part of the punctuation character class.
+\url{https://example.com/~u/a_b%20c#f}
+\cite[see][p.~4]{Cauchy1815}

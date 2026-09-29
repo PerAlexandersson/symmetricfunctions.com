@@ -1,5 +1,93 @@
 # Handoff
 
+## Completed scope — ownership released (2026-09-29, accepted build-pipeline fixes)
+
+Codex owned `Makefile`, `config.mk`, `config_test.mk`, the Lua build-pipeline
+modules needed for D1--D8, D14--D16, D20, H5, deterministic/atomic metadata
+writes, focused files under `tests/`, relevant build documentation, and this
+handoff.  The starting checkout is clean at `c9272da` on `master`; the prior
+audit owner released all files.  No mathematical/content file under
+`tex-source/`, supervisor/deploy bridge, deployment, broad local prune, or
+remote deletion was in scope.
+
+Implementation and the four supervisor follow-ups are complete, supervisor
+review is approved, and ownership is released.  D1 now keeps the rendered
+fixture at `temp/test-www/unittest.htm` and its Pandoc
+and merged metadata under `temp/test-www/meta/`; the exact stale local
+`www/unittest.htm` was removed manually.  The HTML lint performs a read-only
+allowlist audit and does not prune anything.  Pagefind removes only the exact
+`www/_pagefind` directory immediately before indexing, with quiet-mode failure
+output retained in `temp/pagefind.log`; no other local or remote deletion was
+added.
+
+Asset copying is now backed by `temp/copy-assets.stamp`, with every current
+asset file as a prerequisite.  Pagefind is backed by both
+`temp/pagefind.stamp` and its concrete `www/_pagefind/pagefind-entry.json`
+output; site HTML, the generated HTML metadata pages, and the asset stamp are
+prerequisites.  Thus unchanged builds skip both operations, while an HTML or
+asset change schedules Pagefind.  Each actual Pagefind recipe validates
+`WWW_DIR`, removes exactly `${WWW_DIR}/_pagefind`, and only then invokes the
+indexer.  Make-time guards reject empty and filesystem-root `WWW_DIR` values;
+the recipe has a second runtime guard.
+
+The renderer/preprocessor fixes cover Unicode and TeX-accented `\name`
+arguments and optional displays, Unicode-codepoint and hyphenated initials,
+percent-encoded Scholar queries, colon punctuation, verbatim/comment/`\verb`
+protection, environment-only proof renames, literal URLs, idempotent link
+classes, citation prefix/suffix placement and unsupported modes, escaped table
+ampersands, recursive escaped TOC text, single-escaped image text, escaped math
+bodies, and bare `\none` tokenization.  Focused fixtures cover D2--D8, D14,
+D15, D20, and H5.  The math-punctuation patterns are exactly `[.,]`, and a
+literal percent-comment fixture guards against treating `%` as punctuation.
+Table cells now preserve already encoded entities while still escaping
+unrelated raw angle brackets; the regression combines `&amp;` and `<raw>` in
+one cell.  D16 prerequisites now include `file_reading.lua`, metadata
+depends on the CSL bibliography rather than raw BibTeX JSON, and the unittest
+checker tracks both Lua dependencies.  D22 malformed-JSON behavior is
+unchanged.
+
+`file_reading.json_encode` now sorts object keys recursively.  Every
+`merge_meta.lua` output uses same-directory temporary-file replacement and is
+left untouched when its bytes match.  An immediate no-op merge reported all
+eight outputs unchanged and preserved their SHA-256 bytes and nanosecond
+mtimes: the three private metadata JSON files, sitemap, goto page, public label
+JSON, and both relation-graph outputs.
+
+Verification from the final source state after the supervisor follow-ups:
+
+- `luac -p` passes for every edited pipeline/test script.  The focused
+  edge-case checker and `make unittest Q=1` pass; the latter prints only the
+  two existing expected synthetic-relation warnings.
+- `make Q=1`, `make check Q=1`, and `git diff --check` pass.
+- An actual second `make Q=1` preserves the nanosecond mtimes and sizes of the
+  asset stamp, Pagefind stamp, and Pagefind entry.  Its dry-run plan contains
+  no `cp -r`, Pagefind cleanup, or Pagefind invocation.  A forced
+  `tex-source/gammaPositivity.tex` plan schedules its render and the Pagefind
+  recipe; a forced `assets/style.css` plan schedules one asset-copy recipe and
+  the Pagefind recipe.  In each Pagefind recipe the exact `_pagefind` removal
+  precedes either quiet or normal indexing.
+- `make -n WWW_DIR= search` and `make -n WWW_DIR=/ search` both fail at parse
+  time with explicit safety diagnostics, and neither rejected plan contains
+  `/_pagefind`.
+- A direct no-change metadata pass preserves SHA-256 bytes, sizes, and
+  nanosecond mtimes for all eight generated outputs.
+- `www/unittest.htm` is absent; the isolated HTML and JSON exist only below
+  `temp/test-www/`.  The read-only audit accepts exactly 147 top-level HTML
+  outputs: 144 source pages, `assets/search.htm`, `goto.htm`, and
+  `polynomial-relations.htm`.
+- The rebuilt live examples contain `Ś. Gal`, `N. González`, `É. Tétreault`,
+  and `M.-P. Schützenberger`, with the checked percent-encoded Gal query.
+  Site-wide lint/count checks find zero U+FFFD characters and zero raw-TeX
+  `author-name` links.
+- Rebuilt `www/_pagefind` is 2.7 MB with one `pf_meta` file and reports 145
+  indexed pages; the former stale 98 MB shard accumulation is gone locally.
+- Dry-run dependency checks schedule 144 gathers when `file_reading.lua` is
+  forced and one metadata merge when `temp/bibliography.json` is forced.
+
+No `tex-source/` content, supervisor/deploy bridge, deployment, broad local
+prune, or remote deletion was touched.  Supervisor review is approved and
+ownership is released with the focused `master` checkpoint.
+
 ## Completed scope (2026-09-29, build-pipeline audit)
 
 Claude Opus 5.5 was the sole audit owner for a read-only audit of the build

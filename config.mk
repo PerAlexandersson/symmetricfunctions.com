@@ -35,7 +35,7 @@ POLY_TO_HTML_LUA   = polydata_to_html.lua
 RELATION_REGISTRY_LUA = relation_registry.lua
 
 PREPROC_DEPS    = $(PREPROC_LUA) $(UTILS_LUA)
-GATHER_DEPS     = $(GATHER_LUA) $(UTILS_LUA) $(BIBHANDLER_LUA) $(RELATION_REGISTRY_LUA)
+GATHER_DEPS     = $(GATHER_LUA) $(UTILS_LUA) $(FILE_READING_LUA) $(BIBHANDLER_LUA) $(RELATION_REGISTRY_LUA)
 RENDER_DEPS     = $(RENDER_LUA) $(UTILS_LUA) $(BIBHANDLER_LUA) $(FILE_READING_LUA) $(FIG_TO_HTML_LUA) $(POLY_TO_HTML_LUA)
 MERGE_META_DEPS = $(MERGE_META_LUA) $(UTILS_LUA) $(FILE_READING_LUA) $(BIBHANDLER_LUA) $(RELATION_REGISTRY_LUA) $(RELATION_GRAPH_LUA)
 
@@ -44,6 +44,7 @@ TEX_FILES  := $(wildcard $(SRC_DIR)/*.tex)
 PRE_TEX    := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.pre.tex,$(TEX_FILES))
 JSON_FILES := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.json,$(TEX_FILES))
 HTML_FILES := $(patsubst $(SRC_DIR)/%.tex,$(WWW_DIR)/%.htm,$(TEX_FILES))
+ASSET_FILES := $(shell find $(ASSETS_DIR) -type f -print)
 
 # === GENERATED OUTPUTS ===
 REFS_JSON     := $(TEMP_DIR)/bibliography.json
@@ -56,6 +57,9 @@ GOTO_HTML     := $(WWW_DIR)/goto.htm
 PUBLIC_LABELS_JSON := $(WWW_DIR)/site-labels.json
 RELATION_GRAPH_HTML := $(WWW_DIR)/polynomial-relations.htm
 RELATION_GRAPH_JSON := $(WWW_DIR)/polynomial-relations.json
+COPY_ASSETS_STAMP := $(TEMP_DIR)/copy-assets.stamp
+PAGEFIND_STAMP := $(TEMP_DIR)/pagefind.stamp
+PAGEFIND_ENTRY := $(WWW_DIR)/_pagefind/pagefind-entry.json
 
 # === EXPORTS FOR SCRIPTS ===
 export SRC_DIR ASSETS_DIR TEMP_DIR WWW_DIR

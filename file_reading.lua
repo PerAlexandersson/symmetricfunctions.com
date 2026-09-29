@@ -47,6 +47,16 @@ local JSON_LIB    = (function()
   return nil
 end)()
 
+-- Prefer dkjson for encoding even when this module is loaded by Pandoc.  Its
+-- per-object __jsonorder hook lets us make byte output deterministic.
+local JSON_ENCODER = (function()
+  local ok, dkjson = pcall(require, "dkjson")
+  if ok and dkjson and dkjson.encode then
+    return { lib = dkjson, name = "dkjson" }
+  end
+  return JSON_LIB
+end)()
+
 
 -- Decode JSON string with error handling
 -- @param s: JSON string
@@ -189,7 +199,7 @@ local function json_encode(tbl, indent, strict)
   if indent == nil then indent = true end
   if strict == nil then strict = true end
 
-  if not JSON_LIB or not JSON_LIB.lib or not JSON_LIB.lib.encode then
+  if not JSON_ENCODER or not JSON_ENCODER.lib or not JSON_ENCODER.lib.encode then
     local msg = "No JSON encoder available (tried pandoc.json, dkjson, lunajson, cjson, _G.json)"
     if strict then
       error(msg)
@@ -199,13 +209,64 @@ local function json_encode(tbl, indent, strict)
     return nil
   end
 
+  local function stable_copy(value, seen)
+    if type(value) ~= "table" then return value end
+    if JSON_ENCODER.name == "dkjson" and value == JSON_ENCODER.lib.null then
+      return value
+    end
+
+    seen = seen or {}
+    if seen[value] then return seen[value] end
+
+    local copy = {}
+    seen[value] = copy
+    local original_meta = getmetatable(value)
+    local json_type = original_meta and original_meta.__jsontype or nil
+    local count, max_index, array = 0, 0, true
+    for key in pairs(value) do
+      count = count + 1
+      if type(key) ~= "number" or key < 1 or key % 1 ~= 0 then
+        array = false
+      elseif key > max_index then
+        max_index = key
+      end
+    end
+    if json_type == "array" then
+      array = true
+    elseif json_type == "object" then
+      array = false
+    elseif count == 0 or max_index ~= count then
+      array = false
+    end
+
+    if array then
+      for i = 1, max_index do
+        copy[i] = stable_copy(value[i], seen)
+      end
+      setmetatable(copy, { __jsontype = "array" })
+    else
+      local keys = {}
+      for key, child in pairs(value) do
+        copy[key] = stable_copy(child, seen)
+        keys[#keys + 1] = key
+      end
+      table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
+      setmetatable(copy, { __jsontype = "object", __jsonorder = keys })
+    end
+    return copy
+  end
+
   local ok, result
+  local value = tbl
+  if JSON_ENCODER.name == "dkjson" then
+    value = stable_copy(tbl)
+  end
 
   -- Try encoding with indentation if supported
-  if indent and JSON_LIB.name == "dkjson" then
-    ok, result = pcall(JSON_LIB.lib.encode, tbl, { indent = true })
+  if indent and JSON_ENCODER.name == "dkjson" then
+    ok, result = pcall(JSON_ENCODER.lib.encode, value, { indent = true })
   else
-    ok, result = pcall(JSON_LIB.lib.encode, tbl)
+    ok, result = pcall(JSON_ENCODER.lib.encode, value)
   end
 
   if not ok then

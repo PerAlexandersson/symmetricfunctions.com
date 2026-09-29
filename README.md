@@ -34,7 +34,8 @@ make search       # rebuild pagefind search index
 make deploy       # rsync www/ to server
 make ship         # clean, build, then deploy
 make clean        # rm temp/ www/
-make unittest     # run tests/*.tex through the test pipeline
+make unittest     # render tests/*.tex only under temp/test-www/
+make check        # run unit regressions and audit generated HTML
 ```
 
 ## Directory structure
@@ -56,6 +57,7 @@ temp/               Generated intermediates (gitignored)
   site-labels.json  cross-reference labels (id → href, title, page)
   site-polydata.json structured metadata per polynomial family
   site-todo.json    extracted \todo{...} items
+  test-www/         isolated HTML output for tests (never deployed/indexed)
 www/                Final HTML output (gitignored)
 untracked/          Notes, drafts, assets not in git
 template.htm        Shared HTML shell (header/nav/footer)
@@ -125,7 +127,10 @@ bibliography.bib    BibLaTeX references (2,300+ entries)
   when it improves navigation or clarity.
 
 Run `make all` after broad page edits and `make unittest` after Lua or
-pipeline changes.
+pipeline changes. `make check` also performs a read-only allowlist audit of
+deployable `.htm` files. The search target replaces only `www/_pagefind`
+immediately before indexing so obsolete hashed shards do not accumulate; it
+does not prune any other local or remote output.
 
 ## Deployment
 

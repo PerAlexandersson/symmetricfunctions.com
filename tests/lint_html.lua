@@ -94,6 +94,21 @@ local checks = {
     label = "source-location annotation leaked into visible HTML",
     pattern = "@@[%w%._/%-]+%.tex:%d+",
   },
+  {
+    label = "Unicode replacement character leaked into HTML",
+    pattern = "�",
+    plain = true,
+  },
+  {
+    label = "numeric entity was double-escaped",
+    pattern = "&amp;#",
+    plain = true,
+  },
+  {
+    label = "ampersand entity was double-escaped",
+    pattern = "&amp;amp;",
+    plain = true,
+  },
 }
 
 local files = {}
@@ -108,6 +123,8 @@ end
 local error_count = 0
 local max_errors = tonumber(os.getenv("LINT_HTML_MAX_ERRORS") or "200") or 200
 local www_dir = os.getenv("WWW_DIR") or "www"
+local src_dir = os.getenv("SRC_DIR") or "tex-source"
+local assets_dir = os.getenv("ASSETS_DIR") or "assets"
 
 local function report(path, lineno, label, line)
   error_count = error_count + 1
@@ -132,8 +149,64 @@ for _, path in ipairs(files) do
         end
       end
     end
+
+    for class_value in text:gmatch('class="([^"]*)"') do
+      local seen = {}
+      for class_name in class_value:gmatch("%S+") do
+        if seen[class_name] then
+          report(path, 1, "duplicate token in class attribute", class_value)
+          break
+        end
+        seen[class_name] = true
+      end
+    end
+
+    for author_link in text:gmatch('<a[^>]-class="[^"]*author%-name[^"]*"[^>]*>.-</a>') do
+      if author_link:find("\\", 1, true) or author_link:find("{", 1, true)
+          or author_link:find("}", 1, true) then
+        report(path, 1, "raw TeX leaked into author-name link", author_link)
+      end
+    end
+
+    for math_body in text:gmatch("\\%((.-)\\%)") do
+      if math_body:find("<", 1, true) or math_body:find(">", 1, true) then
+        report(path, 1, "raw HTML angle bracket inside inline math", math_body)
+      end
+    end
+    for math_body in text:gmatch("\\%[(.-)\\%]") do
+      if math_body:find("<", 1, true) or math_body:find(">", 1, true) then
+        report(path, 1, "raw HTML angle bracket inside display math", math_body)
+      end
+    end
   else
     error_count = error_count + 1
+  end
+end
+
+local expected_html = {
+  ["goto.htm"] = true,
+  ["polynomial-relations.htm"] = true,
+}
+
+local function add_expected_from_dir(dir, extension, output_extension)
+  local cmd = "find " .. shell_quote(dir) .. " -maxdepth 1 -type f -name '*" ..
+      extension .. "' -printf '%f\\n' | sort"
+  local p = io.popen(cmd)
+  if not p then return end
+  for filename in p:lines() do
+    local stem = filename:sub(1, #filename - #extension)
+    expected_html[stem .. output_extension] = true
+  end
+  p:close()
+end
+
+add_expected_from_dir(src_dir, ".tex", ".htm")
+add_expected_from_dir(assets_dir, ".htm", ".htm")
+
+for _, path in ipairs(html_files_from_dir(www_dir)) do
+  local relative = path:sub(#www_dir + 2)
+  if not expected_html[relative] then
+    report(path, 1, "unexpected deployable HTML output", relative)
   end
 end
 

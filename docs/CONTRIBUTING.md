@@ -45,7 +45,8 @@ make          # full build
 make Q=1      # quiet full build
 make bib      # rebuild displayed bibliography JSON and raw BibTeX JSON
 make svg      # rebuild TikZ-sourced SVG assets
-make unittest # run test pages through the pipeline
+make unittest # render test pages under temp/test-www/ and run regressions
+make check    # also lint and audit deployable HTML output
 ```
 
 The default build runs the Lua/Pandoc pipeline and writes generated output into:
@@ -89,6 +90,11 @@ tests/
 
 Run `make unittest` after Lua, metadata, reference, or rendering changes. Run
 `make all` before larger content or build-system commits.
+
+Test HTML is isolated under `temp/test-www/`; it must never be copied into
+`www/`. The HTML lint compares deployable top-level pages with the source and
+generated-page allowlist and reports stale output without deleting it. Page or
+asset removal remains a deliberate manual review step.
 
 ## Code contributions
 

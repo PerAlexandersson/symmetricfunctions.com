@@ -169,6 +169,36 @@ end
 local render_inlines_html
 local render_blocks_html
 
+local function plain_text_from_inlines(inlines, preserve_math)
+  local parts = {}
+  for _, inline in ipairs(inlines or {}) do
+    local t, c = inline.t, inline.c
+    if t == "Str" then
+      parts[#parts + 1] = c or ""
+    elseif t == "Space" or t == "SoftBreak" or t == "LineBreak" then
+      parts[#parts + 1] = " "
+    elseif t == "Math" then
+      local body = (c and c[2]) or ""
+      if preserve_math then
+        local kind = c and c[1] and c[1].t or "InlineMath"
+        local delimiters = kind == "DisplayMath" and { "\\[", "\\]" }
+            or { "\\(", "\\)" }
+        body = delimiters[1] .. body .. delimiters[2]
+      end
+      parts[#parts + 1] = body
+    elseif t == "Code" then
+      parts[#parts + 1] = (c and (c[2] or c.text)) or ""
+    elseif t == "Emph" or t == "Strong" then
+      parts[#parts + 1] = plain_text_from_inlines(c, preserve_math)
+    elseif t == "Span" or t == "Link" or t == "Image" or t == "Cite" then
+      parts[#parts + 1] = plain_text_from_inlines((c and c[2]) or {}, preserve_math)
+    elseif t == "Quoted" then
+      parts[#parts + 1] = plain_text_from_inlines((c and c[2]) or {}, preserve_math)
+    end
+  end
+  return table.concat(parts):gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
+end
+
 
 --- Renders a link element, handling internal cross-references.
 local function render_link(attr, inlines, target)
@@ -224,7 +254,7 @@ local function render_image(attr, caption, target)
     src = target
   end
   
-  local captionHTML = render_inlines_html(caption)
+  local caption_text = plain_text_from_inlines(caption)
   local kv_map = extract_keyvals(attr[3] or {})
   local source_loc = kv_map["data-source-loc"] or ""
   
@@ -238,9 +268,9 @@ local function render_image(attr, caption, target)
     end
   else
     if source_loc ~= "" then
-      print_error("%s: Image missing src (caption: %s)", source_loc, captionHTML)
+      print_error("%s: Image missing src (caption: %s)", source_loc, caption_text)
     else
-      print_error("Image missing src (caption: %s)", captionHTML)
+      print_error("Image missing src (caption: %s)", caption_text)
     end
   end
   
@@ -249,8 +279,8 @@ local function render_image(attr, caption, target)
   return string.format(
     '<img src="%s" title="%s" alt="%s" %s/>',
     html_escape(src),
-    html_escape(captionHTML),
-    html_escape(captionHTML),
+    html_escape(title ~= "" and title or caption_text),
+    html_escape(caption_text),
     attr_html
   )
 end
@@ -376,7 +406,7 @@ function render_inlines_html(inlines)
         table.insert(buffer, table_html)
       else
         local delim = (kind == "DisplayMath") and {"\\[", "\\]"} or {"\\(", "\\)"}
-        table.insert(buffer, delim[1] .. body .. delim[2])
+        table.insert(buffer, delim[1] .. html_escape(body) .. delim[2])
       end
     elseif t == "Link" then
       table.insert(buffer, render_link(c[1], c[2], c[3]))
@@ -454,14 +484,7 @@ end
 
 --- Extracts plain text from inline elements (for TOC).
 local function extract_text_from_inlines(inlines)
-  local parts = {}
-  for _, x in ipairs(inlines) do
-    if x.t == "Str" then table.insert(parts, x.c)
-    elseif x.t == "Space" then table.insert(parts, " ")
-    elseif x.t == "Math" and x.c[2] then table.insert(parts, "\\(" .. x.c[2] .. "\\)")
-    end
-  end
-  return table.concat(parts)
+  return plain_text_from_inlines(inlines, true)
 end
 
 
@@ -605,7 +628,9 @@ local function create_toc_collector()
     local css_class = ""
     if level == 2 then css_class = "section"
     elseif level == 3 then css_class = "subsection" end
-    table.insert(toc_items, string.format('<li><a href="#%s" class="%s">%s</a></li>\n', id, css_class, text or ""))
+    table.insert(toc_items, string.format(
+      '<li><a href="#%s" class="%s">%s</a></li>\n',
+      html_escape(id), html_escape(css_class), html_escape(text or "")))
   end
   return collector, toc_items
 end
