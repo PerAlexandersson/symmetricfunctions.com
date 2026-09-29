@@ -1,5 +1,40 @@
 # Handoff
 
+## Completed scope (2026-09-29, build-pipeline audit)
+
+Claude Opus 5.5 was the sole audit owner for a read-only audit of the build
+pipeline at `02f8941`.  It covered the Makefile and config, every Lua
+module, the template, the tests and lint, the pagefind and SVG interfaces, the
+incremental behaviour, and deploy staging.  The `.tex` corpus was out of
+scope.  The ranked report is
+`suggestions/build-pipeline-audit-opus55-20260929.md`.  It lists 23 confirmed
+defects, 9 hardening items and 9 QoL items, each with file:line references, a
+fix, and a regression-test idea.
+
+Highest-priority findings:
+
+- `make check` writes `unittest.htm` into `www/`.  The page is live on
+  production (HTTP 200) and in the search index.
+- `\name` corrupts non-ASCII initials and leaks TeX accents: 5 U+FFFD and 17
+  raw-TeX names are visible, and 38 tooltips contain TeX, including live
+  `�. Gal`.
+- `$x$:` is moved to `$x:$` at 51 sites, which adds relation spacing before
+  the colon.
+- `make svg` exits 0 on failure and ignores `svg-tex/lib` changes.
+- Stale pagefind files accumulate: 119 `pf_meta` files, 1 referenced.
+- The eprint→url `sed` duplicates `url` in 1,035 entries.
+- Required JSON loads fail open: malformed Pandoc JSON renders an `Untitled`
+  page and exits 0.
+- Deleted sources/assets are never pruned locally or remotely, and
+  `www/.created` is included by the deploy rsync.
+
+Reproductions ran only in the session scratchpad, using the existing `temp/`
+metadata read-only.  The host supervisor added independent dry-run checks and
+verified the two fail-open/pruning findings.  No build, check, deploy,
+pipeline-source edit or generated-output change was made.  The only files
+written are the report and this entry.  Ownership is released.  Removing the
+live `unittest.htm` requires an explicitly authorized remote action.
+
 ## Completed scope (2026-09-27, copyable interlacing-matrix list)
 
 Reverted the over-broad 56-case classification from source commit `41acf76`
