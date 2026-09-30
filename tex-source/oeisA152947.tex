@@ -1,0 +1,88 @@
+\metatitle{Unit interval cographs and OEIS A152947}
+\metadescription{Classification and enumeration of natural unit interval graphs which are cographs.}
+
+
+\section[oeisProofA152947]{Unit interval cographs and A152947}
+
+This page is part of the \hyperref[oeisProofs]{OEIS proof collection}.
+
+A \defin{cograph} is a graph with no induced path on four vertices.
+We count cographs among the natural
+\hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graphs}
+encoded by area sequences.
+
+\begin{theorem}
+Let $c_n$ be the number of connected area sequences of length $n$ whose
+unit interval graph is a cograph.  For $n \geq 1$,
+\[
+c_n=1+\binom{n-1}{2},
+\]
+so $(c_n)_{n\geq1}$ is \oeis{A152947}.
+
+More precisely, a connected unit interval graph is a cograph if and only if
+it is a complete graph or has the form
+\[
+K_r \mathbin{\vee} (K_p \mathbin{\sqcup} K_q),
+\qquad p,q,r\geq1,
+\]
+where $\vee$ denotes the graph join.
+\end{theorem}
+
+\begin{proof}
+We use the recursive characterization of cographs: every connected cograph
+with at least two vertices is a nontrivial join of smaller cographs.  Refine
+such a decomposition into join-indecomposable factors.  If two factors both
+contain a nonedge, then a nonadjacent pair from each factor induces a
+$4$-cycle, since all edges between different factors are present.  This is
+impossible because unit interval graphs are chordal.  Thus at most one factor
+is not complete.  The complete factors are single vertices in the refined
+decomposition; together they form a nonempty clique $K_r$ of universal
+vertices.
+
+Let $H$ be the remaining noncomplete factor, if it exists.  It is a
+join-indecomposable cograph, so it is disconnected.  Unit interval graphs are
+claw-free.  Hence $H$ has independence number at most two: otherwise a
+universal vertex together with three independent vertices of $H$ would induce
+a claw.  A maximum independent set of a disconnected graph contains a vertex
+from every component.  It follows that $H$ has exactly two components and
+that each component is complete.  Consequently
+$H=K_p\sqcup K_q$ for some $p,q\geq1$.  This proves the claimed structural
+form.  Conversely, complete graphs are cographs, and cographs are closed
+under disjoint union and join.  The displayed graphs are also unit interval
+graphs, as the following area sequences show.
+
+In a unit interval representation of
+$K_r\vee(K_p\sqcup K_q)$, the two nonadjacent clique classes occur on
+opposite sides of the universal class.  Choosing which class is on the left,
+the area sequence is
+\[
+(0,1,\dotsc,p+r-1,r,r+1,\dotsc,r+q-1).
+\]
+The complete graph $K_n$ has area sequence $(0,1,\dotsc,n-1)$.  Conversely,
+these sequences produce exactly the displayed graphs.  We therefore obtain
+one complete case and one case for every ordered composition
+$n=p+r+q$ into three positive parts.  There are
+$\binom{n-1}{2}$ such compositions, proving the formula.
+\end{proof}
+
+There is also a simple enumeration without the connectedness condition.
+Every area sequence decomposes uniquely into consecutive connected blocks.
+Thus, if $a_n$ counts all area sequences of length $n$ whose graph is a
+cograph, then
+\[
+C(x)\coloneqq\sum_{n\geq1}c_nx^n
+=\frac{x}{1-x}+\frac{x^3}{(1-x)^3}
+\]
+and
+\[
+\sum_{n\geq0}a_nx^n
+=\frac{1}{1-C(x)}
+=\frac{(1-x)^3}{1-4x+5x^2-3x^3}.
+\]
+The first values of $(a_n)_{n\geq0}$ are
+\[
+1,1,2,5,13,33,82,202,497,1224,3017,7439,18343.
+\]
+
+% Related Rust: combinatoric-core/src/graph.rs, Graph::is_p4_free.
+

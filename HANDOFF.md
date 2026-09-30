@@ -1,5 +1,19 @@
 # Handoff
 
+## Completed scope — OEIS proof collection refactor (2026-09-30)
+
+The three proofs formerly embedded in `tex-source/various-research.tex` now
+have sequence-specific pages, reached through the new `oeisProofs` landing
+page.  The collection currently covers A152947, A189912, and A358628.  The
+software-resources list also links to the collection, while the old headings
+and anchors in `various-research.htm` remain as short compatibility pointers.
+
+This was an architectural refactor only: the mathematical content was moved
+without changing its claims, and no OEIS entry or build-pipeline file was
+changed.  `make Q=1`, `make check Q=1`, rendered-link inspection, and
+`git diff --check` pass; the check emits only its two expected synthetic-
+relation warnings.  Deployment is pending the exact content commit below.
+
 ## Completed scope — A358628 column conjectures (2026-09-30)
 
 The A358628 subsection in `tex-source/various-research.tex` gives a

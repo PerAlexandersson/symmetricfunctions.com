@@ -1,0 +1,51 @@
+\metatitle{A proof for OEIS A189912}
+\metadescription{A parity decomposition proving the conjectured formula for OEIS A189912.}
+
+
+\section[oeisProofA189912]{A proof for A189912}
+
+This page is part of the \hyperref[oeisProofs]{OEIS proof collection}.
+
+The sequence \oeis{A189912} is defined as
+\[
+a_n \coloneqq \sum_{k=0}^n
+\frac{n!}{(n-k)! (\lfloor k/2 \rfloor!)^2 (\lfloor k/2 \rfloor +1)}.
+\]
+Let us split this sum into even and odd $k$.
+We get
+\begin{align*}
+&\sum_{k=0}^n
+\frac{n!}{(n-2k)! (\lfloor 2k/2 \rfloor!)^2 (\lfloor 2k/2 \rfloor +1)}
++ \\
+&\sum_{k=0}^n
+\frac{n!}{(n-(2k+1))! (\lfloor (2k+1)/2 \rfloor!)^2
+  (\lfloor (2k+1)/2 \rfloor +1)}.
+\end{align*}
+Simplification and reindexing leads to
+\[
+\sum_{k=0}^n \left(
+\frac{n!}{(n-2k)! (k!)^2 (k+1)}
++
+\frac{n!}{(n-2k-1)! (k!)^2 (k+1)}
+\right).
+\]
+Rewriting gives
+\[
+\sum_{k=0}^n
+\frac{n!}{ (k!) (k+1)!}\left(
+\frac{1}{(n-2k)!} + \frac{1}{(n-2k-1)!}
+\right)
+=
+\sum_{k=0}^n
+\frac{n!}{(k!) (k+1)!}\left(
+\frac{1}{(n-2k)!} + \frac{n-2k}{(n-2k)!}
+\right),
+\]
+so we end up with
+\[
+\sum_{k=0}^n (n+1-2k) \frac{n!}{ (k!) (k+1)! (n-2k)!}.
+\]
+The expression $\frac{n!}{(k!) (k+1)! (n-2k)!}$
+is exactly \oeis{A055151}, so this verifies
+the conjecture by \name{Werner Schulte}, Oct 23 2016.
+
