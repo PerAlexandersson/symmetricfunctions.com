@@ -12,7 +12,14 @@ This was an architectural refactor only: the mathematical content was moved
 without changing its claims, and no OEIS entry or build-pipeline file was
 changed.  `make Q=1`, `make check Q=1`, rendered-link inspection, and
 `git diff --check` pass; the check emits only its two expected synthetic-
-relation warnings.  Deployment is pending the exact content commit below.
+relation warnings.
+
+The constrained bridge deployed exact content commit
+`6581cdd1c97063c391104ed98e27c7220c8fb3e4` under receipt
+`20260930T094736-fb2e56b3f4ad`; the site, Pagefind, and manifest-verification
+steps completed and `pagefind_manifest_match=true`.  Independent HTTPS fetches
+find the landing page, all three sequence pages, and the compatibility pointer
+from `various-research.htm`.  Ownership is released.
 
 ## Completed scope — A358628 column conjectures (2026-09-30)
 
