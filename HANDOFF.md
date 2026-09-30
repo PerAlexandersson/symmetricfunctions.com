@@ -1,5 +1,28 @@
 # Handoff
 
+## Completed scope — A358628 column conjectures (2026-09-30)
+
+The A358628 subsection in `tex-source/various-research.tex` gives a
+self-contained proof of both conjectures currently stated in the OEIS entry.
+It derives the coefficient formula and fixed-column generating function from
+one bivariate coordinate sum, then proves
+`A(i,j)=binomial(i+j,j)^2*p_j(i)`, including the exact degree, leading
+coefficient, and reciprocity of `p_j`.
+
+The same argument realizes each column as the Ehrhart polynomial of an
+explicit `3j`-dimensional lattice polytope.  Its h-star polynomial is the
+binomial-square polynomial, identified with a transformed Legendre polynomial;
+the page records its normalized volume, negative simple zeros, recurrence,
+log-concavity, and unimodality.  Summing the Legendre form also evaluates the
+bivariate generating function from the OEIS entry.
+
+Private research issue #28 and its source draft were read-only inputs.  The
+unrelated dirty/behind research checkout was untouched.  The focused page
+build, full `make Q=1`, `make check Q=1`, rendered HTML inspection, and
+`git diff --check` pass; the check emits only its two expected synthetic-
+relation warnings.  No build-pipeline file or OEIS edit was in scope.
+Ownership is released pending the content checkpoint and deployment record.
+
 ## Completed scope — unit interval cographs and A152947 (2026-09-30)
 
 The A152947 subsection in `tex-source/various-research.tex` proves that the
