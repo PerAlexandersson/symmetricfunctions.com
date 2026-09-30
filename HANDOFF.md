@@ -1,5 +1,28 @@
 # Handoff
 
+## Completed scope — unit interval cographs and A152947 (2026-09-30)
+
+The A152947 subsection in `tex-source/various-research.tex` proves that the
+connected area sequences whose natural unit interval graphs are cographs are
+counted by
+
+```text
+c_n = 1 + binomial(n - 1, 2),  n >= 1.
+```
+
+The proof classifies the connected graphs as `K_n` or
+`K_r join (K_p disjoint-union K_q)` with positive `p,q,r`, identifies their
+area sequences, and counts ordered positive triples.  It also derives the
+ordinary generating function `(1-x)^3/(1-4x+5x^2-3x^3)` for all, possibly
+disconnected, area sequences and records its first 13 terms.  The reusable
+Rust certificate/predicate is `Graph::{induced_p4_witness,is_p4_free}` in
+`combinatoric-core/src/graph.rs`.
+
+The focused page build, full `make Q=1`, `make check Q=1`, rendered HTML
+inspection, and `git diff --check` pass; the check emits only its two expected
+synthetic-relation warnings.  No build-pipeline file or deployment was in
+scope.  Ownership is released.
+
 ## Completed scope — SearchAction and scoped Pagefind deployment (2026-09-29)
 
 Codex owned `template.htm`, the focused generated-HTML regression surface under
