@@ -21,7 +21,14 @@ unrelated dirty/behind research checkout was untouched.  The focused page
 build, full `make Q=1`, `make check Q=1`, rendered HTML inspection, and
 `git diff --check` pass; the check emits only its two expected synthetic-
 relation warnings.  No build-pipeline file or OEIS edit was in scope.
-Ownership is released pending the content checkpoint and deployment record.
+
+The constrained bridge deployed exact content commit
+`c0ef825dfbb547b0c31e404df9eaa3590c00512e` under receipt
+`20260930T092448-2b7fabf88879`; the site, Pagefind, and manifest-verification
+steps completed and `pagefind_manifest_match=true`.  An independent HTTPS
+fetch finds the theorem, Ehrhart interpretation, factorization, reciprocity,
+and bivariate generating function at
+`various-research.htm#A358628Columns`.  Ownership is released.
 
 ## Completed scope — unit interval cographs and A152947 (2026-09-30)
 
