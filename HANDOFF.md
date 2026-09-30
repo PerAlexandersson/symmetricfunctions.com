@@ -20,8 +20,15 @@ Rust certificate/predicate is `Graph::{induced_p4_witness,is_p4_free}` in
 
 The focused page build, full `make Q=1`, `make check Q=1`, rendered HTML
 inspection, and `git diff --check` pass; the check emits only its two expected
-synthetic-relation warnings.  No build-pipeline file or deployment was in
-scope.  Ownership is released.
+synthetic-relation warnings.  No build-pipeline file was changed.
+
+The constrained bridge deployed exact content commit
+`5cb596c001471f50e921af34145132eefa1db386` under receipt
+`20260930T090404-ea010156035a`; the site, Pagefind, and manifest-verification
+steps all completed and `pagefind_manifest_match=true`.  An independent HTTPS
+fetch finds the new heading, A152947 link, classification, and generating
+function at `various-research.htm#unitIntervalCographsA152947`.  Ownership is
+released.
 
 ## Completed scope — SearchAction and scoped Pagefind deployment (2026-09-29)
 
