@@ -1,7 +1,7 @@
 \metatitle{Gessel quasisymmetric functions}
 \metadescription{An introduction to Gessel quasisymmetric functions, including
-their definition, product rules, specializations, 0-Hecke interpretation, and
-relationships with the power-sum and quasisymmetric power-sum bases.}
+their definition, product rules, fundamental-length specialization, 0-Hecke
+interpretation, and relationships with power-sum bases.}
 \metakeywords{Gessel quasisymmetric functions,fundamental quasisymmetric
 functions,product rule,specializations,power-sum basis,quasisymmetric
 power-sum basis,0-Hecke algebra}
@@ -111,6 +111,64 @@ and for $\length(S)\lt m$,
 \end{equation*}
 where $|S|$ denotes the sum of the elements of $S$, and the final factor is a
 \hyperref[qBinomialCoefficient]{$q$-binomial coefficient}.
+
+
+\subsection[gesselLengthSpecialization]{Fundamental-length specialization}
+
+In each positive degree, define the linear maps $\Psi_t$ and $T_t$ on the
+fundamental basis by
+\[
+ \Psi_t(\gessel_\alpha)=t^{\length(\alpha)},
+ \qquad
+ T_t(\gessel_\alpha)=t^{\length(\alpha)-1}.
+\]
+Thus $\Psi_t=tT_t$ in positive degree.  These are linear maps rather than
+algebra homomorphisms.  For example,
+$\gessel_{(1)}^2=\gessel_{(2)}+\gessel_{(1,1)}$, whose image under $\Psi_t$
+is $t+t^2$, whereas $\Psi_t(\gessel_{(1)})^2=t^2$.
+
+\begin{proposition}
+Let $f$ be a homogeneous quasisymmetric function of degree $n\geq1$.  Then
+\[
+ \Psi_t(f)=(1-t)^{n+1}\sum_{m\geq0}f(1^m)t^m.
+\]
+If $f$ is symmetric, then
+\[
+ \Psi_t(\omega f)=t^{n+1}\Psi_{1/t}(f),
+ \qquad
+ T_t(\omega f)=t^{n-1}T_{1/t}(f).
+\]
+\end{proposition}
+
+\begin{proof}
+Write $\gessel_{n,S}$ for a fundamental function and let $d$ be the
+cardinality of $S$.  Removing the $d$ mandatory strict increases from a
+weakly increasing sequence gives
+\[
+ \gessel_{n,S}(1^m)=\binom{m+n-1-d}{n}.
+\]
+Consequently,
+\[
+ \sum_{m\geq0}\gessel_{n,S}(1^m)t^m
+ =\frac{t^{d+1}}{(1-t)^{n+1}},
+\]
+and the first identity follows by linearity.
+
+For the second identity, use
+\[
+ \schurS_\lambda=\sum_{Q\in\SYT(\lambda)}
+ \gessel_{n,\DES(Q)}.
+\]
+Transposing a standard tableau complements its descent set in $[n-1]$.
+The two exponents under $\Psi_t$ therefore sum to $n+1$, and the result
+follows from $\omega\schurS_\lambda=\schurS_{\lambda'}$.  The identity for
+$T_t$ follows from $\Psi_t=tT_t$.
+\end{proof}
+
+For the application to chromatic symmetric functions, see the
+\hyperref[chromaticWPolynomial]{chromatic $w$-polynomial}.  Its
+\hyperref[realRootedChromaticW]{real-rootedness for chordal graphs} gives a
+graph-theoretic use of this specialization.
 
 
 \subsection[gesselSlinkyRule]{Egge--Loehr--Warrington and the slinky rule}

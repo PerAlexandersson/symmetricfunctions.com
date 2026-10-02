@@ -1,5 +1,26 @@
 # Handoff
 
+## Completed scope — fundamental specialization and X-descents (2026-10-02)
+
+Implemented GitHub issue #3 across the Gessel, chromatic-quasisymmetric, and
+graph real-rootedness pages.  The Gessel page defines the shifted and
+unshifted fundamental-length maps, proves their principal-specialization and
+omega-reversal identities, and records that they are linear rather than
+multiplicative.  The chromatic page identifies the shifted image with
+Brenti's $w$-polynomial, defines the Rédei--Berge and $X$-descent
+specializations, and retains the Shareshian--Wachs $q$-weight.  The graph page
+states Brenti's chordal theorem and gives one self-contained proof through a
+simplicial-vertex recurrence and a differential root-preserving lemma.
+
+The Shareshian--Wachs and Grinberg--Stanley manuscripts are cached as
+paper-cache records 504--505.  The Brenti statement and numbering were checked
+against the primary 1992 article; new BibTeX records came from the read-only
+`arxiv.symmetricfunctions.com` API.  `make bib Q=1`, all three focused page
+builds, `make Q=1`, `make check Q=1`, rendered formula/link/citation inspection,
+and `git diff --check` pass.  The check emits only the two expected synthetic-
+relation warnings.  No deployment is authorized or performed; ownership is
+released.
+
 ## Completed scope — two current preprints (2026-10-02)
 
 Added concise coverage of arXiv `2609.11691v3` and `2507.18852v3`.  The

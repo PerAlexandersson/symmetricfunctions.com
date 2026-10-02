@@ -1,7 +1,7 @@
 \metatitle{Chromatic quasisymmetric functions}
 \metadescription{An introduction to chromatic quasisymmetric functions, their
 definition via proper colorings of graphs, symmetry, reciprocity, positivity,
-and connections to LLT polynomials and Hessenberg varieties.}
+and connections to LLT polynomials, Hessenberg varieties, and X-descents.}
 \metakeywords{chromatic quasisymmetric function, chromatic symmetric
 function, unit interval graph, Stanley-Stembridge conjecture, Hessenberg
 variety}
@@ -453,6 +453,80 @@ positive in the \hyperref[gessel]{fundamental quasisymmetric basis}.
 \name{Vasu Tewari}, \name{Andrew Wilson}, and \name{Philip Zhang} study a
 nonsymmetric refinement for Dyck graphs and prove positivity in the
 \hyperref[slideF]{fundamental slide basis} \cite{TewariWilsonZhang2022}.
+
+
+\subsection[chromaticWPolynomial]{The $w$-polynomial and $X$-descents}
+
+Let $G$ be a graph on $n\geq1$ vertices.  Applying the
+\hyperref[gesselLengthSpecialization]{fundamental-length specialization} to
+its chromatic symmetric function gives
+\[
+ w_G(t)
+ \coloneqq
+ \Psi_t\bigl(\chrom_G(\xvec)\bigr)
+ =(1-t)^{n+1}\sum_{m\geq0}\chi_G(m)t^m.
+\]
+This is \name{Francesco Brenti}'s \defin{$w$-polynomial}
+\cite[Prop.~4.1]{Brenti1992}.  In particular, this specialization of
+$\chrom_G(\xvec)$ depends only on the ordinary chromatic polynomial.
+
+More generally, let $R\subseteq[n]\times[n]$ be a relation and set
+\[
+ \DES_R(\sigma)
+ \coloneqq
+ \{j\in[n-1]:(\sigma_j,\sigma_{j+1})\in R\},
+ \qquad
+ A_R(t)\coloneqq\sum_{\sigma\in\symS_n}t^{|\DES_R(\sigma)|}.
+\]
+The \defin{R{\'e}dei--Berge symmetric function} is
+\[
+ U_R(\xvec)
+ \coloneqq
+ \sum_{\sigma\in\symS_n}\gessel_{n,\DES_R(\sigma)}(\xvec),
+\]
+see \cite[Def.~1.15]{GrinbergStanley2023x}.  Hence
+\[
+ \Psi_t(U_R)=tA_R(t).
+\]
+
+Let $h:[n]\to[n]$ be a
+\hyperref[hessenbergFunction]{Hessenberg function}, and let $H_h$ be the
+natural unit interval graph with an edge $\{i,j\}$ whenever $i<j\leq h(i)$.
+The descending relation of the corresponding natural unit interval order is
+\[
+ R_h\coloneqq\{(i,j):i>h(j)\}.
+\]
+A position $j$ of $\sigma$ is an \defin{$X$-descent} if
+$(\sigma_j,\sigma_{j+1})\in R_h$; write
+\[
+ \operatorname{xdes}_h(\sigma)
+ \coloneqq |\DES_{R_h}(\sigma)|.
+\]
+Also, let $\inv_{H_h}(\sigma)$ count the pairs $i<j$ such that
+$\sigma_i>\sigma_j$ and $\{\sigma_i,\sigma_j\}$ is an edge of $H_h$.
+
+\begin{theorem}[Shareshian--Wachs, \cite[Thm.~3.1]{ShareshianWachs2016}]
+For every Hessenberg function $h:[n]\to[n]$,
+\[
+ \Psi_t\bigl(\omega\chrom_{H_h}(\xvec;q)\bigr)
+ =t\sum_{\sigma\in\symS_n}
+ q^{\inv_{H_h}(\sigma)}t^{\operatorname{xdes}_h(\sigma)}.
+\]
+\end{theorem}
+
+\begin{proof}
+Shareshian and Wachs expand $\omega\chrom_{H_h}(\xvec;q)$ in fundamental
+functions indexed by the $H_h$-inversion number and the descent set of the
+incomparability order.  Their fundamental functions use decreasing indices.
+Reversing the corresponding compositions gives the increasing-index
+convention used here and preserves their lengths.  Applying $\Psi_t$ gives
+the displayed identity.
+\end{proof}
+
+At $q=1$, the right-hand side is $tA_{R_h}(t)$.  Since natural unit interval
+graphs are chordal, the
+\hyperref[realRootedChromaticW]{chordal $w$-polynomial theorem} shows that
+$A_{R_h}(t)$ has only real nonpositive zeros.
 
 
 \subsection[chromaticQuasisymmetricPowerSumExpansion]{Power-sum positivity}

@@ -1,8 +1,8 @@
 \metatitle{Real-rooted polynomials: graphs and combinatorics}
 
-\metadescription{Matching polynomials, rook polynomials, independence
-polynomials of claw-free graphs, Touchard polynomials, Chow polynomials, and
-related real-rootedness results.}
+\metadescription{Matching and rook polynomials, chromatic w-polynomials of
+chordal graphs, independence polynomials of claw-free graphs, Chow
+polynomials, and related real-rootedness results.}
 
 
 \section[realRootedMatching]{Matching and independence polynomials}
@@ -168,6 +168,113 @@ A theorem by Haglund--Ono--Wagner \cite{HaglundOnoWagner1999}
 states that if $B$ is a Ferrers board (the same as a
 \hyperref[youngDiagram]{Young diagram}),
 then $T_B(z)$ is real-rooted.
+
+
+\subsection[realRootedChromaticW]{Chromatic $w$-polynomials}
+
+Let $G$ be a graph on $n\geq1$ vertices.  Its
+\defin{chromatic $w$-polynomial} is
+\[
+ w_G(t)
+ \coloneqq
+ (1-t)^{n+1}\sum_{m\geq0}\chi_G(m)t^m
+ =\Psi_t\bigl(\chrom_G(\xvec)\bigr),
+\]
+where the last equality follows from the
+\hyperref[gesselLengthSpecialization]{fundamental-length specialization}.
+A graph is \defin{chordal}\label{chordalGraph} if every cycle of length at
+least four has a chord.
+
+\begin{lemma}
+Let $f$ be a nonzero polynomial with nonnegative coefficients and only real
+zeros.  If $a\geq0$ and $b>\deg f$, then
+\[
+ g(t)=t(1-t)f'(t)+(a+bt)f(t)
+\]
+has nonnegative coefficients and only real nonpositive zeros.
+\end{lemma}
+
+\begin{proof}
+Write $f(t)=\sum_{j=0}^s c_jt^j$, where $s=\deg f$.  Then
+\[
+ [t^j]g(t)=(a+j)c_j+(b-j+1)c_{j-1},
+\]
+where coefficients outside the range $0,\dotsc,s$ are zero.  These
+coefficients are nonnegative since $a\geq0$ and $b>s$.
+
+First suppose that $s\geq1$ and that $f$ has distinct negative zeros
+$\rho_1<\dotsb<\rho_s$.  At these zeros,
+\[
+ g(\rho_i)=\rho_i(1-\rho_i)f'(\rho_i),
+\]
+so the signs alternate and give a zero of $g$ between each consecutive pair.
+The leading coefficient of $g$ is $(b-s)c_s>0$, which gives another zero to
+the left of $\rho_1$.  If $a>0$, then $g(0)=af(0)>0$ and
+$g(\rho_s)<0$, giving a zero in $(\rho_s,0)$.  If $a=0$, the remaining zero
+is $0$.  These account for all $s+1$ zeros of $g$.
+
+Polynomials with repeated nonpositive zeros are coefficientwise limits of
+polynomials with distinct negative zeros and the same positive leading
+coefficient.  The leading coefficient of $g$ remains $(b-s)c_s>0$, so the
+result follows by taking limits.  If $f$ is constant, then
+$g=(a+bt)f$, and the claim follows directly.
+\end{proof}
+
+\begin{theorem}[Brenti, \cite[Thms.~4.11 and~4.15]{Brenti1992}]
+If $G$ is a nonempty chordal graph, then both
+\[
+ \Psi_t\bigl(\chrom_G(\xvec)\bigr)=w_G(t)
+ \qquad\text{and}\qquad
+ \Psi_t\bigl(\omega\chrom_G(\xvec)\bigr)
+\]
+have only real nonpositive zeros.
+\end{theorem}
+
+\begin{proof}
+We prove the first assertion by building $G$ in reverse perfect elimination
+order.  The one-vertex graph has $w_G(t)=t$.  Suppose that the current graph
+$H$ has $k$ vertices and chromatic number $r$, and that the next vertex has
+$d$ earlier neighbors.  These neighbors form a clique, so $0\leq d\leq r$,
+and the new graph $H'$ satisfies
+\[
+ \chi_{H'}(m)=(m-d)\chi_H(m).
+\]
+Write $W(t)=w_H(t)$.  Differentiating its defining generating series gives
+\[
+ w_{H'}(t)
+ =t(1-t)W'(t)+\bigl((k+1+d)t-d\bigr)W(t).
+\]
+
+Since $\chi_H(m)=0$ for $0\leq m<r$ and $\chi_H(r)>0$, the zero of $W$ at
+$0$ has multiplicity exactly $r$.  The
+\hyperref[chromaticQuasisymmetricGesselExpansion]{fundamental-positive
+expansion} shows that $W$ has nonnegative coefficients and degree at most
+$k$.  Write $W=t^rf$.  By induction, $f$ has only real zeros; it also has
+nonnegative coefficients and $\deg f\leq k-r$.  The recurrence becomes
+\[
+ w_{H'}(t)
+ =t^r\left[
+ t(1-t)f'(t)
+ +\bigl(r-d+(k+1+d-r)t\bigr)f(t)
+ \right].
+\]
+Here $r-d\geq0$, while
+\[
+ k+1+d-r>\deg f.
+\]
+The lemma therefore completes the induction.  Nonnegativity of the
+coefficients forces all real zeros to be nonpositive.
+
+Finally, the omega-reversal identity on the
+\hyperref[gesselLengthSpecialization]{fundamental-length specialization}
+gives
+\[
+ \Psi_t\bigl(\omega\chrom_G(\xvec)\bigr)
+ =t^{n+1}w_G(1/t).
+\]
+Thus its nonzero zeros are the reciprocals of the nonzero zeros of $w_G$;
+any remaining zeros are at the origin.
+\end{proof}
 
 
 
