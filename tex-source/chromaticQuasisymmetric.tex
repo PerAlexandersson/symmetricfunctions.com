@@ -238,6 +238,8 @@ claw-free graphs.  Thus hereditary strong niceness captures the claw-free
 condition, but the line-graph counterexamples above show that it is not
 sufficient for Schur positivity.
 
+\subsection[chromaticProductsOfChains]{Products of chains}
+
 Distributive \hyperref[latticePoset]{lattices} give a separate family of
 negative tests when a poset
 is viewed through its incomparability graph.  \name{Grace M. X. Li},
@@ -245,11 +247,36 @@ is viewed through its incomparability graph.  \name{Grace M. X. Li},
 construct distributive lattices that are not nice and hence not
 \hyperref[schurPositiveDefinition]{Schur-positive}, and also distributive lattices
 that are nice but still not
-\hyperref[schurPositiveDefinition]{Schur-positive} \cite{LiQiuYangZhang2024x}.  Later,
+\hyperref[schurPositiveDefinition]{Schur-positive} \cite{LiQiuYangZhang2024x}.
+Here, $\mathbf{r}$ denotes a chain with $r$ elements.  Later,
 \name{David G. L. Wang} and \name{K. Zhang} prove that the product lattices
-$m \times 2$ and $m \times 3$ are not
-\hyperref[schurPositiveDefinition]{Schur-positive} for $m \geq 8$, and that
-$m \times 3$ is not strongly nice for $m \geq 44$ \cite{WangZhang2025x}.
+$\mathbf{m}\times\mathbf{2}$ and $\mathbf{m}\times\mathbf{3}$ are
+\hyperref[schurPositiveDefinition]{Schur-positive} exactly for $m\leq7$ and
+$m\leq6$, respectively.  They also show that
+$\mathbf{m}\times\mathbf{3}$ is not strongly nice for $m\geq44$
+\cite{WangZhang2025x}.
+
+\name{Kai Zhang} supplies a negative coefficient throughout the remaining
+large-$m$ range.  Put $m=n+k$ and
+\[
+\rho=(2n+k-1,2n+k-3,\dotsc,k+5,k,k,4).
+\]
+
+\begin{theorem}[Zhang, \cite[Thm.~3.1]{Zhang2026Chainsx}]
+If $n\geq4$ and $k\geq2n-1$, then
+\[
+[\schurS_\rho]\,
+\chrom_{\operatorname{inc}(\mathbf{m}\times\mathbf{n})}(\xvec;1)<0.
+\]
+In particular, $\mathbf{m}\times\mathbf{n}$ is not Schur-positive whenever
+$n\geq4$ and $m\geq3n-1$.
+\end{theorem}
+
+Together with the range $n+5\leq m\leq3n-2$ proved in
+\cite{LiQiuYangZhang2024x}, this shows that
+$\mathbf{m}\times\mathbf{n}$ is not Schur-positive for every
+$n\geq3$ and $m\geq n+5$; for $n=2$, nonpositivity holds for $m\geq8$
+\cite[Cor.~3.4]{Zhang2026Chainsx}.
 
 \subsection[chromaticQuasisymmetricUnitIntervalGraph]{Unit interval graphs}
 

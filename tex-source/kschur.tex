@@ -150,7 +150,17 @@ function is
 \]
 Repeated entries of $M$ contribute repeated lowering factors.
 
-A conjecture regarding the Katalan symmetric functions is solved in
+The broad $k$-Schur-positivity conjecture for Katalan functions in
+\cite[Conj.~2.19]{BlasiakMorseSeelinger2020} does not hold in general.
+\name{Haojun Bai} and \name{Peter L. Guo} give an explicit counterexample
+with $\ell=8$, $\lambda=(1^8)$, and $k=3$
+\cite[Sec.~5]{BaiGuo2026x}.  The distinguished $K$-$k$-Schur subfamily is
+nevertheless $k$-Schur-positive; see
+\hyperref[kKSchurPositivity]{the positivity theorem below}.
+
+Separately, \name{Takeshi Ikeda}, \name{Shinsuke Iwao}, and
+\name{Satoshi Naito} identify closed $k$-Schur Katalan functions with
+$K$-homology Schubert representatives of the affine Grassmannian
 \cite{IkedaIwaoNaito2024}.
 
 \section[kSchur]{$k$-Schur polynomials} 
@@ -248,6 +258,33 @@ We have the following Schur expansions of some $k$-Schur functions:
 \kSchur^{(4)}_{221}(\xvec) = \schurS_{221}(\xvec)
 \]
 \end{example}
+
+
+\subsection[kKSchurPositivity]{$K$-$k$-Schur positivity}
+
+The $K$-$k$-Schur functions $g^{(k)}_\lambda(\xvec)$ represent Schubert
+classes in the $K$-homology of the affine Grassmannian of type $A$.  They are
+inhomogeneous, with highest homogeneous component
+$\kSchur^{(k)}_\lambda(\xvec)$.
+
+\begin{theorem}[Bai--Guo, \cite[Thm.~1.1]{BaiGuo2026x}]
+For every $k$-bounded partition $\lambda$,
+\[
+g^{(k)}_\lambda(\xvec)
+=
+\sum_\nu b^{(k)}_{\lambda,\nu}\,
+\kSchur^{(k)}_\nu(\xvec),
+\qquad
+b^{(k)}_{\lambda,\nu}\in\setZ_{\geq0}.
+\]
+\end{theorem}
+
+This proves the Lam--Schilling--Shimozono positivity conjecture.  The proof
+uses the realizations of $k$-Schur functions as Catalan functions and
+$K$-$k$-Schur functions as Katalan functions.  For sufficiently large $k$,
+the theorem specializes to the Schur positivity of the
+\hyperref[grothendieckDualStable]{dual stable Grothendieck polynomial}
+$g_\lambda(\xvec)$.
 
 
 \subsection[kSchurDuality]{Relation with affine Stanley symmetric functions}

@@ -1,5 +1,27 @@
 # Handoff
 
+## Completed scope — three current preprints (2026-10-02)
+
+Added concise theorem-level coverage of arXiv `2610.01708v1`, `2610.01617v1`,
+and `2610.00966v1`.  The $k$-Schur page now records Bai--Guo's proof that every
+$K$-$k$-Schur function is $k$-Schur-positive, the Catalan/Katalan mechanism,
+the stable dual-Grothendieck specialization, and their counterexample to the
+broader Katalan conjecture.  The chromatic page has a stable products-of-chains
+subsection giving Zhang's explicit negative coefficient for
+$n\geq4$, $m\geq3n-1$ and the combined nonpositivity range.  The real-rooted
+words page defines the multiset Eulerian--Narayana polynomials and records
+simple negative zeros, gamma-refinement monotonicity, total nonnegativity, and
+strict adjacent-column interlacing.
+
+The primary manuscripts are cached as paper-cache records 499--501.  BibTeX
+records came from the read-only `arxiv.symmetricfunctions.com` API; the Kai
+Zhang entry uses the collision-free key `Zhang2026Chainsx` because
+`Zhang2026x` already belongs to Philip B. Zhang.  `make bib Q=1`, all three
+focused page builds, `make Q=1`, `make check Q=1`, rendered anchor/citation
+inspection, and `git diff --check` pass.  The check emits only the two expected
+synthetic-relation warnings.  No deployment is authorized or performed;
+ownership is released.
+
 ## Completed scope — OEIS proof collection refactor (2026-09-30)
 
 The three proofs formerly embedded in `tex-source/various-research.tex` now
