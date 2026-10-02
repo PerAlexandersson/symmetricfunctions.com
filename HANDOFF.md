@@ -1,5 +1,22 @@
 # Handoff
 
+## Completed scope — two current preprints (2026-10-02)
+
+Added concise coverage of arXiv `2609.11691v3` and `2507.18852v3`.  The
+$qt$-Catalan page now defines Oblomkov's type-$B_n$ $q,t$-Fuss--Catalan
+polynomial, records its asymptotic localization formula and principal
+specialization, and notes the conjectural labelled-path Frobenius model.  The
+Schubert page now records that generalized chute moves make the reduced pipe
+dreams of every permutation into the Rubey lattice, together with the
+move-operator algorithms and pipe-dream-tableau comparability criterion.
+
+The primary manuscripts are cached as paper-cache records 502--503, and both
+BibTeX records came from the read-only `arxiv.symmetricfunctions.com` API.
+`make bib Q=1`, both focused page builds, `make Q=1`, `make check Q=1`, rendered
+formula/citation inspection, and `git diff --check` pass.  The check emits only
+the two expected synthetic-relation warnings.  No deployment is authorized or
+performed; ownership is released.
+
 ## Completed scope — three current preprints (2026-10-02)
 
 Added concise theorem-level coverage of arXiv `2610.01708v1`, `2610.01617v1`,
