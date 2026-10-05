@@ -1,5 +1,17 @@
 # Handoff
 
+## Deployment completed — Jacobi–Stirling additions (2026-10-05)
+
+At the user's explicit request, rebuilt and checked the clean checkout with
+`make Q=1` and `make check Q=1`; only the two expected synthetic-relation
+warnings appeared. The constrained host bridge deployed content commit
+`897eee9de2a725fec12934a7f018786f9ecbb705` under receipt
+`20261005T070719-3ae134dfebcc`. Site transfer, Pagefind transfer, and manifest
+verification completed; `pagefind_manifest_match=true`.
+An independent HTTPS fetch confirms the Jacobi–Stirling section, theorem
+citations, strict coefficient inequalities, and A008517 link at
+`realRootedWords.htm#jacobiStirlingDescentRealRooted`. Ownership is released.
+
 ## Completed scope — Jacobi–Stirling OEIS follow-up (2026-10-05)
 
 Neither cached paper contains explicit OEIS references. Added a direct
