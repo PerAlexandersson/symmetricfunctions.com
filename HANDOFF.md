@@ -1,5 +1,14 @@
 # Handoff
 
+## Completed scope — Jacobi–Stirling OEIS follow-up (2026-10-05)
+
+Neither cached paper contains explicit OEIS references. Added a direct
+A008517 link in the Jacobi–Stirling section and the indexing identity
+`[t^j] A_{k,k}(t) = T(k,j+1)`, verified against the OEIS MCP entry and the
+paper's second-order Eulerian specialization. The focused page build,
+`make lint-html Q=1`, rendered link/formula inspection, and `git diff --check`
+pass. No deployment was performed; ownership is released.
+
 ## Completed scope — Jacobi–Stirling descent polynomials (2026-10-05)
 
 Added `jacobiStirlingDescentRealRooted` to `tex-source/realRootedWords.tex`:

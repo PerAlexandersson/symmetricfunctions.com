@@ -929,7 +929,9 @@ We define
 where $\des(w)=|\{j:1\leq j<|w|,\ w_j>w_{j+1}\}|$ counts internal descents.
 In particular, $A_{k,k}(t)$ is the second-order Eulerian polynomial for
 \hyperref[permutationsStirling]{Stirling permutations}, with the final descent
-omitted. Gessel, Lin, and Zeng observed that each fixed-$S$ polynomial is
+omitted. Its coefficients are row $k$ of \oeis{A008517}:
+$[t^j]A_{k,k}(t)=T(k,j+1)$ for $0\leq j\leq k-1$.
+Gessel, Lin, and Zeng observed that each fixed-$S$ polynomial is
 real-rooted and conjectured real-rootedness of $A_{k,i}(t)$ for all $k$ and $i$
 \cite[Section~5 and Conjecture~15]{GesselLinZeng2012}.
 Their normalization includes an additional factor of $t$.
