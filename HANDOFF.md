@@ -1,5 +1,16 @@
 # Handoff
 
+## Completed scope — separable-permutation OEIS reference (2026-10-05)
+
+Added one sentence linking the coefficient triangle to A175124 in
+`tex-source/realRootedWords.tex`; only that file and this handoff changed.
+A175124 is explicitly identified in Fu--Lin--Zeng (paper-cache
+record 137, introduction); its displayed OEIS rows agree with their listed
+polynomials, with row n containing the coefficients of S_n starting at t^0.
+The existing family-page A006318 link remains. The focused page build,
+`make lint-html Q=1`, rendered link inspection, and `git diff --check` pass.
+No deployment is authorized or performed; ownership is released.
+
 ## Completed scope — separable-permutation interlacing preprint (2026-10-05)
 
 Added `Zhang2026SeparableInterlacing` to `bibliography.bib` with SSRN/DOI
