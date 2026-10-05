@@ -1,5 +1,25 @@
 # Handoff
 
+## Completed scope — Jacobi–Stirling descent polynomials (2026-10-05)
+
+Added `jacobiStirlingDescentRealRooted` to `tex-source/realRootedWords.tex`:
+the permutation and internal-descent definitions, Ma–Wang's five families of
+weighted sums with simple negative zeros, all five strict interlacing
+comparisons, and strict top-heaviness/increasing-left-half inequalities.
+The general Gessel–Lin–Zeng conjecture remains marked as open; the older
+paper's extra factor of the descent variable is explicit.
+
+Primary sources are cached as paper-cache records 508–509. Both bibliography
+entries came from the read-only arXiv site API; theorem numbers, barred-letter
+order, and normalization were checked against the manuscripts. `make bib Q=1`,
+the focused page build, `make Q=1`, `make check Q=1`, rendered formula/link/
+citation inspection, and `git diff --check` pass. The check emits only the two
+expected synthetic-relation warnings. A possible normalization inconsistency
+in the pre-existing Stirling example is recorded in
+`suggestions/stirling-descent-normalization.txt` for a separate focused review.
+No new polynomial computations or other site edits were made. No deployment
+is authorized or performed; ownership is released.
+
 ## Completed scope — fundamental specialization and X-descents (2026-10-02)
 
 Implemented GitHub issue #3 across the Gessel, chromatic-quasisymmetric, and

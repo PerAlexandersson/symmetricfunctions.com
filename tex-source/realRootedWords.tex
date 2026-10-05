@@ -907,6 +907,86 @@ already known real-rootedness proof to a consecutive interlacing
 statement when the recurrence has the form above.
 
 
+\subsubsection[jacobiStirlingDescentRealRooted]{Jacobi--Stirling descent polynomials}
+
+For $k\geq1$, we order the multiset
+\[
+ M_k=\{\overline{1},1,1,\overline{2},2,2,\dotsc,\overline{k},k,k\}
+ \quad\text{by}\quad
+ \overline{1}<1<\overline{2}<2<\dotsb<\overline{k}<k.
+\]
+For $S\subseteq[k]$, delete the barred letters $\overline{j}$ with $j\in S$.
+A \defin{Jacobi--Stirling permutation} of the resulting multiset is a word
+in which every entry between the two unbarred copies of $j$ is larger than
+$j$, for each $j\in[k]$. Let $\operatorname{JSP}_{k,S}$ be the set of these words.
+We define
+\[
+ A_{k,S}(t)\coloneqq\sum_{w\in\operatorname{JSP}_{k,S}}t^{\des(w)},
+ \qquad
+ A_{k,i}(t)\coloneqq\sum_{\substack{S\subseteq[k]\\|S|=i}}A_{k,S}(t),
+ \qquad 0\leq i\leq k,
+\]
+where $\des(w)=|\{j:1\leq j<|w|,\ w_j>w_{j+1}\}|$ counts internal descents.
+In particular, $A_{k,k}(t)$ is the second-order Eulerian polynomial for
+\hyperref[permutationsStirling]{Stirling permutations}, with the final descent
+omitted. Gessel, Lin, and Zeng observed that each fixed-$S$ polynomial is
+real-rooted and conjectured real-rootedness of $A_{k,i}(t)$ for all $k$ and $i$
+\cite[Section~5 and Conjecture~15]{GesselLinZeng2012}.
+Their normalization includes an additional factor of $t$.
+
+\begin{theorem*}[\name{Shi-Mei Ma} and \name{Ming-Xin Wang},
+\cite[Thm.~2 and Cor.~2]{MaWang2026x}]
+Let $k\geq1$ and $1\leq i\leq k$, with
+\[
+ i\in\{1,2,3,k-2,k-1\}.
+\]
+For any nonnegative real weights $c_S$, not all zero, the polynomial
+\[
+ F_{k,i}(t)\coloneqq
+ \sum_{\substack{S\subseteq[k]\\|S|=i}}c_S A_{k,S}(t)
+\]
+has only simple negative zeros. In particular, this holds for $A_{k,i}(t)$.
+\end{theorem*}
+
+The five families correspond to deleting one, two, or three barred letters,
+or retaining one or two. The boundary cases $i=0$ and $i=k$ were already known;
+the conjecture for arbitrary $i$ remains open.
+
+The proof uses the insertion operator
+\[
+ D_Lf(t)\coloneqq(1+Lt)f(t)+t(1-t)f'(t),
+\]
+where $L$ is the word length before insertion. With
+$H_k=D_{3k-3}A_{k-1,0}$ for $k\geq2$, the weighted polynomials above satisfy
+\[
+ \begin{aligned}
+ F_{k,1}&\interl A_{k,0}, &
+ F_{k,2}&\interl H_k, &
+ F_{k,3}&\interl A_{k-1,0},\\
+ A_{k,k}&\interl F_{k,k-1}, &
+ A_{k+1,k+1}&\interl F_{k,k-2}.
+ \end{aligned}
+\]
+Each relation holds in the corresponding parameter range of the theorem,
+and all \hyperref[interlacesPolynomial]{interlacing} inequalities are strict
+\cite[Cor.~2]{MaWang2026x}.
+
+\begin{theorem*}[\cite[Thms.~3 and 5]{MaWang2026x}]
+For $k\geq2$ and $0\leq i\leq k$, write
+$A_{k,i}(t)=\sum_{j=0}^{d}a_jt^j$, where $d=2k-i-1$.
+Then
+\[
+ a_j<a_{d-j}\quad(0\leq j<d/2),
+ \qquad
+ a_0<a_1<\dotsb<a_{\lfloor d/2\rfloor}.
+\]
+Thus the coefficient sequence is \defin{strictly top heavy} and has an
+increasing left half. The same inequalities hold for every $A_{k,S}(t)$,
+with $d=2k-|S|-1$.
+\end{theorem*}
+
+\subsubsection[quasiStirlingDescentRealRooted]{Quasi-Stirling descent polynomials}
+
 \begin{example*}[Quasi-Stirling permutations]
 A \defin{quasi-Stirling permutation}\label{quasiStirlingPermutation}
 of size $n$ is a permutation of the multiset

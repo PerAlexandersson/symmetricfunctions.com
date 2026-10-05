@@ -1,0 +1,11 @@
+Review the older Stirling descent normalization (2026-10-05)
+
+While adding the Jacobi–Stirling section, the preceding Stirling-permutation
+example in tex-source/realRootedWords.tex appeared to mix conventions: it
+counts the final position as a descent, displays coefficient rows beginning
+with a constant 1, and gives a recurrence with (2n+1)t P_{n-1}.
+This may confuse comparisons with the new internal-descent normalization.
+
+Next step: check the cited Carlitz and Gessel–Stanley sources, align the index,
+recurrence, and table convention, and check the corresponding h-star claim.
+This is a proposal for a focused follow-up; the existing example was not edited.
