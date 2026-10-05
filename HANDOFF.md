@@ -1,5 +1,33 @@
 # Handoff
 
+## Completed scope — separable-permutation interlacing preprint (2026-10-05)
+
+Added `Zhang2026SeparableInterlacing` to `bibliography.bib` with SSRN/DOI
+links and preprint dates, alongside the original `FuLinZeng2018` reference.
+`tex-source/realRootedWords.tex#separableDescentRealRooted` defines the descent
+and gamma-polynomials and records their simple negative zeros and strict
+consecutive interlacing/interleaving. `tex-source/permutationFamilies.tex`
+and `tex-source/realRootedInterlacing.tex` carry concise cited cross-links.
+The existing A006318 link is retained. Only these four source files and this
+handoff changed; the requesting worker's compendium draft/citation/ledger is
+untouched. No deployment is authorized or performed. Ownership is released.
+
+The indexed primary SSRN abstract confirms Zhanhe Zhang, the title, written
+date 2026-09-10, and posting date 2026-09-25. After direct SSRN access had
+returned HTTP 403, the user supplied `/workspace/temp/ssrn-7510941.pdf`.
+It is now paper-cache record 510. Equations (1.1) and (1.4) and Theorems 1.1
+and 1.2 were checked against the extracted text and PDF page 2; this is a
+statement/normalization check, not a full proof audit. We cite those verified
+theorem numbers without spelling out gamma parity orientations. The original
+Fu--Lin--Zeng abstract and publisher record confirm the conjecture; its
+bibliography metadata comes from the site's read-only API. No private mail
+text or address is used on the site.
+
+`make bib Q=1`, `make Q=1`, `make check Q=1`, and `git diff --check` pass.
+The check emits only the two expected synthetic-relation warnings. Rendered
+HTML and CSL metadata inspection confirms the author, preprint status, dates,
+DOI/SSRN URLs, theorem citations, displayed formulas, and cross-page anchors.
+
 ## Deployment completed — Jacobi–Stirling additions (2026-10-05)
 
 At the user's explicit request, rebuilt and checked the clean checkout with

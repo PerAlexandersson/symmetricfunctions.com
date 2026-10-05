@@ -635,6 +635,29 @@ $\zeta_{2m+1}$ interlaces $\xi_{2m+1}$
 
 \subsubsection[restrictedPermutationDescentsRealRooted]{Descents on restricted permutations}
 
+\begin{example*}[Descents in separable permutations]
+\label{separableDescentRealRooted}
+Let $\mathcal S_n$ be the \hyperref[permSeparable]{separable permutations}
+in $\symS_n$, and define
+\[
+ S_n(t) \coloneqq \sum_{\pi\in\mathcal S_n}t^{\des(\pi)}.
+\]
+In his preprint \cite[Thm.~1.1]{Zhang2026SeparableInterlacing},
+\name{Zhanhe Zhang} proves that, for every $n\geq2$, the polynomial $S_n$
+has $n-1$ simple negative zeros and strictly interlaces $S_{n+1}$.
+This resolves the separable-permutation part of the real-rootedness
+conjecture of S.~Fu, Z.~Lin, and J.~Zeng \cite{FuLinZeng2018}.
+
+We define the associated \hyperref[gammaPositivity]{gamma-polynomial} by
+\[
+ S_n(t)=(1+t)^{n-1}\Gamma_n\!\left(\frac{t}{(1+t)^2}\right).
+\]
+For $n\geq2$, the polynomial $\Gamma_n$ has degree
+$\lfloor(n-1)/2\rfloor$ and simple negative zeros; consecutive
+gamma-polynomials strictly \hyperref[interleavesPolynomial]{interleave}
+\cite[Thm.~1.2]{Zhang2026SeparableInterlacing}.
+\end{example*}
+
 \begin{example*}[Descents and left peaks in simsun permutations]
 Define the polynomials
 \[
