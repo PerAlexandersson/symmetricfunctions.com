@@ -1,5 +1,43 @@
 # Handoff
 
+## Completed scope — Schur--Szegő references and Lean issues (2026-10-05)
+
+Changed only `bibliography.bib`, `tex-source/realRooted.tex`,
+`tex-source/realRootedInterlacing.tex`, and this handoff for the two suggested
+references and concise context (about 120 words). The checkout was clean. Cached primary
+papers 111 and 114 cover Kostov--Shapiro (2006) and Kostov (2010); publisher
+pages confirm journal metadata and the read-only site API supplies BibTeX.
+The 2010 paper's arXiv deposit is from 2015, but the citation uses its journal
+year. Its interlacing statements concern reduced eigenpolynomials of the
+coefficient map, not a new unrestricted preservation theorem. Zhang's
+degree-changing comparison is checked separately against Theorem 4.1 and
+Lemma 4.2 of cached record 510. No private correspondence is published.
+`make bib Q=1`, `make Q=1`, `make check Q=1`, rendered citation/link checks,
+and `git diff --check` pass; only the two expected test warnings appeared.
+After the final wording refinement, the build and HTML lint passed again.
+No deployment is authorized or performed; ownership is released.
+
+At the user's explicit request, opened detailed RealRooted issues after a
+read-only source and existing-issue audit at `935f425d`:
+
+- [#1108](https://github.com/PerAlexandersson/RealRooted/issues/1108):
+  Schur--Szegő multiplicity refinements and strict finite multipliers.
+- [#1109](https://github.com/PerAlexandersson/RealRooted/issues/1109):
+  Zhang's general degree-changing compression theorem (depends on #1108's
+  strict endpoint, not its full multiplicity classification).
+- [#1110](https://github.com/PerAlexandersson/RealRooted/issues/1110):
+  separable-permutation application and explicit combinatorial identity boundary.
+- [#1111](https://github.com/PerAlexandersson/RealRooted/issues/1111):
+  Kostov coefficient-map eigenpolynomials, a lower-priority independent project.
+
+Each issue records precise hypotheses, source references, existing APIs,
+proof milestones and verification criteria. In particular, Kostov (2010)
+corrects the earlier multiplicity statement by requiring nonzero chosen roots;
+RealRooted's `StrictInterl` has weak root inequalities, so the issues require
+separate simplicity/no-common-root proofs. No Lean source or handoff was
+modified and no Lean build was started; the active build owner's lane remains
+untouched. These are formalization targets, not completed proof audits.
+
 ## Completed scope — separable-permutation OEIS reference (2026-10-05)
 
 Added one sentence linking the coefficient triangle to A175124 in
