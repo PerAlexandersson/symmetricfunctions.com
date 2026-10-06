@@ -1,5 +1,29 @@
 # Handoff
 
+## Completed scope — RealRooted statement corrections (2026-10-06)
+
+Fixed five theorem statements flagged by the RealRooted coverage survey
+(`/workspace/suggestions/realrooted-cleanup-2026-10-05/survey-site.md`),
+editing only three `tex-source` files:
+
+- `realRooted.tex#kurtzTheorem`: Kurtz inequalities only for 1 ≤ i ≤ n−1
+  (`RealRooted.Kurtz.coefficient_criterion`).
+- `realRootedGraphs.tex` Nijenhuis theorem: added the missing conclusion
+  (real-rooted, nonnegative zeros) and "non-attacking"; checked against
+  `Challenges/Nijenhuis.lean` and Liu–Wang (2007, Sec. 3). The original
+  Nijenhuis paper is not in the paper cache.
+- `realRootedInterlacing.tex`: Wronskian criterion gains
+  deg f − deg g ∈ {0,1} (f = x³, g = 1 otherwise refutes it); the preserver
+  theorem holds only up to order and sign normalization (Brändén's
+  "alternate", RealRooted `preservesInterlacing_of_preservesRealRootedOrZero`);
+  Liu's opposite-sign criterion needs the common-zero branch
+  (`compatible_iff_theorem21RootCountBranchesWithCommon_nonconstant`).
+
+The weak Wronskian converse with the degree hypothesis is a short standard
+argument but is not yet formalized (only strict converses are). Focused
+page builds and `make lint-html Q=1` pass. Commits are local, not pushed; no
+deployment. Ownership is released.
+
 ## Completed scope — Schur--Szegő references and Lean issues (2026-10-05)
 
 Changed only `bibliography.bib`, `tex-source/realRooted.tex`,
