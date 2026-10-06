@@ -571,15 +571,18 @@ which is the Wronskian of $f$ and $g$.
 
 \begin{proposition}[Wronskian criterion]
 Let $f$ and $g$ be real-rooted polynomials with positive leading
-coefficients and $\deg(f)-\deg(g)\in\{0,1\}$.  Then $g \interl f$ if and
-only if
+coefficients and $\deg(f)-\deg(g)\in\{0,1\}$.  If $g \interl f$, then
 \[
   f'(x)g(x)-f(x)g'(x)\geq 0
 \]
-for all $x\in\setR$.
+for all $x\in\setR$.  Conversely, if this Wronskian is nonnegative on
+$\setR$ and every zero of $f$ has multiplicity at most one more than its
+multiplicity as a zero of $g$ (for instance, if $f$ has only simple
+zeros), then $g \interl f$.
 \end{proposition}
-The degree condition is needed: $f=x^3$ and $g=1$ give the nonnegative
-Wronskian $3x^2$, but $1$ does not interleave $x^3$.
+The multiplicity condition cannot be dropped: $f=(x-1)^3$ and $g=x^3$ have
+equal degree and the nonnegative Wronskian $3x^2(x-1)^2$, but $x^3$ does not
+interleave $(x-1)^3$.
 
 Thus one way to prove an interlacing statement is to show that this
 Wronskian is nonnegative, perhaps by rewriting it as a sum of squares.
