@@ -1,5 +1,18 @@
 # Handoff
 
+## Completed scope — Liu Ehrhart operations reference (2026-10-06)
+
+Added Feihu Liu's arXiv:2610.06338v1 with the collision-free bibliography key
+`Liu2026EhrhartOperations`, a short `ehrhart.tex#ehrhartOperations` paragraph,
+and a cross-reference in `polytopes.tex` (about 70 words total). Only those
+three source files and this handoff were owned. Primary PDF cached as record
+511; Corollary 3.2, equation (4.1), and Theorem 5.7 support the cited examples.
+This is a source-checked summary, not an independent proof audit.
+`make bib Q=1`, `make Q=1`, `make check Q=1`, rendered citation/cross-link
+inspection, and `git diff --check` pass (only two expected fixture warnings).
+Existing released statement corrections are preserved. No deployment was
+requested or performed. Ownership is released.
+
 ## Completed scope — RealRooted statement corrections (2026-10-06)
 
 Fixed five theorem statements flagged by the RealRooted coverage survey
