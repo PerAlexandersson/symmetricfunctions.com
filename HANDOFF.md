@@ -1,5 +1,15 @@
 # Handoff
 
+## Pak survey reference for problem book — 2026-10-06
+
+Host supervisor adds only `Pak2002PartitionBijections` to the master
+bibliography for the authorized Recreational.Problems replacement exercise.
+Metadata identifies the linked survey's September 18, 2002 version, whose
+section 2.4.1 supplies the identity. No website content or deployment is in
+scope. Fresh book BibTeX/pdflatex verification and `git diff --check` passed.
+Ownership released. Checkpoint remains local because the branch contains
+unrelated unpublished commits; no push or deployment performed.
+
 ## Bousch bibliography reference for problem book — 2026-10-06
 
 Host supervisor adds only `Bousch2014` to the shared master bibliography,
