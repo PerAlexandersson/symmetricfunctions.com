@@ -541,6 +541,12 @@ Then the following are equivalent:
 sufficient criterion for two real-rooted polynomials with opposite signs of
 their leading coefficients to be compatible, and a direct induction proof of
 the pairwise-compatible positive-leading-coefficient case.
+Her criterion is a root-count condition.  For nonconstant $f$ and $g$, the
+correct statement is that $f$ and $g$ are compatible if and only if either
+this condition holds, or they share a zero $r$ such that $f/(x-r)$ and
+$g/(x-r)$ are compatible.  The second alternative is missing from the
+published statement, and it is needed: $x$ and $-x^2$ are compatible but fail
+the root-count condition.
 
 \begin{theorem}[Mixed-sign compatibility,
 {\cite[Thm.~1.2]{LeakeRyder2024x}}]
@@ -565,12 +571,15 @@ which is the Wronskian of $f$ and $g$.
 
 \begin{proposition}[Wronskian criterion]
 Let $f$ and $g$ be real-rooted polynomials with positive leading
-coefficients.  Then $g \interl f$ if and only if
+coefficients and $\deg(f)-\deg(g)\in\{0,1\}$.  Then $g \interl f$ if and
+only if
 \[
   f'(x)g(x)-f(x)g'(x)\geq 0
 \]
 for all $x\in\setR$.
 \end{proposition}
+The degree condition is needed: $f=x^3$ and $g=1$ give the nonnegative
+Wronskian $3x^2$, but $1$ does not interleave $x^3$.
 
 Thus one way to prove an interlacing statement is to show that this
 Wronskian is nonnegative, perhaps by rewriting it as a sum of squares.
@@ -871,11 +880,17 @@ For examples of polytopes with real-rooted $h^*$-polynomials, see
 \begin{theorem}[See \cite[Thm.~9]{Branden2004operators}]
 \label{operatorPreservesInterlacing}
 If $\phi : \setR[x] \to \setR[x]$ is a linear operator that preserves
-real-rootedness, then $\phi$ preserves the interleaving property:
+real-rootedness, then $\phi$ preserves the interleaving property up to order:
+if $f \interl g$, then
 \[
-  f \interl g \implies \phi(f) \interl \phi(g).
+  \phi(f) \interl \phi(g) \quad\text{or}\quad \phi(g) \interl \phi(f),
 \]
+after multiplying $\phi(f)$ and $\phi(g)$ by nonzero constants so that their
+leading coefficients are positive.
 \end{theorem}
+The order cannot be fixed in general.  The operator $p(x)\mapsto p(-x)$
+preserves real-rootedness and $x \interl x-1$, but the normalized images
+satisfy $x+1 \interl x$ rather than $x \interl x+1$.
 
 
 
