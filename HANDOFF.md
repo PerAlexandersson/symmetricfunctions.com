@@ -1,5 +1,15 @@
 # Handoff
 
+## Bousch bibliography reference for problem book — 2026-10-06
+
+Host supervisor adds only `Bousch2014` to the shared master bibliography,
+as authorized for the Recreational.Problems Hanoi correction. Metadata came
+from the site's DOI API; page range and theorem were checked against the
+author's publication list and primary paper. No website text or deployment
+is in scope. The book's fresh BibTeX and pdflatex passes and `git diff --check`
+pass. Ownership released. Checkpoint is local only: the branch already has
+two unrelated unpublished commits, so no push or deployment was performed.
+
 ## Completed scope — Liu Ehrhart operations reference (2026-10-06)
 
 Added Feihu Liu's arXiv:2610.06338v1 with the collision-free bibliography key
