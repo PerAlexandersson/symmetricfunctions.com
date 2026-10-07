@@ -1,5 +1,18 @@
 # Handoff
 
+## Verified deployment — 2026-10-07
+
+At the user's explicit request, deployed clean source commit
+`7ba5d628fb797bed1d56e82935d22d3c3b56bf98` through the constrained SymCat
+bridge. Receipt: `20261007T061926-b9d118a3ad59`; deployment and Pagefind
+manifest verification succeeded. `make Q=1`, `make check Q=1` and
+`git diff --check` passed first (only the two expected fixture warnings).
+Live HTTPS checks returned 200 for `ehrhart.htm`, `gtpatterns.htm`,
+`schur.htm` and `site-labels.json`; verified the corrected heading, direct
+skew-GT theorem anchor, citations and both cross-page links. The Ehrhart mail
+follow-up below is now live. Only this handoff changed after deployment;
+no active ownership remains. No Git push was performed.
+
 ## Completed scope — Ehrhart positivity mail follow-up (2026-10-07)
 
 Updated only `tex-source/ehrhart.tex`, `tex-source/gtpatterns.tex`,
