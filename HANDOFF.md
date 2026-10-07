@@ -1,5 +1,12 @@
 # Handoff
 
+## Exoo reference for book audit — 2026-10-07
+
+Supervisor added only Exoo1989 in bibliography.bib, using the DOI metadata API
+and checking the publisher abstract (42-vertex coloring gives R(5,5) >= 43).
+make bib and the book BibTeX pass succeed; git diff --check is clean.
+Ownership released. Local-only checkpoint, no push or deployment.
+
 ## Completed book references — 2026-10-07
 
 Host supervisor added AngeltveitMcKay2026, BursicsKomjath2023 and
