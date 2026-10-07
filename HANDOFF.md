@@ -1,5 +1,22 @@
 # Handoff
 
+## Completed scope — prism-slice Ehrhart positivity reference (2026-10-07)
+
+Added a short paragraph in `tex-source/ehrhart.tex` on positivity for slices
+of prisms and independence polytopes of uniform matroids, with a link to the
+existing hypersimplex discussion. Added `FerroniMcGinnis2025` to
+`bibliography.bib`; these two files and this handoff are the complete scope.
+Verified Theorem 1.1 and Corollary 6.4 against the primary paper and journal
+version; the published issue year is 2025. The flag-Eulerian material discussed
+in chat is outside this addition.
+
+`make Q=1`, `make check Q=1`, generated citation/link inspection and
+`git diff --check` pass; only the two expected synthetic fixture warnings
+appear. Started clean at `8fc10b1`, with six existing unpublished commits
+already ahead of origin/master. Checkpoint stays local to preserve the
+existing no-push boundary. No deployment authorized or performed.
+Ownership is released.
+
 ## Verified deployment — 2026-10-07
 
 At the user's explicit request, deployed clean source commit
