@@ -1,5 +1,30 @@
 # Handoff
 
+## Completed scope — Ehrhart positivity mail follow-up (2026-10-07)
+
+Updated only `tex-source/ehrhart.tex`, `tex-source/gtpatterns.tex`,
+`tex-source/schur.tex` and this handoff after reading mail UIDs 66–68.
+Jochemko–Menon's result and the flagged-face/fixed-content distinction were
+already present, and both bibliography entries existed. Renamed the overview
+heading to "Ehrhart positivity: results and conjectures" while preserving its
+anchor, removed stale conjectural framing of the skew-Schur case, and fixed
+the overview's link from the Kostka section to a new direct skew-GT theorem
+anchor. Added a short pointer under skew Schur specializations. Net public
+text is shorter; no bibliography duplication or private correspondence added.
+
+Checked public arXiv metadata and paper-cache records 251 and 263:
+Jochemko–Menon Theorem 3.5 / Section 3.2 and Alexandersson–Alhajjar preprint
+Conjecture 7 (the explicitly cited arXiv numbering). This is a statement and
+citation check, not an audit of the private exploratory proof. General key
+and fixed-content conjectures retain their existing status.
+
+`make Q=1`, `make check Q=1`, generated theorem/citation/link inspection and
+`git diff --check` pass; only the two expected synthetic fixture warnings
+appear. Started clean at `699c8fc`, with four unrelated unpublished commits
+already ahead of origin/master. Checkpoint stays local to avoid pushing those
+commits as part of this task. No deployment authorized/performed. Ownership
+is released.
+
 ## Pak survey reference for problem book — 2026-10-06
 
 Host supervisor adds only `Pak2002PartitionBijections` to the master
