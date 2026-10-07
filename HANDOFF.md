@@ -1,5 +1,20 @@
 # Handoff
 
+## Verified deployment — 2026-10-07, 11:22 UTC
+
+At the user's explicit request, deployed clean source
+`23cf624f86b217012503e0aa8424a9b62bfb5030` through the constrained host bridge.
+Receipt `20261007T112256-525adf5a0ec2` reports `deployed`; Pagefind manifest
+verification passed. Includes the Ferroni–McGinnis Ehrhart reference and the
+Shareshian–Wachs/Saxl announced-proof notes, including the clarified
+permutation-statistic wording. `make Q=1`, `make check Q=1` and
+`git diff --check` passed first (only expected fixture warnings).
+Live HTTPS checks returned 200 and verified the new references on
+`ehrhart.htm`, `chromaticQuasisymmetric.htm`, `chromaticEexpansion.htm` and
+`schur.htm`, plus the hypersimplex and Lean links and clarified statistic.
+Only this handoff changed after activation. Ownership released; no Git push.
+
+
 ## Completed scope — Saxl announced proof (2026-10-07)
 
 Added `OpenAI2026Saxl` to `bibliography.bib` from the manuscript's citation
