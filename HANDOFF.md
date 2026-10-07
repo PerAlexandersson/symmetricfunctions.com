@@ -1,5 +1,30 @@
 # Handoff
 
+## Completed scope — Shareshian–Wachs preprint (2026-10-07)
+
+Added `OpenAI2026ChromaticPositivity` to `bibliography.bib` from the
+manuscript's supplied citation metadata. Added concise announced-proof notes
+to `tex-source/chromaticQuasisymmetric.tex` and
+`tex-source/chromaticEexpansion.tex`; corrected stale open-problem wording.
+Theorem 1.1 asserts elementary positivity over N[q] for natural unit interval
+graphs and a positive permutation formula. The paper explicitly excludes
+elementary unimodality; that conjecture remains separately stated. Existing
+anchors and established-positivity metadata are preserved.
+
+Checked the September 24 PDF (paper-cache record 533, SHA-256
+`9e1c6414a9ea8ce93b8bea6d40639da43f744f04c938e57c12c72b29f9d4c8ea`;
+GitHub paper revision `adc7f1241b42e322a6451854ab7e4b4c146bf78a`).
+This was a statement/source check, not a proof audit. The release README
+notes varying verification status; no matching entry was found in its Lean
+formalization catalogue. Public text attributes an announced proof.
+
+`make Q=1`, `make check Q=1`, rendered citation/link inspection and
+`git diff --check` pass (two expected synthetic fixture warnings).
+Started clean at `b505d54`; concurrent host-supervisor broken-stick additions
+are preserved and excluded from this checkpoint. Ownership of this update's
+four-file scope is released. Local commit only under the existing no-push
+boundary; no deployment authorized or performed.
+
 ## Completed scope — prism-slice Ehrhart positivity reference (2026-10-07)
 
 Added a short paragraph in `tex-source/ehrhart.tex` on positivity for slices

@@ -32,7 +32,7 @@ $\chrom_G(\xvec;q)$ is symmetric, most importantly for
 For general graphs, the default question is the specialization $q=1$.
 
 
-\subsection[chromaticEExpansionConjectures]{The two main conjectures}
+\subsection[chromaticEExpansionConjectures]{Positivity and unimodality}
 
 The \hyperref[stanleyStembridgeConjecture]{Stanley--Stembridge conjecture}
 was formulated by \name{Richard Stanley} and \name{John Stembridge}
@@ -48,8 +48,7 @@ By work of \name{Mathieu Guay-Paquet} \cite{GuayPaquet2013}, it is enough to
 prove the result for unit interval graphs. Hikita's proof gives a formula for
 the elementary coefficients of the Shareshian--Wachs
 $q$-chromatic refinement, and this formula specializes positively at $q=1$.
-Thus the theorem settles the Stanley--Stembridge conjecture, but it does not
-settle the following refinement.
+Thus the theorem settles the Stanley--Stembridge conjecture at $q=1$.
 
 Hikita later introduced \defin{$(q,t)$-chromatic symmetric functions}
 \label{qtChromaticSymmetricFunction} for
@@ -78,6 +77,12 @@ If $G$ is a unit interval graph with its natural labeling, then
 \qquad\text{has}\qquad c_\lambda(q) \in \setN[q].
 \]
 \end{conjecture}
+
+A September 2026 preprint by OpenAI announces a proof of this positivity
+conjecture \cite[Thm.~1.1]{OpenAI2026ChromaticPositivity}, using a positive
+permutation formula for the elementary coefficients. The separate
+\hyperref[chromaticEUnimodalityConjecture]{elementary-unimodality conjecture}
+remains open.
 
 A desirable combinatorial proof would give a statistic $\mu$ on acyclic
 orientations of $G$ such that
@@ -120,8 +125,7 @@ It is useful to distinguish the following kinds of results.
 \item
 A \emph{combinatorial} formula gives the coefficient of
 $\elementaryE_\lambda$ as the cardinality or weight-enumerator of a set of
-objects.  This is the strongest kind of evidence for an eventual
-Shareshian--Wachs proof.
+objects.
 
 \item
 A \emph{sign-reversing involution} starts from a signed
