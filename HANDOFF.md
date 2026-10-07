@@ -1,5 +1,19 @@
 # Handoff
 
+## Broken-stick bibliography — 2026-10-07
+
+Host supervisor completed only bibliography.bib and this entry for two references
+used by Recreational.Problems: PetersenTenner2020 and DukeBrokenStick.
+Prior ownership is released and checkout was clean. The webpage worker is
+reviewing a separate new preprint; guarded send refused delivery to its active
+pane, which was left untouched. No website prose, push, or deployment in scope.
+DOI metadata verified against arXiv; corrected the API's Tenner surname parsing.
+Book BibTeX/pdflatex and `git diff --check` pass. Pandoc parses both entries;
+the escaped percent in the Duke URL is needed by the book's backref package,
+but Pandoc retains that backslash in CSL-JSON. Before citing this currently
+unused web entry on SymCat, normalize that URL in its bibliography pipeline.
+Local checkpoint only, preserving the existing no-push boundary. Ownership released.
+
 ## Completed scope — Shareshian–Wachs preprint (2026-10-07)
 
 Added `OpenAI2026ChromaticPositivity` to `bibliography.bib` from the
