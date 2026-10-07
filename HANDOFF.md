@@ -1,5 +1,27 @@
 # Handoff
 
+## Completed scope — Saxl announced proof (2026-10-07)
+
+Added `OpenAI2026Saxl` to `bibliography.bib` from the manuscript's citation
+metadata and a concise announced-proof note beside Saxl's conjecture in
+`tex-source/schur.tex`. Added a link and Related Lean breadcrumb to
+`openai/math/lean/OAI/RepresentationTheory/Saxl/Main.lean`, declaration
+`OAI.Saxl.saxl_conjecture`. Only these files and this handoff changed.
+
+Checked Theorem 1.1 of the September 24 PDF (paper-cache 535, SHA-256
+`42c2824b06a1114993095d44e1226e7f15f17caaa09358d68fa5dfddedbd8f44`):
+all staircase sizes and all partitions of the corresponding triangular size.
+The source uses (m,...,1), equivalent to the site's (k-1,...,1).
+Read formalization catalogue entry, scope note 205, actual Main.lean theorem
+and Saxl comparator configuration. The comparator file is a statement
+with a placeholder, while Main.lean supplies the proof term and imports.
+No local Lean build, axiom audit, or mathematical proof audit was performed;
+the public note describes an announced proof and links the provided source.
+
+Started clean at `112d750`. `make Q=1`, `make check Q=1`, rendered citation
+and link inspection, and `git diff --check` pass (expected fixture warnings).
+Ownership released. Local checkpoint only; no push or deployment.
+
 ## Completed scope — clarify the permutation statistic (2026-10-07)
 
 Updated only `tex-source/chromaticEexpansion.tex` and this handoff. Replaced
