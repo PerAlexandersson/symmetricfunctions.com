@@ -1,5 +1,20 @@
 # Handoff
 
+## Completed scope — clarify the permutation statistic (2026-10-07)
+
+Updated only `tex-source/chromaticEexpansion.tex` and this handoff. Replaced
+“positive permutation formula” with a precise description: a terminating
+algorithm using auxiliary geometric choices and ordered finite matchings.
+Checked Sections 6.1–6.5 and Remark 7.1 of cached preprint 533: an encoding
+order fixes the embedding and rational generic choices by enumeration;
+local bijections match finite ranks. Thus the asserted construction is
+algorithmic, not merely a nonconstructive existence statement, but it does
+not supply a simple intrinsic permutation rule. No proof audit performed.
+
+Started clean at `040c536`. `make Q=1`, `make check Q=1`, rendered citation
+inspection and `git diff --check` pass (two expected fixture warnings).
+Ownership released. Local checkpoint only; no push or deployment.
+
 ## Broken-stick bibliography — 2026-10-07
 
 Host supervisor completed only bibliography.bib and this entry for two references
