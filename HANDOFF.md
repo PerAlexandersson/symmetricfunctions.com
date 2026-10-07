@@ -1,5 +1,14 @@
 # Handoff
 
+## Completed book references — 2026-10-07
+
+Host supervisor added AngeltveitMcKay2026, BursicsKomjath2023 and
+McGuireTugemannCivario2014 to bibliography.bib for Recreational.Problems,
+and normalized MO292's author field. Existing Pak2002PartitionBijections reused.
+Primary articles and DOI metadata checked; make bib, book BibTeX/pdflatex
+and git diff --check passed. Only bibliography.bib and this handoff owned.
+Ownership released. Local-only checkpoint; no website prose, push or deployment.
+
 ## Circle-game reference — 2026-10-07
 
 Host supervisor completed only the new MO298443 master-bibliography entry and this
