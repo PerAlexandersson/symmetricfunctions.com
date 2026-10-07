@@ -1,5 +1,13 @@
 # Handoff
 
+## Circle-game reference — 2026-10-07
+
+Host supervisor completed only the new MO298443 master-bibliography entry and this
+note for the authorized Recreational.Problems exercise. Prior worker ownership
+released and checkout clean. Question author, title, date and URL checked on
+MathOverflow. Book BibTeX/pdflatex and `git diff --check` passed. Ownership
+released. No website prose or deployment; preserve local-only checkpoint policy.
+
 ## Verified deployment — 2026-10-07, 11:22 UTC
 
 At the user's explicit request, deployed clean source
