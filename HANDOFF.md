@@ -1,5 +1,26 @@
 # Handoff
 
+## Rational h-star monotonicity reference — 2026-10-08, complete
+
+User requests the reference discussed in key-schubert-kostka. `/root` owns
+only bibliography.bib, tex-source/polytopes.tex
+and this opening entry. Checkout starts clean; preserve other workers' files.
+Add Beck--Braun--Vindas-Melendez's published reference and cite its rational
+monotonicity theorem beside Stanley's theorem on the general Ehrhart/h-star
+page. User explicitly prefers this placement; leave schurFlagged.tex unchanged.
+Academic-writing
+skill used. Build/check citations and links. Local checkpoint only; no push
+or deployment, preserving the existing website policy.
+
+Added BeckBraunVindasMelendez2022 (DCG 68(1), 50--71) with DOI and arXiv
+metadata checked against the publisher, arXiv v2 and bibliography API.
+Cited Theorem 3.3 beside Stanley's monotonicity theorem on polytopes.tex,
+the general Ehrhart/h-star reference page. The rational common-denominator
+statement was already present. schurFlagged.tex is unchanged, as requested.
+make Q=1, make check Q=1, rendered citation/DOI inspection and git diff
+--check pass (only the two expected fixture warnings). Ownership released
+after the local checkpoint; not deployed or pushed.
+
 ## Exoo reference for book audit — 2026-10-07
 
 Supervisor added only Exoo1989 in bibliography.bib, using the DOI metadata API
