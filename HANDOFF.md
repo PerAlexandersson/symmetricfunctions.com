@@ -1,5 +1,20 @@
 # Handoff
 
+## Mickler Macdonald Lax reference — 2026-10-09, complete
+
+Added Mickler2026Lax (arXiv:2610.12326), two sentences beside the Macdonald
+Littlewood--Richardson coefficients, and one short cross-reference from the
+Jack page. The note mentions the corner eigenbasis and coefficient identities,
+with Warnaar's product formula credited for the two-parameter strengthening.
+Primary introduction/theorem statements read; paper-cache item 544. Academic-
+writing skill used. No proof audit or computation claimed.
+
+make Q=1, make check Q=1, rendered citation/cross-link inspection and git diff
+--check passed (only the two expected fixture warnings). Logs:
+/tmp/symcat-mickler-{build,check}.log. Ownership released for bibliography.bib,
+tex-source/macdonaldP.tex, tex-source/jack.tex and HANDOFF.md after local
+checkpoint. Not deployed or pushed; no other site changed.
+
 ## Verified deployment — 2026-10-09, 09:47 UTC
 
 At the user's request, deployed clean checkpoint 4d8b2bb through the constrained
