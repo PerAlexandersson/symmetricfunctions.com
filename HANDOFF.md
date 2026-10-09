@@ -1,5 +1,17 @@
 # Handoff
 
+## Verified deployment — 2026-10-09, 11:49 UTC
+
+At the user's request, deployed clean checkpoint adf5964 through the constrained
+host bridge. Receipt 20261009T114926-0fa534ecbbdb reports deployed and a matching
+Pagefind manifest. Includes laminar matroids, the native triomino transition
+table, and the Mickler, Xie--Zhang--Zhang and Jing--Liu references.
+make Q=1, make check Q=1 and git diff --check passed before deployment.
+All seven changed pages and 22 new SVGs return HTTPS 200 and match the local
+build byte-for-byte. Only this handoff changed afterward; ownership released.
+No Git push or other-site deployment. Earlier "not deployed" entries below
+describe their individual checkpoints; these changes are now live.
+
 ## Laminar matroids — 2026-10-09, complete
 
 Added a brief definition after partition matroids: laminar set families,
