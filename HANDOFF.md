@@ -1,5 +1,15 @@
 # Handoff
 
+## Tiling sequence wording — 2026-10-09, complete
+
+Removed the Cayley--Hamilton attribution from the triomino recurrence and
+linked its displayed counts to OEIS A219968. The OEIS description, offset and
+initial values agree. Matrix, characteristic polynomial and recurrence intact.
+make Q=1, make check Q=1, rendered link/wording inspection and git diff --check
+pass. Logs: /tmp/symcat-triomino-oeis-{build,check}.log. Ownership released for
+tex-source/transfer-matrix.tex and HANDOFF.md after local checkpoint.
+Not deployed or pushed.
+
 ## Verified deployment — 2026-10-09, 11:49 UTC
 
 At the user's request, deployed clean checkpoint adf5964 through the constrained
