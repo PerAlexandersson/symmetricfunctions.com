@@ -1,5 +1,22 @@
 # Handoff
 
+## Laminar matroids — 2026-10-09, complete
+
+Added a brief definition after partition matroids: laminar set families,
+nonnegative integer capacities, independent-set inequalities, and partition
+matroids as a special case. Labels laminarMatroids, laminarFamily, laminarMatroid.
+Cites published FifeOxley2017, European Journal of Combinatorics 62 (2017),
+206--216, DOI 10.1016/j.ejc.2017.01.002. DOI obtained from arxiv site API and
+published BibTeX retrieved via /api/bibtex.json?doi=10.1016/j.ejc.2017.01.002;
+publisher and LSU repository metadata agree. Primary abstract checked;
+paper-cache item 547. Academic-writing skill used.
+
+make Q=1, make check Q=1, rendered definition/anchor/DOI citation inspection
+and git diff --check pass (two expected fixture warnings). Logs:
+/tmp/symcat-laminar-{build,check}.log. Ownership released for bibliography.bib,
+tex-source/matroids.tex and HANDOFF.md after local checkpoint. Not deployed
+or pushed; no other site changed.
+
 ## Native triomino transition table — 2026-10-09, complete
 
 Expanded the existing triomino/square example immediately after the domino

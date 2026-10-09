@@ -354,6 +354,21 @@ matroids.  This family is closed under minors and duality.  All partition
 matroids are \hyperref[latticePathMatroids]{lattice path matroids}.
 
 
+\subsection[laminarMatroids]{Laminar matroids}
+
+Let $E$ be finite. A family $\mathcal A\subseteq 2^E$ is
+\defin{laminar}\label{laminarFamily} if any two members are disjoint or one
+contains the other. Given nonnegative integer capacities $c(A)$ for
+$A\in\mathcal A$, the independent sets of the associated
+\defin{laminar matroid}\label{laminarMatroid} are
+\[
+  \mathcal I=\{I\subseteq E: |I\cap A|\leq c(A)
+    \text{ for every } A\in\mathcal A\}.
+\]
+See \cite{FifeOxley2017}. We recover partition matroids when $\mathcal A$
+is a partition of $E$.
+
+
 \subsection[transversalMatroids]{Transversal matroids}
 
 \begin{definition}
