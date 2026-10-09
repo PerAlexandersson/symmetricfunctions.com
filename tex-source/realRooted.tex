@@ -70,7 +70,8 @@ Finally, if $P$ has only real roots, it is called
 Every real-rooted polynomial satisfies the Newton inequalities, see e.g. \cite{Branden2015}.
 
 \begin{example*}[Infinite log-concavity of the Boros--Moll sequences]
-For a finite sequence $a=(a_i)$, extend $a$ by zeros and define
+For a finite or one-sided infinite sequence $a=(a_i)$, extend $a$ by zeros
+outside its index set and define
 \[
   \mathcal L(a)_i \coloneqq a_i^2-a_{i-1}a_{i+1}.
 \]
@@ -105,6 +106,14 @@ Boros--Moll row $(d_0(n),\dotsc,d_n(n))$ is infinitely log-concave
 The integer-scaled coefficients $4^n d_i(n)$ form the triangle
 \oeis{A126936}.
 \end{example*}
+
+Xie, Zhang, and Zhang give a sufficient criterion for infinite log-concavity
+using holomorphic estimates and finite computer-assisted verification
+\cite{XieZhangZhang2026InfiniteLogConcavity}.
+Their applications include the transposed Boros--Moll sequences
+$(d_\ell(\ell+k))_{k\geq0}$ for integers $\ell\geq3$.
+They also prove that, for positive integers $d$, the sequence
+$(k^d)_{k\geq0}$ is infinitely log-concave if and only if $d\ne2$.
 
 
 In \cite{Wang2002}, a conjecture by \name{Rodica Simion} is proved:

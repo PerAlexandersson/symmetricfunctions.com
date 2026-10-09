@@ -1,5 +1,21 @@
 # Handoff
 
+## Infinite log-concavity reference — 2026-10-09, complete
+
+Added XieZhangZhang2026InfiniteLogConcavity (arXiv:2610.12237) and a short
+paragraph after the Boros--Moll example in tex-source/realRooted.tex. Mentions
+the analytic/computer-assisted criterion, transposed Boros--Moll sequences for
+integer ell >= 3, and the power-sequence classification for positive integer d
+(exactly d != 2). Extended the operator definition to one-sided infinite
+sequences with zero extension. Primary introduction and Theorems 4.1/7.1
+checked; paper-cache item 545. Academic-writing skill used. No proof audit.
+
+make Q=1, make check Q=1, rendered math/citation inspection and git diff
+--check passed (only two expected fixture warnings). Logs:
+/tmp/symcat-infinite-logconcavity-{build,check}.log. Ownership released for
+bibliography.bib, tex-source/realRooted.tex and HANDOFF.md after local checkpoint.
+Not deployed or pushed; no other site changed.
+
 ## Mickler Macdonald Lax reference — 2026-10-09, complete
 
 Added Mickler2026Lax (arXiv:2610.12326), two sentences beside the Macdonald
