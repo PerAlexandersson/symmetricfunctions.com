@@ -42,6 +42,21 @@ case the matrix records a weighted enumeration, and specializations of the
 variables recover ordinary counts.
 
 
+\subsection[transferMatrixChoosingStates]{Choosing the states}
+
+To discover auxiliary states, we reverse the last construction step.
+If every remainder belongs to the original family, we can write a recurrence
+using that family alone. Otherwise, we record the extra information needed
+to continue, such as whether a required color has appeared or whether the
+last color agrees with the first. We then check \defin{closure}: every
+construction step must lead to a state already on the list.
+
+For tilings of a fixed-height strip, we record the cells occupied by tiles
+that started to the left of a moving vertical boundary. This is a
+\defin{profile}. The maximum horizontal reach of the tiles determines how
+many columns ahead we must remember.
+
+
 \subsection[transferMatrixFibonacciWords]{Binary words with no consecutive ones}
 
 Let $a_n$ be the number of binary words of length $n$ with no consecutive ones.
@@ -67,7 +82,7 @@ Thus $a_n=b_n^{(0)}+b_n^{(1)}$, and one obtains
 \[
   \sum_{n\geq 0} a_n z^n
   =
-  \frac{1}{1-z-z^2}.
+  \frac{1+z}{1-z-z^2}.
 \]
 Equivalently, $a_n=F_{n+2}$, where $F_n$ is the Fibonacci sequence.
 
@@ -118,6 +133,74 @@ tilings of a $2\times n$ rectangle.
 
 Weighted versions of the same matrix give bivariate generating functions
 recording, for example, the number of vertical and horizontal dominoes.
+
+
+\subsection[transferMatrixTriominoTilings]{Straight triominoes and squares}
+
+Let $t_n$ count tilings of a $3\times n$ rectangle by $2\times2$ squares
+and straight triominoes, placed horizontally or vertically.
+A horizontal triomino can protrude two columns beyond the boundary, so our
+profiles record the next two columns. Blue cells are already occupied;
+the left column is the nearer one.
+
+\begin{figure}
+\svgimg[width=0.4\textwidth]{svg-images/transfer-matrix-triomino-profiles.svg}{
+The nine profile classes A through I, arranged in three rows in reading order.
+Each profile is a three-row, two-column grid; blue cells mark occupied cells.
+The heavy vertical line separates the nearer column from the following one.}
+\end{figure}
+
+These are the reachable profiles up to reflection across a horizontal line.
+The classes $A,B,C$ each contain one profile, while $D,E,F,G,H,I$ each
+contain two, giving $15$ concrete profiles.
+
+We find successors by covering the lowest unoccupied cell of the current
+column until it is full, then deleting that column and advancing the boundary.
+From $A$, we can place one vertical triomino, three horizontal triominoes,
+or a square and a horizontal triomino. These give $A$, $C$, and two
+reflected copies of $D$, respectively. From $E$, a square gives $F$, while
+two horizontal triominoes give $H$.
+
+Let $\mathbf v_n$ count partial tilings in the classes $A,B,\dotsc,I$,
+adding counts from reflected profiles. With columns indexed by the current
+class and rows by the successor class, we obtain
+\[
+\mathbf v_{n+1}=M\mathbf v_n,
+\qquad
+\mathbf v_0=(1,0,0,0,0,0,0,0,0)^{\mathsf T},
+\]
+where
+\[
+M=
+\begin{pmatrix}
+1&1&0&0&0&0&0&0&0\\
+0&0&1&0&0&0&1&0&0\\
+1&0&0&0&0&0&0&0&0\\
+2&0&0&0&0&0&0&1&0\\
+0&0&0&1&0&0&0&0&0\\
+0&0&0&0&1&0&0&0&1\\
+0&0&0&0&0&1&0&0&0\\
+0&0&0&0&1&0&0&0&0\\
+0&0&0&0&0&0&1&0&0
+\end{pmatrix}.
+\]
+Completing a column produces only the displayed classes, so the state set
+is closed. All classes are reachable from $A$, as we see from
+$A\to C\to B$, $A\to D\to E\to F\to G\to I$, and $E\to H$.
+
+A complete tiling ends in the empty profile $A$, so $t_n=(M^n)_{A,A}$.
+For $n=0,1,\dotsc,9$, the counts are
+\[
+1,\ 1,\ 1,\ 2,\ 3,\ 4,\ 8,\ 13,\ 19,\ 35.
+\]
+The characteristic polynomial is
+\[
+\chi_M(r)=r^9-r^8-3r^6+2r^5+r^3-r^2-1.
+\]
+By Cayley--Hamilton, for $n\geq0$ we have
+\[
+t_{n+9}=t_{n+8}+3t_{n+6}-2t_{n+5}-t_{n+3}+t_{n+2}+t_n.
+\]
 
 
 \subsection[transferMatrixWeightedTilings]{Weighted tilings by larger tiles}

@@ -1,5 +1,30 @@
 # Handoff
 
+## Transfer-matrix profiles — 2026-10-09, complete
+
+Root changed only tex-source/transfer-matrix.tex, the new
+svg-tex/src/transfer-matrix-triomino-profiles.tex and generated matching SVG,
+and this opening handoff entry. Started clean at 7deeba7. Added a concise
+auxiliary-state explanation and three-row square/straight-triomino example,
+with the nine-class matrix, counts and Cayley--Hamilton recurrence. Rendered
+the nine profiles as a separate TikZ-sourced SVG in a compact 3-by-3 layout.
+Corrected the existing binary-word generating function numerator to 1+z.
+Academic-writing skill used. Rust capability guide, cargo metadata and source
+search completed: no general profile-tiling/characteristic-polynomial API found;
+existing tiling experiments handle other tile families. A bounded one-off Python
+verification of the supplied integer matrix/state space is proportionate here;
+no new polynomial family or reusable computation is being introduced.
+Verification: exhaustive reachable-state enumeration gives exactly 15 profiles;
+reflection aggregation gives the supplied nine-class matrix. Exact characteristic
+polynomial and recurrence checks through n=30 pass; independent finite-board
+counts agree for n=0 through 9. Script and output retained outside Dropbox at
+/home/dev/.local/state/symmetricfunctions/verification/2026-10-09-triomino/.
+TikZ compilation, visual figure inspection, make Q=1, make check Q=1, rendered
+HTML/figure/anchor inspection and git diff --check pass. Only the two expected
+fixture warnings. Build logs: /tmp/symcat-triomino-{build,check}.log.
+Ownership released after local checkpoint. This site's no-push policy retained;
+not deployed. Other sites and bibliography untouched.
+
 ## Rational h-star monotonicity reference — 2026-10-08, complete
 
 User requests the reference discussed in key-schubert-kostka. `/root` owns
