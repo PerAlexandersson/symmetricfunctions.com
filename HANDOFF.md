@@ -1,5 +1,15 @@
 # Handoff
 
+## Verified deployment — 2026-10-09, 09:47 UTC
+
+At the user's request, deployed clean checkpoint 4d8b2bb through the constrained
+host bridge. Receipt 20261009T094706-11c83525152d reports deployed, with matching
+Pagefind manifest. make Q=1, make check Q=1 and git diff --check passed first
+(only expected fixture warnings). Live HTTPS returned 200 for transfer-matrix.htm
+and svg-images/transfer-matrix-triomino-profiles.svg; both match the local build
+byte-for-byte. This deploy includes the previously committed rational h-star
+reference. Only this handoff changed afterward. Ownership released; no Git push.
+
 ## Transfer-matrix profiles — 2026-10-09, complete
 
 Root changed only tex-source/transfer-matrix.tex, the new
