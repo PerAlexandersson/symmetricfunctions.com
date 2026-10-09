@@ -156,3 +156,9 @@ end
 if not contains(html, '@article{Cauchy1815,') then
   fail("bibliography did not include raw BibTeX for cited entries")
 end
+
+if not contains(html, '<img src="svg-images/transfer-matrix-triomino-transition-ad.svg"') or
+   not contains(html, 'alt="A to D: square and triomino"') or
+   contains(html, '&lt;img') then
+  fail("native table did not preserve its inline SVG image and alternative text")
+end

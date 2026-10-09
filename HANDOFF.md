@@ -1,5 +1,35 @@
 # Handoff
 
+## Native triomino transition table — 2026-10-09, complete
+
+Expanded the existing triomino/square example immediately after the domino
+section on transfer-matrix.htm. Replaced the overview figure with a native
+site table: nine profile diagrams and 13 completion diagrams, each rendered
+as a separate SVG from one multipage TikZ source. Retained supplied patterns,
+colors and the A-to-D multiplicity 2. Added table/matrix transpose explanation,
+closure/reachability description and t_3 example. Existing matrix, counts and
+recurrence preserved. Page-local CSS keeps diagrams legible and scrolls the
+table on phones. Old overview asset retained.
+
+The table renderer now preserves inline img elements already produced by the
+trusted TeX pipeline; a fixture checks SVG, alt text and adjacent math in a cell.
+Owned/released: tex-source/transfer-matrix.tex, figure_to_html.lua,
+tests/unittest.tex, tests/check_unittest.lua, new svg-tex/src/transfer-matrix-
+triomino-transitions.tex, 22 matching profile/transition SVGs, and HANDOFF.md.
+Academic-writing skill used. No changes to Rostkur or any other site; only
+its previously cached Chromium installation was reused for browser testing.
+
+Verification: make svg Q=1, make Q=1, make check Q=1 and git diff --check pass
+(two expected fixture warnings). Reused exact 15-state/9-class verification:
+all transitions, matrix, characteristic polynomial, recurrence through n=30
+and independent board counts through n=9 pass. Browser checks at 1280px and
+390px (light/dark) verify 22 loaded images, all transition cell positions,
+no overlapping/compressed diagrams, no page overflow or KaTeX errors. Table
+scroll width is 728px within a 326px mobile viewport. Screenshots inspected.
+Browser script/screenshots: /home/dev/.local/state/symmetricfunctions/verification/
+2026-10-09-triomino-table/. Build logs: /tmp/symcat-triomino-table-*.log.
+Local checkpoint only; not deployed or pushed.
+
 ## Mirabolic Hecke and super RSK reference — 2026-10-09, complete
 
 Added JingLiu2026Mirabolic (arXiv:2610.11101), two sentences in the Hecke

@@ -164,6 +164,7 @@ local function looks_like_trusted_html_fragment(s)
       or s:find("</code>", 1, true) ~= nil
       or s:find("<q>", 1, true) ~= nil
       or s:find("</q>", 1, true) ~= nil
+      or s:find("<img ", 1, true) ~= nil
 end
 
 local function html_escape_preserving_entities(s)

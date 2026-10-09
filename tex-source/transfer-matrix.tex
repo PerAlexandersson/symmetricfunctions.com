@@ -135,35 +135,146 @@ Weighted versions of the same matrix give bivariate generating functions
 recording, for example, the number of vertical and horizontal dominoes.
 
 
+\begin{cssvars}
+.tabular img { height: 3.2rem; width: auto; max-width: none; flex-shrink: 0; }
+.tabular > span { padding: .3rem .4rem; gap: .2rem; white-space: nowrap; }
+.tabular {
+  grid-template-columns: repeat(10, max-content) !important;
+  max-width: 100%; overflow-x: auto;
+}
+\end{cssvars}
+
 \subsection[transferMatrixTriominoTilings]{Straight triominoes and squares}
 
 Let $t_n$ count tilings of a $3\times n$ rectangle by $2\times2$ squares
 and straight triominoes, placed horizontally or vertically.
 A horizontal triomino can protrude two columns beyond the boundary, so our
-profiles record the next two columns. Blue cells are already occupied;
-the left column is the nearer one.
+profiles record the next two columns. Up to horizontal reflection, there
+are nine reachable classes $A,\dotsc,I$. The classes $A,B,C$ each contain
+one profile, while $D,\dotsc,I$ each contain two, giving $15$ concrete profiles.
 
-\begin{figure}
-\svgimg[width=0.4\textwidth]{svg-images/transfer-matrix-triomino-profiles.svg}{
-The nine profile classes A through I, arranged in three rows in reading order.
-Each profile is a three-row, two-column grid; blue cells mark occupied cells.
-The heavy vertical line separates the nearer column from the following one.}
-\end{figure}
+In the table, rows give current profiles and columns give successors.
+Dark blue cells are already occupied; orange stripes mark new triominoes
+and pink crosshatching marks new squares. Each transition shows three columns:
+remove the completed leftmost column to obtain the successor profile.
+An empty entry means no transition. The $\times2$ at $(A,D)$ counts the
+two reflected placements; one is drawn.
 
-These are the reachable profiles up to reflection across a horizontal line.
-The classes $A,B,C$ each contain one profile, while $D,E,F,G,H,I$ each
-contain two, giving $15$ concrete profiles.
+\begin{tabular}{cccccccccc}
+\toprule
+Current / next & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ & $I$ \\
+\midrule
+$A$ \svgimg{svg-images/transfer-matrix-triomino-profile-a.svg}{Current profile A} &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-aa.svg}{A to A: One vertical triomino} &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-ac.svg}{A to C: Three horizontal triominoes} &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-ad.svg}{A to D: One horizontal triomino and one square; one of two reflected placements} $\times2$ &
+   &
+   &
+   &
+   &
+   \\
+\midrule
+$B$ \svgimg{svg-images/transfer-matrix-triomino-profile-b.svg}{Current profile B} &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-ba.svg}{B to A: Current column already full} &
+   &
+   &
+   &
+   &
+   &
+   &
+   &
+   \\
+\midrule
+$C$ \svgimg{svg-images/transfer-matrix-triomino-profile-c.svg}{Current profile C} &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-cb.svg}{C to B: Current column already full} &
+   &
+   &
+   &
+   &
+   &
+   &
+   \\
+\midrule
+$D$ \svgimg{svg-images/transfer-matrix-triomino-profile-d.svg}{Current profile D} &
+   &
+   &
+   &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-de.svg}{D to E: Current column already full} &
+   &
+   &
+   &
+   \\
+\midrule
+$E$ \svgimg{svg-images/transfer-matrix-triomino-profile-e.svg}{Current profile E} &
+   &
+   &
+   &
+   &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-ef.svg}{E to F: One square in the upper two rows} &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-eh.svg}{E to H: Two horizontal triominoes} &
+   \\
+\midrule
+$F$ \svgimg{svg-images/transfer-matrix-triomino-profile-f.svg}{Current profile F} &
+   &
+   &
+   &
+   &
+   &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-fg.svg}{F to G: One horizontal triomino in the bottom row} &
+   &
+   \\
+\midrule
+$G$ \svgimg{svg-images/transfer-matrix-triomino-profile-g.svg}{Current profile G} &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-gb.svg}{G to B: One square in the upper two rows} &
+   &
+   &
+   &
+   &
+   &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-gi.svg}{G to I: Two horizontal triominoes} \\
+\midrule
+$H$ \svgimg{svg-images/transfer-matrix-triomino-profile-h.svg}{Current profile H} &
+   &
+   &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-hd.svg}{H to D: One horizontal triomino in the bottom row} &
+   &
+   &
+   &
+   &
+   \\
+\midrule
+$I$ \svgimg{svg-images/transfer-matrix-triomino-profile-i.svg}{Current profile I} &
+   &
+   &
+   &
+   &
+   &
+  \svgimg{svg-images/transfer-matrix-triomino-transition-if.svg}{I to F: Current column already full} &
+   &
+   &
+   \\
+\bottomrule
+\end{tabular}
 
-We find successors by covering the lowest unoccupied cell of the current
-column until it is full, then deleting that column and advancing the boundary.
-From $A$, we can place one vertical triomino, three horizontal triominoes,
-or a square and a horizontal triomino. These give $A$, $C$, and two
-reflected copies of $D$, respectively. From $E$, a square gives $F$, while
-two horizontal triominoes give $H$.
+We find all transitions by covering the lowest unoccupied cell of the current
+column until it is full, then advancing the boundary. The table lists every
+legal completion, so the state set is closed. All classes are reachable
+from $A$, using $A\to C\to B$, $A\to D\to E\to F\to G\to I$,
+and $E\to H$.
 
 Let $\mathbf v_n$ count partial tilings in the classes $A,B,\dotsc,I$,
 adding counts from reflected profiles. With columns indexed by the current
-class and rows by the successor class, we obtain
+class and rows by the successor class, the table has the nonzero pattern
+of $M^{\mathsf T}$. We obtain
 \[
 \mathbf v_{n+1}=M\mathbf v_n,
 \qquad
@@ -184,15 +295,12 @@ M=
 0&0&0&0&0&0&1&0&0
 \end{pmatrix}.
 \]
-Completing a column produces only the displayed classes, so the state set
-is closed. All classes are reachable from $A$, as we see from
-$A\to C\to B$, $A\to D\to E\to F\to G\to I$, and $E\to H$.
-
 A complete tiling ends in the empty profile $A$, so $t_n=(M^n)_{A,A}$.
 For $n=0,1,\dotsc,9$, the counts are
 \[
 1,\ 1,\ 1,\ 2,\ 3,\ 4,\ 8,\ 13,\ 19,\ 35.
 \]
+For example, $t_3=2$: three vertical triominoes or three horizontal ones.
 The characteristic polynomial is
 \[
 \chi_M(r)=r^9-r^8-3r^6+2r^5+r^3-r^2-1.
