@@ -1,5 +1,14 @@
 # Handoff
 
+## Verified deployment — 2026-10-09, 11:58 UTC
+
+At the user's request, deployed clean checkpoint be28d29 through the host
+bridge. Receipt 20261009T115816-5cde26a9edad reports deployed with matching
+Pagefind manifest. Build, make check Q=1 and clean-Git checks passed. Live
+transfer-matrix.htm returns HTTPS 200 and matches the local build byte-for-byte:
+A219968 link present, Cayley--Hamilton attribution absent. Only this handoff
+changed afterward; ownership released. No push or other-site deployment.
+
 ## Tiling sequence wording — 2026-10-09, complete
 
 Removed the Cayley--Hamilton attribution from the triomino recurrence and
