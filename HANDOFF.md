@@ -1,5 +1,20 @@
 # Handoff
 
+## Mirabolic Hecke and super RSK reference — 2026-10-09, complete
+
+Added JingLiu2026Mirabolic (arXiv:2610.11101), two sentences in the Hecke
+section and one item among further RSK variants. Notes cover generic-parameter
+quantum super Schur--Weyl duality, character formulas in hook Schur functions,
+and super mirabolic insertion with the extra even letter recorded separately.
+Read primary introduction and Theorems A/C/D; paper-cache item 546.
+Academic-writing skill used. No proof audit or computation claimed.
+
+make Q=1, make check Q=1, rendered citation/cross-link inspection and git diff
+--check passed (only two expected fixture warnings). Logs:
+/tmp/symcat-mirabolic-{build,check}.log. Ownership released for bibliography.bib,
+tex-source/algebras-and-rings.tex, tex-source/rsk.tex and HANDOFF.md after local
+checkpoint. Not deployed or pushed; no other site changed.
+
 ## Infinite log-concavity reference — 2026-10-09, complete
 
 Added XieZhangZhang2026InfiniteLogConcavity (arXiv:2610.12237) and a short
