@@ -1,5 +1,25 @@
 # Handoff
 
+## Verified push and deployment — backend fixes, 2026-10-10
+
+User explicitly authorized push and deployment, superseding the prior local-only
+boundary. Pushed master through be2cfeb (including its 29 previously unpublished
+ancestor commits) to origin/master without force. Clean checkout, make Q=1,
+make check Q=1 and git diff --check passed before deploying be2cfeb through the
+constrained host bridge. Receipt 20261010T101429-0626c6c912c3 reports deployed,
+exit 0, matching Pagefind manifest, at 10:14 UTC.
+
+Fresh HTTPS checks: index.htm, hallLittlewood.htm, rsk.htm, gtpatterns.htm,
+site-keywords.json, site-labels.json and _pagefind/pagefind-entry.json all
+returned 200 and matched the local build byte-for-byte. The keyword feed has
+1,126 records and no double-hyphen page titles. Logs:
+/tmp/symcat-backend-deploy-{build,check}.log and
+/tmp/symcat-backend-deploy-live.json. Bridge receipt:
+/cargo-target/symmetricfunctions-deploy-bridge/results/20261010T101429-0626c6c912c3.json.
+Only this handoff changed after deployment; its checkpoint is also pushed.
+Ownership released. No arXiv-site deployment, keyword import or retagging.
+
+
 ## Completed — verified backend audit fixes, 2026-10-10
 
 Fixed the five issues summarized after the Opus audit: required render JSON
