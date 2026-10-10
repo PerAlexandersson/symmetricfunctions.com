@@ -240,6 +240,7 @@ local function create_site_data()
   return {
     pages = {},
     labels = {},
+    keywords = {},
     polydata = {},
     todos = {},
     label_duplicates = {},
@@ -336,6 +337,16 @@ local function process_json_file(data, file_path)
   local labels = extract_meta_string_list(meta, "labels")
   for _, label in ipairs(labels) do
     process_label(data, label, page_id, slug, title)
+  end
+
+  for _, keyword in ipairs(meta_to_plain(meta.keywords) or {}) do
+    local label = keyword.label or ""
+    if label ~= "" and not data.labels[label] then
+      print_error("Keyword '%s' has no label '%s'", keyword.phrase, label)
+    end
+    local href = slug .. (label ~= "" and ("#" .. label) or "")
+    local key = keyword.phrase .. "\0" .. href
+    data.keywords[key] = { phrase = keyword.phrase, href = href, title = title }
   end
   
   -- Process polydata
@@ -777,6 +788,18 @@ local function generate_outputs(data)
 
   -- Public copy of labels for cross-site use (e.g. arxiv.symmetricfunctions.com)
   if not write_json_file(www_dir .. "/site-labels.json", data.labels, "labels (public)") then
+    all_success = false
+  end
+
+  local keywords = setmetatable({}, { __jsontype = "array" })
+  local keyword_keys = {}
+  for key in pairs(data.keywords) do keyword_keys[#keyword_keys + 1] = key end
+  table.sort(keyword_keys)
+  for _, key in ipairs(keyword_keys) do
+    keywords[#keywords + 1] = data.keywords[key]
+  end
+  if not write_json_file(www_dir .. "/site-keywords.json",
+      { schema_version = 1, keywords = keywords }, "keywords (public)") then
     all_success = false
   end
 

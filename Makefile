@@ -108,11 +108,11 @@ $(TEST_JSON): $(TEST_META_DIR)/%.json: $(TEST_META_DIR)/%.pre.tex $(GATHER_DEPS)
 
 # === METADATA: Generate site-wide metadata ===
 .PHONY: meta
-meta: $(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON)
+meta: $(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(PUBLIC_KEYWORDS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON)
 
 # All site metadata outputs are produced by one merge pass. Grouped targets make
 # Make regenerate the whole set when any one output is missing or stale.
-$(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON) &: $(JSON_FILES) $(MERGE_META_DEPS) $(REFS_JSON) | $(TEMP_DIR)/.created $(WWW_DIR)/.created
+$(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(PUBLIC_KEYWORDS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON) &: $(JSON_FILES) $(MERGE_META_DEPS) $(REFS_JSON) | $(TEMP_DIR)/.created $(WWW_DIR)/.created
 	$(LOG) "Generating site metadata ..."
 	@$(LUA) $(MERGE_META_LUA) $(JSON_FILES)
 
@@ -140,7 +140,7 @@ $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(TEMP_DIR)/%.timestamp $(RENDER_DEPS) $(TE
 
 # Test metadata is separate from site metadata so unittest links resolve against
 # labels declared inside tests/*.tex.
-$(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_TODOS_JSON) $(TEST_SITEMAP_XML) $(TEST_GOTO_HTML) $(TEST_PUBLIC_LABELS_JSON) $(TEST_RELATION_GRAPH_HTML) $(TEST_RELATION_GRAPH_JSON) &: $(TEST_JSON) $(MERGE_META_DEPS) $(REFS_JSON) | $(TEST_META_DIR)/.created
+$(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_TODOS_JSON) $(TEST_SITEMAP_XML) $(TEST_GOTO_HTML) $(TEST_PUBLIC_LABELS_JSON) $(TEST_PUBLIC_KEYWORDS_JSON) $(TEST_RELATION_GRAPH_HTML) $(TEST_RELATION_GRAPH_JSON) &: $(TEST_JSON) $(MERGE_META_DEPS) $(REFS_JSON) | $(TEST_META_DIR)/.created
 	$(LOG) "Generating test metadata ..."
 	@LABELS_JSON=$(TEST_LABELS_JSON) \
 	  POLYDATA_JSON=$(TEST_POLYDATA_JSON) \
@@ -180,7 +180,7 @@ svg:
 unittest: $(TEST_HTML) $(TEST_CHECK) $(TEST_EDGE_CHECK) $(TEST_JSON_CHECK)
 	$(LOG) "Unittest pipeline finished — processed $(words $(TEST_TEX)) test file(s)"
 
-$(TEST_CHECK): $(TEST_JSON) $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_HTML) tests/check_unittest.lua $(FILE_READING_LUA) $(UTILS_LUA)
+$(TEST_CHECK): $(TEST_PUBLIC_KEYWORDS_JSON) $(TEST_JSON) $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_HTML) tests/check_unittest.lua $(FILE_READING_LUA) $(UTILS_LUA)
 	$(LOG) "Checking unittest metadata ..."
 	@LABELS_JSON=$(TEST_LABELS_JSON) \
 	  POLYDATA_JSON=$(TEST_POLYDATA_JSON) \

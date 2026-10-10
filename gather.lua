@@ -1304,6 +1304,44 @@ end
 
 
 -- ===== Finalizer ===========================================================
+-- Collect human-readable definition terms after all TeX lowering. A label
+-- immediately following a definition gives its precise reference; otherwise
+-- the exporter links to the page. Do not turn general formulae into keywords.
+local function definition_keywords(doc)
+  local entries, seen = {}, {}
+  doc:walk({ Inlines = function(inlines)
+    for i, inline in ipairs(inlines) do
+      if inline.t == "Span" and inline.classes:includes("defin") then
+        local readable = true
+        local plain = pandoc.walk_inline(inline, {
+          Math = function(el)
+            if el.text:match("^[A-Za-z]$") then return pandoc.Str(el.text) end
+            readable = false
+          end,
+          RawInline = function() readable = false end,
+        })
+        local phrase = trim(pandoc.utils.stringify(plain):gsub("%s+", " "))
+        local label = ""
+        local next_index = i + 1
+        while inlines[next_index] and inlines[next_index].t == "Space" do
+          next_index = next_index + 1
+        end
+        local following = inlines[next_index]
+        if following and following.t == "Span" and
+            following.classes:includes("label") then
+          label = following.identifier
+        end
+        local key = phrase .. "\0" .. label
+        if readable and phrase ~= "" and not seen[key] then
+          seen[key] = true
+          entries[#entries + 1] = { phrase = phrase, label = label }
+        end
+      end
+    end
+  end })
+  return pandoc.MetaList(entries)
+end
+
 function Pandoc(doc)
   local m = doc.meta
 
@@ -1325,6 +1363,7 @@ function Pandoc(doc)
 
   m.citations  = set_to_sorted_list(citations)
   m.labels     = set_to_sorted_list(labels)
+  m.keywords   = definition_keywords(doc)
   m.todos      = todos
   m.families   = families
   m.polydata   = polydata

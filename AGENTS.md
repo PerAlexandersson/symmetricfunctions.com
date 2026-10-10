@@ -157,6 +157,13 @@ https://arxiv.symmetricfunctions.com/api/bibtex.json?doi=10.1002/jgt.22704
 6. **Assets**: Copies static files to www/
 7. **Search**: Pagefind builds full-text search index
 
+The metadata pass also generates `www/site-keywords.json` from readable
+`\defin{...}` terms, with optional immediately following label anchors.
+It is a versioned public feed for the arXiv++ admin Retag import button;
+see README.md for the schema and supported text. Keep this distinct from
+the existing `site-labels.json` anchor catalogue and include it in grouped
+metadata targets and test outputs when changing the build.
+
 ## Error handling
 
 - `make Q=1` suppresses all progress/info/todo messages; only `[ERROR]` and

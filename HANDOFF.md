@@ -1,5 +1,26 @@
 # Handoff
 
+## Completed — SymCat keyword export, 2026-10-10
+
+Generated www/site-keywords.json (schema_version 1) from readable defin spans
+in gather.lua, using an immediately following label when present, otherwise
+a page reference. Single-letter math is supported; general formulae/raw TeX
+are omitted. Merge output is sorted/deduplicated and wired into grouped build
+and isolated fixture targets. The existing label catalogue is byte-unchanged.
+
+Verification: make Q=1 and make check Q=1 pass (only two expected fixture
+warnings). All 1,126 exported references resolve across 120 local pages; the
+arXiv importer accepts the entire feed as 1,051 normalized phrases. Regression
+covers definition text, Unicode, labels, simple math and formula exclusion.
+Logs: /tmp/symcat-keywords-{build,tests,check}.log.
+
+Owned files: gather.lua, merge_meta.lua, config.mk, config_test.mk, Makefile,
+tests/unittest.tex, tests/check_unittest.lua, README.md, AGENTS.md, HANDOFF.md.
+Ownership released after the focused local checkpoint. Not deployed or pushed,
+preserving the existing SymCat no-push policy. Deploy this feed before enabling
+the new arXiv Retag fetch button in production; no website/database production
+state was changed. Related consumer: ../arxiv.symmetricfunctions.com/src/symcat_keywords.py.
+
 ## Verified deployment — 2026-10-09, 11:58 UTC
 
 At the user's request, deployed clean checkpoint be28d29 through the host

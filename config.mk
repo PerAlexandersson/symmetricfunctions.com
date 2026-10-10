@@ -55,6 +55,7 @@ TODOS_JSON    := $(TEMP_DIR)/site-todo.json
 SITEMAP_XML   := $(WWW_DIR)/sitemap.xml
 GOTO_HTML     := $(WWW_DIR)/goto.htm
 PUBLIC_LABELS_JSON := $(WWW_DIR)/site-labels.json
+PUBLIC_KEYWORDS_JSON := $(WWW_DIR)/site-keywords.json
 RELATION_GRAPH_HTML := $(WWW_DIR)/polynomial-relations.htm
 RELATION_GRAPH_JSON := $(WWW_DIR)/polynomial-relations.json
 COPY_ASSETS_STAMP := $(TEMP_DIR)/copy-assets.stamp

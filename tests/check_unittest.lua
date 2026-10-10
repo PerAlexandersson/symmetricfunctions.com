@@ -24,6 +24,25 @@ local www_dir = os.getenv("WWW_DIR") or "www"
 local labels = file_reading.load_json_file(labels_path, "test labels", true)
 local polydata = file_reading.load_json_file(polydata_path, "test polydata", true)
 local html = file_reading.read_file(html_path, "test html", true)
+local keyword_path = html_path:match("^(.*)/") .. "/site-keywords.json"
+local catalogue = file_reading.load_json_file(keyword_path, "test keywords", true)
+assert_eq(catalogue.schema_version, 1, "keyword schema version")
+local keyword_hrefs = {}
+for _, keyword in ipairs(catalogue.keywords) do
+  keyword_hrefs[keyword.phrase .. "|" .. keyword.href] = true
+end
+for _, key in ipairs({
+  "definition|unittest.htm",
+  "Test tableaux|unittest.htm#testTableaux",
+  "Test tableaux|unittest.htm#testTableauxAgain",
+  "Möbius functions|unittest.htm",
+  "q-test polynomials|unittest.htm",
+}) do
+  if not keyword_hrefs[key] then fail("missing keyword: " .. key) end
+end
+for _, keyword in ipairs(catalogue.keywords) do
+  if contains(keyword.phrase, "x_1") then fail("formula exported as keyword") end
+end
 
 if file_reading.file_exists(www_dir .. "/unittest.htm") then
   fail("unit-test HTML leaked into the deployable www directory")

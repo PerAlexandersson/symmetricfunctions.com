@@ -38,6 +38,23 @@ make unittest     # render tests/*.tex only under temp/test-www/
 make check        # run unit regressions and audit generated HTML
 ```
 
+## Keyword export for arXiv++
+
+The normal build generates `www/site-keywords.json` from `\defin{...}` terms
+in the gathered page metadata. The version-1 feed contains a `keywords` array
+of `{phrase, href, title}` records. An immediately following `\label{...}`
+supplies the target anchor; otherwise the reference points to the page.
+Repeated phrase/reference pairs are deduplicated and records are sorted for
+reproducible output. Formatting and Unicode text are preserved as plain text;
+single-letter inline mathematics such as `$q$` is supported, while definitions
+containing general mathematical formulae or unresolved raw TeX are omitted.
+
+`site-labels.json` remains the separate anchor-to-page catalogue. Neither feed
+is a hand-edited source file. Both are published with the normal SymCat deploy.
+On arXiv++, the admin Retag page's **Fetch latest SymCat keywords** button
+imports new terms from the published keyword feed. Publish this feed before
+using the button. Keyword import and paper retagging are separate actions.
+
 ## Directory structure
 
 ```
