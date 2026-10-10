@@ -1,0 +1,213 @@
+SYMCAT BACKEND AUDIT — 2026-10-10
+
+Requested by the user; Claude Opus 5.5 (actual model claude-opus-5-5),
+high effort, read-only Read/Glob/Grep tools, no MCPs, monitored 20-minute cap.
+Baseline: d611816. Consultant completed successfully, exit 0.
+Session: 713b14f6-a852-4d88-8db3-c52c7c91e26a.
+No backend source edits, builds, TeX-content review, deployments, or pushes.
+Only this report and HANDOFF.md are committed by the supervising worker.
+
+REVIEWED TAKEAWAYS AND CORRECTIONS (supervising worker)
+
+Prioritize required-input and subprocess failure propagation (D22/D9), then
+the missing metadata dependency (N2). The metadata title and keyword-anchor
+issues (N1/N3) affect output quality. Proposed fixes below remain proposals.
+
+Confirmed with bounded isolated probes, outside the repository:
+* D22: lua render.lua <probe-directory>/malformed.json (file containing {)
+  returned 0 with an Untitled HTML page and a JSON-decode warning. This is
+  corrupt JSON, not a missing file: missing file reads are strict by default.
+* D9: lua <probe-directory>/svg-failure-harness.lua mocked ALL OS commands,
+  file reads and file enumeration, made pdflatex fail, and returned 0 after
+  logging Compilation failed. No actual TeX, SVG generation or compiler ran.
+* N2: relation_graph.render_page with a synthetic reference, empty synthetic
+  bibliography and BIBTEX_JSON pointing to a nonexistent scratch path exits 1.
+  Both grouped metadata rules omit BIBTEX_JSON. This confirms the missing-input
+  failure and missing edge by code inspection; no clean or parallel build was
+  run. Existing outputs are already stale, so make -n -W alone does not isolate
+  the dependency issue here.
+* N3: extracted the unchanged definition_keywords function into a scratch
+  Pandoc Lua filter. Synthetic AST inputs with Space versus SoftBreak before
+  the label produced label=auditAnchor versus an empty label. This confirms
+  the function-level gap. No actual .tex content or end-to-end LaTeX fixture
+  was examined. The separate tabular omission remains static-review evidence.
+* N1: current generated site-labels.json has nine unique page titles with --;
+  site-keywords.json has 100 records inheriting such titles and zero phrases
+  with --. Sample generated HTML titles have the same issue. These are local
+  generated artifacts; the consultant's word "live" below does not mean a
+  fresh HTTP check. No network check was made during this audit.
+* D23/H1: make -n -W gather.lua deploy schedules chmod and rsync only, with
+  no rebuild/check. This concerns direct Makefile deployment; the separately
+  guarded host bridge used for our prior deployment was NOT audited here.
+* N5: make -n meta schedules merge even with no new changes. Static inspection
+  supports the content-stable-output/mtime cause; repeated actual rebuilds and
+  the next-day Pagefind effect were not executed or timed.
+
+Qualifications to the raw consultant report:
+* The opening "nine items" is not a reliable total: its carry-forward section
+  includes additional Q/H items. Use the individual entries, not that count.
+* N4's proposed schema_version check applies to site-keywords.json only;
+  site-labels.json is an unversioned label map. A blanket ban on --, braces,
+  dollar signs or backslashes is a proposed heuristic, not a valid universal
+  schema rule; legitimate literal text needs consideration.
+* Descriptions enter HTML metadata; public feed records carry titles, not
+  descriptions. Matching punctuation does not establish all raw-TeX cases.
+* No security exploit is demonstrated. Input is trusted authored source;
+  escaping findings must be assessed under that model.
+* Other entries are consultant static-review findings unless marked above;
+  none of the proposed fixes has been implemented or tested as a fix.
+
+REPRODUCIBILITY
+
+Run artifacts: /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558
+  prompt.txt: exact audit instructions
+  events.jsonl: full consultant stream, including tool calls
+  claude-report.txt: unmodified final report
+  stderr.log, exit-code.txt: process completion
+  probes/: synthetic harnesses, outputs, Make dry runs
+
+Consultant command (working directory is this repository):
+  timeout --signal=TERM --kill-after=15s 20m nice -n 10 claude --print
+    --model opus --effort high --tools Read,Glob,Grep
+    --allowedTools Read,Glob,Grep --permission-mode dontAsk
+    --strict-mcp-config --mcp-config '{"mcpServers":{}}'
+    --no-session-persistence --output-format stream-json --verbose
+    < /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/prompt.txt > /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/events.jsonl 2> /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/stderr.log
+(The wrapped lines above form one shell command.)
+
+Parent checks (working directory is this repository):
+  lua render.lua /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/probes/malformed.json
+  lua /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/probes/svg-failure-harness.lua
+  pandoc -f markdown -t json --lua-filter=/home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/probes/keyword-break-filter.lua
+    [empty stdin; synthetic AST constructed inside the filter]
+  BIBTEX_JSON=/home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/probes/does-not-exist.json
+    lua /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/probes/missing-bibtex.lua /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558/probes/empty-bibliography.json
+  make -n -W gather.lua deploy
+  make -n meta
+  make -n -W temp/bibtex-entries.json meta
+  Python standard-library JSON reads counted existing www/*.json title/phrase
+    punctuation; selected generated HTML title tags were inspected as well.
+
+UNMODIFIED CONSULTANT REPORT FOLLOWS
+
+# Backend/build pipeline audit, symmetricfunctions.com at `d611816` (Opus, read-only)
+
+I found one new live defect: raw TeX from `\metatitle` and `\metadescription` reaches page titles and both public JSON feeds. There is also one Make dependency regression introduced by the September D16 fix. The other new items are small. Nine items from the 2026-09-29 audit are still open; I re-checked each against current code below.
+
+Nothing was built, run or edited. Every claim comes from reading the code, plus grepping already-generated files under `www/` for live evidence.
+
+## Scope and limitations
+
+- **Read in full:** `Makefile`, `config.mk`, `config_test.mk`, `merge_meta.lua`, `render.lua`, `preprocess.lua`, `file_reading.lua`, `utils.lua`, `bibtex_extract.lua`, `tex_to_svg.lua`, all `tests/*.lua`, and the placeholder and JSON-LD parts of `template.htm`.
+- **Read in part:** `gather.lua` (state, parsing helpers, Cite/Link/RawInline, topic cards, finalizer and keyword export), `bibhandler.lua` (labels and loading), `relation_graph.lua` (page rendering), and `polydata_to_html.lua` (escaping, by grep).
+- **Not read in depth:** `figure_to_html.lua`, `relation_registry.lua`, `bib_math_filter.lua`, the bibliography HTML formatting, and the host deploy bridge (a separate project).
+- **Excluded as instructed:** `*.tex`, bibliography content, other sites, credentials.
+- **Make behaviour** (mtime checks, grouped targets, `.DELETE_ON_ERROR`) is reasoned from GNU Make semantics, not observed. Items marked "needs execution" should be probed before anyone acts on them.
+
+## Ranked findings
+
+| # | Class | Sev | Conf | Title |
+|---|---|---|---|---|
+| N1 | Defect, live | Medium | High | `\metatitle`/`\metadescription` emitted as raw TeX: in `<title>`, OG/Twitter/Pagefind meta, `site-labels.json` and `site-keywords.json` |
+| N2 | Defect, regression | Med–Low | High | Metadata merge reads `bibtex-entries.json`, but neither merge rule lists it as a prerequisite |
+| N3 | Defect, needs execution | Low–Med | Medium | Keyword export misses a `\label` on the line after `\defin{…}`, and never exports definitions inside tabular cells |
+| N4 | Coverage gap | Low | High | The production keyword/label feeds are never validated; the checks would have caught N1 |
+| N5 | Defect, perf only | Low | Med–High | Merge reruns on every `make` after a metadata-neutral edit, and its daily-dated pages then re-trigger Pagefind |
+
+### N1 — Page titles and descriptions are raw TeX (live)
+
+- **Where:** `gather.lua:1071-1073` and `:1081-1083` keep the raw braced argument. `gather.lua:1351` and `:1357` store it as metadata unchanged.
+- **Where it leaks:**
+  - `render.lua:715-716` and `:730-731` only HTML-escape it before it goes into `<title>`, `og:title`, `twitter:title`, `data-pagefind-meta="title[content]"` and the description metas.
+  - `merge_meta.lua:214-222` uses it as the `title` field of every label record and every keyword record.
+- **Evidence in current `www/`:**
+  - 9 pages have `--` in `<title>` (e.g. `www/hallLittlewood.htm:4` reads `Hall--Littlewood polynomials | SymCat`).
+  - 19 pages have `--` in `content="…"` attributes (e.g. `www/hivert.htm:7`).
+  - The new feed is inconsistent within a single page. `www/site-keywords.json:863-865` has `"title":"Touchard--Riordan polynomials"`, while `:1140` has `"phrase":"Touchard–Riordan polynomials"` (Pandoc converted the phrase, not the title).
+  - 40 keyword-feed lines, 92 lines in `site-labels.json` and 6 in `polynomial-relations.json` contain `--Riordan`/`--Littlewood`/`--Tsetlin`.
+  - No `\`, `$` or `{` titles exist today, but `\&`, `~`, accents or `$q$` in a title would leak the same way.
+- **Impact:** Raw TeX shows in browser tabs, search snippets and social cards. Both public feeds consumed by arXiv++ carry it too.
+- **Minimal fix:** In gather, convert the title and description to plain text once: `pandoc.utils.stringify(pandoc.read(arg, "latex"))`, the same approach as the `\name` fix. Store the result as `MetaString`.
+- **Regression test:** Give the unit fixture `\metatitle{Hall--Littlewood \& co}`. Assert:
+  - the HTML contains `<title>Hall–Littlewood &amp; co | SymCat</title>`;
+  - every fixture keyword and label record has `title == "Hall–Littlewood & co"`.
+
+  Add a lint rule that rejects `--`, `\` or `{\` inside `<title>` and `content="…"`.
+
+### N2 — Merge depends on BibTeX JSON without declaring it
+
+- **Code path:**
+  - `merge_meta.lua:810` calls `relation_graph.render_page`.
+  - `relation_graph.lua:325-326` calls `bibhandler.build_bibliography_HTML(refs_json, graph.references)` with no BibTeX path.
+  - `bibhandler.lua:412-415` falls back to `BIBTEX_JSON` (or `./temp/bibtex-entries.json`) and loads it **strictly**, so a missing file raises a Lua `error()`.
+  - The live relation page has a bibliography, and the test fixture's relations cite `Jacobi1841`/`Cauchy1815`, so both merges take this path.
+- **Rules:** neither the site merge (`Makefile:115`) nor the test merge (`Makefile:143`) lists `$(BIBTEX_JSON)`. The September D16 fix replaced it with `REFS_JSON`, on the old audit's incorrect claim that merge never reads it.
+- **Triggers:**
+  1. `make clean && make meta` never schedules `BIBTEX_JSON`. Merge writes the first eight outputs, then crashes at the relation page. This is deterministic by code; by GNU semantics, `.DELETE_ON_ERROR` should then remove the changed outputs.
+  2. Under `-j8`, `all` and `unittest` build it only because renders need it, with no ordering against merge. In practice this probably does not fail (needs execution).
+  3. A change to `bibtex_extract.lua` alone does not regenerate the BibTeX controls on `polynomial-relations.htm`, which go stale.
+- **Fix:** Add `$(BIBTEX_JSON)` to both grouped merge rules alongside `$(REFS_JSON)`, and pass `BIBTEX_JSON` explicitly to the test merge for symmetry.
+- **Regression test:** `make -n -W temp/bibtex-entries.json meta` should schedule the merge. A scratch `make clean && make meta` should succeed.
+
+### N3 — Keyword export edge cases (needs execution)
+
+- `gather.lua:1326-1333` skips only `Space` before checking for a following `label` span. Pandoc's LaTeX reader turns a single source newline into `SoftBreak`. So `\defin{term}` at the end of a line, followed by `\label{x}` on the next line, would silently export a page-level `href` instead of `#x`.
+- Definitions inside `rawtabular` cells become HTML strings before the finalizer runs (`gather.lua:1232-1235`). The `Inlines` walk (`:1312`) never sees them.
+- **Probe and regression:** add `\defin{Line-break term}` + newline + `\label{lineBreakTerm}` to the fixture, and expect `unittest.htm#lineBreakTerm` in `site-keywords.json`. If confirmed, skip `SoftBreak` as well as `Space`.
+
+### N4 — Production feeds are not validated
+
+- `tests/check_unittest.lua:27-45` checks only the fixture catalogue, and only for the substring `x_1`.
+- `tests/lint_html.lua` never opens `www/site-keywords.json` or `www/site-labels.json`. The HANDOFF records the check that all 1,126 references resolve as a one-off manual verification.
+- **Suggestion:** a lint pass over both feeds that asserts:
+  - `schema_version == 1`;
+  - every `href` page exists in `www/` and its fragment appears as `id="…"`;
+  - no `\`, `{`, `$`, `@@` or `--` appears in `phrase` or `title`.
+
+### N5 — Merge reruns on every build
+
+- `merge_meta.lua:83-90` deliberately leaves unchanged outputs untouched.
+- After any edit that does not change metadata, all nine grouped targets stay older than the regenerated page JSON (`Makefile:115`), so every later `make` reruns the merge (probably about a second, not measured).
+- The sitemap (`merge_meta.lua:632`) and the relation page (`relation_graph.lua:334`) contain today's UTC date. The first rerun on a new day therefore rewrites them, and `polynomial-relations.htm` is a Pagefind prerequisite (`Makefile:220`), so the whole search index is rebuilt.
+- **Fix:** drive the merge from a success stamp that is touched every time, keeping the content-stable outputs that renders depend on. Check the result with `make -d`. Separately, date both pages from their inputs rather than the wall clock.
+
+## Carried forward from 2026-09-29, re-verified against current code
+
+- **D22 (Medium) — render fails open on bad required inputs.** `render.lua:44` and `:711` load the label map and the page JSON non-strictly. A bad page JSON prints a warning and still renders an "Untitled" page with exit 0. D21's polydata variant is unchanged at `render.lua:569-575` (`{}` is always truthy).
+- **D9 (Medium) — `make svg` never fails.** Compile and PDF failures only `return` (`tex_to_svg.lua:325-337`). Conversion failures are warnings (`:347-351`, `:367-371`). The script ends at `:404` with no exit code, and `Makefile:173-176` then copies assets regardless.
+- **D10 (Med–Low) — SVG staleness and no force option.** Staleness compares only source vs SVG mtime (`tex_to_svg.lua:126-143`) and ignores `svg-tex/lib` and the shared macros (`:61-63`). `make svg` cannot pass `--force` (`Makefile:173-176`).
+- **D12 (Medium) — eprint `sed` still duplicates `url`.** The regex at `Makefile:67` is unchanged. `find_arxiv_id` still matches `/abs/` only (`bibhandler.lua:216`).
+- **D13 (Low–Med) — citation labels.** Single-author keys are byte-sliced (`bibhandler.lua:154`, `name:sub(1, 3)`) and then ASCII-folded, so a split multibyte character is dropped (`Bóna` → `Bo03`). Colliding labels still get no a/b suffix.
+- **D17 (Low) — hard-coded paths.** `bibhandler.lua:24` hard-codes `./temp/bibliography.json`, and the cache ignores `path` (`:390-393`, `:448-449`). `tex_to_svg.lua:37` hard-codes `temp/svg-tex`. The `config_test.mk` overrides from the old audit are gone.
+- **D23 / H1 (Medium) — deletions not propagated; deploy not gated.**
+  - The `www/.created` stamp is still in the deploy tree (`Makefile:49-51`).
+  - `copy-assets` only overlays files, so deleted assets survive (`Makefile:166-169`).
+  - The Makefile `deploy` depends only on `copy-assets`, with no `check` and no exclusions (`Makefile:245-247`); `ship` does not run `check` (`:251-254`).
+  - The new lint allowlist catches stray HTML only when `make check` is run.
+- **H2 (Medium) — Pagefind unpinned.** `npx pagefind` is still unpinned (`Makefile:230`, `:235`). The quiet-mode log capture is fixed.
+- **H7 (Low hardening) — goto labels.** `goto.htm` interpolates labels into a JS object without escaping (`merge_meta.lua:701`). Labels are trusted author input.
+- **Q2 — docs mismatch.** `make FILE=x.tex` is still a full build: `all` → `meta` (all JSON files) and `search` (all HTML) (`Makefile:36`, `:111`, `:218-220`). AGENTS.md still calls it a single-file rebuild.
+- **Q3 — mixed time zones.** Page dates use local time (`render.lua:660`); the sitemap and relation page use UTC.
+- **Q8 — preprocess warnings.** They lack a filename and count lines after newline insertion (`preprocess.lua:695-702`).
+- **H6 — silent content loss.**
+  - `parse_inlines_walk` still drops anything that is not a leading `Para` (`gather.lua:108-115`).
+  - A raw `\cite…` still becomes `Str("")` (`gather.lua:1005-1007`).
+  - New, latent: the sorted encoder writes empty plain arrays as `{}` (`file_reading.lua:238-240`), e.g. `site-todo.json` or empty relation-graph arrays. The keyword array is explicitly typed as an array, so it is safe.
+
+Resolved, not repeated: D1–D8, D11, D14, D15, D19, D20, H5, and D18's key-order part. D16 is resolved apart from the N2 regression.
+
+## Inspected areas with no defect found
+
+- **Error counting:** `utils.lua:333-334` keeps one shared state in `_G`, so errors raised in modules loaded separately still fail the run.
+- **Failure propagation:** gather → Pandoc failure (`gather.lua:1382-1384`); `pipefail` covers the `pandoc | jq` step; merge exits nonzero on errors before writing anything (`merge_meta.lua:851-855`).
+- **Atomic writes:** merge uses a same-directory temporary file and rename, and skips unchanged bytes.
+- **Determinism:** recursive sorted-key encoding; keyword records deduplicated and sorted (`merge_meta.lua:794-805`).
+- **Keyword checks:** the label-existence check runs after the same page's labels are registered; the `phrase`+`href` dedupe key is consistent with gather's `phrase`+`label` dedupe.
+- **Pagefind recipe:** the empty and root `WWW_DIR` guards work at parse time and run time, and the recipe verifies that the entry file was produced.
+- **Test isolation:** `temp/test-www`, plus a leak assertion against the real `www/`.
+- **Lint allowlist:** stray HTML outputs are flagged.
+- **Relation page:** JSON embedded in `<script>` is escaped (`relation_graph.lua:256-260`).
+- **Links:** `href` scheme sanitization (`render.lua:115-138`).
+- **Template:** the placeholder pattern does not match ordinary HTML comments.
+- **Preprocess masking:** verbatim, `\verb` and comment regions are restored byte-for-byte.
+- **Escaping:** TOC, image `alt` and math bodies are escaped exactly once.

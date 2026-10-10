@@ -1,5 +1,22 @@
 # Handoff
 
+## Completed — Claude Opus backend audit, 2026-10-10
+
+User-requested read-only code audit at baseline d611816 completed with
+claude-opus-5-5/high, exit 0, under a monitored 20-minute cap. TeX content,
+bibliography content and other sites excluded. Read/Glob/Grep tools only.
+Report: suggestions/backend-audit-opus55-20261010.txt, including parent
+verification, qualifications, exact commands and the unmodified Opus findings.
+Parent isolated probes confirm malformed JSON renders successfully, SVG
+compiler errors can return success, a required bibliography dependency is
+missing, and SoftBreak loses keyword anchors. Generated titles also retain
+raw --. Remaining static findings and untested cases are marked in the report.
+No backend source changes, builds, deployments or pushes. Only report and
+handoff changed; ownership released after local checkpoint. No consultant
+remains running and no background follow-up is promised. Fixes await request.
+Artifacts: /home/dev/.local/state/symmetricfunctions/audits/2026-10-10-opus-backend-095558
+Session: 713b14f6-a852-4d88-8db3-c52c7c91e26a.
+
 ## Verified deployment — keyword feed, 2026-10-10
 
 At the user's request, deployed clean checkpoint 5bd05fe via the constrained
