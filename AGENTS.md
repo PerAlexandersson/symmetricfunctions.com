@@ -158,11 +158,15 @@ https://arxiv.symmetricfunctions.com/api/bibtex.json?doi=10.1002/jgt.22704
 7. **Search**: Pagefind builds full-text search index
 
 The metadata pass also generates `www/site-keywords.json` from readable
-`\defin{...}` terms, with optional immediately following label anchors.
+`\defin{...}` terms, with optional immediately following label anchors
+(spaces and soft line breaks are allowed between the definition and label).
 It is a versioned public feed for the arXiv++ admin Retag import button;
 see README.md for the schema and supported text. Keep this distinct from
 the existing `site-labels.json` anchor catalogue and include it in grouped
 metadata targets and test outputs when changing the build.
+Titles/descriptions are normalized to plain text during gathering; both
+catalogues inherit the normalized titles. Both metadata merge rules require
+CSL JSON, raw BibTeX JSON and the template, including isolated test builds.
 
 ## Error handling
 
@@ -172,6 +176,11 @@ metadata targets and test outputs when changing the build.
 - Pandoc runs with `--fail-if-warnings` — any warning stops the build
 - Missing cross-reference labels print `[ERROR] hyperref to unknown label`
 - Missing citations print `[ERROR] Citation not found`
+- Malformed required page, label or polynomial JSON fails rendering.
+- SVG setup, compilation, PDF inspection and conversion failures return
+  nonzero, preventing `make svg` from copying assets after a failed run.
+- `make check` includes Python 3 standard-library backend regressions, with
+  SVG tools mocked and fresh/incremental metadata builds in temporary trees.
 
 ## Common tasks
 

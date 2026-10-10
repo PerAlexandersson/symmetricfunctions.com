@@ -527,10 +527,10 @@ local function parse_polydata_body(body)
   return map
 end
 
-local function latex_to_unicode(s)
+local function latex_to_unicode(s, context)
   local ok, doc = pcall(pandoc.read, tostring(s or ""), "latex")
   if not ok then
-    print_error("Could not parse name as LaTeX: %s", tostring(s or ""))
+    print_error("Could not parse %s as LaTeX: %s", context or "name", tostring(s or ""))
     return tostring(s or "")
   end
   return trim(pandoc.utils.stringify(doc))
@@ -1070,7 +1070,7 @@ function RawBlock(el)
   do
     local mt = s:match("^%s*\\metatitle(%b{})%s*$")
     if mt then
-      metatitle = mt:sub(2, -2);
+      metatitle = latex_to_unicode(mt:sub(2, -2), "page title")
       --print_color(CONSOLE.green, "::: metatitle: %s", metatitle)
       return {}
     end
@@ -1080,7 +1080,7 @@ function RawBlock(el)
   do
     local md = s:match("^%s*\\metadescription(%b{})%s*$")
     if md then
-      metadesc = md:sub(2, -2);
+      metadesc = latex_to_unicode(md:sub(2, -2), "page description")
       --print_color(CONSOLE.green, "::: metadescription: %s", metadesc)
       return {}
     end
@@ -1323,7 +1323,8 @@ local function definition_keywords(doc)
         local phrase = trim(pandoc.utils.stringify(plain):gsub("%s+", " "))
         local label = ""
         local next_index = i + 1
-        while inlines[next_index] and inlines[next_index].t == "Space" do
+        while inlines[next_index] and
+            (inlines[next_index].t == "Space" or inlines[next_index].t == "SoftBreak") do
           next_index = next_index + 1
         end
         local following = inlines[next_index]
@@ -1348,13 +1349,13 @@ function Pandoc(doc)
   if not metatitle then
     print_warn("Meta title missing")
   else
-    m.metatitle = metatitle
+    m.metatitle = pandoc.MetaString(metatitle)
   end
 
   if not metadesc then
     print_warn("Meta description missing")
   else
-    m.metadescription = metadesc
+    m.metadescription = pandoc.MetaString(metadesc)
   end
 
   -- Try to invent a description

@@ -13,6 +13,7 @@ TEST_HTML  := $(patsubst $(TEST_DIR)/%.tex,$(TEST_WWW_DIR)/%.htm,$(TEST_TEX))
 TEST_CHECK := $(TEST_META_DIR)/unittest.check
 TEST_EDGE_CHECK := $(TEST_META_DIR)/edge-cases.check
 TEST_JSON_CHECK := $(TEST_META_DIR)/json-determinism.check
+TEST_BACKEND_CHECK := $(TEST_META_DIR)/backend.check
 
 # === GENERATED OUTPUTS ===
 TEST_LABELS_JSON := $(TEST_META_DIR)/site-labels.json

@@ -112,7 +112,7 @@ meta: $(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) 
 
 # All site metadata outputs are produced by one merge pass. Grouped targets make
 # Make regenerate the whole set when any one output is missing or stale.
-$(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(PUBLIC_KEYWORDS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON) &: $(JSON_FILES) $(MERGE_META_DEPS) $(REFS_JSON) | $(TEMP_DIR)/.created $(WWW_DIR)/.created
+$(LABELS_JSON) $(POLYDATA_JSON) $(TODOS_JSON) $(SITEMAP_XML) $(GOTO_HTML) $(PUBLIC_LABELS_JSON) $(PUBLIC_KEYWORDS_JSON) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON) &: $(JSON_FILES) $(MERGE_META_DEPS) $(REFS_JSON) $(BIBTEX_JSON) $(TEMPLATE) | $(TEMP_DIR)/.created $(WWW_DIR)/.created
 	$(LOG) "Generating site metadata ..."
 	@$(LUA) $(MERGE_META_LUA) $(JSON_FILES)
 
@@ -140,9 +140,10 @@ $(WWW_DIR)/%.htm: $(TEMP_DIR)/%.json $(TEMP_DIR)/%.timestamp $(RENDER_DEPS) $(TE
 
 # Test metadata is separate from site metadata so unittest links resolve against
 # labels declared inside tests/*.tex.
-$(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_TODOS_JSON) $(TEST_SITEMAP_XML) $(TEST_GOTO_HTML) $(TEST_PUBLIC_LABELS_JSON) $(TEST_PUBLIC_KEYWORDS_JSON) $(TEST_RELATION_GRAPH_HTML) $(TEST_RELATION_GRAPH_JSON) &: $(TEST_JSON) $(MERGE_META_DEPS) $(REFS_JSON) | $(TEST_META_DIR)/.created
+$(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_TODOS_JSON) $(TEST_SITEMAP_XML) $(TEST_GOTO_HTML) $(TEST_PUBLIC_LABELS_JSON) $(TEST_PUBLIC_KEYWORDS_JSON) $(TEST_RELATION_GRAPH_HTML) $(TEST_RELATION_GRAPH_JSON) &: $(TEST_JSON) $(MERGE_META_DEPS) $(REFS_JSON) $(BIBTEX_JSON) $(TEMPLATE) | $(TEST_META_DIR)/.created
 	$(LOG) "Generating test metadata ..."
 	@LABELS_JSON=$(TEST_LABELS_JSON) \
+	  BIBTEX_JSON=$(BIBTEX_JSON) \
 	  POLYDATA_JSON=$(TEST_POLYDATA_JSON) \
 	  TODOS_JSON=$(TEST_TODOS_JSON) \
 	  SITEMAP_XML=$(TEST_SITEMAP_XML) \
@@ -177,7 +178,7 @@ svg:
 
 # === UNITTEST ===
 .PHONY: unittest
-unittest: $(TEST_HTML) $(TEST_CHECK) $(TEST_EDGE_CHECK) $(TEST_JSON_CHECK)
+unittest: $(TEST_HTML) $(TEST_CHECK) $(TEST_EDGE_CHECK) $(TEST_JSON_CHECK) $(TEST_BACKEND_CHECK)
 	$(LOG) "Unittest pipeline finished — processed $(words $(TEST_TEX)) test file(s)"
 
 $(TEST_CHECK): $(TEST_PUBLIC_KEYWORDS_JSON) $(TEST_JSON) $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_HTML) tests/check_unittest.lua $(FILE_READING_LUA) $(UTILS_LUA)
@@ -197,6 +198,11 @@ $(TEST_EDGE_CHECK): tests/check_edge_cases.lua tests/fixtures/preprocess.tex tes
 $(TEST_JSON_CHECK): tests/check_json_determinism.lua $(FILE_READING_LUA) $(UTILS_LUA) | $(TEST_META_DIR)/.created
 	$(LOG) "Checking deterministic JSON encoding ..."
 	@$(LUA) tests/check_json_determinism.lua
+	@touch $@
+
+$(TEST_BACKEND_CHECK): tests/check_backend.py tests/fixtures/svg_runner.lua tex_to_svg.lua $(RENDER_DEPS) $(MERGE_META_DEPS) $(GATHER_DEPS) $(PREPROC_DEPS) $(BIBTEX_EXTRACT_LUA) $(BIB_MATH_FILTER) $(TEMPLATE) Makefile config.mk config_test.mk | $(TEST_META_DIR)/.created
+	$(LOG) "Checking backend failure handling and build dependencies ..."
+	@python3 tests/check_backend.py
 	@touch $@
 
 # === GENERATED HTML LINT ===

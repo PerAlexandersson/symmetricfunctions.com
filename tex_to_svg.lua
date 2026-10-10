@@ -82,14 +82,16 @@ local function get_files(dir, extension)
   local files = {}
   local handle = io.popen('find "' .. dir .. '" -maxdepth 1 -name "*.' .. extension .. '"')
   if not handle then
-    print_warn("Failed to search directory: %s", dir)
+    print_error("Failed to search directory: %s", dir)
     return files
   end
   
   for file in handle:lines() do
     table.insert(files, file)
   end
-  handle:close()
+  if not handle:close() then
+    print_error("Failed to search directory: %s", dir)
+  end
   return files
 end
 
@@ -144,20 +146,23 @@ end
 
 --- Get the number of pages in a PDF file.
 --- @param pdf_path string Path to PDF file
---- @return number Number of pages (defaults to 1 if detection fails)
+--- @return number|nil Number of pages, or nil on failure
 local function get_pdf_page_count(pdf_path)
-  local cmd = string.format("pdfinfo %s | grep 'Pages:' | awk '{print $2}'", pdf_path)
+  local cmd = string.format("pdfinfo %s", pdf_path)
   local handle = io.popen(cmd)
   if not handle then
-    print_warn("Failed to get page count for %s", pdf_path)
-    return 1
+    print_error("Failed to get page count for %s", pdf_path)
+    return nil
   end
   
   local result = handle:read("*a")
-  handle:close()
-  
-  local count = tonumber(result)
-  return count or 1
+  local ok = handle:close()
+  local count = tonumber(result:match("Pages:%s*(%d+)"))
+  if not ok or not count or count < 1 then
+    print_error("Failed to get page count for %s", pdf_path)
+    return nil
+  end
+  return count
 end
 
 --- Extract figure names from TeX source using \tikzsetnextfilename{...}.
@@ -314,8 +319,11 @@ local function process_tex_file(tex_path)
   print_info("Processing: %s", tex_path)
   
   -- Compile TeX to PDF
-  exec("rm -f " .. CONFIG.TEMP_DIR .. "/*.pdf")
-  exec("cp " .. tex_path .. " " .. CONFIG.TEMP_DIR .. "/")
+  if not exec("rm -f " .. CONFIG.TEMP_DIR .. "/*.pdf") or
+      not exec("cp " .. tex_path .. " " .. CONFIG.TEMP_DIR .. "/") then
+    print_error("Failed to prepare compilation: %s", tex_path)
+    return
+  end
   
   local compile_cmd = string.format(
     "cd %s && %s pdflatex -interaction=nonstopmode %s > /dev/null 2>&1",
@@ -347,13 +355,14 @@ local function process_tex_file(tex_path)
       if pdf_page_to_svg(pdf_path, i, output_path) then
         print_info("   ✓ %s", output_path)
       else
-        print_warn("   ✗ Failed to generate page %d: %s", i, fig_name)
+        print_error("   ✗ Failed to generate page %d: %s", i, fig_name)
       end
     end
     
   -- Strategy B: No named figures - process all pages with automatic naming
   else
     local page_count = get_pdf_page_count(pdf_path)
+    if not page_count then return end
     print_info("   No named figures, processing %d page(s)", page_count)
     
     local base_name = fname:gsub("%.tex$", "")
@@ -367,7 +376,7 @@ local function process_tex_file(tex_path)
       if pdf_page_to_svg(pdf_path, page_num, output_path) then
         print_info("   ✓ %s", output_path)
       else
-        print_warn("   ✗ Failed to generate page %d", page_num)
+        print_error("   ✗ Failed to generate page %d", page_num)
       end
     end
   end
@@ -382,13 +391,16 @@ if FORCE_REBUILD then
 end
 
 print_info("Setting up directories...")
-exec("mkdir -p " .. CONFIG.TEMP_DIR)
-exec("mkdir -p " .. CONFIG.NAV_OUT)
-exec("mkdir -p " .. CONFIG.SVG_OUT)
-exec("mkdir -p " .. CONFIG.ICO_OUT)
+for _, directory in ipairs({CONFIG.TEMP_DIR, CONFIG.NAV_OUT, CONFIG.SVG_OUT, CONFIG.ICO_OUT}) do
+  if not exec("mkdir -p " .. directory) then
+    print_error("Failed to create directory: %s", directory)
+    os.exit(1)
+  end
+end
 
 print_info("Searching for TeX sources in: %s", CONFIG.SRC_DIR)
 local tex_sources = get_files(CONFIG.SRC_DIR, "tex")
+if utils.has_errors() then os.exit(1) end
 
 if #tex_sources == 0 then
   print_warn("No .tex files found in %s", CONFIG.SRC_DIR)
@@ -401,4 +413,8 @@ for _, tex_path in ipairs(tex_sources) do
   process_tex_file(tex_path)
 end
 
+if utils.has_errors() then
+  print_error("SVG generation failed with %d error(s)", utils.get_error_count())
+  os.exit(1)
+end
 print_info("Done.")

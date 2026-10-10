@@ -1,5 +1,35 @@
 # Handoff
 
+## Completed — verified backend audit fixes, 2026-10-10
+
+Fixed the five issues summarized after the Opus audit: required render JSON
+now fails strictly (including malformed document shape); SVG setup/compiler/
+PDF inspection/conversion failures return nonzero; both metadata merges
+track raw BibTeX and the template; keyword anchors allow SoftBreak; titles
+and descriptions become plain text before HTML/feed output. The isolated
+merge regression also exposed and fixed the hard-coded bibliography default:
+bibhandler now honors REFS_JSON/BIBTEX_JSON and TEMP_DIR.
+
+Verification: make unittest Q=1, make Q=1, make check Q=1 and git diff --check
+pass. Five Python test methods cover malformed/missing input, valid empty
+pages, 13 mocked SVG failures, three success modes, and fresh/incremental
+site/test metadata builds with a synthetic bibliography. Existing Lua checks
+also verify metadata punctuation/escaping and newline keyword anchors.
+Generated output: all 2,232 label and 1,126 keyword references resolve across
+147 pages; zero remaining double-hyphen titles in either catalogue. Only the
+two expected missing-reference fixture warnings remain.
+Logs: /tmp/symcat-backend-fix-{unittest,build,check}.log.
+
+Owned files: render.lua, tex_to_svg.lua, gather.lua, bibhandler.lua, Makefile,
+config_test.mk, tests/check_backend.py, tests/fixtures/svg_runner.lua,
+tests/unittest.tex, tests/check_unittest.lua, README.md, AGENTS.md, HANDOFF.md.
+Ownership released after the local checkpoint. No tex-source/, bibliography
+content or SVG asset changes; no real SVG compiler run, push or deployment.
+Python is only subprocess/temporary-fixture orchestration, not mathematical
+computation. Other historical audit findings remain proposals in
+suggestions/backend-audit-opus55-20261010.txt; this checkpoint addresses the
+five verified findings summarized to the user and the related path defect.
+
 ## Completed — Claude Opus backend audit, 2026-10-10
 
 User-requested read-only code audit at baseline d611816 completed with

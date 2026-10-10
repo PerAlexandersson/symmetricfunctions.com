@@ -21,8 +21,9 @@ local MONTH_NAMES = {
 }
 
 local MAX_LABEL_LENGTH = 4
-local DEFAULT_BIB_PATH = "./temp/bibliography.json"
-local DEFAULT_BIBTEX_PATH = os.getenv("BIBTEX_JSON") or "./temp/bibtex-entries.json"
+local TEMP_DIR = os.getenv("TEMP_DIR") or "temp"
+local DEFAULT_BIB_PATH = os.getenv("REFS_JSON") or (TEMP_DIR .. "/bibliography.json")
+local DEFAULT_BIBTEX_PATH = os.getenv("BIBTEX_JSON") or (TEMP_DIR .. "/bibtex-entries.json")
 
 -- ========== MODULE STATE ==========
 

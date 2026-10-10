@@ -41,7 +41,7 @@ local WWW_DIR       = os.getenv("WWW_DIR") or "www"
 local SOURCE_TS     = os.getenv("SOURCE_TS") or tostring(os.time())
 
 -- Site-wide label mapping for cross-page references
-local SITE_LABELS_MAP = file_reading.load_json_file(LABELS_JSON, "site-labels")
+local SITE_LABELS_MAP = file_reading.load_json_file(LABELS_JSON, "site-labels", true)
 
 
 -- ========== CONSTANTS ==========
@@ -566,13 +566,9 @@ function render_blocks_html(blocks, header_collector)
         local block_type = kv_map["data-type"]
 
         if block_type and block_type == "polynomialList" then
-          local polydata = file_reading.load_json_file(POLYDATA_JSON)
-          if polydata then
-            local poly_list_html = poly_to_html.render_polynomial_table(polydata) or ""
-            table.insert(buffer, poly_list_html )
-          else 
-            print_error("Could not open %s",POLYDATA_JSON)
-          end
+          local polydata = file_reading.load_json_file(POLYDATA_JSON, "site-polydata", true)
+          local poly_list_html = poly_to_html.render_polynomial_table(polydata) or ""
+          table.insert(buffer, poly_list_html)
         else
           print_error("specialblock div missing data-type attribute")
         end
@@ -706,9 +702,11 @@ end
 
 -- ========== MAIN EXECUTION ==========
 
-local filename = arg[1];
+local filename = assert(arg[1], "Usage: lua render.lua <page.json>")
 local filestem = filename:match("([^/\\]+)%.json$") or "unknown"
-local pandoc_doc = file_reading.load_json_file(filename, "json pandoc document")
+local pandoc_doc = file_reading.load_json_file(filename, "json pandoc document", true)
+assert(type(pandoc_doc.meta) == "table" and type(pandoc_doc.blocks) == "table",
+       "Invalid Pandoc document: expected meta and blocks tables in " .. filename)
 
 -- Extract metadata
 local meta      = pandoc_doc.meta or {}

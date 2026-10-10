@@ -38,16 +38,31 @@ make unittest     # render tests/*.tex only under temp/test-www/
 make check        # run unit regressions and audit generated HTML
 ```
 
+`make check` uses Python 3's standard library for isolated backend subprocess
+regressions. These cover malformed required JSON, SVG failure propagation
+(with compiler and filesystem operations mocked), and fresh/incremental
+metadata builds with their own synthetic bibliography. No test invokes a
+TeX compiler or writes SVG assets. Required JSON and SVG generation failures
+stop the build; `make svg` copies assets only after successful generation.
+
+Both site and test metadata depend on the CSL and raw BibTeX JSON files and
+the shared HTML template. Bibliography lookup honors `REFS_JSON` and
+`BIBTEX_JSON`, including builds with a separate `TEMP_DIR`.
+
 ## Keyword export for arXiv++
 
 The normal build generates `www/site-keywords.json` from `\defin{...}` terms
 in the gathered page metadata. The version-1 feed contains a `keywords` array
 of `{phrase, href, title}` records. An immediately following `\label{...}`
-supplies the target anchor; otherwise the reference points to the page.
+supplies the target anchor, including when separated by a space or a single
+source newline; otherwise the reference points to the page.
 Repeated phrase/reference pairs are deduplicated and records are sorted for
 reproducible output. Formatting and Unicode text are preserved as plain text;
 single-letter inline mathematics such as `$q$` is supported, while definitions
 containing general mathematical formulae or unresolved raw TeX are omitted.
+Page titles and descriptions are converted from LaTeX to plain text during
+gathering. Titles in both public feeds use that same text; HTML metadata is
+escaped when rendered.
 
 `site-labels.json` remains the separate anchor-to-page catalogue. Neither feed
 is a hand-edited source file. Both are published with the normal SymCat deploy.

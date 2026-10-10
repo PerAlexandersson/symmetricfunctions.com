@@ -28,7 +28,9 @@ local keyword_path = html_path:match("^(.*)/") .. "/site-keywords.json"
 local catalogue = file_reading.load_json_file(keyword_path, "test keywords", true)
 assert_eq(catalogue.schema_version, 1, "keyword schema version")
 local keyword_hrefs = {}
+local expected_title = "Unittest: Hall–Littlewood & co"
 for _, keyword in ipairs(catalogue.keywords) do
+  assert_eq(keyword.title, expected_title, "keyword plain-text title")
   keyword_hrefs[keyword.phrase .. "|" .. keyword.href] = true
 end
 for _, key in ipairs({
@@ -37,8 +39,17 @@ for _, key in ipairs({
   "Test tableaux|unittest.htm#testTableauxAgain",
   "Möbius functions|unittest.htm",
   "q-test polynomials|unittest.htm",
+  "Line-break term|unittest.htm#lineBreakTerm",
 }) do
   if not keyword_hrefs[key] then fail("missing keyword: " .. key) end
+end
+
+for _, label in pairs(labels) do
+  assert_eq(label.title, expected_title, "label plain-text title")
+end
+if not contains(html, "<title>Unittest: Hall–Littlewood &amp; co | SymCat</title>") or
+   not contains(html, 'content="A Hall–Littlewood test with formatting &amp; accents: Möbius."') then
+  fail("page metadata was not converted to plain text and HTML-escaped")
 end
 for _, keyword in ipairs(catalogue.keywords) do
   if contains(keyword.phrase, "x_1") then fail("formula exported as keyword") end
