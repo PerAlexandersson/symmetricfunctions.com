@@ -1,5 +1,16 @@
 # Handoff
 
+## Verified deployment — keyword feed, 2026-10-10
+
+At the user's request, deployed clean checkpoint 5bd05fe via the constrained
+host bridge. Receipt 20261010T091003-8650a89b2621 reports deployed and matching
+Pagefind manifest. make Q=1, make check Q=1 and clean-Git checks passed first.
+Live site-keywords.json returns HTTPS 200 and is byte-identical to www output
+(1,126 records). The deployed arXiv consumer accepts all 1,051 normalized terms.
+The arXiv site was then deployed separately as authorized. Only this handoff
+changed afterward; ownership released. No SymCat Git push.
+Logs: /tmp/symcat-keywords-deploy-{build,check}.log.
+
 ## Completed — SymCat keyword export, 2026-10-10
 
 Generated www/site-keywords.json (schema_version 1) from readable defin spans
