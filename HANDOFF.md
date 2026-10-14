@@ -1,5 +1,21 @@
 # Handoff
 
+## Verified source — transfer-matrix prose deletion, 2026-10-14
+
+The user confirmed that the existing five-line deletion after the
+Beraha--Kahane--Weiss theorem in `tex-source/transfer-matrix.tex` is
+intentional, and authorized committing, pushing, and deploying it.  The
+deleted paragraph concerned vanishing amplitudes, equal-modulus curves, and a
+real-rootedness caveat.  No other source files changed.
+
+The focused `transfer-matrix.tex` render, `make Q=1`, `make check Q=1`, and
+`git diff --check` pass.  The rendered theorem now ends after its two
+alternatives, with none of the deleted prose present.  Owned files are the
+source file and this `HANDOFF.md`; the source has SHA-256
+`5138bb8f6f55fb81cebf9e3b7e2034967668ba179cb7a8965d427d786b5af0d1`.
+The scoped source checkpoint is ready for the authorized constrained-bridge
+deployment; deployment details will be recorded separately after the run.
+
 ## Verified deployment — two catalogue updates, 2026-10-14
 
 The user explicitly authorized deployment of the two latest SymCat catalogue
