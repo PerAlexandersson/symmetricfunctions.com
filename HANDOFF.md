@@ -1,5 +1,31 @@
 # Handoff
 
+## Completed — qtBench catalogue entry, 2026-10-14
+
+Added the indexed-API bibliography record for Eugenio Cainelli, Lorenzo
+Luccioli, Alessandro Iraci, and Giovanni Paolini, *AI Discovery in
+Combinatorics: From Problems to Solutions and Back to Bigger Problems*, pinned
+to arXiv `2610.16555v1`.  The exact-current paper-cache source and hash-verified
+full text agree on the title, authors, version, and preprint status.
+
+Placed one concise resource paragraph in the introductory references of
+`tex-source/diagonalHarmonics.tex`.  It identifies the benchmark's 29 open
+problems and one solved calibration problem, explains the supplied finite data
+and automated checks, and names the Theta, Delta, $\Xi$, super-nabla,
+area--bounce, and parking-function area--dinv content relevant to this page.
+The text preserves the paper's status distinctions: the proposed area--bounce
+bijection is still under assessment, while negative coefficients rule out the
+zero-rooted tiered-tree $\Xi$, multi-labelled Dyck-path super-nabla, and
+rise-decorated rectangular-path Delta statistic interpretations.
+
+`make bib Q=1`, `make FILE=diagonalHarmonics.tex Q=1`, `make Q=1`,
+`make check Q=1`, and `git diff --check` pass.  The full check emits only the
+two pre-existing synthetic-polydata warnings.  The rendered page contains the
+four-author citation, exact title, and versioned arXiv link.  Owned files were
+`HANDOFF.md`, `bibliography.bib`, and `tex-source/diagonalHarmonics.tex` in the
+isolated worktree `/tmp/symcat-2610-16555`; ownership is released at this
+checkpoint.  No deployment was requested or run.
+
 ## Verified deployment — transfer-matrix prose deletion, 2026-10-14
 
 The user confirmed that the existing five-line deletion after the
