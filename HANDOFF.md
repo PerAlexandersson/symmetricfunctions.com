@@ -1,6 +1,6 @@
 # Handoff
 
-## Verified source — transfer-matrix prose deletion, 2026-10-14
+## Verified deployment — transfer-matrix prose deletion, 2026-10-14
 
 The user confirmed that the existing five-line deletion after the
 Beraha--Kahane--Weiss theorem in `tex-source/transfer-matrix.tex` is
@@ -13,8 +13,22 @@ The focused `transfer-matrix.tex` render, `make Q=1`, `make check Q=1`, and
 alternatives, with none of the deleted prose present.  Owned files are the
 source file and this `HANDOFF.md`; the source has SHA-256
 `5138bb8f6f55fb81cebf9e3b7e2034967668ba179cb7a8965d427d786b5af0d1`.
-The scoped source checkpoint is ready for the authorized constrained-bridge
-deployment; deployment details will be recorded separately after the run.
+
+Committed and pushed the scoped source checkpoint as
+`013ad30979ed23d259bdc6aed1011421558db349`.  A subsequent clean
+`make clean && make Q=1`, `make check Q=1`, and `git diff --check` passed at
+that exact commit, again with only the two pre-existing synthetic-polydata
+warnings.  The constrained bridge reported `ready · idle` and pinned the
+source commit before deployment.
+
+Deployment request `20261014T152403-c912b0b5beab` reports `deployed` with
+exit code `0` at `2026-10-14T15:24:03.769157+00:00`, with a matching Pagefind
+manifest.  Receipt:
+`/cargo-target/symmetricfunctions-deploy-bridge/results/20261014T152403-c912b0b5beab.json`.
+The fresh HTTPS `transfer-matrix.htm` returned `200`, matched the local build
+byte-for-byte, and no longer contains the deleted paragraph.  Only this
+handoff entry changes after deployment; the handoff-only checkpoint is not
+deployed.  Ownership is released.
 
 ## Verified deployment — two catalogue updates, 2026-10-14
 
