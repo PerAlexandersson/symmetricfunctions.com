@@ -1,5 +1,38 @@
 # Handoff
 
+## Completed — matroid polynomial counterexamples, 2026-10-14
+
+Added the indexed-API bibliography record for Bérczi--Coron--Eur--Li,
+*Chow polynomials and chain polynomials of matroids are not log-concave*,
+pinned to arXiv `2610.17135v1`.  The indexed metadata and paper-cache source
+agree on the title, four authors, version, and preprint status.
+
+Placed the theorem-level summary in `tex-source/realRootedGraphs.tex` directly
+after the Athanasiadis--Kalampogia-Evangelinou chain-polynomial conjecture.  It
+distinguishes the chain, ordinary Chow, augmented Chow, and order-complex
+$h$-polynomial counterexamples; records the minimal ranks $4$ and $7$ only for
+chain and ordinary Chow polynomials; and notes the simple, $3$-connected
+rank-$7$ Chow examples.  Added a short cross-reference from the positive-class
+survey in `tex-source/matroids.tex`, without duplicating the summary.  Added the
+graph-associahedron result after the associahedron definition in
+`tex-source/polytopes.tex`: the rooted $1540$-vertex graph, wedge construction,
+and non-log-concave $h$-polynomials for every $s\geq23$.
+
+Verification passes with `make bib Q=1`, focused renders of
+`realRootedGraphs.tex`, `matroids.tex`, and `polytopes.tex`, `make Q=1`,
+`make check Q=1`, and `git diff --check`.  Rendered HTML contains the exact v1
+title, author list, arXiv number and link, citation anchors, downloadable
+BibTeX, and the intended cross-page links.  The only check output is the two
+pre-existing synthetic-polydata warnings.
+
+Owned files were `bibliography.bib`, `tex-source/realRootedGraphs.tex`,
+`tex-source/matroids.tex`, `tex-source/polytopes.tex`, and this `HANDOFF.md`;
+ownership is released with the verified checkpoint.  The shared checkout's
+pre-existing dirty `tex-source/transfer-matrix.tex` remained byte-identical
+(SHA-256 `5138bb8f6f55fb81cebf9e3b7e2034967668ba179cb7a8965d427d786b5af0d1`)
+and was not edited, staged, or absorbed.  No deployment was requested or run;
+the checkpoint is undeployed and requires a future explicit deployment request.
+
 ## Completed — Jin--Lin Macdonald superization update, 2026-10-14
 
 Updated the existing `JinLin2026x` bibliography record from the earlier title
