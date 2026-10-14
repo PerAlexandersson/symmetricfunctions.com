@@ -1,5 +1,45 @@
 # Handoff
 
+## Completed — nabla, Hall--Littlewood, and LLT positivity, 2026-10-14
+
+Added the indexed-API bibliography record for Feng Gu, Mingyang Kang, Dun Qiu,
+and Minhao Zhang, *The nabla operator, Hall--Littlewood polynomials and LLT
+polynomials*, pinned to arXiv `2610.16756v1`.  The exact-current paper-cache
+source and hash-verified full text agree on the title, authors, version, and
+preprint status.
+
+Replaced the obsolete Bergeron--Garsia--Haiman--Tesler Conjecture~II block in
+`tex-source/diagonalHarmonics.tex` with the proved signed and unsigned
+Schur-positivity statements and the dominance theorem, all for every positive
+power `\nabla^r`.  The text distinguishes the shuffle-theorem proof of
+Conjecture~II from Gu--Kang--Qiu--Zhang's proof of both parts of
+Conjecture~III.  Added a short pointer from the modified Hall--Littlewood
+section of `tex-source/hallLittlewood.tex`.
+
+Added a complementary subsection to `tex-source/llt.tex`: for a dominance
+cover, the Hall--Littlewood difference is minus an integral power of `t` times
+one explicitly constructed LLT polynomial, and applying `\nabla^r` gives a
+finite LLT-positive Laurent expansion.  Cross-links connect this mechanism to
+the full dominance theorem without repeating its statement.  The specialized
+Schiffmann-algebra extension was not needed for this catalogue-level summary.
+Academic-writing guidance was used to keep the result hierarchy and notation
+precise.
+
+Verification passes with `make bib Q=1`, focused renders of
+`diagonalHarmonics.tex`, `hallLittlewood.tex`, and `llt.tex`, `make Q=1`,
+`make check Q=1`, and `git diff --check`.  Rendered HTML contains the exact v1
+title, four authors, arXiv number and link, citation anchors, downloadable
+BibTeX, formulas, and reciprocal cross-page links.  The only check output is
+the two pre-existing synthetic-polydata warnings.
+
+Owned files were `bibliography.bib`, `tex-source/diagonalHarmonics.tex`,
+`tex-source/hallLittlewood.tex`, `tex-source/llt.tex`, and this `HANDOFF.md`;
+ownership is released with the verified checkpoint.  The shared checkout's
+unrelated dirty `tex-source/transfer-matrix.tex` remained byte-identical
+(SHA-256 `5138bb8f6f55fb81cebf9e3b7e2034967668ba179cb7a8965d427d786b5af0d1`)
+and was not edited, staged, or absorbed.  No deployment was requested or run;
+the checkpoint is undeployed and requires a future explicit deployment request.
+
 ## Completed — matroid polynomial counterexamples, 2026-10-14
 
 Added the indexed-API bibliography record for Bérczi--Coron--Eur--Li,

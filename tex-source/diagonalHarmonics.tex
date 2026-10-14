@@ -1165,20 +1165,46 @@ signed \hyperref[schurPositiveDefinition]{Schur positivity} of
 $\nabla^m\schurS_\lambda$.  This is now a theorem, following from the proof of
 the Loehr--Warrington conjecture discussed above.
 
-\begin{conjecture}[Bergeron--Garsia--Haiman--Tesler (1999), \cite[Conj. II]{BergeronGarsiaHaimanTesler1999}]
-We have for every pair of partitions $\lambda$, $\mu$,
-\[
-(-1)^{|\lambda|-\length(\lambda)} \langle \nabla \macdonaldH_\lambda(\xvec;0,t), \schurS_\mu \rangle \in \setN[q,t],
-\]
-where
-\[
-\iota(\lambda) \coloneqq \binom{\length(\lambda)}{2} + \sum_{\lambda_i \lt (i-1)} (i-1-\lambda_i).
-\]
-\end{conjecture}
+\subsection[nablaHallLittlewoodBGHT]{Nabla on modified Hall--Littlewood polynomials}
 
-\name{Menghao Qu} proves the two-column cases of this conjecture and the
-adjacent Bergeron--Garsia--Haiman--Tesler dominance conjecture for modified
-Hall--Littlewood polynomials \cite{Qu2026xHallLittlewood}.
+The next statements were Conjectures~II--III of
+Bergeron--Garsia--Haiman--Tesler
+\cite[Conjs.~II--III]{BergeronGarsiaHaimanTesler1999}.  The compositional
+shuffle theorem proves Conjecture~II.  \name{Feng Gu}, \name{Mingyang Kang},
+\name{Dun Qiu}, and \name{Minhao Zhang} prove both parts of Conjecture~III
+and extend all three statements to every positive power of $\nabla$.
+
+\begin{theorem}[Gu--Kang--Qiu--Zhang,
+\cite[Cor.~18, Thm.~8, and Cor.~9]{GuKangQiuZhang2026x}]
+For partitions $\mu,\nu,\lambda\vdash n$ and every integer $r\geq1$, we have
+\[
+(-1)^{n-\length(\mu)}
+\left\langle \nabla^r\macdonaldH_\mu(\xvec;0,t),
+\schurS_\lambda\right\rangle
+\in\setN[q,t]
+\]
+and
+\[
+\left\langle \nabla^r\omega
+\macdonaldH_\mu(\xvec;0,t^{-1}),\schurS_\lambda\right\rangle
+\in\setN[q,t].
+\]
+If $\mu\trianglerighteq\nu$ in
+\hyperref[dominanceOrder]{dominance order}, then
+\[
+\left\langle
+\nabla^r\omega\macdonaldH_\mu(\xvec;0,t^{-1})
+-\nabla^r\omega\macdonaldH_\nu(\xvec;0,t^{-1}),
+\schurS_\lambda
+\right\rangle
+\in\setN[q,t].
+\]
+\end{theorem}
+
+The dominance proof reduces to covers and uses a single-LLT identity; see the
+\hyperref[lltNablaHallLittlewoodCovers]{LLT-polynomial formulation}.
+\name{Menghao Qu} previously proved the two-column cases and their extension
+to positive powers of $\nabla$ \cite{Qu2026xHallLittlewood}.
 
 
 
