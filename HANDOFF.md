@@ -1,5 +1,38 @@
 # Handoff
 
+## Verified deployment — two catalogue updates, 2026-10-14
+
+The user explicitly authorized deployment of the two latest SymCat catalogue
+updates through commit `245623405142be7953638567aa69c01519903a05`.  The
+unrelated five-line deletion in `tex-source/transfer-matrix.tex` was isolated
+in the file-specific stash commit `90056c036a1c41269a029c41f9958d76a3d2f982`.
+The resulting clean worktree matched both `HEAD` and `origin/master` at the
+requested commit.
+
+On that clean commit, `make clean && make Q=1`, `make check Q=1`, and
+`git diff --check` passed.  The only check output was the two pre-existing
+synthetic-polydata warnings.  The constrained `symmetricfunctions-deploy`
+bridge reported `ready · idle` and pinned the expected commit before the run.
+
+Deployment request `20261014T121511-4b7b54a4cf53` reports `deployed` with
+exit code `0` at `2026-10-14T12:15:11.300843+00:00`; its expected commit is
+`245623405142be7953638567aa69c01519903a05`, and the Pagefind manifest matches.
+Receipt:
+`/cargo-target/symmetricfunctions-deploy-bridge/results/20261014T121511-4b7b54a4cf53.json`.
+
+Fresh HTTPS copies of `realRootedGraphs.htm`, `matroids.htm`, `polytopes.htm`,
+`diagonalHarmonics.htm`, `hallLittlewood.htm`, and `llt.htm` all returned
+successfully and matched the clean local build byte-for-byte.  The first three
+contain arXiv `2610.17135v1`; the latter three contain arXiv `2610.16756v1`,
+including the new theorem text and cross-page anchors.
+
+The transfer-matrix edit was restored from the stash before the stash was
+dropped.  It again has exactly five deleted lines and SHA-256
+`5138bb8f6f55fb81cebf9e3b7e2034967668ba179cb7a8965d427d786b5af0d1`;
+it remains unstaged and was not included in the build or deployment.  Only
+this handoff entry changes after deployment; the resulting handoff-only
+checkpoint is not itself deployed.  Deployment ownership is released.
+
 ## Completed — nabla, Hall--Littlewood, and LLT positivity, 2026-10-14
 
 Added the indexed-API bibliography record for Feng Gu, Mingyang Kang, Dun Qiu,
