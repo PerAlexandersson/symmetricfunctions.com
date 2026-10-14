@@ -1,5 +1,40 @@
 # Handoff
 
+## Completed — Jin--Lin Macdonald superization update, 2026-10-14
+
+Updated the existing `JinLin2026x` bibliography record from the earlier title
+to *Combinatorial formulas for Macdonald polynomials by superizations* and
+pinned its eprint and URL to arXiv `2602.12672v4`.  The arXiv++ API, primary
+arXiv metadata, and cached v4 paper agree on the title, Emma Yu Jin and Xiaowei
+Lin as authors, and preprint status without a journal reference or DOI.
+
+Placed symmetric content in `tex-source/macdonaldP.tex`, in the
+`macdonaldPTableauFormula` subsection immediately after Mandelshtam's compact
+tableau formula.  The new paragraph records the non-attacking and sorted
+non-attacking tableau formulas, the fewer-summand comparison for partitions
+with repeated parts, and the explicit monomial-coefficient formula from
+Theorems 1.3--1.4.  Removed the older, less precise Jin--Lin paragraph from the
+Macdonald J section.
+
+Placed nonsymmetric content in `tex-source/macdonaldE.tex`, immediately after
+the introduction of the `multilineQueueMacdonald` model.  The paragraph
+records the super-filling compression of the Haglund--Haiman--Loehr formula,
+its validity for arbitrary weak compositions, its specialization to the
+Corteel--Mandelshtam--Williams partition formula, and the still-open status of
+a general multiline-queue extension, following Theorem 1.5 and the final
+remarks.  Academic-writing guidance was used for the mathematical exposition.
+
+Verification passes with `make bib Q=1`, focused renders of
+`macdonaldP.tex` and `macdonaldE.tex`, `make Q=1`, `make check Q=1`, and
+`git diff --check`.  The rendered pages contain the new contextual text and
+the exact v4 title, arXiv number, link, citation anchors, and downloadable
+BibTeX.  The only check output is the two pre-existing synthetic-polydata
+warnings.  Owned files were `bibliography.bib`, `tex-source/macdonaldP.tex`,
+`tex-source/macdonaldE.tex`, and `HANDOFF.md`; ownership is released after the
+verified checkpoint.  The main checkout's unrelated dirty
+`tex-source/transfer-matrix.tex` was neither edited nor staged.  No deployment
+was requested or run; this checkpoint is undeployed.
+
 ## Verified push and deployment — backend fixes, 2026-10-10
 
 User explicitly authorized push and deployment, superseding the prior local-only
