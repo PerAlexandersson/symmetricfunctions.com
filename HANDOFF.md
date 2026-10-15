@@ -1,5 +1,23 @@
 # Handoff
 
+## Completed — stable plethysm coefficients, 2026-10-15
+
+Added the indexed-API bibliography record for Soumyadip Sarkar, *Stability of
+plethysm coefficients and modified polynomial induction*, pinned to arXiv
+`2610.07929v2`.  Added two sentences to the stability discussion in
+`tex-source/plethysm.tex`, recording the improved stable range, the closed
+formula for the stable Foulkes coefficient, and the positive polyhedral
+formula when the indexing partition has at most four columns.  The exact v2
+source tree (SHA-256
+`618a9c847921d28bcf6b50a579c2e9c54bae950155275b4c64818d5f79c56119`) was
+inspected directly after the paper-cache text converter reported a conflicting
+indexed artifact; the fallback and all claims were source-checked.
+Academic-writing guidance was used.  Verification passed: `make bib Q=1`,
+`make FILE=plethysm.tex Q=1`, `make Q=1`, `make check Q=1`, rendered-reference
+inspection, and `git diff --check`; the only diagnostics were the two
+established synthetic-polydata warnings from `make check`.  Ownership is
+released.  No deployment or publication was performed.
+
 ## Completed — matroid parity module and bicolored Eulerian QSFs, 2026-10-15
 
 Added indexed-API bibliography records for Braden--Huh--Matherne--Proudfoot--
