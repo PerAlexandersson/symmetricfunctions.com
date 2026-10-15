@@ -1,5 +1,20 @@
 # Handoff
 
+## Completed — matroid parity module and bicolored Eulerian QSFs, 2026-10-15
+
+Added indexed-API bibliography records for Braden--Huh--Matherne--Proudfoot--
+Wang, arXiv `2610.20234v1`, and Liao--Zhu, arXiv `2610.19363v1`.  Added a
+concise source-checked summary of the parity module and its characteristic-
+$p$ Kazhdan--Lusztig consequences to `tex-source/matroids.tex`, and a concise
+summary of the affine-length refinement, Theta-operator symmetry result, and
+conjectural Schur positivity to `tex-source/eulerianSymmetric.tex`.  Exact v1
+paper-cache sources and hash-verified extracted text were inspected, and the
+`academic-writing` skill guided the mathematical prose.  Verification passed:
+`make bib Q=1`, focused builds for both pages, `make Q=1`, `make check Q=1`,
+rendered-reference inspection, and `git diff --check`; the only diagnostics
+were the two established synthetic-polydata warnings from `make check`.
+Ownership is released.  No deployment or publication was performed.
+
 ## Completed — rho-Naples parking functions, 2026-10-15
 
 Added the indexed-API bibliography record for Luca Ferrari and Francesco
