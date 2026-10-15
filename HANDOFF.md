@@ -1,5 +1,27 @@
 # Handoff
 
+## Completed — rho-Naples parking functions, 2026-10-15
+
+Added the indexed-API bibliography record for Luca Ferrari and Francesco
+Verciani, *A new generalization of parking functions: $\rho$-Naples parking
+functions*, pinned to arXiv `2610.20267v1`.  The exact-current paper-cache
+source and hash-verified text agree on the title, authors, version, and main
+results.
+
+Added two sentences to the variations section of
+`tex-source/parking-functions.tex`.  They define the per-car backward
+allowance, record that successful strategies for a fixed preference form an
+up-set, and mention the classifications of minimum-total-backward-step
+strategies and the zero--one case.  Academic-writing guidance was used.
+
+`make bib Q=1`, `make FILE=parking-functions.tex Q=1`, `make Q=1`,
+`make check Q=1`, and `git diff --check` pass.  The full check emits only the
+two pre-existing synthetic-polydata warnings.  The rendered page contains the
+two-author citation, exact title, versioned arXiv link, and downloadable
+BibTeX.  Owned files were `HANDOFF.md`, `bibliography.bib`, and
+`tex-source/parking-functions.tex`; ownership is released.  No deployment was
+requested or run.
+
 ## Completed — qtBench catalogue entry, 2026-10-14
 
 Added the indexed-API bibliography record for Eugenio Cainelli, Lorenzo
