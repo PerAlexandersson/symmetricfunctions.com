@@ -1,5 +1,30 @@
 # Handoff
 
+## Completed — recent catalogue references, 2026-10-16
+
+Added source-checked references for arXiv `2610.21921v1` (rectangular Kostka
+stretching) to `tex-source/kostkaFoulkes.tex`; `2610.21894v1` (positroid
+algebras, Theta/Delta operators, Eulerian quasisymmetric functions, and Chow
+rings) and `2610.21501v1` (Ehrhart positivity for paving positroids) to
+`tex-source/positroids.tex`; `2610.21535v1` (rectangular symmetry for Catalan
+functions) to `tex-source/kschur.tex`; `2610.21289v1` (rooted Hopf algebras)
+to `tex-source/algebras-and-rings.tex`; and `2610.21053v1` (skew divided
+differences and triple Schubert coefficients) to
+`tex-source/schubertVariations.tex`.  The existing chromatic-symmetric-
+function reference for `2610.01617` was already correctly placed, so its
+bibliography title and versioned link were updated from v1 to v2 without
+duplicating the page entry.  Because the six new papers had not yet entered
+the archive's math.CO metadata, their exact cached v1 source packages were
+inspected directly; all package SHA-256 values matched the cache records.  The
+exact v2 package for `2610.01617v2` was checked likewise.  Academic-writing
+guidance was used.
+
+Verification passed: `make bib Q=1`, focused builds for all six affected
+pages, `make Q=1`, `make check Q=1`, rendered prose/reference inspection, and
+`git diff --check`; the only diagnostics were the two established
+synthetic-polydata warnings from `make check`.  Ownership is released.  No
+deployment or publication was performed.
+
 ## Completed — stable plethysm coefficients, 2026-10-15
 
 Added the indexed-API bibliography record for Soumyadip Sarkar, *Stability of
