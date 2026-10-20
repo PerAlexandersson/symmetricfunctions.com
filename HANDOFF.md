@@ -1,5 +1,20 @@
 # Handoff
 
+## Completed — quantum Littlewood--Richardson branching reference, 2026-10-20
+
+Added the exact-v7 bibliography record for Olga Azenhas's arXiv
+`2603.16698v7` and a two-sentence reference beside the symplectic branching
+models in `tex-source/schurMisc.tex`.  The exact v7 source was inspected
+directly after the paper-cache extractor reported a conflicting indexed
+artifact; the addition records the explicit inverse to Watanabe's quantum
+Littlewood--Richardson map, the symplectic branching bijection, and its
+orthogonal-transpose symmetry.  Academic-writing guidance was used.
+
+Verification passed: `make bib Q=1`, `make FILE=schurMisc.tex Q=1`,
+`make Q=1`, `make check Q=1`, rendered citation/link inspection, and
+`git diff --check`.  The only diagnostics were the two established synthetic
+polydata warnings.  Ownership is released.  No deployment was performed.
+
 ## Completed — three current preprints, 2026-10-20
 
 Added exact-v1 bibliography records and short, source-checked references for
