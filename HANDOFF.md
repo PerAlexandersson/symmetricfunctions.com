@@ -1,5 +1,21 @@
 # Handoff
 
+## Verified deployment — split-page navigation cards, 2026-10-20
+
+Deployed SymCat commit `521c43d6ae91254e043cb1dfc29703b08735c536`
+through the constrained bridge after a clean `make Q=1` build,
+`make check Q=1`, and `git diff --check`.  The only diagnostics were the two
+established synthetic-polydata warnings, and the bridge was ready and pinned
+to the expected clean commit.
+
+Deployment request `20261020T104930-be7cb60cd88c` reports `deployed` with
+exit code `0` at `2026-10-20T10:49:30.492581+00:00`; its Pagefind manifest
+matches.  Receipt:
+`/cargo-target/symmetricfunctions-deploy-bridge/results/20261020T104930-be7cb60cd88c.json`.
+The live homepage and both new destination anchors return HTTP `200`, and the
+live rational-shuffle and set-partition SVGs match the local assets by
+SHA-256.  This handoff-only checkpoint is not deployed.
+
 ## Completed — navigation cards for split pages, 2026-10-20
 
 Added homepage cards for the rational-shuffle/Delta page and the
