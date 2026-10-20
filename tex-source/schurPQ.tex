@@ -1,0 +1,367 @@
+\metatitle{Schur P- and Q-functions}
+\metadescription{Schur P- and Q-functions, shifted tableaux, Pfaffian and
+Cauchy identities, and generalized Schur P- and Q-functions.}
+\metakeywords{Schur P function, Schur Q function, shifted tableau, Pfaffian,
+generalized Schur P function}
+
+\section[schurP]{Schur's $P$ functions}
+
+
+\begin{polydata}{schurP}
+  Name   & Schur's $P$ functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 4 \\
+  Bib      & Schur1911\\
+  Year     & 1911 \\
+  Keywords & pfaffian,tableaux,schur-positive \\
+  Symbol   & $\schurP_\lambda(\xvec)$ \\
+  Category & Schur \\
+  PositiveIn & schurS | Stembridge1989 \\
+  TransformsTo & schurQ | Schur1911 | map=multiply by $2^{\length(\lambda)}$ \\
+\end{polydata}
+
+Schur's $P$ functions were introduced by \name{Issai Schur} in \cite{Schur1911}
+to study projective representations of the symmetric and alternating groups.
+Schur's $P$ functions $\schurP_\lambda(\xvec)$ are indexed by
+\defin{strict partitions}\label{strictPartition}, that is, partitions with
+distinct parts, and are given
+as the specialization of the
+\hyperref[hallLittlewoodP]{Hall--Littlewood $P$ functions} at $t=-1$.
+\name{Federico Ardila} and \name{Luis G. Serrano} prove Stanley's conjecture
+that, for the staircase shape $\delta_n$, every skew Schur function
+$\schurS_{\delta_n/\mu}$ expands nonnegatively in Schur's $P$ functions
+\cite{ArdilaSerrano2012}.  Their coefficients count fillings of shifted
+shapes; the special case $\schurS_{\delta_n/\delta_{n-2}}$ is related to
+\hyperref[eulerianSymmetry]{Eulerian numbers and alternating permutations}.
+\name{Matthew Fayers} proves a Pieri-type rule for Schur's $P$ functions in
+\cite[Prop.~3.6]{Fayers2020}.  For the reduction operators
+$\partial_{(a)}$ and $\partial_{(1^a)}$, one has
+\[
+\partial_{(a)}\schurP_\lambda=\partial_{(1^a)}\schurP_\lambda
+=\sum_\mu Hs_{\lambda/\mu}\schurP_\mu,
+\]
+where $Hs_{\lambda/\mu}=2^N$ if $\lambda/\mu$ is a horizontal strip and $N$
+counts columns $c+1$ containing a box of $\lambda/\mu$ such that column $c$
+contains none; otherwise $Hs_{\lambda/\mu}=0$.
+
+
+\subsection[schursPPfaffian]{Pfaffian formula}
+
+Let $\lambda$ be a partition with $\ell$ distinct parts and let $n \geq \ell$.
+Then
+\[
+\schurP_\lambda(x_1,\dotsc,x_n)
+\coloneqq
+\frac{1}{(n-\ell)!} \sum_{\sigma \in \symS_n} \sigma \left(
+\xvec^{\lambda} \prod_{\substack{i \leq \ell \\  i \lt j \leq n } } \frac{x_i+x_j}{x_i-x_j}
+\right).
+\]
+
+\subsection[schursPTableauformula]{Combinatorial formula}
+
+Given a partition $\lambda$ with distinct parts, consider the
+\defin{shifted tableau}\label{shiftedTableau} of shape $\lambda$.
+We consider fillings of this diagram with entries in the alphabet
+\[
+1' \lt 1 \lt 2' \lt 2 \lt \dotsb
+\]
+such that
+\begin{itemize}
+\item
+	each row has at most one marked $i$ for every $i=1,2,\dotsc$
+\item
+	each column has at most one unmarked $i$, for every $i=1,2,\dotsc$,
+\item
+	entries in rows and columns are weakly increasing and
+\item
+	there are no marked entries on the main diagonal.
+\end{itemize}
+We let $ShSSYT(\lambda)$ denote the set of such fillings.
+
+\begin{example}
+For $\lambda=9531$ we have the shifted diagram with an element of
+$ShSSYT(\lambda)$.
+\begin{figure}
+\begin{ytableau}
+ &   &  & & & & & & \\
+\none & & & & & \\
+\none & \none & & & \\
+\none & \none & \none &
+\end{ytableau}
+\begin{ytableau}
+1 & 1  & 2' & 3' & 3 & 3 & 4 & 4 & 4 \\
+\none & 2 & 2 & 3 & 4' & 4 \\
+\none & \none & 2 & 3 & 4 \\
+\none & \none & \none & 4
+\end{ytableau}
+\end{figure}
+\end{example}
+
+\defin{Schur's $P$ function}\label{schurPFunction} is defined by
+\[
+\schurP_\lambda(\xvec) \coloneqq \sum_{T \in ShSSYT(\lambda)} \xvec^T
+\]
+where $\xvec^T$ is the product over all entries in $T$, and $i$ and $i'$
+both contribute $x_i$.
+
+\name{Ronald C. King} and \name{A. M. Hamel} study Hall--Littlewood
+polynomials $P_\lambda(x;t)$ attached to arbitrary simple Lie algebras at
+$t=-1$ \cite{KingHamel2007}.  In type $A$, the case of partitions with
+distinct parts recovers Schur's $P$ functions.  For type $C$, they give
+analogous $Q$-functions using primed symplectic shifted tableaux, together
+with Weyl-group symmetry and lattice-path determinant interpretations.
+
+An alternative combinatorial model uses semistandard decomposition tableaux,
+introduced in \cite{Serrano2010}.
+See \cite{Cho2012} for additional results.
+
+\subsection[schurPSchurExpansion]{Schur expansion}
+
+Schur's $P$ functions are \hyperref[schurPositiveDefinition]{Schur-positive};
+see \cite{WorleyThesis,Sagan1987,Assaf2018ShiftedDual}.
+\name{Bruce Sagan} gives a proof using an insertion algorithm similar to
+\hyperref[rsk]{RSK} insertion that respects the
+\hyperref[knuthRelations]{Knuth relations}.
+The proof by \name{Sami Assaf} uses
+\hyperref[schurPositivityDualEquivalence]{dual equivalence}.
+
+\name{Seung-Il Choi} and \name{Jae-Hoon Kwon} give a proof of
+\hyperref[schurPositiveDefinition]{Schur positivity} using
+\hyperref[crystals]{crystals}; see \cite{ChoiKwon2018}.
+A different proof using crystals is provided in \cite{AssafOguz2018}.
+
+
+\begin{example*}[Schur expansions]
+Here are the Schur expansions of $\schurP_\lambda(\xvec)$ for various $\lambda$.
+
+\begin{array}{lll}
+\toprule
+\text{Partition} & \text{Schur expansion} \\
+\midrule
+1	& \schurS_{1} \\
+2	& \schurS_{2} + \schurS_{11} \\
+21	& \schurS_{21} \\
+3	& \schurS_{3} + \schurS_{21} + \schurS_{111} \\
+31	& \schurS_{22} + \schurS_{31} + \schurS_{211} \\
+321	& \schurS_{321} \\
+4	& \schurS_{4} + \schurS_{31} + \schurS_{211} + \schurS_{1111} \\
+41	& \schurS_{32} + \schurS_{41} + \schurS_{221} + \schurS_{311} + \schurS_{2111} \\
+32	& \schurS_{32} + \schurS_{221} + \schurS_{311} \\
+421	& \schurS_{322} + \schurS_{331} + \schurS_{421} + \schurS_{3211} \\
+\bottomrule
+\end{array}
+\end{example*}
+
+\subsection[schurPLRRule]{Littlewood--Richardson rule}
+
+The coefficients $f_{\lambda\mu}^{\nu}$ in
+\[
+\schurP_\lambda(\xvec) \schurP_\mu(\xvec) = \sum_{\nu} f_{\lambda\mu}^{\nu} \schurP_\nu(\xvec)
+\]
+are nonnegative integers; see \cite{Stembridge1989}.  A combinatorial
+description of these coefficients
+was first given by \name{Luis Serrano} \cite{Serrano2009}.
+Another proof is given in \cite{Cho2012}.
+\name{Sami Assaf} gave a proof using
+\hyperref[schurPositivityDualEquivalence]{dual equivalence}
+\cite{Assaf2018ShiftedDual}.
+
+The coefficients $f_{\lambda\mu}^{\nu}$ appear in the study of the type $B$
+and type $D$ \hyperref[schubertCalculus]{Schubert calculus} of
+\hyperref[grassmannianVarieties]{Grassmannians}.
+
+\name{Duc Khanh Nguyen} gives a new combinatorial model for
+$f_{\lambda\mu}^{\nu}$ and for the coefficients in the Schur expansion of
+$\schurQ_\lambda$ \cite{Nguyen2022}.
+\name[Santiago Estupinan-Salamanca]{Santiago Estupiñán-Salamanca} and
+\name{Oliver Pechenik} give an easier formula for $f_{\lambda\mu}^{\nu}$
+using a type of Yamanouchi word \cite{EstupinanSalamancaPechenik2025x}.
+
+
+\subsection[schurPEvacuation]{Evacuation}
+
+For shifted tableau switching and related \hyperref[evacuation]{evacuation} operations, see
+\cite{ChoiNamOh2017x}.
+
+
+\section[schurQ]{Schur's $Q$ functions}
+
+
+\begin{polydata}{schurQ}
+  Name   & Schur's $Q$ functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 3 \\
+  Bib      & Schur1911\\
+  Year     & 1911 \\
+  Keywords & pfaffian,tableaux,schur-positive \\
+  Symbol   & $\schurQ_\lambda(\xvec)$ \\
+  Category & Schur \\
+  PositiveIn & schurS | Stembridge1989 \\
+\end{polydata}
+
+
+\defin{Schur's $Q$ functions}\label{schurQFunction}
+$\schurQ_\lambda(\xvec)$ are indexed by strict partitions
+and are given
+as the specialization of the
+\hyperref[hallLittlewoodQ]{Hall--Littlewood $Q$ functions} at $t=-1$.
+\name{Richard Stanley} gives a combinatorial formula using
+\hyperref[gtpatterns]{Gelfand--Tsetlin patterns} \cite{Stanley1986}.
+
+Equivalently,
+$\schurQ_\lambda(\xvec) = 2^{\length(\lambda)} \schurP_\lambda(\xvec)$.
+Thus $\schurQ_\lambda(\xvec)$ can be realized as a sum over tableau objects
+by modifying the formula for Schur's $P$ functions and allowing diagonal
+entries in $ShSSYT(\lambda)$ to be marked.
+
+
+Schur's $Q$ functions are related to
+\defin{spin characters}\label{spinCharacter},
+which were part of the original motivation for studying these functions.
+The following is due to Schur.
+
+\begin{theorem}[See \cite[3.3.6]{Morris1962} and \cite[(7.1)]{Stembridge1989}]
+
+Let $\lambda$ be a partition of $n$ with $m$ distinct parts.
+The spin characters $\zeta_{\mu}^{\lambda}$ satisfy
+\[
+\schurQ_\lambda(\xvec) = \sum_{\mu}
+2^{(\length(\lambda)+ \length(\mu)+\epsilon)/2}
+\zeta_{\mu}^{\lambda} \frac{ \powerSum_{\mu} }{z_\mu} .
+\]
+Here, $\mu$ runs over partitions with odd parts,
+and $\epsilon$ is $0$ or $1$ depending on whether $n-m$ is even or odd.
+\end{theorem}
+
+The one-part partitions have a rather explicit expression:
+\[
+\schurQ_{(n)}(\xvec) = \sum_{\lambda \vdash n} 2^{\length(\lambda)} \monomial_{\lambda}(\xvec).
+\]
+
+
+\name{Hjalmar Rosengren} gives formulas for
+$\schurQ_{\lambda}(1,q,q^2,\dotsc,q^n)$ and also shows
+\cite[Prop.~3.1]{Rosengren2008} that for a partition $\lambda$ of length $m$,
+\[
+\schurQ_{\lambda}(1,q,q^2,\dotsc) = \prod_{i=1}^m \frac{(-1;q)_{\lambda_i}}{ (q;q)_{\lambda_i} }
+\prod_{1 \leq i \lt j \leq m} \frac{q^{\lambda_j} - q^{\lambda_i}}{1-q^{\lambda_i+\lambda_j}}.
+\]
+Rosengren notes that this formula is equivalent to
+\hyperref[schurKawanaka]{Kawanaka's identity} for Schur functions.
+
+
+A \hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama}-type formula for computing
+the spin characters $\zeta_{\mu}^{\lambda}$ is given in \cite{MorrisOlsson1988}.
+
+\name{Alun Morris} and \name{Jørn Olsson} give \cite[Cor.~4.3]{MorrisOlsson1988}
+a formula which seems to be a spin
+version of the \hyperref[borderStripHookFormulas]{Fomin--Lulov}
+hook formula for ribbon tableaux.
+This is similar to the properties of the classical irreducible
+character values for the symmetric group.
+Morris and Olsson use the abacus model to prove their results.
+
+
+A Hall--Littlewood analogue of $\schurQ_\lambda(\xvec)$ was introduced in
+\cite{TudoseZabrocki2003}.
+
+\name{Soojin Cho}, \name{JiSun Huh}, and \name{Sun-Young Nam} conjecture a
+classification of ribbon shapes for which the functions
+$\schurQ_{\lambda/\mu}(\xvec)$ are \hyperref[powerSum]{power-sum} positive
+\cite{ChoHuhNam2020}.
+
+\name{Yuta Nishiyama} studies a conjecture of
+\name{Hiroyuki Mizukawa}, \name{Masatoshi Nakajima}, and
+\name{Hiro-Fumi Yamada} relating 2-reduced Schur functions and
+Schur $Q$-functions \cite{Nishiyama2022x}.  The conjecture expresses certain
+sums involving Littlewood--Richardson coefficients and two 2-reduced Schur
+functions as scalar multiples of Schur $Q$-functions.
+
+For more on spin characters, see \cite{MatsumotoSniady2020}.
+
+\hyperref[plethysm]{Plethysm} stability for Schur's $Q$-functions is studied
+in \cite{GrafJing2024x}.
+
+\name{John Graf} and \name{Naihuan Jing} give a Pfaffian formulation of
+Schur's $Q$-functions which allows the indexing composition to have negative
+parts \cite{GrafJing2025}.  This makes the Pfaffian construction compatible
+with the tableau and vertex-operator pictures and gives algebraic proofs of
+several standard $Q$-function identities.
+\name{S.-J. Lee} studies shifted $t$-Schur functions arising from the
+modified odd Greaves--Jing--Zhu operator
+\cite{Lee2026x,Lee2026xModifiedOperator,Lee2026xTransitionMatrices}.  These functions
+are obtained from Schur's $Q$-functions by the plethystic substitution
+$\mathcal{Q}_\lambda(X;t)=Q_\lambda[X-tX]$, so the associated weight
+$\mathcal{Q}_\lambda(X;t)P_\lambda(Y)$ is a shifted Schur weight with a
+virtual first alphabet.  The paper gives the normalization, Pfaffian
+correlation kernel, Fredholm Pfaffian for the largest part, and size
+cumulants; at $t=-q$ with $q\geq 0$ the virtual alphabet becomes the positive
+alphabet $X+qX$.
+The companion papers establish two-row and Pfaffian Giambelli formulas,
+Cauchy and finite shifted-Gessel identities, and explicit transition matrices
+between the shifted $t$-Schur bases.  At cyclotomic specializations those
+matrices have Schur-$Q$-positive entries, together with reciprocity, rank, and
+unimodality properties.
+
+\name{Colin Defant} and \name{Dominic Searles} introduce shifted domino
+functions, a type-$B$ analogue of Schur's $Q$-functions, using type-$B$
+$0$-Hecke modules and standard shifted domino tableaux
+\cite{DefantSearles2024x}.  These functions expand positively in
+\name{T. Kyle Petersen}'s type-$B$ peak functions.
+
+
+
+\subsection[schurQCauchy]{Cauchy identity}
+
+\name{Bruce Sagan} proves \cite[Cor.~8.3]{Sagan1987} that
+\begin{equation*}
+\prod_{i,j=1}^\infty \frac{1+x_iy_j}{1-x_iy_j}
+=
+\sum_{\lambda} 2^{-\length(\lambda)}
+\schurQ_\lambda(\xvec)\schurQ_\lambda(\yvec),
+\end{equation*}
+where the sum is over all strict partitions.
+
+
+\section[generalizedSchurP]{Generalized Schur $P$- and $Q$-functions}
+
+\begin{polydata}{generalizedSchurP}
+  Name     & Generalized Schur $P$-functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Okada2019x \\
+  Year     & 2019 \\
+  Keywords & pfaffian,ninth-variation \\
+  Symbol   & $P^F_\lambda(\xvec)$ \\
+  Category & Schur \\
+  Generalizes & schurP | Okada2019x | scope=$f_d(u)=u^d$ specialization \\
+\end{polydata}
+
+\begin{polydata}{generalizedSchurQ}
+  Name     & Generalized Schur $Q$-functions \\
+  Space    & Sym \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & Okada2019x \\
+  Year     & 2019 \\
+  Keywords & pfaffian,ninth-variation \\
+  Symbol   & $Q^F_\lambda(\xvec)$ \\
+  Category & Schur \\
+  Generalizes & schurQ | Okada2019x | scope=$f_d(u)=2u^d$ specialization \\
+\end{polydata}
+
+\name{Soichi Okada} introduces
+\defin{generalized Schur $P$-functions}\label{generalizedSchurPFunction} and
+\defin{generalized Schur $Q$-functions}\label{generalizedSchurQFunction}
+associated with an admissible polynomial sequence $F=\{f_d\}_{d\geq 0}$
+\cite{Okada2019x}.  The functions $P^F_\lambda(\xvec)$ are defined by a
+Nimmo-type Pfaffian formula, and this construction is Macdonald's ninth
+variation in the $P$/$Q$ setting.  The ordinary Schur $P$- and $Q$-functions
+are recovered by taking $f_d(u)=u^d$ and $f_d(u)=2u^d$, respectively.
+The same framework includes Ivanov's factorial $P$- and $Q$-functions and
+the $t=-1$ Hall--Littlewood functions attached to classical root systems.
+Okada proves Cauchy-type identities, a J{\'o}zefiak--Pragacz--Nimmo formula
+for skew $Q$-functions, and a Pieri-type rule.

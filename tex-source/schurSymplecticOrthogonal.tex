@@ -1,0 +1,442 @@
+\metatitle{Symplectic and orthogonal Schur functions}
+\metadescription{Symplectic and orthogonal Schur polynomials, their tableau
+models, determinantal identities, crystals, and branching rules.}
+\metakeywords{symplectic Schur polynomial, orthogonal Schur polynomial,
+symplectic tableau, orthogonal tableau, Jacobi-Trudi identity}
+
+\section[schurSymplectic]{Symplectic Schur polynomials}
+
+
+\begin{polydata}{schurSymplectic}
+  Name     & Symplectic Schur polynomials \\
+  Space    &  Other   \\
+  Basis    &  False   \\
+  Rating   &  1      \\
+  Bib      &  King1971 \\
+  Year     &  1971? \\
+  Keywords & jacobi-trudi,tableaux,cauchy-identity,skew \\
+  Symbol   & $\schurSp_{\lambda/\mu}(\xvec)$ \\
+  Category & Schur \\
+  TransformsTo & schurOrthogonal | Hamel1997 | map=omega and conjugate index \\
+\end{polydata}
+
+
+The \emph{even symplectic Schur polynomials} were explicitly described
+combinatorially in \cite{King1976}, and are characters for the Lie group
+$\mathrm{Sp}(2n)$.  See also \cite{Krattenthaler1998}.
+\name{Robert Proctor} gives Young-tableau and Gelfand-pattern models, together
+with branching rules, for characters of the classical groups \cite{Proctor1994}.
+\name{Markus Fulmek} and \name{Christian Krattenthaler} give nonintersecting
+lattice-path proofs of Jacobi--Trudi and Giambelli-type identities for
+symplectic and orthogonal characters \cite{FulmekKrattenthaler1997}.
+\name{Peter S. Campbell} and \name{Anna Stokke} prove hook-content formulae
+for symplectic and orthogonal tableaux \cite{CampbellStokke2012}.  These
+formulae give product evaluations for the corresponding tableau generating
+functions.
+\name{Soichi Okada} studies intermediate symplectic characters and
+\hyperref[planePartitions]{shifted plane partitions} of shifted double
+staircase shape
+\cite{Okada2020Intermediate}.  These characters interpolate between Schur
+polynomials and symplectic characters.
+\name{George Balla} constructs PBW tableaux for symplectic PBW degenerate
+\hyperref[flagVarieties]{flag varieties} and gives defining equations for
+these varieties
+\cite{Balla2022}.
+
+We work in the alphabet
+\[
+ \xvec = (x_1,x_1^{-1},x_2,x_2^{-1},\dotsc,x_n,x_n^{-1}).
+\]
+A \defin{symplectic tableau}\label{symplecticTableau} (also known as King
+tableau) of shape $\lambda/\mu$ is a filling of the shape $\lambda/\mu$
+with entries in
+\[
+1 \lt \overline{1} \lt 2 \lt \overline 2 \lt \dotsb \lt n \lt \overline{n}
+\]
+such that entries are weakly increasing along rows and strictly increasing
+along columns, and entries in row $i$ are greater than or equal to $i$.
+Let $SP(\lambda/\mu)$ denote the set of such tableaux.
+Define the \defin{even symplectic Schur polynomials}
+\label{evenSymplecticSchurPolynomial}
+(using the definition in \cite{Hamel1997}) as
+\[
+\schurSp_{\lambda/\mu}(\xvec) = \sum_{T \in SP(\lambda/\mu)} \xvec^{T},
+\]
+where entries $i$ in $T$ contribute with $x_i$, and entries $\overline{j}$
+contribute with $x_j^{-1}$.
+
+\begin{example}
+The following tableau is an element of $SP(\lambda/\mu)$.
+\begin{figure}
+\begin{ytableau}
+1 & 1 & \overline{1} & \overline{1} & \overline{2} & 3 \\
+\overline{1} & \overline{2} & 3 & 4 \\
+3 & 3
+\end{ytableau}
+\end{figure}
+\end{example}
+
+
+For symmetry, see \cite[Thm.~6.12]{SundaramThesis}, where a type of
+Bender--Knuth involution is defined.  The proof seems to have a gap; see the
+discussion in \cite{MO362997}.  A complete proof is available in
+\cite{Gutierrez2024}.
+
+
+There are also alternative tableau descriptions.  For example, the
+\defin{Kashiwara--Nakashima tableaux}\label{kashiwaraNakashimaTableau} carry a
+\hyperref[kashiwaraCrystals]{$U_q(\mathfrak{sp}(2m,\setC))$-crystal
+structure}; see \cite{AzenhasFellerTorres2022}.
+
+
+\subsection[schurSymplecticBialternant]{Bialternant formula}
+
+The \emph{even symplectic Schur functions} can be expressed as
+\[
+\schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
+=
+\frac{
+\left| x_i^{\lambda_j+n-j+1} - x_i^{-(\lambda_j+n-j+1)}\right|_{1 \leq i,j \leq n}
+}{
+\left| x_i^{n-j+1} - x_i^{-(n-j+1)}\right|_{1 \leq i,j \leq n}
+}
+\]
+
+The \emph{odd symplectic Schur functions} have a more complicated
+bialternant formula; see \cite{Okada2020OddSymplectic}.
+
+\name{Naihuan Jing}, \name{Zhijun Li}, \name{Xinyu Pan},
+\name{Danxia Wang}, and \name{Chang Ye} introduce skew odd orthogonal
+characters and interpolating Schur polynomials \cite{JingLiPanWangYe2025}.
+They prove Cauchy and Jacobi--Trudi identities, describe
+Gelfand--Tsetlin-pattern models, and give transition formulas among
+symplectic, even orthogonal, and odd orthogonal characters.
+
+
+\subsection[schurSymplecticCauchy]{Cauchy identity}
+
+
+The following Cauchy identity is proved by \name{Sheila Sundaram} in her
+thesis; see \cite{SundaramThesis}.
+\[
+\sum_{\lambda} \schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) \schurS_\lambda(y_1,\dotsc,y_n)
+= \prod_{1\leq i \lt j \leq n} (1-y_i y_j)
+\prod_{1\leq i \lt j \leq n} \frac{1}{(1-y_i x_j)(1-y_i x^{-1}_j)}.
+\]
+
+\name[Ronald C. King]{Ronald C.~King} derives multiplicative generating
+functions for series of characters of classical Lie groups
+\cite{King2023x}.  The identities generalize Schur and symplectic Cauchy-type
+expansions to all classical types, with recurrence relations for the expansion
+coefficients coming from Weyl group actions.
+
+\name{Aalekh Patel}, \name{Harsh Patel}, and \name{Anna Stokke} prove
+orthosymplectic analogues of the Cauchy and dual Cauchy identities
+\cite{PatelPatelStokke2022}.  Their proofs are bijective and use insertion
+algorithms modeled on \name{Allan Berele}'s symplectic insertion.
+
+\name{Anna Stokke} gives a Pieri rule for multiplying an orthosymplectic
+character by an orthosymplectic character indexed by a one-row partition
+\cite{Stokke2018}.  The resulting product rule agrees with
+\name{Sheila Sundaram}'s Pieri rule for symplectic characters.
+
+\name{Dan Betea} studies symplectic and orthogonal analogues of
+\name{Andrei Okounkov}'s Schur measure \cite{Betea2018x}.  He proves that
+these measures have determinantal correlation functions with double-contour
+kernels, and relates them to Toeplitz-plus-Hankel determinants and asymptotic
+edge kernels.
+
+
+
+
+
+\subsection[schurSymplecticJacobiTrudi]{Jacobi--Trudi}
+
+In \cite{FulmekKrattenthaler1997}, the following analogues of the
+Jacobi--Trudi identities are proved:
+\begin{align}
+\schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
+& = \frac{1}{2}
+\det[ \completeH_{\lambda_i - i+j}(\xvec)
+      + \completeH_{\lambda_i - i- j + 2}(\xvec) ]_{1\leq i,j \leq \length(\lambda)} \\
+& = \det[ \elementaryE_{\lambda'_j - j+i}(\xvec) - \elementaryE_{\lambda'_j - j- i}(\xvec) ]_{1\leq i,j \leq \lambda_1}.
+\end{align}
+These formulas allow us to consider $\schurSp_\lambda(\xvec)$ as a symmetric
+function, by instead using the infinite alphabet $x_1,x_2,\dotsc$.
+
+\begin{example}
+For example, the monomial expansions begin as follows:
+\begin{align}
+\schurSp_{4}  &= \monomial_{4} + \monomial_{22} + \monomial_{31}+\monomial_{211}+\monomial_{1111} \\
+\schurSp_{31} &= -\monomial_{2} - \monomial_{11} + \monomial_{22}+\monomial_{31}+2\monomial_{211}+3\monomial_{1111} \\
+\schurSp_{22} &= - \monomial_{11} + \monomial_{22} + \monomial_{211}+2\monomial_{1111} \\
+\schurSp_{211} &= 1 - \monomial_{2} -2 \monomial_{11} + \monomial_{211} + 3\monomial_{1111} \\
+\schurSp_{1111} &= - \monomial_{11} + \monomial_{1111}
+\end{align}
+The finite symplectic alphabet must be substituted in these expressions in
+order for these formulas to agree with the tableau definition.
+For example,
+\begin{align}
+\schurSp_{11}(\xvec) &= - 1 + \monomial_{11}(\xvec)\\
+\schurSp_{11}(x_1,x_1^{-1},x_2,x_2^{-1}) &=
+1 + x_1^{-1}x_2^{-1} + x_1x^{-1}_2+x^{-1}_1x_2 + x_1x_2
+\end{align}
+\end{example}
+
+
+\subsection[schurSymplecticGiambelli]{Giambelli formula}
+
+In Frobenius coordinates,
+\[
+\schurSp_{(\alpha|\beta)} = \left| \schurSp_{(\alpha_i|\beta_j)} \right|_{s \times s}
+\]
+see, for example, \cite[Eq.~(3.11)]{FulmekKrattenthaler1997}.
+
+
+
+\subsection[schurSymplecticCrystal]{Kashiwara crystals}
+
+In \cite{Lee2019}, \name{Seung Jin Lee} defines a
+\hyperref[crystalGraphs]{crystal graph} structure on King tableaux,
+so that connected components correspond to single symplectic Schur functions.
+The crystal structure on $K(\mu,n)$, the set of symplectic tableaux of shape
+$\mu$ and maximal entry at most $n$, is isomorphic to the crystal $B(\mu)$,
+the irreducible representation of $\mathfrak{sp}_{2n}$ indexed by $\mu$.
+
+Lee also gives a crystal-preserving bijection between symplectic tableaux and
+\defin{oscillating tableaux}\label{oscillatingTableau}.
+
+An explicit conjecture regarding the expansion
+\[
+ \schurSp_\lambda(\xvec^{\pm}) \schurS_\mu(\xvec^{\pm}) = \sum_{\nu} c^{\nu}_{\lambda\mu} \schurSp_\nu(\xvec^{\pm})
+\]
+appears in \cite[Conj.~6.2]{Lee2019}.
+
+
+\subsection[schurSymplecticMurnaghanNakayama]{Murnaghan--Nakayama rules}
+
+\name{Nishu Kumari} and \name{Anna Stokke} prove
+\hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama rules} for symplectic,
+orthogonal, and orthosymplectic Schur functions \cite{KumariStokke2026}.
+For symplectic Schur functions, the product of a symplectic power sum with
+$\schurSp_\mu$ is expressed as a sum of three kinds of terms: symplectic Schur
+functions obtained by adding a \hyperref[skewShapes]{border strip} to $\mu$,
+those obtained by removing a \hyperref[skewShapes]{border strip} from $\mu$,
+and an additional Weyl-denominator
+correction term.  The orthogonal rules are analogous, while the
+orthosymplectic rule has a third term involving both symplectic and ordinary
+Schur functions.
+
+
+\subsection[schurMiscRootTwists]{Root-of-unity twists}
+
+\name{Dudley Littlewood}'s factorization of Schur functions at variables
+twisted by a primitive root of unity can be expressed in terms of
+\hyperref[partitionQuotient]{cores and quotients}.  \name{Seamus P. Albion}
+lifts these factorizations to universal characters
+\cite{Albion2023}.  This also gives uniform proofs of related factorizations
+for orthogonal and symplectic characters.
+
+\name{Nishu Kumari} extends character factorizations at root-of-unity twists
+for general linear, symplectic, orthogonal, and special orthogonal groups
+\cite{Kumari2024}.  The paper characterizes when the specialized characters
+vanish and factors the nonzero cases into characters of smaller classical
+groups, using Weyl character formulas and beta-sets of $t$-core partitions.
+\name{Seamus P. Albion} embeds the Schur, symplectic, and orthogonal
+factorization formulas into a family involving a parameter $z$ and a
+parameter $q$ \cite{Albion2025x}.  The proof uses $t$-cores and $t$-quotients
+of $z$-asymmetric partitions and relates the formulas to \hyperref[plethysm]{plethysm}.
+\name{Arvind Ayyer} and \name{Nishu Kumari} obtain further root-of-unity
+factorizations for classical and universal characters
+\cite{AyyerKumari2024x}, including specializations of Schur polynomials and
+staircase-shape factorizations.
+
+
+\subsection[schurSymplecticOtherProperties]{Further properties}
+
+There are analogues of \hyperref[gtpatterns]{Gelfand--Tsetlin patterns} for
+these functions; see, for example,
+\cite{Proctor1994,AyyerFischer2019,JingLiWang2024}.
+
+\name{Tewodros Amdeberhan}, \name{George E. Andrews}, and
+\name{Cristina Ballantine} study partition identities involving
+\hyperref[partitionCores]{hook lengths}
+and symplectic or orthogonal contents \cite{AmdeberhanAndrewsBallantine2023}.
+They prove special cases of Nekrasov--Okounkov-type conjectures and relate
+nonzero symplectic contents to partitions into distinct even parts.
+
+\name{Naihuan Jing}, \name{Zhijun Li}, and \name{Danxia Wang} use vertex
+operators to realize the skew symplectic and skew orthogonal Schur functions
+of \name{Kazuhiko Koike} and \name{Itaru Terada} \cite{JingLiWang2024}.  They
+derive Jacobi--Trudi identities, Gelfand--Tsetlin pattern formulas, branching
+rules, and Cauchy-type identities for these functions.
+\name[V. Sathish Kumar]{V.~Sathish Kumar} and \name{Jacinta Torres} prove a
+bijection between the branching models of Kwon and Sundaram using flagged
+hives \cite{KumarTorres2024x}.  Their construction uses a hive-model symmetry
+for Littlewood--Richardson coefficients and gives a new flagged-hive
+branching model.
+
+\name{Olga Azenhas} gives a combinatorial inverse to Watanabe's type-$AII$
+quantum Littlewood--Richardson map \cite{Azenhas2026x}.  Using reverse
+Schensted column insertion and inverse reduction of symplectic columns, this
+proves the $GL_{2n}(\setC)$-to-$Sp_{2n}(\setC)$ branching bijection and
+realizes the orthogonal-transpose symmetry on Littlewood--Richardson--Sundaram
+tableaux.
+
+\name{Zhihong Jin}, \name{Naihuan Jing}, \name{Zhijun Li}, and
+\name{Danxia Wang} introduce universal symplectic and orthogonal functions
+which include symplectic Schur functions, odd symplectic characters, and
+universal symplectic and orthogonal characters as special cases
+\cite{JinJingLiWang2022x}.  Their vertex-operator construction gives skew
+versions, transition formulas, and general branching rules.
+
+\name{Nishu Kumari} proves a determinantal formula for orthosymplectic Schur
+functions analogous to the Moens--Van der Jeugt determinant for general
+linear Lie superalgebras \cite{Kumari2024x}.  As a consequence, the odd
+symplectic characters of \name{Robert Proctor} are realized as specialized
+orthosymplectic characters.
+
+The even symplectic Schur functions can be expressed as a sum of skew Schur
+functions:
+\[
+\schurSp_\lambda(\xvec) = \sum_\alpha (-1)^{|\alpha|/2} \schurS_{\lambda/\alpha}(\xvec)
+\]
+where $\alpha$ ranges over partitions whose
+\hyperref[prelimPartitions]{Frobenius coordinates} are
+$(a_1,a_2,\dotsc, | a_1+1,a_2+1,\dotsc)$,
+including the empty partition.
+
+
+The following branching rule is due to \name{Dudley Littlewood}
+\cite[p.~295]{Littlewood1977}; see also \cite[p.~54]{Krattenthaler1998}.
+\begin{theorem}[Littlewood]
+\[
+\schurS_{\lambda}(\xvec)
+= \sum_{\nu} \schurSp_\nu(\xvec)
+  \sum_{\substack{\mu\\ \mu' \text{ even}}} c^{\lambda}_{\mu,\nu}
+\]
+where the sum is over all partitions $\mu$ where the columns are even.
+\end{theorem}
+
+
+
+
+
+\section[schurOrthogonal]{Orthogonal Schur polynomials}
+
+
+
+
+\begin{polydata}{schurOrthogonal}
+  Name   & Orthogonal Schur polynomials \\
+  Space    & Other \\
+  Basis    & False \\
+  Rating   & 1 \\
+  Bib      & King1971 \\
+  Year     & 1971? \\
+  Keywords & jacobi-trudi,tableaux,cauchy-identity,skew \\
+  Symbol   & $\schurOr_\lambda(\xvec)$ \\
+  Category & Schur \\
+  TransformsTo & schurSymplectic | Hamel1997 | map=omega and conjugate index \\
+\end{polydata}
+
+
+A \defin{special orthogonal tableau}\label{specialOrthogonalTableau} of shape
+$\lambda/\mu$ is a filling of the shape $\lambda/\mu$
+with entries in
+\[
+1 \lt \overline{1} \lt 2 \lt \overline 2 \lt \dotsb \lt n \lt \overline{n} \lt \infty
+\]
+such that (a) entries are weakly increasing along rows
+and all finite entries are strictly increasing along columns,
+(b) entries in row $i$ are greater than or equal to $i$,
+and (c) there is at most one $\infty$ in every row.
+Let $SO(\lambda/\mu)$ denote the set of such tableaux.
+
+Define the \defin{even orthogonal Schur polynomials}
+\label{evenOrthogonalSchurPolynomial} using the definition in
+\cite{Hamel1997}:
+\[
+\schurOr_{\lambda/\mu}(\xvec) = \sum_{T \in SO(\lambda/\mu)} \xvec^{T},
+\]
+where entries $i$ in $T$ contribute with $x_i$ and entries $\overline{j}$
+contribute with $x_j^{-1}$.
+The $\infty$-elements do not contribute.
+
+The \hyperref[standardInvolution]{standard involution on symmetric functions}
+satisfies $\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$.
+
+
+\subsection[schurOrthogonalJacobiTrudi]{Jacobi--Trudi}
+
+The orthogonal Schur polynomials satisfy the following Jacobi--Trudi
+identities; see \cite{FulmekKrattenthaler1997,Hamel1997}.
+They follow from the symplectic identities using
+$\omega(\schurSp_\lambda)=\schurOr_{\lambda'}$.
+
+\begin{align}
+\schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
+&
+=\det[ \completeH_{\lambda_i - i+j}(\xvec) - \completeH_{\lambda_i - i- j }(\xvec) ]_{1\leq i,j \leq \length(\lambda)} \\
+& =\frac{1}{2}\det[ \elementaryE_{\lambda'_i - i+j}(\xvec) +
+\elementaryE_{\lambda'_i - i- j + 2}(\xvec) ]_{1\leq i,j \leq \lambda_1}.
+\end{align}
+Note that the functions on the right-hand side are also evaluated in
+the alphabet $\xvec = (x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})$.
+
+
+More general identities, analogous to the
+\hyperref[schurStripDecompFormula]{Hamel--Goulden identities}, see
+\cite{Hamel1997}.
+
+
+
+As for the symplectic characters, one has the following expansion.
+\begin{theorem}[Littlewood]
+\[
+\schurS_{\lambda}(\xvec)
+= \sum_{\nu} \schurOr_\nu(\xvec)
+  \sum_{\substack{\mu\\ \mu \text{ even}}} c^{\lambda}_{\mu,\nu}
+\]
+where the sum is over all partitions $\mu$ where the rows are even.
+\end{theorem}
+
+
+\name{Naihuan Jing}, \name{Zhijun Li}, and \name{Danxia Wang} give a modern
+vertex-operator treatment of skew symplectic and orthogonal Schur functions
+\cite{JingLiWang2024}.  Their formulas include Jacobi--Trudi identities,
+Gelfand--Tsetlin-pattern models, branching rules, and Cauchy-type identities.
+%
+% \subsection[schurOrthogonalBialternant]{Bialternant formula}
+%
+% We have that the \emph{orthogonal Schur functions} can be expressed as
+% \[
+% \schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n})
+% =
+% \frac{
+% \left| x_i^{\lambda_j+n-j+1} - x_i^{-(\lambda_j+n-j+1)}\right|_{1 \leq i,j \leq n}
+% }{
+% \left| x_i^{n-j+1} - x_i^{-(n-j+1)}\right|_{1 \leq i,j \leq n}
+% }
+% \]
+
+
+
+\subsection[schurOrthogonalCauchy]{Cauchy identity}
+
+\[
+\sum_{\lambda} \schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) \schurS_\lambda(y_1,\dotsc,y_n)
+=
+\prod_{1\leq i \leq j \leq n} (1-y_i y_j)
+\prod_{1\leq i \lt j \leq n} \frac{1}{(1-y_i x_j)(1-y_i x^{-1}_j)}.
+\]
+
+\subsection[schurOrthogonalOtherProperties]{Further properties}
+
+The \defin{orthogonal Schur functions}\label{orthogonalSchurFunction} can be
+expressed as a sum of skew Schur functions as
+\[
+\schurOr_\lambda(\xvec) = \sum_\beta (-1)^{|\beta|/2} \schurS_{\lambda/\beta}(\xvec)
+\]
+where $\beta$ ranges over the Frobenius coordinates $(b_1+1,b_2+1,\dotsc, | b_1,b_2,\dotsc)$,
+including the empty partition.

@@ -1,5 +1,25 @@
 # Handoff
 
+## Completed — prose pruning and approved page splits, 2026-10-20
+
+Split `schurMisc.tex` into a 194-line hub plus dedicated 442-line
+symplectic/orthogonal and 367-line Schur P/Q pages.  Split
+`realRootedWords.tex` into 746-line permutation and 276-line set-partition
+pages, and `diagonalHarmonics.tex` into 537-line diagonal-harmonics and
+699-line rational-shuffle/Delta pages.  All pre-existing section and explicit
+labels were preserved, and each original page links to its moved material.
+
+Pruned the qtBench paragraph and the Jacobi--Stirling discussion while
+retaining result status and open cases.  Rewrote the OEIS A189912 parity
+argument with valid summation ranges, and corrected `Schur-{P}ositve` in the
+bibliography.  Academic-writing guidance was used.
+
+Verification passed: `make bib Q=1`, two full `make Q=1` builds,
+`make check Q=1`, rendered anchor/link and bibliography inspection, label-set
+comparison, and `git diff --check`.  The only diagnostics were the two
+established synthetic-polydata warnings.  Ownership is released.  No
+deployment was performed.
+
 ## Completed — quantum Littlewood--Richardson branching reference, 2026-10-20
 
 Added the exact-v7 bibliography record for Olga Azenhas's arXiv

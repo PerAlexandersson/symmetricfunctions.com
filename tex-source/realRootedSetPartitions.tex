@@ -1,0 +1,276 @@
+\metatitle{Real-rooted polynomials from set partitions}
+
+\metadescription{Real-rootedness and interlacing for set partitions,
+Stirling permutations, Jacobi--Stirling permutations, and related words.}
+\metakeywords{real-rooted polynomial, set partition, Stirling permutation,
+Jacobi-Stirling permutation, quasi-Stirling permutation, Sturm sequence}
+
+
+\section[sturmSetPartitions]{Set partitions}
+
+
+
+\begin{example*}[Touchard polynomials (blocks in set partitions), with proof]\label{touchardPolynomial}
+
+The \defin{Touchard polynomials}\label{touchardPolynomialDefinition}
+may be defined via
+\[
+T_n(x) \coloneqq \sum_{P \in SP(n)} x^{\mathrm{blocks}(P)}
+= \sum_{k=1}^n S(n,k) x^k,
+\]
+where $SP(n)$ is the set of set partitions of $[n]$, and we count the number
+of blocks.
+Note that the coefficients are Stirling numbers of the second type.
+
+Wilf gives the recurrence \cite[pp.~20, 139]{Wilf1994}
+\[
+  T_n(x) = x \cdot  T_{n-1}(x) + x\cdot T'_{n-1}(x).
+\]
+We know $T_{n-1} \interl x T_{n-1}$. Moreover, $T_{n-1} \interl x T'_{n-1}$,
+so by \cite{Wagner1992}, we have $T_{n-1} \interl x T_{n-1} +  x T'_{n-1}$.
+But this is exactly $T_{n-1} \interl T_n$.
+
+Another way to prove real-rootedness is by interpreting \(T_n(x)\) as a
+\hyperref[touchardAsMatching]{matching polynomial}.
+\end{example*}
+
+
+\begin{example*}[Set partitions without singleton blocks]
+
+Define \(D_n(t)=\sum_{\pi \in SP_2(n)} t^{\mathrm{blocks}(\pi)}\),
+where $SP_2(n)$ is the set of set partitions of $[n]$ whose blocks all have
+size at least $2$.
+Then
+\[
+ D_n(t) = t\left( D'_{n-1}(t) + (n-1) D_{n-2}(t) \right)
+\]
+and $D_{n-1}(t)$ and $D_n(t)$ have interlacing roots, see
+\cite[Thm.~1]{BonaHezo2016}.
+Note that the degree of $D_n(t)$ is $\lfloor n/2 \rfloor$.
+
+
+The proof is short by using Wagner's lemma and induction.
+The base case is immediate; assume $D_{n-2} \interl D_{n-1}$ for some
+$n \geq 2$.
+We then know that
+\[
+D'_{n-1} \interl D_{n-1} \text{ and } (n-1)D_{n-2} \interl D_{n-1}.
+\]
+Wagner's lemma now gives that
+\[
+D'_{n-1} + (n-1)D_{n-2} \interl D_{n-1}
+\implies
+D_{n-1} \interl t \left( D'_{n-1} + (n-1)D_{n-2} \right),
+\]
+and this is precisely $D_{n-1} \interl D_n$, which completes the induction step.
+
+This result also follows from the general machinery in
+\cite[Subsec.~3.4]{Hitczenko2024x}.
+A recursion for set partitions into blocks of size at least $s$ is also mentioned
+there (originally due to \name{Louis Comtet})
+but it does not immediately imply real-rootedness.
+
+\end{example*}
+
+
+
+\begin{example*}[Type $B$ set partitions]
+
+\name{David Wang} considers a type $B$ version, and more generally a colored
+version, of counting blocks in set partitions \cite{Wang2014}.
+The polynomials considered satisfy the (general) recursion
+\[
+  T_n(x) = (x+c) \cdot  T_{n-1}(x) + mx\cdot T'_{n-1}(x),
+\]
+where $m$ and $c$ are positive integers.
+
+\name{Per Alexandersson}, \name{Fufa Beyene}, and \name{Roberto Mantaci}
+study type $B$ set partitions without a zero block
+\cite{AlexanderssonBeyeneMantaci2026x}.  If $b_{n,k}$ counts the
+merging-free ones with $k$ blocks and
+$M_n(t)=\sum_k b_{n,k}t^k$, then
+\[
+ M_n(t)=2tM'_{n-1}(t)+2(n-2)tM_{n-2}(t),\qquad n\geq2,
+\]
+with $M_0(t)=1$ and $M_1(t)=t$.
+The polynomials $M_n(t)$ are real-rooted and consecutive members interlace
+\cite[Prop.~27 and Cor.~28]{AlexanderssonBeyeneMantaci2026x};
+the paper also proves real-rootedness for the block polynomials of type $B$
+partitions that are both merging-free and separated
+\cite[Thm.~33]{AlexanderssonBeyeneMantaci2026x}.
+Its flattened signed-permutation descent polynomial is gamma-positive and
+real-rooted \cite[Thm.~59 and Cor.~60]{AlexanderssonBeyeneMantaci2026x}.
+
+\end{example*}
+
+
+\begin{example*}[Ordered partitions]
+Simion considers any multiset $M$ and the number $O(M,k)$ of compositions into
+exactly $k$ parts \cite{Simion1984}.  The polynomial
+$\sum_k O(M,k)x^k$ is real-rooted.
+
+In particular, this implies the real-rootedness of the Touchard polynomials.
+\end{example*}
+
+
+\subsection[sturmOther]{Stirling and quasi-Stirling permutations}
+
+
+\begin{example*}[Stirling permutations]
+
+The descent number of a \hyperref[permutationsStirling]{Stirling permutation}
+\(\pi \in Q_n\) is the cardinality of
+\[
+ \{ i : \pi_i \gt \pi_{i+1} \} \cup \{2n\}.
+\]
+The \defin{Stirling permutation descent polynomials}
+\label{stirlingPermutationDescentPolynomial} satisfy the recurrence
+\begin{equation}
+ P_n(t) = (2n+1)t \cdot P_{n-1}(t) + t(1-t) P'_{n-1}(t),
+\end{equation}
+see \cite[Eq.~13]{Carlitz1965} and \cite[Thm.~2.1]{GesselStanley1978}.
+The coefficients can be found in \oeis{A008517}; the first few values are
+presented below.
+\begin{array}{rrrrrr}
+\toprule
+ 1  \\
+ 1 & 2  \\
+ 1 & 8 & 6 \\
+ 1 & 22 & 58 & 24 \\
+ 1 & 52 & 328 & 444 & 120 \\
+ 1 & 114 & 1452 & 4400 & 3708 & 720 \\
+\bottomrule
+\end{array}
+These numbers appear in the Hilbert series of the Whitehouse complex;
+see \cite{Readdy2005}.  These polynomials are the
+\hyperref[hStarPolynomial]{$h^*$-polynomials} of the
+\hyperref[orderPolytope]{order polytope} defined by the inequalities
+\[
+ y_1 \leq y_2 \leq \dotsb \leq y_n \qquad 0 \leq y_j \leq x_j \leq 1 \text{ for } j=1,\dotsc,n.
+\]
+\name{Shi-Mei Ma}, \name{Jun Ma}, \name{Jean Yeh}, and
+\name{Yeong-Nan Yeh} prove $e$-positivity for multivariate $k$th-order
+Eulerian polynomials attached to $k$-Stirling permutations
+\cite{MaMaYehYeh2021x}.  They also give tree interpretations for the
+coefficients in related gamma-type expansions.
+For $n=20$, the linear term of the Ehrhart polynomial (of degree $40$) has
+negative coefficient $-22354369153/6983776800$.
+
+\name{Miklós Bóna} proved that these have only real zeros \cite{Bona2009}.
+The Ma--Wang theorem also gives real-rootedness and interlacing.
+
+\name{Jim Haglund} and \name{Mirko Visontai} \cite[Thm.~3.3]{HaglundVisontai2012}
+show that a multivariate generalization is stable.
+\end{example*}
+
+\begin{theorem*}[Dey's interlacing criterion, \cite{Dey2023InterlacingZeroes}]
+\label{deyInterlacingCriterion}
+Let $(F_n(x))_{n\geq 0}$ be a sequence of polynomials satisfying
+\[
+  F_n(x)=\bigl(\alpha_1(n)x+\alpha_2\bigr)F_{n-1}(x)
+  +\alpha_3x(1-x)F'_{n-1}(x),
+\]
+where $\alpha_2,\alpha_3\in\setN\cup\{0\}$. Suppose that each
+$F_n(x)$ is real-rooted with distinct nonpositive zeros, and that
+some integer $k$ satisfies, for all $n\geq k$,
+\[
+  2\alpha_1(n)-n\alpha_3>0,
+  \qquad
+  n\alpha_1(n)\alpha_3+3n\alpha_2\alpha_3
+  -4\alpha_1(n)\alpha_2>0.
+\]
+Then $F_{n-1}(x)\interl F_n(x)$ for all $n\geq k$.
+\end{theorem*}
+
+Dey applies this criterion to the type $A$ and type $B$ Eulerian
+polynomials, to the Stirling permutation polynomials above, and to
+\hyperref[restrictedEulerianPolynomial]{restricted Eulerian polynomials}.
+Thus it is a useful way to upgrade an
+already known real-rootedness proof to a consecutive interlacing
+statement when the recurrence has the form above.
+
+
+\subsubsection[jacobiStirlingDescentRealRooted]{Jacobi--Stirling descent polynomials}
+
+For $k\geq1$, let
+\[
+ M_k=\{\overline{1},1,1,\overline{2},2,2,\dotsc,\overline{k},k,k\},
+ \qquad
+ \overline{1}<1<\overline{2}<2<\dotsb<\overline{k}<k.
+\]
+For $S\subseteq[k]$, delete the barred letters $\overline{j}$ with $j\in S$.
+A \defin{Jacobi--Stirling permutation} of the resulting multiset is a word
+in which every entry between the two unbarred copies of $j$ is larger than
+$j$.  Let $\operatorname{JSP}_{k,S}$ be the set of these words, and define
+\[
+ A_{k,S}(t)\coloneqq\sum_{w\in\operatorname{JSP}_{k,S}}t^{\des(w)},
+ \qquad
+ A_{k,i}(t)\coloneqq
+ \sum_{\substack{S\subseteq[k]\\|S|=i}}A_{k,S}(t).
+\]
+Here $\des$ counts internal descents.  In particular, $A_{k,k}(t)$ is the
+second-order Eulerian polynomial with the final descent omitted, and
+$[t^j]A_{k,k}(t)$ is entry $(k,j+1)$ of \oeis{A008517}.
+
+\name{Ira Gessel}, \name{Zhicong Lin}, and \name{Jiang Zeng} observed that
+every $A_{k,S}(t)$ is real-rooted and conjectured the same for every
+$A_{k,i}(t)$ \cite[Sec.~5 and Conj.~15]{GesselLinZeng2012}.  Their
+normalization has an additional factor of $t$.
+
+\begin{theorem*}[\name{Shi-Mei Ma} and \name{Ming-Xin Wang},
+\cite[Thm.~2 and Cor.~2]{MaWang2026x}]
+Let $k\geq1$ and
+\[
+ i\in\{1,2,3,k-2,k-1\}\cap[k].
+\]
+Every nonzero nonnegative linear combination of the polynomials
+$A_{k,S}(t)$ with $|S|=i$ has only simple negative zeros.  In particular,
+$A_{k,i}(t)$ has only simple negative zeros.
+\end{theorem*}
+
+The cases $i=0$ and $i=k$ were already known; the conjecture remains open
+for the remaining values of $i$.
+
+\begin{theorem*}[\cite[Thms.~3 and 5]{MaWang2026x}]
+Write $A_{k,i}(t)=\sum_{j=0}^{d}a_jt^j$, where $k\geq2$ and
+$d=2k-i-1$.  Then
+\[
+ a_j<a_{d-j}\quad(0\leq j<d/2),
+ \qquad
+ a_0<a_1<\dotsb<a_{\lfloor d/2\rfloor}.
+\]
+The same inequalities hold for every $A_{k,S}(t)$, with
+$d=2k-|S|-1$.
+\end{theorem*}
+
+\subsubsection[quasiStirlingDescentRealRooted]{Quasi-Stirling descent polynomials}
+
+\begin{example*}[Quasi-Stirling permutations]
+A \defin{quasi-Stirling permutation}\label{quasiStirlingPermutation}
+of size $n$ is a permutation of the multiset
+$\{1,1,2,2,\dotsc,n,n\}$ avoiding the patterns $1212$ and $2121$.
+Let $\widetilde{Q}_n$ be the set of quasi-Stirling permutations of size $n$,
+and set
+\[
+ \widetilde{Q}_n(t) \coloneqq \sum_{\pi \in \widetilde{Q}_n} t^{\des(\pi)},
+\]
+where the final position is counted as a descent, as above.
+
+\name{Sergi Elizalde} \cite[Thm.~3.2]{Elizalde2021} proved that
+$\widetilde{Q}_n(t)$ has real, distinct, and nonpositive roots.
+More generally, for $1 \leq r \leq n$, let
+\[
+ A_{n,r}(t) \coloneqq \sum_{\pi \in \symS_n} t^{\exc_r(\pi)}, \qquad
+ J_{n,r}(t) \coloneqq \sum_{\pi \in \operatorname{Inj}([n-r],[n])} t^{\exc(\pi)},
+\]
+where $\exc_r(\pi) \coloneqq |\{i:\pi_i \geq i+r\}|$.
+Then $A_{n,r}(t)$ and $J_{n,r}(t)$ also have real, distinct, and nonpositive
+roots.
+The quasi-Stirling case follows from the relation
+\[
+ \widetilde{Q}_n(t)=t J_{2n,n+1}(t).
+\]
+Elizalde also proves asymptotic normality for the descent distribution and
+extends the analysis to a one-parameter family generalizing
+\(k\)-Stirling permutations.
+\end{example*}
