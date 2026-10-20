@@ -1,5 +1,19 @@
 # Handoff
 
+## Completed — three current preprints, 2026-10-20
+
+Added exact-v1 bibliography records and short, source-checked references for
+arXiv `2610.26303v1`, `2610.26294v1`, and `2610.25036v1`.  The
+partition-division result is on `standardSymmetricFunctions.tex`; the
+flip-class refinement is on `unicellular-llt.tex`; and Siegl's network method
+is summarized on `chromaticQuasisymmetric.tex` with a short pointer from
+`schurPositivity.tex`.  Academic-writing guidance was used.
+
+Verification passed: `make bib Q=1`, focused builds of all four pages,
+`make Q=1`, `make check Q=1`, rendered citation/link inspection, and
+`git diff --check`.  The only diagnostics were the two established synthetic
+polydata warnings.  Ownership is released.  No deployment was performed.
+
 ## Completed — recent catalogue references, 2026-10-16
 
 Added source-checked references for arXiv `2610.21921v1` (rectangular Kostka
