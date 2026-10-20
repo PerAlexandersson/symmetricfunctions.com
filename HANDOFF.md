@@ -1,5 +1,20 @@
 # Handoff
 
+## Completed — navigation cards for split pages, 2026-10-20
+
+Added homepage cards for the rational-shuffle/Delta page and the
+set-partition/Stirling-permutation page.  Their TikZ sources in
+`svg-tex/src/card-icons.tex` depict a rational Dyck path above its diagonal
+and a colored set-partition arc diagram.  The documented `make svg` pipeline
+generated `card-rationalShuffle.svg` and `card-sturmSetPartitions.svg`; both
+were visually inspected from the compiled PDF.
+
+Verification passed: `make svg Q=1`, `make Q=1`, `make check Q=1`, rendered
+homepage link/image inspection, copied-asset byte comparison, and
+`git diff --check`.  The only diagnostics were the two established
+synthetic-polydata warnings.  Ownership is released.  No deployment was
+performed.
+
 ## Completed — prose pruning and approved page splits, 2026-10-20
 
 Split `schurMisc.tex` into a 194-line hub plus dedicated 442-line

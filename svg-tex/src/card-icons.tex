@@ -263,6 +263,30 @@
     (-0.65, 0.55) -- (0.65, 0.55) -- (0, -0.65) -- cycle;
 \end{tikzpicture}
 
+
+\tikzsetnextfilename{card-rationalShuffle}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A rational Dyck path above its diagonal in a 5-by-4 rectangle.
+  \begin{scope}[xshift=0.01cm,yshift=-0.01cm]
+    \foreach \x in {-0.66,-0.40,-0.14,0.12,0.38,0.64} {
+      \draw[black!22, line width=0.25mm] (\x,-0.58) -- (\x,0.62);
+    }
+    \foreach \y in {-0.58,-0.28,0.02,0.32,0.62} {
+      \draw[black!22, line width=0.25mm] (-0.66,\y) -- (0.64,\y);
+    }
+    \draw[black!55, dashed, line width=0.4mm]
+      (-0.66,-0.58) -- (0.64,0.62);
+    \draw[iconblue, line width=1.05mm]
+      (-0.66,-0.58) -- (-0.66,-0.28) -- (-0.40,-0.28)
+      -- (-0.40,0.02) -- (-0.14,0.02) -- (-0.14,0.32)
+      -- (0.12,0.32) -- (0.12,0.62) -- (0.38,0.62) -- (0.64,0.62);
+    \node[node-black, minimum size=4.5pt] at (-0.66,-0.58) {};
+    \node[node-blue, minimum size=4.5pt] at (0.64,0.62) {};
+  \end{scope}
+\end{tikzpicture}
+
 \tikzsetnextfilename{card-latticeModel}
 \begin{tikzpicture}[icon]
   \cardframe
@@ -801,6 +825,30 @@
   % Descent positions along the word.
   \node[node-blue, minimum size=4.5pt] at (-0.72,-0.62) {};
   \node[node-blue, minimum size=4.5pt] at (0,-0.62) {};
+\end{tikzpicture}
+
+
+\tikzsetnextfilename{card-sturmSetPartitions}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % An arc diagram for a set partition; the baseline also evokes real roots.
+  \draw[black!35, line width=0.35mm] (-0.74,-0.44) -- (0.74,-0.44);
+  \draw[iconblue, line width=0.8mm]
+    (-0.72,-0.44) .. controls (-0.62,0.20) and (-0.26,0.20) .. (-0.15,-0.44);
+  \draw[iconblue, line width=0.8mm]
+    (-0.15,-0.44) .. controls (0.02,0.76) and (0.56,0.76) .. (0.72,-0.44);
+  \draw[black, line width=0.75mm]
+    (-0.44,-0.44) .. controls (-0.28,0.48) and (0.28,0.48) .. (0.44,-0.44);
+
+  \foreach \x in {-0.72,-0.15,0.72} {
+    \node[node-blue, minimum size=5pt] at (\x,-0.44) {};
+  }
+  \foreach \x in {-0.44,0.44} {
+    \node[node-black, minimum size=5pt] at (\x,-0.44) {};
+  }
+  \node[circle, fill=white, draw=black, line width=0.7mm,
+        minimum size=5pt, inner sep=0pt] at (0.15,-0.44) {};
 \end{tikzpicture}
 
 
