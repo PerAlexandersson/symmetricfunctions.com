@@ -1,5 +1,31 @@
 # Handoff
 
+## Deployed — recurrence theory and BKW page, 2026-10-21
+
+The user explicitly authorized deployment. Published clean/pushed commit
+`1e60a9ebd2f41e1dc385c599a1de8a27826207ff` through the constrained SymCat
+bridge at `2026-10-21T11:32:37.907579+00:00`. This includes the recurrence
+page, BKW section, homepage card/cross-links and completed catalogue-reference
+bibliography update. Bridge exit code 0, state `deployed`, Pagefind manifest
+matches. Receipt:
+`/cargo-target/symmetricfunctions-deploy-bridge/results/20261021T113237-54ed9f3f2980.json`.
+
+Live page: <https://www.symmetricfunctions.com/polynomialRecurrences.htm>.
+BKW anchor: `#recurrenceLimitingZeros`. Fresh public responses for the page,
+homepage, both linked topic pages, card SVG, labels/keywords/bibliography feeds
+and Pagefind entry all return HTTP 200 and match the local build byte-for-byte.
+Live Pagefind search returns the new page. Actual HTTPS Chromium checks at
+1366/375 pixels pass KaTeX, theorem rendering, bibliography, cross-page
+anchors, viewport width and homepage-card navigation.
+
+Before deployment, `NO_COLOR=1 make Q=1`, `NO_COLOR=1 make check Q=1` and
+`git diff --check` passed. Only the two existing synthetic-polydata warnings
+remain. Receipt copy, public files/hashes, build/check logs, browser harness,
+log and screenshots: `/cargo-target/symcat-recurrence-deploy-20261021/`.
+Ownership of this handoff opening is released. No content or bridge changes,
+no retry or additional upload. This handoff-only checkpoint is not deployed;
+the published content remains the exact commit recorded above.
+
 ## Completed — Beraha--Kahane--Weiss connection, 2026-10-21
 
 Added `recurrenceLimitingZeros` to the polynomial-recurrence page: the
