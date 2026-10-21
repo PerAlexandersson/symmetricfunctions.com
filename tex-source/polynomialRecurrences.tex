@@ -1,0 +1,455 @@
+\metatitle{Polynomial recurrences and derivatives}
+\metadescription{Spaces of polynomial recurrences, exact finite verification,
+first-order derivative criteria, repeated poles, and the trade-off between
+recurrence length and derivative order.}
+\metakeywords{polynomial recurrence, derivative recurrence, Ore algebra,
+rational generating function, recurrence space, repeated poles}
+
+\section[polynomialRecurrences]{Polynomial recurrences and derivatives}
+
+A polynomial sequence can have several useful recurrences. A relation using
+many consecutive polynomials may be replaced by one using fewer polynomials
+and their derivatives. We study when this is possible, how to describe all
+relations with prescribed coefficient bounds, and how to certify a relation
+found by exact linear algebra.
+
+Throughout, $P_n(x)\in\setQ[x]$ and $n\geq0$.
+A \defin{derivative recurrence} of length $r$ and derivative order at most $m$
+has the form
+\[
+ \delta(n,x)P_{n+r}(x)
+ =\sum_{j=0}^{r-1}\sum_{s=0}^{m}A_{j,s}(n,x)P_{n+j}^{(s)}(x),
+ \qquad \delta\ne0.
+\]
+The superscript denotes differentiation in $x$. For $m=0$ this is a
+\defin{pure-shift recurrence}. An identity determines the next polynomial
+only at indices where its leading coefficient is nonzero.
+We shall distinguish polynomial coefficients with prescribed degree bounds,
+arbitrary rational coefficients, and the restriction $\delta=\delta(n)$.
+
+The general operator framework is the $\partial$-finite theory of
+\name{Frédéric Chyzak} and \name{Bruno Salvy}
+\cite[Sec.~2]{ChyzakSalvy1998}; see also \name{Christoph Koutschan}'s
+account of the holonomic systems approach \cite{Koutschan2009Thesis}.
+The criteria below are direct consequences of linear algebra and rational
+generating functions. Real-rootedness is an
+\hyperref[derivativeRecurrenceRealRoots]{additional application}.
+
+\subsection[recurrenceTradeoffExample]{Exchanging length for derivatives}
+
+Consider
+\[
+ P_n(x)=1+x^n+(x+1)^n.
+\]
+It satisfies three different recurrences:
+\begin{align*}
+ P_{n+3}
+  &=(2x+2)P_{n+2}-(x^2+3x+1)P_{n+1}+x(x+1)P_n,\\
+ 2nP_{n+2}
+  &=3n(x+1)P_{n+1}-n(3x+1)P_n-x(x-1)(x+1)P_n',\\
+ n(n-1)P_{n+1}
+  &=n(n-1)P_n+(n-1)x(3x+1)P_n'-2x^2(x+1)P_n''.
+\end{align*}
+Each identity follows by substituting the three summands separately.
+They hold for every $n\geq0$, including the indices where the leading
+coefficient vanishes.
+
+\begin{tabular}{ccc}
+ Length & Derivative order & Leading coefficient\\ \hline
+ 3 & 0 & $1$\\
+ 2 & 1 & $2n$\\
+ 1 & 2 & $n(n-1)$
+\end{tabular}
+
+There is no length-one first-derivative rule even with coefficients in
+$\setQ(n,x)$. Indeed, independence of the three exponential sequences would
+make $P_{n+1}=AP_n+BP_n'$ imply
+\[
+ A=1,\qquad B=\frac{x(x-1)}{n},\qquad B=\frac{x(x+1)}{n},
+\]
+simultaneously. There is also no length-two pure-shift rule over this field.
+Thus the three pairs $(3,0),(2,1),(1,2)$ form the
+\defin{length--derivative frontier}: none can be improved in one coordinate
+without increasing the other.
+
+\section[boundedRecurrenceSpaces]{Complete spaces with bounded coefficients}
+
+Suppose the sequence is specified by $P_0,\dotsc,P_{k-1}$ and
+\[
+ P_{n+k}=\sum_{i=0}^{k-1}a_i(x)P_{n+i},\qquad a_i(x)\in\setQ[x].
+\]
+Here the coefficients are independent of $n$; they need not be constant in
+$x$. Such recurrences arise, for example, from the
+\hyperref[transferMatrixMethod]{transfer matrix method}.
+
+Let $S$ shift the index, so $(SP)_n=P_{n+1}$, and let $\partial_x$
+differentiate each polynomial. Fix a finite set of allowed monomials and
+consider operators
+\[
+ L=\sum_{j,s,u,v}c_{j,s,u,v}x^v n^u S^j\partial_x^s,
+ \qquad c_{j,s,u,v}\in\setQ.
+\]
+All indices in this sum are nonnegative. Coefficients act on the left, so
+$(nS P)_n=nP_{n+1}$. These operators form a finite-dimensional vector space.
+
+\begin{theorem}[Finite verification]
+\label{recurrenceFiniteVerification}
+Put $h=1+\max(u+s)$ over the allowed monomials. Then
+\[
+ LP=0\text{ for every }n\geq0
+ \quad\Longleftrightarrow\quad
+ (LP)_n=0\text{ for }0\leq n<hk.
+\]
+Consequently, all recurrence operators in the prescribed space form the
+kernel of a finite matrix over $\setQ$.
+\end{theorem}
+
+\begin{proof}
+Write
+\[
+ F(x,t)=\sum_{n\geq0}P_n(x)t^n=\frac{N(x,t)}{D(x,t)},
+ \qquad D(x,0)=1,\quad \deg_tN<k,\quad\deg_tD\leq k.
+\]
+Every shifted sequence has a generating function $F_j=N_j/D$ with
+$\deg_tN_j<k$. Multiplication by $n$ corresponds to
+$\theta=t\partial_t$. Thus the residual generating function is
+\[
+ \sum_{n\geq0}(LP)_nt^n
+ =\sum_{j,s,u,v}c_{j,s,u,v}x^v\theta^u\partial_x^sF_j.
+\]
+Putting this expression over $D^h$ gives a numerator of $t$-degree less than
+$hk$: each differentiation or application of $\theta$ raises the needed
+power of $D$ by at most one and the numerator degree by at most $k$.
+Since $D(x,0)=1$, its first $hk$ coefficients vanish if and only if that
+numerator is zero.
+\end{proof}
+
+To compute the matrix, substitute an unknown coefficient for each allowed
+monomial, evaluate these $hk$ residuals, and equate coefficients of $x$.
+For $M$ unknowns and $R$ scalar equations, exact elimination uses
+$O(RM^2+M^3)$ rational field operations; coefficient sizes affect bit complexity.
+
+A successor recurrence exists in the prescribed space if and only if its
+kernel has nonzero projection to the $\delta$ coordinates. Vectors with
+$\delta=0$ are relations among the earlier polynomials and their derivatives.
+This distinction is necessary when returning a basis of the entire space.
+
+\subsection[recurrencePropagation]{A recurrence for the residual}
+
+There is also a finite induction proof. Put
+\[
+ \chi(z)=z^k-\sum_{i<k}a_i(x)z^i,\qquad T=\chi(S),
+\]
+and let $\mathsf N$ multiply a sequence by its index. The commutators satisfy
+\[
+ [T,\mathsf N]=(z\chi_z)(S),\qquad
+ [\partial_x,T]=\chi_x(S).
+\]
+Both right-hand sides commute with $T$. If $T^qf=0$, the commutator identities
+imply $T^{q+1}(\mathsf Nf)=0$ and $T^{q+1}(\partial_xf)=0$.
+Shifts and multiplication by $x$ commute with $T$, so every allowed residual
+satisfies
+\[
+ \chi(S)^h(LP)=0.
+\]
+This is a monic recurrence of order $hk$. Its first $hk$ zero polynomials
+therefore force all subsequent residuals to vanish. The coefficients of
+$\chi(z)^h$, together with the initial residuals, give a finite algebraic
+certificate suitable for formal verification.
+
+\section[recurrenceGeneratingFunctions]{First derivatives and generating functions}
+
+For a proposed identity
+\[
+ (d_0+d_1n)P_{n+1}
+ =(A_0(x)+nA_1(x))P_n+B(x)P_n',
+\]
+where $d_0,d_1\in\setQ$ and $A_0,A_1,B\in\setQ[x]$, summation gives the
+following equivalent equation:
+\[
+ t(d_1-tA_1)F_t-tBF_x+(d_0-d_1-tA_0)F=(d_0-d_1)P_0.
+\]
+This is a first-order linear partial differential equation. If the derivative
+coefficient is instead $B_0(x)+nB_1(x)$, the equation contains the additional
+term $-t^2B_1F_{xt}$ and is generally of second order.
+
+There is an exact criterion involving the reduced denominator. Define
+\[
+ V=t(d_1-tA_1)\partial_t-tB\partial_x,\qquad
+ C=d_0-d_1-tA_0,\qquad H=(d_0-d_1)P_0.
+\]
+
+\begin{proposition}[Denominator and numerator criterion]
+Suppose $F=N/D\ne0$ with $N,D\in\setQ[x,t]$ coprime. The proposed
+first-derivative identity holds if and only if
+\[
+ D\mid V(D),\qquad
+ V(N)+(C-Q)N=HD,\qquad Q=V(D)/D.
+\]
+\end{proposition}
+
+\begin{proof}
+After multiplying the generating-function equation by $D^2$, it becomes
+\[
+ D\,V(N)-N\,V(D)+CND-HD^2=0.
+\]
+Reduction modulo $D$ and coprimality give $D\mid V(D)$.
+Division by $D$ gives the second condition, and the steps are reversible.
+\end{proof}
+
+In particular, the pole curves must be invariant under the vector field
+$V$. The numerator condition records the initial polynomials; the denominator
+alone does not determine whether the lift exists.
+
+\section[recurrenceSpectralModel]{Rational coefficients and repeated poles}
+
+We now allow coefficients in $\setQ(n,x)$ and consider identities for all
+sufficiently large indices. Divide the reduced rational generating function
+into a polynomial part $U(x,t)$ and a proper rational part. Partial fractions
+over a finite splitting field $E$ of $\setQ(x)$ give
+\[
+ P_n^{\mathrm{tail}}=\sum_{i=1}^d a_i(n,x)\lambda_i(x)^n.
+\]
+The $\lambda_i$ are distinct nonzero characteristic roots, and
+$a_i\in E[n]$ is nonzero. A pole of multiplicity $m_i$ gives
+$\deg_n a_i=m_i-1$, since
+\[
+ [t^n](1-\lambda_i t)^{-m_i}
+ =\binom{n+m_i-1}{m_i-1}\lambda_i^n.
+\]
+Thus repeated poles change the amplitudes, while the number $d$ counts
+\emph{distinct} active characteristic roots.
+
+On $E(n)^d$, with amplitude vector $a=(a_i)$, define
+\[
+ (\mathsf Sv)_i=\lambda_i v_i(n+1,x),\qquad
+ (\nabla v)_i=\partial_xv_i+n\frac{\lambda_i'}{\lambda_i}v_i.
+\]
+Differentiation includes the algebraic dependence on $x$ in $E$.
+These operators commute and represent shift and differentiation of the
+corresponding exponential sums.
+
+\begin{theorem}[Rank criterion]
+\label{recurrenceRankCriterion}
+Let $1\leq r\leq d$ and $m\geq0$. There is an eventual identity
+\[
+ P_{n+r}=\sum_{j<r}\sum_{s\leq m}A_{j,s}(n,x)P_{n+j}^{(s)},
+ \qquad A_{j,s}\in\setQ(n,x),
+\]
+if and only if
+\[
+ \mathsf S^r a\in
+ W_{r,m}\coloneqq\operatorname{span}_{E(n)}
+ \{\nabla^s\mathsf S^j a:0\leq j<r,\ 0\leq s\leq m\}.
+\]
+If such an identity exists at any derivative order, one exists with
+$m\leq d-r$.
+\end{theorem}
+
+\begin{proof}
+Exponential-polynomial sequences with distinct nonzero bases are independent,
+so an identity is equivalent to equality of its component vectors.
+A solution over the splitting field descends to $\setQ(n,x)$ by averaging
+its Galois conjugates.
+
+The vectors $a,\mathsf Sa,\dotsc,\mathsf S^{d-1}a$ are independent.
+Indeed, the leading coefficient in $n$ of their coordinate determinant is
+the product of the leading coefficients of the $a_i$ times the nonzero
+Vandermonde determinant in the $\lambda_i$. Hence $\dim W_{r,0}=r$.
+If $W_{r,m+1}=W_{r,m}$, this space is closed under $\nabla$, including
+derivatives of its scalar coefficients, and all later spaces agree.
+Otherwise the dimension increases. There can be at most $d-r$ increases.
+\end{proof}
+
+This gives a finite test for every pair $(r,m)$ and for the entire rational
+length--derivative frontier. The shortest pure-shift recurrence with rational
+index dependence has order $d$. By comparison, the shortest eventual
+pure-shift recurrence with coefficients independent of $n$ has order
+$\sum_i m_i$.
+
+For example, $(n+1)x^n$ has a double pole at $t=1/x$ and satisfies both
+\[
+ P_{n+2}=2xP_{n+1}-x^2P_n,
+ \qquad (n+1)P_{n+1}=(n+2)xP_n.
+\]
+
+\subsection[recurrenceAnnihilatingIdeal]{The annihilating ideal}
+
+In the \defin{Ore algebra} $\setQ(n,x)\langle S,\partial_x\rangle$,
+operators satisfy
+\[
+ S f(n,x)=f(n+1,x)S,\qquad
+ \partial_x f=f\partial_x+\partial_x(f),\qquad S\partial_x=\partial_xS.
+\]
+The operators annihilating the sequence eventually form its
+\defin{annihilating ideal}. Expressing $\mathsf S^da$ and $\nabla a$ in
+the shift basis gives two generators:
+\[
+ S^d-\sum_{j<d}r_j(n,x)S^j,\qquad
+ \partial_x-\sum_{j<d}b_j(n,x)S^j.
+\]
+To see this, reduce derivatives using the second relation and then shifts
+using the first. The remaining operator is a linear combination of
+$1,S,\dotsc,S^{d-1}$, and independence forces an annihilating remainder
+to be zero.
+
+The polynomial part $U$ records the finite initial contribution discarded
+by eventual equality. After clearing denominators, a polynomial-coefficient
+tail identity holds from $n=0$ exactly when it also annihilates the finite
+coefficient sequence of $U$. Checking $0\leq n\leq\deg_tU$ suffices,
+since forward shifts and $x$-derivatives cannot enlarge this support.
+
+\section[firstDerivativeCriterion]{When does one derivative suffice?}
+
+For the spectral representation above, put
+\[
+ \eta_i=\frac{\partial_xa_i}{a_i}
+       +n\frac{\lambda_i'}{\lambda_i},\qquad
+ \rho_i=\lambda_i\frac{a_i(n+1,x)}{a_i(n,x)}.
+\]
+
+\begin{proposition}[First-order criterion, including repeated poles]
+Suppose $d\geq2$. A rule $P_{n+1}=AP_n+BP_n'$ with
+$A,B\in\setQ(n,x)$ exists eventually if and only if the $\eta_i$ are
+not all equal and there are $A,B$ such that
+\[
+ \rho_i=A+B\eta_i\qquad\text{for every }i.
+\]
+Equivalently,
+\[
+ \operatorname{rank}[a,\nabla a,\mathsf Sa]
+ =\operatorname{rank}[a,\nabla a]=2.
+\]
+When the rule exists, it is unique. For any $i,j$ with $\eta_i\ne\eta_j$,
+\[
+ B=\frac{\rho_i-\rho_j}{\eta_i-\eta_j},\qquad
+ A=\rho_i-B\eta_i.
+\]
+\end{proposition}
+
+\begin{proof}
+Divide each component equation by $a_i$.
+The vectors $a$ and $\mathsf Sa$ are independent by the shift-basis argument,
+so a solution requires independent vectors $a,\nabla a$.
+The two displayed scalar equations then determine $A,B$ uniquely.
+\end{proof}
+
+For simple poles the amplitudes are independent of $n$, and the criterion
+has a more explicit form. Write $u_i=a_i'/a_i$ and
+$v_i=\lambda_i'/\lambda_i$. A first-order rule exists if and only if
+\[
+ u_i=\alpha_0+\beta_0\lambda_i,\qquad
+ v_i=\alpha_1+\beta_1\lambda_i
+\]
+for all $i$, with $\alpha_0,\alpha_1,\beta_0,\beta_1\in\setQ(x)$ and
+$(\beta_0,\beta_1)\ne(0,0)$. In that case
+\[
+ A=-\frac{\alpha_0+n\alpha_1}{\beta_0+n\beta_1},\qquad
+ B=\frac{1}{\beta_0+n\beta_1}.
+\]
+Indeed, $\lambda_i=A+B(u_i+nv_i)$ is equivalent to these conditions after
+comparing coefficients of $n$ modulo the span of $1$ and $\lambda$.
+In particular, all characteristic roots satisfy the same Riccati equation
+$\lambda_i'=\alpha_1\lambda_i+\beta_1\lambda_i^2$.
+
+Repeated poles still give a degree bound. If
+$M=\max_i(m_i-1)$ and a first-order rule exists, it has a polynomial form
+\[
+ \Delta(n,x)P_{n+1}=C(n,x)P_n+G(n,x)P_n'
+\]
+with index degrees at most $2M+1,2M+1,2M$, respectively, for the proper tail.
+To obtain it, put $p(z)=\prod_i(z-\lambda_i)$ and use a basis of
+$\setQ(x)[z]/(p(z))$. The vectors $a,\nabla a,\mathsf Sa$ have index degrees at
+most $M,M+1,M$. A nonzero two-by-two minor and Cramer's rule give the
+stated bounds; clearing denominators in $x$ preserves them.
+
+\section[recurrenceCoefficientRestrictions]{Why the coefficient class matters}
+
+More derivatives do not always shorten a recurrence. For
+\[
+ P_n(x)=(1+2^n)x^n,
+\]
+every derivative is a rational multiple of $P_n$, whereas $P_{n+1}$ is not.
+The two active bases $x$ and $2x$ have the same logarithmic derivative.
+Thus no derivative order gives a length-one rational recurrence.
+
+Requiring the successor coefficient to depend only on $n$ creates another
+obstruction. For each integer $\ell\geq1$, the sequence
+\[
+ P_n(x)=1+(2+x^\ell)^n
+\]
+has two simple poles. Over $\setQ(n,x)$, one derivative suffices:
+\[
+ P_{n+1}=P_n+
+ \frac{(1+x^\ell)(2+x^\ell)}{n\ell x^{\ell-1}}P_n'.
+\]
+With polynomial right-hand coefficients and a nonzero leading coefficient
+$\delta(n)$, the least derivative order is instead exactly $\ell$.
+
+\begin{proof}
+Put $\lambda=2+x^\ell$ and $d_s=\lambda^{-n}\partial_x^s\lambda^n$,
+viewed in $\setQ(n,x)$. The constant exponential component forces the
+coefficient of $P_n$ to equal $\delta(n)$. The other component requires
+\[
+ \delta(n)(\lambda-1)=\sum_{s=1}^m C_s(n,x)d_s.
+\]
+If $m<\ell$, every $d_s$ vanishes at $x=0$, while $\lambda-1=1$ there.
+
+For the upper bound, the polynomials $\lambda^\ell d_1$ and
+$\lambda^\ell d_\ell$ are coprime in $\setQ(n)[x]$.
+The roots of the first can only be $0$ or roots of $\lambda$.
+At $0$ the second equals $\ell!n2^{\ell-1}$; at a root $\alpha$ of
+$\lambda$ it equals
+$n(n-1)\dotsm(n-\ell+1)\lambda'(\alpha)^\ell$.
+Both are nonzero in $\setQ(n)$ or its algebraic extension.
+Bézout's identity therefore expresses $\lambda-1$ as a polynomial-in-$x$
+combination of $d_1,d_\ell$. Clearing denominators in $n$ proves existence.
+\end{proof}
+
+The bound $m\leq d-r$ consequently applies to rational coefficients,
+not to the restriction $\delta=\delta(n)$ with polynomial right-hand
+coefficients. A finite degree-bounded kernel remains an exact description
+when those additional restrictions are imposed.
+
+\section[recurrenceComputation]{Finding and certifying representations}
+
+% Related Rust: polytool/src/recurrence/space.rs at source commit 6d10a1a.
+The \href{https://poly.symmetricfunctions.com/#polynomial-sequence}{Polytool
+recurrence finder} provides comparison and complete-space modes.
+A useful report records the allowed coefficient degrees and derivatives,
+the starting index, a basis of the recurrence space, and representative
+successor formulas. Length and derivative order alone do not measure the
+cost of a formula: coefficient degrees and singular initial indices matter.
+
+With a source recurrence and initial polynomials, the
+\hyperref[recurrenceFiniteVerification]{finite verification theorem}
+certifies every identity and completeness within the specified bounds.
+With finitely many input polynomials alone, a successful fit is an identity
+on those inputs. A zero successor projection can already exclude the
+specified shape, since every all-index identity would satisfy the finite
+constraints. A computation stopped by a resource bound gives no such
+nonexistence conclusion.
+
+For sources whose coefficients depend polynomially on $n$, the rational
+generating-function argument need not apply. One can instead differentiate
+the source recurrence and form a finite state of shifted polynomials and
+their derivatives. A scalar recurrence for the residual, together with
+checks at singular indices and enough initial zeros, supplies a finite
+verification argument. Its bound depends on that state system.
+
+\subsection[derivativeRecurrenceRealRoots]{An application to real-rootedness}
+
+Suppose an exact identity has the form
+\[
+ \delta(n)P_{n+1}=A(n,x)P_n+B(n,x)P_n',\qquad \delta(n)>0.
+\]
+If $P_n$ is real-rooted, both $P_n,P_{n+1}$ have positive leading
+coefficients, $\deg P_{n+1}\in\{\deg P_n,\deg P_n+1\}$, and
+$B(n,\xi)\leq0$ at every root $\xi$ of $P_n$, then the
+\hyperref[maWangDerivativeCriterion]{Ma--Wang criterion}
+\cite[Thm.~2]{MaWang2008} gives real-rootedness of $P_{n+1}$ and
+$P_n\interl P_{n+1}$.
+For example, $B(n,x)=\kappa_n(x-a)(x-b)$ has the required sign on
+$[a,b]$ when $a<b$ and $\kappa_n\geq0$.
+An induction using that interval also needs a proof that the new roots
+remain in it.

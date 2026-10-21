@@ -1,5 +1,41 @@
 # Handoff
 
+## Completed — polynomial recurrences and derivatives page, 2026-10-21
+
+Added `tex-source/polynomialRecurrences.tex` in the existing catalogue style:
+worked length/derivative frontier, complete bounded-kernel iff and h*k
+verification bound, residual propagation, generating-function denominator
+criterion, repeated-pole spectral model, first-order iff/uniqueness, and the
+importance of the coefficient class. The page includes proofs, a Polytool
+link, and a Ma--Wang application with the degree and sign hypotheses.
+It is standalone mathematical exposition, without private research links or
+claims that the proposed general theory has been formalized in Lean.
+
+Added its homepage card and a separate TikZ-sourced navigation SVG, plus
+cross-links from the transfer-matrix and interlacing pages. Added primary-source
+bibliography entries for Chyzak--Salvy (1998) and Koutschan's thesis (2009);
+checked Ma--Wang Theorem 2 against the published PDF. The academic-writing
+skill guided exposition and proofreading. The theory is adapted from the
+existing derivative-lift research lane; no new computational data or sequence
+generators were introduced.
+
+Verification passed: `make svg Q=1`, `NO_COLOR=1 make Q=1`,
+`NO_COLOR=1 make check Q=1`, and `git diff --check`. Only the two established
+synthetic-polydata warnings remain. Chromium at 1366/375 pixels verifies
+KaTeX without errors, theorem environments, bibliography, cross-page anchors,
+page width, and the homepage card/image/navigation. The existing cookie
+notice is acknowledged through its normal button in the test. Desktop/mobile
+screenshots and the compiled icon were visually inspected. Artifacts:
+`/cargo-target/symcat-recurrence-page/` and sibling build/check/SVG logs.
+The owned local preview server is stopped after verification.
+
+Ownership released: this opening, the new page, `tex-source/index.tex`,
+`tex-source/transfer-matrix.tex`, `tex-source/realRootedInterlacing.tex`,
+`bibliography.bib`, `svg-tex/src/card-polynomialRecurrences.tex`, and
+`assets/nav-images/card-polynomialRecurrences.svg`. No shared styling/build
+code or other source files changed. Source is prepared for publication;
+no deployment was performed for this page.
+
 ## Completed — public bibliography feed, 2026-10-21
 
 The build now also writes `www/bibliography.json` (schema 1): citation key ->
