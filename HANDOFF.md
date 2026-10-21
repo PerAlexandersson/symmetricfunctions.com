@@ -1,5 +1,13 @@
 # Handoff
 
+## Active: deploy recurrence presentation updates — 2026-10-21
+
+The derivative-lift lane owns this opening for the authorized deployment
+of the equation icon, shorter title, notation review and main-page section
+move. Source 43f72aa is clean and pushed; the deployment bridge is ready
+and idle. Run the build/check gate, deploy once, then verify public pages,
+SVG and desktop/mobile behavior before releasing ownership.
+
 ## Ready: recurrence equation icon and shorter title — 2026-10-21
 
 Replaced the staircase with P_{n+1}=x P_n+P_n', set over two lines in a
