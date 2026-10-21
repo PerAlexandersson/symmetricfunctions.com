@@ -1,5 +1,15 @@
 # Handoff
 
+## Verified: recurrence coefficient notation — 2026-10-21
+
+Codex owns this opening and `tex-source/polynomialRecurrences.tex`.
+Use D for the left-hand coefficient throughout the page, including capital
+Delta; rename the generating-function denominator Q and write its quotient
+explicitly to avoid conflicting notation. Build/checks and desktop/mobile
+math rendering pass; source and rendered page contain no delta coefficient.
+Artifacts: `/cargo-target/symcat-coefficient-notation-20261021/`.
+Publish through the established bridge after the clean-state gate.
+
 ## Deployed: sidebar gap and tooltips — 2026-10-21
 
 Restored the 1rem desktop sidebar gap and rounded corners. Width-icon

@@ -17,15 +17,15 @@ Throughout, $P_n(x)\in\setQ[x]$ and $n\geq0$.
 A linear \defin{differential--difference equation} of order $r$ in the index
 and derivative order at most $m$ has the form
 \[
- \delta(n,x)P_{n+r}(x)
+ D(n,x)P_{n+r}(x)
  =\sum_{j=0}^{r-1}\sum_{s=0}^{m}A_{j,s}(n,x)P_{n+j}^{(s)}(x),
- \qquad \delta\ne0.
+ \qquad D\ne0.
 \]
 The superscript denotes differentiation in $x$. For $m=0$ this is an ordinary
 linear recurrence. An identity determines the next polynomial
 only at indices where its leading coefficient is nonzero.
 We shall distinguish polynomial coefficients with prescribed degree bounds,
-arbitrary rational coefficients, and the restriction $\delta=\delta(n)$.
+arbitrary rational coefficients, and the restriction $D=D(n)$.
 
 The general operator framework is the $\partial$-finite theory of
 \name{Frédéric Chyzak} and \name{Bruno Salvy}
@@ -94,20 +94,20 @@ kernel of a finite matrix over $\setQ$.
 \begin{proof}
 Write
 \[
- F(x,t)=\sum_{n\geq0}P_n(x)t^n=\frac{N(x,t)}{D(x,t)},
- \qquad D(x,0)=1,\quad \deg_tN<k,\quad\deg_tD\leq k.
+ F(x,t)=\sum_{n\geq0}P_n(x)t^n=\frac{N(x,t)}{Q(x,t)},
+ \qquad Q(x,0)=1,\quad \deg_tN<k,\quad\deg_tQ\leq k.
 \]
-Every shifted sequence has a generating function $F_j=N_j/D$ with
+Every shifted sequence has a generating function $F_j=N_j/Q$ with
 $\deg_tN_j<k$. Multiplication by $n$ corresponds to
 $\theta=t\partial_t$. Thus the residual generating function is
 \[
  \sum_{n\geq0}(LP)_nt^n
  =\sum_{j,s,u,v}c_{j,s,u,v}x^v\theta^u\partial_x^sF_j.
 \]
-Putting this expression over $D^h$ gives a numerator of $t$-degree less than
+Putting this expression over $Q^h$ gives a numerator of $t$-degree less than
 $hk$: each differentiation or application of $\theta$ raises the needed
-power of $D$ by at most one and the numerator degree by at most $k$.
-Since $D(x,0)=1$, its first $hk$ coefficients vanish if and only if that
+power of $Q$ by at most one and the numerator degree by at most $k$.
+Since $Q(x,0)=1$, its first $hk$ coefficients vanish if and only if that
 numerator is zero.
 \end{proof}
 
@@ -116,9 +116,9 @@ monomial, evaluate these $hk$ residuals, and equate coefficients of $x$.
 For $M$ unknowns and $R$ scalar equations, exact elimination uses
 $O(RM^2+M^3)$ rational field operations; coefficient sizes affect bit complexity.
 
-A recurrence with $\delta\ne0$ exists in the prescribed space if and only if
-the kernel has nonzero projection to the $\delta$ coordinates. Vectors with
-$\delta=0$ are relations among the earlier polynomials and their derivatives.
+A recurrence with $D\ne0$ exists in the prescribed space if and only if
+the kernel has nonzero projection to the $D$ coordinates. Vectors with
+$D=0$ are relations among the earlier polynomials and their derivatives.
 
 \subsection[recurrencePropagation]{A recurrence for the residual}
 
@@ -165,21 +165,21 @@ There is an exact criterion involving the reduced denominator. Define
 \]
 
 \begin{proposition}[Denominator and numerator criterion]
-Suppose $F=N/D\ne0$ with $N,D\in\setQ[x,t]$ coprime. The proposed
+Suppose $F=N/Q\ne0$ with $N,Q\in\setQ[x,t]$ coprime. The proposed
 first-derivative identity holds if and only if
 \[
- D\mid V(D),\qquad
- V(N)+(C-Q)N=HD,\qquad Q=V(D)/D.
+ Q\mid V(Q),\qquad
+ V(N)+\left(C-\frac{V(Q)}{Q}\right)N=HQ.
 \]
 \end{proposition}
 
 \begin{proof}
-After multiplying the generating-function equation by $D^2$, it becomes
+After multiplying the generating-function equation by $Q^2$, it becomes
 \[
- D\,V(N)-N\,V(D)+CND-HD^2=0.
+ Q\,V(N)-N\,V(Q)+CNQ-HQ^2=0.
 \]
-Reduction modulo $D$ and coprimality give $D\mid V(D)$.
-Division by $D$ gives the second condition, and the steps are reversible.
+Reduction modulo $Q$ and coprimality give $Q\mid V(Q)$.
+Division by $Q$ gives the second condition, and the steps are reversible.
 \end{proof}
 
 The pole curves are invariant under the vector field $V$, and the numerator
@@ -398,7 +398,7 @@ Repeated poles still give a degree bound. If
 $M=\max_i(m_i-1)$ and a first-order differential recurrence exists,
 it has a polynomial form
 \[
- \Delta(n,x)P_{n+1}=C(n,x)P_n+G(n,x)P_n'
+ D(n,x)P_{n+1}=C(n,x)P_n+G(n,x)P_n'
 \]
 with index degrees at most $2M+1,2M+1,2M$, respectively, for the proper tail.
 To obtain it, put $p(z)=\prod_i(z-\lambda_i)$ and use a basis of
@@ -428,14 +428,14 @@ has two simple poles. Over $\setQ(n,x)$, one derivative suffices:
  \frac{(1+x^\ell)(2+x^\ell)}{n\ell x^{\ell-1}}P_n'.
 \]
 With polynomial right-hand coefficients and a nonzero leading coefficient
-$\delta(n)$, the least derivative order is instead exactly $\ell$.
+$D(n)$, the least derivative order is instead exactly $\ell$.
 
 \begin{proof}
 Put $\lambda=2+x^\ell$ and $d_s=\lambda^{-n}\partial_x^s\lambda^n$,
 viewed in $\setQ(n,x)$. The constant exponential component forces the
-coefficient of $P_n$ to equal $\delta(n)$. The other component requires
+coefficient of $P_n$ to equal $D(n)$. The other component requires
 \[
- \delta(n)(\lambda-1)=\sum_{s=1}^m C_s(n,x)d_s.
+ D(n)(\lambda-1)=\sum_{s=1}^m C_s(n,x)d_s.
 \]
 If $m<\ell$, every $d_s$ vanishes at $x=0$, while $\lambda-1=1$ there.
 
@@ -460,14 +460,14 @@ The \href{https://poly.symmetricfunctions.com/#polynomial-sequence}{Polytool
 recurrence finder} provides comparison and complete-space modes.
 A useful report records the allowed coefficient degrees and derivatives,
 the starting index, a basis of the recurrence space, and formulas with
-$\delta\ne0$.
+$D\ne0$.
 
 With a given recurrence and initial polynomials, the
 \hyperref[recurrenceFiniteVerification]{finite verification theorem}
 proves the identities and completeness within the specified bounds.
 With finitely many input polynomials alone, a successful fit is an identity
-on those inputs. If every kernel vector has $\delta=0$, no recurrence
-with $\delta\ne0$ and the allowed monomials can hold at every index: it
+on those inputs. If every kernel vector has $D=0$, no recurrence
+with $D\ne0$ and the allowed monomials can hold at every index: it
 would have to satisfy the same finite constraints. A computation stopped by
 a resource bound gives no such nonexistence conclusion.
 
@@ -482,7 +482,7 @@ verification argument. Its bound depends on that state system.
 
 Suppose an exact identity has the form
 \[
- \delta(n)P_{n+1}=A(n,x)P_n+B(n,x)P_n',\qquad \delta(n)>0.
+ D(n)P_{n+1}=A(n,x)P_n+B(n,x)P_n',\qquad D(n)>0.
 \]
 If $P_n$ is real-rooted, both $P_n,P_{n+1}$ have positive leading
 coefficients, $\deg P_{n+1}\in\{\deg P_n,\deg P_n+1\}$, and
