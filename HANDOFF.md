@@ -12,7 +12,14 @@ writes it next to `site-labels.json` and `site-keywords.json`.
 Verification: `make Q=1`, `NO_COLOR=1 make check Q=1` and `git diff --check`
 pass; 2575 entries are written. Without `NO_COLOR`, the SVG backend tests fail
 in a colour terminal because they expect the plain `[ERROR]` prefix. This is
-environmental and unrelated to the change. Ownership is released. Not deployed.
+environmental and unrelated to the change. Ownership is released.
+
+Deployed commit `27b65c87828815a0970f5021c2d8b72bed9f1df0` through the
+constrained bridge on 2026-10-21. The receipt reports exit code 0 and a matching
+Pagefind manifest:
+`/cargo-target/symmetricfunctions-deploy-bridge/results/20261021T104619-360873a4e3be.json`.
+The live `https://www.symmetricfunctions.com/bibliography.json` returns HTTP 200
+with 2575 entries. This handoff-only checkpoint is not deployed.
 
 ## Verified deployment — split-page navigation cards, 2026-10-20
 
