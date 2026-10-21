@@ -1,13 +1,17 @@
 # Handoff
 
-## Active: deploy prepared site changes — 2026-10-21
+## Deployed: complexity notation, vectors, proofs and Vailaya — 2026-10-21
 
-The derivative-lift lane owns this handoff opening for the authorized
-deployment of b39be4e: calligraphic complexity notation, bold vectors,
-collapsible proofs, and the prepared Vailaya addition. The source is clean
-and pushed; the constrained deployment bridge reports ready and idle.
-We will run the build/check gate, deploy through the bridge, and verify
-the public pages before releasing ownership.
+Published 3806c8b through the constrained bridge at 2026-10-21T20:09:47Z.
+Receipt `20261021T200947-7ee32a598da3` confirms deployed and matching search
+manifest. Full build/checks and whitespace pass (two existing fixture
+warnings). Live Chromium at 1366/375 verifies calligraphic O, bold vectors,
+five initially collapsed proofs, pointer/keyboard operation, both widths,
+and no math errors or overflow; native proofs also work without JavaScript.
+The Vailaya theorem, bibliography and cross-links pass at both widths.
+All three changed public pages return 200 and match the build byte-for-byte.
+Evidence: `/cargo-target/symcat-prepared-deploy-20261021/`.
+Ownership released. Final record-only edits need no further upload.
 
 ## Ready: recurrence complexity notation — 2026-10-21
 
@@ -16,8 +20,7 @@ to `\mathcal{O}`. KaTeX supports this directly; no shared macro change.
 Full build, `make check` and whitespace checks pass (the two existing
 fixture warnings remain). Chromium verifies the calligraphic glyph, no
 KaTeX errors, and all five proofs initially collapsed. Ownership released
-for the page and this opening. This change and the proof/vector and Vailaya
-changes below remain undeployed.
+for the page and this opening. Published in the deployment recorded above.
 
 ## Ready: recurrence-page proofs and vector notation — 2026-10-21
 
@@ -31,8 +34,8 @@ Chromium at 1366/375 verifies every disclosure by click and keyboard,
 both text widths, bold/scalar notation, no math errors or page overflow,
 and native operation without JavaScript. Screenshot inspected. Evidence:
 `/cargo-target/symcat-proof-vectors-20261021/`. Ownership released after
-the focused checkpoint; preview server stopped. Source changes are not
-deployed. The pending Vailaya addition below also remains unpublished.
+the focused checkpoint; preview server stopped. Published in the deployment
+recorded above, together with the Vailaya addition below.
 
 ## Ready: Vailaya circular-arc positivity result — 2026-10-21
 
@@ -50,7 +53,7 @@ warnings). Chromium 1366/375 checks theorem rendering, reference links and
 cross-page navigation; screenshot inspected. Artifacts:
 `/cargo-target/symcat-vailaya-20261021/`. Owned preview server stopped.
 Ownership released for the two pages, bibliography and handoff opening.
-Source is ready for publication; no deployment was requested or performed.
+Published in the deployment recorded above.
 
 ## Deployed: real-rootedness links and example — 2026-10-21
 
