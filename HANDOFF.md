@@ -1,14 +1,23 @@
 # Handoff
 
-## Active — recurrence prose revision, 2026-10-21
+## Deployed: recurrence prose revision — 2026-10-21
 
-Codex owns this opening and `tex-source/polynomialRecurrences.tex` for the
-user-requested prose correction. Remove the worked example's optimality
-commentary and redundant defensive endings elsewhere. Preserve theorem
-hypotheses, theorem proofs, anchors and established terminology. Full build,
-site checks and whitespace pass with only the two existing synthetic-polydata
-warnings. Browser verification and publication use the established route.
-Artifacts: `/cargo-target/symcat-recurrence-prose-20261021/`.
+Removed the worked example's nonexistence/optimality paragraph and several
+redundant qualifications elsewhere, following the user's further style
+correction. The example now ends with its table. Theorems, their proofs,
+hypotheses, citations and anchors remain intact; the private research notes
+retain the omitted optimality argument.
+
+Published SymCat commit b39c1bb3eccf9fcaf90473e3d0a6aa57f4d600c4 through
+the constrained bridge at 2026-10-21T14:08:54.233765+00:00. Receipt
+`20261021T140854-a08fcfb12dfb` confirms deployed with matching Pagefind
+manifest. Full build/checks and local/live Chromium at 1366/375 pixels pass;
+only the two existing synthetic-polydata warnings remain. Public HTML is
+HTTP 200 and byte-identical to the build. Artifacts:
+`/cargo-target/symcat-recurrence-prose-20261021/`.
+
+Ownership released for the assigned prose and records. The preview server
+is stopped. Documentation-only deployment records need no further upload.
 
 ## Deployed — recurrence table and terminology correction, 2026-10-21
 
