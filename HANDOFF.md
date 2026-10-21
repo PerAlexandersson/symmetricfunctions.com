@@ -1,5 +1,14 @@
 # Handoff
 
+## Ready: main-page recurrence card placement — 2026-10-21
+
+Moved Polynomial recurrences and derivatives into Real-rooted polynomials,
+immediately after Interlacing polynomials, in `tex-source/index.tex`.
+Full build, `make check`, and whitespace checks pass (two existing fixture
+warnings). Chromium DOM verification confirms exactly one card in the
+requested section/order and an existing destination anchor. Ownership
+released for the index and this opening. This source edit is not deployed.
+
 ## Deployed: complexity notation, vectors, proofs and Vailaya — 2026-10-21
 
 Published 3806c8b through the constrained bridge at 2026-10-21T20:09:47Z.
