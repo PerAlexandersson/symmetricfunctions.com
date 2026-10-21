@@ -1,5 +1,22 @@
 # Handoff
 
+## Ready: recurrence notation review — 2026-10-21
+
+Applied the academic-writing skill and its style, notation, LaTeX and
+proofreading guides to `tex-source/polynomialRecurrences.tex`. The sequence
+and generating function are defined visibly at the start; shifted generating
+functions and the proper-tail notation are explicit. Recurrence coefficients
+are c_i, ansatz coefficients gamma, and amplitudes a_i; mu denotes the maximum
+amplitude degree while M remains the unknown count. Polynomial first-order
+coefficients use tilde A/B. Sequence zeros are bold, sum ranges are explicit,
+and the repeated-pole criterion links back to its amplitude convention.
+The finite allowed set is explicitly nonempty so its maximum is defined.
+Full build/checks and whitespace pass (two existing fixture warnings).
+Chromium 1366/375 verifies math, vectors, all proof toggles, both widths,
+and no overflow; no-JavaScript disclosure works. Evidence:
+`/cargo-target/symcat-notation-review-20261021/`. Ownership released and
+preview stopped. This revision and the main-page card move are not deployed.
+
 ## Ready: main-page recurrence card placement — 2026-10-21
 
 Moved Polynomial recurrences and derivatives into Real-rooted polynomials,

@@ -13,7 +13,11 @@ and their derivatives. We study when this is possible, how to describe all
 relations with prescribed coefficient bounds, and how to prove an identity
 found by exact linear algebra.
 
-Throughout, $P_n(x)\in\setQ[x]$ and $n\geq0$.
+Throughout, $P_n(x)\in\setQ[x]$ and $n\geq0$. We write
+\[
+ \mathbf{P}=(P_0,P_1,\dotsc),\qquad
+ F(x,t)\coloneqq\sum_{n\geq0}P_n(x)t^n.
+\]
 A linear \defin{differential--difference equation} of order $r$ in the index
 and derivative order at most $m$ has the form
 \[
@@ -23,7 +27,7 @@ and derivative order at most $m$ has the form
 \]
 The superscript denotes differentiation in $x$. For $m=0$ this is an ordinary
 linear recurrence. An identity determines the next polynomial
-only at indices where its leading coefficient is nonzero.
+only at indices where $D(n,x)$ is not the zero polynomial in $x$.
 We shall distinguish polynomial coefficients with prescribed degree bounds,
 arbitrary rational coefficients, and the restriction $D=D(n)$.
 
@@ -64,18 +68,17 @@ summands separately.
 
 Suppose the sequence is specified by $P_0,\dotsc,P_{k-1}$ and
 \[
- P_{n+k}=\sum_{i=0}^{k-1}a_i(x)P_{n+i},\qquad a_i(x)\in\setQ[x].
+ P_{n+k}=\sum_{i=0}^{k-1}c_i(x)P_{n+i},\qquad c_i(x)\in\setQ[x].
 \]
 Such recurrences arise, for example, from the
 \hyperref[transferMatrixMethod]{transfer matrix method}.
 
-Write $\mathbf{P}=(P_0,P_1,\dotsc)$ for the polynomial sequence.
 Let $S$ shift the index, so $(S\mathbf{P})_n=P_{n+1}$, and let
-$\partial_x$ differentiate each polynomial. Fix a finite set of allowed
+$\partial_x$ differentiate each polynomial. Fix a nonempty finite set of allowed
 monomials and consider operators
 \[
- L=\sum_{j,s,u,v}c_{j,s,u,v}x^v n^u S^j\partial_x^s,
- \qquad c_{j,s,u,v}\in\setQ.
+ L=\sum_{j,s,u,v}\gamma_{j,s,u,v}x^v n^u S^j\partial_x^s,
+ \qquad \gamma_{j,s,u,v}\in\setQ.
 \]
 All indices in this sum are nonnegative. Coefficients act on the left, so
 $(nS\mathbf{P})_n=nP_{n+1}$. These operators form a finite-dimensional vector space.
@@ -84,7 +87,7 @@ $(nS\mathbf{P})_n=nP_{n+1}$. These operators form a finite-dimensional vector sp
 \label{recurrenceFiniteVerification}
 Put $h=1+\max(u+s)$ over the allowed monomials. Then
 \[
- L\mathbf{P}=0\text{ for every }n\geq0
+ L\mathbf{P}=\mathbf{0}
  \quad\Longleftrightarrow\quad
  (L\mathbf{P})_n=0\text{ for }0\leq n<hk.
 \]
@@ -95,15 +98,16 @@ kernel of a finite matrix over $\setQ$.
 \begin{proof*}
 Write
 \[
- F(x,t)=\sum_{n\geq0}P_n(x)t^n=\frac{N(x,t)}{Q(x,t)},
+ F(x,t)=\frac{N(x,t)}{Q(x,t)},
  \qquad Q(x,0)=1,\quad \deg_tN<k,\quad\deg_tQ\leq k.
 \]
-Every shifted sequence has a generating function $F_j=N_j/Q$ with
+Every shifted sequence has a generating function
+$F_j(x,t)\coloneqq\sum_{n\geq0}P_{n+j}(x)t^n=N_j/Q$ with
 $\deg_tN_j<k$. Multiplication by $n$ corresponds to
 $\theta=t\partial_t$. Thus the residual generating function is
 \[
  \sum_{n\geq0}(L\mathbf{P})_nt^n
- =\sum_{j,s,u,v}c_{j,s,u,v}x^v\theta^u\partial_x^sF_j.
+ =\sum_{j,s,u,v}\gamma_{j,s,u,v}x^v\theta^u\partial_x^sF_j.
 \]
 Putting this expression over $Q^h$ gives a numerator of $t$-degree less than
 $hk$: each differentiation or application of $\theta$ raises the needed
@@ -125,7 +129,7 @@ $D=0$ are relations among the earlier polynomials and their derivatives.
 
 There is also a finite induction proof. Put
 \[
- \chi(z)=z^k-\sum_{i<k}a_i(x)z^i,\qquad T=\chi(S),
+ \chi(z)\coloneqq z^k-\sum_{i=0}^{k-1}c_i(x)z^i,\qquad T\coloneqq\chi(S),
 \]
 and let $\mathsf N$ multiply a sequence by its index. The commutators satisfy
 \[
@@ -133,12 +137,13 @@ and let $\mathsf N$ multiply a sequence by its index. The commutators satisfy
  [\partial_x,T]=\chi_x(S).
 \]
 Both right-hand sides commute with $T$. For a sequence $\mathbf{f}$ with
-$T^q\mathbf{f}=0$, the commutator identities imply
-$T^{q+1}(\mathsf N\mathbf{f})=0$ and $T^{q+1}(\partial_x\mathbf{f})=0$.
+$T^q\mathbf{f}=\mathbf{0}$, the commutator identities imply
+$T^{q+1}(\mathsf N\mathbf{f})=\mathbf{0}$ and
+$T^{q+1}(\partial_x\mathbf{f})=\mathbf{0}$.
 Shifts and multiplication by $x$ commute with $T$, so every allowed residual
 satisfies
 \[
- \chi(S)^h(L\mathbf{P})=0.
+ \chi(S)^h(L\mathbf{P})=\mathbf{0}.
 \]
 This is a monic recurrence of order $hk$. Its first $hk$ zero polynomials
 therefore force all subsequent residuals to vanish. The coefficients of
@@ -192,10 +197,13 @@ condition records the initial polynomials.
 We now allow coefficients in $\setQ(n,x)$ and consider identities for all
 sufficiently large indices. Divide the reduced rational generating function
 into a polynomial part $U(x,t)$ and a proper rational part. Partial fractions
-over a finite splitting field $E$ of $\setQ(x)$ give
+over a finite splitting field $E$ of the characteristic polynomial over
+$\setQ(x)$ give
 \[
  P_n^{\mathrm{tail}}=\sum_{i=1}^d a_i(n,x)\lambda_i(x)^n.
 \]
+Here $P_n^{\mathrm{tail}}$ is the coefficient of $t^n$ in the proper rational
+part, so $P_n^{\mathrm{tail}}=P_n$ for all sufficiently large $n$.
 The $\lambda_i$ are distinct nonzero characteristic roots, and
 $a_i\in E[n]$ is nonzero. A pole of multiplicity $m_i$ gives
 $\deg_n a_i=m_i-1$, since
@@ -217,7 +225,7 @@ corresponding exponential sums.
 \label{recurrenceRankCriterion}
 Let $1\leq r\leq d$ and $m\geq0$. There is an eventual identity
 \[
- P_{n+r}=\sum_{j<r}\sum_{s\leq m}A_{j,s}(n,x)P_{n+j}^{(s)},
+ P_{n+r}=\sum_{j=0}^{r-1}\sum_{s=0}^{m}A_{j,s}(n,x)P_{n+j}^{(s)},
  \qquad A_{j,s}\in\setQ(n,x),
 \]
 if and only if
@@ -268,8 +276,8 @@ The operators annihilating the sequence eventually form its
 \defin{annihilating ideal}. Expressing $\mathsf S^d\mathbf{a}$ and $\nabla\mathbf{a}$ in
 the shift basis gives two generators:
 \[
- S^d-\sum_{j<d}r_j(n,x)S^j,\qquad
- \partial_x-\sum_{j<d}b_j(n,x)S^j.
+ S^d-\sum_{j=0}^{d-1}r_j(n,x)S^j,\qquad
+ \partial_x-\sum_{j=0}^{d-1}b_j(n,x)S^j.
 \]
 To see this, reduce derivatives using the second relation and then shifts
 using the first. The remaining operator is a linear combination of
@@ -345,7 +353,8 @@ require an extension.
 
 \section[firstDerivativeCriterion]{When does one derivative suffice?}
 
-For the exponential sum above, put
+We return to the amplitudes $a_i(n,x)$ from
+\hyperref[recurrenceSpectralModel]{the repeated-pole expansion}. Put
 \[
  \eta_i=\frac{\partial_xa_i}{a_i}
        +n\frac{\lambda_i'}{\lambda_i},\qquad
@@ -401,16 +410,16 @@ In particular, all characteristic roots satisfy the same Riccati equation
 $\lambda_i'=\alpha_1\lambda_i+\beta_1\lambda_i^2$.
 
 Repeated poles still give a degree bound. If
-$M=\max_i(m_i-1)$ and a first-order differential recurrence exists,
+$\mu\coloneqq\max_i(m_i-1)$ and a first-order differential recurrence exists,
 it has a polynomial form
 \[
- D(n,x)P_{n+1}=C(n,x)P_n+G(n,x)P_n'
+ D(n,x)P_{n+1}=\widetilde{A}(n,x)P_n+\widetilde{B}(n,x)P_n'
 \]
-with index degrees at most $2M+1,2M+1,2M$, respectively, for the proper tail.
+with index degrees at most $2\mu+1,2\mu+1,2\mu$, respectively, for the proper tail.
 To obtain it, put $p(z)=\prod_i(z-\lambda_i)$ and use a basis of
 $\setQ(x)[z]/(p(z))$. The vectors
 $\mathbf{a},\nabla\mathbf{a},\mathsf S\mathbf{a}$ have index degrees at
-most $M,M+1,M$. A nonzero two-by-two minor and Cramer's rule give the
+most $\mu,\mu+1,\mu$. A nonzero two-by-two minor and Cramer's rule give the
 stated bounds; clearing denominators in $x$ preserves them.
 
 \section[recurrenceCoefficientRestrictions]{Why the coefficient class matters}
