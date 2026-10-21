@@ -1,5 +1,19 @@
 # Handoff
 
+## Completed — public bibliography feed, 2026-10-21
+
+The build now also writes `www/bibliography.json` (schema 1): citation key ->
+`{label, csl, bibtex}`. `label` is the site's own short label (e.g. `Bre95`),
+`csl` the CSL-JSON entry, and `bibtex` the raw BibTeX. The RealRooted Lean
+catalog uses it, together with `site-labels.json`, to share references and
+link statements. `bibhandler.public_bibliography()` builds it; `merge_meta.lua`
+writes it next to `site-labels.json` and `site-keywords.json`.
+
+Verification: `make Q=1`, `NO_COLOR=1 make check Q=1` and `git diff --check`
+pass; 2575 entries are written. Without `NO_COLOR`, the SVG backend tests fail
+in a colour terminal because they expect the plain `[ERROR]` prefix. This is
+environmental and unrelated to the change. Ownership is released. Not deployed.
+
 ## Verified deployment — split-page navigation cards, 2026-10-20
 
 Deployed SymCat commit `521c43d6ae91254e043cb1dfc29703b08735c536`

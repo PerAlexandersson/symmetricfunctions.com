@@ -483,8 +483,26 @@ local function get_bibliography_tooltip(id)
   return string.format("%s, %s (%s)", author_str, title, year)
 end
 
+--- Public, machine-readable bibliography for cross-site use (for example the
+--- RealRooted Lean catalog): citation key -> { label, csl, bibtex }, where
+--- `label` is the same short label the site renders, e.g. "Bre95".
+local function public_bibliography()
+  local bibliography = load_bibliography_json() or {}
+  local bibtex_entries = load_bibtex_json() or {}
+  local entries = {}
+  for key, entry in pairs(bibliography) do
+    entries[key] = {
+      label = make_bibliography_label(normalize_authors(entry.author), extract_year(entry)),
+      csl = entry,
+      bibtex = bibtex_entries[key],
+    }
+  end
+  return entries
+end
+
 local M = {
   build_bibliography_HTML = build_bibliography_HTML,
+  public_bibliography = public_bibliography,
   get_bibliography_label = get_bibliography_label,
   get_bibliography_tooltip = get_bibliography_tooltip
 }

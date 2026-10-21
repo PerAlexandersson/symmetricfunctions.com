@@ -803,6 +803,13 @@ local function generate_outputs(data)
     all_success = false
   end
 
+  -- Public bibliography for cross-site use (e.g. the RealRooted Lean catalog)
+  if not write_json_file(www_dir .. "/bibliography.json",
+      { schema_version = 1, entries = bibhandler.public_bibliography() },
+      "bibliography fields (public)") then
+    all_success = false
+  end
+
   if not write_json_file(RELATION_GRAPH_JSON, graph, "relation graph items") then
     all_success = false
   end

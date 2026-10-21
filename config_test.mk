@@ -23,6 +23,7 @@ TEST_SITEMAP_XML := $(TEST_WWW_DIR)/sitemap.xml
 TEST_GOTO_HTML := $(TEST_WWW_DIR)/goto.htm
 TEST_PUBLIC_LABELS_JSON := $(TEST_WWW_DIR)/site-labels.json
 TEST_PUBLIC_KEYWORDS_JSON := $(TEST_WWW_DIR)/site-keywords.json
+TEST_PUBLIC_BIB_JSON := $(TEST_WWW_DIR)/bibliography.json
 TEST_RELATION_GRAPH_HTML := $(TEST_WWW_DIR)/polynomial-relations.htm
 TEST_RELATION_GRAPH_JSON := $(TEST_WWW_DIR)/polynomial-relations.json
 
