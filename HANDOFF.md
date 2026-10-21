@@ -1,20 +1,27 @@
 # Handoff
 
-## Verified: recurrence layout refinement — 2026-10-21
+## Deployed: recurrence layout refinement — 2026-10-21
 
-Codex owns `assets/site.js`, `assets/style.css`, `template.htm`, `README.md`
-and this opening through deployment. The width icon now sits beside the
-matching dark-mode button, with state-dependent SVG, tooltip and accessible
-pressed state. Desktop contents and article panels share an edge in both
-modes; the edit link is after the references. Saved preferences are preserved.
-The article keeps local equation scrolling at desktop/tablet breakpoints.
+Replaced the width text button with a small SVG icon matching and adjacent
+to the dark-mode button. Its icon, tooltip and accessible pressed state track
+the saved width setting. Desktop contents and article panels now share an
+edge in both modes. Moved Improve this page below the references. Scoped
+math scrolling also prevents overflow at the 901px desktop breakpoint.
 
-JS syntax, full build, required checks and whitespace pass. Browser checks
-cover 1920/1366/1024/901/768/375 pixels, sidebar adjacency, icon dimensions,
-edit-link position, both widths, scrolling, keyboard/persistence, storage
-failure, no-JS fallback, dark mode, print, mobile contents and page isolation.
-Artifacts: `/cargo-target/symcat-width-icon-20261021/`. Publish through the
-established constrained route after browser completion and clean-state gate.
+Published SymCat commit a8eaea5fcae983a8bc57f1be3ae41e2cd204e85e at
+2026-10-21T14:41:04.689881+00:00 through the constrained bridge. Receipt
+`20261021T144104-8fa6be9c7e0d` confirms deployed and matching search manifest.
+JS syntax, build, required checks and whitespace pass; only the two existing
+synthetic-polydata warnings remain. Local/live Chromium at
+1920/1366/1024/901/768/375 pixels verifies icon size/state, sidebar adjacency,
+edit-link placement, widths, equation scrolling, keyboard/persistence,
+unavailable storage, no-JS fallback, dark mode, print, mobile contents and
+page isolation. Screenshots inspected. Public HTML/JS/CSS return 200 and
+match the build. Artifacts: `/cargo-target/symcat-width-icon-20261021/`.
+
+Ownership released for assigned source and records. The owned preview server
+is stopped. Other pages retain their layout; no mathematical content or
+bridge edits. This final record-only checkpoint needs no additional upload.
 
 ## Deployed: recurrence page width toggle — 2026-10-21
 
