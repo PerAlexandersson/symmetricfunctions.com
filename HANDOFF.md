@@ -102,8 +102,8 @@ recent house style: `Last, First` authors, `--` page ranges, `doi` plus
 became `Branden2011b` and `LiuZhang2026bx`; the arXiv copy of Kozlov's
 "Stirling complexes" was dropped in favour of the journal entry `Kozlov2022`.
 Checks: `NO_COLOR=1 make Q=1` and `NO_COLOR=1 make check Q=1` pass; the
-public feed has 2,619 entries. Not yet deployed: a deploy would also publish
-the new polynomial-recurrences page, which awaits the owner's review.
+public feed has 2,619 entries. Live since the recurrence-page deployment
+(commit `751203a`); verified in the public `bibliography.json`.
 
 ## Completed — polynomial recurrences and derivatives page, 2026-10-21
 
