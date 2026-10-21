@@ -69,29 +69,30 @@ Suppose the sequence is specified by $P_0,\dotsc,P_{k-1}$ and
 Such recurrences arise, for example, from the
 \hyperref[transferMatrixMethod]{transfer matrix method}.
 
-Let $S$ shift the index, so $(SP)_n=P_{n+1}$, and let $\partial_x$
-differentiate each polynomial. Fix a finite set of allowed monomials and
-consider operators
+Write $\mathbf{P}=(P_0,P_1,\dotsc)$ for the polynomial sequence.
+Let $S$ shift the index, so $(S\mathbf{P})_n=P_{n+1}$, and let
+$\partial_x$ differentiate each polynomial. Fix a finite set of allowed
+monomials and consider operators
 \[
  L=\sum_{j,s,u,v}c_{j,s,u,v}x^v n^u S^j\partial_x^s,
  \qquad c_{j,s,u,v}\in\setQ.
 \]
 All indices in this sum are nonnegative. Coefficients act on the left, so
-$(nS P)_n=nP_{n+1}$. These operators form a finite-dimensional vector space.
+$(nS\mathbf{P})_n=nP_{n+1}$. These operators form a finite-dimensional vector space.
 
 \begin{theorem}[Finite verification]
 \label{recurrenceFiniteVerification}
 Put $h=1+\max(u+s)$ over the allowed monomials. Then
 \[
- LP=0\text{ for every }n\geq0
+ L\mathbf{P}=0\text{ for every }n\geq0
  \quad\Longleftrightarrow\quad
- (LP)_n=0\text{ for }0\leq n<hk.
+ (L\mathbf{P})_n=0\text{ for }0\leq n<hk.
 \]
 Consequently, all recurrence operators in the prescribed space form the
 kernel of a finite matrix over $\setQ$.
 \end{theorem}
 
-\begin{proof}
+\begin{proof*}
 Write
 \[
  F(x,t)=\sum_{n\geq0}P_n(x)t^n=\frac{N(x,t)}{Q(x,t)},
@@ -101,7 +102,7 @@ Every shifted sequence has a generating function $F_j=N_j/Q$ with
 $\deg_tN_j<k$. Multiplication by $n$ corresponds to
 $\theta=t\partial_t$. Thus the residual generating function is
 \[
- \sum_{n\geq0}(LP)_nt^n
+ \sum_{n\geq0}(L\mathbf{P})_nt^n
  =\sum_{j,s,u,v}c_{j,s,u,v}x^v\theta^u\partial_x^sF_j.
 \]
 Putting this expression over $Q^h$ gives a numerator of $t$-degree less than
@@ -109,7 +110,7 @@ $hk$: each differentiation or application of $\theta$ raises the needed
 power of $Q$ by at most one and the numerator degree by at most $k$.
 Since $Q(x,0)=1$, its first $hk$ coefficients vanish if and only if that
 numerator is zero.
-\end{proof}
+\end{proof*}
 
 To compute the matrix, substitute an unknown coefficient for each allowed
 monomial, evaluate these $hk$ residuals, and equate coefficients of $x$.
@@ -131,12 +132,13 @@ and let $\mathsf N$ multiply a sequence by its index. The commutators satisfy
  [T,\mathsf N]=(z\chi_z)(S),\qquad
  [\partial_x,T]=\chi_x(S).
 \]
-Both right-hand sides commute with $T$. If $T^qf=0$, the commutator identities
-imply $T^{q+1}(\mathsf Nf)=0$ and $T^{q+1}(\partial_xf)=0$.
+Both right-hand sides commute with $T$. For a sequence $\mathbf{f}$ with
+$T^q\mathbf{f}=0$, the commutator identities imply
+$T^{q+1}(\mathsf N\mathbf{f})=0$ and $T^{q+1}(\partial_x\mathbf{f})=0$.
 Shifts and multiplication by $x$ commute with $T$, so every allowed residual
 satisfies
 \[
- \chi(S)^h(LP)=0.
+ \chi(S)^h(L\mathbf{P})=0.
 \]
 This is a monic recurrence of order $hk$. Its first $hk$ zero polynomials
 therefore force all subsequent residuals to vanish. The coefficients of
@@ -173,14 +175,14 @@ first-derivative identity holds if and only if
 \]
 \end{proposition}
 
-\begin{proof}
+\begin{proof*}
 After multiplying the generating-function equation by $Q^2$, it becomes
 \[
  Q\,V(N)-N\,V(Q)+CNQ-HQ^2=0.
 \]
 Reduction modulo $Q$ and coprimality give $Q\mid V(Q)$.
 Division by $Q$ gives the second condition, and the steps are reversible.
-\end{proof}
+\end{proof*}
 
 The pole curves are invariant under the vector field $V$, and the numerator
 condition records the initial polynomials.
@@ -201,10 +203,11 @@ $\deg_n a_i=m_i-1$, since
  [t^n](1-\lambda_i t)^{-m_i}
  =\binom{n+m_i-1}{m_i-1}\lambda_i^n.
 \]
-On $E(n)^d$, with amplitude vector $a=(a_i)$, define
+On $E(n)^d$, with amplitude vector $\mathbf{a}=(a_i)$, define operators
+on $\mathbf{v}=(v_i)$ by
 \[
- (\mathsf Sv)_i=\lambda_i v_i(n+1,x),\qquad
- (\nabla v)_i=\partial_xv_i+n\frac{\lambda_i'}{\lambda_i}v_i.
+ (\mathsf S\mathbf{v})_i=\lambda_i v_i(n+1,x),\qquad
+ (\nabla\mathbf{v})_i=\partial_xv_i+n\frac{\lambda_i'}{\lambda_i}v_i.
 \]
 Differentiation includes the algebraic dependence on $x$ in $E$.
 These operators commute and represent shift and differentiation of the
@@ -219,28 +222,29 @@ Let $1\leq r\leq d$ and $m\geq0$. There is an eventual identity
 \]
 if and only if
 \[
- \mathsf S^r a\in
+ \mathsf S^r\mathbf{a}\in
  W_{r,m}\coloneqq\operatorname{span}_{E(n)}
- \{\nabla^s\mathsf S^j a:0\leq j<r,\ 0\leq s\leq m\}.
+ \{\nabla^s\mathsf S^j\mathbf{a}:0\leq j<r,\ 0\leq s\leq m\}.
 \]
 If such an identity exists at any derivative order, one exists with
 $m\leq d-r$.
 \end{theorem}
 
-\begin{proof}
+\begin{proof*}
 Exponential-polynomial sequences with distinct nonzero bases are independent,
 so an identity is equivalent to equality of its component vectors.
 A solution over the splitting field descends to $\setQ(n,x)$ by averaging
 its Galois conjugates.
 
-The vectors $a,\mathsf Sa,\dotsc,\mathsf S^{d-1}a$ are independent.
+The vectors
+$\mathbf{a},\mathsf S\mathbf{a},\dotsc,\mathsf S^{d-1}\mathbf{a}$ are independent.
 Indeed, the leading coefficient in $n$ of their coordinate determinant is
 the product of the leading coefficients of the $a_i$ times the nonzero
 Vandermonde determinant in the $\lambda_i$. Hence $\dim W_{r,0}=r$.
 If $W_{r,m+1}=W_{r,m}$, this space is closed under $\nabla$, including
 derivatives of its scalar coefficients, and all later spaces agree.
 Otherwise the dimension increases. There can be at most $d-r$ increases.
-\end{proof}
+\end{proof*}
 
 For identities holding at all sufficiently large indices, the least order
 of a recurrence without derivatives is $d$ with coefficients in $\setQ(n,x)$,
@@ -261,7 +265,7 @@ operators satisfy
  \partial_x f=f\partial_x+\partial_x(f),\qquad S\partial_x=\partial_xS.
 \]
 The operators annihilating the sequence eventually form its
-\defin{annihilating ideal}. Expressing $\mathsf S^da$ and $\nabla a$ in
+\defin{annihilating ideal}. Expressing $\mathsf S^d\mathbf{a}$ and $\nabla\mathbf{a}$ in
 the shift basis gives two generators:
 \[
  S^d-\sum_{j<d}r_j(n,x)S^j,\qquad
@@ -357,8 +361,8 @@ not all equal and there are $A,B$ such that
 \]
 Equivalently,
 \[
- \operatorname{rank}[a,\nabla a,\mathsf Sa]
- =\operatorname{rank}[a,\nabla a]=2.
+ \operatorname{rank}[\mathbf{a},\nabla\mathbf{a},\mathsf S\mathbf{a}]
+ =\operatorname{rank}[\mathbf{a},\nabla\mathbf{a}]=2.
 \]
 When this identity exists, its coefficients $A,B$ are unique.
 For any $i,j$ with $\eta_i\ne\eta_j$,
@@ -368,12 +372,13 @@ For any $i,j$ with $\eta_i\ne\eta_j$,
 \]
 \end{proposition}
 
-\begin{proof}
+\begin{proof*}
 Divide each component equation by $a_i$.
-The vectors $a$ and $\mathsf Sa$ are independent by the shift-basis argument,
-so a solution requires independent vectors $a,\nabla a$.
+The vectors $\mathbf{a}$ and $\mathsf S\mathbf{a}$ are independent by the
+shift-basis argument, so a solution requires independent vectors
+$\mathbf{a},\nabla\mathbf{a}$.
 The two displayed scalar equations then determine $A,B$ uniquely.
-\end{proof}
+\end{proof*}
 
 For simple poles the amplitudes are independent of $n$, and the criterion
 has a more explicit form. Write $u_i=a_i'/a_i$ and
@@ -390,7 +395,8 @@ $(\beta_0,\beta_1)\ne(0,0)$. In that case
  B=\frac{1}{\beta_0+n\beta_1}.
 \]
 Indeed, $\lambda_i=A+B(u_i+nv_i)$ is equivalent to these conditions after
-comparing coefficients of $n$ modulo the span of $1$ and $\lambda$.
+comparing coefficients of $n$ modulo the span of the vectors
+$\mathbf{1}=(1,\dotsc,1)$ and $\boldsymbol{\lambda}=(\lambda_i)$.
 In particular, all characteristic roots satisfy the same Riccati equation
 $\lambda_i'=\alpha_1\lambda_i+\beta_1\lambda_i^2$.
 
@@ -402,7 +408,8 @@ it has a polynomial form
 \]
 with index degrees at most $2M+1,2M+1,2M$, respectively, for the proper tail.
 To obtain it, put $p(z)=\prod_i(z-\lambda_i)$ and use a basis of
-$\setQ(x)[z]/(p(z))$. The vectors $a,\nabla a,\mathsf Sa$ have index degrees at
+$\setQ(x)[z]/(p(z))$. The vectors
+$\mathbf{a},\nabla\mathbf{a},\mathsf S\mathbf{a}$ have index degrees at
 most $M,M+1,M$. A nonzero two-by-two minor and Cramer's rule give the
 stated bounds; clearing denominators in $x$ preserves them.
 
@@ -430,7 +437,7 @@ has two simple poles. Over $\setQ(n,x)$, one derivative suffices:
 With polynomial right-hand coefficients and a nonzero leading coefficient
 $D(n)$, the least derivative order is instead exactly $\ell$.
 
-\begin{proof}
+\begin{proof*}
 Put $\lambda=2+x^\ell$ and $d_s=\lambda^{-n}\partial_x^s\lambda^n$,
 viewed in $\setQ(n,x)$. The constant exponential component forces the
 coefficient of $P_n$ to equal $D(n)$. The other component requires
@@ -448,7 +455,7 @@ $n(n-1)\dotsm(n-\ell+1)\lambda'(\alpha)^\ell$.
 Both are nonzero in $\setQ(n)$ or its algebraic extension.
 Bézout's identity therefore expresses $\lambda-1$ as a polynomial-in-$x$
 combination of $d_1,d_\ell$. Clearing denominators in $n$ proves existence.
-\end{proof}
+\end{proof*}
 
 For prescribed coefficient-degree bounds, we can compute these recurrences
 using the matrix in the \hyperref[recurrenceFiniteVerification]{finite verification theorem}.

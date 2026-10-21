@@ -1,5 +1,20 @@
 # Handoff
 
+## Ready: recurrence-page proofs and vector notation — 2026-10-21
+
+All five proofs now use the existing collapsible `proof*` environment,
+closed by default. The sequence is explicitly defined as bold P, scalar
+polynomials remain P_n, and amplitude/coordinate vectors are consistently
+bold. Only `tex-source/polynomialRecurrences.tex` and this opening changed.
+
+Full build/checks and whitespace pass (two existing fixture warnings).
+Chromium at 1366/375 verifies every disclosure by click and keyboard,
+both text widths, bold/scalar notation, no math errors or page overflow,
+and native operation without JavaScript. Screenshot inspected. Evidence:
+`/cargo-target/symcat-proof-vectors-20261021/`. Ownership released after
+the focused checkpoint; preview server stopped. Source changes are not
+deployed. The pending Vailaya addition below also remains unpublished.
+
 ## Ready: Vailaya circular-arc positivity result — 2026-10-21
 
 Added arXiv:2609.33124v1 as `Vailaya2026x` and its Theorem 21 to
