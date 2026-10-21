@@ -1,5 +1,15 @@
 # Handoff
 
+## Verified: real-rootedness cross-reference and example — 2026-10-21
+
+Codex owns this opening and `tex-source/polynomialRecurrences.tex`.
+Replace the duplicated criterion discussion with links to the existing
+real-rootedness and Ma--Wang material; present the quadratic coefficient
+application as an example, preserving the existing destination anchor.
+Build/checks, desktop/mobile rendering and destination links pass; screenshot
+inspected. Evidence: `/cargo-target/symcat-real-roots-example-20261021/`.
+Publish through the established bridge after the clean-state gate.
+
 ## Deployed: recurrence coefficient notation — 2026-10-21
 
 The page uses D for every left-hand coefficient formerly written delta or

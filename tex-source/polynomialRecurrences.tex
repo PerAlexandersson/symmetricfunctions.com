@@ -478,19 +478,20 @@ their derivatives. A scalar recurrence for the residual, together with
 checks at singular indices and enough initial zeros, supplies a finite
 verification argument. Its bound depends on that state system.
 
-\subsection[derivativeRecurrenceRealRoots]{An application to real-rootedness}
+The \hyperref[polynomialRootIntro]{real-rootedness pages} discuss criteria
+for proving real-rootedness and interlacing, including the
+\hyperref[maWangDerivativeCriterion]{Ma--Wang derivative criterion}.
 
-Suppose an exact identity has the form
+\begin{example}
+\label{derivativeRecurrenceRealRoots}
+Let $a<b$ and suppose
 \[
- D(n)P_{n+1}=A(n,x)P_n+B(n,x)P_n',\qquad D(n)>0.
+ D(n)P_{n+1}=A(n,x)P_n+\kappa_n(x-a)(x-b)P_n',
 \]
-If $P_n$ is real-rooted, both $P_n,P_{n+1}$ have positive leading
-coefficients, $\deg P_{n+1}\in\{\deg P_n,\deg P_n+1\}$, and
-$B(n,\xi)\leq0$ at every root $\xi$ of $P_n$, then the
-\hyperref[maWangDerivativeCriterion]{Ma--Wang criterion}
-\cite[Thm.~2]{MaWang2008} gives real-rootedness of $P_{n+1}$ and
-$P_n\interl P_{n+1}$.
-For example, $B(n,x)=\kappa_n(x-a)(x-b)$ has the required sign on
-$[a,b]$ when $a<b$ and $\kappa_n\geq0$.
-An induction using that interval also needs a proof that the new roots
-remain in it.
+where $D(n)>0$, $\kappa_n\geq0$ and $A(n,x)$ is a real polynomial in $x$.
+Suppose $P_n$ has all its roots in $[a,b]$, both $P_n,P_{n+1}$ have positive
+leading coefficients, and $\deg P_{n+1}\in\{\deg P_n,\deg P_n+1\}$.
+Then $P_{n+1}$ is real-rooted and $P_n\interl P_{n+1}$ by the
+\hyperref[maWangDerivativeCriterion]{Ma--Wang criterion}: at every root
+$\xi$ of $P_n$, we have $\kappa_n(\xi-a)(\xi-b)/D(n)\leq0$.
+\end{example}
