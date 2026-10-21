@@ -74,20 +74,39 @@
     if (!document.getElementById('polynomialRecurrences')) return;
     var main = document.getElementById('doc-main');
     var meta = document.getElementById('page-meta');
-    if (!main || !meta) return;
+    var layout = document.getElementById('doc-all');
+    var themeToggle = document.getElementById('dark-mode-toggle');
+    if (!main || !meta || !layout || !themeToggle) return;
 
     var key = 'symcat-polynomial-recurrences-width';
     var button = document.createElement('button');
     button.type = 'button';
     button.id = 'text-width-toggle';
+    button.className = 'toplink theme-toggle';
+    button.setAttribute('aria-label', 'Narrow text column');
     button.setAttribute('aria-controls', 'doc-main');
     button.setAttribute('data-pagefind-ignore', '');
-    meta.classList.add('has-width-toggle');
-    meta.appendChild(button);
+    button.innerHTML = '<svg class="theme-icon" viewBox="0 0 20 20" fill="none" ' +
+      'stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">' +
+      '<path class="width-icon-wide" d="M2 3v14M18 3v14M5 5h10M5 10h10M5 15h10"/>' +
+      '<path class="width-icon-narrow" d="M5 3v14M15 3v14M8 5h4M8 10h4M8 15h4"/>' +
+      '</svg>';
+    themeToggle.after(button);
+    layout.classList.add('has-text-width');
+
+    var editLink = meta.querySelector('.editLink');
+    if (editLink) {
+      var editFooter = document.createElement('div');
+      editFooter.id = 'page-edit-footer';
+      editFooter.setAttribute('data-pagefind-ignore', '');
+      editFooter.appendChild(editLink);
+      main.appendChild(editFooter);
+    }
 
     function applyWidth(narrow) {
       main.classList.toggle('narrow-text', narrow);
-      button.textContent = narrow ? 'Wide text' : 'Narrow text';
+      layout.classList.toggle('narrow-reading', narrow);
+      button.setAttribute('aria-pressed', String(narrow));
       button.title = narrow ? 'Use the original text width' : 'Use an article-width text column';
     }
 

@@ -1,5 +1,21 @@
 # Handoff
 
+## Verified: recurrence layout refinement — 2026-10-21
+
+Codex owns `assets/site.js`, `assets/style.css`, `template.htm`, `README.md`
+and this opening through deployment. The width icon now sits beside the
+matching dark-mode button, with state-dependent SVG, tooltip and accessible
+pressed state. Desktop contents and article panels share an edge in both
+modes; the edit link is after the references. Saved preferences are preserved.
+The article keeps local equation scrolling at desktop/tablet breakpoints.
+
+JS syntax, full build, required checks and whitespace pass. Browser checks
+cover 1920/1366/1024/901/768/375 pixels, sidebar adjacency, icon dimensions,
+edit-link position, both widths, scrolling, keyboard/persistence, storage
+failure, no-JS fallback, dark mode, print, mobile contents and page isolation.
+Artifacts: `/cargo-target/symcat-width-icon-20261021/`. Publish through the
+established constrained route after browser completion and clean-state gate.
+
 ## Deployed: recurrence page width toggle — 2026-10-21
 
 Added a Narrow text / Wide text button at the top of the recurrence page.

@@ -561,20 +561,27 @@
   .editLink { font-size: 0.8rem; opacity: 0.7; }
   .editLink:hover { opacity: 1; }
 
-  #page-meta.has-width-toggle { flex-wrap: wrap; gap: 0.5rem 1rem; }
-  #text-width-toggle {
-    font: inherit;
-    color: var(--c-text-main);
-    background: var(--c-bg-surface);
-    border: 1px solid var(--c-border);
-    border-radius: 6px;
-    padding: 0.45rem 0.7rem;
-    cursor: pointer;
-  }
-  #text-width-toggle:hover { border-color: var(--c-brand); }
-  #text-width-toggle:focus-visible {
-    outline: 2px solid var(--c-brand);
-    outline-offset: 3px;
+  #text-width-toggle .width-icon-narrow,
+  #text-width-toggle[aria-pressed="true"] .width-icon-wide { display: none; }
+  #text-width-toggle[aria-pressed="true"] .width-icon-narrow { display: initial; }
+  #text-width-toggle[aria-pressed="true"] { color: var(--c-link); }
+  #page-edit-footer { margin-top: 2rem; text-align: right; }
+
+  @media (min-width: 901px) {
+    #doc-all.has-text-width {
+      --reading-width: calc(4 * var(--w-col) + 3rem);
+      grid-template-columns: minmax(1rem, 1fr) minmax(14rem, 20rem)
+        minmax(0, var(--reading-width)) minmax(1rem, 1fr);
+      column-gap: 0;
+    }
+    #doc-all.has-text-width.narrow-reading {
+      --reading-width: calc(72ch + 4.8rem + 2px);
+    }
+    .has-text-width #doc-main { grid-column: 3; }
+    .has-text-width #tocContainer {
+      grid-column: 2;
+      border-radius: 12px 0 0 12px;
+    }
   }
 
   /* 72ch of prose plus the main panel's padding and border. */
@@ -583,13 +590,13 @@
     max-width: calc(72ch + 4.8rem + 2px);
     margin-inline: auto;
   }
-  #doc-main.narrow-text .katex-display {
+  .has-text-width .katex-display {
     max-width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 0.5rem;
   }
-  #doc-main.narrow-text .katex-display > .katex {
+  .has-text-width .katex-display > .katex {
     white-space: nowrap;
     max-width: none;
   }
