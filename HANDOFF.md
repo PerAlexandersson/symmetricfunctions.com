@@ -1,5 +1,21 @@
 # Handoff
 
+## Ready: recurrence equation icon and shorter title — 2026-10-21
+
+Replaced the staircase with P_{n+1}=x P_n+P_n', set over two lines in a
+slightly wider rounded frame for readable subscripts. The equality sign
+uses the existing blue accent; terms retain contrast in both themes.
+The page heading, metadata and main-page card now say Polynomial recurrences.
+Owned sources: `svg-tex/src/card-polynomialRecurrences.tex`, generated
+`assets/nav-images/card-polynomialRecurrences.svg`,
+`tex-source/polynomialRecurrences.tex`, `tex-source/index.tex`, and this opening.
+`make svg`, full build/checks and whitespace pass (two existing fixture
+warnings). Chromium at 1366/375 verifies the card, image, section, link,
+destination title, math and collapsed proofs. Light/dark screenshots inspected;
+no horizontal overflow. Evidence: `/cargo-target/symcat-recurrence-icon-20261021/`.
+Ownership released and preview stopped. This revision, the notation pass
+and the main-page section move remain undeployed.
+
 ## Ready: recurrence notation review — 2026-10-21
 
 Applied the academic-writing skill and its style, notation, LaTeX and
