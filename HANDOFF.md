@@ -1,5 +1,17 @@
 # Handoff
 
+## Ready: standard square recurrence icon — 2026-10-21
+
+Restored the standard square bounds in
+`svg-tex/src/card-polynomialRecurrences.tex` and regenerated its SVG.
+The approved equation continues at the plus sign over three lines.
+Chromium at 1366/375 confirms exactly 64 x 64 pixels, matching the Eulerian
+icon in both dimensions. Light/dark screenshots inspected; card/link/title,
+math and collapsed-proof checks pass. `make svg`, full build/checks and
+whitespace pass (two existing fixture warnings). Evidence:
+`/cargo-target/symcat-square-icon-20261021/`. Ownership released for the
+source, generated SVG and this opening; preview stopped. Not yet deployed.
+
 ## Deployed: recurrence presentation updates — 2026-10-21
 
 Published aa03e17 through the constrained bridge at 2026-10-21T20:40:32Z.
