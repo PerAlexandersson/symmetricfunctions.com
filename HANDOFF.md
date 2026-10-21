@@ -1,14 +1,17 @@
 # Handoff
 
-## Verified: recurrence coefficient notation — 2026-10-21
+## Deployed: recurrence coefficient notation — 2026-10-21
 
-Codex owns this opening and `tex-source/polynomialRecurrences.tex`.
-Use D for the left-hand coefficient throughout the page, including capital
-Delta; rename the generating-function denominator Q and write its quotient
-explicitly to avoid conflicting notation. Build/checks and desktop/mobile
-math rendering pass; source and rendered page contain no delta coefficient.
-Artifacts: `/cargo-target/symcat-coefficient-notation-20261021/`.
-Publish through the established bridge after the clean-state gate.
+The page uses D for every left-hand coefficient formerly written delta or
+Delta. The generating-function denominator is Q; its quotient V(Q)/Q is
+written explicitly. Site commit af242b6 is deployed; bridge receipt
+`20261021T145017-6694836eb621` confirms deployed and matching search manifest.
+Build/checks and local/live desktop/mobile math rendering pass; the public
+page matches the build. Evidence:
+`/cargo-target/symcat-coefficient-notation-20261021/`.
+
+Ownership released; preview server stopped. This is a notation-only change.
+Final deployment records need no further upload.
 
 ## Deployed: sidebar gap and tooltips — 2026-10-21
 
