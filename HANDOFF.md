@@ -1,11 +1,15 @@
 # Handoff
 
-## Active: deploy square recurrence icon — 2026-10-21
+## Deployed: square recurrence icon — 2026-10-21
 
-The derivative-lift lane owns this opening for the authorized deployment
-of the square icon in 9127a5f. Source is clean and pushed; bridge ready and
-idle. Run build/checks, deploy through the bridge, and verify live dimensions
-and the public SVG before releasing ownership.
+Published d5dd894 through the constrained bridge at 2026-10-21T20:47:44Z.
+Receipt `20261021T204744-1b8508df08ce` confirms deployed and matching search
+manifest. Build/checks and whitespace pass (two existing fixture warnings).
+Live Chromium at 1366/375 confirms 64 x 64 pixels, equal to the Eulerian
+icon, with light/dark rendering, navigation, title and math checks passing.
+Public index and SVG return 200 and match the build exactly. Evidence:
+`/cargo-target/symcat-square-icon-deploy-20261021/`. Ownership released.
+Final record-only edits need no further upload.
 
 ## Ready: standard square recurrence icon — 2026-10-21
 
@@ -17,7 +21,7 @@ icon in both dimensions. Light/dark screenshots inspected; card/link/title,
 math and collapsed-proof checks pass. `make svg`, full build/checks and
 whitespace pass (two existing fixture warnings). Evidence:
 `/cargo-target/symcat-square-icon-20261021/`. Ownership released for the
-source, generated SVG and this opening; preview stopped. Not yet deployed.
+source, generated SVG and this opening; preview stopped. Published above.
 
 ## Deployed: recurrence presentation updates — 2026-10-21
 
