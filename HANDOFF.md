@@ -1,5 +1,15 @@
 # Handoff
 
+## Verified: sidebar gap and width tooltips — 2026-10-21
+
+Codex owns this opening and `assets/site.js`, `assets/style.css`, `template.htm`, `README.md`.
+Restore a small sidebar gap and rounded corners; use the exact requested
+Narrow text / Wide text tooltips. JS syntax, full build, required checks and
+whitespace pass. Chromium at 1366/901/375 verifies the 16px desktop gap in
+both modes, exact tooltips, preserved controls and mobile behavior. Screenshot
+inspected. Artifacts: `/cargo-target/symcat-width-gap-20261021/`.
+Publish through the existing constrained route after the clean-state gate.
+
 ## Deployed: recurrence layout refinement — 2026-10-21
 
 Replaced the width text button with a small SVG icon matching and adjacent

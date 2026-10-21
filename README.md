@@ -54,8 +54,9 @@ the shared HTML template. Bibliography lookup honors `REFS_JSON` and
 The polynomial-recurrence page has a width icon beside the dark-mode button.
 It toggles a text column of approximately 72ch without changing the font size;
 wide remains the default. The icon changes with the state and exposes an
-accessible label and pressed state. On desktop the contents sidebar sits
-directly beside the article in both modes. Long equations scroll within the
+accessible label and pressed state, with Narrow text / Wide text tooltips.
+On desktop a 1rem gap separates the contents sidebar and article in both modes.
+Long equations scroll within the
 column. The preference is saved for this page in local storage, and the toggle
 also works when storage is unavailable. Its edit link appears after the
 references. Other pages retain their layout. The width icon is omitted from print.

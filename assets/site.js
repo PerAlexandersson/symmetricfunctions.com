@@ -83,7 +83,7 @@
     button.type = 'button';
     button.id = 'text-width-toggle';
     button.className = 'toplink theme-toggle';
-    button.setAttribute('aria-label', 'Narrow text column');
+    button.setAttribute('aria-label', 'Narrow text');
     button.setAttribute('aria-controls', 'doc-main');
     button.setAttribute('data-pagefind-ignore', '');
     button.innerHTML = '<svg class="theme-icon" viewBox="0 0 20 20" fill="none" ' +
@@ -107,7 +107,7 @@
       main.classList.toggle('narrow-text', narrow);
       layout.classList.toggle('narrow-reading', narrow);
       button.setAttribute('aria-pressed', String(narrow));
-      button.title = narrow ? 'Use the original text width' : 'Use an article-width text column';
+      button.title = narrow ? 'Wide text' : 'Narrow text';
     }
 
     applyWidth(getStoredPreference(key) === 'narrow');
