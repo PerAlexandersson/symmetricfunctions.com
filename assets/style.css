@@ -560,6 +560,39 @@
   .dateMod::before { content: "Last updated: "; margin-right: 0.3em; }
   .editLink { font-size: 0.8rem; opacity: 0.7; }
   .editLink:hover { opacity: 1; }
+
+  #page-meta.has-width-toggle { flex-wrap: wrap; gap: 0.5rem 1rem; }
+  #text-width-toggle {
+    font: inherit;
+    color: var(--c-text-main);
+    background: var(--c-bg-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 0.45rem 0.7rem;
+    cursor: pointer;
+  }
+  #text-width-toggle:hover { border-color: var(--c-brand); }
+  #text-width-toggle:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+  }
+
+  /* 72ch of prose plus the main panel's padding and border. */
+  #doc-main.narrow-text {
+    width: 100%;
+    max-width: calc(72ch + 4.8rem + 2px);
+    margin-inline: auto;
+  }
+  #doc-main.narrow-text .katex-display {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.5rem;
+  }
+  #doc-main.narrow-text .katex-display > .katex {
+    white-space: nowrap;
+    max-width: none;
+  }
   
   .topicsection { margin: 2rem 0; }
   
@@ -1379,6 +1412,8 @@
       padding: 0.5rem 0.5rem; 
     }
 
+    #doc-main.narrow-text { max-width: calc(72ch + 1rem); }
+
     
     /*  Off-Canvas Sidebar */
     #tocContainer {
@@ -1586,6 +1621,8 @@
 
 
   @media print {
+    #text-width-toggle { display: none !important; }
+    #doc-main.narrow-text { max-width: none; }
     #topnav, #tocContainer, #tocButton, #cookie-dialog, footer, .editLink { display: none !important; }
     body, #doc-main { background: white !important; color: black !important; margin: 0; padding: 0; }
     a { text-decoration: none; color: black; }

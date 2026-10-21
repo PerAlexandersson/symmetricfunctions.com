@@ -70,6 +70,35 @@
     return match ? match[1] : null;
   }
 
+  function initTextWidth() {
+    if (!document.getElementById('polynomialRecurrences')) return;
+    var main = document.getElementById('doc-main');
+    var meta = document.getElementById('page-meta');
+    if (!main || !meta) return;
+
+    var key = 'symcat-polynomial-recurrences-width';
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.id = 'text-width-toggle';
+    button.setAttribute('aria-controls', 'doc-main');
+    button.setAttribute('data-pagefind-ignore', '');
+    meta.classList.add('has-width-toggle');
+    meta.appendChild(button);
+
+    function applyWidth(narrow) {
+      main.classList.toggle('narrow-text', narrow);
+      button.textContent = narrow ? 'Wide text' : 'Narrow text';
+      button.title = narrow ? 'Use the original text width' : 'Use an article-width text column';
+    }
+
+    applyWidth(getStoredPreference(key) === 'narrow');
+    button.addEventListener('click', function () {
+      var narrow = !main.classList.contains('narrow-text');
+      applyWidth(narrow);
+      setStoredPreference(key, narrow ? 'narrow' : 'wide');
+    });
+  }
+
   function setCookiePreference(key, value) {
     var secure = window.location.protocol === 'https:' ? '; Secure' : '';
     var domain = '';
@@ -456,6 +485,7 @@
     initHeaderAnchors();
     initFamilyIndexTable();
     initDarkMode();
+    initTextWidth();
 
     var btn = document.getElementById("tocButton");
     if (btn) {

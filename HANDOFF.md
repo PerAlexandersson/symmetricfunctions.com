@@ -1,5 +1,21 @@
 # Handoff
 
+## Verified: recurrence page width toggle — 2026-10-21
+
+Codex owns `assets/site.js`, `assets/style.css`, `template.htm`, `README.md`
+and this opening through publication. Added a Narrow text / Wide text button
+on the recurrence page only. Wide remains the default; narrow centers 72ch
+of prose (576px at the current 16px font), preserves font size, scrolls long
+equations and saves a per-page preference. Mobile uses the available width.
+Shared asset cache versions are bumped; content and other layouts unchanged.
+
+JS syntax, full build, required checks and whitespace pass. Chromium at
+1920/1366/768/375 passes measured widths, unchanged fonts, equation scrolling,
+keyboard operation, reload persistence, blocked storage, no-JS fallback,
+print hiding, dark mode and page isolation. Screenshots inspected. Artifacts:
+`/cargo-target/symcat-width-toggle-20261021/`. Ready for the established
+constrained deployment route after committing and the clean-state gate.
+
 ## Deployed: recurrence prose revision — 2026-10-21
 
 Removed the worked example's nonexistence/optimality paragraph and several

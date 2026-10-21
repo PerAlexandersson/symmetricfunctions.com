@@ -49,6 +49,15 @@ Both site and test metadata depend on the CSL and raw BibTeX JSON files and
 the shared HTML template. Bibliography lookup honors `REFS_JSON` and
 `BIBTEX_JSON`, including builds with a separate `TEMP_DIR`.
 
+## Reading width
+
+The polynomial-recurrence page has a **Narrow text / Wide text** button beside
+its page metadata. Wide is the original layout and the default. Narrow centers
+a text column of approximately 72ch without changing the font size; long
+display equations scroll within the column. The preference is saved for this
+page in local storage, and the toggle also works when storage is unavailable.
+Other pages retain their existing layout. The button is omitted from print.
+
 ## Keyword export for arXiv++
 
 The normal build generates `www/site-keywords.json` from `\defin{...}` terms
