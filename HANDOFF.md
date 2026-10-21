@@ -1,5 +1,15 @@
 # Handoff
 
+## Ready: recurrence complexity notation — 2026-10-21
+
+Changed the complexity estimate in `tex-source/polynomialRecurrences.tex`
+to `\mathcal{O}`. KaTeX supports this directly; no shared macro change.
+Full build, `make check` and whitespace checks pass (the two existing
+fixture warnings remain). Chromium verifies the calligraphic glyph, no
+KaTeX errors, and all five proofs initially collapsed. Ownership released
+for the page and this opening. This change and the proof/vector and Vailaya
+changes below remain undeployed.
+
 ## Ready: recurrence-page proofs and vector notation — 2026-10-21
 
 All five proofs now use the existing collapsible `proof*` environment,
