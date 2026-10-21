@@ -1,5 +1,18 @@
 # Handoff
 
+## Completed — RealRooted catalogue references, 2026-10-21
+
+Appended 42 entries to `bibliography.bib` for works cited in the RealRooted
+catalogue (DOIs and arXiv ids from its unmatched-reference ledger). Entries
+come from the arXiv++ `api/bibtex.json` endpoint and are normalised to the
+recent house style: `Last, First` authors, `--` page ranges, `doi` plus
+`https://doi.org/` url, no publisher/issn on articles. Two key collisions
+became `Branden2011b` and `LiuZhang2026bx`; the arXiv copy of Kozlov's
+"Stirling complexes" was dropped in favour of the journal entry `Kozlov2022`.
+Checks: `NO_COLOR=1 make Q=1` and `NO_COLOR=1 make check Q=1` pass; the
+public feed has 2,619 entries. Not yet deployed: a deploy would also publish
+the new polynomial-recurrences page, which awaits the owner's review.
+
 ## Completed — polynomial recurrences and derivatives page, 2026-10-21
 
 Added `tex-source/polynomialRecurrences.tex` in the existing catalogue style:
