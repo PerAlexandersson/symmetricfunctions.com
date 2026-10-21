@@ -1,14 +1,17 @@
 # Handoff
 
-## Verified: real-rootedness cross-reference and example — 2026-10-21
+## Deployed: real-rootedness links and example — 2026-10-21
 
-Codex owns this opening and `tex-source/polynomialRecurrences.tex`.
-Replace the duplicated criterion discussion with links to the existing
-real-rootedness and Ma--Wang material; present the quadratic coefficient
-application as an example, preserving the existing destination anchor.
-Build/checks, desktop/mobile rendering and destination links pass; screenshot
-inspected. Evidence: `/cargo-target/symcat-real-roots-example-20261021/`.
-Publish through the established bridge after the clean-state gate.
+Replaced the local real-rootedness subsection and repeated general criterion
+with links to the existing real-rootedness page and Ma--Wang theorem. The
+quadratic derivative coefficient is now an example with its sign argument;
+its previous destination anchor remains valid. Site commit 6cd6ffb is live.
+Bridge receipt `20261021T173613-ef5589467ed0` confirms deployed and matching
+search manifest. Build/checks, local/live desktop/mobile example rendering,
+anchor and cross-page links pass. Public HTML matches the build. Evidence:
+`/cargo-target/symcat-real-roots-example-20261021/`.
+
+Ownership released; preview server stopped. Final record edits need no upload.
 
 ## Deployed: recurrence coefficient notation — 2026-10-21
 
