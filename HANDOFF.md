@@ -1,5 +1,31 @@
 # Handoff
 
+## Completed — Beraha--Kahane--Weiss connection, 2026-10-21
+
+Added `recurrenceLimitingZeros` to the polynomial-recurrence page: the
+analytic BKW theorem with nonzero analytic amplitudes, explicit dominance
+and nondegeneracy conditions, both types of limiting points, and the
+all-sufficiently-large-index neighborhood conclusion. The statement was
+checked against Sokal's published Theorem 1.5 (2004, p. 226), using the
+convenient stronger exclusion of every constant unit-modulus ratio.
+The existing three-base example gives two circular arcs and two rays by
+exact modulus comparisons, illustrating the connection to the recurrence
+spectrum. Repeated-pole polynomial-in-index amplitudes are explicitly outside
+this version of BKW. Existing BKW/Sokal references were reused.
+
+Cross-linked the transfer-matrix discussion and supplied its previously
+missing non-identically-zero amplitude hypothesis (and m>=2). Ownership is
+released for this opening and those two TeX pages. The catalogue-reference
+checkpoint and bibliography are unchanged. No new computation or deployment.
+Academic-writing guidance continues to apply.
+
+`NO_COLOR=1 make Q=1`, `NO_COLOR=1 make check Q=1`, `git diff --check`, and
+Chromium at 1366/375 pixels pass. Checks cover KaTeX, theorem environments,
+both references, cross-page anchors, page width and homepage navigation.
+Only the two existing synthetic-polydata warnings remain. Screenshots were
+inspected and the owned preview server stopped. Logs/screenshots/harness:
+`/cargo-target/symcat-bkw-page/`, with sibling build/check logs.
+
 ## Completed — RealRooted catalogue references, 2026-10-21
 
 Appended 42 entries to `bibliography.bib` for works cited in the RealRooted

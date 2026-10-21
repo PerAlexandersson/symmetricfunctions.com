@@ -1,9 +1,9 @@
 \metatitle{Polynomial recurrences and derivatives}
 \metadescription{Spaces of polynomial recurrences, exact finite verification,
-first-order derivative criteria, repeated poles, and the trade-off between
+first-order derivative criteria, repeated poles, limiting zeros, and the trade-off between
 recurrence length and derivative order.}
 \metakeywords{polynomial recurrence, derivative recurrence, Ore algebra,
-rational generating function, recurrence space, repeated poles}
+rational generating function, recurrence space, repeated poles, Beraha--Kahane--Weiss}
 
 \section[polynomialRecurrences]{Polynomial recurrences and derivatives}
 
@@ -298,6 +298,71 @@ by eventual equality. After clearing denominators, a polynomial-coefficient
 tail identity holds from $n=0$ exactly when it also annihilates the finite
 coefficient sequence of $U$. Checking $0\leq n\leq\deg_tU$ suffices,
 since forward shifts and $x$-derivatives cannot enlarge this support.
+
+\section[recurrenceLimitingZeros]{Beraha--Kahane--Weiss and limiting zeros}
+
+The same characteristic roots also control where zeros accumulate as
+$n\to\infty$. This is the content of the Beraha--Kahane--Weiss theorem
+\cite{Beraha75limits}, also used in the
+\hyperref[berahaKahaneWeiss]{transfer-matrix setting}.
+We now let $x$ be complex and work on a domain where the characteristic roots
+and amplitudes are single-valued analytic functions.
+
+\begin{theorem}[Beraha--Kahane--Weiss, analytic form]
+\label{recurrenceBkwTheorem}
+Let $d\geq2$ and let $a_i,\lambda_i$ be analytic on a connected open set
+$\Omega\subseteq\setC$, with none identically zero. Suppose
+$\lambda_i\not\equiv\omega\lambda_j$ for $i\ne j$ and every constant
+$|\omega|=1$. Set
+\[
+ P_n(x)=\sum_{i=1}^d a_i(x)\lambda_i(x)^n.
+\]
+Call $i$ \defin{dominant} at $x$ if
+$|\lambda_i(x)|=\max_j|\lambda_j(x)|$.
+A point $x\in\Omega$ is a limit of zeros $x_k$ of $P_{n_k}$ with
+$n_k\to\infty$ if and only if either
+\begin{itemize}
+\item exactly one index $i$ is dominant and $a_i(x)=0$; or
+\item at least two indices are dominant.
+\end{itemize}
+Every neighborhood of such a point contains a zero of $P_n$ for all
+sufficiently large $n$.
+\end{theorem}
+
+This is the convenient stronger-hypothesis form of
+\cite[Thm.~1.5]{Sokal2004ChromaticRoots}; Sokal only excludes constant
+unit-modulus ratios when the corresponding branches are dominant on a set
+with nonempty interior.
+
+\begin{example}[The three-base sequence]
+For $P_n(x)=1+x^n+(x+1)^n$, all amplitudes equal $1$, so there are no
+isolated limits arising from amplitude zeros. The limiting set is
+\begin{align*}
+ &\{x:|x|=1,\ |x+1|\leq1\}\\
+ {}\cup{}&\{x:|x+1|=1,\ |x|\leq1\}\\
+ {}\cup{}&\{x:|x|=|x+1|\geq1\}.
+\end{align*}
+The first two sets are circular arcs. The third consists of the two rays
+\[
+ \operatorname{Re}x=-\tfrac12,\qquad
+ |\operatorname{Im}x|\geq\tfrac{\sqrt3}{2}.
+\]
+All three branches meet at $(-1\pm i\sqrt3)/2$. These equations follow by
+comparing the moduli of $1,x,x+1$. In particular, the nonreal limiting points
+force nonreal zeros for all sufficiently large $n$.
+\end{example}
+
+The derivative-recurrence criterion uses the values and logarithmic
+derivatives of the characteristic roots; BKW uses their relative moduli.
+Both depend on the active amplitudes, which are determined by the initial
+polynomials. Equal modulus alone does not give a limiting zero unless the
+tied branches are dominant.
+
+For repeated poles the amplitudes $a_i(n,x)$ depend polynomially on $n$,
+so the displayed theorem does not apply directly. A common scalar factor
+in $n$ can be removed for large $n$; general polynomial-in-$n$ amplitudes
+require an extension. The repeated-pole rank criteria above do not need this
+analytic extension.
 
 \section[firstDerivativeCriterion]{When does one derivative suffice?}
 
