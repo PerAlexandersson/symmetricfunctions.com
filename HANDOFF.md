@@ -1,5 +1,14 @@
 # Handoff
 
+## Active: deploy prepared site changes — 2026-10-21
+
+The derivative-lift lane owns this handoff opening for the authorized
+deployment of b39be4e: calligraphic complexity notation, bold vectors,
+collapsible proofs, and the prepared Vailaya addition. The source is clean
+and pushed; the constrained deployment bridge reports ready and idle.
+We will run the build/check gate, deploy through the bridge, and verify
+the public pages before releasing ownership.
+
 ## Ready: recurrence complexity notation — 2026-10-21
 
 Changed the complexity estimate in `tex-source/polynomialRecurrences.tex`
