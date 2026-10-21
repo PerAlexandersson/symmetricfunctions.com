@@ -1,20 +1,28 @@
 # Handoff
 
-## Verified: recurrence page width toggle — 2026-10-21
+## Deployed: recurrence page width toggle — 2026-10-21
 
-Codex owns `assets/site.js`, `assets/style.css`, `template.htm`, `README.md`
-and this opening through publication. Added a Narrow text / Wide text button
-on the recurrence page only. Wide remains the default; narrow centers 72ch
-of prose (576px at the current 16px font), preserves font size, scrolls long
-equations and saves a per-page preference. Mobile uses the available width.
-Shared asset cache versions are bumped; content and other layouts unchanged.
+Added a Narrow text / Wide text button at the top of the recurrence page.
+Wide retains the original layout and is the default. Narrow centers a 72ch
+text column (576px at the current font size), with unchanged fonts, internal
+scrolling for long equations, and a saved per-page preference. On phones,
+both modes fit the available width. Other pages retain their layout.
 
-JS syntax, full build, required checks and whitespace pass. Chromium at
-1920/1366/768/375 passes measured widths, unchanged fonts, equation scrolling,
-keyboard operation, reload persistence, blocked storage, no-JS fallback,
-print hiding, dark mode and page isolation. Screenshots inspected. Artifacts:
-`/cargo-target/symcat-width-toggle-20261021/`. Ready for the established
-constrained deployment route after committing and the clean-state gate.
+Published SymCat commit 0957ae36f461ffb8c2dfa83e9d58e8165d277b1a through
+the constrained bridge at 2026-10-21T14:33:40.085951+00:00. Receipt
+`20261021T143340-755e9c1c5f86` confirms deployed and matching search manifest.
+JS syntax, full build, required checks and whitespace pass; only the two
+existing synthetic-polydata warnings remain. Local and live Chromium at
+1920/1366/768/375 pass width measurements, fonts, equation scrolling,
+keyboard use, saved preferences, unavailable storage, no-JS fallback,
+print hiding, dark mode and page isolation. Screenshots inspected. Public
+HTML/JS/CSS return 200 and match the build byte-for-byte. Evidence:
+`/cargo-target/symcat-width-toggle-20261021/`.
+
+Ownership released for assigned site code/docs and research records. The
+preview server is stopped. Shared asset cache versions are updated; no
+mathematical content or deployment-bridge changes. These final record edits
+need no further upload.
 
 ## Deployed: recurrence prose revision — 2026-10-21
 
