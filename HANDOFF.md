@@ -1,5 +1,12 @@
 # Handoff
 
+## Active: deploy square recurrence icon — 2026-10-21
+
+The derivative-lift lane owns this opening for the authorized deployment
+of the square icon in 9127a5f. Source is clean and pushed; bridge ready and
+idle. Run build/checks, deploy through the bridge, and verify live dimensions
+and the public SVG before releasing ownership.
+
 ## Ready: standard square recurrence icon — 2026-10-21
 
 Restored the standard square bounds in
