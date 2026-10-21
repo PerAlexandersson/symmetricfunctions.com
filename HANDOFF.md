@@ -1,14 +1,17 @@
 # Handoff
 
-## Verified: sidebar gap and width tooltips — 2026-10-21
+## Deployed: sidebar gap and tooltips — 2026-10-21
 
-Codex owns this opening and `assets/site.js`, `assets/style.css`, `template.htm`, `README.md`.
-Restore a small sidebar gap and rounded corners; use the exact requested
-Narrow text / Wide text tooltips. JS syntax, full build, required checks and
-whitespace pass. Chromium at 1366/901/375 verifies the 16px desktop gap in
-both modes, exact tooltips, preserved controls and mobile behavior. Screenshot
-inspected. Artifacts: `/cargo-target/symcat-width-gap-20261021/`.
-Publish through the existing constrained route after the clean-state gate.
+Restored the 1rem desktop sidebar gap and rounded corners. Width-icon
+tooltips are exactly Narrow text / Wide text. Published site commit d0441e2;
+bridge receipt `20261021T144610-e0c524464c75` confirms deployed and matching
+search manifest. Build/checks and local/live Chromium at 1366/901/375 pass,
+including exact gap/tooltips; public HTML/JS/CSS match the build. Only the
+two existing fixture warnings remain. Evidence:
+`/cargo-target/symcat-width-gap-20261021/`.
+
+Ownership released; preview server stopped. Final record-only edits need
+no upload. Existing icon, saved preference and bottom edit link are preserved.
 
 ## Deployed: recurrence layout refinement — 2026-10-21
 
