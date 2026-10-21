@@ -1,20 +1,25 @@
 # Handoff
 
-## Verified — recurrence page correction ready to deploy, 2026-10-21
+## Deployed — recurrence table and terminology correction, 2026-10-21
 
-Codex owns this opening and `tex-source/polynomialRecurrences.tex` through
-publication of the requested live-page correction. Removed the literal
-hline command from the table and replaced coined labels with standard
-terminology or plain descriptions. Mathematical statements and anchor IDs
-are preserved; no renderer, bibliography or other content changes.
+Published clean/pushed commit c055dce00df801ca5290d9d408a86804f593676b
+through the constrained bridge at 2026-10-21T11:59:17.041897+00:00.
+Receipt `20261021T115917-3c7e8a80a96b` reports deployed, exit 0, and matching
+Pagefind manifest. Removed the literal hline command from the table and
+replaced coined labels with standard terminology or plain descriptions.
+Mathematical statements and anchor IDs are preserved.
 
-Full build, site checks and whitespace pass (only the two established
-synthetic-polydata warnings). Chromium checks at 1366/375 pixels now assert
-all twelve table cells and absence of leaked hline and the removed labels,
-in addition to math, references, links, width and navigation. Both table
-screenshots were inspected. Artifacts:
+Full build, checks and whitespace pass, with only the two existing
+synthetic-polydata warnings. Local and live HTTPS Chromium at 1366/375
+pixels verify all twelve table cells, absence of leaked hline and removed
+labels, math, references, links, width and homepage navigation. Table
+screenshots inspected. Fresh public page, keywords and labels return 200
+and match the build byte-for-byte. Artifacts, public hashes and receipt:
 `/cargo-target/symcat-recurrence-correction-20261021/`.
-Publish through the existing constrained bridge after the clean-state gate.
+
+Ownership released for this opening and the recurrence TeX page. The owned
+preview server is stopped. No renderer, bibliography or bridge changes.
+This deployment-record-only checkpoint needs no additional upload.
 
 ## Deployed — recurrence theory and BKW page, 2026-10-21
 
