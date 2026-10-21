@@ -50,9 +50,8 @@ It satisfies three different recurrences:
  n(n-1)P_{n+1}
   &=n(n-1)P_n+(n-1)x(3x+1)P_n'-2x^2(x+1)P_n''.
 \end{align*}
-Each identity follows by substituting the three summands separately.
-They hold for every $n\geq0$, including the indices where the leading
-coefficient vanishes.
+Each identity holds for $n\geq0$, as we see by substituting the three
+summands separately.
 
 \begin{tabular}{ccc}
  Recurrence order & Derivative order & Leading coefficient\\
@@ -61,24 +60,13 @@ coefficient vanishes.
  1 & 2 & $n(n-1)$
 \end{tabular}
 
-There is no identity $P_{n+1}=AP_n+BP_n'$ even with coefficients in
-$\setQ(n,x)$. Indeed, independence of the three exponential sequences would
-imply
-\[
- A=1,\qquad B=\frac{x(x-1)}{n},\qquad B=\frac{x(x+1)}{n},
-\]
-simultaneously. There is also no second-order recurrence without derivatives
-over this field. Thus the pairs $(3,0),(2,1),(1,2)$ are optimal: neither
-recurrence order nor derivative order can be reduced while keeping the other fixed.
-
 \section[boundedRecurrenceSpaces]{Recurrences with bounded coefficient degrees}
 
 Suppose the sequence is specified by $P_0,\dotsc,P_{k-1}$ and
 \[
  P_{n+k}=\sum_{i=0}^{k-1}a_i(x)P_{n+i},\qquad a_i(x)\in\setQ[x].
 \]
-Here the coefficients are independent of $n$; they need not be constant in
-$x$. Such recurrences arise, for example, from the
+Such recurrences arise, for example, from the
 \hyperref[transferMatrixMethod]{transfer matrix method}.
 
 Let $S$ shift the index, so $(SP)_n=P_{n+1}$, and let $\partial_x$
@@ -194,9 +182,8 @@ Reduction modulo $D$ and coprimality give $D\mid V(D)$.
 Division by $D$ gives the second condition, and the steps are reversible.
 \end{proof}
 
-In particular, the pole curves must be invariant under the vector field
-$V$. The numerator condition records the initial polynomials; the denominator
-alone does not determine whether the derivative recurrence holds.
+The pole curves are invariant under the vector field $V$, and the numerator
+condition records the initial polynomials.
 
 \section[recurrenceSpectralModel]{Rational coefficients and repeated poles}
 
@@ -214,9 +201,6 @@ $\deg_n a_i=m_i-1$, since
  [t^n](1-\lambda_i t)^{-m_i}
  =\binom{n+m_i-1}{m_i-1}\lambda_i^n.
 \]
-Thus repeated poles change the amplitudes, while the number $d$ counts
-\emph{distinct} characteristic roots with nonzero amplitudes.
-
 On $E(n)^d$, with amplitude vector $a=(a_i)$, define
 \[
  (\mathsf Sv)_i=\lambda_i v_i(n+1,x),\qquad
@@ -258,11 +242,9 @@ derivatives of its scalar coefficients, and all later spaces agree.
 Otherwise the dimension increases. There can be at most $d-r$ increases.
 \end{proof}
 
-This gives a finite test for every pair $(r,m)$ and determines all minimal
-combinations of recurrence order and derivative order over $\setQ(n,x)$.
-The least order of a recurrence without derivatives is $d$ when rational
-index dependence is allowed, and $\sum_i m_i$ when the coefficients must
-be independent of $n$. Both assertions concern eventual identities.
+For identities holding at all sufficiently large indices, the least order
+of a recurrence without derivatives is $d$ with coefficients in $\setQ(n,x)$,
+and $\sum_i m_i$ with coefficients in $\setQ(x)$.
 
 For example, $(n+1)x^n$ has a double pole at $t=1/x$ and satisfies both
 \[
@@ -326,9 +308,8 @@ Every neighborhood of such a point contains a zero of $P_n$ for all
 sufficiently large $n$.
 \end{theorem}
 
-This is the convenient stronger-hypothesis form of
-\cite[Thm.~1.5]{Sokal2004ChromaticRoots}; Sokal only excludes constant
-unit-modulus ratios when the corresponding branches are dominant on a set
+In \cite[Thm.~1.5]{Sokal2004ChromaticRoots}, the condition on constant
+unit-modulus ratios is imposed on branches that are dominant on a set
 with nonempty interior.
 
 \begin{example}
@@ -351,15 +332,12 @@ force nonreal zeros for all sufficiently large $n$.
 
 The derivative-recurrence criterion uses the values and logarithmic
 derivatives of the characteristic roots; BKW uses their relative moduli.
-Both depend on the nonzero amplitudes, which are determined by the initial
-polynomials. Equal modulus alone does not give a limiting zero unless the
-tied branches are dominant.
+Both depend on the amplitudes, which are determined by the initial polynomials.
 
 For repeated poles the amplitudes $a_i(n,x)$ depend polynomially on $n$,
 so the displayed theorem does not apply directly. A common scalar factor
 in $n$ can be removed for large $n$; general polynomial-in-$n$ amplitudes
-require an extension. The repeated-pole rank criteria above do not need this
-analytic extension.
+require an extension.
 
 \section[firstDerivativeCriterion]{When does one derivative suffice?}
 
@@ -472,10 +450,8 @@ Bézout's identity therefore expresses $\lambda-1$ as a polynomial-in-$x$
 combination of $d_1,d_\ell$. Clearing denominators in $n$ proves existence.
 \end{proof}
 
-The bound $m\leq d-r$ consequently applies to rational coefficients,
-not to the restriction $\delta=\delta(n)$ with polynomial right-hand
-coefficients. With prescribed coefficient-degree bounds, the matrix kernel
-still describes exactly the recurrences satisfying those restrictions.
+For prescribed coefficient-degree bounds, we can compute these recurrences
+using the matrix in the \hyperref[recurrenceFiniteVerification]{finite verification theorem}.
 
 \section[recurrenceComputation]{Computing recurrences}
 
@@ -484,8 +460,7 @@ The \href{https://poly.symmetricfunctions.com/#polynomial-sequence}{Polytool
 recurrence finder} provides comparison and complete-space modes.
 A useful report records the allowed coefficient degrees and derivatives,
 the starting index, a basis of the recurrence space, and formulas with
-$\delta\ne0$. Recurrence order and derivative order alone do not measure the
-cost of a formula: coefficient degrees and singular initial indices matter.
+$\delta\ne0$.
 
 With a given recurrence and initial polynomials, the
 \hyperref[recurrenceFiniteVerification]{finite verification theorem}

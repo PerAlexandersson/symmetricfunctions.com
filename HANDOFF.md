@@ -1,5 +1,15 @@
 # Handoff
 
+## Active — recurrence prose revision, 2026-10-21
+
+Codex owns this opening and `tex-source/polynomialRecurrences.tex` for the
+user-requested prose correction. Remove the worked example's optimality
+commentary and redundant defensive endings elsewhere. Preserve theorem
+hypotheses, theorem proofs, anchors and established terminology. Full build,
+site checks and whitespace pass with only the two existing synthetic-polydata
+warnings. Browser verification and publication use the established route.
+Artifacts: `/cargo-target/symcat-recurrence-prose-20261021/`.
+
 ## Deployed — recurrence table and terminology correction, 2026-10-21
 
 Published clean/pushed commit c055dce00df801ca5290d9d408a86804f593676b
