@@ -1,12 +1,17 @@
 # Handoff
 
-## Active: deploy recurrence presentation updates — 2026-10-21
+## Deployed: recurrence presentation updates — 2026-10-21
 
-The derivative-lift lane owns this opening for the authorized deployment
-of the equation icon, shorter title, notation review and main-page section
-move. Source 43f72aa is clean and pushed; the deployment bridge is ready
-and idle. Run the build/check gate, deploy once, then verify public pages,
-SVG and desktop/mobile behavior before releasing ownership.
+Published aa03e17 through the constrained bridge at 2026-10-21T20:40:32Z.
+Receipt `20261021T204032-bb51c29f4918` confirms deployed and matching search
+manifest. The equation icon, shorter title, notation review and main-page
+section move are live. Full build/checks and whitespace pass (two existing
+fixture warnings). Live Chromium at 1366/375 verifies card placement,
+light/dark image rendering, title/link, math, both widths and proof toggles;
+native disclosures work without JavaScript. Public index, recurrence page
+and SVG return 200 and match the build exactly. Evidence:
+`/cargo-target/symcat-recurrence-release-20261021/`. Ownership released.
+Final record-only edits need no further upload.
 
 ## Ready: recurrence equation icon and shorter title — 2026-10-21
 
@@ -21,8 +26,7 @@ Owned sources: `svg-tex/src/card-polynomialRecurrences.tex`, generated
 warnings). Chromium at 1366/375 verifies the card, image, section, link,
 destination title, math and collapsed proofs. Light/dark screenshots inspected;
 no horizontal overflow. Evidence: `/cargo-target/symcat-recurrence-icon-20261021/`.
-Ownership released and preview stopped. This revision, the notation pass
-and the main-page section move remain undeployed.
+Ownership released and preview stopped. Published in the deployment above.
 
 ## Ready: recurrence notation review — 2026-10-21
 
@@ -39,7 +43,7 @@ Full build/checks and whitespace pass (two existing fixture warnings).
 Chromium 1366/375 verifies math, vectors, all proof toggles, both widths,
 and no overflow; no-JavaScript disclosure works. Evidence:
 `/cargo-target/symcat-notation-review-20261021/`. Ownership released and
-preview stopped. This revision and the main-page card move are not deployed.
+preview stopped. Published in the deployment above.
 
 ## Ready: main-page recurrence card placement — 2026-10-21
 
@@ -48,7 +52,7 @@ immediately after Interlacing polynomials, in `tex-source/index.tex`.
 Full build, `make check`, and whitespace checks pass (two existing fixture
 warnings). Chromium DOM verification confirms exactly one card in the
 requested section/order and an existing destination anchor. Ownership
-released for the index and this opening. This source edit is not deployed.
+released for the index and this opening. Published in the deployment above.
 
 ## Deployed: complexity notation, vectors, proofs and Vailaya — 2026-10-21
 
