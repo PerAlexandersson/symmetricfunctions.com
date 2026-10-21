@@ -671,6 +671,28 @@ The separate elementary-unimodality conjecture remains open.
 For a survey on expansions in the elementary symmetric function basis, see
 \hyperref[chromaticEexpansion]{this page}.
 
+A \defin{proper circular-arc graph}\label{properCircularArcGraph} is the
+intersection graph of arcs on a circle, none of which properly contains another.
+In a September 2026 preprint, \name{Aarush Vailaya} proves the following.
+
+\begin{theorem}[Vailaya, \cite[Thm.~21]{Vailaya2026x}]
+\label{properCircularArcEPositive}
+If $G$ is a proper circular-arc graph, then
+\[
+ \chrom_G(\xvec)\in\setN[\elementaryE_1,\elementaryE_2,\dotsc].
+\]
+\end{theorem}
+
+For a \hyperref[circularDyckDiagram]{circular Dyck path} $\avec$, let
+$H_\avec$ be the underlying undirected graph of $\Gamma_\avec$.
+This is a proper circular-arc graph, so
+\[
+ \chrom_{\Gamma_\avec}(\xvec;1)=\chrom_{H_\avec}(\xvec)
+ \in\setN[\elementaryE_1,\elementaryE_2,\dotsc].
+\]
+The theorem settles the $q=1$ case of Ellzey's conjecture
+\cite{Ellzey2017,Vailaya2026x}.
+
 The \hyperref[def:hookFilter]{hook filter} on the Gessel fundamental basis is
 useful for extracting hook-shaped Schur coefficients from chromatic symmetric
 functions; it is one of the tools already present in Stanley's original

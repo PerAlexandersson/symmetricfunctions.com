@@ -1,5 +1,23 @@
 # Handoff
 
+## Ready: Vailaya circular-arc positivity result — 2026-10-21
+
+Added arXiv:2609.33124v1 as `Vailaya2026x` and its Theorem 21 to
+`chromaticQuasisymmetric.tex`, with proper circular-arc definition, circular
+Dyck path specialization and the q=1 Ellzey conclusion. Cross-linked from
+`chromaticEexpansion.tex`. No other source edits. Verified metadata against
+arXiv and the arxiv-symmetricfunctions API; theorem/definition checked in the
+current paper-cache source (`ProperCircularArcGraph_1_.tex`, lines 143,
+881–908) and verified text (Theorem 21). Source tree:
+`/papers/math-co/arxiv-extract/arxiv-sources/2609.33124v1/`.
+
+Full build/checks and whitespace pass (only the two existing fixture
+warnings). Chromium 1366/375 checks theorem rendering, reference links and
+cross-page navigation; screenshot inspected. Artifacts:
+`/cargo-target/symcat-vailaya-20261021/`. Owned preview server stopped.
+Ownership released for the two pages, bibliography and handoff opening.
+Source is ready for publication; no deployment was requested or performed.
+
 ## Deployed: real-rootedness links and example — 2026-10-21
 
 Replaced the local real-rootedness subsection and repeated general criterion
