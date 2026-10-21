@@ -1,5 +1,21 @@
 # Handoff
 
+## Verified — recurrence page correction ready to deploy, 2026-10-21
+
+Codex owns this opening and `tex-source/polynomialRecurrences.tex` through
+publication of the requested live-page correction. Removed the literal
+hline command from the table and replaced coined labels with standard
+terminology or plain descriptions. Mathematical statements and anchor IDs
+are preserved; no renderer, bibliography or other content changes.
+
+Full build, site checks and whitespace pass (only the two established
+synthetic-polydata warnings). Chromium checks at 1366/375 pixels now assert
+all twelve table cells and absence of leaked hline and the removed labels,
+in addition to math, references, links, width and navigation. Both table
+screenshots were inspected. Artifacts:
+`/cargo-target/symcat-recurrence-correction-20261021/`.
+Publish through the existing constrained bridge after the clean-state gate.
+
 ## Deployed — recurrence theory and BKW page, 2026-10-21
 
 The user explicitly authorized deployment. Published clean/pushed commit

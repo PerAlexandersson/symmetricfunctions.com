@@ -1,7 +1,7 @@
 \metatitle{Polynomial recurrences and derivatives}
 \metadescription{Spaces of polynomial recurrences, exact finite verification,
 first-order derivative criteria, repeated poles, limiting zeros, and the trade-off between
-recurrence length and derivative order.}
+recurrence order and derivative order.}
 \metakeywords{polynomial recurrence, derivative recurrence, Ore algebra,
 rational generating function, recurrence space, repeated poles, Beraha--Kahane--Weiss}
 
@@ -10,19 +10,19 @@ rational generating function, recurrence space, repeated poles, Beraha--Kahane--
 A polynomial sequence can have several useful recurrences. A relation using
 many consecutive polynomials may be replaced by one using fewer polynomials
 and their derivatives. We study when this is possible, how to describe all
-relations with prescribed coefficient bounds, and how to certify a relation
+relations with prescribed coefficient bounds, and how to prove an identity
 found by exact linear algebra.
 
 Throughout, $P_n(x)\in\setQ[x]$ and $n\geq0$.
-A \defin{derivative recurrence} of length $r$ and derivative order at most $m$
-has the form
+A linear \defin{differential--difference equation} of order $r$ in the index
+and derivative order at most $m$ has the form
 \[
  \delta(n,x)P_{n+r}(x)
  =\sum_{j=0}^{r-1}\sum_{s=0}^{m}A_{j,s}(n,x)P_{n+j}^{(s)}(x),
  \qquad \delta\ne0.
 \]
-The superscript denotes differentiation in $x$. For $m=0$ this is a
-\defin{pure-shift recurrence}. An identity determines the next polynomial
+The superscript denotes differentiation in $x$. For $m=0$ this is an ordinary
+linear recurrence. An identity determines the next polynomial
 only at indices where its leading coefficient is nonzero.
 We shall distinguish polynomial coefficients with prescribed degree bounds,
 arbitrary rational coefficients, and the restriction $\delta=\delta(n)$.
@@ -35,7 +35,7 @@ The criteria below are direct consequences of linear algebra and rational
 generating functions. Real-rootedness is an
 \hyperref[derivativeRecurrenceRealRoots]{additional application}.
 
-\subsection[recurrenceTradeoffExample]{Exchanging length for derivatives}
+\subsection[recurrenceTradeoffExample]{Reducing recurrence order using derivatives}
 
 Consider
 \[
@@ -55,24 +55,23 @@ They hold for every $n\geq0$, including the indices where the leading
 coefficient vanishes.
 
 \begin{tabular}{ccc}
- Length & Derivative order & Leading coefficient\\ \hline
+ Recurrence order & Derivative order & Leading coefficient\\
  3 & 0 & $1$\\
  2 & 1 & $2n$\\
  1 & 2 & $n(n-1)$
 \end{tabular}
 
-There is no length-one first-derivative rule even with coefficients in
+There is no identity $P_{n+1}=AP_n+BP_n'$ even with coefficients in
 $\setQ(n,x)$. Indeed, independence of the three exponential sequences would
-make $P_{n+1}=AP_n+BP_n'$ imply
+imply
 \[
  A=1,\qquad B=\frac{x(x-1)}{n},\qquad B=\frac{x(x+1)}{n},
 \]
-simultaneously. There is also no length-two pure-shift rule over this field.
-Thus the three pairs $(3,0),(2,1),(1,2)$ form the
-\defin{length--derivative frontier}: none can be improved in one coordinate
-without increasing the other.
+simultaneously. There is also no second-order recurrence without derivatives
+over this field. Thus the pairs $(3,0),(2,1),(1,2)$ are optimal: neither
+recurrence order nor derivative order can be reduced while keeping the other fixed.
 
-\section[boundedRecurrenceSpaces]{Complete spaces with bounded coefficients}
+\section[boundedRecurrenceSpaces]{Recurrences with bounded coefficient degrees}
 
 Suppose the sequence is specified by $P_0,\dotsc,P_{k-1}$ and
 \[
@@ -129,10 +128,9 @@ monomial, evaluate these $hk$ residuals, and equate coefficients of $x$.
 For $M$ unknowns and $R$ scalar equations, exact elimination uses
 $O(RM^2+M^3)$ rational field operations; coefficient sizes affect bit complexity.
 
-A successor recurrence exists in the prescribed space if and only if its
-kernel has nonzero projection to the $\delta$ coordinates. Vectors with
+A recurrence with $\delta\ne0$ exists in the prescribed space if and only if
+the kernel has nonzero projection to the $\delta$ coordinates. Vectors with
 $\delta=0$ are relations among the earlier polynomials and their derivatives.
-This distinction is necessary when returning a basis of the entire space.
 
 \subsection[recurrencePropagation]{A recurrence for the residual}
 
@@ -154,8 +152,7 @@ satisfies
 \]
 This is a monic recurrence of order $hk$. Its first $hk$ zero polynomials
 therefore force all subsequent residuals to vanish. The coefficients of
-$\chi(z)^h$, together with the initial residuals, give a finite algebraic
-certificate suitable for formal verification.
+$\chi(z)^h$ and the initial residuals determine a proof by recurrence induction.
 
 \section[recurrenceGeneratingFunctions]{First derivatives and generating functions}
 
@@ -199,7 +196,7 @@ Division by $D$ gives the second condition, and the steps are reversible.
 
 In particular, the pole curves must be invariant under the vector field
 $V$. The numerator condition records the initial polynomials; the denominator
-alone does not determine whether the lift exists.
+alone does not determine whether the derivative recurrence holds.
 
 \section[recurrenceSpectralModel]{Rational coefficients and repeated poles}
 
@@ -218,7 +215,7 @@ $\deg_n a_i=m_i-1$, since
  =\binom{n+m_i-1}{m_i-1}\lambda_i^n.
 \]
 Thus repeated poles change the amplitudes, while the number $d$ counts
-\emph{distinct} active characteristic roots.
+\emph{distinct} characteristic roots with nonzero amplitudes.
 
 On $E(n)^d$, with amplitude vector $a=(a_i)$, define
 \[
@@ -261,11 +258,11 @@ derivatives of its scalar coefficients, and all later spaces agree.
 Otherwise the dimension increases. There can be at most $d-r$ increases.
 \end{proof}
 
-This gives a finite test for every pair $(r,m)$ and for the entire rational
-length--derivative frontier. The shortest pure-shift recurrence with rational
-index dependence has order $d$. By comparison, the shortest eventual
-pure-shift recurrence with coefficients independent of $n$ has order
-$\sum_i m_i$.
+This gives a finite test for every pair $(r,m)$ and determines all minimal
+combinations of recurrence order and derivative order over $\setQ(n,x)$.
+The least order of a recurrence without derivatives is $d$ when rational
+index dependence is allowed, and $\sum_i m_i$ when the coefficients must
+be independent of $n$. Both assertions concern eventual identities.
 
 For example, $(n+1)x^n$ has a double pole at $t=1/x$ and satisfies both
 \[
@@ -334,7 +331,7 @@ This is the convenient stronger-hypothesis form of
 unit-modulus ratios when the corresponding branches are dominant on a set
 with nonempty interior.
 
-\begin{example}[The three-base sequence]
+\begin{example}
 For $P_n(x)=1+x^n+(x+1)^n$, all amplitudes equal $1$, so there are no
 isolated limits arising from amplitude zeros. The limiting set is
 \begin{align*}
@@ -354,7 +351,7 @@ force nonreal zeros for all sufficiently large $n$.
 
 The derivative-recurrence criterion uses the values and logarithmic
 derivatives of the characteristic roots; BKW uses their relative moduli.
-Both depend on the active amplitudes, which are determined by the initial
+Both depend on the nonzero amplitudes, which are determined by the initial
 polynomials. Equal modulus alone does not give a limiting zero unless the
 tied branches are dominant.
 
@@ -366,7 +363,7 @@ analytic extension.
 
 \section[firstDerivativeCriterion]{When does one derivative suffice?}
 
-For the spectral representation above, put
+For the exponential sum above, put
 \[
  \eta_i=\frac{\partial_xa_i}{a_i}
        +n\frac{\lambda_i'}{\lambda_i},\qquad
@@ -374,7 +371,7 @@ For the spectral representation above, put
 \]
 
 \begin{proposition}[First-order criterion, including repeated poles]
-Suppose $d\geq2$. A rule $P_{n+1}=AP_n+BP_n'$ with
+Suppose $d\geq2$. An identity $P_{n+1}=AP_n+BP_n'$ with
 $A,B\in\setQ(n,x)$ exists eventually if and only if the $\eta_i$ are
 not all equal and there are $A,B$ such that
 \[
@@ -385,7 +382,8 @@ Equivalently,
  \operatorname{rank}[a,\nabla a,\mathsf Sa]
  =\operatorname{rank}[a,\nabla a]=2.
 \]
-When the rule exists, it is unique. For any $i,j$ with $\eta_i\ne\eta_j$,
+When this identity exists, its coefficients $A,B$ are unique.
+For any $i,j$ with $\eta_i\ne\eta_j$,
 \[
  B=\frac{\rho_i-\rho_j}{\eta_i-\eta_j},\qquad
  A=\rho_i-B\eta_i.
@@ -401,7 +399,8 @@ The two displayed scalar equations then determine $A,B$ uniquely.
 
 For simple poles the amplitudes are independent of $n$, and the criterion
 has a more explicit form. Write $u_i=a_i'/a_i$ and
-$v_i=\lambda_i'/\lambda_i$. A first-order rule exists if and only if
+$v_i=\lambda_i'/\lambda_i$. A first-order differential recurrence exists
+if and only if
 \[
  u_i=\alpha_0+\beta_0\lambda_i,\qquad
  v_i=\alpha_1+\beta_1\lambda_i
@@ -418,7 +417,8 @@ In particular, all characteristic roots satisfy the same Riccati equation
 $\lambda_i'=\alpha_1\lambda_i+\beta_1\lambda_i^2$.
 
 Repeated poles still give a degree bound. If
-$M=\max_i(m_i-1)$ and a first-order rule exists, it has a polynomial form
+$M=\max_i(m_i-1)$ and a first-order differential recurrence exists,
+it has a polynomial form
 \[
  \Delta(n,x)P_{n+1}=C(n,x)P_n+G(n,x)P_n'
 \]
@@ -435,10 +435,11 @@ More derivatives do not always shorten a recurrence. For
  P_n(x)=(1+2^n)x^n,
 \]
 every derivative is a rational multiple of $P_n$, whereas $P_{n+1}$ is not.
-The two active bases $x$ and $2x$ have the same logarithmic derivative.
-Thus no derivative order gives a length-one rational recurrence.
+The two characteristic roots $x$ and $2x$ have the same logarithmic derivative.
+Thus no finite number of derivatives of $P_n$ can express $P_{n+1}$
+with rational coefficients.
 
-Requiring the successor coefficient to depend only on $n$ creates another
+Requiring the coefficient of $P_{n+1}$ to depend only on $n$ creates another
 obstruction. For each integer $\ell\geq1$, the sequence
 \[
  P_n(x)=1+(2+x^\ell)^n
@@ -473,31 +474,31 @@ combination of $d_1,d_\ell$. Clearing denominators in $n$ proves existence.
 
 The bound $m\leq d-r$ consequently applies to rational coefficients,
 not to the restriction $\delta=\delta(n)$ with polynomial right-hand
-coefficients. A finite degree-bounded kernel remains an exact description
-when those additional restrictions are imposed.
+coefficients. With prescribed coefficient-degree bounds, the matrix kernel
+still describes exactly the recurrences satisfying those restrictions.
 
-\section[recurrenceComputation]{Finding and certifying representations}
+\section[recurrenceComputation]{Computing recurrences}
 
 % Related Rust: polytool/src/recurrence/space.rs at source commit 6d10a1a.
 The \href{https://poly.symmetricfunctions.com/#polynomial-sequence}{Polytool
 recurrence finder} provides comparison and complete-space modes.
 A useful report records the allowed coefficient degrees and derivatives,
-the starting index, a basis of the recurrence space, and representative
-successor formulas. Length and derivative order alone do not measure the
+the starting index, a basis of the recurrence space, and formulas with
+$\delta\ne0$. Recurrence order and derivative order alone do not measure the
 cost of a formula: coefficient degrees and singular initial indices matter.
 
-With a source recurrence and initial polynomials, the
+With a given recurrence and initial polynomials, the
 \hyperref[recurrenceFiniteVerification]{finite verification theorem}
-certifies every identity and completeness within the specified bounds.
+proves the identities and completeness within the specified bounds.
 With finitely many input polynomials alone, a successful fit is an identity
-on those inputs. A zero successor projection can already exclude the
-specified shape, since every all-index identity would satisfy the finite
-constraints. A computation stopped by a resource bound gives no such
-nonexistence conclusion.
+on those inputs. If every kernel vector has $\delta=0$, no recurrence
+with $\delta\ne0$ and the allowed monomials can hold at every index: it
+would have to satisfy the same finite constraints. A computation stopped by
+a resource bound gives no such nonexistence conclusion.
 
-For sources whose coefficients depend polynomially on $n$, the rational
-generating-function argument need not apply. One can instead differentiate
-the source recurrence and form a finite state of shifted polynomials and
+For given recurrences whose coefficients depend polynomially on $n$, the
+rational generating-function argument need not apply. One can instead differentiate
+the given recurrence and form a finite state of shifted polynomials and
 their derivatives. A scalar recurrence for the residual, together with
 checks at singular indices and enough initial zeros, supplies a finite
 verification argument. Its bound depends on that state system.
