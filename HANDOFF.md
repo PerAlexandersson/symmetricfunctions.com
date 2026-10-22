@@ -1,5 +1,27 @@
 # Handoff
 
+## Ready: recent SymCat preprint citations — 2026-10-22
+
+Added exact-v1 references for arXiv:2610.29950 and arXiv:2610.28691 after
+reviewing their paper-cache PDF/source artifacts.  Stewart's restricted
+non-attacking fillings now appear on the Macdonald E page; Zeng's Narayana
+results appear on the real-rootedness, total-positivity, and Pólya-frequency
+pages with their parameter ranges and conjectural/proved scope preserved.
+
+A fresh `arxiv-symmetricfunctions` MCP review identified four further direct
+extensions of existing sections.  Added arXiv:2610.29893 for Whitney-number
+ultra-log-concavity on the matroid page, arXiv:2610.29844 for rectangular
+Schur/Toeplitz identities on the Schur page, arXiv:2610.28544 for Newton--
+Maclaurin inequalities on the elementary symmetric-function page, and
+arXiv:2610.27819 for the smooth-polytope facet threshold on the Ehrhart page.
+Their exact-v1 sources are cached and were checked before editing.
+
+Full build, `make check`, and `git diff --check` pass; only the two existing
+synthetic-polydata warnings remain.  Headless Chromium loaded all eight edited
+pages with zero KaTeX errors, and every new citation has a rendered reference
+and raw BibTeX control.  Ownership is released for all edited files.  No
+deployment was authorized or performed.
+
 ## Deployed: square recurrence icon — 2026-10-21
 
 Published d5dd894 through the constrained bridge at 2026-10-21T20:47:44Z.
