@@ -1,5 +1,14 @@
 # Handoff
 
+## Deployed: recent SymCat preprint citations — 2026-10-22
+
+Published ffc57e2 through the constrained bridge at 2026-10-22T12:07:49Z.
+Receipt `20261022T120749-07b3391c33ba` confirms deployment of the expected
+commit with a matching Pagefind manifest.  All eight affected public pages
+return 200 and match the verified build byte for byte.  Live Chromium finds
+the intended arXiv identifier on each page and reports zero KaTeX errors.
+Ownership remains released.  Final record-only edits need no further upload.
+
 ## Ready: recent SymCat preprint citations — 2026-10-22
 
 Added exact-v1 references for arXiv:2610.29950 and arXiv:2610.28691 after
