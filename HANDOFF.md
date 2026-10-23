@@ -1,5 +1,15 @@
 # Handoff
 
+## Deployed: A046739 gamma interpretation — 2026-10-23
+
+Codex `/root` owns this deployment-record opening only until its checkpoint.
+Published 3a4a861 through the constrained bridge at 10:42:47 UTC after a
+clean-tree gate, full build, `make check`, and whitespace checks passed.
+Receipt: `20261023T104247-39338e9df40e`; Pagefind manifest verification passed.
+Live `oeisA046739.htm` and `oeisProofs.htm` return HTTP 200 and match the
+checked build byte for byte. No source/content changes during deployment.
+Ownership released with this record-only checkpoint; no further upload needed.
+
 ## Complete: A046739 gamma interpretation — 2026-10-23
 
 Added `tex-source/oeisA046739.tex` and its `oeisProofs.tex` collection link:
