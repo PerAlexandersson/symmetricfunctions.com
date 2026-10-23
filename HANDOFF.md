@@ -1,5 +1,17 @@
 # Handoff
 
+## Deployed: chromatic rewrite, references, width control, LLT example — 2026-10-23
+
+Published ede83f6 through the constrained bridge at 2026-10-23T07:54:55Z.
+Receipt `20261023T075455-c155c61c7aad` confirms deployment of the expected
+commit and matching Pagefind manifest. The three edited topic pages and
+shared JS/CSS match the checked build byte for byte. Live Chromium at
+1366/375 verifies theorem/example anchors, Hwang's journal link, the circular
+positivity theorem, zero KaTeX errors, and shared width-preference persistence
+across both chromatic pages, unicellular LLT, and Schur. Full build/checks
+pass (two existing fixture warnings). Ownership remains released. This final
+record-only update requires no further upload.
+
 ## Ready: LLT flip-component example — 2026-10-23
 
 Retained the Alexandersson--Dai theorem with its stable cross-link anchor and
