@@ -1,5 +1,22 @@
 # Handoff
 
+## Ready: chromatic/LLT flip-class theorem cross-links — 2026-10-23
+
+Added the Alexandersson--Dai flip definition and classwise elementary-expansion
+theorem to the unicellular LLT page, cited as Theorem 14 of arXiv:2610.26294v1.
+The chromatic page now states Hwang's flip construction more precisely, links
+to the LLT theorem, and the LLT discussion links back to Hwang's chromatic flip
+components.  The text distinguishes the two local moves and notes that Hwang's
+chromatic classwise elementary-positivity conjecture remains open.
+
+The statement and comparison were checked against the exact paper-cache
+sources for arXiv:2610.26294v1 and arXiv:2208.09857v2.  Full build,
+`make check`, and whitespace checks pass with only the two existing fixture
+warnings.  Chromium renders both edited pages with 507 KaTeX expressions and
+zero KaTeX errors; both cross-page anchors resolve.  Evidence:
+`/cargo-target/symcat-flip-crosslinks-20261023/`.  Ownership released.  No
+deployment authorized or performed.
+
 ## Ready: Hwang Transactions reference — 2026-10-23
 
 Updated `Hwang2022x` from the arXiv-only record to *Transactions of the
