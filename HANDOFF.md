@@ -1,5 +1,25 @@
 # Handoff
 
+## Ready: published chromatic references — 2026-10-23
+
+Audited 61 arXiv references without DOIs cited by the two chromatic pages
+through arxiv-symmetricfunctions MCP. Updated 15 matching journal records
+after checking titles/authors and publisher-deposited Crossref metadata.
+These cover Wang--Yu--Zhang, Arunkumar et al., Gonzalez--Orellana--Tomba,
+Aliste-Prieto et al., Blasiak et al., Shelburne--van Willigenburg, Cho--Hong,
+Hwang's skewing paper, Skandera, Novelli--Thibon, Hikita, Wang--Zhou,
+Li--Qiu--Yang--Zhang, Gillespie--Pappe--Salois, and Martin--Trist.
+Preserved citation keys and arXiv identifiers; corrected Xingxing Yu's name.
+Hikita's JAMS DOI has no assigned volume/pages in the record, so none were
+invented. ECA's publisher PDF confirms the 2025 issue year and article S2R8
+despite the earlier online date in Crossref. No conclusion about publication
+status was drawn for entries without feed DOIs.
+
+Full build, `make check`, and whitespace checks pass (two existing fixture
+warnings); all 15 DOI links and raw BibTeX controls verified in rendered
+chromatic pages. Ownership released for `bibliography.bib` and this opening.
+No deployment performed.
+
 ## Ready: chromatic exposition and width control — 2026-10-23
 
 Reorganized the chromatic quasisymmetric page around definitions, symmetry
