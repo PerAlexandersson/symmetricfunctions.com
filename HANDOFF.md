@@ -1,5 +1,24 @@
 # Handoff
 
+## Complete: A046739 gamma interpretation — 2026-10-23
+
+Added `tex-source/oeisA046739.tex` and its `oeisProofs.tex` collection link:
+definitions, two counting models, modified Foata--Strehl orbit proof,
+n=4 example, shifted normalization, and A097899 row sums. The fundamental
+transformation is applied to the inverse to send excedances to descents.
+Added both primary bibliography records. Official EJC metadata verifies
+Sun--Wang DOI 10.37236/3723 (not the research note/cache's 10.37236/3874).
+No journal DOI found for Athanasiadis--Savvidou; journal PDF and arXiv retained.
+Read-only research sources were not edited.
+
+Full `make Q=1`, `make check`, and whitespace checks pass (two existing
+fixture warnings). Chromium at 1366/375 verifies rendered math, citation
+anchors, DOI link, collection/back links, and no horizontal overflow.
+Screenshots inspected: `/tmp/symcat-a046739-{1366,375}.png`.
+Tree was clean at intake; exact ownership of the new page, collection index,
+`bibliography.bib`, and this opening is released at this focused checkpoint.
+No deployment performed.
+
 ## Complete: publication-reference discovery with Luna — 2026-10-23
 
 Three user-requested GPT-6-Luna agents checked 866 arXiv-only entries; root

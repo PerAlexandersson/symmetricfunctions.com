@@ -1,0 +1,108 @@
+\metatitle{A gamma interpretation for OEIS A046739}
+\metadescription{A Foata--Strehl orbit proof for the gamma coefficients of derangement excedance polynomials, using ascending runs and double excedances.}
+
+
+\section[oeisProofA046739]{A gamma interpretation for A046739}
+
+This page is part of the \hyperref[oeisProofs]{OEIS proof collection}.
+
+Let $\mathcal{D}_n$ be the set of \defin{derangements} of
+$[n]=\{1,\dotsc,n\}$, that is, permutations with no fixed point.
+An \defin{excedance} of $\sigma$ is an index $i$ with $i<\sigma(i)$;
+we write $\operatorname{exc}(\sigma)$ for their number.
+The \defin{derangement excedance polynomial}
+\[
+ D_n(t)\coloneqq\sum_{\sigma\in\mathcal{D}_n}
+ t^{\operatorname{exc}(\sigma)}
+\]
+is the row polynomial of \oeis{A046739}.
+An \defin{ascending run} is a maximal consecutive increasing subword
+in one-line notation; a singleton run has length one.
+A value $i$ is a \defin{double excedance} of $\sigma$ if
+$\sigma^{-1}(i)<i<\sigma(i)$.
+
+\begin{theorem}
+For $n\geq 1$, we have
+\[
+ D_n(t)=\sum_{r=0}^{\lfloor n/2\rfloor}
+ \xi(n,r)t^r(1+t)^{n-2r},
+\]
+where $\xi(n,r)$ counts either of the following classes:
+\begin{itemize}
+\item permutations of $[n]$ with $r$ ascending runs and no singleton run;
+\item derangements of $[n]$ with $r$ excedances and no double excedance.
+\end{itemize}
+\end{theorem}
+
+This is \cite[Thm.~1.4]{AthanasiadisSavvidou2012}.
+We outline its orbit proof below.
+
+\subsection[oeisA046739OrbitProof]{The orbit proof}
+
+\begin{proof}
+A \defin{descent} of a word $w=w_1\dotsm w_n$ is a position $i<n$
+with $w_i>w_{i+1}$; let $\operatorname{des}(w)$ count these positions.
+Let $E_n$ consist of permutations in which every left-to-right maximum
+(an entry larger than all preceding entries) is followed by a smaller entry.
+Write each cycle of a permutation with its largest entry first, order the
+cycles by increasing largest entry, and erase the parentheses; call this
+fundamental transformation $\varphi$.
+Then $\sigma\mapsto\varphi(\sigma^{-1})$ is a bijection
+$\mathcal{D}_n\to E_n$ satisfying
+$\operatorname{exc}(\sigma)=\operatorname{des}(\varphi(\sigma^{-1}))$.
+
+Set $w_0=0$ and $w_{n+1}=n+1$.
+A \defin{double ascent} is an entry $w_i$ with
+$w_{i-1}<w_i<w_{i+1}$; a \defin{double descent} has both inequalities reversed.
+The modified Foata--Strehl action on $E_n$ moves a double-ascent entry left
+to the nearest gap $w_j>w_i>w_{j+1}$, and moves a double-descent entry right
+to the nearest gap $w_j<w_i<w_{j+1}$.
+These inverse moves preserve $E_n$ and toggle the status of the moved entry.
+The toggles indexed by entries commute, and each orbit has a unique
+representative with no double descent.
+
+A \defin{peak} satisfies $w_{i-1}<w_i>w_{i+1}$, and a \defin{valley}
+satisfies $w_{i-1}>w_i<w_{i+1}$.
+If that representative has $r$ descents, it has $r$ peaks and $r$ valleys;
+the remaining $n-2r$ entries are double ascents.
+Toggling any subset of them increases the descent number by the subset size.
+Thus its orbit contributes
+\[
+ \sum_{u\in\mathcal{O}(w)}t^{\operatorname{des}(u)}
+ =t^r(1+t)^{n-2r}.
+\]
+Under $\varphi(\sigma^{-1})$, the representatives correspond exactly to
+derangements with $r$ excedances and no double excedance.
+For such a derangement $\sigma$, the word $\varphi(\sigma)$ has $r$
+descending runs and no singleton run. Complementing its entries
+($i\mapsto n+1-i$) gives the ascending-run model.
+Summing the orbit contributions proves the expansion and both interpretations;
+see \cite[proof of Thm.~1.4, pp.~18--19]{AthanasiadisSavvidou2012}.
+\end{proof}
+
+H.~Sun and Y.~Wang give the same orbit factor directly on derangements
+using a cyclic modified Foata--Strehl action
+\cite[Thm.~5 and Cor.~6]{SunWang2014}.
+Its unique representative has no cyclic double ascent, which is precisely
+the condition of having no double excedance defined above.
+
+\subsection[oeisA046739Example]{Example and shifted normalization}
+
+For $n=4$,
+\[
+ D_4(t)=t+7t^2+t^3=t(1+t)^2+5t^2.
+\]
+The ascending-run model consists of $1234$ with one run, and
+$1324,1423,2314,2413,3412$ with two runs of length two.
+Hence $\xi(4,1)=1$ and $\xi(4,2)=5$.
+
+For the shifted normalization $P_m(t)\coloneqq D_{m+4}(t)/t$, $m\geq0$,
+write
+\[
+ P_m(t)=\sum_{j=0}^{\lfloor(m+2)/2\rfloor}
+ \gamma(m,j)t^j(1+t)^{m+2-2j}.
+\]
+Dividing the expansion of $D_{m+4}$ by $t$ and setting $r=j+1$ gives
+$\gamma(m,j)=\xi(m+4,j+1)$.
+Finally, summing $\xi(n,r)$ over $r$ forgets the number of runs and gives
+\oeis{A097899}$(n)$, the number of permutations with no singleton ascending run.
