@@ -1,5 +1,21 @@
 # Handoff
 
+## Ready: LLT flip-component example — 2026-10-23
+
+Retained the Alexandersson--Dai theorem with its stable cross-link anchor and
+made Flip classes a contents-listed subsection after the full elementary
+expansion. Added the smallest component from cached arXiv:2610.26294v1,
+source example `ex:smallestFlip`: two orientations of K3, displayed with
+ascending-edge diagrams, highest reachable vertices, class sum e21+e3, and
+weighted contribution q^2(e21+e3). No new computed examples were generated.
+
+Full build, `make check`, and whitespace checks pass (two existing fixture
+warnings). Chromium at 1366/375 confirms the contents link, example, zero
+math errors, and no horizontal overflow; screenshots inspected at
+`/tmp/symcat-llt-flip-1366.png` and `/tmp/symcat-llt-flip-375.png`.
+Ownership released for `tex-source/unicellular-llt.tex` and this opening.
+No deployment performed.
+
 ## Ready: published chromatic references — 2026-10-23
 
 Audited 61 arXiv references without DOIs cited by the two chromatic pages
