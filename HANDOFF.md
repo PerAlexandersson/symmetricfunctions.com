@@ -1,5 +1,16 @@
 # Handoff
 
+## Ready: Hwang Transactions reference — 2026-10-23
+
+Updated `Hwang2022x` from the arXiv-only record to *Transactions of the
+American Mathematical Society* 377(4) (2024), 2855--2896, DOI
+10.1090/tran/9096, while retaining arXiv:2208.09857v2.  Removed the stray bare
+AMS URL above the entry.  Full build, `make check`, and whitespace pass (only
+the two existing fixture warnings).  The rendered chromatic-quasisymmetric
+page links the title to the DOI and exposes the updated raw BibTeX; Chromium
+reports zero KaTeX errors.  Ownership released.  No deployment authorized or
+performed.
+
 ## Deployed: recent SymCat preprint citations — 2026-10-22
 
 Published ffc57e2 through the constrained bridge at 2026-10-22T12:07:49Z.
