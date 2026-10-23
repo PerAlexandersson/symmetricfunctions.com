@@ -1,5 +1,25 @@
 # Handoff
 
+## Complete: publication-reference discovery with Luna — 2026-10-23
+
+Three user-requested GPT-6-Luna agents checked 866 arXiv-only entries; root
+checked 27 additional arXiv entries. The arXiv feed, paper-cache and Crossref
+yielded 281 strong publication matches, 47 DOI candidates needing review/retry,
+and eight no-DOI publication hints. There were 25 arXiv API errors. Details:
+`suggestions/reference-publication-audit-20261023.txt`; verbose scratch reports
+remain in `/tmp/symcat-publication-audit-20261023/`.
+
+Do not bulk-import: five feed DOI mappings are wrong, several entries duplicate
+existing journal keys, and issue years need checking against online dates.
+Urgent separate content review: `FinkShawSpeyer2024x` was retracted (publisher
+notice DOI 10.1093/imrn/rnag125, Theorem 1.5 false); see `tex-source/matroids.tex`
+near line 984. The report records the notice and affected paragraph location.
+
+Discovery only: no bibliography/page edits or deployment. Reports parse and
+whitespace checks pass; no build needed for these internal notes. Ownership
+released. Next step is a focused verified bibliography update, keeping all
+existing citation keys/arXiv IDs, and separate review of the retracted claim.
+
 ## Deployed: chromatic rewrite, references, width control, LLT example — 2026-10-23
 
 Published ede83f6 through the constrained bridge at 2026-10-23T07:54:55Z.
