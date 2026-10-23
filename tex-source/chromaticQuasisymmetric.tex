@@ -24,17 +24,15 @@ variety}
   SignedIn & completeMultipartite | CrewSpirkl2020x | scope=chromatic symmetric functions at q=1; sign_rule=maximal stable partitions; proof=Cor.~3 \\
 \end{polydata}
 
-\name{G. Arunkumar} relates Stanley's chromatic symmetric functions to
-Borcherds algebras \cite{Arunkumar2021}.  Another Hopf-algebraic viewpoint is
-given by \name{Jean-Christophe Aval}, \name{Nantel Bergeron}, and
-\name{John Machacek}, who introduce invariants of permutations, orders, and
-graphs connected with the nabla operator \cite{AvalBergeronMachacek2020}.
-\name{Jacob A. White} defines chromatic quasisymmetric class functions for
-digraphs and, more generally, for combinatorial Hopf monoids
-\cite{White2021,White2025}; these variants incorporate group actions into the
-chromatic quasisymmetric setting.
 
+Chromatic quasisymmetric functions enumerate proper graph colorings by their
+colors and ascents. We start with the definition and the unit interval and
+circular graph models, then discuss symmetry, basis expansions, and the
+connections with LLT polynomials and Hessenberg varieties.
 
+For elementary positivity, see the separate
+\hyperref[chromaticEexpansion]{results and methods page}, especially its
+\hyperref[chromaticEExpansionChronology]{chronological guide}.
 
 
 \subsection[chromaticQuasisymmetricHistory]{Historical overview}
@@ -53,235 +51,37 @@ See also \name{Per Alexandersson} and \name{Greta Panova}
 \cite{AlexanderssonPanova2018}, who considered the same model from a different
 perspective.
 
-Positivity in the \hyperref[elementaryE]{elementary symmetric function basis}
-has been a central problem for chromatic symmetric functions and their
-$q$-refinement \cite{ShareshianWachs2012,ShareshianWachs2016}.
-The corresponding conjectures are
-the \hyperref[stanleyStembridgeConjecture]{Stanley--Stembridge conjecture}
-and the \hyperref[shareshianWachsConjecture]{Shareshian--Wachs conjecture},
-respectively.
-Shareshian and Wachs also conjectured that $\omega \chrom_G(\xvec;q)$ is
-\hyperref[dotAction]{related to
-the equivariant cohomology of regular semisimple Hessenberg varieties}.
-
-
-
-In \cite{Hwang2022x}, \name[B.-H. Hwang]{Byung-Hak Hwang} introduces an
-additional refinement of the chromatic quasisymmetric functions.
-He defines local flips on heaps, equivalently on the corresponding acyclic
-orientations.  The \defin{flip components}\label{chromaticFlipComponents} are
-the connected components under these moves, and their associated sums are
-\hyperref[schurPositiveDefinition]{Schur-positive}.  The ascent parameter
-introduced by Shareshian--Wachs is preserved by the flips.  Hwang conjectures
-that every component contribution is positive in the elementary symmetric
-function basis.
-The \hyperref[unicellularLLTFlipClassExpansion]{LLT flip-class analogue} is
-elementary-positive by \name{Per Alexandersson} and \name{Lilan Dai}
-\cite[Thm.~14]{AlexanderssonDai2026Flipx}.  The two local moves are different:
-Hwang reverses a source or sink fork whose outer vertices are nonadjacent,
-whereas the LLT flip retains the long edge of a triangle.
-See also \cite{Hwang2023x} for a connection with
-\hyperref[nonComFunctions]{noncommutative symmetric functions}.
-A proof for Schur positivity of the flip-components is also given in
-\cite{BlasiakErikssonPylyavskyySiegl2022x}.
-
-
-For a representation-theoretical perspective, see \cite{Skandera2020},
-where connections with immanents and characters are studied.
-
-\name{Yusaku Nishimura} proves that the second Kneser chromatic function
-$X_{K_{\setN,2}}(G)$ is a complete invariant for trees \cite{Nishimura2026}.
-This fits into the Kneser chromatic functions of \name{Takayuki Hasebe},
-\name{Hiroyuki Miezaki}, \name{Akihiro Munemasa}, \name{Yusaku Nishimura},
-\name{Yusuke Sakuma}, and \name{Shuhei Tsujie}, where
-$X_{K_{\setN,1}}(G)$ is Stanley's chromatic symmetric function and the whole
-family is a complete invariant for finite graphs.
-
-\name{Logan Crew}, \name{Evan Haithcock}, \name{Josephine Reynes}, and
-\name{Sophie Spirkl} introduce a
-\defin{chromatic multisymmetric function}\label{chromaticMultisymmetricFunction}
-for graphs whose vertex set is partitioned into parts
-\cite{CrewHaithcockReynesSpirkl2024}.
-They use homogeneous sets and homogeneous pairs to turn known relations for
-ordinary chromatic symmetric functions into new ones, including a
-generalization of Guay-Paquet's reduction of the Stanley--Stembridge
-conjecture to unit interval graphs.
-
-\name{Farid Aliniaeifard}, \name{Victor Wang}, and
-\name{Stephanie van Willigenburg} define a
-\defin{centered chromatic symmetric function}\label{centeredChromaticSymmetricFunction}
-$y_{G:v}$ using a quotient of noncommutative symmetric functions
-\cite{AliniaeifardWangWilligenburg2024}.  This viewpoint gives new
-$e$-positive unit interval graph families, operations preserving the stronger
-centered positivity property, and noncommutative refinements of sink-counting
-theorems for acyclic orientations.
-\name{John M. Campbell} gives another noncommutative direction: a lift of
-Stanley's chromatic symmetric function to
-\hyperref[nonComFunctions]{$\mathrm{NSym}$} \cite{Campbell2024x}.  The lift
-is indexed by directed graphs and specializes under the commutative image to
-the ordinary chromatic symmetric function of the underlying graph.
-
-\name{Rafael S. González D'León} and \name{Michelle L. Wachs} construct a
-different chromatic symmetric analogue from
-\hyperref[weightedBondSymmetric]{multiweighted bond posets}
-\cite{DLeonWachs2026x}.  Its one-variable specialization is the reversed
-chromatic polynomial, while its top homogeneous component is a new Möbius
-symmetric function of the graph.
-
 
 \subsection[chromaticQuasisymmetricDefinition]{Definition}
 
-Let $G$ be an \defin{oriented graph}\label{orientedGraph} with $n$ vertices.
-Given a vertex-coloring $\kappa:G\to \setP$,
-let $\asc(\kappa)$ denote the number of directed edges $(u,v)$ in $G$ such that $\kappa(u) \lt \kappa(v)$.
+Let $G$ be an \defin{oriented graph}\label{orientedGraph} on $[n]$.
+A \defin{proper coloring}\label{properColoring} is a map
+$\kappa:[n]\to\setP$ assigning different colors to the endpoints of every edge.
+We write $\asc(\kappa)$ for the number of directed edges $(u,v)$ such that
+$\kappa(u)\lt\kappa(v)$.
 
 The \defin{chromatic quasisymmetric function}\label{chromaticQuasisymmetricFunction}
 of $G$ is defined as
 \[
 \chrom_G(\xvec;q) \coloneqq
-\sum_{\substack{\kappa : G\to \setP \\ \kappa \text{ proper}} } x_{\kappa(1)}\dotsm x_{\kappa(n)} q^{\asc(\kappa)},
+\sum_{\substack{\kappa : [n]\to \setP \\ \kappa \text{ proper}}}
+x_{\kappa(1)}\dotsm x_{\kappa(n)} q^{\asc(\kappa)}.
 \]
-where the sum runs over all proper colorings of the graph $G$.
-A \defin{proper coloring}\label{properColoring} is a coloring in which no edge
-has endpoints of the same color.
-The function $\chrom_G(\xvec;q)$ is quasi-symmetric in $\xvec$.
+This function is quasisymmetric in $\xvec$.
 
-From the definition, it is clear that
-\[
-\chrom_G(1^k;1)
-\]
-is the number of ways to color $G$ with $k$ colors,
-so the classical \defin{chromatic polynomial}\label{chromaticPolynomial}
+Setting $q=1$ gives Stanley's chromatic symmetric function, which is
+independent of the edge orientations. Specializing further to $k$ variables
+all equal to $1$ counts proper colorings with $k$ colors. Thus the classical
+\defin{chromatic polynomial}\label{chromaticPolynomial}
 $\chi_G(k)$ is given by the specialization $\chrom_G(1^k;1)$.
-See \cite{SaganVatter2021} for a nice article with bijective proofs of
+See \cite{SaganVatter2021} for bijective proofs of
 properties of $\chi_G(k)$.
-\name{Zhiyun Cheng}, \name{Ziyi Lei}, \name{Yitian Wang}, and
-\name{Yanguo Zhang} construct a cohomology theory for the
-\defin{signed chromatic polynomial}\label{signedChromaticPolynomial}
-of a signed graph \cite{ChengLeiWangZhang2022}.  Its graded Euler
-characteristic is the signed chromatic polynomial, and its long exact sequence
-categorifies signed deletion--contraction.
-\name{Jean-Christophe Aval} and \name{Raquel Melgar} introduce
-\defin{chromatic quasisymmetric functions for signed graphs}\label{signedChromaticQuasisymmetricFunction}
-\cite{AvalMelgar2025x}.  Their
-construction is guided by Zaslavsky's signed-graph hyperplane arrangements and
-leads to an algebra of signed quasisymmetric functions.
-
-
 Note that every labeling induces an orientation, by orienting edges toward the
 larger label.
 This labeled model is what was introduced in \cite{ShareshianWachs2012,ShareshianWachs2016}.
 
 
-
-\subsection[chromaticQuasisymmetricClawFree]{Claw-free graphs}
-
-\name{Richard Stanley} recorded the conjecture, credited to
-\name{Vesselin Gasharov}, that $\chrom_G(\xvec;1)$ is
-\hyperref[schurPositiveDefinition]{Schur-positive} whenever $G$ is claw-free
-\cite{Stanley1998}.  This conjecture is false.  \name{Jacob P. Matherne} and
-\name[Alejandro H. Morales]{Alejandro H.~Morales} give two line graphs whose
-chromatic symmetric functions have negative Schur coefficients
-\cite{MatherneMorales2026x}.  Namely, let $G_i=L(H_i)$, where
-\[
-\begin{aligned}
-E(H_1)=\{&(1,8),(2,7),(3,6),(3,10),(4,5),(4,9),\\
-        &(5,9),(6,10),(7,9),(7,10),(8,9),(8,10)\},
-\end{aligned}
-\]
-and
-\[
-\begin{aligned}
-E(H_2)=\{&(1,8),(2,5),(2,10),(3,7),(3,10),(4,6),\\
-        &(4,9),(5,9),(6,9),(7,10),(8,9),(8,10)\}.
-\end{aligned}
-\]
-Then $G_1$ and $G_2$ have $12$ vertices, with $22$ and $21$ edges,
-respectively, and the relevant Schur coefficients are
-\[
-[\schurS_{3333}]\chrom_{G_1}(\xvec;1)=-64,
-\qquad
-[\schurS_{3333}]\chrom_{G_2}(\xvec;1)=-40.
-\]
-Since every line graph is claw-free, these are counterexamples to the general
-conjecture.
-
-Independently, \name{Jitendra Prajapati} gives a short computation by hand for
-the counterexample with coefficient $-64$, verifies it by exact implementations,
-and reports an exhaustive census showing that every connected claw-free graph
-on at most $11$ vertices is \hyperref[schurPositiveDefinition]{Schur-positive}
-\cite{Prajapati2026x}.  The same census finds exactly two non-Schur-positive
-isomorphism classes on $12$ vertices, with the two coefficients $-64$ and
-$-40$ above.
-\name{David G. L. Wang}, \name{K. Zhang}, and \name{T. Y. Zhao} combine this
-census with further exact computations and construct an infinite family of
-connected line graphs whose chromatic symmetric functions are not
-\hyperref[schurPositiveDefinition]{Schur-positive}
-\cite{WangZhangZhao2026x}.
-
-Positive results remain for special claw-free families.  Using an involution
-inspired by the \hyperref[gesselSlinkyRule]{slinky rule}, the authors of
-\cite{ShelburneWilligenburg2024x} prove
-\hyperref[schurPositiveDefinition]{Schur positivity} for the family of graphs
-called \defin{generalized nets}\label{generalizedNets}.
-
-\name{Randy Davila}, \name{Houston Schuerger}, and \name{Ben Small}
-characterize claw-free graphs using zero forcing invariants
-\cite{DavilaSchuergerSmall2024x}.  They prove that $G$ is claw-free if and
-only if every induced subgraph $H$ satisfies $Z(H)=Z_+(H)$.
-
-\name{Ethan Y. H. Li}, \name{Grace M. X. Li}, \name{Arthur L. B. Yang},
-and \name{Zhong-Xue Zhang} introduce a strengthening of the nice property,
-called the \defin{strongly nice property}\label{stronglyNiceProperty}
-\cite{LiLiYangZhang2024x}.
-They prove that \hyperref[schurPositiveDefinition]{Schur positivity} implies
-strong niceness, and that the
-graphs whose induced subgraphs are all strongly nice are precisely the
-claw-free graphs.  Thus hereditary strong niceness captures the claw-free
-condition, but the line-graph counterexamples above show that it is not
-sufficient for Schur positivity.
-
-\subsection[chromaticProductsOfChains]{Products of chains}
-
-Distributive \hyperref[latticePoset]{lattices} give a separate family of
-negative tests when a poset
-is viewed through its incomparability graph.  \name{Grace M. X. Li},
-\name{Dun Qiu}, \name{Arthur L. B. Yang}, and \name{Zhong-Xue Zhang}
-construct distributive lattices that are not nice and hence not
-\hyperref[schurPositiveDefinition]{Schur-positive}, and also distributive lattices
-that are nice but still not
-\hyperref[schurPositiveDefinition]{Schur-positive} \cite{LiQiuYangZhang2024x}.
-Here, $\mathbf{r}$ denotes a chain with $r$ elements.  Later,
-\name{David G. L. Wang} and \name{K. Zhang} prove that the product lattices
-$\mathbf{m}\times\mathbf{2}$ and $\mathbf{m}\times\mathbf{3}$ are
-\hyperref[schurPositiveDefinition]{Schur-positive} exactly for $m\leq7$ and
-$m\leq6$, respectively.  They also show that
-$\mathbf{m}\times\mathbf{3}$ is not strongly nice for $m\geq44$
-\cite{WangZhang2025x}.
-
-\name{Kai Zhang} supplies a negative coefficient throughout the remaining
-large-$m$ range.  Put $m=n+k$ and
-\[
-\rho=(2n+k-1,2n+k-3,\dotsc,k+5,k,k,4).
-\]
-
-\begin{theorem}[Zhang, \cite[Thm.~3.1]{Zhang2026Chainsx}]
-If $n\geq4$ and $k\geq2n-1$, then
-\[
-[\schurS_\rho]\,
-\chrom_{\operatorname{inc}(\mathbf{m}\times\mathbf{n})}(\xvec;1)<0.
-\]
-In particular, $\mathbf{m}\times\mathbf{n}$ is not Schur-positive whenever
-$n\geq4$ and $m\geq3n-1$.
-\end{theorem}
-
-Together with the range $n+5\leq m\leq3n-2$ proved in
-\cite{LiQiuYangZhang2024x}, this shows that
-$\mathbf{m}\times\mathbf{n}$ is not Schur-positive for every
-$n\geq3$ and $m\geq n+5$; for $n=2$, nonpositivity holds for $m\geq8$
-\cite[Cor.~3.4]{Zhang2026Chainsx}.
-
-\subsection[chromaticQuasisymmetricUnitIntervalGraph]{Unit interval graphs}
+\subsection[chromaticQuasisymmetricUnitIntervalGraph]{Unit interval graphs and circular digraphs}
 
 The following definition using area sequences is from \cite{AlexanderssonPanova2018}.
 
@@ -348,9 +148,14 @@ on vertices $\{1,2,\dotsc,n\}$
 are the unit interval graphs where there is no vertex $j$ such that both $(1,j)$ and $(j,n)$ are non-edges.
 The number of Dyck paths of size $n$ with an Abelian unit interval graph is $2^{n-1}$.
 
+A \defin{proper circular-arc graph}\label{properCircularArcGraph} is the
+intersection graph of arcs on a circle, none of which properly contains another.
+For a circular Dyck path, the underlying undirected graph is a proper
+circular-arc graph. Its elementary positivity is discussed in the
+\hyperref[chromaticECircularTheorem]{elementary-expansion survey}.
 
 
-\section[chromaticQuasisymmetricProperties]{Properties of chromatic quasisymmetric functions}
+\section[chromaticQuasisymmetricProperties]{Symmetry and basis expansions}
 
 
 \subsection[chromaticQuasisymmetricSymmetric]{Symmetry}
@@ -380,63 +185,6 @@ compares their monomial-quasisymmetric expansions and gives explicit formulas
 for star graphs.
 
 
-\subsection[chromaticQuasisymmetricReciprocity]{Reciprocity}
-
-Let $\chi_G(k)$ be the chromatic polynomial associated with the graph $G$ on the vertex set $[n]$.
-\name{Olivier Bernardi} and \name{Philippe Nadeau} \cite{BernardiNadeau2020} gave the following interpretation of
-the specialization $(-1)^{n-i}\chi^{(i)}_G(-j)$.
-\begin{theorem}
-Let $i,j \geq 0$. Then $(-1)^{n-i}\chi^{(i)}_G(-j)$ counts the number of tuples
-\[
-\left( (V_1, \theta_1),\dotsc,(V_{i+j}, \theta_{i+j}) \right)
-\]
-such that
-\begin{itemize}
-\item $V_1,\dotsc,V_{i+j}$ is a set-partition of the vertices of $G$,
-\item $\theta_\ell$ is an \defin{acyclic orientation}\label{acyclicOrientation}
-of the graph induced by $V_\ell$,
-\item for all $\ell \in [i]$, $V_\ell$ is non-empty and $\theta$ has a unique source, given by $\min V_\ell$.
-\end{itemize}
-\end{theorem}
-
-
-
-
-
-\subsection[chromaticQuasisymmetricLLT]{Relationship with LLT polynomials}
-
-Carlsson--Mellit \cite[Prop.~3.4]{CarlssonMellit2017} proved the following
-\hyperref[plethysm]{plethystic} relationship between chromatic
-quasisymmetric functions and \hyperref[LLT]{unicellular LLT polynomials}
-indexed by unit interval graphs
-on $n$ vertices:
-\[
-(q-1)^{-n} \LLT_\avec[\xvec(q-1);q] =  \chrom_\avec(\xvec;q).
-\]
-This relationship is not always true in the circular case, that is, for area sequences where $a_1 \gt 0$.
-The relationship is reminiscent of the technique
-introduced by \name{Jim Haglund}, \name{Mark Haiman}
-and \name{Nicholas Loehr} \cite{HaglundHaimanLoehr2005}.
-
-This plethystic relationship is generalized in \cite[Thm.~6.2]{NovelliThibon2019},
-where a noncommutative lift is given.
-\name[J.-C. Novelli]{Jean-Christophe Novelli} and
-\name[J.-Y. Thibon]{Jean-Yves Thibon} also introduce a noncommutative lift
-of the unicellular LLT polynomials.
-
-\name{Michele D'Adderio}, \name{Roberto Riccardi}, and
-\name{Viola Siconolfi} extend this picture from Dyck graphs to interval
-graphs \cite{DAdderioRiccardiSiconolfi2023x}.  They introduce
-quasisymmetric functions attached to increasing spanning forests and use them
-to give a forest expansion for chromatic quasisymmetric functions of interval
-graphs \cite[Thm.~7.2]{DAdderioRiccardiSiconolfi2023x}.  They also define
-LLT quasisymmetric functions for ordered simple graphs, recovering the
-unicellular LLT symmetric functions for Dyck graphs
-\cite[Thm.~7.7]{DAdderioRiccardiSiconolfi2023x}, and prove an interval-graph
-generalization of the Carlsson--Mellit plethystic identity
-\cite[Thm.~10.1]{DAdderioRiccardiSiconolfi2023x}.
-
-
 \subsection[chromaticQuasisymmetricGesselExpansion]{Fundamental quasisymmetric positivity}
 
 The standard \hyperref[pPartition]{$P$-partition} expansion gives
@@ -456,80 +204,6 @@ positive in the \hyperref[gessel]{fundamental quasisymmetric basis}.
 \name{Vasu Tewari}, \name{Andrew Wilson}, and \name{Philip Zhang} study a
 nonsymmetric refinement for Dyck graphs and prove positivity in the
 \hyperref[slideF]{fundamental slide basis} \cite{TewariWilsonZhang2022}.
-
-
-\subsection[chromaticWPolynomial]{The $w$-polynomial and $X$-descents}
-
-Let $G$ be a graph on $n\geq1$ vertices.  Applying the
-\hyperref[gesselLengthSpecialization]{fundamental-length specialization} to
-its chromatic symmetric function gives
-\[
- w_G(t)
- \coloneqq
- \Psi_t\bigl(\chrom_G(\xvec)\bigr)
- =(1-t)^{n+1}\sum_{m\geq0}\chi_G(m)t^m.
-\]
-This is \name{Francesco Brenti}'s \defin{$w$-polynomial}
-\cite[Prop.~4.1]{Brenti1992}.  In particular, this specialization of
-$\chrom_G(\xvec)$ depends only on the ordinary chromatic polynomial.
-
-More generally, let $R\subseteq[n]\times[n]$ be a relation and set
-\[
- \DES_R(\sigma)
- \coloneqq
- \{j\in[n-1]:(\sigma_j,\sigma_{j+1})\in R\},
- \qquad
- A_R(t)\coloneqq\sum_{\sigma\in\symS_n}t^{|\DES_R(\sigma)|}.
-\]
-The \defin{R{\'e}dei--Berge symmetric function} is
-\[
- U_R(\xvec)
- \coloneqq
- \sum_{\sigma\in\symS_n}\gessel_{n,\DES_R(\sigma)}(\xvec),
-\]
-see \cite[Def.~1.15]{GrinbergStanley2023x}.  Hence
-\[
- \Psi_t(U_R)=tA_R(t).
-\]
-
-Let $h:[n]\to[n]$ be a
-\hyperref[hessenbergFunction]{Hessenberg function}, and let $H_h$ be the
-natural unit interval graph with an edge $\{i,j\}$ whenever $i<j\leq h(i)$.
-The descending relation of the corresponding natural unit interval order is
-\[
- R_h\coloneqq\{(i,j):i>h(j)\}.
-\]
-A position $j$ of $\sigma$ is an \defin{$X$-descent} if
-$(\sigma_j,\sigma_{j+1})\in R_h$; write
-\[
- \operatorname{xdes}_h(\sigma)
- \coloneqq |\DES_{R_h}(\sigma)|.
-\]
-Also, let $\inv_{H_h}(\sigma)$ count the pairs $i<j$ such that
-$\sigma_i>\sigma_j$ and $\{\sigma_i,\sigma_j\}$ is an edge of $H_h$.
-
-\begin{theorem}[Shareshian--Wachs, \cite[Thm.~3.1]{ShareshianWachs2016}]
-For every Hessenberg function $h:[n]\to[n]$,
-\[
- \Psi_t\bigl(\omega\chrom_{H_h}(\xvec;q)\bigr)
- =t\sum_{\sigma\in\symS_n}
- q^{\inv_{H_h}(\sigma)}t^{\operatorname{xdes}_h(\sigma)}.
-\]
-\end{theorem}
-
-\begin{proof}
-Shareshian and Wachs expand $\omega\chrom_{H_h}(\xvec;q)$ in fundamental
-functions indexed by the $H_h$-inversion number and the descent set of the
-incomparability order.  Their fundamental functions use decreasing indices.
-Reversing the corresponding compositions gives the increasing-index
-convention used here and preserves their lengths.  Applying $\Psi_t$ gives
-the displayed identity.
-\end{proof}
-
-At $q=1$, the right-hand side is $tA_{R_h}(t)$.  Since natural unit interval
-graphs are chordal, the
-\hyperref[realRootedChromaticW]{chordal $w$-polynomial theorem} shows that
-$A_{R_h}(t)$ has only real nonpositive zeros.
 
 
 \subsection[chromaticQuasisymmetricPowerSumExpansion]{Power-sum positivity}
@@ -657,51 +331,182 @@ quasisymmetric expansion to a Schur expansion via the
 \hyperref[gesselSlinkyRule]{slinky rule}.
 The authors also characterize all Schur-positive complete tripartite graphs.
 
+The \hyperref[def:hookFilter]{hook filter} extracts hook-shaped Schur
+coefficients from the fundamental expansion; see \cite{Stanley1995}.
 
 
-\subsection[chromaticQuasisymmetricElementaryExpansion]{Elementary symmetric expansion}
+\subsection[chromaticFlipRefinement]{Hwang's flip components}
+
+In \cite{Hwang2022x}, \name[B.-H. Hwang]{Byung-Hak Hwang} introduces an
+additional refinement of the chromatic quasisymmetric functions.
+He defines local flips on heaps, equivalently on the corresponding acyclic
+orientations.  The \defin{flip components}\label{chromaticFlipComponents} are
+the connected components under these moves, and their associated sums are
+\hyperref[schurPositiveDefinition]{Schur-positive}.  The ascent parameter
+introduced by Shareshian--Wachs is preserved by the flips.
+The \hyperref[chromaticEFlipComponents]{elementary-positivity refinement}
+is discussed on the elementary-expansion page, together with its relation to
+the \hyperref[unicellularLLTFlipClassExpansion]{Alexandersson--Dai LLT theorem}.
+See also \cite{Hwang2023x} for a connection with
+\hyperref[nonComFunctions]{noncommutative symmetric functions}.
+A proof for Schur positivity of the flip-components is also given in
+\cite{BlasiakErikssonPylyavskyySiegl2022x}.
+
+
+\subsection[chromaticQuasisymmetricElementaryExpansion]{Elementary positivity: results and timeline}
 
 The \defin{Stanley--Stembridge conjecture}\label{stanleyStembridgeConjecture}
-(1993) was first formulated in \cite{StanleyStembridge1993} and
-\cite{Stanley1995} (for $q=1$).
+concerns elementary positivity for incomparability graphs of $(3+1)$-free
+posets \cite{StanleyStembridge1993,Stanley1995}. It was proved by
+\name{Tatsuyuki Hikita} \cite{Hikita2024x}.
 The \defin{Shareshian--Wachs conjecture}\label{shareshianWachsConjecture}
-is the refinement using the general $q$-parameter, presented in
-\cite[Conj.~4.9]{ShareshianWachs2012}.
-Positivity in the elementary symmetric function basis (for $q=1$) was proved
-by \name{Tatsuyuki Hikita} \cite{Hikita2024x}.
-A September 2026 preprint by OpenAI announces a proof of the $q$-refined
-positivity for every naturally labeled unit interval graph
-\cite[Thm.~1.1]{OpenAI2026ChromaticPositivity}.
-The separate elementary-unimodality conjecture remains open.
-For a survey on expansions in the elementary symmetric function basis, see
-\hyperref[chromaticEexpansion]{this page}.
+asks for coefficients in $\setN[q]$ for naturally labeled unit interval
+graphs \cite{ShareshianWachs2012,ShareshianWachs2016}. A September 2026
+preprint announces a proof \cite{OpenAI2026ChromaticPositivity}.
 
-A \defin{proper circular-arc graph}\label{properCircularArcGraph} is the
-intersection graph of arcs on a circle, none of which properly contains another.
-In a September 2026 preprint, \name{Aarush Vailaya} proves the following.
+The separate \hyperref[chromaticEexpansion]{elementary-positivity page}
+contains the theorem statements, the
+\hyperref[chromaticEExpansionChronology]{timeline of results}, methods,
+positive graph families, and obstructions. It also distinguishes positivity
+from the \hyperref[chromaticEUnimodalityConjecture]{elementary-unimodality
+conjecture}.
 
-\begin{theorem}[Vailaya, \cite[Thm.~21]{Vailaya2026x}]
 \label{properCircularArcEPositive}
-If $G$ is a proper circular-arc graph, then
+For proper circular-arc graphs, \name{Aarush Vailaya} proves elementary
+positivity at $q=1$ \cite{Vailaya2026x}; see the
+\hyperref[chromaticECircularTheorem]{theorem and its circular Dyck path
+specialization}.
+
+
+\section[chromaticQuasisymmetricConnections]{LLT polynomials and chromatic specializations}
+
+
+\subsection[chromaticQuasisymmetricLLT]{Relationship with LLT polynomials}
+
+Carlsson--Mellit \cite[Prop.~3.4]{CarlssonMellit2017} proved the following
+\hyperref[plethysm]{plethystic} relationship between chromatic
+quasisymmetric functions and \hyperref[LLT]{unicellular LLT polynomials}
+indexed by unit interval graphs
+on $n$ vertices:
 \[
- \chrom_G(\xvec)\in\setN[\elementaryE_1,\elementaryE_2,\dotsc].
+(q-1)^{-n} \LLT_\avec[\xvec(q-1);q] =  \chrom_\avec(\xvec;q).
+\]
+This relationship is not always true in the circular case, that is, for area sequences where $a_1 \gt 0$.
+The relationship is reminiscent of the technique
+introduced by \name{Jim Haglund}, \name{Mark Haiman}
+and \name{Nicholas Loehr} \cite{HaglundHaimanLoehr2005}.
+
+This plethystic relationship is generalized in \cite[Thm.~6.2]{NovelliThibon2019},
+where a noncommutative lift is given.
+\name[J.-C. Novelli]{Jean-Christophe Novelli} and
+\name[J.-Y. Thibon]{Jean-Yves Thibon} also introduce a noncommutative lift
+of the unicellular LLT polynomials.
+
+\name{Michele D'Adderio}, \name{Roberto Riccardi}, and
+\name{Viola Siconolfi} extend this picture from Dyck graphs to interval
+graphs \cite{DAdderioRiccardiSiconolfi2023x}.  They introduce
+quasisymmetric functions attached to increasing spanning forests and use them
+to give a forest expansion for chromatic quasisymmetric functions of interval
+graphs \cite[Thm.~7.2]{DAdderioRiccardiSiconolfi2023x}.  They also define
+LLT quasisymmetric functions for ordered simple graphs, recovering the
+unicellular LLT symmetric functions for Dyck graphs
+\cite[Thm.~7.7]{DAdderioRiccardiSiconolfi2023x}, and prove an interval-graph
+generalization of the Carlsson--Mellit plethystic identity
+\cite[Thm.~10.1]{DAdderioRiccardiSiconolfi2023x}.
+
+
+\subsection[chromaticWPolynomial]{The $w$-polynomial and $X$-descents}
+
+Let $G$ be a graph on $n\geq1$ vertices.  Applying the
+\hyperref[gesselLengthSpecialization]{fundamental-length specialization} to
+its chromatic symmetric function gives
+\[
+ w_G(t)
+ \coloneqq
+ \Psi_t\bigl(\chrom_G(\xvec)\bigr)
+ =(1-t)^{n+1}\sum_{m\geq0}\chi_G(m)t^m.
+\]
+This is \name{Francesco Brenti}'s \defin{$w$-polynomial}
+\cite[Prop.~4.1]{Brenti1992}.  In particular, this specialization of
+$\chrom_G(\xvec)$ depends only on the ordinary chromatic polynomial.
+
+More generally, let $R\subseteq[n]\times[n]$ be a relation and set
+\[
+ \DES_R(\sigma)
+ \coloneqq
+ \{j\in[n-1]:(\sigma_j,\sigma_{j+1})\in R\},
+ \qquad
+ A_R(t)\coloneqq\sum_{\sigma\in\symS_n}t^{|\DES_R(\sigma)|}.
+\]
+The \defin{R{\'e}dei--Berge symmetric function} is
+\[
+ U_R(\xvec)
+ \coloneqq
+ \sum_{\sigma\in\symS_n}\gessel_{n,\DES_R(\sigma)}(\xvec),
+\]
+see \cite[Def.~1.15]{GrinbergStanley2023x}.  Hence
+\[
+ \Psi_t(U_R)=tA_R(t).
+\]
+
+Let $h:[n]\to[n]$ be a
+\hyperref[hessenbergFunction]{Hessenberg function}, and let $H_h$ be the
+natural unit interval graph with an edge $\{i,j\}$ whenever $i<j\leq h(i)$.
+The descending relation of the corresponding natural unit interval order is
+\[
+ R_h\coloneqq\{(i,j):i>h(j)\}.
+\]
+A position $j$ of $\sigma$ is an \defin{$X$-descent} if
+$(\sigma_j,\sigma_{j+1})\in R_h$; write
+\[
+ \operatorname{xdes}_h(\sigma)
+ \coloneqq |\DES_{R_h}(\sigma)|.
+\]
+Also, let $\inv_{H_h}(\sigma)$ count the pairs $i<j$ such that
+$\sigma_i>\sigma_j$ and $\{\sigma_i,\sigma_j\}$ is an edge of $H_h$.
+
+\begin{theorem}[Shareshian--Wachs, \cite[Thm.~3.1]{ShareshianWachs2016}]
+For every Hessenberg function $h:[n]\to[n]$,
+\[
+ \Psi_t\bigl(\omega\chrom_{H_h}(\xvec;q)\bigr)
+ =t\sum_{\sigma\in\symS_n}
+ q^{\inv_{H_h}(\sigma)}t^{\operatorname{xdes}_h(\sigma)}.
 \]
 \end{theorem}
 
-For a \hyperref[circularDyckDiagram]{circular Dyck path} $\avec$, let
-$H_\avec$ be the underlying undirected graph of $\Gamma_\avec$.
-This is a proper circular-arc graph, so
-\[
- \chrom_{\Gamma_\avec}(\xvec;1)=\chrom_{H_\avec}(\xvec)
- \in\setN[\elementaryE_1,\elementaryE_2,\dotsc].
-\]
-The theorem settles the $q=1$ case of Ellzey's conjecture
-\cite{Ellzey2017,Vailaya2026x}.
+\begin{proof}
+Shareshian and Wachs expand $\omega\chrom_{H_h}(\xvec;q)$ in fundamental
+functions indexed by the $H_h$-inversion number and the descent set of the
+incomparability order.  Their fundamental functions use decreasing indices.
+Reversing the corresponding compositions gives the increasing-index
+convention used here and preserves their lengths.  Applying $\Psi_t$ gives
+the displayed identity.
+\end{proof}
 
-The \hyperref[def:hookFilter]{hook filter} on the Gessel fundamental basis is
-useful for extracting hook-shaped Schur coefficients from chromatic symmetric
-functions; it is one of the tools already present in Stanley's original
-development \cite{Stanley1995}.
+At $q=1$, the right-hand side is $tA_{R_h}(t)$.  Since natural unit interval
+graphs are chordal, the
+\hyperref[realRootedChromaticW]{chordal $w$-polynomial theorem} shows that
+$A_{R_h}(t)$ has only real nonpositive zeros.
+
+
+\subsection[chromaticQuasisymmetricReciprocity]{Reciprocity}
+
+Let $\chi_G(k)$ be the chromatic polynomial associated with the graph $G$ on the vertex set $[n]$.
+\name{Olivier Bernardi} and \name{Philippe Nadeau} \cite{BernardiNadeau2020} gave the following interpretation of
+the specialization $(-1)^{n-i}\chi^{(i)}_G(-j)$.
+\begin{theorem}
+Let $i,j \geq 0$. Then $(-1)^{n-i}\chi^{(i)}_G(-j)$ counts the number of tuples
+\[
+\left( (V_1, \theta_1),\dotsc,(V_{i+j}, \theta_{i+j}) \right)
+\]
+such that
+\begin{itemize}
+\item $V_1,\dotsc,V_{i+j}$ is a set-partition of the vertices of $G$,
+\item $\theta_\ell$ is an \defin{acyclic orientation}\label{acyclicOrientation}
+of the graph induced by $V_\ell$,
+\item for all $\ell \in [i]$, $V_\ell$ is non-empty and $\theta$ has a unique source, given by $\min V_\ell$.
+\end{itemize}
+\end{theorem}
 
 
 \subsection[chromaticDeletionContraction]{Deletion contraction property}
@@ -722,25 +527,69 @@ Acyclic orientations and rook placements are in bijection; see, for example,
 This connection is expanded upon in \cite{ColmenarejoMoralesPanova2023}.
 In particular, some new results in the Abelian case using $q$-hit numbers are given.
 
-\subsection[alphaChromaticSymmetric]{Alpha-chromatic symmetric functions}
 
-\name{Jim Haglund}, \name{Jaeseong Oh}, and \name{Meesue Yoo}
-introduce \defin{$\alpha$-chromatic symmetric functions}\label{alphaChromaticSymmetricFunction},
-which add a
-real parameter $\alpha$ to the chromatic quasisymmetric functions of
-natural unit interval graphs \cite{HaglundOhYoo2025}.  These functions
-interpolate between chromatic symmetric functions and unicellular
-\hyperref[unicellularLLT]{LLT polynomials}: the coefficient of the first
-$q$-falling-factorial term recovers the chromatic symmetric function, while
-the large-$\alpha$ limit recovers the Schur coefficients of the
-unicellular LLT polynomial up to a $q$-factorial factor.
+\section[chromaticQuasisymmetricHessenberg]{Connection with Hessenberg varieties}
 
-Their main results include a positive monomial formula in an
-$\alpha$-binomial basis \cite[Thm.~3.1]{HaglundOhYoo2025}, an expansion
-into a falling-factorial basis whose coefficients are sums of ordinary
-chromatic symmetric functions \cite[Thm.~4.4]{HaglundOhYoo2025}, and a
-rook-theoretic solution of the Garsia--Remmel $q$-hit problem for Ferrers
-boards associated with Dyck paths \cite[Cor.~6.3]{HaglundOhYoo2025}.
+\label{chromaticQuasisymmetricMomentGraph}
+In \cite[Conj.~5.3]{ShareshianWachs2012}, a connection with
+cohomology of regular semisimple
+\hyperref[hessenbergVarietiesBackground]{Hessenberg varieties} was conjectured.
+This conjecture was resolved in 2015, when \name{Patrick Brosnan}
+and \name{Timothy Chow} proved that for unit-interval graphs $\avec$,
+the symmetric function $\omega \chrom_\avec(\xvec;q)$
+is the \hyperref[frobeniusCharacteristic]{Frobenius characteristic} of
+a symmetric group action on the cohomology of regular semisimple Hessenberg
+varieties.
+This was also proved independently by Guay-Paquet \cite{GuayPaquet2016x}.
+
+For more details on this symmetric group action, see the \hyperref[dotAction]{dot action page}.
+
+\name{Lucas Gagnon} gives a finite-group analogue of this result:
+inducing the trivial character from certain unipotent subgroups of
+$\GL_n(\mathbb{F}_q)$ realizes the chromatic quasisymmetric function, up to the
+expected scalar factor \cite[Thm.~3.1]{Gagnon2024}.  The same paper relates
+these character values to point counts of nilpotent Hessenberg varieties over
+finite fields, and realizes vertical-strip LLT polynomials as unipotent
+constituents of induced characters \cite[Thm.~5.1]{Gagnon2024}.
+
+\name{Alex Abreu}, \name{Antonio Nigro}, and \name{Samrith Ram} give a
+finite-field point-counting formula for arbitrary
+\hyperref[hessenbergVarietiesBackground]{Hessenberg varieties}
+\cite{AbreuNigroRam2024x}.  If $T$ is a linear operator on
+$\mathbb{F}_q^n$, then the number of $\mathbb{F}_q$-rational points of the
+\hyperref[hessenbergVarietyDefinition]{Hessenberg variety} $H(m,T)$ is
+\[
+|H(m,T)|
+=
+\left\langle F_T(\xvec),\omega\chrom_{G(m)}(\xvec;q)\right\rangle,
+\]
+where $F_T(\xvec)$ is an invariant-flag generating function expressible using
+modified Hall--Littlewood polynomials \cite[Thm.~1.1]{AbreuNigroRam2024x}.
+For triangulable $T$, this also gives Poincar\'e polynomials of the corresponding
+complex Hessenberg varieties \cite[Cor.~3.8]{AbreuNigroRam2024x}.
+
+\name{Alex Abreu} and \name{Antonio Nigro} relate characters of
+Kazhdan--Lusztig elements of the Hecke algebra, including chromatic symmetric
+functions of indifference graphs, to intersection cohomology of parabolic
+Lusztig varieties \cite{AbreuNigro2025Parabolic}.  The resulting
+decomposition through partial flag varieties points toward recursive
+approaches to Haiman's positivity conjecture and the Stanley--Stembridge
+conjecture.
+
+\name{Young-Hoon Kiem} and \name{Donggun Lee} introduce generalized
+\hyperref[hessenbergVarietiesBackground]{Hessenberg varieties} and formulate a
+weighted-graph version of the
+Shareshian--Wachs conjecture \cite{KiemLee2024}.  They prove the
+generalized conjecture, so the corresponding weighted chromatic
+quasisymmetric functions have Schur coefficients that are unimodal
+polynomials with nonnegative coefficients \cite[Thm.~4.6 and
+Cor.~4.8]{KiemLee2024}.  They also propose a generalized
+Stanley--Stembridge question for elementary positivity in this weighted
+setting.
+
+
+For a representation-theoretical perspective involving immanents and
+characters, see \cite{Skandera2020}.
 
 
 \section[treesChromaticQuasisymmetric]{Chromatic symmetric functions of trees}
@@ -822,12 +671,240 @@ In fact, no tree on $20$ vertices with maximal degree $10$ is
 See also \cite{PrietoMartinWagnerZamora2024x} for polynomial invariants of
 trees.
 
+\subsection[chromaticTreeVariants]{Kneser chromatic functions}
 
-\section[chromaticQuasisymmetricGeneralGraphs]{Other families of graphs}
+\name{Yusaku Nishimura} proves that the second Kneser chromatic function
+$X_{K_{\setN,2}}(G)$ is a complete invariant for trees \cite{Nishimura2026}.
+This fits into the Kneser chromatic functions of \name{Takayuki Hasebe},
+\name{Hiroyuki Miezaki}, \name{Akihiro Munemasa}, \name{Yusaku Nishimura},
+\name{Yusuke Sakuma}, and \name{Shuhei Tsujie}, where
+$X_{K_{\setN,1}}(G)$ is Stanley's chromatic symmetric function and the whole
+family is a complete invariant for finite graphs.
 
-Expanding the CSF in different bases recovers various classical statistics of
-graphs; see \cite{ChanCrew2023}.  For coefficients in the elementary basis in
-relation to sinks, see \cite{CrewZhang2022x}.
+
+\section[chromaticQuasisymmetricGeneralGraphs]{Other graph families and positivity obstructions}
+
+
+\subsection[chromaticQuasisymmetricClawFree]{Claw-free graphs}
+
+\name{Richard Stanley} recorded the conjecture, credited to
+\name{Vesselin Gasharov}, that $\chrom_G(\xvec;1)$ is
+\hyperref[schurPositiveDefinition]{Schur-positive} whenever $G$ is claw-free
+\cite{Stanley1998}.  This conjecture is false.  \name{Jacob P. Matherne} and
+\name[Alejandro H. Morales]{Alejandro H.~Morales} give two line graphs whose
+chromatic symmetric functions have negative Schur coefficients
+\cite{MatherneMorales2026x}.  Namely, let $G_i=L(H_i)$, where
+\[
+\begin{aligned}
+E(H_1)=\{&(1,8),(2,7),(3,6),(3,10),(4,5),(4,9),\\
+        &(5,9),(6,10),(7,9),(7,10),(8,9),(8,10)\},
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+E(H_2)=\{&(1,8),(2,5),(2,10),(3,7),(3,10),(4,6),\\
+        &(4,9),(5,9),(6,9),(7,10),(8,9),(8,10)\}.
+\end{aligned}
+\]
+Then $G_1$ and $G_2$ have $12$ vertices, with $22$ and $21$ edges,
+respectively, and the relevant Schur coefficients are
+\[
+[\schurS_{3333}]\chrom_{G_1}(\xvec;1)=-64,
+\qquad
+[\schurS_{3333}]\chrom_{G_2}(\xvec;1)=-40.
+\]
+Since every line graph is claw-free, these are counterexamples to the general
+conjecture.
+
+Independently, \name{Jitendra Prajapati} gives a short computation by hand for
+the counterexample with coefficient $-64$, verifies it by exact implementations,
+and reports an exhaustive census showing that every connected claw-free graph
+on at most $11$ vertices is \hyperref[schurPositiveDefinition]{Schur-positive}
+\cite{Prajapati2026x}.  The same census finds exactly two non-Schur-positive
+isomorphism classes on $12$ vertices, with the two coefficients $-64$ and
+$-40$ above.
+\name{David G. L. Wang}, \name{K. Zhang}, and \name{T. Y. Zhao} combine this
+census with further exact computations and construct an infinite family of
+connected line graphs whose chromatic symmetric functions are not
+\hyperref[schurPositiveDefinition]{Schur-positive}
+\cite{WangZhangZhao2026x}.
+
+Positive results remain for special claw-free families.  Using an involution
+inspired by the \hyperref[gesselSlinkyRule]{slinky rule}, the authors of
+\cite{ShelburneWilligenburg2024x} prove
+\hyperref[schurPositiveDefinition]{Schur positivity} for the family of graphs
+called \defin{generalized nets}\label{generalizedNets}.
+
+\name{Randy Davila}, \name{Houston Schuerger}, and \name{Ben Small}
+characterize claw-free graphs using zero forcing invariants
+\cite{DavilaSchuergerSmall2024x}.  They prove that $G$ is claw-free if and
+only if every induced subgraph $H$ satisfies $Z(H)=Z_+(H)$.
+
+\name{Ethan Y. H. Li}, \name{Grace M. X. Li}, \name{Arthur L. B. Yang},
+and \name{Zhong-Xue Zhang} introduce a strengthening of the nice property,
+called the \defin{strongly nice property}\label{stronglyNiceProperty}
+\cite{LiLiYangZhang2024x}.
+They prove that \hyperref[schurPositiveDefinition]{Schur positivity} implies
+strong niceness, and that the
+graphs whose induced subgraphs are all strongly nice are precisely the
+claw-free graphs.  Thus hereditary strong niceness captures the claw-free
+condition, but the line-graph counterexamples above show that it is not
+sufficient for Schur positivity.
+
+
+\subsection[chromaticProductsOfChains]{Products of chains}
+
+Distributive \hyperref[latticePoset]{lattices} give a separate family of
+negative tests when a poset
+is viewed through its incomparability graph.  \name{Grace M. X. Li},
+\name{Dun Qiu}, \name{Arthur L. B. Yang}, and \name{Zhong-Xue Zhang}
+construct distributive lattices that are not nice and hence not
+\hyperref[schurPositiveDefinition]{Schur-positive}, and also distributive lattices
+that are nice but still not
+\hyperref[schurPositiveDefinition]{Schur-positive} \cite{LiQiuYangZhang2024x}.
+Here, $\mathbf{r}$ denotes a chain with $r$ elements.  Later,
+\name{David G. L. Wang} and \name{K. Zhang} prove that the product lattices
+$\mathbf{m}\times\mathbf{2}$ and $\mathbf{m}\times\mathbf{3}$ are
+\hyperref[schurPositiveDefinition]{Schur-positive} exactly for $m\leq7$ and
+$m\leq6$, respectively.  They also show that
+$\mathbf{m}\times\mathbf{3}$ is not strongly nice for $m\geq44$
+\cite{WangZhang2025x}.
+
+\name{Kai Zhang} supplies a negative coefficient throughout the remaining
+large-$m$ range.  Put $m=n+k$ and
+\[
+\rho=(2n+k-1,2n+k-3,\dotsc,k+5,k,k,4).
+\]
+
+\begin{theorem}[Zhang, \cite[Thm.~3.1]{Zhang2026Chainsx}]
+If $n\geq4$ and $k\geq2n-1$, then
+\[
+[\schurS_\rho]\,
+\chrom_{\operatorname{inc}(\mathbf{m}\times\mathbf{n})}(\xvec;1)<0.
+\]
+In particular, $\mathbf{m}\times\mathbf{n}$ is not Schur-positive whenever
+$n\geq4$ and $m\geq3n-1$.
+\end{theorem}
+
+Together with the range $n+5\leq m\leq3n-2$ proved in
+\cite{LiQiuYangZhang2024x}, this shows that
+$\mathbf{m}\times\mathbf{n}$ is not Schur-positive for every
+$n\geq3$ and $m\geq n+5$; for $n=2$, nonpositivity holds for $m\geq8$
+\cite[Cor.~3.4]{Zhang2026Chainsx}.
+
+
+\subsection[chromaticSpiderFamilies]{Spider graphs}
+
+\name{Jean-Yves Thibon} and \name{David G. L. Wang} prove that the chromatic
+symmetric functions of the spiders \(S(a,2,1)\) and \(S(a,4,1)\) are
+\hyperref[schurPositiveDefinition]{Schur-positive} for every \(a\geq1\)
+\cite[Thms.~4.2 and~4.6]{ThibonWang2023x}.  Their proof lifts the path
+formula to noncommutative symmetric functions, expands it in ribbon functions,
+and translates the Schur coefficients into weighted Yamanouchi-word counts.
+Together with earlier elementary-positivity results, this gives the complete
+elementary- and Schur-positivity classification of both families.
+
+
+\section[chromaticQuasisymmetricMisc]{Variants and algebraic constructions}
+
+\subsection[chromaticAlgebraicVariants]{Hopf algebras and group actions}
+
+\name{Shao Yuan Lin} and \name{Laura Pierson} study a different multiplicative
+Hopf-algebra structure on chromatic symmetric functions and show that graph
+complementation, for unweighted triangle-free graphs, corresponds naturally
+to a Hopf algebra operation \cite{LinPierson2025x}.
+
+\name{G. Arunkumar} relates Stanley's chromatic symmetric functions to
+Borcherds algebras \cite{Arunkumar2021}.  Another Hopf-algebraic viewpoint is
+given by \name{Jean-Christophe Aval}, \name{Nantel Bergeron}, and
+\name{John Machacek}, who introduce invariants of permutations, orders, and
+graphs connected with the nabla operator \cite{AvalBergeronMachacek2020}.
+\name{Jacob A. White} defines chromatic quasisymmetric class functions for
+digraphs and, more generally, for combinatorial Hopf monoids
+\cite{White2021,White2025}; these variants incorporate group actions into the
+chromatic quasisymmetric setting.
+
+
+\subsection[chromaticWeightedVariants]{Multisymmetric and centered variants}
+
+\name{Jeremy L. Martin} and \name{May B. Trist} define
+\hyperref[extendedChromatic]{chromatic MacMahon symmetric functions} for
+vertex-weighted graphs \cite{MartinTrist2025x}.
+
+\name{Logan Crew}, \name{Evan Haithcock}, \name{Josephine Reynes}, and
+\name{Sophie Spirkl} introduce a
+\defin{chromatic multisymmetric function}\label{chromaticMultisymmetricFunction}
+for graphs whose vertex set is partitioned into parts
+\cite{CrewHaithcockReynesSpirkl2024}.
+They use homogeneous sets and homogeneous pairs to turn known relations for
+ordinary chromatic symmetric functions into new ones, including a
+generalization of Guay-Paquet's reduction of the Stanley--Stembridge
+conjecture to unit interval graphs.
+
+\name{Farid Aliniaeifard}, \name{Victor Wang}, and
+\name{Stephanie van Willigenburg} define a
+\defin{centered chromatic symmetric function}\label{centeredChromaticSymmetricFunction}
+$y_{G:v}$ using a quotient of noncommutative symmetric functions
+\cite{AliniaeifardWangWilligenburg2024}. Its
+\hyperref[chromaticECenteredPositivity]{positivity properties} are discussed
+on the elementary-expansion page.
+\name{John M. Campbell} gives another noncommutative direction: a lift of
+Stanley's chromatic symmetric function to
+\hyperref[nonComFunctions]{$\mathrm{NSym}$} \cite{Campbell2024x}.  The lift
+is indexed by directed graphs and specializes under the commutative image to
+the ordinary chromatic symmetric function of the underlying graph.
+
+\name{Rafael S. González D'León} and \name{Michelle L. Wachs} construct a
+different chromatic symmetric analogue from
+\hyperref[weightedBondSymmetric]{multiweighted bond posets}
+\cite{DLeonWachs2026x}.  Its one-variable specialization is the reversed
+chromatic polynomial, while its top homogeneous component is a new Möbius
+symmetric function of the graph.
+
+
+\subsection[chromaticSignedVariants]{Signed graphs}
+
+\name{Zhiyun Cheng}, \name{Ziyi Lei}, \name{Yitian Wang}, and
+\name{Yanguo Zhang} construct a cohomology theory for the
+\defin{signed chromatic polynomial}\label{signedChromaticPolynomial}
+of a signed graph \cite{ChengLeiWangZhang2022}.  Its graded Euler
+characteristic is the signed chromatic polynomial, and its long exact sequence
+categorifies signed deletion--contraction.
+\name{Jean-Christophe Aval} and \name{Raquel Melgar} introduce
+\defin{chromatic quasisymmetric functions for signed graphs}\label{signedChromaticQuasisymmetricFunction}
+\cite{AvalMelgar2025x}.  Their
+construction is guided by Zaslavsky's signed-graph hyperplane arrangements and
+leads to an algebra of signed quasisymmetric functions.
+
+
+\subsection[alphaChromaticSymmetric]{Alpha-chromatic symmetric functions}
+
+\name{Jim Haglund}, \name{Jaeseong Oh}, and \name{Meesue Yoo}
+introduce \defin{$\alpha$-chromatic symmetric functions}\label{alphaChromaticSymmetricFunction},
+which add a
+real parameter $\alpha$ to the chromatic quasisymmetric functions of
+natural unit interval graphs \cite{HaglundOhYoo2025}.  These functions
+interpolate between chromatic symmetric functions and unicellular
+\hyperref[unicellularLLT]{LLT polynomials}: the coefficient of the first
+$q$-falling-factorial term recovers the chromatic symmetric function, while
+the large-$\alpha$ limit recovers the Schur coefficients of the
+unicellular LLT polynomial up to a $q$-factorial factor.
+
+Their main results include a positive monomial formula in an
+$\alpha$-binomial basis \cite[Thm.~3.1]{HaglundOhYoo2025}, an expansion
+into a falling-factorial basis whose coefficients are sums of ordinary
+chromatic symmetric functions \cite[Thm.~4.4]{HaglundOhYoo2025}, and a
+rook-theoretic solution of the Garsia--Remmel $q$-hit problem for Ferrers
+boards associated with Dyck paths \cite[Cor.~6.3]{HaglundOhYoo2025}.
+
+
+\subsection[chromaticGraphInvariants]{Related graph polynomials}
+
+Expansions of the chromatic symmetric function in different bases recover
+classical graph statistics; see \cite{ChanCrew2023}. For the relation between
+elementary coefficients and sinks, see the
+\hyperref[chromaticEExpansionCoefficientTests]{coefficient-level results}.
 
 \name{Anatol Kirillov}, \name{Gleb Nenashev}, \name{Boris Shapiro}, and
 \name{Arkady Vaintrob} introduce the \defin{loopy polynomial} $L_G$, whose
@@ -848,16 +925,6 @@ distinguishing power on simple graphs and verify this through eleven
 vertices.  The analogous statement fails for loopless multigraphs
 \cite[Thm.~8.10]{KirillovNenashevShapiroVaintrob2026x}.
 
-
-\name{Jean-Yves Thibon} and \name{David G. L. Wang} prove that the chromatic
-symmetric functions of the spiders \(S(a,2,1)\) and \(S(a,4,1)\) are
-\hyperref[schurPositiveDefinition]{Schur-positive} for every \(a\geq1\)
-\cite[Thms.~4.2 and~4.6]{ThibonWang2023x}.  Their proof lifts the path
-formula to noncommutative symmetric functions, expands it in ribbon functions,
-and translates the Schur coefficients into weighted Yamanouchi-word counts.
-Together with earlier elementary-positivity results, this gives the complete
-elementary- and Schur-positivity classification of both families.
-
 \name{Esme Bajo}, \name{Matthias Beck}, and
 \name{Andrés R. Vindas-Meléndez} define
 \defin{$q$-chromatic polynomials}\label{qChromaticPolynomial} by
@@ -868,80 +935,3 @@ principal specialization of Stanley's chromatic symmetric function.  Their
 results connect this invariant with \hyperref[ehrhart]{$q$-Ehrhart polynomials},
 \hyperref[orderPolytope]{order polytopes}, and strengthened
 tree-distinguishing questions.
-
-
-
-\section[chromaticQuasisymmetricHessenberg]{Connection with Hessenberg varieties}
-
-\label{chromaticQuasisymmetricMomentGraph}
-In \cite[Conj.~5.3]{ShareshianWachs2012}, a connection with
-cohomology of regular semisimple
-\hyperref[hessenbergVarietiesBackground]{Hessenberg varieties} was conjectured.
-This conjecture was resolved in 2015, when \name{Patrick Brosnan}
-and \name{Timothy Chow} proved that for unit-interval graphs $\avec$,
-the symmetric function $\omega \chrom_\avec(\xvec;q)$
-is the \hyperref[frobeniusCharacteristic]{Frobenius characteristic} of
-a symmetric group action on the cohomology of regular semisimple Hessenberg
-varieties.
-This was also proved independently by Guay-Paquet \cite{GuayPaquet2016x}.
-
-For more details on this symmetric group action, see the \hyperref[dotAction]{dot action page}.
-
-\name{Lucas Gagnon} gives a finite-group analogue of this result:
-inducing the trivial character from certain unipotent subgroups of
-$\GL_n(\mathbb{F}_q)$ realizes the chromatic quasisymmetric function, up to the
-expected scalar factor \cite[Thm.~3.1]{Gagnon2024}.  The same paper relates
-these character values to point counts of nilpotent Hessenberg varieties over
-finite fields, and realizes vertical-strip LLT polynomials as unipotent
-constituents of induced characters \cite[Thm.~5.1]{Gagnon2024}.
-
-\name{Alex Abreu}, \name{Antonio Nigro}, and \name{Samrith Ram} give a
-finite-field point-counting formula for arbitrary
-\hyperref[hessenbergVarietiesBackground]{Hessenberg varieties}
-\cite{AbreuNigroRam2024x}.  If $T$ is a linear operator on
-$\mathbb{F}_q^n$, then the number of $\mathbb{F}_q$-rational points of the
-\hyperref[hessenbergVarietyDefinition]{Hessenberg variety} $H(m,T)$ is
-\[
-|H(m,T)|
-=
-\left\langle F_T(\xvec),\omega\chrom_{G(m)}(\xvec;q)\right\rangle,
-\]
-where $F_T(\xvec)$ is an invariant-flag generating function expressible using
-modified Hall--Littlewood polynomials \cite[Thm.~1.1]{AbreuNigroRam2024x}.
-For triangulable $T$, this also gives Poincar\'e polynomials of the corresponding
-complex Hessenberg varieties \cite[Cor.~3.8]{AbreuNigroRam2024x}.
-
-\name{Alex Abreu} and \name{Antonio Nigro} relate characters of
-Kazhdan--Lusztig elements of the Hecke algebra, including chromatic symmetric
-functions of indifference graphs, to intersection cohomology of parabolic
-Lusztig varieties \cite{AbreuNigro2025Parabolic}.  The resulting
-decomposition through partial flag varieties points toward recursive
-approaches to Haiman's positivity conjecture and the Stanley--Stembridge
-conjecture.
-
-\name{Young-Hoon Kiem} and \name{Donggun Lee} introduce generalized
-\hyperref[hessenbergVarietiesBackground]{Hessenberg varieties} and formulate a
-weighted-graph version of the
-Shareshian--Wachs conjecture \cite{KiemLee2024}.  They prove the
-generalized conjecture, so the corresponding weighted chromatic
-quasisymmetric functions have Schur coefficients that are unimodal
-polynomials with nonnegative coefficients \cite[Thm.~4.6 and
-Cor.~4.8]{KiemLee2024}.  They also propose a generalized
-Stanley--Stembridge question for elementary positivity in this weighted
-setting.
-
-
-\section[chromaticQuasisymmetricMisc]{Other results related to chromatic symmetric functions}
-
-\name{Shao Yuan Lin} and \name{Laura Pierson} study a different multiplicative
-Hopf-algebra structure on chromatic symmetric functions and show that graph
-complementation, for unweighted triangle-free graphs, corresponds naturally
-to a Hopf algebra operation \cite{LinPierson2025x}.
-
-Several recent variants move the chromatic symmetric function into larger
-ambient algebras.  Campbell's
-\hyperref[nonComFunctions]{$\mathrm{NSym}$ lift} records directed-edge order
-data before applying the commutative image \cite{Campbell2024x}, while
-\name{Jeremy L. Martin} and \name{May B. Trist} define
-\hyperref[extendedChromatic]{chromatic MacMahon symmetric functions} for
-vertex-weighted graphs \cite{MartinTrist2025x}.

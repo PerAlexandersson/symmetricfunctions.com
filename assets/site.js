@@ -71,14 +71,24 @@
   }
 
   function initTextWidth() {
-    if (!document.getElementById('polynomialRecurrences')) return;
     var main = document.getElementById('doc-main');
     var meta = document.getElementById('page-meta');
     var layout = document.getElementById('doc-all');
     var themeToggle = document.getElementById('dark-mode-toggle');
     if (!main || !meta || !layout || !themeToggle) return;
+    // Article pages have reading content; indexes and interactive tools
+    // retain their own layouts.
+    if (main.querySelector('.topic-card-grid, #polynomialIndex') ||
+        document.body.classList.contains('relation-graph-document')) return;
 
-    var key = 'symcat-polynomial-recurrences-width';
+    var key = 'symcat-text-width';
+    var savedWidth = getStoredPreference(key);
+    if (savedWidth === null) {
+      savedWidth = getStoredPreference('symcat-polynomial-recurrences-width');
+      if (savedWidth === 'narrow' || savedWidth === 'wide') {
+        setStoredPreference(key, savedWidth);
+      }
+    }
     var button = document.createElement('button');
     button.type = 'button';
     button.id = 'text-width-toggle';
@@ -110,7 +120,7 @@
       button.title = narrow ? 'Wide text' : 'Narrow text';
     }
 
-    applyWidth(getStoredPreference(key) === 'narrow');
+    applyWidth(savedWidth === 'narrow');
     button.addEventListener('click', function () {
       var narrow = !main.classList.contains('narrow-text');
       applyWidth(narrow);

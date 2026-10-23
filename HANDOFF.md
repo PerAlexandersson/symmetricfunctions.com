@@ -1,5 +1,31 @@
 # Handoff
 
+## Ready: chromatic exposition and width control — 2026-10-23
+
+Reorganized the chromatic quasisymmetric page around definitions, symmetry
+and basis expansions, LLT and chromatic specializations, geometry, graph
+families, and variants. Shortened the historical overview, clarified the
+coloring definition, removed duplicated variant prose, and made the separate
+elementary-expansion page and timeline prominent. Detailed circular-arc
+positivity, Hwang's elementary refinement, and centered positivity now live
+on the elementary-expansion page. All previous labels and citations survive;
+old theorem anchors lead to a summary linking the relocated statement.
+
+The live width button was restricted to the recurrence page by JavaScript.
+It now works on all text pages, using a shared `symcat-text-width` preference
+and migrating the old recurrence setting. Landing/index/search/relation tools
+retain their layouts. Template asset versions and README were updated.
+
+Full build, `make check`, and whitespace checks pass (two existing fixture
+warnings). Chromium checks six text pages and four non-article pages at
+1366/375: toggle, keyboard, cross-page persistence, migration, links, math,
+and overflow pass. Storage unavailable, dark mode, print, and no-JS checks
+also pass. Screenshots inspected; evidence is under
+`/cargo-target/symcat-chromatic-rewrite-20261023/` and the temporary browser
+check is `/tmp/symcat-chromatic-review.cjs`. Ownership released for the two
+TeX pages, `assets/site.js`, `template.htm`, `README.md`, and this opening.
+No deployment performed.
+
 ## Ready: chromatic/LLT flip-class theorem cross-links — 2026-10-23
 
 Added the Alexandersson--Dai flip definition and classwise elementary-expansion

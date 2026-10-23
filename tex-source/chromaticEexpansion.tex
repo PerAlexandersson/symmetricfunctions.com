@@ -32,6 +32,12 @@ $\chrom_G(\xvec;q)$ is symmetric, most importantly for
 For general graphs, the default question is the specialization $q=1$.
 
 
+This page collects elementary-positivity results, conjectures, and methods.
+For the definitions and other basis expansions, see
+\hyperref[chromaticQuasisymmetric]{chromatic quasisymmetric functions}.
+The \hyperref[chromaticEExpansionChronology]{chronological guide} records
+the main stages of the positivity problem.
+
 \subsection[chromaticEExpansionConjectures]{Positivity and unimodality}
 
 The \hyperref[stanleyStembridgeConjecture]{Stanley--Stembridge conjecture}
@@ -104,13 +110,6 @@ graph-independent concatenation conditions.
 The conjecture extends to proper circular unit arc digraphs; see
 \cite{Ellzey2017,AlexanderssonPanova2018}.
 
-\name{Aarush Vailaya} proves $\elementaryE$-positivity for every
-\hyperref[properCircularArcGraph]{proper circular-arc graph}
-\cite[Thm.~21]{Vailaya2026x}, settling the $q=1$ case of Ellzey's conjecture.
-The \hyperref[properCircularArcEPositive]{theorem and its specialization to
-circular Dyck paths} are stated on the chromatic quasisymmetric functions page.
-
-
 \begin{conjecture}[See \cite[Conj.~5.1]{ShareshianWachs2016}]
 \label{chromaticEUnimodalityConjecture}
 Write
@@ -124,6 +123,50 @@ all $0 \leq j \lt (m-1)/2$.
 
 This unimodality conjecture also extends to the
 \hyperref[circularUnitArcDigraph]{circular unit arc digraph} setting.
+
+\subsection[chromaticECircularPositivity]{Circular graphs}
+
+A \hyperref[properCircularArcGraph]{proper circular-arc graph} is the
+intersection graph of arcs on a circle, none properly containing another.
+The following theorem extends ordinary elementary positivity to this family.
+
+\begin{theorem}[Vailaya, \cite[Thm.~21]{Vailaya2026x}]
+\label{chromaticECircularTheorem}
+If $G$ is a proper circular-arc graph, then
+\[
+ \chrom_G(\xvec)\in\setN[\elementaryE_1,\elementaryE_2,\dotsc].
+\]
+\end{theorem}
+
+For a \hyperref[circularDyckDiagram]{circular Dyck path} $\avec$, let
+$H_\avec$ be the underlying undirected graph of $\Gamma_\avec$.
+This is a proper circular-arc graph, so
+\[
+ \chrom_{\Gamma_\avec}(\xvec;1)=\chrom_{H_\avec}(\xvec)
+ \in\setN[\elementaryE_1,\elementaryE_2,\dotsc].
+\]
+The theorem settles the $q=1$ case of Ellzey's conjecture
+\cite{Ellzey2017,Vailaya2026x}.
+
+\subsection[chromaticEFlipComponents]{Hwang's refinement}
+
+The \hyperref[chromaticFlipComponents]{flip components introduced by Hwang}
+refine the ascent grading: all orientations in a component have the same
+number of ascents, and the corresponding chromatic sums are Schur-positive
+\cite{Hwang2022x}. Hwang proposes the stronger statement below.
+
+\begin{conjecture}[Hwang, \cite[Conj.~3.10]{Hwang2022x}]
+For a naturally labeled unit interval graph, the chromatic contribution of
+each flip component is elementary-positive.
+\end{conjecture}
+
+The \hyperref[unicellularLLTFlipClassExpansion]{LLT analogue} is proved by
+\name{Per Alexandersson} and \name{Lilan Dai}
+\cite[Thm.~14]{AlexanderssonDai2026Flipx}: after $q\mapsto q+1$, every LLT
+flip class contributes an elementary-positive summand. Hwang's chromatic
+flip reverses a source or sink fork with nonadjacent outer vertices; the LLT
+flip moves an ascending short edge across a triangle while keeping its long
+edge. The chromatic classwise conjecture remains open.
 
 \subsection[chromaticEExpansionMethods]{Kinds of elementary expansions}
 
@@ -212,7 +255,13 @@ $\elementaryE$-expansion which yields new positive graph families
 parts is proved in \cite{AbreuNigro2023x,RokSzenes2023x}.
 
 \item
-\emph{2024--2026.}
+\emph{2024.}
+\name{Tatsuyuki Hikita} proves the Stanley--Stembridge conjecture at $q=1$
+\cite{Hikita2024x}, using Guay-Paquet's reduction to unit interval graphs
+\cite{GuayPaquet2013}.
+
+\item
+\emph{2024--2026: formulas and further families.}
 Recent results include the $2+1+1$-avoiding
 \hyperref[unitIntervalOrder]{unit interval orders}
 \cite{McDonoughPylyavskyyWang2024x}, twinned paths and cycles
@@ -227,6 +276,17 @@ Hook-shape immanant characters can be written as non-negative sums of
 Stanley--Stembridge characters by \name{Nathan R. T. Lesnevich}
 \cite{Lesnevich2024}; this proves a hook-shape case of a conjecture of
 \name{Richard Stanley} and \name{John Stembridge} on immanant characters.
+\item
+\emph{2026: refinements and circular graphs.}
+OpenAI announces a proof of $q$-refined elementary positivity for naturally
+labeled unit interval graphs \cite{OpenAI2026ChromaticPositivity}.
+Vailaya proves elementary positivity for proper circular-arc graphs at $q=1$
+\cite{Vailaya2026x}. Alexandersson and Dai prove the
+\hyperref[unicellularLLTFlipClassExpansion]{LLT flip-class analogue} of
+Hwang's refinement \cite{AlexanderssonDai2026Flipx}. The
+\hyperref[chromaticEFlipComponents]{chromatic flip-class conjecture} and
+\hyperref[chromaticEUnimodalityConjecture]{elementary unimodality}
+remain separate questions.
 \end{itemize}
 
 
@@ -275,6 +335,14 @@ equivalently the area sequences with $i-2 \leq a_i$, are treated in
 \subsection[chromaticEExpansionOrdinaryFamilies]{Further positive families}
 
 The following examples are useful landmarks for the ordinary $q=1$ problem.
+
+\label{chromaticECenteredPositivity}
+The \hyperref[centeredChromaticSymmetricFunction]{centered chromatic
+symmetric functions} of \name{Farid Aliniaeifard}, \name{Victor Wang}, and
+\name{Stephanie van Willigenburg} give a stronger positivity property,
+operations preserving it, and new elementary-positive unit interval families
+\cite{AliniaeifardWangWilligenburg2024}. Their noncommutative framework also
+refines the sink-counting theorems for acyclic orientations.
 
 \begin{itemize}
 \item
