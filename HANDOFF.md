@@ -1,5 +1,22 @@
 # Handoff
 
+## Ready: brief algebra definitions — 2026-10-25
+
+Added Clifford and Temperley--Lieb definitions to `algebras-and-rings.tex`,
+including the quadratic-form/sign convention, diagram basis, Hecke quotient,
+and Sergeev/Schur Q connection. Added a short DAHA overview and repaired the
+Macdonald E link to its dedicated anchor. Existing sections are preserved.
+Added Wan--Wang's spin-representation lectures after checking the cached
+source; checked Abramsky's TL exposition and Etingof's DAHA overview.
+
+Full build, `make check`, and whitespace checks pass (two existing fixture
+warnings). Chromium at 1366/375 verifies math rendering, all internal links,
+new anchors, the Macdonald backlink, and no horizontal overflow; desktop
+screenshot inspected. Evidence: `/tmp/symcat-algebras-{1366,375}.png`.
+Tree was clean at intake. Codex `/root` releases ownership of
+`tex-source/algebras-and-rings.tex`, `tex-source/macdonaldE.tex`,
+`bibliography.bib`, and this opening at this checkpoint. Not deployed.
+
 ## Deployed: A046739 gamma interpretation — 2026-10-23
 
 Codex `/root` owns this deployment-record opening only until its checkpoint.
