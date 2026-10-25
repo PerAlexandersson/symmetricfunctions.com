@@ -1,9 +1,9 @@
 \metatitle{Polynomial recurrences}
 \metadescription{Spaces of polynomial recurrences, exact finite verification,
-first-order derivative criteria, repeated poles, limiting zeros, and the trade-off between
+first-order derivative criteria, weighted delay interlacing, limiting zeros, and the trade-off between
 recurrence order and derivative order.}
 \metakeywords{polynomial recurrence, derivative recurrence, Ore algebra,
-rational generating function, recurrence space, repeated poles, Beraha--Kahane--Weiss}
+rational generating function, recurrence space, weighted renewal recurrence, Beraha--Kahane--Weiss}
 
 \section[polynomialRecurrences]{Polynomial recurrences}
 
@@ -13,7 +13,7 @@ and their derivatives. We study when this is possible, how to describe all
 relations with prescribed coefficient bounds, and how to prove an identity
 found by exact linear algebra.
 
-Throughout, $P_n(x)\in\setQ[x]$ and $n\geq0$. We write
+Unless stated otherwise, $P_n(x)\in\setQ[x]$ and $n\geq0$. We write
 \[
  \mathbf{P}=(P_0,P_1,\dotsc),\qquad
  F(x,t)\coloneqq\sum_{n\geq0}P_n(x)t^n.
@@ -36,8 +36,9 @@ The general operator framework is the $\partial$-finite theory of
 \cite[Sec.~2]{ChyzakSalvy1998}; see also \name{Christoph Koutschan}'s
 account of the holonomic systems approach \cite{Koutschan2009Thesis}.
 The criteria below are direct consequences of linear algebra and rational
-generating functions. Real-rootedness is an
-\hyperref[derivativeRecurrenceRealRoots]{additional application}.
+generating functions. Real-rootedness criteria include
+\hyperref[weightedDelayRecurrences]{weighted delay recurrences} and
+\hyperref[derivativeRecurrenceRealRoots]{derivative recurrences}.
 
 \subsection[recurrenceTradeoffExample]{Reducing recurrence order using derivatives}
 
@@ -290,6 +291,126 @@ tail identity holds from $n=0$ exactly when it also annihilates the finite
 coefficient sequence of $U$. Checking $0\leq n\leq\deg_tU$ suffices,
 since forward shifts and $x$-derivatives cannot enlarge this support.
 
+\section[weightedDelayRecurrences]{Weighted recurrences with a variable delay}
+
+In this section we allow real coefficients. We use the oriented weak
+interlacing relation $f\interl g$, including equal degrees and repeated
+zeros, from the \hyperref[interlacingPolynomials]{interlacing page}.
+The following induction uses the two closure rules in
+\hyperref[wagnerLemma]{Wagner's lemma}.
+The fixed-delay case is closely related to the companion-matrix argument
+of \name{Steve Fisk} \cite[Ex.~16.10]{Fisk2006x}.
+
+\begin{theorem}[Nondecreasing predecessor]
+\label{nondecreasingPredecessorInterlacing}
+Let $p(1),p(2),\dotsc$ be nondecreasing integers with $0\leq p(n)<n$,
+and let $w_n\geq0$. Define
+\[
+ Q_0(x)=1,\qquad
+ Q_n(x)=Q_{n-1}(x)+w_nxQ_{p(n)}(x)\quad(n\geq1).
+\]
+Then every $Q_n$ has only real negative zeros, and
+\[
+ Q_i\interl Q_n\qquad\text{whenever }n\geq1\text{ and }p(n)\leq i\leq n.
+\]
+\end{theorem}
+
+\begin{proof*}
+Every $Q_n$ has nonnegative coefficients and constant term one.
+We induct on $n$, starting with $Q_1=1+w_1x$.
+For $p(n)\leq i<n$, monotonicity gives $p(n-1)\leq i$, so
+$Q_i\interl Q_{n-1}$ by induction.
+Also $Q_{p(n)}\interl Q_i$: use reflexivity if $i=p(n)$,
+and otherwise use $p(i)\leq p(n)<i$ and induction.
+The multiplication rule gives $Q_i\interl xQ_{p(n)}$.
+The cone rule with fixed left polynomial $Q_i$ now gives
+$Q_i\interl Q_{n-1}+w_nxQ_{p(n)}=Q_n$.
+This proves real-rootedness, and coefficient signs and the constant term
+exclude nonnegative zeros. The case $i=n$ is reflexivity.
+\end{proof*}
+
+For a fixed integer $L\geq1$, take $p(n)=\max(0,n-L)$.
+Every window of $L+1$ consecutive polynomials is then interlacing:
+\[
+ Q_A\interl Q_B\qquad(0\leq A\leq B,\ B-A\leq L).
+\]
+The weights need not be constant or periodic.
+Positive coefficients of $Q_{n-1}$ can also be normalized away:
+if $F_0=1$ and $F_n=a_nF_{n-1}+b_nxF_{p(n)}$, where
+$a_n>0$ and $b_n\geq0$, divide by $A_n=\prod_{k=1}^n a_k$.
+The resulting weights are $b_nA_{p(n)}/A_n$.
+
+\subsection[weightedRenewalRecurrences]{Renewal recurrences with a real-rooted seed}
+
+\begin{theorem}[Weighted renewal interlacing]
+\label{weightedRenewalInterlacing}
+Let $\ell\geq1$ be an integer, and let $R(z)=\sum_{j=0}^d r_jz^j$
+have degree $d\geq1$, nonnegative coefficients, $R(0)=1$, and only real zeros.
+Define
+\[
+ \sum_{n\geq0}P_n(x)t^n=\frac1{1-tR(xt^\ell)}.
+\]
+Equivalently, $P_0=1$, $P_m=0$ for $m<0$, and
+\[
+ P_n(x)=\sum_{j=0}^d r_jx^jP_{n-1-\ell j}(x)\quad(n\geq1).
+\]
+Every $P_n$ has only real negative zeros, and
+\[
+ P_n\interl P_{n+s}\qquad(n,s\geq0,\ ds\leq d\ell+1).
+\]
+\end{theorem}
+
+\begin{proof*}
+Factor $R(z)=\prod_{r=1}^d(1+a_rz)$ with $a_r>0$.
+Put $L=d\ell+1$, and give position $i$ the periodic weight
+$w_i=a_{1+((i-1)\bmod d)}$.
+Let $Q_N(x)$ enumerate weighted subsets of $\{1,\dotsc,N\}$ whose
+successive entries differ by at least $L$, with $x$ marking cardinality.
+Deleting or retaining the last position gives
+\[
+ Q_0=1,\qquad Q_N=Q_{N-1}+w_NxQ_{\max(0,N-L)}.
+\]
+Thus $Q_A\interl Q_B$ when $B-A\leq L$.
+
+For $n\geq\ell$, we claim that $P_n=Q_{d(n-\ell)}$.
+For a $j$-element subset, remove the mandatory gaps by sending its
+$r$th entry $y_r$ to $y_r-(r-1)d\ell$.
+This gives a bijection with the $j$-subsets of
+$\{1,\dotsc,d(n-\ell j)\}$, preserving residues modulo $d$ and hence weights.
+When $n-\ell j\geq0$, its weighted enumerator is
+$[z^j]R(z)^{n-\ell j}$, which also equals $[x^j]P_n(x)$ by expanding
+the generating function. If the upper bound is less than $j$, there are
+no such subsets; if $n-\ell j<0$, both coefficients are zero.
+Constant terms are one.
+
+For $n\geq\ell$, sampling the $Q$ sequence at distance $ds\leq L$
+gives the result. If $n<\ell$, then $P_n=1$.
+When $n+s\geq\ell$, its sampled index satisfies
+$0\leq d(n+s-\ell)\leq ds\leq L$, so compare with $Q_0$.
+If both indices are smaller than $\ell$, both polynomials are one.
+\end{proof*}
+
+The constant seed $R=1$ gives $P_n=1$ for all $n$.
+For the nonconstant case, the degree is $\lfloor dn/(d\ell+1)\rfloor$.
+The window is optimal uniformly in $n$: if $ds>d\ell+1$, some pair
+$P_n,P_{n+s}$ has degree difference at least two, since
+$\gcd(d,d\ell+1)=1$.
+
+For $R(z)=(1+z)^d$, coefficient extraction gives
+\[
+ P_n(x)=\sum_{j=0}^{\lfloor dn/(d\ell+1)\rfloor}
+ \binom{d(n-\ell j)}j x^j.
+\]
+This is the rigid-tiling specialization.
+The gap subsets are independent sets in a power of a path, so weighted
+real-rootedness also follows from
+\hyperref[weightedIndependencePolynomial]{Engström's theorem}
+\cite[Thm.~2.5]{Engstrom2007}.
+The recurrence argument gives the oriented interlacing window as well.
+
+% Related Rust: polytool/src/renewal.rs, WeightedRenewal and recognize_weighted_renewal.
+% Source: PerAlexandersson/polytool commit 14b350c; finite-n Lean target: RealRooted issue 2037.
+
 \section[recurrenceLimitingZeros]{Beraha--Kahane--Weiss and limiting zeros}
 
 The same characteristic roots also control where zeros accumulate as
@@ -350,6 +471,111 @@ For repeated poles the amplitudes $a_i(n,x)$ depend polynomially on $n$,
 so the displayed theorem does not apply directly. A common scalar factor
 in $n$ can be removed for large $n$; general polynomial-in-$n$ amplitudes
 require an extension.
+
+\subsection[renewalLimitingZeros]{Limiting zeros of the renewal family}
+
+For the \hyperref[weightedRenewalInterlacing]{weighted renewal family},
+BKW gives an explicit limiting interval.
+The interlacing theorem applies to every index; the following statement
+describes the zeros as the index tends to infinity.
+
+\begin{theorem}[Renewal zero accumulation]
+Let $d,\ell\geq1$ be integers and let
+$R(u)=\prod_{j=1}^d(1+a_ju)$, with $a_j>0$.
+Define $P_n$ by
+\[
+ \sum_{n\geq0}P_n(x)t^n=\frac1{1-tR(xt^\ell)}.
+\]
+There is a unique $u_*$ between the largest zero of $R$ and $0$ such that
+\[
+ R(u_*)+\ell u_*R'(u_*)=0.
+\]
+Put $x_*=u_*R(u_*)^\ell$. The set of finite accumulation points of zeros
+of $P_n$, as $n\to\infty$, is exactly
+\[
+ (-\infty,x_*].
+\]
+Every neighborhood of every point in this ray contains a zero of $P_n$
+for all sufficiently large $n$.
+\end{theorem}
+
+\begin{proof*}
+Put $H(u)=uR(u)^\ell$ and $b=1/\max_j a_j$.
+For $x\ne0$, poles of the generating function correspond bijectively to
+\[
+ H(u)=x,\qquad t=\frac1{R(u)},\qquad \lambda=R(u).
+\]
+Since $|\lambda|=(|x|/|u|)^{1/\ell}$, dominant characteristic roots
+correspond to smallest-modulus roots of $H(u)=x$.
+At a simple pole the amplitude is
+\[
+ A(u)=\frac{R(u)}{R(u)+\ell uR'(u)},
+\]
+which is nonzero.
+
+For fixed $r>0$,
+\[
+ |H(re^{i\theta})|
+ =r\prod_j(1+2a_jr\cos\theta+a_j^2r^2)^{\ell/2}
+\]
+is strictly decreasing for $0\leq\theta\leq\pi$.
+Thus distinct roots of $H(u)=x$ with the same modulus must be conjugate,
+and this can happen only for real $x$.
+In particular, there is no identically unit-modulus ratio of distinct
+characteristic branches, as required by BKW.
+
+On $(-b,0)$, the function
+\[
+ g(u)=1+\ell\frac{uR'(u)}{R(u)}
+ =1+\ell\sum_j\frac{a_ju}{1+a_ju}
+\]
+is strictly increasing from $-\infty$ to $1$.
+Its unique zero is $u_*$, and $H''(u_*)=R(u_*)^\ell g'(u_*)>0$.
+The inverse root near zero is uniquely smallest in modulus and remains so
+for $x_*<x<0$. At $x_*$ it merges with another root; just below $x_*$
+the two smallest roots form a conjugate pair.
+
+This pair persists for all $x<x_*$.
+Indeed, all zeros of $H'$ are real, and the upper-half-plane member satisfies
+\[
+ \arg u+\ell\sum_j\arg(1+a_ju)=\pi,
+\]
+with each argument in $(0,\pi)$.
+It cannot encounter a critical point off the real axis.
+A negative real limit beyond $-b$ would make the left side exceed $\pi$;
+a limit in $(-b,0)$ would require a collision at $u_*$.
+A positive real limit has positive $H$, and roots remain bounded over
+bounded sets of $x$. Hence the pair continues along the whole ray.
+It cannot lose dominance, since that would require a third root of the
+same modulus.
+
+Away from the finitely many critical values, BKW now gives accumulation
+on the ray. Neighborhoods of the exceptional points contain regular
+points of the ray, giving the same conclusion there, including at $x_*$.
+On $(x_*,0)$ the unique dominant pole is simple with nonzero amplitude,
+so its uniform coefficient asymptotics exclude accumulation, even if
+subdominant poles collide. At $x=0$ the denominator is $1-t$, with a
+single nearby dominant pole, so the same exclusion holds.
+The renewal interlacing theorem excludes nonreal and positive zeros.
+\end{proof*}
+
+For the rigid specialization $R(u)=(1+u)^d$, put $L=d\ell+1$.
+Then
+\[
+ u_*=-\frac1L,\qquad
+ x_*=-\frac{(L-1)^{L-1}}{L^L}.
+\]
+For example, $L=2$ gives $(-\infty,-1/4]$, and $L=3$ gives
+$(-\infty,-4/27]$.
+Writing $P_n=C_{dn}$, where $\sum_{N\geq0}C_N(x)t^N=1/(1-t-xt^L)$,
+identifies the same endpoint with the sign-reversed interval in
+\cite[Thm.~1]{ForgcsTran2016} for the coefficient sequence $C_N$.
+The dominance argument above also handles arbitrary positive row weights.
+
+The arbitrary-weight variable-predecessor theorem need not come from a
+stationary finite-order recurrence. BKW applies to the renewal specialization
+above; more general changing coefficients require additional asymptotic
+hypotheses.
 
 \section[firstDerivativeCriterion]{When does one derivative suffice?}
 

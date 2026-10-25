@@ -328,8 +328,13 @@ This result was conjectured by \name{Richard Stanley} in \cite{Stanley1998},
 a vertex-weighted version is given by \name{Alexander Engström} \cite{Engstrom2007}
 and an alternative (non-vertex-deletion-recursive)
 proof is given by \name{Bodo Lass} \cite{Lass2012}.
-Finally, a multivariate refinement is given by \cite{LeakeRyder2019} where
-one obtains \hyperref[stablePolynomial]{stable polynomials}.
+\name{Jonathan Leake} and \name{Nick Ryder}
+\cite[Thm.~3.5 and Cor.~3.6]{LeakeRyder2019} formulate the weighted theorem as
+\defin{same-phase stability}: specializing each vertex variable to a
+nonnegative multiple of one variable gives a real-rooted polynomial.
+They show that the multivariate independence polynomial has this property
+if and only if the graph is claw-free. This is weaker than
+\hyperref[stablePolynomial]{multivariate real stability}.
 
 For general graphs, independence polynomials need not be real-rooted.
 Nevertheless, there are useful partial results.
@@ -383,6 +388,10 @@ I(G,w,x) \coloneqq \sum_{\substack{A \subseteq V(G) \\ \text{$A$ independent}}} 
 \]
 If $G$ is claw-free and all weights are non-negative, then $I(G,w,x)$ is real-rooted.
 \end{theorem*}
+
+Weighted independent sets in powers of paths give the
+\hyperref[weightedRenewalRecurrences]{renewal recurrence family},
+whose polynomials also satisfy an oriented interlacing window.
 
 
 \subsection[realRootsChow]{Chow polynomials}

@@ -1,5 +1,22 @@
 # Handoff
 
+## Ready: weighted recurrence theory and BKW support — 2026-10-25
+
+Ownership released. Added weightedDelayRecurrences / weightedRenewalRecurrences
+and renewalLimitingZeros to polynomialRecurrences.tex with complete proofs.
+The latter uses the existing BKW statement and proves the support ray via
+H(u)=uR(u)^ell, angular modulus monotonicity, and dominant-pair continuation.
+Credited Fisk, Wagner, Engström and the rigid endpoint's Forgács–Tran antecedent.
+Corrected realRootedGraphs.tex: Leake–Ryder gives same-phase stability, not
+full multivariate real stability. Added a reciprocal recurrence link and
+corrected Engstrom2007's issue/article/pages metadata from the primary PDF.
+Full make Q=1, make check, whitespace and Chromium 1366/375 checks pass;
+new anchors/links, expanded proof math and horizontal overflow checked.
+The two existing unit-test bibliography warnings remain. Screenshots/build
+logs: /tmp/symcat-renewal. Research proof/density note:
+projects/Real-Zero-Preservers/notes/tiling-renewal-bkw-support.md.
+Source changes only; no deployment, manuscript edit, or Lean work.
+
 ## Deployed: expanded algebra definitions — 2026-10-25
 
 Codex `/root` owns this deployment-record opening only until its checkpoint.
