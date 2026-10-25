@@ -1,5 +1,15 @@
 # Handoff
 
+## Deployed: brief algebra definitions — 2026-10-25
+
+Codex `/root` owns this deployment-record opening only until its checkpoint.
+Published 633092f through the constrained bridge at 09:00:29 UTC after the
+clean-tree gate, full build, `make check`, and whitespace checks passed.
+Receipt: `20261025T090029-10b29e074f17`; Pagefind manifest verification passed.
+Live `algebras-and-rings.htm` and `macdonaldE.htm` return HTTP 200 and match
+the checked build byte for byte. No content changes during deployment.
+Ownership released with this record-only checkpoint; no further upload needed.
+
 ## Ready: brief algebra definitions — 2026-10-25
 
 Added Clifford and Temperley--Lieb definitions to `algebras-and-rings.tex`,
