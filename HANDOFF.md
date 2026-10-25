@@ -1,5 +1,15 @@
 # Handoff
 
+## Deployed: weighted recurrence theory — 2026-10-25
+
+Published `d2f6c1d552764208b410602498ddebbd7559da9d` through the constrained
+bridge at 19:33:46 UTC. Receipt: `20261025T193346-26ece35a0616`.
+Full build, `make check`, whitespace and clean-state checks passed; the two
+existing test-fixture bibliography warnings remain. Pagefind manifest matched.
+Live `polynomialRecurrences.htm` and `realRootedGraphs.htm` return HTTP 200,
+match the checked build byte for byte, and contain the new section anchors.
+Ownership released; this deployment record requires no further upload.
+
 ## Ready: weighted recurrence theory and BKW support — 2026-10-25
 
 Ownership released. Added weightedDelayRecurrences / weightedRenewalRecurrences
