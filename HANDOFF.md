@@ -1,5 +1,16 @@
 # Handoff
 
+## Deployed: expanded algebra definitions — 2026-10-25
+
+Codex `/root` owns this deployment-record opening only until its checkpoint.
+Published c7eab76 through the constrained bridge at 09:23:21 UTC after the
+clean-tree gate, full build, `make check`, and whitespace checks passed.
+Receipt: `20261025T092321-e62d4f930712`; Pagefind manifest verification passed.
+Live `algebras-and-rings.htm`, `diagonalHarmonics.htm`, `stanleySymmetric.htm`,
+and `rsk.htm` return HTTP 200 and match the checked build byte for byte.
+No content changes during deployment. Ownership released with this
+record-only checkpoint; no further upload needed.
+
 ## Ready: coinvariant, operator, plactic, and graph algebras — 2026-10-25
 
 Added coinvariant, nilCoxeter/nilHecke, plactic, Kirchhoff, and
