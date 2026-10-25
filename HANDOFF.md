@@ -1,5 +1,28 @@
 # Handoff
 
+## Ready: coinvariant, operator, plactic, and graph algebras — 2026-10-25
+
+Added coinvariant, nilCoxeter/nilHecke, plactic, Kirchhoff, and
+Postnikov--Shapiro definitions to `algebras-and-rings.tex`. Included the
+coinvariant Hilbert series, nilHecke operator/sign convention, tableau basis,
+and distinct tree/forest power ideals. Added reciprocal links from diagonal
+harmonics, affine Schur functions, and RSK. The Kirchhoff apolar construction
+is explicitly distinguished from the Postnikov--Shapiro algebras.
+
+Added Kostant--Kumar, Postnikov--Shapiro, and Akama references. Checked the
+cached Postnikov--Shapiro source and Akama v3 source, the original journal
+metadata, and existing coinvariant/plactic references. Academic-writing
+conventions keep the additions definition-first and compact.
+Full build, `make check`, and whitespace checks pass (two existing fixture
+warnings). Chromium at 1366/375 checks all new anchors, internal links and
+backlinks, zero math errors, and no horizontal overflow. Desktop screenshot
+inspected; evidence: `/tmp/symcat-algebras-expanded-{1366,375}.png`.
+
+Tree was clean at intake. Codex `/root` releases exact ownership of
+`tex-source/algebras-and-rings.tex`, `tex-source/diagonalHarmonics.tex`,
+`tex-source/stanleySymmetric.tex`, `tex-source/rsk.tex`, `bibliography.bib`,
+and this opening at the focused checkpoint. Not deployed.
+
 ## Deployed: brief algebra definitions — 2026-10-25
 
 Codex `/root` owns this deployment-record opening only until its checkpoint.
