@@ -1,5 +1,13 @@
 # Handoff
 
+## Ready: reciprocal Hermite--Biehler link — 2026-10-26
+
+Added the return link in `tex-source/realRootedInterlacing.tex` to the
+stable-polynomial formulation; source now links both ways.
+Full build, make check, whitespace and rendered href checks pass
+(two existing fixture warnings). Clean tree at intake; ownership released.
+Source-only checkpoint; return link not yet deployed.
+
 ## Deployed: Hermite--Biehler and region criteria — 2026-10-26
 
 Published `fbd69ae4b505d944c838bd84a1cf8cde24afa58f` through the constrained
