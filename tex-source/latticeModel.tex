@@ -132,3 +132,42 @@ partition functions of the fully inhomogeneous free-fermion six-vertex model
 \cite{AggarwalBorodinPetrovWheeler2023}.  These functions generalize Schur,
 factorial Schur, and supersymmetric Schur polynomials, and satisfy Cauchy-type
 identities from the Yang--Baxter equation.
+For Borodin's higher-spin deformation of Hall--Littlewood functions,
+see \hyperref[spinHallLittlewoodRationalFunction]{spin Hall--Littlewood rational functions}.
+
+\subsection[bessenrodtStanleyPolynomials]{Bessenrodt--Stanley polynomials and the octahedron recurrence}
+
+Let $\lambda$ be a Young diagram in English notation, with a variable
+$x_{ij}$ attached to each box. For $(a,b)\in\lambda$, let
+$\lambda_{a,b}$ be its southeast subdiagram: the boxes with
+$i\geq a$ and $j\geq b$.
+The \defin{Bessenrodt--Stanley polynomials} are
+\[
+ p_{a,b}(\xvec)
+ =\sum_{\mu\subseteq\lambda_{a,b}}
+   \prod_{(i,j)\in\lambda_{a,b}\setminus\mu}x_{ij},
+\]
+where $\mu$ ranges over Young subdiagrams anchored at $(a,b)$,
+including the empty and full diagrams
+\cite[Eq.~(4.5)]{DiFrancesco2015}.
+These are box-weighted polynomials, not generally symmetric functions.
+
+\name{Philippe Di Francesco} realizes them as specializations of
+solutions of the \defin{octahedron recurrence}
+\[
+ \begin{aligned}
+ T_{i,j,k+1}T_{i,j,k-1}
+ ={}&T_{i+1,j,k}T_{i-1,j,k}\\
+ &+T_{i,j+1,k}T_{i,j-1,k}.
+ \end{aligned}
+\]
+Here the variables lie on the parity sublattice $i+j+k$ odd,
+with $i\geq1$ and boundary $T_{0,j,k}=1$.
+The Young diagram specifies a stepped initial surface.
+The resulting solutions are Laurent polynomials with nonnegative
+integer coefficients in the initial data; the Bessenrodt--Stanley
+specialization cancels their denominators
+\cite[Thms.~2.2 and 2.4]{DiFrancesco2015}.
+The path and dimer partition-function formulas
+\cite[Thms.~4.2 and 4.4]{DiFrancesco2015}
+give a lattice-model interpretation of these polynomials.

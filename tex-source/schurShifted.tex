@@ -316,3 +316,30 @@ These are essentially the same as the \emph{double Schur functions}; see
 
 The factorial Schur functions admit a Littlewood--Richardson rule; see
 \cite{MolevSagan1999}.
+
+\subsection[weightedSchur]{Weighted Grassmannians and twisted Schur polynomials}
+
+\name{Hiraku Abe} and \name{Tomoo Matsumura} introduce
+\defin{twisted Schur polynomials} for weighted Grassmannians
+\cite{AbeMatsumura2015}. For nonnegative integer weights
+$w_1,w_2,\dotsc$, a positive integer $u$, and $\length(\lambda)\leq n$, set
+\[
+ s^w_\lambda(\xvec)
+ \coloneqq
+ \left.\schurFactorial_\lambda(\xvec\mid\avec)
+ \right|_{a_i=-(w_i/u)(x_1+\dotsb+x_n)}.
+\]
+These homogeneous symmetric polynomials form a basis of
+$\setQ[x_1,\dotsc,x_n]^{S_n}$ and reduce to $\schurS_\lambda$
+when all weights vanish. They represent weighted Schubert classes
+in the rational cohomology of weighted Grassmannians.
+For $u=1$, they are characters of polynomial representations of
+$\mathrm{GL}_n$, hence have nonnegative integer Schur coefficients.
+For example,
+\[
+ s^w_{(1)}(\xvec)
+ =\left(1+\frac{w_1+\dotsb+w_n}{u}\right)\schurS_{(1)}(\xvec).
+\]
+This specialization of factorial Schur polynomials is distinct from the
+\hyperref[schubertTwisted]{twisted Schubert polynomials}
+defined using the operators $s_i+\partial_i$.

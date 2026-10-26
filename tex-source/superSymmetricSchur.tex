@@ -54,6 +54,9 @@ A good overview of this area can be found in the PhD thesis by
 
 This is also the sixth variant of Schur functions considered in
 \cite[Eq.~6.19]{Macdonald1992}.
+Both alphabets here consist of commuting variables. This differs from
+\hyperref[schurSuperspace]{Schur polynomials in superspace},
+which involve anticommuting variables.
 
 \name{Slava Naprienko} introduces free fermionic Schur functions
 $\schurS_{\lambda/\mu;\avec,\bvec}(\xvec/\yvec)$
@@ -490,6 +493,41 @@ $Q$-functions.  The same work gives determinant and Pfaffian Giambelli
 formulae for skew big Schur functions.
 
 
+
+\section[schurSuperspace]{Schur polynomials in superspace}
+
+We work with commuting variables $x_1,\dotsc,x_N$ and anticommuting
+variables $\theta_1,\dotsc,\theta_N$:
+$\theta_i\theta_j=-\theta_j\theta_i$ and $\theta_i^2=0$.
+A symmetric superpolynomial is invariant under simultaneous permutations
+of the pairs $(x_i,\theta_i)$.
+Its indexing \defin{superpartition}
+$\Lambda=(\Lambda^a;\Lambda^s)$ consists of a strictly decreasing
+sequence of nonnegative integers $\Lambda^a$ and an ordinary partition
+$\Lambda^s$; $\length(\Lambda^a)$ is the degree in the $\theta$-variables.
+
+The \defin{Schur superpolynomials} are two limits of the
+Macdonald polynomials in superspace:
+\[
+ \begin{aligned}
+ s_\Lambda(\xvec,\theta)&=P_\Lambda(\xvec,\theta;0,0),\\
+ \bar s_\Lambda(\xvec,\theta)
+ &=\lim_{t\to\infty}P_\Lambda(\xvec,\theta;t,t).
+ \end{aligned}
+\]
+When $\Lambda^a$ is empty, both reduce to the ordinary
+$\schurS_{\Lambda^s}(\xvec)$.
+\name{Olivier Blondeau-Fournier} and \name{Pierre Mathieu}
+proposed tableau descriptions and Pieri rules
+\cite{BlondeauFournierMathieu2015}.
+\name{Miles Jones} and \name{Luc Lapointe} subsequently proved
+Pieri rules and derived tableau generating functions
+\cite{JonesLapointe2017}; in particular, their Remark~21 identifies
+the proof of the earlier Pieri conjecture.
+These superspace families are distinct from the
+\hyperref[hookSchur]{hook Schur functions} in two commuting alphabets
+and are related to the \hyperref[macdonaldPMulti]{double Macdonald polynomials}
+through a stable limit.
 
 \section[factorialHookSchur]{Factorial supersymmetric Schur polynomials}
 

@@ -1,5 +1,64 @@
 # Handoff
 
+## Ready: published books-and-articles shortlist — 2026-10-26
+
+All five supplied candidates integrated; none omitted or cited as an
+unpublished substitute. Full shortlist path is not mounted. Repository-wide
+author/title/DOI searches preceded additions. Clean tree at intake;
+ownership released for the six TeX pages below, bibliography.bib and this
+opening. Source-only checkpoint, not deployed.
+
+Placements and verified journal records:
+- schurShifted.tex#weightedSchur: Abe--Matsumura, J. Algebraic Combin.
+  42(3) (2015), 875--892; DOI 10.1007/s10801-015-0608-z.
+  Factorial specialization, character positivity (u=1), one-box example;
+  explicitly distinct from twisted Schubert polynomials, with a link.
+- jack.tex#jackConnectionCoefficients: Kanunnikov--Vassilieva, EJC
+  23(1) (2016), P1.53; DOI 10.37236/5085. Published title is
+  "On the Matchings-Jack conjecture for Jack connection coefficients
+  indexed by two single part partitions", not the old arXiv title.
+  Triple-Cauchy normalization and Theorem 2 recurrence, with Theorem 3
+  interpretation; no revival of settled polynomiality/integrality claims.
+- hallLittlewood.tex: Borodin, Adv. Math. 306 (2017), 973--1018;
+  DOI 10.1016/j.aim.2016.10.040. Extended existing spin-HL coverage,
+  symmetrization and s=0 normalization; latticeModel.tex cross-links it.
+- superSymmetricSchur.tex#schurSuperspace: Blondeau-Fournier--Mathieu,
+  SIGMA 11 (2015), 021; DOI 10.3842/SIGMA.2015.021.
+  Anticommuting variables, superpartitions and two Macdonald limits;
+  distinguished from hook Schur, linked with macdonaldP.tex.
+- latticeModel.tex#bessenrodtStanleyPolynomials: Di Francesco, EJC
+  22(3) (2015), P3.35; DOI 10.37236/4434. Box-weighted definition,
+  octahedron recurrence and path/dimer interpretations; not asserted symmetric.
+
+Later published sources: Ben Dali, Trans. AMS 376(5) (2023), 3641--3662,
+10.1090/tran/8851 (integrality); Kanunnikov--Promyslov--Vassilieva,
+EJC 31(3) (2024), P3.6, 10.37236/9575 (labelled variants);
+Jones--Lapointe, JCTA 148 (2017), 57--115, 10.1016/j.jcta.2016.11.005
+(Pieri proofs; Remark 21 explicitly resolves the earlier Pieri conjecture).
+General matching positivity is not presented as proved by those special cases.
+
+Source audit: Springer/ScienceDirect/EJC/SIGMA journal records and publisher
+Crossref deposits checked before writing. Final EJC and SIGMA PDFs cached
+as paper-cache ids 687--689; statements checked directly there.
+Springer's full weighted-Grassmannian PDF was subscription-restricted,
+and Borodin's ScienceDirect full-text endpoint returned 403: their
+published abstracts/metadata were verified, while detailed formulas were
+checked against the cached author manuscripts 1209.2597v2/1410.0976v1.
+Thus those two formulas were not compared against a publisher PDF.
+Ben Dali's published abstract was checked through the AMS Crossref deposit
+(AMS full text returned 403), with normalization checked in 2203.14879v2.
+Jones--Lapointe's publisher-indexed text supplied Remark 21.
+
+Academic-writing guidance: definitions before claims, conventional notation,
+compact formulas and explicit distinctions between families/statuses.
+Full make Q=1, make check and git diff --check pass (two existing fixture
+bibliography warnings). Chromium 1366/375 inspection and rendered cross-link
+audit pass; no new math errors or document overflow. Four pre-existing
+KaTeX errors involving unbraced superscripts such as V^\imath_\lambda remain
+elsewhere on hallLittlewood.tex, confirmed in HEAD before this task;
+left untouched. Existing macdonaldPMulti section/polydata duplicate DOM id
+also left untouched. Neither is introduced by these additions.
+
 ## Deployed: reciprocal Hermite--Biehler link — 2026-10-26
 
 Added the return link in `tex-source/realRootedInterlacing.tex` to the

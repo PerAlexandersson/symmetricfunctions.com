@@ -318,6 +318,64 @@ The Cauchy identity for Jack polynomials states that
 \]
 
 
+\subsection[jackConnectionCoefficients]{Jack connection coefficients}
+
+For three alphabets $X,Y,Z$, the \defin{Jack connection coefficients}
+$A^\lambda_{\mu,\nu}(a)$ are defined by the triple Cauchy sum
+\[
+ \begin{gathered}
+ \sum_{\rho\vdash n}
+ \frac{\jackJ_\rho(X;a)\jackJ_\rho(Y;a)\jackJ_\rho(Z;a)}
+      {\langle\jackJ_\rho,\jackJ_\rho\rangle_a}\\
+ =
+ \sum_{\lambda,\mu,\nu\vdash n}
+ \frac{A^\lambda_{\mu,\nu}(a)}
+      {a^{\length(\lambda)}z_\lambda}
+ \powerSum_\lambda(X)\powerSum_\mu(Y)\powerSum_\nu(Z).
+ \end{gathered}
+\]
+Here $z_\lambda=\prod_{r\geq1}r^{m_r(\lambda)}m_r(\lambda)!$,
+where $m_r(\lambda)$ is the multiplicity of $r$.
+At $a=1$, $A^\lambda_{\mu,\nu}(1)$ counts factorizations
+$\sigma\tau=\pi$ with cycle types $\mu,\nu$ for a fixed permutation
+$\pi$ of cycle type $\lambda$.
+For $a=2$, fix perfect matchings $g,h$ on $2n$ vertices whose union
+has cycle lengths $2\lambda_1,2\lambda_2,\dotsc$.
+Then $A^\lambda_{\mu,\nu}(2)$ counts perfect matchings $\delta$
+such that $h\cup\delta$ and $g\cup\delta$ have cycle lengths
+$2\mu$ and $2\nu$, respectively \cite{KanunnikovVassilieva2016}.
+Common edges are counted twice, as cycles of length two.
+These are different from the
+\hyperref[jackLittlewoodRichardsonConjecture]{Jack Littlewood--Richardson coefficients}.
+
+Write $C_\lambda(a)=A^\lambda_{(n),(n)}(a)$ for $\lambda\vdash n$.
+Kanunnikov--Vassilieva prove the following recurrence
+\cite[Thm.~2]{KanunnikovVassilieva2016}. If $\lambda\vdash n+1$
+and a part $r=\lambda_i$ is chosen, then
+\[
+ \begin{aligned}
+ C_\lambda(a)={}&(a-1)(r-1)C_{\lambda\setminus r\,\cup(r-1)}(a)\\
+ &+\sum_{d=1}^{r-2}C_{\lambda\setminus r\,\cup(d,r-1-d)}(a)\\
+ &+a\sum_{j\neq i}\lambda_j
+ C_{\lambda\setminus(r,\lambda_j)\,\cup(r+\lambda_j-1)}(a).
+ \end{aligned}
+\]
+Removal and insertion act on the indicated occurrences of parts,
+after which we reorder. When $r=1$, the first two terms are absent.
+Together with $C_{(1)}=1$, this proves
+$C_\lambda(1+b)\in\setN[b]$ by induction.
+Their stronger result gives a matching statistic for these coefficients
+\cite[Thm.~3]{KanunnikovVassilieva2016}.
+
+For arbitrary triples, \name{Houcine Ben Dali} proves
+$A^\lambda_{\mu,\nu}(1+b)\in\setZ[b]$
+\cite{BenDali2023Integrality}.
+Thus polynomiality and integrality are theorems; the general
+coefficientwise nonnegativity and matching interpretation are the
+remaining assertions of the Matchings--Jack conjecture.
+Later labelled variants are treated in
+\cite{KanunnikovPromyslovVassilieva2024}.
+
 \subsection[jackLaplaceBeltrami]{Calogero--Sutherland and Laplace--Beltrami operators}
 
 The Jack polynomials $\jackJ_\lambda$ are eigenpolynomials for the

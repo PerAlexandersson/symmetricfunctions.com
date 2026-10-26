@@ -72,6 +72,28 @@ construction based on the $U_q(\mathfrak{sl}_2)$ $R$-matrix
 \cite{Motegi2017}.  The resulting wavefunctions are symmetric polynomials
 that specialize to Grothendieck-type polynomials, and the Yang--Baxter
 formalism gives determinant pairing and branching formulas.
+\name{Alexei Borodin}'s published construction
+\cite{Borodin2017Rational} gives the spin Hall--Littlewood rational functions
+as \hyperref[latticeModelVertex]{higher-spin six-vertex partition functions}.
+For $\lambda_1\geq\dotsb\geq\lambda_n\geq0$, one normalization is
+\[
+ F_\lambda(\mathbf{u};q,s)
+ =(1-q)^n\sum_{\sigma\in S_n}\sigma\left(
+ \prod_{i<j}\frac{u_i-qu_j}{u_i-u_j}
+ \prod_{i=1}^n\frac{(u_i-s)^{\lambda_i}}
+ {(1-su_i)^{\lambda_i+1}}\right),
+\]
+where $\sigma$ permutes the $u$-variables.
+The formula is an identity of rational functions; apparent poles
+at $u_i=u_j$ cancel. At $s=0$,
+\[
+ F_\lambda(\mathbf{u};q,0)
+ =\prod_{r\geq0}(q;q)_{m_r(\lambda)}
+   \hallLittlewoodP_\lambda(\mathbf{u};q),
+\]
+where $(q;q)_k=\prod_{j=1}^k(1-q^j)$ and $m_0$ counts zero parts
+in the length-$n$ signature. Borodin also proves skew Cauchy and
+Pieri identities and orthogonality relations.
 \name{Kailun Chen} and \name{Xiangmao Ding} give a combinatorial definition of
 \defin{stable spin Hall--Littlewood symmetric functions}\label{stableSpinHallLittlewoodFunction}
 \cite{ChenDing2021SpinHL}.  They prove skew Littlewood, refined Cauchy, and
