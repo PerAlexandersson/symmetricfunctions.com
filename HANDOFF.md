@@ -1,5 +1,20 @@
 # Handoff
 
+## Deployed: Hermite--Biehler and region criteria — 2026-10-26
+
+Published `fbd69ae4b505d944c838bd84a1cf8cde24afa58f` through the constrained
+bridge at 16:54:58 UTC. Receipt: `20261026T165458-d5720753ef72`.
+Full build, make check, whitespace and clean-tree gates passed;
+only the two existing fixture bibliography warnings remain.
+Pagefind manifest matched. Live stablePolynomials.htm and
+realRootedInterlacing.htm return HTTP 200, match the checked build
+byte for byte, and retain their respective Hermite--Biehler anchors.
+Repository-wide duplicate check found the existing even--odd/Hurwitz
+formulation on realRootedInterlacing.tex and a passing mention on
+gammaPositivity.tex. The new upper-half-plane/proper-position treatment
+complements and links to the existing theorem; no duplicate removed.
+Ownership released; this record-only checkpoint needs no further deployment.
+
 ## Ready: Hermite--Biehler and region-dependent stability — 2026-10-26
 
 Ownership released after source-only integration in `tex-source/stablePolynomials.tex`
