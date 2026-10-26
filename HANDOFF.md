@@ -1,12 +1,15 @@
 # Handoff
 
-## Ready: reciprocal Hermite--Biehler link — 2026-10-26
+## Deployed: reciprocal Hermite--Biehler link — 2026-10-26
 
 Added the return link in `tex-source/realRootedInterlacing.tex` to the
 stable-polynomial formulation; source now links both ways.
 Full build, make check, whitespace and rendered href checks pass
 (two existing fixture warnings). Clean tree at intake; ownership released.
-Source-only checkpoint; return link not yet deployed.
+Deployed `d728417` at 18:26:47 UTC through the constrained bridge.
+Receipt: `20261026T182647-f1fa85dcb4a8`; Pagefind manifest matched.
+Both live pages return HTTP 200, match the build, and link to each other.
+Record ownership released; no further upload needed for this checkpoint.
 
 ## Deployed: Hermite--Biehler and region criteria — 2026-10-26
 
