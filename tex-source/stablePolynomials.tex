@@ -1,7 +1,7 @@
 \metatitle{Stable polynomials}
 
 \metadescription{Multivariate stable polynomials, strongly Rayleigh measures,
-stability-preserving operations, and same-phase stability.}
+Hermite--Biehler, disk and half-plane criteria, and stability-preserving operations.}
 \metakeywords{stable polynomial, real stable polynomial, strongly Rayleigh
 measure, Borcea--Branden symbol, multiaffine polynomial, same-phase stability}
 
@@ -11,7 +11,7 @@ measure, Borcea--Branden symbol, multiaffine polynomial, same-phase stability}
 
 
 Let $\mathcal{H} \subset \setC$ denote the
-upper half-plane $\{z \in \setC: \mathrm{im}(z) > 0 \}$.
+upper half-plane $\{z \in \setC: \operatorname{Im}(z) > 0 \}$.
 
 \begin{definition}[Stability]
 
@@ -22,10 +22,12 @@ That is, $P$ is stable if
 \[
  \zvec^* \in \mathcal{H}^n \implies P(\zvec^*) \neq 0.
 \]
-One can easily show that $P \in \setR[z_1,\dotsc,z_n]$ is stable if and only
-if $P(\alpha+\lambda t)=0$ has only real zeros for all
-$\alpha \in \setR^n$, $\lambda \in \setR_+^n$.
-A univariate polynomial with real coefficients
+The zero polynomial is not stable. A stable polynomial with real
+coefficients is called \defin{real stable}.
+Equivalently, $P \in \setR[z_1,\dotsc,z_n]$ is stable if and only
+if $t\mapsto P(\alpha+\lambda t)$ is nonzero and real-rooted for all
+$\alpha \in \setR^n$, $\lambda \in (0,\infty)^n$.
+A nonzero univariate polynomial with real coefficients
 is stable if and only if all its roots are real.
 \end{definition}
 
@@ -52,12 +54,191 @@ is real stable.
 \end{definition}
 
 
+\subsection[regionStabilityCriteria]{Disk and half-plane criteria}
+
+For an open region $\Omega\subseteq\setC$, we call $F$
+\defin{$\Omega^2$-stable} if $F(z,w)\neq0$ for all $z,w\in\Omega$.
+We use the ordering
+\[
+ F(z,w)=P(z)+wQ(z), \qquad P,Q\in\setC[z],
+\]
+and write $\mathcal D=\{z:|z|<1\}$ and
+$\mathcal R=\{z:\operatorname{Re}z>0\}$.
+
+\begin{proposition}[Open-region criteria]
+\label{linearPencilStability}
+The following conditions characterize stability of $F$.
+\begin{itemize}
+\item On $\mathcal D^2$: $P$ has no zeros in $\mathcal D$ and
+  $|Q(z)|\leq|P(z)|$ for every $z\in\mathcal D$.
+\item On $\mathcal H^2$, when $Q\not\equiv0$: $Q$ has no zeros in
+  $\mathcal H$ and $\operatorname{Im}(P(z)/Q(z))\geq0$ there.
+\item On $\mathcal R^2$, when $Q\not\equiv0$: $Q$ has no zeros in
+  $\mathcal R$ and $\operatorname{Re}(P(z)/Q(z))\geq0$ there.
+\end{itemize}
+If $Q\equiv0$, stability means simply that $P$ has no zeros in the
+stated region. In the disk criterion the inequality is strict throughout
+$\mathcal D$, unless $Q=\lambda P$ for a constant $|\lambda|=1$.
+The right-half-plane inequality can also be written
+$|P-Q|\leq|P+Q|$, with the zero-free condition on $Q$ retained.
+\end{proposition}
+
+\begin{proof}
+For the disk, setting $w=0$ shows that $P$ is zero-free.
+At a point where $Q(z)\neq0$, the only root in $w$ is $-P(z)/Q(z)$.
+This root lies outside the open disk exactly when $|Q(z)|\leq|P(z)|$.
+The strict alternative follows from the maximum modulus principle
+applied to $Q/P$.
+
+For the upper half-plane, stability makes
+$F(z,it)/(it)$ zero-free for every $t>0$.
+As $t\to\infty$, these polynomials converge locally uniformly to $Q$.
+Hurwitz's theorem makes $Q$ zero-free or identically zero.
+In the former case the root $-P/Q$ lies outside $\mathcal H$
+exactly when $\operatorname{Im}(P/Q)\geq0$.
+The same proof uses $F(z,t)/t$ for $\mathcal R$.
+Finally, $|P+Q|^2-|P-Q|^2=4\operatorname{Re}(P\overline Q)$.
+See also \cite[Lemmas~2.2--2.3]{BorceaBranden2010}
+for the half-plane criterion and Hurwitz's theorem.
+\end{proof}
+
+\begin{example}[A boundary test is insufficient]
+Let $P(z)=z^2+3z+1$ and $Q(z)=(z^2+1)/2$.
+On $z=e^{i\theta}$ we have
+$|P(z)|=3+2\cos\theta\geq|\cos\theta|=|Q(z)|$,
+but
+\[
+ F(-1/2,2/5)=0.
+\]
+Thus the boundary-circle inequality alone does not imply
+$\mathcal D^2$-stability. In contrast, equality in the interior criterion
+is allowed: $1+w$ has no zero for $|w|<1$.
+\end{example}
+
+The Cayley map $\phi(z)=(z-i)/(z+i)$ sends $\mathcal H$ onto
+$\mathcal D$. If $d=\max(\deg P,\deg Q)$ for a nonzero $F$, then
+\[
+ (z+i)^d(w+i)F(\phi(z),\phi(w))
+\]
+is a polynomial and is $\mathcal H^2$-stable exactly when $F$ is
+$\mathcal D^2$-stable. The denominator factors do not vanish on
+$\mathcal H^2$. This transports the domain, but also changes the
+coefficient polynomials; see \cite{BorceaBranden2009I}.
+
+\subsection[hermiteBiehler]{Hermite--Biehler and proper position}
+
+Two real-rooted polynomials have \defin{weakly interlacing zeros}
+if their zeros, listed with multiplicity, alternate in weak order.
+Their degrees differ by at most one; constants are included.
+For nonzero $P,Q\in\setR[z]$, we use the convention
+\[
+ Q\ll P \quad\Longleftrightarrow\quad P+iQ\text{ is stable},
+\]
+and say that $Q$ is in \defin{proper position} with respect to $P$.
+
+\begin{theorem}[Hermite--Biehler,
+  \cite[Thm.~1.4 and Lemma~2.2]{BorceaBranden2010}]
+\label{hermiteBiehlerStability}
+For nonzero real polynomials $P,Q$, the following are equivalent:
+\begin{itemize}
+\item $P(z)+wQ(z)$ is $\mathcal H^2$-stable.
+\item $Q\ll P$, that is, $P+iQ$ is stable.
+\item $P,Q$ are real-rooted, their zeros weakly interlace, and
+  \[
+    P'(x)Q(x)-P(x)Q'(x)\geq0 \qquad (x\in\setR).
+  \]
+\end{itemize}
+If $P,Q$ are not proportional, these are also equivalent to
+\[
+ |P(z)-iQ(z)|<|P(z)+iQ(z)| \qquad (z\in\mathcal H).
+\]
+For proportional pairs $P=cQ$, $c\in\setR\setminus\{0\}$,
+stability is equivalent to real-rootedness of $Q$ and the two
+moduli are equal.
+\end{theorem}
+
+\begin{proof}
+Specializing $w=i$ gives the second condition from the first.
+Conversely, set $h=P+iQ$ and
+$h^*(z)=\overline{h(\overline z)}=P-iQ$.
+If $h$ is stable, each root $\alpha$ of $h$ lies in the closed
+lower half-plane. For $z\in\mathcal H$,
+$|z-\overline\alpha|\leq|z-\alpha|$, so factoring $h$ gives
+$|h^*(z)|\leq|h(z)|$. The inequality is strict unless all roots
+of $h$ are real, in which case $P,Q$ are proportional and
+real-rooted. In the strict case, $Q$ is zero-free in $\mathcal H$
+and the identity
+\[
+ |P+iQ|^2-|P-iQ|^2=4\operatorname{Im}(P\overline Q)
+\]
+gives $\operatorname{Im}(P/Q)>0$.
+The half-plane criterion proves the first condition and the
+strict-modulus equivalence. The proportional case follows from
+$P+wQ=(c+w)Q$.
+
+We can see the interlacing characterization from the same ratio.
+The limits $w\to0$ and $w\to i\infty$ of a stable $P+wQ$,
+with division by $w$ in the latter case, show that $P,Q$
+are real-rooted by Hurwitz's theorem. Cancel their common factors.
+A real rational function with nonnegative imaginary part on
+$\mathcal H$ has the form
+\[
+ \frac{P(z)}{Q(z)}=az+b+\sum_j\frac{c_j}{r_j-z},
+\]
+where $a\geq0$, $b,r_j\in\setR$, and $c_j>0$.
+Indeed, the sign of the imaginary part near a real pole forces
+the pole to be simple with negative residue; the same sign at
+infinity forces the polynomial part to be linear with
+nonnegative slope. The ratio is increasing between successive
+poles, giving alternating zeros and
+$P'Q-PQ'\geq0$. Conversely, interlacing gives simple poles after
+cancellation, and the displayed Wronskian sign gives negative
+residues and a nonnegative linear coefficient. The partial
+fractions therefore have the stated form, whose imaginary part
+is nonnegative on $\mathcal H$. Restoring common real factors
+gives weak interlacing.
+\end{proof}
+
+The Wronskian sign alone is not a criterion: $P=Q=z^2+1$
+has zero Wronskian but is not stable. The same example shows why
+the non-strict modulus inequality alone cannot replace the theorem.
+For the even--odd formulation in a left half-plane, see
+\hyperref[hermiteBiehlerTheorem]{Hermite--Biehler for Hurwitz stability}.
+
+\subsubsection[derivativeStabilityCriterion]{A derivative criterion for real-rootedness}
+
+\begin{corollary}
+For a nonconstant $f\in\setR[z]$, the following are equivalent:
+\begin{itemize}
+\item $f$ is real-rooted.
+\item $f(z)+wf'(z)$ is $\mathcal H^2$-stable.
+\item $|f(z)-if'(z)|<|f(z)+if'(z)|$ for all $z\in\mathcal H$.
+\end{itemize}
+Repeated roots are allowed.
+\end{corollary}
+
+\begin{proof}
+If the roots $r_1,\dotsc,r_n$ of $f$ are real, listed with
+multiplicity, then
+\[
+ \frac{f'(z)}{f(z)}=\sum_{j=1}^n\frac{1}{z-r_j}
+\]
+has strictly negative imaginary part on $\mathcal H$.
+Thus $f'$ is zero-free there and $\operatorname{Im}(f/f')>0$,
+which proves stability by the half-plane criterion.
+Conversely, let $w=i\varepsilon$ tend to zero.
+Hurwitz's theorem shows that the nonzero limit $f$ is stable;
+its real coefficients then force all its roots to be real.
+The modulus equivalence follows from Hermite--Biehler,
+since $f$ and $f'$ are not proportional.
+\end{proof}
+
 \subsection[stabilityOperators]{Operators preserving stability}
 
 \begin{theorem}[Stability preserving operators]
 The following operations on polynomials preserve stability.
 Let $p,q \in \setR[z_1,\dotsc,z_n]$ be stable polynomials.
-Then the following are also stable.
+Then the following are stable or identically zero.
 \begin{itemize}
 \item $p\cdot q$ (Product)
 \item $\partial_{z_j} p$ (Differentiation)
@@ -116,7 +297,8 @@ following holds.
 \item The range of \(T\) has dimension at most two and can be written as
   \(T(f)=\alpha(f)P+\beta(f)Q\), where \(\alpha,\beta\) are real linear
   functionals and \(P,Q\) are real stable polynomials in proper position.
-  In one common convention this means that \(Q+iP\) is stable.
+  After ordering the pair, we write \(Q\ll P\), meaning that
+  \(P+iQ\) is stable, as in \hyperref[hermiteBiehler]{Hermite--Biehler}.
 \end{itemize}
 \end{theorem}
 
@@ -126,7 +308,7 @@ case.  The extra sign in the real theorem records the distinction between
 preserving the upper half-plane and preserving real-rootedness.
 
 \begin{example*}[Two elementary symbols]
-For \(T=\partial_{z_i}\), the plus symbol is
+For \(T=\partial_{z_i}\) with \(d_i>0\), the plus symbol is
 \[
   G_T^{+}(\xvec,\mathbf{w})
   =

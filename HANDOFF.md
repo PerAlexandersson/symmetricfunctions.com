@@ -1,5 +1,27 @@
 # Handoff
 
+## Ready: Hermite--Biehler and region-dependent stability — 2026-10-26
+
+Ownership released after source-only integration in `tex-source/stablePolynomials.tex`
+and `bibliography.bib`; clean tree confirmed at intake.
+Added open disk/upper and right half-plane pencil criteria, proofs,
+Hermite--Biehler with Q << P convention, strict-modulus and derivative
+criteria, proportional/zero cases, the disk boundary counterexample,
+and a link to the existing even--odd formulation. Original
+`stablePolynomial` anchor preserved; nearby closure statement now permits
+zero outputs. Academic-writing guidance kept definitions before use and
+proofs compact.
+
+Verified Borcea--Brändén, published DOI 10.1112/plms/pdp049,
+Theorem 1.4 and Lemmas 2.2--2.3 against cached arXiv math/0606360v6;
+added its arXiv identifier to the existing bibliography record.
+The supplied Crelle.pdf is an older three-author version, not this final record.
+Full `make Q=1`, `make check`, and `git diff --check` pass
+(two existing test-fixture bibliography warnings).
+Chromium desktop/mobile inspection: no KaTeX errors or document overflow;
+section anchors, DOI link and interlacing cross-link checked.
+Ready for a separately authorized deployment; not deployed.
+
 ## Deployed: weighted recurrence theory — 2026-10-25
 
 Published `d2f6c1d552764208b410602498ddebbd7559da9d` through the constrained
