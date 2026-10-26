@@ -1,5 +1,14 @@
 # Handoff
 
+## Deployed: published shortlist additions — 2026-10-26
+
+Published `de1b701` at 21:30:17 UTC using the constrained bridge.
+Receipt: `20261026T213017-e20b0e265d4f`; Pagefind manifest matched.
+Full build, make check, whitespace and clean-state gates passed;
+the two existing fixture warnings remain. No source content changed.
+All six updated live pages return HTTP 200 and match the checked build
+byte for byte. Record ownership released; no further upload needed.
+
 ## Ready: published books-and-articles shortlist — 2026-10-26
 
 All five supplied candidates integrated; none omitted or cited as an
