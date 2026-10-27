@@ -6,181 +6,95 @@
    1) DESIGN TOKENS
    ========================================================================== */
 
+  /* Colour tokens are written once as light-dark(light, dark).  The page
+     follows the system setting; the theme toggle sets :root.light or
+     :root.dark, which fixes color-scheme and hence every token. */
   :root {
- /* --- 1. CORE PALETTE (The DNA) --- */
-  --hue-brand:   28;   /* Professional Orange */
-  --hue-link:    212;  /* Science Blue */
-  --hue-neutral: 215;  /* Slate Grey tone */
+  color-scheme: light dark;
 
-  /* --- 2. SEMANTIC COLORS (Light Mode) --- */
-  
-  /* Brand: Orange */
-  --c-brand:       hsl(var(--hue-brand), 90%, 55%);
-  --c-brand-light: hsl(var(--hue-brand), 90%, 75%); /* Fades/Accents */
-  
-  /* Links & Highlights: Blue */
-  --c-link:        hsl(var(--hue-link), 90%, 48%);
-  --c-link-dark:   hsl(var(--hue-link), 90%, 35%);
-  --c-defin:       hsl(var(--hue-link), 80%, 45%); /* Definition terms */
-  
-  /* Math / Diagram Specifics */
-  --math-env-bar:  hsl(var(--hue-neutral), 20%, 85%);
-  --math-accent:   hsl(var(--hue-link), 80%, 50%);
-  
-  /* Diagram Data Colors (Matches your uploaded image) */
-  --c-data-red:    hsl(0, 85%, 60%);    /* The Red Dots */
-  --c-data-black:  hsl(215, 20%, 20%);  /* The Black Squares (softened) */
-  --c-data-blue:   hsl(220, 90%, 55%);  /* The Blue Triangles */
+  /* --- 1. CORE PALETTE --- */
+  --hue-brand:   28;   /* orange */
+  --hue-link:    212;  /* blue */
+  --hue-neutral: 215;  /* slate (light mode) */
+  --hue-ink:     228;  /* graphite (dark mode surfaces) */
+  --hue-paper:   40;   /* warm off-white (dark mode text) */
 
-  /* Backgrounds */
-  --c-bg-body:     hsl(var(--hue-neutral), 15%, 94%); /* Light Grey/Slate */
-  --c-bg-surface:  hsl(0, 0%, 100%);                  /* Pure White cards */
-  --c-bg-nav:      hsl(0, 0%, 100%);
-  --c-bg-header:   hsl(var(--hue-neutral), 15%, 97%); /* Slight contrast to body */
-  
-  /* Borders & Rules */
-  --c-border:      hsl(var(--hue-neutral), 15%, 82%);
-  --c-bg-gray:     hsl(var(--hue-neutral), 10%, 90%); /* Table rows hover */
-  --c-rule:        hsl(var(--hue-neutral), 15%, 20%); /* Strong lines */
-  --c-tableau-border: hsl(215, 20%, 20%);
+  /* --- 2. ACCENTS --- */
+  --c-brand:       light-dark(hsl(var(--hue-brand), 90%, 55%), hsl(var(--hue-brand), 85%, 66%));
+  --c-brand-light: light-dark(hsl(var(--hue-brand), 90%, 75%), hsl(36, 70%, 56%));
+  --c-on-brand:    light-dark(#fff, hsl(var(--hue-ink), 12%, 10%));
+
+  --c-link:        light-dark(hsl(var(--hue-link), 90%, 48%), hsl(214, 90%, 74%));
+  --c-link-dark:   light-dark(hsl(var(--hue-link), 90%, 35%), hsl(214, 80%, 64%));
+  --c-defin:       light-dark(hsl(var(--hue-link), 80%, 45%), hsl(214, 95%, 81%));
+
+  /* Theorem-like environments */
+  --math-env-bar:  light-dark(hsl(var(--hue-neutral), 20%, 85%), hsl(var(--hue-brand), 30%, 32%));
+  --math-accent:   light-dark(hsl(var(--hue-link), 80%, 50%), hsl(214, 90%, 76%));
+
+  /* Diagram data colours */
+  --c-data-red:    light-dark(hsl(0, 85%, 60%), hsl(4, 80%, 72%));
+  --c-data-black:  light-dark(hsl(215, 20%, 20%), hsl(var(--hue-paper), 10%, 84%));
+  --c-data-blue:   light-dark(hsl(220, 90%, 55%), hsl(214, 90%, 74%));
+
+  /* --- 3. SURFACES --- */
+  --c-bg-body:     light-dark(hsl(var(--hue-neutral), 15%, 94%), hsl(var(--hue-ink), 10%, 8%));
+  --c-bg-surface:  light-dark(hsl(0, 0%, 100%),                  hsl(var(--hue-ink), 8%, 12%));
+  --c-bg-nav:      light-dark(hsl(0, 0%, 100%),                  hsl(var(--hue-ink), 8%, 13.5%));
+  --c-bg-header:   light-dark(hsl(var(--hue-neutral), 15%, 97%), hsl(var(--hue-ink), 9%, 10%));
+  --c-bg-gray:     light-dark(hsl(var(--hue-neutral), 10%, 90%), hsl(var(--hue-ink), 7%, 18%));
+
+  /* Borders & rules */
+  --c-border:      light-dark(hsl(var(--hue-neutral), 15%, 82%), hsl(var(--hue-ink), 7%, 22%));
+  --c-rule:        light-dark(hsl(var(--hue-neutral), 15%, 20%), hsl(var(--hue-paper), 6%, 62%));
+  --c-tableau-border: light-dark(hsl(215, 20%, 20%), hsl(var(--hue-paper), 8%, 76%));
   --header-border: 1px solid var(--c-border);
 
+  /* Theorem-like environments sit on a faint raised panel in dark mode */
+  --c-env-bg:      light-dark(hsl(0, 0%, 100%), hsl(var(--hue-ink), 8%, 14.5%));
 
-  /* Typography */
-  --c-text-main:   hsl(var(--hue-neutral), 20%, 20%); /* Deep Charcoal, not black */
-  --c-text-sub:    hsl(var(--hue-neutral), 15%, 40%);
-  --c-text-muted:  hsl(var(--hue-neutral), 10%, 60%);
-  
-  /* Navigation */
-  --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 50%);
-  --topnav-icon-filter: none;
+  /* Topic cards: blue frame in light mode, quiet frame with a blue edge in dark */
+  --c-card-border: light-dark(var(--c-link), hsl(var(--hue-ink), 8%, 24%));
+  --c-card-edge:   light-dark(var(--c-link), hsl(214, 50%, 52%));
+
+  /* --- 4. TEXT --- */
+  --c-text-main:   light-dark(hsl(var(--hue-neutral), 20%, 20%), hsl(var(--hue-paper), 12%, 85%));
+  --c-text-sub:    light-dark(hsl(var(--hue-neutral), 15%, 40%), hsl(var(--hue-paper), 8%, 70%));
+  --c-text-muted:  light-dark(hsl(var(--hue-neutral), 10%, 60%), hsl(var(--hue-paper), 5%, 52%));
+  --c-nav-subsec:  light-dark(hsl(var(--hue-neutral), 10%, 50%), hsl(var(--hue-paper), 6%, 64%));
 
   /* Ratings */
-  --c-rating-from: hsl(45, 100%, 50%);
-  --c-rating-to:   hsl(var(--hue-neutral), 10%, 85%);
+  --c-rating-from: light-dark(hsl(45, 100%, 50%), hsl(42, 90%, 62%));
+  --c-rating-to:   light-dark(hsl(var(--hue-neutral), 10%, 85%), hsl(var(--hue-ink), 7%, 27%));
 
-  /* --- DIMENSIONS (Kept from your original) --- */
-  --w-col: 14rem; 
+  /* Non-colour theme values (light-dark() takes colours only) */
+  --topnav-icon-filter: none;
+  --img-dark-filter: none;
+
+  /* --- DIMENSIONS --- */
+  --w-col: 14rem;
   --w-sidebar: 20rem;
   --col-main-start: 3;
   --col-main-end:   7;
   --toc-display: block;
-  color-scheme: light;
   }
-  
+
+  :root.light { color-scheme: light; }
+  :root.dark  { color-scheme: dark; }
+
+  /* Line art is drawn dark-on-transparent; invert it softly in dark mode so
+     strokes become off-white rather than glaring white. */
+  :root.dark {
+    --topnav-icon-filter: brightness(0) invert(0.9);
+    --img-dark-filter: invert(0.88) hue-rotate(180deg);
+  }
   @media (prefers-color-scheme: dark) {
-    :root {
-      /* --- DARK MODE OVERRIDES --- */
-    
-    /* Backgrounds: Dark Slate/Navy tones */
-    --c-bg-body:     hsl(var(--hue-neutral), 20%, 10%); 
-    --c-bg-surface:  hsl(var(--hue-neutral), 20%, 14%); 
-    --c-bg-nav:      hsl(var(--hue-neutral), 20%, 14%); 
-    --c-bg-header:   hsl(var(--hue-neutral), 20%, 12%);
-    
-    /* Borders */
-    --c-border:      hsl(var(--hue-neutral), 15%, 25%);
-    --c-bg-gray:     hsl(var(--hue-neutral), 15%, 18%);
-    --c-rule:        hsl(var(--hue-neutral), 10%, 60%); /* Lighten rules for dark mode */
-
-    /* Typography: Inverted Lightness */
-    --c-text-main:   hsl(var(--hue-neutral), 10%, 90%);
-    --c-text-sub:    hsl(var(--hue-neutral), 10%, 70%);
-    --c-text-muted:  hsl(var(--hue-neutral), 10%, 50%);
-    --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 60%);
-    --topnav-icon-filter: brightness(0) invert(1);
-
-    /* Colors: Brighten/Desaturate slightly for contrast on dark */
-    --c-brand:       hsl(var(--hue-brand), 90%, 60%); 
-    --c-brand-light: hsl(var(--hue-brand), 80%, 30%); /* Darker accent for bg */
-    
-    --c-link:        hsl(var(--hue-link), 80%, 65%); /* Lighter blue for readability */
-    --c-link-dark:   hsl(var(--hue-link), 80%, 50%);
-    --c-defin:       hsl(var(--hue-link), 80%, 70%);
-
-    --math-env-bar:  hsl(var(--hue-neutral), 20%, 30%);
-    --math-accent:   hsl(var(--hue-link), 80%, 70%);
-
-    /* Diagram Colors (Adjusted for Dark Background) */
-    --c-data-red:    hsl(0, 85%, 65%);
-    --c-data-black:  hsl(var(--hue-neutral), 10%, 80%); /* Black squares become Light Grey */
-    --c-data-blue:   hsl(220, 90%, 65%);
-
-    --c-tableau-border: hsl(215, 20%, 80%);
-
-    color-scheme: dark;
+    :root:not(.light) {
+      --topnav-icon-filter: brightness(0) invert(0.9);
+      --img-dark-filter: invert(0.88) hue-rotate(180deg);
     }
   }
 
-  :root.dark {
-    --c-bg-body:     hsl(var(--hue-neutral), 20%, 10%);
-    --c-bg-surface:  hsl(var(--hue-neutral), 20%, 14%);
-    --c-bg-nav:      hsl(var(--hue-neutral), 20%, 14%);
-    --c-bg-header:   hsl(var(--hue-neutral), 20%, 12%);
-
-    --c-border:      hsl(var(--hue-neutral), 15%, 25%);
-    --c-bg-gray:     hsl(var(--hue-neutral), 15%, 18%);
-    --c-rule:        hsl(var(--hue-neutral), 10%, 60%);
-
-    --c-text-main:   hsl(var(--hue-neutral), 10%, 90%);
-    --c-text-sub:    hsl(var(--hue-neutral), 10%, 70%);
-    --c-text-muted:  hsl(var(--hue-neutral), 10%, 50%);
-    --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 60%);
-    --topnav-icon-filter: brightness(0) invert(1);
-
-    --c-brand:       hsl(var(--hue-brand), 90%, 60%);
-    --c-brand-light: hsl(var(--hue-brand), 80%, 30%);
-
-    --c-link:        hsl(var(--hue-link), 80%, 65%);
-    --c-link-dark:   hsl(var(--hue-link), 80%, 50%);
-    --c-defin:       hsl(var(--hue-link), 80%, 70%);
-
-    --math-env-bar:  hsl(var(--hue-neutral), 20%, 30%);
-    --math-accent:   hsl(var(--hue-link), 80%, 70%);
-
-    --c-data-red:    hsl(0, 85%, 65%);
-    --c-data-black:  hsl(var(--hue-neutral), 10%, 80%);
-    --c-data-blue:   hsl(220, 90%, 65%);
-
-    --c-tableau-border: hsl(215, 20%, 80%);
-
-    color-scheme: dark;
-  }
-
-  :root.light {
-    --c-brand:       hsl(var(--hue-brand), 90%, 55%);
-    --c-brand-light: hsl(var(--hue-brand), 90%, 75%);
-
-    --c-link:        hsl(var(--hue-link), 90%, 48%);
-    --c-link-dark:   hsl(var(--hue-link), 90%, 35%);
-    --c-defin:       hsl(var(--hue-link), 80%, 45%);
-
-    --math-env-bar:  hsl(var(--hue-neutral), 20%, 85%);
-    --math-accent:   hsl(var(--hue-link), 80%, 50%);
-
-    --c-data-red:    hsl(0, 85%, 60%);
-    --c-data-black:  hsl(215, 20%, 20%);
-    --c-data-blue:   hsl(220, 90%, 55%);
-
-    --c-bg-body:     hsl(var(--hue-neutral), 15%, 94%);
-    --c-bg-surface:  hsl(0, 0%, 100%);
-    --c-bg-nav:      hsl(0, 0%, 100%);
-    --c-bg-header:   hsl(var(--hue-neutral), 15%, 97%);
-
-    --c-border:      hsl(var(--hue-neutral), 15%, 82%);
-    --c-bg-gray:     hsl(var(--hue-neutral), 10%, 90%);
-    --c-rule:        hsl(var(--hue-neutral), 15%, 20%);
-    --c-tableau-border: hsl(215, 20%, 20%);
-
-    --c-text-main:   hsl(var(--hue-neutral), 20%, 20%);
-    --c-text-sub:    hsl(var(--hue-neutral), 15%, 40%);
-    --c-text-muted:  hsl(var(--hue-neutral), 10%, 60%);
-    --c-nav-subsec:  hsl(var(--hue-neutral), 10%, 50%);
-    --topnav-icon-filter: none;
-
-    color-scheme: light;
-  }
-  
   /* ==========================================================================
      RESET & BASE
      ========================================================================== */
@@ -288,13 +202,7 @@
     opacity: 0.6;
   }
 
-  :root.dark img:not(.topnav-icon):not(.no-invert) {
-    filter: invert(1) hue-rotate(180deg);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not(.light) img:not(.topnav-icon):not(.no-invert) { filter: invert(1) hue-rotate(180deg); }
-  }
+  img:not(.topnav-icon):not(.no-invert) { filter: var(--img-dark-filter); }
   
   /* ==========================================================================
      LAYOUT ARCHITECTURE (8-Column Model)
@@ -459,6 +367,18 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
 
+  /* Solid pills for the sister sites and Ko-fi; deeper tones in dark mode */
+  .toplink.toplink-solid {
+    background: var(--pill-bg);
+    border-color: transparent;
+    color: #fff;
+  }
+  .toplink.toplink-solid:hover { color: #fff; border-color: transparent; filter: brightness(1.08); }
+  .toplink.toplink-solid .topnav-icon { filter: brightness(0) invert(1); }
+  .toplink-arxiv   { --pill-bg: light-dark(#b31b1b, hsl(0, 52%, 38%)); }
+  .toplink-poly    { --pill-bg: light-dark(#2a6496, hsl(208, 45%, 38%)); }
+  .toplink-support { --pill-bg: light-dark(#f48525, hsl(28, 62%, 42%)); }
+
   .toplink:focus-visible {
     outline: 2px solid var(--c-link);
     outline-offset: 2px;
@@ -617,10 +537,10 @@
     border-radius: 8px; color: var(--c-text-main); 
     transition: all 0.2s ease; overflow: hidden;
 
-    border: 2px solid var(--c-link);
+    border: 2px solid var(--c-card-border);
     box-shadow: 0 2px 5px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
-    
-    border-left: 4px solid var(--c-link); 
+
+    border-left: 4px solid var(--c-card-edge);
 
   }
   .topic-card:hover {
@@ -649,13 +569,7 @@
     margin-left: 0.8rem;
     opacity: 0.8;
   }
-  :root.dark .topic-card img:not(.no-invert) {
-    filter: invert(1) hue-rotate(180deg);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not(.light) .topic-card img:not(.no-invert) { filter: invert(1) hue-rotate(180deg); }
-  }
+  .topic-card img:not(.no-invert) { filter: var(--img-dark-filter); }
 
   /* ==========================================================================
      CODE, MACROS, TABLES
@@ -764,7 +678,8 @@
   /* Theorem env Details */
   div.env, details.env {
     border-left: 4px solid var(--math-env-bar); padding: 0.5em 0.5em 0.5em 1em;
-    background: var(--c-bg-surface, transparent); margin: 1.5em 0;
+    background: var(--c-env-bg); margin: 1.5em 0;
+    border-radius: 0 6px 6px 0;
   }
   details.env > summary {
     color: var(--math-accent); font-weight: bold; cursor: pointer;
@@ -1116,12 +1031,12 @@
   .relation-graph-toolbar .relation-graph-preset.is-active {
     border-color: var(--c-brand);
     background: var(--c-brand);
-    color: #fff;
+    color: var(--c-on-brand);
   }
 
   .relation-graph-toolbar .relation-graph-preset.is-active:hover,
   .relation-graph-toolbar .relation-graph-preset.is-active:focus-visible {
-    color: #fff;
+    color: var(--c-on-brand);
   }
 
   .relation-graph-shell {

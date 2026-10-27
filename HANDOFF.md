@@ -1,5 +1,16 @@
 # Handoff
 
+## Done: new dark theme — 2026-10-27
+
+Opus 5.5 backend worker, at Per's request. assets/style.css colour tokens
+are now defined once with light-dark(); light values unchanged, dark mode is
+warm graphite with softer amber/blue accents, quiet topic-card frames,
+raised theorem panels, softer image inversion and a dark rating track (stars
+previously all looked filled). Sister-site/Ko-fi pills moved from inline
+styles to .toplink-solid classes (template.htm, assets/search.htm); stylesheet
+cache version bumped. Toggle checked against both system schemes in Chromium.
+make Q=1 and make check pass. Ownership released; not deployed.
+
 ## Done: per-page citation suffixes — 2026-10-27
 
 Opus 5.5 backend worker, at Per's request. Labels are base labels again
