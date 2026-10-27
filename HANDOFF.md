@@ -1,5 +1,15 @@
 # Handoff
 
+## Done: stray-file cleanup — 2026-10-27
+
+Opus 5.5 backend worker. Removed six hand-compiled PDFs from `svg-tex/src/`
+(make svg compiles in temp/) and ignored `svg-tex/**/*.pdf`. Moved
+`assets/icons/favicon.ico` to `assets/favicon.ico` so it is served at
+/favicon.ico. Per asked to keep every unused figure (source-generated icons,
+cards and figures, sourceless cards, old relation-diagram PDFs) for reuse.
+Noted: template/search.htm reference a missing `icons/icon.png`
+(apple-touch-icon). Ownership released; not deployed.
+
 ## Done: untracked .codex — 2026-10-27
 
 Opus 5.5 backend worker removed the empty tracked `.codex` file and added

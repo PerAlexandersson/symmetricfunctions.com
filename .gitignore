@@ -17,6 +17,7 @@ __pycache__
 *.fls
 *.nav
 *.snm
+svg-tex/**/*.pdf
 
 # Editor and OS junk
 *~
