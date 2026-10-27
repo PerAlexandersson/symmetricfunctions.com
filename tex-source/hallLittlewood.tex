@@ -33,7 +33,7 @@ Hall--Littlewood polynomial}
   Rating   & 1 \\
   Bib      & LuRuanWang2025 \\
   Year     & 2025 \\
-  Symbol   & $V^\imath_\lambda(\xvec;t,\theta)$ \\
+  Symbol   & $V^{\imath}_\lambda(\xvec;t,\theta)$ \\
   Category & Schur \\
   Generalizes & hallLittlewoodH | LuRuanWang2025 | scope=$\theta=0$ specialization \\
   SpecializesTo & hallLittlewoodH | LuRuanWang2025 | map=$\theta=0$ \\
@@ -146,16 +146,16 @@ of Du, Jin, and Lin \cite{DuJinLin2026x}.
 % /home/paxinum/Dropbox/AI-projects/rust/sym-poly/sym/examples/imath_hall_littlewood_site_example.rs
 \begin{example*}[A small modified $\imath$ Hall--Littlewood example]
 Lu--Ruan--Wang first define Giambelli-type polynomials
-$V^\imath_\lambda$ in auxiliary generators $v_r$.  Their two-row formula
+$V^{\imath}_\lambda$ in auxiliary generators $v_r$.  Their two-row formula
 \cite[Lem.~2.2]{LuRuanWang2025} gives, for instance,
 \[
-  V^\imath_{(2,1)}
+  V^{\imath}_{(2,1)}
   = V_{(2,1)} + (t-1)\theta V_{(1)}.
 \]
 After specializing $v_r$ to the complete homogeneous function
 $\completeH_r$, this becomes the modified $\imath$ Hall--Littlewood identity
 \[
-  H^\imath_{(2,1)}(\xvec;t,\theta)
+  H^{\imath}_{(2,1)}(\xvec;t,\theta)
   = \hallLittlewoodH_{(2,1)}(\xvec;t)
     +(t-1)\theta\completeH_1(\xvec).
 \]
@@ -163,7 +163,7 @@ Thus setting $\theta=0$ recovers the modified Hall--Littlewood function
 $\hallLittlewoodH_{(2,1)}$.  Setting $t=0$ gives the $\imath$ Schur
 specialization
 \[
-  H^\imath_{(2,1)}(\xvec;0,\theta)
+  H^{\imath}_{(2,1)}(\xvec;0,\theta)
   =\schurS_{(2,1)}(\xvec)-\theta\completeH_1(\xvec),
 \]
 and the further specialization $\theta=1$ gives the corresponding type $C$

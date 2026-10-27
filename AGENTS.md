@@ -3,55 +3,12 @@
 ## Project overview
 
 This is the source for [symmetricfunctions.com](https://symmetricfunctions.com),
-a reference site for algebraic combinatorics covering symmetric functions,
-tableaux, polytopes, crystals, and related topics.
+a reference site for algebraic combinatorics. Each page is a `.tex` file in
+`tex-source/` compiled through a custom Lua+Pandoc pipeline into static HTML.
 
-Each page is a `.tex` file in `tex-source/` that gets compiled through a custom
-Lua+Pandoc pipeline into static HTML.
-
-## Build commands
-
-```bash
-make                  # full build
-make Q=1              # quiet build: only errors and warnings printed
-make FILE=foo.tex     # single-file rebuild (uses stale metadata)
-make bib              # rebuild bibliography JSON files
-make svg              # rebuild TikZ-sourced SVG assets and copy assets
-make clean && make    # full rebuild from scratch
-make deploy           # direct rsync; requires host SSH access
-make ship             # clean → build → deploy
-make unittest         # render tests/*.tex under temp/test-www and run checks
-make lint-html        # scan generated HTML for leaked TeX/table artifacts
-make check            # run unittest and lint-html
-```
-
-For an explicitly authorized deployment from Docker, use the constrained host
-bridge after a clean verified build:
-
-```bash
-/workspace/supervisor-tool symmetricfunctions-deploy status
-/workspace/supervisor-tool symmetricfunctions-deploy run --json
-```
-
-Check status first.  The bridge pins the source and production destination and
-does not build, commit, push, or expose the host SSH key.
-
-## Project structure
-
-```
-tex-source/           .tex source files (one per page)
-bibliography.bib      BibLaTeX entries (2,300+ references)
-template.htm          Shared HTML shell (nav, header, footer)
-assets/               Static files: CSS, JS, icons, SVG images
-  icons/              FontAwesome SVG icons
-  nav-images/         Topic card images (card-{label}.svg)
-  svg-images/         TikZ figure outputs
-svg-tex/src/          TikZ source for icons, figures, and card images
-temp/                 Build intermediates (gitignored)
-www/                  HTML output (gitignored)
-*.lua                 Build pipeline scripts
-config.mk             Build configuration
-```
+Read `README.md` for the build commands, pipeline, directory layout, key Lua
+files, prerequisites and the `site-keywords.json` schema. This file holds only
+the additional rules for agents and editors.
 
 ## TeX file conventions
 
@@ -127,46 +84,44 @@ Multiple relation rows with the same key are allowed. Multiple targets can also
 be separated by semicolons, but rows with attributes should use one target per
 row.
 
+### Content editing checklist
+
+- Ignore content inside `\todo{...}` during prose, citation, and name cleanup.
+- Replace raw arXiv or journal `\href{...}` links with `\cite{key}` when the
+  source is already in `bibliography.bib`. Do not invent citation keys.
+- Wrap plain-text mathematician names in `\name{...}` outside citations and
+  theorem labels.
+- Use `\defin{...}` or `\hyperref[label]{...}` for important technical terms
+  when it improves navigation or clarity.
+- Math is rendered client-side by KaTeX 0.16 with the macros in
+  `assets/tex-init.js`. Brace macro scripts (`V^{\imath}`, not `V^\imath`):
+  KaTeX defines some symbols as argument-taking macros that cannot be
+  unbraced super- or subscripts.
+
+## Code conventions
+
+- Naming: kebab-case for HTML/CSS; snake_case for Lua variables.
+- Lua modules use the `M` export pattern and `(result, error)` tuples for
+  error handling.
+- Add or edit card and figure images through `svg-tex/src/*.tex`, then run
+  `make svg`. Do not hand-edit generated SVGs unless there is a deliberate
+  one-off fix.
+
 ## Bibliography
 
-References go in `bibliography.bib` in BibLaTeX format. The build converts
-`eprint` fields to arXiv URLs for the displayed CSL-JSON bibliography. It also
-extracts source BibTeX entries into `temp/bibtex-entries.json`, which powers
-the inline BibTeX copy/download controls at the end of rendered pages. Use
-`\cite{Key}` or `\cite[Thm.~3.1]{Key}` in `.tex` files.
-
-The bibliography entries can be easily obtained via the following arxiv-id or
-doi API (examples):
+References go in `bibliography.bib` in BibLaTeX format; cite them with
+`\cite{Key}` or `\cite[Thm.~3.1]{Key}`. Entries can be obtained from the
+arXiv-id or DOI API, for example:
 https://arxiv.symmetricfunctions.com/api/bibtex.json?id=2001.00092
 https://arxiv.symmetricfunctions.com/api/bibtex.json?doi=10.1002/jgt.22704
 
+## Build changes
 
-## Build pipeline
-
-1. **Preprocess** (`preprocess.lua`): Rewrites section labels, annotates todos
-   with file:line, normalizes macros
-2. **Bibliography**: Converts `.bib` → CSL-JSON via Pandoc and extracts raw
-   BibTeX JSON for reference controls
-3. **Gather** (`gather.lua`): Pandoc filter extracting metadata, citations,
-   labels, and todos into JSON
-4. **Metadata** (`merge_meta.lua`): Aggregates labels into
-   `site-labels.json`, validates polydata, and generates sitemap and relation
-   graph files
-5. **Render** (`render.lua`): JSON → HTML using `template.htm`, resolves
-   cross-references
-6. **Assets**: Copies static files to www/
-7. **Search**: Pagefind builds full-text search index
-
-The metadata pass also generates `www/site-keywords.json` from readable
-`\defin{...}` terms, with optional immediately following label anchors
-(spaces and soft line breaks are allowed between the definition and label).
-It is a versioned public feed for the arXiv++ admin Retag import button;
-see README.md for the schema and supported text. Keep this distinct from
-the existing `site-labels.json` anchor catalogue and include it in grouped
-metadata targets and test outputs when changing the build.
-Titles/descriptions are normalized to plain text during gathering; both
-catalogues inherit the normalized titles. Both metadata merge rules require
-CSL JSON, raw BibTeX JSON and the template, including isolated test builds.
+- Keep `www/site-keywords.json` distinct from the `site-labels.json` anchor
+  catalogue, and include it in grouped metadata targets and test outputs when
+  changing the build.
+- Both metadata merge rules require CSL JSON, raw BibTeX JSON and the
+  template, including isolated test builds.
 
 ## Error handling
 
@@ -181,6 +136,29 @@ CSL JSON, raw BibTeX JSON and the template, including isolated test builds.
   nonzero, preventing `make svg` from copying assets after a failed run.
 - `make check` includes Python 3 standard-library backend regressions, with
   SVG tools mocked and fresh/incremental metadata builds in temporary trees.
+  These cover malformed required JSON, SVG failure propagation and synthetic
+  bibliographies; no test invokes a TeX compiler or writes SVG assets.
+  It also performs a read-only allowlist audit of deployable `.htm` files.
+- Run `make all` after broad page edits and `make unittest` after Lua or
+  pipeline changes.
+- Bibliography lookup honors `REFS_JSON` and `BIBTEX_JSON`, including builds
+  with a separate `TEMP_DIR`.
+- The search target replaces only `www/_pagefind` immediately before indexing;
+  it does not prune any other local or remote output.
+
+## Deployment
+
+Deploy only when explicitly authorized. From Docker, use the constrained host
+bridge after a clean verified build:
+
+```bash
+/workspace/supervisor-tool symmetricfunctions-deploy status
+/workspace/supervisor-tool symmetricfunctions-deploy run --json
+```
+
+Check status first.  The bridge pins the source and production destination,
+deploys only the existing `www/` tree, and does not build, commit, push, or
+expose the host SSH key.
 
 ## Common tasks
 

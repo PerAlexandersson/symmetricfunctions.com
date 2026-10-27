@@ -1,5 +1,23 @@
 # Handoff
 
+## Ready: warning/imath cleanup and README/AGENTS split — 2026-10-27
+
+Opus 5.5 backend worker. The three local codex/* branches are already in
+master (0 commits ahead): nothing to merge, none deleted.
+- `tests/unittest.tex`: cited the two keyless fixture relations (legacy
+  semicolon parsing still exercised); the two fixture warnings are gone.
+- `tex-source/hallLittlewood.tex`: `^\imath` → `^{\imath}` (5 sites). KaTeX
+  0.16 defines `\imath` as an argument-taking macro, so it cannot be an
+  unbraced script. Chromium: 0 KaTeX errors on hallLittlewood, about and
+  polynomialList (previously 4 on hallLittlewood). Rule added to AGENTS.md.
+- `tex-source/about.tex`: removed the Inleed hosting note (Makefile
+  DESTPATH unchanged; it is the live rsync target).
+- README is human-facing (reading-width section removed, hostname dropped);
+  AGENTS.md points to it and keeps only agent rules (editing checklist,
+  code conventions, tests, build-change rules, deployment bridge).
+Full make Q=1, make check (no warnings) and git diff --check pass.
+Ownership released. Source-only; not deployed.
+
 ## OEIS todo relocation — complete 2026-10-27
 
 Removed `oeis-todo/alexandersson-beyene-mantaci-type-b.md` and the now-empty

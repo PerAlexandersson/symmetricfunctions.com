@@ -17,52 +17,31 @@ tex-source/*.tex
   → merge_meta.lua          aggregate labels, todos, polydata, sitemap,
                              relation graph
   → render.lua              .json + template.htm → www/*.htm
-  → copy assets             www/ (deployed via rsync to ns12.inleed.net)
+  → copy assets             www/ (deployed with make deploy)
   → pagefind                build search index (www/_pagefind/)
 
 svg-tex/src/*.tex
   → tex_to_svg.lua          TikZ → SVG assets under assets/
 ```
 
+The CSL-JSON bibliography build converts BibLaTeX `eprint` fields to arXiv
+URLs; `temp/bibtex-entries.json` keeps the source entries for the inline
+BibTeX copy/download controls.
+
 ```bash
 make              # full build (8 parallel jobs)
-make Q=1          # quiet full build
+make Q=1          # quiet full build: only errors and warnings
 make FILE=foo.tex # single-file rebuild (uses stale metadata)
 make bib          # regenerate bibliography JSON and raw BibTeX JSON
-make svg          # rebuild TikZ-sourced SVG assets
+make svg          # rebuild TikZ-sourced SVG assets and copy assets
 make search       # rebuild pagefind search index
 make deploy       # rsync www/ to server
 make ship         # clean, build, then deploy
 make clean        # rm temp/ www/
 make unittest     # render tests/*.tex only under temp/test-www/
+make lint-html    # scan generated HTML for leaked TeX/table artifacts
 make check        # run unit regressions and audit generated HTML
 ```
-
-`make check` uses Python 3's standard library for isolated backend subprocess
-regressions. These cover malformed required JSON, SVG failure propagation
-(with compiler and filesystem operations mocked), and fresh/incremental
-metadata builds with their own synthetic bibliography. No test invokes a
-TeX compiler or writes SVG assets. Required JSON and SVG generation failures
-stop the build; `make svg` copies assets only after successful generation.
-
-Both site and test metadata depend on the CSL and raw BibTeX JSON files and
-the shared HTML template. Bibliography lookup honors `REFS_JSON` and
-`BIBTEX_JSON`, including builds with a separate `TEMP_DIR`.
-
-## Reading width
-
-Text pages have a width icon beside the dark-mode button.
-It toggles a text column of approximately 72ch without changing the font size;
-wide remains the default. The icon changes with the state and exposes an
-accessible label and pressed state, with Narrow text / Wide text tooltips.
-On desktop a 1rem gap separates the contents sidebar and article in both modes.
-Long equations scroll within the
-column. The preference is shared across text pages in local storage
-('symcat-text-width'); an existing polynomial-recurrence preference is migrated
-on first use. The toggle also works when storage is unavailable. Article edit
-links appear after the references. The landing page, polynomial index, search,
-and interactive relation graph retain their own layouts. The width icon is
-omitted from print.
 
 ## Keyword export for arXiv++
 
@@ -135,64 +114,11 @@ bibliography.bib    BibLaTeX references (2,300+ entries)
 | `file_reading.lua` | JSON I/O abstraction (detects available library) |
 | `bib_math_filter.lua` | Pandoc filter: preserves math in bibliography entries |
 
-## Conventions
-
-- **Naming:** kebab-case for HTML/CSS; snake_case for Lua variables
-- **Lua modules:** `M` export pattern; `(result, error)` tuples for error handling
-- **LaTeX custom commands:**
-  - `\metatitle{...}`, `\metadescription{...}` — page metadata
-  - `\name{Person}` — wrap proper names
-  - `\defin{term}` — definition markup
-  - `\polydata{...}` — structured metadata block for a polynomial family
-    - Relation rows inside `polydata` use targets that are other `polydata`
-      ids. Preferred form:
-      `RelationKey & target | BibKey[,BibKey...] | attr=value; attr=value \\`.
-      Existing short forms `target | BibKey` and `target [BibKey]` are still
-      supported.
-  - `\todo{...}` content is collected but excluded from output prose
-  - `\section[label]{Title}` — label is used for cross-references
-- **Math:** rendered client-side by KaTeX via `tex-init.js` macros
-- **Bibliography:** `temp/bibliography.json` drives displayed references,
-  while `temp/bibtex-entries.json` preserves source entries for the inline
-  BibTeX copy/download controls.
-- **eprint fields:** The CSL-JSON bibliography build converts all BibLaTeX
-  `eprint`/`EPrint`/`EPRINT` fields to
-  `url = {https://arxiv.org/abs/ID}` before Pandoc sees the bib file. The raw
-  BibTeX controls use the source entry from `bibliography.bib`.
-- **SVG assets:** Add or edit card and figure images through
-  `svg-tex/src/*.tex`, then run `make svg`. Do not hand-edit generated SVGs
-  unless there is a deliberate one-off fix.
-
-## Content editing checklist
-
-- Ignore content inside `\todo{...}` during prose, citation, and name cleanup.
-- Replace raw arXiv or journal `\href{...}` links with `\cite{key}` when the
-  source is already in `bibliography.bib`. Do not invent citation keys.
-- Wrap plain-text mathematician names in `\name{...}` outside citations and
-  theorem labels.
-- Use `\defin{...}` or `\hyperref[label]{...}` for important technical terms
-  when it improves navigation or clarity.
-
-Run `make all` after broad page edits and `make unittest` after Lua or
-pipeline changes. `make check` also performs a read-only allowlist audit of
-deployable `.htm` files. The search target replaces only `www/_pagefind`
-immediately before indexing so obsolete hashed shards do not accumulate; it
-does not prune any other local or remote output.
-
 ## Deployment
 
-`make deploy` directly rsyncs `www/` to the production server and requires
-host SSH access.  From Docker, an explicitly authorized deployment should use
-the constrained host bridge after a clean verified build:
-
-```bash
-/workspace/supervisor-tool symmetricfunctions-deploy status
-/workspace/supervisor-tool symmetricfunctions-deploy run --json
-```
-
-Check status first.  The bridge pins the source and destination, deploys only
-the existing `www/` tree, and does not build, commit, push, or expose the host
-SSH key.  Do not deploy unless the deployment is intentional.
+`make deploy` rsyncs `www/` to the production server and requires host SSH
+access; `make ship` cleans, builds and deploys. Agents follow the deployment
+procedure in `AGENTS.md`.
 
 ## GitHub
 
