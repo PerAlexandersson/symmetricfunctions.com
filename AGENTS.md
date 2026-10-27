@@ -7,7 +7,7 @@ a reference site for algebraic combinatorics. Each page is a `.tex` file in
 `tex-source/` compiled through a custom Lua+Pandoc pipeline into static HTML.
 
 Read `README.md` for the build commands, pipeline, directory layout, key Lua
-files, prerequisites and the `site-keywords.json` schema, and
+files, prerequisites and the arXiv++ keyword feed, and
 `CONVENTIONS.md` for page, metadata, bibliography and code conventions and
 the content editing checklist. This file holds only the additional build,
 test and deployment rules for agents.

@@ -1,5 +1,12 @@
 # Handoff
 
+## Done: README "Related projects" — 2026-10-27
+
+Opus 5.5 backend worker. Replaced the long README keyword-export section
+with a short "Related projects" pipeline description of the arXiv++
+keyword feed, placed before GitHub; AGENTS.md pointer updated.
+Documentation only. Ownership released.
+
 ## Done: trimmed docs/CONTRIBUTING.md — 2026-10-27
 
 Opus 5.5 backend worker. CONTRIBUTING now points to README.md (build,
