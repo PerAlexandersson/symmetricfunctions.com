@@ -1,5 +1,14 @@
 # Handoff
 
+## Done: apple-touch-icon and colour-independent tests — 2026-10-27
+
+Opus 5.5 backend worker. Added `assets/apple-touch-icon.png` (logo on white,
+180×180, opaque) and pointed template.htm and assets/search.htm at it,
+replacing the missing `icons/icon.png`. `tests/check_backend.py` now sets
+NO_COLOR: with a colour TERM (e.g. tmux-256color) its 13 SVG failure
+subtests saw the coloured prefix instead of `[ERROR]`. Full make Q=1 and
+make check pass under TERM=tmux-256color. Ownership released; not deployed.
+
 ## Done: stray-file cleanup — 2026-10-27
 
 Opus 5.5 backend worker. Removed six hand-compiled PDFs from `svg-tex/src/`

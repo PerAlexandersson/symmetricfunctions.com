@@ -102,6 +102,8 @@ in [`POSETS.md`](POSETS.md).
 - Add or edit card and figure images through `svg-tex/src/*.tex`, then run
   `make svg`. Do not hand-edit generated SVGs unless there is a deliberate
   one-off fix.
+- `assets/apple-touch-icon.png` is `svg-images/logo.svg` rendered at 152px
+  centred on an opaque white 180×180 square; regenerate it if the logo changes.
 
 ## Bibliography
 

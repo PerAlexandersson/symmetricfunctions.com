@@ -23,6 +23,8 @@ class BackendChecks(unittest.TestCase):
                     "LABELS_JSON", "POLYDATA_JSON", "TODOS_JSON", "SITEMAP_XML",
                     "RELATION_GRAPH_HTML", "RELATION_GRAPH_JSON", "TEMPLATE"):
             self.env.pop(key, None)
+        # Assertions match the plain "[ERROR]" prefix, so disable ANSI colour.
+        self.env["NO_COLOR"] = "1"
 
     def run_command(self, *args):
         return subprocess.run(args, cwd=ROOT, env=self.env, text=True,
