@@ -114,6 +114,11 @@ bibliography.bib    BibLaTeX references (2,300+ entries)
 | `file_reading.lua` | JSON I/O abstraction (detects available library) |
 | `bib_math_filter.lua` | Pandoc filter: preserves math in bibliography entries |
 
+## Conventions
+
+Page, metadata, bibliography and code conventions, together with the content
+editing checklist, are in [`CONVENTIONS.md`](CONVENTIONS.md).
+
 ## Deployment
 
 `make deploy` rsyncs `www/` to the production server and requires host SSH

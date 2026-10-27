@@ -1,5 +1,14 @@
 # Handoff
 
+## Ready: CONVENTIONS.md split — 2026-10-27
+
+Opus 5.5 backend worker. New `CONVENTIONS.md` holds TeX/polydata/macro
+conventions, the content editing checklist, code conventions, bibliography
+and common tasks, moved verbatim from AGENTS.md. AGENTS.md now keeps only
+pointers plus build-change, error-handling/test and deployment rules; README
+links to CONVENTIONS.md. Documentation only; git diff --check passes.
+Ownership released; not deployed.
+
 ## Ready: warning/imath cleanup and README/AGENTS split — 2026-10-27
 
 Opus 5.5 backend worker. The three local codex/* branches are already in
