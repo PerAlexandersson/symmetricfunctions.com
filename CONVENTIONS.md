@@ -77,6 +77,9 @@ Multiple relation rows with the same key are allowed. Multiple targets can also
 be separated by semicolons, but rows with attributes should use one target per
 row.
 
+The relation types, attributes, direction convention and open work are listed
+in [`POSETS.md`](POSETS.md).
+
 ## Content editing checklist
 
 - Ignore content inside `\todo{...}` during prose, citation, and name cleanup.

@@ -1,5 +1,17 @@
 # Handoff
 
+## Done: POSETS.md refresh and suggestions/ removal — 2026-10-27
+
+Opus 5.5 backend worker. Rewrote `POSETS.md` (666 → ~120 lines) as a current
+status note: registry, parser, validation and the interactive relation graph
+are implemented; legacy migration is complete (326 cited edges, 3
+conjectures). Kept vocabulary, attributes, direction and source-of-truth
+rules; open items are missing-key error, build-time cycle report, Hasse
+view, duplicate-edge warning, per-family diagrams. Linked from
+CONVENTIONS.md. Removed the tracked `suggestions/` directory at Per's
+request (10 files; recoverable from Git history; older handoff entries
+still name those paths). Ownership released; not deployed.
+
 ## Done: README "Related projects" — 2026-10-27
 
 Opus 5.5 backend worker. Replaced the long README keyword-export section
