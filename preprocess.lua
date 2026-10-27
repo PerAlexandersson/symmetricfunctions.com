@@ -12,33 +12,14 @@
 
 local utils = dofile("utils.lua")
 local trim = utils.trim
+local print_warn = utils.print_warn
 
 -- ============================================================================
 -- Argument Parsing
 -- ============================================================================
 
---- Parse command-line arguments into flags and source filename
---- @return table args Flags from --arguments
---- @return string source_filename First non-flag argument (or "<stdin>")
-local function parse_arguments()
-  local flags = {}
-  local filename = nil
-
-  for _, a in ipairs(arg or {}) do
-    if a:sub(1, 2) == "--" then
-      flags[a] = true
-    elseif not filename then
-      -- First non-option argument = filename (used for \todo annotations)
-      filename = a
-    else
-      flags[a] = true
-    end
-  end
-
-  return flags, filename or "<stdin>"
-end
-
-local args, source_filename = parse_arguments()
+-- The first argument names the source file (used in location annotations).
+local source_filename = (arg and arg[1]) or "<stdin>"
 
 -- ============================================================================
 -- Input Reading
@@ -55,9 +36,9 @@ local function newline_string(text)
   return (text:gsub("[^\n]", ""))
 end
 
-local function mask_region(text)
+local function mask_region(text, kind)
   local index = #protected_regions + 1
-  local token = string.format("@@PREPROCESS_PROTECTED_%06d@@", index)
+  local token = string.format("@@PREPROCESS_%s_%06d@@", kind or "PROTECTED", index)
   local masked = token .. newline_string(text)
   protected_regions[index] = { masked = masked, original = text }
   return masked
@@ -106,7 +87,7 @@ local function mask_protected_text(text)
       if backslashes % 2 == 0 then
         local newline = text:find("\n", i, true)
         local finish = newline and (newline - 1) or n
-        out[#out + 1] = mask_region(text:sub(i, finish))
+        out[#out + 1] = mask_region(text:sub(i, finish), "COMMENT")
         i = finish + 1
         matched = true
       end
@@ -154,7 +135,7 @@ local function annotate_todos(text, fname)
 
   while i <= n do
     -- Look for \todo followed by optional whitespace and {
-    local todo_start, todo_end = text:find("\\todo%s*{", i)
+    local todo_start, todo_end = text:find("\\todo[ \t]*{", i)
     if not todo_start then
       -- No more \todo, append rest
       table.insert(out, text:sub(i))
@@ -289,6 +270,10 @@ local function annotate_hyperrefs(text, fname)
 
     table.insert(out, "\\hyperref")
     local j = ref_end + 1
+    if text:sub(j, j):match("%a") then
+      i = j
+      goto continue
+    end
 
     while j <= n and text:sub(j, j):match("%s") do
       if text:sub(j, j) == "\n" then line = line + 1 end
@@ -333,6 +318,7 @@ local function annotate_hyperrefs(text, fname)
     end
 
     i = j
+    ::continue::
   end
 
   return table.concat(out)
@@ -365,6 +351,11 @@ local function annotate_first_braced_arg(text, fname, command, has_optional)
 
     table.insert(out, needle)
     local j = cmd_end + 1
+    if text:sub(j, j):match("%a") then
+      -- A longer command name such as \iconsize: not ours.
+      i = j
+      goto continue
+    end
 
     while j <= n and text:sub(j, j):match("%s") do
       if text:sub(j, j) == "\n" then line = line + 1 end
@@ -409,6 +400,7 @@ local function annotate_first_braced_arg(text, fname, command, has_optional)
     end
 
     i = j
+    ::continue::
   end
 
   return table.concat(out)
@@ -512,7 +504,7 @@ local function rewrite_angle_brackets_in_math(text)
   local n = #text
 
   while i <= n do
-    if starts_with(text, i, "\\(") then
+    if starts_with(text, i, "\\(") and not is_escaped(text, i) then
       table.insert(out, "\\(")
       local body, close_pos, close_len = rewrite_angle_math_body(text, i + 2, function(s, pos)
         return starts_with(s, pos, "\\)") and 2 or nil
@@ -523,7 +515,7 @@ local function rewrite_angle_brackets_in_math(text)
       end
       i = close_pos + close_len
 
-    elseif starts_with(text, i, "\\[") then
+    elseif starts_with(text, i, "\\[") and not is_escaped(text, i) then
       table.insert(out, "\\[")
       local body, close_pos, close_len = rewrite_angle_math_body(text, i + 2, function(s, pos)
         return starts_with(s, pos, "\\]") and 2 or nil
@@ -595,18 +587,45 @@ input = rewrite_angle_brackets_in_math(input)
 -- STEP 2: Line-based Normalization (Block-level Macros)
 -- ============================================================================
 
+local COMMENT_MASK = "@@PREPROCESS_COMMENT_%d+@@"
+
+--- A line's content with masked comments removed.
+local function without_comments(line)
+  return trim((line:gsub(COMMENT_MASK, "")))
+end
+
+--- Check if a line contains only a vertical skip command (bigskip/medskip/smallskip).
+--- @param line string Line to check
+--- @return boolean true if line is purely a skip command
+local function is_standalone_skip(line)
+  local trimmed = without_comments(line)
+  return trimmed == "\\bigskip" or trimmed == "\\medskip" or trimmed == "\\smallskip"
+end
+
+--- Check if a line contains a skip command inline with other content.
+--- @param line string Line to check
+--- @return boolean true if line has a skip command but isn't standalone
+local function has_inline_skip(line)
+  if is_standalone_skip(line) then return false end
+  return line:find("\\bigskip")~=nil or line:find("\\medskip")~=nil or line:find("\\smallskip")~=nil
+end
+
+-- Line numbers are still those of the source file here (masks keep newlines).
+do
+  local line_number = 0
+  for line in (input .. "\n"):gmatch("([^\n]*)\n") do
+    line_number = line_number + 1
+    if has_inline_skip(line) then
+      print_warn("%s:%d: inline \\bigskip/\\medskip/\\smallskip; " ..
+                 "these are block-level macros", source_filename, line_number)
+    end
+  end
+end
+
 -- Add newlines to make it block-level
 
-input = input:gsub("([^\n]*)(\\specialblock%b{})", function(prefix, command)
-    -- Check if the prefix contains % (then its commented out)
-    if prefix:match("%%") then
-        -- Return exactly what was found (do nothing).
-        return prefix .. command
-    else
-        -- It is safe to force block formatting.
-        return prefix .. "\n" .. command .. "\n"
-    end
-end)
+-- Comments are masked at this point, so every visible \specialblock is real.
+input = input:gsub("(\\specialblock%b{})", "\n%1\n")
 
 input = input:gsub("([^\n]*)(\\ytableaushort%b{})", function(prefix, command)
     -- Check if the prefix contains any non-whitespace characters (%S matches non-whitespace)
@@ -624,27 +643,11 @@ for line in (input .. "\n"):gmatch("([^\n]*)\n") do
   table.insert(raw_lines, line)
 end
 
---- Check if a line is a LaTeX comment line.
+--- Check if a line is a LaTeX comment line (comments are masked).
 --- @param line string Line to check
---- @return boolean true if line starts with % (ignoring whitespace)
+--- @return boolean true if the line holds nothing but a comment
 local function is_comment_line(line)
-  return trim(line):match("^%%") ~= nil
-end
-
---- Check if a line contains only a vertical skip command (bigskip/medskip/smallskip).
---- @param line string Line to check
---- @return boolean true if line is purely a skip command
-local function is_standalone_skip(line)
-  local trimmed = trim(line)
-  return trimmed == "\\bigskip" or trimmed == "\\medskip" or trimmed == "\\smallskip"
-end
-
---- Check if a line contains a skip command inline with other content.
---- @param line string Line to check
---- @return boolean true if line has a skip command but isn't standalone
-local function has_inline_skip(line)
-  if is_standalone_skip(line) then return false end
-  return line:find("\\bigskip")~=nil or line:find("\\medskip")~=nil or line:find("\\smallskip")~=nil
+  return trim(line):match("^" .. COMMENT_MASK) ~= nil
 end
 
 --- Check if a line contains only \ytableaushort{...}.
@@ -652,14 +655,6 @@ end
 --- @return boolean true if line is purely \ytableaushort
 local function is_standalone_ytableaushort(line)
   return line:match("^%s*\\ytableaushort%b{}%s*$") ~= nil
-end
-
---- Check if a line contains \ytableaushort inline with other content.
---- @param line string Line to check
---- @return boolean true if line has \ytableaushort but isn't standalone
-local function has_inline_ytableaushort(line)
-  if is_standalone_ytableaushort(line) then return false end
-  return line:find("\\ytableaushort") ~= nil
 end
 
 --- Normalize block-level macros by ensuring blank lines before and after.
@@ -677,7 +672,7 @@ local function normalize_blocks(lines)
     end
   end
 
-  for i, line in ipairs(lines) do
+  for _, line in ipairs(lines) do
     if is_comment_line(line) then
       table.insert(out, line)
     elseif is_standalone_skip(line) then
@@ -691,16 +686,6 @@ local function normalize_blocks(lines)
       table.insert(out, trim(line))
       table.insert(out, "")
     else
-      -- Warn about inline usage of block-level macros
-      if has_inline_skip(line) then
-        io.stderr:write(
-          string.format(
-            "WARNING: inline \\bigskip/\\medskip/\\smallskip on line %d; " ..
-            "these are intended as block-level macros.\n",
-            i
-          )
-        )
-      end
       table.insert(out, line)
     end
   end
@@ -731,6 +716,7 @@ input = input
 
 -- Rename tabular to rawtabular to prevent Pandoc from processing it
 input = input
+    :gsub("\\begin%s*{%s*tabular%s*}%s*%b[]%s*(%b{})", "\\begin{rawtabular}%1")
     :gsub("\\begin%s*{%s*tabular%s*}(%b{})", "\\begin{rawtabular}%1")
     :gsub("\\end%s*{%s*tabular%s*}", "\\end{rawtabular}")
 

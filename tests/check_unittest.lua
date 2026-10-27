@@ -167,9 +167,9 @@ if not contains(html,
   fail("rich TOC entry was incomplete or not escaped")
 end
 
-if not contains(html, 'alt="Young&#39;s lattice"') or
-   contains(html, 'alt="Young&amp;#39;s lattice"') then
-  fail("image alt text was not escaped exactly once")
+-- Image descriptions are LaTeX converted to plain text, then escaped once.
+if not contains(html, 'alt="Young’s lattice"') or contains(html, '&amp;#') then
+  fail("image alt text was not converted and escaped exactly once")
 end
 
 if not contains(html,
@@ -191,4 +191,23 @@ if not contains(html, '<img src="svg-images/transfer-matrix-triomino-transition-
    not contains(html, 'alt="A to D: square and triomino"') or
    contains(html, '&lt;img') then
   fail("native table did not preserve its inline SVG image and alternative text")
+end
+
+-- Math in a table cell that mixes text and math stays as \(...\) for KaTeX.
+if not contains(html, [[Chain <span class="math inline">\(1\lt 2\lt 3\)</span>]]) then
+  fail("table-cell math was not left for KaTeX")
+end
+
+-- The polydata anchor is dropped when the section already defines the id.
+local _, family_ids = html:gsub('id="testFamily"', "")
+assert_eq(family_ids, 1, "elements with id testFamily")
+
+if contains(html, "data-source-loc") then
+  fail("build-time source locations leaked into the HTML")
+end
+
+local goto_html = file_reading.read_file(html_path:match("^(.*)/") .. "/goto.htm", "test goto", true)
+if not contains(goto_html, "Object.prototype.hasOwnProperty.call(defined_labels, id)") or
+   not contains(goto_html, '"testFamily":"unittest.htm#testFamily"') then
+  fail("goto.htm does not look labels up safely")
 end

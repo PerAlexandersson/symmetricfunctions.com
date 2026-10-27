@@ -28,6 +28,11 @@ end
 
 local checks = {
   {
+    label = "build-time source location leaked into HTML",
+    pattern = "data-source-loc",
+    plain = true,
+  },
+  {
     label = "raw \\hyperref command leaked into HTML",
     pattern = "\\hyperref",
     plain = true,
@@ -282,6 +287,76 @@ if sitemap then
   end
 else
   error_count = error_count + 1
+end
+
+-- Every deployable page has unique element ids.
+for _, path in ipairs(html_files_from_dir(www_dir)) do
+  local page = read_file(path)
+  if page then
+    local seen, reported = {}, {}
+    for id in page:gmatch('%sid="([^"]*)"') do
+      if seen[id] and not reported[id] then
+        report(path, 1, "duplicate element id", id)
+        reported[id] = true
+      end
+      seen[id] = true
+    end
+  end
+end
+
+-- The public label and keyword feeds point at existing anchors and carry
+-- plain text (no leftover TeX or source-location markers).
+local file_reading = dofile("file_reading.lua")
+local page_cache = {}
+local function anchor_exists(href)
+  local page_name, fragment = href:match("^([^#]+)#?(.*)$")
+  if not page_name then return false end
+  if page_cache[page_name] == nil then
+    local f = io.open(www_dir .. "/" .. page_name, "r")
+    page_cache[page_name] = f and f:read("*a") or false
+    if f then f:close() end
+  end
+  local page = page_cache[page_name]
+  if not page then return false end
+  return fragment == "" or page:find('id="' .. fragment .. '"', 1, true) ~= nil
+end
+local function looks_like_tex(text)
+  text = tostring(text or "")
+  return text:find("[\\{}$]") ~= nil or text:find("@@", 1, true) ~= nil
+      or text:find("--", 1, true) ~= nil
+end
+
+local labels_path = www_dir .. "/site-labels.json"
+local labels = file_reading.load_json_file(labels_path, "public labels", false)
+if type(labels) == "table" then
+  for label, info in pairs(labels) do
+    if not anchor_exists(info.href or "") then
+      report(labels_path, 1, "label points to a missing anchor", label .. " -> " .. tostring(info.href))
+    end
+    if looks_like_tex(info.title) then
+      report(labels_path, 1, "label title is not plain text", tostring(info.title))
+    end
+  end
+else
+  report(labels_path, 1, "public label feed is missing or unreadable", labels_path)
+end
+
+local keywords_path = www_dir .. "/site-keywords.json"
+local catalogue = file_reading.load_json_file(keywords_path, "public keywords", false)
+if type(catalogue) == "table" and catalogue.schema_version == 1
+    and type(catalogue.keywords) == "table" then
+  for _, keyword in ipairs(catalogue.keywords) do
+    if not anchor_exists(keyword.href or "") then
+      report(keywords_path, 1, "keyword points to a missing anchor",
+        tostring(keyword.phrase) .. " -> " .. tostring(keyword.href))
+    end
+    if looks_like_tex(keyword.phrase) or looks_like_tex(keyword.title) then
+      report(keywords_path, 1, "keyword is not plain text",
+        tostring(keyword.phrase) .. " / " .. tostring(keyword.title))
+    end
+  end
+else
+  report(keywords_path, 1, "public keyword feed is missing or not schema version 1", keywords_path)
 end
 
 if error_count > max_errors then

@@ -28,7 +28,7 @@ in some older files (e.g., `parking-functions`) but camelCase is preferred.
 | `\hyperref[label]{text}` | Cross-page link (resolves via site-labels.json) |
 | `\todo{message}` | Note for future work (excluded from HTML output, printed to stderr during build) |
 | `\icon{name}` | Inline SVG icon |
-| `\svgimg[width=0.8]{path}{alt}` | Scaled SVG image |
+| `\svgimg[width=0.8]{path}{alt}` | Scaled SVG image (`width=` a fraction of the text width, optionally followed by `\textwidth`) |
 
 ### Environments
 
@@ -71,6 +71,11 @@ Relation targets are other `polydata` ids. Preferred relation rows use:
 ```tex
 RelationKey & target | BibKey[,BibKey...] | attr=value; attr=value \\
 ```
+
+The allowed family fields are `Name`, `Symbol`, `Space`, `Basis`, `Rating`,
+`Bib`, `Year`, `Category` and `Keywords`; any other key must be a relation.
+Each field appears once, and every relation cites at least one bibliography
+key. Attribute values may contain `|` (for instance inside math).
 
 The older forms `target | BibKey` and `target [BibKey]` are still supported.
 Multiple relation rows with the same key are allowed. Multiple targets can also

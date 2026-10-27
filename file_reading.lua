@@ -74,7 +74,7 @@ local function json_decode(s, what, strict)
     return {}
   end
 
-  local ok, data, err
+  local ok, data, err, _
 
   -- dkjson returns (obj, pos, err) format
   if JSON_LIB.name == "dkjson" then
@@ -149,46 +149,6 @@ local function load_json_file(path, what, strict)
   end
   return json_decode(contents, what or path, strict)
 end
-
--- ============================================================================
--- JSON Input Reading (for CLI tools)
--- ============================================================================
-
--- Read JSON from file argument or stdin
--- @param args: argument table (optional, defaults to global arg)
--- @param strict: if true, error on failure; if false, return nil (default: true)
--- @return decoded JSON table
-local function read_json_input(args, strict)
-  args = args or arg
-  if strict == nil then strict = true end
-
-  -- Try to read from file argument
-  if args and args[1] and args[1] ~= "-" then
-    if strict then
-      return load_json_file(args[1], "JSON data", true)
-    end
-
-    local contents = read_file(args[1], "JSON data", false)
-    if not contents then
-      return nil
-    end
-    return json_decode(contents, args[1], false)
-  end
-
-  -- Read from stdin
-  local contents = io.read("*a")
-  local doc = json_decode(contents, "stdin JSON", false)
-  if not doc or type(doc) ~= "table" then
-    if strict then
-      error("JSON decode error reading from stdin")
-    else
-      return nil
-    end
-  end
-
-  return doc
-end
-
 
 -- Encode table as JSON string
 -- @param tbl: table to encode
@@ -282,6 +242,13 @@ local function json_encode(tbl, indent, strict)
   return result
 end
 
+-- Mark a Lua list so json_encode writes it as a JSON array even when empty.
+-- @param t: list table (default: new empty list)
+-- @return t
+local function json_array(t)
+  return setmetatable(t or {}, { __jsontype = "array" })
+end
+
 -- ============================================================================
 -- Exports
 -- ============================================================================
@@ -291,6 +258,6 @@ return {
   file_exists = file_exists,
   read_file = read_file,
   load_json_file = load_json_file,
-  read_json_input = read_json_input,
   json_encode = json_encode,
+  json_array = json_array,
 }

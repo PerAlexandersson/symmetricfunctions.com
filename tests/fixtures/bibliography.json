@@ -1,0 +1,6 @@
+[
+  {"id": "BrandenA", "type": "article-journal", "title": "Alpha", "author": [{"family": "Brändén", "given": "Petter"}], "issued": {"date-parts": [[2004]]}, "DOI": "https://dx.doi.org/10.1000/alpha"},
+  {"id": "BrandenB", "type": "article-journal", "title": "Beta", "author": [{"family": "Brändén", "given": "Petter"}], "issued": {"date-parts": [[2004]]}, "DOI": "doi:10.1000/beta"},
+  {"id": "Bjorner", "type": "book", "title": "Gamma", "author": [{"family": "Björner", "given": "Anders"}], "issued": {"date-parts": [[2005]]}},
+  {"id": "Many", "type": "article-journal", "title": "Delta", "author": [{"family": "Abel"}, {"family": "Bohr"}, {"family": "Cayley"}, {"family": "Dirac"}, {"family": "Euler"}], "issued": {"date-parts": [[1999]]}, "DOI": "10.1000/delta"}
+]

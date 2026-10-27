@@ -16,9 +16,10 @@ local set_add = utils.set_add
 local set_to_sorted_list = utils.set_to_sorted_list
 local print_todo = utils.print_todo
 local print_warn = utils.print_warn
-local print_info = utils.print_info
 local print_error = utils.print_error
 local has_errors = utils.has_errors
+
+local figure_to_html = dofile("figure_to_html.lua")
 
 
 local bib = dofile("bibhandler.lua")
@@ -48,16 +49,27 @@ local metatitle = nil   -- \metatitle{...}
 local metadesc  = nil   -- \metadescription{...}
 local citations = {}    -- set
 local labels    = {}    -- set
-local urls_seen = {}    -- set (url -> true), for logging
 local todos     = {}    -- list (strings)
-local families  = {}    -- list of {id=..., title=...}
 local polydata  = {}    -- map name -> { key = value, ... }
 local custom_css= {}    -- inject custom css (List of strings)
+
+-- preprocess.lua appends "@@file:line" to some macro arguments.
+local SOURCE_LOC = "@@([%w%.%-_/]+:%d+)"
+
+local function strip_source_loc(value)
+  local s = tostring(value or "")
+  local loc = s:match(SOURCE_LOC .. "$") or ""
+  if loc ~= "" then
+    s = s:gsub(SOURCE_LOC .. "$", "")
+  end
+  return s, loc
+end
 
 local function record_todo(s)
   local t = s:match("^%s*\\todo(%b{})%s*$")
   if t then
-    local body = trim(t:sub(2, -2))
+    -- Cites and refs inside the todo carry their own location markers.
+    local body = trim((t:sub(2, -2):gsub(SOURCE_LOC, "")))
     todos[#todos + 1] = body
     print_todo(body)
     return {}
@@ -66,22 +78,15 @@ local function record_todo(s)
   end
 end
 
-local function strip_source_loc(value)
-  local s = tostring(value or "")
-  local loc = s:match("@@([%w%.%-_/]+:%d+)$") or ""
-  if loc ~= "" then
-    s = s:gsub("@@[%w%.%-_/]+:%d+$", "")
-  end
-  return s, loc
+--- Shortens a TeX snippet for an error message.
+local function snippet(tex)
+  tex = tostring(tex or ""):gsub("%s+", " ")
+  if #tex > 120 then tex = tex:sub(1, 117) .. "..." end
+  return tex
 end
 
--- ---- Unified link logging, in order to look for broken links perhaps -----------------------------------------
-local function record_link(url, text)
-  url       = url or ""
-  text      = text or ""
-  local key = url .. "||" .. text
-  urls_seen[key] = true
-end
+-- Sections must carry explicit labels, so automatic identifiers are off.
+local READER_FORMAT = "latex+raw_tex-auto_identifiers"
 
 -- To lazily define the custom handling.
 local function make_filter()
@@ -98,20 +103,23 @@ end
 
 -- Parse a LaTeX fragment to blocks, then re-run our own filter on it
 local function parse_blocks_walk(tex)
-  local blocks = pandoc.read(tex, "latex+raw_tex").blocks
+  local blocks = pandoc.read(tex, READER_FORMAT).blocks
   -- Wrap/unwrap div
-  local walked = pandoc.walk_block(pandoc.Div(blocks), make_filter())
-  return walked.content
+  return pandoc.Div(blocks):walk(make_filter()).content
 end
 
--- Parse a LaTeX inline fragment to inlines, then re-run our own filter
+-- Parse a LaTeX inline fragment to inlines, then re-run our own filter.
+-- The fragment must be a single paragraph; anything else would be lost.
 local function parse_inlines_walk(tex)
-  local doc     = pandoc.read(tex, "latex+raw_tex")
-  local first   = doc.blocks[1]
-
-  local inlines = (first and first.t == "Para") and first.c or {}
-  local walked  = pandoc.walk_inline(pandoc.Span(inlines), make_filter())
-  return walked.content -- unwrap the Span
+  local blocks = pandoc.read(tex, READER_FORMAT).blocks
+  if #blocks == 0 then return pandoc.List() end
+  local first = blocks[1]
+  if #blocks > 1 or (first.t ~= "Para" and first.t ~= "Plain") then
+    print_error("Inline text must be a single paragraph (got %d block(s), first %s): %s",
+                #blocks, first.t, snippet(tex))
+  end
+  local inlines = (first.t == "Para" or first.t == "Plain") and first.content or {}
+  return pandoc.Span(inlines):walk(make_filter()).content -- unwrap the Span
 end
 
 
@@ -190,8 +198,8 @@ local function render_cell_tex_to_html(tex)
     if rest == "" then return tex end
   end
 
-  -- Skip cells that are pure math (already handled by MathJax client-side)
-  if rest:match("^%$.*%$$") then
+  -- Skip cells that are pure math (rendered by KaTeX client-side)
+  if rest:match("^%$.*%$$") or rest:match("^\\%(.*\\%)$") then
     return tex
   end
 
@@ -210,15 +218,16 @@ local function render_cell_tex_to_html(tex)
   local inlines = parse_inlines_walk(rest)
   if not inlines or #inlines == 0 then return tex end
 
-  -- Render inlines to HTML
+  -- Render inlines to HTML; math stays as \(...\) for KaTeX, exactly like
+  -- math in body text.
   local doc = pandoc.Pandoc({ pandoc.Plain(inlines) })
-  local html = pandoc.write(doc, "html")
+  local html = pandoc.write(doc, "html", { html_math_method = "mathjax" })
 
   -- pandoc.write wraps in <p>...</p> — strip that
   html = html:gsub("^%s*<p>", ""):gsub("</p>%s*$", "")
 
-  -- Trim trailing whitespace/newlines
-  html = html:gsub("%s+$", "")
+  -- Trim trailing whitespace/newlines; source locations are build-time only
+  html = html:gsub("%s+$", ""):gsub('%s*data%-source%-loc="[^"]*"', "")
 
   if html == "" then return tex end
 
@@ -241,106 +250,33 @@ local function process_tabular_cells(body)
   end
   if not inner then return body end
 
-  -- Normalize: add \\ after rule markers (same as figure_to_html.lua)
-  -- so that splitting on \\ gives clean rows
-  inner = inner:gsub("\\toprule", "\\toprule\\\\")
-               :gsub("\\midrule", "\\midrule\\\\")
-               :gsub("\\bottomrule", "\\bottomrule\\\\")
-  if not inner:find("\\\\%s*$") then inner = inner .. "\\\\" end
-
-  -- Process row by row: split on \\
-  local result = {}
-  local pos = 1
-  local inner_len = #inner
-
-  while pos <= inner_len do
-    -- Find next \\
-    local bs_start, bs_end = inner:find("\\\\", pos, true)
-    local row_text
-    if bs_start then
-      row_text = inner:sub(pos, bs_start - 1)
-      pos = bs_end + 1
-    else
-      row_text = inner:sub(pos)
-      pos = inner_len + 1
-    end
-
+  -- Booktabs rules end a row of their own (as in figure_to_html.lua); then
+  -- split rows and cells exactly as figure_to_html.lua will at render time.
+  for _, rule in ipairs({ "toprule", "midrule", "bottomrule" }) do
+    inner = inner:gsub("\\" .. rule, "\\" .. rule .. "\\\\")
+  end
+  local rows = {}
+  for _, row_text in ipairs(figure_to_html.split_rows(inner)) do
     local trimmed = trim(row_text)
-
-    -- Skip structural markers and empty rows — pass through as-is
-    if trimmed == "\\toprule" or trimmed == "\\midrule" or trimmed == "\\bottomrule"
-       or trimmed == "" then
-      table.insert(result, row_text)
+    -- Booktabs rules and empty rows pass through unchanged
+    if trimmed == "\\toprule" or trimmed == "\\midrule"
+        or trimmed == "\\bottomrule" or trimmed == "" then
+      rows[#rows + 1] = row_text
     else
-      -- Split cells on & (respecting brace depth)
-      local cells = {}
-      local buf = {}
-      local depth = 0
-      local environment_depth = 0
-      local in_dollar_math = false
-      local in_paren_math = false
-
-      local function escaped_at(pos)
-        local count = 0
-        pos = pos - 1
-        while pos >= 1 and row_text:sub(pos, pos) == "\\" do
-          count = count + 1
-          pos = pos - 1
-        end
-        return count % 2 == 1
-      end
-
-      for i = 1, #row_text do
-        local ch = row_text:sub(i, i)
-        local tail = row_text:sub(i)
-        if tail:match("^\\begin%s*%b{}") then
-          environment_depth = environment_depth + 1
-        elseif tail:match("^\\end%s*%b{}") then
-          environment_depth = math.max(0, environment_depth - 1)
-        elseif tail:sub(1, 2) == "\\(" then
-          in_paren_math = true
-        elseif tail:sub(1, 2) == "\\)" then
-          in_paren_math = false
-        elseif ch == "$" and not escaped_at(i) then
-          in_dollar_math = not in_dollar_math
-        end
-
-        if ch == "{" then
-          depth = depth + 1
-          table.insert(buf, ch)
-        elseif ch == "}" then
-          depth = math.max(0, depth - 1)
-          table.insert(buf, ch)
-        elseif ch == "&" and depth == 0 and environment_depth == 0
-            and not in_dollar_math and not in_paren_math and not escaped_at(i) then
-          table.insert(cells, table.concat(buf))
-          buf = {}
-        else
-          table.insert(buf, ch)
-        end
-      end
-      table.insert(cells, table.concat(buf))
-
-      -- Process each cell
+      local cells = figure_to_html.split_cells(row_text)
       for i, cell in ipairs(cells) do
         cells[i] = render_cell_tex_to_html(cell)
       end
-
-      table.insert(result, table.concat(cells, "&"))
-    end
-
-    -- Re-add the \\ delimiter if we consumed one
-    if bs_start then
-      table.insert(result, "\\\\")
+      rows[#rows + 1] = table.concat(cells, "&")
     end
   end
 
-  return env_begin .. table.concat(result) .. env_end
+  return env_begin .. table.concat(rows, "\\\\") .. env_end
 end
 
 
 local function normalize_polydata_key(key)
-  return trim(key):lower():gsub("%s+", " ")
+  return (trim(key):lower():gsub("%s+", " "))
 end
 
 local function normalize_relation_ref(ref)
@@ -353,7 +289,7 @@ local function normalize_relation_ref(ref)
     ref = cite_body:sub(2, -2)
   end
 
-  return trim((ref:gsub("@@[%w%.%-_/]+:%d+", "")))
+  return trim((ref:gsub(SOURCE_LOC, "")))
 end
 
 local function split_trimmed(value, delimiter)
@@ -446,54 +382,60 @@ local function relation_record(target, refs, attrs, status)
   return record
 end
 
-local function parse_relation_items(value)
+-- Relation rows have two forms (see CONVENTIONS.md):
+--   structured: "target | Key[,Key...] | attr=value; attr=value"
+--               (attribute values may themselves contain "|")
+--   legacy:     "target | Key", "target [Key]" or "target", several of
+--               which may be separated by semicolons.
+-- Anything else is reported instead of being guessed at.
+local function parse_relation_items(value, context)
   local items = {}
   local fields = split_pipe_fields(value)
 
-  local attr_text = ""
-  if #fields >= 3 then
-    local attr_parts = {}
-    for i = 3, #fields do
-      attr_parts[#attr_parts + 1] = fields[i]
-    end
-    attr_text = table.concat(attr_parts, "|")
+  local function malformed(reason)
+    print_error("%s: malformed relation row '%s' (%s)", context, value, reason)
+    return {}
   end
 
-  -- Structured rows use "target | refs | key=value; ...".
-  -- If the part after the second pipe has no key-value attribute, keep the
-  -- older semicolon-separated parser so rows like "A | RefA; B | RefB" remain
-  -- two separate legacy relations.
-  if #fields >= 3 and attr_text:match("[^=;%s]+%s*=") then
-    local targets = split_trimmed(fields[1], ";")
+  -- Attribute values may contain "|" (e.g. inside math), so everything
+  -- after the second pipe is the attribute list.  A row is structured when
+  -- that list starts with "key="; otherwise it is a legacy row such as
+  -- "A | RefA; B | RefB".
+  local attr_text = (#fields >= 3) and table.concat(fields, "|", 3) or ""
+  if attr_text:match("^[^=;|]+=") then
+    if fields[2]:find(";", 1, true) then
+      return malformed("structured rows take one target; use one row per target")
+    end
     local refs = parse_relation_refs(fields[2])
     local attrs, status = parse_relation_attrs(attr_text)
-
-    for _, target in ipairs(targets) do
+    for _, target in ipairs(split_trimmed(fields[1], ";")) do
       local record = relation_record(target, refs, attrs, status)
       if record then
         items[#items + 1] = record
       end
     end
-
     return items
   end
 
   for item in (value .. ";"):gmatch("(.-)%s*;") do
     item = trim(item)
     if item ~= "" then
+      local _, pipes = item:gsub("|", "")
+      if pipes > 1 then
+        return malformed("more than one '|' in '" .. item .. "'")
+      end
       local target, ref = item:match("^(.-)%s*|%s*(.-)%s*$")
       if not target then
         target, ref = item:match("^(.-)%s*%[(.-)%]%s*$")
       end
 
       target = trim(target or item)
-      local refs = parse_relation_refs(ref)
-
-      if target ~= "" then
-        local record = relation_record(target, refs, nil, nil)
-        if record then
-          items[#items + 1] = record
-        end
+      if target == "" or target:find("[%s%[%]|]") then
+        return malformed("bad target in '" .. item .. "'")
+      end
+      local record = relation_record(target, parse_relation_refs(ref), nil, nil)
+      if record then
+        items[#items + 1] = record
       end
     end
   end
@@ -501,24 +443,41 @@ local function parse_relation_items(value)
   return items
 end
 
--- Parse polydata body "Key & Value \\" lines → table
-local function parse_polydata_body(body)
-  local map = {}
-  for line in (body .. "\n"):gmatch("([^\n\r]+)\n") do
-    local clean = line:gsub("%%.*$", ""):gsub("\\\\%s*$", "")
-    local k, v = clean:match("^%s*([^&]-)%s*&%s*(.-)%s*$")
-    if k and v and k ~= "" and v ~= "" then
-      local key = trim(k)
-      local value = trim(v)
-      local relation_spec = relation_registry.lookup_by_key(normalize_polydata_key(key))
+-- Family fields allowed in a polydata block besides relation rows.
+local POLYDATA_FIELDS = {
+  Name = true, Symbol = true, Space = true, Basis = true, Rating = true,
+  Bib = true, Year = true, Category = true, Keywords = true
+}
 
-      if relation_spec then
+-- Parse polydata body "Key & Value \\" lines → table
+local function parse_polydata_body(body, name)
+  local map = {}
+  local context = "polydata '" .. name .. "'"
+  for line in (body .. "\n"):gmatch("([^\n\r]*)\n") do
+    -- Comments are masked by preprocess.lua; an unescaped % is still a comment.
+    local clean = line:gsub("^%%.*$", ""):gsub("([^\\])%%.*$", "%1")
+    clean = trim((clean:gsub("\\\\%s*$", "")))
+    if clean ~= "" then
+      local k, v = clean:match("^([^&]-)%s*&%s*(.-)$")
+      local key = trim(k or "")
+      local value = trim(v or "")
+      local relation_spec = key ~= "" and relation_registry.lookup_by_key(normalize_polydata_key(key))
+
+      if not k or key == "" then
+        print_error("%s: line without 'Key & value': %s", context, snippet(line))
+      elseif value == "" then
+        print_error("%s: empty value for '%s'", context, key)
+      elseif relation_spec then
         map.Relations = map.Relations or {}
-        for _, relation in ipairs(parse_relation_items(value)) do
+        for _, relation in ipairs(parse_relation_items(value, context)) do
           relation.type = relation_spec.type
           relation.label = relation_spec.label
           map.Relations[#map.Relations + 1] = relation
         end
+      elseif not POLYDATA_FIELDS[key] then
+        print_error("%s: unknown field or relation '%s'", context, key)
+      elseif map[key] ~= nil then
+        print_error("%s: field '%s' given twice", context, key)
       else
         map[key] = value
       end
@@ -549,7 +508,7 @@ local function percent_encode(s)
   end))
 end
 
-function parse_name(s)
+local function parse_name(s)
   -- Try to match pattern with optional argument first: \name[Short Name]{Full Name}
   local opt_part, main_part = s:match("^%s*\\name%s*(%b[])%s*(%b{})%s*$")
 
@@ -609,7 +568,8 @@ function parse_name(s)
   end
 
   -- Construct the search query using the Full Name
-  local search_query = percent_encode(full_name .. " mathematics")
+  -- A tie (~) becomes a no-break space; search engines want a plain space.
+  local search_query = percent_encode(full_name:gsub("\u{00A0}", " ") .. " mathematics")
   local url = "https://scholar.google.com/scholar?q=" .. search_query
 
   return pandoc.Link(
@@ -641,29 +601,33 @@ local function parse_svgimg(s)
   path, source_loc = strip_source_loc(path)
 
   local styleVal    = ""
-  local widthString = "auto"
 
-  if opt and opt ~= "" then
-    -- TODO parse more options
-    local num = opt:match("width%s*=%s*([%d]*%.?%d+)%s*\\%a+")
-    if num then
-      local f = tonumber(num)
-      if f and f > 0 then
-        local p = math.floor(f * 100 + 0.5)
-        widthString = tostring(p) .. "%"
-      end
+  -- The only option is width=<fraction>, optionally followed by a length
+  -- macro such as \textwidth; it becomes a percentage of the text width.
+  opt = trim(opt or "")
+  if opt ~= "" then
+    local num = opt:match("^width%s*=%s*(%d*%.?%d+)%s*$")
+             or opt:match("^width%s*=%s*(%d*%.?%d+)%s*\\%a+%s*$")
+    local f = tonumber(num or "")
+    if f and f > 0 then
+      styleVal = "width:" .. tostring(math.floor(f * 100 + 0.5)) .. "%;"
+    else
+      print_error("%s: unsupported \\svgimg option [%s]",
+                  source_loc ~= "" and source_loc or path, opt)
     end
-    styleVal = "width:" .. widthString .. ";"
   end
 
-  local kvs = { { "style", styleVal } }
+  local kvs = {}
+  if styleVal ~= "" then
+    kvs[#kvs + 1] = { "style", styleVal }
+  end
   if source_loc ~= "" then
     kvs[#kvs + 1] = { "data-source-loc", source_loc }
   end
 
   local attr = pandoc.Attr("", {}, kvs)
 
-  return pandoc.Image(pandoc.Str(alt), path, "", attr)
+  return pandoc.Image(pandoc.Str(latex_to_unicode(alt, "image description")), path, "", attr)
 end
 
 
@@ -698,7 +662,7 @@ end
 -- </a>
 local function topic_card(s)
  -- Capture ID, Title, Description
-  local id, title, description = s:match("\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})")
+  local id, title, description = s:match("^%s*\\topiccard%s*(%b{})%s*(%b{})%s*(%b{})%s*$")
 
   if id and title and description then
     local id_inner    = trim(id:sub(2, -2))
@@ -757,6 +721,9 @@ function Header(el)
   el.level = math.min((el.level or 1) + 1, 6)
   if el.identifier and el.identifier ~= "" then
     set_add(labels, el.identifier)
+  else
+    print_error("Section without a label: %s (use \\section[label]{...})",
+                pandoc.utils.stringify(el.content))
   end
   return el
 end
@@ -786,8 +753,8 @@ function Cite(el)
   for _, c in ipairs(el.citations or {}) do
     if c.id and c.id ~= "" then
       -- Strip source location annotation (@@file:line) injected by preprocess
-      local cite_loc = c.id:match("@@([%w%.%-_/]+:%d+)$") or ""
-      local key = c.id:gsub("@@[%w%.%-_/]+:%d+$", "")
+      local cite_loc = c.id:match(SOURCE_LOC .. "$") or ""
+      local key = c.id:gsub(SOURCE_LOC .. "$", "")
       if cite_loc_first == "" then cite_loc_first = cite_loc end
       local mode = tostring(c.mode or "NormalCitation")
       if mode ~= "NormalCitation" then
@@ -878,9 +845,9 @@ function Link(el)
 
   local link_loc = ""
   if type(url) == "string" then
-    link_loc = url:match("^#.-@@([%w%.%-_/]+:%d+)$") or ""
+    link_loc = url:match("^#.-" .. SOURCE_LOC .. "$") or ""
     if link_loc ~= "" then
-      url = url:gsub("@@[%w%.%-_/]+:%d+$", "")
+      url = url:gsub(SOURCE_LOC .. "$", "")
       if type(el.target) == "string" then
         el.target = url
       elseif type(el.target) == "table" then
@@ -903,8 +870,6 @@ function Link(el)
       table.insert(el.classes, "href")     -- generic external link
     end
   end
-  record_link(url, text)
-
   return el
 end
 
@@ -953,7 +918,6 @@ function RawInline(el)
     if b then
       local id  = b:sub(2, -2)
       local url = "https://oeis.org/" .. id
-      record_link(url, id)
       return pandoc.Link(
         { pandoc.Str(id) },
         url,
@@ -969,7 +933,6 @@ function RawInline(el)
     if path and label then
       local path_inner = path:sub(2, -2)
       local label_inner = label:sub(2, -2)
-      record_link(path_inner, label_inner)
       return pandoc.Link(
         parse_inlines_walk(label_inner),
         path_inner,
@@ -1011,7 +974,7 @@ function RawInline(el)
   -- \bigskip / \medskip / \smallskip inline: treat as span
   do
     local size = s:match("^%s*\\(%a-)skip%s*$")
-    if size then
+    if size == "big" or size == "med" or size == "small" then
       print_warn("Inline skip of size %s", size)
       return pandoc.Span(
         { pandoc.RawInline("html", "&#8203;") },
@@ -1048,7 +1011,7 @@ function RawInline(el)
     return {}
   end
 
-  print_warn("Tex Inline string %s is unparsed", s)
+  print_error("Unsupported inline TeX (it would be dropped): %s", snippet(s))
 
   return nil
 end
@@ -1061,7 +1024,7 @@ function RawBlock(el)
   -- \bigskip / \medskip / \smallskip
   do
     local size = s:match("^%s*\\(%a-)skip%s*$")
-    if size then
+    if size == "big" or size == "med" or size == "small" then
       return pandoc.Div({ pandoc.RawInline("html", "&#8203;") }, pandoc.Attr("", { "vskip", size }))
     end
   end
@@ -1071,7 +1034,6 @@ function RawBlock(el)
     local mt = s:match("^%s*\\metatitle(%b{})%s*$")
     if mt then
       metatitle = latex_to_unicode(mt:sub(2, -2), "page title")
-      --print_color(CONSOLE.green, "::: metatitle: %s", metatitle)
       return {}
     end
   end
@@ -1081,7 +1043,6 @@ function RawBlock(el)
     local md = s:match("^%s*\\metadescription(%b{})%s*$")
     if md then
       metadesc = latex_to_unicode(md:sub(2, -2), "page description")
-      --print_color(CONSOLE.green, "::: metadescription: %s", metadesc)
       return {}
     end
   end
@@ -1175,7 +1136,7 @@ end
     local N, B = s:match("^%s*\\begin%s*%{polydata%}%s*(%b{})%s*([%s%S]-)\\end%s*%{polydata%}%s*$")
     if N and B then
       local name = trim(N:sub(2, -2))
-      local map = parse_polydata_body(B)
+      local map = parse_polydata_body(B, name)
       polydata[name] = map
       set_add(labels, name)
       -- Emit an anchor so the #name fragment resolves on the page
@@ -1237,71 +1198,10 @@ end
   end
 
 
-  print_warn("Tex Block string %s is unparsed", s)
+  print_error("Unsupported TeX block (it would be dropped): %s", snippet(s))
 
   return nil
 end
-
--- ===== Finalizer ===========================================================
-
--- after you’ve built `families` (a list of {id=..., title=...}) and `polydata` (map)
-local function _first_n_names_from_families(n)
-  local names = {}
-  for _, f in ipairs(families or {}) do
-    local pd = polydata and polydata[f.id]
-    local name = (pd and pd.Name) or f.title or f.id
-    names[#names + 1] = name
-    if #names == n then break end
-  end
-  return names
-end
-
-local function _clamp_descr(s)
-  s = (s or ""):gsub("%s+", " "):match("^%s*(.-)%s*$") or ""
-  if #s <= 155 then return s end
-  s = s:sub(1, 155):gsub("%s+%S*$", "") .. "…"
-  return s
-end
-
-
--- Make meta info automatically if not specified.
-local function synthesize_meta(meta)
-  local title = nil
-  if #(families or {}) > 0 then
-    local names = _first_n_names_from_families(3)
-    if #names == 1 then
-      title = names[1]
-    elseif #names == 2 then
-      title = names[1] .. " & " .. names[2]
-    else
-      title = table.concat({ names[1], names[2] }, ", ") .. " & more"
-    end
-  end
-
-  local descr = nil
-  if #(families or {}) > 0 then
-    local count = #families
-    local parts = {}
-    parts[#parts + 1] = string.format(
-      "Overview of %d symmetric-function famil%s",
-      count, count == 1 and "y" or "ies"
-    )
-    local sample = _first_n_names_from_families(3)
-    if #sample > 0 then
-      parts[#parts + 1] = " including " .. table.concat(sample, ", ")
-    end
-    descr = _clamp_descr(table.concat(parts, ". ") .. ".")
-  end
-
-  if title and (not meta.metatitle or meta.metatitle.t ~= "MetaString") then
-    meta.metatitle = pandoc.MetaString(title)
-  end
-  if descr and (not meta.metadescription or meta.metadescription.t ~= "MetaString") then
-    meta.metadescription = pandoc.MetaString(descr)
-  end
-end
-
-
 
 -- ===== Finalizer ===========================================================
 -- Collect human-readable definition terms after all TeX lowering. A label
@@ -1343,30 +1243,44 @@ local function definition_keywords(doc)
   return pandoc.MetaList(entries)
 end
 
+-- A polydata block emits an anchor for its id, which is unnecessary (and a
+-- duplicate id) when a section or \label already defines that id.
+local function drop_redundant_polydata_anchors(doc)
+  local defined = {}
+  doc:walk({
+    Header = function(el) defined[el.identifier] = true end,
+    Span = function(el) if el.identifier ~= "" then defined[el.identifier] = true end end,
+  })
+  return doc:walk({
+    Div = function(el)
+      if el.classes:includes("polydata-anchor") and defined[el.identifier] then
+        return {}
+      end
+    end,
+  })
+end
+
 function Pandoc(doc)
   local m = doc.meta
 
   if not metatitle then
-    print_warn("Meta title missing")
+    print_error("Missing \\metatitle{...}")
   else
     m.metatitle = pandoc.MetaString(metatitle)
   end
 
   if not metadesc then
-    print_warn("Meta description missing")
+    print_error("Missing \\metadescription{...}")
   else
     m.metadescription = pandoc.MetaString(metadesc)
   end
 
-  -- Try to invent a description
-  synthesize_meta(m)
-
+  doc = drop_redundant_polydata_anchors(doc)
 
   m.citations  = set_to_sorted_list(citations)
   m.labels     = set_to_sorted_list(labels)
   m.keywords   = definition_keywords(doc)
   m.todos      = todos
-  m.families   = families
   m.polydata   = polydata
   
   if #custom_css > 0 then
@@ -1374,11 +1288,6 @@ function Pandoc(doc)
   end
 
   m.sourcestem = pandoc.MetaString(_STEM or "")
-
-  local urls   = {}
-  for u, _ in pairs(urls_seen) do urls[#urls + 1] = u end
-  table.sort(urls)
-  m.urls = urls
 
   if has_errors() then
     error("gather.lua reported " .. tostring(utils.get_error_count()) .. " error(s)")

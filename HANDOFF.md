@@ -1,15 +1,35 @@
 # Handoff
 
-## Active: backend defect fixes, safeguards and cleanup — 2026-10-27
+## Done: backend defect fixes, safeguards and cleanup — 2026-10-27
 
-Opus 5.5 backend worker, branch `backend-fixes-20261027` in a separate
-worktree. Owns all `*.lua`, `Makefile`, `config*.mk`, `tests/`,
-`assets/relation-graph.js`, `template.htm`, `assets/search.htm`, README.md,
-AGENTS.md, CONVENTIONS.md and this entry until merged. Scope: broken DOI
-links, citation-label collisions, duplicate ids, table math, shipped
-data-source-loc, deploy/Pagefind/merge-rerun hardening, parser safeguards,
-dead code and duplicated helpers. Content (`tex-source/`, bibliography.bib)
-is not touched. Please avoid editing the owned files meanwhile.
+Opus 5.5 backend worker, branch `backend-fixes-20261027` (separate worktree),
+merged to master. Content (`tex-source/`, bibliography.bib) untouched.
+Live defects fixed: doubled DOI links (resolver prefixes stripped); citation
+labels now site-wide unique with a/b suffixes and UTF-8-safe surnames (many
+labels change, e.g. LS82 -> LS82a, Br15 -> Bra15); polydata anchors no longer
+duplicate section ids (62 pages); table cells mixing text and math keep
+\(..\) for KaTeX (posets, transfer-matrix); data-source-loc no longer shipped.
+Safeguards (all errors, one case each in tests/check_safeguards.lua):
+unsupported TeX blocks/macros, unlabeled sections (Pandoc auto ids off),
+multi-paragraph inline text, unknown/repeated/empty polydata fields, malformed
+relation rows, relations without a key, bad \svgimg options, missing page
+metadata, duplicate ids in a rendered page. lint-html also checks duplicate
+ids, leaked data-source-loc and that public label/keyword feeds resolve.
+Build: merge driven by temp/meta.stamp (no rerun or re-render when metadata is
+unchanged; make -n overstates), sitemap/relation dates from source timestamps
+(UTC), FILE= builds one page only, make svg FORCE=1, Pagefind pinned to 1.5.2
+and swapped in only after success, make deploy runs all + check and skips
+.created (no --delete). Shared tokenizer for table rows/cells (nesting,
+\\[2pt], escapes), column-spec parser, anchored *(color), preprocess fixes
+(escaped \\[, masked comments, tabular[t], name boundaries, warning
+locations), goto.htm uses a JSON map with hasOwnProperty.
+Cleanup: dead families/synthesize_meta/urls code, unused locals/exports,
+parse_name and _ globals, relation helpers centralised in relation_registry,
+one strict template filler and ISO-date helper in utils.
+Verification: clean make Q=1 (no warnings), make check, git diff --check;
+metadata JSON byte-identical to the baseline apart from todo text; HTML diff
+reviewed (labels, table math, alt text, goto only); Chromium: no KaTeX or JS
+errors, table math rendered, goto redirects. Not deployed. Ownership released.
 
 ## Done: apple-touch-icon and colour-independent tests — 2026-10-27
 

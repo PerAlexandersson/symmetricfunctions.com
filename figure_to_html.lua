@@ -44,10 +44,11 @@ local function split_top_level_commas(s)
   return parts
 end
 
+--- Splits off a leading "*(color)" cell prefix.
 local function extract_color(ent)
-  local color = ent:match("%*%((.-)%)")
-  local cleaned = ent:gsub("%*%((.-)%)", "")
-  return color or "", cleaned
+  local color, rest = ent:match("^%s*%*(%b())(.*)$")
+  if not color then return "", ent end
+  return color:sub(2, -2), rest
 end
 
 local function is_safe_color(color)
@@ -58,41 +59,27 @@ local function is_safe_color(color)
       or color:match("^[A-Za-z][A-Za-z0-9_-]*$")
 end
 
-local function split_cells_preserve_empties(s, sep)
+--- Splits a table body at top-level separators: "&" between cells or "\\"
+--- between rows.  A separator does not split inside braces, environments,
+--- inline math_open or an escape (\&, \\ inside a cell); with opts.html it also
+--- skips HTML tags and entities, which appear once gather.lua has rendered
+--- cell contents.  Empty pieces are kept.
+local function split_top_level(s, sep, opts)
   s = tostring(s or "")
-  sep = sep or "&"
-  local out, i, n, m = {}, 1, #s, #sep
-  if n == 0 then return { "" } end
+  local html = opts and opts.html
+  local out, buf = {}, {}
+  local i, n = 1, #s
+  local depth, env_depth = 0, 0
+  local math_open = nil     -- open math delimiter: "$", "$$", "\\(" or "\\["
+  local in_tag, quote = false, nil
 
-  local buf = {}
-  local depth = 0
-  local in_tag = false
-  local quote = nil
-  local in_dollar_math = false
-  local in_paren_math = false
-  local environment_depth = 0
-
-  local function starts_html_entity(pos)
-    local candidate = s:sub(pos)
-    return candidate:match("^&[#%w][#%w]+;") ~= nil
-  end
-
-  local function is_escaped(pos)
-    local count = 0
-    pos = pos - 1
-    while pos >= 1 and s:sub(pos, pos) == "\\" do
-      count = count + 1
-      pos = pos - 1
-    end
-    return count % 2 == 1
-  end
+  local function at_top() return depth == 0 and env_depth == 0 and not math_open end
+  local function split() out[#out + 1] = table.concat(buf); buf = {} end
 
   while i <= n do
     local ch = s:sub(i, i)
-    local tail = s:sub(i)
-
     if in_tag then
-      table.insert(buf, ch)
+      buf[#buf + 1] = ch
       if quote then
         if ch == quote then quote = nil end
       elseif ch == '"' or ch == "'" then
@@ -101,53 +88,101 @@ local function split_cells_preserve_empties(s, sep)
         in_tag = false
       end
       i = i + 1
-    elseif ch == "<" and s:sub(i):match("^</?[%a][^>]*>") then
+    elseif html and ch == "<" and s:find("^</?%a[^>]*>", i) then
       in_tag = true
-      table.insert(buf, ch)
+      buf[#buf + 1] = ch
       i = i + 1
+    elseif ch == "\\" then
+      local env_token = s:match("^\\begin%s*%b{}", i)
+      local end_token = s:match("^\\end%s*%b{}", i)
+      local word = s:match("^\\%a+", i)
+      local symbol = s:sub(i, i + 1)
+      if sep == "\\\\" and symbol == "\\\\" and at_top() then
+        split()
+        i = i + 2
+        -- Drop the optional row-spacing argument of \\[2pt].
+        local spacing = s:match("^%s*%[%s*%-?[%d%.]+%s*%a%a%s*%]", i)
+        if spacing then i = i + #spacing end
+      elseif env_token then
+        env_depth = env_depth + 1
+        buf[#buf + 1] = env_token
+        i = i + #env_token
+      elseif end_token then
+        env_depth = math.max(0, env_depth - 1)
+        buf[#buf + 1] = end_token
+        i = i + #end_token
+      elseif word then
+        buf[#buf + 1] = word
+        i = i + #word
+      else
+        if symbol == "\\(" or symbol == "\\[" then
+          math_open = math_open or symbol
+        elseif (symbol == "\\)" and math_open == "\\(") or (symbol == "\\]" and math_open == "\\[") then
+          math_open = nil
+        end
+        buf[#buf + 1] = symbol
+        i = i + #symbol
+      end
     elseif ch == "{" then
       depth = depth + 1
-      table.insert(buf, ch)
+      buf[#buf + 1] = ch
       i = i + 1
     elseif ch == "}" then
       depth = math.max(0, depth - 1)
-      table.insert(buf, ch)
+      buf[#buf + 1] = ch
       i = i + 1
-    elseif tail:match("^\\begin%s*%b{}") then
-      environment_depth = environment_depth + 1
-      table.insert(buf, ch)
+    elseif ch == "$" then
+      local delimiter = (s:sub(i, i + 1) == "$$") and "$$" or "$"
+      if math_open == nil then
+        math_open = delimiter
+      elseif math_open == delimiter then
+        math_open = nil
+      end
+      buf[#buf + 1] = delimiter
+      i = i + #delimiter
+    elseif sep == "&" and ch == "&" and at_top()
+        and not (html and s:find("^&[#%w][#%w]*;", i)) then
+      split()
       i = i + 1
-    elseif tail:match("^\\end%s*%b{}") then
-      environment_depth = math.max(0, environment_depth - 1)
-      table.insert(buf, ch)
-      i = i + 1
-    elseif tail:sub(1, 2) == "\\(" then
-      in_paren_math = true
-      table.insert(buf, ch)
-      i = i + 1
-    elseif tail:sub(1, 2) == "\\)" then
-      in_paren_math = false
-      table.insert(buf, ch)
-      i = i + 1
-    elseif ch == "$" and not is_escaped(i) then
-      in_dollar_math = not in_dollar_math
-      table.insert(buf, ch)
-      i = i + 1
-    elseif s:sub(i, i + m - 1) == sep and depth == 0
-        and environment_depth == 0 and not in_dollar_math and not in_paren_math
-        and not is_escaped(i) and not starts_html_entity(i) then
-      out[#out + 1] = table.concat(buf)
-      buf = {}
-      i = i + m
-      if i > n + 1 then out[#out + 1] = "" end
     else
-      table.insert(buf, ch)
+      buf[#buf + 1] = ch
       i = i + 1
     end
   end
 
-  out[#out + 1] = table.concat(buf)
+  split()
   return out
+end
+
+local function split_cells(s, opts)
+  return split_top_level(s, "&", opts)
+end
+
+--- Splits a table body into rows, dropping a final whitespace-only piece left
+--- by a trailing "\\".
+local function split_rows(s, opts)
+  local rows = split_top_level(s, "\\\\", opts)
+  if #rows > 1 and trim(rows[#rows]) == "" then rows[#rows] = nil end
+  return rows
+end
+
+--- Column alignments from a tabular/array column spec.  Arguments of @{..},
+--- !{..}, >{..}, <{..} are ignored, p/m/b{width} columns align left, and
+--- *{n}{cols} is expanded.
+local function parse_colspec(spec)
+  spec = tostring(spec or "")
+  local expanded
+  repeat
+    expanded = false
+    spec = spec:gsub("%*%s*(%b{})%s*(%b{})", function(count, cols)
+      expanded = true
+      return string.rep(cols:sub(2, -2), tonumber(count:sub(2, -2)) or 1)
+    end)
+  until not expanded
+  spec = spec:gsub("[@!<>]%s*%b{}", ""):gsub("[pmb]%s*%b{}", "l")
+  local list = {}
+  for ch in spec:gmatch("[lcr]") do list[#list + 1] = ch end
+  return list
 end
 
 local function looks_like_trusted_html_fragment(s)
@@ -249,10 +284,8 @@ local function format_cell(content, row, col, opts)
   local cell_renderer = opts.cell_renderer
   
   -- Neighbor flags for border logic
-  local has_north = opts.has_north
   local has_south  = opts.has_south
   local has_east = opts.has_east
-  local has_west  = opts.has_west
   
   local ent = content or ""
   local classes = {}
@@ -373,22 +406,15 @@ local function render_matrix(matrix, specList, opts, col_count)
 
         -- Determine neighbors for border logic
         -- Note: We check the raw matrix. matrix[r-1] might be a rule or nil.
-        local neighbor_n = (r > 1) and matrix[r-1][c] or nil
-        local neighbor_w = (c > 1) and matrix[r][c-1] or nil
         local neighbor_s = (matrix[r+1] and matrix[r+1][c]) or nil
         local neighbor_e = matrix[r][c+1] or nil
-        
-        local has_north = is_solid_cell(neighbor_n)
-        local has_west  = is_solid_cell(neighbor_w)
         local has_south = is_solid_cell(neighbor_s)
         local has_east  = is_solid_cell(neighbor_e)
-        
+
         local align = specList[c] or ""
         local cell_html = format_cell(cell, current_row, c, {
           delimiter = delimiter,
           align = align,
-          has_north = has_north,
-          has_west = has_west,
           has_south = has_south,
           has_east = has_east,
           cell_renderer = opts.cell_renderer
@@ -408,25 +434,16 @@ local function tex_tabular_to_span(s, type_, spec, opts)
   if not s or s == "" then return "", "Empty content" end
   opts = opts or {}
   
-  -- Parse column specs
-  local specList = {}
-  if spec then
-    for ch in spec:gmatch(".") do
-      if ch == "l" or ch == "c" or ch == "r" then 
-        table.insert(specList, ch) 
-      end
-    end
-  end
-  
-  -- Normalize
+  local specList = parse_colspec(spec)
+
+  -- Booktabs rules end a row of their own
   s = s:gsub("\r\n", "\n")
        :gsub("\\toprule", "\\toprule\\\\")
        :gsub("\\midrule", "\\midrule\\\\")
        :gsub("\\bottomrule", "\\bottomrule\\\\")
-  if not s:find("\\\\%s*$") then s = s .. "\\\\" end
-  
+
   local matrix = {}
-  for line in s:gmatch("(.-)\\\\") do
+  for _, line in ipairs(split_rows(s, { html = true })) do
     local tline = trim(line)
     if tline == "\\toprule" then
       table.insert(matrix, { "__RULE__", "top" })
@@ -435,10 +452,10 @@ local function tex_tabular_to_span(s, type_, spec, opts)
     elseif tline == "\\bottomrule" then
       table.insert(matrix, { "__RULE__", "bottom" })
     elseif tline ~= "" then
-      table.insert(matrix, split_cells_preserve_empties(line, "&"))
+      table.insert(matrix, split_cells(line, { html = true }))
     end
   end
-  
+
   -- Pad with \none
   -- is_solid_cell handles \none checks.
   local width = pad_matrix_to_rectangle(matrix, "\\none")
@@ -482,11 +499,10 @@ local function youngtab_to_span(body, opts)
   opts = opts or {}
   
   local s = body:gsub("\r\n", "\n")
-  if not s:find("\\\\%s*$") then s = s .. "\\\\" end
-  
+
   local matrix = {}
-  for line in s:gmatch("(.-)\\\\") do
-    table.insert(matrix, split_cells_preserve_empties(rtrim(line), "&"))
+  for _, line in ipairs(split_rows(s)) do
+    table.insert(matrix, split_cells(rtrim(line)))
   end
   
   local width = pad_matrix_to_rectangle(matrix, "\\none")
@@ -539,6 +555,9 @@ end
 -- ========== EXPORTS ==========
 
 return {
+  split_cells = split_cells,
+  split_rows = split_rows,
+  parse_colspec = parse_colspec,
   tex_tabular_to_span = tex_tabular_to_span,
   ytableaushort_to_span = ytableaushort_to_span,
   youngtab_to_span = youngtab_to_span,

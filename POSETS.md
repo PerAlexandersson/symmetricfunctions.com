@@ -12,8 +12,8 @@ with it, and what is still open. The row syntax is in `CONVENTIONS.md`.
   semicolon-separated targets) and the structured grammar
   `target | Key[,Key...] | attr=value; ...`.
 - `merge_meta.lua` checks relation types, targets, statuses, attributes and
-  bibliography keys. Unknown targets or keys, invalid statuses and unexpected
-  attributes are errors; a missing key is still only a warning.
+  bibliography keys. Unknown targets or keys, a missing key, invalid statuses
+  and unexpected attributes are all errors.
 - `relation_graph.lua` writes `www/polynomial-relations.json` and the page
   `www/polynomial-relations.htm`, linked as **Relations** in the top navigation.
   `assets/relation-graph.js` draws one or more selected relation types as a
@@ -98,8 +98,6 @@ than a status for "no combinatorial rule is known".
 
 ## Open items
 
-- Make a missing bibliography key an error rather than a warning; every
-  current edge already has one.
 - Report cycles in poset-type relations at build time. The browser currently
   places a cycle in a single layer without comment.
 - Add a Hasse view: transitive reduction per poset-type relation, keeping the

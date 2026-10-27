@@ -34,7 +34,7 @@ local print_error  = utils.print_error
 local CONFIG = {
   SRC_DIR  = "svg-tex/src",
   LIB_DIR  = "svg-tex/lib",
-  TEMP_DIR = "temp/svg-tex",
+  TEMP_DIR = (os.getenv("TEMP_DIR") or "temp") .. "/svg-tex",
   NAV_OUT  = "assets/nav-images",
   SVG_OUT  = "assets/svg-images",
   ICO_OUT  = "assets/icons"
@@ -54,12 +54,19 @@ end
 
 local PWD = os.getenv("PWD")
 if not PWD then
-  print_error("PWD environment variable not set")
+  local handle = io.popen("pwd")
+  PWD = handle and handle:read("*l")
+  if handle then handle:close() end
+end
+if not PWD or PWD == "" then
+  print_error("Could not determine the working directory")
   os.exit(1)
 end
 
 local ABS_LIB = PWD .. "/" .. CONFIG.LIB_DIR
-local SHARED_TIKZ_MACROS = "/home/paxinum/Dropbox/latex/tikz-macros"
+-- Shared TikZ macros outside the repository (optional; override with
+-- TIKZ_MACROS_DIR).
+local SHARED_TIKZ_MACROS = os.getenv("TIKZ_MACROS_DIR") or "/home/paxinum/Dropbox/latex/tikz-macros"
 local TEX_ENV = string.format("TEXINPUTS=.:%s/:%s/:", ABS_LIB, SHARED_TIKZ_MACROS)
 
 -- =============================================================================
@@ -121,6 +128,22 @@ local function get_mtime(filepath)
   return tonumber(result)
 end
 
+--- Newest modification time among the shared TeX library files (0 if none).
+local lib_mtime_cache = nil
+local function newest_lib_mtime()
+  if lib_mtime_cache then return lib_mtime_cache end
+  lib_mtime_cache = 0
+  local handle = io.popen('find "' .. CONFIG.LIB_DIR .. '" -type f -printf "%T@\\n" 2>/dev/null')
+  if handle then
+    for line in handle:lines() do
+      local t = tonumber(line)
+      if t and t > lib_mtime_cache then lib_mtime_cache = math.floor(t) end
+    end
+    handle:close()
+  end
+  return lib_mtime_cache
+end
+
 --- Check if SVG needs to be regenerated based on timestamps.
 --- @param tex_path string Path to source .tex file
 --- @param svg_path string Path to output .svg file
@@ -141,7 +164,7 @@ local function needs_regeneration(tex_path, svg_path)
     return true
   end
   
-  return tex_mtime > svg_mtime
+  return tex_mtime > svg_mtime or newest_lib_mtime() > svg_mtime
 end
 
 --- Get the number of pages in a PDF file.

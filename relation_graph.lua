@@ -13,30 +13,9 @@ local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
 local GRAPH_JS = "relation-graph.js?v=12"
 
-local function attr_is_false(value)
-  if value == false then return true end
-  if value == nil then return false end
-  local text = trim(tostring(value)):lower()
-  return text == "false" or text == "no" or text == "0"
-end
-
-local function relation_is_visible(relation)
-  if type(relation) ~= "table" then return false end
-  if relation.status == "question" then return false end
-  if type(relation.attrs) == "table" and attr_is_false(relation.attrs.include) then
-    return false
-  end
-  return true
-end
-
-local function family_href(poly_id, entry)
-  entry = entry or {}
-  local page = entry.page or ""
-  if page ~= "" then
-    return string.format("%s.htm#%s", page, poly_id)
-  end
-  return string.format("#%s", poly_id)
-end
+local relation_is_visible = relation_registry.is_visible
+local family_href = relation_registry.family_href
+local json_array = file_reading.json_array
 
 local function copy_attrs(attrs)
   if type(attrs) ~= "table" then return {} end
@@ -47,33 +26,8 @@ local function copy_attrs(attrs)
   return copied
 end
 
-local function relation_refs(relation)
-  local refs = {}
-  local seen = {}
-
-  local function add_ref(ref)
-    ref = trim(ref or "")
-    if ref ~= "" and not seen[ref] then
-      refs[#refs + 1] = ref
-      seen[ref] = true
-    end
-  end
-
-  if type(relation.refs) == "table" then
-    for _, ref in ipairs(relation.refs) do
-      add_ref(ref)
-    end
-  end
-
-  for ref in (tostring(relation.ref or "") .. ","):gmatch("(.-)%s*,") do
-    add_ref(ref)
-  end
-
-  return refs
-end
-
 local function reference_items(refs)
-  local items = {}
+  local items = json_array()
   for _, key in ipairs(refs) do
     items[#items + 1] = {
       key = key,
@@ -99,7 +53,7 @@ local function make_node(poly_id, entry)
 end
 
 local function sorted_relation_types(counts)
-  local list = {}
+  local list = json_array()
   for type_name, spec in pairs(relation_registry.types()) do
     list[#list + 1] = {
       type = type_name,
@@ -117,7 +71,7 @@ local function sorted_relation_types(counts)
 end
 
 local function sorted_nodes(nodes_by_id)
-  local nodes = {}
+  local nodes = json_array()
   for _, node in pairs(nodes_by_id) do
     nodes[#nodes + 1] = node
   end
@@ -155,11 +109,11 @@ end
 
 function M.build_graph(polydata)
   local nodes_by_id = {}
-  local edges = {}
+  local edges = json_array()
   local relation_type_counts = {}
   local status_counts = {}
   local ref_seen = {}
-  local ref_keys = {}
+  local ref_keys = json_array()
 
   for source_id, entry in pairs(polydata or {}) do
     local relations = entry.Relations
@@ -175,7 +129,7 @@ function M.build_graph(polydata)
             local type_name = relation.type or ""
             local spec = relation_registry.get_type(type_name) or {}
             local status = relation.status or "theorem"
-            local refs = relation_refs(relation)
+            local refs = relation_registry.refs(relation)
             for _, ref in ipairs(refs) do
               if not ref_seen[ref] then
                 ref_keys[#ref_keys + 1] = ref
@@ -226,20 +180,10 @@ function M.build_graph(polydata)
   return graph
 end
 
-local function format_iso_date(timestamp)
-  local time_table = os.date("!*t", timestamp or os.time())
-  return string.format("%04d-%02d-%02d", time_table.year, time_table.month, time_table.day)
-end
-
 local function format_lastmod_html(timestamp)
-  local date = format_iso_date(timestamp)
+  if not timestamp then return "" end
+  local date = utils.format_iso_date(timestamp)
   return string.format('<time class="dateMod" datetime="%s">%s</time>', date, date)
-end
-
-local function render_template(template, content)
-  return template:gsub("<!%-%-([A-Z_%-]+)%-%->", function(name)
-    return content[name] or ""
-  end)
 end
 
 local function render_side_links(has_references)
@@ -319,26 +263,27 @@ end
 function M.render_page(graph, options)
   options = options or {}
   local template_path = options.template_path or os.getenv("TEMPLATE") or "template.htm"
-  local refs_json = options.refs_json or os.getenv("REFS_JSON") or "temp/bibliography.json"
+  local refs_json = options.refs_json or os.getenv("REFS_JSON")
+      or ((os.getenv("TEMP_DIR") or "temp") .. "/bibliography.json")
   local template = file_reading.read_file(template_path, "html template")
   local references_html = ""
   if #graph.references > 0 then
     references_html = bibhandler.build_bibliography_HTML(refs_json, graph.references)
   end
 
-  local html = render_template(template, {
+  local html = utils.render_template(template, {
     TITLE = "Polynomial relation graph",
     DESCRIPTION = "Interactive graph of structured relations between polynomial families.",
     CANONICAL = GRAPH_HTML,
     STYLE = "",
-    LASTMOD = format_lastmod_html(),
+    LASTMOD = format_lastmod_html(options.timestamp),
     EDITLINK = '<a class="editLink" href="https://github.com/PerAlexandersson/symmetricfunctions.com/blob/master/relation_graph.lua" target="_blank" rel="noopener">Improve this page</a>',
     MAIN = render_main(graph),
     SIDELINKS = render_side_links(#graph.references > 0),
     REFERENCES = references_html
   })
 
-  return html:gsub("<body>", '<body class="relation-graph-document">', 1)
+  return (html:gsub("<body>", '<body class="relation-graph-document">', 1))
 end
 
 return M

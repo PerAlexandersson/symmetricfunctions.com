@@ -27,7 +27,17 @@ local ACCENT_MAP = {
   ["ý"] = "y", ["ÿ"] = "y", ["Ý"] = "Y",
   ["ž"] = "z", ["ż"] = "z", ["ź"] = "z",
   ["Ž"] = "Z", ["Ż"] = "Z", ["Ź"] = "Z",
-  ["ğ"] = "g", ["Ğ"] = "G"
+  ["ğ"] = "g", ["Ğ"] = "G",
+  ["ą"] = "a", ["Ą"] = "A", ["ă"] = "a", ["Ă"] = "A",
+  ["ę"] = "e", ["Ę"] = "E", ["ě"] = "e", ["Ě"] = "E",
+  ["ı"] = "i", ["İ"] = "I",
+  ["ň"] = "n", ["Ň"] = "N", ["Ñ"] = "N",
+  ["ő"] = "o", ["Ő"] = "O",
+  ["ř"] = "r", ["Ř"] = "R",
+  ["ș"] = "s", ["Ș"] = "S",
+  ["Ť"] = "T", ["ţ"] = "t", ["Ț"] = "T",
+  ["ů"] = "u", ["Ů"] = "U", ["ű"] = "u", ["Ű"] = "U",
+  ["æ"] = "ae", ["Æ"] = "AE", ["ð"] = "d", ["Ð"] = "D", ["þ"] = "th", ["Þ"] = "TH"
 }
 
 --- Convert accented characters to ASCII equivalents and remove non-alphanumeric characters.
@@ -317,19 +327,6 @@ local function print_info(fmt, ...)
   end
 end
 
---- Print a colored message to stderr.
---- @param col string ANSI color code from CONSOLE table
---- @param fmt string Format string or message
---- @param ... any Format arguments
-local function print_color(col, fmt, ...)
-  local m = _fmt(fmt, ...)
-  if _use_color then
-    io.stderr:write(col, m, CONSOLE.reset, "\n")
-  else
-    io.stderr:write("[INFO] ", m, "\n")
-  end
-end
-
 local DIAGNOSTIC_STATE = _G.__SYMFUN_DIAGNOSTIC_STATE or { error_count = 0 }
 _G.__SYMFUN_DIAGNOSTIC_STATE = DIAGNOSTIC_STATE
 
@@ -358,9 +355,38 @@ local function has_errors()
   return DIAGNOSTIC_STATE.error_count > 0
 end
 
---- Reset the process-local error counter.
-local function reset_errors()
-  DIAGNOSTIC_STATE.error_count = 0
+-- ============================================================================
+-- Dates and Templates
+-- ============================================================================
+
+--- Format a Unix timestamp as an ISO 8601 date (YYYY-MM-DD) in UTC.
+--- @param timestamp number|string|nil Unix timestamp (defaults to now)
+--- @return string Formatted date
+local function format_iso_date(timestamp)
+  return os.date("!%Y-%m-%d", tonumber(timestamp) or os.time())
+end
+
+--- Fill <!--NAME--> placeholders in an HTML template.
+--- Values may be strings or functions (called lazily, once).  An unknown
+--- placeholder is an error, so a template change cannot silently blank a page.
+--- @param template string Template text
+--- @param content table Map of placeholder name to string or function
+--- @return string Rendered text
+local function render_template(template, content)
+  local cache = {}
+  local result = template:gsub("<!%-%-([A-Z_%-]+)%-%->", function(name)
+    local value = content[name]
+    if value == nil then
+      print_error("Unknown placeholder in template: %s", name)
+      return ""
+    end
+    if type(value) == "function" then
+      if cache[name] == nil then cache[name] = value() or "" end
+      value = cache[name]
+    end
+    return value
+  end)
+  return result
 end
 
 -- ============================================================================
@@ -379,15 +405,14 @@ end
 ---@field table_size fun(t: table): number
 ---@field set_add fun(set: table, k: any): nil
 ---@field set_to_sorted_list fun(set: table): table
----@field CONSOLE table
 ---@field print_error fun(fmt: string, ...: any): nil
 ---@field print_todo fun(fmt: string, ...: any): nil
 ---@field print_warn fun(fmt: string, ...: any): nil
 ---@field print_info fun(fmt: string, ...: any): nil
----@field print_color fun(col: string, fmt: string, ...: any): nil
 ---@field get_error_count fun(): number
 ---@field has_errors fun(): boolean
----@field reset_errors fun(): nil
+---@field format_iso_date fun(timestamp: number|string|nil): string
+---@field render_template fun(template: string, content: table): string
 
 return {
   -- String utilities
@@ -406,13 +431,14 @@ return {
   set_to_sorted_list = set_to_sorted_list,
   
   -- Console output
-  CONSOLE = CONSOLE,
   print_error = print_error,
   print_todo = print_todo,
   print_warn = print_warn,
   print_info = print_info,
-  print_color = print_color,
   get_error_count = get_error_count,
   has_errors = has_errors,
-  reset_errors = reset_errors,
+
+  -- Dates and templates
+  format_iso_date = format_iso_date,
+  render_template = render_template,
 }

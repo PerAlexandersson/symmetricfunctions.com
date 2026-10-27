@@ -15,6 +15,9 @@ BIBFILE    := bibliography.bib
 # === TOOLS ===
 PANDOC = pandoc
 LUA    = lua
+PAGEFIND = npx --yes pagefind@1.5.2
+# Sections must have explicit labels, so Pandoc's automatic ids are off.
+READER = latex+raw_tex-auto_identifiers
 
 # === SCRIPTS ===
 PREPROC_LUA    = preprocess.lua
@@ -35,8 +38,8 @@ POLY_TO_HTML_LUA   = polydata_to_html.lua
 RELATION_REGISTRY_LUA = relation_registry.lua
 
 PREPROC_DEPS    = $(PREPROC_LUA) $(UTILS_LUA)
-GATHER_DEPS     = $(GATHER_LUA) $(UTILS_LUA) $(FILE_READING_LUA) $(BIBHANDLER_LUA) $(RELATION_REGISTRY_LUA)
-RENDER_DEPS     = $(RENDER_LUA) $(UTILS_LUA) $(BIBHANDLER_LUA) $(FILE_READING_LUA) $(FIG_TO_HTML_LUA) $(POLY_TO_HTML_LUA)
+GATHER_DEPS     = $(GATHER_LUA) $(UTILS_LUA) $(FILE_READING_LUA) $(BIBHANDLER_LUA) $(RELATION_REGISTRY_LUA) $(FIG_TO_HTML_LUA)
+RENDER_DEPS     = $(RENDER_LUA) $(UTILS_LUA) $(BIBHANDLER_LUA) $(FILE_READING_LUA) $(FIG_TO_HTML_LUA) $(POLY_TO_HTML_LUA) $(RELATION_REGISTRY_LUA)
 MERGE_META_DEPS = $(MERGE_META_LUA) $(UTILS_LUA) $(FILE_READING_LUA) $(BIBHANDLER_LUA) $(RELATION_REGISTRY_LUA) $(RELATION_GRAPH_LUA)
 
 # === SOURCE FILES AND INTERMEDIATE FILES ===
@@ -44,6 +47,7 @@ TEX_FILES  := $(wildcard $(SRC_DIR)/*.tex)
 PRE_TEX    := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.pre.tex,$(TEX_FILES))
 JSON_FILES := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.json,$(TEX_FILES))
 HTML_FILES := $(patsubst $(SRC_DIR)/%.tex,$(WWW_DIR)/%.htm,$(TEX_FILES))
+TIMESTAMP_FILES := $(patsubst $(SRC_DIR)/%.tex,$(TEMP_DIR)/%.timestamp,$(TEX_FILES))
 ASSET_FILES := $(shell find $(ASSETS_DIR) -type f -print)
 
 # === GENERATED OUTPUTS ===
@@ -60,6 +64,7 @@ PUBLIC_BIB_JSON := $(WWW_DIR)/bibliography.json
 RELATION_GRAPH_HTML := $(WWW_DIR)/polynomial-relations.htm
 RELATION_GRAPH_JSON := $(WWW_DIR)/polynomial-relations.json
 COPY_ASSETS_STAMP := $(TEMP_DIR)/copy-assets.stamp
+META_STAMP := $(TEMP_DIR)/meta.stamp
 PAGEFIND_STAMP := $(TEMP_DIR)/pagefind.stamp
 PAGEFIND_ENTRY := $(WWW_DIR)/_pagefind/pagefind-entry.json
 

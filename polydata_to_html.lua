@@ -1,14 +1,15 @@
 -- Read family JSON and emit an HTML table for symmetric function families.
 
-local utils          = dofile("utils.lua")
-local file_reading   = dofile("file_reading.lua")
-local bibhandler     = dofile("bibhandler.lua")
+local utils             = dofile("utils.lua")
+local bibhandler        = dofile("bibhandler.lua")
+local relation_registry = dofile("relation_registry.lua")
 
 local trim         = utils.trim
 local html_escape  = utils.html_escape
-local load_json    = file_reading.load_json_file
 local get_bib_label = bibhandler.get_bibliography_label
 local get_bib_tooltip = bibhandler.get_bibliography_tooltip
+local relation_is_visible = relation_registry.is_visible
+local family_href = relation_registry.family_href
 
 ----------------------------------------------------------------------
 -- Helpers
@@ -29,57 +30,21 @@ local function normalize_rating(value)
   return rating
 end
 
-local function attr_is_false(value)
-  if value == false then return true end
-  if value == nil then return false end
-  local text = trim(tostring(value)):lower()
-  return text == "false" or text == "no" or text == "0"
-end
-
-local function relation_is_visible(relation)
-  if type(relation) ~= "table" then return false end
-  if relation.status == "question" then return false end
-  if type(relation.attrs) == "table" and attr_is_false(relation.attrs.include) then
-    return false
-  end
-  return true
-end
-
-local function space_with_basis(entry)
-  local space = entry.Space or ""
-  local is_basis = normalize_boolean(entry.Basis)
-
-  if space == "" then
-    return "", "", ""
-  end
-  
-  return html_escape(space), (is_basis and "true" or "false")
-end
-
+--- Sorted list of { key = id, data = entry } by name, then year, then id.
 local function make_family_list(families)
   local list = {}
   for key, data in pairs(families) do
-    data._key = key
-    list[#list+1] = data
+    list[#list+1] = { key = key, data = data }
   end
   table.sort(list, function(a, b)
-    local na = (a.Name or a._key or ""):lower()
-    local nb = (b.Name or b._key or ""):lower()
-    if na == nb then
-      return (a.Year or "") < (b.Year or "")
-    end
-    return na < nb
+    local na = (a.data.Name or a.key):lower()
+    local nb = (b.data.Name or b.key):lower()
+    if na ~= nb then return na < nb end
+    local ya, yb = tostring(a.data.Year or ""), tostring(b.data.Year or "")
+    if ya ~= yb then return ya < yb end
+    return a.key < b.key
   end)
   return list
-end
-
-local function family_href(key, entry)
-  entry = entry or {}
-  local page = entry.page or ""
-  if page ~= "" then
-    return string.format("%s.htm#%s", page, key)
-  end
-  return string.format("#%s", key)
 end
 
 local function relation_text(relations)
@@ -104,33 +69,8 @@ local function relation_text(relations)
   return table.concat(parts, " ")
 end
 
-local function relation_refs(relation)
-  local refs = {}
-  local seen = {}
-
-  local function add_ref(ref)
-    ref = trim(ref or "")
-    if ref ~= "" and not seen[ref] then
-      refs[#refs + 1] = ref
-      seen[ref] = true
-    end
-  end
-
-  if type(relation.refs) == "table" then
-    for _, ref in ipairs(relation.refs) do
-      add_ref(ref)
-    end
-  end
-
-  for ref in (tostring(relation.ref or "") .. ","):gmatch("(.-)%s*,") do
-    add_ref(ref)
-  end
-
-  return refs
-end
-
 local function render_relation_refs(relation)
-  local refs = relation_refs(relation or {})
+  local refs = relation_registry.refs(relation or {})
   if #refs == 0 then return "" end
   local parts = {}
 
@@ -198,20 +138,13 @@ end
 -- Render one table row
 ----------------------------------------------------------------------
 
-local function render_row(entry, families)
-  local key      = entry._key or ""
+local function render_row(key, entry, families)
   local name     = entry.Name or key
   local space    = entry.Space or ""
   local is_basis = normalize_boolean(entry.Basis)
   local category = entry.Category or ""
   local year     = entry.Year or ""
   local rating   = normalize_rating(entry.Rating)
-  local bib      = entry.Bib or ""
-  local symbol   = entry.Symbol or ""
-  local keywords = entry.Keywords or ""
-  local page     = entry.page or ""
-
-  local space_html, basis_attr = space_with_basis(entry)
 
   local href = family_href(key, entry)
 
@@ -237,7 +170,7 @@ local function render_row(entry, families)
 
   local space_cell = string.format(
     '<td class="fam-space">%s</td>',
-    space_html ~= "" and space_html or "&nbsp;"
+    space ~= "" and html_escape(space) or "&nbsp;"
   )
 
   local cat_cell = string.format(
@@ -256,42 +189,6 @@ local function render_row(entry, families)
   )
 
   local relations_cell = render_relation_cell(entry, families)
-
-  -- Details cell (Symbol, Bib, Keywords, Basis, Space)
-  -- local has_details = (symbol ~= "" or bib ~= "" or keywords ~= "")
-
-  -- local details_html = ""
-  -- if has_details then
-  --   local parts = {}
-
-  --   if symbol ~= "" then
-  --     parts[#parts+1] = string.format(
-  --       '<div><strong>Symbol:</strong> %s</div>',
-  --       symbol
-  --     )
-  --   end
-  --   if bib ~= "" then
-  --     parts[#parts+1] = string.format(
-  --       '<div><strong>Ref:</strong> %s</div>',
-  --       html_escape(bib)
-  --     )
-  --   end
-  --   if keywords ~= "" then
-  --     parts[#parts+1] = string.format(
-  --       '<div><strong>Keywords:</strong> %s</div>',
-  --       html_escape(keywords)
-  --     )
-  --   end
-
-  --   details_html = string.format(
-  --     '<details><summary>Details</summary><div class="fam-details">%s</div></details>',
-  --     table.concat(parts, "")
-  --   )
-  -- else
-  --   details_html = "&nbsp;"
-  -- end
-
-  --local details_cell = string.format('<td class="fam-extra">%s</td>', details_html)
 
   return string.format(
     '<tr %s> %s %s %s %s %s %s </tr>',
@@ -324,8 +221,8 @@ local function render_polynomial_table(polydata)
   out[#out+1] = '</tr></thead>'
   out[#out+1] = '<tbody>'
 
-  for _, entry in ipairs(list) do
-    out[#out+1] = render_row(entry, polydata)
+  for _, item in ipairs(list) do
+    out[#out+1] = render_row(item.key, item.data, polydata)
   end
 
   out[#out+1] = '</tbody></table>'

@@ -7,6 +7,7 @@
 -- - File existence validation for images
 -- - Table of contents generation from headers
 -- - Lazy template placeholder evaluation
+-- - A final check that no element id occurs twice on the page
 -- - Injection of custom CSS variables defined in LaTeX
 
 -- ========== DEPENDENCIES ==========
@@ -19,8 +20,6 @@ local poly_to_html = dofile("polydata_to_html.lua")
 local utils        = dofile("utils.lua")
 local html_escape  = utils.html_escape
 local slugify      = utils.slugify
-local print_warn   = utils.print_warn
-local print_info   = utils.print_info
 local print_error  = utils.print_error
 local has_errors   = utils.has_errors
 local get_error_count = utils.get_error_count
@@ -37,7 +36,6 @@ local LABELS_JSON   = os.getenv("LABELS_JSON") or (TEMP_DIR .. "/site-labels.jso
 local POLYDATA_JSON = os.getenv("POLYDATA_JSON") or (TEMP_DIR .. "/site-polydata.json")
 local TEMPLATE      = os.getenv("TEMPLATE") or "template.htm"
 local ASSETS_DIR    = os.getenv("ASSETS_DIR") or "assets"
-local WWW_DIR       = os.getenv("WWW_DIR") or "www"
 local SOURCE_TS     = os.getenv("SOURCE_TS") or tostring(os.time())
 
 -- Site-wide label mapping for cross-page references
@@ -71,7 +69,8 @@ local function render_attr(attr)
   
   for _, kv in ipairs(kvs) do
     local k, v = kv[1], kv[2]
-    if k and v and v ~= "" then
+    -- data-source-loc is build-time diagnostics only; keep it out of the HTML.
+    if k and v and v ~= "" and k ~= "data-source-loc" then
       table.insert(parts, ' ' .. k .. '="' .. html_escape(v) .. '"')
     end
   end
@@ -196,7 +195,7 @@ local function plain_text_from_inlines(inlines, preserve_math)
       parts[#parts + 1] = plain_text_from_inlines((c and c[2]) or {}, preserve_math)
     end
   end
-  return table.concat(parts):gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
+  return (table.concat(parts):gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", ""))
 end
 
 
@@ -653,50 +652,25 @@ end
 -- ========== METADATA FORMATTING ==========
 
 local function format_lastmod_html(timestamp)
-  local date = os.date("%Y-%m-%d", tonumber(timestamp))
+  local date = utils.format_iso_date(timestamp)
   return string.format('<time class="dateMod" datetime="%s">%s</time>', date, date)
 end
 
 
--- ========== LAZY TEMPLATE EVALUATION ==========
+-- ========== DUPLICATE ID CHECK ==========
 
-local function lazy(fn)
-  return { _lazy = true, _fn = fn, _computed = false, _value = nil }
-end
-
-local function resolve_value(value)
-  if type(value) == "table" and value._lazy then
-    if not value._computed then
-      value._value = value._fn()
-      value._computed = true
-    end
-    return value._value
+--- Reports every id attribute that occurs more than once in the page.
+local function check_unique_ids(html, page)
+  local counts, order = {}, {}
+  for id in html:gmatch('%sid="([^"]*)"') do
+    if not counts[id] then order[#order + 1] = id end
+    counts[id] = (counts[id] or 0) + 1
   end
-  return value
-end
-
-
--- ========== TEMPLATE RENDERING ==========
-
-local function render_template(template, content)
-  local used = {}
-  -- Modified regex allows hyphens in placeholders (e.g. )
-  local result = template:gsub("<!%-%-([A-Z_%-]+)%-%->", function(name)
-    local val = content[name]
-    if not val then
-      print_error("Unknown placeholder in template: ", name)
-      return ""
-    end
-    used[name] = true
-    return resolve_value(val) or ""
-  end)
-  
-  for name, val in pairs(content) do
-    if not used[name] and type(val) == "table" and val._lazy and val._computed then
-      print_warn("Computed lazy value '%s' was never used in template", name)
+  for _, id in ipairs(order) do
+    if counts[id] > 1 then
+      print_error("%s: id '%s' occurs %d times in the generated page", page, id, counts[id])
     end
   end
-  return result
 end
 
 
@@ -735,26 +709,27 @@ local document_content = {
   ),
   MAIN        = html_body,
   
-  SIDELINKS = lazy(function()
+  SIDELINKS = function()
     return build_toc_html(toc_items, has_citations)
-  end),
-  
-  REFERENCES = lazy(function()
+  end,
+
+  REFERENCES = function()
     return build_bibliography_html(REFS_JSON, citations)
-  end),
+  end,
 
   -- Inject CSS variables captured in gather.lua
-  STYLE = lazy(function()
+  STYLE = function()
     if custom_css and custom_css ~= "" then
       return ":root {\n" .. custom_css .. "\n}"
     else
       return ""
     end
-  end),
+  end,
 }
 
 -- Render and output
-local final_html = render_template(template, document_content)
+local final_html = utils.render_template(template, document_content)
+check_unique_ids(final_html, filestem .. ".htm")
 if has_errors() then
   print_error("Render failed with %d error(s)", get_error_count())
   os.exit(1)

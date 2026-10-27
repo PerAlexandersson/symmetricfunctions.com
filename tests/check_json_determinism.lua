@@ -28,3 +28,11 @@ if not alpha_at or not middle_at or not zeta_at or
    not (alpha_at < middle_at and middle_at < zeta_at) then
   fail("object keys were not sorted")
 end
+
+-- Lists stay JSON arrays when empty (the relation graph script iterates them).
+local empty_graph = file_reading.json_encode(dofile("relation_graph.lua").build_graph({}), false)
+for _, field in ipairs({ "nodes", "edges", "references" }) do
+  if not empty_graph:find('"' .. field .. '":[]', 1, true) then
+    fail("empty " .. field .. " list was not encoded as an array: " .. empty_graph)
+  end
+end

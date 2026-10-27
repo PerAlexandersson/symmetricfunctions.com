@@ -24,19 +24,21 @@ svg-tex/src/*.tex
   → tex_to_svg.lua          TikZ → SVG assets under assets/
 ```
 
-The CSL-JSON bibliography build converts BibLaTeX `eprint` fields to arXiv
-URLs; `temp/bibtex-entries.json` keeps the source entries for the inline
-BibTeX copy/download controls.
+The CSL-JSON bibliography build converts BibLaTeX `eprint` fields holding
+arXiv identifiers to arXiv URLs; `temp/bibtex-entries.json` keeps the source
+entries for the inline BibTeX copy/download controls. Citation labels follow
+BibTeX alpha style, with a/b suffixes when two entries would share a label.
 
 ```bash
 make              # full build (8 parallel jobs)
 make Q=1          # quiet full build: only errors and warnings
-make FILE=foo.tex # single-file rebuild (uses stale metadata)
+make FILE=foo.tex # rebuild one page against existing metadata (no merge or search)
 make bib          # regenerate bibliography JSON and raw BibTeX JSON
-make svg          # rebuild TikZ-sourced SVG assets and copy assets
-make search       # rebuild pagefind search index
-make deploy       # rsync www/ to server
-make ship         # clean, build, then deploy
+make svg          # rebuild changed TikZ-sourced SVG assets and copy assets
+make svg FORCE=1  # rebuild every SVG asset
+make search       # rebuild the Pagefind search index (pinned version)
+make deploy       # build, run make check, then rsync www/ to the server
+make ship         # clean, then deploy
 make clean        # rm temp/ www/
 make unittest     # render tests/*.tex only under temp/test-www/
 make lint-html    # scan generated HTML for leaked TeX/table artifacts
@@ -100,9 +102,10 @@ editing checklist, are in [`CONVENTIONS.md`](CONVENTIONS.md).
 
 ## Deployment
 
-`make deploy` rsyncs `www/` to the production server and requires host SSH
-access; `make ship` cleans, builds and deploys. Agents follow the deployment
-procedure in `AGENTS.md`.
+`make deploy` builds the site, runs `make check` and rsyncs `www/` to the
+production server; it requires host SSH access. Files removed from `www/` are
+not deleted on the server. `make ship` does the same from a clean tree.
+Agents follow the deployment procedure in `AGENTS.md`.
 
 ## Related projects
 

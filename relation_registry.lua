@@ -1,17 +1,16 @@
 -- Registry for structured relation rows inside polydata blocks.
 
+local utils = dofile("utils.lua")
+local trim = utils.trim
+
 local M = {}
 
-local function trim(s)
-  return tostring(s or ""):match("^%s*(.-)%s*$")
-end
-
 local function normalize_key(key)
-  return trim(key):lower():gsub("%s+", " ")
+  return (trim(key):lower():gsub("%s+", " "))
 end
 
 local function normalize_attr_key(key)
-  return normalize_key(key):gsub("%s+", "_"):gsub("%-", "_")
+  return (normalize_key(key):gsub("%s+", "_"):gsub("%-", "_"))
 end
 
 local relation_types = {
@@ -264,6 +263,65 @@ end
 
 function M.types()
   return relation_types
+end
+
+-- ===== Shared helpers for relation records =================================
+
+local function attr_is_false(value)
+  if value == false then return true end
+  if value == nil then return false end
+  local text = trim(tostring(value)):lower()
+  return text == "false" or text == "no" or text == "0"
+end
+
+--- Relations marked status=question or include=false stay in the data but
+--- are not displayed.
+function M.is_visible(relation)
+  if type(relation) ~= "table" then return false end
+  if relation.status == "question" then return false end
+  if type(relation.attrs) == "table" and attr_is_false(relation.attrs.include) then
+    return false
+  end
+  return true
+end
+
+--- Splits a comma-separated bibliography key list, dropping blanks.
+function M.split_refs(text)
+  local refs = {}
+  for ref in (tostring(text or "") .. ","):gmatch("(.-),") do
+    ref = trim(ref)
+    if ref ~= "" then refs[#refs + 1] = ref end
+  end
+  return refs
+end
+
+--- Returns the de-duplicated bibliography keys of a relation, from its
+--- `refs` list and its legacy comma-separated `ref` string.
+function M.refs(relation)
+  local refs, seen = {}, {}
+  local function add(ref)
+    ref = trim(ref)
+    if ref ~= "" and not seen[ref] then
+      refs[#refs + 1] = ref
+      seen[ref] = true
+    end
+  end
+  if type(relation.refs) == "table" then
+    for _, ref in ipairs(relation.refs) do add(ref) end
+  elseif relation.refs ~= nil then
+    add(tostring(relation.refs))
+  end
+  for _, ref in ipairs(M.split_refs(relation.ref)) do add(ref) end
+  return refs
+end
+
+--- Link to a family's anchor on its page.
+function M.family_href(poly_id, entry)
+  local page = (entry and entry.page) or ""
+  if page ~= "" then
+    return string.format("%s.htm#%s", page, poly_id)
+  end
+  return "#" .. poly_id
 end
 
 return M

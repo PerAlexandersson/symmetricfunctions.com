@@ -11,7 +11,6 @@ local utils             = dofile("utils.lua")
 local ascii_fold_string = utils.ascii_fold_string
 local html_escape       = utils.html_escape
 local print_error       = utils.print_error
-local print_info        = utils.print_info
 
 -- ========== CONSTANTS ==========
 
@@ -29,6 +28,9 @@ local DEFAULT_BIBTEX_PATH = os.getenv("BIBTEX_JSON") or (TEMP_DIR .. "/bibtex-en
 
 local bib_cache = nil
 local bibtex_cache = nil
+local label_cache = nil
+
+local get_bibliography_label -- defined after the bibliography loaders
 
 -- ========== DATE UTILITIES ==========
 
@@ -94,16 +96,6 @@ local function format_author_name(author)
   return given ~= "" and given or family
 end
 
-local function join_author_names(authors)
-  if not authors or #authors == 0 then return "" end
-  local names = {}
-  for _, author in ipairs(authors) do table.insert(names, format_author_name(author)) end
-  if #names == 1 then return names[1] end
-  if #names == 2 then return names[1] .. " and " .. names[2] end
-  local last = table.remove(names)
-  return table.concat(names, ", ") .. " and " .. last
-end
-
 local function extract_last_name(author)
   if author.family and author.family ~= "" then return author.family end
   if author.literal and author.literal ~= "" then
@@ -120,14 +112,6 @@ local function first_codepoint(s)
   return tostring(s):match("[%z\1-\127\194-\244][\128-\191]*") or ""
 end
 
-local function utf8_length(s)
-  if utf8 and utf8.len then
-    local len = utf8.len(s)
-    if len then return len end
-  end
-  return #s
-end
-
 local function first_letters_of_words(s)
   local letters = {}
   for word in tostring(s):gmatch("%S+") do
@@ -138,47 +122,34 @@ end
 
 local function strip_nocase_spans(s)
   s = tostring(s or "")
-  return s:gsub('<span%s+[^>]*class=["\'][^"\']*nocase[^"\']*["\'][^>]*>(.-)</span>', '%1')
+  return (s:gsub('<span%s+[^>]*class=["\'][^"\']*nocase[^"\']*["\'][^>]*>(.-)</span>', '%1'))
 end
 
 -- ========== LABEL GENERATION ==========
 
-local function make_bibliography_label(authors, year)
-  local last_names = {}
-  for _, author in ipairs(authors) do
-    table.insert(last_names, extract_last_name(author))
-  end
-  
+-- Labels follow BibTeX alpha style: the first three letters of a single
+-- author's surname, or the surname initials of several authors (at most four,
+-- then "+"), followed by the two-digit year.  Names are ASCII-folded before
+-- truncation so that multibyte letters are never split.
+local function make_base_label(authors, year)
   local author_key
-  if #last_names == 1 then
-    local name = tostring(last_names[1] or "")
-    if utf8_length(name) >= 3 then author_key = name:sub(1, 3) else author_key = name end
+  if #authors == 1 then
+    author_key = ascii_fold_string(extract_last_name(authors[1])):sub(1, 3)
   else
     local initials = {}
-    for _, name in ipairs(last_names) do
-      table.insert(initials, first_letters_of_words(name or ""))
+    for _, author in ipairs(authors) do
+      initials[#initials + 1] = ascii_fold_string(
+        first_letters_of_words(extract_last_name(author)))
     end
     author_key = table.concat(initials)
-  end
-  
-  if utf8_length(author_key) >= 5 then
-    local truncated = {}
-    local count = 0
-    for char in author_key:gmatch("[%z\1-\127\194-\244][\128-\191]*") do
-      count = count + 1
-      if count > MAX_LABEL_LENGTH then break end
-      truncated[#truncated + 1] = char
+    if #author_key > MAX_LABEL_LENGTH then
+      author_key = author_key:sub(1, MAX_LABEL_LENGTH) .. "+"
     end
-    author_key = table.concat(truncated) .. "+"
   end
-  
-  local year_suffix = ""
-  if year ~= nil then
-    local year_str = tostring(year)
-    if #year_str >= 4 then year_suffix = year_str:sub(3, 4) end
-  end
-  
-  return ascii_fold_string(author_key) .. year_suffix
+
+  local year_str = tostring(year or "")
+  local year_suffix = #year_str >= 4 and year_str:sub(3, 4) or ""
+  return author_key .. year_suffix
 end
 
 
@@ -209,7 +180,7 @@ local function find_arxiv_id(item)
   -- 1. Check explicit fields
   local explicit = item.eprint or item.arxivid or item.arXiv
   if explicit and explicit ~= "" then
-    return tostring(explicit):gsub("^arXiv:", ""):gsub("^arxiv:", "")
+    return (tostring(explicit):gsub("^[Aa][Rr][Xx][Ii][Vv]:", ""))
   end
 
   -- 2. Check URL field for "arxiv.org/abs/ID" pattern
@@ -227,6 +198,15 @@ local function find_arxiv_id(item)
   return nil
 end
 
+--- Strips resolver prefixes, so "https://dx.doi.org/10.1/x" and
+--- "doi:10.1/x" both become "10.1/x".
+local function normalize_doi(doi)
+  doi = tostring(doi or ""):match("^%s*(.-)%s*$")
+  doi = doi:gsub("^[Hh][Tt][Tt][Pp][Ss]?://[%w%.]*[Dd][Oo][Ii]%.[Oo][Rr][Gg]/", "")
+  doi = doi:gsub("^[Dd][Oo][Ii]:%s*", "")
+  return doi
+end
+
 --- Creates linked title. Priority: DOI > arXiv (via URL/eprint) > URL
 local function format_title_with_link(item)
   local title = strip_nocase_spans(item.title or "")
@@ -236,7 +216,8 @@ local function format_title_with_link(item)
   local arxivid = find_arxiv_id(item)
   local url = item.URL
 
-  if doi and doi ~= "" then
+  doi = normalize_doi(doi)
+  if doi ~= "" then
     href = "https://doi.org/" .. doi
   elseif arxivid then
     href = "https://arxiv.org/abs/" .. arxivid
@@ -342,9 +323,7 @@ local function format_bibliography_entry(item, key, label, bibtex_entry)
   local entry_id = item.id or (key or "")
 
   local authors = normalize_authors(item.author)
-  local author_string = join_author_names(authors)
-  local year = extract_year(item)
-  local bib_label = label or make_bibliography_label(authors, year)
+  local bib_label = label or get_bibliography_label(entry_id) or entry_id
   
   local parts = {}
   table.insert(parts, '<li id="' .. html_escape(entry_id) .. '">')
@@ -410,6 +389,40 @@ local function load_bibliography_json(path)
   return bib_cache
 end
 
+--- Assigns every entry its site-wide label.  Entries whose base labels
+--- coincide get suffixes a, b, ... in order of year, title and key, so a label
+--- identifies one reference on every page and in the public bibliography.
+local function bibliography_labels()
+  if label_cache then return label_cache end
+  local groups = {}
+  for id, entry in pairs(load_bibliography_json()) do
+    local base = make_base_label(normalize_authors(entry.author), extract_year(entry))
+    groups[base] = groups[base] or {}
+    table.insert(groups[base], { id = id, entry = entry })
+  end
+
+  label_cache = {}
+  for base, members in pairs(groups) do
+    if #members == 1 then
+      label_cache[members[1].id] = base
+    else
+      table.sort(members, function(a, b)
+        local ya, yb = extract_year(a.entry), extract_year(b.entry)
+        if ya ~= yb then return ya < yb end
+        local ta = ascii_fold_string(tostring(a.entry.title or "")):lower()
+        local tb = ascii_fold_string(tostring(b.entry.title or "")):lower()
+        if ta ~= tb then return ta < tb end
+        return a.id < b.id
+      end)
+      for index, member in ipairs(members) do
+        local suffix = index <= 26 and string.char(96 + index) or ("_" .. index)
+        label_cache[member.id] = base .. suffix
+      end
+    end
+  end
+  return label_cache
+end
+
 local function load_bibtex_json(path)
   if bibtex_cache then return bibtex_cache end
   path = path or DEFAULT_BIBTEX_PATH
@@ -446,13 +459,8 @@ local function build_bibliography_HTML(path, citations, bibtex_path)
   return table.concat(html_parts)
 end
 
-local function get_bibliography_label(id)
-  local bibliography = load_bibliography_json()
-  local entry = bibliography and bibliography[id]
-  if not entry then return nil end
-  local authors = normalize_authors(entry.author)
-  local year = extract_year(entry)
-  return make_bibliography_label(authors, year)
+get_bibliography_label = function(id)
+  return bibliography_labels()[id]
 end
 
 
@@ -492,7 +500,7 @@ local function public_bibliography()
   local entries = {}
   for key, entry in pairs(bibliography) do
     entries[key] = {
-      label = make_bibliography_label(normalize_authors(entry.author), extract_year(entry)),
+      label = get_bibliography_label(key),
       csl = entry,
       bibtex = bibtex_entries[key],
     }

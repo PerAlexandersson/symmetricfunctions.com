@@ -1,40 +1,36 @@
 -- Metadata merger for static site generation
 --
--- This script processes multiple Pandoc JSON files and extracts metadata to build:
--- - Site-wide label index (for cross-page references)
--- - Polydata index (for structured data about mathematical objects)
--- - TODO list (for tracking unfinished work)
--- - Sitemap XML (for search engines)
+-- Reads every page's Pandoc JSON (from gather.lua) and writes the site-wide
+-- metadata: label and polydata indexes, collected todos, the sitemap, the
+-- goto.htm redirect page, the public label/keyword/bibliography feeds and the
+-- polynomial relation graph (JSON and HTML).  Outputs are rewritten only when
+-- their bytes change.
 --
 -- Usage:
 --   lua merge_meta.lua temp/*.json
 --
--- Outputs:
---   TEMP_DIR/site-labels.json   - Label to page/href mapping
---   TEMP_DIR/site-polydata.json - Polydata entries with validation
---   TEMP_DIR/site-todo.json     - Collected TODO items
---   TEMP_DIR/sitemap.xml        - XML sitemap for SEO
---
--- Environment variables:
---   TEMP_DIR      - Output directory for JSON files (default: "temp")
---   LABELS_JSON   - Path for labels output (default: temp/site-labels.json)
---   POLYDATA_JSON - Path for polydata output (default: temp/site-polydata.json)
---   TODOS_JSON    - Path for todos output (default: temp/site-todo.json)
---   SITEMAP_XML   - Path for sitemap output (default: temp/sitemap.xml)
+-- Environment variables (defaults in parentheses):
+--   TEMP_DIR            intermediate directory (temp); page source timestamps
+--                       are read from TEMP_DIR/<page>.timestamp when present
+--   WWW_DIR             output site directory (www)
+--   LABELS_JSON, POLYDATA_JSON, TODOS_JSON   (TEMP_DIR/site-*.json)
+--   SITEMAP_XML         (TEMP_DIR/sitemap.xml)
+--   RELATION_GRAPH_HTML, RELATION_GRAPH_JSON (www/polynomial-relations.*)
 
 -- ========== DEPENDENCIES ==========
 
 local utils          = dofile("utils.lua")
 local trim           = utils.trim
 local print_info     = utils.print_info
-local print_warn     = utils.print_warn
 local print_error    = utils.print_error
 local has_errors     = utils.has_errors
 local table_size     = utils.table_size
 local html_escape    = utils.html_escape
+local format_iso_date = utils.format_iso_date
 
 local file_reading   = dofile("file_reading.lua")
 local json_encode    = file_reading.json_encode
+local json_array     = file_reading.json_array
 local load_json_file = file_reading.load_json_file
 local bibhandler     = dofile("bibhandler.lua")
 local relation_registry = dofile("relation_registry.lua")
@@ -71,7 +67,7 @@ end
 -- @param path string File path
 -- @return string Filename without directory or .json extension
 local function get_stem(path)
-  return get_basename(path):gsub("%.json$", "")
+  return (get_basename(path):gsub("%.json$", ""))
 end
 
 
@@ -242,7 +238,7 @@ local function create_site_data()
     labels = {},
     keywords = {},
     polydata = {},
-    todos = {},
+    todos = json_array(),
     label_duplicates = {},
     polydata_duplicates = {}
   }
@@ -327,10 +323,14 @@ local function process_json_file(data, file_path)
   local meta = doc.meta or {}
   local title = extract_page_title(meta, page_id)
   
-  -- Register page
+  -- Register page, with its source timestamp when the build recorded one
+  local timestamp_file = io.open(OUT_DIR .. "/" .. page_id .. ".timestamp", "r")
+  local timestamp = timestamp_file and tonumber(timestamp_file:read("*l"))
+  if timestamp_file then timestamp_file:close() end
   table.insert(data.pages, {
     id = page_id,
-    slug = slug
+    slug = slug,
+    timestamp = timestamp
   })
   
   -- Process labels
@@ -361,65 +361,30 @@ end
 
 -- ========== VALIDATION ==========
 
-local function split_refs(ref)
-  local refs = {}
-  for item in (tostring(ref or "") .. ","):gmatch("(.-)%s*,") do
-    item = trim(item)
-    if item ~= "" then
-      refs[#refs + 1] = item
-    end
-  end
-  return refs
-end
-
 local function normalize_relation_refs(relation)
-  local refs = {}
-  local seen = {}
-
-  local function add_ref(ref)
-    ref = trim(ref or "")
-    if ref ~= "" and not seen[ref] then
-      refs[#refs + 1] = ref
-      seen[ref] = true
-    end
-  end
-
-  if type(relation.refs) == "table" then
-    for _, ref in ipairs(relation.refs) do
-      add_ref(ref)
-    end
-  elseif relation.refs ~= nil then
-    add_ref(tostring(relation.refs))
-  end
-
-  for _, ref in ipairs(split_refs(relation.ref)) do
-    add_ref(ref)
-  end
-
+  local refs = relation_registry.refs(relation)
   relation.refs = refs
-  if #refs > 0 then
-    relation.ref = table.concat(refs, ",")
-  else
-    relation.ref = nil
-  end
-
+  relation.ref = (#refs > 0) and table.concat(refs, ",") or nil
   return refs
 end
 
 local function validate_relation_refs(poly_id, page_id, relation, index)
   local refs = normalize_relation_refs(relation)
   if #refs == 0 then
-    print_warn("Polydata '%s' on page '%s' relation #%d has no bibliography key",
-               poly_id, page_id, index)
-    return
+    print_error("Polydata '%s' on page '%s' relation #%d has no bibliography key",
+                poly_id, page_id, index)
+    return false
   end
 
+  local is_valid = true
   for _, ref in ipairs(refs) do
     if not bibhandler.get_bibliography_label(ref) then
       print_error("Polydata '%s' on page '%s' relation #%d has unknown bibliography key '%s'",
                   poly_id, page_id, index, ref)
+      is_valid = false
     end
   end
+  return is_valid
 end
 
 local function validate_relation_status(poly_id, page_id, relation, index)
@@ -563,7 +528,9 @@ local function validate_polydata(data)
               is_valid = false
             end
 
-            validate_relation_refs(poly_id, page_id, relation, index)
+            if not validate_relation_refs(poly_id, page_id, relation, index) then
+              is_valid = false
+            end
 
             if target == "" then
               print_error("Polydata '%s' on page '%s' has relation #%d with no target",
@@ -611,15 +578,6 @@ end
 
 -- ========== OUTPUT GENERATION ==========
 
---- Formats a date as ISO 8601 (YYYY-MM-DD).
--- @param timestamp number|nil Unix timestamp (defaults to current time)
--- @return string Formatted date
-local function format_iso_date(timestamp)
-  local time_table = os.date("!*t", timestamp or os.time())
-  return string.format("%04d-%02d-%02d", time_table.year, time_table.month, time_table.day)
-end
-
-
 --- Generates sitemap XML content.
 -- @param pages table Array of page info: {id, slug}
 -- @return string XML sitemap content
@@ -628,8 +586,6 @@ local function generate_sitemap_xml(pages)
   
   table.insert(lines, '<?xml version="1.0" encoding="UTF-8"?>')
   table.insert(lines, '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-  
-  local today = format_iso_date()
   
   -- Sort pages by slug for consistent output
   local sorted_pages = {}
@@ -641,7 +597,9 @@ local function generate_sitemap_xml(pages)
   for _, page in ipairs(sorted_pages) do
     table.insert(lines, "  <url>")
     table.insert(lines, "    <loc>https://www.symmetricfunctions.com/" .. html_escape(page.slug) .. "</loc>")
-    table.insert(lines, "    <lastmod>" .. today .. "</lastmod>")
+    if page.timestamp then
+      table.insert(lines, "    <lastmod>" .. format_iso_date(page.timestamp) .. "</lastmod>")
+    end
     table.insert(lines, "  </url>")
   end
   
@@ -695,12 +653,13 @@ end
 -- @param labels table Label map from site data
 -- @return string HTML content
 local function generate_goto_html(labels)
-  -- Build sorted JS object literal
-  local entries = {}
+  local hrefs = {}
   for label, info in pairs(labels) do
-    table.insert(entries, string.format('"%s":"%s"', label, info.href))
+    hrefs[label] = info.href
   end
-  table.sort(entries)
+  -- Keys are sorted by json_encode; "<" is escaped so a label cannot end the
+  -- script element.
+  local table_json = json_encode(hrefs, false):gsub("<", "\\u003c")
 
   return [[<!doctype html>
 <html lang="en">
@@ -711,11 +670,13 @@ local function generate_goto_html(labels)
 <body>
 <p>Redirecting…</p>
 <script>
-var defined_labels = {]] .. table.concat(entries, ",") .. [[};
-var id = location.hash.slice(1);
-var target = defined_labels[id];
-if (target) { location.replace(target); }
-else { document.body.textContent = "Unknown label: " + id; }
+var defined_labels = ]] .. table_json .. [[;
+var id = decodeURIComponent(location.hash.slice(1));
+if (Object.prototype.hasOwnProperty.call(defined_labels, id)) {
+  location.replace(defined_labels[id]);
+} else {
+  document.body.textContent = "Unknown label: " + id;
+}
 </script>
 <noscript><p>JavaScript is required for redirection.</p></noscript>
 </body>
@@ -814,7 +775,16 @@ local function generate_outputs(data)
     all_success = false
   end
 
-  local graph_html = relation_graph.render_page(graph)
+  local graph_timestamp = nil
+  local polydata_pages = {}
+  for _, entry in pairs(data.polydata) do polydata_pages[entry.page] = true end
+  for _, page in ipairs(data.pages) do
+    if polydata_pages[page.id] and page.timestamp
+        and (not graph_timestamp or page.timestamp > graph_timestamp) then
+      graph_timestamp = page.timestamp
+    end
+  end
+  local graph_html = relation_graph.render_page(graph, { timestamp = graph_timestamp })
   local graph_ok, graph_err, graph_changed = write_file(RELATION_GRAPH_HTML, graph_html)
   if graph_ok then
     print_info("%s %s (%d relations)",

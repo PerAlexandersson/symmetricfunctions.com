@@ -28,6 +28,10 @@ test and deployment rules for agents.
 - Pandoc runs with `--fail-if-warnings` — any warning stops the build
 - Missing cross-reference labels print `[ERROR] hyperref to unknown label`
 - Missing citations print `[ERROR] Citation not found`
+- Content that would otherwise be lost is an error: unsupported TeX blocks or
+  macros, sections without labels, multi-paragraph text where inline text is
+  expected, unknown or repeated `polydata` fields, malformed relation rows,
+  relations without a bibliography key, and duplicate element ids on a page.
 - Malformed required page, label or polynomial JSON fails rendering.
 - SVG setup, compilation, PDF inspection and conversion failures return
   nonzero, preventing `make svg` from copying assets after a failed run.
@@ -35,13 +39,19 @@ test and deployment rules for agents.
   SVG tools mocked and fresh/incremental metadata builds in temporary trees.
   These cover malformed required JSON, SVG failure propagation and synthetic
   bibliographies; no test invokes a TeX compiler or writes SVG assets.
-  It also performs a read-only allowlist audit of deployable `.htm` files.
+  It also performs a read-only allowlist audit of deployable `.htm` files,
+  checks every deployed page for duplicate ids and leaked build attributes,
+  and checks that the public label and keyword feeds point at existing
+  anchors. `tests/check_safeguards.lua` holds one case per safeguard above.
+- The metadata merge runs from a stamp file and rewrites outputs only when
+  their bytes change, so `make -n` lists renders that a real build skips.
 - Run `make all` after broad page edits and `make unittest` after Lua or
   pipeline changes.
 - Bibliography lookup honors `REFS_JSON` and `BIBTEX_JSON`, including builds
   with a separate `TEMP_DIR`.
-- The search target replaces only `www/_pagefind` immediately before indexing;
-  it does not prune any other local or remote output.
+- The search target builds the index beside the old one and replaces
+  `www/_pagefind` only after Pagefind succeeds; it does not prune any other
+  local or remote output.
 
 ## Deployment
 
