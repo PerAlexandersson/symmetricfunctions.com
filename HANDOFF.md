@@ -1,5 +1,10 @@
 # Handoff
 
+## Done: untracked .codex — 2026-10-27
+
+Opus 5.5 backend worker removed the empty tracked `.codex` file and added
+`.codex` to `.gitignore` beside `.claude/`. Ownership released.
+
 ## Done: removed stale docs/CHANGELOG.md — 2026-10-27
 
 Opus 5.5 backend worker removed it at Per's request (last entry 2026-07-06;
