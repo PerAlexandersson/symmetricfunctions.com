@@ -1,5 +1,16 @@
 # Handoff
 
+## Active: backend defect fixes, safeguards and cleanup — 2026-10-27
+
+Opus 5.5 backend worker, branch `backend-fixes-20261027` in a separate
+worktree. Owns all `*.lua`, `Makefile`, `config*.mk`, `tests/`,
+`assets/relation-graph.js`, `template.htm`, `assets/search.htm`, README.md,
+AGENTS.md, CONVENTIONS.md and this entry until merged. Scope: broken DOI
+links, citation-label collisions, duplicate ids, table math, shipped
+data-source-loc, deploy/Pagefind/merge-rerun hardening, parser safeguards,
+dead code and duplicated helpers. Content (`tex-source/`, bibliography.bib)
+is not touched. Please avoid editing the owned files meanwhile.
+
 ## Done: apple-touch-icon and colour-independent tests — 2026-10-27
 
 Opus 5.5 backend worker. Added `assets/apple-touch-icon.png` (logo on white,
