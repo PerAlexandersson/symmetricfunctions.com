@@ -161,6 +161,14 @@ function M.build_graph(polydata)
 
   table.sort(ref_keys)
 
+  -- The relation page cites all these references, so suffix colliding labels.
+  local page_labels = bibhandler.page_labels(ref_keys)
+  for _, edge in ipairs(edges) do
+    for _, item in ipairs(edge.refs) do
+      item.label = page_labels[item.key] or item.label
+    end
+  end
+
   local graph = {
     version = 1,
     generated_from = "polydata",

@@ -389,38 +389,52 @@ local function load_bibliography_json(path)
   return bib_cache
 end
 
---- Assigns every entry its site-wide label.  Entries whose base labels
---- coincide get suffixes a, b, ... in order of year, title and key, so a label
---- identifies one reference on every page and in the public bibliography.
+--- Base label (without a/b suffix) of every entry, cached.
 local function bibliography_labels()
   if label_cache then return label_cache end
-  local groups = {}
+  label_cache = {}
   for id, entry in pairs(load_bibliography_json()) do
-    local base = make_base_label(normalize_authors(entry.author), extract_year(entry))
-    groups[base] = groups[base] or {}
-    table.insert(groups[base], { id = id, entry = entry })
+    label_cache[id] = make_base_label(normalize_authors(entry.author), extract_year(entry))
+  end
+  return label_cache
+end
+
+--- Labels for the references cited on one page.  Cited entries sharing a
+--- base label get suffixes a, b, ... in order of year, title and key; all
+--- other entries keep their base label.
+local function page_labels(keys)
+  local base = bibliography_labels()
+  local bibliography = load_bibliography_json()
+  local groups, seen = {}, {}
+  for _, key in ipairs(keys or {}) do
+    local label = base[key]
+    if label and not seen[key] then
+      seen[key] = true
+      groups[label] = groups[label] or {}
+      table.insert(groups[label], key)
+    end
   end
 
-  label_cache = {}
-  for base, members in pairs(groups) do
+  local labels = {}
+  for label, members in pairs(groups) do
     if #members == 1 then
-      label_cache[members[1].id] = base
+      labels[members[1]] = label
     else
       table.sort(members, function(a, b)
-        local ya, yb = extract_year(a.entry), extract_year(b.entry)
+        local ea, eb = bibliography[a], bibliography[b]
+        local ya, yb = extract_year(ea), extract_year(eb)
         if ya ~= yb then return ya < yb end
-        local ta = ascii_fold_string(tostring(a.entry.title or "")):lower()
-        local tb = ascii_fold_string(tostring(b.entry.title or "")):lower()
+        local ta = ascii_fold_string(tostring(ea.title or "")):lower()
+        local tb = ascii_fold_string(tostring(eb.title or "")):lower()
         if ta ~= tb then return ta < tb end
-        return a.id < b.id
+        return a < b
       end)
-      for index, member in ipairs(members) do
-        local suffix = index <= 26 and string.char(96 + index) or ("_" .. index)
-        label_cache[member.id] = base .. suffix
+      for index, key in ipairs(members) do
+        labels[key] = label .. (index <= 26 and string.char(96 + index) or ("_" .. index))
       end
     end
   end
-  return label_cache
+  return labels
 end
 
 local function load_bibtex_json(path)
@@ -436,7 +450,13 @@ local function build_bibliography_HTML(path, citations, bibtex_path)
   local bibliography = load_bibliography_json(path)
   local bibtex_entries = load_bibtex_json(bibtex_path)
   if type(citations) ~= "table" or #citations == 0 then return "" end
-  
+
+  local keys = {}
+  for _, citation in ipairs(citations) do
+    keys[#keys + 1] = (type(citation) == "table" and citation.c) or citation
+  end
+  local labels = page_labels(keys)
+
   local html_parts = {}
   table.insert(html_parts, '<section id="bibliography">\n<h2>Bibliography</h2>\n<ol>\n')
   
@@ -449,7 +469,7 @@ local function build_bibliography_HTML(path, citations, bibtex_path)
       table.insert(html_parts, format_bibliography_entry(
         entry,
         cite_key,
-        nil,
+        labels[cite_key],
         bibtex_entries[cite_key]
       ) .. "\n")
     end
@@ -493,7 +513,8 @@ end
 
 --- Public, machine-readable bibliography for cross-site use (for example the
 --- RealRooted Lean catalog): citation key -> { label, csl, bibtex }, where
---- `label` is the same short label the site renders, e.g. "Bre95".
+--- `label` is the short base label, e.g. "Bre95".  A page citing two entries
+--- with the same base label shows them with suffixes ("Bre95a", "Bre95b").
 local function public_bibliography()
   local bibliography = load_bibliography_json() or {}
   local bibtex_entries = load_bibtex_json() or {}
@@ -512,6 +533,7 @@ local M = {
   build_bibliography_HTML = build_bibliography_HTML,
   public_bibliography = public_bibliography,
   get_bibliography_label = get_bibliography_label,
+  page_labels = page_labels,
   get_bibliography_tooltip = get_bibliography_tooltip
 }
 

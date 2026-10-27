@@ -27,7 +27,8 @@ svg-tex/src/*.tex
 The CSL-JSON bibliography build converts BibLaTeX `eprint` fields holding
 arXiv identifiers to arXiv URLs; `temp/bibtex-entries.json` keeps the source
 entries for the inline BibTeX copy/download controls. Citation labels follow
-BibTeX alpha style, with a/b suffixes when two entries would share a label.
+BibTeX alpha style; a page that cites two references with the same label
+shows them as, e.g., `MT25a` and `MT25b`.
 
 ```bash
 make              # full build (8 parallel jobs)

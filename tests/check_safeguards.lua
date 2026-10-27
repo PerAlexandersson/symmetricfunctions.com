@@ -162,13 +162,20 @@ local bib_ok, bib_out = run("REFS_JSON=tests/fixtures/bibliography.json " ..
     "BIBTEX_JSON=tests/fixtures/bibtex-entries.json lua -e " .. shell_quote([[
 local bib = dofile("bibhandler.lua")
 for _, key in ipairs({ "BrandenA", "BrandenB", "Bjorner", "Many" }) do
-  print(key .. "=" .. tostring(bib.get_bibliography_label(key)))
+  print("base " .. key .. "=" .. tostring(bib.get_bibliography_label(key)))
 end
+print("alone BrandenA=" .. bib.page_labels({ "BrandenA", "Many" }).BrandenA)
+local both = bib.page_labels({ "BrandenB", "BrandenA" })
+print("both BrandenA=" .. both.BrandenA .. " BrandenB=" .. both.BrandenB)
 print(bib.build_bibliography_HTML(nil, { "BrandenA", "BrandenB", "Many" }))
 ]]))
 if not bib_ok then fail("bibliography fixture failed:\n" .. bib_out) end
-for _, expected in ipairs({ "BrandenA=Bra04a", "BrandenB=Bra04b", "Bjorner=Bjo05", "Many=ABCD+99" }) do
-  if not contains(bib_out, expected) then fail("expected label " .. expected .. ":\n" .. bib_out) end
+for _, expected in ipairs({
+  "base BrandenA=Bra04", "base BrandenB=Bra04", "base Bjorner=Bjo05", "base Many=ABCD+99",
+  "alone BrandenA=Bra04", "both BrandenA=Bra04a BrandenB=Bra04b",
+  "[Bra04a]", "[Bra04b]",
+}) do
+  if not contains(bib_out, expected) then fail("expected " .. expected .. ":\n" .. bib_out) end
 end
 for _, doi in ipairs({ "10.1000/alpha", "10.1000/beta", "10.1000/delta" }) do
   if not contains(bib_out, 'href="https://doi.org/' .. doi .. '"') then

@@ -657,6 +657,30 @@ local function format_lastmod_html(timestamp)
 end
 
 
+-- ========== PAGE CITATION LABELS ==========
+
+--- gather.lua writes each citation's base label; where two references cited
+--- on this page share a base label, give them their a/b suffixes.  Works on
+--- the finished HTML so cites inside table cells are covered too.
+local function apply_page_labels(html, citations)
+  local keys = {}
+  for _, citation in ipairs(citations or {}) do
+    keys[#keys + 1] = (type(citation) == "table" and citation.c) or citation
+  end
+  for key, label in pairs(bibhandler.page_labels(keys)) do
+    local base = bibhandler.get_bibliography_label(key)
+    if label ~= base then
+      local escaped_key = html_escape(key):gsub("%p", "%%%0")
+      html = html:gsub('(<a href="#' .. escaped_key .. '"[^>]*class="cite"[^>]*>)'
+          .. base:gsub("%p", "%%%0") .. '</a>', function(open_tag)
+        return open_tag .. label .. "</a>"
+      end)
+    end
+  end
+  return html
+end
+
+
 -- ========== DUPLICATE ID CHECK ==========
 
 --- Reports every id attribute that occurs more than once in the page.
@@ -694,6 +718,9 @@ local custom_css= get_meta(meta, "custom_css", "")
 local collect_header, toc_items = create_toc_collector()
 local html_body = render_blocks_html(pandoc_doc.blocks or {}, collect_header)
 local has_citations = (citations and #citations > 0)
+if has_citations then
+  html_body = apply_page_labels(html_body, citations)
+end
 
 -- Load template
 local template = file_reading.read_file(TEMPLATE, "html template")

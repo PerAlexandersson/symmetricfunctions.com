@@ -69,13 +69,13 @@ local function relation_text(relations)
   return table.concat(parts, " ")
 end
 
-local function render_relation_refs(relation)
+local function render_relation_refs(relation, labels)
   local refs = relation_registry.refs(relation or {})
   if #refs == 0 then return "" end
   local parts = {}
 
   for _, bib_key in ipairs(refs) do
-    local label = get_bib_label(bib_key) or bib_key
+    local label = labels[bib_key] or get_bib_label(bib_key) or bib_key
     local tooltip = get_bib_tooltip(bib_key)
     local title_attr = tooltip and string.format(' title="%s"', html_escape(tooltip)) or ""
     parts[#parts + 1] = string.format(
@@ -88,7 +88,7 @@ local function render_relation_refs(relation)
   return " " .. table.concat(parts, " ")
 end
 
-local function render_relation_cell(entry, families)
+local function render_relation_cell(entry, families, labels)
   local relations = entry.Relations
   if type(relations) ~= "table" or #relations == 0 then
     return '<td class="fam-relations">&nbsp;</td>'
@@ -119,7 +119,7 @@ local function render_relation_cell(entry, families)
         html_escape(status),
         html_escape(label),
         target_html,
-        render_relation_refs(relation)
+        render_relation_refs(relation, labels)
       )
     end
   end
@@ -138,7 +138,7 @@ end
 -- Render one table row
 ----------------------------------------------------------------------
 
-local function render_row(key, entry, families)
+local function render_row(key, entry, families, labels)
   local name     = entry.Name or key
   local space    = entry.Space or ""
   local is_basis = normalize_boolean(entry.Basis)
@@ -188,7 +188,7 @@ local function render_row(key, entry, families)
     html_escape(tostring(rating))
   )
 
-  local relations_cell = render_relation_cell(entry, families)
+  local relations_cell = render_relation_cell(entry, families, labels)
 
   return string.format(
     '<tr %s> %s %s %s %s %s %s </tr>',
@@ -209,6 +209,17 @@ end
 local function render_polynomial_table(polydata)
   local list = make_family_list(polydata)
 
+  -- Every reference shown in the table counts as cited on this page.
+  local keys = {}
+  for _, item in ipairs(list) do
+    for _, relation in ipairs(item.data.Relations or {}) do
+      if relation_is_visible(relation) then
+        for _, key in ipairs(relation_registry.refs(relation)) do keys[#keys + 1] = key end
+      end
+    end
+  end
+  local labels = bibhandler.page_labels(keys)
+
   local out = {}
   out[#out+1] = '<table id="family-index" class="family-index">'
   out[#out+1] = '<thead><tr>'
@@ -222,7 +233,7 @@ local function render_polynomial_table(polydata)
   out[#out+1] = '<tbody>'
 
   for _, item in ipairs(list) do
-    out[#out+1] = render_row(item.key, item.data, polydata)
+    out[#out+1] = render_row(item.key, item.data, polydata, labels)
   end
 
   out[#out+1] = '</tbody></table>'

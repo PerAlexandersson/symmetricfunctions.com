@@ -1,5 +1,15 @@
 # Handoff
 
+## Done: per-page citation suffixes — 2026-10-27
+
+Opus 5.5 backend worker, at Per's request. Labels are base labels again
+(e.g. LS82); a/b suffixes are added only on pages that cite two references
+sharing a base label (34 pages, 88 labels), consistently in cite links
+(including table cells), the page bibliography, the relation page and the
+polynomial table. Public bibliography.json carries base labels.
+bibliography.bib is not modified. make Q=1, make check, consistency scan of
+all pages pass. Ownership released; not deployed.
+
 ## Done: backend defect fixes, safeguards and cleanup — 2026-10-27
 
 Opus 5.5 backend worker, branch `backend-fixes-20261027` (separate worktree),
