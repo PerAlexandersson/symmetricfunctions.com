@@ -1,5 +1,12 @@
 # Handoff
 
+## Done: removed unused test.htm — 2026-10-27
+
+Opus 5.5 backend worker removed the root `test.htm` (an unrelated "AI
+Projects Snapshot" page, last touched in fc47438). No build, test, doc or
+deploy reference; not present in www/. Recoverable from Git history.
+Ownership released; not deployed.
+
 ## Ready: CONVENTIONS.md split — 2026-10-27
 
 Opus 5.5 backend worker. New `CONVENTIONS.md` holds TeX/polydata/macro
