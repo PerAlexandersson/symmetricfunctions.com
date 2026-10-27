@@ -66,7 +66,7 @@ temp/               Generated intermediates (gitignored)
 www/                Final HTML output (gitignored)
 untracked/          Notes, drafts, assets not in git
 template.htm        Shared HTML shell (header/nav/footer)
-docs/               CHANGELOG, LICENCE, CONTRIBUTING
+docs/               LICENCE, CONTRIBUTING
 bibliography.bib    BibLaTeX references (2,300+ entries)
 ```
 

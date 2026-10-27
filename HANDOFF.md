@@ -1,5 +1,11 @@
 # Handoff
 
+## Done: removed stale docs/CHANGELOG.md — 2026-10-27
+
+Opus 5.5 backend worker removed it at Per's request (last entry 2026-07-06;
+Git history is the change record). README directory listing updated.
+Ownership released; not deployed.
+
 ## Done: POSETS.md refresh and suggestions/ removal — 2026-10-27
 
 Opus 5.5 backend worker. Rewrote `POSETS.md` (666 → ~120 lines) as a current
