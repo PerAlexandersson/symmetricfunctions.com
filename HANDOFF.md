@@ -1,5 +1,15 @@
 # Handoff
 
+## OEIS todo relocation — complete 2026-10-27
+
+Removed `oeis-todo/alexandersson-beyene-mantaci-type-b.md` and the now-empty
+`oeis-todo/` directory at the user's request, after preserving the content in
+the research OEIS queue with an explicit verification checklist. Recoverable
+from Git history. No page, bibliography, build or deployment changes; no
+remaining nonhistorical source references. Historical handoff paths below
+describe the old location. Website worker's completed editorial checkpoint
+remains untouched. Ownership released; documentation-only diff checks pass.
+
 ## Ready: editorial and cross-link review — October 27
 
 Clean intake at 9eebbb5; reviewed this opening and
