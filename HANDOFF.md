@@ -1,5 +1,12 @@
 # Handoff
 
+## Done: trimmed docs/CONTRIBUTING.md — 2026-10-27
+
+Opus 5.5 backend worker. CONTRIBUTING now points to README.md (build,
+layout) and CONVENTIONS.md (polydata, checklist, code conventions) instead
+of repeating them; kept where-to-edit, generated files, tests, code,
+issues and style notes. Documentation only. Ownership released.
+
 ## Done: removed unused test.htm — 2026-10-27
 
 Opus 5.5 backend worker removed the root `test.htm` (an unrelated "AI
