@@ -9,6 +9,15 @@ NO_COLOR: with a colour TERM (e.g. tmux-256color) its 13 SVG failure
 subtests saw the coloured prefix instead of `[ERROR]`. Full make Q=1 and
 make check pass under TERM=tmux-256color. Ownership released; not deployed.
 
+## Done: four-term recurrence factorization criterion — 2026-10-27
+
+Added the direct coefficient criterion, zero-pivot proof, and positive-parameter
+example to tex-source/polynomialRecurrences.tex, citing Branquinho et al. (2023).
+Formalization: https://github.com/PerAlexandersson/RealRooted/issues/2102.
+Full `make Q=1 all`, `make check`, and `git diff --check` pass; generated
+section anchors and bibliography entry checked. Ownership released.
+Source update only; not deployed. No pipeline changes.
+
 ## Done: stray-file cleanup — 2026-10-27
 
 Opus 5.5 backend worker. Removed six hand-compiled PDFs from `svg-tex/src/`

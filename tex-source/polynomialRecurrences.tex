@@ -1,6 +1,6 @@
 \metatitle{Polynomial recurrences}
 \metadescription{Spaces of polynomial recurrences, exact finite verification,
-first-order derivative criteria, weighted delay interlacing, limiting zeros, and the trade-off between
+first-order derivative criteria, four-term factorizations, weighted delay interlacing, limiting zeros, and the trade-off between
 recurrence order and derivative order.}
 \metakeywords{polynomial recurrence, derivative recurrence, Ore algebra,
 rational generating function, recurrence space, weighted renewal recurrence, Beraha--Kahane--Weiss}
@@ -290,6 +290,130 @@ by eventual equality. After clearing denominators, a polynomial-coefficient
 tail identity holds from $n=0$ exactly when it also annihilates the finite
 coefficient sequence of $U$. Checking $0\leq n\leq\deg_tU$ suffices,
 since forward shifts and $x$-derivatives cannot enlarge this support.
+
+\section[fourTermFactorization]{A coefficient criterion for four-term recurrences}
+
+We consider real coefficients and the monic recurrence
+\[
+ Q_0=1,\qquad Q_1=x-d_0,\qquad Q_2=(x-d_1)Q_1-s_1,
+\]
+\[
+ Q_{n+1}=(x-d_n)Q_n-s_nQ_{n-1}-t_nQ_{n-2}\qquad(n\geq2).
+\]
+Let $H_N$ have diagonal $d_i$, superdiagonal $1$, and first and second
+subdiagonals $s_i$ and $t_i$, respectively. Expansion of the determinant
+gives $Q_N(x)=\det(xI-H_N)$, including the two startup cases.
+Thus the scalar recurrence already supplies a matrix representation.
+
+Bidiagonal factorizations of these tetradiagonal Hessenberg matrices are
+studied by \name{Amílcar Branquinho}, \name{Ana Foulquié-Moreno}, and
+\name{Manuel Mañas}; see
+\cite[Lemma 3.1 and Proposition 3.2]{BranquinhoFoulquieMorenoManas2023}.
+We give a direct coefficient test allowing zero entries in the lower
+factors, together with its proof. We do not claim a new factorization theory.
+
+\subsection[fourTermCoefficientCriterion]{Elimination and a maximal nonnegative split}
+
+First set $u_0=d_0$ and require $u_0>0$. Recursively compute
+\[
+ m_1=0,\qquad m_n=\frac{t_n}{u_{n-2}}\quad(n\geq2),\qquad
+ \ell_n=\frac{s_n-m_n}{u_{n-1}},\qquad u_n=d_n-\ell_n\quad(n\geq1).
+\]
+We require every $u_n>0$ and every $\ell_n,m_n\geq0$.
+If a pivot is nonpositive, we stop before dividing by it.
+Next set $a_1=0$, $b_1=\ell_1$. For $n\geq2$, apply these rules:
+\begin{itemize}
+\item If $b_{n-1}>0$, set $a_n=m_n/b_{n-1}$ and $b_n=\ell_n-a_n$;
+reject if $b_n<0$.
+\item If $b_{n-1}=0<m_n$, reject.
+\item If $b_{n-1}=m_n=0$, set $a_n=0$ and $b_n=\ell_n$.
+\end{itemize}
+
+\begin{theorem}
+The test succeeds at every index if and only if, for all $N$,
+\[
+ H_N=L_N(a)L_N(b)U_N(u)
+\]
+with common sequences $a_n,b_n\geq0$ and $u_n>0$.
+Here the $L_N$ are unit lower bidiagonal matrices with the indicated
+subdiagonals, and $U_N(u)$ has diagonal $u_n$ and superdiagonal $1$.
+If also $s_n>0$ for every $n\geq1$, then each $Q_N$ has simple positive
+zeros, and consecutive polynomials strictly interlace.
+\end{theorem}
+
+\begin{proof}
+Writing $H_N=B_NU_N(u)$ with $B_N$ unit lower triangular of bandwidth two,
+entrywise multiplication gives
+\[
+ d_0=u_0,\qquad d_n=u_n+\ell_n,\qquad
+ s_n=\ell_nu_{n-1}+m_n,\qquad t_n=m_nu_{n-2}.
+\]
+Positive pivots therefore force exactly the first elimination above.
+The remaining factorization $B_N=L_N(a)L_N(b)$ is equivalent to
+\[
+ a_n+b_n=\ell_n,\qquad a_nb_{n-1}=m_n\quad(n\geq2).
+\]
+A successful test satisfies these identities. Conversely, let
+$(\widehat a_n,\widehat b_n)$ be any nonnegative solution.
+We prove $b_n\geq\widehat b_n$ by induction. It holds initially because
+$b_1=\ell_1$. If both preceding $b$ entries are positive, then
+\[
+ b_n=\ell_n-\frac{m_n}{b_{n-1}}
+ \geq\ell_n-\frac{m_n}{\widehat b_{n-1}}=\widehat b_n\geq0.
+\]
+If $\widehat b_{n-1}=0$, the competing solution forces $m_n=0$,
+and our rule gives $b_n=\ell_n\geq\widehat b_n$.
+These cases include $b_{n-1}=0$, by the induction hypothesis.
+Thus a nonnegative solution prevents every rejection.
+
+The factors are totally nonnegative, and
+$\det H_N=\prod_{i=0}^{N-1}u_i>0$.
+When $s_n>0$, both adjacent off-diagonals are positive. The
+Gantmacher--Krein oscillation criterion and its leading-principal
+interlacing theorem now give the assertion about zeros.
+\end{proof}
+
+This is an exact criterion for the stated nonsingular factorization class,
+not for real-rootedness itself. In particular, a zero upper pivot can
+reflect a common zero of the polynomials. Finite successful tests certify
+only the corresponding finite sections.
+
+An inequality can replace explicit formulas for the split. If $v_n>0$ and
+\[
+ \ell_1\geq v_1,\qquad
+ \ell_n\geq v_n+\frac{m_n}{v_{n-1}}\quad(n\geq2),
+\]
+then induction gives $b_n\geq v_n$, so the split succeeds.
+
+\subsection[fourTermDifferentialExample]{A second-order differential example}
+
+For $c>0$, define
+\[
+ P_0(x)=1,\qquad P_{n+1}(x)=xP_n''(x)+2xP_n'(x)+(x+c)P_n(x).
+\]
+Its exponential generating function is
+\[
+ \sum_{n\geq0}P_n(x)\frac{z^n}{n!}
+ =\exp\left(cz+\frac{xz}{1-z}\right).
+\]
+Differentiating in $z$ and multiplying by $(1-z)^2$ gives
+\[
+ P_{n+1}=(x+2n+c)P_n-n(n-1+2c)P_{n-1}
+             +cn(n-1)P_{n-2}\quad(n\geq2),
+\]
+with $P_1=x+c$ and $P_2=x^2+(2c+2)x+c^2$.
+For $Q_n(x)=(-1)^nP_n(-x)$, the coefficient test recovers
+\[
+ u_n=c,\qquad \ell_n=2n,\qquad m_n=n(n-1),\qquad
+ a_n=n-1,\qquad b_n=n+1\quad(n\geq1).
+\]
+Consequently all $P_n$ have simple negative zeros and consecutive
+polynomials strictly interlace. This conclusion concerns the orbit
+starting at $1$, rather than preservation by the differential operator
+on arbitrary real-rooted inputs.
+
+% Related Lean: RealRooted issue #2102 tracks the coefficient criterion.
+% Related Rust: polytool OEIS A271705 is the c=1 specialization.
 
 \section[weightedDelayRecurrences]{Weighted recurrences with a variable delay}
 
