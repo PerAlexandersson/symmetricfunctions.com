@@ -16,6 +16,9 @@ For a brief survey on Schur polynomials and the \enquote{probability} that a
 symmetric function is Schur-positive, see
 \cite{Patrias2019,PatriasWilligenburg2018}.
 
+For a $K$-theoretic extension of Schur join--meet positivity, see the
+\hyperref[grothendieckJoinMeet]{signed Grothendieck join--meet theorem}.
+
 For a polynomial $F(t)$, \name{Isaiah Siegl} studies Schur positivity of
 $\prod_{i\geq1}F(x_i)$ through total nonnegativity and directed networks.
 The Lindstr{\"o}m--Gessel--Viennot lemma then gives positive path models, with
@@ -50,13 +53,17 @@ the resulting functions need not be symmetric.
 
 \subsection[lucasSymmetricPositivity]{Lucas binomial and multinomial differences}
 
-For an alphabet $X$, define the \defin{Lucas symmetric functions} by
+For an alphabet $X$, we define the \defin{Lucas symmetric functions} by
 \[
  U_0[X]=0,\qquad U_1[X]=1,\qquad
- U_{n+1}[X]=\elementaryE_1[X]U_n[X]+\elementaryE_2[X]U_{n-1}[X].
+ U_{n+1}[X]=\elementaryE_1[X]U_n[X]+\elementaryE_2[X]U_{n-1}[X]
+ \quad(n\geq1).
 \]
+Here $\elementaryE_i$ and $\completeH_i$ denote the
+\hyperref[elementaryE]{elementary} and
+\hyperref[completeH]{complete homogeneous} symmetric functions.
 Write $U_n![X]=\prod_{i=1}^n U_i[X]$, with $U_0![X]=1$.
-The \defin{Lucas binomial coefficient}
+For integers $r,s\geq0$, the \defin{Lucas binomial coefficient}
 \[
  L_{r,s}[X]\coloneqq\frac{U_{r+s}![X]}{U_r![X]U_s![X]}
 \]
@@ -71,6 +78,7 @@ If $1\leq a\leq b\leq c\leq d$ and $ad=bc$, then
 In particular, this signed difference is Schur-positive.
 \end{theorem}
 
+Schur positivity follows from the \hyperref[schurPieriRule]{Pieri rule}.
 The two-variable specialization proves Bergeron's conjecture on Lucas
 binomial differences. The same semiring contains
 $L_{u,v}[X]-\elementaryE_1[X]^{uv-rs}L_{r,s}[X]$ whenever
@@ -80,7 +88,7 @@ $r,s,u,v$ are positive integers with $rs<uv$
 For a partition $\alpha$ of $n$, define
 $L_\alpha[X]=U_n![X]/\prod_i U_{\alpha_i}![X]$ and
 $d(\alpha)=\sum_{i<j}\alpha_i\alpha_j$.
-If $\alpha$ dominates $\beta$, both partitions of $n$, then
+If $\alpha$ \hyperref[dominanceOrder]{dominates} $\beta$, both partitions of $n$, then
 \cite[Thm.~1.5]{DaiQiuWangZhang2026x}
 \[
  L_\beta[X]-\elementaryE_1[X]^{d(\beta)-d(\alpha)}L_\alpha[X]
@@ -190,6 +198,8 @@ An example using crystals in this setting is \cite{PriceStelzerYong2025x}.
 There is a notion that unifies dual equivalence graphs and crystal graphs,
 called \defin{crystal skeletons}. These were introduced in \cite{MaasGariepy2023x},
 and further developed in \cite{BraunerCorteelDaughertySchilling2025x}.
+See also the \hyperref[quasiCrystals]{quasicrystal models and their
+Schur--Weyl interpretation}.
 
 \subsection[schurPositivityRep]{Representation theory}
 

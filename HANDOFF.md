@@ -1,5 +1,31 @@
 # Handoff
 
+## Ready: editorial and cross-link review — October 27
+
+Clean intake at 9eebbb5; reviewed this opening and
+tex-source/{schurPositivity,macdonaldP,macdonaldEperm,chromaticQuasisymmetric,
+crystals,grothendieck,key,schubert,unicellular-llt}.tex and bibliography.bib.
+Academic-writing pass clarified Lucas index ranges, T_w, chromatic notation
+and eventual polynomiality; no theorem weakened or strengthened.
+Added 21 net hyperrefs: basis definitions, Pieri, dominance, Kostant,
+Knuth, specialization, and reciprocal LLT/Macdonald, tree/refinement,
+Schur/Grothendieck and skeleton/quasicrystal navigation.
+All eight new citations remain current in the API; no publication DOIs listed.
+Two adjacent older references updated (stable citation keys retained):
+- Cain et al., local characterization: European J. Combin. 128 (2025),
+  104172; DOI 10.1016/j.ejc.2025.104172.
+- Cain et al., structure: Combinatorial Theory 6(1) (2026);
+  DOI 10.5070/C66165694.
+Titles/authors/journal metadata checked against publisher pages and Crossref
+deposits; retained arXiv IDs. Sources: ScienceDirect S0195669825000551 and
+https://escholarship.org/uc/item/9mc8924r (publisher indexed page; direct
+fetch presented a bot challenge). No inferred article number added.
+Full make Q=1, make check, git diff --check pass. Chromium at 1366/375:
+all eleven checked pages pass internal fragment/cross-page link, anchor,
+math and width checks. Existing four Hall–Littlewood imath math errors and
+two fixture warnings unchanged. Harness: /tmp/symcat-feed-20261027-v3o9iN/.
+Ownership released at checkpoint. Source-only; no deployment.
+
 ## Ready: October 27 arXiv integration — source only
 
 Clean tree confirmed at intake. Task scope: this opening,

@@ -611,16 +611,18 @@ where $AM$ denotes the Arthur--Merlin probabilistic proof class.
 
 The \defin{Lehmer code} of a permutation $u$ has entries
 $\operatorname{code}(u)_i=|\{j>i:u_j<u_i\}|$.
-We define $N*u$ to be the permutation with code $N\operatorname{code}(u)$,
+For an integer $N\geq1$, we define $N*u$ to be the permutation
+with code $N\operatorname{code}(u)$,
 appending enough trailing zeros to obtain a valid finite code.
 Appending further zeros only adds fixed points.
 
 \begin{theorem}[Alexandersson, \cite[Thm.~7.2 and Cor.~7.3]{Alexandersson2026Stretched}]
-For fixed permutations $u,v,w$, the Schubert structure constant
+For fixed permutations $u,v,w$, the
+\hyperref[schubertLittlewoodRichardson]{Schubert structure constant}
 \[
  N\longmapsto c^{N*w}_{N*u,N*v}
 \]
-is eventually polynomial in $N$.
+agrees with a polynomial in $\setQ[N]$ for all sufficiently large $N$.
 More generally, this holds when each of the three Lehmer codes is an
 integer affine function of $N$ of fixed length, nonnegative for all
 sufficiently large $N$.
@@ -630,8 +632,9 @@ This proves the polynomiality conjecture stated by Pak and Slonim.
 Monomial coefficients along affine weight rays in such Schubert families,
 and in finite products of them, are also eventually polynomial
 \cite[Cor.~6.4 and Prop.~7.1]{Alexandersson2026Stretched}.
-The proof reduces coefficient extraction to type $A$ vector partition
-functions, as for \hyperref[keyStretchedCoefficients]{key coefficients};
+The proof reduces coefficient extraction to type $A$
+\hyperref[kostantPartitionFunction]{vector partition functions},
+as for \hyperref[keyStretchedCoefficients]{key coefficients};
 Watanabe's Schubert duality then gives the structure-constant statement.
 
 \subsection[schubertKeyExpansion]{Expansion in key polynomials}
