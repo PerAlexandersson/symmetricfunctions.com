@@ -500,6 +500,29 @@ same signed structure-constant setting as the stable Grothendieck product.
 
 
 
+\subsection[grothendieckJoinMeet]{Join--meet positivity}
+
+For partitions $\lambda,\mu$, we define their \defin{join} and \defin{meet}
+by $(\lambda\vee\mu)_i=\max(\lambda_i,\mu_i)$ and
+$(\lambda\wedge\mu)_i=\min(\lambda_i,\mu_i)$.
+
+\begin{theorem}[Guo--Kang--Liu--Xiong, \cite[Thm.~A]{GuoKangLiuXiong2026x}]
+For the signed stable Grothendieck functions ($\beta=-1$),
+\[
+ \grothendieckStable_{\lambda\vee\mu}\grothendieckStable_{\lambda\wedge\mu}
+ -\grothendieckStable_\lambda\grothendieckStable_\mu
+ =\sum_\nu a_\nu(-1)^{|\nu|-|\lambda|-|\mu|}\grothendieckStable_\nu,
+ \qquad a_\nu\in\setN.
+\]
+\end{theorem}
+
+This proves the Thomas--Yong join--meet conjecture.
+The proof uses geometric Satake equivalence and degenerations of products
+of Schubert varieties. Taking the lowest homogeneous component recovers
+the Schur positivity of
+$\schurS_{\lambda\vee\mu}\schurS_{\lambda\wedge\mu}
+-\schurS_\lambda\schurS_\mu$.
+
 \subsection[grothendieckSkewStable]{Skew stable Grothendieck}
 
 

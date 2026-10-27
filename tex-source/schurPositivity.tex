@@ -48,6 +48,46 @@ zero labels in the domino tableaux give the variable $x_0$ a special role, so
 the resulting functions need not be symmetric.
 
 
+\subsection[lucasSymmetricPositivity]{Lucas binomial and multinomial differences}
+
+For an alphabet $X$, define the \defin{Lucas symmetric functions} by
+\[
+ U_0[X]=0,\qquad U_1[X]=1,\qquad
+ U_{n+1}[X]=\elementaryE_1[X]U_n[X]+\elementaryE_2[X]U_{n-1}[X].
+\]
+Write $U_n![X]=\prod_{i=1}^n U_i[X]$, with $U_0![X]=1$.
+The \defin{Lucas binomial coefficient}
+\[
+ L_{r,s}[X]\coloneqq\frac{U_{r+s}![X]}{U_r![X]U_s![X]}
+\]
+is a polynomial in $\elementaryE_1[X]$ and $\elementaryE_2[X]$.
+
+\begin{theorem}[Dai--Qiu--Wang--Zhang, \cite[Thm.~1.2]{DaiQiuWangZhang2026x}]
+If $1\leq a\leq b\leq c\leq d$ and $ad=bc$, then
+\[
+ (-1)^{a+1}(L_{b,c}[X]-L_{a,d}[X])
+ \in\setN[\elementaryE_1[X],\elementaryE_2[X],\completeH_2[X]].
+\]
+In particular, this signed difference is Schur-positive.
+\end{theorem}
+
+The two-variable specialization proves Bergeron's conjecture on Lucas
+binomial differences. The same semiring contains
+$L_{u,v}[X]-\elementaryE_1[X]^{uv-rs}L_{r,s}[X]$ whenever
+$r,s,u,v$ are positive integers with $rs<uv$
+\cite[Thm.~1.4]{DaiQiuWangZhang2026x}.
+
+For a partition $\alpha$ of $n$, define
+$L_\alpha[X]=U_n![X]/\prod_i U_{\alpha_i}![X]$ and
+$d(\alpha)=\sum_{i<j}\alpha_i\alpha_j$.
+If $\alpha$ dominates $\beta$, both partitions of $n$, then
+\cite[Thm.~1.5]{DaiQiuWangZhang2026x}
+\[
+ L_\beta[X]-\elementaryE_1[X]^{d(\beta)-d(\alpha)}L_\alpha[X]
+ \in\setN[\elementaryE_1[X],\elementaryE_2[X]].
+\]
+Thus these degree-adjusted multinomial differences are elementary-positive.
+
 \subsection[schurPositivityRSK]{Robinson--Schensted--Knuth (RSK)}
 
 Examples of results and papers that use the

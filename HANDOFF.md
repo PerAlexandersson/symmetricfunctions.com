@@ -1,5 +1,39 @@
 # Handoff
 
+## Ready: October 27 arXiv integration — source only
+
+Clean tree confirmed at intake. Task scope: this opening,
+`bibliography.bib`, and `tex-source/{macdonaldP,schurPositivity,
+macdonaldEperm,hallLittlewood,grothendieck,chromaticQuasisymmetric,
+chromaticEexpansion,crystals,key,schubert}.tex`.
+Integrated all eight shortlisted items; none omitted:
+- macdonaldP: normalized J elementary-positivity conjecture, hook/two-column
+  theorem (Corollaries 4.6/5.3), linked to chromatic elementary positivity/LLT.
+- schurPositivity: Lucas recurrence and quotients, signed binomial Schur
+  positivity and dominance-ordered multinomial elementary positivity.
+- macdonaldEperm/hallLittlewood: explicit t-atom convention and multiplication
+  theorem over N[t,1-t], with reciprocal navigation.
+- grothendieck: signed join–meet theorem (beta=-1), not unsigned positivity.
+- chromaticQuasisymmetric: color-counting Z, principal specializations,
+  tree reconstruction results and distinct conjectural fourth specialization.
+- crystals: extend existing quasicrystals; graph edges and Cartesian-product
+  formulation of Schur–Weyl duality (Theorems 6.6–6.7).
+- Vailaya bibliography updated to v3; existing Theorem 21 citation still valid.
+- key/schubert: affine key coefficients (Theorem 3.1), pure stretching for
+  every N>=1 (Corollary 3.2), Schubert structure constants (Theorem 7.2),
+  stable affine key expansions (Theorem 6.1), with cross-links/proof mechanisms.
+  Corrected the existing key-index convention: decreasing index is a monomial,
+  reversed partition is Schur. Used v2 PDF title, ending "Stable Key
+  Expansions"; API metadata still has the older "Key Coefficients" title.
+All eight exact-version PDFs/sources cached (paper-cache 718–725).
+Academic-writing guidance used for definitions, hypotheses and precise status.
+Full build, make check and whitespace checks pass (two existing fixture
+warnings). Chromium desktop/mobile (1366/375) checks pass on all ten pages:
+new anchors, internal links, math and document width. Screenshots inspected.
+Four pre-existing imath KaTeX errors on hallLittlewood remain; no new errors.
+Browser harness/screenshots: /tmp/symcat-feed-20261027-v3o9iN/.
+Ownership released at the focused checkpoint. No deployment authorized or run.
+
 ## Deployed: published shortlist additions — 2026-10-26
 
 Published `de1b701` at 21:30:17 UTC using the constrained bridge.

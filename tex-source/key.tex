@@ -205,11 +205,12 @@ Alternatively, key polynomials are also commonly indexed by \hyperref[weakCompos
 If $\alpha = (\alpha_1,\dotsc,\alpha_n)$ is a weak composition,
 we let $\key_{\alpha}(z)$ be the key polynomial $\key_{\lambda,\sigma}(z)$,
 where $\lambda$ is the partition obtained from $\alpha$ by sorting the elements in decreasing order,
-and $\sigma \in \symS_n$ is a permutation such that it sorts $\alpha$
-into a partition; $\lambda = (\alpha_{\sigma(1)},\alpha_{\sigma(2)},\dotsc,\alpha_{\sigma(n)})$.
+and $\sigma\in\symS_n$ is the shortest permutation with $\sigma\lambda=\alpha$,
+where $(\sigma\lambda)_i=\lambda_{\sigma^{-1}(i)}$.
 
 For example, $\alpha = (1,0,3,2)$ corresponds to $\lambda = (3,2,1,0)$ and $\sigma = [3, 4, 1, 2]$.
-With these conventions, $\key_{\lambda}(z)=\schurS_{\lambda}(z)$.
+With these conventions, $\key_\lambda(z)=z^\lambda$ for a partition $\lambda$,
+whereas $\key_{(\lambda_n,\dotsc,\lambda_1)}(z)=\schurS_\lambda(z)$.
 
 \emph{Note:} This indexing convention is not uniform in the literature;
 in some places, one needs to reverse the indexing composition $\alpha$.
@@ -438,6 +439,32 @@ with nonnegative coefficients.
 See also the \hyperref[keyRealRootedHstar]{related conjecture}
 regarding the corresponding \hyperref[hStarPolynomial]{$h^*$-polynomial}.
 
+
+\subsection[keyStretchedCoefficients]{Polynomiality of stretched coefficients}
+
+We write $[\xvec^\nu]f$ for a monomial coefficient of $f$.
+A function of $N$ is \defin{eventually polynomial} if it agrees with a
+polynomial in $\setQ[N]$ for all sufficiently large integers $N$.
+
+\begin{theorem}[Alexandersson, \cite[Thm.~3.1 and Cor.~3.2]{Alexandersson2026Stretched}]
+Fix $\alpha,\nu\in\setN^h$ and $\beta,\eta\in\setZ^h$.
+Suppose $N\alpha+\beta$ and $N\nu+\eta$ are weak compositions of the
+same size for all sufficiently large $N$. Then
+\[
+ N\longmapsto [\xvec^{N\nu+\eta}]\key_{N\alpha+\beta}(\xvec)
+\]
+is eventually polynomial. If $\beta=\eta=0$ and $|\alpha|=|\nu|$,
+the coefficient is polynomial for every integer $N\geq1$.
+\end{theorem}
+
+The affine result also holds for monomial coefficients of finite products
+of affine families of keys \cite[Prop.~3.3]{Alexandersson2026Stretched}.
+The proof uses a fixed Demazure word for all large $N$ and type $A$
+vector partition functions. In the pure stretching case, the
+\hyperref[keyKogan]{Kogan-face model} gives a quasipolynomial for all
+positive $N$; eventual polynomiality then forces its period to be one.
+See also \hyperref[schubertStretching]{Schubert structure constants}
+and \hyperref[schubertStableKeyExpansion]{stable affine key expansions}.
 
 \subsection[keyDefinitionKeyFillings]{Definition (Skyline fillings)}
 

@@ -607,6 +607,33 @@ where $AM$ denotes the Arthur--Merlin probabilistic proof class.
 
 
 
+\subsection[schubertStretching]{Polynomiality under stretching}
+
+The \defin{Lehmer code} of a permutation $u$ has entries
+$\operatorname{code}(u)_i=|\{j>i:u_j<u_i\}|$.
+We define $N*u$ to be the permutation with code $N\operatorname{code}(u)$,
+appending enough trailing zeros to obtain a valid finite code.
+Appending further zeros only adds fixed points.
+
+\begin{theorem}[Alexandersson, \cite[Thm.~7.2 and Cor.~7.3]{Alexandersson2026Stretched}]
+For fixed permutations $u,v,w$, the Schubert structure constant
+\[
+ N\longmapsto c^{N*w}_{N*u,N*v}
+\]
+is eventually polynomial in $N$.
+More generally, this holds when each of the three Lehmer codes is an
+integer affine function of $N$ of fixed length, nonnegative for all
+sufficiently large $N$.
+\end{theorem}
+
+This proves the polynomiality conjecture stated by Pak and Slonim.
+Monomial coefficients along affine weight rays in such Schubert families,
+and in finite products of them, are also eventually polynomial
+\cite[Cor.~6.4 and Prop.~7.1]{Alexandersson2026Stretched}.
+The proof reduces coefficient extraction to type $A$ vector partition
+functions, as for \hyperref[keyStretchedCoefficients]{key coefficients};
+Watanabe's Schubert duality then gives the structure-constant statement.
+
 \subsection[schubertKeyExpansion]{Expansion in key polynomials}
 
 There are several proofs of the fact that Schubert polynomials expand positively into \hyperref[key]{key polynomials},
@@ -615,6 +642,26 @@ the first proof appearing in \cite{LascouxSchutzenberger1990}.
 One recent proof is by using crystal bases, see \name{Sami Assaf} and \name{Anne Schilling} \cite{AssafSchilling2018}.
 A crystal structure on RC-graphs where the key expansion is obtained is given
 by \name{Sarah Gold}, \name{Elizabeth Milićević}, and \name{Yuxuan Sun} in \cite{GoldMilicevicSun2024x}.
+
+\subsubsection[schubertStableKeyExpansion]{Stable affine key expansions}
+
+\begin{theorem}[Alexandersson, \cite[Thm.~6.1]{Alexandersson2026Stretched}]
+Fix $\alpha\in\setN^h$ and $\beta\in\setZ^h$ such that $N\alpha+\beta$
+is nonnegative for all large $N$, and let $w(N)$ have this Lehmer code.
+There are positive integers $c_1,\dotsc,c_t$, weak compositions
+$\gamma_1,\dotsc,\gamma_t$, and integer vectors $\delta_1,\dotsc,\delta_t$,
+all independent of $N$, such that
+\[
+ \schubert_{w(N)}(\xvec)
+ =\sum_{j=1}^t c_j\key_{N\gamma_j+\delta_j}(\xvec)
+ \qquad(N\gg0).
+\]
+All key indices have a common fixed length and are eventually nonnegative.
+\end{theorem}
+
+Thus both the number of terms and their coefficients eventually stabilize;
+only the key indices vary. This includes the
+\hyperref[schubertStretching]{stretched family} $w(N)=N*u$.
 
 \subsection[schubertAsSumOfElementary]{Sum of elementary}
 

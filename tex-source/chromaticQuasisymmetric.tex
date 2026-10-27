@@ -592,6 +592,38 @@ For a representation-theoretical perspective involving immanents and
 characters, see \cite{Skandera2020}.
 
 
+\section[colorCountingChromatic]{A color-counting chromatic refinement}
+
+Bingham, Celano, Commins, Orellana, Pan, and Simone introduce the
+\defin{$t$-chromatic symmetric function}
+\cite{BinghamCelanoComminsOrellanaPanSimone2026x}
+\[
+ Z_G(\xvec;t)\coloneqq
+ \sum_{\kappa\text{ proper}}t^{|\kappa(V(G))|}
+       \prod_{v\in V(G)}x_{\kappa(v)}.
+\]
+Here $t$ counts distinct colors, rather than the ascents in the
+\hyperref[chromaticQuasisymmetric]{chromatic quasisymmetric function}.
+Equivalently, we obtain $Z_G$ from $X_G$ by replacing every monomial
+symmetric function $\monomial_\lambda$ by
+$t^{\ell(\lambda)}\monomial_\lambda$. Hence $Z_G$ and $X_G$ carry the
+same information as graph invariants.
+
+Their principal specializations behave differently. Put
+\[
+ \operatorname{ps}_n Z_G
+ =Z_G(1,q,\dotsc,q^{n-1},0,\dotsc;t).
+\]
+The authors prove that $\operatorname{ps}_3 Z_G$ distinguishes and
+reconstructs caterpillars with three spine vertices and elongated bistars
+(trees whose non-leaf vertices form a path and whose branching is confined
+to the ends of that path)
+\cite[Thm.~4.1 and Thm.~5.1]{BinghamCelanoComminsOrellanaPanSimone2026x}.
+They conjecture that $\operatorname{ps}_4 Z_G$ distinguishes all
+caterpillars \cite[Conj.~6.1]{BinghamCelanoComminsOrellanaPanSimone2026x}.
+These give new specializations for the
+\hyperref[treesChromaticQuasisymmetric]{tree-isomorphism question}.
+
 \section[treesChromaticQuasisymmetric]{Chromatic symmetric functions of trees}
 
 
