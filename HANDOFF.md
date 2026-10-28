@@ -19,11 +19,12 @@ pass; rendered screenshot inspected. Artifacts: `/tmp/symcat-pr1-nXIH9w0v`.
 Ownership released: `tex-source/grothendieck.tex`, `bibliography.bib`, HANDOFF
 opening. Focused source checkpoint, credited to PR #1; not deployed.
 PR #1 closed with thanks and integration summary at Per's request.
-Branch audit: GitHub lists `master` and `codex/arxiv-2610-16555`; the latter
-is already an ancestor of master. Local `codex/chow-chain-counterexamples`
-and `codex/nabla-hl-llt` are also fully merged. No merge needed; no branches
-deleted. Content worker briefly reclaimed this opening for this status update;
-ownership released.
+Branch cleanup authorized and completed after clean-tree, worktree, remote-tip,
+and ancestry checks: removed remote/local `codex/arxiv-2610-16555` (e446165)
+and local `codex/chow-chain-counterexamples` (ec09057) and
+`codex/nabla-hl-llt` (2456234). All commits remain in master; only branch
+names were removed. Only master remains locally and on origin. Content worker
+briefly reclaimed this opening for the status update; ownership released.
 PR #2 closed with thanks and source/live-section links as explicitly authorized;
 its counterexample and subsequent literature already appear on the site.
 
