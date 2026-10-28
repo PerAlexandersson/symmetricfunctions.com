@@ -1550,7 +1550,7 @@
   }
 
 
-  /* Pagefind search box (\searchbox) */
+  /* Pagefind search box (\specialblock{searchbox}) */
   #search {
     --pagefind-ui-scale: 0.9;
     --pagefind-ui-primary: var(--c-brand);

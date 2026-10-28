@@ -48,7 +48,7 @@ local SITE_LABELS_MAP = file_reading.load_json_file(LABELS_JSON, "site-labels", 
 local EM_DASH = utf8.char(0x2014)  -- —
 local EN_DASH = utf8.char(0x2013)  -- –
 
--- \searchbox: Pagefind UI; a ?q= query (the JSON-LD SearchAction) runs at once.
+-- \specialblock{searchbox}: Pagefind UI; a ?q= query (the JSON-LD SearchAction) runs at once.
 local SEARCH_BOX_HTML = [[
 <link href="./_pagefind/pagefind-ui.css" rel="stylesheet">
 <div id="search"></div>
@@ -585,7 +585,7 @@ function render_blocks_html(blocks, header_collector)
           local polydata = file_reading.load_json_file(POLYDATA_JSON, "site-polydata", true)
           local poly_list_html = poly_to_html.render_polynomial_table(polydata) or ""
           table.insert(buffer, poly_list_html)
-        elseif block_type == "search" then
+        elseif block_type == "searchbox" then
           table.insert(buffer, SEARCH_BOX_HTML)
         else
           print_error("specialblock div missing data-type attribute")

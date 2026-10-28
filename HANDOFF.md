@@ -3,9 +3,8 @@
 ## Done: search page generated from the template — 2026-10-28
 
 Opus 5.5 backend worker, at Per's request. assets/search.htm (a hand-copied,
-drifted fork of template.htm) is replaced by tex-source/search.tex with a new
-`\searchbox` command (preprocess.lua, gather.lua -> specialblock "search",
-rendered in render.lua). template.htm gained a ROBOTS placeholder;
+drifted fork of template.htm) is replaced by tex-source/search.tex using
+`\specialblock{searchbox}`, rendered in render.lua. template.htm gained a ROBOTS placeholder;
 utils.NON_INDEXED_PAGES (403, 404, search) sets noindex, drops
 data-pagefind-body and keeps them out of the sitemap. Pagefind widget colours
 follow the site tokens, so search is readable in dark mode. make Q=1 and make
