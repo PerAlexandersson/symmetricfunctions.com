@@ -1,5 +1,17 @@
 # Handoff
 
+## Done: typeset math in search results — 2026-10-28
+
+Opus 5.5 backend worker, at Per's request. New assets/search.js sets up the
+Pagefind UI for \specialblock{searchbox}: excerpts are typeset with KaTeX and
+the site macros (marks straddling formulas merged, formulas cut off at the
+excerpt edges replaced by an ellipsis), and section titles are typeset in
+place. The index still stores TeX, so macro names such as schurP remain
+searchable. Heading "#" anchors carry data-pagefind-ignore, so titles and
+excerpts no longer start with "#". Checked in Chromium: 6 queries, both
+schemes, no KaTeX or console errors. make Q=1 and make check pass.
+Ownership released; not deployed.
+
 ## Done: search page generated from the template — 2026-10-28
 
 Opus 5.5 backend worker, at Per's request. assets/search.htm (a hand-copied,

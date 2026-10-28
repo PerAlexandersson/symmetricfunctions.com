@@ -232,12 +232,13 @@ end
 
 local search_path = www_dir .. "/search.htm"
 local search_page = read_file(search_path)
+local search_script = read_file(www_dir .. "/search.js") or ""
 if search_page then
-  if not search_page:find('new URLSearchParams(window.location.search).get("q")',
+  if not search_script:find("new URLSearchParams(window.location.search).get('q')",
       1, true) then
     report(search_path, 1, "search page does not read the SearchAction query", "q")
   end
-  if not search_page:find("pagefindUI.triggerSearch(query)", 1, true) then
+  if not search_script:find("pagefindUI.triggerSearch(query)", 1, true) then
     report(search_path, 1, "search page does not submit the SearchAction query", "query")
   end
   if not search_page:find('content="noindex, follow"', 1, true)

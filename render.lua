@@ -48,22 +48,12 @@ local SITE_LABELS_MAP = file_reading.load_json_file(LABELS_JSON, "site-labels", 
 local EM_DASH = utf8.char(0x2014)  -- —
 local EN_DASH = utf8.char(0x2013)  -- –
 
--- \specialblock{searchbox}: Pagefind UI; a ?q= query (the JSON-LD SearchAction) runs at once.
+-- \specialblock{searchbox}: Pagefind UI, set up by assets/search.js.
 local SEARCH_BOX_HTML = [[
 <link href="./_pagefind/pagefind-ui.css" rel="stylesheet">
 <div id="search"></div>
 <script src="./_pagefind/pagefind-ui.js"></script>
-<script>
-  window.addEventListener('DOMContentLoaded', function() {
-    var pagefindUI = new PagefindUI({
-      element: "#search",
-      showImages: false,
-      resetStyles: false
-    });
-    var query = new URLSearchParams(window.location.search).get("q");
-    if (query) pagefindUI.triggerSearch(query);
-  });
-</script>]]
+<script src="./search.js?v=20261028-math"></script>]]
 
 
 -- ========== UTILITY FUNCTIONS ==========
@@ -525,7 +515,7 @@ local function render_header(level, attr, inlines, header_collector)
   local tag = "h" .. tostring(level)
   local anchor = ""
   if level >= 2 and level <= 4 then
-    anchor = '<a class="header-anchor" href="#' .. html_escape(id) .. '">#</a>'
+    anchor = '<a class="header-anchor" href="#' .. html_escape(id) .. '" data-pagefind-ignore>#</a>'
   end
   return "<" .. tag .. render_attr(attr) .. ">" .. anchor .. render_inlines_html(inlines) .. "</" .. tag .. ">\n"
 end
