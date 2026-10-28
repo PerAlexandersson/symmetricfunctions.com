@@ -61,6 +61,33 @@ For connections with Chern numbers and hyper-Kähler and Calabi--Yau manifolds, 
 A refinement of the Littlewood--Richardson rule is available in \cite{Hanaki2026x}.
 
 
+\subsection[jackMultipleZeta]{Jack multiple zeta functions}
+
+\name{Maki Nakasuji} and \name{Wataru Takeda} introduce
+\defin{Jack multiple zeta functions} \cite{NakasujiTakeda2026x}.
+We use the weights in Stanley's tableau formula for the
+\hyperref[jackSkew]{integral-form skew Jack polynomial},
+\[
+ \jackJ_{\lambda/\mu}(\xvec;\alpha)
+ =\sum_{T\in\SSYT(\lambda/\mu)}w_\alpha(T)
+   \prod_{(i,j)\in\lambda/\mu}x_{T_{ij}},
+\]
+and replace each tableau monomial by a multiple-zeta summand:
+\[
+ \zeta^J_{\lambda/\mu}(\svec;\alpha)
+ =\sum_{T\in\SSYT(\lambda/\mu)}w_\alpha(T)
+   \prod_{(i,j)\in\lambda/\mu}T_{ij}^{-s_{ij}}.
+\]
+The analytic definition is taken in the domain of absolute convergence.
+For a straight shape, $\zeta^J_\lambda(\svec;1)
+=h_\lambda\zeta_\lambda(\svec)$, where $h_\lambda$ is the product of hook
+lengths, consistent with $\jackJ_\lambda(\xvec;1)=h_\lambda\schurS_\lambda(\xvec)$.
+Their duality theorem lifts conjugation of the shape and inversion of
+$\alpha$ to formal multiple-zeta symbols, using an operator that merges
+consecutive arguments \cite[Thm.~4.21]{NakasujiTakeda2026x}.
+Replacing these symbols by monomial quasisymmetric functions recovers
+Stanley's Jack duality.
+
 \subsection[schurZetaP]{Schur multiple zeta P and Q}
 
 In \cite{NakasujiTakeda2022x} the authors introduce the multiple zeta

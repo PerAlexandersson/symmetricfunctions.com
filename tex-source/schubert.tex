@@ -666,6 +666,26 @@ Thus both the number of terms and their coefficients eventually stabilize;
 only the key indices vary. This includes the
 \hyperref[schubertStretching]{stretched family} $w(N)=N*u$.
 
+\subsubsection[schubertKeyFactorization]{Factorization into key polynomials}
+
+\begin{theorem}[Han--Ma--Sun, \cite[Thm.~1.1]{HanMaSun2026x}]
+The Schubert polynomial $\schubert_w$ is a product of
+\hyperref[keyProduct]{key polynomials} if and only if $w$
+\hyperref[permutationPattern]{avoids} the patterns
+$135264$, $136254$, $153264$, $163254$, $315264$, $316254$,
+$142635$, $142653$, $143625$, $143652$.
+\end{theorem}
+
+Here all factors use the same ordered variables; a single factor and the
+empty product are allowed. The proof factors
+\hyperref[schubertRepresentationTheory]{dual flagged Weyl characters}
+by connected components of the column interaction graph: two columns
+are adjacent when they share an empty row above a row occupied in both.
+A component gives a key polynomial exactly when its
+columns form a chain under inclusion. This gives a unique finest
+factorization into nonconstant diagram characters; all other such
+factorizations group these factors.
+
 \subsection[schubertAsSumOfElementary]{Sum of elementary}
 
 Let $\omega \in \symS_{n+1}$, and let $\elementaryE_{j}(m) = \elementaryE_{j}(x_1,\dotsc,x_m)$
@@ -686,10 +706,17 @@ Schubert polynomial $\schubert_w$ is a single standard elementary monomial
 \cite{Woodruff2025x}.  The characterization is by pattern avoidance and also
 has an analogue for complete homogeneous monomials.
 
-\name{Oma Makhija} studies when a Schubert polynomial factors as a product of
-elementary symmetric polynomials \cite{Makhija2025x}.  The paper conjectures a
-pattern-avoidance characterization, proves one direction, and gives
-obstructions coming from rectangular arrays of crosses in bottom pipe dreams.
+The conjecture of \name{Oma Makhija} \cite{Makhija2025x} on products of
+elementary symmetric polynomials is proved in
+\cite[Thm.~1.2]{HanMaSun2026x}: such a factorization exists exactly when
+$w$ avoids $1423,1432,3142,4132$. Unlike a standard elementary monomial,
+these products may repeat initial alphabets. Writing
+$D_j(w)=\{i:i<w^{-1}(j),\ w_i>j\}$ for the Rothe columns, we have
+\[
+ \schubert_w=\prod_{D_j(w)\ne\emptyset}
+ \elementaryE_{|D_j(w)|}(x_1,\dotsc,x_{\max D_j(w)}).
+\]
+The factors are unique up to order.
 
 
 

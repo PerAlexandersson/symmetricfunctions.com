@@ -657,6 +657,25 @@ Vershik--Kerov limit shapes, and the Baik--Deift--Johansson fluctuation theorem
 into a single narrative.
 
 
+\subsection[lisLogConcavity]{Log-concavity of longest increasing subsequences}
+
+Let $a_{n,k}$ count permutations in $\symS_n$ whose longest increasing
+subsequence has length $k$. Under RSK this is the first row length, so
+\[
+ a_{n,k}=\sum_{\substack{\lambda\vdash n\\\lambda_1=k}}(f^\lambda)^2,
+ \qquad f^\lambda=|\SYT(\lambda)|.
+\]
+\begin{theorem}[Li, \cite[Thm.~1.1]{Li2026LIS}]
+For $n\geq3$ and $1<k<n$, we have
+\[
+ a_{n,k}^2>a_{n,k-1}a_{n,k+1}.
+\]
+\end{theorem}
+This proves Chen's conjecture on
+\hyperref[logConcavePolynomial]{log-concavity} of these counts.
+The proof couples Plancherel measures conditioned on consecutive first-row
+lengths and compares reversible down-up chains.
+
 \section[patternsAndRSK]{RSK and pattern avoidance}
 
 \name{Amanda Burcroff} and \name{Colin Defant} use RSK to study strong

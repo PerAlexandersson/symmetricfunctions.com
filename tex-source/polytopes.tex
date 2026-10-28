@@ -445,6 +445,32 @@ polytopes.
 The \hyperref[gtpolytopes]{Gelfand--Tsetlin polytopes} are marked order polytopes.
 
 
+\subsection[lectureHallSimplex]{Lecture hall simplices}
+
+For a positive integer sequence $\mathbf{s}=(s_1,\dotsc,s_n)$, the
+\defin{$\mathbf{s}$-lecture hall simplex} is
+\[
+ P_n^{\mathbf{s}}=\{x\in\setR^n:
+ 0\leq x_1/s_1\leq\dotsb\leq x_n/s_n\leq1\}.
+\]
+Write $L_{\mathbf{s}}(t)=|tP_n^{\mathbf{s}}\cap\setZ^n|$ for its
+\hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial}.
+
+\begin{theorem}[Caicedo--Juhnke--Poullot, \cite[Thm.~3.5]{CaicedoJuhnkePoullot2025x}]
+Fix $n\geq5$ and set $\mathbf{s}=(a,\dotsc,a,a+1)$ of length $n$.
+As the positive integer $a$ tends to infinity,
+\[
+ [t^{n-4}]L_{\mathbf{s}}(t)
+ \sim -\frac{a^{n-1}}{720(n-4)!}.
+\]
+In particular, this coefficient is negative for all sufficiently large $a$.
+\end{theorem}
+
+Nevertheless, every simplex in this family admits a regular flag
+unimodular triangulation \cite[Cor.~4.16]{CaicedoJuhnkePoullot2025x}.
+Thus such triangulations do not imply
+\hyperref[ehrhartConjecturalPositivity]{Ehrhart positivity}.
+
 \subsection[sylvesterSimplex]{Sylvester simplices}
 
 For the Sylvester sequence $s_0=1$ and

@@ -1,5 +1,28 @@
 # Handoff
 
+## Done: five preprints, topic-page integration — 2026-10-28
+
+Intake tree clean. Added five bibliography records from cached exact-version
+papers (2610.36993v1, 2610.36688v1, 2610.36644v1, 2610.36483v1,
+2508.18890v4); API metadata lists no publication DOI. Placements:
+- Schubert/key: key-product avoidance theorem and elementary factorization;
+  replaced the now-settled Makhija conjecture status.
+- Schur-zeta/Jack: weighted-tableau definition, normalization and duality;
+  distinguished rational tableau weights from conjectural polynomial positivity.
+- Hall–Littlewood/Whittaker: two-parameter spin Littlewood identities in the
+  existing family coverage, with reciprocal links (no duplicate family).
+- RSK: strict LIS log-concavity theorem and tableau-count formula.
+- Polytopes/Ehrhart: lecture hall definition, negative coefficient asymptotic,
+  and coexistence with regular flag unimodular triangulations (Cor. 4.16).
+Academic-writing guidance used for concise notation and theorem statements.
+`make Q=1`, `make check`, and `git diff --check` pass. Chromium checked all
+nine pages at 375/1366 pixels in light/dark modes: math, anchors, internal
+links and document width; screenshots inspected. Test artifacts are outside
+the repository in `/tmp/symcat-five-2d3NTZnL`.
+Ownership released for `bibliography.bib`, `HANDOFF.md` opening, and
+`tex-source/{schubert,key,schurZeta,jack,hallLittlewood,whittaker,rsk,ehrhart,polytopes}.tex`.
+Source checkpoint only; not deployed.
+
 ## Done: typeset math in search results — 2026-10-28
 
 Opus 5.5 backend worker, at Per's request. New assets/search.js sets up the
