@@ -1,5 +1,27 @@
 # Handoff
 
+## Done: selective PR #1 integration — 2026-10-28
+
+Clean intake. Adopted Travis Scrimshaw's terminology distinction, beta
+normalization, canonical-crystal attribution correction, row-refined tableau
+definition and percolation connection. Added refined-canonical navigation
+without duplicating existing coverage or renaming old anchors. Corrected the
+reversed lowest/highest-degree wording. Academic-writing guidance used for
+concise definitions and normalization conventions. Verified against cached
+1907.11415v2, 1909.12833v2, 2012.15011v1; Chan--Pflueger metadata updated
+to Algebraic Combinatorics 4 (2021), 175–188, DOI 10.5802/alco.144, checked
+on the journal page. Retained the existing newer square-root-crystal and
+free-fermion coverage; did not import PR #1's duplicate IDs, missing macros,
+placeholder citations, or wholesale section reordering.
+`make Q=1`, `make check`, `git diff --check` pass. Chromium checks at
+375/1366 pixels, light/dark: math, old/new anchors, internal links and width
+pass; rendered screenshot inspected. Artifacts: `/tmp/symcat-pr1-nXIH9w0v`.
+Ownership released: `tex-source/grothendieck.tex`, `bibliography.bib`, HANDOFF
+opening. Focused source checkpoint, credited to PR #1; not deployed.
+PR #1 remains open (selective integration, not a wholesale merge).
+PR #2 closed with thanks and source/live-section links as explicitly authorized;
+its counterexample and subsequent literature already appear on the site.
+
 ## Done: five preprints, topic-page integration — 2026-10-28
 
 Intake tree clean. Added five bibliography records from cached exact-version

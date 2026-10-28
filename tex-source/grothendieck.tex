@@ -90,6 +90,16 @@ Note that the lowest-degree homogeneous part of
 $\grothendieck_\omega(\xvec)$ is the Schubert polynomial
 $\schubert_\omega(\xvec)$.
 
+The $\beta$-normalization of \cite{FominKirillov1994grothendieck} is
+\[
+ \grothendieck^{(\beta)}_\omega(\xvec)
+ =(-\beta)^{-\length(\omega)}\grothendieck_\omega(-\beta\xvec).
+\]
+Since the lowest degree is $\length(\omega)$, the right side is polynomial
+in $\beta$. Its specializations at $\beta=-1$ and $\beta=0$ give the
+ordinary Grothendieck and Schubert polynomials, respectively. This is the
+normalization used in the \hyperref[grothendieckDouble]{double version}.
+
 
 There is a connection with \hyperref[newtonPolytope]{Newton polytopes} just as
 for Schubert polynomials; see \cite{MeszarosDizier2017}.
@@ -250,6 +260,11 @@ the stable Grothendieck polynomials are defined as the limit
  \grothendieckStable_\omega(\xvec) \coloneqq \lim_{k\to \infty}  \grothendieck_{1^k \times \omega}(\xvec).
 \end{equation*}
 
+These limits are symmetric formal power series, generally of unbounded
+degree, and are $K$-theoretic analogues of Stanley symmetric functions.
+The partition-indexed subfamily below is often called the
+\hyperref[grothendieckGrassmann]{symmetric Grothendieck family}.
+
 \name{Damir Yeliussizov} studies positive specializations of symmetric
 Grothendieck polynomials, giving a $K$-theoretic counterpart to the
 Edrei--Thoma style parametrization for Schur-positive specializations
@@ -299,8 +314,11 @@ For a paper with many references and results, see \cite{MonicalPechenikScrimshaw
 
 \defin{Grassmann Grothendieck polynomials}\label{grassmannGrothendieckPolynomialDefinition}
 are the stable Grothendieck polynomials indexed by Grassmannian permutations.
-They are symmetric polynomials and serve as a $K$-theoretic analogue of the
-\hyperref[stanleySym]{Stanley symmetric functions}.
+We also call this partition-indexed family the
+\defin{symmetric Grothendieck functions}. They serve as a $K$-theoretic
+analogue of the \hyperref[schurS]{Schur functions} and form a topological
+basis of the degree completion of the ring of symmetric functions.
+In finitely many variables they are polynomials.
 They can be computed by a combinatorial formula using
 \hyperref[setValuedTableaux]{set-valued tableaux}:
 \begin{align}
@@ -777,7 +795,7 @@ $\grothendieckDual_\lambda(\xvec) = \grothendieckDual^{(0,1)}_\lambda(\xvec)$,
 $\omega(\grothendieckStable_\lambda(\xvec)) = \grothendieckStable^{(-1,0)}_{\lambda'}(\xvec)$ and
 $\omega(\grothendieckDual_\lambda(\xvec)) = \grothendieckDual^{(1,0)}_{\lambda'}(\xvec)$,
 
-\item The highest, respectively lowest, degree term is a Schur polynomial,
+\item The lowest, respectively highest, degree term is a Schur polynomial,
 \[
 \grothendieckStable^{(a,b)}_\lambda(\xvec) = \schurS_\lambda(\xvec) + \text{higher terms} \quad
 \grothendieckDual^{(a,b)}_\lambda(\xvec) = \schurS_\lambda(\xvec) + \text{lower terms}
@@ -808,10 +826,14 @@ There is also a skew version, a Weyl-type alternant formula, tableau description
 and operator descriptions.
 
 The $\grothendieckDual^{(a,b)}_\mu$ are
-\hyperref[schurPositiveDefinition]{Schur-positive}, and a
-\hyperref[crystals]{crystal} structure on the canonical stable Grothendieck
-polynomials and their duals is given by \name{Graham Hawkes} and
-\name{Travis Scrimshaw} \cite{HawkesScrimshaw2020}.
+\hyperref[schurPositiveDefinition]{Schur-positive} \cite{Yeliussizov2017}.
+\name{Graham Hawkes} and \name{Travis Scrimshaw} construct a
+\hyperref[crystals]{crystal} on hook-valued tableaux for canonical
+Grothendieck functions, and on valued-set tableaux for the dual weak
+symmetric specialization \cite{HawkesScrimshaw2020}.
+For the full dual canonical family, they pose the problem of constructing
+a crystal on marked rim border tableaux, where each interior box is marked
+by $a$ or $b$ \cite[Sec.~1]{HawkesScrimshaw2020}.
 
 \name{Jianping Pan}, \name{Joseph Pappe}, \name{Wencin Poh}, and
 \name{Anne Schilling} introduce an uncrowding algorithm for hook-valued
@@ -828,6 +850,12 @@ identifies the hook-valued-tableau model with pairs of a semistandard tableau
 and an exquisite tableau, and yields a third model in terms of biflagged
 tableaux.
 
+\subsection[grothendieckRefinedCanonical]{Refined canonical Grothendieck functions}
+
+The \defin{refined canonical Grothendieck functions} combine the
+\hyperref[grothendieckRefinedSymmetric]{row-refined symmetric} and canonical
+families. Their duals similarly extend the
+\hyperref[grothendieckRefinedDualStable]{refined dual stable functions}.
 \name{Byung-Hak Hwang}, \name{Jihyeug Jang}, \name[J. S. Kim]{Jang Soo Kim},
 \name{Minho Song}, and \name{U-Keun Song} give further combinatorial models
 for refined canonical stable Grothendieck polynomials and their duals
@@ -842,6 +870,8 @@ They derive skew Cauchy identities, branching rules, expansion formulas, and
 integral formulas.
 
 
+
+\subsection[grothendieckCanonicalCauchy]{Cauchy identities}
 
 In \cite{GunnaZinnJustin2020}, solvable vertex models are used to
 prove Cauchy identities for the canonical Grothendieck polynomials:
@@ -1096,6 +1126,26 @@ shown to be \hyperref[key]{key-positive} in \cite{Kundu2023x}.
 can be realized as a column distribution of a directed last-passage percolation model.
 
 
+\section[grothendieckRefinedSymmetric]{Row-refined symmetric Grothendieck functions}
+
+\name{Melody Chan} and \name{Nathan Pflueger} refine the set-valued tableau
+formula by recording the excess separately in each row
+\cite{ChanPflueger2019}. For a skew shape $\lambda/\mu$, let $e_i(T)$ be
+the number of entries in row $i$ of $T$ minus the number of boxes in that row.
+The \defin{row-refined symmetric Grothendieck function} is
+\[
+ G_{\lambda/\mu}(\xvec;\tvec)
+ =\sum_{T\in\mathrm{SVT}(\lambda/\mu)}
+ (-1)^{|T|-|\lambda/\mu|}\xvec^T\prod_{i\geq1}t_i^{e_i(T)}.
+\]
+Setting every $t_i=1$ recovers the
+\hyperref[grothendieckSkewStable]{skew stable Grothendieck function};
+setting every $t_i=-\beta$ gives the $\beta$-weighted version.
+\name{Kohei Motegi} and \name{Travis Scrimshaw} construct a vertex model
+for the straight-shape functions and derive a Jacobi--Trudi formula
+\cite{MotegiScrimshaw2025}. These refinements also enter the
+\hyperref[grothendieckRefinedCanonical]{refined canonical family}.
+
 \section[grothendieckRefinedDualStable]{Generalized and refined dual stable Grothendieck polynomials}
 
 
@@ -1164,3 +1214,7 @@ vertex model whose partition function is the refined dual stable
 Grothendieck polynomial \cite{MotegiScrimshaw2025}.  They prove Cauchy and
 Jacobi--Trudi identities for skew refined dual stable Grothendieck
 polynomials, and relate the same model to a Schur measure.
+Their construction refines the
+\hyperref[dualGrothendieckPercolation]{last-passage percolation connection},
+expressing transition probabilities through refined dual Grothendieck
+polynomials.
