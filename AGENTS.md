@@ -12,6 +12,22 @@ files, prerequisites and the arXiv++ keyword feed, and
 the content editing checklist. This file holds only the additional build,
 test and deployment rules for agents.
 
+## Git workflow
+
+- Per prefers one active branch and normally one worker per repository.
+  Work directly on `master` when ownership and the working tree permit it;
+  do not create parallel branches without a practical need.
+- If a temporary branch or worktree is needed, integrate completed, verified
+  work promptly into `master`, then remove its local and repository-owned
+  remote branch. This routine cleanup is authorized; do not leave completed
+  parallel branches behind.
+- Before cleanup, verify ancestry, remote state, and worktree ownership.
+  Preserve unfinished, dirty, unpublished, or unmerged work. For selectively
+  integrated branches, verify all intended changes are accounted for before
+  removal; do not force-delete merely because a task is marked done.
+- This does not authorize bypassing review/protection, force-pushing,
+  deleting contributors' fork branches, or deploying.
+
 ## Build changes
 
 - Keep `www/site-keywords.json` distinct from the `site-labels.json` anchor

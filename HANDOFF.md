@@ -1,5 +1,12 @@
 # Handoff
 
+## Done: branch workflow preference — 2026-10-28
+
+Recorded Per's single-branch default in `AGENTS.md`: prefer master; promptly
+integrate verified temporary branches and remove their local/owned-remote
+refs after preservation checks. Documentation-only; `git diff --check` passes.
+Ownership of `AGENTS.md` and this opening released.
+
 ## Done: selective PR #1 integration — 2026-10-28
 
 Clean intake. Adopted Travis Scrimshaw's terminology distinction, beta
