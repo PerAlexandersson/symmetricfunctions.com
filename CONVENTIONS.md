@@ -29,6 +29,7 @@ in some older files (e.g., `parking-functions`) but camelCase is preferred.
 | `\todo{message}` | Note for future work (excluded from HTML output, printed to stderr during build) |
 | `\icon{name}` | Inline SVG icon |
 | `\svgimg[width=0.8]{path}{alt}` | Scaled SVG image (`width=` a fraction of the text width, optionally followed by `\textwidth`) |
+| `\searchbox` | Pagefind search box (used once, in `search.tex`) |
 
 ### Environments
 

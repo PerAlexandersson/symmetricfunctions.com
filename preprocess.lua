@@ -626,6 +626,7 @@ end
 
 -- Comments are masked at this point, so every visible \specialblock is real.
 input = input:gsub("(\\specialblock%b{})", "\n%1\n")
+input = input:gsub("(\\searchbox)%f[^%a]", "\n%1\n")
 
 input = input:gsub("([^\n]*)(\\ytableaushort%b{})", function(prefix, command)
     -- Check if the prefix contains any non-whitespace characters (%S matches non-whitespace)

@@ -240,6 +240,10 @@ if search_page then
   if not search_page:find("pagefindUI.triggerSearch(query)", 1, true) then
     report(search_path, 1, "search page does not submit the SearchAction query", "query")
   end
+  if not search_page:find('content="noindex, follow"', 1, true)
+      or search_page:find("data-pagefind-body", 1, true) then
+    report(search_path, 1, "search page must be noindex and outside the Pagefind index", "robots")
+  end
 else
   error_count = error_count + 1
 end

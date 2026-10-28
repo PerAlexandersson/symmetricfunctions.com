@@ -1070,6 +1070,11 @@ function RawBlock(el)
   end
 end
 
+  -- \searchbox: the Pagefind search widget, rendered by render.lua
+  if s:match("^%s*\\searchbox%s*$") then
+    return pandoc.Div({}, pandoc.Attr("", {"specialblock"}, {{"data-type", "search"}}))
+  end
+
 -- \begin{cssvars} ... \end{cssvars}
   do
     local body = s:match("^%s*\\begin%s*%{cssvars%}%s*([%s%S]-)\\end%s*%{cssvars%}%s*$")

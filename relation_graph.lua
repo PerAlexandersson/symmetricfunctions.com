@@ -283,6 +283,7 @@ function M.render_page(graph, options)
     TITLE = "Polynomial relation graph",
     DESCRIPTION = "Interactive graph of structured relations between polynomial families.",
     CANONICAL = GRAPH_HTML,
+    ROBOTS = "index, follow",
     STYLE = "",
     LASTMOD = format_lastmod_html(options.timestamp),
     EDITLINK = '<a class="editLink" href="https://github.com/PerAlexandersson/symmetricfunctions.com/blob/master/relation_graph.lua" target="_blank" rel="noopener">Improve this page</a>',

@@ -389,6 +389,13 @@ local function render_template(template, content)
   return result
 end
 
+-- Pages kept out of search engines, the sitemap and the Pagefind index.
+local NON_INDEXED_PAGES = {
+  ["403.htm"] = true,
+  ["404.htm"] = true,
+  ["search.htm"] = true,
+}
+
 -- ============================================================================
 -- Exports
 -- ============================================================================
@@ -413,8 +420,11 @@ end
 ---@field has_errors fun(): boolean
 ---@field format_iso_date fun(timestamp: number|string|nil): string
 ---@field render_template fun(template: string, content: table): string
+---@field NON_INDEXED_PAGES table<string, boolean>
 
 return {
+  NON_INDEXED_PAGES = NON_INDEXED_PAGES,
+
   -- String utilities
   ascii_fold_string = ascii_fold_string,
   trim = trim,
