@@ -1,5 +1,25 @@
 # Handoff
 
+## Done: October 28–29 preprints — 2026-10-31
+
+Content worker releases ownership of `bibliography.bib`, this opening, and
+`tex-source/{chromaticEexpansion,standardQuasiSymmetricFunctions,schubert,grothendieck,macdonaldH,whittaker,diagonalHarmonics,posets,polytopes,matroids,algebras-and-rings,cylindricSchur}.tex`.
+Clean intake; ten approved papers added using cached v1 sources and API-generated
+bibliography records (no publication DOIs listed). Academic-writing guidance
+used for concise statements. Placements: caterpillars and hook immanants in
+chromaticEexpansion; Lee's forest/grove models in standardQuasiSymmetricFunctions
+with Schubert/Grothendieck links; Chou's bases in macdonaldH/whittaker;
+wreath superspace Frobenius series in diagonalHarmonics; stable Tamari in
+posets; crown/wheel/whirl h-star results in polytopes/matroids; projected Brion
+in polytopes; filtered zonotopal algebras in algebras-and-rings; rank-three
+cylindric partitions in cylindricSchur. Existing anchors retained.
+`make Q=1`, `make check`, `git diff --check` pass; symlink scan empty.
+Chromium checks cover all twelve pages at 375/light and 1366/dark, checking
+math, anchors and internal links; screenshots inspected. Existing matroids
+mobile overflow from the unchanged inline set at source line 593 (intake HEAD)
+is outside scope and remains. Browser artifacts: `/tmp/symcat-oct31-uz2kxhKE`.
+Source-only checkpoint; no deployment.
+
 ## Done: branch workflow preference — 2026-10-28
 
 Recorded Per's single-branch default in `AGENTS.md`: prefer master; promptly
