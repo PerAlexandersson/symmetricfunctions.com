@@ -330,6 +330,8 @@ diagonal operators or \hyperref[multiplierSequences]{multiplier sequences},
 and normalized products such as the
 \hyperref[schurSzegoComposition]{Schur--Szeg\H{o} composition} and
 \hyperref[diamondProduct]{diamond product}.
+For a different operation preserving real roots, see the
+\hyperref[finiteFreeAdditiveConvolution]{finite free additive convolution} below.
 
 The \defin{Hadamard product}\label{hadamardProductDefinition}
 (or \emph{coefficientwise product})
@@ -530,6 +532,42 @@ the polynomial $f\diamond h$ also has all zeros in $[-1,0]$.
 \end{theorem}
 
 
+
+\section[finiteFreeAdditiveConvolution]{Finite free additive convolution}
+
+Fix $n\geq1$. For $p,q\in\setR[x]$ of degree at most $n$, we define their
+\defin{finite free additive convolution}\label{walshConvolutionDefinition}
+(or \defin{Walsh convolution}) by
+\[
+ (p\boxplus_n q)(x)\coloneqq
+ \frac{1}{n!}\sum_{k=0}^n p^{(k)}(x)q^{(n-k)}(0).
+\]
+Unlike the \hyperref[schurSzegoComposition]{Schur--Szeg\H{o} composition},
+this is a convolution of derivatives rather than a coefficientwise product.
+It is commutative and associative, with identity $x^n$;
+see \cite{LeakeRyder2018x,MarcusSpielmanSrivastava2022}.
+
+\begin{theorem}[Walsh, {\cite[Prop.~1.1]{LeakeRyder2018x}}]
+If $p,q\in\setR[x]$ are real-rooted and each has degree $n$, then
+$p\boxplus_n q$ is real-rooted and has degree $n$.
+\end{theorem}
+
+For a nonconstant real-rooted polynomial $p$, let $\lambda_1(p)$ denote its
+largest zero. The following \defin{submodularity inequality} strengthens
+the bound $\lambda_1(p\boxplus_n q)\leq\lambda_1(p)+\lambda_1(q)$.
+
+\begin{theorem}[Leake--Ryder, {\cite[Thm.~1.10]{LeakeRyder2018x}}]
+Let $p,q,r\in\setR[x]$ be real-rooted polynomials, each of degree $n\geq1$.
+Then
+\[
+ \begin{aligned}
+ &\lambda_1(p\boxplus_n q\boxplus_n r)+\lambda_1(r)\\
+ &\qquad\leq
+ \lambda_1(p\boxplus_n r)+\lambda_1(q\boxplus_n r).
+ \end{aligned}
+\]
+\end{theorem}
+Taking $r=x^n$ recovers the two-polynomial bound.
 
 \section[posetRealRooted]{Poset operations preserving real-rootedness}
 

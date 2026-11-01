@@ -1,5 +1,27 @@
 # Handoff
 
+## Done: Walsh convolution and Lavi arXiv check — 2026-11-01
+
+Content worker releases `tex-source/realRooted.tex`, `bibliography.bib`, and this
+opening. Clean master intake; prior ownership released here, and no active
+collaboration worker owns these files. Docker supervisor report is host-only,
+so coordination is recorded here; other workers must leave these files alone.
+Added Walsh definition/preservation and Leake–Ryder Theorem 1.10 in a dedicated
+realRooted section, linked from the existing product discussion and back to
+Schur–Szegő. Checked exact degree hypotheses against cached 1811.06382v1;
+API bibliography added, existing MSS reference reused. Academic-writing
+guidance used for compact statements and defined notation.
+No matching Lavi Dittert arXiv paper found: checked paper-cache, feed searches
+for Dittert and Yair Lavi, and web search. His announcement links a local PDF
+but no arXiv entry; no Lavi content or bibliography added. Direct export.arxiv
+API was inaccessible, so this is a search outcome, not a claim of nonexistence.
+`make Q=1`, `make check`, `git diff --check` pass; symlink scan empty.
+Chromium at 375/light and 1366/dark: no KaTeX errors or broken same-page
+anchors; rendered section inspected. Screenshots: `/tmp/symcat-walsh-*.png`.
+Source-only checkpoint; no deployment.
+Paper-cache direct database query lacks pymysql; use the registered arXiv
+feed search and web search instead.
+
 ## Done: October 28–29 preprints — 2026-10-31
 
 Content worker releases ownership of `bibliography.bib`, this opening, and
