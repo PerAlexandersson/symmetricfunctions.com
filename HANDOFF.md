@@ -1,5 +1,14 @@
 # Handoff
 
+## Deployed — 2026-11-03
+
+User authorized deployment. Clean 442cfad passed `make Q=1`, `make check`,
+and `git diff --check`; constrained bridge reported deployed, with matching
+Pagefind manifest. Receipt: `20261103T091048-b89809de4cfb`.
+Live HTTP 200/content checks passed for matroids, permutationPatterns,
+latticeModel, and chromaticEexpansion, covering both new preprint batches.
+Content worker claimed/released only this opening for the deployment record.
+
 ## Done: matroids and pattern survey — 2026-11-03
 
 Content worker releases `tex-source/matroids.tex`,
