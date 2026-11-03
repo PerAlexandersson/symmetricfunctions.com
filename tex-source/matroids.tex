@@ -319,6 +319,26 @@ All graphic matroids are regular.
 \end{theorem}
 
 
+\subsection[matroidBasisCircuitBound]{Counting bases and circuits}
+
+A circuit is a minimal dependent set. A matroid is \defin{binary} if it is
+representable over $\mathbb{F}_2$, and \defin{simple} if it has no circuits
+of size one or two. Write $b(M)$ and $c(M)$ for the
+numbers of bases and circuits, respectively.
+
+\begin{theorem}[\cite[Thm.~1.1]{Fu2026BasisCircuit}]
+If $M$ is a nonempty simple binary matroid of rank $r$ with no
+\hyperref[matroidColoop]{coloops}, then
+\[
+ 2b(M)\geq(r+1)c(M).
+\]
+Equality holds precisely for the Fano matroid, represented by the seven
+nonzero vectors of $\mathbb{F}_2^3$.
+\end{theorem}
+
+For the same class of matroids, deleting any element leaves at least
+$c(M)$ bases \cite[Thm.~1.2]{Fu2026BasisCircuit}.
+
 \subsection[orientedMatroid]{Oriented matroids}
 
 An \defin{oriented matroid} is a matroid together with orientation data
@@ -679,6 +699,18 @@ truncation and proves that it is
 $h^*$-polynomial is \hyperref[realRootedPolynomial]{real-rooted}
 \cite[Thms.~1.1--1.2]{Li2026Snapper}.
 
+\name{Ronnie Cheng} proves a numerical Kawamata--Viehweg vanishing result
+for loopless rank-three matroids: if $D\in A^1(M)$ is an integral,
+combinatorially big and nef divisor class, then
+\[
+ \chi(M,L_D^{-1})\geq0
+\]
+\cite[Def.~1.1 and Thm.~A]{Cheng2026Vanishing}.
+Here $L_D$ is the corresponding line-bundle class in the matroid $K$-ring,
+and $A^1(M)$ is the degree-one part of the
+\hyperref[matroidChowRing]{Chow ring}. The result does not require
+representability; it concerns the combinatorial nef cone defined in the paper.
+
 
 \section[matroidCharacteristicPolynomial]{The characteristic polynomial of a matroid}
 
@@ -699,6 +731,23 @@ is log-concave.  Their proof derives a weighted inequality for flats from the
 Hodge--Riemann relations for the Chow ring of $M$, and also proves the
 points--lines--planes conjecture \cite{DongLiu2026x}.
 
+
+\subsection[matroidResonance]{Orlik--Solomon algebras and resonance}
+
+Over a field of characteristic different from two, the Orlik--Solomon
+algebra $\mathrm{OS}(M)$ is the exterior algebra on generators indexed by
+the ground set, modulo the boundaries of circuit monomials, where the
+boundary is the graded derivation sending each generator to $1$.
+Multiplication by a degree-one element $w$ gives a differential since
+$w^2=0$. The \defin{resonance varieties} record the loci where
+$H^p(\mathrm{OS}(M),w)$ is nonzero.
+\name{Graham Denham} and \name{Prajwal Udanshive} compute these loci in
+all degrees for loopless \hyperref[schubertMatroidDefinition]{Schubert matroids},
+using a cohomology formula indexed by connected flats
+\cite[Thm.~1.2]{DenhamUdanshive2026x}.
+Their proof identifies Orlik--Solomon algebras of a larger class, called
+arboreal matroids, with exterior face rings of broken-circuit complexes
+\cite[Thm.~1.4]{DenhamUdanshive2026x}.
 
 \section[KazhdanLusztig]{Kazhdan--Lusztig polynomials}
 \label{matroidKazhdanLusztigPolynomial}
@@ -1010,6 +1059,14 @@ developed in \cite{Branden2007,ChoeWagner2006}; more recent related results
 are given by \name{Mario Kummer} and \name{David Sawall}
 \cite{KummerSawall2025}.
 
+\name{Eren Ercan}'s preprint studies matrix-valued entropy for homogeneous
+Lorentzian probability laws. Uniformly retaining $\ell$ of $r$ particles
+contracts the entropy of the conditional expectation by at most $\ell/r$,
+uniformly in matrix size and positive external weights
+\cite[Thm.~1.1]{Ercan2026Entropy}.
+Applied to matroid basis laws, this yields matrix concentration inequalities
+and results on the spectra of basis-exchange walks.
+
 \subsection[matroidVariantsAdjacentClasses]{Variants and adjacent classes}
 
 There are several useful recent variants and adjacent classes.
@@ -1060,6 +1117,21 @@ greedy algorithm.  Ordinary matroids and flag matroids are the type $A$
 examples.
 \end{definition}
 
+\defin{Symplectic matroids} are the type $C$ Coxeter matroids. Their bases
+are subsets of a signed ground set containing at most one of $e,e^*$;
+representations come from totally isotropic subspaces for the standard
+symplectic form. The graphical symplectic matroid $S(G)$ of
+\name{Timothy Y. Chow} has an independent admissible signed edge set
+precisely when each component is a tree or
+has one cycle containing an odd number of starred edges.
+\name{Sayantan Ganguly} proves that, for a $3$-connected simple graph $G$,
+$S(G)$ is representable over a field $\mathbb{F}$ if and only if
+$\mathbb{F}$ has characteristic two, $G$ has no two vertex-disjoint cycles,
+and either $|\mathbb{F}|>2$ or $G\cong K_5$
+\cite[Thm.~6.11]{Ganguly2026x}.
+This concerns symplectic representations of $S(G)$, not ordinary
+representations of the graphic matroid.
+
 \name{Ethan Partida} studies shifted and threshold matroids \cite{Partida2026}.
 \name{Sebastian Degen} and \name{Lukas Kühne} show that most $q$-matroids are
 not representable \cite{DegenKuhne2024x}.  \name{Michela Ceria},
@@ -1080,6 +1152,19 @@ tropicalizations of quadrics for the orthogonal Grassmannian
 \name{Matthew Baker}, \name{Hope Dobbelaere}, \name{Brennan Fullmer}, and
 \name{Patrik Gajdoš} introduce matroid bingo as a characterization of matroids
 \cite{BakerDobbelaereFullmerGajdos2025x}.
+In this game the cards are the circuits, and ground-set elements are
+called in uniformly random order without replacement. The first completed
+circuit wins. For a matroid on $n$ elements with at least one circuit, let
+$T$ be the winning round and $i_t$ the number of independent $t$-subsets.
+Then
+\[
+ \Pr(T>t)=\frac{i_t}{\binom nt}.
+\]
+Baker proves that the conditional probability
+$\Pr(T=t\mid T>t-1)$ is weakly increasing for $1\leq t\leq r+1$,
+where $r$ is the rank \cite[Thm.~0.3]{Baker2026Bingo}.
+The proof uses log-concavity of $i_t/\binom nt$, connecting the game to
+\hyperref[matroidLogConcavityStability]{matroid log-concavity}.
 
 \subsection[matroidApplicationsMisc]{Miscellaneous appearances}
 

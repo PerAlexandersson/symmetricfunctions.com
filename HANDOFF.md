@@ -1,5 +1,31 @@
 # Handoff
 
+## Done: matroids and pattern survey — 2026-11-03
+
+Content worker releases `tex-source/matroids.tex`,
+`tex-source/permutationPatterns.tex`, `bibliography.bib`, and this opening.
+Clean master intake at f045b23; previous ownership released. All seven
+follow-up candidates checked against primary PDFs, cached with extracted text
+in `/papers`. Six new references added to matroids: Fu's basis/circuit bound
+(2610.11829v3, Thms. 1.1--1.2); Cheng's rank-three numerical vanishing
+(2610.41631v1, Def. 1.1/Thm. A); Denham--Udanshive's resonance calculation
+(2611.01246v1, Thms. 1.2/1.4); Ercan's matrix entropy contraction
+(2611.00626v1, Thm. 1.1); Ganguly's graphical symplectic representations
+(2611.01241v1, Thm. 6.11); Baker's increasing bingo hazard
+(2610.41985v1, Thm. 0.3). Retained exact hypotheses; numerical vanishing
+is for the combinatorial nef cone and symplectic representations are not
+ordinary graphic representations. These are preprint references, no journal
+DOIs supplied by the API. Collision-safe bibliography keys used.
+Vatter was already cited on permutationPatterns. Expanded the existing
+description and pinned 2602.16355v3: four themes and explicit summer-2025
+problem-status perspective, with later progress in its final section.
+Academic-writing guidance used for compact exposition and definitions.
+`make Q=1`, `make check`, `git diff --check` pass; symlink scan empty.
+Chromium at 375/light and 1366/dark: no math errors or broken internal links;
+rendered screenshots inspected (`/tmp/symcat-matroid-*.png`). Existing 31px
+mobile overflow in the unchanged six-base set in matroidPolytopes persists;
+new sections fit. Source-only checkpoint; no deployment.
+
 ## Done: October 30 onward preprints — 2026-11-03
 
 Content worker releases this opening, `bibliography.bib`, and
