@@ -286,6 +286,14 @@ statement for hook monomial immanants at $q=1$: every such immanant is a
 nonnegative integer combination of Kazhdan--Lusztig immanants
 \cite[Thm.~3]{McNulty2026x}. This establishes the hook case of Haiman's
 $q=1$ conjecture, beyond nonnegativity on totally nonnegative matrices.
+In a separate preprint, McNulty verifies Haiman's full Hecke-algebra
+conjecture for $n\leq10$ by exact computation: the monomial virtual
+characters on the normalized Kazhdan--Lusztig basis have nonnegative,
+symmetric, unimodal coefficient sequences
+\cite[Thm.~1.3]{McNulty2026Finite}.
+At $q=1$, this gives Kazhdan--Lusztig positivity for every monomial
+immanant of these sizes, hence nonnegativity on
+\hyperref[totalPositivity]{totally nonnegative matrices}.
 \item
 \emph{2026: refinements and circular graphs.}
 OpenAI announces a proof of $q$-refined elementary positivity for naturally
@@ -478,3 +486,29 @@ more explicit.  The Macdonald expansion of
 coefficients.  Finally, \cite{Kravitz2026x} proves that the partitions which
 always have non-negative elementary coefficients for every finite graph are
 precisely the hook partitions.
+
+\subsection[chromaticSinkRealRooted]{Real-rooted sink specializations}
+
+Let $h:[n]\to[n]$ be nondecreasing with $h(i)\geq i$, and let $H_h$
+have edges $\{i,j\}$ for $i<j\leq h(i)$. Write
+$\chrom_{H_h}(X;q)=\sum_{\lambda\vdash n}c_\lambda(q)\elementaryE_\lambda(X)$.
+For an acyclic orientation $O$, let $\mathrm{sink}(O)$ count vertices with
+no outgoing edges, and let $\mathrm{asc}(O)$ count edges directed from a
+smaller to a larger label. The Shareshian--Wachs sink identity gives
+\[
+ S^a_{H_h}(t;q)
+ =\sum_{O\in\mathrm{AO}(H_h)}q^{\mathrm{asc}(O)}t^{\mathrm{sink}(O)}
+ =\sum_{\lambda\vdash n}c_\lambda(q)t^{\ell(\lambda)}
+\]
+\cite[Thm.~5.3]{ShareshianWachs2016}.
+
+\begin{theorem}[Alexandersson--Leite, \cite[Thm.~5.2]{AlexanderssonLeite2026x}]
+For every real $q\geq0$, $S^a_{H_h}(t;q)$ has only real nonpositive zeros.
+\end{theorem}
+
+Thus the elementary coefficients grouped by partition length are
+nonnegative and log-concave, with no internal zeros, for each fixed
+$q\geq0$. This is a numerical statement after grouping, not
+coefficientwise log-concavity in $q$ of individual $c_\lambda(q)$.
+The theorem also has a
+\hyperref[unicellularLLTSinkSpecialization]{unicellular LLT formulation}.

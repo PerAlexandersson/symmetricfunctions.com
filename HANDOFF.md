@@ -1,5 +1,42 @@
 # Handoff
 
+## Done: October 30 onward preprints — 2026-11-03
+
+Content worker releases this opening, `bibliography.bib`, and
+`tex-source/{hallLittlewood,chromaticEexpansion,chromaticQuasisymmetric,unicellular-llt,realRooted,macdonaldH,diagonalHarmonics,standardQuasiSymmetricFunctions,crystals,polytopes,preliminaries,totalPositivity,latticeModel,key}.tex`.
+Clean master intake at 3174384. Reviewed 261 feed entries dated October 30
+onward, including revisions; selected exact-version PDFs cached in `/papers`.
+Integrated eleven new references and revised coverage of 2512.05479v2:
+- 2610.41155v1: Hall--Littlewood parameter change; positivity now proved in
+  the integer-shift case, unimodality not asserted solved.
+- 2610.41502v1: sink real-rootedness theorem in chromaticEexpansion, with
+  chromaticQuasisymmetric/realRooted links and the plethystic LLT formulation.
+  Distinguished direct half-sink specialization and the q=1 cancellation.
+- 2611.02749v1 and 2611.00629v1: two-row N!/2 intersections and multivariate
+  diagonal harmonics, respectively, with exact hypotheses/preprint status.
+- 2611.02210v1: forest Monk order; 2610.41555v2: finite n<=10 computational
+  immanant positivity, distinct from the existing general hook theorem.
+- 2610.41929v1: alcove-walk crystals; 2610.42038v1: G2 BZ polytopes.
+- 2611.00872v1 and 2611.00435v1: rectangular tableau mean and partition
+  excedance generating function; 2611.01172v1: cumulant Hankel lifting.
+- 2512.05479v2: dedicated latticeModel subsection, linked from keys/crystals.
+  Separated original partition functions from Yang's state/crystal result.
+  Reused verified published originals: BBBG DOI 10.1016/j.jcta.2020.105354,
+  BSW 10.1112/jlms.12347 (Thms. 3.4/3.6; beta=0), and BS
+  10.1017/fms.2022.49. Yang's longest-coset-representative hypothesis retained.
+API bibliography used, with collision-safe McNulty/Wang/Zhu keys; no journal
+DOIs supplied for the eleven new preprints. Academic-writing guidance used.
+Deferred the more specialized rational equivariant Ehrhart (2610.41529),
+partial-flag spherical classification (2611.00321), and rank-three matroid
+vanishing (2610.41631) for fuller contextual/source review; no claims added.
+Unrelated graph/algorithm papers and already-covered revisions excluded.
+`make Q=1`, `make check`, `git diff --check` pass; symlink scan empty.
+Chromium checked all fourteen pages at 375/light and 1366/dark: no KaTeX
+errors, broken internal links, or horizontal overflow. Inspected screenshots
+under `/tmp/symcat-nov3-*.png`. Corrected a test-only nonexistent realRooted
+anchor to target the actual new sink cross-link; content links were valid.
+Source-only checkpoint; no deployment.
+
 ## Done: Walsh convolution and Lavi arXiv check — 2026-11-01
 
 Content worker releases `tex-source/realRooted.tex`, `bibliography.bib`, and this

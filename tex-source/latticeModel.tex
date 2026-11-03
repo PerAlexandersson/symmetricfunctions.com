@@ -85,9 +85,8 @@ combinatorics, see \cite{ZinnJustin2024x}.
 For lattice models for \hyperref[grothendieck]{Grothendieck polynomials}, see
 \cite{BrubakerFrechetteHardtTiborWeber2020x,BuciumasScrimshaw2020x}.
 
-A 5-vertex lattice model for \hyperref[key]{Demazure character} is given in \cite{Yang2025x}.
-A few years earlier, 5-vertex model for \hyperref[atom]{Demazure atoms}
- was described in \cite{BrubakerBuciumasBumpGustafsson2021}.
+For colored five-vertex realizations of keys and atoms, see
+\hyperref[latticeModelDemazure]{the subsection below}.
 
 \name{Konstantin Matveev} constructs positivity-preserving operators from the
 stochastic six-vertex model and applies them to Hall--Littlewood positivity
@@ -134,6 +133,44 @@ factorial Schur, and supersymmetric Schur polynomials, and satisfy Cauchy-type
 identities from the Yang--Baxter equation.
 For Borodin's higher-spin deformation of Hall--Littlewood functions,
 see \hyperref[spinHallLittlewoodRationalFunction]{spin Hall--Littlewood rational functions}.
+
+\subsection[latticeModelDemazure]{Keys, atoms, and colored five-vertex models}
+
+Let $\lambda$ be a partition with at most $r$ parts, $w\in\symS_r$,
+and $z=(z_1,\ldots,z_r)$.
+Write $\pi_w$ for the
+\hyperref[keyDefinitionOperators]{isobaric divided-difference operator}
+and $\bar\pi_w$ for the product of $\pi_i-1$ along a reduced word for $w$.
+With the boundary conventions of \cite[Sec.~1.1]{Yang2025x}, the open and
+closed colored five-vertex models satisfy
+\[
+ Z^{\mathrm{open}}_{\lambda,w}(z)=\bar\pi_w z^\lambda,
+ \qquad
+ Z^{\mathrm{closed}}_{\lambda,w}(z)=\pi_w z^\lambda.
+\]
+Thus their partition functions are respectively
+\hyperref[atom]{Demazure atoms} and \hyperref[key]{key polynomials}.
+The open-model formula and its atom realization originate in
+\cite{BrubakerBuciumasBumpGustafsson2021}.
+The $K$-theoretic models of
+\cite[Thms.~3.4 and~3.6]{BuciumasScrimshawWeber2020} realize
+\hyperref[lascoux]{Lascoux polynomials} and atoms and specialize at
+$\beta=0$ to these type $A$ models.
+The character/atom modification also appears in the
+type $B/C$ models of \cite{BuciumasScrimshaw2022}.
+
+\name{Yingzi Yang}'s new result concerns the states, not just their generating function:
+lattice moves and recoloring give the closed states the corresponding
+\hyperref[crystals]{Demazure crystal} structure
+when $w$ is the longest representative of its coset modulo the stabilizer
+of $\lambda$ \cite[Thm.~1.2]{Yang2025x}. The partition-function relation is
+\[
+ Z^{\mathrm{closed}}_{\lambda,w}
+ =\sum_{v\leq w} Z^{\mathrm{open}}_{\lambda,v},
+\]
+where $\leq$ is Bruhat order. The revised preprint also constructs closed
+bosonic models with Demazure--Lusztig recursions; at parameter $t=0$ their
+states again realize Demazure crystals \cite[Sec.~6]{Yang2025x}.
 
 \subsection[bessenrodtStanleyPolynomials]{Bessenrodt--Stanley polynomials and the octahedron recurrence}
 

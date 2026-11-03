@@ -126,3 +126,24 @@ associated Jacobi tails.  His second $q$-deformation gives a Narayana kernel
 whose triangle is TNN for $\theta>-1$, while its associated square is strictly
 totally positive
 \cite[Thm.~2.1 and Thms.~12.1, 12.3]{Zeng2026qNarayana}.
+
+\subsection[hankelCumulantLifting]{Cumulant lifting}
+
+A real sequence $(a_n)_{n\geq0}$ is a \defin{Stieltjes moment sequence}
+if $a_n=\int_0^\infty x^n\,d\mu(x)$ for a nonnegative measure with all
+moments finite. For real $\kappa_1,\kappa_2,\ldots$, define $B_n(y)$ formally by
+\[
+ \sum_{n\geq0}B_n(y)\frac{t^n}{n!}
+ =\exp\left(y\sum_{n\geq1}\kappa_n\frac{t^n}{n!}\right).
+\]
+\begin{theorem}[\cite[Thm.~1.6]{Zhu2026Cumulants}]
+The sequence $(B_n(y))_{n\geq0}$ is coefficientwise Hankel-totally
+nonnegative if and only if $(\kappa_{n+1})_{n\geq0}$ is a Stieltjes
+moment sequence. Under these conditions, for every Stieltjes moment
+sequence $(a_n)$, the sequence
+\[
+ F_n(y)=\sum_{j=0}^n\binom{n}{j}a_{n-j}B_j(y)
+\]
+is also coefficientwise Hankel-totally nonnegative.
+\end{theorem}
+No convergence of the exponential generating functions is required.

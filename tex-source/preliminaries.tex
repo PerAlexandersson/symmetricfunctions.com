@@ -67,6 +67,21 @@ and corresponds to transposing the (English) Young diagram.
 Thus, the conjugate of $(7,5,5,4,3)$ is $(5,5,5,4,3,1,1)$, which is simply
 the sizes of the columns.
 
+\subsection[partitionExcedances]{Excedances of partitions}
+
+For a partition $\lambda$, an \defin{excedance} is an index
+$1\leq i\leq\ell(\lambda)$ with $\lambda_i>i$; a \defin{deficiency}
+satisfies $\lambda_i<i$. Let $\mathrm{exc}(\lambda)$ count excedances.
+\name{George E. Andrews} and \name{Brian Hopkins} give the generating function
+\[
+ \sum_\lambda w^{\mathrm{exc}(\lambda)}q^{|\lambda|}
+ =1+\sum_{d\geq1}
+ \frac{w^{d-1}q^{d^2}(1-q^d+wq^d)}{(q;q)_d^2},
+ \qquad (q;q)_d=\prod_{i=1}^d(1-q^i)
+\]
+\cite[Thm.~6]{AndrewsHopkins2026x}. The sum includes the empty partition;
+the index $d$ on the right is the \hyperref[durfeeSize]{Durfee size}.
+
 \subsection[compositions]{Compositions and weak compositions}
 
 A \defin{composition}\label{compositionDefinition}\label{weakCompositions}
@@ -301,6 +316,18 @@ The \defin{tableau major index}\label{tableauMajorIndex} is
 $\maj(T)  \coloneqq \sum_{i \in \DES(T)} i$.
 Thus, $\maj(T) = \maj(\rw(T)^{-1})$.
 
+
+\subsection[rectangularTableauMean]{An entry statistic in rectangular tableaux}
+
+Let $T$ be uniformly distributed over $\SYT(n^k)$, with $k$ rows and
+$n$ columns in English notation, where $n,k\geq1$. Then
+\[
+ \mathbb{E}[T(k,1)]=\frac{k(nk+1)}{n+k}.
+\]
+More precisely, if $f^\lambda=|\SYT(\lambda)|$, then
+$\sum_{T\in\SYT(n^k)}T(k,1)=f^{(n+1,n^{k-1})}$
+\cite[Cor.~5.6]{PanQiuWangWang2026x}.
+The mean follows by applying the hook-length formula to this ratio.
 
 \subsection[ssytAsLatticePaths]{Semistandard tableaux as lattice paths}
 
