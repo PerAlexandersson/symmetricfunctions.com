@@ -16,7 +16,10 @@ Academic-writing guidance used for concise definitions and notation.
 `make Q=1`, `make check`, `git diff --check` pass; symlink scan empty.
 Chromium at 375/light and 1366/dark: all three pages pass math, internal-link,
 and width checks; screenshots inspected under `/tmp/symcat-rooted-*.png`.
-Source only; not deployed.
+Source only; not deployed. Content checkpoint e62c2d4 is local: initial push
+returned GitHub Internal Server Error; subsequent read-only remote check
+failed with `Permission denied (publickey)`, so the retry push did not run.
+No authentication configuration changed. Push remains pending.
 
 ## Deployed — 2026-11-03
 
