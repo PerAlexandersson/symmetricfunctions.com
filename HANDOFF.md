@@ -1,5 +1,23 @@
 # Handoff
 
+## Done: rooted Hopf algebras v2 — 2026-11-04
+
+Content worker releases `tex-source/algebras-and-rings.tex`,
+`tex-source/ncSchur.tex`, `tex-source/nonCommutativeFunctions.tex`,
+`bibliography.bib`, and this opening. Clean intake at fb95276; earlier
+ownership released. Expanded existing coverage using cached 2610.21289v2,
+not a duplicate entry. Added root definition, finite-type hypotheses,
+initial NSym morphism (Thm. 3.2), natural raising expressions (Thm. 5.1),
+and Macdonald/permutation applications (Thm. 5.11/Prop. 7.2). Added NCSym
+normalized-root embedding and set-partition basis discussion (Prop. 6.1,
+Prop. 6.4/Thm. 6.5), with reciprocal NSym/NCSym/algebra links.
+Existing bibliography pinned to v2; no journal DOI in cached metadata.
+Academic-writing guidance used for concise definitions and notation.
+`make Q=1`, `make check`, `git diff --check` pass; symlink scan empty.
+Chromium at 375/light and 1366/dark: all three pages pass math, internal-link,
+and width checks; screenshots inspected under `/tmp/symcat-rooted-*.png`.
+Source only; not deployed.
+
 ## Deployed — 2026-11-03
 
 User authorized deployment. Clean 442cfad passed `make Q=1`, `make check`,
