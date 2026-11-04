@@ -1,5 +1,13 @@
 # Handoff
 
+## Deployed — 2026-11-04
+
+User-authorized deployment of clean 641dec5 passed `make Q=1`, `make check`,
+and `git diff --check`. Bridge receipt `20261104T113957-4eea71f5faf6`
+reports deployed with matching Pagefind manifest. Live HTTP/content checks
+passed for algebras-and-rings, ncSchur, and nonCommutativeFunctions.
+Content worker briefly claimed/released this opening for the deployment record.
+
 ## Done: rooted Hopf algebras v2 — 2026-11-04
 
 Content worker releases `tex-source/algebras-and-rings.tex`,
