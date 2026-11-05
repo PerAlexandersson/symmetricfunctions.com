@@ -198,7 +198,7 @@ We then have the following relation:
 
 \end{enumerate}
 
-In all examples below, $\symS_n$ acts on the space by permuting the variable indices.
+In the following polynomial examples, $\symS_n$ acts by permuting variable indices.
 
 \begin{example}
 Let $M = \langle x_1 + x_2 + x_3 \rangle$. This is a one-dimensional vector space,
@@ -317,6 +317,198 @@ Frobenius characteristic} is explicitly
 
 
 
+
+\subsection[regularMatrixModules]{Examples from regular zero--one matrices}
+
+For $n\geq1$ and $0\leq k\leq n$, let $\mathcal M_{n,k}$ be the set
+of $n\times n$ zero--one matrices with every row and column sum equal to $k$.
+Independent row and column permutations give the action
+$(\sigma,\tau)A=P_\sigma A P_\tau^{-1}$ of
+$\symS_n\times\symS_n$, where $P_\sigma$ is a permutation matrix.
+We use the \defin{formal permutation module}
+$V_{n,k}=\setC[\mathcal M_{n,k}]$: its basis consists of independent symbols
+$[A]$, not the numerical matrices in their ordinary linear span.
+Its character counts matrices fixed by $(\sigma,\tau)$.
+The examples below use the orbit--stabilizer description of permutation
+modules and the Frobenius characteristic of
+\hyperref[spechtTabloids]{Young permutation modules}; see \cite{Sagan2001}.
+
+For $k\geq1$, these matrices are precisely sums of $k$ permutation matrices
+with pairwise disjoint supports. Indeed, their bipartite graphs are
+$k$-regular. For a set $S$ of row vertices, counting incident edges gives
+$k|S|\leq k|N(S)|$, so Hall's theorem supplies a perfect matching;
+removing it and inducting gives the decomposition.
+Listing the column selected in each row by each matching gives a
+$k\times n$ \defin{Latin rectangle}: each row is a permutation of $[n]$,
+and each column has distinct entries. Thus ordered decompositions, over all
+$A\in\mathcal M_{n,k}$, correspond to Latin rectangles
+\cite[Sec.~1]{Wanless1999}.
+
+\begin{example}[Row permutations and plethysm]
+\label{regularMatrixRowAction}
+Keep the columns labeled, and let
+$R_{n,k}(X)$ be the Frobenius characteristic of the row action.
+A row orbit is determined by the multiplicities $m_S$ of its row supports,
+where $S$ ranges over the $k$-subsets of $[n]$. The constraints are
+\[
+ \sum_Sm_S=n,\qquad \sum_{S\ni j}m_S=k\quad(1\leq j\leq n).
+\]
+The stabilizer is $\prod_S\symS_{m_S}$, so the orbit contributes
+$\prod_S\completeH_{m_S}(X)$. Consequently $R_{n,k}$ is
+$h$-positive, and
+\[
+ R_{n,k}(X)
+ =[z_1^k\dotsm z_n^k]\,
+ \completeH_n[X\,\elementaryE_k(z_1,\dotsc,z_n)].
+\]
+Here brackets inside a symmetric function denote
+\hyperref[plethysm]{plethystic substitution}; $[z_1^k\dotsm z_n^k]$
+extracts an ordinary monomial coefficient.
+To see the formula, expand
+\[
+ \sum_{\ell\geq0}\completeH_\ell[X\,\elementaryE_k(z)]t^\ell
+ =\prod_{|S|=k}\left(\sum_{r\geq0}
+       \completeH_r(X)t^r\prod_{j\in S}z_j^r\right),
+\]
+with the number of column variables fixed.
+Each factor chooses one support multiplicity.
+The \hyperref[schurCauchyFormula]{Cauchy identity} also gives
+\[
+ R_{n,k}(X)=\sum_{\lambda\vdash n}
+ \left\langle\schurS_\lambda[\elementaryE_k],
+                   \completeH_{(k^n)}\right\rangle\schurS_\lambda(X),
+\]
+where the bracket is the \hyperref[hallInnerProduct]{Hall inner product}.
+For example, $R_{n,1}=\completeH_1^n$ and $R_{n,n}=\completeH_n$.
+Complementation $A\mapsto J_n-A$, with $J_n$ the all-ones matrix,
+gives $R_{n,k}=R_{n,n-k}$.
+
+If entries may be arbitrary nonnegative integers, the row supports become
+multisets. Writing $\widehat R_{n,k}$ for the resulting row characteristic,
+the same argument replaces $\elementaryE_k$ by $\completeH_k$:
+\[
+ \widehat R_{n,k}(X)
+ =[z_1^k\dotsm z_n^k]\,
+ \completeH_n[X\,\completeH_k(z_1,\dotsc,z_n)].
+\]
+\end{example}
+
+\begin{example}[Two matchings and dihedral stabilizers]
+\label{regularMatrixTwoMatchings}
+For $k=2$, every graph is a disjoint union of even cycles.
+The row/column orbits are therefore indexed by
+$\lambda=(2^{a_2}3^{a_3}\dotsm)\vdash n$, with no parts equal to $1$:
+a part $m$ represents a cycle $C_{2m}$.
+The color-class-preserving automorphism group of $C_{2m}$ is the
+dihedral group $D_m$ of order $2m$; for $m=2$ it is
+$D_2\cong\symS_2\times\symS_2$.
+Thus the stabilizer of type $\lambda$ is the naturally embedded subgroup
+\begin{align*}
+ H_\lambda&=\prod_{m\geq2}(D_m\wr\symS_{a_m}),\\
+ V_{n,2}&\cong\bigoplus_{\substack{\lambda\vdash n\\a_1=0}}
+       \operatorname{Ind}_{H_\lambda}^{\symS_n\times\symS_n}\mathbf1.
+\end{align*}
+Here the wreath product permutes equal-sized components as well as acting
+within each one. With $z_\lambda=\prod_m m^{a_m}a_m!$, the orbit has size
+$(n!)^2/(2^{\ell(\lambda)}z_\lambda)$.
+
+For the row action alone, identical rows occur exactly in the $C_4$
+components. Their stabilizer is
+$(\symS_2)^{a_2}\times(\symS_1)^{n-2a_2}$. Dividing the full orbit size
+by the row-orbit size gives
+\[
+ R_{n,2}(X)=
+ \sum_{\substack{\lambda\vdash n\\a_1=0}}
+ \frac{n!\,2^{a_2}}{2^{\ell(\lambda)}z_\lambda}
+ \completeH_2(X)^{a_2}\completeH_1(X)^{n-2a_2}.
+\]
+At $n=4$, the types $(4)$ and $(2,2)$ have respectively $72$ and $18$
+matrices, and each type has three row orbits. Hence
+\[
+ R_{4,2}=3\completeH_1^4+3\completeH_2^2,\qquad
+ \dim V_{4,2}=3\cdot24+3\cdot6=90.
+\]
+
+The matrices and their decompositions are different sets.
+If $A$ has $c$ cycle components, alternating the two matching colors gives
+$2^c$ ordered decompositions and $2^{c-1}$ unordered decompositions.
+Thus only connected graphs have a unique unordered decomposition.
+For example, the block diagonal matrix with two $2\times2$ all-ones blocks
+has two unordered decompositions.
+\end{example}
+
+\begin{example}[Two-alphabet Frobenius series]
+\label{regularMatrixTwoAlphabets}
+Write $F_{n,2}(X,Y)$ for the characteristic of $V_{n,2}$, normalized by
+\[
+ F_{n,2}(X,Y)=\frac1{(n!)^2}
+ \sum_{\sigma,\tau\in\symS_n}\chi_{n,2}(\sigma,\tau)
+ \powerSum_{\operatorname{type}(\sigma)}(X)
+ \powerSum_{\operatorname{type}(\tau)}(Y).
+\]
+The coefficient of $\schurS_\alpha(X)\schurS_\beta(Y)$ is the multiplicity
+of the outer tensor product $S^\alpha\boxtimes S^\beta$.
+For a connected cycle, its characteristic is
+\[
+ C_m(X,Y)=\frac1{2m}\sum_{g\in D_m}
+ \powerSum_{\operatorname{type}_{\rm row}(g)}(X)
+ \powerSum_{\operatorname{type}_{\rm col}(g)}(Y).
+\]
+The two cycle types come from the actual row and column actions of $g$;
+they need not coincide. For even $m$, a reflection fixes two vertices
+in one class and none in the other.
+
+Assembling an unordered set of components gives
+\[
+ \sum_{n\geq0}t^nF_{n,2}(X,Y)
+ =\operatorname{Exp}\left[\sum_{m\geq2}t^mC_m(X,Y)\right],
+ \qquad F_{0,2}=1.
+\]
+Here $\operatorname{Exp}[A]=\exp(\sum_{r\geq1}\psi_r(A)/r)$, where
+$\psi_r$ replaces $p_i(X),p_i(Y),t$ simultaneously by
+$p_{ri}(X),p_{ri}(Y),t^r$. Equivalently, the type-$\lambda$ contribution is
+$\prod_{m\geq2}\completeH_{a_m}[C_m]$, the characteristic of the
+wreath-product orbit above. This is the usual induction/plethysm
+correspondence \cite[Chap.~I, Sec.~8]{Macdonald1995}.
+For example,
+\[
+ C_2=\completeH_2(X)\completeH_2(Y),\qquad
+ F_{4,2}=C_4+\completeH_2[C_2].
+\]
+Burnside's orbit count is the trivial multiplicity:
+$\langle F_{n,2},\completeH_n(X)\completeH_n(Y)\rangle=p(n)-p(n-1)$
+for $n\geq1$, where $p(n)$ is the partition number.
+\end{example}
+
+\begin{example}[Diagonal restriction versus numerical span]
+\label{regularMatrixDiagonalAction}
+Restricting to $(\sigma,\sigma)$ acts by simultaneous relabeling.
+If $F_{n,2}=\sum_{\alpha,\beta}m_{\alpha,\beta}
+\schurS_\alpha(X)\schurS_\beta(Y)$, its characteristic becomes
+\[
+ \sum_{\alpha,\beta}m_{\alpha,\beta}
+       (\schurS_\alpha*\schurS_\beta),
+\]
+where $*$ is the \hyperref[schurKroneckerCoefficients]{Kronecker product}.
+Setting $X=Y$ instead gives an ordinary product of degree $2n$, not this
+degree-$n$ characteristic.
+
+For $n=3$, every matrix is $J_3-P$ for a permutation matrix $P$.
+Independent row/column relabeling gives
+$F_{3,2}=\sum_{\lambda\vdash3}\schurS_\lambda(X)\schurS_\lambda(Y)$.
+Diagonal relabeling is conjugation on $\symS_3$, whose fixed-point counts
+on the types $(1^3),(2,1),(3)$ are $6,2,3$. Thus its characteristic is
+\[
+ 3\schurS_3+\schurS_{21}+\schurS_{111}.
+\]
+The three trivial summands count the three conjugacy classes.
+
+In contrast, the numerical span of these six matrices has dimension $5$.
+Its constant part is spanned by $J_3$, and the zero-row-sum and
+zero-column-sum part is $S^{21}\boxtimes S^{21}$, of dimension $4$.
+Indeed, $A-\tfrac23J_3$ is nonzero in this irreducible outer tensor product,
+so its orbit spans that part. The formal module $V_{3,2}$ has dimension $6$.
+\end{example}
 
 \section[representationGln]{Representation theory of $\GL_n$}
 

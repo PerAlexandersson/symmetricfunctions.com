@@ -1,5 +1,26 @@
 # Handoff
 
+## Done: regular-matrix representation examples — 2026-11-05
+
+Content worker releases `tex-source/representationTheory.tex`,
+`tex-source/specht-modules.tex` (cross-link), `bibliography.bib`, and this opening.
+Clean intake at 45c8010. Added concise examples from the user's notes:
+formal permutation modules on regular zero-one matrices; row-action plethysm;
+degree-two dihedral stabilizers; independent versus diagonal actions.
+Included elementary derivations, the 90-matrix n=4 example, simultaneous
+two-alphabet Adams operations, and the n=3 conjugation/numerical-span contrast.
+Kept sums distinct from decompositions; omitted the long general uniqueness
+and enumeration digressions. Linked Specht modules, plethysm, Cauchy, Hall inner
+product and Kronecker coefficients. Academic-writing guidance used to reduce
+the notes to four examples with explicit actions and conventions.
+Verified Wanless (1999) against publisher metadata and primary PDF, cached as
+807; DOI 10.37236/1441. Bibliography obtained from the site's DOI API.
+Small cases checked by orbit sizes and the S3 character table, not numerical
+fitting. `make all Q=1`, `make check Q=1`, and `git diff --check` pass.
+Chromium at 1366/375: math, internal links, anchors and width button pass;
+screenshots inspected under `/tmp/regular-matrix-*.png`. Symlink scan empty.
+Source only; no deployment authorized.
+
 ## Deployed: Toeplitz page and exposition cleanup — 2026-11-05
 
 User-authorized deployment of clean `4d6c5f82b4cb2d2738829bfed74a51e6661bed0d`.
