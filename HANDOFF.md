@@ -1,5 +1,32 @@
 # Handoff
 
+## Done: Toeplitz spectra and BKW — 2026-11-05
+
+Content worker releases `tex-source/realRooted.tex`,
+`tex-source/polynomialRecurrences.tex`, `bibliography.bib`, and this opening.
+Clean intake at 8681eba; prior ownership released. Source only, no deployment.
+Added the supplied positive-outer-product classification and proof on realRooted,
+attributed as an argument communicated by Per, not as a published theorem.
+Checked middle-root ordering, repeated critical points, shifted TNN minor,
+Schur determinant, and discriminant boundary. Recurrence page adds Schur/Widom
+expansion, reciprocal sextic, generating function and backward identity;
+BKW restricted to its analytic/nondegeneracy hypotheses. Reciprocal links
+connect both pages and existing total-positivity/Schur material.
+Five references added: Schmidt--Spitzer, Shapiro--Stampach original and correction,
+Rohner--Thalhammer ETH report, Ndikubwayo (different Hessenberg band shape).
+Published DOIs/metadata checked; counterexample refutes even Jordan-curve to
+real-limit implication, not real-limit to finite-real. Opposite-sign claims omitted.
+Primary PDFs cached (803--805), existing Alexandersson 2012 cache 748 reused.
+Academic-writing guidance used for definitions, attribution and proof exposition.
+Polytool MCP transport closed, so no computational certificate claimed.
+Symbolic review recorded in polynomial-lab project
+`symcat-balanced-toeplitz-20261105`, evidence `symbolic-review`; append tool left
+an empty JSON file, repaired in that task-owned record and verified lab reload.
+`make Q=1`, `make check`, `git diff --check` pass; symlink scan empty.
+Chromium 375/light and 1366/dark: no math errors, broken main-content internal
+links or document overflow. Screenshots inspected under `/tmp/symcat-toeplitz-*`.
+Source only; not deployed.
+
 ## Deployed — 2026-11-04
 
 User-authorized deployment of clean 641dec5 passed `make Q=1`, `make check`,
