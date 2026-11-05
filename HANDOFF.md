@@ -1,5 +1,27 @@
 # Handoff
 
+## Done: Ndikubwayo proof repair investigation — 2026-11-05
+
+Content worker releases this opening and `untracked/ndikubwayo-repair.md`.
+Research follow-up, no public page edits or deployment; width-control work preserved.
+The local ignored note contains a full symbolic proof for gamma>0 with all
+critical points real: construct the conjugate-root arc below a common radius,
+prove the other roots are real of opposite signs and larger modulus, and sample
+theta=k*pi/(n+2) to obtain n sign changes. Includes repeated critical roots.
+Together with the prior gamma<0 TNN argument, this proves sufficiency of the
+whole real-critical case. No novelty/formal-verification claim.
+Found exact counterexample to arXiv:2011.13258v1 Thm 2(b) as printed:
+(alpha,beta,gamma)=(-3/2,4,-1), inequalities 2 and 36, disc(G)=-78003,
+but P3=t^3-3t+4 has discriminant -324. First failure n=3.
+Polytool CLI 0.6.0 (7b98f66ecd43) independently confirms both discriminants
+and non-real-rootedness, using integer-scaled 2G. No new computation code.
+Do NOT attribute this exact inequality error to the journal version yet:
+publisher PDF retrieval failed and DiVA has no full text. Cached source is 741.
+Possible missing sign restriction on 4*alpha*gamma-beta^2 needs investigation;
+the positive branch is not proved here. Proof-finder guidance used; Markdown
+note retains proof/evidence because prior polynomial-lab append left empty files.
+Documentation-only checkpoint; `git diff --check` passed. No site rebuild needed.
+
 ## Width-control first paint — deployed 2026-11-05
 
 Ownership released. Reading-page classification and layout classes are now in
