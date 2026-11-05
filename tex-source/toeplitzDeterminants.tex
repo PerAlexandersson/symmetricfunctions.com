@@ -1,0 +1,622 @@
+\metatitle{Toeplitz determinants and minors}
+\metadescription{Toeplitz minors and Schur functions, the Beraha--Kahane--Weiss theorem, limiting spectra, and direct real-rootedness proofs for pentadiagonal and Hessenberg sections.}
+\metakeywords{Toeplitz determinant, Toeplitz minor, Beraha--Kahane--Weiss, limiting spectrum, pentadiagonal matrix}
+
+\section[toeplitzDeterminants]{Toeplitz determinants and minors}
+
+Toeplitz minors connect \hyperref[schurS]{Schur functions} with
+\hyperref[polynomialRecurrences]{polynomial recurrences} and
+\hyperref[polynomialRootIntro]{real-rootedness}.
+We first describe the determinant identities and limiting-zero criteria,
+then give finite-size proofs for two five-diagonal band shapes.
+
+For a Laurent polynomial $b(z)=\sum_{k=-r}^s b_kz^k$, where
+$r,s\geq1$ and $b_{-r}b_s\ne0$, the \defin{Toeplitz sections} are
+\[
+ T_n(b)=(b_{i-j})_{i,j=1}^n,\qquad
+ P_n(t)=\det(tI-T_n(b)),\qquad P_0=1.
+\]
+The Laurent polynomial $b$ is the \defin{symbol}.
+A \defin{Toeplitz minor} is the determinant of a square submatrix obtained
+by selecting equally many rows and columns.
+
+\subsection[toeplitzSchurMinors]{Schur functions as minors}
+
+Let $h_m=\completeH_m(\xvec)$ be the complete homogeneous symmetric function,
+with $h_0=1$ and $h_m=0$ for $m<0$.
+For increasing nonnegative row indices $i_1<\dotsb<i_k$ and column indices
+$j_1<\dotsb<j_k$ with $i_\ell\geq j_\ell$, put
+\[
+ \lambda_p=i_{k+1-p}+p-k,\qquad
+ \mu_p=j_{k+1-p}+p-k\qquad(1\leq p\leq k).
+\]
+These are partitions with $\mu\subseteq\lambda$, and the
+\hyperref[skewJacobiTrudi]{skew Jacobi--Trudi identity} gives
+\[
+ \det(h_{i_p-j_q})_{p,q=1}^k=\schurS_{\lambda/\mu}.
+\]
+Indeed, reversing both index orders gives the matrix
+$(h_{\lambda_p-\mu_q-p+q})$ and leaves its determinant unchanged.
+If some $i_\ell<j_\ell$, the lower-triangular zero pattern makes the minor zero.
+The dual identity gives analogous formulas with elementary symmetric functions.
+
+Nonnegative specializations therefore give
+\hyperref[pfSchurJacobiTrudi]{totally non-negative Toeplitz matrices}.
+For the general connection with coefficient sequences and real zeros, see
+\hyperref[polyaFrequency]{Pólya frequency sequences};
+for banded minors, determinant formulas, and recurrences, see
+\cite{Alexandersson2012Toeplitz}.
+The \hyperref[toeplitzReciprocalRecurrence]{rectangular Schur formula below}
+makes the recurrence explicit for a balanced pentadiagonal matrix.
+
+\section[toeplitzBkw]{Beraha--Kahane--Weiss and limiting zeros}
+
+The characteristic roots of a linear recurrence also control where zeros accumulate as
+$n\to\infty$. This is the content of the Beraha--Kahane--Weiss theorem
+\cite{Beraha75limits}, also used in the
+\hyperref[berahaKahaneWeiss]{transfer-matrix setting}.
+We now let $x$ be complex and work on a domain where the characteristic roots
+and amplitudes are single-valued analytic functions.
+
+\begin{theorem}[Beraha--Kahane--Weiss, analytic form]
+\label{toeplitzBkwTheorem}
+Let $d\geq2$ and let $a_i,\lambda_i$ be analytic on a connected open set
+$\Omega\subseteq\setC$, with none identically zero. Suppose
+$\lambda_i\not\equiv\omega\lambda_j$ for $i\ne j$ and every constant
+$|\omega|=1$. Set
+\[
+ P_n(x)=\sum_{i=1}^d a_i(x)\lambda_i(x)^n.
+\]
+Call $i$ \defin{dominant} at $x$ if
+$|\lambda_i(x)|=\max_j|\lambda_j(x)|$.
+A point $x\in\Omega$ is a limit of zeros $x_k$ of $P_{n_k}$ with
+$n_k\to\infty$ if and only if either
+\begin{itemize}
+\item exactly one index $i$ is dominant and $a_i(x)=0$; or
+\item at least two indices are dominant.
+\end{itemize}
+Every neighborhood of such a point contains a zero of $P_n$ for all
+sufficiently large $n$.
+\end{theorem}
+
+In \cite[Thm.~1.5]{Sokal2004ChromaticRoots}, the condition on constant
+unit-modulus ratios is imposed on branches that are dominant on a set
+with nonempty interior.
+
+\begin{example}
+For $P_n(x)=1+x^n+(x+1)^n$, all amplitudes equal $1$, so there are no
+isolated limits arising from amplitude zeros. The limiting set is
+\begin{align*}
+ &\{x:|x|=1,\ |x+1|\leq1\}\\
+ {}\cup{}&\{x:|x+1|=1,\ |x|\leq1\}\\
+ {}\cup{}&\{x:|x|=|x+1|\geq1\}.
+\end{align*}
+The first two sets are circular arcs. The third consists of the two rays
+\[
+ \operatorname{Re}x=-\tfrac12,\qquad
+ |\operatorname{Im}x|\geq\tfrac{\sqrt3}{2}.
+\]
+All three branches meet at $(-1\pm i\sqrt3)/2$. These equations follow by
+comparing the moduli of $1,x,x+1$. In particular, the nonreal limiting points
+force nonreal zeros for all sufficiently large $n$.
+\end{example}
+
+The \hyperref[firstDerivativeCriterion]{derivative-recurrence criterion} uses the values and logarithmic
+derivatives of the characteristic roots; BKW uses their relative moduli.
+Both depend on the amplitudes, which are determined by the initial polynomials.
+
+For repeated poles the amplitudes $a_i(n,x)$ depend polynomially on $n$,
+so the displayed theorem does not apply directly. A common scalar factor
+in $n$ can be removed for large $n$; general polynomial-in-$n$ amplitudes
+require an extension.
+
+\section[toeplitzSpectra]{Real spectra of banded Toeplitz matrices}
+
+The \defin{limiting spectrum} is
+\[
+ \Lambda(b)=\{t\in\setC:\lim_{n\to\infty}
+ \operatorname{dist}(t,\operatorname{spec}T_n(b))=0\}.
+\]
+Order the roots of $z^r(b(z)-t)$ by modulus, with multiplicity.
+The Schmidt--Spitzer theorem \cite{SchmidtSpitzer1960} gives
+\[
+ \Lambda(b)=\{t:|z_r(t)|=|z_{r+1}(t)|\}.
+\]
+See also the \hyperref[toeplitzReciprocalRecurrence]{recurrence and BKW interpretation}.
+
+For real coefficients, \name{Boris Shapiro} and \name{František Štampach}
+\cite{ShapiroStampach2019,ShapiroStampach2023Correction} considered three conditions:
+all finite spectra are real; $\Lambda(b)\subseteq\setR$; and
+$b^{-1}(\setR)$ contains a Jordan curve surrounding $0$.
+The first implies the second, and the second implies the third.
+The claimed converse involving the Jordan curve was withdrawn in the correction.
+\name{Fabian Rohner} and \name{Clemens Thalhammer}
+\cite[Thm.~1.3]{RohnerThalhammer2026} disprove even the implication from
+the Jordan-curve condition to a real limiting spectrum, using the real symbol
+\[
+ b(z)=\left(z^2+97z+103-\frac{10201}{z}\right)^2.
+\]
+Their example does not settle whether a real limiting spectrum forces every
+finite spectrum to be real. The following proposition settles this implication
+for balanced pentadiagonal symbols with positive product of the outer coefficients.
+The argument was communicated by \name{Per Alexandersson} in 2026.
+
+\subsection[toeplitzPentadiagonal]{Balanced pentadiagonal symbols}
+
+Suppose $b_{-2},\dotsc,b_2$ are real and $b_{-2}b_2>0$.
+Replacing $b(z)$ by $(b(\rho z)-b_0)/c$, where
+\begin{align*}
+ \rho&=(b_{-2}/b_2)^{1/4}>0,\\
+ c&=\operatorname{sgn}(b_2)\sqrt{b_{-2}b_2},
+\end{align*}
+preserves reality of the finite and limiting spectra: the substitution is
+a diagonal similarity, followed by a real shift and nonzero real scaling.
+We may therefore use the normalized symbol
+\[
+ b(z)=z^2+Az+Bz^{-1}+z^{-2},\qquad A,B\in\setR.
+\]
+
+\begin{proposition}
+For this symbol the following conditions are equivalent:
+\begin{enumerate}
+\item $P_n$ is real-rooted for every $n\geq1$;
+\item $P_n$ is real-rooted for every sufficiently large $n$;
+\item $\Lambda(b)\subseteq\setR$;
+\item $A=B$, or $(AB-16)^3\geq27(A^2-B^2)^2$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof*}
+The first two implications follow from the definition of $\Lambda(b)$.
+If $A=B$, every section is real symmetric. Assume henceforth that $A\ne B$.
+We first show that a nonreal critical point $w$ gives a nonreal point
+$b(w)\in\Lambda(b)$. Put
+\[
+ q_t(z)=z^4+Az^3-tz^2+Bz+1,\qquad
+ g(z)=z^3b'(z)=2z^4+Az^3-Bz-2.
+\]
+If $t=b(w)$ were real, the double root $w$ of $q_t$ would imply
+$q_t(z)=(z-w)^2(z-\bar w)^2$. Its constant coefficient gives $|w|=1$,
+and comparison of its cubic and linear coefficients gives $A=B$.
+Thus $t$ is nonreal.
+
+At this critical value,
+\[
+ q_t(z)=(z-w)^2\bigl(z^2+(A+2w)z+w^{-2}\bigr).
+\]
+The remaining roots divided by $w$ are the roots $y_1,y_2$ of
+$y^2+py+d$, where $p=2+A/w$ and $d=w^{-4}$.
+Write $R=|w|^2$ and $x=\operatorname{Re}w$.
+Taking real and imaginary parts of $g(w)=0$, for $x\ne0$, gives
+\[
+ A=\frac{R-R^{-1}}x-4x,\qquad
+ B=-\frac{R^2-1}x-\frac{4x}R.
+\]
+Also $p-\bar p d=(B-A/R)/w^3$. If $R\ne1$, these identities imply
+\[
+ \frac{|p-\bar p d|}{|1-|d|^2|}=\frac{\sqrt R}{|x|}>1.
+\]
+Now use the elementary identity
+\[
+ (1-|d|^2)^2-|p-\bar p d|^2
+ =(1-|y_1|^2)(1-|y_2|^2)|1-y_1\bar y_2|^2.
+\]
+Its left side is negative, so exactly one $y_j$ lies inside the unit circle
+and the other lies outside. The case $R=1$, $x\ne0$ would give $A=B$.
+If $x=0$, criticality gives $w=\pm i$, $B=-A$, and the same left side
+is $-4A^2<0$. Thus the double root occupies the middle two modulus ranks:
+\[
+ |z_1|<|z_2|=|z_3|<|z_4|.
+\]
+The Schmidt--Spitzer theorem gives $b(w)\in\Lambda(b)$.
+Consequently, a real limiting spectrum forces all four roots of $g$ to be real.
+
+Conversely, suppose all four critical points are real. Their product is $-1$,
+so three have one sign and one has the other, counting multiplicity.
+Replacing $z$ by $-z$ is an alternating diagonal similarity; we may assume
+three critical points are negative. On the negative axis, $b(z)$ tends to
+$+\infty$ at both ends. If these critical points are distinct, the two local
+minima and intervening maximum give a level $t_0$ with four negative
+solutions of $b(z)=t_0$. A double negative critical point $w$ instead gives
+a triple root of $q_{b(w)}$, whose remaining root is $w^{-3}<0$;
+a triple critical point gives a quadruple root. In all cases,
+\[
+ b(z)-t_0=z^{-2}\prod_{j=1}^4(z+\alpha_j),\qquad \alpha_j>0.
+\]
+Each lower bidiagonal matrix $T_{n+2}(z+\alpha_j)$ is
+\hyperref[totallyNonnegative]{totally non-negative}.
+The submatrix of their product in rows $3,\dotsc,n+2$ and columns
+$1,\dotsc,n$ is $T_n(b)-t_0I$, hence is totally non-negative.
+By the \hyperref[schurJacobiTrudi]{dual Jacobi--Trudi identity},
+\[
+ \det(T_n(b)-t_0I)=\schurS_{(n,n)}(\alpha_1,\dotsc,\alpha_4)>0.
+\]
+Its first upper and lower diagonals are positive. The oscillatory-matrix
+criterion therefore gives positive simple eigenvalues, as in the valid
+total-nonnegativity argument of \cite{ShapiroStampach2023Correction}.
+Adding back $t_0I$ proves reality of every finite spectrum.
+
+Finally,
+\[
+ \operatorname{Disc}(g)=4\bigl((AB-16)^3-27(A^2-B^2)^2\bigr).
+\]
+Since $g(0)=-2$ and $g$ is positive at both real infinities, it always
+has a positive and a negative real root. For nonzero discriminant,
+positive discriminant is therefore equivalent to four real roots.
+At zero discriminant, a double real root and a nonreal conjugate pair,
+or two conjugate double roots, would have positive product, contrary to $-1$.
+This proves the parameter criterion, including its boundary.
+\end{proof*}
+
+\section[toeplitzReciprocalRecurrence]{Toeplitz determinants and reciprocal roots}
+
+For the \hyperref[toeplitzPentadiagonal]{balanced pentadiagonal symbol}
+\[
+ b(z)=z^2+Az+Bz^{-1}+z^{-2},\qquad A,B\in\setR,
+\]
+put $P_n(t)=\det(tI-T_n(b))$ and $P_0=1$.
+Let $z_1,\dotsc,z_4$ be the roots of
+$q_t(z)=z^4+Az^3-tz^2+Bz+1$.
+The \hyperref[schurJacobiTrudi]{dual Jacobi--Trudi identity} gives
+$P_n(t)=(-1)^n\schurS_{(n,n)}(z_1,\dotsc,z_4)$.
+The Toeplitz determinant formula and Schur recurrence in
+\cite{Alexandersson2012Toeplitz} therefore give the six characteristic roots
+\[
+ \lambda_{ij}=-z_i z_j,\qquad 1\leq i<j\leq4.
+\]
+For distinct $z_i$, the corresponding expansion is
+\[
+ P_n(t)=\sum_{1\leq i<j\leq4}
+ \frac{(z_i z_j)^2(-z_i z_j)^n}
+ {\prod_{k\notin\{i,j\}}(z_i-z_k)(z_j-z_k)}.
+\]
+Thus the amplitudes are nonzero away from collisions of the symbol roots.
+The characteristic polynomial is
+\begin{align*}
+ D(u)&=\prod_{i<j}(u+z_i z_j)\\
+ &=u^6-tu^5+(AB-1)u^4+(2t+A^2+B^2)u^3\\
+ &\qquad +(AB-1)u^2-tu+1.
+\end{align*}
+Equivalently, summing the expansion gives
+\[
+ G(u)\coloneqq\sum_{n\geq0}P_n(t)u^n=\frac{1-u^2}{D(u)}.
+\]
+These polynomial identities extend to repeated symbol roots by continuity.
+In particular, $D$ specifies an order-six recurrence for $n\geq6$,
+with initial polynomials determined by this generating function;
+special parameters can reduce the minimal order.
+
+Since $z_1z_2z_3z_4=1$, complementary pairs of rates multiply to $1$.
+Writing $v=u+u^{-1}$ reduces $D(u)=0$ to
+\[
+ (v^2-4)(v-t)+ABv+A^2+B^2=0.
+\]
+Moreover, the rational generating function satisfies $G(1/u)=-u^4G(u)$.
+Extending the order-six recurrence backwards gives
+$P_{-1}=P_{-2}=P_{-3}=0$ and $P_{-4-n}=P_n$ for $n\geq0$.
+Indeed, the expansion of $G$ at infinity is
+$-\sum_{n<0}P_nu^n=-u^{-4}\sum_{n\geq0}P_nu^{-n}$.
+
+Order the symbol roots by modulus. The two largest pair-product moduli
+are $|z_3z_4|$ and $|z_2z_4|$, so a tie for dominance occurs precisely
+when $|z_2|=|z_3|$. On analytic domains satisfying the
+\hyperref[toeplitzBkwTheorem]{BKW nondegeneracy hypotheses}, the expansion
+above explains this equal-modulus locus as a limiting zero set.
+The \hyperref[toeplitzSpectra]{Schmidt--Spitzer theorem} supplies the
+global statement, including collisions and exceptional parameter choices.
+Reciprocal pairing gives the same locus for the backward recurrence;
+it does not by itself prove reality of finite spectra.
+For positive outer product, the
+\hyperref[toeplitzPentadiagonal]{critical-point and total-nonnegativity proof}
+does prove that a real limiting spectrum forces every $P_n$ to be real-rooted.
+
+\section[toeplitzHessenberg]{Five-term Hessenberg recurrences}
+
+Consider
+\[
+ P_n(t)=tP_{n-1}(t)+\alpha P_{n-2}(t)+\beta P_{n-3}(t)+\gamma P_{n-4}(t),
+ \qquad P_0=1,\quad P_{-1}=P_{-2}=P_{-3}=0,
+\]
+where $\alpha,\beta,\gamma\in\setR$ and $\gamma\ne0$.
+These are characteristic polynomials of the Toeplitz sections with symbol
+\[
+ b(z)=-z^{-1}+\alpha z-\beta z^2+\gamma z^3,\qquad
+ G(z)=z^2b'(z)=3\gamma z^4-2\beta z^3+\alpha z^2+1.
+\]
+The matrix is \defin{lower Hessenberg}: entries above the first
+superdiagonal vanish. It has one upper and three lower diagonals, unlike the
+\hyperref[toeplitzPentadiagonal]{balanced pentadiagonal case}.
+
+\begin{theorem}[Sufficiency in \cite[Thm.~5]{Ndikubwayo2022Toeplitz}]
+Every $P_n$ is real-rooted if either of the following holds:
+\begin{enumerate}
+\item[(a)] $G$ has four real roots, counted with multiplicity;
+\item[(b)] $G$ has two distinct real roots of opposite signs and a nonreal
+conjugate pair, and
+\[
+ 24\alpha\gamma-5\beta^2\geq0,\qquad
+ 64\gamma^3+(4\alpha\gamma-\beta^2)^2\geq0.
+\]
+\end{enumerate}
+\end{theorem}
+
+The published proof invokes the
+\hyperref[toeplitzSpectra]{Jordan-curve implication that fails in general}.
+We give direct proofs of these sufficiency statements below.
+The coefficient $24\alpha\gamma-5\beta^2$ is the published condition;
+the earlier preprint has a different inequality.
+
+\subsection[toeplitzRealCriticalHessenberg]{Four real critical points}
+
+We first prove case (a). Replacing $z$ by $-z$ gives the equivalent symbol
+\[
+ f(z)=z^{-1}+az+dz^2-\gamma z^3,\qquad a=-\alpha,\quad d=-\beta.
+\]
+
+\begin{proof*}[The case $\gamma<0$]
+Put $c=-\gamma>0$. The critical quartic $G(-z)$ has root product
+$-1/(3c)$, so three critical points have one sign and one has the other.
+Replacing $f(z)$ by $-f(-z)$, if needed, preserves reality of spectra and
+makes three critical points negative.
+On the negative axis $f$ tends to $-\infty$ at both ends.
+If its three critical points there are distinct, two local maxima and the
+intervening minimum give a level $t_0$ with four negative solutions.
+At a double critical point $w<0$, the kernel has a triple root $w$;
+its remaining root is $1/(cw^3)<0$. A triple critical point gives a
+quadruple root. Thus in every case
+\[
+ f(z)-t_0=cz^{-1}\prod_{j=1}^4(z+\delta_j),\qquad \delta_j>0.
+\]
+The bidiagonal-product argument from the
+\hyperref[toeplitzPentadiagonal]{balanced case}, now selecting rows
+$2,\dotsc,n+1$ and columns $1,\dotsc,n$, makes $T_n(f)-t_0I$
+totally non-negative. Its determinant is
+$c^n\schurS_{(n,n,n)}(\delta_1,\dotsc,\delta_4)>0$, and its first
+upper and lower diagonals are positive. The oscillatory-matrix criterion
+gives real simple eigenvalues.
+\end{proof*}
+
+\begin{proof*}[The case $\gamma>0$]
+Put $g=\gamma>0$, so that
+\[
+ f(z)=z^{-1}+az+dz^2-gz^3.
+\]
+Then
+\[
+ \sum_{n\geq0}P_n(t)u^n
+ =\frac1{1-tu+au^2+du^3-gu^4}.
+\]
+The polynomial $-z^2f'(z)=1-az^2-2dz^3+3gz^4=G(-z)$
+has four nonzero real roots. Their product is positive and the sum of
+their reciprocals is zero, so two are positive and two negative.
+Also $a>0$: the second elementary symmetric function of the reciprocal
+roots equals $-\frac12$ times the sum of their squares, and equals $-a$.
+
+Choose the smallest positive root $R$ of
+\[
+ H_*(r)=1-ar^2+2|d|r^3+3gr^4.
+\]
+Such a root exists because $H_*$ is one of $G(r),G(-r)$.
+Since $H_*(0)>0$, its derivative at its first root is nonpositive.
+Using $H_*(R)=0$ in $RH_*'(R)\leq0$ gives
+\[
+ |d|R^3+3gR^4\leq1. \tag{1}
+\]
+
+For $-1<x<1$, set
+\[
+ H_x(r)=1-ar^2-2dxr^3+g(4x^2-1)r^4.
+\]
+We have $H_x(R)<0$, since
+\[
+ H_x(R)-H_*(R)=-2(dx+|d|)R^3+4g(x^2-1)R^4<0.
+\]
+Moreover, on $0<r\leq R$,
+\[
+ \left(\frac{H_x(r)}{r^2}\right)''
+ =\frac6{r^4}+2g(4x^2-1)>0
+\]
+by (1), which implies $R^4\leq1/(3g)$.
+Since $H_x(r)/r^2$ tends to positive infinity at zero and is negative
+at $R$, strict convexity gives exactly one zero $r(x)$ in $(0,R)$,
+with negative derivative there. This zero varies continuously with $x$.
+
+For $0<\theta<\pi$, take $x=\cos\theta$, $r=r(x)$, and
+$t(\theta)=f(re^{i\theta})$. The equation $H_x(r)=0$ says exactly
+that $t(\theta)$ is real. The two other roots of
+$1-tz+az^2+dz^3-gz^4$ are the roots of
+\[
+ L(z)=z^2+(2rx-d/g)z-\frac1{gr^2}.
+\]
+They have opposite signs. In fact both lie outside $[-r,r]$, since
+\[
+ gr^2 L(\pm r)
+ =gr^4(1\pm2x)\mp dr^3-1
+ \leq3gr^4+|d|r^3-1<0.
+\]
+Write them as $s>r$ and $\ell<-r$, and put
+$\eta=r/s\in(0,1)$, $\zeta=r/\ell\in(-1,0)$.
+
+The map $\theta\mapsto t(\theta)$ is continuous and injective:
+the quartic at a fixed real $t$ has just one nonreal conjugate pair,
+which uniquely determines $\theta\in(0,\pi)$. Thus it is strictly monotone.
+
+It remains to count finite-size zeros. Define
+\[
+ U_j(x)=\frac{\sin((j+1)\theta)}{\sin\theta},\qquad
+ S_n(v)=\sum_{j=0}^n v^jU_{n-j}(x).
+\]
+The generating function factorization gives
+\[
+ r^nP_n(t(\theta))
+ =\frac{\eta S_n(\eta)-\zeta S_n(\zeta)}{\eta-\zeta}.
+\]
+A finite geometric-sum identity gives
+\[
+ S_n(v)=\frac{U_n(x)-vU_{n+1}(x)+v^{n+2}}{1-2vx+v^2}.
+\]
+At $\theta_k=k\pi/(n+2)$, for $k=1,\dotsc,n+1$,
+$U_{n+1}=0$ and $U_n=(-1)^{k+1}$. Since $|v|<1$,
+both $S_n(\eta)$ and $S_n(\zeta)$ have this sign.
+The weights $\eta$ and $-\zeta$ are positive, so
+\[
+ \operatorname{sgn}P_n(t(\theta_k))=(-1)^{k+1}.
+\]
+Strict monotonicity provides $n$ disjoint real intervals with sign changes.
+Since $P_n$ is monic of degree $n$, all its roots are real and simple.
+The argument includes repeated roots of $G$; only the strict interior
+inequalities $|x|<1$ and $r<R$ were used. 
+
+\end{proof*}
+
+\subsection[toeplitzQuarticKernel]{A quartic-kernel sufficient condition}
+
+For case (b), we prove a sufficient condition without a critical-root
+hypothesis. The two conjugate root pairs have different moduli, and a
+residue estimate gives alternating signs at suitable real values of $t$.
+
+\begin{proposition}
+Suppose $a,d\in\setR$ and $c>0$, and define the monic polynomials $Q_n$ by
+\[
+ \sum_{n\geq0}Q_n(t)u^n=\frac1{1-tu+au^2+du^3+cu^4}.
+\]
+If $a\geq2\sqrt c+d^2/(4c)$, then every $Q_n$ is real-rooted.
+If the inequality is strict, all its roots are simple.
+
+\end{proposition}
+
+\begin{proof*}
+Replacing $u$ by $c^{-1/4}u$ reduces to $c=1$,
+with parameters $a/\sqrt c,d/c^{3/4}$ and variable $t/c^{1/4}$.
+We first assume $a>2+d^2/4$. Put
+\[
+ f(z)=z^{-1}+az+dz^2+z^3.
+\]
+For $-1\leq x\leq1$, consider
+\[
+ H_x(r)=1-ar^2-2dxr^3+(1-4x^2)r^4.
+\]
+We have
+\begin{align*}
+ H_x(1)&=2-a+d^2/4-(2x+d/2)^2<0,\\
+ (H_x(r)/r^2)''&=6/r^4+2(1-4x^2)>0\quad(0<r<1).
+\end{align*}
+Since $H_x(r)/r^2$ tends to positive infinity at zero, strict convexity
+gives a unique zero $r(x)\in(0,1)$, with negative derivative there.
+It depends continuously on $x$, including the endpoints.
+
+Take $x=\cos\theta$, $0<\theta<\pi$, and $r=r(x)$.
+Then $t(\theta)=f(re^{i\theta})$ is real, since
+$\operatorname{Im}f(re^{i\theta})=-H_x(r)\sin\theta/r$.
+The kernel $1-tz+az^2+dz^3+z^4$ has roots $re^{\pm i\theta}$.
+Write $\eta,\zeta$ for $r$ divided by its other two roots, and set
+$\rho=r^2$. Comparing the constant and cubic coefficients gives
+\[
+ \eta\zeta=\rho^2,\qquad
+ \eta+\zeta=-dr^3-2\rho^2x.
+\]
+The identity $H_x(r)=0$ and $a>2+d^2/4$ imply
+\[
+ (1-\rho)^2>
+ \left(\frac{dr^3}{2\rho}+2\rho x\right)^2.
+\]
+Define $y=-dr^3/(2\rho)-\rho x$. Thus
+\[
+ |y-\rho x|<1-\rho,\qquad |y|<1.
+\]
+Consequently $\eta,\zeta=\rho e^{\pm i\phi}$, where
+$\phi=\arccos y\in(0,\pi)$. Moreover,
+\[
+ |y|\leq\rho|x|+1-\rho
+ \quad\Longrightarrow\quad
+ \sin\phi\geq\rho\sin\theta.
+\]
+Indeed, subtracting $\rho^2(1-x^2)$ from
+$1-(\rho|x|+1-\rho)^2$ gives
+$2\rho(1-\rho)(1-|x|)\geq0$.
+
+The two smaller kernel roots have modulus $r<1$, and the other two
+have modulus $r/\rho=1/r>1$. Thus $t(\theta)$ is injective:
+its value determines its unique smaller conjugate pair and hence $\theta$.
+It is therefore strictly monotone.
+
+The coefficient of $v^n$ in
+\[
+ \frac1{(1-e^{i\theta}v)(1-e^{-i\theta}v)
+ (1-\rho e^{i\phi}v)(1-\rho e^{-i\phi}v)}
+\]
+is $r^nQ_n(t(\theta))$. For four distinct numbers $\lambda_j$,
+this coefficient equals
+$\sum_j\lambda_j^{n+3}/\prod_{k\ne j}(\lambda_j-\lambda_k)$.
+All four numbers here are distinct. Put
+\begin{align*}
+ A&=(e^{i\theta}-\rho e^{i\phi})(e^{i\theta}-\rho e^{-i\phi}),\\
+ \psi&=\arg\bigl((1+\rho^2)x-2\rho y
+                 +i(1-\rho^2)\sin\theta\bigr).
+\end{align*}
+The argument lies in $(0,\pi)$, and $A=e^{i\theta}|A|e^{i\psi}$.
+Combining the residues of the first conjugate pair gives
+\begin{align*}
+ r^nQ_n(t(\theta))
+ &=\frac{\sin((n+2)\theta-\psi)}{\sin\theta\,|A|}+E_n(\theta),\\
+ |E_n(\theta)|&\leq\frac{\rho^{n+2}}{\sin\phi\,|A|}\\
+ &\leq\frac{\rho^{n+1}}{\sin\theta\,|A|}.
+\end{align*}
+For the error bound, the absolute product of the two cross-pair differences
+at $\rho e^{i\phi}$ equals $|A|$; its within-pair difference has
+absolute value $2\rho\sin\phi$. The last inequality uses $\sin\phi\geq\rho\sin\theta$.
+
+The function $\psi$ extends continuously to $[0,\pi]$, with
+$\psi(0)=0$ and $\psi(\pi)=\pi$. At the first endpoint its real
+part is $1+\rho^2-2\rho y>0$, and at the second it is
+$-1-\rho^2-2\rho y<0$. Hence the continuous phase
+$(n+2)\theta-\psi$ runs from $0$ to $(n+1)\pi$.
+We can select successively ordered angles where it equals
+$(k+1/2)\pi$, for $k=0,\dotsc,n$. At these angles the residue estimate, with
+$\rho<1$, shows that $Q_n(t(\theta))$ has sign $(-1)^k$.
+Strict monotonicity of $t(\theta)$ now gives $n$ distinct real roots.
+Finally, replacing $a$ by $a+\varepsilon$ and taking
+$\varepsilon\downarrow0$ proves the weak-inequality case, since
+the fixed-degree monic real-rooted polynomials form a closed set.
+\end{proof*}
+
+\subsection[toeplitzPublishedHessenbergRegion]{The published two-real-critical-point region}
+
+In case (b) of \cite[Thm.~5]{Ndikubwayo2022Toeplitz}, $G$ has exactly two distinct real roots of opposite
+signs and one nonreal conjugate pair. Its root product is negative, so
+$\gamma<0$. Set
+\[
+ c=-\gamma>0,\qquad a=-\alpha,\qquad d=-\beta.
+\]
+The published inequalities are
+\[
+ 24ac\geq5d^2,\qquad (4ac-d^2)^2\geq64c^3.
+\]
+After the preceding normalization, these read
+$24a\geq5d^2$ and $|4a-d^2|\geq8$.
+We show that the negative branch $4a-d^2\leq-8$ is impossible.
+
+Put $v=d^2$. On that branch,
+\[
+ 4a+8\leq v\leq24a/5,\qquad a\geq10.
+\]
+The critical quartic is $1-az^2-2dz^3-3z^4$, up to a real
+nonzero scaling of its argument. Its discriminant is $16D(a,v)$, where
+\[
+ D(a,v)=-27v^2+(a^3+108a)v-3a^4-72a^2-432.
+\]
+For fixed $a$, this is concave in $v$, and its endpoint values are
+\begin{align*}
+ D(a,4a+8)&=(a-10)(a+6)^3,\\
+ D(a,24a/5)&=\frac9{25}(a^2-100)(5a^2+12).
+\end{align*}
+Both are nonnegative for $a\geq10$. This contradicts the negative
+discriminant of a real quartic with two simple real roots and a nonreal
+conjugate pair. Therefore $4a-d^2\geq8$, which is precisely
+$a\geq2+d^2/4$. The proposition applies.
+
+In the original parameters, the sufficient condition used is
+\[
+ -\alpha\geq2\sqrt{-\gamma}+\frac{\beta^2}{-4\gamma}.
+\]
+This proves case (b) of the sufficiency theorem.

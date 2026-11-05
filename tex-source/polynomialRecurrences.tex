@@ -536,136 +536,19 @@ The recurrence argument gives the oriented interlacing window as well.
 % Source: PerAlexandersson/polytool commit 14b350c; finite-n Lean target: RealRooted issue 2037.
 
 \section[recurrenceLimitingZeros]{Beraha--Kahane--Weiss and limiting zeros}
-
-The same characteristic roots also control where zeros accumulate as
-$n\to\infty$. This is the content of the Beraha--Kahane--Weiss theorem
-\cite{Beraha75limits}, also used in the
-\hyperref[berahaKahaneWeiss]{transfer-matrix setting}.
-We now let $x$ be complex and work on a domain where the characteristic roots
-and amplitudes are single-valued analytic functions.
-
-\begin{theorem}[Beraha--Kahane--Weiss, analytic form]
 \label{recurrenceBkwTheorem}
-Let $d\geq2$ and let $a_i,\lambda_i$ be analytic on a connected open set
-$\Omega\subseteq\setC$, with none identically zero. Suppose
-$\lambda_i\not\equiv\omega\lambda_j$ for $i\ne j$ and every constant
-$|\omega|=1$. Set
-\[
- P_n(x)=\sum_{i=1}^d a_i(x)\lambda_i(x)^n.
-\]
-Call $i$ \defin{dominant} at $x$ if
-$|\lambda_i(x)|=\max_j|\lambda_j(x)|$.
-A point $x\in\Omega$ is a limit of zeros $x_k$ of $P_{n_k}$ with
-$n_k\to\infty$ if and only if either
-\begin{itemize}
-\item exactly one index $i$ is dominant and $a_i(x)=0$; or
-\item at least two indices are dominant.
-\end{itemize}
-Every neighborhood of such a point contains a zero of $P_n$ for all
-sufficiently large $n$.
-\end{theorem}
 
-In \cite[Thm.~1.5]{Sokal2004ChromaticRoots}, the condition on constant
-unit-modulus ratios is imposed on branches that are dominant on a set
-with nonempty interior.
-
-\begin{example}
-For $P_n(x)=1+x^n+(x+1)^n$, all amplitudes equal $1$, so there are no
-isolated limits arising from amplitude zeros. The limiting set is
-\begin{align*}
- &\{x:|x|=1,\ |x+1|\leq1\}\\
- {}\cup{}&\{x:|x+1|=1,\ |x|\leq1\}\\
- {}\cup{}&\{x:|x|=|x+1|\geq1\}.
-\end{align*}
-The first two sets are circular arcs. The third consists of the two rays
-\[
- \operatorname{Re}x=-\tfrac12,\qquad
- |\operatorname{Im}x|\geq\tfrac{\sqrt3}{2}.
-\]
-All three branches meet at $(-1\pm i\sqrt3)/2$. These equations follow by
-comparing the moduli of $1,x,x+1$. In particular, the nonreal limiting points
-force nonreal zeros for all sufficiently large $n$.
-\end{example}
-
-The derivative-recurrence criterion uses the values and logarithmic
-derivatives of the characteristic roots; BKW uses their relative moduli.
-Both depend on the amplitudes, which are determined by the initial polynomials.
-
-For repeated poles the amplitudes $a_i(n,x)$ depend polynomially on $n$,
-so the displayed theorem does not apply directly. A common scalar factor
-in $n$ can be removed for large $n$; general polynomial-in-$n$ amplitudes
-require an extension.
+The \hyperref[toeplitzBkwTheorem]{Beraha--Kahane--Weiss theorem}
+describes limiting zeros through dominant characteristic roots and vanishing
+amplitudes. Its statement, hypotheses, and an example are on the
+\hyperref[toeplitzBkw]{Toeplitz determinants and minors page}.
+The renewal application below remains with its recurrence family.
 
 \subsection[toeplitzRecurrenceBkw]{Toeplitz determinants and reciprocal roots}
 
-For the \hyperref[balancedPentadiagonalSpectra]{balanced pentadiagonal symbol}
-\[
- b(z)=z^2+Az+Bz^{-1}+z^{-2},\qquad A,B\in\setR,
-\]
-put $P_n(t)=\det(tI-T_n(b))$ and $P_0=1$.
-Let $z_1,\dotsc,z_4$ be the roots of
-$q_t(z)=z^4+Az^3-tz^2+Bz+1$.
-The \hyperref[schurJacobiTrudi]{dual Jacobi--Trudi identity} gives
-$P_n(t)=(-1)^n\schurS_{(n,n)}(z_1,\dotsc,z_4)$.
-The Toeplitz determinant formula and Schur recurrence in
-\cite{Alexandersson2012Toeplitz} therefore give the six characteristic roots
-\[
- \lambda_{ij}=-z_i z_j,\qquad 1\leq i<j\leq4.
-\]
-For distinct $z_i$, the corresponding expansion is
-\[
- P_n(t)=\sum_{1\leq i<j\leq4}
- \frac{(z_i z_j)^2(-z_i z_j)^n}
- {\prod_{k\notin\{i,j\}}(z_i-z_k)(z_j-z_k)}.
-\]
-Thus the amplitudes are nonzero away from collisions of the symbol roots.
-The characteristic polynomial is
-\begin{align*}
- D(u)&=\prod_{i<j}(u+z_i z_j)\\
- &=u^6-tu^5+(AB-1)u^4+(2t+A^2+B^2)u^3\\
- &\qquad +(AB-1)u^2-tu+1.
-\end{align*}
-Equivalently, summing the expansion gives
-\[
- G(u)\coloneqq\sum_{n\geq0}P_n(t)u^n=\frac{1-u^2}{D(u)}.
-\]
-These polynomial identities extend to repeated symbol roots by continuity.
-In particular, $D$ specifies an order-six recurrence for $n\geq6$,
-with initial polynomials determined by this generating function;
-special parameters can reduce the minimal order.
-
-Since $z_1z_2z_3z_4=1$, complementary pairs of rates multiply to $1$.
-Writing $v=u+u^{-1}$ reduces $D(u)=0$ to
-\[
- (v^2-4)(v-t)+ABv+A^2+B^2=0.
-\]
-Moreover, the rational generating function satisfies $G(1/u)=-u^4G(u)$.
-Extending the order-six recurrence backwards gives
-$P_{-1}=P_{-2}=P_{-3}=0$ and $P_{-4-n}=P_n$ for $n\geq0$.
-Indeed, the expansion of $G$ at infinity is
-$-\sum_{n<0}P_nu^n=-u^{-4}\sum_{n\geq0}P_nu^{-n}$.
-
-Order the symbol roots by modulus. The two largest pair-product moduli
-are $|z_3z_4|$ and $|z_2z_4|$, so a tie for dominance occurs precisely
-when $|z_2|=|z_3|$. On analytic domains satisfying the
-\hyperref[recurrenceBkwTheorem]{BKW nondegeneracy hypotheses}, the expansion
-above explains this equal-modulus locus as a limiting zero set.
-The \hyperref[toeplitzRealSpectra]{Schmidt--Spitzer theorem} supplies the
-global statement, including collisions and exceptional parameter choices.
-Reciprocal pairing gives the same locus for the backward recurrence;
-it does not by itself prove reality of finite spectra.
-For positive outer product, the
-\hyperref[balancedPentadiagonalSpectra]{critical-point and total-nonnegativity proof}
-does prove that a real limiting spectrum forces every $P_n$ to be real-rooted.
-
-For a different band shape, \name{Innocent Ndikubwayo}
-\cite{Ndikubwayo2022Toeplitz} studies the five-term recurrence
-$P_n=tP_{n-1}+\alpha P_{n-2}+\beta P_{n-3}+\gamma P_{n-4}$,
-with real $\alpha,\beta,\gamma$, $\gamma\ne0$, $P_0=1$, and
-$P_{-1}=P_{-2}=P_{-3}=0$. Its Toeplitz symbol has one negative and
-three positive powers, rather than the balanced shape above.
-The paper's use of the Jordan-curve criterion must be read with the
-\hyperref[toeplitzRealSpectra]{Shapiro--Štampach correction and subsequent counterexample}.
+See the \hyperref[toeplitzReciprocalRecurrence]{Schur expansion, reciprocal
+characteristic roots, and backward recurrence} on the dedicated page,
+together with the \hyperref[toeplitzHessenberg]{five-term Hessenberg recurrence}.
 
 \subsection[renewalLimitingZeros]{Limiting zeros of the renewal family}
 

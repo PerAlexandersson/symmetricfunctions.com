@@ -22,6 +22,8 @@ The following pages cover more specialized topics:
   interlacing roots, operators preserving real-rootedness, Sturm sequences.
 \item \hyperref[polyaFrequency]{Pólya frequency sequences and total positivity}:
   Toeplitz matrices, total non-negativity, Veronese sections, and path matrices.
+\item \hyperref[toeplitzDeterminants]{Toeplitz determinants and minors}:
+  limiting spectra, BKW, and finite-size real-rootedness proofs.
 \item \hyperref[realRootedWords]{Permutation statistics}:
   peaks, derangements, and other permutation-statistic polynomials.
 \item \hyperref[realRootedCatalan]{Catalan families}:
@@ -705,144 +707,16 @@ $N_{[3]\times[3]\times[3]}(x)$ is not real-rooted.
 
 \section[toeplitzRealSpectra]{Real spectra of banded Toeplitz matrices}
 
-For a Laurent polynomial $b(z)=\sum_{k=-r}^s b_kz^k$, where
-$r,s\geq1$ and $b_{-r}b_s\ne0$, define the \defin{Toeplitz sections}
-$T_n(b)=(b_{i-j})_{i,j=1}^n$ and their characteristic polynomials
-$P_n(t)=\det(tI-T_n(b))$. The \defin{limiting spectrum} is
-\[
- \Lambda(b)=\{t\in\setC:\lim_{n\to\infty}
- \operatorname{dist}(t,\operatorname{spec}T_n(b))=0\}.
-\]
-Order the roots of $z^r(b(z)-t)$ by modulus, with multiplicity.
-The Schmidt--Spitzer theorem \cite{SchmidtSpitzer1960} gives
-\[
- \Lambda(b)=\{t:|z_r(t)|=|z_{r+1}(t)|\}.
-\]
-See also the \hyperref[toeplitzRecurrenceBkw]{recurrence and BKW interpretation}.
-
-\name{Boris Shapiro} and \name{František Štampach}
-\cite{ShapiroStampach2019,ShapiroStampach2023Correction} considered three conditions:
-all finite spectra are real; $\Lambda(b)\subseteq\setR$; and
-$b^{-1}(\setR)$ contains a Jordan curve surrounding $0$.
-The first implies the second, and the second implies the third.
-The claimed converse involving the Jordan curve was withdrawn in the correction.
-\name{Fabian Rohner} and \name{Clemens Thalhammer}
-\cite[Thm.~1.3]{RohnerThalhammer2026} disprove even the implication from
-the Jordan-curve condition to a real limiting spectrum, using the real symbol
-\[
- b(z)=\left(z^2+97z+103-\frac{10201}{z}\right)^2.
-\]
-Their example does not settle whether a real limiting spectrum forces every
-finite spectrum to be real. The following proposition settles this implication
-for balanced pentadiagonal symbols with positive product of the outer coefficients.
-The argument was communicated by \name{Per Alexandersson} in 2026.
+The definitions, Schmidt--Spitzer theorem, and the status of the
+Jordan-curve criterion are now on the
+\hyperref[toeplitzSpectra]{Toeplitz determinants and minors page}.
 
 \subsection[balancedPentadiagonalSpectra]{Balanced pentadiagonal symbols}
 
-Suppose $b_{-2},\dotsc,b_2$ are real and $b_{-2}b_2>0$.
-Replacing $b(z)$ by $(b(\rho z)-b_0)/c$, where
-\begin{align*}
- \rho&=(b_{-2}/b_2)^{1/4}>0,\\
- c&=\operatorname{sgn}(b_2)\sqrt{b_{-2}b_2},
-\end{align*}
-preserves reality of the finite and limiting spectra: the substitution is
-a diagonal similarity, followed by a real shift and nonzero real scaling.
-We may therefore use the normalized symbol
-\[
- b(z)=z^2+Az+Bz^{-1}+z^{-2},\qquad A,B\in\setR.
-\]
-
-\begin{proposition}
-For this symbol the following conditions are equivalent:
-\begin{enumerate}
-\item $P_n$ is real-rooted for every $n\geq1$;
-\item $P_n$ is real-rooted for every sufficiently large $n$;
-\item $\Lambda(b)\subseteq\setR$;
-\item $A=B$, or $(AB-16)^3\geq27(A^2-B^2)^2$.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof*}
-The first two implications follow from the definition of $\Lambda(b)$.
-If $A=B$, every section is real symmetric. Assume henceforth that $A\ne B$.
-We first show that a nonreal critical point $w$ gives a nonreal point
-$b(w)\in\Lambda(b)$. Put
-\[
- q_t(z)=z^4+Az^3-tz^2+Bz+1,\qquad
- g(z)=z^3b'(z)=2z^4+Az^3-Bz-2.
-\]
-If $t=b(w)$ were real, the double root $w$ of $q_t$ would imply
-$q_t(z)=(z-w)^2(z-\bar w)^2$. Its constant coefficient gives $|w|=1$,
-and comparison of its cubic and linear coefficients gives $A=B$.
-Thus $t$ is nonreal.
-
-At this critical value,
-\[
- q_t(z)=(z-w)^2\bigl(z^2+(A+2w)z+w^{-2}\bigr).
-\]
-The remaining roots divided by $w$ are the roots $y_1,y_2$ of
-$y^2+py+d$, where $p=2+A/w$ and $d=w^{-4}$.
-Write $R=|w|^2$ and $x=\operatorname{Re}w$.
-Taking real and imaginary parts of $g(w)=0$, for $x\ne0$, gives
-\[
- A=\frac{R-R^{-1}}x-4x,\qquad
- B=-\frac{R^2-1}x-\frac{4x}R.
-\]
-Also $p-\bar p d=(B-A/R)/w^3$. If $R\ne1$, these identities imply
-\[
- \frac{|p-\bar p d|}{|1-|d|^2|}=\frac{\sqrt R}{|x|}>1.
-\]
-Now use the elementary identity
-\[
- (1-|d|^2)^2-|p-\bar p d|^2
- =(1-|y_1|^2)(1-|y_2|^2)|1-y_1\bar y_2|^2.
-\]
-Its left side is negative, so exactly one $y_j$ lies inside the unit circle
-and the other lies outside. The case $R=1$, $x\ne0$ would give $A=B$.
-If $x=0$, criticality gives $w=\pm i$, $B=-A$, and the same left side
-is $-4A^2<0$. Thus the double root occupies the middle two modulus ranks:
-\[
- |z_1|<|z_2|=|z_3|<|z_4|.
-\]
-The Schmidt--Spitzer theorem gives $b(w)\in\Lambda(b)$.
-Consequently, a real limiting spectrum forces all four roots of $g$ to be real.
-
-Conversely, suppose all four critical points are real. Their product is $-1$,
-so three have one sign and one has the other, counting multiplicity.
-Replacing $z$ by $-z$ is an alternating diagonal similarity; we may assume
-three critical points are negative. On the negative axis, $b(z)$ tends to
-$+\infty$ at both ends. If these critical points are distinct, the two local
-minima and intervening maximum give a level $t_0$ with four negative
-solutions of $b(z)=t_0$. A double negative critical point $w$ instead gives
-a triple root of $q_{b(w)}$, whose remaining root is $w^{-3}<0$;
-a triple critical point gives a quadruple root. In all cases,
-\[
- b(z)-t_0=z^{-2}\prod_{j=1}^4(z+\alpha_j),\qquad \alpha_j>0.
-\]
-Each lower bidiagonal matrix $T_{n+2}(z+\alpha_j)$ is
-\hyperref[totallyNonnegative]{totally non-negative}.
-The submatrix of their product in rows $3,\dotsc,n+2$ and columns
-$1,\dotsc,n$ is $T_n(b)-t_0I$, hence is totally non-negative.
-By the \hyperref[schurJacobiTrudi]{dual Jacobi--Trudi identity},
-\[
- \det(T_n(b)-t_0I)=\schurS_{(n,n)}(\alpha_1,\dotsc,\alpha_4)>0.
-\]
-Its first upper and lower diagonals are positive. The oscillatory-matrix
-criterion therefore gives positive simple eigenvalues, as in the valid
-total-nonnegativity argument of \cite{ShapiroStampach2023Correction}.
-Adding back $t_0I$ proves reality of every finite spectrum.
-
-Finally,
-\[
- \operatorname{Disc}(g)=4\bigl((AB-16)^3-27(A^2-B^2)^2\bigr).
-\]
-Since $g(0)=-2$ and $g$ is positive at both real infinities, it always
-has a positive and a negative real root. For nonzero discriminant,
-positive discriminant is therefore equivalent to four real roots.
-At zero discriminant, a double real root and a nonreal conjugate pair,
-or two conjugate double roots, would have positive product, contrary to $-1$.
-This proves the parameter criterion, including its boundary.
-\end{proof*}
+See the \hyperref[toeplitzPentadiagonal]{classification and proof}
+for balanced pentadiagonal symbols with positive outer product,
+and the \hyperref[toeplitzHessenberg]{five-term Hessenberg recurrence}
+for a different band shape.
 
 \section[realRootedNormality]{Normality in the limit}
 

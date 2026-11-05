@@ -1,5 +1,31 @@
 # Handoff
 
+## Done: dedicated Toeplitz page — 2026-11-05
+
+Content worker releases `tex-source/toeplitzDeterminants.tex` (new),
+`tex-source/realRooted.tex`, `tex-source/polynomialRecurrences.tex`,
+`tex-source/polyaFrequency.tex`, `tex-source/schur.tex`, `tex-source/index.tex`,
+`tex-source/transfer-matrix.tex` (BKW duplicate and stale cross-link),
+`svg-tex/src/card-toeplitzDeterminants.tex`,
+`assets/nav-images/card-toeplitzDeterminants.svg`, and this opening.
+Clean intake at 2e420fc. New page collects Toeplitz/Schur minors, BKW,
+limiting spectra, the balanced pentadiagonal proof and reciprocal recurrence,
+and the direct Ndikubwayo sufficiency repairs (both real-critical signs and
+the published two-real-critical region). Necessity is not claimed proved here.
+The published condition is 24*alpha*gamma-5*beta^2 >= 0, verified against
+cached journal PDF 806; existing primary bibliography records reused.
+Old-page anchors remain as link stubs; PF-specific and renewal-family material
+remain on their pages. Added cross-links and index card; the duplicate BKW
+statement on transfer-matrix now points to the central theorem.
+Academic-writing guidance used for organization, hypotheses and proof displays.
+`make svg Q=1`, `make all Q=1`, `make check Q=1`, and `git diff --check` pass.
+SVG build regenerated unrelated assets; only those task-generated changes were
+reverted, retaining the new card. No other worker changes were present.
+Chromium at 1366 and 375 pixels: seven pages pass math/internal-link checks,
+no document overflow, old anchors preserved, new width button present.
+Expanded proof screenshots inspected under `/tmp/toeplitz-*.png`;
+symlink scan empty. Source changes only; no deployment.
+
 ## Done: published Ndikubwayo case (b) repair — 2026-11-05
 
 Content worker releases this opening and `untracked/ndikubwayo-repair.md`.
