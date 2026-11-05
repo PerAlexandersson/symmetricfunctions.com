@@ -284,6 +284,8 @@ function M.render_page(graph, options)
     DESCRIPTION = "Interactive graph of structured relations between polynomial families.",
     CANONICAL = GRAPH_HTML,
     ROBOTS = "index, follow",
+    BODYCLASS = "relation-graph-document",
+    LAYOUTCLASS = "",
     STYLE = "",
     LASTMOD = format_lastmod_html(options.timestamp),
     EDITLINK = '<a class="editLink" href="https://github.com/PerAlexandersson/symmetricfunctions.com/blob/master/relation_graph.lua" target="_blank" rel="noopener">Improve this page</a>',
@@ -292,7 +294,7 @@ function M.render_page(graph, options)
     REFERENCES = references_html
   })
 
-  return (html:gsub("<body>", '<body class="relation-graph-document">', 1))
+  return html
 end
 
 return M

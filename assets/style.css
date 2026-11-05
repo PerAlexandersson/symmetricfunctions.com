@@ -481,10 +481,11 @@
   .editLink { font-size: 0.8rem; opacity: 0.7; }
   .editLink:hover { opacity: 1; }
 
+  body:not(.reading-document) #text-width-toggle { display: none; }
   #text-width-toggle .width-icon-narrow,
-  #text-width-toggle[aria-pressed="true"] .width-icon-wide { display: none; }
-  #text-width-toggle[aria-pressed="true"] .width-icon-narrow { display: initial; }
-  #text-width-toggle[aria-pressed="true"] { color: var(--c-link); }
+  :root.text-width-narrow #text-width-toggle .width-icon-wide { display: none; }
+  :root.text-width-narrow #text-width-toggle .width-icon-narrow { display: initial; }
+  :root.text-width-narrow #text-width-toggle { color: var(--c-link); }
   #page-edit-footer { margin-top: 2rem; text-align: right; }
 
   @media (min-width: 901px) {
@@ -494,7 +495,7 @@
         minmax(0, var(--reading-width)) minmax(1rem, 1fr);
       column-gap: 1rem;
     }
-    #doc-all.has-text-width.narrow-reading {
+    :root.text-width-narrow #doc-all.has-text-width {
       --reading-width: calc(72ch + 4.8rem + 2px);
     }
     .has-text-width #doc-main { grid-column: 3; }
@@ -504,7 +505,7 @@
   }
 
   /* 72ch of prose plus the main panel's padding and border. */
-  #doc-main.narrow-text {
+  :root.text-width-narrow .reading-document #doc-main {
     width: 100%;
     max-width: calc(72ch + 4.8rem + 2px);
     margin-inline: auto;
@@ -1333,7 +1334,9 @@
       padding: 0.5rem 0.5rem; 
     }
 
-    #doc-main.narrow-text { max-width: calc(72ch + 1rem); }
+    :root.text-width-narrow .reading-document #doc-main {
+      max-width: calc(72ch + 1rem);
+    }
 
     
     /*  Off-Canvas Sidebar */
@@ -1543,7 +1546,7 @@
 
   @media print {
     #text-width-toggle { display: none !important; }
-    #doc-main.narrow-text { max-width: none; }
+    :root.text-width-narrow .reading-document #doc-main { max-width: none; }
     #topnav, #tocContainer, #tocButton, #cookie-dialog, footer, .editLink { display: none !important; }
     body, #doc-main { background: white !important; color: black !important; margin: 0; padding: 0; }
     a { text-decoration: none; color: black; }

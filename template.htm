@@ -37,6 +37,13 @@
 			} else if (themePreference === 'light') {
 				document.documentElement.classList.add('light');
 			}
+			var widthPreference = localStorage.getItem('symcat-text-width');
+			if (widthPreference === null) {
+				widthPreference = localStorage.getItem('symcat-polynomial-recurrences-width');
+			}
+			if (widthPreference === 'narrow') {
+				document.documentElement.classList.add('text-width-narrow');
+			}
 		} catch (e) {}
 	</script>
 	<script type="application/ld+json">
@@ -68,7 +75,7 @@
 	<style>
 		<!--STYLE-->		
 	</style>
-	<link rel="stylesheet" href="./style.css?v=20261028-search-page">
+	<link rel="stylesheet" href="./style.css?v=20261105-width-first-paint">
 
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -102,9 +109,9 @@
 <script src="./tex-init.js" defer></script>
 <!--KaTeX assets end -->
 
-<script src="./site.js?v=20261023-text-width" defer></script>
+<script src="./site.js?v=20261105-width-first-paint" defer></script>
 </head>
-<body>
+<body class="<!--BODYCLASS-->">
 
 <header id="doc-title" role="banner">
     <h1 id="symcatTitle">The symmetric functions catalog</h1>
@@ -121,10 +128,20 @@
         <svg class="theme-icon theme-icon-moon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" hidden><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
         <svg class="theme-icon theme-icon-sun" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
       </button>
+      <button type="button" class="toplink theme-toggle" id="text-width-toggle"
+          aria-label="Narrow text" aria-controls="doc-main" aria-pressed="false"
+          title="Narrow text" data-pagefind-ignore>
+        <svg class="theme-icon" viewBox="0 0 20 20" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            aria-hidden="true">
+          <path class="width-icon-wide" d="M2 3v14M18 3v14M5 5h10M5 10h10M5 15h10"></path>
+          <path class="width-icon-narrow" d="M5 3v14M15 3v14M8 5h4M8 10h4M8 15h4"></path>
+        </svg>
+      </button>
       </nav>
   </header>
 
-<div id="doc-all">
+<div id="doc-all" class="<!--LAYOUTCLASS-->">
 
   <aside id="tocContainer">
   <nav aria-label="Page contents">

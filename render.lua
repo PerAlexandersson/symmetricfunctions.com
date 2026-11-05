@@ -726,6 +726,8 @@ local custom_css= get_meta(meta, "custom_css", "")
 -- Render body
 local collect_header, toc_items = create_toc_collector()
 local html_body = render_blocks_html(pandoc_doc.blocks or {}, collect_header)
+local is_reading_document = not html_body:find("topic-card-grid", 1, true)
+    and not html_body:find('id="polynomialIndex"', 1, true)
 local has_citations = (citations and #citations > 0)
 if has_citations then
   html_body = apply_page_labels(html_body, citations)
@@ -739,6 +741,8 @@ local document_content = {
   DESCRIPTION = html_escape(desc),
   CANONICAL   = html_escape(canonical),
   ROBOTS      = utils.NON_INDEXED_PAGES[filestem .. ".htm"] and "noindex, follow" or "index, follow",
+  BODYCLASS   = is_reading_document and "reading-document" or "",
+  LAYOUTCLASS = is_reading_document and "has-text-width" or "",
   LASTMOD    = format_lastmod_html(SOURCE_TS),
   EDITLINK    = string.format(
     '<a class="editLink" href="https://github.com/PerAlexandersson/symmetricfunctions.com/blob/master/tex-source/%s.tex" target="_blank" rel="noopener">Improve this page</a>',

@@ -73,13 +73,10 @@
   function initTextWidth() {
     var main = document.getElementById('doc-main');
     var meta = document.getElementById('page-meta');
-    var layout = document.getElementById('doc-all');
-    var themeToggle = document.getElementById('dark-mode-toggle');
-    if (!main || !meta || !layout || !themeToggle) return;
-    // Article pages have reading content; indexes and interactive tools
-    // retain their own layouts.
-    if (main.querySelector('.topic-card-grid, #polynomialIndex') ||
-        document.body.classList.contains('relation-graph-document')) return;
+    var button = document.getElementById('text-width-toggle');
+    var root = document.documentElement;
+    if (!main || !meta || !button ||
+        !document.body.classList.contains('reading-document')) return;
 
     var key = 'symcat-text-width';
     var savedWidth = getStoredPreference(key);
@@ -89,21 +86,6 @@
         setStoredPreference(key, savedWidth);
       }
     }
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.id = 'text-width-toggle';
-    button.className = 'toplink theme-toggle';
-    button.setAttribute('aria-label', 'Narrow text');
-    button.setAttribute('aria-controls', 'doc-main');
-    button.setAttribute('data-pagefind-ignore', '');
-    button.innerHTML = '<svg class="theme-icon" viewBox="0 0 20 20" fill="none" ' +
-      'stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">' +
-      '<path class="width-icon-wide" d="M2 3v14M18 3v14M5 5h10M5 10h10M5 15h10"/>' +
-      '<path class="width-icon-narrow" d="M5 3v14M15 3v14M8 5h4M8 10h4M8 15h4"/>' +
-      '</svg>';
-    themeToggle.after(button);
-    layout.classList.add('has-text-width');
-
     var editLink = meta.querySelector('.editLink');
     if (editLink) {
       var editFooter = document.createElement('div');
@@ -114,17 +96,23 @@
     }
 
     function applyWidth(narrow) {
-      main.classList.toggle('narrow-text', narrow);
-      layout.classList.toggle('narrow-reading', narrow);
+      root.classList.toggle('text-width-narrow', narrow);
       button.setAttribute('aria-pressed', String(narrow));
       button.title = narrow ? 'Wide text' : 'Narrow text';
+      button.setAttribute('aria-label', button.title);
     }
 
-    applyWidth(savedWidth === 'narrow');
+    applyWidth(savedWidth === 'narrow' ||
+      root.classList.contains('text-width-narrow'));
     button.addEventListener('click', function () {
-      var narrow = !main.classList.contains('narrow-text');
+      var narrow = !root.classList.contains('text-width-narrow');
       applyWidth(narrow);
       setStoredPreference(key, narrow ? 'narrow' : 'wide');
+    });
+
+    window.addEventListener('storage', function (event) {
+      if (event.key !== key) return;
+      applyWidth(event.newValue === 'narrow');
     });
   }
 
