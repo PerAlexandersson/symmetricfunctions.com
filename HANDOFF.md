@@ -1,5 +1,14 @@
 # Handoff
 
+## Deployed: Toeplitz page and exposition cleanup — 2026-11-05
+
+User-authorized deployment of clean `4d6c5f82b4cb2d2738829bfed74a51e6661bed0d`.
+Bridge status ready; `make all Q=1`, `make check Q=1`, and
+`git diff --check` passed. Receipt `20261105T115056-77d03a76548e`
+reports deployed, with matching search manifest. Live Toeplitz, recurrence,
+real-rootedness, and transfer-matrix HTML match the local build byte-for-byte.
+Content worker claimed/released this opening for the deployment record.
+
 ## Done: exposition cleanup — 2026-11-05
 
 Content worker releases `tex-source/polynomialRecurrences.tex`,
