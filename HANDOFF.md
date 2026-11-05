@@ -1,6 +1,6 @@
 # Handoff
 
-## Width-control first paint — ready 2026-11-05
+## Width-control first paint — deployed 2026-11-05
 
 Ownership released. Reading-page classification and layout classes are now in
 the initial HTML, the width button is static template markup, and the early
@@ -8,8 +8,10 @@ head script applies a saved narrow preference before CSS renders. Non-reading
 pages hide the control without changing their layouts. Asset cache keys were
 bumped. No content or navigation changed. `make Q=1`, `make check Q=1`,
 `git diff --check`, and the repository symlink scan pass. Chrome screenshots at
-1440x1100 and 390x844 were inspected. User authorized deployment; this
-checkpoint has not yet been deployed.
+1440x1100 and 390x844 were inspected. The constrained deployment bridge
+published exact commit `6946dec5e2680b79e094ef12722963608fceb886`
+under receipt `20261105T094849-d84c7f7bbb99`; live markup and cache-key checks
+passed.
 
 ## Done: Toeplitz spectra and BKW — 2026-11-05
 
