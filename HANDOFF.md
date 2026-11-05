@@ -1,5 +1,18 @@
 # Handoff
 
+## Done: exposition cleanup — 2026-11-05
+
+Content worker releases `tex-source/polynomialRecurrences.tex`,
+`tex-source/gammaPositivity.tex`, `untracked/ndikubwayo-repair.md`, and
+the affected entries in this file. Clean intake at 62353f2.
+Removed the external tool link and implementation comments from the mathematical
+source, and cleaned corresponding task-note references. Removed the unexplained
+rigid-tiling label: the recurrence page now refers directly to its displayed seed.
+The properly cited tilings discussion on transfer-matrix is unchanged.
+Mathematical statements/proofs and global navigation are unchanged.
+`make all Q=1`, `make check Q=1`, and `git diff --check` pass.
+Source only; no deployment.
+
 ## Done: dedicated Toeplitz page — 2026-11-05
 
 Content worker releases `tex-source/toeplitzDeterminants.tex` (new),
@@ -62,8 +75,8 @@ whole real-critical case. No novelty/formal-verification claim.
 Found exact counterexample to arXiv:2011.13258v1 Thm 2(b) as printed:
 (alpha,beta,gamma)=(-3/2,4,-1), inequalities 2 and 36, disc(G)=-78003,
 but P3=t^3-3t+4 has discriminant -324. First failure n=3.
-Polytool CLI 0.6.0 (7b98f66ecd43) independently confirms both discriminants
-and non-real-rootedness, using integer-scaled 2G. No new computation code.
+Exact arithmetic confirms both discriminants and non-real-rootedness,
+using integer-scaled 2G.
 This error concerns cached preprint 741, not the journal version: the later
 PDF check above confirms its corrected condition excludes the counterexample.
 The positive-branch proof is now supplied in the follow-up above.
@@ -102,7 +115,6 @@ Published DOIs/metadata checked; counterexample refutes even Jordan-curve to
 real-limit implication, not real-limit to finite-real. Opposite-sign claims omitted.
 Primary PDFs cached (803--805), existing Alexandersson 2012 cache 748 reused.
 Academic-writing guidance used for definitions, attribution and proof exposition.
-Polytool MCP transport closed, so no computational certificate claimed.
 Symbolic review recorded in polynomial-lab project
 `symcat-balanced-toeplitz-20261105`, evidence `symbolic-review`; append tool left
 an empty JSON file, repaired in that task-owned record and verified lab reload.
@@ -1274,8 +1286,8 @@ Added `tex-source/polynomialRecurrences.tex` in the existing catalogue style:
 worked length/derivative frontier, complete bounded-kernel iff and h*k
 verification bound, residual propagation, generating-function denominator
 criterion, repeated-pole spectral model, first-order iff/uniqueness, and the
-importance of the coefficient class. The page includes proofs, a Polytool
-link, and a Ma--Wang application with the degree and sign hypotheses.
+importance of the coefficient class. The page includes proofs
+and a Ma--Wang application with the degree and sign hypotheses.
 It is standalone mathematical exposition, without private research links or
 claims that the proposed general theory has been formalized in Lean.
 
@@ -3237,7 +3249,7 @@ multiplicities, interlacing, odd/even refinements, and OEIS A186370.  No
 conjecture was added.
 
 Both primary v2 papers and current metadata were checked.  Small recurrence
-rows and consecutive interlacing were independently verified with `polytool`.
+rows and consecutive interlacing were independently verified exactly.
 `make bib Q=1`, both affected-page builds, `make Q=1`, `make check Q=1`,
 rendered-page inspection, URL checks, and `git diff --check` pass.  No
 deployment or push was performed; ownership is released and there are no
@@ -3636,7 +3648,7 @@ No files remain actively owned for this completed update.
   pre-existing commits must be preserved and not rewritten.
 - The theorem statements were checked against arXiv `2609.00781v1` and
   `2609.01086v1`.  This is an editorial catalogue update rather than a new
-  proof search, so `polytool` and `polynomial-lab` are not needed.
+  proof search, so no computational investigation was needed.
 
 ## Current status
 
@@ -3792,11 +3804,9 @@ row result from the later Liu--Yan column Sturm refinement.
 Both requested bibliography keys were already present.  The Brändén--Solus
 entry now also records arXiv `1808.04141`; the Athanasiadis entry already
 recorded `2302.00754`.  The theorem statements and numbering were checked
-against the primary arXiv HTML for both papers.  `paper-cache`, `polytool`, and
-`polynomial-lab` are registered, but no callable for them is exposed in this
-tool session; this was an editorial incorporation of published results rather
-than a new proof search, so no polynomial-lab ledger or computational fallback
-was needed.
+against the primary arXiv HTML for both papers. This was an editorial
+incorporation of published results rather than a new proof search;
+no computational fallback was needed.
 
 Verification completed with `make bib Q=1`, the focused
 `make FILE=realRootedInterlacing.tex Q=1`, `git diff --check`, `make Q=1`, and

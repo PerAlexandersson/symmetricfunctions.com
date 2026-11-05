@@ -413,7 +413,6 @@ starting at $1$, rather than preservation by the differential operator
 on arbitrary real-rooted inputs.
 
 % Related Lean: RealRooted issue #2102 tracks the coefficient criterion.
-% Related Rust: polytool OEIS A271705 is the c=1 specialization.
 
 \section[weightedDelayRecurrences]{Weighted recurrences with a variable delay}
 
@@ -525,15 +524,12 @@ For $R(z)=(1+z)^d$, coefficient extraction gives
  P_n(x)=\sum_{j=0}^{\lfloor dn/(d\ell+1)\rfloor}
  \binom{d(n-\ell j)}j x^j.
 \]
-This is the rigid-tiling specialization.
 The gap subsets are independent sets in a power of a path, so weighted
 real-rootedness also follows from
 \hyperref[weightedIndependencePolynomial]{Engström's theorem}
 \cite[Thm.~2.5]{Engstrom2007}.
 The recurrence argument gives the oriented interlacing window as well.
 
-% Related Rust: polytool/src/renewal.rs, WeightedRenewal and recognize_weighted_renewal.
-% Source: PerAlexandersson/polytool commit 14b350c; finite-n Lean target: RealRooted issue 2037.
 
 \section[recurrenceLimitingZeros]{Beraha--Kahane--Weiss and limiting zeros}
 \label{recurrenceBkwTheorem}
@@ -637,7 +633,7 @@ single nearby dominant pole, so the same exclusion holds.
 The renewal interlacing theorem excludes nonreal and positive zeros.
 \end{proof*}
 
-For the rigid specialization $R(u)=(1+u)^d$, put $L=d\ell+1$.
+For the seed $R(u)=(1+u)^d$, put $L=d\ell+1$.
 Then
 \[
  u_*=-\frac1L,\qquad
@@ -775,9 +771,6 @@ using the matrix in the \hyperref[recurrenceFiniteVerification]{finite verificat
 
 \section[recurrenceComputation]{Computing recurrences}
 
-% Related Rust: polytool/src/recurrence/space.rs at source commit 6d10a1a.
-The \href{https://poly.symmetricfunctions.com/#polynomial-sequence}{Polytool
-recurrence finder} provides comparison and complete-space modes.
 A useful report records the allowed coefficient degrees and derivatives,
 the starting index, a basis of the recurrence space, and formulas with
 $D\ne0$.
