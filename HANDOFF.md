@@ -1,5 +1,28 @@
 # Handoff
 
+## Done: published Ndikubwayo case (b) repair — 2026-11-05
+
+Content worker releases this opening and `untracked/ndikubwayo-repair.md`.
+Clean intake at 34da8ff. Research only; no public source edits or deployment.
+Journal PDF received through agent-mail UID 138 and cached as paper 806.
+Theorem 5(b) uses 24*alpha*gamma-5*beta^2 >= 0, not the preprint condition.
+The local ignored note now proves the remaining sufficiency case directly:
+for GF 1/(1-tu+a*u^2+d*u^3+c*u^4), c>0,
+a >= 2*sqrt(c)+d^2/(4*c) implies all coefficient polynomials real-rooted.
+Strict inequality gives simple roots. Normalize c=1, construct the smaller
+conjugate kernel pair, and show sin(phi) >= rho*sin(theta). Residue bounds
+make the smaller reciprocal pair's contribution strictly subordinate at
+phase-dependent sign samples. Boundary follows by closure. A concave
+discriminant calculation excludes the other square-root branch under the
+published hypotheses; its identities were independently checked with SymPy.
+Together with prior real-critical proof, this repairs the finite-size
+sufficiency step. Necessity is not independently reproved; no formal or
+independent referee verification and no novelty claim. Fixed-angle kernel
+positivity was rejected by a scalar diagnostic and is NOT used in the proof.
+Proof-finder and academic-writing guidance used. Polynomial-lab append was
+previously unavailable; the full proof remains in the existing ignored local
+note, not in Git/public source. `git diff --check` passed; no site build needed.
+
 ## Done: Ndikubwayo proof repair investigation — 2026-11-05
 
 Content worker releases this opening and `untracked/ndikubwayo-repair.md`.
@@ -15,10 +38,10 @@ Found exact counterexample to arXiv:2011.13258v1 Thm 2(b) as printed:
 but P3=t^3-3t+4 has discriminant -324. First failure n=3.
 Polytool CLI 0.6.0 (7b98f66ecd43) independently confirms both discriminants
 and non-real-rootedness, using integer-scaled 2G. No new computation code.
-Do NOT attribute this exact inequality error to the journal version yet:
-publisher PDF retrieval failed and DiVA has no full text. Cached source is 741.
-Possible missing sign restriction on 4*alpha*gamma-beta^2 needs investigation;
-the positive branch is not proved here. Proof-finder guidance used; Markdown
+This error concerns cached preprint 741, not the journal version: the later
+PDF check above confirms its corrected condition excludes the counterexample.
+The positive-branch proof is now supplied in the follow-up above.
+Proof-finder guidance used; Markdown
 note retains proof/evidence because prior polynomial-lab append left empty files.
 Documentation-only checkpoint; `git diff --check` passed. No site rebuild needed.
 
