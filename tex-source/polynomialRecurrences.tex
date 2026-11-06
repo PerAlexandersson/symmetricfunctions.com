@@ -1,9 +1,9 @@
 \metatitle{Polynomial recurrences}
 \metadescription{Spaces of polynomial recurrences, exact finite verification,
-first-order derivative criteria, four-term factorizations, weighted delay interlacing, limiting zeros, and the trade-off between
-recurrence order and derivative order.}
+rational generating functions, and the trade-off between recurrence order
+and derivative order.}
 \metakeywords{polynomial recurrence, derivative recurrence, Ore algebra,
-rational generating function, recurrence space, weighted renewal recurrence, Beraha--Kahane--Weiss}
+rational generating function, recurrence space, finite verification, annihilating ideal}
 
 \section[polynomialRecurrences]{Polynomial recurrences}
 
@@ -35,10 +35,13 @@ The general operator framework is the $\partial$-finite theory of
 \name{Frédéric Chyzak} and \name{Bruno Salvy}
 \cite[Sec.~2]{ChyzakSalvy1998}; see also \name{Christoph Koutschan}'s
 account of the holonomic systems approach \cite{Koutschan2009Thesis}.
-The criteria below are direct consequences of linear algebra and rational
-generating functions. Real-rootedness criteria include
-\hyperref[weightedDelayRecurrences]{weighted delay recurrences} and
-\hyperref[derivativeRecurrenceRealRoots]{derivative recurrences}.
+The \hyperref[boundedRecurrenceSpaces]{bounded-degree method} finds relations
+by finite linear algebra. For rational generating functions, the
+\hyperref[recurrenceSpectralModel]{characteristic-root expansion} also gives
+criteria with unrestricted rational coefficients.
+Applications to zeros are collected under
+\hyperref[interlacingDelayRecurrences]{interlacing recurrences} and
+\hyperref[recurrenceZeroLimitSets]{recurrence limit sets}.
 
 \subsection[recurrenceTradeoffExample]{Reducing recurrence order using derivatives}
 
@@ -149,6 +152,29 @@ satisfies
 This is a monic recurrence of order $hk$. Its first $hk$ zero polynomials
 therefore force all subsequent residuals to vanish. The coefficients of
 $\chi(z)^h$ and the initial residuals determine a proof by recurrence induction.
+
+\section[recurrenceComputation]{Computing recurrences}
+
+Fix the allowed coefficient degrees, derivative orders and starting index.
+Substituting unknown coefficients and equating powers of $x$ gives a linear
+system. Its kernel describes the recurrence space; retain relations whose
+leading coefficient $D$ is nonzero.
+
+With a given recurrence and initial polynomials, the
+\hyperref[recurrenceFiniteVerification]{finite verification theorem}
+proves the identities and completeness within the specified bounds.
+With finitely many input polynomials alone, a successful fit is an identity
+on those inputs. If every kernel vector has $D=0$, no recurrence
+with $D\ne0$ and the allowed monomials can hold at every index: it
+would have to satisfy the same finite constraints.
+
+For given recurrences whose coefficients depend polynomially on $n$, the
+rational generating-function argument need not apply. One can instead differentiate
+the given recurrence and form a finite state of shifted polynomials and
+their derivatives. A scalar recurrence for the residual, together with
+checks at singular indices and enough initial zeros, supplies a finite
+verification argument. Its bound depends on that state system.
+
 
 \section[recurrenceGeneratingFunctions]{First derivatives and generating functions}
 
@@ -291,264 +317,6 @@ tail identity holds from $n=0$ exactly when it also annihilates the finite
 coefficient sequence of $U$. Checking $0\leq n\leq\deg_tU$ suffices,
 since forward shifts and $x$-derivatives cannot enlarge this support.
 
-\section[fourTermFactorization]{A coefficient criterion for four-term recurrences}
-
-We consider real coefficients and the monic recurrence
-\[
- Q_0=1,\qquad Q_1=x-d_0,\qquad Q_2=(x-d_1)Q_1-s_1,
-\]
-\[
- Q_{n+1}=(x-d_n)Q_n-s_nQ_{n-1}-t_nQ_{n-2}\qquad(n\geq2).
-\]
-Let $H_N$ have diagonal $d_i$, superdiagonal $1$, and first and second
-subdiagonals $s_i$ and $t_i$, respectively. Expansion of the determinant
-gives $Q_N(x)=\det(xI-H_N)$, including the two startup cases.
-Thus the scalar recurrence already supplies a matrix representation.
-
-Bidiagonal factorizations of these tetradiagonal Hessenberg matrices are
-studied by \name{Amílcar Branquinho}, \name{Ana Foulquié-Moreno}, and
-\name{Manuel Mañas}; see
-\cite[Lemma 3.1 and Proposition 3.2]{BranquinhoFoulquieMorenoManas2023}.
-We give a direct coefficient test allowing zero entries in the lower factors.
-
-\subsection[fourTermCoefficientCriterion]{Elimination and a maximal nonnegative split}
-
-First set $u_0=d_0$ and require $u_0>0$. Recursively compute
-\[
- m_1=0,\qquad m_n=\frac{t_n}{u_{n-2}}\quad(n\geq2),\qquad
- \ell_n=\frac{s_n-m_n}{u_{n-1}},\qquad u_n=d_n-\ell_n\quad(n\geq1).
-\]
-We require every $u_n>0$ and every $\ell_n,m_n\geq0$.
-If a pivot is nonpositive, we stop before dividing by it.
-Next set $a_1=0$, $b_1=\ell_1$. For $n\geq2$, apply these rules:
-\begin{itemize}
-\item If $b_{n-1}>0$, set $a_n=m_n/b_{n-1}$ and $b_n=\ell_n-a_n$;
-reject if $b_n<0$.
-\item If $b_{n-1}=0<m_n$, reject.
-\item If $b_{n-1}=m_n=0$, set $a_n=0$ and $b_n=\ell_n$.
-\end{itemize}
-
-\begin{theorem}
-The test succeeds at every index if and only if, for all $N$,
-\[
- H_N=L_N(a)L_N(b)U_N(u)
-\]
-with common sequences $a_n,b_n\geq0$ and $u_n>0$.
-Here the $L_N$ are unit lower bidiagonal matrices with the indicated
-subdiagonals, and $U_N(u)$ has diagonal $u_n$ and superdiagonal $1$.
-If also $s_n>0$ for every $n\geq1$, then each $Q_N$ has simple positive
-zeros, and consecutive polynomials strictly interlace.
-\end{theorem}
-
-\begin{proof}
-Writing $H_N=B_NU_N(u)$ with $B_N$ unit lower triangular of bandwidth two,
-entrywise multiplication gives
-\[
- d_0=u_0,\qquad d_n=u_n+\ell_n,\qquad
- s_n=\ell_nu_{n-1}+m_n,\qquad t_n=m_nu_{n-2}.
-\]
-Positive pivots therefore force exactly the first elimination above.
-The remaining factorization $B_N=L_N(a)L_N(b)$ is equivalent to
-\[
- a_n+b_n=\ell_n,\qquad a_nb_{n-1}=m_n\quad(n\geq2).
-\]
-A successful test satisfies these identities. Conversely, let
-$(\widehat a_n,\widehat b_n)$ be any nonnegative solution.
-We prove $b_n\geq\widehat b_n$ by induction. It holds initially because
-$b_1=\ell_1$. If both preceding $b$ entries are positive, then
-\[
- b_n=\ell_n-\frac{m_n}{b_{n-1}}
- \geq\ell_n-\frac{m_n}{\widehat b_{n-1}}=\widehat b_n\geq0.
-\]
-If $\widehat b_{n-1}=0$, the competing solution forces $m_n=0$,
-and our rule gives $b_n=\ell_n\geq\widehat b_n$.
-These cases include $b_{n-1}=0$, by the induction hypothesis.
-Thus a nonnegative solution prevents every rejection.
-
-The factors are totally nonnegative, and
-$\det H_N=\prod_{i=0}^{N-1}u_i>0$.
-When $s_n>0$, both adjacent off-diagonals are positive. The
-Gantmacher--Krein oscillation criterion and its leading-principal
-interlacing theorem now give the assertion about zeros.
-\end{proof}
-
-This is an exact criterion for the stated nonsingular factorization class,
-not for real-rootedness itself. In particular, a zero upper pivot can
-reflect a common zero of the polynomials. Finite successful tests certify
-only the corresponding finite sections.
-
-An inequality can replace explicit formulas for the split. If $v_n>0$ and
-\[
- \ell_1\geq v_1,\qquad
- \ell_n\geq v_n+\frac{m_n}{v_{n-1}}\quad(n\geq2),
-\]
-then induction gives $b_n\geq v_n$, so the split succeeds.
-
-\subsection[fourTermDifferentialExample]{A second-order differential example}
-
-For $c>0$, define
-\[
- P_0(x)=1,\qquad P_{n+1}(x)=xP_n''(x)+2xP_n'(x)+(x+c)P_n(x).
-\]
-Its exponential generating function is
-\[
- \sum_{n\geq0}P_n(x)\frac{z^n}{n!}
- =\exp\left(cz+\frac{xz}{1-z}\right).
-\]
-Differentiating in $z$ and multiplying by $(1-z)^2$ gives
-\[
- P_{n+1}=(x+2n+c)P_n-n(n-1+2c)P_{n-1}
-             +cn(n-1)P_{n-2}\quad(n\geq2),
-\]
-with $P_1=x+c$ and $P_2=x^2+(2c+2)x+c^2$.
-For $Q_n(x)=(-1)^nP_n(-x)$, the coefficient test recovers
-\[
- u_n=c,\qquad \ell_n=2n,\qquad m_n=n(n-1),\qquad
- a_n=n-1,\qquad b_n=n+1\quad(n\geq1).
-\]
-Consequently all $P_n$ have simple negative zeros and consecutive
-polynomials strictly interlace.
-
-% Related Lean: RealRooted issue #2102 tracks the coefficient criterion.
-
-\section[weightedDelayRecurrences]{Weighted recurrences with a variable delay}
-
-In this section we allow real coefficients. We use the oriented weak
-interlacing relation $f\interl g$, including equal degrees and repeated
-zeros, from the \hyperref[interlacingPolynomials]{interlacing page}.
-The following induction uses the two closure rules in
-\hyperref[wagnerLemma]{Wagner's lemma}.
-The fixed-delay case is closely related to the companion-matrix argument
-of \name{Steve Fisk} \cite[Ex.~16.10]{Fisk2006x}.
-
-\begin{theorem}[Nondecreasing predecessor]
-\label{nondecreasingPredecessorInterlacing}
-Let $p(1),p(2),\dotsc$ be nondecreasing integers with $0\leq p(n)<n$,
-and let $w_n\geq0$. Define
-\[
- Q_0(x)=1,\qquad
- Q_n(x)=Q_{n-1}(x)+w_nxQ_{p(n)}(x)\quad(n\geq1).
-\]
-Then every $Q_n$ has only real negative zeros, and
-\[
- Q_i\interl Q_n\qquad\text{whenever }n\geq1\text{ and }p(n)\leq i\leq n.
-\]
-\end{theorem}
-
-\begin{proof*}
-Every $Q_n$ has nonnegative coefficients and constant term one.
-We induct on $n$, starting with $Q_1=1+w_1x$.
-For $p(n)\leq i<n$, monotonicity gives $p(n-1)\leq i$, so
-$Q_i\interl Q_{n-1}$ by induction.
-Also $Q_{p(n)}\interl Q_i$: use reflexivity if $i=p(n)$,
-and otherwise use $p(i)\leq p(n)<i$ and induction.
-The multiplication rule gives $Q_i\interl xQ_{p(n)}$.
-The cone rule with fixed left polynomial $Q_i$ now gives
-$Q_i\interl Q_{n-1}+w_nxQ_{p(n)}=Q_n$.
-This proves real-rootedness, and coefficient signs and the constant term
-exclude nonnegative zeros. The case $i=n$ is reflexivity.
-\end{proof*}
-
-For a fixed integer $L\geq1$, take $p(n)=\max(0,n-L)$.
-Every window of $L+1$ consecutive polynomials is then interlacing:
-\[
- Q_A\interl Q_B\qquad(0\leq A\leq B,\ B-A\leq L).
-\]
-Positive coefficients of $Q_{n-1}$ can also be normalized away:
-if $F_0=1$ and $F_n=a_nF_{n-1}+b_nxF_{p(n)}$, where
-$a_n>0$ and $b_n\geq0$, divide by $A_n=\prod_{k=1}^n a_k$.
-The resulting weights are $b_nA_{p(n)}/A_n$.
-
-\subsection[weightedRenewalRecurrences]{Renewal recurrences with a real-rooted seed}
-
-\begin{theorem}[Weighted renewal interlacing]
-\label{weightedRenewalInterlacing}
-Let $\ell\geq1$ be an integer, and let $R(z)=\sum_{j=0}^d r_jz^j$
-have degree $d\geq1$, nonnegative coefficients, $R(0)=1$, and only real zeros.
-Define
-\[
- \sum_{n\geq0}P_n(x)t^n=\frac1{1-tR(xt^\ell)}.
-\]
-Equivalently, $P_0=1$, $P_m=0$ for $m<0$, and
-\[
- P_n(x)=\sum_{j=0}^d r_jx^jP_{n-1-\ell j}(x)\quad(n\geq1).
-\]
-Every $P_n$ has only real negative zeros, and
-\[
- P_n\interl P_{n+s}\qquad(n,s\geq0,\ ds\leq d\ell+1).
-\]
-\end{theorem}
-
-\begin{proof*}
-Factor $R(z)=\prod_{r=1}^d(1+a_rz)$ with $a_r>0$.
-Put $L=d\ell+1$, and give position $i$ the periodic weight
-$w_i=a_{1+((i-1)\bmod d)}$.
-Let $Q_N(x)$ enumerate weighted subsets of $\{1,\dotsc,N\}$ whose
-successive entries differ by at least $L$, with $x$ marking cardinality.
-Deleting or retaining the last position gives
-\[
- Q_0=1,\qquad Q_N=Q_{N-1}+w_NxQ_{\max(0,N-L)}.
-\]
-Thus $Q_A\interl Q_B$ when $B-A\leq L$.
-
-For $n\geq\ell$, we claim that $P_n=Q_{d(n-\ell)}$.
-For a $j$-element subset, remove the mandatory gaps by sending its
-$r$th entry $y_r$ to $y_r-(r-1)d\ell$.
-This gives a bijection with the $j$-subsets of
-$\{1,\dotsc,d(n-\ell j)\}$, preserving residues modulo $d$ and hence weights.
-When $n-\ell j\geq0$, its weighted enumerator is
-$[z^j]R(z)^{n-\ell j}$, which also equals $[x^j]P_n(x)$ by expanding
-the generating function. If the upper bound is less than $j$, there are
-no such subsets; if $n-\ell j<0$, both coefficients are zero.
-Constant terms are one.
-
-For $n\geq\ell$, sampling the $Q$ sequence at distance $ds\leq L$
-gives the result. If $n<\ell$, then $P_n=1$.
-When $n+s\geq\ell$, its sampled index satisfies
-$0\leq d(n+s-\ell)\leq ds\leq L$, so compare with $Q_0$.
-If both indices are smaller than $\ell$, both polynomials are one.
-\end{proof*}
-
-The constant seed $R=1$ gives $P_n=1$ for all $n$.
-For the nonconstant case, the degree is $\lfloor dn/(d\ell+1)\rfloor$.
-The window is optimal uniformly in $n$: if $ds>d\ell+1$, some pair
-$P_n,P_{n+s}$ has degree difference at least two, since
-$\gcd(d,d\ell+1)=1$.
-
-For $R(z)=(1+z)^d$, coefficient extraction gives
-\[
- P_n(x)=\sum_{j=0}^{\lfloor dn/(d\ell+1)\rfloor}
- \binom{d(n-\ell j)}j x^j.
-\]
-The gap subsets are independent sets in a power of a path, so weighted
-real-rootedness also follows from
-\hyperref[weightedIndependencePolynomial]{Engström's theorem}
-\cite[Thm.~2.5]{Engstrom2007}.
-The recurrence argument gives the oriented interlacing window as well.
-
-
-\section[recurrenceLimitingZeros]{Beraha--Kahane--Weiss and limiting zeros}
-\label{recurrenceBkwTheorem}
-
-The \hyperref[toeplitzBkwTheorem]{Beraha--Kahane--Weiss theorem}
-describes limiting zeros through dominant characteristic roots and vanishing
-amplitudes. Its statement, hypotheses, and an example are on the
-\hyperref[toeplitzBkw]{recurrence limit sets and Toeplitz minors page},
-together with the \hyperref[recurrenceRenewalLimitSet]{renewal application}.
-
-\subsection[toeplitzRecurrenceBkw]{Toeplitz determinants and reciprocal roots}
-
-See the \hyperref[toeplitzReciprocalRecurrence]{Schur expansion, reciprocal
-characteristic roots, and backward recurrence} on the dedicated page,
-together with the \hyperref[toeplitzHessenberg]{five-term Hessenberg recurrence}.
-
-\subsection[renewalLimitingZeros]{Limiting zeros of the renewal family}
-
-The \hyperref[recurrenceRenewalLimitSet]{renewal limit-set theorem and its proof}
-have moved to the recurrence-limit-set page, together with BKW.
-The \hyperref[weightedRenewalInterlacing]{finite-index interlacing theorem}
-remains above.
-
 \section[firstDerivativeCriterion]{When does one derivative suffice?}
 
 We return to the amplitudes $a_i(n,x)$ from
@@ -667,41 +435,43 @@ combination of $d_1,d_\ell$. Clearing denominators in $n$ proves existence.
 For prescribed coefficient-degree bounds, we can compute these recurrences
 using the matrix in the \hyperref[recurrenceFiniteVerification]{finite verification theorem}.
 
-\section[recurrenceComputation]{Computing recurrences}
+\section[recurrenceRootApplications]{Real-rootedness and limiting zeros}
 
-A useful report records the allowed coefficient degrees and derivatives,
-the starting index, a basis of the recurrence space, and formulas with
-$D\ne0$.
+\subsection[fourTermFactorization]{Four-term recurrences}
+\label{fourTermCoefficientCriterion}
+\label{fourTermDifferentialExample}
 
-With a given recurrence and initial polynomials, the
-\hyperref[recurrenceFiniteVerification]{finite verification theorem}
-proves the identities and completeness within the specified bounds.
-With finitely many input polynomials alone, a successful fit is an identity
-on those inputs. If every kernel vector has $D=0$, no recurrence
-with $D\ne0$ and the allowed monomials can hold at every index: it
-would have to satisfy the same finite constraints.
+The \hyperref[interlacingFourTermRecurrences]{four-term coefficient criterion}
+uses bidiagonal factorizations to prove positive simple zeros and strict
+interlacing. See its
+\hyperref[interlacingFourTermSplit]{nonnegative factorization test} and
+\hyperref[interlacingSecondDerivativeExample]{second-order differential example}.
 
-For given recurrences whose coefficients depend polynomially on $n$, the
-rational generating-function argument need not apply. One can instead differentiate
-the given recurrence and form a finite state of shifted polynomials and
-their derivatives. A scalar recurrence for the residual, together with
-checks at singular indices and enough initial zeros, supplies a finite
-verification argument. Its bound depends on that state system.
+\subsection[weightedDelayRecurrences]{Delay and renewal recurrences}
+\label{nondecreasingPredecessorInterlacing}
+\label{weightedRenewalRecurrences}
+\label{weightedRenewalInterlacing}
 
-The \hyperref[polynomialRootIntro]{real-rootedness pages} discuss criteria
-for proving real-rootedness and interlacing, including the
-\hyperref[maWangDerivativeCriterion]{Ma--Wang derivative criterion}.
+The \hyperref[interlacingNondecreasingPredecessor]{nondecreasing-predecessor theorem}
+gives interlacing for weighted recurrences with a variable delay.
+Its \hyperref[interlacingRenewalRecurrences]{renewal specialization}
+treats generating functions of the form $1/(1-tR(xt^\ell))$ with a
+real-rooted seed $R$.
 
-\begin{example}
-\label{derivativeRecurrenceRealRoots}
-Let $a<b$ and suppose
-\[
- D(n)P_{n+1}=A(n,x)P_n+\kappa_n(x-a)(x-b)P_n',
-\]
-where $D(n)>0$, $\kappa_n\geq0$ and $A(n,x)$ is a real polynomial in $x$.
-Suppose $P_n$ has all its roots in $[a,b]$, both $P_n,P_{n+1}$ have positive
-leading coefficients, and $\deg P_{n+1}\in\{\deg P_n,\deg P_n+1\}$.
-Then $P_{n+1}$ is real-rooted and $P_n\interl P_{n+1}$ by the
-\hyperref[maWangDerivativeCriterion]{Ma--Wang criterion}: at every root
-$\xi$ of $P_n$, we have $\kappa_n(\xi-a)(\xi-b)/D(n)\leq0$.
-\end{example}
+\subsection[derivativeRecurrenceRealRoots]{Derivative recurrences}
+
+The \hyperref[maWangDerivativeCriterion]{Ma--Wang criterion} proves
+interlacing from the sign of the derivative coefficient at the old roots.
+See the \hyperref[interlacingDerivativeInterval]{interval example}.
+
+\subsection[recurrenceLimitingZeros]{Limiting zeros}
+\label{recurrenceBkwTheorem}
+\label{toeplitzRecurrenceBkw}
+\label{renewalLimitingZeros}
+
+The \hyperref[toeplitzBkwTheorem]{Beraha--Kahane--Weiss theorem}
+describes limiting zeros through dominant characteristic roots and vanishing
+amplitudes. The \hyperref[toeplitzDeterminants]{recurrence limit-set page}
+includes the \hyperref[recurrenceRenewalLimitSet]{renewal application},
+\hyperref[toeplitzReciprocalRecurrence]{reciprocal Toeplitz recurrence},
+and \hyperref[toeplitzHessenberg]{five-term Hessenberg recurrences}.

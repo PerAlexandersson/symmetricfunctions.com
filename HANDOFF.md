@@ -1,5 +1,23 @@
 # Handoff
 
+## Done: recurrence-page organization — 2026-11-06
+
+Content worker releases `tex-source/polynomialRecurrences.tex`,
+`tex-source/realRootedInterlacing.tex`, `tex-source/toeplitzDeterminants.tex`,
+`tex-source/realRootedGraphs.tex` (incoming links), `tex-source/index.tex`
+(card descriptions), and this opening. Clean intake at dbdf4e3.
+Moved four-term, delay/renewal and derivative real-rootedness results to the
+interlacing page beside their supporting criteria. Recurrence algebra now runs
+without unrelated applications between the characteristic-root results.
+Computing recurrences follows finite verification; legacy pointers are grouped
+at the end. Updated direct incoming links and metadata. Academic-writing guidance
+informed this structure and the removal of redundant procedural commentary.
+Proofs and hypotheses preserved; all 115 original displayed formulas retained.
+`make all Q=1`, `make check Q=1`, and `git diff --check` pass.
+Chromium at 1366/375 passes math, internal links, old/new anchors and overflow
+checks on five affected pages. Desktop/mobile screenshots inspected.
+Source only; no deployment.
+
 ## Done: recurrence limit sets and prose cleanup — 2026-11-06
 
 Content worker releases `tex-source/toeplitzDeterminants.tex`,
