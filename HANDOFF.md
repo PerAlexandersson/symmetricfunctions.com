@@ -1,5 +1,15 @@
 # Handoff
 
+## Done: distinguish Yang--Baxter labels — 2026-11-06
+
+Content worker releases `tex-source/latticeModel.tex`, `tex-source/yang-baxter.tex`,
+`tex-source/rsk.tex`, and this opening. Clean intake at 2433d78.
+Renamed the lattice-model subsection's case-only variant to
+`latticeModelYangBaxter`, updated its incoming RSK link, and cross-linked the
+general equation and lattice-model sections. Full build, `make check`, and
+`git diff --check` pass; rendered anchors/links and label catalogue inspected.
+Source only; no deployment.
+
 ## Done: eight November-feed preprints — 2026-11-06
 
 Content worker releases `tex-source/lorentzianPolynomials.tex`,
