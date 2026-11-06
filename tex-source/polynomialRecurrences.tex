@@ -309,8 +309,7 @@ Bidiagonal factorizations of these tetradiagonal Hessenberg matrices are
 studied by \name{Amílcar Branquinho}, \name{Ana Foulquié-Moreno}, and
 \name{Manuel Mañas}; see
 \cite[Lemma 3.1 and Proposition 3.2]{BranquinhoFoulquieMorenoManas2023}.
-We give a direct coefficient test allowing zero entries in the lower
-factors, together with its proof. We do not claim a new factorization theory.
+We give a direct coefficient test allowing zero entries in the lower factors.
 
 \subsection[fourTermCoefficientCriterion]{Elimination and a maximal nonnegative split}
 
@@ -408,9 +407,7 @@ For $Q_n(x)=(-1)^nP_n(-x)$, the coefficient test recovers
  a_n=n-1,\qquad b_n=n+1\quad(n\geq1).
 \]
 Consequently all $P_n$ have simple negative zeros and consecutive
-polynomials strictly interlace. This conclusion concerns the orbit
-starting at $1$, rather than preservation by the differential operator
-on arbitrary real-rooted inputs.
+polynomials strictly interlace.
 
 % Related Lean: RealRooted issue #2102 tracks the coefficient criterion.
 
@@ -457,7 +454,6 @@ Every window of $L+1$ consecutive polynomials is then interlacing:
 \[
  Q_A\interl Q_B\qquad(0\leq A\leq B,\ B-A\leq L).
 \]
-The weights need not be constant or periodic.
 Positive coefficients of $Q_{n-1}$ can also be normalized away:
 if $F_0=1$ and $F_n=a_nF_{n-1}+b_nxF_{p(n)}$, where
 $a_n>0$ and $b_n\geq0$, divide by $A_n=\prod_{k=1}^n a_k$.
@@ -537,8 +533,8 @@ The recurrence argument gives the oriented interlacing window as well.
 The \hyperref[toeplitzBkwTheorem]{Beraha--Kahane--Weiss theorem}
 describes limiting zeros through dominant characteristic roots and vanishing
 amplitudes. Its statement, hypotheses, and an example are on the
-\hyperref[toeplitzBkw]{Toeplitz determinants and minors page}.
-The renewal application below remains with its recurrence family.
+\hyperref[toeplitzBkw]{recurrence limit sets and Toeplitz minors page},
+together with the \hyperref[recurrenceRenewalLimitSet]{renewal application}.
 
 \subsection[toeplitzRecurrenceBkw]{Toeplitz determinants and reciprocal roots}
 
@@ -548,108 +544,10 @@ together with the \hyperref[toeplitzHessenberg]{five-term Hessenberg recurrence}
 
 \subsection[renewalLimitingZeros]{Limiting zeros of the renewal family}
 
-For the \hyperref[weightedRenewalInterlacing]{weighted renewal family},
-BKW gives an explicit limiting interval.
-The interlacing theorem applies to every index; the following statement
-describes the zeros as the index tends to infinity.
-
-\begin{theorem}[Renewal zero accumulation]
-Let $d,\ell\geq1$ be integers and let
-$R(u)=\prod_{j=1}^d(1+a_ju)$, with $a_j>0$.
-Define $P_n$ by
-\[
- \sum_{n\geq0}P_n(x)t^n=\frac1{1-tR(xt^\ell)}.
-\]
-There is a unique $u_*$ between the largest zero of $R$ and $0$ such that
-\[
- R(u_*)+\ell u_*R'(u_*)=0.
-\]
-Put $x_*=u_*R(u_*)^\ell$. The set of finite accumulation points of zeros
-of $P_n$, as $n\to\infty$, is exactly
-\[
- (-\infty,x_*].
-\]
-Every neighborhood of every point in this ray contains a zero of $P_n$
-for all sufficiently large $n$.
-\end{theorem}
-
-\begin{proof*}
-Put $H(u)=uR(u)^\ell$ and $b=1/\max_j a_j$.
-For $x\ne0$, poles of the generating function correspond bijectively to
-\[
- H(u)=x,\qquad t=\frac1{R(u)},\qquad \lambda=R(u).
-\]
-Since $|\lambda|=(|x|/|u|)^{1/\ell}$, dominant characteristic roots
-correspond to smallest-modulus roots of $H(u)=x$.
-At a simple pole the amplitude is
-\[
- A(u)=\frac{R(u)}{R(u)+\ell uR'(u)},
-\]
-which is nonzero.
-
-For fixed $r>0$,
-\[
- |H(re^{i\theta})|
- =r\prod_j(1+2a_jr\cos\theta+a_j^2r^2)^{\ell/2}
-\]
-is strictly decreasing for $0\leq\theta\leq\pi$.
-Thus distinct roots of $H(u)=x$ with the same modulus must be conjugate,
-and this can happen only for real $x$.
-In particular, there is no identically unit-modulus ratio of distinct
-characteristic branches, as required by BKW.
-
-On $(-b,0)$, the function
-\[
- g(u)=1+\ell\frac{uR'(u)}{R(u)}
- =1+\ell\sum_j\frac{a_ju}{1+a_ju}
-\]
-is strictly increasing from $-\infty$ to $1$.
-Its unique zero is $u_*$, and $H''(u_*)=R(u_*)^\ell g'(u_*)>0$.
-The inverse root near zero is uniquely smallest in modulus and remains so
-for $x_*<x<0$. At $x_*$ it merges with another root; just below $x_*$
-the two smallest roots form a conjugate pair.
-
-This pair persists for all $x<x_*$.
-Indeed, all zeros of $H'$ are real, and the upper-half-plane member satisfies
-\[
- \arg u+\ell\sum_j\arg(1+a_ju)=\pi,
-\]
-with each argument in $(0,\pi)$.
-It cannot encounter a critical point off the real axis.
-A negative real limit beyond $-b$ would make the left side exceed $\pi$;
-a limit in $(-b,0)$ would require a collision at $u_*$.
-A positive real limit has positive $H$, and roots remain bounded over
-bounded sets of $x$. Hence the pair continues along the whole ray.
-It cannot lose dominance, since that would require a third root of the
-same modulus.
-
-Away from the finitely many critical values, BKW now gives accumulation
-on the ray. Neighborhoods of the exceptional points contain regular
-points of the ray, giving the same conclusion there, including at $x_*$.
-On $(x_*,0)$ the unique dominant pole is simple with nonzero amplitude,
-so its uniform coefficient asymptotics exclude accumulation, even if
-subdominant poles collide. At $x=0$ the denominator is $1-t$, with a
-single nearby dominant pole, so the same exclusion holds.
-The renewal interlacing theorem excludes nonreal and positive zeros.
-\end{proof*}
-
-For the seed $R(u)=(1+u)^d$, put $L=d\ell+1$.
-Then
-\[
- u_*=-\frac1L,\qquad
- x_*=-\frac{(L-1)^{L-1}}{L^L}.
-\]
-For example, $L=2$ gives $(-\infty,-1/4]$, and $L=3$ gives
-$(-\infty,-4/27]$.
-Writing $P_n=C_{dn}$, where $\sum_{N\geq0}C_N(x)t^N=1/(1-t-xt^L)$,
-identifies the same endpoint with the sign-reversed interval in
-\cite[Thm.~1]{ForgcsTran2016} for the coefficient sequence $C_N$.
-The dominance argument above also handles arbitrary positive row weights.
-
-The arbitrary-weight variable-predecessor theorem need not come from a
-stationary finite-order recurrence. BKW applies to the renewal specialization
-above; more general changing coefficients require additional asymptotic
-hypotheses.
+The \hyperref[recurrenceRenewalLimitSet]{renewal limit-set theorem and its proof}
+have moved to the recurrence-limit-set page, together with BKW.
+The \hyperref[weightedRenewalInterlacing]{finite-index interlacing theorem}
+remains above.
 
 \section[firstDerivativeCriterion]{When does one derivative suffice?}
 
@@ -781,8 +679,7 @@ proves the identities and completeness within the specified bounds.
 With finitely many input polynomials alone, a successful fit is an identity
 on those inputs. If every kernel vector has $D=0$, no recurrence
 with $D\ne0$ and the allowed monomials can hold at every index: it
-would have to satisfy the same finite constraints. A computation stopped by
-a resource bound gives no such nonexistence conclusion.
+would have to satisfy the same finite constraints.
 
 For given recurrences whose coefficients depend polynomially on $n$, the
 rational generating-function argument need not apply. One can instead differentiate

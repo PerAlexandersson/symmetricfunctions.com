@@ -1,5 +1,20 @@
 # Handoff
 
+## Done: recurrence limit sets and prose cleanup — 2026-11-06
+
+Content worker releases `tex-source/toeplitzDeterminants.tex`,
+`tex-source/polynomialRecurrences.tex`, `tex-source/index.tex`, and this opening.
+Clean intake at 38a0ab5. Moved renewal limiting zeros and proof, broadened the
+destination to general recurrence limit sets, and exposed Schmidt--Spitzer
+as a named theorem linked from the minors discussion. Preserved legacy anchors.
+Updated the homepage card. Academic-writing guidance informed the general-to-specific
+ordering and removal of novelty disclaimers, resource-bound commentary, and
+redundant paragraph endings; mathematical hypotheses remain intact.
+`make all Q=1`, `make check Q=1`, and `git diff --check` pass.
+Chromium review at 1366/375 checks math, internal links, legacy anchors,
+layout and the width button; mobile screenshot inspected. Symlink scan empty.
+Source only; no deployment.
+
 ## Done: regular-matrix representation examples — 2026-11-05
 
 Content worker releases `tex-source/representationTheory.tex`,

@@ -1,53 +1,40 @@
-\metatitle{Toeplitz determinants and minors}
-\metadescription{Toeplitz minors and Schur functions, the Beraha--Kahane--Weiss theorem, limiting spectra, and direct real-rootedness proofs for pentadiagonal and Hessenberg sections.}
-\metakeywords{Toeplitz determinant, Toeplitz minor, Beraha--Kahane--Weiss, limiting spectrum, pentadiagonal matrix}
+\metatitle{Recurrence limit sets and Toeplitz minors}
+\metadescription{Limit sets of zeros of polynomial recurrences, the Beraha--Kahane--Weiss theorem, renewal families, Toeplitz minors, the Schmidt--Spitzer theorem, and real spectra.}
+\metakeywords{recurrence limit set, limiting zeros, Toeplitz determinant, Toeplitz minor, Beraha--Kahane--Weiss, Schmidt--Spitzer, limiting spectrum}
 
-\section[toeplitzDeterminants]{Toeplitz determinants and minors}
+\section[toeplitzDeterminants]{Recurrence limit sets and Toeplitz minors}
 
-Toeplitz minors connect \hyperref[schurS]{Schur functions} with
-\hyperref[polynomialRecurrences]{polynomial recurrences} and
-\hyperref[polynomialRootIntro]{real-rootedness}.
-We first describe the determinant identities and limiting-zero criteria,
-then give finite-size proofs for two five-diagonal band shapes.
+The zeros of a \hyperref[polynomialRecurrences]{polynomial recurrence}
+often accumulate on curves or intervals. We study these limit sets through
+characteristic roots, then specialize to Toeplitz determinants and minors.
+The \hyperref[toeplitzBkwTheorem]{Beraha--Kahane--Weiss theorem}
+gives the general analytic criterion; the
+\hyperref[toeplitzSchmidtSpitzer]{Schmidt--Spitzer theorem}
+describes the limiting spectra of banded Toeplitz sections.
+The later finite-size proofs address the separate question of when
+\emph{every} polynomial has only real zeros.
 
-For a Laurent polynomial $b(z)=\sum_{k=-r}^s b_kz^k$, where
-$r,s\geq1$ and $b_{-r}b_s\ne0$, the \defin{Toeplitz sections} are
+\subsection[recurrenceZeroLimitSets]{Limit sets and characteristic roots}
+
+For a sequence of nonzero polynomials $P_n(x)$, its \defin{zero limit set} is
 \[
- T_n(b)=(b_{i-j})_{i,j=1}^n,\qquad
- P_n(t)=\det(tI-T_n(b)),\qquad P_0=1.
+ \mathcal L(P)=\{x\in\setC:
+   x_j\to x,\ P_{n_j}(x_j)=0,\ n_j\to\infty
+   \text{ for some sequences }(x_j),(n_j)\}.
 \]
-The Laurent polynomial $b$ is the \defin{symbol}.
-A \defin{Toeplitz minor} is the determinant of a square submatrix obtained
-by selecting equally many rows and columns.
-
-\subsection[toeplitzSchurMinors]{Schur functions as minors}
-
-Let $h_m=\completeH_m(\xvec)$ be the complete homogeneous symmetric function,
-with $h_0=1$ and $h_m=0$ for $m<0$.
-For increasing nonnegative row indices $i_1<\dotsb<i_k$ and column indices
-$j_1<\dotsb<j_k$ with $i_\ell\geq j_\ell$, put
+A finite-order recurrence whose coefficients are independent of $n$
+has a generating function rational in the index variable $u$.
+After canceling common factors, suppose its poles are simple on a parameter
+domain. Partial fractions then give, for all sufficiently large $n$,
 \[
- \lambda_p=i_{k+1-p}+p-k,\qquad
- \mu_p=j_{k+1-p}+p-k\qquad(1\leq p\leq k).
+ P_n(x)=\sum_i a_i(x)\lambda_i(x)^n,
 \]
-These are partitions with $\mu\subseteq\lambda$, and the
-\hyperref[skewJacobiTrudi]{skew Jacobi--Trudi identity} gives
-\[
- \det(h_{i_p-j_q})_{p,q=1}^k=\schurS_{\lambda/\mu}.
-\]
-Indeed, reversing both index orders gives the matrix
-$(h_{\lambda_p-\mu_q-p+q})$ and leaves its determinant unchanged.
-If some $i_\ell<j_\ell$, the lower-triangular zero pattern makes the minor zero.
-The dual identity gives analogous formulas with elementary symmetric functions.
-
-Nonnegative specializations therefore give
-\hyperref[pfSchurJacobiTrudi]{totally non-negative Toeplitz matrices}.
-For the general connection with coefficient sequences and real zeros, see
-\hyperref[polyaFrequency]{Pólya frequency sequences};
-for banded minors, determinant formulas, and recurrences, see
-\cite{Alexandersson2012Toeplitz}.
-The \hyperref[toeplitzReciprocalRecurrence]{rectangular Schur formula below}
-makes the recurrence explicit for a balanced pentadiagonal matrix.
+where $\lambda_i(x)$ are reciprocals of the poles.
+The amplitudes $a_i$ depend on the initial conditions.
+One must therefore consider both ties between dominant moduli
+$|\lambda_i|$ and zeros of the corresponding amplitudes.
+For the algebraic construction, including repeated poles, see the
+\hyperref[recurrenceSpectralModel]{spectral expansion of a recurrence}.
 
 \section[toeplitzBkw]{Beraha--Kahane--Weiss and limiting zeros}
 
@@ -110,19 +97,187 @@ so the displayed theorem does not apply directly. A common scalar factor
 in $n$ can be removed for large $n$; general polynomial-in-$n$ amplitudes
 require an extension.
 
-\section[toeplitzSpectra]{Real spectra of banded Toeplitz matrices}
+\subsection[recurrenceRenewalLimitSet]{Limiting zeros of the renewal family}
+
+For the \hyperref[weightedRenewalInterlacing]{weighted renewal family},
+BKW gives an explicit limiting interval.
+The interlacing theorem applies to every index; the following statement
+describes the zeros as the index tends to infinity.
+
+\begin{theorem}[Renewal zero accumulation]
+Let $d,\ell\geq1$ be integers and let
+$R(u)=\prod_{j=1}^d(1+a_ju)$, with $a_j>0$.
+Define $P_n$ by
+\[
+ \sum_{n\geq0}P_n(x)t^n=\frac1{1-tR(xt^\ell)}.
+\]
+There is a unique $u_*$ between the largest zero of $R$ and $0$ such that
+\[
+ R(u_*)+\ell u_*R'(u_*)=0.
+\]
+Put $x_*=u_*R(u_*)^\ell$. The set of finite accumulation points of zeros
+of $P_n$, as $n\to\infty$, is exactly
+\[
+ (-\infty,x_*].
+\]
+Every neighborhood of every point in this ray contains a zero of $P_n$
+for all sufficiently large $n$.
+\end{theorem}
+
+\begin{proof*}
+Put $H(u)=uR(u)^\ell$ and $b=1/\max_j a_j$.
+For $x\ne0$, poles of the generating function correspond bijectively to
+\[
+ H(u)=x,\qquad t=\frac1{R(u)},\qquad \lambda=R(u).
+\]
+Since $|\lambda|=(|x|/|u|)^{1/\ell}$, dominant characteristic roots
+correspond to smallest-modulus roots of $H(u)=x$.
+At a simple pole the amplitude is
+\[
+ A(u)=\frac{R(u)}{R(u)+\ell uR'(u)},
+\]
+which is nonzero.
+
+For fixed $r>0$,
+\[
+ |H(re^{i\theta})|
+ =r\prod_j(1+2a_jr\cos\theta+a_j^2r^2)^{\ell/2}
+\]
+is strictly decreasing for $0\leq\theta\leq\pi$.
+Thus distinct roots of $H(u)=x$ with the same modulus must be conjugate,
+and this can happen only for real $x$.
+In particular, there is no identically unit-modulus ratio of distinct
+characteristic branches, as required by BKW.
+
+On $(-b,0)$, the function
+\[
+ g(u)=1+\ell\frac{uR'(u)}{R(u)}
+ =1+\ell\sum_j\frac{a_ju}{1+a_ju}
+\]
+is strictly increasing from $-\infty$ to $1$.
+Its unique zero is $u_*$, and $H''(u_*)=R(u_*)^\ell g'(u_*)>0$.
+The inverse root near zero is uniquely smallest in modulus and remains so
+for $x_*<x<0$. At $x_*$ it merges with another root; just below $x_*$
+the two smallest roots form a conjugate pair.
+
+This pair persists for all $x<x_*$.
+Indeed, all zeros of $H'$ are real, and the upper-half-plane member satisfies
+\[
+ \arg u+\ell\sum_j\arg(1+a_ju)=\pi,
+\]
+with each argument in $(0,\pi)$.
+It cannot encounter a critical point off the real axis.
+A negative real limit beyond $-b$ would make the left side exceed $\pi$;
+a limit in $(-b,0)$ would require a collision at $u_*$.
+A positive real limit has positive $H$, and roots remain bounded over
+bounded sets of $x$. Hence the pair continues along the whole ray.
+It cannot lose dominance, since that would require a third root of the
+same modulus.
+
+Away from the finitely many critical values, BKW now gives accumulation
+on the ray. Neighborhoods of the exceptional points contain regular
+points of the ray, giving the same conclusion there, including at $x_*$.
+On $(x_*,0)$ the unique dominant pole is simple with nonzero amplitude,
+so its uniform coefficient asymptotics exclude accumulation, even if
+subdominant poles collide. At $x=0$ the denominator is $1-t$, with a
+single nearby dominant pole, so the same exclusion holds.
+The renewal interlacing theorem excludes nonreal and positive zeros.
+\end{proof*}
+
+For the seed $R(u)=(1+u)^d$, put $L=d\ell+1$.
+Then
+\[
+ u_*=-\frac1L,\qquad
+ x_*=-\frac{(L-1)^{L-1}}{L^L}.
+\]
+For example, $L=2$ gives $(-\infty,-1/4]$, and $L=3$ gives
+$(-\infty,-4/27]$.
+Writing $P_n=C_{dn}$, where $\sum_{N\geq0}C_N(x)t^N=1/(1-t-xt^L)$,
+identifies the same endpoint with the sign-reversed interval in
+\cite[Thm.~1]{ForgcsTran2016} for the coefficient sequence $C_N$.
+The dominance argument above also handles arbitrary positive row weights.
+
+The \hyperref[weightedDelayRecurrences]{arbitrary-weight variable-predecessor theorem} need not come from a
+stationary finite-order recurrence. BKW applies to the renewal specialization
+above; more general changing coefficients require additional asymptotic
+hypotheses.
+
+\section[toeplitzMinors]{Toeplitz determinants and minors}
+
+For a Laurent polynomial $b(z)=\sum_{k=-r}^s b_kz^k$, where
+$r,s\geq1$ and $b_{-r}b_s\ne0$, the \defin{Toeplitz sections} are
+\[
+ T_n(b)=(b_{i-j})_{i,j=1}^n,\qquad
+ P_n(t)=\det(tI-T_n(b)),\qquad P_0=1.
+\]
+The Laurent polynomial $b$ is the \defin{symbol}.
+A \defin{Toeplitz minor} is the determinant of a square submatrix obtained
+by selecting equally many rows and columns.
+
+\subsection[toeplitzSchurMinors]{Schur functions as minors}
+
+Let $h_m=\completeH_m(\xvec)$ be the complete homogeneous symmetric function,
+with $h_0=1$ and $h_m=0$ for $m<0$.
+For increasing nonnegative row indices $i_1<\dotsb<i_k$ and column indices
+$j_1<\dotsb<j_k$ with $i_\ell\geq j_\ell$, put
+\[
+ \lambda_p=i_{k+1-p}+p-k,\qquad
+ \mu_p=j_{k+1-p}+p-k\qquad(1\leq p\leq k).
+\]
+These are partitions with $\mu\subseteq\lambda$, and the
+\hyperref[skewJacobiTrudi]{skew Jacobi--Trudi identity} gives
+\[
+ \det(h_{i_p-j_q})_{p,q=1}^k=\schurS_{\lambda/\mu}.
+\]
+Indeed, reversing both index orders gives the matrix
+$(h_{\lambda_p-\mu_q-p+q})$ and leaves its determinant unchanged.
+If some $i_\ell<j_\ell$, the lower-triangular zero pattern makes the minor zero.
+The dual identity gives analogous formulas with elementary symmetric functions.
+
+Nonnegative specializations therefore give
+\hyperref[pfSchurJacobiTrudi]{totally non-negative Toeplitz matrices}.
+For the general connection with coefficient sequences and real zeros, see
+\hyperref[polyaFrequency]{Pólya frequency sequences};
+for banded minors, determinant formulas, and recurrences, see
+\cite{Alexandersson2012Toeplitz}.
+The \hyperref[toeplitzReciprocalRecurrence]{rectangular Schur formula below}
+makes the recurrence explicit for a balanced pentadiagonal matrix.
+
+
+The \hyperref[toeplitzSchmidtSpitzer]{Schmidt--Spitzer theorem} below
+describes limiting zeros of the principal characteristic determinants
+$\det(tI-T_n(b))$. For other families of Toeplitz minors, one must identify
+their own recurrence roots and amplitudes before applying BKW;
+see \cite{Alexandersson2012Toeplitz}.
+
+\section[toeplitzSpectra]{Limiting spectra of banded Toeplitz matrices}
+
+\subsection[toeplitzSchmidtSpitzer]{The Schmidt--Spitzer theorem}
 
 The \defin{limiting spectrum} is
 \[
  \Lambda(b)=\{t\in\setC:\lim_{n\to\infty}
  \operatorname{dist}(t,\operatorname{spec}T_n(b))=0\}.
 \]
-Order the roots of $z^r(b(z)-t)$ by modulus, with multiplicity.
-The Schmidt--Spitzer theorem \cite{SchmidtSpitzer1960} gives
+\begin{theorem}[Schmidt--Spitzer, \cite{SchmidtSpitzer1960}]
+For the banded symbol $b(z)=\sum_{k=-r}^s b_kz^k$ with
+$r,s\geq1$ and $b_{-r}b_s\ne0$, order the $r+s$ roots of
+$z^r(b(z)-t)$ by modulus, counting multiplicity:
+\[
+ |z_1(t)|\leq\dotsb\leq|z_{r+s}(t)|.
+\]
+Then
 \[
  \Lambda(b)=\{t:|z_r(t)|=|z_{r+1}(t)|\}.
 \]
-See also the \hyperref[toeplitzReciprocalRecurrence]{recurrence and BKW interpretation}.
+\end{theorem}
+
+Thus the limiting zeros of the principal characteristic determinants
+$P_n(t)$ are given by an equal-modulus condition at the band index $r$.
+See the \hyperref[toeplitzReciprocalRecurrence]{recurrence and BKW interpretation}
+for the balanced pentadiagonal case.
+
+\subsection[toeplitzRealLimitQuestion]{Real limiting spectra and finite spectra}
 
 For real coefficients, \name{Boris Shapiro} and \name{František Štampach}
 \cite{ShapiroStampach2019,ShapiroStampach2023Correction} considered three conditions:
@@ -304,11 +459,10 @@ when $|z_2|=|z_3|$. On analytic domains satisfying the
 above explains this equal-modulus locus as a limiting zero set.
 The \hyperref[toeplitzSpectra]{Schmidt--Spitzer theorem} supplies the
 global statement, including collisions and exceptional parameter choices.
-Reciprocal pairing gives the same locus for the backward recurrence;
-it does not by itself prove reality of finite spectra.
+Reciprocal pairing gives the same locus for the backward recurrence.
 For positive outer product, the
 \hyperref[toeplitzPentadiagonal]{critical-point and total-nonnegativity proof}
-does prove that a real limiting spectrum forces every $P_n$ to be real-rooted.
+shows that a real limiting spectrum forces every $P_n$ to be real-rooted.
 
 \section[toeplitzHessenberg]{Five-term Hessenberg recurrences}
 
