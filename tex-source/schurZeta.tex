@@ -61,6 +61,43 @@ For connections with Chern numbers and hyper-Kähler and Calabi--Yau manifolds, 
 A refinement of the Littlewood--Richardson rule is available in \cite{Hanaki2026x}.
 
 
+\subsection[schurZetaAntiRibbon]{Anti-ribbon expansion}
+
+For $N\geq1$ and $D\subseteq[N-1]$, an \defin{anti-ribbon} is a path of $N$ boxes
+whose step after box $j$ goes downward if $j\in D$ and right otherwise,
+using English coordinates. Define its zeta function by
+\[
+ \zeta^{\mathrm{ar}}_D(a_1,\dotsc,a_N)
+ =\sum_{\substack{1\leq m_1\leq\dotsb\leq m_N\\
+                  m_j<m_{j+1}\text{ if }j\in D}}
+     \prod_{j=1}^N m_j^{-a_j}.
+\]
+
+The skew zeta function $\zeta_{\lambda/\mu}$ is defined by the same tableau
+sum as the straight case, using semistandard tableaux of shape $\lambda/\mu$.
+
+\begin{theorem}[Murahara--Nakasuji--Takeda,
+\cite[Thm.~5.5]{MuraharaNakasujiTakeda2026x}]
+Let $\lambda/\mu$ be a nonempty skew shape with $N$ boxes. Suppose
+$\operatorname{Re}s_u\geq1$ for every box $u$, with strict inequality
+at every southeast corner (a box with neither a box to its right nor below).
+Then the following series converge absolutely and
+\[
+ \zeta_{\lambda/\mu}(\svec)
+ =\sum_{T\in\SYT(\lambda/\mu)}
+   \zeta^{\mathrm{ar}}_{\operatorname{Des}(T)}
+       \bigl(s_{T^{-1}(1)},\dotsc,s_{T^{-1}(N)}\bigr).
+\]
+Here $T^{-1}(j)$ is the box containing $j$, and
+$\operatorname{Des}(T)$ is the \hyperref[tableauDescentSet]{descent set}.
+\end{theorem}
+
+Standardizing each semistandard tableau gives the index $T$ and the
+weakly increasing sequence of entries in the displayed sum.
+The authors' diagram slides realize this decomposition geometrically;
+replacing the zeta weights by monomials recovers
+\hyperref[skewSchurGesselExpansion]{Gessel's fundamental expansion}.
+
 \subsection[jackMultipleZeta]{Jack multiple zeta functions}
 
 \name{Maki Nakasuji} and \name{Wataru Takeda} introduce

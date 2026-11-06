@@ -1026,6 +1026,49 @@ the lower-degree terms are obtained from the leading terms by alternating
 sums of meets or joins.
 
 
+\subsection[grothendieckDualStableMN]{Murnaghan--Nakayama rule}
+
+\name{Dang Tuan Hiep} and \name{Do Le Hai Thuy} give a boundary formula
+for the coefficients
+\[
+ F_k(\lambda,\mu)
+ \coloneqq[\grothendieckDual_\mu]\,
+       \grothendieckDual_\lambda\powerSum_k,\qquad k\geq1.
+\]
+A \defin{corner-connected broken ribbon} is a nonempty skew diagram
+with no $2\times2$ block, connected by edge-or-vertex adjacency.
+For $\theta=\mu/\lambda$, let $d=|\theta|$, let $r$ be its number of
+occupied rows, and let $c$ be its number of edge-connected components.
+Pad both partitions with zeros and define
+\[
+ B(\lambda,\mu)=\sum_{i\geq1}
+ \left(\mathbf{1}_{\mu_i>\lambda_{i+1}}
+       -\mathbf{1}_{\lambda_i>\mu_{i+1}}\right),
+\]
+where $\mathbf{1}_E$ is $1$ when $E$ holds and $0$ otherwise.
+
+\begin{theorem}[Hiep--Thuy, \cite[Thm.~2.1]{HiepThuy2026x}]
+For every $k\geq1$,
+\[
+ F_k(\lambda,\lambda)=-\#\{i:\lambda_i>\lambda_{i+1}\}.
+\]
+For $\lambda\ne\mu$, the coefficient vanishes unless $\lambda\subsetneq\mu$
+and $\mu/\lambda$ is a corner-connected broken ribbon. In that case
+$B=B(\lambda,\mu)\geq0$ and
+\[
+ F_k(\lambda,\mu)=(-1)^{r-c}
+   \binom{k-d+B-c}{k-d-c+1}.
+\]
+Here $\binom a0=1$ for every integer $a$, $\binom ab=0$ for $b<0$,
+and otherwise the binomial coefficient is defined by the falling-factorial
+formula.
+\end{theorem}
+
+At $d=k$, the formula recovers the signed ribbons of the
+\hyperref[murnaghanNakayamaRule]{classical Murnaghan--Nakayama rule}.
+It evaluates the stable specialization of the
+$K$-$k$-Schur rule of \cite{Nguyen2022x}.
+
 \subsection[grothendieckDualStableBialternant]{Bialternant formula}
 
 

@@ -607,6 +607,35 @@ where $AM$ denotes the Arthur--Merlin probabilistic proof class.
 
 
 
+\subsection[schubertTwoRowProduct]{Two-row Schur times Schubert}
+
+Fix $2\leq k<n$ and $a\geq b\geq0$.
+\name{Tianyi Yu} gives a positive formula for
+\[
+ \schubert_u\,\schurS_{(a,b)}(x_1,\dotsc,x_k)
+   =\sum_w c^w_{u,(a,b)}\schubert_w
+\]
+in terms of \hyperref[kostkaCoefficient]{Kostka numbers}
+\cite[Thm.~1.1]{Yu2026TwoRowSchubertx}.
+For $u,w\in\symS_n$, write $u\leq_k w$ when a saturated
+\hyperref[bruhatOrder]{Bruhat chain} from $u$ to $w$ uses only transpositions
+of positions $i\leq k<j$. Suppose $u\leq_k w$, and
+let $\mathcal L=\{u(j):j>k,\ u(j)=w(j)\}$.
+Partition $[n]\setminus\mathcal L$ into classes $\mathcal P$ by declaring
+$i<j$ equivalent when $wu^{-1}((i,j])=[i,j)$, where these are integer intervals.
+These are the nonloop parallel classes of the corresponding
+\hyperref[positroidVarietyDefinition]{positroid variety}.
+We have
+\[
+ \ell(w)-\ell(u)\geq n-2k-|\mathcal L|+|\mathcal P|.
+\]
+If the inequality is strict, all two-row coefficients vanish. If equality
+holds, put $d=|\mathcal P|-k$ and $\alpha=(|C|-1:C\in\mathcal P)$. Then
+\[
+ c^w_{u,(a,b)}=K_{(a-d,b-d),\alpha},
+\]
+with value zero for a negative part or a size mismatch.
+
 \subsection[schubertStretching]{Polynomiality under stretching}
 
 The \defin{Lehmer code} of a permutation $u$ has entries

@@ -1,5 +1,39 @@
 # Handoff
 
+## Done: eight November-feed preprints — 2026-11-06
+
+Content worker releases `tex-source/lorentzianPolynomials.tex`,
+`tex-source/stablePolynomials.tex`, `tex-source/grothendieck.tex`,
+`tex-source/murnaghanNakayama.tex`, `tex-source/schur.tex`,
+`tex-source/schurZeta.tex`, `tex-source/realRooted.tex`,
+`tex-source/schubert.tex`, `tex-source/positroids.tex`,
+`tex-source/parking-functions.tex`, `tex-source/permutationPatterns.tex`,
+`bibliography.bib`, and this opening.
+Clean intake at 6938b67. All eight exact-version PDFs and sources cached,
+with extracted text (paper-cache 808--815). Added:
+- Dong--Shi: normalized cone-Lorentzian/cone-stable and multiaffine stable
+  ball theorems, with dimensions and cross-links (2611.08265v1).
+- Hiep--Thuy: dual MN boundary formula and a variants-page link (2611.07795v1).
+- Murahara--Nakasuji--Takeda: tableau interpretation of Gessel expansion and
+  anti-ribbon zeta theorem with convergence hypotheses (2611.07715v1).
+- Feng--Yan: explicit strictly unimodal, non-log-concave tree example on
+  the real-rootedness overview (2611.07503v1).
+- Yu: two-row Schur/Schubert Kostka formula and positroid link (2611.07351v1).
+- Ferreri--Martinez: parking outcomes with lucky set [k], enumeration formulas,
+  and pattern-page link (2611.07267v1).
+- Chen: coordinate-slice log-concavity in a fan seed (2610.09312v2).
+- Lu--Zheng: replaced the outdated Ross--Wu conjecture status by the stronger
+  product theorem, Corollary 1.12 (2506.16992v6); Lorentzian-page cross-link.
+Eight bibliography records from the arXiv++ API, checked against primary PDFs
+and arXiv metadata. Avoided the occupied Yu2026x key; Lu--Zheng uses first
+submission year 2025 instead of the API's revision year 2026.
+Academic-writing guidance used for concise statements, definitions before use,
+and explicit hypotheses. No local-working-tool commentary added to the pages.
+`make all Q=1`, `make check Q=1`, `git diff --check` pass; symlink scan empty.
+Chromium at 1366/375 passes math, internal links, new anchors and overflow
+checks on all 11 content pages. Desktop/mobile screenshots inspected.
+Source only; not deployed.
+
 ## Deployed: recurrence reorganization and examples — 2026-11-06
 
 Content worker claims/releases this opening for the deployment record.

@@ -78,6 +78,29 @@ is real-rooted.  Its coefficients form \oeis{A333829}; see
 the descent-set transfer to words and the short interlacing proof.
 
 
+\subsection[parkingPermutationLuckyPatterns]{Parking permutations and lucky cars}
+
+The \defin{parking permutation} of a parking function is the final list of
+car labels in spots $1,\dotsc,n$. A car is \defin{lucky} if it parks in its
+preferred spot. For $1\leq k\leq n$, let $\mathcal O_{n,k}(\sigma)$ be the
+set of distinct parking permutations avoiding the
+\hyperref[permutationPattern]{pattern} $\sigma$ that arise from parking
+functions whose lucky cars are exactly $[k]$.
+
+\name{Melanie Ferreri} and \name{Lucy Martinez} enumerate these sets for
+all patterns of length three. For example,
+\[
+ |\mathcal O_{n,k}(123)|=\frac{2n-2k+1}{n+1}\binom{2k}{n},
+\]
+and, for each $\sigma\in\{213,231,132\}$,
+\[
+ |\mathcal O_{n,k}(\sigma)|
+   =\frac{n-k+2}{n+1}\binom{n+k-1}{k-1}
+\]
+\cite[Thms.~3.6, 3.17, 3.27 and 3.31]{FerreriMartinez2026x}.
+For $n=5$, $k=3$, the first set consists of
+$25143$, $32514$, $35142$, $35214$, and $35241$.
+
 \section[parkingFunctionsLabeledDyck]{Bijection with labeled Dyck paths}
 
 There is a classical bijection between parking functions of length $n$ and

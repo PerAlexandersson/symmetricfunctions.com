@@ -71,6 +71,28 @@ Finally, if $P$ has only real roots, it is called
 \defin{real-rooted}\label{realRootedPolynomial}.
 Every real-rooted polynomial satisfies the Newton inequalities, see e.g. \cite{Branden2015}.
 
+\begin{example*}[Strict unimodality without log-concavity]
+\label{partialPetrialUnimodality}
+For a simple graph $G$, its \defin{partial Petrial polynomial} is
+\[
+ P_G^\times(z)=\sum_{\varepsilon\in\{0,1\}^{V(G)}}
+ z^{\operatorname{rank}_{\mathbb F_2}(A_G+\operatorname{diag}\varepsilon)},
+\]
+where $A_G$ is the adjacency matrix.
+Let $R_m$ be the tree obtained by joining a new vertex to the middle
+vertex of each of $m$ disjoint five-vertex paths.
+\name{Ruiqing Feng} and \name{Qi Yan} prove that the nonzero coefficient
+sequence of $P_{R_m}^\times$ is strictly unimodal for every $m\geq1$,
+but log-concave exactly for $1\leq m\leq3$
+\cite[Thms.~8 and 11]{FengYan2026x}.
+For the $21$-vertex tree $R_4$ it is
+\[
+ (16,\ 688,\ 40506,\ 306936,\ 887733,\ 861273),
+\]
+in degrees $16$ through $21$. Log-concavity fails since
+$688^2<16\cdot40506$.
+\end{example*}
+
 \begin{example*}[Infinite log-concavity of the Boros--Moll sequences]
 For a finite or one-sided infinite sequence $a=(a_i)$, extend $a$ by zeros
 outside its index set and define
@@ -143,6 +165,26 @@ Young's lattice intervals, order polynomials, Schur and Schur \(Q\)-function
 specializations, Lucas sequences, descent and peak polynomials, pattern
 avoidance, set partitions, and noncrossing partitions.
 
+
+\subsection[clusterFanLogConcavity]{Cluster monomials in fan coordinates}
+
+A cluster monomial is a product of nonnegative powers of variables from
+one cluster in a \hyperref[dictionaryAlgebraRepresentation]{cluster algebra}.
+For a Laurent polynomial $\sum_{\alpha\in\setZ^n}c_\alpha x^\alpha$,
+a coordinate slice is the coefficient sequence obtained by fixing all
+exponents except one.
+
+\begin{theorem}[Chen, \cite[Thm.~1.3]{Chen2026FanCoordinatesx}]
+In a coefficient-free cluster algebra with a linearly oriented type $A_n$
+initial quiver, every cluster monomial has log-concave, unimodal coordinate
+slices in its Laurent expansion in the initial cluster. Each nonzero slice
+has no internal zeros.
+\end{theorem}
+
+In the polygon model, the initial cluster is a fan triangulation:
+all its diagonals meet at one vertex. The proof expresses compatible
+diagonals through products of interval sums indexed by a
+\hyperref[laminarFamily]{laminar family}.
 
 \subsection[classicalRootCriteria]{Classical criteria and root counts}
 

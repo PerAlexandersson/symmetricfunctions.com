@@ -208,3 +208,43 @@ see \cite{BendjeddouHardiman2025}.
 Lorentzian polynomial methods to prove homomorphism inequalities for
 antiferromagnetic graphs \cite{LeeOhSeo2025x}.  This includes progress on
 coloring and independent-set extremal problems for regular graphs.
+
+\name{Qing Lu} and \name{Weizhe Zheng} use Hodge--Riemann polynomials
+to prove \hyperref[derivedSchur]{Schur log-concavity of the derived
+sequence of any product of Schur polynomials}
+\cite[Cor.~1.12]{LuZheng2025x}.
+
+\section[lorentzianConeTopology]{Lorentzian polynomials on cones and their topology}
+
+Let $K\subsetneq\setR^n$ be a nonempty open convex cone, and write
+$D_u=\sum_i u_i\partial_{x_i}$ for differentiation in direction $u$.
+A real homogeneous polynomial $f$ of degree $d\geq2$ is
+\defin{$K$-Lorentzian}\label{coneLorentzianPolynomial} if
+\[
+ D_{u_1}\dotsm D_{u_d}f>0\qquad(u_1,\dotsc,u_d\in K),
+\]
+and the Hessian of $D_{u_3}\dotsm D_{u_d}f$ has exactly one positive
+eigenvalue for every $u_3,\dotsc,u_d\in K$
+\cite[Def.~2.1]{BrandenLeake2023x}.
+In degree one we require $f(u)>0$ on $K$; in degree zero we allow
+nonnegative constants. For $K=\setR_{>0}^n$, the nonzero polynomials in
+this class are precisely the ordinary Lorentzian polynomials.
+
+\begin{theorem}[Dong--Shi, \cite[Thm.~1.1]{DongShi2026x}]
+Fix $v\in K$ and $d\geq0$, and put
+\[
+ S=\overline K\cap(-\overline K),\qquad r=n-\dim S.
+\]
+In the Euclidean topology on coefficient vectors, the space of
+$K$-Lorentzian homogeneous polynomials $f$ of degree $d$ with $f(v)=1$
+is homeomorphic to a closed ball of dimension
+\[
+ \binom{r+d-1}{d}-1.
+\]
+\end{theorem}
+
+This answers the question of \name{Petter Brändén} and
+\name{Jonathan Leake} for arbitrary open convex cones.
+The preprint of \name{Yuxian Dong} and \name{Wenle Shi} also proves
+\hyperref[stablePolynomialTopology]{ball theorems for cone-stable and
+multiaffine real stable polynomials}.

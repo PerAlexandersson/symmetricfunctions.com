@@ -895,6 +895,16 @@ Skew Schur polynomials, and thus Schur polynomials, expand positively in the
 where $\SYT(\lambda/\mu)$ is the set of standard Young tableaux of shape
 $\lambda/\mu$ and $D(T)$ is the \hyperref[tableauDescentSet]{descent set} of $T$.
 
+\name{Hideki Murahara}, \name{Maki Nakasuji}, and \name{Wataru Takeda}
+realize this expansion by a binary tree of diagram slides whose leaves are
+anti-ribbons: paths of boxes with right and downward steps, in English
+notation. The leaf indexed by $T$ steps downward precisely at $D(T)$.
+Standardization gives a weight-preserving decomposition of semistandard
+tableaux into these anti-ribbon tableaux
+\cite[Thms.~3.22, 4.3 and 5.2]{MuraharaNakasujiTakeda2026x}.
+The same construction gives an
+\hyperref[schurZetaAntiRibbon]{anti-ribbon expansion of Schur multiple zeta functions}.
+
 
 The \hyperref[gesselSlinkyRule]{slinky rule} can be used to find the Schur expansion
 of a symmetric function, given the fundamental quasi-symmetric expansion.
@@ -920,16 +930,26 @@ polynomials}\label{derivedSchurPolynomial} are defined by
 \schurS_\lambda(x_1+t,\dotsc,x_n+t)
   = \sum_i \schurS_\lambda^{(i)}(x_1,\dotsc,x_n)t^i.
 \]
-\name{Julius Ross} and \name{Kuang-Yu Wu} conjecture a
-\hyperref[schurPositivity]{Schur-positive}
-log-concavity property
+\name{Julius Ross} and \name{Kuang-Yu Wu} conjectured Schur log-concavity
+for these derived polynomials \cite{RossWu2024x}.
+\name{Qing Lu} and \name{Weizhe Zheng} prove the stronger statement below.
+
+\begin{theorem}[Lu--Zheng, \cite[Cor.~1.12]{LuZheng2025x}]
+Let $f=\prod_{j=1}^r\schurS_{\lambda^{(j)}}(x_1,\dotsc,x_e)$, and define
+$f^{(i)}$ by
 \[
-(\schurS_\lambda^{(i)})^2
-  - \schurS_\lambda^{(i-1)}\schurS_\lambda^{(i+1)}
+ f(x_1+t,\dotsc,x_e+t)=\sum_{i\geq0}f^{(i)}(x_1,\dotsc,x_e)t^i.
 \]
-for these derived polynomials \cite{RossWu2024x}.  They prove the first
-nontrivial case for rectangles, hooks, and two further infinite families of
-partitions.
+For all $1\leq a\leq b$, the polynomial
+\[
+ f^{(a)}f^{(b)}-f^{(a-1)}f^{(b+1)}
+\]
+is \hyperref[schurPositivity]{Schur-positive}.
+\end{theorem}
+
+Their proof uses Hodge--Riemann relations for Schur classes of ample vector
+bundles and a theory of Hodge--Riemann polynomials, related to
+\hyperref[lorentzianPolynomial]{Lorentzian polynomials}.
 \name{{\'A}lvaro Guti{\'e}rrez} and \name{Christian Krattenthaler} study Schur
 log-concavity for sequences of symmetric functions
 \cite{GutierrezKrattenthaler2025SchurLogConcavity}.  They conjecture a broad

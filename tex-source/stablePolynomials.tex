@@ -525,6 +525,35 @@ $\operatorname{Pol}_{\mathbf{d}}(P)$ is stable.
 \end{theorem}
 
 
+\subsection[stablePolynomialTopology]{Topology of normalized stable-polynomial spaces}
+
+We give spaces of fixed-degree polynomials the Euclidean topology on their
+coefficient vectors. The following result of \name{Yuxian Dong} and
+\name{Wenle Shi} settles a conjecture of \name{Petter Brändén}.
+
+\begin{theorem}[Dong--Shi, \cite[Thm.~1.3]{DongShi2026x}]
+For $n\geq1$ and $0\leq d\leq n$, the space of homogeneous multiaffine
+real stable polynomials $f(x_1,\dotsc,x_n)$ of degree $d$ satisfying
+$f(1,\dotsc,1)=1$ is homeomorphic to a closed Euclidean ball of dimension
+\[
+ \binom nd-1.
+\]
+\end{theorem}
+
+There is also a cone version. Let $K\subsetneq\setR^n$ be a nonempty
+open convex cone. A real polynomial $f$ is
+\defin{$K$-stable}\label{coneStablePolynomial} if
+\[
+ f(x+iy)\ne0\qquad(x\in\setR^n,\ y\in K).
+\]
+Fix $v\in K$, let $d\geq0$, and set
+$r=n-\dim(\overline K\cap(-\overline K))$.
+Dong--Shi prove that the space of homogeneous $K$-stable polynomials of
+degree $d$ with $f(v)=1$ is homeomorphic to a closed ball of dimension
+$\binom{r+d-1}{d}-1$ \cite[Thm.~1.2]{DongShi2026x}.
+For $K=\setR_{>0}^n$, this is ordinary real stability.
+See also their \hyperref[lorentzianConeTopology]{cone-Lorentzian ball theorem}.
+
 \section[stabilityConnections]{Jump systems and matroids}
 
 
