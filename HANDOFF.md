@@ -1,5 +1,15 @@
 # Handoff
 
+## Deployed: recurrence reorganization and examples — 2026-11-06
+
+Content worker claims/releases this opening for the deployment record.
+User-authorized deployment of clean `3e44aed2788b00587743706ce3364d21a8402766`.
+Bridge ready; `make all Q=1`, `make check Q=1`, and `git diff --check` pass.
+Receipt `20261106T085657-3565fca23d12` reports deployed, with matching search
+manifest. Live recurrence, interlacing, Toeplitz, graph, representation-theory,
+Specht-module and homepage HTML match the build byte-for-byte (following the
+homepage redirect). Includes the earlier pending regular-matrix examples.
+
 ## Done: recurrence-page organization — 2026-11-06
 
 Content worker releases `tex-source/polynomialRecurrences.tex`,
