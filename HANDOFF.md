@@ -1,5 +1,42 @@
 # Handoff
 
+## Five-paper placement assessment — complete 2026-11-11
+
+Host supervisor releases this opening. Exact retained sources and available
+current extracted text were read through paper-cache; the square-root-crystal
+paper was read from its v2 source, not its stale v1 extracted text.
+No content pages or bibliography were changed; no deployment requested.
+Recommended placements:
+- 2611.13479v1 (Defant): `realRooted.tex` / `narayanaTransformations` for the
+  multivariate homogeneous-stable Narayana transform; `realRootedWords.tex`
+  for stack-sorting fibers, with a `lorentzianPolynomials.tex` cross-link.
+  Fiber ultra-log-concavity is proved; general fiber real-rootedness remains
+  conjectural. The ascent/descent-top refinement is a laminar-matroid basis
+  polynomial (for nonempty fibers).
+- 2608.11009v2 (Marberg--Scrimshaw): a square-root-crystal subsection in
+  `crystals.tex`, cross-linked from `grothendieck.tex`. Includes the square root
+  of B(infinity), tableau/PBW/polyhedral models, character and Demazure results.
+- 2611.14322v1 (Leake--Zhang): a bounds/approximation subsection under
+  `kostkaCoefficients` in `kostkaFoulkes.tex`, with links from `schur.tex` and
+  `lorentzianPolynomials.tex`. Polynomial-time log-capacity approximation
+  yields an exponential-factor approximation to Kostka numbers, not an FPTAS.
+- 2611.14298v1 (Adilzhan--Yeliussizov): a flagged Grothendieck enumerators
+  subsection beside `grothendieckRefinedCanonical` in `grothendieck.tex`,
+  with a link from `schurStripDecompFormula` in `schur.tex`. Ribbon-decomposition
+  determinants extend the refined canonical stable and dual families.
+- 2611.14177v1 (Kim--Oh): a cyclic-LLT subsection in `unicellular-llt.tex`,
+  linked from `llt.tex`, `chromaticQuasisymmetric.tex`, and
+  `shuffleAndDelta.tex`. Define the plethystic transform, explain its n=1
+  specialization and sorted-loop monomial expansion; separate the affine
+  Springer/Frobenius interpretation. Polynomial Schur positivity is conjectural.
+  Do not identify it with circular-Dyck LLTs or transfer shifted e-positivity
+  without proving the correspondence.
+
+None of these exact arXiv ids was already in the bibliography/content.
+The runtime callable-tool registry exposes no paper-cache MCP tools,
+although `codex mcp list` lists the configured server. Use the documented
+paper-cache CLI/backend for local-first lookup and exact-version caching.
+
 ## Done: distinguish Yang--Baxter labels — 2026-11-06
 
 Content worker releases `tex-source/latticeModel.tex`, `tex-source/yang-baxter.tex`,
