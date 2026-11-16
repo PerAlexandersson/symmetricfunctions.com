@@ -58,12 +58,39 @@ one of the quickest ways Ehrhart theory meets permutation statistics.
 
 \subsection[ehrhartOperations]{Operations on lattice polytopes}
 
-\name{Feihu Liu} studies how eight standard polytope operations affect
+\name{Feihu Liu} compares how eight standard polytope operations affect
 Ehrhart and magic positivity, coefficient properties of $h^*$-polynomials,
-and lattice-geometric properties \cite{Liu2026EhrhartOperations}.
-For example, standard lattice joins and unit-height lattice pyramids preserve
-real-rootedness of $h^*$-polynomials, whereas free sums need not
-\cite[Cor.~3.2, Eq.~(4.1), and Thm.~5.7]{Liu2026EhrhartOperations}.
+and lattice-geometric properties \cite[Table~1]{Liu2026EhrhartOperations}.
+
+Integral dilation preserves several of these properties.  If $P$ is a
+$d$-dimensional lattice polytope and $r$ is a positive integer, then
+
+\[
+  E_{rP}(n)=E_P(rn),
+  \qquad
+  h^*_{rP}(t)
+  =\sum_{n\geq 0}[z^{rn}]
+  \left((1+z+\dotsb+z^{r-1})^{d+1}h^*_P(z)\right)t^n.
+\]
+
+Thus dilation preserves Ehrhart positivity.  It also preserves magic
+positivity and, whenever $h^*_P$ has the corresponding property,
+unimodality, log-concavity without internal zeros, ultra log-concavity in
+both the dimension and actual-degree normalizations, and real-rootedness.
+It need not preserve symmetry or $\gamma$-positivity.  Dilation also preserves
+spanning, very ampleness, the integer decomposition property, and
+unimodular, regular unimodular, and quadratic triangulations
+\cite[Sec.~9]{Liu2026EhrhartOperations}.
+
+The behavior of the other operations differs.  A unit-height lattice pyramid
+satisfies $h^*_{\operatorname{pyr}(P)}=h^*_P$, and therefore preserves every
+coefficient property of $h^*$, but can destroy Ehrhart and magic positivity.
+Cartesian products preserve Ehrhart and magic positivity, log-concavity
+without internal zeros, dimension-order ultra log-concavity, and
+real-rootedness of $h^*$.  Unimodality can fail under products, while
+symmetry and $\gamma$-positivity require the two factors to have equal codegree.
+Standard lattice joins preserve real-rootedness, whereas free sums need not
+\cite[Secs.~2--5]{Liu2026EhrhartOperations}.
 
 \subsection[ehrhartReciprocityHub]{Reciprocity and duality}
 

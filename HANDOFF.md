@@ -1,5 +1,21 @@
 # Handoff
 
+## Done — Liu Ehrhart operations v3 expansion, 2026-11-16
+
+Ownership released for `tex-source/ehrhart.tex`, `bibliography.bib`, generated
+verification outputs, and this opening.  Updated arXiv:2610.06338 from v1 to
+exact-current v3 and expanded the existing Ehrhart operations subsection with
+the dilation formula, its preservation results, and the pyramid, Cartesian
+product, join, and free-sum contrasts.  The registered arXiv metadata reports
+Feihu Liu as sole author and no journal reference or DOI.  Paper-cache supplied
+the verified exact-current v3 source; plaintext extraction hit a conflicting
+index artifact, so the retained source tree was read directly.
+
+`make Q=1`, `make check Q=1`, and `git diff --check` pass; the repository
+symlink scan is empty.  The rendered citation and inline BibTeX point to v3.
+Chromium checks at 375 and 1366 pixels found no KaTeX errors or horizontal
+overflow in the expanded section.  Source only; no deployment was performed.
+
 ## Five-paper placement assessment — complete 2026-11-11
 
 Host supervisor releases this opening. Exact retained sources and available
