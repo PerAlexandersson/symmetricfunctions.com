@@ -306,13 +306,11 @@ the indices $i$ with $w_i\gt i$.  Let $\mathrm{PF}_n$ be the set of
 
 \begin{conjecture}[Alexandersson, 2026]
 \label{conjParkingExcedances}
-The polynomials
+The excedance polynomials
 \[
   \sum_{w\in\mathrm{PF}_n}t^{\exc(w)}
-  \qquad\text{and}\qquad
-  \sum_{w\in\mathrm{PF}_n}t^{\operatorname{pk}(w)}
 \]
-are real-rooted, and each family interlaces consecutively.
+are real-rooted and interlace consecutively.
 \end{conjecture}
 
 \[
@@ -330,7 +328,10 @@ n & \sum_{w}t^{\exc(w)} & \sum_{w}t^{\operatorname{pk}(w)} \\
 \bottomrule
 \end{array}
 \]
-Evidence: $n\leq 7$.  Neither triangle is in the OEIS.  For comparison, the
+Evidence: real-rootedness and consecutive interlacing hold for $n\leq12$.
+The peak polynomials, shown for comparison, are real-rooted only for
+$n\leq9$; see the \hyperref[counterexamplesParkingPeaks]{counterexamples}.
+Neither triangle is in the OEIS.  For comparison, the
 descent polynomial of parking functions is
 \hyperref[parkingFunctionDescentsRealRooted]{real-rooted}; it is $1/(n+1)$
 times the descent polynomial of the words $[n+1]^n$.  Peaks behave
@@ -632,8 +633,8 @@ poset is graded and its Hibi ring is Gorenstein.
 \end{array}
 \]
 Rectangles are covered by Brenti's theorem on Gaussian posets
-\cite{Brenti1989}.  Evidence: $N_\lambda$ is real-rooted for all $4{,}507$
-partitions with $|\lambda|\leq22$.  The analogous statements for skew shapes,
+\cite{Brenti1989}.  Evidence: $N_\lambda$ is real-rooted for all $81{,}155$
+partitions with $|\lambda|\leq35$.  The analogous statements for skew shapes,
 for both natural and ordinary descents, are open as well.
 
 \begin{conjecture}[Skew Schur Ehrhart polynomials]
@@ -839,9 +840,8 @@ to be real-rooted, but are not.
 
 Peaks on permutations give the real-rooted
 \hyperref[peakGeneratingPolynomial]{peak polynomials}, and peaks on
-parking functions and Catalan words appear real-rooted, see the
-\hyperref[conjParkingExcedances]{conjectures above}.  Peaks on unrestricted
-words fail.  For words over the alphabet $\{0,1\}$, the first five
+Catalan words appear real-rooted.  Peaks on unrestricted words and on
+parking functions fail.  For words over the alphabet $\{0,1\}$, the first five
 polynomials $2$, $4$, $7+t$, $12+4t$, $21+10t+t^2$ are real-rooted, but
 \[
   \sum_{w\in\{0,1\}^6}t^{\operatorname{pk}(w)}=37+22t+5t^2
@@ -855,6 +855,19 @@ alphabet $[n]$ itself, the polynomials are real-rooted for $n\leq7$, but
   =1215616+5640832t+7878016t^2+2042752t^3
 \]
 has two non-real zeros, and so do the rows $n=9,10$.
+
+\subsection[counterexamplesParkingPeaks]{Peaks on parking functions}
+
+The peak polynomials $\sum_{w\in\mathrm{PF}_n}t^{\operatorname{pk}(w)}$ of
+\hyperref[conjParkingExcedances]{parking functions} are real-rooted and
+interlace consecutively for $n\leq9$, but
+\[
+  \sum_{w\in\mathrm{PF}_{10}}t^{\operatorname{pk}(w)}
+  =24188458+278306304t+970166022t^2+930536936t^3+154749971t^4
+\]
+has two non-real zeros, and so do the rows $n=11,12$.  In contrast, the
+excedance polynomials of parking functions remain real-rooted through
+$n=12$.
 
 \subsection[counterexamplesPalindromic]{Long-cycle descent polynomials}
 
