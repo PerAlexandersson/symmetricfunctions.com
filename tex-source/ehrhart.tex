@@ -333,39 +333,27 @@ stretched Littlewood--Richardson polynomial
 \[
   t\mapsto c^{t\nu}_{t\lambda,t\mu}
 \]
-is nonnegative.  This is known when the indexing partitions have at most four
-parts.
+is nonnegative; see the
+\hyperref[kingTolluToumazetConjecture]{conjecture and its proved cases}.
+It is known when the indexing partitions have at most five parts.
 
-\begin{theorem}[Ferudun {\cite[Thm.~2]{Ferudun2026x}}]
-If \(\lambda,\mu,\nu\) have length at most four, then every coefficient of
+\begin{theorem}[Ferudun {\cite[Thms.~2--3]{Ferudun2026x}}]
+If \(\lambda,\mu,\nu\) have length at most five, then every coefficient of
 \(t\mapsto c^{t\nu}_{t\lambda,t\mu}\) is nonnegative.  Equivalently, the
 Ehrhart polynomial of the associated hive polytope is coefficientwise
-nonnegative.
+nonnegative.  For length at most four the proof is structural; for five
+parts it uses an exact computer-generated certificate.
 \end{theorem}
 
-\begin{conjecture}
-The flagged skew Schur stretching polynomial
-\[
-  k \mapsto K_{k\lambda/k\mu,k\nu}(\avec,\bvec)
-\]
-has nonnegative coefficients.  This is the
-\hyperref[schurFlagged]{flagged generalization} of the
-King--Tollu--Toumazet positivity conjecture
-\cite{AlexanderssonOguz2023x}.
-\end{conjecture}
-
-\begin{conjecture}
-For fixed \(\lambda\) and \(\sigma\in\symS_n\), the polynomial
-\[
-  k\mapsto \key_{k\lambda,\sigma}(1^n)
-\]
-is Ehrhart-positive; more precisely, the polynomial
-\(P_\sigma(\lambda_1,\dotsc,\lambda_n;k)\) from the
-\hyperref[keyEhrhart]{GT-face model for key polynomials} has nonnegative
-coefficients, and remains nonnegative after changing variables to partial
-sums \(a_j=\lambda_1+\dotsb+\lambda_j\)
-\cite{AlexanderssonAlhajjar2018}.
-\end{conjecture}
+\name{Per Alexandersson} and \name{Ezgi Kantarci-Oğuz} conjecture that the
+flagged skew Schur stretching polynomials
+$k\mapsto K_{k\lambda/k\mu,k\nu}(\avec,\bvec)$ have nonnegative
+coefficients \cite{AlexanderssonOguz2023x}; see the
+\hyperref[flaggedSchurKostkaConjecture]{flagged conjecture}.
+\name{Per Alexandersson} and \name{Elie Alhajjar} conjecture that
+$k\mapsto\key_{k\lambda,\sigma}(1^n)$ has nonnegative coefficients, also in
+partial-sum variables \cite{AlexanderssonAlhajjar2018}; see the
+\hyperref[keyEhrhartConjecture]{key-polynomial conjecture}.
 
 These results and conjectures concern GT-type models in which stretching
 partitions gives Ehrhart polynomials or related lattice-point counts.

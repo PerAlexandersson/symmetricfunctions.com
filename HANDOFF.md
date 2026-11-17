@@ -1,5 +1,30 @@
 # Handoff
 
+## Done — real-rootedness open problems page and stale statuses, 2026-11-17
+
+Claude worker releases all files below; nothing committed or deployed.
+New page `tex-source/realRootedOpenProblems.tex` (main label
+`realrootedOpenProblems`, moved from `gammaPositivity.tex`, whose section is
+now `gammaPositivityOpenProblems`), front-page card in `index.tex`
+(Real-rooted section), card source `svg-tex/src/card-realrootedOpenProblems.tex`
+and `assets/nav-images/card-realrootedOpenProblems.svg`.  The SVG was
+compiled with the `tex_to_svg.lua` recipe (pdflatex, then the pdftocairo
+fallback; dvisvgm is absent) for this one file only, because `make svg`
+would also have regenerated five unrelated figures.  Real-rootedness
+conjectures moved from realRooted, realRootedCatalan, various-research
+(key h*), gammaPositivity (zig-zag, Hurwitz, Gessel--Zhuang RR part) with
+pointers left behind; others are linked both ways.  Stale statuses fixed in
+place: Saxl and Shareshian--Wachs (announced proofs), monomial nabla
+(proved right after), KTT stretched LR (now <= 5 parts, Ferudun v2; bib
+title/eprint updated), valley extended Delta (q=0/t=0 cited), duplicates
+ehrhart/schurFlagged, ehrhart/key, LR/hive, Hwang chromaticE/unicellular-llt.
+Eight bibliography entries added.  Unchanged after literature check:
+Stanley 1972 P-partitions, Mandelshtam vs Guo--Ram, Hanlon, Gal.
+`make Q=1`, `make check Q=1`, `git diff --check` pass; symlink scan empty;
+Chromium 375/1366 on 19 pages: no KaTeX errors or broken anchors; the only
+overflow is pre-existing inline math in matroids.tex (base-polytope example).
+Data scripts and outputs: /cargo-target/symcat-conj/work/ (outside repo).
+
 ## Done — Liu Ehrhart operations v3 expansion, 2026-11-16
 
 Ownership released for `tex-source/ehrhart.tex`, `bibliography.bib`, generated

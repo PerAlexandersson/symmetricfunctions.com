@@ -216,6 +216,8 @@ The \hyperref[commonInterlacingCompatibilityTheorem]{compatibility theorem}
 then implies that their sum $W_{r,m}(t)$ is real-rooted.  The transfer identity
 proves the claim.
 
+Excedances and peaks on parking functions also appear to give real-rooted
+polynomials; see the \hyperref[conjParkingExcedances]{open problems}.
 Restricting to Smirnov words, whose adjacent letters differ, instead gives the
 real-rooted \hyperref[noncrossingChowPolynomial]{Chow polynomials of
 noncrossing partition lattices}.
@@ -346,8 +348,9 @@ real-rootedness, using the method of \name{Julius Borcea} and
 \name{Petter Brändén} on \hyperref[stablePolynomial]{stable polynomials}.
 
 The analogous polynomials for type \(D\) are real-rooted, but consecutive
-type \(D\) polynomials are only conjectured to form interlacing pairs; see
-\cite[Section~5]{Chow2022}.
+type \(D\) polynomials are only
+\hyperref[conjTypeDEulerianInterlacing]{conjectured} to form interlacing
+pairs; see \cite[Section~5]{Chow2022}.
 
 There is, however, a refined within-rank relation among the three classical
 types.  Write $A_n(t)$, $B_n(t)=P_n(t)$, and $D_n(t)$ for the Eulerian
@@ -415,8 +418,9 @@ real-rootedness for a binomial version of the
 and the case \(\svec=(2,3,\dotsc,n)\) recovers \(\tilde{A}_n(t)\) via
 Lehmer codes.
 
-Computations suggest that $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$, but
-this does not follow immediately from the reference above.
+Consecutive interlacing $\tilde{A}_n(t) \interl \tilde{A}_{n+1}(t)$ is
+\hyperref[conjBinomialEulerianInterlacing]{open}; it does not follow
+immediately from the reference above.
 \end{example*}
 
 
@@ -529,7 +533,9 @@ Among their future directions, they prove real-rootedness for the
 big-descent polynomial on $231$-avoiding permutations and formulate
 real-rootedness, log-concavity, and
 \hyperref[schurPositivity]{Schur-positivity} questions for the
-associated quasisymmetric functions.
+associated quasisymmetric functions.  The real-rootedness
+\hyperref[conjBigDescents]{conjecture} covers the other single patterns and
+most pairs.
 \end{example*}
 
 
@@ -581,6 +587,10 @@ $\operatorname{pkv}(\sigma)$ is the set of values appearing at peaks, then
 \]
 is stable; its consecutive positive weighted diagonal specializations
 interlace \cite[Thms.~6.2--6.3]{Alexandersson2026Eulerian}.
+Peaks on words are not real-rooted in general; see the
+\hyperref[counterexamplesWordPeaks]{counterexamples}.  For the joint
+distribution with inverse peaks, see the
+\hyperref[conjInversePeaks]{Gessel--Zhuang conjecture}.
 \end{example*}
 
 
@@ -735,12 +745,16 @@ Using \cite{Wagner1992}, we have
 It follows that \(P_{n-1}\interl P_n\).
 
 See also \cite{LiuWang2007} where this is proved using a different recursion.
+For permutations whose cycles all have length at least $k\geq3$, the
+analogous statement is \hyperref[conjLongCycleExcedances]{open}.
 \end{example*}
 
-The descent distribution is a different normalization.  Writing
+The descent distribution is a different normalization.\label{derangementDescentPolynomial}
+Writing
 $\mathcal{D}_n$ for the derangements in $\symS_n$, the polynomial
 \[
   D_n^{\des}(t)=\sum_{\pi\in\mathcal{D}_n}t^{\des(\pi)}
 \]
 has only nonpositive real zeros for every $n\geq2$
-\cite[Thm.~2.1]{Alexandersson2026Eulerian}.
+\cite[Thm.~2.1]{Alexandersson2026Eulerian}.  For longer cycles, see the
+\hyperref[conjLongCycleDescents]{open problem}.

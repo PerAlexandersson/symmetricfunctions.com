@@ -199,7 +199,8 @@ Moreover,
 \]
 where the sum is over \hyperref[namedPermutations]{up-down permutations},
 and $\ret_1(\pi)$ counts instances where $i+1$ appears to the left of $i$ but not adjacent to it.
-The stronger assertion that all \(Z_m(t)\) are real-rooted remains open; it is
+The stronger assertion that all \(Z_m(t)\) are real-rooted is
+\hyperref[conjZigZagEulerian]{conjectured} by Petersen and Zhuang; it is
 not the same problem as the \hyperref[delannoyRowPolynomials]{Delannoy row
 polynomial} case for regular snake posets.
 It is an open problem to give a combinatorial explanation for the symmetry and
@@ -285,16 +286,17 @@ the coinvariant algebra or $\mathfrak{sl}_2$-module structure.
 \end{enumerate}
 
 
-\section[realrootedOpenProblems]{Open problems}
+\section[gammaPositivityOpenProblems]{Open problems}
 
-In \cite{CoulterDoMoskovsky2023x}, the authors consider polynomials related to Hurwitz numbers.
-These are conjectured to be real-rooted and interlace in a certain fashion
-\cite[Conj.~3.14]{CoulterDoMoskovsky2023x}.
-The authors prove this statement for one-point Hurwitz numbers.
+Open problems on real-rootedness, including the Hurwitz polynomials of
+\cite{CoulterDoMoskovsky2023x} and the zig-zag Eulerian polynomials, are
+collected on the \hyperref[realrootedOpenProblems]{open problems page}.
 
 \defin{Gal's conjecture}\label{galConjecture} \cite{Gal2005} says that
 $h$-polynomials of flag simplicial spheres are gamma-positive.  It remains
-open in general.
+open in general.  The stronger real-rootedness statement fails for spheres of
+dimension five and higher \cite{Gal2005}; see the
+\hyperref[counterexamplesPosets]{counterexamples}.
 \name{Soohyun Park} studies how PL homeomorphism constraints, especially the
 link condition for edge contractions, interact with gamma-vector growth for
 simplicial spheres \cite{Park2026x}.  For high-dimensional spheres with
@@ -309,10 +311,11 @@ paths.
 
 \name{Ira Gessel} and \name{Yan Zhuang} \cite{GesselZhuang2024TwoSided}
 give symmetric-function formulas for two-sided permutation statistics and
-pose several real-rootedness and gamma-positivity conjectures.  In particular,
-they conjecture that the inverse peak and inverse left-peak distributions over
-permutations with a fixed value of the corresponding peak statistic are
-real-rooted, and that the polynomial
+pose several real-rootedness and gamma-positivity conjectures.  The
+\hyperref[conjInversePeaks]{real-rootedness conjecture} concerns the inverse
+peak and inverse left-peak distributions over permutations with a fixed value
+of the corresponding peak statistic.  They also conjecture that the
+polynomial
 \[
   \widehat{A}_{n,k}(t)
   \coloneqq

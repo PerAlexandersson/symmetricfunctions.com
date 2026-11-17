@@ -1,0 +1,865 @@
+\metatitle{Real-rooted polynomials: open problems}
+
+\metadescription{Open conjectures on real-rootedness and interlacing of
+combinatorial polynomials, with definitions, formulas, first polynomials,
+tested ranges and partial results, and a list of counterexamples.}
+
+
+\section[realrootedOpenProblems]{Open problems on real-rootedness}
+
+This page collects open conjectures about
+\hyperref[realRootedPolynomial]{real-rootedness} and
+\hyperref[interlacingPolynomials]{interlacing} of combinatorial polynomials.
+Each entry gives the combinatorial meaning, a formula or recurrence when one
+is known, the first few polynomials, the range in which the statement has
+been tested, and what has been proved.  The interlacing convention
+$f\interl g$ is the one on the
+\hyperref[interlacesPolynomial]{interlacing page}.  A family
+$(P_n)_n$ \emph{interlaces consecutively} if $P_{n}\interl P_{n+1}$ for
+all $n$ in the stated range.
+
+Unless a reference is given, the tested ranges come from our exact
+computations: real-rootedness was decided with Sturm sequences on the
+square-free parts, so repeated roots are allowed.  A finite check is
+evidence, not a proof.  The last section lists
+\hyperref[realRootedCounterexamples]{counterexamples}: families that look
+real-rooted for small parameters but are not.
+
+The general theory is on the pages on
+\hyperref[polynomialRootIntro]{real-rooted polynomials} and
+\hyperref[interlacingPolynomials]{interlacing polynomials}; proved examples
+are on the pages on \hyperref[realRootedWords]{permutation statistics},
+\hyperref[realRootedCatalan]{Catalan families},
+\hyperref[sturmSetPartitions]{set partitions},
+\hyperref[realRootedTableaux]{tableaux and polytopes} and
+\hyperref[realRootedMatching]{graph polynomials}.
+
+
+\section[openProblemsPermutations]{Permutation statistics}
+
+\subsection[openProblemsCycleRestricted]{Permutations with long cycles}
+
+For $k\geq 1$, let $\symS_n^{(k)}$ denote the permutations in $\symS_n$
+all of whose cycles have length at least $k$.  Thus $\symS_n^{(1)}=\symS_n$
+and $\symS_n^{(2)}$ is the set of derangements.  Define
+\[
+  E_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\exc(\pi)},
+  \qquad
+  D_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\des(\pi)}.
+\]
+
+\begin{conjecture}[Alexandersson, unpublished computations]
+\label{conjLongCycleExcedances}
+For every $k\geq 3$, the polynomials $E_{n,k}(t)$, $n\geq k$, are
+real-rooted and interlace consecutively.
+\end{conjecture}
+
+The excedances of the cycles of length $m$ are counted by $tA_{m-1}(t)$,
+where $A_m(t)$ is the \hyperref[eulerianPolynomial]{Eulerian polynomial}
+with $A_0=1$.  The exponential formula gives
+\[
+  \sum_{n\geq 0}E_{n,k}(t)\frac{z^n}{n!}
+  =\exp\Bigl(\sum_{m\geq k}tA_{m-1}(t)\frac{z^m}{m!}\Bigr).
+\]
+Inserting $n$ into a cycle, or closing a new $k$-cycle through $n$, gives
+\[
+  E_{n,k}(t)=(n-1)t\,E_{n-1,k}(t)+t(1-t)E'_{n-1,k}(t)
+  +\binom{n-1}{k-1}tA_{k-1}(t)\,E_{n-k,k}(t).
+\]
+Indeed, inserting $n$ after $i$ in its cycle keeps the excedance count if
+$i$ was an excedance, and raises it by one otherwise.  Since every
+$tA_{m-1}(t)$ is palindromic, so is every $E_{n,k}(t)$.  For $k=3$,
+\[
+\begin{array}{rl}
+\toprule
+n & E_{n,3}(t) \\
+\midrule
+3 & t+t^2 \\
+4 & t+4t^2+t^3 \\
+5 & t+11t^2+11t^3+t^4 \\
+6 & t+36t^2+86t^3+36t^4+t^5 \\
+7 & t+92t^2+477t^3+477t^4+92t^5+t^6 \\
+8 & t+211t^2+2143t^3+4278t^4+2143t^5+211t^6+t^7 \\
+\bottomrule
+\end{array}
+\]
+Evidence: real-rootedness and consecutive interlacing hold for $k\leq 6$
+and $n\leq 22$.  The case $k=2$ is the
+\hyperref[derangementPolynomial]{derangement polynomial}, where the extra
+term is $(n-1)tE_{n-2,2}$ and the recurrence gives an interlacing proof by
+induction.  For $k\geq3$ the lagged term carries the extra factor
+$A_{k-1}(t)$, and we know no proof.
+
+\begin{conjecture}[Alexandersson, unpublished computations]
+\label{conjLongCycleDescents}
+For every $k\geq 3$, the polynomials $D_{n,k}(t)$ are real-rooted.
+\end{conjecture}
+
+By the \name{Ira Gessel}--\name{Christophe Reutenauer} theorem
+\cite{GesselReutenauer1993}, the quasisymmetric generating function for
+descent sets over $\symS_n^{(k)}$ is the degree-$n$ part of
+$\prod_{j\geq k}H[L_j]$, where $L_j$ is the Lie character and
+$H=\sum_{m\geq0}\completeH_m$.  Counting necklaces gives
+\[
+  \frac{D_{n,k}(t)}{(1-t)^{n+1}}
+  =\sum_{N\geq1}t^{N-1}\,[z^n]\prod_{j\geq k}(1-z^j)^{-M_j(N)},
+  \qquad
+  M_j(N)=\frac1j\sum_{d\mid j}\mu(d)N^{j/d},
+\]
+for $n\geq1$.  For $k=3$,
+\[
+\begin{array}{rl}
+\toprule
+n & D_{n,3}(t) \\
+\midrule
+3 & 2t \\
+4 & 3t+3t^2 \\
+5 & 6t+12t^2+6t^3 \\
+6 & 12t+68t^2+68t^3+12t^4 \\
+7 & 24t+264t^2+564t^3+264t^4+24t^5 \\
+8 & 48t+933t^2+3513t^3+3513t^4+933t^5+48t^6 \\
+\bottomrule
+\end{array}
+\]
+Evidence: real-rooted for $k\leq 6$ and $n\leq 22$.  For $k=3$ and $k=6$
+the rows also interlace consecutively in this range; for $k=4$ and $k=5$
+the only failure is $D_{5,k}\interl D_{6,k}$, where
+$D_{6,4}=D_{6,5}=D_{6,6}=9t+53t^2+47t^3+11t^4$ counts the $6$-cycles.
+
+The case $k=2$, derangements by descents, is proved:
+$D_{n,2}(t)$ has only real zeros for every $n$
+\cite[Thm.~2.1]{Alexandersson2026Eulerian}, as conjectured in
+\cite{FuLinZeng2018}; see the
+\hyperref[derangementDescentPolynomial]{derangement page}.  Consecutive
+interlacing is impossible there, since the decreasing involution gives
+$\deg D_{2m,2}=2m-1$ while $\deg D_{2m-1,2}=2m-3$.
+
+The polynomial $D_{n,3}(t)$ is palindromic.  Indeed, $\prod_{j\geq1}H[L_j]$
+is $(1-\powerSum_1)^{-1}$, and $L_1=\completeH_1$, $L_2=\elementaryE_2$.
+By Littlewood's identity $H\cdot H[\elementaryE_2]=\sum_\lambda\schurS_\lambda$
+\cite[Ex.~I.5.4]{Macdonald1995}, so
+\[
+  \prod_{j\geq3}H[L_j]=\frac{(1-\powerSum_1)^{-1}}{\sum_\lambda\schurS_\lambda},
+\]
+which is fixed by $\omega$.  Since $\omega$ sends a descent set to its
+complement (up to reversal), $\des\mapsto n-1-\des$ preserves the
+distribution.  For $k=2$ and $k\geq4$ the corresponding quotient is not
+$\omega$-invariant, and the data confirm that palindromicity fails; see the
+\hyperref[realRootedCounterexamples]{counterexamples}.
+
+
+\subsection[openProblemsEulerianInterlacing]{Interlacing of Eulerian-type polynomials}
+
+\begin{conjecture}[Chow, \cite[Sec.~5]{Chow2022}]
+\label{conjTypeDEulerianInterlacing}
+Consecutive \hyperref[typeDEulerianPolynomial]{type $D$ Eulerian
+polynomials} interlace: $D_n(t)\interl D_{n+1}(t)$ for $n\geq 2$.
+\end{conjecture}
+
+The polynomials $D_n(t)=\sum_{\sigma\in D_n}t^{\des_D(\sigma)}$ are
+real-rooted, and their coefficients form \oeis{A066094}.  Stembridge's
+identity $D_n(t)=B_n(t)-n2^{n-1}tA_{n-1}(t)$ relates them to the types $A$
+and $B$.  The within-rank half interlacing of $A_{n-1}$, $B_n$ and $D_n$ is
+proved \cite[Thm.~1]{Ma2026x}; see the
+\hyperref[classicalTypeEulerianRealRooted]{classical types}.
+For type $B$, consecutive interlacing follows from the recurrence
+$B_n=((2n-1)t+1)B_{n-1}+2t(1-t)B'_{n-1}$.
+
+\begin{conjecture}[Interlacing of binomial Eulerian polynomials]
+\label{conjBinomialEulerianInterlacing}
+The \hyperref[binomialEulerianPolynomial]{binomial Eulerian polynomials}
+\[
+  \tilde{A}_n(t)=\sum_{\sigma\in\symS_n}(1+t)^{\fix(\sigma)}t^{\exc(\sigma)}
+\]
+interlace consecutively: $\tilde{A}_n(t)\interl\tilde{A}_{n+1}(t)$.
+\end{conjecture}
+
+Real-rootedness of every $\tilde{A}_n(t)$, conjectured by
+\name{Christos A. Athanasiadis}, is proved by \name{Jim Haglund} and
+\name[P.B. Zhang]{Philip B. Zhang} \cite{HaglundZhang2019}.  Their
+interlacing argument concerns a multivariate refinement and does not give
+consecutive interlacing in $n$.  Computations support the conjecture.
+
+\begin{conjecture}[Petersen--Zhuang, \cite[Conj.~6.1(a)]{PetersenZhuang2024x}]
+\label{conjZigZagEulerian}
+The zig-zag Eulerian polynomials $Z_n(t)$ are real-rooted for all
+$n\geq1$.
+\end{conjecture}
+
+Here $Z_n(t)$ is the $P$-Eulerian polynomial of a natural labeling of the
+zig-zag poset on $n$ elements, that is,
+$Z_n(t)=\sum_wt^{1+\des(w)}$ over its linear extensions $w$.
+Equivalently, $Z_n(t)$ is $t$ times the distribution of a return statistic
+on \hyperref[namedPermutations]{up-down permutations}.  The first
+polynomials are
+\[
+\begin{array}{rl}
+\toprule
+n & Z_n(t) \\
+\midrule
+3 & t+t^2 \\
+4 & t+3t^2+t^3 \\
+5 & t+7t^2+7t^3+t^4 \\
+6 & t+14t^2+31t^3+14t^4+t^5 \\
+7 & t+26t^2+109t^3+109t^4+26t^5+t^6 \\
+8 & t+46t^2+334t^3+623t^4+334t^5+46t^6+t^7 \\
+\bottomrule
+\end{array}
+\]
+Evidence: verified for $n\leq35$ \cite{PetersenZhuang2024x}.  The
+gamma-positivity of $Z_n(t)$ is proved there; see the
+\hyperref[gammaPositiveExamples]{gamma-positive examples}.  Petersen and
+Zhuang also ask whether the generalizations $Z_n^r(t)$, which interpolate
+between Eulerian and Narayana polynomials, are real-rooted.  The regular
+snake posets give the different, real-rooted
+\hyperref[delannoyRowPolynomials]{Delannoy row polynomials}.
+
+\begin{conjecture}[Gessel--Zhuang, \cite[Conj.~7.1]{GesselZhuang2024TwoSided}]
+\label{conjInversePeaks}
+For every $n\geq1$, the following polynomials are real-rooted:
+\[
+  \sum_{\substack{\pi\in\symS_n\\ \operatorname{pk}(\pi)=k}}
+  t^{\operatorname{ipk}(\pi)+1},
+  \qquad
+  \sum_{\substack{\pi\in\symS_n\\ \operatorname{lpk}(\pi)=k}}
+  t^{\operatorname{ilpk}(\pi)},
+  \qquad
+  \sum_{\substack{\pi\in\symS_n\\ \operatorname{lpk}(\pi)=k}}
+  t^{\operatorname{ipk}(\pi)+1},
+  \qquad
+  \sum_{\substack{\pi\in\symS_n\\ \operatorname{pk}(\pi)=k}}
+  t^{\operatorname{ilpk}(\pi)}.
+\]
+\end{conjecture}
+
+Here $\operatorname{pk}$ counts peaks, $\operatorname{lpk}$ counts left
+peaks (a peak at position $1$ is allowed when $\pi(1)\gt\pi(2)$), and
+$\operatorname{ipk}(\pi)=\operatorname{pk}(\pi^{-1})$,
+$\operatorname{ilpk}(\pi)=\operatorname{lpk}(\pi^{-1})$.  The conjecture
+also covers the same inverse statistics over permutations with a fixed
+number of up-down runs or biruns.  Gessel and Zhuang give
+symmetric-function formulas for these two-sided distributions and verify the
+conjecture for $n\leq50$.  Summing over $k$ gives the real-rooted
+\hyperref[peakGeneratingPolynomial]{peak polynomials}, so the conjecture
+refines a known result.  Their companion gamma-positivity conjecture is on
+the \hyperref[gammaPositivityOpenProblems]{gamma-positivity page}.
+
+
+\subsection[openProblemsBigDescents]{Big descents in pattern-avoiding permutations}
+
+\begin{conjecture}[Elizalde--Rivera--Zhuang, \cite{ElizaldeRiveraZhuang2026}]
+\label{conjBigDescents}
+Let $\Pi\subseteq\symS_3$ consist of one or two patterns, and suppose that
+$\Pi$ is not $\operatorname{bdes}$-Wilf equivalent to $\{123,132\}$.  Then
+\[
+  B_n(t;\Pi)\coloneqq\sum_{\pi\in\symS_n(\Pi)}t^{\operatorname{bdes}(\pi)}
+\]
+is real-rooted for every $n\geq0$.
+\end{conjecture}
+
+Here a \hyperref[bigDescent]{big descent} is an index $i$ with
+$\pi_i\gt\pi_{i+1}+1$.  The case $\Pi=\{231\}$ is proved in
+\cite{ElizaldeRiveraZhuang2026} via the equidistribution of big descents and
+peaks on $231$-avoiders.  The two single-pattern cases that resist all
+known methods are $132$ and $321$:
+\[
+\begin{array}{rll}
+\toprule
+n & B_n(t;132) & B_n(t;321) \\
+\midrule
+3 & 3+2t & 3+2t \\
+4 & 4+9t+t^2 & 5+8t+t^2 \\
+5 & 5+25t+12t^2 & 8+26t+8t^2 \\
+6 & 6+55t+64t^2+7t^3 & 13+72t+45t^2+2t^3 \\
+7 & 7+105t+233t^2+82t^3+2t^4 & 21+184t+196t^2+28t^3 \\
+8 & 8+182t+674t^2+505t^3+61t^4 & 34+444t+732t^2+214t^3+6t^4 \\
+\bottomrule
+\end{array}
+\]
+With $s=1-t$, the generating functions are
+\[
+  \sum_{n\geq0}B_n(t;132)z^n
+  =\frac{1-2sz+s(1-2t)z^2-\sqrt{\Delta}}{2tz(1-sz)},
+  \quad
+  \Delta=1-4z+6sz^2-4s^2z^3+s^2z^4,
+\]
+and
+\[
+  \sum_{n\geq0}B_n(t;321)z^n=\frac{2}{1-2sz^2+\sqrt{1-4z+4sz^2}}.
+\]
+Both families satisfy linear recurrences in $n$ of minimal order five, so no
+three-term recurrence is available.  Evidence: real-rooted, with simple
+zeros, and strictly interlacing consecutively for $n\leq40$ in both cases;
+see \href{https://github.com/PerAlexandersson/polytool/issues/62}{polytool
+issue 62} for the attempted proof routes.  For $321$-avoiders, a
+computer-assisted proof is formalized in the
+\href{https://github.com/PerAlexandersson/RealRooted}{RealRooted} Lean
+library; a conceptual proof is still missing.
+
+
+\section[openProblemsWords]{Words, parking functions and Catalan words}
+
+For a word $w=w_1\dotsm w_n$, let $\operatorname{pk}(w)$ count the indices
+$1\lt i\lt n$ with $w_{i-1}\lt w_i\gt w_{i+1}$, and let $\exc(w)$ count
+the indices $i$ with $w_i\gt i$.  Let $\mathrm{PF}_n$ be the set of
+\hyperref[parkingFunctions]{parking functions} of length $n$.
+
+\begin{conjecture}[Alexandersson, unpublished computations]
+\label{conjParkingExcedances}
+The polynomials
+\[
+  \sum_{w\in\mathrm{PF}_n}t^{\exc(w)}
+  \qquad\text{and}\qquad
+  \sum_{w\in\mathrm{PF}_n}t^{\operatorname{pk}(w)}
+\]
+are real-rooted, and each family interlaces consecutively.
+\end{conjecture}
+
+\[
+\begin{array}{rll}
+\toprule
+n & \sum_{w}t^{\exc(w)} & \sum_{w}t^{\operatorname{pk}(w)} \\
+\midrule
+2 & 2+t & 3 \\
+3 & 6+9t+t^2 & 12+4t \\
+4 & 24+71t+29t^2+t^3 & 59+66t \\
+5 & 120+577t+515t^2+83t^3+t^4 & 351+825t+120t^2 \\
+6 & 720+5023t+7808t^2+3029t^3+226t^4+t^5 & 2499+9704t+4604t^2 \\
+7 & 5040+47349t+112588t^2+80589t^3+15975t^4+602t^5+t^6
+  & 20823+115892t+115959t^2+9470t^3 \\
+\bottomrule
+\end{array}
+\]
+Evidence: $n\leq 7$.  Neither triangle is in the OEIS.  For comparison, the
+descent polynomial of parking functions is
+\hyperref[parkingFunctionDescentsRealRooted]{real-rooted}; it is $1/(n+1)$
+times the descent polynomial of the words $[n+1]^n$.  Peaks behave
+differently on words; see the
+\hyperref[realRootedCounterexamples]{counterexamples}.
+
+A \defin{Catalan word}\label{catalanWordDefinition} of length $n$ is a word
+$w$ with $w_1=0$ and $0\leq w_{i+1}\leq w_i+1$.  These are the area
+sequences of Dyck paths, that is, the increasing
+parking functions shifted down by one.
+
+\begin{conjecture}[Alexandersson, unpublished computations]
+\label{conjCatalanWordPeaks}
+The peak polynomials of Catalan words,
+\[
+  C_n(t)\coloneqq\sum_{w}t^{\operatorname{pk}(w)}
+  =\sum_{i\geq0}\frac{1}{n-i}\binom{n-i}{i}\binom{2n-3i}{n-2i-1}(t-1)^i,
+\]
+are real-rooted and interlace consecutively.
+\end{conjecture}
+
+The coefficients form \oeis{A116424}, which also counts Dyck paths of
+semilength $n$ by occurrences of $UDUU$.  The generating function
+$G=1+\sum_{n\geq1}C_n(t)x^n$ satisfies
+\[
+  G=1+x^2(1-t)G+x(1-x+tx)G^2,
+\]
+and \name{Jean-Luc Baril}, \name{Pamela E. Harris},
+\name{Kimberly J. Harry}, \name{Matt McClinton}, and
+\name{José L. Ramírez} give it in closed form
+\cite[Thm.~18]{BarilHarrisHarryMcClintonRamirez2025}.
+\[
+\begin{array}{rl}
+\toprule
+n & C_n(t) \\
+\midrule
+3 & 4+t \\
+4 & 9+5t \\
+5 & 22+19t+t^2 \\
+6 & 57+66t+9t^2 \\
+7 & 154+221t+53t^2+t^3 \\
+8 & 429+729t+258t^2+14t^3 \\
+9 & 1223+2391t+1131t^2+116t^3+t^4 \\
+\bottomrule
+\end{array}
+\]
+Evidence: real-rooted and consecutively interlacing for $n\leq40$.
+By contrast, descents on Catalan words give
+$\sum_k\binom{n-1}{2k}2^{n-1-2k}\mathrm{Cat}_kt^k$, a rescaled
+gamma-polynomial of the
+\hyperref[classicalNarayanaPolynomialsRealRooted]{Narayana polynomial},
+which is therefore real-rooted.
+
+
+\section[openProblemsCatalan]{Catalan families}
+
+\begin{conjecture}[Alexandersson, 2023]
+\label{conjFussCatalanNNE}
+For $m\geq1$, let $\mathcal{D}^{(m)}_n$ be the lattice paths with $n$ north
+steps and $mn$ east steps that stay weakly above the line from $(0,0)$ to
+$(mn,n)$.  The polynomials
+\[
+  W^{(m)}_{n,k}(t)\coloneqq [x^k]\sum_{\pi\in\mathcal{D}^{(m)}_n}
+  x^{\#NE(\pi)}t^{\#NNE(\pi)}
+\]
+are real-rooted.
+\end{conjecture}
+
+For $m=1$ these are the Dyck-path polynomials of
+\name{David G. L. Wang} and \name{K. Zhang}, which are real-rooted and form
+Sturm sequences in $n$ \cite{WangZhang2024}; see the
+\hyperref[dyckPathStatisticPolynomialsRealRooted]{Dyck-path statistic
+polynomials}.  For $m=2$ and $n=5$, the polynomials for
+$k=1,\dotsc,5$ are
+\[
+  t,\quad 10t+10t^2,\quad 45t+45t^2,\quad 120t,\quad 42.
+\]
+Evidence: all $W^{(2)}_{n,k}$ with $n\leq 8$ and all $W^{(3)}_{n,k}$ with
+$n\leq 7$ are real-rooted; for $m=2$ and $k=2,3$ they also interlace
+consecutively in $n\leq8$.
+
+
+\section[openProblemsSetPartitions]{Set partitions and trees}
+
+\begin{conjecture}[Gessel--Lin--Zeng, \cite[Conj.~15]{GesselLinZeng2012}]
+\label{conjJacobiStirling}
+Every Jacobi--Stirling descent polynomial $A_{k,i}(t)$ is real-rooted.
+\end{conjecture}
+
+The polynomials $A_{k,i}(t)$ count Jacobi--Stirling permutations by
+descents; the definition is in the
+\hyperref[jacobiStirlingDescentRealRooted]{set-partition page}.  Each
+summand $A_{k,S}(t)$ is real-rooted, and $A_{k,k}(t)$ is a second-order
+Eulerian polynomial.  The conjecture is proved for
+$i\in\{0,1,2,3,k-2,k-1,k\}$ \cite[Thm.~2]{MaWang2026x}, and remains open
+for $4\leq i\leq k-3$.
+
+\begin{conjecture}[Alexandersson, unpublished computations]
+\label{conjBigBlocks}
+For $j\geq2$, let
+\[
+  P_{n,j}(t)\coloneqq\sum_{\pi}t^{\#\{\text{blocks of $\pi$ of size at least $j$}\}},
+\]
+summing over all \hyperref[setPartitions]{set partitions} $\pi$ of $[n]$.
+Then $P_{n,j}(t)$ is real-rooted, and $P_{n,j}\interl P_{n+1,j}$.
+\end{conjecture}
+
+The exponential generating function is
+\[
+  \sum_{n\geq0}P_{n,j}(t)\frac{z^n}{n!}
+  =\exp\Bigl(\sum_{r=1}^{j-1}\frac{z^r}{r!}
+  +t\Bigl(e^z-\sum_{r=0}^{j-1}\frac{z^r}{r!}\Bigr)\Bigr).
+\]
+The triangles for $j=2$ and $j=3$ are \oeis{A124324} and \oeis{A355144}.
+For $j=4$,
+\[
+\begin{array}{rl}
+\toprule
+n & P_{n,4}(t) \\
+\midrule
+4 & 14+t \\
+5 & 46+6t \\
+6 & 166+37t \\
+7 & 652+225t \\
+8 & 2780+1325t+35t^2 \\
+9 & 12644+8062t+441t^2 \\
+\bottomrule
+\end{array}
+\]
+Evidence: real-rooted and consecutively interlacing for $j\leq5$ and
+$n\leq16$.  Partitions with all blocks of size at least two are
+\hyperref[sturmSetPartitions]{proved} to give real-rooted polynomials
+\cite{BonaHezo2016}; here small blocks are allowed but not counted.  The
+analogous cycle statistic is the
+\hyperref[conjLongCycleExcedances]{excedance conjecture above}.  For
+background on the attempted proofs, see
+\href{https://github.com/PerAlexandersson/RealRooted/issues/1773}{RealRooted
+issue 1773}.
+
+\begin{conjecture}[Lin--Ma, \cite[Conj.~5.1]{LinMa2025}]
+\label{conjReducedSchett}
+For a multiset $M=\{1^{p_1},\dotsc,n^{p_n}\}$, let $\mathcal{T}_M$ be the
+weakly increasing plane trees labeled by $M\cup\{0\}$, and let
+$\operatorname{ee}(T)$ and $\operatorname{oe}(T)$ count the nodes with an
+even number of children on even and odd levels, respectively.  Then every
+\[
+  \widehat{S}_{M,i}(t)\coloneqq
+  \sum_{\substack{T\in\mathcal{T}_M\\
+  \lfloor\operatorname{ee}(T)/2\rfloor=i}}
+  t^{\lfloor\operatorname{oe}(T)/2\rfloor}
+\]
+is real-rooted.
+\end{conjecture}
+
+In a weakly increasing tree, labels weakly increase along every path from
+the root, and the labels of the children of a node weakly increase from
+left to right.  These polynomials refine the multiset Schett polynomials.
+\name{Zhicong Lin} and \name{Jun Ma} prove their gamma-positivity and verify
+the conjecture for plane trees and increasing trees with fewer than eleven
+nodes.
+
+
+\section[openProblemsGraphs]{Graphs, matroids and arrays}
+
+\begin{conjecture}[Pandey, \cite{Pandey2026x}]
+\label{conjPetersenIndependence}
+The \hyperref[realRootedIndependence]{independence polynomial} of the
+generalized Petersen graph $\mathrm{GP}(n,k)$ is real-rooted if and only if
+$k$ is even.
+\end{conjecture}
+
+\name{Rohan Pandey} computes these polynomials with a transfer matrix.
+For even $k$ the zeros appear to be real and negative, while for odd $k$
+they form complex conjugate patterns.  The evidence is numerical.
+
+\begin{conjecture}[Binder--Vecchi, \cite[Conj.~1.5]{BinderVecchi2026x}]
+\label{conjRefinedChow}
+For every loopless matroid, every refinement by cohomological degree of the
+Hodge--Poincaré polynomial of the cohomology ring of its Bergman fan is
+real-rooted.
+\end{conjecture}
+
+\name{Kyle Binder} and \name{Lorenzo Vecchi} prove this for uniform matroids
+\cite[Thm.~1.4]{BinderVecchi2026x}, and the analogous statement for their
+modified augmented fan \cite[Thm.~1.6]{BinderVecchi2026x}.  For the original
+augmented fan the refinements need not be unimodal.  See the
+\hyperref[matroidChowPolynomials]{Chow polynomials of matroids}.  The
+unrefined Chow polynomials are not real-rooted in general; see the
+\hyperref[realRootedCounterexamples]{counterexamples}.
+
+\begin{conjecture}[Caiolo--Ferroni--Hoster, \cite[Conj.~7.3]{CaioloFerroniHoster2026x}]
+\label{conjDualChow}
+For every matroid $M$, the dual Chow polynomial $H^*_M(x)$ of its lattice
+of flats has only real nonpositive zeros.  Moreover, the dual right
+augmented Chow polynomial $F^*_M(x)$ is real-rooted, and its zeros are
+interlaced by those of $H^*_M(x)$.
+\end{conjecture}
+
+The dual Chow polynomial is the Chow polynomial of the sign-twisted reverse
+of the characteristic kernel; for a matroid of rank $r$, it is palindromic
+of degree $r-1$ and gamma-positive.  For the Boolean matroid it is the
+Eulerian polynomial, and for uniform matroids
+\[
+  H^*_{U_{r,n}}(x)=\binom{n-1}{r-1}
+  +\sum_{j=0}^{r-2}\binom{n}{j}\binom{n-j-1}{r-j-1}
+  A_j(x)\,(x+x^2+\dotsb+x^{r-j-1}).
+\]
+Both parts are proved for uniform matroids
+\cite[Cor.~6.11]{CaioloFerroniHoster2026x}.  The analogous statement fails
+for Cohen--Macaulay posets: the dual Chow polynomial
+$4x^5+39x^4+120x^3+120x^2+39x+4$ of an EL-shellable poset has four
+non-real zeros \cite[Rem.~7.4]{CaioloFerroniHoster2026x}.
+
+\begin{conjecture}[Balanced arrays of uniform matroids]
+\label{conjBalancedArrays}
+For $1\leq r\leq d$ and $n\geq0$, let $a^{(r,d)}_{n,k}$ count the
+$n\times d$ zero-one matrices in which every column sum is $k$ and every row
+sum is at most $r$.  Then
+\[
+  P^{(r,d)}_n(q)\coloneqq\sum_{k\geq0}a^{(r,d)}_{n,k}q^k
+  =\sum_{k\geq0}q^k\,[x_1^k\dotsm x_d^k]\,
+  \bigl(1+\elementaryE_1+\dotsb+\elementaryE_r\bigr)^n
+\]
+is real-rooted for all $n$, $r$ and $d$.
+\end{conjecture}
+
+Here $\elementaryE_j$ is the elementary symmetric polynomial in
+$x_1,\dotsc,x_d$; the possible rows are the independent sets of the uniform
+matroid $U_{r,d}$.  The degree is $\lfloor rn/d\rfloor$.  The first open
+case is $r=2$, $d=4$:
+\[
+\begin{array}{rl}
+\toprule
+n & P^{(2,4)}_n(q) \\
+\midrule
+2 & 1+6q \\
+3 & 1+54q \\
+4 & 1+204q+90q^2 \\
+5 & 1+540q+2490q^2 \\
+6 & 1+1170q+20610q^2+1860q^3 \\
+7 & 1+2226q+102690q^2+106260q^3 \\
+8 & 1+3864q+380100q^2+1543920q^3+44730q^4 \\
+\bottomrule
+\end{array}
+\]
+Evidence: for $r=2$, all $4\leq d\leq12$ and $n\leq40$ are real-rooted,
+with consecutive interlacing in $n$; see
+\href{https://github.com/PerAlexandersson/RealRooted/issues/2005}{RealRooted
+issue 2005}.  For rank two there is a formula through matchings in complete
+multipartite graphs, but real-rootedness of the matching polynomials does
+not transfer to $q$.
+
+
+\section[openProblemsPolytopes]{Tableaux, polytopes and Ehrhart theory}
+
+\begin{conjecture}[Skew Schur Ehrhart polynomials]
+\label{conjSkewSchurHStar}
+For skew shapes $\lambda/\mu$ and $k\geq1$, the
+\hyperref[hStarPolynomial]{$h^*$-polynomial} of
+$n\mapsto|\SSYT(n\lambda/n\mu,k)|$ is real-rooted.
+\end{conjecture}
+
+For straight shapes, the counting function is a product of linear factors
+with nonpositive roots, and real-rootedness of the $h^*$-polynomial is
+due to \name{Francesco Brenti} \cite{Brenti1989}; see
+\hyperref[schurEhrhartRealRooted]{Schur Ehrhart polynomials}.  For skew
+shapes, the counting function itself can have non-real zeros: for
+$\lambda/\mu=(3,2)/(1)$ and $k=3$ it is
+$\frac14(n+1)^2(7n^2+10n+4)$, while its $h^*$-polynomial
+$1+16t+22t^2+3t^3$ is real-rooted.  Evidence: all skew shapes with
+$|\lambda|\leq8$ and $k\leq4$.
+
+\begin{conjecture}[Alexandersson, May 2020]
+\label{keyHStarRealRootedConjecture}
+Let $\lambda$ be a partition and $\sigma$ a permutation, and let
+$P_{\lambda,\sigma}(k)\coloneqq\key_{k\lambda,\sigma}(1^n)$, the
+specialization of a \hyperref[key]{key polynomial}.  Define
+$H_{\lambda,\sigma}(t)$ by
+\[
+  \sum_{k\geq0}P_{\lambda,\sigma}(k)t^k
+  =\frac{H_{\lambda,\sigma}(t)}{(1-t)^{d+1}},
+\]
+where $d$ is the degree of $P_{\lambda,\sigma}$.  Then
+$H_{\lambda,\sigma}(t)$ is real-rooted.
+\end{conjecture}
+
+For fixed $\lambda$, $P_{\lambda,\sigma}$ is the Ehrhart polynomial of a
+union of faces of a \hyperref[gtpolytopes]{Gelfand--Tsetlin polytope}
+\cite{AlexanderssonAlhajjar2018}; see
+\hyperref[keyRealRootedHstar]{the context}.  The same conjecture is stated
+by \name{Alice L. L. Gao}, \name{Xin-Bei Liu}, \name{Arthur L. B. Yang},
+and \name{James J. Y. Zhao} as the real-rootedness of the numerators of the
+Lascoux series \cite[Conj.~6.3]{GaoLiuYangZhao2026x}.  Known cases include
+Young-subgroup longest elements, where the numerator is an Eulerian
+polynomial, and the permutations $[2,3,\dotsc,n,1]$ and
+$[n,1,2,\dotsc,n-1]$, where it is a parking-function descent polynomial
+\cite[Thm.~1.1]{GaoLiuYangZhao2026x}.  The
+\hyperref[pitmanStanleyPolytope]{Pitman--Stanley polytopes} give a further
+case.
+
+A stronger form asked that the numerators $H_{\delta_n,\sigma}$ along every
+saturated chain in Bruhat order form a Sturm sequence
+\cite[Conj.~6.4]{GaoLiuYangZhao2026x}.  Exact computations reported in
+\href{https://github.com/PerAlexandersson/RealRooted/issues/1396}{RealRooted
+issue 1396} find a counterexample in $\symS_6$; interlacing along right
+weak-order covers holds through $\symS_7$.
+
+\begin{conjecture}[Hill--Luo--Trinh--Vindas-Meléndez,
+\cite[Conj.~8.1]{HillLuoTrinhVindasMelendez2026x}]
+\label{conjParkingPolytopeMagic}
+For every $n\geq3$ and every $\mathbf{b}\in\setN_{\gt0}^n$, the
+$\mathbf{b}$-parking-function polytope $\mathfrak{X}_n(\mathbf{b})$ is magic
+positive.  In particular, its $h^*$-polynomial is real-rooted.
+\end{conjecture}
+
+The polytope $\mathfrak{X}_n(\mathbf{b})$ is the convex hull of the
+$\mathbf{b}$-parking functions of length $n$.  A lattice polytope of
+dimension $d$ is magic positive if its Ehrhart polynomial is
+$\sum_i\mu_it^i(t+1)^{d-i}$ with all $\mu_i\geq0$; by a theorem of
+\name{Petter Brändén}, this implies that the $h^*$-polynomial is
+real-rooted.  The conjecture is proved for $\mathbf{b}=(a,b,\dotsc,b)$,
+the only exception being $\mathbf{b}=(1,1)$
+\cite[Thm.~7.2 and Cor.~7.12]{HillLuoTrinhVindasMelendez2026x}.  For
+example, the $h^*$-polynomial of $\mathfrak{X}_3(3,2,2)$ is
+$1+268t+661t^2+102t^3$.  Evidence: all $\mathbf{b}\in\{1,2,3,4\}^3$ and
+several vectors of length four.
+
+
+\section[openProblemsGeometry]{Moduli spaces and Hurwitz numbers}
+
+\begin{conjecture}[Ferroni--Pagaria--Vecchi, \cite[Conj.~4.13]{FerroniPagariaVecchi2026x}]
+\label{conjTypeBModuli}
+The Poincaré polynomials $B_n(x)$ of the type $B$ analogues
+$\overline{\mathcal{M}}^B_{0,n}$ of $\overline{\mathcal{M}}_{0,n+1}$ are
+real-rooted for all $n\geq1$.
+\end{conjecture}
+
+Here $\overline{\mathcal{M}}^B_{0,n}$ is the wonderful compactification of
+the type $B$ braid arrangement with the minimal building set.  With $A_n(x)$
+the Poincaré polynomial of $\overline{\mathcal{M}}_{0,n+1}$ and $B_0=1$,
+\[
+  B_{n+1}=B_n+x\sum_{j=1}^n\binom nj B_jB_{n-j}
+  +x\sum_{j=2}^n\binom nj 2^jA_jB_{n+1-j}
+\]
+\cite[Thm.~4.11]{FerroniPagariaVecchi2026x}.  The first polynomials are
+\[
+  1,\quad 1+x,\quad 1+8x+x^2,\quad 1+35x+35x^2+x^3,\quad
+  1+122x+482x^2+122x^3+x^4.
+\]
+Every $B_n$ is palindromic and gamma-positive, and real-rootedness is
+verified for $n\leq300$.  This is the type $B$ analogue of the conjecture
+of \name{Paolo Aluffi}, \name{Stephanie Chen} and \name{Matilde Marcolli}
+that the polynomials $A_n(x)$ are real-rooted.
+
+\begin{conjecture}[Coulter--Do--Moskovsky, \cite[Conjs.~3.13--3.14]{CoulterDoMoskovsky2023x}]
+\label{conjMonotoneHurwitz}
+For all $g\geq0$, $n\geq1$ and $\mu_1,\dotsc,\mu_n\geq1$, the $t$-monotone
+Hurwitz number $H^t_{g,n}(\mu_1,\dotsc,\mu_n)$ is real-rooted in $t$, and
+it interlaces each of the $n$ polynomials obtained by increasing one part
+$\mu_i$ by one.
+\end{conjecture}
+
+Here a monotone factorization $(a_1\,b_1)\dotsm(a_r\,b_r)$ is weighted by
+$t$ to the number of distinct values among $b_1,\dotsc,b_r$, and
+$H^t_{g,n}(\mu)$ is the weighted count of transitive monotone factorizations
+of length $|\mu|+2g-2+n$ of a permutation of cycle type $\mu$, divided by
+$\mu_1\dotsm\mu_n$.  At $t=1$ these are the monotone Hurwitz numbers.  For
+$(g,n)=(0,1)$ one obtains the \hyperref[classicalNarayanaPolynomialsRealRooted]{Narayana
+polynomials}: $(d+1)H^t_{0,1}(d+1)$ is the Narayana polynomial of order
+$d$.  Both parts are proved for $(g,n)=(0,1)$ and $(1,1)$ from a one-point
+recursion.  The interlacing statement is checked in 1430 cases with
+$g\leq5$, $n\leq5$ and $|\mu|\leq15$.
+
+\name{Xavier Coulter} and \name{Norman Do} conjecture the same for the
+two-parameter $bt$-monotone Hurwitz numbers, for every real
+$b\notin\{0,-1\}$ \cite[Conjs.~4.21--4.22]{CoulterDo2025x}.  Here $b=0$
+recovers the polynomials above, and $b=1$ is the orthogonal case.  The
+evidence is more than 4000 checks over nine integer values of $b$.
+
+
+\section[openProblemsTransformations]{Matrices and recurrences}
+
+\begin{conjecture}[Mao--Wang, \cite[Conj.~4.1]{MaoWang2026x}]
+\label{conj:eulerianDelannoySquares}
+Let $A$ be the \hyperref[eulerianPolynomial]{Eulerian triangle} and let $D$
+be the Delannoy triangle.
+The row-generating functions of $A^2$ and $D^2$ have only real
+nonpositive roots.
+\end{conjecture}
+
+The \hyperref[rowGeneratingFunction]{row-generating function} of a lower
+triangular matrix $M$ is $M_n(x)=\sum_kM(n,k)x^k$.  \name{Jianxi Mao} and
+\name{Lijie Wang} prove that for a broad class of matrices $B$,
+real-rootedness of the rows of $M$ is inherited by the rows of $MB^r$
+\cite[Thm.~1.3]{MaoWang2026x}; see the
+\hyperref[narayanaTransformations]{Narayana transformations}.
+
+\begin{conjecture}[Path-cube transfer polynomials]
+\label{conjPathCube}
+Define $A_r(t)$ as the first coordinate of $v_r=M(t)^r(1,0,0,0)^{\top}$,
+where
+\[
+  M(t)=\begin{pmatrix}
+  1+t & 2t & 0 & 0\\
+  1 & t & 2+t & 3t\\
+  1 & t & 0 & 0\\
+  0 & 0 & 1 & t
+  \end{pmatrix}.
+\]
+Then $A_r(t)$ is real-rooted and $A_r\interl A_{r+1}$.
+\end{conjecture}
+
+The polynomials satisfy
+\[
+  A_r=(1+3t)A_{r-1}+2t(1-t)A_{r-2}+t(2-t-t^2)A_{r-3}+t^2(1-t)^2A_{r-4}
+\]
+for $r\geq4$, and the first ones are
+\[
+\begin{array}{rl}
+\toprule
+r & A_r(t) \\
+\midrule
+1 & 1+t \\
+2 & 1+4t+t^2 \\
+3 & 1+11t+11t^2+t^3 \\
+4 & 1+18t+52t^2+24t^3+t^4 \\
+5 & 1+25t+134t^2+176t^3+47t^4+t^5 \\
+6 & 1+32t+265t^2+658t^3+493t^4+86t^5+t^6 \\
+\bottomrule
+\end{array}
+\]
+Evidence: consecutive strict interlacing for $r\leq30$, and real-rootedness
+for $r\leq200$.  The limiting zero set is a real interval, but this does not
+decide the finite rows.  No ordering of the four states satisfies the
+matrix criterion for \hyperref[matrixPreservesInterlacingSequences]{matrices
+preserving interlacing sequences}, nor do 3,624 tested triangular changes of
+basis; see
+\href{https://github.com/PerAlexandersson/polytool/issues/62}{polytool
+issue 62}.
+
+
+\subsection[openProblemsElsewhere]{Related conjectures on other pages}
+
+The \hyperref[jackSchurExpansionConjecture]{Schur expansion conjecture} for
+Jack polynomials \cite{AlexanderssonHaglundWang2018} includes the
+real-rootedness of the Jack rook and hit polynomials; a table and data for
+partitions of size at most $9$ are given there.
+
+
+\section[realRootedCounterexamples]{Counterexamples}
+
+These families look real-rooted for small parameters, or were conjectured
+to be real-rooted, but are not.
+
+\subsection[counterexamplesWordPeaks]{Peaks on words}
+
+Peaks on permutations give the real-rooted
+\hyperref[peakGeneratingPolynomial]{peak polynomials}, and peaks on
+parking functions and Catalan words appear real-rooted, see the
+\hyperref[conjParkingExcedances]{conjectures above}.  Peaks on unrestricted
+words fail.  For words over the alphabet $\{0,1\}$, the first five
+polynomials $2$, $4$, $7+t$, $12+4t$, $21+10t+t^2$ are real-rooted, but
+\[
+  \sum_{w\in\{0,1\}^6}t^{\operatorname{pk}(w)}=37+22t+5t^2
+\]
+has discriminant $-256$.  Over the alphabets $[3]$, $[4]$ and $[5]$, the
+first failures occur at $n=6$, $7$ and $7$, for example
+$\sum_{w\in[3]^6}t^{\operatorname{pk}(w)}=292+334t+103t^2$.  Over the
+alphabet $[n]$ itself, the polynomials are real-rooted for $n\leq7$, but
+\[
+  \sum_{w\in[8]^8}t^{\operatorname{pk}(w)}
+  =1215616+5640832t+7878016t^2+2042752t^3
+\]
+has two non-real zeros, and so do the rows $n=9,10$.
+
+\subsection[counterexamplesPalindromic]{Long-cycle descent polynomials}
+
+The descent polynomials $D_{n,k}(t)$ of
+\hyperref[conjLongCycleDescents]{permutations with all cycles of length at
+least $k$} are palindromic for $k=1$ and $k=3$.  For other $k$, early rows
+can be palindromic, but this does not persist: $D_{n,2}$ is not palindromic
+for $n\geq4$, $D_{6,k}=9t+53t^2+47t^3+11t^4$ for $k=4,5,6$, and
+$D_{n,4}$ is not palindromic for $10\leq n\leq 22$.
+
+\subsection[counterexamplesPosets]{Posets and spheres}
+
+The \hyperref[neggersStanleyConjecture]{Neggers--Stanley conjecture}, that
+$P$-Eulerian polynomials of naturally labeled posets are real-rooted, is
+false; counterexamples were constructed by \name{John R. Stembridge}
+\cite{Stembridge2007NeggersStanleyCounter}.
+
+The real root conjecture, posed by \name{Tadeusz Januszkiewicz} and
+observed by \name{Victor Reiner} and \name{Volkmar Welker} to imply the
+Neggers--Stanley conjecture for graded posets of width two, asserts that the
+$h$-polynomial of a flag homology sphere is real-rooted.
+\name{Świętosław Gal} shows that it fails in every dimension at least five
+\cite{Gal2005}.  His smallest known example is a flag triangulation of the
+$5$-sphere with $f$-polynomial
+$1+17t+109t^2+345t^3+575t^4+483t^5+161t^6$, whose $h$-polynomial
+$1+11t+39t^2+59t^3+39t^4+11t^5+t^6$ has only two real zeros.  Gal's
+weaker \hyperref[galConjecture]{gamma-positivity conjecture} is open.
+
+The antichain polynomials of the boxes $[2]\times[n]\times[k]$ are
+real-rooted \cite{Jiang2026x}, but
+$N_{[3]\times[3]\times[3]}(x)$ is not; see
+\hyperref[antichainBoxStability]{antichain polynomials}.
+
+\subsection[counterexamplesTransformations]{Transformations, matroids and characters}
+
+\name{Francesco Brenti} conjectured that the
+\hyperref[eulerianTransformation]{Eulerian transformation}
+$x^n\mapsto A_n(x)$ preserves real-rootedness.  This is false in general
+\cite{BrandenJochemko2022}.
+
+The general real-rootedness conjectures for chain polynomials, Chow
+polynomials and augmented Chow polynomials of matroids are false: there are
+matroids for which these polynomials are not even log-concave
+\cite[Thms.~A--C]{BercziCoronEurLi2026x}.  The chain-polynomial examples
+have rank four, and the Chow-polynomial examples have rank seven, both
+minimal; see \hyperref[realRootsChow]{Chow polynomials}.
+
+\name{Christian Gaetz} and \name{Laura Pierson} conjectured that the
+coefficient polynomials of identity-pattern character polynomials are
+real-rooted with all roots below the pattern length
+\cite[Conj.~1.4]{GaetzPierson2022x}.  \name{Jonas Iskander} gives a
+degree-$11$ coefficient polynomial for the identity pattern of length $14$
+with only nine real roots \cite[Ex.~1.1]{Iskander2023x}; see
+\hyperref[characterSymmetricFunctions]{character polynomials}.
+
+For skew shapes, the counting function
+$n\mapsto|\SSYT(n\lambda/n\mu,k)|$ need not be real-rooted, although its
+\hyperref[conjSkewSchurHStar]{$h^*$-polynomial appears to be}.
