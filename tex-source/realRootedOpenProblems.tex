@@ -48,7 +48,7 @@ and $\symS_n^{(2)}$ is the set of derangements.  Define
   D_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\des(\pi)}.
 \]
 
-\begin{conjecture}[Alexandersson, unpublished computations]
+\begin{conjecture}[Alexandersson, 2026]
 \label{conjLongCycleExcedances}
 For every $k\geq 3$, the polynomials $E_{n,k}(t)$, $n\geq k$, are
 real-rooted and interlace consecutively.
@@ -90,7 +90,7 @@ term is $(n-1)tE_{n-2,2}$ and the recurrence gives an interlacing proof by
 induction.  For $k\geq3$ the lagged term carries the extra factor
 $A_{k-1}(t)$, and we know no proof.
 
-\begin{conjecture}[Alexandersson, unpublished computations]
+\begin{conjecture}[Alexandersson, 2026]
 \label{conjLongCycleDescents}
 For every $k\geq 3$, the polynomials $D_{n,k}(t)$ are real-rooted.
 \end{conjecture}
@@ -304,7 +304,7 @@ $1\lt i\lt n$ with $w_{i-1}\lt w_i\gt w_{i+1}$, and let $\exc(w)$ count
 the indices $i$ with $w_i\gt i$.  Let $\mathrm{PF}_n$ be the set of
 \hyperref[parkingFunctions]{parking functions} of length $n$.
 
-\begin{conjecture}[Alexandersson, unpublished computations]
+\begin{conjecture}[Alexandersson, 2026]
 \label{conjParkingExcedances}
 The polynomials
 \[
@@ -342,7 +342,7 @@ $w$ with $w_1=0$ and $0\leq w_{i+1}\leq w_i+1$.  These are the area
 sequences of Dyck paths, that is, the increasing
 parking functions shifted down by one.
 
-\begin{conjecture}[Alexandersson, unpublished computations]
+\begin{conjecture}[Alexandersson, 2026]
 \label{conjCatalanWordPeaks}
 The peak polynomials of Catalan words,
 \[
@@ -428,7 +428,7 @@ Eulerian polynomial.  The conjecture is proved for
 $i\in\{0,1,2,3,k-2,k-1,k\}$ \cite[Thm.~2]{MaWang2026x}, and remains open
 for $4\leq i\leq k-3$.
 
-\begin{conjecture}[Alexandersson, unpublished computations]
+\begin{conjecture}[Alexandersson, 2026]
 \label{conjBigBlocks}
 For $j\geq2$, let
 \[
@@ -633,10 +633,14 @@ case.
 
 A stronger form asked that the numerators $H_{\delta_n,\sigma}$ along every
 saturated chain in Bruhat order form a Sturm sequence
-\cite[Conj.~6.4]{GaoLiuYangZhao2026x}.  Exact computations reported in
-\href{https://github.com/PerAlexandersson/RealRooted/issues/1396}{RealRooted
-issue 1396} find a counterexample in $\symS_6$; interlacing along right
-weak-order covers holds through $\symS_7$.
+\cite[Conj.~6.4]{GaoLiuYangZhao2026x}.  This fails: strong Bruhat covers
+need not interlace, already in $\symS_6$ (Alexandersson, 2026).  Interlacing
+along right weak-order covers holds for every cover in $\symS_n$ with
+$n\leq7$, but not in general: the cover $w_0s_2s_1\lessdot w_0s_2$ fails
+for every $n\geq161$, although both numerators are real-rooted
+(Alexandersson, 2026).  The coatom covers $w_0s_i\lessdot w_0$ interlace at
+every dominant weight.  Whether all left weak-order covers interlace is
+open.
 
 \begin{conjecture}[Hill--Luo--Trinh--Vindas-Meléndez,
 \cite[Conj.~8.1]{HillLuoTrinhVindasMelendez2026x}]
