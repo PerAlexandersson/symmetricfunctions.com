@@ -586,6 +586,56 @@ not transfer to $q$.
 
 \section[openProblemsPolytopes]{Tableaux, polytopes and Ehrhart theory}
 
+For a standard Young tableau $T$, say that $i$ is a \emph{natural descent}
+if $i+1$ lies in a strictly higher row than $i$, and let $\operatorname{ndes}(T)$
+be the number of natural descents.
+
+\begin{conjecture}[Alexandersson, 2026]
+\label{conjSYTNaturalDescents}
+For every partition $\lambda$, the natural-descent polynomial
+\[
+  N_\lambda(t)\coloneqq\sum_{T\in\SYT(\lambda)}t^{\operatorname{ndes}(T)}
+\]
+is real-rooted.
+\end{conjecture}
+
+Reading the cells of $\lambda$ row by row gives a natural labeling of the
+Ferrers poset, and the natural descents of $T$ are the descents of the
+corresponding linear extension.  Thus $N_\lambda(t)$ is the $P$-Eulerian
+polynomial of the naturally labeled Ferrers poset, that is, the
+\hyperref[hStarPolynomial]{$h^*$-polynomial} of its order polytope:
+\[
+  \sum_{m\geq0}\Omega_\lambda(m+1)\,t^m=\frac{N_\lambda(t)}{(1-t)^{|\lambda|+1}},
+\]
+where $\Omega_\lambda(m)$ counts the order-preserving maps from the Ferrers
+poset to $[m]$.  The conjecture is the
+\hyperref[neggersStanleyConjecture]{Neggers--Stanley} statement for Ferrers
+posets.  The ordinary descents, where $i+1$ lies in a strictly lower row,
+correspond to the column-strict labeling, and their polynomial is
+real-rooted by \name{Francesco Brenti}'s theorem; see
+\hyperref[sytDescentRealRooted]{descent polynomials of standard Young
+tableaux}.  The polynomial $N_\lambda$ is palindromic exactly when all
+removable corners of $\lambda$ lie on one antidiagonal; then the Ferrers
+poset is graded and its Hibi ring is Gorenstein.
+\[
+\begin{array}{rl}
+\toprule
+\lambda & N_\lambda(t) \\
+\midrule
+(3,1) & 1+2t \\
+(4,2) & 1+5t+3t^2 \\
+(2,2,2) & 1+3t+t^2 \\
+(3,2,1) & 1+7t+7t^2+t^3 \\
+(4,2,2) & 1+13t+28t^2+13t^3+t^4 \\
+(4,4,4) & 1+22t+113t^2+190t^3+113t^4+22t^5+t^6 \\
+\bottomrule
+\end{array}
+\]
+Rectangles are covered by Brenti's theorem on Gaussian posets
+\cite{Brenti1989}.  Evidence: $N_\lambda$ is real-rooted for all $4{,}507$
+partitions with $|\lambda|\leq22$.  The analogous statements for skew shapes,
+for both natural and ordinary descents, are open as well.
+
 \begin{conjecture}[Skew Schur Ehrhart polynomials]
 \label{conjSkewSchurHStar}
 For skew shapes $\lambda/\mu$ and $k\geq1$, the
