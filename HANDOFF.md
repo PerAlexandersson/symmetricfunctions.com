@@ -1,5 +1,22 @@
 # Handoff
 
+## Done — ladder proof, rook-Eulerian peaks, Dowling locators, 2026-11-18
+
+Claude worker releases all files below; nothing committed or deployed.
+On top of 610adb8: `realRootedGraphs.tex` theorem `ladderSinkPolynomials`
+now contains the recurrence and a condensed proof (transfer matrix and
+Chebyshev substitution, checked symbolically for m<=6) plus the
+S_n(1)=2*7^(n-1) remark (A109808).  `realRootedWords.tex` gains theorem
+`rookPeakPolynomialRealRooted` ("Alexandersson--Jal--Quemener, 2026", the
+draft's author list; not in arXiv 2502.05939v1) after the rook-Eulerian
+example, with a three-sentence proof outline; brute-force check of the
+statement and the signing identity on all 188 boards with n=3..5.
+Dowling paper: all locators (Prop. 27, Cor. 28, Thm. 33, Thm. 59,
+Cor. 60) match arXiv v3 unchanged; `AlexanderssonBeyeneMantaci2026x` now
+pins v3.  `make Q=1`, `make check Q=1`, `git diff --check` pass; symlink
+scan empty; Chromium at 375 px on the three affected pages: no KaTeX errors,
+overflow or broken anchors.
+
 ## Done — Alexandersson 2026 real-rootedness results, 2026-11-18
 
 Claude worker releases all files below; nothing committed or deployed.

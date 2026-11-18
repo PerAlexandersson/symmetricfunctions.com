@@ -456,19 +456,48 @@ $S^a_{C_n}(t)=2\sum_{k\geq1}\binom{n}{2k}t^k$ is real-rooted
 \cite[Prop.~3.21]{AlexanderssonLeite2026x}.
 
 Ladders are neither chordal nor claw-free.  Let $\mathrm{Lad}_n$ be the ladder
-with $n$ rungs and $S_n(t)=S^a_{\mathrm{Lad}_n}(t)$.  Then $S_1=2t$,
-$S_2=12t+2t^2$, and
-\[
- S_n(t)=(t+6)S_{n-1}(t)+9(t-1)S_{n-2}(t)\qquad(n\geq3).
-\]
+with $n$ rungs, two paths on $n$ vertices with corresponding vertices
+joined, and let $S_n(t)=S^a_{\mathrm{Lad}_n}(t)$.
 
 \begin{theorem}[Alexandersson, 2026]
 \label{ladderSinkPolynomials}
-For every $n\geq1$, $S^a_{\mathrm{Lad}_n}(t)$ has a simple zero at the origin
-and all other zeros are simple and negative.  For $n\geq2$, after removing
-the zero at the origin, the zeros of $S^a_{\mathrm{Lad}_n}$ and
-$S^a_{\mathrm{Lad}_{n+1}}$ strictly interlace.
+We have $S_1=2t$, $S_2=12t+2t^2$, and
+\[
+ S_n(t)=(t+6)S_{n-1}(t)+9(t-1)S_{n-2}(t)\qquad(n\geq3).
+\]
+For every $n\geq1$, $S_n(t)$ has a simple zero at the origin and all other
+zeros are simple and negative.  For $n\geq2$, after removing the zero at the
+origin, the zeros of $S_n$ and $S_{n+1}$ strictly interlace.
 \end{theorem}
+
+\begin{proof*}
+Build the ladder rung by rung.  The frontier state records the direction of
+the last rung and whether its target already has an outgoing edge.  Attaching
+a rung orients three new edges; a new directed cycle can only be the new
+square, so exactly one of the eight choices is rejected.  By top-bottom
+symmetry the four states reduce to two, and
+\[
+ S_n(t)=2\,(1,0)\,R(t)^{n-1}(t,1)^{\top},\qquad
+ R(t)=\begin{pmatrix}t+3&3t\\4&3\end{pmatrix}.
+\]
+Since $\operatorname{tr}R=t+6$ and $\det R=9(1-t)$, Cayley--Hamilton gives the
+recurrence.
+
+For the zeros, $Q_m=S_{m+1}/(2t)$ satisfies $Q_0=1$, $Q_1=t+6$ and
+$Q_m=(t+6)Q_{m-1}-9(1-t)Q_{m-2}$, so
+\[
+ Q_m(t)=\bigl(3\sqrt{1-t}\bigr)^m\,U_m\bigl(\phi(t)\bigr),\qquad
+ \phi(t)=\frac{t+6}{6\sqrt{1-t}},
+\]
+where $U_m$ is the Chebyshev polynomial of the second kind.  The map $\phi$
+is increasing from $(-\infty,0)$ onto $(-\infty,1)$, so the $m$ zeros
+$\cos\frac{j\pi}{m+1}$ of $U_m$ pull back to $m$ distinct negative zeros of
+$Q_m$, and the strict interlacing of consecutive $U_m$ transfers to
+$Q_{m-1}$ and $Q_m$.
+\end{proof*}
+
+At $t=1$, $S_n(1)=2\cdot7^{n-1}$ counts the acyclic orientations of the
+ladder (\oeis{A109808}).
 
 
 \subsection[realRootedTilingPolynomials]{Tiling polynomials}

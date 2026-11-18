@@ -310,7 +310,31 @@ multivariate ascent-set enumerator is
 \cite[Thms.~12--13]{AlexanderssonJalQuemener2025x}.  For complete placements,
 these objects form a lower \hyperref[bruhatOrder]{Bruhat interval} below a
 $312$-avoiding permutation.
+
+Peaks behave equally well.  For a row-complete placement $\pi$, viewed as the
+word $\pi_1\dotsm\pi_n$ of occupied columns, let $\operatorname{pk}(\pi)$ count
+the indices $1<i<n$ with $\pi_{i-1}<\pi_i>\pi_{i+1}$, and let
+$P^\lambda(t)=\sum_\pi t^{\operatorname{pk}(\pi)}$.
 \end{example*}
+
+\begin{theorem}[Alexandersson--Jal--Quemener, 2026]
+\label{rookPeakPolynomialRealRooted}
+If $\lambda_i\geq i$ for every $i$, then $P^\lambda(t)$ is real-rooted.
+Equivalently, if $\sigma\in\symS_n$ avoids $312$, then
+$\sum_{\pi\leq\sigma}t^{\operatorname{pk}(\pi)}$, summed over the lower
+Bruhat interval of $\sigma$, is real-rooted.
+\end{theorem}
+
+\begin{proof*}
+Give every entry an independent sign.  Summing the descent polynomials of
+the $2^n$ signed words of $\pi$ gives $2^{2p+1}x^p(1+x)^{n-1-2p}$, where
+$p=\operatorname{pk}(\pi)$, so the signed descent enumerator has
+\hyperref[gammaPolynomial]{gamma-polynomial} $2P^\lambda(4t)$.  Refined by
+the signed first entry, the signed enumerators satisfy a staircase
+row-deletion recurrence, as in the rook-Eulerian case, and hence form an
+interlacing sequence; their sum is real-rooted, and so is its
+gamma-polynomial.
+\end{proof*}
 
 \begin{example*}[Multi-dimensional permutations]
 \name{Shaoshi Chen}, \name{Hanqian Fang}, \name{Sergey Kitaev}, and
