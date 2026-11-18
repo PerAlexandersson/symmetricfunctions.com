@@ -77,6 +77,53 @@ real-rooted.
 
 
 
+\begin{example*}[Big blocks]\label{bigBlockSetPartitions}
+Fix $k\geq2$ and weight each set partition by $t^{\operatorname{bb}_k(\pi)}$, where
+$\operatorname{bb}_k(\pi)$ is the number of blocks of size at least $k$.  Restricting which
+block sizes may occur gives polynomial families with exponential generating
+functions of the form
+\[
+  \exp\Bigl(\sum_{r\geq1}a_r\frac{z^r}{r!}+t\sum_{r\geq1}b_r\frac{z^r}{r!}\Bigr),
+\]
+where $a_r=1$ if blocks of size $r$ are allowed but not counted, and $b_r=1$
+if they are counted.
+
+Let $S_{n,k}(t)$ count the set partitions of $[n]$ whose blocks have size $1$
+or at least $k$, so that
+$\sum_n S_{n,k}(t)z^n/n!=\exp\bigl(z+t(e^z-\sum_{r<k}z^r/r!)\bigr)$.  If
+$S_{n,k}(t)=\sum_r s_{n,k,r}t^r$, the \defin{ordered lift}
+$\widehat S_{n,k}(t)=\sum_r r!\,s_{n,k,r}t^r$ orders the large blocks.
+With $\mathcal{T}f=(tf)'$, it satisfies
+\[
+  \widehat S_{n,k}
+  =\mathcal{T}\widehat S_{n-1,k}
+  +\binom{n-1}{k-1}t\,\mathcal{T}\widehat S_{n-k,k}.
+\]
+
+\begin{theorem}[Alexandersson, 2026]
+For every $k\geq2$ and $n\geq0$, both $\widehat S_{n,k}(t)$ and $S_{n,k}(t)$
+have only real nonpositive zeros, and
+$\widehat S_{n,k}\interl\widehat S_{n+1,k}$ and
+$S_{n,k}\interl S_{n+1,k}$.
+\end{theorem}
+
+The proof shows that a sliding window consisting of each row of the ordered
+lift and its Euler transform is preserved by
+\hyperref[interlacingPolynomials]{Wagner's interlacing cones}.  The
+\hyperref[multiplierSequences]{multiplier sequence} $(1/r!)_{r\geq0}$ then
+removes the ordering.  For example,
+$S_{6,3}(t)=1+42t+10t^2$.
+
+Partitions all of whose blocks have size at least $k$ are covered as well:
+their block-counting polynomials, the $k$-associated Bell polynomials, are
+real-rooted, and any $k+1$ consecutive rows interlace pairwise
+(Alexandersson, 2026); the case $k=2$ is the previous example.  When all
+block sizes are allowed but only the large ones are counted, real-rootedness
+is \hyperref[conjBigBlocks]{open} for $k\geq4$, as is the analogous statement
+for \hyperref[conjOrderedBigBlocks]{ordered set partitions}.
+\end{example*}
+
+
 \begin{example*}[Type $B$ set partitions]
 
 \name{David Wang} considers a type $B$ version, and more generally a colored
