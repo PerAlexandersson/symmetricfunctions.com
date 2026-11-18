@@ -1,0 +1,47 @@
+\metatitle{OEIS A178301 and A103371}
+\metadescription{The row polynomials of OEIS A178301 are a Möbius transform of the reversed rows of
+OEIS A103371, which places their zeros in the interval from -1 to 0.}
+
+
+\section[oeisProofA178301]{A178301 as a transform of A103371}
+
+This page is part of the \hyperref[oeisProofs]{OEIS proof collection}.
+
+The triangle \oeis{A178301} has entries
+$T(n,k)=\binom{n}{k}\binom{n+k+1}{n+1}$ for $0\leq k\leq n$, with row polynomials
+\[
+ R_n(x)\coloneqq\sum_{k=0}^n\binom{n}{k}\binom{n+k+1}{n+1}x^k.
+\]
+The triangle \oeis{A103371} has entries $\binom{n}{k}\binom{n+1}{k+1}$, so its reversed row $n$
+is
+\[
+ B_n(x)\coloneqq\sum_{k=0}^n\binom{n}{k}\binom{n+1}{k}x^k.
+\]
+
+\begin{proposition}
+For every $n\geq0$,
+\[
+ R_n(x)=\sum_{k=0}^n\binom{n}{k}\binom{n+1}{k}x^k(1+x)^{n-k}
+ =(1+x)^n B_n\!\left(\frac{x}{1+x}\right).
+\]
+\end{proposition}
+
+\begin{proof}
+The coefficient of $x^j$ on the right is
+$\sum_k\binom{n}{k}\binom{n+1}{k}\binom{n-k}{j-k}$.  Since
+$\binom{n}{k}\binom{n-k}{j-k}=\binom{n}{j}\binom{j}{k}$, it equals
+\[
+ \binom{n}{j}\sum_{k}\binom{j}{j-k}\binom{n+1}{k}=\binom{n}{j}\binom{n+j+1}{j}
+ =\binom{n}{j}\binom{n+j+1}{n+1},
+\]
+by the Vandermonde identity.
+\end{proof}
+
+Row $n$ of \oeis{A103371} is $\frac{1}{n+1}\frac{d}{dx}W_{n+1}(x)$, where
+$W_{n+1}(x)=\sum_k\binom{n+1}{k}^2x^k$ is a type~$B$
+\hyperref[narayanaPolynomialFamiliesRealRooted]{Narayana polynomial}.  It has only simple
+negative zeros, so by Rolle's theorem the rows of \oeis{A103371} and their reversals $B_n$ have
+the same property.  The substitution $x\mapsto x/(1+x)$, homogenized by
+$(1+x)^n$, sends a zero $r<0$ of $B_n$ to the zero $r/(1-r)\in(-1,0)$ of $R_n$.  Therefore every
+$R_n$ has $n$ simple zeros in $(-1,0)$.  This agrees with the classical identity
+$R_n(x)=P_n^{(0,1)}(2x+1)$ for the Jacobi polynomials recorded in \oeis{A178301}.
