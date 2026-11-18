@@ -1,5 +1,16 @@
 # Handoff
 
+## Done — LR model figures, 2026-11-18
+
+`svg-tex/lib/lr-models.tex` provides `\bzTriangle` and `\ktPuzzle`; the two example
+figures (`bz-triangle-example`, `kt-puzzle-example`) illustrate `c^321_(21,21)=2` in
+`littlewoodRichardson.tex` (sections `bzPatterns`, `knutsonTaoWoodwardPuzzles`).
+1-pieces use a darker tone instead of a dot pattern (the pattern made a 1 MB SVG).
+Regenerate with `cargo run -p sym-poly-sym --example lr_models -- 2,1 2,1 3,2,1
+--rank 3 --write-figures svg-tex/src` (rust-workspace `020b709`). Note: touching
+any `svg-tex/lib` file makes `make svg` re-render every figure with dvisvgm churn;
+restore unrelated SVGs with `git checkout` before committing.
+
 ## Done — cylindric Schur paper bibliography, 2026-11-18
 
 The Claude review agent (job c1ce5e16) releases `bibliography.bib`. Nothing was committed or

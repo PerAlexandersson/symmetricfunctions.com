@@ -1,0 +1,123 @@
+% Exact LR models. Related Rust: sym-poly/sym/src/lr_models{,/bz_triangle,/puzzle}.rs
+% BZ: Pak--Vallejo, arXiv:math/0407170, Section 5, Figure 8 and equation (3).
+% Puzzles: Knutson--Tao, arXiv:math/0112150, Section 1.1, Figure 1.
+% Load after TikZ: \input{lr-models}. No external macro dependency.
+
+\definecolor{lrBlue}{RGB}{0,114,178}
+\definecolor{lrOrange}{RGB}{230,159,0}
+\newif\ifktShowDiagonals
+\ktShowDiagonalsfalse
+\tikzset{
+  bz grid/.style={draw=black!65,line width=0.6pt},
+  bz label/.style={circle,fill=white,inner sep=1.3pt,font=\small},
+  kt zero/.style={fill=white},
+  kt one/.style={fill=lrBlue!45},
+  kt mixed/.style={fill=lrOrange!18},
+  kt edge/.style={draw=black,line width=0.65pt},
+  kt diagonal/.style={draw=black!45,densely dashed,line width=0.35pt},
+  kt label/.style={fill=white,inner sep=0.8pt,font=\scriptsize},
+  kt show diagonals/.is if=ktShowDiagonals,
+  kt show diagonals/.default=true
+}
+
+% \bzBlock[options]{rank n}{i}{j}{x_ij}{y_ij}{z_ij}
+% Rank n has n-1 levels; x is top, y bottom left, z bottom right.
+\newcommand{\bzBlock}[7][]{%
+  \pgfmathsetmacro{\bzX}{#2-1-#4+2*(#3-1)}%
+  \pgfmathsetmacro{\bzY}{sqrt(3)*(#2-1-#4)}%
+  \draw[bz grid,#1] (\bzX,\bzY) -- ++(1,0)
+    -- ++(-0.5,{sqrt(3)/2}) -- cycle;
+  \node[bz label] at ({\bzX+0.5},{\bzY+sqrt(3)/2}) {$#5$};
+  \node[bz label] at (\bzX,\bzY) {$#6$};
+  \node[bz label] at ({\bzX+1},\bzY) {$#7$};
+}
+
+% \bzTriangle[options]{rank n}{i/j/x/y/z,...}
+% The inter-block edges complete the hexagon grid. Record order is arbitrary.
+\newcommand{\bzTriangle}[3][]{%
+  \begin{tikzpicture}[x=0.8cm,y=0.8cm,line join=round,#1]
+    \ifnum#2>2
+      \pgfmathtruncatemacro{\bzLast}{#2-2}%
+      \foreach \j in {1,...,\bzLast} {
+        \foreach \i in {1,...,\j} {
+          \pgfmathsetmacro{\bzX}{#2-1-\j+2*(\i-1)}%
+          \pgfmathsetmacro{\bzY}{sqrt(3)*(#2-1-\j)}%
+          \draw[bz grid] (\bzX,\bzY) -- ++(-0.5,{-sqrt(3)/2});
+          \draw[bz grid] ({\bzX+1},\bzY) -- ++(0.5,{-sqrt(3)/2});
+          \draw[bz grid] (\bzX,{\bzY-sqrt(3)}) -- ++(1,0);
+        }
+      }
+    \fi
+    \if\relax\detokenize{#3}\relax
+      \node {$\emptyset$};
+    \else
+      \foreach \i/\j/\x/\y/\z in {#3} {
+        \bzBlock{#2}{\i}{\j}{\x}{\y}{\z}%
+      }
+    \fi
+  \end{tikzpicture}%
+}
+
+% \ktEdge[options]{x1}{y1}{x2}{y2}{label}
+% Ordinary edges are solid; 10 is an optional dashed short diagonal.
+\newcommand{\ktEdge}[6][]{%
+  \ifnum#6=10
+    \ifktShowDiagonals
+      \draw[kt diagonal,#1] (#2,#3) -- (#4,#5)
+        node[midway,kt label] {$10$};
+    \fi
+  \else
+    \draw[kt edge,#1] (#2,#3) -- (#4,#5)
+      node[midway,kt label] {$#6$};
+  \fi
+}
+
+% \ktTriangle[options]{x}{y}{u}{a}{b}{c}
+% Axial basis (1,0),(1/2,sqrt(3)/2); u=1 up, u=0 down.
+% Vertices/edge labels a,b,c are counterclockwise, exactly as in Rust.
+% Mixed halves share one shading and omit their 10 diagonal by default.
+\newcommand{\ktTriangle}[7][]{%
+  \ifnum#4=1
+    \def\ktAX{#2}\def\ktAY{#3}%
+    \pgfmathsetmacro{\ktBX}{#2+1}\def\ktBY{#3}%
+    \def\ktCX{#2}\pgfmathsetmacro{\ktCY}{#3+1}%
+  \else
+    \pgfmathsetmacro{\ktAX}{#2+1}\def\ktAY{#3}%
+    \pgfmathsetmacro{\ktBX}{#2+1}\pgfmathsetmacro{\ktBY}{#3+1}%
+    \def\ktCX{#2}\pgfmathsetmacro{\ktCY}{#3+1}%
+  \fi
+  \def\ktStyle{kt mixed}%
+  \ifnum#5=#6\ifnum#6=#7
+    \ifnum#5=0\def\ktStyle{kt zero}\else\def\ktStyle{kt one}\fi
+  \fi\fi
+  \path[\ktStyle,#1] (\ktAX,\ktAY) -- (\ktBX,\ktBY) -- (\ktCX,\ktCY) -- cycle;
+  \ktEdge{\ktAX}{\ktAY}{\ktBX}{\ktBY}{#5}%
+  \ktEdge{\ktBX}{\ktBY}{\ktCX}{\ktCY}{#6}%
+  \ktEdge{\ktCX}{\ktCY}{\ktAX}{\ktAY}{#7}%
+}
+
+% \ktPuzzle[options]{side N}{x/y/u/a/b/c,...}
+% NW bottom-to-top = lambda; NE top-to-bottom = mu; S left-to-right = nu.
+% White 0-triangles, dotted 1-triangles, solid pale rhombi remain distinct
+% in grayscale. Colors are from the Okabe--Ito palette.
+\newcommand{\ktPuzzle}[3][]{%
+  \begin{tikzpicture}[x={(0.85cm,0cm)},y={(0.425cm,0.736122cm)},#1]
+    \if\relax\detokenize{#3}\relax
+      \node {$\emptyset$};
+    \else
+      % Fill all pieces first, so later fills cannot cover earlier labels.
+      \foreach \x/\y/\u/\a/\b/\c in {#3} {
+        \begin{scope}[kt edge/.style={draw=none},kt diagonal/.style={draw=none},
+            kt label/.style={opacity=0}]
+          \ktTriangle{\x}{\y}{\u}{\a}{\b}{\c}%
+        \end{scope}
+      }
+      \draw[kt edge,line width=1pt] (0,0) -- (#2,0) -- (0,#2) -- cycle;
+      \foreach \x/\y/\u/\a/\b/\c in {#3} {
+        \begin{scope}[kt zero/.style={},kt one/.style={},kt mixed/.style={}]
+          \ktTriangle{\x}{\y}{\u}{\a}{\b}{\c}%
+        \end{scope}
+      }
+    \fi
+  \end{tikzpicture}%
+}

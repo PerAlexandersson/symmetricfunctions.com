@@ -261,6 +261,25 @@ reminiscent of \hyperref[gtpatterns]{Gelfand--Tsetlin patterns}.
 The exact definition is written in an accessible manner in
 \cite[Def.~A1.3.10]{StanleyEC2}.
 
+\begin{example}
+Let $\lambda=\mu=21$ and $\nu=321$, so that $c^{\nu}_{\lambda\mu}=2$.  The two
+Littlewood--Richardson tableaux of shape $321/21$ and content $21$ have the
+entries $1,1,2$ and $1,2,1$ in rows one to three.  The figure shows the
+corresponding Berenstein--Zelevinsky triangles of rank three, in the
+normalization of \name{Igor Pak} and \name{Ernesto Vallejo}
+\cite[Sec.~5]{PakVallejo2005}.  Each small triangle carries a triple
+$(x_{ij},y_{ij},z_{ij})$, with $x$ at the top, $y$ at the bottom left and $z$
+at the bottom right.  The labels around the central hexagon satisfy
+$y_{11}+z_{11}=y_{22}+z_{12}$, $x_{12}+y_{11}=x_{22}+y_{22}$ and
+$x_{12}+z_{12}=x_{22}+z_{11}$, and the boundary sums $x_{1j}+y_{1j}=\lambda_j-\lambda_{j+1}$,
+$x_{jj}+z_{jj}=\nu_j-\nu_{j+1}$ and $y_{i2}+z_{i2}=\mu_i-\mu_{i+1}$ recover the
+three partitions.
+\begin{figure}
+\svgimg[width=0.45\textwidth]{svg-images/bz-triangle-example.svg}{The two
+Berenstein--Zelevinsky triangles with lambda = mu = 21 and nu = 321.}
+\end{figure}
+\end{example}
+
 
 \subsection[knutsonTaoHoneycomb]{Knutson--Tao honeycombs}
 
@@ -272,6 +291,23 @@ Knutson--Tao--Woodward puzzles
 proving the saturation conjecture.
 An overview of the saturation conjecture is given by \name{Anders Buch}
 \cite{Buch2000}.
+
+\begin{example}
+A puzzle is a tiling of a triangle of side $n$ by unit triangles labelled
+$000$ and $111$ and by rhombi made of two triangles labelled $(0,1,10)$ in
+counterclockwise order.  A partition $\lambda$ inside a $d\times(n-d)$ box
+becomes a binary word with $d$ ones, where the $k$th one has $\lambda_k$
+zeros to its right.  For $\lambda=\mu=21$ and $\nu=321$ in a $3\times3$ box,
+the two upper sides of the triangle read $010101$ (the left side from bottom
+to top, the right side from top to bottom), and the bottom reads $101010$.
+The figure shows the two puzzles with this boundary; white triangles have
+label $0$, blue triangles have label $1$, and the rhombi are orange.  This
+agrees with $c^{321}_{21,21}=2$.
+\begin{figure}
+\svgimg[width=0.7\textwidth]{svg-images/kt-puzzle-example.svg}{The two
+Knutson--Tao puzzles with lambda = mu = 21 and nu = 321.}
+\end{figure}
+\end{example}
 
 \name{Christian Gaetz} and \name{Yibo Gao} relate Schubert puzzles to
 interlacing triangular arrays \cite{GaetzGao2025}.  They prove that certain
