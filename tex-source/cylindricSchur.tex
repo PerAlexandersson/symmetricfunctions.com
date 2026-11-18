@@ -167,6 +167,149 @@ certain sums of elementary-expansion coefficients of chromatic symmetric
 functions of incomparability graphs.
 
 
+\section[cylindricMurnaghanNakayama]{Cylindric Murnaghan--Nakayama rule}
+
+\name{Per Alexandersson} and \name{Ezgi Kantarcı Oğuz} extend the
+\hyperref[murnaghanNakayamaRule]{Murnaghan--Nakayama rule} to cylindric Schur
+functions \cite{AlexanderssonOguz2023x}.  Since cylindric Schur functions are
+in general not \hyperref[pPartitionDefinition]{$(P,w)$-partition} generating
+functions, the proof instead uses inclusion--exclusion over the strict edges
+of the poset of the shape, together with the
+\hyperref[quasisymmetricPowerSumPsi]{quasisymmetric power-sum} expansion of
+\name{Per Alexandersson} and \name{Robin Sulzgruber}
+\cite[Thm.~6.2]{AlexanderssonSulzgruber2019}.  A related formula
+appears in \cite[Eq.~(145)]{KorffPalazzo2020}.
+
+As on the \hyperref[cylindricGTPatterns]{Gelfand--Tsetlin page}, we describe a
+cylindric skew shape $D$ by $m$ consecutive rows forming a skew shape
+$\lambda/\mu$, where row $j+m$ is row $j$ shifted $\ell$ columns to the left.
+Put $N \coloneqq \ell+m$.
+For $k \leq N$, a \defin{cylindric $k$-ribbon}\label{cylindricRibbon} is a
+connected cylindric shape with $k$ boxes and no $2\times 2$ block of boxes; it
+is a \defin{loop ribbon}\label{cylindricLoopRibbon} if $k=N$, so that it
+wraps once around the cylinder.  The height of a non-loop ribbon is the number
+of rows it meets minus one, and the height of a loop ribbon is $m$.
+
+Peel loop ribbons off $D$ from the inner boundary: if the boxes of $D$ along
+its inner boundary form a loop ribbon $L_1$ and $D\setminus L_1$ is nonempty,
+remove $L_1$ and repeat.  This writes
+$D = L_1 \cup \dotsb \cup L_s \cup F$, where we stop when $F$ is a loop ribbon
+or the boxes along the inner boundary of $F$ do not form a loop ribbon.
+Then $D$ is a \defin{stacked ribbon}\label{cylindricStackedRibbon} if $F$ is a
+ribbon; it is \emph{pure} if $F$ is a loop ribbon and \emph{non-pure}
+otherwise.  The height and width of a stacked ribbon are
+\[
+ \mathrm{ht}(D) \coloneqq (m+1)s + \mathrm{ht}(F),
+ \qquad
+ \mathrm{wd}(D) \coloneqq
+ \begin{cases}
+  \text{number of columns of the cylinder occupied by } D & \text{if $D$ is pure,}\\
+  1 & \text{if $D$ is non-pure.}
+ \end{cases}
+\]
+A \defin{cylindric ribbon tableau}\label{cylindricRibbonTableau} of shape $D$
+and content $\nu=(\nu_1,\dotsc,\nu_r)$ is a filling of $D$ in which, for each
+$j$, the boxes with entries at most $j$ form a cylindric shape with the same
+inner boundary as $D$, and the boxes with entry $j$ form a stacked ribbon
+$f_j$ with $\nu_j$ boxes.  Let $\mathrm{RT}(D,\nu)$ be the set of these
+tableaux.
+
+\begin{theorem}[Alexandersson--Kantarcı Oğuz {\cite[Thm.~16]{AlexanderssonOguz2023x}}]
+\label{cylindricMurnaghanNakayamaRule}
+For every cylindric skew shape $D$,
+\[
+\schurCylindric_D(\xvec) = \sum_{\nu} \frac{\powerSum_\nu(\xvec)}{z_\nu}
+\sum_{f \in \mathrm{RT}(D,\nu)} \prod_{j=1}^{\length(\nu)}
+(-1)^{\mathrm{ht}(f_j)} \, \mathrm{wd}(f_j),
+\]
+where $\nu$ ranges over partitions.
+\end{theorem}
+
+When $D$ is an ordinary skew shape, no loop ribbons occur and the theorem is
+the classical Murnaghan--Nakayama rule for skew Schur functions.
+
+\begin{example*}[A cylindric Murnaghan--Nakayama expansion]
+Let $m=2$, $\ell=2$ and $\lambda/\mu=(5,3)/(2,1)$, so $N=4$.  The shape $D$ is
+shown below with copies of its rows in gray; it has five boxes.
+\begin{figure}
+\begin{ytableau}
+\none & \none & \none & *(lightgray) & *(lightgray) \\
+\none & \none & {} & {} & {} \\
+\none & {} & {} \\
+*(lightgray) & *(lightgray) & *(lightgray)
+\end{ytableau}
+\end{figure}
+The cylindric ribbon tableaux are as follows.
+For $\nu=(5)$, the whole shape is a non-pure stacked ribbon, consisting of one
+loop ribbon and one more box, of height $(2+1)\cdot 1+0=3$.
+For $\nu=(4,1)$, the entries $1$ form a loop ribbon, of height $2$ and
+width $2$.
+For $\nu=(3,1,1)$, there are two tableaux, in each of which the entries $1$
+form a $3$-ribbon of height $1$.
+\begin{figure}
+\begin{ytableau}
+\none & \none & \none & *(lightgray) 1 & *(lightgray) 1 \\
+\none & \none & 1 & 1 & 1 \\
+\none & 1 & 1 \\
+*(lightgray) 1 & *(lightgray) 1 & *(lightgray) 1
+\end{ytableau}
+%
+\begin{ytableau}
+\none & \none & \none & *(lightgray) 1 & *(lightgray) 1 \\
+\none & \none & 1 & 1 & 2 \\
+\none & 1 & 1 \\
+*(lightgray) 1 & *(lightgray) 1 & *(lightgray) 2
+\end{ytableau}
+%
+\begin{ytableau}
+\none & \none & \none & *(lightgray) 1 & *(lightgray) 1 \\
+\none & \none & 1 & 2 & 3 \\
+\none & 1 & 1 \\
+*(lightgray) 1 & *(lightgray) 2 & *(lightgray) 3
+\end{ytableau}
+%
+\begin{ytableau}
+\none & \none & \none & *(lightgray) 1 & *(lightgray) 2 \\
+\none & \none & 1 & 1 & 3 \\
+\none & 1 & 2 \\
+*(lightgray) 1 & *(lightgray) 1 & *(lightgray) 3
+\end{ytableau}
+\end{figure}
+There are no tableaux of content $(2,2,1)$ or $(2,1,1,1)$, and four of
+content $(1^5)$, namely the standard cylindric tableaux.  Hence
+\[
+\schurCylindric_D(\xvec) =
+- \frac{\powerSum_{5}(\xvec)}{z_{5}}
++ 2\frac{\powerSum_{41}(\xvec)}{z_{41}}
+- 2\frac{\powerSum_{311}(\xvec)}{z_{311}}
++ 4\frac{\powerSum_{11111}(\xvec)}{z_{11111}}
+= \monomial_{221}(\xvec) + 2\monomial_{2111}(\xvec) + 4\monomial_{11111}(\xvec).
+\]
+This is \cite[Ex.~17]{AlexanderssonOguz2023x}, redrawn in English notation.
+\end{example*}
+
+For ordinary shapes, all tilings of $\lambda$ by $k$-ribbons have the same
+total height parity, so the coefficient $\chi^{\lambda}_{(k^r)}$ is a sum of
+terms of one sign \cite[Cor.~9]{White1983}, \cite[Thm.~2.7.27]{JamesKerber1984}.
+On the cylinder this fails: there is a cylindric shape with six boxes and
+exactly two tilings by $2$-ribbons, of total heights one and two, so the
+coefficient of $\powerSum_{222}(\xvec)$ vanishes
+\cite[Ex.~18]{AlexanderssonOguz2023x}.  Cancellation-freeness does hold for
+a staircase inner boundary.
+A cylindric shape is \defin{inner-strict}\label{cylindricInnerStrict} if its
+inner boundary is a staircase, that is, its inner boundary alternates between
+single down and right steps; then $\ell=m$ and $\mu_j-\mu_{j+1}=1$ for all $j$.
+
+\begin{theorem}[Alexandersson--Kantarcı Oğuz {\cite[Cor.~24]{AlexanderssonOguz2023x}}]
+\label{cylindricMNCancellationFree}
+Let $D$ be an inner-strict cylindric skew shape and let $k\leq N$.
+If $D$ can be tiled by cylindric $k$-ribbons, then all such tilings have the
+same total height parity.  In particular, the coefficient of
+$\powerSum_{(k^r)}(\xvec)/z_{(k^r)}$ in $\schurCylindric_D(\xvec)$ is a sum of
+terms of the same sign.
+\end{theorem}
+
+
 \section[cylindricAffineLittlewood]{Affine bounded Littlewood identities}
 
 In \cite{HuhKimKrattenthalerOkada2023x}, the authors

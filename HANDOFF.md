@@ -1,5 +1,22 @@
 # Handoff
 
+## Done — cylindric Murnaghan--Nakayama rule, 2026-11-18
+
+Claude worker releases all files below; nothing committed or deployed.
+On top of 67aaf7d: `cylindricSchur.tex` new section
+`cylindricMurnaghanNakayama` (definitions `cylindricRibbon`,
+`cylindricLoopRibbon`, `cylindricStackedRibbon`, `cylindricRibbonTableau`,
+`cylindricInnerStrict`; theorem `cylindricMurnaghanNakayamaRule` = arXiv
+2311.07382v1 Thm. 16; theorem `cylindricMNCancellationFree` = Cor. 24;
+worked example = Ex. 17 in English notation).  `murnaghanNakayama.tex`
+variants list links to it.  Statements follow the Overleaf version: stacked
+ribbon height (m+1)s+ht(F) (v1 prints s*m+ht(F), contradicting its own
+Ex. 14/17), loops peeled from the inner boundary.  Brute force (scratch
+/tmp/gtcheck/mn.py, outside repo): the example's power-sum and monomial
+expansions match; the v1 height convention does not; Ex. 18 has p_222
+coefficient 0.  `make Q=1`, `make check Q=1`, `git diff --check` pass;
+symlink scan empty; no KaTeX errors in Chromium DOM dumps of both pages.
+
 ## Done — skew, flagged and cylindric GT patterns, 2026-11-18
 
 Claude worker releases all files below; nothing committed or deployed.
