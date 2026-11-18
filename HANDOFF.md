@@ -1,5 +1,32 @@
 # Handoff
 
+## Done — cylindric Schur paper bibliography, 2026-11-18
+
+The Claude review agent (job c1ce5e16) releases `bibliography.bib`. Nothing was committed or
+deployed. The entries cited by the Overleaf paper "Cylindric Schur functions" were checked
+against Crossref and arXiv.
+
+Fixed:
+- GelfandTsetlin1950: "Michael L." (stray period removed).
+- KingTolluToumazet2004: editor Harnad; `series` instead of the incollection `journal`;
+  publisher AMS; doi 10.1090/crmp/034/10.
+- Mount1995: `@phdthesis` at Carnegie Mellon University (the duplicate year is removed).
+- AlexanderssonSulzgruber2019 and LiuWeselcouch2020: year 2021, to match the volume; the
+  online-first month is removed; ASCII page ranges.
+- Alexandersson2026Stretched: title as on arXiv v2 ("... and Key Coefficients").
+- Thawinrak2022x: current arXiv title.
+- Shrivastava2022x: url added.
+- KnutsonTau1999: `\mathrm{GL}_n(\mathbb{C})`.
+- KorffPalazzo2020: page range and https url.
+
+Added: Thawinrak2025 (Ars Combin. 162), DeLoeraSturmfels2003, DeMouraUllrich2021 and
+MathlibCommunity2020.
+
+Not fixed: a malformed duplicate `Book{Stanley1972ordered` (it has no `@`, so BibTeX ignores it)
+sits just before `Stanley1972`.
+
+Checks: `make Q=1`, `make check Q=1` and `git diff --check` pass.
+
 ## Done — cylindric Murnaghan--Nakayama rule, 2026-11-18
 
 Claude worker releases all files below; nothing committed or deployed.
