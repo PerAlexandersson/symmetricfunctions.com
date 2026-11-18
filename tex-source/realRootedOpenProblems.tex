@@ -461,15 +461,31 @@ n & P_{n,4}(t) \\
 \bottomrule
 \end{array}
 \]
-Evidence: real-rooted and consecutively interlacing for $j\leq5$ and
-$n\leq16$.  Partitions with all blocks of size at least two are
-\hyperref[sturmSetPartitions]{proved} to give real-rooted polynomials
-\cite{BonaHezo2016}; here small blocks are allowed but not counted.  The
-analogous cycle statistic is the
-\hyperref[conjLongCycleExcedances]{excedance conjecture above}.  For
-background on the attempted proofs, see
-\href{https://github.com/PerAlexandersson/RealRooted/issues/1773}{RealRooted
-issue 1773}.
+The polynomials $P_{n,j}$ were studied by \name{Jack Zhan} \cite{Zhan2023}.
+The case $j=2$ is known: after a shift it is the descent polynomial of run-sorted
+permutations \cite{AlexanderssonNabawanda2021,BonaHezo2016}.  The case $j=3$ is proved
+(Alexandersson, 2026), so the first open case is $j=4$.  Two restrictions are proved for
+every $j$, with consecutive interlacing (Alexandersson, 2026): partitions all of whose blocks
+have size at least $j$, and partitions whose blocks have size $1$ or at least $j$, weighted
+by the number of blocks of size at least $j$.  Evidence: $P_{n,j}$ is real-rooted and
+interlaces consecutively for $j\leq6$ and $n\leq40$.  The analogous cycle statistic is the
+\hyperref[conjLongCycleExcedances]{excedance conjecture above}.
+
+\begin{conjecture}[Alexandersson, 2026]
+\label{conjOrderedBigBlocks}
+For $j\geq2$, the polynomials
+\[
+  O_{n,j}(t)\coloneqq\sum_{\pi}t^{\#\{\text{blocks of $\pi$ of size at least $j$}\}},
+\]
+summing over all ordered set partitions $\pi$ of $[n]$, are real-rooted, and
+$O_{n,j}\interl O_{n+1,j}$.
+\end{conjecture}
+
+The exponential generating function is $1/(1-B_j(z,t))$, where
+$B_j(z,t)=\sum_{r=1}^{j-1}z^r/r!+t\bigl(e^z-\sum_{r=0}^{j-1}z^r/r!\bigr)$ is the exponent
+above.  For $j=3$ the first rows are $1$, $3$, $12+t$, $66+9t$, $450+91t$,
+$3690+973t+20t^2$.  Evidence: real-rooted and consecutively interlacing for $j\leq5$ and
+$n\leq30$.
 
 \begin{conjecture}[Lin--Ma, \cite[Conj.~5.1]{LinMa2025}]
 \label{conjReducedSchett}
