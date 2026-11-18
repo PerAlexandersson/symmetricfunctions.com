@@ -768,48 +768,6 @@ real-rootedness of the rows of $M$ is inherited by the rows of $MB^r$
 \cite[Thm.~1.3]{MaoWang2026x}; see the
 \hyperref[narayanaTransformations]{Narayana transformations}.
 
-\begin{conjecture}[Path-cube transfer polynomials]
-\label{conjPathCube}
-Define $A_r(t)$ as the first coordinate of $v_r=M(t)^r(1,0,0,0)^{\top}$,
-where
-\[
-  M(t)=\begin{pmatrix}
-  1+t & 2t & 0 & 0\\
-  1 & t & 2+t & 3t\\
-  1 & t & 0 & 0\\
-  0 & 0 & 1 & t
-  \end{pmatrix}.
-\]
-Then $A_r(t)$ is real-rooted and $A_r\interl A_{r+1}$.
-\end{conjecture}
-
-The polynomials satisfy
-\[
-  A_r=(1+3t)A_{r-1}+2t(1-t)A_{r-2}+t(2-t-t^2)A_{r-3}+t^2(1-t)^2A_{r-4}
-\]
-for $r\geq4$, and the first ones are
-\[
-\begin{array}{rl}
-\toprule
-r & A_r(t) \\
-\midrule
-1 & 1+t \\
-2 & 1+4t+t^2 \\
-3 & 1+11t+11t^2+t^3 \\
-4 & 1+18t+52t^2+24t^3+t^4 \\
-5 & 1+25t+134t^2+176t^3+47t^4+t^5 \\
-6 & 1+32t+265t^2+658t^3+493t^4+86t^5+t^6 \\
-\bottomrule
-\end{array}
-\]
-Evidence: consecutive strict interlacing for $r\leq30$, and real-rootedness
-for $r\leq200$.  The limiting zero set is a real interval, but this does not
-decide the finite rows.  No ordering of the four states satisfies the
-matrix criterion for \hyperref[matrixPreservesInterlacingSequences]{matrices
-preserving interlacing sequences}, nor do 3,624 tested triangular changes of
-basis.
-
-
 \subsection[openProblemsElsewhere]{Related conjectures on other pages}
 
 The \hyperref[jackSchurExpansionConjecture]{Schur expansion conjecture} for
