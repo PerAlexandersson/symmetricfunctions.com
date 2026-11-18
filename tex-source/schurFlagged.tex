@@ -121,6 +121,10 @@ We still require that the corresponding flags are weakly increasing.
 Taking \(a_i=1\) and \(b_i=n\) for every row recovers the ordinary
 \hyperref[schurSkew]{skew Schur polynomial} in the variables
 \(x_1,\dotsc,x_n\).
+In terms of \hyperref[skewFlaggedGTPatterns]{skew Gelfand--Tsetlin patterns},
+the flags become equalities between consecutive entries of the pattern, so
+flagged tableaux are the lattice points of a face of a Gelfand--Tsetlin
+polytope \cite[Lem.~25]{AlexanderssonOguz2023x}.
 
 With $\completeH_m(a,b) \coloneqq  \completeH_m(x_a,x_{a+1},\dotsc,x_b)$,
 one can show the Jacobi--Trudi type formula
@@ -173,7 +177,7 @@ $K_{\lambda/\mu,\nu}(\avec,\bvec)$ via the expansion
 
 \name{Per Alexandersson} and \name{Ezgi Kantarci-Oğuz}
 prove the following results \cite{AlexanderssonOguz2023x}.
-\begin{theorem}[Alexandersson--Kantarci-Oğuz (2023)]
+\begin{theorem}[Alexandersson--Kantarci-Oğuz {\cite[Thm.~28 and Cor.~36]{AlexanderssonOguz2023x}}]
 For any integer $k \geq 1$,
 \[
  K_{\lambda/\mu,\nu}(\avec,\bvec) \gt 0 \iff
@@ -181,6 +185,8 @@ For any integer $k \geq 1$,
 \]
 where multiplication of a partition by $k$ is done elementwise.
 This is a generalization of \hyperref[gtKostkaSaturation]{saturation for Gelfand--Tsetlin polytopes}.
+It implies \hyperref[cylindricKostkaSaturation]{saturation for cylindric
+Kostka coefficients}.
 
 Moreover, the map
 \[

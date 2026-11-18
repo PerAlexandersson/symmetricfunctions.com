@@ -1,5 +1,26 @@
 # Handoff
 
+## Done — skew, flagged and cylindric GT patterns, 2026-11-18
+
+Claude worker releases all files below; nothing committed or deployed.
+`gtpatterns.tex`: new subsections `skewFlaggedGTPatterns` (props
+`skewGTBijection`, `flaggedGTBijection` = arXiv 2311.07382v1 Lem. 25,
+dictionary table, worked flagged example (3,2)/(1), theorem
+`flaggedGTLexMinVertex` = Cor. 29) and `cylindricGTPatterns` (prop
+`cylindricGTBijection` after Sec. 6.1, example after Ex. 27/43 with new
+figure, theorem `cylindricKostkaSaturation` = Thm. 30 + Cor. 41, conjecture
+`cylindricKostkaEhrhartConjecture` = Conj. 42); pointer after the saturation
+theorem.  Cross-links from `schurFlagged.tex` (also locators Thm. 28/Cor. 36),
+`schur.tex` (skew combinatorial formula) and `cylindricSchur.tex`.  The
+cylindric inequality is stated as x_{i,m}+l >= x_{i+1,1} (Overleaf version);
+arXiv v1 prints the weaker x_{im}+l >= x_{i1}, which admits 259 instead of
+50 patterns in the example.  Figure: `svg-tex/src/cylindricGTTableau.tex` ->
+`assets/svg-images/cylindricGTTableau.svg` via `make svg` (pdftocairo
+fallback; only this file was stale).  Examples brute-force checked (scratch
+/tmp/gtcheck/check.py, outside repo).  `make Q=1`, `make check Q=1`,
+`git diff --check` pass; symlink scan empty; no KaTeX errors in headless
+Chromium DOM dumps of the four changed pages.  No bibliography change.
+
 ## Done — ladder proof, rook-Eulerian peaks, Dowling locators, 2026-11-18
 
 Claude worker releases all files below; nothing committed or deployed.

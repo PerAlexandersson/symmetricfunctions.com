@@ -137,6 +137,255 @@ The corresponding crystal graph on GT-patterns is described explicitly in
 \cite{HartwigKingston2026}.
 
 
+\subsection[skewFlaggedGTPatterns]{Skew and flagged Gelfand--Tsetlin patterns}
+
+Let $\mu \subseteq \lambda$ be partitions with at most $m$ parts and let
+$n \geq 0$.
+A \defin{skew Gelfand--Tsetlin pattern}\label{skewGTPattern} of shape
+$\lambda/\mu$ with $n$ steps is a parallelogram pattern
+$G=(x_{ij})_{0 \leq i \leq n,\, 1 \leq j \leq m}$ satisfying the interlacing
+inequalities, with top row $x_{nj}=\lambda_j$ and bottom row $x_{0j}=\mu_j$.
+Let $GT_n(\lambda/\mu)$ be the set of such patterns.
+Row $i$ is a partition $\alpha^{(i)}=(x_{i1},\dotsc,x_{im})$, and the
+interlacing inequalities between rows $i-1$ and $i$ say precisely that
+$\alpha^{(i)}/\alpha^{(i-1)}$ is a horizontal strip.
+
+\begin{proposition}\label{skewGTBijection}
+Filling the cells of $\alpha^{(i)}/\alpha^{(i-1)}$ with $i$ for
+$i=1,\dotsc,n$ is a bijection from $GT_n(\lambda/\mu)$ to the
+\hyperref[skewShapes]{skew semistandard Young tableaux} of shape $\lambda/\mu$
+with entries in $[n]$.
+Under this bijection, $x_{ij}-x_{i-1,j}$ is the number of entries equal to $i$
+in row $j$, so the \hyperref[gtPatternWeight]{weight} $w(G)$ is the content of
+the tableau.  In particular,
+\[
+\schurS_{\lambda/\mu}(x_1,\dotsc,x_n) = \sum_{G \in GT_n(\lambda/\mu)} \xvec^{w(G)}.
+\]
+\end{proposition}
+
+Now let $\avec=(a_1,\dotsc,a_m)$ and $\bvec=(b_1,\dotsc,b_m)$ be weakly
+increasing flags with entries in $[n]$, and let $\SSYT(\lambda/\mu,\avec,\bvec)$
+be the set of tableaux whose entries in row $j$ lie in
+$\{a_j,a_j+1,\dotsc,b_j\}$.  These tableaux define the
+\hyperref[flaggedSkewSchurPolynomialDefinition]{flagged skew Schur polynomial}
+$\schurS_{\lambda/\mu}(\avec,\bvec)$.
+
+\begin{proposition}[See {\cite[Lem.~25]{AlexanderssonOguz2023x}}]
+\label{flaggedGTBijection}
+The bijection in \hyperref[skewGTBijection]{the previous proposition}
+restricts to a bijection between $\SSYT(\lambda/\mu,\avec,\bvec)$ and the
+patterns $G \in GT_n(\lambda/\mu)$ with
+\[
+x_{ij} = x_{i-1,j} \quad \text{whenever } i \notin \{a_j,\dotsc,b_j\}.
+\]
+Hence $\schurS_{\lambda/\mu}(\avec,\bvec)=\sum_G \xvec^{w(G)}$, summed over
+these patterns.
+\end{proposition}
+
+Equivalently, along the down-right diagonal $x_{nj},\dotsc,x_{0j}$ the
+entries equal $\lambda_j$ in rows $b_j,\dotsc,n$ and $\mu_j$ in rows
+$0,\dotsc,a_j-1$.  Each such equation turns an interlacing
+inequality $x_{ij} \geq x_{i-1,j}$ into an equality, so the flagged patterns
+are the lattice points of a face of the
+\hyperref[gtPolytope]{Gelfand--Tsetlin polytope} $\gtp_{\lambda\mu}$.
+Fixing the weight $\nu$ as well, the
+\hyperref[flaggedKostkaCoefficientDefinition]{flagged Kostka coefficient}
+$K_{\lambda/\mu,\nu}(\avec,\bvec)$ counts the lattice points of that face of the
+\hyperref[weightRestrictedGTPolytope]{weight-restricted polytope}
+$\gtp_{\lambda/\mu,\nu}$.  The following table summarizes the dictionary.
+
+\begin{tabular}{ll}
+\toprule
+GT-pattern $G$ & Tableau $T$ \\
+\midrule
+top row $\lambda$, bottom row $\mu$ & shape $\lambda/\mu$ \\
+row $\alpha^{(i)}$ & shape of $\mu$ together with the entries $\leq i$ \\
+interlacing of rows $i-1$ and $i$ & the entries $i$ form a horizontal strip \\
+$x_{ij}-x_{i-1,j}$ & number of entries $i$ in row $j$ \\
+$w_i = |\alpha^{(i)}|-|\alpha^{(i-1)}|$ & number of entries $i$ (content) \\
+$x_{ij}=x_{i-1,j}$ for $i\notin\{a_j,\dotsc,b_j\}$ & row $j$ uses only entries in $\{a_j,\dotsc,b_j\}$ \\
+$kG$ & every column repeated $k$ times: shape $k\lambda/k\mu$, content $k\nu$ \\
+\bottomrule
+\end{tabular}
+
+\begin{example*}[A flagged skew pattern]
+Let $\lambda/\mu=(3,2)/(1)$, $n=3$, $\avec=(1,2)$ and $\bvec=(2,3)$.
+Row $1$ may only contain $1$ and $2$, and row $2$ only $2$ and $3$.
+The flag forces $x_{31}=x_{21}$ and $x_{12}=x_{02}$, so every flagged pattern
+has the form
+\[
+\begin{matrix}
+3 &   & 2 &   &   &   \\
+  & 3 &   & x_{22} &   &   \\
+  &   & x_{11} &   & 0 &   \\
+  &   &   & 1 &   & 0
+\end{matrix}
+\]
+with $1 \leq x_{11} \leq 3$, $0 \leq x_{22} \leq 2$ and $x_{22} \leq x_{11}$.
+This polygon has $2+3+3=8$ lattice points.  For example, $x_{11}=2$ and
+$x_{22}=1$ give the rows $(1,0)$, $(2,0)$, $(3,1)$, $(3,2)$, the weight
+$(1,2,1)$, and the tableau
+\begin{figure}
+\begin{ytableau}
+\none & 1 & 2 \\
+2 & 3
+\end{ytableau}
+\end{figure}
+Summing over all eight patterns gives
+\[
+\schurS_{(3,2)/(1)}(\avec,\bvec)
+= (x_1^2+x_1x_2)(x_2^2+x_2x_3+x_3^2) + x_2^3x_3 + x_2^2x_3^2,
+\]
+in agreement with the
+\hyperref[flaggedSchurPolynomialJacobiTrudi]{flagged Jacobi--Trudi identity}
+$\completeH_2(x_1,x_2)\completeH_2(x_2,x_3)-x_2^4$.
+\end{example*}
+
+\name{Per Alexandersson} and \name{Ezgi Kantarci Oğuz} use this model to
+extend the \hyperref[gtKostkaSaturation]{saturation theorem} to flagged skew
+Kostka coefficients and to prove that $k \mapsto K_{k\lambda/k\mu,k\nu}(\avec,\bvec)$
+is a polynomial \cite[Thm.~28 and Cor.~36]{AlexanderssonOguz2023x}; see
+\hyperref[flaggedSchurKostka]{flagged Kostka coefficients}.  The saturation
+argument also gives the following.
+
+\begin{theorem}[Alexandersson--Kantarci Oğuz {\cite[Cor.~29]{AlexanderssonOguz2023x}}]
+\label{flaggedGTLexMinVertex}
+If the face of $\gtp_{\lambda/\mu,\nu}$ defined by the flags $\avec$ and
+$\bvec$ is nonempty, then its lexicographically smallest point, reading the
+pattern row by row from left to right and from the top row down, is a vertex
+with integer coordinates.
+\end{theorem}
+
+The \hyperref[gtEhrhart]{unsliced flagged faces} studied by \name{Katharina
+Jochemko} and \name{Krishna Menon} are faces of this type.
+
+
+\subsection[cylindricGTPatterns]{Cylindric Gelfand--Tsetlin patterns}
+
+\hyperref[cylindricSemistandardTableau]{Cylindric tableaux} also have a
+Gelfand--Tsetlin description \cite[Sec.~6.1]{AlexanderssonOguz2023x}.
+Let $D$ be a \hyperref[cylindricSkewShape]{cylindric skew shape}.  Choose
+$m$ consecutive rows of $D$; they form a skew shape $\lambda/\mu$, and row
+$j+m$ of $D$ is row $j$ shifted $\ell$ columns to the left, for a fixed
+$\ell \geq 1$.  The shape is well defined when
+$\lambda_1-\lambda_m \leq \ell$ and $\mu_1-\mu_m \leq \ell$.
+A cylindric tableau $T$ of shape $D$ is determined by its rows $1,\dotsc,m$.
+As before, let $x_{ij}$ be $\mu_j$ plus the number of entries at most $i$ in
+row $j$ of $T$, and extend periodically by
+\[
+x_{i,j+m} = x_{i,j} - \ell \qquad \text{for all } j \in \setZ.
+\]
+Each row $(x_{ij})_{j\in\setZ}$ of this doubly infinite pattern records one of
+the cylindric shapes in the chain defining $T$.
+
+\begin{proposition}[See {\cite[Sec.~6.1]{AlexanderssonOguz2023x}}]
+\label{cylindricGTBijection}
+The map $T\mapsto (x_{ij})$ is a bijection between cylindric semistandard
+tableaux of shape $D$ with entries in $[n]$ and the periodic patterns with top
+row $\lambda$ and bottom row given by the periodic extensions of $\lambda$ and $\mu$ that
+satisfy all interlacing inequalities.
+Equivalently, these are the patterns in $GT_n(\lambda/\mu)$ that also satisfy
+\[
+x_{i,m}+\ell \geq x_{i+1,1} \qquad \text{for } 0 \leq i \lt n,
+\]
+which is column strictness between row $m$ and the copy of row $1$ below it.
+The weight of the pattern is the weight of $T$, so the
+\hyperref[cylindricSchurFunction]{cylindric Schur polynomial} is
+\[
+\schurCylindric_D(x_1,\dotsc,x_n) = \sum_G \xvec^{w(G)},
+\]
+summed over these \defin{cylindric Gelfand--Tsetlin patterns}\label{cylindricGTPattern}.
+\end{proposition}
+
+Adding the weight equalities for $\nu$ defines the
+\defin{cylindric Gelfand--Tsetlin polytope}\label{cylindricGTPolytope}
+$\mathcal{P}(D,\nu)$, whose lattice points are the cylindric tableaux of
+shape $D$ and weight $\nu$.
+
+\begin{example*}[A cylindric pattern]
+Let $m=3$, $\ell=2$, $\lambda=(4,3,3)$ and $\mu=(2,1,0)$; this example is adapted
+from \cite[Ex.~27]{AlexanderssonOguz2023x}, in English notation.
+The figure shows a cylindric tableau of this shape.  The shaded rows form
+$\lambda/\mu$; the gray rows are copies, shifted two columns to the left for
+every three rows down.
+\begin{figure}
+\svgimg[width=0.2\textwidth]{svg-images/cylindricGTTableau.svg}{A cylindric
+tableau with three rows per period and shift two, with copies of its rows in
+gray.}
+\end{figure}
+Its cylindric Gelfand--Tsetlin pattern is shown below, with one entry of the
+periodic extension in gray at each end of every row.
+\[
+\begin{matrix}
+\color{gray}5 &  & 4 &  & 3 &  & 3 &  & \color{gray}2 &  &  &  &  &  \\
+ & \color{gray}5 &  & 3 &  & 3 &  & 3 &  & \color{gray}1 &  &  &  &  \\
+ &  & \color{gray}4 &  & 3 &  & 3 &  & 2 &  & \color{gray}1 &  &  &  \\
+ &  &  & \color{gray}4 &  & 3 &  & 2 &  & 2 &  & \color{gray}1 &  &  \\
+ &  &  &  & \color{gray}3 &  & 2 &  & 2 &  & 1 &  & \color{gray}0 &  \\
+ &  &  &  &  & \color{gray}2 &  & 2 &  & 1 &  & 0 &  & \color{gray}0
+\end{matrix}
+\]
+There are exactly three cylindric tableaux of this shape with weight
+$\nu=(2,2,1,1,1)$:
+\begin{figure}
+\begin{ytableau}
+\none & \none & 2 & 5 \\
+\none & 1 & 3 \\
+1 & 2 & 4
+\end{ytableau}
+%
+\begin{ytableau}
+\none & \none & 2 & 4 \\
+\none & 1 & 3 \\
+1 & 2 & 5
+\end{ytableau}
+%
+\begin{ytableau}
+\none & \none & 2 & 3 \\
+\none & 1 & 4 \\
+1 & 2 & 5
+\end{ytableau}
+\end{figure}
+The second and third have the middle rows $(4,3,2),(3,3,2),(3,2,2)$ and
+$(4,3,2),(4,2,2),(3,2,2)$.
+Stretching the shape and the weight by $t$ gives
+$|\mathrm{CSSYT}(tD,t\nu)| = (t+1)(t+2)/2$
+\cite[Ex.~43]{AlexanderssonOguz2023x}.
+\end{example*}
+
+Let $tD$ be the cylindric shape obtained by replacing every box of $D$ by $t$
+boxes in a row; in the notation above, $\lambda$, $\mu$ and $\ell$ are
+multiplied by $t$.
+
+\begin{theorem}[Alexandersson--Kantarci Oğuz {\cite[Thm.~30 and Cor.~41]{AlexanderssonOguz2023x}}]
+\label{cylindricKostkaSaturation}
+Let $D$ be a cylindric skew shape, $\nu$ a weak composition and $t \geq 1$.
+Then
+\[
+\mathrm{CSSYT}(tD,t\nu) \neq \emptyset \iff \mathrm{CSSYT}(D,\nu) \neq \emptyset.
+\]
+Moreover, $t \mapsto |\mathrm{CSSYT}(tD,t\nu)|$ agrees with a polynomial for
+all integers $t \geq 1$.
+\end{theorem}
+
+Both statements reduce to the flagged case.  Cutting $D$ open along a column
+gives a skew shape $\lambda/\mu$, and a skew tableau of this shape is
+cylindric exactly when its last column is compatible with its first column;
+this compatibility is a flag condition.  Saturation then follows from the
+flagged saturation theorem, and fixing the filling of the first column writes
+the cylindric Kostka coefficient as a finite sum of flagged skew Kostka
+coefficients.
+
+\begin{conjecture}[Alexandersson--Kantarci Oğuz {\cite[Conj.~42]{AlexanderssonOguz2023x}}]
+\label{cylindricKostkaEhrhartConjecture}
+The polynomial $t \mapsto |\mathrm{CSSYT}(tD,t\nu)|$, which is the
+\hyperref[ehrhart]{Ehrhart polynomial} of $\mathcal{P}(D,\nu)$, has nonnegative
+coefficients.
+\end{conjecture}
+This extends the \hyperref[gtKostkaEhrhart]{King--Tollu--Toumazet conjecture}
+and its \hyperref[flaggedSchurKostkaConjecture]{flagged version}.
+
+
 \subsection[gtpatternsTokuyama]{Tokuyama's formula}
 
 Let $SGT(\lambda)\subset \gtp(\lambda)$ be the set of
@@ -508,6 +757,10 @@ Every \emph{nonempty} Gelfand--Tsetlin polytope $\gtp_{\lambda/\mu,w}$
 contains at least one vertex with integer coordinates.
 
 \end{theorem}
+
+For the flagged faces of these polytopes and for cylindric tableaux, see
+\hyperref[flaggedGTLexMinVertex]{flagged GT-patterns} and
+\hyperref[cylindricKostkaSaturation]{cylindric saturation}.
 
 
 
