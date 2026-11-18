@@ -190,7 +190,7 @@ The descent polynomial of \hyperref[parkingFunctions]{parking functions} is
  D_n(t) \coloneqq \sum_{a\in\mathrm{PF}_n}t^{\des(a)}.
 \]
 Its coefficients form \oeis{A333829}.  For every $n\geq 1$, the polynomial
-$D_n(t)$ is real-rooted.
+$D_n(t)$ is real-rooted \cite[Cor.~7.1]{Alexandersson2026ParkingSmirnov}.
 \label{parkingFunctionDescentsRealRooted}
 
 Indeed, set
@@ -221,6 +221,38 @@ polynomials; see the \hyperref[conjParkingExcedances]{open problems}.
 Restricting to Smirnov words, whose adjacent letters differ, instead gives the
 real-rooted \hyperref[noncrossingChowPolynomial]{Chow polynomials of
 noncrossing partition lattices}.
+\end{example*}
+
+\begin{example*}[Image size and pattern avoidance in parking functions]
+\label{parkingFunctionStatisticsRealRooted}
+The image-size polynomial of parking functions is
+\[
+ M_n(t)\coloneqq\sum_{a\in\mathrm{PF}_n}t^{|\operatorname{im}(a)|-1}
+ =\sum_{j=0}^{n-1}\binom{n}{j}S(n,j+1)\,j!\,t^j,
+\]
+where $S(n,k)$ is a Stirling number of the second kind; the coefficients
+form \oeis{A141618}.  For every $n\geq1$, $M_n(t)$ has $n-1$
+simple negative zeros \cite[Thm.~9.1]{Alexandersson2026ParkingSmirnov}.
+
+For $a\in\mathrm{PF}_n$, let $\phi(a)$ list the positions $j$ with
+$a_j=1$ in increasing order, then those with $a_j=2$, and so on; this is
+the label reading of the labeled Dyck path.  Let $\Pi$ be one of the pattern
+pairs $\{132,213\}$, $\{132,312\}$, $\{213,231\}$ or $\{231,312\}$.  Then
+\[
+ \sum_{\substack{a\in\mathrm{PF}_n\\ \phi(a)\text{ avoids }\Pi}}
+ t^{\asc(\phi(a))}
+ =\sum_{k=0}^{n-1}\frac{1}{k+1}\binom{n-1}{k}\binom{n+k+1}{k}t^k,
+\]
+the face numbers of the \hyperref[associahedronDefinition]{associahedron}
+(\oeis{A033282}).  These polynomials and their reversals, which count
+descents, have simple negative zeros, and consecutive rows strictly
+interlace \cite[Thm.~9.2]{Alexandersson2026ParkingSmirnov}.
+
+A \defin{tie} of a word is an index with $a_i=a_{i+1}$.  Parking functions
+with no ties and no peaks $a_{i-1}<a_i>a_{i+1}$, counted by descents, give
+the \hyperref[narayanaPolynomialFamiliesRealRooted]{Narayana polynomial}
+$\sum_j\frac1n\binom{n}{j}\binom{n}{j+1}t^j$
+\cite[Thm.~6.1]{Alexandersson2026ParkingSmirnov}.
 \end{example*}
 
 \begin{example*}[Log-concavity from triangular-array recurrences]
@@ -591,6 +623,33 @@ Peaks on words are not real-rooted in general; see the
 \hyperref[counterexamplesWordPeaks]{counterexamples}.  For the joint
 distribution with inverse peaks, see the
 \hyperref[conjInversePeaks]{Gessel--Zhuang conjecture}.
+\end{example*}
+
+
+\begin{example*}[Zig-zag Eulerian polynomials]
+\label{zigZagEulerianRealRooted}
+Let $\mathcal{A}_n$ be the \hyperref[namedPermutations]{up-down
+permutations} $\sigma_1<\sigma_2>\sigma_3<\dotsb$ in $\symS_n$.  A
+\defin{swap} of $\sigma$ is a value $i$ such that $i+1$ appears to the right
+of $i$ but not next to it.  The swap polynomial
+\[
+ H_n(t)=\sum_{\sigma\in\mathcal{A}_n}t^{\operatorname{swaps}(\sigma)}
+\]
+satisfies $tH_n(t)=Z_n(t)$, the
+\hyperref[zigZagEulerianGammaPositive]{zig-zag Eulerian polynomial} of
+\name{T. Kyle Petersen} and \name{Yan Zhuang}: the $P$-Eulerian polynomial
+of the zig-zag poset, and the $h^*$-polynomial of its order polytope
+\cite{CoonsSullivant2023}.  For example, $H_5(t)=1+7t+7t^2+t^3$.
+
+\begin{theorem}[Alexandersson, \cite[Thm.~7.1]{Alexandersson2026Eulerian}]
+For $n\geq3$, $H_n(t)$ has degree $n-2$ and only simple negative zeros.
+\end{theorem}
+
+This settles the real-rootedness conjecture of Petersen and Zhuang
+\cite[Conj.~6.1(a)]{PetersenZhuang2024x}.  After a fractional linear change
+of variable, $H_n$ is a differential operator applied to a centered
+polynomial whose complex zeros lie in a fixed disk; the operator maps such
+polynomials to polynomials with simple zeros in $(-1,1)$.
 \end{example*}
 
 

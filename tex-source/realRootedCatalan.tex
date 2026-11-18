@@ -209,6 +209,48 @@ derivative.
 \end{example*}
 
 
+\begin{example*}[Peaks on unit interval graphs]
+\label{unitIntervalPeaksRealRooted}
+Through \hyperref[areaSequence]{area sequences}, Dyck paths of semilength
+$n$ correspond to \hyperref[unitIntervalGraph]{unit interval graphs} on
+$[n]$, and peaks become maximal cliques, the \defin{peak-cliques}.  The
+\defin{peak-nesting} of the graph is the largest number of peak-cliques
+containing a common vertex.  Over all unit interval graphs, peaks give the
+\hyperref[narayanaPolynomialFamiliesRealRooted]{Narayana polynomials}.
+\name{Per Alexandersson} and \name{Leonardo Saud Maia Leite} study
+subclasses \cite{AlexanderssonLeite2026Peaks}.
+\begin{itemize}
+\item A graph is \defin{Abelian} if $[n]$ splits into two consecutive
+ cliques; there are $2^{n-1}$ such graphs.  The peak-nesting and peak
+ polynomials are
+ \[
+  \sum_{i\geq1}\binom{n}{2i-1}t^i
+  \qquad\text{and}\qquad
+  \sum_{i\geq0}\binom{n}{2i}t^{i+1},
+ \]
+ and both families are real-rooted generalized
+ \hyperref[sturmSequence]{Sturm sequences}
+ \cite[Thms.~4.3 and~4.9, Cors.~4.5 and~4.10]{AlexanderssonLeite2026Peaks}.
+\item A graph is \defin{$2$-nested} if its peak-nesting is at most two;
+ these are the unit interval graphs that are line graphs of triangle-free
+ multigraphs.  The peak polynomial
+ \[
+  \frac{t}{2}\Bigl((1+t+\sqrt t)^{n-1}+(1+t-\sqrt t)^{n-1}\Bigr)
+ \]
+ forms a Sturm sequence, and the peak-nesting polynomials and connected
+ versions are real-rooted generalized Sturm sequences
+ \cite[Thm.~5.6, Cors.~5.5, 5.7 and~5.9]{AlexanderssonLeite2026Peaks}.
+\item A graph is \defin{reduced} if no two adjacent vertices are twins.
+ Its peak polynomial is $t^n M_{n-1}(1/t)$, where $M_{n-1}$ is the
+ \hyperref[motzkinPolynomialsRealRooted]{Motzkin polynomial} below; the
+ connected version is real-rooted as well
+ \cite[Thm.~6.10, Cor.~6.14]{AlexanderssonLeite2026Peaks}.
+\end{itemize}
+Over all unit interval graphs, the peak-nesting polynomials are not
+real-rooted.
+\end{example*}
+
+
 \subsection[motzkinPolynomialsRealRooted]{Motzkin polynomials}
 
 \begin{example*}[Motzkin polynomials]

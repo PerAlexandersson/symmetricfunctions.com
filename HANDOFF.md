@@ -1,5 +1,31 @@
 # Handoff
 
+## Done — Alexandersson 2026 real-rootedness results, 2026-11-18
+
+Claude worker releases all files below; nothing committed or deployed.
+Added proved results from Per's 2026 preprints and drafts:
+`realRootedGraphs.tex` new subsections `realRootedSinkPolynomials`
+(2610.41502 Thms 3.1/3.8/3.16/4.3, Ex. 3.20, Prop. 3.21; ladder theorem
+`ladderSinkPolynomials` from an unpublished draft, "Alexandersson, 2026")
+and `realRootedTilingPolynomials` (2605.03473v1 Lemma 4, Thms 5/6/14/21,
+Prop. 2; anchor `rigidTilingPolynomials`), plus the Chow gamma-polynomial
+(2609.05131v2 Cor. 4.4).  `realRootedInterlacing.tex`: Brändén--Leite
+Thm 4.5 (`brandenLeiteRenewal`, linked both ways with
+`tnnLowerUnitriangularMatrix` in `polyaFrequency.tex`); the weighted renewal
+and predecessor theorems are now attributed "Ahlberg--Alexandersson, 2026"
+(revised tilings draft, not yet in arXiv v1).  `realRootedWords.tex`:
+`zigZagEulerianRealRooted` (2609.07325v2 Thm 7.1) and
+`parkingFunctionStatisticsRealRooted` (2609.05131v2 Thms 6.1/9.1/9.2,
+Cor. 7.1).  `realRootedCatalan.tex`: `unitIntervalPeaksRealRooted`
+(2609.38084v1).  Petersen--Zhuang zig-zag conjecture marked proved on the
+open problems page (label `conjZigZagEulerian` kept), with stale mentions
+fixed in `gammaPositivity.tex` and `realRooted.tex`.  Bibliography: new
+`AlexanderssonLeite2026Peaks`; `Alexandersson2026ParkingSmirnov` moved to
+v2 with its new title; `AhlbergAlexandersson2026` pinned to v1.
+`make Q=1`, `make check Q=1`, `git diff --check` pass; symlink scan empty;
+Chromium at 375 px on the 8 changed pages: no KaTeX errors or broken
+anchors (only a pre-existing wide SVG path on the interlacing page).
+
 ## Done — real-rootedness open problems page and stale statuses, 2026-11-17
 
 Claude worker releases all files below; nothing committed or deployed.

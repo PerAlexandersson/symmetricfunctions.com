@@ -395,6 +395,132 @@ Weighted independent sets in powers of paths give the
 whose polynomials also satisfy an oriented interlacing window.
 
 
+\subsection[realRootedSinkPolynomials]{Sink polynomials of orientations}
+
+A \defin{sink} of an orientation is a vertex with no outgoing edge.  For a
+graph $G$, the \defin{acyclic sink polynomial} and the \defin{sink
+polynomial}\label{sinkPolynomial} are
+\[
+ S^a_G(t)\coloneqq\sum_{O\in\mathrm{AO}(G)}t^{\mathrm{sink}(O)},
+ \qquad
+ S_G(t)\coloneqq\sum_{O}t^{\mathrm{sink}(O)},
+\]
+where the first sum is over \hyperref[acyclicOrientation]{acyclic
+orientations} and the second over all $2^{|E(G)|}$ orientations.  For
+example, $S^a_{K_3}(t)=6t$ and $S_{K_3}(t)=2+6t$.  The number of acyclic
+orientations is $S^a_G(1)=(-1)^{|V(G)|}\chi_G(-1)$, where $\chi_G$ is the
+\hyperref[chromaticPolynomial]{chromatic polynomial}.
+
+\begin{theorem}[Alexandersson--Leite, \cite[Thm.~3.1 and Thm.~4.3]{AlexanderssonLeite2026x}]
+If $G$ is chordal and claw-free, then $S^a_G(t)$ has only real nonpositive
+zeros.  If $G$ is claw-free, then $S_G(t)$ is real-rooted.
+\end{theorem}
+
+The proof shifts $t\mapsto1+t$.  For every graph,
+\[
+ \frac{S_G(1+t)}{2^{|E(G)|}}
+ =I\bigl(G,\{2^{-d_G(v)}\}_v,t\bigr)
+\]
+is a \hyperref[weightedIndependencePolynomial]{weighted independence
+polynomial} \cite[Prop.~4.1]{AlexanderssonLeite2026x}, so
+\hyperref[realRootedIndependence]{Engström's theorem} applies.  For a chordal
+claw-free graph, $S^a_G(1+t)$ is likewise a positive multiple of a weighted
+independence polynomial.  In particular, $S^a_{L(G)}(t)$ is real-rooted
+whenever the line graph $L(G)$ is chordal.  For natural unit interval
+graphs, the \hyperref[chromaticSinkRealRooted]{ascent-refined acyclic sink
+polynomial} is real-rooted as well.
+
+A \defin{local edge order} on $G$ chooses, at every vertex, a total order of
+the edges at that vertex.  An edge is \defin{jointly minimal} if it is
+minimal at both of its endpoints.  Let $N_G(t)$ count local edge orders by
+the number of jointly minimal edges; for example $N_{K_{1,3}}(t)=6t$.
+
+\begin{theorem}[Alexandersson--Leite, \cite[Thms.~3.8 and~3.16]{AlexanderssonLeite2026x}]
+For every graph $G$,
+\[
+ \frac{N_G(1+t)}{\prod_{v}d_G(v)!}
+ =\mu_G\Bigl(t;\Bigl\{\frac{1}{d_G(u)d_G(v)}\Bigr\}_{uv\in E(G)}\Bigr),
+\]
+a weighted \hyperref[matchingPolynomial]{matching polynomial}, so $N_G(t)$ is
+real-rooted.  Moreover, $S^a_{L(G)}(t)\leq N_G(t)$ coefficientwise, with
+equality if and only if $G$ is a forest.  Hence $S^a_{L(T)}(t)$ is real-rooted
+for every forest $T$.
+\end{theorem}
+
+Local edge orders are the locally transitive orientations of $L(G)$, with
+jointly minimal edges as sinks.  Line graphs alone do not suffice: the line
+graph of a $12$-cycle with paths of length two attached at two vertices at
+distance four has a non-real-rooted acyclic sink polynomial
+\cite[Ex.~3.20]{AlexanderssonLeite2026x}.  Cycles are fine:
+$S^a_{C_n}(t)=2\sum_{k\geq1}\binom{n}{2k}t^k$ is real-rooted
+\cite[Prop.~3.21]{AlexanderssonLeite2026x}.
+
+Ladders are neither chordal nor claw-free.  Let $\mathrm{Lad}_n$ be the ladder
+with $n$ rungs and $S_n(t)=S^a_{\mathrm{Lad}_n}(t)$.  Then $S_1=2t$,
+$S_2=12t+2t^2$, and
+\[
+ S_n(t)=(t+6)S_{n-1}(t)+9(t-1)S_{n-2}(t)\qquad(n\geq3).
+\]
+
+\begin{theorem}[Alexandersson, 2026]
+\label{ladderSinkPolynomials}
+For every $n\geq1$, $S^a_{\mathrm{Lad}_n}(t)$ has a simple zero at the origin
+and all other zeros are simple and negative.  For $n\geq2$, after removing
+the zero at the origin, the zeros of $S^a_{\mathrm{Lad}_n}$ and
+$S^a_{\mathrm{Lad}_{n+1}}$ strictly interlace.
+\end{theorem}
+
+
+\subsection[realRootedTilingPolynomials]{Tiling polynomials}
+
+Let $\mu=(\mu_0,\mu_1,\dotsc,\mu_\ell)$ be a partition.  The \defin{Ferrers
+tile} of $\mu$ is the bottom-justified polyomino whose $i$th column has
+$\mu_i$ cells.  Fix $1\leq d\leq\mu_0$, and tile the
+$(\mu_0+d-1)\times n$ board with unit squares and copies of the tile, so that
+the bottom-left cell of each tile lies in one of the lowest $d$ rows.  The
+\defin{tiling polynomial}\label{tilingPolynomial} $P_{\mu,d,n}(t)$ counts
+these tilings by the number of big tiles.  It is the independence
+polynomial of the graph of overlapping tile placements
+\cite[Lemma~4]{AhlbergAlexandersson2026}.  Taller boards, on which two tiles
+may start in the same column, are treated by the
+\hyperref[transferMatrixWeightedTilings]{transfer-matrix method}.
+
+\begin{theorem}[Ahlberg--Alexandersson, \cite[Thm.~6]{AhlbergAlexandersson2026}]
+For $\mu=(k,k)$ and $d\leq k$,
+\[
+ \sum_{n\geq0}P_{\mu,d,n}(t)x^n=\frac{1}{1-x-dtx^2},
+\]
+so $P_{\mu,d,n}(t)=\sum_j\binom{n-j}{j}d^jt^j$, the matching polynomial of
+a path with edge weight $d$.  All $P_{\mu,d,n}(t)$ are real-rooted.
+\end{theorem}
+
+A tile is \defin{rigid}\label{rigidTilingPolynomials} if $\mu_\ell=1$ and
+$\mu_{\ell-1}\geq d$.  Then consecutive tiles in a block without fault lines
+must be $\ell$ columns apart.  The L-shaped tiles $\mu=(h,1)$ are the case
+$\ell=1$.
+
+\begin{theorem}[Ahlberg--Alexandersson, \cite[Prop.~2 and Thm.~14]{AhlbergAlexandersson2026}]
+For a rigid tile,
+\[
+ \sum_{n\geq0}P_{\mu,d,n}(t)x^n=\frac{1}{1-x(1+tx^\ell)^d},
+ \qquad
+ P_{\mu,d,n}(t)=\sum_{j\geq0}\binom{d(n-j\ell)}{j}t^j,
+\]
+and every $P_{\mu,d,n}(t)$ has only real nonpositive zeros.
+\end{theorem}
+
+For example, $P_{(h,1),2,3}(t)=1+4t+t^2$.  The
+\hyperref[interlacingRenewalTheorem]{weighted renewal theorem}, which
+generalizes the \hyperref[brandenLeiteRenewal]{Brändén--Leite theorem},
+strengthens this to $P_{\mu,d,n}\interl P_{\mu,d,n+s}$ whenever
+$ds\leq d\ell+1$; in particular consecutive tiling polynomials interlace
+(Ahlberg--Alexandersson, 2026).  For L-shaped tiles, refining by the row of
+the last tile gives an interlacing sequence
+\cite[Thm.~5]{AhlbergAlexandersson2026}.  On a cylinder, where the left and
+right boundaries are identified, the tiling polynomial of $\mu=(h,1)$ with
+$d=h$ is real-rooted as well \cite[Thm.~21]{AhlbergAlexandersson2026}.
+
+
 \subsection[realRootsChow]{Chow polynomials}
 
 \name{Petter Brändén} and \name{Lorenzo Vecchi} prove real-rootedness of
@@ -449,4 +575,7 @@ the refinements by final letter form an interlacing sequence.
 \end{theorem}
 The proof uses the same last-letter recurrence and
 \hyperref[matrixPreservesInterlacingSequences]{matrix interlacing criterion}
-as the word-enumerator argument above.
+as the word-enumerator argument above.  Since $H_{NC_{n+1}}(t)$ is
+palindromic and gamma-positive, its
+\hyperref[gammaPolynomial]{gamma-polynomial} is real-rooted with
+nonpositive zeros \cite[Cor.~4.4]{Alexandersson2026ParkingSmirnov}.

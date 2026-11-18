@@ -848,7 +848,7 @@ The following induction uses the two closure rules in
 The fixed-delay case is closely related to the companion-matrix argument
 of \name{Steve Fisk} \cite[Ex.~16.10]{Fisk2006x}.
 
-\begin{theorem}[Nondecreasing predecessor]
+\begin{theorem}[Ahlberg--Alexandersson, 2026]
 \label{interlacingNondecreasingPredecessor}
 Let $p(1),p(2),\dotsc$ be nondecreasing integers with $0\leq p(n)<n$,
 and let $w_n\geq0$. Define
@@ -888,7 +888,37 @@ The resulting weights are $b_nA_{p(n)}/A_n$.
 
 \subsection[interlacingRenewalRecurrences]{Renewal recurrences with a real-rooted seed}
 
-\begin{theorem}[Weighted renewal interlacing]
+\name{Petter Brändén} and \name{Leonardo Saud Maia Leite} obtain
+real-rooted families from rational generating functions through
+\hyperref[tnnLowerUnitriangularMatrix]{totally nonnegative lower
+unitriangular matrices}.  The following case solves a problem of
+\name{Tamás Forgács} and \name{Khang Tran}.
+
+\begin{theorem}[Brändén--Leite, \cite[Thm.~4.5]{BrandenLeite2024x}]
+\label{brandenLeiteRenewal}
+Let $Q(z)$ be a polynomial with $Q(0)>0$ whose zeros are all real and
+positive, and let $r\geq1$.  Define
+\[
+ \frac{1}{Q(z)-xz^r}=\sum_{n\geq0}q_n(x)z^n.
+\]
+Then every $q_n(x)$ has only real negative zeros, and
+$q_n\interl q_{n+1}$ for all $n\geq0$.
+\end{theorem}
+
+They also show that if $f$ has nonnegative coefficients and only real
+zeros, then the coefficients $r_n(x)$ of
+$1/(1-x(f(z)-f(0)))=\sum_n r_n(x)z^n$ are real-rooted with
+$r_n\interl r_{n+1}$ \cite[Thm.~4.4]{BrandenLeite2024x}.
+
+For $Q(z)=1-z$ and $r\geq2$, the series is $1/(1-zR(xz^{r-1}))$ with
+$R(z)=1+z$.  \name{John Ahlberg} and \name{Per Alexandersson} generalize
+this case to any real-rooted seed $R$ with nonnegative coefficients, and
+show that interlacing holds between polynomials several steps apart.
+Already for $R(z)=1+z$, the theorem below gives $q_n\interl q_{n+s}$ for
+$0\leq s\leq r$.  It comes from \hyperref[realRootedTilingPolynomials]{tiling
+polynomials}.
+
+\begin{theorem}[Weighted renewal interlacing, Ahlberg--Alexandersson, 2026]
 \label{interlacingRenewalTheorem}
 Let $\ell\geq1$ be an integer, and let $R(z)=\sum_{j=0}^d r_jz^j$
 have degree $d\geq1$, nonnegative coefficients, $R(0)=1$, and only real zeros.
@@ -947,6 +977,8 @@ For $R(z)=(1+z)^d$, coefficient extraction gives
  P_n(x)=\sum_{j=0}^{\lfloor dn/(d\ell+1)\rfloor}
  \binom{d(n-\ell j)}j x^j.
 \]
+These are the \hyperref[rigidTilingPolynomials]{tiling polynomials of
+rigid tiles}.
 The gap subsets are independent sets in a power of a path, so weighted
 real-rootedness also follows from
 \hyperref[weightedIndependencePolynomial]{Engström's theorem}

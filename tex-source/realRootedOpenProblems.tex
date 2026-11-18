@@ -180,39 +180,14 @@ Real-rootedness of every $\tilde{A}_n(t)$, conjectured by
 interlacing argument concerns a multivariate refinement and does not give
 consecutive interlacing in $n$.  Computations support the conjecture.
 
-\begin{conjecture}[Petersen--Zhuang, \cite[Conj.~6.1(a)]{PetersenZhuang2024x}]
-\label{conjZigZagEulerian}
-The zig-zag Eulerian polynomials $Z_n(t)$ are real-rooted for all
-$n\geq1$.
-\end{conjecture}
-
-Here $Z_n(t)$ is the $P$-Eulerian polynomial of a natural labeling of the
-zig-zag poset on $n$ elements, that is,
-$Z_n(t)=\sum_wt^{1+\des(w)}$ over its linear extensions $w$.
-Equivalently, $Z_n(t)$ is $t$ times the distribution of a return statistic
-on \hyperref[namedPermutations]{up-down permutations}.  The first
-polynomials are
-\[
-\begin{array}{rl}
-\toprule
-n & Z_n(t) \\
-\midrule
-3 & t+t^2 \\
-4 & t+3t^2+t^3 \\
-5 & t+7t^2+7t^3+t^4 \\
-6 & t+14t^2+31t^3+14t^4+t^5 \\
-7 & t+26t^2+109t^3+109t^4+26t^5+t^6 \\
-8 & t+46t^2+334t^3+623t^4+334t^5+46t^6+t^7 \\
-\bottomrule
-\end{array}
-\]
-Evidence: verified for $n\leq35$ \cite{PetersenZhuang2024x}.  The
-gamma-positivity of $Z_n(t)$ is proved there; see the
-\hyperref[gammaPositiveExamples]{gamma-positive examples}.  Petersen and
-Zhuang also ask whether the generalizations $Z_n^r(t)$, which interpolate
-between Eulerian and Narayana polynomials, are real-rooted.  The regular
-snake posets give the different, real-rooted
-\hyperref[delannoyRowPolynomials]{Delannoy row polynomials}.
+The zig-zag Eulerian polynomials $Z_n(t)$, the $P$-Eulerian polynomials of
+the zig-zag posets, were conjectured to be real-rooted by Petersen and
+Zhuang \cite[Conj.~6.1(a)]{PetersenZhuang2024x}.\label{conjZigZagEulerian}
+This is proved: $Z_n(t)/t$ has only simple negative zeros for $n\geq3$
+\cite[Thm.~7.1]{Alexandersson2026Eulerian}; see the
+\hyperref[zigZagEulerianRealRooted]{permutation page}.  Petersen and Zhuang
+also ask whether the generalizations $Z_n^r(t)$, which interpolate between
+Eulerian and Narayana polynomials, are real-rooted; this remains open.
 
 \begin{conjecture}[Gessel--Zhuang, \cite[Conj.~7.1]{GesselZhuang2024TwoSided}]
 \label{conjInversePeaks}
