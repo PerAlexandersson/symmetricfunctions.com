@@ -180,8 +180,8 @@ The authors show that $\{ W_{n,k}(t) \}_{n \geq k}$ for fixed $k$ form a
 \hyperref[sturmSequence]{Sturm sequence}, and that
 $\{ W_{n,k}(t) \}_{1\leq k \leq n}$ is \hyperref[sturmSequence]{Sturm-unimodal}.
 
-The generalization to Fuss--Catalan paths in an $n\times nm$ rectangle is
-\hyperref[conjFussCatalanNNE]{conjectured} to be real-rooted as well.
+The generalization to \hyperref[fussCatalanNNERealRooted]{Fuss--Catalan paths}
+is real-rooted as well, and has the same zeros.
 
 
 The following formula appears in
@@ -206,6 +206,60 @@ These conjectures were later proved in \cite{WangZhang2024}.
 They find a two-term recurrence involving \(W_{n-1,k}(t)\).  Alternatively,
 \(W_{n,k}(t)\) can be expressed in terms of \(W_{n,k-1}(t)\) and its
 derivative.
+\end{example*}
+
+
+\begin{example*}[NNE instances in Fuss--Catalan paths]
+\label{fussCatalanNNERealRooted}
+For $m\geq1$, let $\mathcal{D}^{(m)}_n$ be the lattice paths with $n$ north
+steps and $mn$ east steps that stay weakly above the line from $(0,0)$ to
+$(mn,n)$, and put
+\[
+  W^{(m)}_{n,k}(t)\coloneqq [x^k]\sum_{\pi\in\mathcal{D}^{(m)}_n}
+  x^{\#NE(\pi)}t^{\#NNE(\pi)}.
+\]
+For $m=1$ these are the polynomials $W_{n,k}(t)$ above.  For $m=2$ and $n=5$,
+the polynomials for $k=1,\dotsc,5$ are $t$, $10t+10t^2$, $45t+45t^2$, $120t$
+and $42$.  Real-rootedness was conjectured by Alexandersson in 2023.
+
+\begin{theorem}[\name{Ryan Halper}, 2026, \cite{Halper2026FussCatalan}]
+For $m\geq1$ and $1\leq k\leq n$,
+\[
+  W^{(m)}_{n,k}(t)=\frac{1}{k}\binom{mn}{k-1}C_{n,k}(t)
+  =\binom{mn}{k-1}\binom{n}{k-1}^{-1}W_{n,k}(t),
+  \qquad
+  C_{n,k}(t)\coloneqq\sum_{j\geq1}\binom{k}{j}\binom{n-k-1}{j-1}t^j,
+\]
+with $C_{n,n}(t)=1$.  In particular, every $W^{(m)}_{n,k}(t)$ is real-rooted.
+\end{theorem}
+
+\begin{proof}
+Append one east step and write the path as
+$N^{a_1}EN^{a_2}E\dotsm N^{a_L}E$ with $L=mn+1$ and $a_1+\dotsb+a_L=n$.
+By the cycle lemma, exactly one of the $L$ cyclic rotations of any vector
+$(a_1,\dotsc,a_L)$ of nonnegative integers with sum $n$ comes from a path in
+$\mathcal{D}^{(m)}_n$, and the $L$ rotations are distinct.  Peaks correspond to
+the positive entries $a_i$ and $NNE$-factors to the entries $a_i\geq2$, and both
+are preserved by rotation.  Choosing the $k$ positive positions and a
+composition of $n$ into $k$ parts gives
+$W^{(m)}_{n,k}(t)=\frac{1}{L}\binom{L}{k}C_{n,k}(t)$, which is the stated
+formula.  For $m=1$ it is the formula of
+\cite{BonaDimitrovLabelleLiPappeVindasMelendezZhuang2025} above, so
+$W^{(m)}_{n,k}(t)$ is a positive multiple of $W_{n,k}(t)$ and has the same
+zeros.
+\end{proof}
+
+Halper also gives a direct argument for the zeros of $C_{n,k}(t)$.  With
+$r=n-k>0$ and $f(x)=x^k(1+x)^{r-1}$,
+\[
+  \frac{f^{(r)}(x)}{r!}=\frac{x^k}{1+x}\,C_{n,k}\!\left(\frac{1+x}{x}\right),
+\]
+and by Rolle's theorem all zeros of $f^{(r)}$ lie in $[-1,0]$.
+
+Since only a positive factor depends on $m$, the interlacing results of
+\cite{WangZhang2024} hold for every $m$: for fixed $k$, the sequence
+$\{W^{(m)}_{n,k}(t)\}_{n\geq k}$ is a \hyperref[sturmSequence]{Sturm sequence},
+and for fixed $n$, $\{W^{(m)}_{n,k}(t)\}_{1\leq k\leq n}$ is Sturm-unimodal.
 \end{example*}
 
 
