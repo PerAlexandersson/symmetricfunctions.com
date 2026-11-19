@@ -1,0 +1,95 @@
+% gt-snakes.tex -- skew Gelfand--Tsetlin patterns, fixed entries (flags), tiles,
+% snakes and snake moves.
+%
+% Source paper: P. Alexandersson, "Finiteness of stretched flagged skew Kostka
+% coefficients" (draft, 2026); snakes are from arXiv:1307.3999.
+% Shared with symmetricfunctions.com (svg-tex/lib).
+% Load after TikZ: \input{gt-snakes}. Needs only TikZ; no other macro file.
+%
+% Conventions. A pattern has rows i = 0,...,m (row m on top) and positions
+% j = 1,2,...; entry (i,j) is drawn at x = 2(j-1)+(m-i), y = i, so that its
+% neighbours (i+1,j) and (i+1,j+1) are up-left and up-right. The first argument
+% of every macro is m. Entries are nodes named (gt-i-j).
+% All distinctions survive black-and-white printing: node shape, line width and
+% dashing carry the meaning; the two Okabe--Ito tints are redundant.
+%
+% Usage example (inside a document that loaded TikZ):
+%   \begin{tikzpicture}[gt picture]
+%     \gtTileEdges{2}{0/1/1/1, 1/2/2/2}      % joins (0,1)-(1,1) and (1,2)-(2,2)
+%     \gtPath[gt plus edge]{2}{1/1, 2/1}     % a snake through (1,1),(2,1)
+%     \gtPattern{2}{2/1/5, 2/2/3, 1/1/4, 1/2/3, 0/1/4, 0/2/1}
+%     \gtPattern[gt plus]{2}{1/1/4}          % redraw one entry as a positive snake
+%     \gtRowLabels{2}{2}{0,1,2}              % row numbers to the right (2 positions)
+%   \end{tikzpicture}
+% Draw edges and paths before the entries: entries have a white background.
+
+\definecolor{gtOrange}{RGB}{230,159,0}
+\definecolor{gtSky}{RGB}{86,180,233}
+\tikzset{
+  gt picture/.style={x=0.95em,y=2.1em,baseline=(current bounding box.center)},
+  % entries
+  gt entry/.style={inner sep=1pt,minimum size=1.15em,font=\small,fill=white},
+  gt fixed/.style={gt entry,rectangle,draw,line width=0.4pt},
+  gt changed/.style={gt entry,rectangle,draw,line width=0.9pt},
+  gt snake/.style={gt entry,circle,draw,line width=0.4pt},
+  gt plus/.style={gt entry,circle,draw,line width=1.1pt,fill=gtOrange!25},
+  gt minus/.style={gt entry,circle,draw,line width=1.1pt,densely dashed,fill=gtSky!25},
+  gt label/.style={font=\scriptsize,text=black!70},
+  gt name/.style={font=\scriptsize,inner sep=0.5pt,fill=white},
+  % schematic entries (no values)
+  gt dot/.style={circle,fill=black,inner sep=0pt,minimum size=2.2pt},
+  gt low/.style={rectangle,fill=black,inner sep=0pt,minimum size=5pt},
+  gt high/.style={rectangle,draw=black,fill=white,line width=0.6pt,inner sep=0pt,
+    minimum size=5pt},
+  % edges
+  gt tile edge/.style={line width=3.2pt,black!22,line cap=round},
+  gt snake edge/.style={line width=1.0pt},
+  gt plus edge/.style={line width=1.4pt},
+  gt minus edge/.style={line width=1.4pt,densely dashed},
+  % snake graph
+  gt vertex/.style={circle,draw,inner sep=1pt,minimum size=1.5em,font=\small},
+  gt graph edge/.style={line width=0.5pt},
+  gt cycle edge/.style={line width=1.5pt},
+  gt edge label/.style={font=\scriptsize,fill=white,inner sep=1pt},
+}
+
+% \gtXY{m}{i}{j} expands to the coordinate of entry (i,j).
+\newcommand{\gtXY}[3]{({2*(#3-1)+(#1)-(#2)},{#2})}
+
+% \gtEntry[style]{m}{i}{j}{value}: one entry, as node (gt-i-j).
+\newcommand{\gtEntry}[5][gt entry]{%
+  \node[#1] (gt-#3-#4) at \gtXY{#2}{#3}{#4} {$#5$};}
+
+% \gtPattern[style]{m}{i/j/value,...}: several entries with a common style.
+\newcommand{\gtPattern}[3][gt entry]{%
+  \foreach \gtI/\gtJ/\gtV in {#3} {\gtEntry[#1]{#2}{\gtI}{\gtJ}{\gtV}}}
+
+% \gtMarks[style]{m}{i/j,...}: nodes without text, e.g. style gt dot, gt low, gt high.
+\newcommand{\gtMarks}[3][gt dot]{%
+  \foreach \gtI/\gtJ in {#3} {\node[#1] (gt-\gtI-\gtJ) at \gtXY{#2}{\gtI}{\gtJ} {};}}
+
+% \gtTileEdges[style]{m}{i/j/k/l,...}: a band between entries (i,j) and (k,l);
+% use it for adjacent equal entries, so that tiles appear as connected regions.
+\newcommand{\gtTileEdges}[3][gt tile edge]{%
+  \foreach \gtI/\gtJ/\gtK/\gtL in {#3} {%
+    \draw[#1] \gtXY{#2}{\gtI}{\gtJ} -- \gtXY{#2}{\gtK}{\gtL};}}
+
+% \gtPath[style]{m}{i/j, i/j, ...}: a path through the listed entries, in order.
+% Styles: gt snake edge, gt plus edge (solid, thick), gt minus edge (dashed).
+\newcommand{\gtPath}[3][gt snake edge]{%
+  \gdef\gtPrev{}%
+  \foreach \gtI/\gtJ in {#3} {%
+    \ifx\gtPrev\empty\else
+      \draw[#1] \gtPrev -- \gtXY{#2}{\gtI}{\gtJ};
+    \fi
+    \xdef\gtPrev{\gtXY{#2}{\gtI}{\gtJ}}}}
+
+% \gtName{m}{i}{j}{text}: a small label straight above entry (i,j), halfway to the
+% next row (no entry sits there), e.g. a snake name.
+\newcommand{\gtName}[4]{%
+  \node[gt name] at ({2*(#3-1)+(#1)-(#2)},{#2+0.55}) {$#4$};}
+
+% \gtRowLabels{m}{r}{i,i,...}: row numbers to the right of a pattern with r positions.
+\newcommand{\gtRowLabels}[3]{%
+  \foreach \gtI in {#3} {%
+    \node[gt label] at ({2*(#2-1)+(#1)-\gtI+2.2},{\gtI}) {$\gtI$};}}

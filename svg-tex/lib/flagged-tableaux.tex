@@ -1,0 +1,46 @@
+% flagged-tableaux.tex -- skew Young tableaux with row flags, drawn in TikZ.
+%
+% Source paper: P. Alexandersson, "Finiteness of stretched flagged skew Kostka
+% coefficients" (draft, 2026).
+% Shared with symmetricfunctions.com (svg-tex/lib).
+% Load after TikZ: \input{flagged-tableaux}. Needs only TikZ (library patterns
+% for the style "ft hatched"); no other macro file.
+%
+% Conventions. English notation: box (j,c) is in row j (row 1 on top) and
+% column c, and occupies the unit square with upper right corner (c,-j+1).
+% Black-and-white safe: marked boxes are hatched, never only tinted.
+%
+% Usage example:
+%   \begin{tikzpicture}[ft picture]
+%     \ftInner{1,1,0}                         % dotted outline of the inner shape mu
+%     \ftBoxes{1/2/1, 1/3/3, 2/2/2, 3/1/2, 3/2/4}   % row/column/entry
+%     \ftBoxes[ft hatched]{2/2/2}             % mark one box
+%     \ftRowFlag{1}{3}{1}{3}                  % row 1 (length 3): entries in [1,3]
+%   \end{tikzpicture}
+
+\tikzset{
+  ft picture/.style={x=1.5em,y=1.5em,baseline=(current bounding box.center)},
+  ft box/.style={draw=black,line width=0.4pt},
+  ft hatched/.style={ft box,pattern=north east lines,pattern color=black!45},
+  ft inner/.style={draw=black!55,densely dotted,line width=0.4pt},
+  ft entry/.style={font=\small,inner sep=0pt},
+  ft flag/.style={font=\scriptsize,anchor=west,inner sep=0pt},
+}
+
+% \ftBoxes[style]{j/c/entry,...}: boxes with entries (entry may be empty).
+\newcommand{\ftBoxes}[2][ft box]{%
+  \foreach \ftJ/\ftC/\ftE in {#2} {%
+    \path[#1] ({\ftC-1},{-\ftJ}) rectangle +(1,1);
+    \node[ft entry] at ({\ftC-0.5},{-\ftJ+0.5}) {$\ftE$};}}
+
+% \ftInner[style]{mu_1,mu_2,...}: the boxes of the inner shape, dotted.
+\newcommand{\ftInner}[2][ft inner]{%
+  \foreach \ftM [count=\ftJ] in {#2} {%
+    \ifnum\ftM>0
+      \foreach \ftC in {1,...,\ftM} {\path[#1] ({\ftC-1},{-\ftJ}) rectangle +(1,1);}
+    \fi}}
+
+% \ftRowFlag{j}{x}{a}{b}: writes "a..b" to the right of row j, at horizontal
+% position x (usually the length of the longest row), for the flag a <= entry <= b.
+\newcommand{\ftRowFlag}[4]{%
+  \node[ft flag] at ({#2+0.5},{-#1+0.5}) {$#3\leq\cdot\leq#4$};}
