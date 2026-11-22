@@ -1,0 +1,75 @@
+\metatitle{OEIS A321966: matchings and real zeros}
+\metadescription{The row polynomials of OEIS A321966 count matchings of complete split graphs, and they
+have only simple negative zeros which interlace.}
+
+
+\section[oeisProofA321966]{A321966 counts matchings of complete split graphs}
+
+This page is part of the \hyperref[oeisProofs]{OEIS proof collection}.
+
+The triangle \oeis{A321966} is defined by the recurrence
+\[
+ P_n(y)=(y+3n-2)P_{n-1}(y)-(n-1)(3n-4)P_{n-2}(y)+(n-1)(n-2)^2P_{n-3}(y)
+\]
+with $P_0=1$, $P_1=1+y$ and $P_2=2+5y+y^2$; the entry conjectures that $P_n$ has
+only simple negative zeros.  We give a matching interpretation and prove the
+conjecture.
+
+Let $G_n$ be the complete split graph obtained by joining a clique
+$\{c_1,\dotsc,c_n\}$ to an independent set $\{i_1,\dotsc,i_n\}$, and let
+$m_j(G_n)$ be its number of \hyperref[matchingPolynomial]{matchings} with $j$
+edges.
+
+\begin{theorem}
+For $n\geq0$,
+\[
+ P_n(y)=\sum_{j=0}^{n} m_{n-j}(G_n)\,y^{j},
+ \qquad
+ \sum_{n\geq0}P_n(y)\frac{z^n}{n!}
+ =\frac{1}{1-z}\exp\!\Big(y\big(L+\tfrac{L^2}{2}\big)\Big),
+ \quad L=\frac{z}{1-z}.
+\]
+\end{theorem}
+
+\begin{proof}
+A matching $M$ of $G_n$ uses some edges $i_a c_b$ between the two parts; draw
+an arc $a\to b$ on the labels $[n]$ for each of them.  The arcs form disjoint
+directed cycles and directed paths, where an unused label is a path of length
+zero.  A path $a_0\to a_1\to\dotsb\to a_k$ leaves exactly $c_{a_0}$ and
+$i_{a_k}$ uncovered by cross edges, while a cycle leaves nothing uncovered.
+The remaining edges of $M$ lie in the clique, so they pair up some of the
+uncovered vertices $c_{a_0}$ of distinct paths.  Hence $M$ corresponds to a
+set of cycles together with a set of blocks, each block being a single path
+or an unordered pair of paths joined by a clique edge.  A matching with $j$
+uncovered pairs of vertices has $n-j$ edges, and every block contributes one
+such pair.  Labelled cycles have exponential generating function
+$-\log(1-z)$, nonempty linear orders have $L$, and blocks have
+$y(L+L^2/2)$, which gives the stated generating function.
+
+Since $(L+L^2/2)'=(1-z)^{-3}$, the generating function $F$ satisfies
+$(1-z)^3F_z=\big((1-z)^2+y\big)F$.  Comparing coefficients of $z^n/n!$ gives
+the defining recurrence above, and the initial values agree.
+\end{proof}
+
+\begin{theorem}
+For $n\geq1$, the polynomial $P_n$ has $n$ simple negative zeros, and the zeros
+of $P_n$ and $P_{n+1}$ strictly \hyperref[interlacesPolynomial]{interlace}.
+\end{theorem}
+
+\begin{proof}
+The generating function also satisfies
+$(1-z)F_z=\big(1+y(1-z)^{-2}\big)F$, and $\partial_yF=(L+L^2/2)F$.
+Together these give
+\[
+ P_{n+1}(y)=(y+n+1)P_n(y)+2y\,P_n'(y).
+\]
+Each $P_n$ is monic of degree $n$ with $P_n(0)=n!>0$.  Assume that $P_n$ has
+simple zeros $r_1<\dotsb<r_n<0$.  Then $P_{n+1}(r_i)=2r_iP_n'(r_i)$ has the sign
+opposite to $P_n'(r_i)$, and these signs alternate.  This gives a zero of
+$P_{n+1}$ in each interval $(r_i,r_{i+1})$, one in $(r_n,0)$ since
+$P_{n+1}(0)>0$, and one below $r_1$ by the sign at $-\infty$.  These are all
+$n+1$ zeros.  The induction starts with $P_1=1+y$.
+\end{proof}
+
+For example, $P_3(y)=6+27y+12y^2+y^3$: the graph $G_3$ has $6$ perfect
+matchings, $27$ matchings with two edges and $12$ edges.
