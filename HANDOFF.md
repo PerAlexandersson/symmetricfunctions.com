@@ -1,5 +1,15 @@
 # Handoff
 
+## Done — semiorder descent polynomials, 2026-11-22
+
+The real-rootedness open problems page now asks about ordinary descents of
+linear extensions of naturally labeled unit interval orders, including the
+single-comparability interpolation. The anchor is `semiorderEulerianZeros`.
+The entry gives the clique formula, the width-two matching argument and the
+separate verified ranges. The focused page build, `make check Q=1`, local
+anchor and cross-reference checks, and `git diff --check` passed. Source
+checkpoint only. Ownership of the page and this entry is released.
+
 ## Done — interval-graph column example, 2026-11-22
 
 Ownership is released for `tex-source/chromaticQuasisymmetric.tex`, its

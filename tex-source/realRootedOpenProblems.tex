@@ -692,6 +692,48 @@ $\mathcal{B}_n$ is unimodal \cite{Athanasiadis2005}.  Evidence: all
 margins up to size $5\times5$ with small entries.
 
 
+\subsection[semiorderEulerianZeros]{Descents of linear extensions of unit interval orders}
+
+Let $P$ be a \hyperref[unitIntervalOrder]{unit interval order} (a semiorder).
+Label the unit intervals $1,\ldots,n$ by increasing left endpoint, with
+$i\lt_P j$ when interval $i$ ends strictly before interval $j$ begins.
+For a linear extension $w=w_1\cdots w_n$, count ordinary label descents,
+$\des(w)=\#\{i:w_i\gt w_{i+1}\}$.  The resulting
+\hyperref[pEulerianPolynomial]{$P$-Eulerian polynomial} is
+\[
+  W_P(t)=\sum_{w\in\mathcal{L}(P)}t^{\des(w)}.
+\]
+
+\begin{problem}[Unit interval orders]
+Does $W_P(t)$ have only real zeros for every unit interval order $P$?
+More strongly, suppose $P'$ is obtained by removing a single
+comparability from $P$ and both posets admit the same left-endpoint
+ordering.  Does $(1-\lambda)W_P(t)+\lambda W_{P'}(t)$ have only real
+zeros for every $0\leq\lambda\leq1$?
+\end{problem}
+
+This is the \hyperref[neggersStanleyConjecture]{Neggers--Stanley question}
+restricted to semiorders.  To compute $W_P$, let $G$ be the
+incomparability graph of $P$ and partition its vertices into cliques.
+Each partition contributes the product of its block weights: a singleton
+has weight $1$, and a block of size $s\geq2$ has weight $tA_{s-1}(t)$,
+where $A_j(t)$ is the \hyperref[eulerianPolynomial]{Eulerian polynomial}.
+Indeed, splitting an extension before each left-to-right maximum gives
+these blocks.  To recover the extension, order the blocks by increasing
+maximum and put the maximum first in each block, ordering its tail freely.
+
+In width at most two, $G$ is a disjoint union of paths.  Its nonsingleton
+blocks form a matching, so $W_P(t)$ has only real zeros by the
+\hyperref[matchingPolynomial]{matching polynomial theorem}
+\cite{HeilmannLieb1972}.  For paths on three, four and five vertices this
+gives $1+2t$, $1+3t+t^2$ and $1+4t+3t^2$, respectively.
+
+Exact computation verifies the first statement through $n=12$,
+including all $208{,}012$ Dyck paths at $n=12$.  For the stronger
+question, exact root isolation gives a common interlacer for each of the
+$101{,}763$ single-comparability changes through $n=10$.  This verifies
+the whole interval $0\leq\lambda\leq1$ in that range.
+
 \section[openProblemsGeometry]{Moduli spaces and Hurwitz numbers}
 
 \begin{conjecture}[Ferroni--Pagaria--Vecchi, \cite[Conj.~4.13]{FerroniPagariaVecchi2026x}]
