@@ -1,5 +1,21 @@
 # Handoff
 
+## Done — interval-graph column example, 2026-11-22
+
+Ownership is released for `tex-source/chromaticQuasisymmetric.tex`, its
+matching generated page and temporary render records, and this handoff entry.
+Starting from clean `master` at `6a16268`, the unit-interval section now
+explains the column model for general interval graphs and gives the requested
+example with column ends 12, 27, 36, 57, 68 and 78.  The triangular diagram,
+the complete 14-edge set, and the interval representation
+`[i,r_i+1/2]` agree.
+
+`make FILE=chromaticQuasisymmetric.tex Q=1`, `make check Q=1`, and
+`git diff --check` pass.  Chromium at 375 and 1366 pixels reports three page
+diagrams, 64 cells in the new diagram, no KaTeX errors, and no horizontal page
+overflow.  The repository symlink scan is empty.  Source only; no deployment
+was performed.
+
 ## Done — LR model figures, 2026-11-18
 
 `svg-tex/lib/lr-models.tex` provides `\bzTriangle` and `\ktPuzzle`; the two example
