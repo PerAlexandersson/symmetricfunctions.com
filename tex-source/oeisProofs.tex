@@ -61,4 +61,20 @@ $n\leq 9$.
 triangles (vertices $a_i,b_i$ with edges $a_ib_i$, $a_ia_{i+1}$, $a_ib_{i+1}$)
 by size; conditioning on the last pair gives the defining recurrence.
 Checked by enumeration for chains of at most six pairs.
+
+\item \oeis{A134434} and \oeis{A120434} are
+\hyperref[hitPolynomial]{hit polynomials} of Ferrers boards in the $n\times n$
+square: for \oeis{A120434}, column $i$ has height $\max(i-2,0)$; for
+\oeis{A134434}, odd labels give height $0$ and even labels give the heights
+$1,3,\dotsc,2\lfloor n/2\rfloor-1$.  Checked by enumeration for $n\leq 8$.
+
+\item \oeis{A098158} and \oeis{A119900} count orientations of cycles and paths
+by their number of sinks (\hyperref[sinkPolynomial]{sink polynomials}):
+$2T_n(t)=t^nS(C_n,1/t)$ for $n\geq3$ and $T_n(t)=t^{n+1}S(P_{n+1},1/t)$.
+Checked for cycles and paths on at most $16$ vertices.
+
+\item \oeis{A116088}: $T_n(t)=t^nI(P_m^2,1/t)$ with $m=\max(0,2n-2)$, where
+$I(P_m^2,t)$ is the \hyperref[independencePolynomial]{independence polynomial}
+of the square of the path on $m$ vertices, a
+\hyperref[clawFreeGraph]{claw-free} graph.  Checked for $n\leq 15$.
 \end{itemize}
