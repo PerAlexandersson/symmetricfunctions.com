@@ -106,3 +106,13 @@ Dividing the expansion of $D_{m+4}$ by $t$ and setting $r=j+1$ gives
 $\gamma(m,j)=\xi(m+4,j+1)$.
 Finally, summing $\xi(n,r)$ over $r$ forgets the number of runs and gives
 \oeis{A097899}$(n)$, the number of permutations with no singleton ascending run.
+
+\subsection[oeisA046739Chow]{Chow polynomials of uniform matroids}
+
+\textbf{Observation.} For $3\leq n\leq 14$, the polynomial $D_n(t)/t$ is the
+\hyperref[chowPolynomialDefinition]{Chow polynomial} of the
+\hyperref[uniformMatroid]{uniform matroid} $U_{n-1,n}$.  For example,
+$D_4(t)/t=1+7t+t^2$ is the Chow polynomial of $U_{3,4}$.  We computed the Chow
+polynomials from the Feichtner--Yuzvinsky monomial basis of the Chow ring,
+which for $U_{n-1,n}$ reduces to counting chains of subsets.  The triangle
+\oeis{A271697} has the same nonzero entries as \oeis{A046739}.
