@@ -1,5 +1,51 @@
 # Handoff
 
+## Done — seven KaTeX errors in page content, 2026-11-23
+
+Ownership is released.  `assets/tex-init.js` defines `\supp` (support of a
+polynomial, `\mathrm{supp}`), `\Peak` (`\mathrm{Peak}`, like `\Des`) and
+`\onevec` (`\mathbf{1}`).  The unreferenced `\label`s inside display math are
+removed from `murnaghanNakayama.tex` and `ncSchur.tex`.  `make Q=1`,
+`make check Q=1` (lint-katex: 20,661 formulas, 189 macros, 0 errors) and
+`git diff --check` pass.  Headless Chromium on the five affected pages: no
+`.katex-error` spans and no red commands.  Source only; no deployment.
+
+## Done — KaTeX syntax checking, 2026-11-23
+
+Ownership is released.  `make check` now depends on a new `lint-katex` target
+(`tests/lint_katex.py` with the Node backend `tests/katex_check.mjs`).  It
+uses the KaTeX version that `template.htm` pins (0.16.25), installed by
+`make katex-deps` into `~/.cache/symmetricfunctions/katex-0.16.25`
+(`KATEX_DIR`; the Makefile refuses paths inside the repository or Dropbox).
+It evaluates the deployed `tex-init.js`, and it uses auto-render's own
+`splitAtDelimiters` with the delimiter list of site.js/relation-graph.js.
+It walks the body text nodes, skipping auto-render's ignored tags
+(code/pre/script/...).  It shares one macros object per page, as `\gdef`
+does in the browser, and checks the relation-graph node tooltip, title and
+meta labels.  Every one of the 186 macros is also invoked with dummy
+arguments: inline, display, inside a script and twice.  Unterminated
+formulas, which auto-render leaves as raw TeX, are reported too.
+Diagnostics give the page and line, the formula, KaTeX's raw message with a
+position marker, and the tex-source line when it is found.
+
+`render.lua` now wraps a literal TeX `\$` in `<span class="tex-dollar">$</span>`.
+Before this, `\$5 and \$10` typeset "5 and " as math.  No current page
+contains `\$`, so only the unit-test page changes.
+`tests/check_lint_katex.py` (in `make unittest`, 8 cases) covers:
+
+- malformed input that must fail: undefined macro, extra brace, unterminated
+  formula, `x^\abs{y}`, `\label`, a `\gdef` that does not carry across
+  pages, a bad `$..$` table cell, bad relation-graph labels, broken macro
+  definitions, and a KaTeX version mismatch;
+- input that must pass: valid site macros with arguments, ignored contexts,
+  literal dollars, pages without auto-render, and the real `tests/unittest.tex`
+  output (`\$`, `\verb`, lstlisting).
+
+Full-site result: 20,661 formulas on 160 pages (`goto.htm` skipped: no
+auto-render), 744 macro invocations, 0 macro errors and the 7 content errors
+that were then fixed (entry above).  Before the fix, headless Chromium showed
+exactly those 7 red commands on the affected pages, and none on `schur.htm`.  Source and validation only; no deployment.
+
 ## Done — selected November arXiv additions, 2026-11-23
 
 Ownership is released for `bibliography.bib`, the affected source and

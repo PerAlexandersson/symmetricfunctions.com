@@ -96,7 +96,9 @@ in [`POSETS.md`](POSETS.md).
 - Use `\defin{...}` or `\hyperref[label]{...}` for important technical terms
   when it improves navigation or clarity.
 - Math is rendered client-side by KaTeX 0.16 with the macros in
-  `assets/tex-init.js`. Brace macro scripts (`V^{\imath}`, not `V^\imath`):
+  `assets/tex-init.js`; `make lint-katex` (part of `make check`) reports
+  any formula that KaTeX cannot parse. KaTeX has no `\label` in math, and a
+  new command must be added to `tex-init.js` before use. Brace macro scripts (`V^{\imath}`, not `V^\imath`):
   KaTeX defines some symbols as argument-taking macros that cannot be
   unbraced super- or subscripts.
 

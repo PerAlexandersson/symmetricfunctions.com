@@ -198,6 +198,13 @@ if not contains(html, [[Chain <span class="math inline">\(1\lt 2\lt 3\)</span>]]
   fail("table-cell math was not left for KaTeX")
 end
 
+-- A TeX \$ is a lone element, so KaTeX auto-render cannot pair it with the
+-- next dollar; verbatim math stays inside <code>, which auto-render skips.
+if not contains(html, [[costs <span class="tex-dollar">$</span>5 and <span class="tex-dollar">$</span>10.]]) or
+   not contains(html, [[<code>$\notAMacro{$</code>]]) then
+  fail("literal dollars or verbatim math were left for KaTeX to typeset")
+end
+
 -- The polydata anchor is dropped when the section already defines the id.
 local _, family_ids = html:gsub('id="testFamily"', "")
 assert_eq(family_ids, 1, "elements with id testFamily")

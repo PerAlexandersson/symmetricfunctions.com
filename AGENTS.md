@@ -59,6 +59,15 @@ test and deployment rules for agents.
   checks every deployed page for duplicate ids and leaked build attributes,
   and checks that the public label and keyword feeds point at existing
   anchors. `tests/check_safeguards.lua` holds one case per safeguard above.
+- `make check` also runs `lint-katex`: every formula KaTeX auto-render would
+  typeset in `www/*.htm` and in the relation-graph labels must parse with the
+  pinned KaTeX and the shared macros, and every macro must parse when invoked
+  with dummy arguments. The browser uses `throwOnError: false`, so such errors
+  show only as red text: an undefined macro is drawn as a red command, not a
+  `.katex-error` span, so counting `.katex-error` in Chromium misses it.
+  `tests/check_lint_katex.py` covers the malformed and valid cases. A TeX `\$`
+  renders as a lone `<span class="tex-dollar">$</span>` so that auto-render
+  cannot pair it. The KaTeX npm tree lives in `KATEX_DIR`, outside Dropbox.
 - The metadata merge runs from a stamp file and rewrites outputs only when
   their bytes change, so `make -n` lists renders that a real build skips.
 - Run `make all` after broad page edits and `make unittest` after Lua or

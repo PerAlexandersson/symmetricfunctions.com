@@ -43,8 +43,18 @@ make ship         # clean, then deploy
 make clean        # rm temp/ www/
 make unittest     # render tests/*.tex only under temp/test-www/
 make lint-html    # scan generated HTML for leaked TeX/table artifacts
-make check        # run unit regressions and audit generated HTML
+make lint-katex   # parse every typeset formula with the pinned KaTeX
+make katex-deps   # install that KaTeX once, outside the repository
+make check        # run unit regressions and audit generated HTML and math
 ```
+
+`make lint-katex` mirrors the browser renderer: the KaTeX release pinned in
+`template.htm`, the macros of `tex-init.js`, auto-render's delimiters and
+skipped tags (`code`, `pre`, `script`, ...), plus the relation-graph node
+labels. It also invokes every macro with dummy arguments. Errors give the
+page and line, the formula, KaTeX's message and, when found, the source line.
+KaTeX is installed by `npm` into `~/.cache/symmetricfunctions/katex-<version>`
+(override with `KATEX_DIR=`; it must be outside the repository and Dropbox).
 
 ## Directory structure
 
@@ -75,7 +85,8 @@ bibliography.bib    BibLaTeX references (2,300+ entries)
 
 ## Prerequisites
 
-`lua`, `pandoc`, `jq`, `npx pagefind`, `rsync` (for deploy).
+`lua`, `pandoc`, `jq`, `npx pagefind`, `python3`, `node` and `npm` (for
+`make check`), `rsync` (for deploy).
 
 ## Key Lua files
 

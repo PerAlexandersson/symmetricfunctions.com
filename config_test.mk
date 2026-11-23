@@ -15,6 +15,7 @@ TEST_EDGE_CHECK := $(TEST_META_DIR)/edge-cases.check
 TEST_JSON_CHECK := $(TEST_META_DIR)/json-determinism.check
 TEST_BACKEND_CHECK := $(TEST_META_DIR)/backend.check
 TEST_SAFEGUARDS_CHECK := $(TEST_META_DIR)/safeguards.check
+TEST_KATEX_CHECK := $(TEST_META_DIR)/lint-katex.check
 
 # === GENERATED OUTPUTS ===
 TEST_LABELS_JSON := $(TEST_META_DIR)/site-labels.json

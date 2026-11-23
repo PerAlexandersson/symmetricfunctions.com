@@ -388,7 +388,11 @@ function render_inlines_html(inlines)
 
     if t == "Str" then
       local s = c:gsub("%-%-%-", EM_DASH):gsub("%-%-", EN_DASH)
-      table.insert(buffer, html_escape(s))
+      -- A literal dollar (TeX \$) gets its own element: KaTeX auto-render
+      -- typesets $...$ within one text node, so a bare $ would pair with the
+      -- next one and turn the prose between them into a formula.
+      s = html_escape(s):gsub("%$", '<span class="tex-dollar">$</span>')
+      table.insert(buffer, s)
       
     elseif t == "Space" then
       table.insert(buffer, " ")

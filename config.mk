@@ -16,6 +16,13 @@ BIBFILE    := bibliography.bib
 PANDOC = pandoc
 LUA    = lua
 PAGEFIND = npx --yes pagefind@1.5.2
+NODE   = node
+NPM    = npm
+# KaTeX for make lint-katex: the release template.htm loads, installed once
+# into a cache outside the repository (keep it outside Dropbox too).
+KATEX_VERSION := $(shell sed -n 's|.*npm/katex@\([0-9][0-9.]*\)/dist/katex\.min\.js.*|\1|p' $(TEMPLATE) | head -n 1)
+KATEX_DIR ?= $(HOME)/.cache/symmetricfunctions/katex-$(KATEX_VERSION)
+KATEX_PKG := $(KATEX_DIR)/node_modules/katex/package.json
 # Sections must have explicit labels, so Pandoc's automatic ids are off.
 READER = latex+raw_tex-auto_identifiers
 
@@ -72,3 +79,4 @@ PAGEFIND_ENTRY := $(WWW_DIR)/_pagefind/pagefind-entry.json
 export SRC_DIR ASSETS_DIR TEMP_DIR WWW_DIR
 export TEMPLATE REFS_JSON BIBTEX_JSON LABELS_JSON POLYDATA_JSON TODOS_JSON SITEMAP_XML
 export RELATION_GRAPH_HTML RELATION_GRAPH_JSON
+export KATEX_DIR NODE

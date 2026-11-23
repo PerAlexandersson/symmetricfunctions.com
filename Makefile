@@ -15,7 +15,7 @@ ifeq ($(abspath $(WWW_DIR)),/)
 $(error WWW_DIR must not be the filesystem root)
 endif
 
-.PHONY: all gather meta bib render copy-assets svg clean unittest lint-html check deploy search ship
+.PHONY: all gather meta bib render copy-assets svg clean unittest lint-html lint-katex katex-deps check deploy search ship
 .DELETE_ON_ERROR:
 .SECONDARY: $(PRE_TEX)
 
@@ -200,7 +200,7 @@ svg:
 
 # === UNITTEST ===
 .PHONY: unittest
-unittest: $(TEST_HTML) $(TEST_CHECK) $(TEST_EDGE_CHECK) $(TEST_JSON_CHECK) $(TEST_BACKEND_CHECK) $(TEST_SAFEGUARDS_CHECK)
+unittest: $(TEST_HTML) $(TEST_CHECK) $(TEST_EDGE_CHECK) $(TEST_JSON_CHECK) $(TEST_BACKEND_CHECK) $(TEST_SAFEGUARDS_CHECK) $(TEST_KATEX_CHECK)
 	$(LOG) "Unittest pipeline finished — processed $(words $(TEST_TEX)) test file(s)"
 
 $(TEST_CHECK): $(TEST_PUBLIC_KEYWORDS_JSON) $(TEST_JSON) $(TEST_LABELS_JSON) $(TEST_POLYDATA_JSON) $(TEST_HTML) tests/check_unittest.lua $(FILE_READING_LUA) $(UTILS_LUA)
@@ -232,14 +232,48 @@ $(TEST_SAFEGUARDS_CHECK): tests/check_safeguards.lua tests/fixtures/bibliography
 	@TEST_META_DIR=$(TEST_META_DIR) READER=$(READER) $(LUA) tests/check_safeguards.lua
 	@touch $@
 
+$(TEST_KATEX_CHECK): tests/check_lint_katex.py tests/lint_katex.py tests/katex_check.mjs $(ASSETS_DIR)/tex-init.js $(TEMPLATE) $(TEST_HTML) $(KATEX_PKG) | $(TEST_META_DIR)/.created
+	$(LOG) "Checking the KaTeX formula checker ..."
+	@TEST_HTML="$(TEST_HTML)" python3 tests/check_lint_katex.py
+	@touch $@
+
+# === KATEX (for lint-katex) ===
+# The pinned KaTeX npm package, installed once outside the repository.
+.PHONY: katex-deps
+katex-deps: $(KATEX_PKG)
+
+$(KATEX_PKG):
+	@if [[ -z "$(KATEX_VERSION)" ]]; then \
+	  echo "[ERROR] Cannot read the KaTeX version from $(TEMPLATE)" >&2; exit 2; \
+	fi
+	@case "$(abspath $(KATEX_DIR))/" in \
+	  "$(CURDIR)/"*|*/Dropbox/*) \
+	    echo "[ERROR] KATEX_DIR=$(KATEX_DIR) must be outside the repository and Dropbox" >&2; exit 2;; \
+	esac
+	$(LOG) "Installing KaTeX $(KATEX_VERSION) into $(KATEX_DIR) ..."
+	@mkdir -p "$(KATEX_DIR)"
+	@$(NPM) install --prefix "$(KATEX_DIR)" --no-save --no-package-lock --no-audit --no-fund \
+	  --loglevel=error "katex@$(KATEX_VERSION)" > /dev/null
+	@grep -q '"version": "$(KATEX_VERSION)"' "$@" || { \
+	  echo "[ERROR] $(KATEX_DIR) does not hold KaTeX $(KATEX_VERSION)" >&2; exit 2; }
+
 # === GENERATED HTML LINT ===
 .PHONY: lint-html
 lint-html: $(HTML_FILES) $(SITEMAP_XML) $(GOTO_HTML) $(RELATION_GRAPH_HTML) copy-assets tests/lint_html.lua
 	$(LOG) "Linting generated HTML ..."
 	@WWW_DIR="$(WWW_DIR)" SRC_DIR="$(SRC_DIR)" ASSETS_DIR="$(ASSETS_DIR)" $(LUA) tests/lint_html.lua
 
+# Every formula KaTeX auto-render would typeset in the generated pages, and in
+# the relation-graph node labels, must parse with the pinned KaTeX and the
+# site macros (the browser uses throwOnError: false and would show red text).
+.PHONY: lint-katex
+lint-katex: $(HTML_FILES) $(GOTO_HTML) $(RELATION_GRAPH_HTML) $(RELATION_GRAPH_JSON) copy-assets $(KATEX_PKG) tests/lint_katex.py tests/katex_check.mjs
+	$(LOG) "Checking KaTeX formulas ..."
+	@python3 tests/lint_katex.py --katex-dir "$(KATEX_DIR)" --www "$(WWW_DIR)" \
+	  --src "$(SRC_DIR)" --template "$(TEMPLATE)" --node "$(NODE)"
+
 .PHONY: check
-check: unittest lint-html
+check: unittest lint-html lint-katex
 
 # === CLEAN ===
 .PHONY: clean
