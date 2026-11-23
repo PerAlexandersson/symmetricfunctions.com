@@ -209,6 +209,75 @@ Another $q$-analogue of the above identity is due to \name{Adriano Garsia}
 and \name{Jeffrey Remmel} \cite{GarsiaRemmel1986}.
 
 
+\subsection[ferrersDistinctValues]{Distinct crossing counts and permutation descents}
+
+Fix the opener positions of a matching, with area sequence $\avec$.
+Process the openers from right to left. At opener $i$, number the
+available closers to its right from $0$ to $a_i$ in increasing order,
+and let $e_i$ be the number of its partner. Each available closer before
+its partner will be paired with an earlier opener, so $e_i$ counts crossings
+for which $i$ is the later opener. These choices are independent.
+The sum of the $e_i$ gives the usual crossing statistic. We can also
+count the distinct positive values among the $e_i$.
+
+More generally, for a Ferrers board with column heights $h_1,\ldots,h_c$, set
+\[
+ D_h(t)=\sum_{0\leq e_j\leq h_j}t^{|\{e_j:e_j>0\}|}.
+\]
+For $h=\avec$ this enumerates the matchings with the given openers.
+For a permutation interpretation, start with the word $1,\ldots,p$,
+where $p\geq0$ is large enough that $h_j<p+j$ for every $j$.
+Insert $p+j$ immediately before the letter $e_j$ if $e_j>0$, and
+append it if $e_j=0$. Deleting successive largest letters recovers the
+code. Inserting a maximum before $v$ makes $v$ a descent bottom and
+preserves every other descent bottom. Thus $D_h(t)$ counts the resulting
+permutations by ordinary descents. For $h=(0,1,\ldots,n-1)$ we may
+take $p=0$ and obtain the \hyperref[eulerianPolynomial]{Eulerian polynomial}
+of all permutations of $[n]$.
+
+\begin{proposition}
+Every nonconstant $D_h(t)$ has simple negative zeros. When the columns
+are added in order of weakly increasing height, successive polynomials
+interlace.
+\end{proposition}
+
+\begin{proof}
+Reordering the heights preserves the set of values in each code.
+Suppose we append a column of height $m$ and let $f$ be the preceding
+polynomial. A code with $k$ distinct positive values has $k+1$ choices
+that preserve this number and $m-k$ choices that increase it. Hence
+\[
+ D_{\mathrm{new}}(t)=(1+mt)f(t)+t(1-t)f'(t).
+\]
+If $f$ has $d$ simple negative zeros, the signs of $D_{\mathrm{new}}$
+at these zeros alternate, since $t(1-t)<0$ there. Its value at zero
+is one, giving one new zero in each gap between successive old zeros
+and between the last old zero and zero. We have $d\leq m$. If $d<m$,
+the positive leading coefficient in degree $d+1$ gives one more zero
+to the left. If $d=m$, the degree is at most $d$, so the $d$ gaps
+account for all zeros. Starting from $f=1$, the first step of positive
+height gives $1+mt$. See also \cite{MaWang2008} for a general
+interlacing theorem for differential recurrences.
+\end{proof}
+
+For example, the area sequence $(0,1,1,2,3)$ gives
+$D_h(t)=1+19t+25t^2+3t^3$. Its code $(0,1,1,0,3)$ gives the
+permutation $25314$, whose descent bottoms are $3$ and $1$.
+
+There is also a \hyperref[stablePolynomial]{real-stable} refinement
+in which each distinct positive value $i$ contributes its own variable
+$z_i$. Sort the column heights increasingly. In column $j$, allow the
+ordinary rows $1,\ldots,h_j$ and extra rows $u_1,\ldots,u_j$. Place one
+rook in each column with no repeated row. After using the set $S$ of
+ordinary rows, each unused ordinary row gives its own new value and
+there are $|S|+1$ available extra rows. The same choices occur in the
+code, where zero and the $|S|$ old values preserve $S$. Thus marking
+the occupied ordinary rows gives exactly the distinct-value refinement.
+The rectangular-permanent theorem \cite[Thm.~10.2]{ChoeOxleySokalWagner2004}
+gives stability when every occupied row has a variable. Setting the
+extra-row variables to one preserves stability.
+
+
 \subsection[aoMacdonald]{Macdonald polynomials}
 
 \name{Per Alexandersson} and \name{Joakim Uhlin} prove that

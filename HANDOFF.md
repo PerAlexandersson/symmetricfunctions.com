@@ -1,5 +1,11 @@
 # Handoff
 
+Ownership released. The Touchard–Riordan page now includes
+`ferrersDistinctValues`, with the matching code, descent bottoms,
+interlacing, and the stable refinement by occupied values. Verified the
+rendered text, example, links and anchor. `make Q=1 all`,
+`make Q=1 check` and `git diff --check` pass. Source update only.
+
 ## Deployed — Torres in the zig-zag theorem title, 2026-11-23
 
 `tex-source/realRootedWords.tex`: the real-rootedness theorem for the swap
