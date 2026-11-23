@@ -459,17 +459,6 @@ nodes.
 
 \section[openProblemsGraphs]{Graphs, matroids and arrays}
 
-\begin{conjecture}[Pandey, \cite{Pandey2026x}]
-\label{conjPetersenIndependence}
-The \hyperref[realRootedIndependence]{independence polynomial} of the
-generalized Petersen graph $\mathrm{GP}(n,k)$ is real-rooted if and only if
-$k$ is even.
-\end{conjecture}
-
-\name{Rohan Pandey} computes these polynomials with a transfer matrix.
-For even $k$ the zeros appear to be real and negative, while for odd $k$
-they form complex conjugate patterns.  The evidence is numerical.
-
 \begin{conjecture}[Binder--Vecchi, \cite[Conj.~1.5]{BinderVecchi2026x}]
 \label{conjRefinedChow}
 For every loopless matroid, every refinement by cohomological degree of the
@@ -880,6 +869,23 @@ The antichain polynomials of the boxes $[2]\times[n]\times[k]$ are
 real-rooted \cite{Jiang2026x}, but
 $N_{[3]\times[3]\times[3]}(x)$ is not; see
 \hyperref[antichainBoxStability]{antichain polynomials}.
+
+\subsection[counterexamplesPetersen]{Generalized Petersen graphs}
+
+\name{Rohan Pandey} conjectured that the
+\hyperref[realRootedIndependence]{independence polynomial} of the
+generalized Petersen graph $\mathrm{GP}(n,k)$, with $n\geq2k+1$, is
+real-rooted if and only if $k$ is even
+\cite[Conj.~4.1]{Pandey2026x}.\label{conjPetersenIndependence}
+The evidence there is numerical.  The conjecture fails already for $k=2$:
+\[
+  I(\mathrm{GP}(9,2),x)
+  =1+18x+126x^2+438x^3+801x^4+747x^5+303x^6+27x^7
+\]
+has only five real zeros; the remaining pair is approximately
+$-0.857\pm0.056\,i$.  Also $I(\mathrm{GP}(10,2),x)$,
+$I(\mathrm{GP}(11,2),x)$ and $I(\mathrm{GP}(11,4),x)$ are not real-rooted.
+These counts were verified by exact Sturm sequences.
 
 \subsection[counterexamplesTransformations]{Transformations, matroids and characters}
 
