@@ -73,8 +73,11 @@ BAD = page(body=r"""
 RELATIONS = page(body=r"""
 <div data-relation-graph data-graph-src="graph.json">
 <script id="relationGraphData" type="application/json">
-{"nodes": [{"id": "good", "name": "Schur $\\schurS_\\lambda$", "space": "$\\spaceSym$"},
-           {"id": "bad", "name": "Broken $\\notANodeMacro$ family", "space": "Sym"}]}
+{"nodes": [{"id": "good", "name": "Schur $\\schurS_\\lambda$", "space": "$\\spaceSym$",
+            "symbol": "$\\schurS_\\lambda(\\xvec)$"},
+           {"id": "bad", "name": "Broken $\\notANodeMacro$ family", "space": "Sym"}],
+ "edges": [{"source": "good", "target": "bad", "type": "contains",
+            "attrs": {"scope": "$q=0$", "map": "$\\notAnAttrMacro$"}}]}
 </script></div>
 """, extra_scripts='<script src="./relation-graph.js?v=12"></script>\n')
 
@@ -155,10 +158,13 @@ class LintKatexTests(unittest.TestCase):
         result, report = self.lint(rel)
         self.assertEqual(result.returncode, 1, result.stderr)
         locs = sorted(e["loc"] for e in report["formula_errors"])
-        self.assertEqual(len(locs), 2, report["formula_errors"])   # tooltip and title
-        self.assertTrue(all(l.startswith("relation-graph node bad ") for l in locs), locs)
+        self.assertEqual(len(locs), 2, report["formula_errors"])
+        self.assertTrue(locs[0].startswith("relation-graph edge good -> bad map "), locs)
+        self.assertTrue(locs[1].startswith("relation-graph node bad name "), locs)
         self.assertIn("\\notANodeMacro", result.stderr)
-        self.assertEqual(report["formula_count"], 2 + 2 + 1)      # good: tooltip, title, space
+        self.assertIn("\\notAnAttrMacro", result.stderr)
+        # good: name, symbol, space; bad: name; attributes: scope, map
+        self.assertEqual(report["formula_count"], 3 + 1 + 2)
 
     def test_relation_graph_falls_back_to_the_json_file(self):
         self.write("graph.json", json.dumps({"nodes": [{"id": "x", "name": "$\\alsoBad$"}]}))

@@ -11,7 +11,7 @@ local M = {}
 
 local GRAPH_HTML = "polynomial-relations.htm"
 local GRAPH_JSON = "polynomial-relations.json"
-local GRAPH_JS = "relation-graph.js?v=12"
+local GRAPH_JS = "relation-graph.js?v=13"
 
 local relation_is_visible = relation_registry.is_visible
 local family_href = relation_registry.family_href
@@ -196,7 +196,7 @@ end
 
 local function render_side_links(has_references)
   local links = {
-    '<li><a href="#relationGraph" class="section">Relation graph</a></li>',
+    '<li><a href="#relationGraph" class="section">Relations</a></li>',
     '<li><a href="#relationData" class="section">Data</a></li>'
   }
   if has_references then
@@ -215,57 +215,48 @@ end
 local function render_main(graph)
   local graph_json = escape_json_for_script(file_reading.json_encode(graph))
   return string.format([[
-<h2 id="relationGraph">Polynomial relation graph</h2>
-<p>
-This graph is generated from the structured relation rows in the polynomial
-metadata. Choose a relation below; the graph is redrawn automatically as a
-layered directed graph.
+<h2 id="relationGraph">Polynomial relations</h2>
+<p class="rg-intro">
+How the %d polynomial families with recorded relations fit together:
+positive expansions, specializations, containments and more, %d relations
+in all, each taken from a family page and backed by a reference.
+Look up one family to see everything it is related to, or browse one kind
+of relation in the overview.
 </p>
-<section class="relation-graph-page"
-    data-relation-graph
-    data-graph-src="%s"
-    data-default-types="positive_in,refined_by"
+<section class="rg" data-relation-graph data-graph-src="%s"
+    data-default-family="schurS" data-default-overview="positive"
     aria-labelledby="relationGraph">
-  <div class="relation-graph-toolbar" aria-label="Relation graph controls">
-    <label class="relation-graph-search">
-      <span>Search</span>
-      <input id="relationGraphSearch" type="search"
-          placeholder="Schur, Macdonald, key..."
-          autocomplete="off">
-    </label>
-    <fieldset class="relation-graph-fieldset relation-graph-relation-fieldset">
-      <legend>Relation</legend>
-      <div id="relationGraphRelationChoices" class="relation-graph-preset-list"></div>
-    </fieldset>
-    <button id="relationGraphReset" type="button">Reset</button>
-  </div>
-
-  <div class="relation-graph-shell">
-    <section id="relationGraphDetails"
-        class="relation-graph-details"
-        aria-live="polite">
-      <h3>Relation details</h3>
-      <p>No relation selected.</p>
-    </section>
-    <div class="relation-graph-stage" tabindex="0">
-      <svg id="relationGraphSvg"
-          class="relation-graph-svg"
-          role="img"
-          aria-label="Polynomial relation graph"></svg>
+  <div class="rg-bar">
+    <div class="rg-tabs" role="group" aria-label="View">
+      <button type="button" data-view="overview" aria-pressed="true">Overview</button>
+      <button type="button" data-view="family" aria-pressed="false">Family</button>
     </div>
+    <div class="rg-search">
+      <label class="rg-visually-hidden" for="relationGraphSearch">Find a family</label>
+      <input id="relationGraphSearch" type="search" autocomplete="off" spellcheck="false"
+          placeholder="Find a family: Schur, LLT, key, Grothendieck&hellip;"
+          role="combobox" aria-autocomplete="list" aria-expanded="false"
+          aria-controls="relationGraphResults">
+      <ul id="relationGraphResults" class="rg-search-results" role="listbox" hidden></ul>
+    </div>
+  </div>
+  <div id="relationGraphView" class="rg-view" aria-live="polite">
+    <noscript><p>This page needs JavaScript; the relations are also available as
+    <a href="%s">JSON</a>.</p></noscript>
   </div>
 </section>
 
 <h2 id="relationData">Data</h2>
 <p>
-The browser view above is backed by
-<a href="%s">the generated relation JSON</a>.
+The relations come from the <code>polydata</code> blocks of the family pages
+and are also available as <a href="%s">JSON</a>.
 </p>
 <script id="relationGraphData" type="application/json">
 %s
 </script>
 <script src="./%s"></script>
-]], GRAPH_JSON, GRAPH_JSON, graph_json, GRAPH_JS)
+]], graph.stats.node_count, graph.stats.edge_count, GRAPH_JSON, GRAPH_JSON, GRAPH_JSON,
+    graph_json, GRAPH_JS)
 end
 
 function M.render_page(graph, options)
@@ -280,7 +271,7 @@ function M.render_page(graph, options)
   end
 
   local html = utils.render_template(template, {
-    TITLE = "Polynomial relation graph",
+    TITLE = "Polynomial relations",
     DESCRIPTION = "Interactive graph of structured relations between polynomial families.",
     CANONICAL = GRAPH_HTML,
     ROBOTS = "index, follow",

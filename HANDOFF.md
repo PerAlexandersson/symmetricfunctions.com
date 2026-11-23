@@ -1,5 +1,46 @@
 # Handoff
 
+## Done — relation graph redesign, 2026-11-23
+
+Ownership is released.  `polynomial-relations.htm` is now a relation
+explorer (`assets/relation-graph.js`, rewritten; new `.rg-*` styles replacing
+the old relation-graph block in `assets/style.css`; page skeleton in
+`relation_graph.lua`).  The graph JSON and relation data are unchanged.
+
+- Family view (`#family=<id>`): the family in the middle (sticky on wide
+  screens), the families pointing to it on the left and those it points to
+  on the right.  Neighbours are grouped by relation type, with more than
+  eight per group collapsed, and coloured connectors.  Below that, every
+  relation is listed with its attributes (scope, map, proof, coefficients,
+  ...), now shown for the first time, and its references.  Phones stack the
+  columns without connectors.
+- Overview (`#overview=<group>`, default `positive`): one kind of relation at
+  a time as layered diagrams, one per connected component, with hover
+  tracing and zoom.  Two-family components are listed as pairs.  Relations
+  implied by transitivity of the same type are hidden behind a toggle (36 for
+  positive expansion).  Sinks and sources sit next to their neighbours, so
+  the old 11,000-pixel column is gone.
+- Family search with keyboard support; state is kept in the URL hash, so
+  cards are links and the back button works.  Colours use the validated
+  8-slot categorical palette, with duality in neutral grey; every colour
+  comes with its relation's name.
+
+`tests/lint_katex.py` now emulates the fields the explorer typesets: family
+name, symbol, space, category and year, and relation attribute values.
+That exposed one more content error: `\stanleySymInvolution` (the symbol of
+the involution Stanley functions) was undefined.  It is now `{\hat{F}}` in
+`tex-init.js`.  `template.htm` bumps the `style.css` cache key.
+
+`make Q=1`, `make check Q=1` (lint-katex 20,790 formulas, 190 macros,
+0 errors) and `git diff --check` pass.  A Playwright run at 1366 and 375 px
+covers search and keyboard selection, card navigation, the back button,
+show-more, connector count and scroll-following, hover tracing, the implied
+toggle (+36), zoom, chips, an unknown-family message and section links.  It
+renders all 142 family views and all 9 overviews with no KaTeX errors, no
+page overflow and no console errors.  Light and dark screenshots were
+reviewed.  Every reference link resolves on the page.  Source only; no
+deployment.
+
 ## Done — seven KaTeX errors in page content, 2026-11-23
 
 Ownership is released.  `assets/tex-init.js` defines `\supp` (support of a

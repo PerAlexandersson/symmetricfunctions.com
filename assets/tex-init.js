@@ -186,6 +186,7 @@ window.KATEX_MACROS = {
         "\\stanleySym": "{F}",
         "\\stanleySymAffine": "{\\tilde{F}}",
         "\\stanleySymAffineFPF": "{\\hat{FPF}}",
+        "\\stanleySymInvolution": "{\\hat{F}}",
         "\\yqSchur": "{\\mathcal{YS}}",
         "\\zonal": "{\\mathrm{Z}}"
 };

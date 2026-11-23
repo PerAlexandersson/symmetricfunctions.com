@@ -899,376 +899,632 @@
      color: var(--c-brand);
   }
 
-  /* Relation graph */
+  /* Relation explorer (polynomial-relations.htm, assets/relation-graph.js).
+     Relation colours are the validated categorical palette in fixed order;
+     every colour also comes with its relation's name. */
   .relation-graph-document {
     --col-main-start: 2;
     --col-main-end: 8;
     --toc-display: none;
   }
-
   .relation-graph-document #doc-title > *,
   .relation-graph-document #doc-footer > * {
     grid-column: 2 / 8;
   }
-
-  .relation-graph-document #doc-all {
-    padding-top: 1.4rem;
-  }
-
+  .relation-graph-document #doc-all { padding-top: 1.4rem; }
   .relation-graph-document #doc-main {
     background: transparent;
     border: 0;
     box-shadow: none;
     padding: 0 1rem 2.5rem;
   }
+  .relation-graph-document #page-meta { margin-bottom: 0.9rem; }
+  .relation-graph-document #doc-section > h2:first-child { margin-top: 0; }
 
-  .relation-graph-document #page-meta {
-    margin-bottom: 0.9rem;
-  }
-
-  .relation-graph-document #doc-section > h2:first-child {
-    margin-top: 0;
-  }
-
-  .relation-graph-page {
-    margin: 1.5rem 0 2.5rem;
-  }
-
-  .relation-graph-toolbar {
-    display: grid;
-    grid-template-columns: minmax(12rem, 0.9fr) minmax(24rem, 2.4fr) auto;
-    align-items: end;
-    gap: 0.8rem;
-    margin: 1rem 0;
+  .rg {
+    --rg-c0: light-dark(#7d8490, #8f96a3);
+    --rg-c1: light-dark(#2a78d6, #3987e5);
+    --rg-c2: light-dark(#eb6834, #d95926);
+    --rg-c3: light-dark(#1baf7a, #199e70);
+    --rg-c4: light-dark(#eda100, #c98500);
+    --rg-c5: light-dark(#e87ba4, #d55181);
+    --rg-c6: light-dark(#008300, #0ca30c);
+    --rg-c7: light-dark(#6250d6, #9085e9);
+    --rg-c8: light-dark(#e34948, #e66767);
+    --rg-radius: 10px;
+    --rg-shadow: 0 1px 2px light-dark(rgb(15 23 42 / 0.06), rgb(0 0 0 / 0.4));
+    --rg-shadow-lift: 0 10px 28px light-dark(rgb(15 23 42 / 0.12), rgb(0 0 0 / 0.5));
+    --rg-color: var(--rg-c0);
+    margin: 1.25rem 0 2.5rem;
     font-family: system-ui, -apple-system, sans-serif;
-  }
-
-  .relation-graph-document .relation-graph-toolbar {
-    position: sticky;
-    top: 0.6rem;
-    z-index: 20;
-    padding: 0.65rem;
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
-    background: color-mix(in srgb, var(--c-bg-body) 78%, var(--c-bg-surface));
-    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-    backdrop-filter: blur(8px);
-  }
-
-  .relation-graph-search,
-  .relation-graph-fieldset label {
-    font-size: 0.88rem;
-    color: var(--c-text-sub);
-  }
-
-  .relation-graph-search {
-    display: grid;
-    gap: 0.25rem;
-  }
-
-  .relation-graph-search input {
-    width: 100%;
-    min-height: 2.2rem;
-    border: 1px solid var(--c-border);
-    border-radius: 6px;
-    padding: 0.35rem 0.55rem;
-    background: var(--c-bg-surface);
     color: var(--c-text-main);
-    font: inherit;
   }
+  .rg-c0 { --rg-color: var(--rg-c0); }
+  .rg-c1 { --rg-color: var(--rg-c1); }
+  .rg-c2 { --rg-color: var(--rg-c2); }
+  .rg-c3 { --rg-color: var(--rg-c3); }
+  .rg-c4 { --rg-color: var(--rg-c4); }
+  .rg-c5 { --rg-color: var(--rg-c5); }
+  .rg-c6 { --rg-color: var(--rg-c6); }
+  .rg-c7 { --rg-color: var(--rg-c7); }
+  .rg-c8 { --rg-color: var(--rg-c8); }
 
-  .relation-graph-fieldset {
-    min-width: 0;
-    border: 1px solid var(--c-border);
-    border-radius: 6px;
-    padding: 0.45rem 0.6rem 0.55rem;
+  .rg-intro { max-width: 46rem; color: var(--c-text-sub); }
+  .rg-visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .rg h3, .rg h4 {
+    font-family: inherit;
+    color: var(--c-text-main);
     margin: 0;
+    padding: 0;
+    border: 0;
+    counter-increment: none;
   }
-
-  .relation-graph-fieldset legend {
-    padding: 0 0.3rem;
-    color: var(--c-text-muted);
-    font-size: 0.78rem;
-    text-transform: uppercase;
+  .rg h3::before, .rg h4::before { content: none; }
+  .rg-swatch {
+    flex: none;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--rg-color);
+  }
+  .rg-badge {
+    display: inline-block;
+    margin-left: 0.45rem;
+    padding: 0 0.45rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    color: var(--c-text-sub);
+    font-size: 0.7rem;
+    font-weight: 600;
     letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: 0.1em;
   }
 
-  .relation-graph-preset-list {
+  /* --- Bar: view tabs and family search --- */
+  .rg-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+  .rg-tabs {
+    display: inline-flex;
+    padding: 3px;
+    border-radius: calc(var(--rg-radius) + 2px);
+    background: var(--c-bg-gray);
+  }
+  .rg-tabs button {
+    border: 0;
+    border-radius: var(--rg-radius);
+    background: transparent;
+    color: var(--c-text-sub);
+    padding: 0.45rem 1.15rem;
+    font: 600 0.95rem/1.2 system-ui, -apple-system, sans-serif;
+    cursor: pointer;
+  }
+  .rg-tabs button:hover { color: var(--c-text-main); }
+  .rg-tabs button[aria-pressed="true"] {
+    background: var(--c-bg-surface);
+    color: var(--c-text-main);
+    box-shadow: var(--rg-shadow);
+  }
+  .rg-tabs button:focus-visible,
+  .rg-chip:focus-visible,
+  .rg-card:focus-visible,
+  .rg-node:focus-visible,
+  .rg-zoom button:focus-visible,
+  .rg-more:focus-visible {
+    outline: 2px solid var(--c-link);
+    outline-offset: 2px;
+  }
+  .rg-search {
+    position: relative;
+    flex: 1 1 20rem;
+    max-width: 32rem;
+  }
+  .rg-search input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.9rem 0.6rem 2.3rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--rg-radius);
+    background: var(--c-bg-surface)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%238a8f98' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='5'/%3E%3Cpath d='m11 11 3.5 3.5'/%3E%3C/svg%3E")
+      no-repeat 0.8rem 50%;
+    color: var(--c-text-main);
+    font: 1rem/1.3 system-ui, -apple-system, sans-serif;
+    box-shadow: var(--rg-shadow);
+  }
+  .rg-search input:focus {
+    outline: 2px solid var(--c-link);
+    outline-offset: 1px;
+  }
+  .rg-search-results {
+    position: absolute;
+    z-index: 30;
+    top: calc(100% + 0.35rem);
+    left: 0;
+    right: 0;
+    max-height: 24rem;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0.3rem;
+    list-style: none;
+    border: 1px solid var(--c-border);
+    border-radius: var(--rg-radius);
+    background: var(--c-bg-surface);
+    box-shadow: var(--rg-shadow-lift);
+  }
+  .rg-search-option {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  .rg-search-option[aria-selected="true"] {
+    background: color-mix(in srgb, var(--c-link) 13%, transparent);
+  }
+  .rg-search-space, .rg-search-empty {
+    color: var(--c-text-muted);
+    font-size: 0.85rem;
+  }
+  .rg-search-empty { padding: 0.5rem 0.7rem; }
+
+  .rg-view { margin-top: 1.25rem; }
+  .rg-message {
+    padding: 1rem 1.2rem;
+    border: 1px dashed var(--c-border);
+    border-radius: var(--rg-radius);
   }
 
-  .relation-graph-fieldset label {
+  /* --- Overview --- */
+  .rg-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .rg-chip {
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    white-space: nowrap;
-  }
-
-  .relation-graph-toolbar button {
-    min-height: 2.2rem;
-    border: 1px solid var(--c-border);
-    border-radius: 6px;
+    gap: 0.45rem;
     padding: 0.35rem 0.75rem;
-    background: var(--c-bg-surface);
-    color: var(--c-text-main);
-    font: inherit;
-    cursor: pointer;
-  }
-
-  .relation-graph-toolbar button:hover,
-  .relation-graph-toolbar button:focus-visible {
-    border-color: var(--c-brand);
-    color: var(--c-brand);
-  }
-
-  .relation-graph-toolbar .relation-graph-preset {
-    min-height: 1.85rem;
-    padding: 0.2rem 0.55rem;
-    font-size: 0.84rem;
-  }
-
-  .relation-graph-toolbar .relation-graph-preset.is-active {
-    border-color: var(--c-brand);
-    background: var(--c-brand);
-    color: var(--c-on-brand);
-  }
-
-  .relation-graph-toolbar .relation-graph-preset.is-active:hover,
-  .relation-graph-toolbar .relation-graph-preset.is-active:focus-visible {
-    color: var(--c-on-brand);
-  }
-
-  .relation-graph-shell {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
-    align-items: stretch;
-  }
-
-  .relation-graph-document .relation-graph-shell {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .relation-graph-stage {
-    min-height: 34rem;
     border: 1px solid var(--c-border);
-    border-radius: 8px;
-    background:
-      repeating-linear-gradient(
-        0deg,
-        transparent 0,
-        transparent 39px,
-        color-mix(in srgb, var(--c-border) 38%, transparent) 40px
-      ),
-      var(--c-bg-surface);
-    overflow: auto;
-  }
-
-  .relation-graph-document .relation-graph-stage {
-    min-height: calc(100vh - 18rem);
-  }
-
-  .relation-graph-svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-
-  .relation-node rect {
-    fill: var(--relation-node-fill, var(--c-bg-surface));
-    stroke: var(--relation-node-border, var(--c-border));
-    stroke-width: 1.4;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
-  }
-
-  .relation-node-space-all {
-    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 82%, hsl(45, 90%, 72%));
-    --relation-node-border: color-mix(in srgb, var(--c-border) 65%, hsl(45, 80%, 45%));
-  }
-
-  .relation-node-space-sym {
-    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(205, 85%, 76%));
-    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(205, 80%, 42%));
-  }
-
-  .relation-node-space-qsym {
-    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(150, 65%, 72%));
-    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(150, 65%, 35%));
-  }
-
-  .relation-node-space-shiftedsym,
-  .relation-node-space-symstar {
-    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(276, 75%, 78%));
-    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(276, 60%, 46%));
-  }
-
-  .relation-node-space-supersym {
-    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(338, 80%, 80%));
-    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(338, 70%, 48%));
-  }
-
-  .relation-node-space-pqsym,
-  .relation-node-space-lsym {
-    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 80%, hsl(184, 68%, 75%));
-    --relation-node-border: color-mix(in srgb, var(--c-border) 62%, hsl(184, 65%, 37%));
-  }
-
-  .relation-node-space-other {
-    --relation-node-fill: color-mix(in srgb, var(--c-bg-surface) 88%, var(--c-text-muted));
-  }
-
-  .relation-node-label-object {
-    overflow: hidden;
-  }
-
-  .relation-node-link:hover .relation-node rect,
-  .relation-node-link:focus-visible .relation-node rect {
-    stroke: var(--c-brand);
-    stroke-width: 2;
-  }
-
-  .relation-node-label {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    padding: 0.55rem 0.8rem 0.45rem;
-    color: var(--c-text-main);
-    font-family: system-ui, -apple-system, sans-serif;
-    pointer-events: none;
-  }
-
-  .relation-node-title {
-    display: block;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 13px;
-    line-height: 1.25;
-    font-weight: 700;
-  }
-
-  .relation-node-meta {
-    display: block;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: var(--c-text-muted);
-    font-size: 11px;
-    line-height: 1.25;
-    margin-top: 0.2rem;
-  }
-
-  .relation-node-label .katex {
-    font-size: 1em;
-  }
-
-  .relation-edge-path {
-    fill: none;
-    stroke: color-mix(in srgb, var(--c-text-muted) 70%, transparent);
-    stroke-width: 2.4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .relation-edge-hit {
-    fill: none;
-    stroke: transparent;
-    stroke-width: 24;
-    cursor: pointer;
-  }
-
-  .relation-edge-selected .relation-edge-path,
-  .relation-edge:hover .relation-edge-path,
-  .relation-edge:focus-within .relation-edge-path {
-    stroke: var(--c-brand);
-    stroke-width: 3.6;
-  }
-
-  .relation-edge-status-conjecture .relation-edge-path {
-    stroke-dasharray: 6 5;
-  }
-
-  #relationGraphArrow path {
-    fill: var(--c-text-muted);
-  }
-
-  .relation-graph-empty {
-    fill: var(--c-text-muted);
-    font: 700 1rem system-ui, -apple-system, sans-serif;
-  }
-
-  .relation-graph-details {
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
+    border-radius: 999px;
     background: var(--c-bg-surface);
-    padding: 0.6rem 0.8rem;
-    min-height: 3.25rem;
-    font-family: system-ui, -apple-system, sans-serif;
-    overflow-x: auto;
-  }
-
-  .relation-graph-document .relation-graph-details {
-    position: sticky;
-    top: 6.25rem;
-    z-index: 10;
-    max-height: 8rem;
-    overflow: auto;
-  }
-
-  .relation-graph-details h3 {
-    display: inline;
-    margin: 0 0.8rem 0 0;
     color: var(--c-text-main);
     font-size: 0.9rem;
+    text-decoration: none;
+    box-shadow: var(--rg-shadow);
   }
-
-  .relation-graph-details h3::before {
-    content: none;
-  }
-
-  .relation-graph-details h4 {
-    margin-top: 1rem;
-    margin-bottom: 0.35rem;
-  }
-
-  .relation-graph-details-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.35rem 0.75rem;
-  }
-
-  .relation-graph-detail-label {
+  .rg-chip:hover {
+    border-color: var(--rg-color);
     color: var(--c-text-main);
+    text-decoration: none;
   }
-
-  .relation-graph-conjecture {
-    color: var(--c-data-red);
-    font-weight: 700;
+  .rg-chip[aria-current="true"] {
+    border-color: var(--rg-color);
+    background: color-mix(in srgb, var(--rg-color) 14%, var(--c-bg-surface));
+    font-weight: 600;
   }
+  .rg-chip-count { color: var(--c-text-muted); font-size: 0.8rem; font-weight: 500; }
 
-  .relation-graph-edge-summary {
+  .rg-summary {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
     align-items: baseline;
+    gap: 0.25rem 1.5rem;
+    margin: 1rem 0 1.1rem;
+    color: var(--c-text-sub);
+    font-size: 0.95rem;
   }
-
-  .relation-graph-ref-list,
-  .relation-graph-attr-list {
+  .rg-summary p { margin: 0; }
+  .rg-summary-desc { flex: 1 1 28rem; }
+  .rg-summary-stats { color: var(--c-text-muted); }
+  .rg-toggle {
     display: inline-flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.55rem;
-    align-items: baseline;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+  }
+  .rg-toggle input { accent-color: var(--c-link); }
+
+  .rg-diagram {
+    margin: 0 0 1.1rem;
+    border: 1px solid var(--c-border);
+    border-radius: calc(var(--rg-radius) + 2px);
+    background: var(--c-bg-surface);
+    box-shadow: var(--rg-shadow);
+    overflow: hidden;
+  }
+  .rg-diagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 25rem), 1fr));
+    gap: 1rem;
+    align-items: start;
+  }
+  .rg-diagram-grid .rg-diagram { margin: 0; }
+  .rg-frame {
+    overflow: auto;
+    max-height: 80vh;
+    overscroll-behavior: contain;
+    background-image: radial-gradient(color-mix(in srgb, var(--c-border) 70%, transparent) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .rg-diagram-grid .rg-sizer { margin: 0 auto; }
+  .rg-sizer { position: relative; }
+  .rg-canvas {
+    position: relative;
+    transform-origin: 0 0;
+  }
+  .rg-edges {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+  }
+  .rg-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.45rem 0.6rem 0.45rem 0.9rem;
+    border-top: 1px solid var(--c-border);
+    color: var(--c-text-muted);
+    font-size: 0.8rem;
+  }
+  .rg-zoom { display: inline-flex; gap: 0.25rem; }
+  .rg-zoom button {
+    min-width: 2rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--c-border);
+    border-radius: 7px;
+    background: var(--c-bg-surface);
+    color: var(--c-text-main);
+    font: 600 0.85rem/1.2 system-ui, -apple-system, sans-serif;
+    cursor: pointer;
+  }
+  .rg-zoom button:hover { border-color: var(--c-link); }
+
+  .rg-pair-section { margin-top: 1.4rem; }
+  .rg .rg-pairs-title {
+    margin-bottom: 0.6rem;
+    color: var(--c-text-sub);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .rg-pairs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 27rem), 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .rg-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 2.2rem minmax(0, 1fr);
+    align-items: center;
+    margin: 0;
+  }
+  .rg-pair-node {
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    background: var(--c-bg-surface);
+    color: var(--c-text-main);
+    box-shadow: var(--rg-shadow);
+    font-size: 0.88rem;
+    line-height: 1.3;
+    text-decoration: none;
+  }
+  .rg-pair-node:hover {
+    border-color: var(--c-link);
+    color: var(--c-text-main);
+    text-decoration: none;
+  }
+  .rg-pair-node:focus-visible { outline: 2px solid var(--c-link); outline-offset: 2px; }
+  .rg-pair-arrow {
+    position: relative;
+    height: 2px;
+    margin: 0 4px 0 2px;
+    background: var(--rg-color);
+  }
+  .rg-pair-arrow.is-conjecture {
+    background: repeating-linear-gradient(90deg, var(--rg-color) 0 5px, transparent 5px 9px);
+  }
+  .rg-pair-arrow::after {
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: -4px;
+    border-left: 8px solid var(--rg-color);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
   }
 
-  .relation-graph-muted {
+  .rg-node {
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    padding: 0.2rem 0.65rem;
+    border: 1px solid var(--c-border);
+    border-radius: 9px;
+    background: var(--c-bg-surface);
+    color: var(--c-text-main);
+    box-shadow: var(--rg-shadow);
+    text-decoration: none;
+    transition: opacity 0.12s, border-color 0.12s;
+  }
+  .rg-node:hover {
+    border-color: var(--c-link);
+    color: var(--c-text-main);
+    text-decoration: none;
+  }
+  .rg-node-name {
+    display: -webkit-box;
+    flex: none;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .rg-wire {
+    fill: none;
+    stroke: var(--rg-color);
+    stroke-width: 1.6;
+    stroke-opacity: 0.75;
+    transition: stroke-opacity 0.12s;
+  }
+  .rg-wire.is-conjecture { stroke-dasharray: 6 4; }
+  .rg-wire.is-implied { stroke-dasharray: 2 4; stroke-opacity: 0.45; }
+  .rg-arrow {
+    fill: var(--rg-color);
+    transition: fill-opacity 0.12s;
+  }
+  .is-tracing .rg-node:not(.is-hot) { opacity: 0.3; }
+  .is-tracing .rg-wire:not(.is-hot) { stroke-opacity: 0.08; }
+  .is-tracing .rg-arrow:not(.is-hot) { fill-opacity: 0.1; }
+  .rg-wire.is-hot { stroke-opacity: 1; stroke-width: 2.4; }
+  .rg-node.is-hot { border-color: var(--c-link); }
+
+  /* --- Family view --- */
+  .rg-flow {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem) minmax(0, 1fr);
+    column-gap: clamp(3rem, 7vw, 6.5rem);
+    align-items: start;
+  }
+  .rg-col, .rg-focus { position: relative; z-index: 1; }
+  .rg-wires {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .rg-col-title {
+    margin: 0 0 0.75rem;
     color: var(--c-text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .rg-col-empty {
+    margin: 0;
+    padding: 0.8rem 1rem;
+    border: 1px dashed var(--c-border);
+    border-radius: var(--rg-radius);
+    color: var(--c-text-muted);
+    font-size: 0.9rem;
+  }
+  .rg-group { margin: 0 0 1.25rem; }
+  .rg-group-head {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .rg .rg-group-head { color: var(--c-text-sub); }
+  .rg-group-count {
+    padding: 0 0.45rem;
+    border-radius: 999px;
+    background: var(--c-bg-gray);
+    color: var(--c-text-sub);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .rg-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin: 0.45rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .rg-cards li { margin: 0; }
+  .rg-card {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--c-border);
+    border-left: 3px solid var(--rg-color);
+    border-radius: 8px;
+    background: var(--c-bg-surface);
+    color: var(--c-text-main);
+    box-shadow: var(--rg-shadow);
+    font-size: 0.9rem;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: opacity 0.12s, border-color 0.12s, box-shadow 0.12s;
+  }
+  .rg-card:hover {
+    border-color: var(--rg-color);
+    color: var(--c-text-main);
+    text-decoration: none;
+    box-shadow: var(--rg-shadow-lift);
+  }
+  .rg-card-name { min-width: 0; font-weight: 500; }
+  .rg-card-symbol {
+    flex: none;
+    max-width: 45%;
+    overflow: hidden;
+    color: var(--c-text-sub);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .rg-card .rg-badge { flex: none; }
+  .rg-more {
+    margin-top: 0.4rem;
+    padding: 0.15rem 0;
+    border: 0;
+    background: none;
+    color: var(--c-link);
+    font: 600 0.85rem/1.3 system-ui, -apple-system, sans-serif;
+    cursor: pointer;
+  }
+  .rg-more:hover { color: var(--c-brand); }
+
+  .rg-focus {
+    position: sticky;
+    top: 1rem;
+    padding-top: 1.85rem;
+  }
+  .rg-focus-card {
+    padding: 1.15rem 1.25rem 1.2rem;
+    border: 2px solid var(--c-brand);
+    border-radius: 14px;
+    background: var(--c-bg-surface);
+    box-shadow: var(--rg-shadow-lift);
+    text-align: center;
+  }
+  .rg-focus-facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+    margin: 0;
+  }
+  .rg-focus-facts span {
+    padding: 0.05rem 0.5rem;
+    border-radius: 999px;
+    background: var(--c-bg-gray);
+    color: var(--c-text-sub);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .rg .rg-focus-name {
+    margin: 0.65rem 0 0.25rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .rg-focus-symbol { margin: 0.35rem 0 0; font-size: 1.3rem; }
+  .rg-focus-count {
+    margin: 0.5rem 0 0;
+    color: var(--c-text-muted);
+    font-size: 0.85rem;
+  }
+  .rg-focus-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: var(--c-brand);
+    color: var(--c-on-brand);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .rg-focus-link:hover {
+    color: var(--c-on-brand);
+    text-decoration: none;
+    filter: brightness(1.06);
+  }
+  .is-tracing .rg-card:not(.is-hot) { opacity: 0.45; }
+
+  .rg-rels { margin-top: 2.25rem; }
+  .rg .rg-rels-title {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--c-border);
+    font-size: 1.05rem;
+    font-weight: 650;
+  }
+  .rg-rel-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 26rem), 1fr));
+    align-items: start;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .rg-rel {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--rg-radius);
+    background: var(--c-bg-surface);
+    transition: border-color 0.12s, background-color 0.12s;
+  }
+  .rg-rel > .rg-swatch {
+    width: 4px;
+    height: auto;
+    border-radius: 2px;
+  }
+  .rg-rel.is-hot {
+    border-color: var(--rg-color);
+    background: color-mix(in srgb, var(--rg-color) 7%, var(--c-bg-surface));
+  }
+  .rg-rel-body { min-width: 0; }
+  .rg-rel-sentence { margin: 0; line-height: 1.5; }
+  .rg-rel-name { font-weight: 600; }
+  .rg-rel-name.is-focus { color: var(--c-text-main); }
+  .rg-rel-verb { color: var(--c-text-sub); }
+  .rg-attrs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem 1.1rem;
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+  }
+  .rg-attrs div { display: flex; gap: 0.35rem; }
+  .rg-attrs dt { color: var(--c-text-muted); font-weight: 500; }
+  .rg-attrs dt::after { content: ":"; }
+  .rg-attrs dd { margin: 0; }
+  .rg-refs { margin: 0.3rem 0 0; font-size: 0.85rem; }
+
+  @media (max-width: 960px) {
+    .rg-flow {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 1.5rem;
+    }
+    .rg-focus { order: -1; position: static; padding-top: 0; }
+    .rg-col-out { order: 0; }
+    .rg-col-in { order: 1; }
+    .rg-wires { display: none; }
   }
 
   /* ==========================================================================
@@ -1286,24 +1542,6 @@
 
   @media (max-width: 1100px) {
     .topic-card-grid { grid-template-columns: repeat(2, 1fr); }
-    .relation-graph-toolbar {
-      grid-template-columns: 1fr;
-      align-items: stretch;
-    }
-    .relation-graph-shell {
-      grid-template-columns: 1fr;
-    }
-    .relation-graph-stage {
-      min-height: 28rem;
-    }
-    .relation-graph-document .relation-graph-toolbar,
-    .relation-graph-document .relation-graph-details {
-      position: static;
-      max-height: none;
-    }
-    .relation-graph-document .relation-graph-stage {
-      min-height: 70vh;
-    }
   }
    
   @media(max-width: 600px) {

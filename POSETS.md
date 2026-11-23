@@ -16,10 +16,17 @@ with it, and what is still open. The row syntax is in `CONVENTIONS.md`.
   and unexpected attributes are all errors.
 - `relation_graph.lua` writes `www/polynomial-relations.json` and the page
   `www/polynomial-relations.htm`, linked as **Relations** in the top navigation.
-  `assets/relation-graph.js` draws one or more selected relation types as a
-  layered graph, with search and a details panel listing the references.
-  Strongly connected components share a layer and layers follow longest paths;
-  all asserted edges are drawn.
+  `assets/relation-graph.js` is a relation explorer with two views, kept in
+  the URL hash. `#family=<id>` puts one family in the middle with the
+  families pointing to it on the left and those it points to on the right,
+  grouped by relation type, followed by every relation with its attributes
+  and references. `#overview=<group>` draws one kind of relation as layered
+  diagrams, one per connected component, with two-family components listed
+  as pairs. Relations implied by a path of the same transitive type are
+  hidden by default (a toggle shows them); strongly connected components
+  share a layer; layers follow longest paths from the sources or to the
+  sinks, whichever is narrower, with sinks and sources moved next to their
+  neighbours.
 - Edges with `status=question` or `include=false` are kept in the data but not
   drawn.
 

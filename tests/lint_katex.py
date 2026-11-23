@@ -16,8 +16,9 @@ live page.  This checker reproduces what the browser does and fails instead:
   not formulas;
 * auto-render's own splitAtDelimiters with the site's delimiter list
   ($$..$$, \\[..\\], $..$, \\(..\\)) and one shared macros object per page;
-* the relation-graph node labels that relation-graph.js builds from the
-  embedded graph data and typesets after the page has loaded.
+* the relation-explorer fields that relation-graph.js builds from the
+  embedded graph data and typesets after the page has loaded (family names,
+  symbols, spaces, categories, years and relation attribute values).
 
 Pages that do not load auto-render (for instance goto.htm) are skipped,
 because the browser does not typeset them either.
@@ -180,11 +181,12 @@ class TextRunCollector(html.parser.HTMLParser):
 
 
 def relation_graph_runs(collector: TextRunCollector, www: str, page: str) -> list[dict]:
-    """Text nodes that drawNodes() in relation-graph.js typesets.
+    """Text that assets/relation-graph.js typesets after the page has loaded.
 
-    Each node contributes an SVG <title> "(name || id) (id)", a title div
-    "name || id" and a meta div "space || id".  Every node of the graph data
-    is checked: the presets only choose which subset is visible.
+    The relation explorer inserts each of these fields as the whole text of
+    its own element: a family's name, symbol, space, category and year, and
+    the value of every relation attribute.  Every node and edge of the graph
+    data is checked, since each view shows a different subset.
     """
     if not (collector.loads_relation_graph and collector.graph_roots):
         return []
@@ -206,12 +208,16 @@ def relation_graph_runs(collector: TextRunCollector, www: str, page: str) -> lis
     runs = []
     for node in graph.get("nodes") or []:
         node_id = str(node.get("id", ""))
-        name = node.get("name") or node_id
-        space = node.get("space") or node_id
-        where = f"relation-graph node {node_id} ({source})"
-        runs.append({"text": f"{name} ({node_id})", "line": None, "loc": where + " tooltip"})
-        runs.append({"text": str(name), "line": None, "loc": where + " title"})
-        runs.append({"text": str(space), "line": None, "loc": where + " meta"})
+        for key in ("name", "symbol", "space", "category", "year"):
+            value = node.get(key) or (node_id if key == "name" else "")
+            if value:
+                runs.append({"text": str(value), "line": None,
+                             "loc": f"relation-graph node {node_id} {key} ({source})"})
+    for edge in graph.get("edges") or []:
+        for key, value in sorted((edge.get("attrs") or {}).items()):
+            runs.append({"text": str(value), "line": None,
+                         "loc": f"relation-graph edge {edge.get('source')} -> "
+                                f"{edge.get('target')} {key} ({source})"})
     return runs
 
 
