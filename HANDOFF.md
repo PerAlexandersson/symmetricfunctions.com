@@ -1,5 +1,14 @@
 # Handoff
 
+## Deployed — KaTeX checker and relation explorer, 2026-11-23
+
+Deployed `1b5be0a` (which includes `39913e0`) through the deploy bridge
+(request 20261123T093208-a9209e342a2a) after a clean `make Q=1` and
+`make check Q=1`.  The live site serves `relation-graph.js?v=13`, the new
+`style.css` cache key and the new `tex-init.js` macros.  The Playwright
+check against production passes at 1366 and 375 px: all 142 family views
+and 9 overviews render with no KaTeX errors or console errors.
+
 ## Done — relation graph redesign, 2026-11-23
 
 Ownership is released.  `polynomial-relations.htm` is now a relation
