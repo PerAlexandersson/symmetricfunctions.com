@@ -1,5 +1,15 @@
 # Handoff
 
+## Deployed — Torres in the zig-zag theorem title, 2026-11-23
+
+`tex-source/realRootedWords.tex`: the real-rootedness theorem for the swap
+polynomials (`zigZagEulerianRealRooted`) is now titled "Alexandersson;
+Torres", citing both [Thm. 7.1] of Alexandersson2026Eulerian and
+[Thm. 1.1] of Torres2026x, since the two proofs appeared at about the same
+time.  The following paragraph says so and keeps Cor. 1.2 for
+log-concavity.  `make Q=1`, `make check Q=1` and `git diff --check` pass.
+Ownership released.
+
 ## Deployed — KaTeX checker and relation explorer, 2026-11-23
 
 Deployed `1b5be0a` (which includes `39913e0`) through the deploy bridge
