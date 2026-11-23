@@ -1,5 +1,26 @@
 # Handoff
 
+## Done — selected November arXiv additions, 2026-11-23
+
+Ownership is released for `bibliography.bib`, the affected source and
+generated pages, and this handoff entry.  Intake was clean on `master`, with no
+overlapping ownership.  Paper-cache and the registered arXiv tools verified
+the exact-current author order, title and cited version for six additions:
+2611.25505v1 (fixed-opening matchings), 2611.26397v1 (dual canonical
+Grothendieck Murnaghan--Nakayama), 2611.25973v1 (Birkhoff Ehrhart
+coefficients), 2611.26439v1 (operator Jack positivity), 2611.26246v1
+(minimal-nilpotent Hessenberg presentations), and 2609.06145v4 (ternary
+Lorentzian ratios).  None reports a DOI or journal publication.  The
+Hessenberg addition is one sentence plus its citation, as requested.  The
+stale bibliography pins 2610.40496v1 and 2608.08692v1 are updated to their
+current v2 versions.
+
+`make Q=1`, `make check Q=1`, and `git diff --check` pass.  Chromium checks at
+375 pixels cover all affected pages; the formula-heavy and cross-link pages
+were also checked at 1366 pixels.  The new anchors resolve, KaTeX reports no
+errors, and there is no horizontal page overflow.  The repository symlink scan
+is empty.  This is a source checkpoint only; no deployment was performed.
+
 ## Done — semiorder descent polynomials, 2026-11-22
 
 The real-rootedness open problems page now asks about ordinary descents of

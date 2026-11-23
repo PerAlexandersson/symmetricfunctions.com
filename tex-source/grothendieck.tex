@@ -843,6 +843,52 @@ For the full dual canonical family, they pose the problem of constructing
 a crystal on marked rim border tableaux, where each interior box is marked
 by $a$ or $b$ \cite[Sec.~1]{HawkesScrimshaw2020}.
 
+\subsection[grothendieckCanonicalMN]{Murnaghan--Nakayama rule}
+
+\name{Siddheswar Kundu} and \name{Santosha Pattanayak} give a
+two-parameter Murnaghan--Nakayama rule for the dual canonical functions
+$\grothendieckDual^{(a,b)}_\lambda$ \cite[Thm.~5.7]{KunduPattanayak2026x}.
+Let $d(\lambda)$ be the number of distinct positive parts of $\lambda$.
+For a corner-connected broken ribbon $\mu/\lambda$, let $D$ be its size,
+$r$ its number of rows, and $c$ its number of edge-connected components.  If
+the occupied rows are $[u,v]$, set
+\[
+\varepsilon_{\mathrm{top}}
+=\mathbf{1}_{\{u>1,\ \mu_u=\lambda_{u-1}\}},
+\qquad
+\varepsilon_{\mathrm{bot}}
+=\mathbf{1}_{\{\lambda_v=\lambda_{v+1}\}},
+\]
+and put
+\[
+B=r-1+\varepsilon_{\mathrm{top}}+\varepsilon_{\mathrm{bot}},
+\qquad A=D+c-B.
+\]
+
+\begin{theorem}[Kundu--Pattanayak, \cite[Thm.~5.7]{KunduPattanayak2026x}]
+For every partition $\lambda$ and $k\geq1$,
+\[
+\begin{split}
+\powerSum_k\grothendieckDual^{(a,b)}_\lambda
+={}&d(\lambda)\bigl((-a)^k-b^k\bigr)
+\grothendieckDual^{(a,b)}_\lambda\\
+&+\sum_\mu
+(-1)^{r-c}(a+b)^{c-1}
+[z^{k-D-c+1}]
+\frac{\grothendieckDual^{(a,b)}_\mu}
+{(1+az)^A(1-bz)^B},
+\end{split}
+\]
+where the sum is over $\mu\supsetneq\lambda$ for which
+$\mu/\lambda$ is a corner-connected broken ribbon and $D+c-1\leq k$.
+Every coefficient in the sum is divisible by $(a+b)^{c-1}$ but not by
+$(a+b)^c$.
+\end{theorem}
+
+The signed rule by hook histories gives the same coefficients.  The paper
+also derives the power-sum expansion in the dual canonical basis and the
+corresponding multiplication rule in the canonical basis.
+
 \name{Jianping Pan}, \name{Joseph Pappe}, \name{Wencin Poh}, and
 \name{Anne Schilling} introduce an uncrowding algorithm for hook-valued
 tableaux \cite{PanPappePohSchilling2022}.  This gives a useful bridge between

@@ -96,6 +96,40 @@ orientable surface, and the chain swaps endpoints of two chords only when the
 genus is preserved.  For fixed genus, the chain is irreducible except for the
 maximal-genus Bolza diagram, and its mixing time is polynomial in $n$.
 
+\subsection[fixedOpeningMatchingPositivity]{Fixed opening sets and chromatic positivity}
+
+For an edge $\{a,b\}$ with $a<b$, call $a$ its \defin{opener}.  The
+\defin{opening set} of a matching $M$ is the set $\operatorname{Open}(M)$ of
+its openers.  The edges of $M$ form an interval order $P_M$ by setting
+\[
+\{a,b\}<_{P_M}\{c,d\}\quad\Longleftrightarrow\quad b<c.
+\]
+For an opening set $O$ that occurs for some matching, set
+\[
+S_O(\xvec)
+\coloneqq
+\sum_{\substack{M\in\setPM(n)\\\operatorname{Open}(M)=O}}
+\chrom_{\operatorname{Inc}(P_M)}(\xvec),
+\qquad
+H_O(\xvec)\coloneqq\omega S_O(\xvec).
+\]
+
+\begin{theorem}[Chae, \cite[Thms.~4.7 and 6.1]{Chae2026Opening}]
+For every such opening set $O$, the function $S_O$ is
+\hyperref[elementaryE]{elementary-positive}, and $H_O$ is
+complete-homogeneous-positive.  The Schur coefficients of $H_O$ count
+standard tableaux of staggered skew shapes whose distinguished left cells
+contain the entries of $O$.
+\end{theorem}
+
+The proof transfers each complete-homogeneous coefficient to an elementary
+coefficient of the chromatic symmetric function of a clique blow-up of a
+path.  This auxiliary graph is a
+\hyperref[unitIntervalGraph]{unit interval graph}, so its required
+elementary positivity follows from Hikita's theorem.  The same paper gives
+power-sum formulas in terms of alternating permutations and record
+partitions.
+
 
 \subsection[pfaffian]{The Pfaffian}
 

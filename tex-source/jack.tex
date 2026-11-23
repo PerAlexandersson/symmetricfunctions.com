@@ -847,3 +847,31 @@ with nonnegative integer coefficients.
 combinatorial formula for
 $(-1)^{|\mu|}\theta_{\mu}^{(\alpha)}(\lambda)$ in terms of
 layered, non-oriented maps.
+
+\subsection[jackOperatorBPositivity]{Operator $b$-positivity}
+
+Let $\Delta_\mu(\alpha)$ be the differential operator on symmetric functions
+that implements multiplication by the stable series indexed by $\mu$ under
+the deformed Jack class product.  Its eigenvalues on modified Jack functions
+are normalized Jack characters.  Put $D_r=r\,\partial/\partial p_r$, and for
+partitions $I$ and $J$, write $p_I=\prod_s p_{I_s}$ and
+$D_J=\prod_s D_{J_s}$.  After writing $\Delta_\mu(\alpha)$ in normal order,
+with every multiplication operator to the left of every $D_r$,
+\name{Jean-Yves Thibon} proposes the following strengthening of the
+\hyperref[jackConnectionCoefficients]{Matchings--Jack conjecture}
+\cite[Conj.~2.3]{Thibon2026x}.
+
+\begin{conjecture}[Thibon]
+For every partition $\mu$, the normal-ordered expansion
+\[
+\Delta_\mu(1+b)=\sum_{I,J}c^\mu_{I,J}(b)\,p_I D_J
+\]
+has $c^\mu_{I,J}(b)\in\setN[b]$ for all partitions $I$ and $J$.
+\end{conjecture}
+
+This conjecture implies both coefficientwise Matchings--Jack positivity and
+the corresponding positivity of the stable Jack-character structure
+constants.  Thibon proves the analogous normal-order positivity for the
+operators associated with Boolean cumulants of the Jack transition measure
+and for the Cartan generators of the affine Yangian
+$Y(\widehat{\mathfrak{gl}}_1)$.
