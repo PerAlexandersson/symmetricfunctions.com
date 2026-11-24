@@ -73,6 +73,21 @@ by their number of sinks (\hyperref[sinkPolynomial]{sink polynomials}):
 $2T_n(t)=t^nS(C_n,1/t)$ for $n\geq3$ and $T_n(t)=t^{n+1}S(P_{n+1},1/t)$.
 Checked for cycles and paths on at most $16$ vertices.
 
+\item \oeis{A035342}, \oeis{A035469}, \oeis{A049029}: the triangles with
+recurrence $a(n+1,m)=a(n,m-1)+(sn+m)\,a(n,m)$ for $s=2,3,4$ (Bell transforms of
+multifactorials, counting forests of increasing $(s+1)$-ary trees) are
+\hyperref[rookPolynomial]{rook numbers}: $a(n,m)=r_{n-m}(B_n)$, where $B_n$ is the
+Ferrers board with column heights $(s+1),2(s+1),\dotsc,(n-1)(s+1)$.  Adding a
+column of height $(s+1)n$ gives
+$r_k(B_{n+1})=r_k(B_n)+\bigl((s+1)n-k+1\bigr)r_{k-1}(B_n)$, which is the
+recurrence above; the cases $s=0,1$ are the Stirling numbers of the second kind
+and the Lah numbers.  In particular the row polynomials are reversed rook
+polynomials, hence real-rooted.  Proved for all $n$.
+
+\item \oeis{A089503}: $T(n,m)=\binom{n-1}{m-1}\binom{2n}{m-1}(m-1)!$ is the rook
+number $r_{m-1}$ of an $(n-1)\times 2n$ rectangle, so the rows are rook
+polynomials of rectangles, which are real-rooted.
+
 \item \oeis{A116088}: $T_n(t)=t^nI(P_m^2,1/t)$ with $m=\max(0,2n-2)$, where
 $I(P_m^2,t)$ is the \hyperref[independencePolynomial]{independence polynomial}
 of the square of the path on $m$ vertices, a
