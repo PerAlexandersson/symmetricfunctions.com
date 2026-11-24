@@ -465,15 +465,20 @@ Let $M$ be a \defin{nested matroid}, that is, a
 \hyperref[latticePathMatroidDefinition]{lattice path matroid} of Ferrers shape:
 for $1\leq q_1\leq\dotsb\leq q_r$, the bases are the sets
 $\{b_1<\dotsb<b_r\}$ with $b_i\leq q_i$.  Then the $Z$-polynomial $Z_M(t)$ of
-$M$ \cite{ProudfootXuYoung2018} is real-rooted and $\gamma$-positive.
+$M$ \cite{ProudfootXuYoung2018} is real-rooted.
 \end{conjecture}
 
 Real-rootedness of $Z_M(t)$ is conjectured for all matroids by
 \name{Nicholas Proudfoot}, \name{Yuan Xu} and \name{Ben Young}
-\cite{ProudfootXuYoung2018}.  The conjecture above was checked for all nested
-matroids on at most $10$ elements ($487$ distinct $Z$-polynomials).  For the
-shifted staircase $S_r$ ($q_i=2i$), the Catalan matroid satisfies
-$Z(\mathrm{Cat}_{r+1})=(1+t)Z(S_r)$, and
+\cite{ProudfootXuYoung2018}; $\gamma$-positivity of $Z_M(t)$ holds for every
+matroid \cite[Thm.~1.8]{FerroniMatherneStevensVecchi2022x}.  The conjecture
+above was checked exactly for all nested matroids with at most $24$ elements,
+and for all nested matroids of rank at most $20$ with any number of elements.
+For the shifted staircase $S_r$ ($q_i=2i$), the Catalan matroid satisfies
+$Z(\mathrm{Cat}_{r+1})=(1+t)Z(S_r)$.  \name{Yiming Chen}, \name{Yao Li} and
+\name{Ming Yao} express the $Z$-polynomials of all $(a,b)$-Catalan matroids
+through uniform matroids \cite[Cor.~4.13]{ChenLiYao2025x}; for $S_r$ this gives
+$rZ(S_r)=\sum_{m=1}^{r}Z(U_{m,2m})Z(S_{r-m})$.  The first values are
 \[
 Z(S_2)=1+3t+t^2,\quad Z(S_3)=1+8t+8t^2+t^3,\quad
 Z(S_4)=1+22t+50t^2+22t^3+t^4,
@@ -481,7 +486,7 @@ Z(S_4)=1+22t+50t^2+22t^3+t^4,
 with $\gamma$-vectors $(1,1)$, $(1,5)$, $(1,18,8)$, $(1,59,91)$,
 $(1,190,658,143)$, $(1,618,3899,2684)$, $(1,2047,20726,29812,3723)$ for
 $r=2,\dotsc,8$.  Here $\gamma_1=\sum_{k=1}^{r}C_k-r$, with $C_k$ the Catalan
-numbers.
+numbers.  Consecutive $Z(S_r)$ interlace for $r\leq100$.
 
 \begin{conjecture}[Alexandersson, 2026]
 \label{conjRibbonMatroidZ}
@@ -500,7 +505,8 @@ checked for all $1022$ connected ribbon lattice path matroids on at most $11$
 elements, including the fan matroids, whose $Z$-polynomials were computed by
 \name{Linyuan Lu}, \name{Matthew H. Y. Xie} and \name{Arthur L. B. Yang}
 \cite{LuXieYang2018x}.  These matroids are graphic.  A ribbon with loops or
-coloops contributes a factor $(1+t)$ for each coloop.  What explains this
+coloops contributes a factor $(1+t)$ for each coloop; for instance, a hook
+shape with $h$ nonempty rows gives $(1+t)^{r-h}N_h(t)$.  What explains this
 rigidity?
 
 \begin{conjecture}[Binder--Vecchi, \cite[Conj.~1.5]{BinderVecchi2026x}]
