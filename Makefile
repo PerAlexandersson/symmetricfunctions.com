@@ -246,10 +246,12 @@ $(KATEX_PKG):
 	@if [[ -z "$(KATEX_VERSION)" ]]; then \
 	  echo "[ERROR] Cannot read the KaTeX version from $(TEMPLATE)" >&2; exit 2; \
 	fi
-	@case "$(abspath $(KATEX_DIR))/" in \
-	  "$(CURDIR)/"*|*/Dropbox/*) \
-	    echo "[ERROR] KATEX_DIR=$(KATEX_DIR) must be outside the repository and Dropbox" >&2; exit 2;; \
-	esac
+	@for dir in "$(CURDIR)" $(KATEX_DIR_EXCLUDE); do \
+	  case "$(abspath $(KATEX_DIR))/" in \
+	    "$${dir%/}/"*) \
+	      echo "[ERROR] KATEX_DIR=$(KATEX_DIR) must be outside $$dir" >&2; exit 2;; \
+	  esac; \
+	done
 	$(LOG) "Installing KaTeX $(KATEX_VERSION) into $(KATEX_DIR) ..."
 	@mkdir -p "$(KATEX_DIR)"
 	@$(NPM) install --prefix "$(KATEX_DIR)" --no-save --no-package-lock --no-audit --no-fund \
@@ -312,13 +314,16 @@ $(PAGEFIND_STAMP) $(PAGEFIND_ENTRY) &: $(HTML_FILES) $(GOTO_HTML) $(RELATION_GRA
 
 # === DEPLOY ===
 # Deploys the built site after a full build and `make check`.  Files removed
-# from www/ are not deleted on the server.
-DESTPATH := symmetricf@ns12.inleed.net:domains/symmetricfunctions.com/public_html
+# from www/ are not deleted on the server.  DEPLOY_DEST (rsync destination)
+# and DEPLOY_SSH (remote shell) come from the local configuration.
 deploy:
+	@if [[ -z "$(DEPLOY_DEST)" ]]; then \
+	  echo "[ERROR] DEPLOY_DEST is not set; define it in $(LOCAL_CONFIG)" >&2; exit 2; \
+	fi
 	$(MAKE) all
 	$(MAKE) check
 	@chmod -R u+rw,go+r,go-w $(WWW_DIR)/
-	rsync -avizL -e "ssh -p 2020" --exclude='*~' --exclude='.created' $(WWW_DIR)/ $(DESTPATH)
+	rsync -avizL -e "$(DEPLOY_SSH)" --exclude='*~' --exclude='.created' $(WWW_DIR)/ $(DEPLOY_DEST)
 
 # === SHIP: clean → build → check → deploy ===
 ship:

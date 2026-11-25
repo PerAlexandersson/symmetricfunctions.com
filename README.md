@@ -56,6 +56,19 @@ page and line, the formula, KaTeX's message and, when found, the source line.
 KaTeX is installed by `npm` into `~/.cache/symmetricfunctions/katex-<version>`
 (override with `KATEX_DIR=`; it must be outside the repository).
 
+## Local configuration
+
+Machine-specific settings are kept out of the repository, in
+`../symmetricfunctions.com-local/config.mk` (override with `LOCAL_CONFIG=`).
+The file is optional and is read by `config.mk`:
+
+```make
+DEPLOY_DEST := user@host:path/to/public_html   # rsync destination for make deploy
+DEPLOY_SSH  := ssh -p 22                       # remote shell for rsync
+TIKZ_MACROS_DIR := /path/to/tikz-macros        # extra TEXINPUTS for make svg
+KATEX_DIR_EXCLUDE := /path/to/synced/folder    # places the KaTeX cache must avoid
+```
+
 ## Directory structure
 
 ```
@@ -114,8 +127,8 @@ editing checklist, are in [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md).
 
 ## Deployment
 
-`make deploy` builds the site, runs `make check` and rsyncs `www/` to the
-production server; it requires host SSH access. Files removed from `www/` are
+`make deploy` builds the site, runs `make check` and rsyncs `www/` to
+`DEPLOY_DEST` from the local configuration; it requires host SSH access. Files removed from `www/` are
 not deleted on the server. `make ship` does the same from a clean tree.
 Agents follow the deployment procedure in `AGENTS.md`.
 

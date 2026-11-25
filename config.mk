@@ -1,5 +1,18 @@
 # === MAIN BUILD CONFIGURATION ===
 
+# === LOCAL SETTINGS ===
+# Machine-specific settings (deploy destination, shared TikZ macros, extra
+# directories the KaTeX cache must avoid) live outside the repository, by
+# default in ../symmetricfunctions.com-local/config.mk.  The file is optional;
+# see README.md.
+LOCAL_DIR    ?= $(abspath $(CURDIR)/../symmetricfunctions.com-local)
+LOCAL_CONFIG ?= $(LOCAL_DIR)/config.mk
+-include $(LOCAL_CONFIG)
+DEPLOY_DEST ?=
+DEPLOY_SSH  ?= ssh
+KATEX_DIR_EXCLUDE ?=
+TIKZ_MACROS_DIR ?=
+
 # === DIRECTORIES ===
 SRC_DIR    = tex-source
 ASSETS_DIR = assets
@@ -79,4 +92,4 @@ PAGEFIND_ENTRY := $(WWW_DIR)/_pagefind/pagefind-entry.json
 export SRC_DIR ASSETS_DIR TEMP_DIR WWW_DIR
 export TEMPLATE REFS_JSON BIBTEX_JSON LABELS_JSON POLYDATA_JSON TODOS_JSON SITEMAP_XML
 export RELATION_GRAPH_HTML RELATION_GRAPH_JSON
-export KATEX_DIR NODE
+export KATEX_DIR NODE TIKZ_MACROS_DIR

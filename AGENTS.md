@@ -70,7 +70,7 @@ test and deployment rules for agents.
   `.katex-error` span, so counting `.katex-error` in Chromium misses it.
   `tests/check_lint_katex.py` covers the malformed and valid cases. A TeX `\$`
   renders as a lone `<span class="tex-dollar">$</span>` so that auto-render
-  cannot pair it. The KaTeX npm tree lives in `KATEX_DIR`, outside Dropbox.
+  cannot pair it. The KaTeX npm tree lives in `KATEX_DIR`, outside the repository.
 - The metadata merge runs from a stamp file and rewrites outputs only when
   their bytes change, so `make -n` lists renders that a real build skips.
 - Run `make all` after broad page edits and `make unittest` after Lua or
@@ -83,14 +83,13 @@ test and deployment rules for agents.
 
 ## Deployment
 
-Deploy only when explicitly authorized. From Docker, use the constrained host
-bridge after a clean verified build:
+Deploy only when explicitly authorized, after a clean verified build. The
+procedure for agents is in the local agent notes (below); read it before
+deploying.
 
-```bash
-/workspace/supervisor-tool symmetricfunctions-deploy status
-/workspace/supervisor-tool symmetricfunctions-deploy run --json
-```
+## Local agent notes
 
-Check status first.  The bridge pins the source and production destination,
-deploys only the existing `www/` tree, and does not build, commit, push, or
-expose the host SSH key.
+Machine-specific instructions are kept outside the repository in
+`../symmetricfunctions.com-local/AGENTS.local.md`: the deployment procedure,
+local paths, and where computed examples should be backed by checked Rust
+code.  Read it before adding computed examples or deploying.

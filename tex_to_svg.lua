@@ -64,10 +64,14 @@ if not PWD or PWD == "" then
 end
 
 local ABS_LIB = PWD .. "/" .. CONFIG.LIB_DIR
--- Shared TikZ macros outside the repository (optional; override with
--- TIKZ_MACROS_DIR).
-local SHARED_TIKZ_MACROS = os.getenv("TIKZ_MACROS_DIR") or "/home/paxinum/Dropbox/latex/tikz-macros"
-local TEX_ENV = string.format("TEXINPUTS=.:%s/:%s/:", ABS_LIB, SHARED_TIKZ_MACROS)
+-- Optional shared TikZ macros outside the repository, from TIKZ_MACROS_DIR
+-- (set in the local configuration).
+local SHARED_TIKZ_MACROS = os.getenv("TIKZ_MACROS_DIR")
+local TEXINPUTS = ".:" .. ABS_LIB .. "/:"
+if SHARED_TIKZ_MACROS and SHARED_TIKZ_MACROS ~= "" then
+  TEXINPUTS = TEXINPUTS .. SHARED_TIKZ_MACROS .. "/:"
+end
+local TEX_ENV = "TEXINPUTS=" .. TEXINPUTS
 
 -- =============================================================================
 -- HELPER FUNCTIONS
