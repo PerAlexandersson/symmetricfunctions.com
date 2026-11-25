@@ -79,7 +79,7 @@ temp/               Generated intermediates (gitignored)
 www/                Final HTML output (gitignored)
 untracked/          Notes, drafts, assets not in git
 template.htm        Shared HTML shell (header/nav/footer)
-docs/               LICENCE, CONTRIBUTING
+docs/               LICENCE, CONTRIBUTING, CONVENTIONS, POSETS
 bibliography.bib    BibLaTeX references (2,300+ entries)
 ```
 
@@ -110,7 +110,7 @@ bibliography.bib    BibLaTeX references (2,300+ entries)
 ## Conventions
 
 Page, metadata, bibliography and code conventions, together with the content
-editing checklist, are in [`CONVENTIONS.md`](CONVENTIONS.md).
+editing checklist, are in [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md).
 
 ## Deployment
 

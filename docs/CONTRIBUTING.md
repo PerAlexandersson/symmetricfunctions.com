@@ -11,7 +11,7 @@ in `bibliography.bib`, and TikZ sources for card and figure SVGs in
 `svg-tex/src/`, with shared local definitions in `svg-tex/lib/`.
 
 See [`README.md`](../README.md) for the build commands, pipeline and directory
-layout, and [`CONVENTIONS.md`](../CONVENTIONS.md) for page and metadata
+layout, and [`CONVENTIONS.md`](CONVENTIONS.md) for page and metadata
 conventions (including `polydata` blocks), the content editing checklist and
 code conventions.
 

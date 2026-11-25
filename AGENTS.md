@@ -8,7 +8,7 @@ a reference site for algebraic combinatorics. Each page is a `.tex` file in
 
 Read `README.md` for the build commands, pipeline, directory layout, key Lua
 files, prerequisites and the arXiv++ keyword feed, and
-`CONVENTIONS.md` for page, metadata, bibliography and code conventions and
+`docs/CONVENTIONS.md` for page, metadata, bibliography and code conventions and
 the content editing checklist. This file holds only the additional build,
 test and deployment rules for agents.
 
@@ -27,6 +27,9 @@ test and deployment rules for agents.
   removal; do not force-delete merely because a task is marked done.
 - This does not authorize bypassing review/protection, force-pushing,
   deleting contributors' fork branches, or deploying.
+- `HANDOFF.md` in the repository root is the local coordination log for
+  file ownership and status. It is gitignored: keep using it, but never
+  commit it or quote it in public commits or PRs.
 
 ## Build changes
 

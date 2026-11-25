@@ -34,3 +34,6 @@ Thumbs.db
 
 # Local environment variables 
 .env
+
+# Local worker coordination log (not published)
+HANDOFF.md

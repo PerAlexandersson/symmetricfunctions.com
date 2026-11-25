@@ -382,7 +382,7 @@ local function relation_record(target, refs, attrs, status)
   return record
 end
 
--- Relation rows have two forms (see CONVENTIONS.md):
+-- Relation rows have two forms (see docs/CONVENTIONS.md):
 --   structured: "target | Key[,Key...] | attr=value; attr=value"
 --               (attribute values may themselves contain "|")
 --   legacy:     "target | Key", "target [Key]" or "target", several of

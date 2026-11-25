@@ -1,7 +1,8 @@
 # Conventions
 
 Conventions for editing symmetricfunctions.com pages, metadata and build
-code. See `README.md` for building and `AGENTS.md` for agent-specific rules.
+code. See [`README.md`](../README.md) for building and [`AGENTS.md`](../AGENTS.md) for
+agent-specific rules.
 
 ## TeX file conventions
 
