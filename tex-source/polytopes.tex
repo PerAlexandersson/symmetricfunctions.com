@@ -183,25 +183,123 @@ nonnegative on the polytope.
 Some rational polytopes exhibit \hyperref[periodCollapse]{period collapse},
 meaning the Ehrhart quasi-polynomial is in fact a polynomial.
 Certain \hyperref[gtKostkaEhrhart]{Gelfand--Tsetlin polytopes} have this property.
+\name{Jesús A. De Loera} and \name{Tyrrell B. McAllister} show that for
+$\lambda=(k^k,k-1,0^k)$ and $\mu=((k-1)^{k+1},1^k)$ the Gelfand--Tsetlin
+polytope of shape $\lambda$ and weight $\mu$ has a vertex with an entry of
+denominator $k$ \cite[Thm.~1.7]{DeLoeraMcAllister2004}, while every such
+polytope has a polynomial Ehrhart function \cite[Prop.~2.6]{DeLoeraMcAllister2004}.
+As they note, this gives the first infinite family of non-integral polytopes
+with polynomial Ehrhart function.
 However, not every such polynomial arises as the
 \hyperref[ehrhartPolynomialDefinition]{Ehrhart polynomial} of a lattice
 polytope.
 For example, \cite{HaaseMcAllister2007} construct a rational polygon $Q$
 whose Ehrhart function is a polynomial with linear coefficient $1$,
 but no integral polygon has this property.
-\todo{Expand the Haase--McAllister period-collapse example
-\cite{HaaseMcAllister2007}: spell out the associated \(h^*\)-polynomial and
-the dimension-two obstruction showing that it is not the \(h^*\)-polynomial
-of any lattice polygon, equivalently not the Ehrhart polynomial of any
-same-dimensional lattice polytope.  Check whether the related
-De Loera--McAllister GT-polytope examples \cite{DeLoeraMcAllister2004}
-should be mentioned separately.}
-\todo{Add Clarke--Higashitani--Zaffalon, \emph{Restricted Chain-Order
-Polytopes via Combinatorial Mutations}, arXiv:2211.07995.  Explain that
-combinatorial mutations preserve Ehrhart series, so restricted chain-order
-polytopes give large period-collapse families.  Also note that period collapse
-for many GT-type rational polytopes follows from the flagged skew Schur
-function interpretation of the corresponding stretching functions.}
+
+\begin{example}[{\cite[Ex.~2.1 and Ex.~2.4]{HaaseMcAllister2007}}]
+Fix an integer $D\geq 2$ and let $T_D$ be the triangle with vertices
+$(0,0)$, $(1,\tfrac{D-1}{D})$ and $(D,0)$; this triangle is due to
+\name{Tyrrell B. McAllister} and \name{Kevin M. Woods} \cite{McAllister2005}.
+Cutting $T_D$ along the line $x=1$ and moving the left piece by an affine
+unimodular map rearranges it into the lattice triangle with vertices
+$(1,0)$, $(1,1)$ and $(D,0)$, so $T_D$ has the same lattice-point counts as
+this lattice triangle in every dilate.
+Let $Q_D$ be the union of $T_D$ and its reflection in the $x$-axis, the
+quadrilateral with vertices
+\[
+  (0,0),\qquad \left(1,\tfrac{D-1}{D}\right),\qquad (D,0),\qquad
+  \left(1,-\tfrac{D-1}{D}\right).
+\]
+Its denominator is $D$.  Subtracting the $Dk+1$ lattice points of $kQ_D$ on
+the $x$-axis, which are counted twice, gives
+\[
+  E_{Q_D}(k)=(D-1)k^2+k+1,
+\]
+so the quasi-period collapses from $D$ to $1$.  Since $E_{Q_D}$ is a
+polynomial, its Ehrhart series can be written with denominator $(1-z)^3$:
+\[
+  \sum_{k\geq 0}E_{Q_D}(k)z^k=\frac{1+(D-2)z+(D-1)z^2}{(1-z)^3}.
+\]
+For $D=2$, $Q_2$ is the rhombus with vertices $(0,0)$, $(1,\pm\tfrac12)$ and
+$(2,0)$, with $E_{Q_2}(k)=k^2+k+1$ and numerator $1+z^2$.
+
+The numerator $1+h^*_1z+h^*_2z^2$ with $h^*_1=D-2$ and $h^*_2=D-1$ is not the
+\hyperref[hStarPolynomial]{$h^*$-polynomial} of any lattice polygon.
+If a lattice polygon has $i$ interior and $b$ boundary lattice points, then
+$h^*_1=i+b-3$ and $h^*_2=i$, so $h^*_2\leq h^*_1$ because $b\geq 3$.
+This is the two-dimensional case of the inequality $h^*_d\leq h^*_1$ in the
+\hyperref[hStarInequalities]{$h^*$-inequalities}, and it is part of
+Scott's characterization \cite{Scott1976ConvexLatticePolygons}.
+For $Q_D$ we get $h^*_2=h^*_1+1$.
+Equivalently, by Pick's theorem the linear coefficient of the Ehrhart
+polynomial of a lattice polygon is $b/2\geq 3/2$, whereas that of $E_{Q_D}$
+is $1$.  An Ehrhart polynomial has degree equal to the dimension of the
+polytope, so $E_{Q_D}$ is not the Ehrhart polynomial of any lattice polytope
+of the same dimension.
+\end{example}
+% Verified by brute-force lattice-point counts for 2 <= D <= 8, 0 <= k <= 3D+2.
+
+\name{Oliver Clarke}, \name{Akihiro Higashitani} and \name{Francesca Zaffalon}
+obtain large families with period collapse from
+\defin{combinatorial mutations}\label{combinatorialMutation}.
+For a primitive $w\in\setZ^N$ and a lattice polytope $F$ in the hyperplane
+$w^{\perp}$, the tropical map
+$x\mapsto x-\min_{f\in F}(x\cdot f)\,w$ is a unimodular shear on each of its
+regions of linearity.  If it maps a polytope $P$ to a convex polytope, the
+image is a combinatorial mutation of $P$.  Mutation-equivalent polytopes
+have the same \hyperref[ehrhartSeries]{Ehrhart series}
+\cite[Prop.~2.2]{ClarkeHigashitaniZaffalon2026}, although their denominators
+and numbers of vertices may differ.  So if one polytope in a mutation class
+is a lattice polytope, every polytope in the class has a polynomial Ehrhart
+function.
+For example, the map that fixes the half-plane $x\leq 0$ and sends
+$(x,y)\mapsto(x,x+y)$ for $x\geq 0$ takes the quadrilateral with vertices
+$(1,0)$, $(0,-1)$, $(-1,0)$ and $(0,\tfrac12)$ to the lattice triangle with
+vertices $(-1,0)$, $(0,-1)$ and $(1,1)$ \cite[Ex.~1.1]{ClarkeHigashitaniZaffalon2026}.
+Both have Ehrhart polynomial $\tfrac{3}{2}k^2+\tfrac{3}{2}k+1$ and
+$h^*$-polynomial $1+z+z^2$.
+% Verified by brute-force lattice-point counts for 0 <= k <= 30.
+
+For a Young diagram $\lambda$, the \emph{restricted order} and
+\emph{restricted chain polytopes} are dilates of the
+\hyperref[orderPolytope]{order} and \hyperref[chainPolytope]{chain}
+polytopes of $\lambda$, viewed as a poset, cut by one linear equation for
+each diagonal of $\lambda$.  By splitting Pak's piecewise-linear map into
+combinatorial mutations, \cite[Thm.~3.1]{ClarkeHigashitaniZaffalon2026} shows that these
+two polytopes are mutation equivalent, through intermediate
+\defin{restricted chain-order polytopes}.  When $\lambda$ is a rectangle,
+the restricted order polytope is integrally equivalent to a
+\hyperref[gtpolytopes]{Gelfand--Tsetlin polytope}, whose Ehrhart
+quasi-polynomial is a polynomial.  Hence every restricted chain-order
+polytope of a rectangular Young diagram has a polynomial Ehrhart
+quasi-polynomial \cite[Prop.~5.1 and Cor.~5.2]{ClarkeHigashitaniZaffalon2026}.
+The same holds for every Young diagram when the right-hand side of each
+diagonal equation is the length of that diagonal
+\cite[Cor.~5.4]{ClarkeHigashitaniZaffalon2026}.
+For square $\lambda$ and suitable right-hand sides, these polytopes include
+the restricted Gelfand--Tsetlin and restricted
+\hyperref[birkhoffPolytope]{Birkhoff polytopes}, whose period collapse is
+studied by \name{Per Alexandersson}, \name{Sam Hopkins} and
+\name{Gjergji Zaimi} \cite{AlexanderssonHopkinsZaimi2023}; see
+\cite[Rem.~2.9]{ClarkeHigashitaniZaffalon2026}.
+
+\name{Per Alexandersson} and \name{Ezgi Kantarcı Oğuz} prove period
+collapse for the rational polytopes whose lattice points are
+\hyperref[flaggedSchurPolynomialDefinition]{flagged} semistandard Young
+tableaux of skew shape $\lambda/\mu$ and weight $\nu$.  The number of these
+lattice points in the $k$-th dilate is the stretched
+\hyperref[flaggedKostkaCoefficientDefinition]{flagged Kostka coefficient}
+$K_{k\lambda/k\mu,k\nu}(\avec,\bvec)$, and this is a polynomial in $k$
+\cite[Cor.~36]{AlexanderssonOguz2023x}.
+The \hyperref[flaggedSchurPolynomialJacobiTrudi]{flagged Jacobi--Trudi
+identity} writes each such coefficient as an alternating sum of numbers of
+contingency tables \cite[Prop.~34]{AlexanderssonOguz2023x}.  These are
+values of vector partition functions of totally unimodular matrices, so they
+are polynomial in $k$ for large $k$.  Since the counting function is also an
+Ehrhart quasi-polynomial, it is a polynomial for all $k\geq 0$.  The same
+argument applies to cylindric Gelfand--Tsetlin polytopes
+\cite[Cor.~41]{AlexanderssonOguz2023x}.
 
 \name{Dave Anderson} and \name{Aniket Shah} introduce a weighted
 $q$-enumeration of lattice points in a polytope \cite{AndersonShah2023x}.

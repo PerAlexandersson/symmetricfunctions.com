@@ -206,10 +206,139 @@ $\lambda_{m+1} \geq n$.
 \name{Alibek Adilzhan} and \name{Damir Yeliussizov} give
 Hamel--Goulden type ribbon-decomposition determinant formulas for flagged
 supersymmetric Schur functions \cite{AdilzhanYeliussizov2025x}.
-\todo{Add detailed worked examples for the Adilzhan--Yeliussizov
-Hamel--Goulden type determinant formulas. Prefer small ytableau examples,
-and avoid TikZ ribbon pictures unless the conventions can be verified from
-the paper.}
+Their functions use two doubly infinite alphabets
+$\yvec=(y_i)_{i\in\setZ}$ and $\zvec=(z_i)_{i\in\setZ}$.  Let $\lambda/\mu$
+be a skew shape with $n=\lambda_1$ columns, and let
+$\avec=(a_1,\dotsc,a_n)$ and $\bvec=(b_1,\dotsc,b_n)$ be integer
+\defin{column flags}, which must satisfy mild compatibility conditions
+\cite[Def.~3.1]{AdilzhanYeliussizov2025x}.  The
+\defin{flagged supersymmetric Schur function}\label{flaggedSupersymmetricSchur}
+$\mathsf{S}^{\avec,\bvec}_{\lambda/\mu}(\yvec/\zvec)$ is defined by a dual
+Jacobi--Trudi determinant in supersymmetric elementary functions of
+consecutive variables \cite[Def.~3.2]{AdilzhanYeliussizov2025x}.  It has the
+tableau formula
+\[
+  \mathsf{S}^{\avec,\bvec}_{\lambda/\mu}(\yvec/\zvec)
+  =\sum_{T}\prod_{(i,j)\in\lambda/\mu}\bigl(y_{T(i,j)}-z_{T(i,j)+j-i}\bigr),
+\]
+where $T$ runs over the semistandard tableaux of shape $\lambda/\mu$ with
+integer entries satisfying $a_j\leq T(i,j)\leq b_j$ in column $j$.  This is
+\cite[Thm.~4.5]{AdilzhanYeliussizov2025x} after summing over the choice of
+primed or unprimed letter in each box.  For $\zvec=0$ it is a
+\hyperref[flaggedSchurPolynomialDefinition]{flagged Schur function}, and
+without flag bounds it is a supersymmetric Schur function.
+
+The determinant formulas use \emph{outer ribbon decompositions}
+$(\theta_1,\dotsc,\theta_k)$ of $\lambda/\mu$: partitions of the diagram into
+ribbons whose heads (bottom-left cells) lie on the left or bottom boundary and
+whose tails (top-right cells) lie on the top or right boundary.  In such a
+decomposition, all cells of a given content $c=j-i$ continue in the same
+direction, up or right.  This defines the \defin{cutting strip}, the ribbon
+with the same contents in which the cell of content $c$ goes in that direction.
+For $p\leq q+1$, let $\Theta(p,q)$ be the part of the cutting strip with
+contents in $[p,q]$, empty if $p=q+1$.  Then
+$\theta_i\#\theta_j\coloneqq\Theta(c(\text{head of }\theta_i),c(\text{tail of }\theta_j))$,
+and $\theta_i\#\theta_j$ is undefined if
+$c(\text{head of }\theta_i)>c(\text{tail of }\theta_j)+1$.
+Its boxes keep their contents from $\lambda/\mu$, and these contents are used
+in the tableau formula for the matrix entries.  Cut $\theta_i\#\theta_j$ into
+its columns from left to right.  For its $r$-th column, let $m$ be the leftmost
+cell of $\lambda/\mu$ with the content of the top box of that column, and let
+$M$ be the rightmost cell of $\lambda/\mu$ with the content of the bottom box.
+The \defin{induced ribbon flags} are then
+\[
+  a^{ij}_r=a_{\mathrm{col}(m)}-\mu'_{\mathrm{col}(m)}-1+\mathrm{row}(m),
+  \qquad
+  b^{ij}_r=b_{\mathrm{col}(M)}-\lambda'_{\mathrm{col}(M)}+\mathrm{row}(M)
+\]
+\cite[Def.~5.4]{AdilzhanYeliussizov2025x}.
+
+\begin{theorem}[Adilzhan--Yeliussizov {\cite[Thm.~5.8]{AdilzhanYeliussizov2025x}}]
+For every outer ribbon decomposition $(\theta_1,\dotsc,\theta_k)$ of a
+connected skew shape $\lambda/\mu$,
+\[
+  \mathsf{S}^{\avec,\bvec}_{\lambda/\mu}(\yvec/\zvec)
+  =\det\left[\mathsf{S}^{\avec^{ij},\bvec^{ij}}_{\theta_i\#\theta_j}(\yvec/\zvec)\right]_{1\leq i,j\leq k},
+\]
+where an empty $\theta_i\#\theta_j$ contributes $1$ and an undefined one
+contributes $0$.
+\end{theorem}
+
+Decomposing into rows or into hooks and strips gives Jacobi--Trudi-type and
+skew Giambelli-type determinants
+\cite[Cor.~7.1 and Cor.~7.3]{AdilzhanYeliussizov2025x}.  A specialization of
+the variables turns these into determinantal formulas for dual refined
+canonical stable Grothendieck polynomials
+\cite[Prop.~3.5 and Cor.~5.11]{AdilzhanYeliussizov2025x}.
+
+\begin{example*}[A flagged Giambelli determinant]
+% Checked symbolically against the determinant definition (Def. 3.2).
+Let $\lambda=(2,2)$ with column flags $\avec=(1,1)$ and $\bvec=(2,2)$.  The
+contents and the outer decomposition into the hook $\theta_1$ and the single
+box $\theta_2$ are
+\begin{figure}
+\begin{ytableau}
+0 & 1 \\
+-1 & 0
+\end{ytableau}
+%
+\begin{ytableau}
+1 & 1 \\
+1 & *(lightgray) 2
+\end{ytableau}
+\end{figure}
+Contents $-1$ go up while contents $0$ and $1$ go right, so $\theta_1\#\theta_1$
+is the hook $(2,1)$ with contents $-1,0,1$, $\theta_1\#\theta_2$ is a vertical
+domino with contents $-1,0$, $\theta_2\#\theta_1$ is a horizontal domino with
+contents $0,1$, and $\theta_2\#\theta_2$ is one box of content $0$.  The
+induced flags are
+\[
+  (\avec^{11},\bvec^{11})=((1,1),(2,1)),\quad
+  (\avec^{12},\bvec^{12})=((1),(2)),\quad
+  (\avec^{21},\bvec^{21})=((1,1),(2,1)),\quad
+  (\avec^{22},\bvec^{22})=((1),(2)).
+\]
+The flag $b^{11}_2=1$ forces the box of content $1$ in the hook to contain
+$1$.  The admissible tableaux for the four entries are
+\begin{figure}
+\begin{ytableau}
+1 & 1 \\
+2
+\end{ytableau}
+%
+\begin{ytableau}
+1 \\
+2
+\end{ytableau}
+%
+\begin{ytableau}
+1 & 1
+\end{ytableau}
+%
+\begin{ytableau}
+1
+\end{ytableau}
+%
+\begin{ytableau}
+2
+\end{ytableau}
+\end{figure}
+so the theorem gives
+\[
+\begin{aligned}
+  \mathsf{S}^{\avec,\bvec}_{(2,2)}(\yvec/\zvec)
+  &=\det\begin{bmatrix}
+    (y_1-z_1)(y_1-z_2)(y_2-z_1) & (y_1-z_1)(y_2-z_1)\\
+    (y_1-z_1)(y_1-z_2) & y_1+y_2-z_1-z_2
+  \end{bmatrix}\\
+  &=(y_1-z_1)(y_1-z_2)(y_2-z_1)(y_2-z_2).
+\end{aligned}
+\]
+This agrees with the tableau formula, since the only admissible tableau of
+shape $(2,2)$ has rows $1\,1$ and $2\,2$.  Without flags and with $\zvec=0$,
+the same decomposition gives the Giambelli identity
+$\schurS_{22}=\schurS_{21}\schurS_{1}-\schurS_{11}\schurS_{2}$.
+\end{example*}
 
 \subsection[hookSchurPlethDef]{Plethysm definition}
 

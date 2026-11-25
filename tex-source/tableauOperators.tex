@@ -432,7 +432,12 @@ rotation of matchings and permutations \cite{PfannererRubeyWestbury2020}.
 
 \subsection[RSKvsDualRSK]{RSK vs. dual RSK}
 
-\todo{Find a published reference for the RSK, dual RSK, and evacuation proposition.}
+\todo{Find a published reference for the RSK, dual RSK, and evacuation
+proposition for biwords.  The permutation case is van Leeuwen 1996,
+Thm.~4.1.1, (9) iff (11), cited in the proof below.  Vershik--Tsilevich,
+arXiv:2107.08415, eq.~(4), state the word version as well known but cite only
+this page.  Stanley (2009) points to EC2, pp.~320--321 and pp.~424--429,
+which were not available for checking.}
 
 \begin{proposition}[RSK, dual RSK and evacuation]
 
@@ -469,10 +474,12 @@ Suppose now that $v$ is a permutation and that
 v_1 & v_2 & \dotsc & v_n
 \end{pmatrix} \rskArrow (P,Q).
 \]
-A property of RSK says that
+A property of RSK, due to \name[M.-P. Schützenberger]{Marcel-Paul Schützenberger},
+says that
 \[
-\pi \rskArrow (P,Q) \iff \rev(\pi) \rskArrow (P^t,\evac(Q^t)).
+\pi \rskArrow (P,Q) \iff \rev(\pi) \rskArrow (P^t,\evac(Q^t)),
 \]
+see \cite[Thm.~4.1.1]{Leeuwen1996}.
 Thus
 \[
 \begin{pmatrix}

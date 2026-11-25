@@ -67,16 +67,136 @@ The \defin{Lascoux polynomial} is then defined as
 Note that $\key_{\alpha}(\xvec) = \lascoux^{(0)}_{\alpha}(\xvec)$,
 that is, at $\beta=0$ we recover a key polynomial.
 
-The first combinatorial model for Lascoux polynomials was conjectured by
-\name{Cara Monical} in \cite{Monical2017}, where these are given as a sum over
-certain \defin{set-valued tableaux}\label{lascouxSetValuedTableau}.
-They also provide a combinatorial formula involving
+\name{Cara Monical} conjectured combinatorial formulas for Lascoux polynomials
+and Lascoux atoms as sums over
 \defin{set-valued skyline fillings}\label{setValuedSkylineFilling}
-(terminology from \hyperref[macdonaldE]{non-symmetric Macdonald polynomials}).
-A proof of this conjecture was later given in
-\cite[Thm.~4.1]{BuciumasScrimshawWeber2020}.
-\todo{Add a worked Monical set-valued skyline filling example for a small
-Lascoux polynomial, backed by paper and Rust checks.}
+(terminology from \hyperref[macdonaldE]{non-symmetric Macdonald polynomials})
+\cite{Monical2017}.
+\name{Valentin Buciumas}, \name{Travis Scrimshaw} and \name{Katherine Weber}
+gave the first proven combinatorial interpretation of Lascoux polynomials and
+atoms, using colored five-vertex models.  From it they prove a formula for
+Lascoux polynomials as sums over certain
+\defin{set-valued tableaux}\label{lascouxSetValuedTableau}, conjectured by
+\name{Oliver Pechenik} and \name{Travis Scrimshaw}
+\cite[Thm.~4.1]{BuciumasScrimshawWeber2020}, and Monical's skyline formula
+for Lascoux atoms \cite[Thm.~4.4]{BuciumasScrimshawWeber2020}.
+
+Monical's skyline fillings are defined as follows \cite[Sec.~1.2]{Monical2017}.
+Let $\gamma$ be a weak composition with $n$ parts.  Its skyline diagram has
+$\gamma_i$ left-justified cells in row $i$, with row $1$ on top, and a
+\defin{basement} column $0$ that contains $i$ in row $i$.  A
+\defin{set-valued filling} puts a nonempty subset of $\{1,\dotsc,n\}$ in each
+cell.  The largest element of a cell is its \defin{anchor}, and the other
+elements are \defin{free}.  The filling is semistandard if
+\begin{itemize}
+\item entries do not repeat in a column;
+\item rows weakly decrease from left to right, starting with the basement,
+where a set $A$ may stand to the left of a set $B$ only if
+$\min A \geq \max B$;
+\item for rows $i \lt j$ and $k \geq 0$, the anchors $a$, $b$, $c$ of the
+following three cells never satisfy $a \leq b \leq c$, whenever all three cells
+exist: $c=(i,k)$, $a=(i,k+1)$, $b=(j,k+1)$ if $\gamma_i \geq \gamma_j$, and
+$b=(i,k)$, $c=(j,k)$, $a=(j,k+1)$ if $\gamma_i \lt \gamma_j$;
+\item if $a$ is a free entry in cell $(r,k)$, then for every row $r' \lt r$
+that has a cell $(r',k)$, either $a$ is larger than the anchor of $(r',k)$, or
+the cell $(r',k+1)$ exists and $a$ is smaller than its anchor.
+\end{itemize}
+Monical defines a combinatorial Lascoux atom as the generating function
+$\sum_F \beta^{|F|-|\gamma|}\xvec^F$ over these fillings, where $|F|$ is the
+total number of entries and $\xvec^F$ records all entries
+\cite[Def.~1.1]{Monical2017}.  She conjectured that it equals the Lascoux atom
+$\lascouxAtom^{(\beta)}_\gamma$ \cite[Conj.~5.2]{Monical2017}.  Here
+$\lascouxAtom^{(\beta)}_\gamma$ is defined by the recursion above with
+$\pi_i^{(\beta)} - 1$ in place of $\pi_i^{(\beta)}$.  This conjecture is
+proved in \cite[Thm.~4.4]{BuciumasScrimshawWeber2020}.  Every Lascoux
+polynomial is a sum of Lascoux atoms \cite[Thm.~5.1]{Monical2017}:
+$\lascoux^{(\beta)}_\alpha = \sum_\gamma \lascouxAtom^{(\beta)}_\gamma$.
+The sum runs over the rearrangements $\gamma$ of $\alpha$ such that
+$w(\gamma) \leq w(\alpha)$ in Bruhat order, where $w(\gamma)$ is the shortest
+permutation that sorts the decreasing rearrangement of $\gamma$ into $\gamma$.
+Together, these results give a set-valued skyline model for the Lascoux
+polynomials themselves.
+
+\begin{example*}[Set-valued skyline fillings for $\alpha = (0,2,1)$]
+Here $w(\alpha) = 231$, and the weak compositions below $\alpha$ are
+$(2,1,0)$, $(2,0,1)$, $(1,2,0)$, and $(0,2,1)$.  Their semistandard set-valued
+skyline fillings are listed below: first the single filling for $(2,1,0)$, the
+two for $(2,0,1)$, and the two for $(1,2,0)$, and then the six for $(0,2,1)$.
+The basement is shaded, and a cell containing $\{2,1\}$ is written $2,1$.
+\begin{figure}
+\begin{ytableau}
+*(lightgray) 1 & 1 & 1 \\
+*(lightgray) 2 & 2 \\
+*(lightgray) 3
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 & 1 & 1 \\
+*(lightgray) 2 \\
+*(lightgray) 3 & 3
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 & 1 & 1 \\
+*(lightgray) 2 \\
+*(lightgray) 3 & 3,2
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 & 1 \\
+*(lightgray) 2 & 2 & 2 \\
+*(lightgray) 3
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 & 1 \\
+*(lightgray) 2 & 2 & 2,1 \\
+*(lightgray) 3
+\end{ytableau}
+\end{figure}
+\begin{figure}
+\begin{ytableau}
+*(lightgray) 1 \\
+*(lightgray) 2 & 2 & 1 \\
+*(lightgray) 3 & 3
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 \\
+*(lightgray) 2 & 2 & 2 \\
+*(lightgray) 3 & 3
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 \\
+*(lightgray) 2 & 2 & 2 \\
+*(lightgray) 3 & 3,1
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 \\
+*(lightgray) 2 & 2 & 2,1 \\
+*(lightgray) 3 & 3
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 \\
+*(lightgray) 2 & 2 & 2,1 \\
+*(lightgray) 3 & 3,1
+\end{ytableau}
+\begin{ytableau}
+*(lightgray) 1 \\
+*(lightgray) 2 & 2,1 & 1 \\
+*(lightgray) 3 & 3
+\end{ytableau}
+\end{figure}
+The corresponding Lascoux atoms are
+\[
+\begin{split}
+\lascouxAtom^{(\beta)}_{(2,1,0)} &= x_1^2x_2, \qquad
+\lascouxAtom^{(\beta)}_{(2,0,1)} = x_1^2x_3 + \beta x_1^2x_2x_3, \qquad
+\lascouxAtom^{(\beta)}_{(1,2,0)} = x_1x_2^2 + \beta x_1^2x_2^2, \\
+\lascouxAtom^{(\beta)}_{(0,2,1)} &= x_1x_2x_3 + x_2^2x_3
+  + \beta\left(2x_1x_2^2x_3 + x_1^2x_2x_3\right) + \beta^2x_1^2x_2^2x_3 .
+\end{split}
+\]
+These atoms agree with Monical's table of the rearrangements of $(2,1,0)$
+\cite[Fig.~1]{Monical2017}.  Their sum is the polynomial
+$\lascoux^{(\beta)}_{(0,2,1)}$ computed from $K$-Kohnert diagrams in the
+example below.  In particular, both models have eleven objects.
+\end{example*}
 
 Another set-valued tableau formula is proved in
 \cite[Thm.~1.1]{ReinerYong2021}.

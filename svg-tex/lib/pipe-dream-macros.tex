@@ -1,0 +1,265 @@
+% Pipe dreams and bumpless pipe dreams.  Load after TikZ: \input{pipe-dream-macros}.
+% No external macro dependency.  The macros only draw: the inputs (cross
+% lists and tile rows) come from Rust, sym-poly/multipoly/src/{pipe_dream,
+% bumpless_pipe_dream}.rs and examples/pipe_dreams_site_example.rs.  Pipe
+% colours are found by following each pipe through the given tiles.
+%
+% Grid: rows 1..n from the top, columns 1..n from the left; cell (i,j) is
+% row i, column j.  One unit = one cell (key `cell size').
+%
+% \pipeDream[keys]{n}{i/j,...}
+%   Classical pipe dream (rc-graph), Knutson--Miller arXiv:math/0110058,
+%   Section 1.4, Defs. 16 and 18, Lemma 20; Bergeron--Billey 1993.  Crosses at
+%   the listed cells (i+j <= n), elbows elsewhere.  Pipe i enters row i from
+%   the west and leaves through the top of column w(i).  Default: the
+%   staircase i+j <= n+1 (the antidiagonal cells show only their west-north
+%   elbow); `full grid' draws the n x n square with the elbow "sea" in grey.
+%
+% \bumplessPipeDream[keys]{n}{row 1,row 2,...,row n}
+%   Bumpless pipe dream, Lam--Lee--Shimozono arXiv:1806.11233, Section 5;
+%   Weigandt arXiv:2003.07342, Section 1.1.  One character per tile, left to
+%   right, rows top to bottom:
+%     .  blank          +  cross          -  horizontal (west-east)
+%     |  vertical       r  south-east elbow (south to east, r-shaped)
+%     j  north-west elbow (west to north, J-shaped);  O is accepted for blank
+%   Pipe j enters the bottom of column j; the pipe leaving row i on the east
+%   carries label w(i) (Weigandt (2.1), Figure 1).
+%   Example (Rothe BPD of 2143): \bumplessPipeDream{4}{.r--,r+--,||.r,||r+}
+%
+% Keys (both macros; also \pipeDreamSet{keys} for document-wide defaults):
+%   cell size=<length>   side of one cell (default 0.5cm)
+%   colored pipes        one Okabe--Ito colour per pipe (by pipe label);
+%   monochrome pipes     default: every pipe in `pd pipe' colour
+%   left labels={a,b,...}, top labels=..., right labels=..., bottom labels=...
+%                        labels outside the grid, row/column order as above;
+%                        typeset in math mode; coloured like their pipe when
+%                        pipes are coloured.  Aliases: row labels = left
+%                        labels, column labels = top labels.
+%   plain labels         keep labels black even with coloured pipes (use for
+%                        nonreduced BPDs, whose east labels are the Demazure
+%                        product rather than the pipes' own labels)
+%   marked cells={i/j,...}  shade cells (pd marked style), e.g. Weigandt's
+%                        marked elbows
+%   full grid            (\pipeDream only) draw the whole n x n square
+%   no grid              omit the thin cell grid
+% Any other key is passed to TikZ.  Styles to restyle: pd grid, pd frame,
+% pd pipe, pd sea, pd label, pd marked; colours pdPipe1,...,pdPipe8.
+
+\definecolor{pdPipe1}{RGB}{0,114,178}
+\definecolor{pdPipe2}{RGB}{213,94,0}
+\definecolor{pdPipe3}{RGB}{0,158,115}
+\definecolor{pdPipe4}{RGB}{204,121,167}
+\definecolor{pdPipe5}{RGB}{150,130,0}
+\definecolor{pdPipe6}{RGB}{86,180,233}
+\definecolor{pdPipe7}{RGB}{230,159,0}
+\definecolor{pdPipe8}{RGB}{90,90,90}
+
+\tikzset{
+  pd grid/.style={draw=black!18,line width=0.3pt},
+  pd frame/.style={draw=black!55,line width=0.5pt},
+  pd pipe/.style={draw=black,line width=1.3pt,line cap=butt},
+  pd sea/.style={draw=black!25,line width=0.5pt,line cap=butt},
+  pd label/.style={font=\footnotesize,inner sep=2pt},
+  pd marked/.style={fill=black!12}
+}
+
+\makeatletter
+\newcount\pd@id
+\newcount\pd@row
+\newcount\pd@col
+\newcount\pd@last
+\newif\ifpd@colored
+\newif\ifpd@full
+\newif\ifpd@grid
+\pd@gridtrue
+\newif\ifpd@plainlabels
+\pgfkeys{
+  /pipe dreams/.is family,
+  /pipe dreams/.search also={/tikz},
+  /pipe dreams/cell size/.store in=\pd@cellsize,
+  /pipe dreams/cell size=0.5cm,
+  /pipe dreams/colored pipes/.code={\pd@coloredtrue},
+  /pipe dreams/monochrome pipes/.code={\pd@coloredfalse},
+  /pipe dreams/full grid/.code={\pd@fulltrue},
+  /pipe dreams/no grid/.code={\pd@gridfalse},
+  /pipe dreams/plain labels/.code={\pd@plainlabelstrue},
+  /pipe dreams/left labels/.store in=\pd@leftlabels,
+  /pipe dreams/top labels/.store in=\pd@toplabels,
+  /pipe dreams/right labels/.store in=\pd@rightlabels,
+  /pipe dreams/bottom labels/.store in=\pd@bottomlabels,
+  /pipe dreams/row labels/.store in=\pd@leftlabels,
+  /pipe dreams/column labels/.store in=\pd@toplabels,
+  /pipe dreams/marked cells/.store in=\pd@marked,
+  /pipe dreams/left labels=,
+  /pipe dreams/top labels=,
+  /pipe dreams/right labels=,
+  /pipe dreams/bottom labels=,
+  /pipe dreams/marked cells=,
+}
+\newcommand{\pipeDreamSet}[1]{\pgfkeys{/pipe dreams/.cd,#1}}
+
+% Per-picture state, global because \foreach bodies are groups.
+\def\pd@get#1{\csname pd@\the\pd@id @#1\endcsname}
+\def\pd@set#1#2{\expandafter\xdef\csname pd@\the\pd@id @#1\endcsname{#2}}
+
+% \pd@style{label}: the style of a pipe segment with this label (0 = no pipe).
+\def\pd@style#1{%
+  \ifnum#1=0 pd sea\else
+    \ifpd@colored pd pipe,draw=pdPipe\pd@cidx{#1}%
+    \else pd pipe\fi
+  \fi}
+\def\pd@labelcolor#1{%
+  \ifpd@plainlabels\else
+    \ifpd@colored\ifnum#1>0 text=pdPipe\pd@cidx{#1}\fi\fi
+  \fi}
+% Palette index 1..8 of a positive label (labels above 8 cycle).
+\def\pd@cidx#1{\ifnum#1>8 \expandafter\pd@cidx\expandafter{\the\numexpr#1-8\relax}%
+  \else\number#1\fi}
+% Segment drawers in cell (\pd@row,\pd@col); #1 = label.
+\def\pd@seg#1#2{% #2 = path from the cell's lower-left corner
+  \edef\pd@st{\pd@style{#1}}%
+  \ifnum#1=0 \ifpd@full\else\def\pd@st{draw=none}\fi\fi
+  \expandafter\draw\expandafter[\pd@st]
+    (\the\numexpr\pd@col-1\relax,-\the\pd@row) #2;}
+\def\pd@horizontal#1{\pd@seg{#1}{++(0,0.5) -- ++(1,0)}}
+\def\pd@vertical#1{\pd@seg{#1}{++(0.5,0) -- ++(0,1)}}
+\def\pd@westnorth#1{\pd@seg{#1}{++(0,0.5) arc[start angle=-90,end angle=0,radius=0.5]}}
+\def\pd@southeast#1{\pd@seg{#1}{++(0.5,0) arc[start angle=180,end angle=90,radius=0.5]}}
+
+% Common picture set-up: keys, units, marked cells.
+\def\pd@begin#1{%
+  \global\advance\pd@id by 1
+  \pgfkeys{/pipe dreams/.cd,#1}%
+  \tikzset{x=\pd@cellsize,y=\pd@cellsize}%
+  \if\relax\detokenize\expandafter{\pd@marked}\relax\else
+    \foreach \pd@i/\pd@j in \pd@marked {%
+      \path[pd marked] (\pd@j-1,-\pd@i) rectangle ++(1,1);}%
+  \fi}
+
+% Labels; \pd@labels{list}{side}{n}.  Colours come from \pd@get{<side>@k}.
+\def\pd@labels#1#2#3{%
+  \if\relax\detokenize\expandafter{#1}\relax\else
+    \foreach \pd@lab [count=\pd@k] in #1 {%
+      \edef\pd@lc{\expandafter\ifx\csname pd@\the\pd@id @#2@\pd@k\endcsname\relax
+        \else\pd@labelcolor{\pd@get{#2@\pd@k}}\fi}%
+      \pd@labelnode{#2}{#3}%
+    }%
+  \fi}
+\def\pd@labelnode#1#2{%
+  \def\pd@side{#1}%
+  \def\pd@l{left}\def\pd@t{top}\def\pd@r{right}%
+  \ifx\pd@side\pd@l
+    \expandafter\node\expandafter[\pd@lc,pd label,anchor=east]
+      at (0,0.5-\pd@k) {$\pd@lab$};%
+  \else\ifx\pd@side\pd@t
+    \expandafter\node\expandafter[\pd@lc,pd label,anchor=south]
+      at (\pd@k-0.5,0) {$\pd@lab$};%
+  \else\ifx\pd@side\pd@r
+    \expandafter\node\expandafter[\pd@lc,pd label,anchor=west]
+      at (#2,0.5-\pd@k) {$\pd@lab$};%
+  \else
+    \expandafter\node\expandafter[\pd@lc,pd label,anchor=north]
+      at (\pd@k-0.5,-#2) {$\pd@lab$};%
+  \fi\fi\fi}
+
+% ---------------------------------------------------------------- pipe dreams
+\newcommand{\pipeDream}[3][]{%
+  \begin{tikzpicture}[line join=round]
+    \pd@fullfalse
+    \pd@begin{#1}%
+    \pgfmathtruncatemacro{\pd@n}{#2}%
+    \if\relax\detokenize{#3}\relax\else
+      \foreach \pd@i/\pd@j in {#3} {\pd@set{x@\pd@i @\pd@j}{1}}%
+    \fi
+    % Grid and frame.
+    \foreach \pd@i in {1,...,\pd@n} {%
+      \ifpd@full\pgfmathtruncatemacro{\pd@m}{\pd@n}%
+      \else\pgfmathtruncatemacro{\pd@m}{\pd@n-\pd@i+1}\fi
+      \ifpd@grid
+        \foreach \pd@j in {1,...,\pd@m} {%
+          \path[pd grid] (\pd@j-1,-\pd@i) rectangle ++(1,1);}%
+      \fi}%
+    \ifpd@full
+      \path[pd frame] (0,0) rectangle (\pd@n,-\pd@n);
+    \else
+      \path[pd frame] (0,-\pd@n) -- (0,0) -- (\pd@n,0)
+        \foreach \pd@i in {1,...,\pd@n} { |- (\pd@n-\pd@i,-\pd@i) };
+    \fi
+    % Follow pipes: rows bottom to top, cells left to right.
+    \foreach \pd@j in {1,...,\pd@n} {\pd@set{v@\pd@j}{0}}%
+    \foreach \pd@i in {\pd@n,...,1} {%
+      \global\pd@row=\pd@i\relax
+      \xdef\pd@h{\pd@i}%
+      \ifpd@full\global\pd@last=\pd@n\else\global\pd@last=\numexpr\pd@n-\pd@i+1\relax\fi
+      \foreach \pd@j in {1,...,\the\pd@last} {%
+        \global\pd@col=\pd@j\relax
+        \edef\pd@v{\pd@get{v@\pd@j}}%
+        \expandafter\ifx\csname pd@\the\pd@id @x@\the\pd@row @\pd@j\endcsname\relax
+          \pd@westnorth{\pd@h}\pd@southeast{\pd@v}%
+          \pd@set{v@\pd@j}{\pd@h}\xdef\pd@h{\pd@v}%
+        \else
+          \pd@vertical{\pd@v}\pd@horizontal{\pd@h}%
+        \fi}%
+    }%
+    \foreach \pd@j in {1,...,\pd@n} {%
+      \pd@set{top@\pd@j}{\pd@get{v@\pd@j}}\pd@set{left@\pd@j}{\pd@j}}%
+    \pd@labels\pd@leftlabels{left}{\pd@n}%
+    \pd@labels\pd@toplabels{top}{\pd@n}%
+    \pd@labels\pd@rightlabels{right}{\pd@n}%
+    \pd@labels\pd@bottomlabels{bottom}{\pd@n}%
+  \end{tikzpicture}%
+}
+
+% ------------------------------------------------------- bumpless pipe dreams
+\def\pd@bpdrow#1{\global\pd@col=0 \xdef\pd@h{0}\pd@bpdscan#1\pd@stop}
+\def\pd@bpdscan#1{%
+  \ifx#1\pd@stop\else
+    \global\advance\pd@col by 1
+    \pd@bpdtile#1%
+    \expandafter\pd@bpdscan
+  \fi}
+\def\pd@bpdtile#1{%
+  \edef\pd@v{\pd@get{v@\the\pd@col}}%
+  \if#1-\pd@horizontal{\pd@h}\fi
+  \if#1|\pd@vertical{\pd@v}\fi
+  \if#1+\pd@vertical{\pd@v}\pd@horizontal{\pd@h}\fi
+  \if#1r\pd@southeast{\pd@v}\xdef\pd@h{\pd@v}\pd@set{v@\the\pd@col}{0}\fi
+  \if#1j\pd@westnorth{\pd@h}\pd@set{v@\the\pd@col}{\pd@h}\xdef\pd@h{0}\fi}
+
+% Rows are split at commas by hand: \foreach would read "..." as a range.
+\def\pd@endmarker{\pd@end}
+\def\pd@storerows#1,{%
+  \def\pd@tmp{#1}%
+  \ifx\pd@tmp\pd@endmarker\else
+    \global\advance\pd@row by 1
+    \pd@set{row@\the\pd@row}{\detokenize{#1}}%
+    \expandafter\pd@storerows
+  \fi}
+
+\newcommand{\bumplessPipeDream}[3][]{%
+  \begin{tikzpicture}[line join=round]
+    \pd@fullfalse
+    \pd@begin{#1}%
+    \pd@fulltrue % no pipe-less arcs are ever drawn in a BPD
+    \pgfmathtruncatemacro{\pd@n}{#2}%
+    \global\pd@row=0
+    \pd@storerows#3,\pd@end,%
+    \ifpd@grid
+      \foreach \pd@i in {1,...,\pd@n} {\foreach \pd@j in {1,...,\pd@n} {%
+        \path[pd grid] (\pd@j-1,-\pd@i) rectangle ++(1,1);}}%
+    \fi
+    \path[pd frame] (0,0) rectangle (\pd@n,-\pd@n);
+    \foreach \pd@j in {1,...,\pd@n} {%
+      \pd@set{v@\pd@j}{\pd@j}\pd@set{bottom@\pd@j}{\pd@j}}%
+    \foreach \pd@i in {\pd@n,...,1} {%
+      \global\pd@row=\pd@i\relax
+      \edef\pd@rowstring{\pd@get{row@\pd@i}}%
+      \expandafter\pd@bpdrow\expandafter{\pd@rowstring}%
+      \pd@set{right@\pd@i}{\pd@h}}%
+    \pd@labels\pd@leftlabels{left}{\pd@n}%
+    \pd@labels\pd@toplabels{top}{\pd@n}%
+    \pd@labels\pd@rightlabels{right}{\pd@n}%
+    \pd@labels\pd@bottomlabels{bottom}{\pd@n}%
+  \end{tikzpicture}%
+}
+\makeatother

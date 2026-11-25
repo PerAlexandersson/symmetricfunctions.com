@@ -91,11 +91,11 @@ quasisymmetric families.
 The $K$-theoretic analogue of fundamental slide polynomials is given by the
 \defin{glide polynomials}\label{glidePolynomial}
 \cite{PechenikSearles2017}.
-They refine stable \hyperref[grothendieck]{Grothendieck polynomials} in the
+They refine \hyperref[grothendieck]{Grothendieck polynomials} in the
 same way that fundamental slide polynomials refine
 \hyperref[schubert]{Schubert polynomials}.
-\todo{Add a small checked glide-polynomial example, preferably next to the
-fundamental slide example and backed by Rust or a paper computation.}
+A definition and a small example are given after the fundamental slide
+example below.
 
 
 The fundamental slide polynomials expand positively 
@@ -171,6 +171,63 @@ x_1x_3^2+x_1x_2x_3+x_1x_2^2
 \]
 \end{example}
 
+\name{Oliver Pechenik} and \name{Dominic Searles} define the glide
+polynomials using weak compositions with coloured entries.
+A \defin{weak komposition}\label{weakKomposition} (the spelling is theirs) is
+a weak composition whose positive entries are each coloured black or red.
+The \defin{excess} $\mathrm{ex}(b)$ of a weak komposition $b$ is its number
+of red entries.
+
+\begin{definition}
+Let $\alpha$ be a weak composition of length $n$ with nonzero entries in
+positions $n_1<\dotsb<n_\ell$.  A weak komposition $b$ of length $n$ is a
+\defin{glide}\label{glideOfWeakComposition} of $\alpha$ if there are integers
+$0=i_0<i_1<\dotsb<i_\ell$, with $b_k=0$ for $k>i_\ell$, such that for every
+$1\leq j\leq \ell$:
+\begin{itemize}
+\item $\alpha_{n_j}=b_{i_{j-1}+1}+\dotsb+b_{i_j}
+  -\mathrm{ex}(b_{i_{j-1}+1},\dotsc,b_{i_j})$,
+\item $i_j\leq n_j$, and
+\item the leftmost nonzero entry among $b_{i_{j-1}+1},\dotsc,b_{i_j}$ is black.
+\end{itemize}
+The \hyperref[glidePolynomial]{glide polynomial} is
+\[
+\mathcal{G}^{(\beta)}_\alpha(\xvec)
+\coloneqq
+\sum_{b} \beta^{\mathrm{ex}(b)}\xvec^{b},
+\]
+where the sum is over all glides $b$ of $\alpha$
+\cite[Def.~2.2 and Def.~2.5]{PechenikSearles2017}.
+Different colourings of the same weak composition count as different glides.
+\end{definition}
+
+The third condition is stated for the leftmost \emph{nonzero} entry in
+\cite[Def.~2.1]{MonicalPechenikSearles2021}, which restates the definition
+of \cite{PechenikSearles2017}.
+Setting $\beta=0$ keeps only the glides without red entries, and
+$\mathcal{G}^{(0)}_\alpha=\slideF_\alpha$
+\cite[Prop.~2.16]{PechenikSearles2017}.
+
+\begin{example}
+Let $\alpha=(1,0,2)$, so $n_1=1$ and $n_2=3$.
+The first block is $b_1$ alone.  Its only nonzero entry must be black, so
+$b_1=1$.
+The second block is $b_2$ or $b_2b_3$, and its sum is $2$ plus its number of
+red entries.
+Without red entries we get $(1,0,2)$, $(1,1,1)$ and $(1,2,0)$, the three
+exponents of $\slideF_{(1,0,2)}$ above.
+A red entry must be $b_3$, with $b_2\geq 1$ black.  This gives the two glides
+$(1,1,2)$ and $(1,2,1)$ with $b_3$ red.  Two red entries are impossible.
+Hence
+\[
+\mathcal{G}^{(\beta)}_{(1,0,2)}(\xvec)
+=
+x_1x_3^2+x_1x_2x_3+x_1x_2^2
++\beta\left(x_1x_2x_3^2+x_1x_2^2x_3\right),
+\]
+and setting $\beta=0$ recovers $\slideF_{(1,0,2)}(\xvec)$.
+\end{example}
+
 \subsection[fundamentalParticle]{Fundamental particle basis}
 
 \begin{polydata}{fundamentalParticle}
@@ -194,8 +251,59 @@ the usual Demazure atom operators with Hivert's quasisymmetric divided
 difference operators \cite{HicksNiese2024x}.  In this form the basis has an
 explicit monomial-positive formula, and the fundamental slide polynomials
 expand positively in the fundamental particle basis.
-\todo{Add a checked fundamental-particle expansion example, and compare it
-with the fundamental slide expansion for a small weak composition.}
+
+Searles defines the basis through local moves on weak compositions.
+A \defin{slide}\label{slideOfWeakComposition} of $\alpha$ is a weak
+composition obtained from $\alpha$ by a sequence of moves
+$\dotsc 0k\dotsc \to \dotsc ij\dotsc$ with $i+j=k$ and $i,j\geq 0$.
+It is a \defin{fixed slide}\label{fixedSlide} if, in addition, $j>0$
+whenever $k$ occupies a position where $\alpha$ is nonzero.
+The fundamental slide polynomial $\slideF_\alpha$ is the generating
+function of the slides of $\alpha$, and
+\[
+L_\alpha(\xvec) \coloneqq \sum_{b \text{ fixed slide of } \alpha} \xvec^{b}
+\]
+\cite[Def.~4.1, Lem.~4.3 and Def.~4.4]{Searles2019PolynomialBases}.
+The fundamental slide polynomials expand into fundamental particles by the
+same rule that expands monomial slide polynomials into monomials:
+\[
+\slideF_\alpha(\xvec)
+=
+\sum_{\substack{b \trianglerighteq \alpha \\
+                \mathrm{flat}(b)=\mathrm{flat}(\alpha)}}
+L_b(\xvec)
+\]
+\cite[Prop.~4.7]{Searles2019PolynomialBases}.
+
+\begin{example}
+Let $\alpha=(1,0,2)$ as in the fundamental slide example above.
+Its slides are $(1,0,2)$, $(1,1,1)$ and $(1,2,0)$.
+Position $3$ is nonzero in $\alpha$, so a fixed slide may not move all of the
+$2$ out of position $3$.  This excludes $(1,2,0)$, and
+\[
+L_{(1,0,2)}(\xvec)=x_1x_3^2+x_1x_2x_3,
+\qquad
+L_{(1,2,0)}(\xvec)=x_1x_2^2.
+\]
+The weak compositions $b\trianglerighteq(1,0,2)$ with
+$\mathrm{flat}(b)=(1,2)$ are $(1,0,2)$ and $(1,2,0)$, so
+\[
+\slideF_{(1,0,2)}(\xvec)
+=
+L_{(1,0,2)}(\xvec)+L_{(1,2,0)}(\xvec)
+=
+\slideM_{(1,0,2)}(\xvec)+\slideM_{(1,1,1)}(\xvec).
+\]
+Both expansions have two terms, but they group the monomial $x_1x_2x_3$
+differently.  In the monomial slide expansion it forms
+$\slideM_{(1,1,1)}$ on its own.  In the particle expansion it lies in
+$L_{(1,0,2)}$, together with the leading monomial $x_1x_3^2$.
+In the operator description of \cite{HicksNiese2024x}, this is
+$L_{(1,0,2)}=\tilde{\theta}_2\, x_1x_2^2$, where Hivert's operator
+$\tilde{\theta}_2$ sends $\xvec^{(a,c,0)}$ with $c>0$ to
+$\sum_{j=1}^{c} \xvec^{(a,c-j,j)}$
+\cite[Def.~3.1, Lem.~3.3, Lem.~3.4 and Cor.~3.11]{HicksNiese2024x}.
+\end{example}
 
 
 \subsection[slidePositive]{Slide positive families}

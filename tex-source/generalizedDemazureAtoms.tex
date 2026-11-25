@@ -29,9 +29,7 @@ but the definitions differ.
 The families studied in \cite{Alexandersson2015gbMacdonald} and \cite{AlexanderssonSawhney2019}
 are referred to as \emph{permuted-basement atoms} and are not the same as 
 generalized Demazure atoms.
-\todo{Add a small generalized Demazure atom filling example comparing
-identity and reverse-identity basements, and distinguish it from the
-permuted-basement atom convention using checked data.}
+An example below shows the difference.
 
 The generalized Demazure atoms have nice properties with respect to insertion algorithms and \hyperref[rsk]{RSK},
 while the permuted-basement atoms are compatible with Demazure--Lusztig operators and representation theory.
@@ -46,6 +44,74 @@ For the reverse-identity basement this sum has a single nonzero term, so
 Schur functions occur as a subfamily.  For the identity basement one recovers
 Mason's Demazure atoms.  The $t$-deformed basement families are recorded here
 as \hyperref[permutedBasementTAtom]{permuted-basement $t$-atoms}.
+
+We use the description of the fillings in \cite[Sect.~2]{RemmelTiefenbruck2013}.
+Let $\gamma$ be a weak composition with $n$ parts and let $\sigma\in\symS_n$.
+Draw $\gamma$ as a skyline diagram, with $\gamma_i$ cells in column $i$,
+and add a basement row $0$ filled with $\sigma_1,\dotsc,\sigma_n$
+from left to right.  Write $F(i,j)$ for the entry in column $i$ and row $j$.
+A \defin{permuted basement filling}\label{permutedBasementFillingHMR} (PBF)
+of shape $\gamma$ and basement $\sigma$ is a filling of the cells with
+positive integers such that
+\begin{itemize}
+\item entries weakly decrease up each column, starting from the basement,
+\item every triple of type $A$ or type $B$ is an inversion triple, and
+\item (\defin{B-increasing condition}) if $i<l$ and $\gamma_i<\gamma_l$, then
+  $F(i,j-1)<F(l,j)$ for all $j\geq 1$.
+\end{itemize}
+The generalized Demazure atom $\widehat{E}^{\sigma}_\gamma(\xvec)$ is the sum
+of $\xvec^{F}$ over all PBFs $F$, where basement entries are not counted.
+It vanishes unless $\gamma_i\geq\gamma_j$ whenever $i<j$ and
+$\sigma_i>\sigma_j$ \cite[Sect.~2]{RemmelTiefenbruck2013}.
+Compared with the fillings for permuted-basement atoms, PBFs satisfy the
+extra B-increasing condition \cite[Rem.~24]{Alexandersson2015gbMacdonald}.
+
+\begin{example}
+Let $n=2$ and $\beta=(2,1)$, so $\gamma$ is $(2,1)$ or $(1,2)$.
+Below, the bottom row of each diagram is the basement.
+For the identity basement $\sigma=(1,2)$, each shape has exactly one PBF:
+\begin{figure}
+\ytableaushort{1{\none},12,12}
+\ytableaushort{{\none}2,12,12}
+\end{figure}
+Hence $\widehat{E}^{(1,2)}_{(2,1)}(\xvec)=x_1^2x_2$ and
+$\widehat{E}^{(1,2)}_{(1,2)}(\xvec)=x_1x_2^2$.  These are the Demazure atoms
+of \cite{Mason2009} with the same indices, and they sum to
+$\schurS_{(2,1)}(x_1,x_2)$.
+
+For the reverse-identity basement $\sigma=(2,1)$, the shape $(2,1)$ has two
+PBFs:
+\begin{figure}
+\ytableaushort{2{\none},21,21}
+\ytableaushort{1{\none},21,21}
+\end{figure}
+so $\widehat{E}^{(2,1)}_{(2,1)}(\xvec)=x_1x_2^2+x_1^2x_2=\schurS_{(2,1)}(x_1,x_2)$.
+The shape $(1,2)$ has no PBF.  The B-increasing condition would require
+$2=F(1,0)<F(2,1)\leq F(2,0)=1$.  Hence $\widehat{E}^{(2,1)}_{(1,2)}=0$.
+
+The \hyperref[permutedBasementAtom]{permuted-basement atom}
+$\atom^{\sigma}_\alpha(\xvec)=\macdonaldE^{\sigma}_\alpha(\xvec;0,0)$
+uses the same basement and shape, but has no B-increasing condition.
+In the English convention of that page, with rows instead of columns, the
+basement $(2,1)$ and shape $(1,2)$ have the single filling
+\begin{figure}
+\ytableaushort{22,111}
+\end{figure}
+where the first column is the basement.  Hence
+$\atom^{(2,1)}_{(1,2)}(\xvec)=x_1^2x_2\neq 0$.  Similarly
+$\atom^{(2,1)}_{(2,1)}(\xvec)=x_1^2x_2+x_1x_2^2$.
+With this basement the permuted-basement atoms are key polynomials
+\cite[Sect.~3.1]{Alexandersson2015gbMacdonald}.  Their sum
+$2x_1^2x_2+x_1x_2^2$ is not a Schur polynomial.
+For the identity basement, the two families agree in this example.
+\end{example}
+
+A computer check of the same comparison for $n=3$ and $\beta=(2,1,0)$ gives
+the following.
+For each of the six basements $\sigma$, the two families agree on the
+shapes $\gamma$ with $\gamma_i\geq\gamma_j$ whenever $i<j$ and
+$\sigma_i>\sigma_j$.  On every other rearrangement $\gamma$ of $(2,1,0)$, the
+generalized Demazure atom vanishes and the permuted-basement atom does not.
 
 \name{Janine LoBue Tiefenbruck} and \name{Jeffrey B. Remmel} prove a
 Murnaghan--Nakayama rule for generalized Demazure atoms

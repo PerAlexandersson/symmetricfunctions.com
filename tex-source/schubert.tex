@@ -193,9 +193,6 @@ Grassmannian case, and is compatible with generalized chute moves.
 
 \subsection[schubertBumplessPipeDream]{Bumpless pipe dreams}
 
-\todo{Add good worked examples with pipe dreams and bumpless pipe dreams,
-preferably for the same small permutation.}
-
 The notion of \defin{bumpless pipe dreams}\label{bumplessPipeDream} was introduced by
 \name{Thomas Lam}, \name{Seung Jin Lee}, and \name{Mark Shimozono} in \cite{LamLeeShimozono2018x}.
 They prove the following formula for the \hyperref[schubertDouble]{double Schubert polynomials}:
@@ -206,6 +203,76 @@ where the sum runs over \emph{reduced bumpless pipe dreams}.
 This formula can be lifted to a formula for the
 \hyperref[grothendieckDouble]{double Grothendieck polynomials}.
 
+In a bumpless pipe dream for $\omega \in \symS_n$, there are $n$ pipes in the
+$n \times n$ grid, with rows and columns indexed from the upper-left corner.
+The pipe that enters at the bottom of column $\omega(i)$ travels only north
+and east, and leaves the grid at the right end of row $i$.  Each tile is
+empty, a cross, a horizontal or vertical segment, or an elbow joining the
+south and east edges or the west and north edges.  No tile contains two
+elbows, which is why there are no bumps.  The bumpless pipe dream is
+\defin{reduced} if any two pipes cross at most once, and $D(P)$ is the set of
+empty tiles.  Setting $\yvec = 0$ in the formula above gives
+$\schubert_\omega(\xvec) = \sum_{P} \prod_{(i,j) \in D(P)} x_i$, the sum running
+over reduced bumpless pipe dreams; see also \cite[Thms.~4.3 and~4.8]{Weigandt2025x}.
+
+\begin{example*}[Pipe dreams and bumpless pipe dreams for $2143$]
+Let $\omega = 2143$.  Then $\length(\omega) = 2$ and
+\[
+  \schubert_{2143} = x_1^2 + x_1x_2 + x_1x_3.
+\]
+The reduced words of $\omega$ are $13$ and $31$.  The only $31$-compatible
+sequence is $11$, while the $13$-compatible sequences are $12$ and $13$.
+Thus the three \hyperref[pipeDream]{reduced pipe dreams} of $\omega$ have their
+crosses in positions
+\[
+  \{(1,1),(1,3)\}, \qquad \{(1,1),(2,2)\}, \qquad \{(1,1),(3,1)\},
+\]
+and they contribute $x_1^2$, $x_1x_2$, and $x_1x_3$, respectively.
+
+\svgimg[width=0.65\textwidth]{svg-images/pipe-dreams-2143.svg}{The three
+reduced pipe dreams of 2143, with crosses at (1,1),(1,3); (1,1),(2,2); and
+(1,1),(3,1), and weights x1^2, x1x2 and x1x3.  Pipe i enters row i on the left
+and leaves the top of column w(i).}
+% Related Rust: sym-poly/multipoly/examples/pipe_dreams_site_example.rs
+
+There are also three reduced bumpless pipe dreams of $\omega$.  The
+\defin{Rothe bumpless pipe dream} has no west-to-north elbows, and its empty
+tiles $\{(1,1),(3,3)\}$ form the
+\hyperref[rotheDiagram]{Rothe diagram} of $\omega$.  The other two
+each have a single west-to-north elbow, in position $(3,3)$, and empty tiles
+$\{(1,1),(1,2)\}$ and $\{(1,1),(2,1)\}$, respectively.
+
+\svgimg[width=0.65\textwidth]{svg-images/bumpless-pipe-dreams-2143.svg}{The
+three reduced bumpless pipe dreams of 2143, with weights x1^2, x1x2 and x1x3;
+the last one is the Rothe bumpless pipe dream.  Pipe j enters the bottom of
+column j, and the pipe leaving row i on the right is labelled w(i).}
+
+The three bumpless pipe dreams contribute $x_1x_3$, $x_1^2$, and $x_1x_2$.  Both
+models therefore give $\schubert_{2143} = x_1^2 + x_1x_2 + x_1x_3$.
+
+Allowing non-reduced pipe dreams gives the
+\hyperref[grothendieckPipedreams]{Grothendieck polynomial} instead
+\cite[Thm.~4.3]{Weigandt2025x}.  Here the permutation of a pipe dream is read
+by following the pipes and ignoring a crossing of two pipes that have already
+crossed.  For $\omega = 2143$, there are four
+additional pipe dreams.  Three of them add one cross to the reduced ones,
+giving the cross sets $\{(1,1),(1,3),(2,2)\}$,
+$\{(1,1),(1,3),(3,1)\}$, and $\{(1,1),(2,2),(3,1)\}$.  The fourth is
+$\{(1,1),(1,3),(2,2),(3,1)\}$.
+
+\svgimg[width=0.85\textwidth]{svg-images/nonreduced-pipe-dreams-2143.svg}{The
+four non-reduced pipe dreams of 2143, with weights beta x1^2x2,
+beta^2 x1^2x2x3, beta x1^2x3 and beta x1x2x3 in the beta-normalization of the
+Grothendieck page; beta = -1 gives the signs below.}
+
+With the sign convention of
+the \hyperref[grothendieckOperatorformula]{Grothendieck page}, they give
+\[
+  \grothendieck_{2143}
+  = x_1^2 + x_1x_2 + x_1x_3 - x_1^2x_2 - x_1^2x_3 - x_1x_2x_3 + x_1^2x_2x_3 .
+\]
+\end{example*}
+
 \name{Anna Weigandt} uses bumpless pipe dreams to give explicit change-of-basis
 rules between Grothendieck and Schubert polynomials
 \cite{Weigandt2025x}.  In one direction, Grothendieck polynomials expand as
@@ -213,10 +280,112 @@ signed sums of Schubert polynomials; in the other, Schubert polynomials expand
 positively in the Grothendieck basis.  The bumpless pipe dream model also
 extends to a formula for expanding back stable Grothendieck polynomials in the
 back stable Schubert basis \cite[Thm.~8.1]{Weigandt2025x}.
-\todo{Add Lascoux's 2004 expansion of Schubert polynomials into Grothendieck
-polynomials \cite{Lascoux2004}.}
-\todo{Add Anna Weigandt's bumpless-pipe-dream formula analogue of Lascoux's
-Schubert-to-Grothendieck expansion.}
+
+In the following expansions, $\grothendieck_u$ is the ordinary Grothendieck
+polynomial, defined with $\pi_i(f) = \partial_i((1-x_{i+1})f)$ as on the
+\hyperref[grothendieckOperatorformula]{Grothendieck page}.  This is the case
+$\beta = -1$ of the $\beta$-normalization used there.  The
+\defin{Demazure product}\label{demazureProductWord} $\delta(a_1 a_2 \dotsm a_k)$ of a word
+in $\{1,\dotsc,n-1\}$ starts from the identity permutation and, for
+$j = 1, \dotsc, k$, swaps the entries in positions $a_j$ and $a_j+1$ whenever
+they form an ascent.  Equivalently, $\delta(a_1 \dotsm a_k)$ is the
+\hyperref[zeroHeckeAlgebra]{$0$-Hecke} product of the generators indexed by the word.
+
+\name{Alain Lascoux} expands every Schubert polynomial as a positive sum of
+Grothendieck polynomials \cite[Thm.~4]{Lascoux2004}.  He states the result for
+binary triangular arrays coming from a staircase Cauchy kernel.
+\name{Anna Weigandt} restates it in terms of pipe dreams
+\cite[Thm.~1.6]{Weigandt2025x}.  Let $P$ be a reduced pipe dream for
+$\omega \in \symS_n$, viewed as its set of crosses in the staircase
+$\{(i,j) : i+j \leq n\}$.  Read the staircase cells $(i,j)$ that are
+\emph{not} crosses of $P$ column by column from right to left, and from
+bottom to top within each column.  Record the letter $n-i$ for each cell.
+Writing the one-line notation of the Demazure product of this word backwards
+gives the \defin{co-permutation}\label{pipeDreamCoPermutation}
+$\check{\omega}(P)$ of $P$.  It is the permutation of the co-pipe dream
+associated with $P$ \cite[Lem.~4.4 and Lem.~4.5]{Weigandt2025x}.
+
+\begin{theorem}[Lascoux, see \cite[Thm.~4]{Lascoux2004} and \cite[Thm.~1.6]{Weigandt2025x}]
+For every $\omega \in \symS_n$,
+\[
+  \schubert_\omega = \sum_{P \in RC(\omega)} \grothendieck_{\check{\omega}(P)}.
+\]
+\end{theorem}
+
+For the $\beta$-normalization of the Grothendieck page, substitute
+$x_i \mapsto -\beta x_i$.  This gives
+$\schubert_\omega = \sum_{P \in RC(\omega)}
+(-\beta)^{\length(\check{\omega}(P)) - \length(\omega)}
+\grothendieck^{(\beta)}_{\check{\omega}(P)}$.
+For instance, the three reduced pipe dreams of $2143$ in the example above
+have co-permutations $2143$, $3142$, and $2341$, so
+\[
+  \schubert_{2143} = \grothendieck_{2143} + \grothendieck_{3142} + \grothendieck_{2341},
+\]
+which is the example given after \cite[Thm.~4]{Lascoux2004}; see also
+\cite[Ex.~1.8]{Weigandt2025x}.  The co-permutations need not be distinct.
+For $\omega = 1342$, the reduced pipe dreams with crosses
+$\{(1,2),(2,2)\}$, $\{(1,2),(3,1)\}$, and $\{(2,1),(3,1)\}$ have
+co-permutations $1342$, $2341$, and $2341$, so
+$\schubert_{1342} = \grothendieck_{1342} + 2\grothendieck_{2341}$.
+The inverse expansion, of $\grothendieck_\omega$ as a signed sum of Schubert
+polynomials over all (not necessarily reduced) pipe dreams of $\omega$ whose
+co-pipe dreams are reduced, is due to
+\name{Cristian Lenart} \cite[Thm.~1.5]{Weigandt2025x}.
+
+\name{Anna Weigandt} proves the bumpless pipe dream analogue
+\cite[Thms.~1.1 and~1.2]{Weigandt2025x}.  Given a bumpless pipe dream $P$,
+form its \defin{co-bumpless pipe dream}\label{coBumplessPipeDream} $\check{P}$
+by replacing tiles as follows \cite[Lem.~4.9]{Weigandt2025x}:
+\begin{itemize}
+\item a south-to-east elbow becomes a north-to-east elbow;
+\item a west-to-north elbow becomes a west-to-south elbow;
+\item a horizontal segment becomes a cross, and a cross becomes a horizontal
+segment;
+\item a vertical segment becomes an empty tile, and an empty tile becomes a
+vertical segment.
+\end{itemize}
+In $\check{P}$, the pipes enter at the top edge and leave at the right edge,
+travelling south and east.  Label the pipes $1, \dotsc, n$ along the top edge
+from left to right.  Follow them, ignoring a crossing of two pipes that have
+already crossed.  Reading the labels on the right edge from top to bottom
+gives the co-permutation $\check{\omega}(P)$
+\cite[Sec.~3.1 and Sec.~4.4]{Weigandt2025x}.
+
+\begin{theorem}[\cite[Thm.~1.2]{Weigandt2025x}]
+For every $\omega \in \symS_n$,
+\[
+  \schubert_\omega = \sum_{P} \grothendieck_{\check{\omega}(P)},
+\]
+where the sum runs over the reduced bumpless pipe dreams of $\omega$.
+\end{theorem}
+
+In the other direction, $\grothendieck_\omega$ is the sum of
+$(-1)^{\length(\check{\omega}(P)) - \length(\omega)}
+\schubert_{\check{\omega}(P)}$ over all bumpless pipe dreams $P$ of $\omega$
+whose co-bumpless pipe dream is reduced \cite[Thm.~1.1]{Weigandt2025x}.
+The Gao--Huang bijection between reduced pipe dreams and reduced bumpless pipe
+dreams \cite{GaoHuang2023PipeDreams} preserves co-permutations
+\cite[Thm.~1.9]{Weigandt2025x}, so both
+positive expansions have the same terms.
+For $\omega = 2143$, the Rothe bumpless pipe dream in the example above has
+co-permutation $2143$.  The two others, with empty tiles $\{(1,1),(1,2)\}$ and
+$\{(1,1),(2,1)\}$, have co-permutations $3142$ and $2341$.  This recovers
+$\schubert_{2143} = \grothendieck_{2143} + \grothendieck_{3142} + \grothendieck_{2341}$.
+The only non-reduced bumpless pipe dream of $2143$, whose permutation is read
+by again ignoring repeated crossings, has co-permutation $3241$,
+and all four co-bumpless pipe dreams are reduced.
+
+\svgimg[width=0.25\textwidth]{svg-images/nonreduced-bumpless-pipe-dreams-2143.svg}{The
+non-reduced bumpless pipe dream of 2143, with weight
+beta x1^2 x2 (1 + beta x3).}
+  Hence
+\[
+  \grothendieck_{2143} = \schubert_{2143} - \schubert_{3142}
+  - \schubert_{2341} + \schubert_{3241}
+\]
+\cite[Ex.~1.4]{Weigandt2025x}.
+
 \name{Thomas Lam}, \name{Seung Jin Lee}, and \name{Mark Shimozono} develop
 the corresponding back stable $K$-theoretic Schubert calculus
 \cite{LamLeeShimozono2022}.  This includes back stable Grothendieck

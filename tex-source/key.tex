@@ -1009,8 +1009,8 @@ z_1^2 z_2 z_3 z_4^2.
 \]
 Similarly,
 \[
- \atom_{103}(z) = \atom_{310,312}(z) = z_1^3 z_2  + z_1^3 z_3  + z_1^2 z_2^2 +  z_1^2 z_3^2 +  z_1^2 z_2 z_3 +
-  z_1 z_2^3 + z_1 z_3^3 + z_1 z_2 z_3^2 + z_1 z_2^2 z_3.
+ \atom_{103}(z) = \atom_{310,312}(z) = z_1^2 z_2 z_3 + z_1^2 z_3^2 + z_1 z_2^2 z_3
+  + z_1 z_2 z_3^2 + z_1 z_3^3.
 \]
 
 Since $\pi_i = \theta_i+1$, it follows that key polynomials are
@@ -1020,14 +1020,14 @@ Indeed, \cite[Thm.~2.8]{Pun2016Thesis} gives
 	\key_{\alpha}(z) = \sum_{\beta \leq \alpha} \atom_{\beta}(z),
 \]
 where we have $\beta \leq \alpha$ if one can obtain
-$\beta$ from $\rev(\alpha)$ by successively permuting entries which are
-in increasing order.
+$\beta$ from $\alpha$ by successively swapping two entries
+$\alpha_i < \alpha_j$ with $i < j$.
 For example,
 \[
- \key_{301} = \atom_{103} + \atom_{130}+\atom_{301}+\atom_{310}
+ \key_{103} = \atom_{103} + \atom_{130}+\atom_{301}+\atom_{310}
 \]
-since $103$, $130$, $301$ and $310$ can be obtained from $\rev(301)=103$
-by successive swaps of elements (see also \hyperref[bruhatOrder]{Bruhat order}).
+since $103$, $130$, $301$ and $310$ can be obtained from $103$
+by such swaps (see also \hyperref[bruhatOrder]{Bruhat order}).
 Similarly,
 \[
 \key_{002} = \atom_{200} + \atom_{020} + \atom_{002}.
@@ -1040,7 +1040,7 @@ Similarly,
 \]
 and
 \[
- \key_{301} = \atom_{103} + \atom_{130}+\atom_{301}+\atom_{310}
+ \key_{103} = \atom_{103} + \atom_{130}+\atom_{301}+\atom_{310}
 \]
 \end{example*}
 

@@ -214,10 +214,107 @@ records descents of linear extensions.  The
 Ehrhart polynomial as \(\mathcal O(P)\), but its inequalities are controlled
 by chains rather than order relations.
 
-\todo{Add Yakob Kahane's arXiv:2607.11225v1 on fence-poset order
-polynomial coefficients, including the Ehrhart coefficient interpretation for
-base polytopes of Schubert matroids and the relevant \(h^*\)-polynomial
-consequences.}
+A \defin{fence poset}\label{fencePoset} is a poset on
+\(z_1,z_2,\dotsc,z_n\) whose Hasse diagram is the path
+\(z_1 - z_2 - \dotsb - z_n\), so that each consecutive pair satisfies either
+\(z_{i-1}<z_i\) or \(z_{i-1}>z_i\).  Call \(z_1\) and every \(z_i\) with
+\(z_{i-1}<z_i\) an \emph{ascent element}, and every \(z_i\) with
+\(z_{i-1}>z_i\) a \emph{descent element}.
+\name{Luis Ferroni}, \name{Alejandro H. Morales} and \name{Greta Panova}
+proved that the \hyperref[orderPolynomial]{order polynomial}
+\(\Omega_P(t)\) of every fence has nonnegative coefficients
+\cite{FerroniMoralesPanova2026}; recall that
+\(E_{\mathcal O(P)}(t)=\Omega_P(t+1)\).  The coefficients of
+\(n!\,\Omega_P(t)\) are integers, and a combinatorial interpretation of them
+was left open.  \name{Yakob Kahane} gives one through a permutation statistic
+\cite{Kahane2026x}.
+Let \(\sigma\colon P\to[n]\) be a bijection.  Read \(z_1,\dotsc,z_n\) from
+left to right.  The element \(z_1\) is the root of the first block.  An ascent
+element \(z_i\) starts a new block, of which it is the root, if
+\(\sigma(z_i)\) is larger than the label of the root of the current block.
+A descent element \(z_i\) starts a new block if \(\sigma(z_i)\) is smaller
+than that label.  Otherwise \(z_i\) joins the current block.  Let
+\(\operatorname{bl}_P(\sigma)\) be the number of blocks.
+
+\begin{theorem}[{\cite[Thm.~3.8]{Kahane2026x}}]
+If \(P\) is a fence poset on \(n\) elements, then
+\[
+  n!\,\Omega_P(t)=\sum_{\sigma}t^{\operatorname{bl}_P(\sigma)},
+\]
+where the sum is over all \(n!\) bijections \(\sigma\colon P\to[n]\).
+\end{theorem}
+
+When \(P\) is a chain, the blocks start at the left-to-right maxima of
+\(\sigma\), and this is the classical identity
+\(t(t+1)\dotsm(t+n-1)=\sum_{\sigma\in\symS_n}t^{\operatorname{cyc}(\sigma)}\)
+via the Foata correspondence.
+Since the coefficient of \(t^j\) in \(\Omega_P(t)\) is the probability that a
+uniformly random labelling has \(j\) blocks, the coefficients of
+\(E_{\mathcal O(P)}(t)=\sum_k i_k(P)t^k\) are expectations,
+\(i_k(P)=\mathbb{E}\binom{\operatorname{bl}_P}{k}\)
+\cite[Lem.~5.1]{Kahane2026x}.  In particular, if the maximal monotone runs
+of the fence contain \(u_1,\dotsc,u_r\) cover relations, then
+\[
+  i_1(P)\geq 1+\sum_{j=1}^{r}\left(\frac{1}{2}+\frac{1}{3}+\dotsb+\frac{1}{u_j+1}\right),
+\]
+with equality if and only if \(P\) is a chain \cite[Thm.~5.3]{Kahane2026x}.
+Kahane conjectures analogous block statistics for circular fences and for
+skew-shape posets \cite[Conj.~4.3 and Conj.~4.7]{Kahane2026x}.
+
+\begin{example}
+Let \(P\) be the fence \(z_1<z_2<z_3>z_4\).  For the labelling
+\((\sigma(z_1),\sigma(z_2),\sigma(z_3),\sigma(z_4))=(2,4,1,3)\), the blocks are
+\(\{z_1\}\), \(\{z_2,z_3\}\) and \(\{z_4\}\), so
+\(\operatorname{bl}_P(\sigma)=3\).  The only labellings with a single block are
+\((3,1,2,4)\) and \((3,2,1,4)\).  Summing over all \(24\) labellings gives
+\[
+  24\,\Omega_P(t)=3t^4+10t^3+9t^2+2t=t(t+1)(t+2)(3t+1),
+\]
+and
+\(E_{\mathcal O(P)}(t)=\tfrac18t^4+\tfrac{11}{12}t^3+\tfrac{19}{8}t^2+\tfrac{31}{12}t+1\).
+The runs have \(u_1=2\) and \(u_2=1\) cover relations, and indeed
+\(i_1(P)=\tfrac{31}{12}\geq 1+\left(\tfrac12+\tfrac13\right)+\tfrac12=\tfrac73\).
+\end{example}
+% Checked by brute force for all fences with at most 7 elements (Thm. 3.8, Lem. 5.1, Thm. 5.3).
+
+Fences also control Ehrhart polynomials of
+\hyperref[matroidBasePolytope]{matroid base polytopes}.
+Ferroni, Morales and Panova write the Ehrhart polynomial of the base polytope
+of a \hyperref[latticePathMatroidDefinition]{lattice path matroid} as a sum of
+order polynomials of fences \cite{FerroniMoralesPanova2026x}.  Kahane
+regroups this sum so that there is one term, the order polynomial of a poset
+\(\operatorname{sh}(x)\), for each basis \(x\):
+\[
+  E_{\mathcal P(M)}(t)=\sum_{x}\Omega_{\operatorname{sh}(x)}(t)
+\]
+\cite[Cor.~6.5]{Kahane2026x}.  For a
+\hyperref[schubertMatroidDefinition]{Schubert matroid} on \([n]\), combining
+this with the theorem above writes \(n!\,E_{\mathcal P(M)}(t)\) as a sum of
+\(t^{\operatorname{TrBl}(\sigma)}\) over pairs of a basis \(x\) and a
+permutation \(\sigma\in\symS_n\), where \(\operatorname{TrBl}\) is the block
+statistic of a truncation of a fence attached to \(x\)
+\cite[Thm.~6.8]{Kahane2026x}.  So the coefficients of
+\(n!\,E_{\mathcal P(M)}(t)\) count such pairs.  For the uniform matroid this
+gives a combinatorial interpretation of the Ehrhart coefficients of the
+\hyperref[hypersimplex]{hypersimplex} \(\Delta_{k,n}\)
+\cite[Prop.~6.9]{Kahane2026x}, which Kahane presents as an answer to a
+question of \name{Richard P. Stanley}.
+
+\begin{example}
+The hypersimplex \(\Delta_{2,4}\) is the base polytope of the lattice path
+matroid of the \(2\times 2\) square.  Its six bases correspond to the
+partitions \(\nu\subseteq(2,2)\), and the fences in the sum are the outer rims
+of these \(\nu\): the empty poset, one element, a two-element chain (twice),
+the three-element poset with a unique minimum, and the three-element poset
+with a unique maximum.  Hence
+\[
+  E_{\Delta_{2,4}}(t)
+  =1+t+2\binom{t+1}{2}+2\cdot\frac{t(t+1)(2t+1)}{6}
+  =\frac23t^3+2t^2+\frac73t+1.
+\]
+\end{example}
+% Checked: lattice-point counts of t*Delta_{2,4} and of all connected skew
+% shapes in a 3x3 box agree with the sum over rims of nu/mu.
 
 \begin{example}
 If \(P\) is an antichain on \(d\) elements, then
