@@ -54,7 +54,7 @@ skipped tags (`code`, `pre`, `script`, ...), plus the relation-graph node
 labels. It also invokes every macro with dummy arguments. Errors give the
 page and line, the formula, KaTeX's message and, when found, the source line.
 KaTeX is installed by `npm` into `~/.cache/symmetricfunctions/katex-<version>`
-(override with `KATEX_DIR=`; it must be outside the repository and Dropbox).
+(override with `KATEX_DIR=`; it must be outside the repository).
 
 ## Directory structure
 

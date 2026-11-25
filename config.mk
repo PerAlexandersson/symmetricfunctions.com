@@ -19,7 +19,7 @@ PAGEFIND = npx --yes pagefind@1.5.2
 NODE   = node
 NPM    = npm
 # KaTeX for make lint-katex: the release template.htm loads, installed once
-# into a cache outside the repository (keep it outside Dropbox too).
+# into a cache outside the repository.
 KATEX_VERSION := $(shell sed -n 's|.*npm/katex@\([0-9][0-9.]*\)/dist/katex\.min\.js.*|\1|p' $(TEMPLATE) | head -n 1)
 KATEX_DIR ?= $(HOME)/.cache/symmetricfunctions/katex-$(KATEX_VERSION)
 KATEX_PKG := $(KATEX_DIR)/node_modules/katex/package.json
