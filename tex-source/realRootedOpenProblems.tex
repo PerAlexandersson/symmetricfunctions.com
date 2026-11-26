@@ -48,9 +48,7 @@ For $k\geq 1$, let $\symS_n^{(k)}$ denote the permutations in $\symS_n$
 all of whose cycles have length at least $k$.  Thus $\symS_n^{(1)}=\symS_n$
 and $\symS_n^{(2)}$ is the set of derangements.  Define
 \[
-  E_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\exc(\pi)},
-  \qquad
-  D_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\des(\pi)}.
+  E_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\exc(\pi)}.
 \]
 
 \begin{conjecture}[Alexandersson, 2026]
@@ -95,62 +93,17 @@ term is $(n-1)tE_{n-2,2}$ and the recurrence gives an interlacing proof by
 induction.  For $k\geq3$ the lagged term carries the extra factor
 $A_{k-1}(t)$, and we know no proof.
 
-\begin{conjecture}[Alexandersson, 2026]
-\label{conjLongCycleDescents}
-For every $k\geq 3$, the polynomials $D_{n,k}(t)$ are real-rooted.
-\end{conjecture}
-
-By the \name{Ira Gessel}--\name{Christophe Reutenauer} theorem
-\cite{GesselReutenauer1993}, the quasisymmetric generating function for
-descent sets over $\symS_n^{(k)}$ is the degree-$n$ part of
-$\prod_{j\geq k}H[L_j]$, where $L_j$ is the Lie character and
-$H=\sum_{m\geq0}\completeH_m$.  Counting necklaces gives
-\[
-  \frac{D_{n,k}(t)}{(1-t)^{n+1}}
-  =\sum_{N\geq1}t^{N-1}\,[z^n]\prod_{j\geq k}(1-z^j)^{-M_j(N)},
-  \qquad
-  M_j(N)=\frac1j\sum_{d\mid j}\mu(d)N^{j/d},
-\]
-for $n\geq1$.  For $k=3$,
-\[
-\begin{array}{rl}
-\toprule
-n & D_{n,3}(t) \\
-\midrule
-3 & 2t \\
-4 & 3t+3t^2 \\
-5 & 6t+12t^2+6t^3 \\
-6 & 12t+68t^2+68t^3+12t^4 \\
-7 & 24t+264t^2+564t^3+264t^4+24t^5 \\
-8 & 48t+933t^2+3513t^3+3513t^4+933t^5+48t^6 \\
-\bottomrule
-\end{array}
-\]
-Evidence: real-rooted for $k\leq 6$ and $n\leq 22$.  For $k=3$ and $k=6$
-the rows also interlace consecutively in this range; for $k=4$ and $k=5$
-the only failure is $D_{5,k}\interl D_{6,k}$, where
-$D_{6,4}=D_{6,5}=D_{6,6}=9t+53t^2+47t^3+11t^4$ counts the $6$-cycles.
-
-The case $k=2$, derangements by descents, is proved:
-$D_{n,2}(t)$ has only real zeros for every $n$
-\cite[Thm.~2.1]{Alexandersson2026Eulerian}, as conjectured in
-\cite{FuLinZeng2018}; see the
-\hyperref[derangementDescentPolynomial]{derangement page}.  Consecutive
-interlacing is impossible there, since the decreasing involution gives
-$\deg D_{2m,2}=2m-1$ while $\deg D_{2m-1,2}=2m-3$.
-
-The polynomial $D_{n,3}(t)$ is palindromic.  Indeed, $\prod_{j\geq1}H[L_j]$
-is $(1-\powerSum_1)^{-1}$, and $L_1=\completeH_1$, $L_2=\elementaryE_2$.
-By Littlewood's identity $H\cdot H[\elementaryE_2]=\sum_\lambda\schurS_\lambda$
-\cite[Ex.~I.5.4]{Macdonald1995}, so
-\[
-  \prod_{j\geq3}H[L_j]=\frac{(1-\powerSum_1)^{-1}}{\sum_\lambda\schurS_\lambda},
-\]
-which is fixed by $\omega$.  Since $\omega$ sends a descent set to its
-complement (up to reversal), $\des\mapsto n-1-\des$ preserves the
-distribution.  For $k=2$ and $k\geq4$ the corresponding quotient is not
-$\omega$-invariant, and the data confirm that palindromicity fails; see the
-\hyperref[realRootedCounterexamples]{counterexamples}.
+The descent polynomials $D_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\des(\pi)}$,
+conjectured here earlier to be real-rooted for $k\geq3$, are real-rooted by a
+theorem of \name{Bowen Zuo}, which covers every nonnegative combination of
+the rows $D_{n,1},\dotsc,D_{n,n}$; see
+\hyperref[longCycleDescentsRealRooted]{permutation statistics}.  Whether
+they interlace consecutively is open.  For $k=3$ and $k=6$ they do for
+$n\leq22$; for $k=4$ and $k=5$ the only failure in this range is
+$D_{5,k}\interl D_{6,k}$, where $D_{6,4}=D_{6,5}=D_{6,6}=9t+53t^2+47t^3+11t^4$
+counts the $6$-cycles.  For $k=2$ consecutive interlacing is impossible,
+since the decreasing involution gives $\deg D_{2m,2}=2m-1$ while
+$\deg D_{2m-1,2}=2m-3$.
 
 
 \subsection[openProblemsEulerianInterlacing]{Interlacing of Eulerian-type polynomials}

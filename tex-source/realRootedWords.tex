@@ -830,5 +830,104 @@ $\mathcal{D}_n$ for the derangements in $\symS_n$, the polynomial
   D_n^{\des}(t)=\sum_{\pi\in\mathcal{D}_n}t^{\des(\pi)}
 \]
 has only nonpositive real zeros for every $n\geq2$
-\cite[Thm.~2.1]{Alexandersson2026Eulerian}.  For longer cycles, see the
-\hyperref[conjLongCycleDescents]{open problem}.
+\cite[Thm.~2.1]{Alexandersson2026Eulerian}, as conjectured in
+\cite{FuLinZeng2018}.  For longer cycles, see the next example.
+
+\begin{example*}[Descents on permutations with long cycles]
+\label{longCycleDescentsRealRooted}
+For $k\geq1$, let $\symS_n^{(k)}$ be the set of permutations in $\symS_n$
+all of whose cycles have length at least $k$, and let
+\[
+  D_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\des(\pi)}.
+\]
+Thus $D_{n,1}=A_n$ is the \hyperref[eulerianPolynomial]{Eulerian
+polynomial} and $D_{n,2}=D_n^{\des}$ counts derangements.
+
+\begin{theorem}[Zuo, 2026, {\cite[Thms.~1 and~2]{Zuo2026LongCycleDescents}}]
+\label{conjLongCycleDescents}
+For $3\leq k\leq n$, the polynomial $D_{n,k}(t)$ is real-rooted.  More
+generally, for every $n\geq1$ and all $w_1,\dotsc,w_n\geq0$, not all zero,
+the polynomial $\sum_{k=1}^nw_kD_{n,k}(t)$ has only real nonpositive zeros.
+These zeros are simple except in two cases: if $n=4$ and only $w_2$ is
+positive, then $D_{4,2}(t)=t(t+2)^2$; if $n=5$ and $w_1=w_2=0$, then every
+row $D_{5,k}$ with $k\geq3$ equals $6t(1+t)^2$.  For $n\neq5$ there are
+$n-3$ disjoint open intervals in $(-\infty,0)$, independent of $k\geq3$,
+each containing exactly one zero of every $D_{n,k}$.
+\end{theorem}
+
+Real-rootedness for $k\geq3$ was conjectured by Alexandersson in 2026, with
+evidence for $k\leq6$ and $n\leq22$.  \name{ProgramComputer} had proved the
+case $k\gt n/2$, where $\symS_n^{(k)}$ consists of the $n$-cycles, for all
+$n$, and simple nonpositive zeros for every nonnegative combination of the
+conjugacy classes with all cycles of length at least $k$ when $n\geq25$ and
+$k\geq52\log n$ \cite{ProgramComputer2026LongCycleDescents}.
+
+By the \name{Ira Gessel}--\name{Christophe Reutenauer} theorem
+\cite[Thm.~3.6]{GesselReutenauer1993}, the quasisymmetric generating
+function for descent sets over $\symS_n^{(k)}$ is the degree-$n$ part of
+$\prod_{j\geq k}H[L_j]$, where $L_j$ is the Lie character and
+$H=\sum_{m\geq0}\completeH_m$.  Counting necklaces gives
+\[
+  \frac{D_{n,k}(t)}{(1-t)^{n+1}}=\sum_{N\geq1}f_{n,k}(N)\,t^{N-1},
+  \qquad
+  f_{n,k}(q)=[x^n]\prod_{j\geq k}(1-x^j)^{-M_j(q)},
+\]
+for $n\geq1$, where $M_j(q)=\frac1j\sum_{d\mid j}\mu(d)q^{j/d}$.
+Zuo evaluates the signs of $D_{n,k}$ on a fixed mesh of points.  For
+$n\geq128$ he bounds the lower-degree terms of the alphabet polynomial
+$f_{n,k}$ and estimates alternating power sums; smaller $n$ are covered by
+exact finite certificates.  The proof is fully formalized in Lean, and the
+formalization is distributed with the manuscript.
+
+A shorter operator proof for $k\geq3$, which also covers every nonnegative
+combination of the rows with $k\geq3$, is formalized in the
+\href{https://github.com/PerAlexandersson/RealRooted}{RealRooted} Lean
+library.  For $k\geq3$ the alphabet polynomial factors as
+$f_{n,k}(q)=q(q^2-1)Q(q)$.  With $z=(1+t)/(1-t)$ and
+$L=(z^2-1)\frac{d}{dz}+4z$,
+\[
+  D_{n,k}(t)=6t(1-t)^{n-3}\,\bigl[Q(L/2)\,1\bigr](z).
+\]
+Applying the linear factors of $Q$ one at a time keeps all zeros simple and
+in $(-1,1)$, provided that the zeros of $Q$ lie in the disk of radius $5/4$
+and the sum of their squares is at least $-2$.  A coefficient bound gives
+these conditions for $n\geq18$, and smaller $n$ are checked exactly.
+% Related Lean: RealRooted/CombinatorialExamples/LongCycleDescents/AllSizes.lean
+% (realDescentPolynomial_splits, long_mixture_splits).
+
+Single conjugacy classes behave differently.  If the cycle lengths are
+distinct and at least $3$, the descent polynomial of the conjugacy class is
+real-rooted; this follows from the diamond product of \name{Petter Brändén}
+\cite{Branden2006}.  The class of cycle type $(3,3)$ gives
+$t(t^3+21t^2+15t+3)$, which has two nonreal zeros, so nonnegative
+combinations of conjugacy classes need not be real-rooted.  Computationally,
+$D_{n,k}(t)/t$ \hyperref[interlacesPolynomial]{interlaces} the Eulerian
+polynomial $A_{n-1}(t)$ for every $3\leq k\leq n$; we checked this exactly
+for $6\leq n\leq38$.
+
+The polynomial $D_{n,3}(t)$ is palindromic.  Indeed, $\prod_{j\geq1}H[L_j]$
+is $(1-\powerSum_1)^{-1}$, and $L_1=\completeH_1$, $L_2=\elementaryE_2$.
+By Littlewood's identity $H\cdot H[\elementaryE_2]=\sum_\lambda\schurS_\lambda$
+\cite[Ex.~I.5.4]{Macdonald1995}, so
+\[
+  \prod_{j\geq3}H[L_j]=\frac{(1-\powerSum_1)^{-1}}{\sum_\lambda\schurS_\lambda},
+\]
+which is fixed by $\omega$.  Since $\omega$ sends a descent set to its
+complement (up to reversal), $\des\mapsto n-1-\des$ preserves the
+distribution.  For $k=2$ and $k\geq4$ palindromicity fails; see the
+\hyperref[counterexamplesPalindromic]{counterexamples}.
+\[
+\begin{array}{rl}
+\toprule
+n & D_{n,3}(t) \\
+\midrule
+3 & 2t \\
+4 & 3t+3t^2 \\
+5 & 6t+12t^2+6t^3 \\
+6 & 12t+68t^2+68t^3+12t^4 \\
+7 & 24t+264t^2+564t^3+264t^4+24t^5 \\
+8 & 48t+933t^2+3513t^3+3513t^4+933t^5+48t^6 \\
+\bottomrule
+\end{array}
+\]
+\end{example*}
