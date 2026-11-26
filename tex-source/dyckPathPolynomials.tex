@@ -227,6 +227,45 @@ are ultra-log-concave, but $R_D(t)$ need not be real-rooted
 \cite{AlexanderssonJal2024x}.
 
 
+\subsubsection[dyckPathParticles]{Tableaux as particle hops}
+
+The skew shape $F_D$ can be found inside the board.  The cells $(i,c)$ of
+$\lambda_D$ with $i<c$ are the edges of $G_D$.  Keep only the rows
+$\ell_1,\dotsc,\ell_r$ where a peak interval starts; row $\ell_k$ contains the
+edges $\{\ell_k,p\}$ with $\ell_k<p\leq u_k$.  Shifting the $k$th kept row
+$k$ steps to the left, and stacking the rows from the bottom, gives $F_D$.
+
+This leads to a particle model.  Place $r$ particles on the sites
+$\ell_1<\dotsb<\ell_r$ of $[n]$.  In each step one particle moves one site to
+the right, onto an empty site, and particle $k$ stops at $u_k$, so it never
+leaves the clique $A_k$.  The positions at any moment form a basis of $M_D$,
+and a complete run is a maximal chain of bases in Gale order.  A standard
+Young tableau $T$ of shape $F_D$ gives a run: if $t$ lies in the $k$th row from
+the bottom, the $t$th step moves particle $k$, and the $c$th cell of that row is the hop
+of particle $k$ onto site $\ell_k+c$, that is, the edge $\{\ell_k,\ell_k+c\}$.  The columns of $T$ increase precisely when
+no two particles meet, and every run arises once.  A natural descent $j$ of
+$T$ is a time where the particle moved at step $j+1$ lies to the right of the
+particle moved at step $j$.  Hence $N_D(t)$ counts the runs by the ascents of the word
+recording which particle moves, and $R_D(1)$ counts the configurations.
+
+\begin{example}
+For $a=(0,1,2,2,3)$, particle $1$ moves from site $1$ to site $3$ and particle
+$2$ from site $2$ to site $5$.  The tableau with rows $124$ and $35$ moves
+particle $2$, particle $2$, particle $1$, particle $2$ and particle $1$.  Its
+only natural descent is $3$, where the next moving particle lies to the right.
+\begin{figure}
+\svgimg[width=0.9\textwidth]{./svg-images/dyck-path-particles.svg}{The peak rows of the area of the Dyck path with area sequence 0,1,2,2,3, the tableau of shape (3,2) with rows 124 and 35, and the corresponding particle positions after each hop.}
+\end{figure}
+\end{example}
+
+For a straight shape $\lambda$, the particles start at $1,\dotsc,r$, and a run
+is a ballot sequence recording the row of each entry.  The natural descents
+are then the descents of the ballot sequence, with rows numbered from the top.
+For the two-row shape $(m,m)$ these are the valleys of a Dyck path of
+semilength $m$, which have the \hyperref[narayanaNumbers]{Narayana}
+distribution.
+
+
 \subsection[dyckPathZPolynomials]{Matroid Z-polynomials}
 
 Let $Z_D(t)$ be the \hyperref[matroidZPolynomial]{$Z$-polynomial} of the
