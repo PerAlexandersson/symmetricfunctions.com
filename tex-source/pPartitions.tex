@@ -278,6 +278,47 @@ ordinary family and expand positively in the \hyperref[slideF]{fundamental
 slide basis}.
 
 
+\subsection[pPartitionBruhatIntervals]{Lower Bruhat intervals}
+
+Lower intervals $[\mathrm{id},\pi]$ in the \hyperref[weakOrder]{weak order} are
+\hyperref[jordanHolderSet]{Jordan--Hölder sets} of permutation posets, so the
+sum of $\gessel_{n,\DES(\sigma)}$ over such an interval is a $P$-partition
+generating function, and hence $\qPsi$-positive by the theorem above.  Lower
+intervals in the \hyperref[bruhatOrder]{Bruhat order} are usually not of this
+form, but for $312$-avoiding permutations they still appear to be
+$\qPsi$-positive.
+
+\begin{conjecture}[Alexandersson, 2026]\label{conjBruhatIntervalPsiPositive}
+For $\pi\in\symS_n$, let
+\[
+  G_\pi(\xvec)\coloneqq\sum_{\sigma\leq\pi}\gessel_{n,\DES(\sigma)}(\xvec),
+\]
+summed over the lower interval of $\pi$ in the Bruhat order.  Then $G_\pi$ is
+positive in the \hyperref[qPsi]{quasisymmetric power-sum basis} $\qPsi$ if and
+only if $\pi$ avoids $312$.
+\end{conjecture}
+
+The $312$-avoiding permutations are indexed by Dyck paths, and their lower
+Bruhat intervals are the complete rook placements on a Ferrers board inside a
+staircase; see \hyperref[dyckPathBruhatPolynomials]{polynomials indexed by Dyck
+paths}.  Counting descents instead of the descent set gives the
+\hyperref[dyckPathRookEulerian]{rook-Eulerian polynomials}.  Only $2^{n-1}$ of
+the $312$-avoiding permutations of $[n]$ have a lower Bruhat interval that is a
+Jordan--Hölder set, so the conjecture is not a special case of the theorem of
+\name{Per Alexandersson} and \name{Robin Sulzgruber}.  The conjecture has been
+checked for $n\leq6$.
+
+\begin{example}
+The interval below $\pi=312$ is $\{123,132,213,312\}$, and
+\[
+  G_{312}=2\gessel_{12}+\gessel_{21}+\gessel_{3}
+  =\tfrac{2}{3}\qPsi_{111}+\qPsi_{12}-\tfrac{1}{3}\qPsi_{3}.
+\]
+Using ascent sets instead of descent sets breaks positivity at once: for
+$\pi=12$ the interval gives $\gessel_{11}=\elementaryE_2$.
+\end{example}
+
+
 \subsection[pPartitionMNrule]{Murnaghan--Nakayama rule}
 
 The result by Alexandersson and Sulzgruber is 
