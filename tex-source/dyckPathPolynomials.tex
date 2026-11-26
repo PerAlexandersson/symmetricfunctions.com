@@ -150,24 +150,60 @@ The same argument is used for the
 $Z$-polynomials of Schubert matroids.
 
 
-\subsection[dyckPathGraphPolynomials]{Sinks of acyclic orientations}
+\subsection[dyckPathGraphPolynomials]{Chromatic quasisymmetric functions}
+
+The graph $G_D$ is the natural unit interval graph $H_h$ with Hessenberg
+function $h=\lambda_D$, so the Dyck path also indexes its
+\hyperref[chromaticQuasisymmetric]{chromatic quasisymmetric function}
+\[
+  \chrom_{G_D}(\xvec;q)=\sum_{\lambda}c_\lambda(q)\,\elementaryE_\lambda(\xvec)
+\]
+of \name{John Shareshian} and \name{Michelle L. Wachs}
+\cite{ShareshianWachs2016}.  It is symmetric and Schur-positive, it is
+elementary-positive at $q=1$ by \name{Tatsuyuki Hikita}'s proof of the
+\hyperref[stanleyStembridgeConjecture]{Stanley--Stembridge conjecture}
+\cite{Hikita2024x}, and it is related to the cohomology of regular
+semisimple \hyperref[chromaticQuasisymmetricHessenberg]{Hessenberg
+varieties}.  Several of the polynomials on this page are specializations of
+it.
 
 A sink of an orientation is a vertex with no outgoing edge.  Let
 \[
-  S_D(t)\coloneqq\sum_{O}t^{\operatorname{sink}(O)},
+  S_D(t;q)\coloneqq\sum_{O}q^{\operatorname{asc}(O)}t^{\operatorname{sink}(O)},
+  \qquad S_D(t)\coloneqq S_D(t;1),
 \]
-summed over the acyclic orientations $O$ of $G_D$.  The graph $G_D$ is the
-graph $H_h$ with Hessenberg function $h=\lambda_D$, so by the
-Shareshian--Wachs sink identity, $S_D(t)$ groups the elementary coefficients
-of the chromatic symmetric function of $G_D$ by length; see the
-\hyperref[chromaticSinkRealRooted]{sink specialization}.  It is real-rooted,
-even after weighting by ascents with any $q\geq0$
-\cite[Thm.~5.2]{AlexanderssonLeite2026x}.
+summed over the acyclic orientations $O$ of $G_D$.  By the Shareshian--Wachs
+sink identity, $S_D(t;q)=\sum_\lambda c_\lambda(q)t^{\ell(\lambda)}$
+\cite[Thm.~5.3]{ShareshianWachs2016}, and setting $t=1$ gives $X_D(q)$.  This
+\hyperref[chromaticSinkRealRooted]{sink specialization} is real-rooted in $t$
+for every $q\geq0$ \cite[Thm.~5.2]{AlexanderssonLeite2026x}.
+
+A half-sink is a vertex with no outgoing edge to a larger label.  Inserting the
+vertices in decreasing order gives the product
+\[
+  \sum_{O}q^{\operatorname{asc}(O)}t^{\operatorname{hsink}(O)}
+  =\prod_{i=1}^{n}\bigl(t+q+q^2+\dotsb+q^{\lambda_i-i}\bigr),
+\]
+over acyclic orientations, read off from the rows of the board
+\cite[Prop.~40]{AlexanderssonLeite2026x}.
+
+The \hyperref[gesselLengthSpecialization]{fundamental-length
+specialization} gives \name{Francesco Brenti}'s
+\hyperref[chromaticWPolynomial]{$w$-polynomial}
+\[
+  w_D(t)=(1-t)^{n+1}\sum_{m\geq0}\chi_{G_D}(m)\,t^m,\qquad
+  \chi_{G_D}(m)=\prod_{j=1}^{n}(m-a_j),
+\]
+where the chromatic polynomial factors since the earlier neighbors of each
+vertex form a clique.  It is real-rooted since $G_D$ is chordal
+\cite[Thms.~4.11 and~4.15]{Brenti1992}.
 
 \begin{example}
 For $a=(0,1,2,2,3)$, every acyclic orientation has a sink, and the only sets of
 two sinks are $\{1,4\}$ and $\{1,5\}$.  Each leaves a triangle with six acyclic
 orientations, so $S_D(t)=60t+12t^2$, with $X_D(1)=72$ orientations in total.
+The half-sink polynomial at $q=1$ is $t(t+1)(t+2)^2(t+3)$, and
+$w_D(t)=48t^4+72t^5$.
 \end{example}
 
 
