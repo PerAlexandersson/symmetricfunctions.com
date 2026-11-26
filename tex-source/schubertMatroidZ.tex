@@ -45,12 +45,7 @@ Real-rootedness of $Z_M(t)$ was conjectured for all matroids
 combinatorial descriptions of $Z_M$ and $\Gamma_M$ for Schubert matroids and,
 more generally, lattice path matroids.  Unless stated otherwise, the results
 are from unpublished work of \name{Per Alexandersson}
-\cite{Alexandersson2026SchubertMatroidZ}.  The formulas for Schubert matroids
-below were checked against the flat-sum definition for every Schubert matroid of rank at
-most six whose first row has at most six boxes, and of rank seven with at most
-four boxes per row.  The skew version of the Motzkin formula below was checked
-in the same way for all $3323$ connected skew shapes with at most five rows and
-five columns.
+\cite{Alexandersson2026SchubertMatroidZ}.
 
 
 \subsection[schubertMatroidZBoard]{Schubert matroids and the board of squares}
@@ -81,9 +76,28 @@ including the empty placement of weight one.  The identities below hold with
 these column weights, and setting all $x_c=1$ gives $Z_{M_\lambda}(t)$ and
 $\Gamma_{M_\lambda}(y)$.
 
+Placements are the same as partitions inside $B$.  Given a placement, let
+$\eta_j$ be the column of the first rook in a row $i\geq j$, or zero if there
+is none, and put $\eta_n=0$.  Then $\eta$ is a partition contained in $B$,
+and the rooks sit exactly at its corners, the boxes $(j,\eta_j)$ with
+$\eta_j>\eta_{j+1}$.  Conversely, every partition $\eta\subseteq B$ arises
+from exactly one placement.  Thus
+\[
+  W_B(E)=\sum_{\substack{\eta\subseteq B\\ \text{corners in rows of } E}}
+  \ \prod_{\text{corners } (j,\eta_j)} x_{\eta_j}.
+\]
+The partitions $\eta\subseteq B$ are the lattice paths inside the Ferrers shape
+$B$, traced from the bottom left to the top right, and a corner of $\eta$ is
+where this path turns from east to north.  Through the
+correspondences on the page on \hyperref[latticePathMatroids]{lattice path
+matroids}, they are also the bases of the lattice path matroid of $B$ and the
+linear extensions of its width-two poset.
+
 \begin{example}
-For $\lambda=(3,3,2,1)$ the board has rows of lengths $2,1,0$; its boxes are
-shaded below.
+For $\lambda=(3,3,2,1)$ the board has rows of lengths $2,1,0$.  Below, the
+board is shaded, the partition $\eta$ is blue and the rooks are dots.  The
+five placements are the empty one, $(1,1)$, $(1,2)$, $(2,1)$ and
+$\{(1,2),(2,1)\}$.
 \begin{figure}
 \begin{ytableau}
 *(lightgray) & *(lightgray) & \\
@@ -91,9 +105,33 @@ shaded below.
  & \\
  \\
 \end{ytableau}
+\begin{ytableau}
+*(lightblue) \bullet & *(lightgray) & \\
+*(lightgray) & & \\
+ & \\
+ \\
+\end{ytableau}
+\begin{ytableau}
+*(lightblue) & *(lightblue) \bullet & \\
+*(lightgray) & & \\
+ & \\
+ \\
+\end{ytableau}
+\begin{ytableau}
+*(lightblue) & *(lightgray) & \\
+*(lightblue) \bullet & & \\
+ & \\
+ \\
+\end{ytableau}
+\begin{ytableau}
+*(lightblue) & *(lightblue) \bullet & \\
+*(lightblue) \bullet & & \\
+ & \\
+ \\
+\end{ytableau}
 \end{figure}
-The placements are the empty one, $(1,1)$, $(1,2)$, $(2,1)$ and
-$\{(1,2),(2,1)\}$, so for instance $W_B(\{1,2\})=1+2x_1+x_2+x_1x_2$.
+The corresponding partitions are $\eta=000$, $100$, $200$, $110$ and $210$.
+For instance $W_B(\{1,2\})=1+2x_1+x_2+x_1x_2$, while $W_B(\{2\})=1+x_1$.
 \end{example}
 
 
@@ -117,6 +155,11 @@ whose rooks all lie in rows where the path has positive height.  To count
 $[t^i]Z_{M_\lambda}$, additionally mark $i-k(P)$ of the horizontal steps.
 \end{theorem}
 
+In terms of the partitions $\eta\subseteq B$, the coefficient $\gamma_k$
+counts the pairs of a partition $\eta\subseteq B$ and a Motzkin path with $k$
+up-steps, such that the path is positive after step $j$ for every corner
+$(j,\eta_j)$ of $\eta$.
+
 The same formula holds for every connected skew shape $\lambda/\mu$ with $n$
 rows, where the board consists of the boxes $(j,c)$ with
 $\mu_j<c<\lambda_{j+1}$, both for the lattice path matroid and for the
@@ -130,9 +173,8 @@ integral prefix sums, whose maximal cells are snake matroid polytopes
 \cite{FerroniSchroter2024}.  Every interior face of the subdivision is a
 direct sum of connected ribbon matroids, which have Narayana $Z$-polynomials by
 \hyperref[conjRibbonMatroidZ]{the ribbon theorem} below.  For a Ferrers shape,
-the maximal cells correspond to partitions $\eta$ contained in $B$, with
-$\eta_n=0$; putting a rook at $(j,\eta_j)$ whenever $\eta_j>\eta_{j+1}$ is a
-bijection with placements.  The faces of a fixed cell are obtained by fixing the
+the maximal cells correspond to the partitions $\eta\subseteq B$, and hence
+to placements.  The faces of a fixed cell are obtained by fixing the
 prefix sums at a subset of $m$ of its corner rows.  Such a face contributes
 $(-1)^m$ times a product of the Narayana polynomials $Z_{U_{s,s+1}}$ of its
 segments, which in gamma coordinates counts the Motzkin paths returning to zero
@@ -255,7 +297,18 @@ says $a_{j+1}\geq2$.
 \end{proof}
 
 For example, for $n=2$ the board is empty, and the words $00,01,10,11,12$ give
-$Z=1+3t+t^2$.  In terms of the Dyck path, $Z_{M_\lambda}$ is a sum over
+$Z=1+3t+t^2$.
+
+\begin{example}
+For $n=4$, the Motzkin path $UHD\bar{H}$, with its last step marked, doubles to
+the Dyck path $UUUDUDDUDD$.  The heights before its up-steps give the word
+$a=1221$.  Its two odd letters come from the up-step and the marked step, and
+the letters $a_2=a_3=2$ make rows $1$ and $2$ available, the rows where the
+Motzkin path is positive.  The word contributes $t^2\,W_B(\{1,2\})$.
+\begin{figure}
+\svgimg[width=0.55\textwidth]{./svg-images/schubertZ-motzkin-dyck.svg}{The marked Motzkin path UHD with a marked last level step, and the Dyck path obtained by doubling it. Up-steps in even positions are highlighted, and each up-step is labelled by the height before it.}
+\end{figure}
+\end{example}  In terms of the Dyck path, $Z_{M_\lambda}$ is a sum over
 \hyperref[standardYoungTableau]{standard Young tableaux} $T$ of shape
 $(n+1,n+1)$, where the first row lists the up-step positions:
 $T$ contributes $t$ to the power of the number of even entries in its first
@@ -298,6 +351,41 @@ Label the vertices $n+1,n,\dotsc,1$ in preorder and read them in inorder.  This
 gives each $132$-avoiding permutation once, the descents come from the
 vertices with a right child, and after $j$ vertices in preorder the $1+h_j$
 unvisited subtrees are the intervals occupied by $1,\dotsc,n+1-j$.
+
+\begin{example}
+Let $n=3$ and $\lambda=(3,3,2)$, so that the board has rows of lengths $2$ and
+$1$.  The fourteen permutations in $\symS_4(132)$ correspond to the fourteen
+words in $\mathcal{A}_3$ and to the marked Motzkin paths of length three, where
+$\bar{H}$ is a marked level step.  The last column is the number of
+placements in the available rows.
+
+\begin{tabular}{llllll}
+\toprule
+$a$ & $P$ & $\pi$ & $\des(\pi)$ & $E(\pi)$ & $W_B(E(\pi))$ \\
+\midrule
+$000$ & $HHH$ & $1234$ & $0$ & $\emptyset$ & $1$ \\
+$001$ & $HH\bar{H}$ & $2134$ & $1$ & $\emptyset$ & $1$ \\
+$010$ & $H\bar{H}H$ & $3124$ & $1$ & $\emptyset$ & $1$ \\
+$100$ & $\bar{H}HH$ & $4123$ & $1$ & $\emptyset$ & $1$ \\
+$012$ & $HUD$ & $2314$ & $1$ & $\{2\}$ & $2$ \\
+$120$ & $UDH$ & $3412$ & $1$ & $\{1\}$ & $3$ \\
+$122$ & $UHD$ & $2341$ & $1$ & $\{1,2\}$ & $5$ \\
+$011$ & $H\bar{H}\bar{H}$ & $3214$ & $2$ & $\emptyset$ & $1$ \\
+$101$ & $\bar{H}H\bar{H}$ & $4213$ & $2$ & $\emptyset$ & $1$ \\
+$110$ & $\bar{H}\bar{H}H$ & $4312$ & $2$ & $\emptyset$ & $1$ \\
+$112$ & $\bar{H}UD$ & $4231$ & $2$ & $\{2\}$ & $2$ \\
+$121$ & $UD\bar{H}$ & $3421$ & $2$ & $\{1\}$ & $3$ \\
+$123$ & $U\bar{H}D$ & $3241$ & $2$ & $\{1,2\}$ & $5$ \\
+$111$ & $\bar{H}\bar{H}\bar{H}$ & $4321$ & $3$ & $\emptyset$ & $1$ \\
+\bottomrule
+\end{tabular}
+
+Several rows give the same contribution $t^{\des(\pi)}W_B(E(\pi))$; adding
+them up gives
+\[
+  Z_{M_\lambda}(t)=1+13t+13t^2+t^3=(1+t)(1+12t+t^2).
+\]
+\end{example}
 
 Summing over signs gives a second formula.  Order signed integers as usual
 and count descents between adjacent entries; then
@@ -361,8 +449,7 @@ For every partition $\lambda$ with $m+1$ positive parts, does $Q_{m+1}(t)$
 At a zero $r$ of $Z_m$, the recursion gives $Z_{m+1}(r)=rQ_{m+1}(r)$, so a
 positive answer implies the
 \hyperref[conjNestedMatroidZ]{nested-matroid conjecture} by induction on the
-number of rows.  The answer is positive for all shapes checked on this page.
-For $\lambda=(3,3,2,1)$ one has $Z_3=(1+t)(1+12t+t^2)$ and
+number of rows.  For $\lambda=(3,3,2,1)$ one has $Z_3=(1+t)(1+12t+t^2)$ and
 $Q_4=8(1+3t+t^2)$.  At the zeros of $1+12t+t^2$, $Q_4=-72t>0$, while
 $Q_4(-1)=-8$, so the zeros interlace.
 
