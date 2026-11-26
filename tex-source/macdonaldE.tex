@@ -16,9 +16,9 @@ connections to fillings and key polynomials.}
   Keywords & fillings \\
   Category & Schur \\
   SpecializesTo & macdonaldEspec | Opdam1995 | map=t=0 \\
-  SpecializesTo & atom | Mason2009 | map=q,t -> infinity \\
+  SpecializesTo & atom | Alexandersson2015gbMacdonald,Mason2009 | map=q,t -> infinity, x_i -> x_{n+1-i} \\
   SpecializesTo & macdonaldP | Macdonald1987 | scope=symmetric case \\
-  SpecializesTo & key | RamYip2011 | map=q=t=0 \\
+  SpecializesTo & key | RamYip2011 | map=q=t=0, index reversed \\
   StableLimit & macdonaldP | Macdonald1987 | scope=symmetric limit \\
 \end{polydata}
 
@@ -38,8 +38,14 @@ This model is the basis for the
 \hyperref[macdonaldEperm]{permuted basement Macdonald polynomials}, and we
 refer to that page for definitions.
 The specialization $q=t=0$ gives \hyperref[key]{key polynomials}, while the
-limit $q,t\to\infty$ gives \hyperref[atom]{Demazure atoms}
-\cite{Mason2009}.
+limit $q,t\to\infty$ gives \hyperref[atom]{Demazure atoms}.
+In the indexing used on this site (see below),
+$\macdonaldE_\alpha(\xvec;0,0)=\key_{\rev(\alpha)}(\xvec)$ and
+$\macdonaldE_\alpha(x_n,\dotsc,x_1;q,t)\to\atom_\alpha(x_1,\dotsc,x_n)$ as $q,t\to\infty$
+\cite[Sec.~3.1]{Alexandersson2015gbMacdonald}, where $\key$ and $\atom$ use the
+standard indexing of the \hyperref[key]{key polynomial page}.
+Equivalently, the identity basement at $q=t=0$ gives the atom
+$\atom_\alpha(\xvec)$ \cite{Mason2009}.
 
 \begin{example*}[A tiny non-attacking filling]
 % Related Rust: sym-poly/core/src/ssaf.rs and
@@ -289,13 +295,15 @@ where $\pi_i$ and $\theta_i$ are the usual Demazure character and atom
 operators.  If $\gamma_i$ is the length of the row whose basement label is
 $i$, then Alexandersson's basement-permuting formulas state
 \cite[Prop.~15]{Alexandersson2015gbMacdonald} that
+Here $s_i\sigma$ is obtained from the basement $\sigma$ by exchanging the
+values $i$ and $i+1$; the source writes this basement as $\sigma s_i$.
 \[
 \widetilde{\theta}_i\macdonaldE^\sigma_\alpha
  =
 \begin{cases}
-t\macdonaldE^{\sigma s_i}_\alpha, & \text{if } \ell(\sigma s_i)<\ell(\sigma)
+t\macdonaldE^{s_i\sigma}_\alpha, & \text{if } \ell(s_i\sigma)<\ell(\sigma)
    \text{ and } \gamma_i\leq\gamma_{i+1},\\
-\macdonaldE^{\sigma s_i}_\alpha, & \text{if } \ell(\sigma s_i)<\ell(\sigma)
+\macdonaldE^{s_i\sigma}_\alpha, & \text{if } \ell(s_i\sigma)<\ell(\sigma)
    \text{ and } \gamma_i>\gamma_{i+1},
 \end{cases}
 \]
@@ -304,9 +312,9 @@ and
 \widetilde{\pi}_i\macdonaldE^\sigma_\alpha
  =
 \begin{cases}
-t\macdonaldE^{\sigma s_i}_\alpha, & \text{if } \ell(\sigma s_i)>\ell(\sigma)
+t\macdonaldE^{s_i\sigma}_\alpha, & \text{if } \ell(s_i\sigma)>\ell(\sigma)
    \text{ and } \gamma_i<\gamma_{i+1},\\
-\macdonaldE^{\sigma s_i}_\alpha, & \text{if } \ell(\sigma s_i)>\ell(\sigma)
+\macdonaldE^{s_i\sigma}_\alpha, & \text{if } \ell(s_i\sigma)>\ell(\sigma)
    \text{ and } \gamma_i\geq\gamma_{i+1}.
 \end{cases}
 \]

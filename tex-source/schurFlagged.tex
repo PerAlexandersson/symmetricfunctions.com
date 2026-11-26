@@ -55,7 +55,7 @@ and
 \]
 \end{example}
 
-Every flagged Schur polynomial $\schurS_{\lambda,b}(\xvec)$ is a \hyperref[key]{key polynomial},
+Every flagged Schur polynomial $\schurS_{\lambda,b}(\xvec)$ with $b_i \geq i$ for all $i$ is a \hyperref[key]{key polynomial} (otherwise it is $0$),
 see \cite[Thm.~23]{ReinerShimozono1995}.
 Moreover, a \hyperref[schubert]{Schubert polynomial} $\schubert_w(\xvec)$ is a flagged Schur function
 if and only if $w$ is a \hyperref[vexillary]{vexillary permutation} (avoids 2143).
@@ -79,13 +79,13 @@ notation $\schurS^{(h)}_{\lambda}(\xvec)$.
 In \cite{Wachs1985}, it is proven that flagged Schur polynomials can
 be obtained via \hyperref[schubertOperatorformula]{divided difference operators}:
 \begin{align*}
-\schurS_{\lambda,b}(\xvec) = \partial_w( x_1^{a_1} \dotsm x_m^{a_m})
+\schurS_{\lambda,b}(\xvec) = \partial_{i_k} \dotsm \partial_{i_2} \partial_{i_1}( x_1^{a_1} \dotsm x_m^{a_m})
 \end{align*}
 where $a_i = \lambda_i + b_i -i$ and
 \[
-w = (m,m+1,\dotsc, b_m-1,\;  m-1,m,\dotsc, b_{m-1} - 1, \dotsc 1,2,\dotsc, b_1 -1 )
+(i_1,\dotsc,i_k) = (m,m+1,\dotsc, b_m-1,\;  m-1,m,\dotsc, b_{m-1} - 1, \dotsc, 1,2,\dotsc, b_1 -1 ),
 \]
-and the entries in the word are applied from left to right.
+so that $\partial_{i_1}$ is applied first.
 
 
 \subsection[flaggedSchurPolynomialJacobiTrudi]{Jacobi--Trudi identity}

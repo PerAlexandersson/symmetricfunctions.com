@@ -68,7 +68,7 @@ replace with brackets and remove paired brackets.
 \]
 We can now see that
 \[
- \crysf_2(213313212131) = \underline{3}13313212131, \qquad \cryse_2(213313212131) = 31\underline{2}313212131.
+ \crysf_2(213313212131) = \underline{3}13313212131, \qquad \cryse_2(213313212131) = 21\underline{2}313212131.
 \]
 \end{example}
 
@@ -97,13 +97,13 @@ is a $1$-string.
 Consider the connected graph consisting of words connected with edges given by
 $\cryse_i$ and $\crysf_i$, for all $i$.
 This is referred to as a \defin{crystal}.
-Each such crystal contains a unique word $w$ of the form
-$n^{\lambda_n} \dotsm 2^{\lambda_2} 1^{\lambda_1}$, where
-$\lambda_1 \geq \lambda_2 \geq \dotsb \geq \lambda_n$ is a partition.
-Note that, for this particular word, $\cryse_i(w)=\emptyset$ for all $i$.
-This word is called the \defin{highest weight}\label{crystalHighestWeight}
-in the crystal, and $\lambda$ is the \emph{highest weight vector} of the
-crystal.
+Each such crystal contains a unique word $w$ with $\cryse_i(w)=\emptyset$
+for all $i$.  This word is the \defin{highest weight}\label{crystalHighestWeight}
+element of the crystal.  Its weight is a partition
+$\lambda_1 \geq \lambda_2 \geq \dotsb \geq \lambda_n$, called the
+\emph{highest weight} of the crystal.  For example, the word
+$n^{\lambda_n} \dotsm 2^{\lambda_2} 1^{\lambda_1}$ is a highest weight
+element, and so is $1211$, with highest weight $(3,1)$.
 
 
 \subsection[crystalSsyt]{Crystals on semi-standard tableaux}

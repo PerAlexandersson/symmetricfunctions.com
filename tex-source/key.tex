@@ -14,14 +14,14 @@ Kohnert tableau, Kogan face, tableauhedron, flagged Schur polynomial}
   Rating   & 5 \\
   Bib      & Demazure1974nouvelle \\
   Year     & 1974 \\
-  Symbol   & $\key_{\lambda,\sigma}(z)$ \\
+  Symbol   & $\key_{\alpha}(\xvec)$ \\
   Keywords & atom-positive, divided-difference, fillings, polytopes \\
   Category & Schur \\
   Contains & schurFlagged | ReinerShimozono1995 | scope=flagged Schur polynomials \\
   Contains & schurS | Lascoux1990Keys | scope=dominant weights \\
   PositiveIn & atom | Lascoux1990Keys \\
   PositiveIn & generalizedDemazureAtoms | Lascoux1990Keys \\
-  PositiveIn & quasiKey | AssafSearles2018 | proof=Thm. 3.4 \\
+  PositiveIn & quasiKey | AssafSearles2018 | proof=Thm. 3.7 \\
   PositiveIn & slideF | AssafSearles2018 | proof=Thm. 2.13 \\
   SignedIn & completeFlaggedHomogeneous | Ehrhard2023x | proof=Thm. 7.6 \\
 \end{polydata}
@@ -143,16 +143,44 @@ and let
 This is well-defined, as the action of $\pi_\sigma$ is independent of the choice of reduced word.
 
 
+We use the standard indexing by \hyperref[weakCompositions]{weak compositions}
+\cite{Lascoux1990Keys,ReinerShimozono1995}.
+For a weak composition $\alpha = (\alpha_1,\dotsc,\alpha_n)$, the
+\defin{key polynomial}\label{keyPolynomialOperatorDefinition} $\key_\alpha(z)$
+is defined recursively by
+\[
+ \key_\alpha(z) \coloneqq
+ \begin{cases}
+  z^\alpha = z_1^{\alpha_1}\dotsm z_n^{\alpha_n} & \text{if } \alpha_1 \geq \alpha_2 \geq \dotsb \geq \alpha_n, \\
+  \pi_i\, \key_{s_i \alpha}(z) & \text{if } \alpha_i < \alpha_{i+1},
+ \end{cases}
+\]
+where $s_i\alpha$ interchanges $\alpha_i$ and $\alpha_{i+1}$.
+The result does not depend on the choice of $i$.
+Thus $\key_\lambda(z) = z^\lambda$ for a partition $\lambda$,
+whereas $\key_{(\lambda_n,\dotsc,\lambda_1)}(z)=\schurS_\lambda(z_1,\dotsc,z_n)$.
+For example, $\key_{10}(z) = z_1$ and $\key_{01}(z) = \pi_1(z_1) = z_1+z_2$,
+and the monomial $z^\alpha$ appears in $\key_\alpha(z)$ with coefficient $1$.
+
+Equivalently, key polynomials can be indexed by a partition and a permutation.
 Let $\lambda$ be a partition with at most $n$ parts, and let $\sigma \in \symS_n$.
-In fact, we can choose $\sigma$ to be the \emph{minimal coset representation} for
-the parabolic subgroup $W_J \subseteq \symS_n$ that fixes $\lambda$.
-The \defin{key polynomial}\label{keyPolynomialOperatorDefinition}
-$\key_{\lambda,\sigma}(z)$ is defined as
+Then
 \begin{equation*}
- \key_{\lambda,\sigma}(z) \coloneqq \pi_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
+ \key_{\lambda,\sigma}(z) \coloneqq \pi_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right)
+ = \key_{\sigma\lambda}(z),
+ \qquad \text{where } (\sigma\lambda)_i = \lambda_{\sigma^{-1}(i)}.
 \end{equation*}
-Note that if $\sigma^1(\lambda)=\sigma^2(\lambda)$, then
-$\key_{\lambda,\sigma^1}(z) = \key_{\lambda,\sigma^2}(z)$.
+Permutations are multiplied as functions, so $s_1 s_2 = [2,3,1]$ in one-line notation.
+If $\sigma^1\lambda=\sigma^2\lambda$, then
+$\key_{\lambda,\sigma^1}(z) = \key_{\lambda,\sigma^2}(z)$, so one can always take
+$\sigma$ to be the shortest permutation with $\sigma\lambda = \alpha$, that is, the
+\emph{minimal coset representative} for the parabolic subgroup fixing $\lambda$.
+For example, $\alpha = (1,0,3,2)$ corresponds to $\lambda = (3,2,1,0)$ and
+$\sigma = [3, 4, 1, 2]$.
+
+\emph{Note:} Some authors index the same polynomials by the reversed composition
+$(\alpha_n,\dotsc,\alpha_1)$.  When comparing formulas, check which composition
+gives the monomial $z^\lambda$ and which gives the Schur polynomial.
 
 
 This definition shows the close connection between \hyperref[schubert]{Schubert polynomials}
@@ -167,10 +195,9 @@ so key polynomials generalize the \hyperref[schurS]{Schur polynomials}.
 
 \begin{example}[From \cite{AlexanderssonAlhajjar2018}]
 
-Let $\lambda = (2,1,0,0)$ and $\sigma = [2,4,3,1] \in \symS_4$ in one-line notation.
-The permutation can be expressed as a reduced word as
-$\sigma = s_2 s_3 s_2 s_1$.
-We compute the key polynomial as follows:
+Let $\lambda = (2,1,0,0)$ and $\sigma = s_2 s_3 s_2 s_1 = [4,1,3,2] \in \symS_4$,
+so that $\sigma\lambda = (1,0,0,2)$.
+We compute the key polynomial $\key_{1002}(z) = \key_{\lambda,\sigma}(z)$ as follows:
 \begin{align*}
  \key_{\lambda,\sigma}(z) &= \pi_2 \pi_3 \pi_2 \pi_1 (z_1^2 z_2) =
  \pi_2 \pi_3 \pi_2 \partial_1 (z_1^3 z_2 ) = \pi_2 \pi_3 \pi_2 \left( \frac{z_1^3z_2 - z_1 z^3_2}{z_1-z_2}\right) \\
@@ -184,7 +211,7 @@ We continue the calculation by applying $\pi_2$ and get
  Applying $\pi_2 \pi_3$ then finally gives
 \begin{equation*}
 \begin{split}
-\key_{\lambda,\sigma}(z) &=
+\key_{1002}(z) &=
 z_1^2 z_2  +
 z_1^2 z_3  +
 z_1^2 z_4  +
@@ -199,21 +226,6 @@ z_1 z_3 z_4 .
 \end{equation*}
 In general, some monomials may appear multiple times.
 \end{example}
-
-
-Alternatively, key polynomials are also commonly indexed by \hyperref[weakCompositions]{weak compositions}.
-If $\alpha = (\alpha_1,\dotsc,\alpha_n)$ is a weak composition,
-we let $\key_{\alpha}(z)$ be the key polynomial $\key_{\lambda,\sigma}(z)$,
-where $\lambda$ is the partition obtained from $\alpha$ by sorting the elements in decreasing order,
-and $\sigma\in\symS_n$ is the shortest permutation with $\sigma\lambda=\alpha$,
-where $(\sigma\lambda)_i=\lambda_{\sigma^{-1}(i)}$.
-
-For example, $\alpha = (1,0,3,2)$ corresponds to $\lambda = (3,2,1,0)$ and $\sigma = [3, 4, 1, 2]$.
-With these conventions, $\key_\lambda(z)=z^\lambda$ for a partition $\lambda$,
-whereas $\key_{(\lambda_n,\dotsc,\lambda_1)}(z)=\schurS_\lambda(z)$.
-
-\emph{Note:} This indexing convention is not uniform in the literature;
-in some places, one needs to reverse the indexing composition $\alpha$.
 
 
 
@@ -954,7 +966,7 @@ complete flagged homogeneous basis.
   Rating   & 4 \\
   Bib      & Lascoux1990Keys \\
   Year     & 1990 \\
-  Symbol   & $\atom_{\lambda,\sigma}(z)$ \\
+  Symbol   & $\atom_{\alpha}(\xvec)$ \\
   Keywords & divided-difference, fillings, polytopes, vertex model \\
   Category & Schur \\
   PositiveIn & monomial | Mason2009 | scope=nonsymmetric monomials; proof=semistandard augmented fillings \\
@@ -993,10 +1005,14 @@ defined as
 \begin{equation*}
  \atom_{\lambda,\sigma}(z) \coloneqq \theta_\sigma\left( z_1^{\lambda_1} \dotsm z_n^{\lambda_n} \right).
 \end{equation*}
-Again, instead of using $(\lambda,\sigma)$ as an index, we use
-$\sigma(\lambda)$ as an index.
-Here, we must choose $\sigma$ to be the \hyperref[reducedWord]{shortest permutation} $\sigma$
-that sends $\lambda$ to $\alpha = \sigma(\lambda)$.
+As for key polynomials, we index atoms by the weak composition
+$\alpha = \sigma\lambda$, where now $\sigma$ must be the
+\hyperref[reducedWord]{shortest permutation} with $\sigma\lambda = \alpha$.
+Equivalently, $\atom_\alpha(z) = z^\alpha$ if $\alpha$ is weakly decreasing, and
+$\atom_\alpha(z) = \theta_i\, \atom_{s_i\alpha}(z)$ if $\alpha_i < \alpha_{i+1}$.
+For example, $\atom_{10}(z) = z_1$ and $\atom_{01}(z) = \theta_1(z_1) = z_2$,
+and $z^\alpha$ is the unique term of $\atom_\alpha(z)$ that is minimal in
+dominance order.
 
 For example, if $\alpha = 1113$, then $\lambda=3111$,
 and we must pick $\sigma = 4123$, and
@@ -1032,7 +1048,7 @@ Similarly,
 \[
 \key_{002} = \atom_{200} + \atom_{020} + \atom_{002}.
 \]
-\emph{The notation used here is not uniform in the literature.}
+As for key polynomials, some authors index atoms by the reversed composition.
 
 \begin{example*}[Key polynomials into atoms]
 \[

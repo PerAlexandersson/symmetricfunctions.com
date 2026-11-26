@@ -14,7 +14,7 @@
   Symbol   & $\macdonaldE^{\sigma}_\mu(\xvec;q,t)$ \\
   Keywords & fillings \\
   Category & Schur \\
-  Contains & macdonaldE | Ferreira2011 | scope=identity basement \\
+  Contains & macdonaldE | Ferreira2011 | scope=longest basement omega_0, index reversed vs. HHL \\
   SpecializesTo & permutedBasementTAtom | AlexanderssonSawhney2019 | map=q=0 \\
   SpecializesTo & permutedBasementAtom | AlexanderssonSawhney2019 | map=q=t=0 \\
   PositiveIn & atom | MandelshtamNiergarthSingh2026x | scope=t=0; semiring=NN[q]; proof=Cor. 4.7 \\
@@ -79,8 +79,9 @@ Setting $t=0$ in the permuted-basement $t$-atoms gives
 \defin{permuted-basement atoms}\label{permutedBasementAtomDefinition}.
 In the basement convention of
 \cite{AlexanderssonSawhney2019}, the identity basement gives ordinary
-\hyperref[atom]{Demazure atoms}, while the longest basement gives
-\hyperref[key]{key polynomials}.
+\hyperref[atom]{Demazure atoms}, $\atom^{\id}_\alpha=\atom_\alpha$, while the
+longest basement gives \hyperref[key]{key polynomials} with reversed index,
+$\atom^{\omega_0}_\alpha=\key_{\rev(\alpha)}$.
 
 \subsection[tAtom]{Demazure $t$-atoms}
 
@@ -251,7 +252,7 @@ a type $A$ inversion triple.
 There are in total $7$ inversion triples (of type $A$ and $B$).
 \begin{figure}
 \begin{ytableau}
-\underline{4} & \underline{2} & 1 & \textbf{2} & 4\\
+\underline{4} & \underline{2} & 1 & \textbf{2} & \textbf{4}\\
 5 & 5\\
 3 & 3 & \textbf{4} & 3\\
 2\\
