@@ -1,0 +1,320 @@
+\metatitle{Polynomials indexed by Dyck paths}
+
+\metadescription{One Dyck path determines a Ferrers board, a 312-avoiding
+permutation and its Bruhat interval, a unit interval graph, a skew shape and a
+lattice path matroid. We compare the polynomials attached to these objects:
+rook-Eulerian and peak polynomials, acyclic orientations, natural descents,
+non-nesting rooks and matroid Z-polynomials.}
+\metakeywords{Dyck paths,area sequences,Ferrers boards,Bruhat order,312-avoiding
+permutations,unit interval graphs,lattice path matroids,rook-Eulerian
+polynomials,peaks,acyclic orientations,natural descents,Z-polynomials}
+
+
+\section[dyckPathPolynomials]{Polynomials indexed by Dyck paths}
+
+Many real-rooted families in algebraic combinatorics are indexed by a Catalan
+object: a Dyck path, a Ferrers board inside a staircase, a $312$-avoiding
+permutation, a unit interval graph or a skew shape.  This page fixes one
+correspondence between these objects, so that the polynomials can be compared
+directly.  Polynomials that look unrelated in one model are sometimes simple
+statistics in another.
+
+
+\subsection[dyckPathObjects]{One Dyck path, several objects}
+
+Let $D$ be a \hyperref[qtCatalan]{Dyck path} of semilength $n$, with steps
+$U$ and $D$.  Its \hyperref[areaSequence]{area sequence}
+$a=(a_1,\dotsc,a_n)$ records the height of the path just before its $j$th
+up-step, so $a_1=0$ and $a_{j+1}\leq a_j+1$.
+
+\begin{itemize}
+\item The \hyperref[unitIntervalGraph]{unit interval graph} $G_D$ on $[n]$
+  joins each $j$ to its $a_j$ immediate predecessors $j-a_j,\dotsc,j-1$.
+\item The \defin{Ferrers board}\label{dyckPathFerrersBoard} $\lambda_D$ has
+  $\lambda_i$ boxes in row $i$, where $\lambda_i$ is the largest $j\geq i$ that
+  is $i$ or a neighbor of $i$ in $G_D$.  The rows grow weakly from top to
+  bottom, $\lambda_i\geq i$ and $\lambda_n=n$.  The boxes $(i,c)$ with $i<c$
+  are the edges of $G_D$, and reading the upper right boundary of the board
+  from the top left, with east steps as $U$ and south steps as $D$, gives the
+  path $D$ back.
+\item The permutation $\pi_D$ places a rook in each row of $\lambda_D$, from
+  the top, as far to the right as possible without attacking the rooks above.
+  It avoids the pattern $312$, every $312$-avoiding permutation arises once,
+  and the permutations $\sigma$ with $\sigma_i\leq\lambda_i$ for all $i$, that
+  is, the complete rook placements on $\lambda_D$, form the lower
+  \hyperref[bruhatOrder]{Bruhat interval} $[\mathrm{id},\pi_D]$
+  \cite[Prop.~3]{AlexanderssonJalQuemener2025x}.
+\item The \defin{peak intervals}\label{dyckPathPeakIntervals} are the intervals
+  $[i,\lambda_i]$ for the rows $i$ with $\lambda_i>\lambda_{i-1}$, where
+  $\lambda_0=0$.  They correspond to the peaks of $D$, and they are the maximal
+  cliques of $G_D$: if $i<j$ then $i$ and $j$ are adjacent exactly when
+  $j\leq\lambda_i$, so a clique with smallest element $i$ lies in
+  $[i,\lambda_i]$.
+\item Number the peak intervals $[\ell_1,u_1],\dotsc,[\ell_r,u_r]$ from left to
+  right.  The \hyperref[latticePathMatroids]{lattice path matroid} $M_D$ on
+  $[n]$ has as bases the sets $\{b_1<\dotsb<b_r\}$ with
+  $\ell_k\leq b_k\leq u_k$.  It is the lattice path matroid of the
+  \hyperref[skewShapes]{skew shape} $F_D$ with $r$ rows, whose $k$th row from
+  the bottom occupies the columns $\ell_k-k+1,\dotsc,u_k-k$.  The entries of a
+  peak interval are the possible positions of the north step of that row in a
+  lattice path through $F_D$.  A peak interval with a single element gives an
+  empty row, and a coloop of $M_D$.
+\end{itemize}
+
+Conversely, let $\lambda/\mu$ be a skew shape with $r$ rows, empty rows
+allowed, with $\lambda_1=c$, $\mu_r=0$ and $\mu_j\leq\lambda_{j+1}$ for all
+$j$; these are the shapes whose lattice path matroid has no loops.  Each such
+shape arises from exactly one Dyck path of semilength $r+c$.  Straight shapes
+correspond to $\ell_k=k$ for all $k$.
+
+\begin{example}
+Let $a=(0,1,2,2,3)$, so $D=UUUDUUDDDD$.  The board is
+$\lambda_D=(3,5,5,5,5)$ and $\pi_D=35421$.  The graph $G_D$ has the eight edges
+$12$, $13$, $23$, $24$, $25$, $34$, $35$ and $45$, and its maximal cliques are
+the peak intervals $A_1=[1,3]$ and $A_2=[2,5]$.  The skew shape is $F_D=(3,2)$:
+its bottom row admits the north-step positions $1,2,3$ and its top row the
+positions $2,3,4,5$.  The matroid $M_D$ has rank two, and its bases are all
+pairs from $[5]$ except $\{4,5\}$.
+\begin{figure}
+\svgimg[width=0.95\textwidth]{./svg-images/dyck-path-objects.svg}{The board (3,5,5,5,5) with the rooks of the permutation 35421, the unit interval graph with its two maximal cliques, and the skew shape (3,2) with the possible north-step positions in each row.}
+\end{figure}
+\end{example}
+
+
+\subsection[dyckPathBruhatPolynomials]{Statistics on the Bruhat interval}
+
+The complete rook placements on $\lambda_D$, equivalently the permutations in
+$[\mathrm{id},\pi_D]$, carry three natural statistics.  Write
+$[k]_q=1+q+\dotsb+q^{k-1}$.
+
+The number of inversions is the length in the Bruhat order, and
+\[
+  X_D(q)\coloneqq\sum_{\sigma\leq\pi_D}q^{\operatorname{inv}(\sigma)}
+  =\prod_{j=1}^{n}[a_j+1]_q.
+\]
+This is the \hyperref[aoRooks]{rook model} for the weight
+$X_D(q)$ on the page on \hyperref[unitIntervalAO]{Touchard--Riordan
+polynomials}.  The same product counts the
+\hyperref[aoOnUnitIntervalGraphs]{acyclic orientations} of $G_D$ by ascents
+\cite[Sec.~9]{AlexanderssonPanova2018}: inserting vertex $j$ into an acyclic
+orientation of the earlier vertices, its $a_j$ earlier neighbors form a clique
+that is already ordered, and the $a_j+1$ slots for $j$ give $0,\dotsc,a_j$ new
+ascents.  It also counts the perfect matchings of $[2n]$ whose openers are at
+the up-steps of $D$, by crossings, so summing over all Dyck paths gives the
+\hyperref[touchardRiordanPolynomialDefinition]{Touchard--Riordan polynomial}
+$T_n(q)$.
+
+The \defin{rook-Eulerian polynomial}\label{dyckPathRookEulerian} counts the
+same permutations by ascents,
+\[
+  Q_D(t)\coloneqq\sum_{\sigma\leq\pi_D}t^{\operatorname{asc}(\sigma)}.
+\]
+For the full board $\lambda_D=(n,\dotsc,n)$ this is the
+\hyperref[eulerianPolynomial]{Eulerian polynomial}.
+
+\begin{theorem}[Alexandersson--Jal--Quemener, {\cite[Thms.~12--13]{AlexanderssonJalQuemener2025x}}]
+For every Dyck path $D$, the polynomial $Q_D(t)$ is real-rooted.  More
+generally this holds for row-complete rook placements on any Ferrers board with
+$\lambda_i\geq i$, and the multivariate ascent-set enumerator is same-phase
+stable.
+\end{theorem}
+
+The \defin{peak polynomial}\label{dyckPathPeakPolynomial} counts them by
+interior peaks, positions $1<i<n$ with $\sigma_{i-1}<\sigma_i>\sigma_{i+1}$,
+\[
+  P_D(t)\coloneqq\sum_{\sigma\leq\pi_D}t^{\operatorname{pk}(\sigma)}.
+\]
+
+\begin{theorem}[Alexandersson--Jal--Quemener, \cite{AlexanderssonJalQuemener2025x}]
+For every Ferrers board with weakly increasing rows and $\lambda_i\geq i$, the
+peak polynomial of its row-complete rook placements is real-rooted.  In
+particular $P_D(t)$ is real-rooted.
+\end{theorem}
+
+Signing the entries connects peaks and descents.  Give each entry of
+$\sigma$ a sign, and count ordinary descents of the signed word in the usual
+order of the integers.  Each comparison of adjacent entries is decided by the
+sign of the entry with larger absolute value.  An interior peak owns two
+comparisons and gives exactly one descent for either sign, an entry owning one
+comparison gives $1+x$ over its two signs, and the remaining $p+1$ entries own
+none.  Hence a word with $p$ peaks gives
+$\sum_{\epsilon}x^{\operatorname{des}(\epsilon\sigma)}
+=2^{2p+1}x^p(1+x)^{n-2p-1}$, and
+\[
+  \sum_{\sigma\leq\pi_D}\ \sum_{\epsilon\in\{\pm1\}^n}
+  x^{\operatorname{des}(\epsilon\sigma)}
+  =2(1+x)^{n-1}\,P_D\Bigl(\frac{4x}{(1+x)^2}\Bigr).
+\]
+The same argument is used for the
+\hyperref[schubertMatroidZPermutations]{signed-descent formula} for
+$Z$-polynomials of Schubert matroids.
+
+
+\subsection[dyckPathGraphPolynomials]{Sinks of acyclic orientations}
+
+A sink of an orientation is a vertex with no outgoing edge.  Let
+\[
+  S_D(t)\coloneqq\sum_{O}t^{\operatorname{sink}(O)},
+\]
+summed over the acyclic orientations $O$ of $G_D$.  The graph $G_D$ is the
+graph $H_h$ with Hessenberg function $h=\lambda_D$, so by the
+Shareshian--Wachs sink identity, $S_D(t)$ groups the elementary coefficients
+of the chromatic symmetric function of $G_D$ by length; see the
+\hyperref[chromaticSinkRealRooted]{sink specialization}.  It is real-rooted,
+even after weighting by ascents with any $q\geq0$
+\cite[Thm.~5.2]{AlexanderssonLeite2026x}.
+
+\begin{example}
+For $a=(0,1,2,2,3)$, every acyclic orientation has a sink, and the only sets of
+two sinks are $\{1,4\}$ and $\{1,5\}$.  Each leaves a triangle with six acyclic
+orientations, so $S_D(t)=60t+12t^2$, with $X_D(1)=72$ orientations in total.
+\end{example}
+
+
+\subsection[dyckPathSkewPolynomials]{Natural descents and non-nesting rooks}
+
+Two polynomials are attached to the skew shape $F_D$.  For a
+\hyperref[standardYoungTableau]{standard Young tableau} $T$ of shape $F_D$, a
+\defin{natural descent} is an entry $j$ such that $j+1$ lies in a strictly
+higher row.  Let
+\[
+  N_D(t)\coloneqq\sum_{T}t^{\operatorname{ndes}(T)},\qquad
+  R_D(t)\coloneqq\sum_{k}r_k\,t^k,
+\]
+where $r_k$ is the number of
+\hyperref[nonNestingRookPlacement]{non-nesting rook placements} on $F_D$ with
+$k$ rooks.
+
+Both polynomials are \hyperref[pEulerianPolynomial]{$P$-Eulerian
+polynomials}.  Reading the cells row by row labels the cell poset
+of $F_D$ naturally, and $N_D$ is its $P$-Eulerian polynomial.  The
+non-nesting rook polynomial is the $P$-Eulerian polynomial of the width-two
+poset of the boundary steps, $R_D=W_P$ \cite{AlexanderssonJal2024x}.  The
+order ideals of the cell poset are the lattice paths through $F_D$, that is,
+the bases of $M_D$, and the maximal cells of an order ideal form a non-nesting
+rook placement.  Hence $R_D(1)$ is the number of bases of $M_D$.
+
+\begin{proposition}
+If $F_D$ has $m$ cells, then
+\[
+  [t]N_D(t)=R_D(1)-m-1.
+\]
+\end{proposition}
+
+\begin{proof}
+By the theory of $P$-partitions, $N_D(t)/(1-t)^{m+1}=\sum_{k\geq0}c_kt^k$,
+where $c_k$ counts the order-preserving maps from the cell poset to
+$\{0,\dotsc,k\}$.  Such maps with $k=1$ are the order ideals, so
+$c_1=R_D(1)$, and comparing the coefficients of $t$ gives
+$[t]N_D=c_1-(m+1)$.
+\end{proof}
+
+For two-row shapes there is an identity of whole polynomials after changing
+the board.  If the top row has $s$ cells, the bottom row has $b$ cells, and the
+top row starts $d\geq0$ columns to the right of the bottom row, then the
+natural-descent polynomial equals the non-nesting rook polynomial of the
+Ferrers board with rows $\theta_j=\min(s,s+d-j)$, for $1\leq j\leq b$.
+A bijection records a tableau by its word in the letters $A$ (top row)
+and $B$ (bottom row).  At each occurrence of $BA$, let $x$ and $y$ count the
+letters $A$ and $B$ up to and including that $B$, and place a rook in row $y$
+and column $s-x$; between two such occurrences, the word is a run of $A$
+followed by a run of $B$.  For example, the shape $(3,2)$ gives the board $(2,1)$, and both
+polynomials are $1+3t+t^2$.
+
+Real-rootedness of natural-descent polynomials of straight shapes is
+\hyperref[conjSYTNaturalDescents]{conjectured}.  The non-nesting rook numbers
+are ultra-log-concave, but $R_D(t)$ need not be real-rooted
+\cite{AlexanderssonJal2024x}.
+
+
+\subsection[dyckPathZPolynomials]{Matroid Z-polynomials}
+
+Let $Z_D(t)$ be the \hyperref[matroidZPolynomial]{$Z$-polynomial} of the
+lattice path matroid $M_D$.  For connected $F_D$ it is given by the
+\hyperref[schubertMatroidZRookMotzkin]{Motzkin path and rook formula} on the
+$2\times2$ squares of $F_D$.  In general $Z_D$ is the product over the
+connected components of $F_D$, with a factor $1+t$ for each coloop, and for straight shapes it is the $Z$-polynomial
+of a \hyperref[schubertMatroidZ]{Schubert matroid}.
+
+Dyck paths enter a second time, through the
+\hyperref[schubertMatroidZWordFormula]{word formula}.  The words
+$a_1\dotsm a_n$ there are exactly the area sequences $(0,a_1,\dotsc,a_n)$ of the
+Dyck paths $E$ of semilength $n+1$.  Since $[k]_q$ vanishes at $q=-1$ precisely
+when $k$ is even, the number of odd letters is the order of vanishing of $X_E$
+at $q=-1$.  For a Schubert matroid of rank $n$ with board of squares $B$,
+\[
+  Z(t)=\sum_{E}t^{\operatorname{ord}_{q=-1}X_E(q)}\,
+  W_B\bigl(\{j\in[n-1]: a_{j+1}(E)\geq2\}\bigr),
+\]
+summed over Dyck paths $E$ of semilength $n+1$, where $a_{j+1}(E)$ is the
+height of $E$ before its $(j+2)$nd up-step.  When the board of squares is empty,
+for instance for the uniform matroid $U_{n,n+1}$, every $W_B$ equals one, and
+\[
+  N_{n+1}(t)=\sum_{E}t^{\operatorname{ord}_{q=-1}X_E(q)}
+\]
+is the \hyperref[narayanaNumbers]{Narayana polynomial}.  For $n=2$, the five
+area sequences $000$, $001$, $010$, $011$ and $012$ give $1+3t+t^2$.
+
+
+\subsection[dyckPathSemilengthFour]{The fourteen Dyck paths of semilength four}
+
+\begin{figure}
+\svgimg[width=0.95\textwidth]{./svg-images/dyck-paths-four.svg}{The fourteen Dyck paths of semilength four, labelled by their area sequences.}
+\end{figure}
+
+The first table lists the objects attached to each Dyck path: the board
+$\lambda_D$, the permutation $\pi_D$, the peak intervals and the skew shape
+$F_D$, written as $\lambda/\mu$ with rows from top to bottom.
+
+\begin{tabular}{lllll}
+\toprule
+$a$ & $\lambda_D$ & $\pi_D$ & $A_1,\dotsc,A_r$ & $F_D$ \\
+\midrule
+$0000$ & $1234$ & $1234$ & $[1],[2],[3],[4]$ & $(0,0,0,0)$ \\
+$0001$ & $1244$ & $1243$ & $[1],[2],[3,4]$ & $(1,0,0)$ \\
+$0010$ & $1334$ & $1324$ & $[1],[2,3],[4]$ & $(1,1,0)/(1,0,0)$ \\
+$0011$ & $1344$ & $1342$ & $[1],[2,3],[3,4]$ & $(1,1,0)$ \\
+$0012$ & $1444$ & $1432$ & $[1],[2,4]$ & $(2,0)$ \\
+$0100$ & $2234$ & $2134$ & $[1,2],[3],[4]$ & $(1,1,1)/(1,1,0)$ \\
+$0101$ & $2244$ & $2143$ & $[1,2],[3,4]$ & $(2,1)/(1,0)$ \\
+$0110$ & $2334$ & $2314$ & $[1,2],[2,3],[4]$ & $(1,1,1)/(1,0,0)$ \\
+$0111$ & $2344$ & $2341$ & $[1,2],[2,3],[3,4]$ & $(1,1,1)$ \\
+$0112$ & $2444$ & $2431$ & $[1,2],[2,4]$ & $(2,1)$ \\
+$0120$ & $3334$ & $3214$ & $[1,3],[4]$ & $(2,2)/(2,0)$ \\
+$0121$ & $3344$ & $3241$ & $[1,3],[3,4]$ & $(2,2)/(1,0)$ \\
+$0122$ & $3444$ & $3421$ & $[1,3],[2,4]$ & $(2,2)$ \\
+$0123$ & $4444$ & $4321$ & $[1,4]$ & $(3)$ \\
+\bottomrule
+\end{tabular}
+
+The second table lists the polynomials.  The product $X_D(q)$ can be read off
+from $a$ directly.
+
+\begin{tabular}{lllllll}
+\toprule
+$a$ & $Q_D$ & $P_D$ & $S_D$ & $N_D$ & $R_D$ & $Z_D$ \\
+\midrule
+$0000$ & $t^3$ & $1$ & $t^4$ & $1$ & $1$ & $1+4t+6t^2+4t^3+t^4$ \\
+$0001$ & $t^2+t^3$ & $1+t$ & $2t^3$ & $1$ & $1+t$ & $1+3t+3t^2+t^3$ \\
+$0010$ & $t^2+t^3$ & $1+t$ & $2t^3$ & $1$ & $1+t$ & $1+3t+3t^2+t^3$ \\
+$0011$ & $3t^2+t^3$ & $1+3t$ & $3t^2+t^3$ & $1$ & $1+2t$ & $1+4t+4t^2+t^3$ \\
+$0012$ & $t+4t^2+t^3$ & $1+5t$ & $6t^2$ & $1$ & $1+2t$ & $1+2t+t^2$ \\
+$0100$ & $t^2+t^3$ & $2$ & $2t^3$ & $1$ & $1+t$ & $1+3t+3t^2+t^3$ \\
+$0101$ & $t+2t^2+t^3$ & $2+2t$ & $4t^2$ & $1+t$ & $1+2t+t^2$ & $1+2t+t^2$ \\
+$0110$ & $3t^2+t^3$ & $2+2t$ & $3t^2+t^3$ & $1$ & $1+2t$ & $1+4t+4t^2+t^3$ \\
+$0111$ & $t+6t^2+t^3$ & $2+6t$ & $4t+4t^2$ & $1$ & $1+3t$ & $1+6t+6t^2+t^3$ \\
+$0112$ & $3t+8t^2+t^3$ & $2+10t$ & $8t+4t^2$ & $1+t$ & $1+3t+t^2$ & $1+3t+t^2$ \\
+$0120$ & $t+4t^2+t^3$ & $4+2t$ & $6t^2$ & $1$ & $1+2t$ & $1+2t+t^2$ \\
+$0121$ & $4t+7t^2+t^3$ & $4+8t$ & $8t+4t^2$ & $1+t$ & $1+3t+t^2$ & $1+3t+t^2$ \\
+$0122$ & $7t+10t^2+t^3$ & $4+14t$ & $16t+2t^2$ & $1+t$ & $1+4t+t^2$ & $1+4t+t^2$ \\
+$0123$ & $1+11t+11t^2+t^3$ & $8+16t$ & $24t$ & $1$ & $1+3t$ & $1+t$ \\
+\bottomrule
+\end{tabular}
+
+Some polynomials coincide.  Reversing the Dyck path, as for $0001$ and
+$0100$, gives isomorphic graphs, rotated skew shapes and isomorphic matroids,
+so $S_D$, $N_D$, $R_D$ and $Z_D$ are unchanged.  The Bruhat interval does not
+have this symmetry: $Q_D$ often agrees but $P_D$ usually differs, as for
+$0001$ and $0100$.  The rows $0101$, $0112$, $0121$ and $0122$, whose shapes
+have two nonempty rows, have $R_D=Z_D$, while the row $0111$ shows that the two
+differ in general.
