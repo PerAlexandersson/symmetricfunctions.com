@@ -245,7 +245,22 @@ local function pdf_page_to_svg(pdf_path, page_num, output_path)
   )
 
   if exec(cmd) and file_exists(temp_svg) then
-    return exec("mv " .. temp_svg .. " " .. output_path)
+    -- pdftocairo gives the page size in unitless PDF points, while dvisvgm
+    -- above gives it in pt with --zoom=1.5.  Rescale so that both tools
+    -- produce figures of the same displayed size.
+    local svg = read_file(temp_svg)
+    if not svg then return false end
+    local function scaled(v) return string.format("%.4fpt", tonumber(v) * 1.5) end
+    svg = svg:gsub('(<svg[^>]-)width="([%d.]+)"%s+height="([%d.]+)"',
+      function(head, w, h)
+        return head .. 'width="' .. scaled(w) .. '" height="' .. scaled(h) .. '"'
+      end, 1)
+    local f = io.open(output_path, "w")
+    if not f then return false end
+    f:write(svg)
+    f:close()
+    os.remove(temp_svg)
+    return true
   end
 
   return false
