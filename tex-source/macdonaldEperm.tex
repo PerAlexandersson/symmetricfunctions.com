@@ -418,7 +418,12 @@ Then
  \sum_{\sigma \in \symS_n(\mu)}
  \macdonaldE^{\rev(\sigma)}_{inc(\mu)}(\xvec;q,t),
 \]
-where $inc(\mu)$ is the list of entries of $\mu$ sorted in increasing order.
+where $inc(\mu)$ is the list of entries of $\mu$ sorted in increasing order,
+and $\symS_n(\mu)\subseteq\symS_n$ contains one permutation $\sigma$ for each
+distinct rearrangement $\sigma\mu$ of $\mu$, with
+$(\sigma\mu)_i=\mu_{\sigma^{-1}(i)}$.  The summand depends only on $\sigma\mu$,
+so summing over all of $\symS_n$ instead gives
+$\lvert\mathrm{Stab}(\mu)\rvert\,\macdonaldP_\mu(\xvec;q,t)$.
 \end{proposition}
 
 
