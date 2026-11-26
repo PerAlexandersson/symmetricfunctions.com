@@ -456,26 +456,12 @@ $(1,190,658,143)$, $(1,618,3899,2684)$, $(1,2047,20726,29812,3723)$ for
 $r=2,\dotsc,8$.  Here $\gamma_1=\sum_{k=1}^{r}C_k-r$, with $C_k$ the Catalan
 numbers.  Consecutive $Z(S_r)$ interlace for $r\leq100$.
 
-\begin{conjecture}[Alexandersson, 2026]
-\label{conjRibbonMatroidZ}
-Let $M$ be a connected lattice path matroid of rank $r$ whose shape is a ribbon
-(a connected skew shape without a $2\times2$ square, determined by the
-composition of its row lengths).  Then $Z_M(t)$ equals the
-Narayana polynomial (see \hyperref[narayanaNumberCSP]{Narayana numbers})
-\[
-N_{r+1}(t)=\sum_{k=0}^{r}\frac{1}{r+1}\binom{r+1}{k}\binom{r+1}{k+1}t^k,
-\]
-independently of the composition.  In particular it is real-rooted.
-\end{conjecture}
-
-This holds for the circuit $U_{r,r+1}$ \cite{ProudfootXuYoung2018} and was
-checked for all $1022$ connected ribbon lattice path matroids on at most $11$
-elements, including the fan matroids, whose $Z$-polynomials were computed by
-\name{Linyuan Lu}, \name{Matthew H. Y. Xie} and \name{Arthur L. B. Yang}
-\cite{LuXieYang2018x}.  These matroids are graphic.  A ribbon with loops or
-coloops contributes a factor $(1+t)$ for each coloop; for instance, a hook
-shape with $h$ nonempty rows gives $(1+t)^{r-h}N_{h+1}(t)$.  What explains this
-rigidity?
+Connected ribbon lattice path matroids of rank $r$, conjectured here earlier to
+have the Narayana $Z$-polynomial $N_{r+1}(t)$ independently of the
+composition of their row lengths, are now known to do so; see
+\hyperref[conjRibbonMatroidZ]{the ribbon theorem} on the page on
+\hyperref[schubertMatroidZ]{$Z$-polynomials of Schubert matroids}, which also
+collects combinatorial formulas for $Z_M(t)$ of nested matroids.
 
 \begin{conjecture}[Binder--Vecchi, \cite[Conj.~1.5]{BinderVecchi2026x}]
 \label{conjRefinedChow}

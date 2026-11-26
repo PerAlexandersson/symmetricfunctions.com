@@ -1,0 +1,377 @@
+\metatitle{Z-polynomials of Schubert matroids}
+
+\metadescription{Combinatorial formulas for the Z-polynomials of Schubert and
+lattice path matroids: Motzkin paths with rook placements, words, tableaux,
+pattern-avoiding permutations, ribbon matroids, a row recursion and the
+real-rootedness question.}
+\metakeywords{Z-polynomial,matroid Kazhdan--Lusztig polynomials,Schubert
+matroids,lattice path matroids,Motzkin paths,rook placements,gamma-positivity,
+real-rooted polynomials}
+
+
+\section[schubertMatroidZ]{Z-polynomials of Schubert matroids}
+
+Let $M$ be a loopless matroid of rank $n$, and let $P_M(t)$ be its
+\hyperref[matroidKazhdanLusztigPolynomial]{Kazhdan--Lusztig polynomial}.
+The \defin{$Z$-polynomial}\label{matroidZPolynomial} of $M$, introduced by
+\name{Nicholas Proudfoot}, \name{Yuan Xu} and \name{Ben Young}
+\cite{ProudfootXuYoung2018}, is
+\[
+  Z_M(t) \coloneqq \sum_{F \text{ a flat}} t^{\operatorname{rk} F}\, P_{M/F}(t).
+\]
+It is palindromic of degree $n$, so there are unique numbers $\gamma_k$ with
+\[
+  Z_M(t)=\sum_{k\geq0}\gamma_k\, t^k(1+t)^{n-2k},
+\]
+and we write $\Gamma_M(y)\coloneqq\sum_k\gamma_k y^k$ for the
+\hyperref[gammaPolynomial]{gamma polynomial}.  The $\gamma_k$ are nonnegative
+for every matroid \cite[Thm.~1.8]{FerroniMatherneStevensVecchi2022x}.
+The polynomial $Z_M$ depends only on the lattice of flats, so parallel
+elements may be removed, and it is multiplicative on direct sums; in particular
+each coloop contributes a factor $1+t$.  For the circuit $U_{n,n+1}$,
+the polynomial $Z_{U_{n,n+1}}(t)$ is the \hyperref[narayanaNumbers]{Narayana polynomial}
+\cite{ProudfootXuYoung2018}
+\[
+  N_{n+1}(t)\coloneqq
+  \sum_{k=0}^{n}\frac{1}{n+1}\binom{n+1}{k}\binom{n+1}{k+1}t^k
+  =\sum_{k\geq0}\binom{n}{2k}\mathrm{Cat}_k\, t^k(1+t)^{n-2k}.
+\]
+
+Real-rootedness of $Z_M(t)$ was conjectured for all matroids
+\cite{ProudfootXuYoung2018}.  It holds for sparse paving matroids
+\cite{XieZhang2026SparsePaving} but fails for the extended binary Golay matroid
+\cite{Eberhardt2026x}.  For Schubert matroids the question is open; see the
+\hyperref[conjNestedMatroidZ]{nested-matroid conjecture}.  This page collects
+combinatorial descriptions of $Z_M$ and $\Gamma_M$ for Schubert matroids and,
+more generally, lattice path matroids.  Unless stated otherwise, the results
+are from unpublished work of \name{Per Alexandersson}
+\cite{Alexandersson2026SchubertMatroidZ}.  The formulas for Schubert matroids
+below were checked against the flat-sum definition for every Schubert matroid of rank at
+most six whose first row has at most six boxes, and of rank seven with at most
+four boxes per row.  The skew version of the Motzkin formula below was checked
+in the same way for all $3323$ connected skew shapes with at most five rows and
+five columns.
+
+
+\subsection[schubertMatroidZBoard]{Schubert matroids and the board of squares}
+
+Let $\lambda=(\lambda_1\geq\dotsb\geq\lambda_n\geq1)$ be a partition with $n$
+positive parts.  The Schubert matroid $M_\lambda$ on $[n+\lambda_1]$ has as
+bases the sets $\{j_1<\dotsb<j_n\}$ with $j_a\geq a+\lambda_1-\lambda_a$ for
+all $a$.  This is the \hyperref[schubertMatroidDefinition]{Schubert matroid}
+of $I=\{a+\lambda_1-\lambda_a\}$, or equivalently the
+\hyperref[latticePathMatroids]{lattice path matroid} of the Ferrers shape
+$\lambda$.  It has rank $n$ and no loops or coloops.  Zero parts would add
+coloops, each multiplying $Z$ by $1+t$.  The elements
+$1,\dotsc,1+\lambda_1-\lambda_2$ are parallel, so $Z_{M_\lambda}$ does not
+depend on $\lambda_1$.
+
+The \defin{board of squares}\label{schubertMatroidZBoardOfSquares} $B$ of
+$\lambda$ consists of the boxes of $\lambda$ that are the northwest corner of a
+$2\times2$ square inside $\lambda$.  Its row $j$, for $1\leq j<n$, has
+$w_j=\lambda_{j+1}-1$ boxes.  A \defin{placement} on $B$ is a set of boxes
+$(j_1,c_1),\dotsc,(j_s,c_s)$ of $B$ with $j_1<\dotsb<j_s$ and
+$c_1>\dotsb>c_s$, that is, a
+\hyperref[nonNestingRookPlacement]{non-nesting rook placement} on $B$.  Give a
+rook in column $c$ the weight $x_c$, and for $E\subseteq[n-1]$ let
+\[
+  W_B(E)\coloneqq\sum_{\text{placements in rows } \subseteq E}\ \prod_{i} x_{c_i},
+\]
+including the empty placement of weight one.  The identities below hold with
+these column weights, and setting all $x_c=1$ gives $Z_{M_\lambda}(t)$ and
+$\Gamma_{M_\lambda}(y)$.
+
+\begin{example}
+For $\lambda=(3,3,2,1)$ the board has rows of lengths $2,1,0$; its boxes are
+shaded below.
+\begin{figure}
+\begin{ytableau}
+*(lightgray) & *(lightgray) & \\
+*(lightgray) & & \\
+ & \\
+ \\
+\end{ytableau}
+\end{figure}
+The placements are the empty one, $(1,1)$, $(1,2)$, $(2,1)$ and
+$\{(1,2),(2,1)\}$, so for instance $W_B(\{1,2\})=1+2x_1+x_2+x_1x_2$.
+\end{example}
+
+
+\subsection[schubertMatroidZMotzkin]{Motzkin paths and rook placements}
+
+A \hyperref[motzkinPolynomialsRealRooted]{Motzkin path} of length $n$ starts
+and ends at height zero, takes steps $U,H,D$ of increments $1,0,-1$ and stays
+weakly above zero.  Let $h_j(P)$ be the height after step $j$ and $k(P)$ the
+number of up-steps.
+
+\begin{theorem}[Alexandersson, 2026]\label{schubertMatroidZRookMotzkin}
+For a Motzkin path $P$ of length $n$, put
+$E(P)=\{j\in[n-1]: h_j(P)>0\}$.  Then
+\[
+  \Gamma_{M_\lambda}(y)=\sum_{P} y^{k(P)}\,W_B(E(P)),
+  \qquad
+  Z_{M_\lambda}(t)=\sum_{P} t^{k(P)}(1+t)^{n-2k(P)}\,W_B(E(P)).
+\]
+Thus $\gamma_k$ counts pairs of a Motzkin path with $k$ up-steps and a placement
+whose rooks all lie in rows where the path has positive height.  To count
+$[t^i]Z_{M_\lambda}$, additionally mark $i-k(P)$ of the horizontal steps.
+\end{theorem}
+
+The same formula holds for every connected skew shape $\lambda/\mu$ with $n$
+rows, where the board consists of the boxes $(j,c)$ with
+$\mu_j<c<\lambda_{j+1}$, both for the lattice path matroid and for the
+\hyperref[rookMatroids]{rook matroid} of $\lambda/\mu$.  The two matroids have
+the same valuative invariants \cite{BoninMier2026}.
+
+\begin{proof*}[Sketch]
+The base polytope of a lattice path matroid has a subdivision, cut out by
+integral prefix sums, whose maximal cells are snake matroid polytopes
+\cite{BenedettiKnauerValencia2023x}, and $Z$ is a valuative invariant
+\cite{FerroniSchroter2024}.  Every interior face of the subdivision is a
+direct sum of connected ribbon matroids, which have Narayana $Z$-polynomials by
+\hyperref[conjRibbonMatroidZ]{the ribbon theorem} below.  For a Ferrers shape,
+the maximal cells correspond to partitions $\eta$ contained in $B$, with
+$\eta_n=0$; putting a rook at $(j,\eta_j)$ whenever $\eta_j>\eta_{j+1}$ is a
+bijection with placements.  The faces of a fixed cell are obtained by fixing the
+prefix sums at a subset of $m$ of its corner rows.  Such a face contributes
+$(-1)^m$ times a product of the Narayana polynomials $Z_{U_{s,s+1}}$ of its
+segments, which in gamma coordinates counts the Motzkin paths returning to zero
+after each fixed row.  Inclusion--exclusion leaves
+exactly the Motzkin paths that are positive at every corner row.
+\end{proof*}
+
+
+\subsection[schubertMatroidZRibbons]{Ribbons and outerplanar graphs}
+
+A ribbon contains no $2\times2$ square, so the board is empty and the formula
+above reduces to the Narayana polynomial.  This case is proved directly, and
+is used in the proof above.
+
+\begin{theorem}[Raj, 2026, \cite{Raj2026Outerplanarity}]
+\label{conjRibbonMatroidZ}\label{ribbonMatroidZNarayana}
+Every connected ribbon lattice path matroid $M$ of rank $r$ has
+$Z_M(t)=N_{r+1}(t)$, independently of the composition of its row lengths.  In
+particular, $Z_M(t)$ has $r$ simple negative zeros.
+\end{theorem}
+
+This was conjectured on the
+\hyperref[realrootedOpenProblems]{open problems page}, and was known for the
+circuits \cite{ProudfootXuYoung2018} and the fan matroids
+\cite{LuXieYang2018x}.
+
+\begin{proof*}[Sketch]
+A connected ribbon matroid is graphic, represented by a path with a hub vertex
+joined to both ends and to some interior vertices
+\cite{KnauerMartinezSandovalAlfonsin2018}.  After removing parallel spokes,
+it is an $(r+1)$-cycle with noncrossing chords at the hub.
+
+Suppose a simple graph $G$ is the union of two graphs that meet exactly in an
+edge $e=uv$ and its ends, and each side stays connected when $e$ is deleted.
+The deletion formula of \name{Tom Braden} and \name{Artem Vysogorets}
+\cite[Thm.~2.8]{BradenVysogorets2020} writes $Z_G-Z_{G\setminus e}$ as a sum of
+multiples of $\tau(M/(F\cup e))$.  Here $\tau$ of a rank-$s$ matroid is the
+coefficient of $t^{(s-1)/2}$ in its Kazhdan--Lusztig polynomial, and zero for
+even $s$.  After contracting $e$ the two sides meet in a vertex, so
+$M/(F\cup e)$ is a direct sum of two matroids of positive ranks $s_1,s_2$.
+Since $P$ is multiplicative and $\deg P<\operatorname{rk}/2$ in positive rank,
+the product has degree at most $(s_1+s_2-2)/2$, and $\tau$ vanishes.  Hence
+$Z_G=Z_{G\setminus e}$.  Removing the chords one at a time leaves the cycle,
+whose graphic matroid is $U_{r,r+1}$.
+\end{proof*}
+
+The same argument removes every diagonal of a dissected polygon, and the
+converse holds.
+
+\begin{theorem}[Raj, 2026, \cite{Raj2026Outerplanarity}]
+Let $G$ be a simple $2$-connected graph on $n\geq3$ vertices.  Then $[t]Z_G(t)$
+equals the number of bonds of $G$, and is at least $\binom{n}{2}$.  Moreover,
+the following are equivalent: $G$ is outerplanar; $Z_G(t)=N_n(t)$;
+$[t]Z_G(t)=\binom{n}{2}$.
+\end{theorem}
+
+
+\subsection[schubertMatroidZExample]{An example}
+
+Take $\lambda=(3,3,2,1)$, so that $B$ has rows of lengths $2,1,0$.  Group the
+placements by their set of occupied rows $J$.  The middle column is the
+total weight of the placements with row set $J$, and the last column counts, by
+up-steps, the Motzkin paths of length four that are positive after every step
+in $J$.
+
+\begin{tabular}{lll}
+\toprule
+$J$ & Rook weight & Motzkin paths \\
+\midrule
+$\emptyset$ & $1$ & $1+6y+2y^2$ \\
+$\{1\}$ & $x_1+x_2$ & $3y+2y^2$ \\
+$\{2\}$ & $x_1$ & $4y+y^2$ \\
+$\{1,2\}$ & $x_1x_2$ & $2y+y^2$ \\
+\bottomrule
+\end{tabular}
+
+At unit weights,
+\[
+  \Gamma_{M_\lambda}(y)=1+18y+8y^2,\qquad
+  Z_{M_\lambda}(t)=1+22t+50t^2+22t^3+t^4.
+\]
+This is also the $Z$-polynomial of the staircase $S_4$ in the
+\hyperref[conjNestedMatroidZ]{nested-matroid conjecture}, as the staircase
+$(4,3,2,1)$ has the same board.
+
+
+\subsection[schubertMatroidZWords]{A word formula}
+
+The following formula needs only one family of words: the parity of a letter
+gives the power of $t$, and its size decides whether a rook may be placed.
+
+\begin{proposition}[Alexandersson, 2026]\label{schubertMatroidZWordFormula}
+Let $\mathcal{A}_n$ be the set of words $a_1\dotsm a_n$ of nonnegative
+integers with $a_i\leq a_{i-1}+1$ for all $i$, where $a_0=0$.  Then
+\[
+  Z_{M_\lambda}(t)=\sum_{a\in\mathcal{A}_n}
+  t^{\#\{i\,:\,a_i\text{ odd}\}}\,
+  W_B\bigl(\{j\in[n-1]:a_{j+1}\geq2\}\bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+Start from a Motzkin path of length $n$ in the theorem above with some
+horizontal steps marked.  Replace $U$ by $UU$, $D$ by $DD$, an unmarked $H$ by
+$DU$ and a marked $H$ by $UD$, then add $U$ at the start and $D$ at the end.
+This gives a \hyperref[qtCatalan]{Dyck path} of semilength $n+1$ whose height
+at time $2j+1$ is $2h_j+1$.  Every Dyck path arises once, since it has
+positive odd height at these times and the pairs of steps in between decode
+uniquely.
+
+Let $a_i$ be the height of the Dyck path just before its $(i+1)$st up-step,
+for $0\leq i\leq n$.  Between two consecutive up-steps there are
+$a_{i-1}+1-a_i$ down-steps, so the words $a_1\dotsm a_n$ are exactly the
+elements of $\mathcal{A}_n$.  The $(i+1)$st up-step is at position $2i+1-a_i$.
+It has even position precisely when $a_i$ is odd, and the even-position
+up-steps come from the up-steps and the marked horizontal steps of the Motzkin
+path.  Finally, $h_j>0$ means that the Dyck path has height at least three at
+time $2j+1$, so that its $(j+2)$nd up-step is at position at most $2j+1$; this
+says $a_{j+1}\geq2$.
+\end{proof}
+
+For example, for $n=2$ the board is empty, and the words $00,01,10,11,12$ give
+$Z=1+3t+t^2$.  In terms of the Dyck path, $Z_{M_\lambda}$ is a sum over
+\hyperref[standardYoungTableau]{standard Young tableaux} $T$ of shape
+$(n+1,n+1)$, where the first row lists the up-step positions:
+$T$ contributes $t$ to the power of the number of even entries in its first
+row, and row $j$ of the board is available if $T_{1,j+2}\leq 2j+1$.
+
+The same words also give the gamma polynomial.  Write $a_i=2b_i+\epsilon_i$
+with $\epsilon_i\in\{0,1\}$.  If $b_i\leq b_{i-1}$, both bits are possible, but
+if $b_i>b_{i-1}$ then $b_i=b_{i-1}+1$ and $(\epsilon_{i-1},\epsilon_i)=(1,0)$
+are forced.  Since $a_{j+1}\geq2$ precisely when $b_{j+1}>0$, the bits do not
+affect the available rows, and summing over them gives the following.
+
+\begin{corollary}[Alexandersson, 2026]
+Let $\mathcal{B}_n$ be the set of words $b_1\dotsm b_n$ of nonnegative integers
+with $b_1=0$, in which every rise $b_i>b_{i-1}$ has $b_i=b_{i-1}+1$ and no two
+rises are consecutive.  Then
+\[
+  \Gamma_{M_\lambda}(y)=\sum_{b\in\mathcal{B}_n}
+  y^{\#\text{rises of } b}\,
+  W_B\bigl(\{j\in[n-1]:b_{j+1}>0\}\bigr).
+\]
+\end{corollary}
+
+For example, $a=1234$ gives $b=0112$.  Its two rises fix all four bits, every
+row is available, and the word contributes $t^2W_B(\{1,2,3\})$ to $Z$ and
+$y^2W_B(\{1,2,3\})$ to $\Gamma$.
+
+
+\subsection[schubertMatroidZPermutations]{Permutations, matchings and bases}
+
+For a \hyperref[patternAvoidanceClasses]{$132$-avoiding} permutation
+$\pi\in\symS_{n+1}(132)$, let $E(\pi)$ be the set of $j\in[n-1]$ such that the
+values $1,\dotsc,n+1-j$ do not occupy a single interval of positions.  Then
+\[
+  Z_{M_\lambda}(t)=\sum_{\pi\in\symS_{n+1}(132)} t^{\des(\pi)}\,W_B(E(\pi)).
+\]
+To see this, append a final leaf to the Motzkin path and read $U,H,D$ in
+preorder as vertices with two, one and zero children.  A unary vertex has its
+child on the left for an unmarked step and on the right for a marked one.
+Label the vertices $n+1,n,\dotsc,1$ in preorder and read them in inorder.  This
+gives each $132$-avoiding permutation once, the descents come from the
+vertices with a right child, and after $j$ vertices in preorder the $1+h_j$
+unvisited subtrees are the intervals occupied by $1,\dotsc,n+1-j$.
+
+Summing over signs gives a second formula.  Order signed integers as usual
+and count descents between adjacent entries; then
+\[
+  Z_{M_\lambda}(t)=2^{-(n+1)}\sum_{\pi\in\symS_{n+1}(132)} W_B(E(\pi))
+  \sum_{\epsilon\in\{\pm1\}^{n+1}} t^{\des(\epsilon\pi)}.
+\]
+
+Matching each up-step of a Motzkin path with its down-step gives a noncrossing
+partial matching on $[n]$, and $h_j>0$ means that $j$ lies under an arc, that
+is, $p\leq j<q$ for some arc $(p,q)$.  Thus $\gamma_k$ counts noncrossing
+partial matchings with $k$ arcs, together with a placement whose rooks lie in
+rows covered by arcs.
+
+There is also a formula that starts from an actual basis rather than from the
+board.  Read a basis $A$ of $M_\lambda$ in increasing order, and call
+$b\in A$ \hyperref[internallyActive]{internally active} if no smaller element
+$e\notin A$ makes $(A\setminus\{b\})\cup\{e\}$ a basis.  Then $\gamma_k$ counts pairs of
+a basis $A$ and a Motzkin path with $k$ down-steps, in which an internally
+active element is read as a step $U$ or $H$, and any other element as $U$, $H$
+or $D$, but only from positive height.
+
+Further descriptions of $Z_{M_\lambda}(t)$ in the same spirit sum
+$t^{s}\,W_B(E)$ over the following objects, for the stated statistic $s$ and
+row set $E$:
+\begin{itemize}
+\item lists $u_1<\dotsb<u_k$ and $v_1<\dotsb<v_k$ in $[n]$ with $u_i\leq v_i$,
+  with $s=k$, and $j\in E$ if $u_i\leq j<v_i$ for some $i$;
+\item plane rooted trees on $n+2$ vertices $v_0,\dotsc,v_{n+1}$, numbered in
+  preorder, with $s$ the number of internal vertices minus one, and $j\in E$
+  if $v_{n+1-j}$ is not on any of the paths that start at a child of the root
+  and repeatedly take the last child;
+\item permutations $\pi\in\symS_{n+1}(312)$, with $s=\des(\pi)$, and $j\in E$
+  if position $j+1$ is the middle position of an occurrence of the pattern
+  $231$.
+\end{itemize}
+
+
+\subsection[schubertMatroidZRowRecursion]{Adding a row and real-rootedness}
+
+The word formula builds $Z$ one row at a time.  Appending a letter $q$ to a
+word with last letter $p$ is allowed when $p\geq q-1$, contributes $t$ if $q$
+is odd, and, if $q\geq2$, allows a rook in the new row of the board in any
+column to the left of the last rook.
+
+Let $\lambda$ have $m+1$ positive parts, let $Z_m$ be the $Z$-polynomial of
+$(\lambda_1,\dotsc,\lambda_m)$, and let $Z_{m+1}$ be that of $\lambda$.  Let
+$Q_{m+1}(t)$ be $t^{-1}$ times the sum in the word formula for $\lambda$ over
+the words with last letter at least two; such a word contains an odd letter.
+Every word for $(\lambda_1,\dotsc,\lambda_m)$ extends by the letters $0$ and
+$1$ without making the new row available, so
+\[
+  Z_{m+1}(t)=(1+t)Z_m(t)+t\,Q_{m+1}(t).
+\]
+
+\begin{question}[Alexandersson, 2026]\label{schubertMatroidZRowInterlacing}
+For every partition $\lambda$ with $m+1$ positive parts, does $Q_{m+1}(t)$
+\hyperref[interlacingPolynomials]{interlace} $Z_m(t)$?
+\end{question}
+
+At a zero $r$ of $Z_m$, the recursion gives $Z_{m+1}(r)=rQ_{m+1}(r)$, so a
+positive answer implies the
+\hyperref[conjNestedMatroidZ]{nested-matroid conjecture} by induction on the
+number of rows.  The answer is positive for all shapes checked on this page.
+For $\lambda=(3,3,2,1)$ one has $Z_3=(1+t)(1+12t+t^2)$ and
+$Q_4=8(1+3t+t^2)$.  At the zeros of $1+12t+t^2$, $Q_4=-72t>0$, while
+$Q_4(-1)=-8$, so the zeros interlace.
+
+Grouping the words is essential.  For $n=3$ and the empty board, the words
+ending in $0$ and in $3$ give $1+3t+t^2$ and $t^2$, but $1+3t+3t^2$ is not
+real-rooted, so the polynomials by last letter do not form an interlacing
+family.
+
+In the same unpublished work \cite{Alexandersson2026SchubertMatroidZ}, the
+coefficient sequences of $Z_{M_\lambda}$ and $\Gamma_{M_\lambda}$ are shown to
+be strictly log-concave for every Schubert matroid, and $Z_{M_\lambda}$ is
+shown to be real-rooted for every Schubert matroid of rank at most $27$.
