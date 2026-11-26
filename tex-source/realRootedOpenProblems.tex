@@ -353,6 +353,21 @@ n & C_n(t) \\
 \end{array}
 \]
 Evidence: real-rooted and consecutively interlacing for $n\leq40$.
+
+The conjecture has been proved by \name{ProgramComputer}
+\cite[Thm.~1]{ProgramComputer2026CatalanPeaks}: every zero of $C_n(t)$ is
+simple and negative, and consecutive polynomials strictly interlace.  The
+proof makes an
+\href{https://github.com/1337isnot1337/solved-conjectures/issues/59}{earlier
+public argument} for all sufficiently large $n$ effective, with the explicit
+bound $n\geq150$, and checks the remaining lengths exactly.  The project was
+AI-assisted, and the preprint has not yet appeared on arXiv or in a journal.
+A \href{https://github.com/ProgramComputer/open-math-research/blob/312293aa850010e9d9509d6850a482b9c7b7966f/topics/catalan-word-peaks/lean/CatalanStrictPeaksAllInterlacing.lean}{Lean
+formalization} proves both statements for $C_n(t)$ defined by counting
+Catalan words.
+% Lean: CatalanStrictPeaks.strict_peaks_all_lengths; axioms propext,
+% Classical.choice, Quot.sound in the repository's CI audit (not locally built).
+
 By contrast, descents on Catalan words give
 $\sum_k\binom{n-1}{2k}2^{n-1-2k}\mathrm{Cat}_kt^k$, a rescaled
 gamma-polynomial of the
@@ -868,7 +883,7 @@ to be real-rooted, but are not.
 
 Peaks on permutations give the real-rooted
 \hyperref[peakGeneratingPolynomial]{peak polynomials}, and peaks on
-Catalan words appear real-rooted.  Peaks on unrestricted words and on
+\hyperref[conjCatalanWordPeaks]{Catalan words} are real-rooted.  Peaks on unrestricted words and on
 parking functions fail.  For words over the alphabet $\{0,1\}$, the first five
 polynomials $2$, $4$, $7+t$, $12+4t$, $21+10t+t^2$ are real-rooted, but
 \[
