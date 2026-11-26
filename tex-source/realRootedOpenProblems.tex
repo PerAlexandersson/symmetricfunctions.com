@@ -660,7 +660,7 @@ $1+16t+22t^2+3t^3$ is real-rooted.  Evidence: all skew shapes with
 $|\lambda|\leq8$ and $k\leq4$.
 
 \begin{conjecture}[Alexandersson, May 2020]
-\label{keyHStarRealRootedConjecture}
+\label{keyHStarRealRootedConjecture}\label{keyRealRootedHstar}
 Let $\lambda$ be a partition and $\sigma$ a permutation, and let
 $P_{\lambda,\sigma}(k)\coloneqq\key_{k\lambda,\sigma}(1^n)$, the
 specialization of a \hyperref[key]{key polynomial}.  Define
@@ -673,10 +673,14 @@ where $d$ is the degree of $P_{\lambda,\sigma}$.  Then
 $H_{\lambda,\sigma}(t)$ is real-rooted.
 \end{conjecture}
 
-For fixed $\lambda$, $P_{\lambda,\sigma}$ is the Ehrhart polynomial of a
-union of faces of a \hyperref[gtpolytopes]{Gelfand--Tsetlin polytope}
-\cite{AlexanderssonAlhajjar2018}; see
-\hyperref[keyRealRootedHstar]{the context}.  The same conjecture is stated
+Here $\key_{\lambda,\sigma}=\pi_\sigma(x^\lambda)$ is the
+\hyperref[keyPolynomialOperatorDefinition]{key polynomial} indexed by a
+partition and a permutation.  The value $\key_{k\lambda,\sigma}(1^n)$ is a
+polynomial in $\lambda_1,\dotsc,\lambda_n$ and $k$, and for fixed $\lambda$,
+$P_{\lambda,\sigma}$ is the Ehrhart polynomial of a union of faces of a
+\hyperref[gtpolytopes]{Gelfand--Tsetlin polytope}
+\cite{AlexanderssonAlhajjar2018}; see also
+\hyperref[keyKogan]{key polynomials from Kogan faces}.  The same conjecture is stated
 by \name{Alice L. L. Gao}, \name{Xin-Bei Liu}, \name{Arthur L. B. Yang},
 and \name{James J. Y. Zhao} as the real-rootedness of the numerators of the
 Lascoux series \cite[Conj.~6.3]{GaoLiuYangZhao2026x}.  Known cases, all for $\lambda=\delta_n$, include
