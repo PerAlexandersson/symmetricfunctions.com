@@ -414,6 +414,46 @@ is, $p\leq j<q$ for some arc $(p,q)$.  Thus $\gamma_k$ counts noncrossing
 partial matchings with $k$ arcs, together with a placement whose rooks lie in
 rows covered by arcs.
 
+The ordinary polynomial has a similar description by
+\hyperref[setPartitions]{noncrossing set partitions}.  Draw a set partition
+$\pi$ of $[n+1]$ with an arc between consecutive elements of each block, and
+let $E(\pi)$ be the set of $j\in[n-1]$ such that some arc $(a,b)$ passes
+strictly over $j+1$, that is, $a<j+1<b$.  Then
+\[
+  Z_{M_\lambda}(t)=\sum_{\pi}t^{\,n+1-|\pi|}\,W_B(E(\pi)),
+\]
+summed over the noncrossing partitions $\pi$ of $[n+1]$, so the exponent is
+the rank of $\pi$ in the lattice of noncrossing partitions.  To see this,
+shorten each arc $(a,b)$ to $(a,b-1)$.  The arcs of length one become marked
+sites, and the longer arcs form a noncrossing partial matching on $[n]$, as in
+the matching formula above \cite{ChenDengDu2005}.  Moreover, weighting all set
+partitions by $p^{\operatorname{cr}(\pi)}q^{\operatorname{ne}(\pi)}$, the
+numbers of crossing and of nesting pairs of arcs, gives a polynomial that is
+symmetric in $p$ and $q$ and equals $Z_{M_\lambda}(t)$ at $(p,q)=(0,1)$: for
+fixed sets of arc endpoints, the crossings and nestings are equidistributed in
+the way of \name{Anisse Kasraoui} and \name{Jiang Zeng}
+\cite{KasraouiZeng2006}, while $E(\pi)$ depends only on the endpoints.
+
+\begin{example}
+For $\lambda=(3,2)$ the board is a single cell, in row $1$, and a rook there
+needs the vertex $2$ to lie strictly under an arc.
+
+\begin{tabular}{llll}
+\toprule
+$\pi$ & rank & $E(\pi)$ & contribution \\
+\midrule
+$1|2|3$ & $0$ & $\emptyset$ & $1$ \\
+$12|3$ & $1$ & $\emptyset$ & $t$ \\
+$1|23$ & $1$ & $\emptyset$ & $t$ \\
+$13|2$ & $1$ & $\{1\}$ & $2t$ \\
+$123$ & $2$ & $\emptyset$ & $t^2$ \\
+\bottomrule
+\end{tabular}
+
+The sum is $Z=1+4t+t^2$.  In the partition $123$ the arcs $(1,2)$ and $(2,3)$
+meet at $2$, so neither passes over it.
+\end{example}
+
 There is also a formula that starts from an actual basis rather than from the
 board.  Read a basis $A$ of $M_\lambda$ in increasing order, and call
 $b\in A$ \hyperref[internallyActive]{internally active} if no smaller element
@@ -434,8 +474,19 @@ row set $E$:
   and repeatedly take the last child;
 \item permutations $\pi\in\symS_{n+1}(312)$, with $s=\des(\pi)$, and $j\in E$
   if position $j+1$ is the middle position of an occurrence of the pattern
-  $231$.
+  $231$;
+\item permutations $\sigma\in\symS_{n+1}(321)$, with $s$ the number of
+  excedances $\sigma(i)>i$, and $j\in E$ if
+  $\max(\sigma_1,\dotsc,\sigma_j)\geq j+2$;
+\item \hyperref[parallelogramPolyomino]{parallelogram polyominoes} $P$ with
+  width plus height equal to $n+2$, with $s$ the height of $P$ minus one, and
+  $j\in E$ if $P$ has a lattice point in its interior on the line $x+y=j+1$.
 \end{itemize}
+
+For the polyominoes, removing the first and last step of both boundary paths
+and reading the remaining steps in pairs gives the marked Motzkin path, and
+the number of interior lattice points on the line $x+y=j+1$ is its height
+after step $j$.
 
 
 \subsection[schubertMatroidZRowRecursion]{Adding a row and real-rootedness}
