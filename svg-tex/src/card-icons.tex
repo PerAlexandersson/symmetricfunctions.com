@@ -1293,4 +1293,20 @@
 \end{tikzpicture}
 
 
+
+\tikzsetnextfilename{card-dyckPathPolynomials}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A Dyck path with area sequence (0,1,2,1), its area cells in blue
+  % and the diagonal cells of its Ferrers board.
+  \begin{scope}[x=0.3cm,y=0.3cm,shift={(-1.5,-2.5)}]
+    \foreach \x/\y in {0/1,0/2,1/2,2/3}
+      \filldraw[iconblue, draw=black, thinner] (\x,\y) rectangle (\x+1,\y+1);
+    \foreach \x in {0,...,3}
+      \draw[thinner] (\x,\x) rectangle (\x+1,\x+1);
+    \draw (0,0) -- (0,3) -- (2,3) -- (2,4) -- (4,4);
+  \end{scope}
+\end{tikzpicture}
+
 \end{document}
