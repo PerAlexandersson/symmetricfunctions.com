@@ -102,7 +102,10 @@ that is already ordered, and the $a_j+1$ slots for $j$ give $0,\dotsc,a_j$ new
 ascents.  It also counts the perfect matchings of $[2n]$ whose openers are at
 the up-steps of $D$, by crossings, so summing over all Dyck paths gives the
 \hyperref[touchardRiordanPolynomialDefinition]{Touchard--Riordan polynomial}
-$T_n(q)$.
+$T_n(q)$.  Explicitly, read the closers of such a matching $M$ from left to
+right and record, for each closer, the index of its opener among the openers.
+This gives a bijection with $[\mathrm{id},\pi_D]$, under which
+$\operatorname{cr}(M)=a_1+\dotsb+a_n-\operatorname{inv}(\sigma)$.
 
 The \defin{rook-Eulerian polynomial}\label{dyckPathRookEulerian} counts the
 same permutations by ascents,
@@ -130,6 +133,20 @@ For every Ferrers board with weakly increasing rows and $\lambda_i\geq i$, the
 peak polynomial of its row-complete rook placements is real-rooted.  In
 particular $P_D(t)$ is real-rooted.
 \end{theorem}
+
+The inversions can be kept as well: for every $q\geq0$,
+\[
+  \sum_{\sigma\leq\pi_D}q^{\operatorname{inv}(\sigma)}t^{\operatorname{pk}(\sigma)}
+\]
+is real-rooted in $t$.  Indeed, if $\sigma_1=k$, then $\sigma$ has $k-1$
+inversions involving its first entry, and removing the first row and column $k$
+leaves a placement on a smaller board of the same kind.  So the inversion
+weight multiplies each refinement by the first entry, in the induction of
+\name{Per Alexandersson}, \name{Aryaman Jal} and \name{Maena Quemener}, by a
+positive scalar, which preserves its interlacing conditions.  By the matching
+bijection above, the peaks of the closer word, weighted by $q$ to the number
+of crossings, therefore also give a real-rooted polynomial for each set of
+openers.
 
 Signing the entries connects peaks and descents.  Give each entry of
 $\sigma$ a sign, and count ordinary descents of the signed word in the usual
@@ -236,6 +253,20 @@ poset of the boundary steps, $R_D=W_P$ \cite{AlexanderssonJal2024x}.  The
 order ideals of the cell poset are the lattice paths through $F_D$, that is,
 the bases of $M_D$, and the maximal cells of an order ideal form a non-nesting
 rook placement.  Hence $R_D(1)$ is the number of bases of $M_D$.
+
+Two further descriptions of $N_D$ follow.  Since the cell poset has dimension
+two, label the cells row by row and read the labels column by column, from the
+top, to get a permutation $w_D$.  The tableaux of shape $F_D$, written as words
+in these labels, are exactly the permutations below $w_D$ in the right
+\hyperref[weakOrder]{weak order}, with natural descents as ordinary descents.
+This is a weak-order interval, in contrast to the Bruhat interval behind
+$Q_D$ and $P_D$.  Moreover, $N_D$ is the $h$-polynomial of the order complex
+of the bases of $M_D$ in Gale order, with the smallest and largest basis
+removed:
+\[
+  N_D(t)=(1-t)^{m-1}f\Bigl(\frac{t}{1-t}\Bigr),
+\]
+where $f(z)$ counts the chains of these bases by size, and $m=|F_D|$.
 
 \begin{proposition}
 If $F_D$ has $m$ cells, then

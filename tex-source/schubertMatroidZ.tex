@@ -399,6 +399,14 @@ and count descents between adjacent entries; then
   Z_{M_\lambda}(t)=2^{-(n+1)}\sum_{\pi\in\symS_{n+1}(132)} W_B(E(\pi))
   \sum_{\epsilon\in\{\pm1\}^{n+1}} t^{\des(\epsilon\pi)}.
 \]
+A word with $p$ interior peaks contributes $2^{2p+1}t^p(1+t)^{n-2p}$ to the inner
+sum, so equivalently
+\[
+  \Gamma_{M_\lambda}(y)=2^{-n}\sum_{\pi\in\symS_{n+1}(132)}W_B(E(\pi))\,
+  (4y)^{\operatorname{pk}(\pi)},
+\]
+and $Z_{M_\lambda}$ is real-rooted if and only if this weighted peak polynomial
+of $132$-avoiding permutations is.
 
 Matching each up-step of a Motzkin path with its down-step gives a noncrossing
 partial matching on $[n]$, and $h_j>0$ means that $j$ lies under an arc, that
