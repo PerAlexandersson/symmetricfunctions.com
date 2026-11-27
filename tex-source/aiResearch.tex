@@ -1,7 +1,7 @@
 \metatitle{Research with AI tools}
 \metadescription{How to use AI tools on the open problems of the symmetric
 functions catalog: where to find problems, useful tools, and how to share a
-solution and get credit for it, without writing a paper.}
+solution and get credit for it.}
 \metakeywords{open problems, AI-assisted research, conjectures, Lean,
 real-rootedness}
 
@@ -12,7 +12,7 @@ catalog contains many open problems, and several of them have recently been
 solved with substantial help from AI tools; see
 \hyperref[aiResearchSolved]{below}.  This page is meant for anyone who wants
 to try, in particular students and people outside academia who find
-something but have no plans to write a paper about it.
+something and want to let me know.
 
 If you want a problem to work on, send me an email (see the
 \hyperref[about]{about page}) with a few words about your background and
@@ -53,10 +53,8 @@ Pull requests with formalized solutions are welcome.
 polytool}: exact univariate polynomial tools for real-rootedness, interlacing,
 recurrences and sequences, with an MCP server.
 \item \href{https://github.com/PerAlexandersson/ehrcalc}{\icon{github}
-ehrcalc}: exact Ehrhart computations and related counting tools.
-\item \href{https://github.com/PerAlexandersson/lrcalc-rs}{\icon{github}
-lrcalc-rs}: Littlewood--Richardson coefficients, Kostka numbers and Schur
-expansions.
+ehrcalc}: exact Ehrhart computations and related counting tools, with an
+\href{https://github.com/PerAlexandersson/ehrcalc/tree/main/mcp}{MCP server}.
 \item \href{https://github.com/PerAlexandersson/mcp-oeis}{\icon{github}
 mcp-oeis}: an MCP server for searching the OEIS.
 \item \href{https://github.com/PerAlexandersson/Mathematica-packages}{\icon{github}
@@ -67,10 +65,7 @@ arXiv papers in combinatorics, tagged with topics of this catalog.
 
 The catalog itself is written in LaTeX, and its source is on
 \href{https://github.com/PerAlexandersson/symmetricfunctions.com}{\icon{github}
-GitHub}.  The file
-\href{https://www.symmetricfunctions.com/site-labels.json}{site-labels.json}
-lists every anchor on the site with its title, which makes it easy to point
-to a specific definition or conjecture.
+GitHub}.
 
 \subsection[aiResearchSharing]{Sharing a solution}
 
@@ -79,7 +74,6 @@ yourself before announcing a result.  A formal proof in Lean is the most
 convincing format, but make sure that the formal statement really is the
 statement of the problem.
 
-There is no need to write a paper.
 \begin{itemize}
 \item Put the Lean code in a public GitHub repository, with a short README
 saying what is proved and how the statement matches the problem.  A short
@@ -102,16 +96,19 @@ A public repository also dates the result, which settles priority if
 several people find a solution at the same time.  Using AI tools is fine and
 there is no need to apologize for it, but please say how they were used.
 
-If you do write a manuscript, I am happy to take a brief look at it, but I
-prefer not to join as a coauthor.
+If you do write a manuscript, I am happy to take a brief look at it.
 
 \subsection[aiResearchPending]{Solutions that are not yet public}
 
 Sometimes I know of a solution before it is public, for instance when a
 write-up is being prepared.  Such results are stated on the catalog with a
 reference to the unpublished notes, so that nobody spends effort on a problem
-that is already settled.  If you are about to invest heavily in a problem,
-it does not hurt to ask first.
+that is already settled.
+
+Other people may already be working on the same problem. If you decide to
+work on an open problem, consider opening an issue in the
+\href{https://github.com/PerAlexandersson/symmetricfunctions.com/issues}{\icon{github}
+catalog's GitHub repository} so others know what you are working on.
 
 \subsection[aiResearchSolved]{Recently settled}
 
