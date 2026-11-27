@@ -340,7 +340,7 @@ See the \hyperref[murnaghanNakayamaRule]{page on Murnaghan--Nakayama rule} for m
 In \cite{Hanlon1988}, we have the power-sum expansion
 \begin{equation*}
 H_\lambda \schurS_\lambda(\xvec) =
-\sum_{\substack{\sigma \in RS(\lambda) \\ \tau \in CS(\lambda)}} \sign(\sigma) \powerSum_{\mathrm{type}(\sigma\tau)}(\xvec)
+\sum_{\substack{\sigma \in RS(\lambda) \\ \tau \in CS(\lambda)}} \sign(\tau) \powerSum_{\mathrm{type}(\sigma\tau)}(\xvec)
 \end{equation*}
 where $RS(\lambda)$ and $CS(\lambda)$ are the row- and column-stabilizers
 of a fixed standard Young tableau of shape $\lambda$.
@@ -1000,10 +1000,11 @@ phenomenon to the quantum Pascal triangle.
 
 \subsection[schurGustafsonMilne]{Gustafson--Milne formula}
 
-Let $\lambda$ be a partition with $k$ parts. Then
+Let $n\geq k$ and let $\lambda$ be a partition with $k$ parts and
+$\lambda_k\geq n-k$. Then
 \[
-\schurS_{\lambda_1 - n + 1, \lambda_2 - n + 2,\dotsc,\lambda_k - n + k}(x_1,\dotsc,x_k)
- =\sum_{S \in \binom{[n]}{k}} \frac{\schurS_\lambda(x_S)}{\prod_{i\in S} \prod_{j\in \overline{S}}} (x_i-x_j).
+\schurS_{(\lambda_1-n+k,\dotsc,\lambda_k-n+k)}(x_1,\dotsc,x_n)
+ =\sum_{S \in \binom{[n]}{k}} \frac{\schurS_\lambda(x_S)}{\prod_{i\in S} \prod_{j\in \overline{S}} (x_i-x_j)}.
 \]
 For a proof using Chern classes, tautological bundles, and the Atiyah--Bott localization theorem,
 see \cite[Thm.~7.1]{FeherRimanyiNemethi2012}.

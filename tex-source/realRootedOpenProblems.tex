@@ -216,8 +216,11 @@ and
 Both families satisfy linear recurrences in $n$ of minimal order five, so no
 three-term recurrence is available.  In both cases the polynomials have
 simple real zeros and interlace strictly and consecutively for $n\leq40$.
-For $321$-avoiders there is a computer-assisted proof, but no conceptual
-one.
+The case $\Pi=\{321\}$ is proved (Alexandersson, 2026, formalized in Lean):
+for $n\geq3$, $B_n(t;321)$ has simple negative zeros, interlaced by those of
+the Motzkin-type polynomial
+$\sum_{a}\binom{n-2}{2a}C_a2^{n-2-2a}t^a$, where $C_a$ is a Catalan number.
+The case $\Pi=\{132\}$ is open.
 
 
 \section[openProblemsWords]{Words, parking functions and Catalan words}

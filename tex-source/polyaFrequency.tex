@@ -314,10 +314,12 @@ see \cite{FallatJohnson2011}.
 \emph{Checking TNN.}
 Total non-negativity can be checked efficiently via \emph{Neville
 elimination}, a variant of Gaussian elimination using adjacent-row
-operations.  A matrix is TNN if and only if Neville elimination completes
-with all multipliers non-negative and no entry becoming negative.  This gives
-an \(O(n^2m)\) algorithm for an \(n\times m\) matrix, compared to the
-exponential cost of checking all minors directly.
+operations.  A nonsingular square matrix \(A\) is TNN if and only if
+Neville elimination of \(A\) and of its transpose can be carried out
+without row exchanges, with non-negative
+multipliers and positive diagonal pivots.  For an \(n\times n\) matrix this
+takes \(O(n^3)\) operations, compared to the exponential cost of checking all
+minors directly.
 
 Hadamard products do not preserve TNN in general, even for arbitrary TNN
 Toeplitz matrices.  Two useful positive cases are the finite-support
@@ -479,7 +481,7 @@ of \(m\).  Let
   M_{n,j}\coloneqq P_D\bigl((0,0),(n,j)\bigr)
 \]
 be the weighted path count from \((0,0)\) to \((n,j)\).  Then
-\(M=(M_{n,j})\) is totally positive and every row is a Pólya frequency
+\(M=(M_{n,j})\) is totally non-negative and every row is a Pólya frequency
 sequence.  In particular, every row polynomial \(\sum_j M_{n,j}t^j\)
 has only real non-positive zeros.
 \end{theorem}

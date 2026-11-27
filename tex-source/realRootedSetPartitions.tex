@@ -184,6 +184,7 @@ The \defin{Stirling permutation descent polynomials}
 see \cite[Eq.~13]{Carlitz1965} and \cite[Thm.~2.1]{GesselStanley1978}.
 The coefficients can be found in \oeis{A008517}; the first few values are
 presented below.
+\[
 \begin{array}{rrrrrr}
 \toprule
  1  \\
@@ -194,6 +195,7 @@ presented below.
  1 & 114 & 1452 & 4400 & 3708 & 720 \\
 \bottomrule
 \end{array}
+\]
 These numbers appear in the Hilbert series of the Whitehouse complex;
 see \cite{Readdy2005}.  These polynomials are the
 \hyperref[hStarPolynomial]{$h^*$-polynomials} of the
@@ -201,16 +203,18 @@ see \cite{Readdy2005}.  These polynomials are the
 \[
  y_1 \leq y_2 \leq \dotsb \leq y_n \qquad 0 \leq y_j \leq x_j \leq 1 \text{ for } j=1,\dotsc,n.
 \]
+Its Ehrhart polynomial need not have positive coefficients: for $n=20$
+the linear coefficient is $-22354369153/6983776800$.
 \name{Shi-Mei Ma}, \name{Jun Ma}, \name{Jean Yeh}, and
 \name{Yeong-Nan Yeh} prove $e$-positivity for multivariate $k$th-order
 Eulerian polynomials attached to $k$-Stirling permutations
 \cite{MaMaYehYeh2021x}.  They also give tree interpretations for the
 coefficients in related gamma-type expansions.
-For $n=20$, the linear term of the Ehrhart polynomial (of degree $40$) has
-negative coefficient $-22354369153/6983776800$.
 
 \name{Miklós Bóna} proved that these have only real zeros \cite{Bona2009}.
-The Ma--Wang theorem also gives real-rootedness and interlacing.
+The recurrence above, together with the
+\hyperref[maWangDerivativeCriterion]{Ma--Wang criterion}, also gives
+real-rootedness and interlacing.
 
 \name{Jim Haglund} and \name{Mirko Visontai} \cite[Thm.~3.3]{HaglundVisontai2012}
 show that a multivariate generalization is stable.
