@@ -132,7 +132,7 @@ The vector $(h^*_0 , h^*_1, \dotsc,  h^*_d )$ is the
 integers, see \cite{Stanley1993} and \cite{Beck2007}.
 For inequalities that every \(h^*\)-vector must satisfy, see
 \hyperref[hStarInequalities]{the \(h^*\)-inequalities subsection} on the
-Ehrhart theory page, which gives a more focused overview of this material.
+Ehrhart theory page.
 
 For a $d$-dimensional polytope, we have the following relation between
 entries in the \hyperref[hStarVector]{$h^*$-vector} and the
@@ -370,7 +370,8 @@ It is the \hyperref[matroidBasePolytope]{base polytope} of the uniform
 matroid $U_{k,n}$, and hence a
 \hyperref[generalizedPermutohedron]{generalized permutohedron}.
 Its normalized volume is the
-\hyperref[eulerianPolynomial]{Eulerian number} $A(n-1,k-1)$.
+\hyperref[eulerianPolynomial]{Eulerian number} $A(n-1,k-1)$, see
+\oeis{A008292}.
 
 \name{Nan Li} proved a conjecture of \name{Richard P. Stanley} giving a
 descent--exceedance interpretation of the
@@ -977,7 +978,7 @@ $h^*_{\Pi_n(y)}(z)$ is
 are \hyperref[logConcavePolynomial]{log-concave} and
 \hyperref[unimodalPolynomial]{unimodal}.
 
-For computations, one may use the lattice-point function
+The $h^*$-polynomial can be computed from the lattice-point function
 \[
   L_y(m)
   =
@@ -1010,6 +1011,9 @@ For example,
  (2,1,1) & 1+24z+24z^2+z^3 .
 \end{array}
 \]
+For $y=(1,\dotsc,1)$, the polytope $\Pi_n(y)$ has $C_{n+1}$ lattice points,
+a Catalan number \oeis{A000108}, and normalized volume $(n+1)^{n-1}$, the
+number of parking functions of length $n$ \oeis{A000272}.
 See the page on \hyperref[parkingFunctions]{parking functions} for the
 classical parking function interpretation.
 \end{example*}

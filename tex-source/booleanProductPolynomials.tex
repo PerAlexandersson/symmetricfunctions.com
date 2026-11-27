@@ -20,8 +20,9 @@ The \defin{boolean product polynomials} are a family of polynomials defined as f
 \booleanProduct_{k}(\xvec_n) \coloneqq 
 \prod_{ 1 \leq i_1 \lt i_2 \lt \dotsb \lt i_k \leq n } (x_{i_1} + x_{i_2}+\dotsb + x_{i_k}).
 \]
-These were introduced by \name{Lukas Billera}, \name{Sara Billey}, and \name{Vasu Tewari} in an FPSAC abstract,
-and inspired by certain applications in hyperplane arrangements, among other things.
+These were introduced by \name{Louis J. Billera}, \name{Sara Billey}, and
+\name{Vasu Tewari} in an FPSAC abstract \cite{BilleraBilleyTewari2018},
+motivated in part by applications to hyperplane arrangements.
 
 \begin{example}
 % Related Rust: sym-poly/sym/examples/boolean_product_site_example.rs
@@ -33,6 +34,12 @@ The first nontrivial case is already Schur-positive:
 &=\monomial_{21}+2\monomial_{111}
 =\schurS_{21}.
 \end{aligned}
+\]
+The extreme cases are $\booleanProduct_1(\xvec_n)=x_1x_2\dotsm x_n=\schurS_{1^n}(\xvec_n)$
+and $\booleanProduct_n(\xvec_n)=\schurS_{1}(\xvec_n)$, and more generally
+\[
+\booleanProduct_2(\xvec_n)=\prod_{1\leq i\lt j\leq n}(x_i+x_j)
+=\schurS_{(n-1,n-2,\dotsc,1)}(\xvec_n).
 \]
 \end{example}
 

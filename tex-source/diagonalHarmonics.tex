@@ -25,12 +25,11 @@ conjecture, see
 
 \name{Eugenio Cainelli}, \name{Lorenzo Luccioli},
 \name{Alessandro Iraci}, and \name{Giovanni Paolini} introduce
-\emph{$qt$Bench}, a benchmark of 29 open $q,t$-combinatorics problems and one
-solved calibration problem, with finite data and automated checks
-\cite{CainelliLuccioliIraciPaolini2026x}.  Several problems concern Theta,
-Delta, $\Xi$, super-nabla, or path and parking-function statistics.  The
-proposed area--bounce bijection remains under assessment, while negative
-coefficients rule out statistic interpretations for three other targets.
+\emph{$qt$Bench}, a collection of 29 open $q,t$-combinatorics problems and one
+solved calibration problem \cite{CainelliLuccioliIraciPaolini2026x}.  Several
+problems concern Theta, Delta, $\Xi$, super-nabla, or path and
+parking-function statistics.  For three of the targets, negative coefficients
+rule out an interpretation by statistics.
 
 \section[diagonalHarmonics]{Introduction}
 
@@ -378,6 +377,8 @@ Some special values of the Hilbert series are
 q^{\binom{n}{2}}\mathrm{Hilb}_{\mathcal{DH}_n}(q,q^{-1})
 = ([n+1]_q)^{n-1}.
 \]
+The coefficients of $[n]_q!$ count permutations by inversions and form the
+Mahonian triangle \oeis{A008302}.
 These formulas are part of the specialization picture around Haiman's
 $n!$ theorem \cite{Haiman1994,Haiman2002}; the latter formula was originally
 conjectured by \name{Richard Stanley}.
@@ -527,6 +528,8 @@ For \(0\leq k\leq n\),
 =
 \frac{1}{n+1}\binom{n+1}{k+1}\binom{n+1}{k}.
 \]
+These are the Narayana numbers \oeis{A001263}, shifted by one: row \(n\)
+here is row \(n+1\) of the OEIS triangle.
 \end{proposition}
 \begin{proof*}
 By the Shuffle theorem and Hall duality, the scalar product is the number of
@@ -534,7 +537,7 @@ By the Shuffle theorem and Hall duality, the scalar product is the number of
 with monomial \(x_1^k x_2^{n-k}\).
 With only the labels \(1\) and \(2\), every column has height at most two.
 If the supporting Dyck path has \(j\) columns of height two, then the number
-of such paths is the Motzkin-triangle number
+of such paths is the Motzkin-triangle number \oeis{A055151}
 \[
   \frac{n!}{(n-2j)!j!(j+1)!}.
 \]

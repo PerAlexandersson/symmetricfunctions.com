@@ -46,7 +46,8 @@ A \defin{root ideal}\label{rootIdeal} $\Phi$ is an upper order ideal in
 \]
 with the partial order relation $(a,b) \leq (c,d)$ when $a\geq c$ and
 $b \leq d$.
-There are $\catalan(\ell)$ different such order ideals, thus explaining the name.
+There are $\catalan(\ell)$ different such order ideals, the Catalan numbers
+\oeis{A000108}, which explains the name.
 
 \begin{example}
 For example, $\{ 15, 25, 35, 14, 24 \}$ is an order ideal: it is the set of
@@ -215,9 +216,8 @@ permutation model for strong marked tableaux on symmetric $2n$-cores
 cover and the content marking of its chosen ribbon component
 \cite[Thm.~3.16]{FangGao2026x}.  They also give an explicit one-box rule for
 the affine Weyl-group action on the corresponding bounded partitions
-\cite[Thm.~4.4]{FangGao2026x}.  These constructions provide tools for the
-Morse--Seelinger tableau conjecture for type $C$ $k$-Schur functions; they do
-not prove the conjecture itself.
+\cite[Thm.~4.4]{FangGao2026x}.  These constructions are aimed at the
+Morse--Seelinger tableau conjecture for type $C$ $k$-Schur functions.
 
 In \cite{LapointeMorse2007}, it is shown that whenever 
 the hook-length of $\lambda$ is no larger than $k$, we have the identity
@@ -322,7 +322,7 @@ Let $\nu$ be a $k$-bounded partition and $r \leq k$. Then
 \completeH_r \kSchur^{(k)}_\nu = \sum_{\mu \in H^k_{\nu,r}} \kSchur^{(k)}_\mu
 \]
 where $H^k_{\nu,r}$ is a certain subset of partitions formed by adding
-horizontal $r$-strips to $\lambda$.  More precisely,
+horizontal $r$-strips to $\nu$.  More precisely,
 \[
 H^k_{\nu,r} = \{ \mu : \mu/\nu \text{ is a horizontal strip and } 
 \mu^{(k)}/\nu^{(k)} \text{ is a vertical $r$-strip} \}.
@@ -386,28 +386,22 @@ conjecture below, Garsia--Haiman modules indexed by $k$-bounded partitions
 admit filtrations by level-$k$ affine Demazure modules
 \cite[Cor.~10.10]{Kato2025x}.
 
-Let $\lambda$ be a $k$-bounded partition of size $m$.  A filtration of its
-Garsia--Haiman module by Chen--Haiman modules, and hence the expansion
+Let $\lambda$ be a $k$-bounded partition of size $m$.  Kato shows that a
+conjectural filtration of its Garsia--Haiman module by Chen--Haiman modules
+\cite[Conj.~9.1 and Cor.~10.11]{Kato2025x} would give the expansion
 \[
   \macdonaldH_\lambda(\xvec;q,t)
   \in
   \sum_{\substack{|\mu|=m \\ \mu_1\leq k}}
-  \setN[q,t]\,\kSchur^{(k)}_\mu,
+  \setN[q,t]\,\kSchur^{(k)}_\mu.
 \]
-is conditional on Conjecture 9.1 of the revised manuscript in general
-\cite[Cor.~10.11]{Kato2025x}.  Kato proves this conjecture, and therefore the
-displayed $k$-Schur positivity, whenever
-$m\leq\max\{2k,19\}$ \cite[Thm.~10.1 and Cor.~10.12]{Kato2025x}.
+He proves the conjecture, and therefore this $k$-Schur positivity, whenever
+$m\leq\max\{2k,19\}$ \cite[Thm.~10.1 and Cor.~10.12]{Kato2025x}.  Here
+$k$-Schur functions are the Catalan functions defined above.
 
 \begin{remark}
-Versions v1 and v2 of \cite{Kato2025x} claimed the $k$-Schur positivity
-unconditionally.  Version v3 withdraws that claim because the required
-filtration-inheritance step was incomplete.  Hypothesis 9.2 is a sufficient
-condition for Conjecture 9.1 and proves the range $m\leq2k$, but it is not
-valid in general: its first counterexamples occur at $m=20$ for $k=4,5$.
-The Chen--Haiman module results and affine Demazure filtration above do not
-depend on this hypothesis.  The positivity statement uses the
-Catalan-function definition of $k$-Schur functions adopted on this page;
-version v3 also notes that its equivalence with the original
-Lapointe--Lascoux--Morse family remains open.
+Earlier versions of \cite{Kato2025x} claimed the $k$-Schur positivity for all
+$m$; the current version withdraws this claim.  A sufficient condition for
+Conjecture~9.1 used there, Hypothesis~9.2, gives the range $m\leq2k$ but fails
+first at $m=20$ for $k=4,5$.
 \end{remark}

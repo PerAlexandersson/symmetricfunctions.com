@@ -52,8 +52,7 @@ d & h^*_{[0,1]^d}(t)\\
 4 & 1+11t+11t^2+t^3.
 \end{array}
 \]
-The coefficients form the Eulerian number triangle \oeis{A008292}.  This is
-one of the quickest ways Ehrhart theory meets permutation statistics.
+The coefficients form the Eulerian number triangle \oeis{A008292}.
 \end{example}
 
 \subsection[ehrhartOperations]{Operations on lattice polytopes}
@@ -151,8 +150,6 @@ Another family, due to \name{Richard P. Stanley}
   h^*_s+h^*_{s-1}+\dotsb+h^*_{s-i},
   \qquad 0\leq i\leq s.
 \]
-These inequalities are useful quick checks when an experimental
-\(h^*\)-vector has been computed.
 
 The two-dimensional case has a particularly concrete form.  Scott's theorem
 \cite{Scott1976ConvexLatticePolygons} characterizes the possible
@@ -324,15 +321,15 @@ If \(P\) is an antichain on \(d\) elements, then
 \]
 Its \(h^*\)-polynomial is the
 \hyperref[eulerianPolynomial]{Eulerian polynomial}, whose coefficients are
-the Eulerian numbers \oeis{A008292}.  Thus even the most basic order polytopes
-already produce familiar sequence data.
+the Eulerian numbers \oeis{A008292}.
 
 If \(P\) is a chain on \(d\) elements, then
 \(\mathcal O(P)\) is a simplex, and \(E_{\mathcal O(P)}(n)\) counts weakly
 increasing sequences
 \[
-  0\leq a_1\leq a_2\leq \dotsb \leq a_d\leq n.
+  0\leq a_1\leq a_2\leq \dotsb \leq a_d\leq n,
 \]
+so \(E_{\mathcal O(P)}(n)=\binom{n+d}{d}\) and \(h^*_{\mathcal O(P)}(t)=1\).
 \end{example}
 
 \begin{example}
@@ -369,10 +366,6 @@ to matroid invariants.
 \item \hyperref[gammaPositivity]{Gamma-positivity} and
 \hyperref[realRootedTableaux]{real-rootedness questions} often ask whether
 the corresponding \(h^*\)-polynomials have stronger positivity properties.
-\item OEIS comparisons are especially useful for \(h^*\)-triangles arising
-from order polytopes, flow polytopes, and lecture-hall-type polytopes, since
-their first rows often coincide with classical Eulerian, Narayana, Catalan,
-or Euler-number triangles.
 \item The \hyperref[transferMatrixMethod]{transfer matrix method} can compute
 Ehrhart series when lattice points are built from finitely many boundary
 states.
@@ -401,15 +394,11 @@ minimum is $6$ for $d=3$, $7$ for $d=4$, and $d+2$ for every $d\geq5$;
 no such polytope exists in dimensions $1$ and $2$
 \cite[Thm.~1.1]{LiuTangTaoZhang2026x}.
 
-Ehrhart positivity is proved for skew Gelfand--Tsetlin polytopes.
-The conjectures below concern fixed tableau content and general key polynomials.
-
-The general mechanism behind the results below is the
+The next theorem rests on the
 \hyperref[markedOrderPolytopePositivity]{ideal-chain decomposition for marked
-order polytopes}.  The skew-GT proof uses that same decomposition, but is not
-a direct application of its ideal/filter-closure criterion: the relevant
-ideals and filters of the GT poset are shifted skew shapes, whose Ehrhart
-positivity is not known in general \cite[Sec.~1]{JochemkoMenon2026x}.
+order polytopes}, although not on its ideal/filter-closure criterion: the
+relevant ideals and filters of the GT poset are shifted skew shapes, whose
+Ehrhart positivity is not known in general \cite[Sec.~1]{JochemkoMenon2026x}.
 
 \begin{theorem}[Jochemko--Menon {\cite[Thm.~3.5]{JochemkoMenon2026x}}]
 The Ehrhart polynomial of the skew Gelfand--Tsetlin polytope
@@ -423,11 +412,10 @@ has nonnegative coefficients as a polynomial in \(k\).
 \cite[Conj.~7]{AlexanderssonAlhajjar2018x}.
 \end{theorem}
 
-Their method also proves Ehrhart positivity for the unsliced row-interval
-flagged faces of skew GT polytopes \cite[Sec.~3.2]{JochemkoMenon2026x}.
-It does not imply positivity after fixing the tableau content: that operation
-extracts one stretched monomial coefficient and intersects the flagged face
-with the rational affine weight slice.
+Their method also proves Ehrhart positivity for the row-interval flagged
+faces of skew GT polytopes \cite[Sec.~3.2]{JochemkoMenon2026x}.  Fixing the
+tableau content as well, which intersects such a face with a rational affine
+weight slice, leads to the open conjectures below.
 
 The King--Tollu--Toumazet conjecture predicts that every coefficient of the
 stretched Littlewood--Richardson polynomial
@@ -442,9 +430,10 @@ It is known when the indexing partitions have at most five parts.
 If \(\lambda,\mu,\nu\) have length at most five, then every coefficient of
 \(t\mapsto c^{t\nu}_{t\lambda,t\mu}\) is nonnegative.  Equivalently, the
 Ehrhart polynomial of the associated hive polytope is coefficientwise
-nonnegative.  For length at most four the proof is structural; for five
-parts it uses an exact computer-generated certificate.
+nonnegative.
 \end{theorem}
+For at most four parts the proof is structural, while the case of five parts
+uses a computer-generated certificate.
 
 \name{Per Alexandersson} and \name{Ezgi Kantarcı Oğuz} conjecture that the
 flagged skew Schur stretching polynomials
@@ -455,9 +444,6 @@ coefficients \cite{AlexanderssonOguz2023x}; see the
 $k\mapsto\key_{k\lambda,\sigma}(1^n)$ has nonnegative coefficients, also in
 partial-sum variables \cite{AlexanderssonAlhajjar2018}; see the
 \hyperref[keyEhrhartConjecture]{key-polynomial conjecture}.
-
-These results and conjectures concern GT-type models in which stretching
-partitions gives Ehrhart polynomials or related lattice-point counts.
 
 \subsection[ehrhartQuestions]{Typical questions}
 
@@ -471,11 +457,6 @@ Common questions include:
 \item whether a family admits a combinatorial interpretation for its
 \(h^*\)-coefficients.
 \end{itemize}
-
-For experimental families, the first rows of \(h^*\)-vectors are often among
-the best invariants to compare with OEIS.  When an \(h^*\)-triangle is
-recognizable, recording the OEIS entry usually helps locate older
-enumerative interpretations, recurrences, and transforms.
 
 These questions are often subtle: the \(h^*\)-vector of a lattice polytope is
 always nonnegative, but Ehrhart polynomial coefficients can be negative.

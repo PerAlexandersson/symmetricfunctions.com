@@ -26,9 +26,7 @@ variety}
 
 
 Chromatic quasisymmetric functions enumerate proper graph colorings by their
-colors and ascents. We start with the definition and the unit interval and
-circular graph models, then discuss symmetry, basis expansions, and the
-connections with LLT polynomials and Hessenberg varieties.
+colors and ascents.
 
 For elementary positivity, see the separate
 \hyperref[chromaticEexpansion]{results and methods page}, especially its
@@ -80,6 +78,19 @@ Note that every labeling induces an orientation, by orienting edges toward the
 larger label.
 This labeled model is what was introduced in \cite{ShareshianWachs2012,ShareshianWachs2016}.
 
+\begin{example}
+Let $G$ be the path with directed edges $1\to2$ and $2\to3$.  A proper
+coloring with $\kappa(1)=\kappa(3)=1$ and $\kappa(2)=2$ has one ascent, and
+the six colorings with three distinct colors have $0,1,1,1,1,2$ ascents.
+Hence
+\[
+\chrom_G(\xvec;q)=q\,\monomial_{21}(\xvec)+(1+4q+q^2)\,\monomial_{111}(\xvec)
+=q\,\schurS_{21}(\xvec)+(1+2q+q^2)\,\schurS_{111}(\xvec).
+\]
+At $q=1$ this is $\monomial_{21}+6\monomial_{111}$, and
+$\chrom_G(1^k;1)=k(k-1)^2$ is the chromatic polynomial of the path.
+\end{example}
+
 
 \subsection[chromaticQuasisymmetricUnitIntervalGraph]{Unit interval graphs and circular digraphs}
 
@@ -104,7 +115,8 @@ Whenever $a_1=0$, $\Gamma_\avec$ is a \defin{unit interval graph}\label{unitInte
 The sequence $\avec = (a_1,a_2,\dotsc,a_n)$ is called the
 \defin{area sequence}\label{areaSequence} of the graph.
 
-There are Catalan $\frac{1}{n+1}\binom{2n}{n}$ many unit interval graphs on $n$ vertices,
+There are $\frac{1}{n+1}\binom{2n}{n}$ unit interval graphs on $n$ vertices,
+the Catalan numbers \oeis{A000108},
 and a total of
 \[
 (n+2)\binom{2n-1}{n-1} - 2^{2n-1}
@@ -361,7 +373,7 @@ We have the following Schur expansions of chromatic quasisymmetric functions, in
 Prove that $\chrom_G(\xvec;q)$ is
 \hyperref[schurPositiveDefinition]{Schur-positive} (with coefficients in $\setN[q]$)
 in the case of \emph{circular} unit arc digraphs.
-This conjecture has been verified for all circular unit arc digraphs up to 10 vertices.
+It holds for all circular unit arc digraphs with at most $10$ vertices.
 
 Find a bijective proof of Schur positivity (using \hyperref[schurPositivityCrystals]{crystals} or
 a version of \hyperref[schurPositivityRSK]{RSK}).
@@ -807,17 +819,14 @@ respectively, and the relevant Schur coefficients are
 Since every line graph is claw-free, these are counterexamples to the general
 conjecture.
 
-Independently, \name{Jitendra Prajapati} gives a short computation by hand for
-the counterexample with coefficient $-64$, verifies it by exact implementations,
-and reports an exhaustive census showing that every connected claw-free graph
-on at most $11$ vertices is \hyperref[schurPositiveDefinition]{Schur-positive}
-\cite{Prajapati2026x}.  The same census finds exactly two non-Schur-positive
-isomorphism classes on $12$ vertices, with the two coefficients $-64$ and
-$-40$ above.
-\name{David G. L. Wang}, \name{K. Zhang}, and \name{T. Y. Zhao} combine this
-census with further exact computations and construct an infinite family of
-connected line graphs whose chromatic symmetric functions are not
-\hyperref[schurPositiveDefinition]{Schur-positive}
+Independently, \name{Jitendra Prajapati} derives the coefficient $-64$ by
+hand and shows that every connected claw-free graph on at most $11$ vertices
+is \hyperref[schurPositiveDefinition]{Schur-positive}, while on $12$ vertices
+the two graphs above are the only connected claw-free graphs that are not
+\cite{Prajapati2026x}.
+\name{David G. L. Wang}, \name{K. Zhang}, and \name{T. Y. Zhao} construct an
+infinite family of connected line graphs whose chromatic symmetric functions
+are not \hyperref[schurPositiveDefinition]{Schur-positive}
 \cite{WangZhangZhao2026x}.
 
 Positive results remain for special claw-free families.  Using an involution
@@ -1011,7 +1020,7 @@ Separating component size from external activity gives a refined loopy
 polynomial equivalent to both the extended $U$-polynomial and the extended
 polychromate \cite[Thm.~6.3]{KirillovNenashevShapiroVaintrob2026x}.  The
 authors conjecture that the ordinary loopy and $U$-polynomials have the same
-distinguishing power on simple graphs and verify this through eleven
+distinguishing power on simple graphs; this holds for graphs on at most eleven
 vertices.  The analogous statement fails for loopless multigraphs
 \cite[Thm.~8.10]{KirillovNenashevShapiroVaintrob2026x}.
 

@@ -20,7 +20,8 @@ T_n(x) \coloneqq \sum_{P \in SP(n)} x^{\mathrm{blocks}(P)}
 \]
 where $SP(n)$ is the set of set partitions of $[n]$, and we count the number
 of blocks.
-Note that the coefficients are Stirling numbers of the second type.
+The coefficients are the Stirling numbers of the second kind,
+\oeis{A008277}.
 
 Wilf gives the recurrence \cite[pp.~20, 139]{Wilf1994}
 \[
@@ -46,7 +47,9 @@ Then
 \]
 and $D_{n-1}(t)$ and $D_n(t)$ have interlacing roots, see
 \cite[Thm.~1]{BonaHezo2016}.
-Note that the degree of $D_n(t)$ is $\lfloor n/2 \rfloor$.
+The degree of $D_n(t)$ is $\lfloor n/2 \rfloor$, and the coefficients are
+the associated Stirling numbers of the second kind \oeis{A008299}; for
+example, $D_6(t)=t+25t^2+15t^3$.
 
 
 The proof is short by using Wagner's lemma and induction.
@@ -235,9 +238,8 @@ Then $F_{n-1}(x)\interl F_n(x)$ for all $n\geq k$.
 Dey applies this criterion to the type $A$ and type $B$ Eulerian
 polynomials, to the Stirling permutation polynomials above, and to
 \hyperref[restrictedEulerianPolynomial]{restricted Eulerian polynomials}.
-Thus it is a useful way to upgrade an
-already known real-rootedness proof to a consecutive interlacing
-statement when the recurrence has the form above.
+It upgrades a known real-rootedness result to consecutive interlacing
+whenever the recurrence has this form.
 
 
 \subsubsection[jacobiStirlingDescentRealRooted]{Jacobi--Stirling descent polynomials}
@@ -307,6 +309,8 @@ and set
 \]
 where the final position is counted as a descent, as above.
 
+For example, $\widetilde{Q}_2(t)=t+3t^2$ and
+$\widetilde{Q}_3(t)=t+13t^2+16t^3$; the coefficients form \oeis{A331998}.
 \name{Sergi Elizalde} \cite[Thm.~3.2]{Elizalde2021} proved that
 $\widetilde{Q}_n(t)$ has real, distinct, and nonpositive roots.
 More generally, for $1 \leq r \leq n$, let

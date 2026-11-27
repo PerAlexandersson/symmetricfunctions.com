@@ -148,7 +148,11 @@ Given a partition $\lambda$, we define the monomial symmetric functions as
 \monomial_\lambda(\xvec) = \sum_{\alpha \sim \lambda} \xvec^{\alpha}
 \]
 where $\alpha \sim \lambda$ if the parts of $\alpha$ are a rearrangement of
-the parts of $\lambda$.
+the parts of $\lambda$.  For example,
+\[
+\monomial_{21}(x_1,x_2,x_3)
+=x_1^2x_2+x_1^2x_3+x_1x_2^2+x_2^2x_3+x_1x_3^2+x_2x_3^2.
+\]
 
 
 The \defin{augmented monomial symmetric functions} are the diagonal rescaling
@@ -256,6 +260,9 @@ Their generating function is
   =
   \prod_i \frac{1}{1-x_i z}.
 \]
+For example, $\completeH_2=\monomial_2+\monomial_{11}$ and
+$\completeH_3=\monomial_3+\monomial_{21}+\monomial_{111}$, while
+$\elementaryE_2=\monomial_{11}$ and $\powerSum_2=\monomial_2$.
 
 \name{Alexander Heaton} and \name{Isabelle Shankar} give a sum-of-squares
 certificate showing that
@@ -483,6 +490,9 @@ r \completeH_r = \sum_{k=1}^r \powerSum_k  \completeH_{r-k}
 \text{ and }
 r \elementaryE_r = \sum_{k=1}^r (-1)^{k-1} \powerSum_k  \elementaryE_{r-k}.
 \]
+For $r=2$ these give
+$\completeH_2=\tfrac12(\powerSum_1^2+\powerSum_2)$ and
+$\elementaryE_2=\tfrac12(\powerSum_1^2-\powerSum_2)$.
 
 
 The following determinant identities can be useful:
@@ -598,7 +608,7 @@ various combinatorial sequences are shown to satisfy similar relations.
 $q$-Stirling numbers of type $B$ can be obtained as the following
 specialization \cite{SaganSwanson2022x}:
 \[
- S_B(n,k;q) = \completeH_{n-k}\left([1]_q,[3],[5]_q,\dotsc,[2k+1]_q \right).
+ S_B(n,k;q) = \completeH_{n-k}\left([1]_q,[3]_q,[5]_q,\dotsc,[2k+1]_q \right).
 \]
 They also prove additional identities.
 

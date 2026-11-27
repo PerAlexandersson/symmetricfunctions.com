@@ -9,8 +9,8 @@ interlacing polynomial}
 
 \section[realRootedWords]{Permutation statistics and words}
 
-This page collects real-rootedness results for statistics on permutations
-and words.  Many examples are
+Many polynomials counting permutations and words by a statistic are
+real-rooted, and many form
 \hyperref[sturmSequenceDefinition]{Sturm sequences}, meaning that
 \(P_j\interl P_{j+1}\) for all \(j\).  Others use
 \hyperref[interlacingSequenceDefinition]{interlacing sequences},
@@ -23,10 +23,7 @@ posets, including
 \hyperref[generalizedSnakeRealRooted]{generalized snake posets}, see
 \hyperref[posetRealRooted]{poset operations preserving real-rootedness}.
 
-The examples are grouped into Eulerian-type descent polynomials and other
-permutation statistics.  Repeated methods include derivative recurrences,
-compatible or interlacing refinements, and multivariate stability.  Results
-for set partitions and Stirling permutations appear on
+Results for set partitions and Stirling permutations appear on
 \hyperref[sturmSetPartitions]{a separate page}.
 
 
@@ -38,9 +35,9 @@ for set partitions and Stirling permutations appear on
 
 The \hyperref[eulerianPolynomial]{Eulerian polynomials} are
 \[
-  A_n(t) \coloneqq \sum_{\sigma \in \symS_n} t^{\des(\sigma)}.
+  A_n(t) \coloneqq \sum_{\sigma \in \symS_n} t^{\des(\sigma)},
 \]
-These satisfy
+with coefficients the Eulerian numbers \oeis{A008292}.  They satisfy
 \[
 A_n(t) = (1+t(n-1))A_{n-1}(t) + t(1-t) A'_{n-1}(t), \quad A_1(t)=1
 \]
@@ -216,8 +213,10 @@ The \hyperref[commonInterlacingCompatibilityTheorem]{compatibility theorem}
 then implies that their sum $W_{r,m}(t)$ is real-rooted.  The transfer identity
 proves the claim.
 
-Excedances and peaks on parking functions also appear to give real-rooted
-polynomials; see the \hyperref[conjParkingExcedances]{open problems}.
+Excedances on parking functions also appear to give real-rooted
+polynomials; see the \hyperref[conjParkingExcedances]{open problems}.  Peaks
+on parking functions do not; see the
+\hyperref[counterexamplesParkingPeaks]{counterexamples}.
 Restricting to Smirnov words, whose adjacent letters differ, instead gives the
 real-rooted \hyperref[noncrossingChowPolynomial]{Chow polynomials of
 noncrossing partition lattices}.
@@ -267,7 +266,7 @@ question.  If $\ell\geq1$, set $E^{(\ell)}_{1,0}=1$, with entries outside the
 row equal to zero, and define
 \[
  E^{(\ell)}_{n,k}=(k+1)^\ell E^{(\ell)}_{n-1,k}
- +(n-k)^\ell E^{(\ell)}_{n-1,k-1},
+ +(n-k)^\ell E^{(\ell)}_{n-1,k-1}.
 \]
 Then $E_n^{(\ell)}(t)=\sum_kE^{(\ell)}_{n,k}t^k$ has only nonpositive real
 zeros and interlaces $E_{n+1}^{(\ell)}(t)$.  Its
@@ -371,7 +370,8 @@ For \(\pi\in B_n\), set \(\pi(0)\coloneqq 0\), and let \(\des(\pi)\) be the card
  \{ i \in \{0,1,2,\dotsc,n-1\} : \pi(i) \gt \pi(i+1) \}.
 \]
 The \defin{type $B$ Eulerian polynomials}\label{typeBEulerianPolynomial}
-\(P_n(t)=\sum_{\sigma \in B_n} t^{\des(\sigma)}\) then satisfy the recurrence
+\(P_n(t)=\sum_{\sigma \in B_n} t^{\des(\sigma)}\), with coefficient triangle
+\oeis{A060187}, satisfy the recurrence
 \begin{equation}
  P_n(t) = ((2n-1)t+1) P_{n-1}(t) + 2t(1-t) P'_{n-1}(t),
 \end{equation}
@@ -442,6 +442,9 @@ can be defined as
 \[
  \tilde{A}_n(t) \coloneqq \sum_{\sigma \in \symS_n} (1+t)^{\fix(\sigma)} t^{\exc(\sigma)}.
 \]
+For example, $\tilde{A}_3(t)=1+7t+7t^2+t^3$ and
+$\tilde{A}_4(t)=1+15t+33t^2+15t^3+t^4$; these are the $h$-polynomials of the
+stellohedra, and their coefficients form \oeis{A046802}.
 Athanasiadis conjectured that these are real-rooted,
 and it was later shown by \name{Jim Haglund} and
 \name[P.B. Zhang]{Philip B. Zhang} \cite{HaglundZhang2019} that this holds,
@@ -640,7 +643,9 @@ satisfies $tH_n(t)=Z_n(t)$, the
 \hyperref[zigZagEulerianGammaPositive]{zig-zag Eulerian polynomial} of
 \name{T. Kyle Petersen} and \name{Yan Zhuang}: the $P$-Eulerian polynomial
 of the zig-zag poset, and the $h^*$-polynomial of its order polytope
-\cite{CoonsSullivant2023}.  For example, $H_5(t)=1+7t+7t^2+t^3$.
+\cite{CoonsSullivant2023}.  For example, $H_5(t)=1+7t+7t^2+t^3$ and
+$H_6(t)=1+14t+31t^2+14t^3+t^4$; the coefficients form the zig-zag Eulerian
+triangle \oeis{A205497}.
 
 \begin{theorem}[Alexandersson; Torres, see {\cite[Thm.~7.1]{Alexandersson2026Eulerian} and \cite[Thm.~1.1]{Torres2026x}}]
 For $n\geq3$, $H_n(t)$ has degree $n-2$ and only simple negative zeros.
@@ -753,7 +758,8 @@ where the sum is over all \hyperref[namedPermutations]{simsun permutations}.
  P_n(t) = ((n-1)t + 1) P_{n-1}(t) + t(1-2t) P'_{n-1}(t), \qquad P_0(t)=1.
 \end{equation}
 From this recursion, it follows that the \(P_n(t)\) are real-rooted and
-interlacing; see \cite[Thm.~2.1 (iii)]{ChowShiu2011}.
+interlacing; see \cite[Thm.~2.1 (iii)]{ChowShiu2011}.  The coefficients
+form \oeis{A113897}; for example, $P_6(t)=1+57t+180t^2+34t^3$.
 They also note that this is the same as counting left peaks in simsun
 permutations.
 
@@ -855,8 +861,8 @@ $n-3$ disjoint open intervals in $(-\infty,0)$, independent of $k\geq3$,
 each containing exactly one zero of every $D_{n,k}$.
 \end{theorem}
 
-Real-rootedness for $k\geq3$ was conjectured by Alexandersson in 2026, with
-evidence for $k\leq6$ and $n\leq22$.  \name{ProgramComputer} had proved the
+Real-rootedness for $k\geq3$ was conjectured by Alexandersson in 2026.
+\name{ProgramComputer} had proved the
 case $k\gt n/2$, where $\symS_n^{(k)}$ consists of the $n$-cycles, for all
 $n$, and simple nonpositive zeros for every nonnegative combination of the
 conjugacy classes with all cycles of length at least $k$ when $n\geq25$ and
@@ -875,12 +881,11 @@ $H=\sum_{m\geq0}\completeH_m$.  Counting necklaces gives
 for $n\geq1$, where $M_j(q)=\frac1j\sum_{d\mid j}\mu(d)q^{j/d}$.
 Zuo evaluates the signs of $D_{n,k}$ on a fixed mesh of points.  For
 $n\geq128$ he bounds the lower-degree terms of the alphabet polynomial
-$f_{n,k}$ and estimates alternating power sums; smaller $n$ are covered by
-exact finite certificates.  The proof is fully formalized in Lean, and the
-formalization is distributed with the manuscript.
+$f_{n,k}$ and estimates alternating power sums; smaller $n$ are handled
+directly.
 
-A shorter operator proof for $k\geq3$, which also covers every nonnegative
-combination of the rows with $k\geq3$, is formalized in the
+There is a shorter operator proof for $k\geq3$, which also covers every
+nonnegative combination of the rows with $k\geq3$; it is part of the
 \href{https://github.com/PerAlexandersson/RealRooted}{RealRooted} Lean
 library.  For $k\geq3$ the alphabet polynomial factors as
 $f_{n,k}(q)=q(q^2-1)Q(q)$.  With $z=(1+t)/(1-t)$ and
@@ -892,7 +897,7 @@ Applying the real linear factors and conjugate quadratic factors of $Q$ one at
 a time keeps all zeros simple and
 in $(-1,1)$, provided that the zeros of $Q$ lie in the disk of radius $5/4$
 and the sum of their squares is at least $-2$.  A coefficient bound gives
-these conditions for $n\geq18$, and smaller $n$ are checked exactly.
+these conditions for $n\geq18$; smaller $n$ are handled directly.
 % Related Lean: RealRooted/CombinatorialExamples/LongCycleDescents/AllSizes.lean
 % (realDescentPolynomial_splits, long_mixture_splits).
 
@@ -901,10 +906,10 @@ distinct and at least $3$, the descent polynomial of the conjugacy class is
 real-rooted; this follows from the diamond product of \name{Petter Brändén}
 \cite{Branden2006}.  The class of cycle type $(3,3)$ gives
 $t(t^3+21t^2+15t+3)$, which has two nonreal zeros, so nonnegative
-combinations of conjugacy classes need not be real-rooted.  Computationally,
+combinations of conjugacy classes need not be real-rooted.  Conjecturally,
 $D_{n,k}(t)/t$ \hyperref[interlacesPolynomial]{interlaces} the Eulerian
-polynomial $A_{n-1}(t)$ for every $3\leq k\leq n$; we checked this exactly
-for $6\leq n\leq38$.
+polynomial $A_{n-1}(t)$ for every $3\leq k\leq n$; this holds for
+$6\leq n\leq38$.
 
 The polynomial $D_{n,3}(t)$ is palindromic.  Indeed, $\prod_{j\geq1}H[L_j]$
 is $(1-\powerSum_1)^{-1}$, and $L_1=\completeH_1$, $L_2=\elementaryE_2$.

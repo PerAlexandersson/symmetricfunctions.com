@@ -243,9 +243,7 @@ shows that \(\mathcal{S}^r_i(f)\) is real-rooted.
     \mathcal{S}^r_{r-1}(f)
   \bigr)
 \]
-is fully interlacing.  Thus Veronese sections produce an interlacing family
-of polynomials, not only separate real-rooted polynomials.  The earlier
-mutual-interlacing version appears in \cite[Thm.~7.65]{Fisk2006x}.
+is fully interlacing.  The earlier mutual-interlacing version appears in \cite[Thm.~7.65]{Fisk2006x}.
 
 \begin{example*}[Rows of Pascal's triangle]
 The polynomial
@@ -264,9 +262,6 @@ that this polynomial is real-rooted.
 A matrix is TNN if and only if it can be obtained from a fully compatible
 planar directed graph with non-negative edge weights.
 \end{theorem}
-
-The following result gives a structured family in which the same path model
-controls the array, its rows, and its columns.
 
 \begin{theorem}[Cui--Zhu, \cite[Thm.~1.7]{CuiZhu2023x}]
 \label{cuiZhuWeightedPaths}
@@ -357,24 +352,10 @@ If the coefficient sequences of \(g(z)\) and \(f(z)\) are PF, then the
 Riordan array \(\mathcal R(g,f)\) is totally non-negative.
 \end{theorem}
 
-This gives two complementary kinds of structure:
-\[
-  \text{PF input}
-  \quad\Longrightarrow\quad
-  \text{TNN Riordan array},
-\]
-and, separately,
-\[
-  \text{Riordan description}
-  \quad\Longrightarrow\quad
-  \text{row recurrences and row relations}
-  \quad\Longrightarrow\quad
-  \text{real-rootedness and interlacing}.
-\]
-The second implication is the one responsible for the root statements in the
-examples below.  The PF condition explains the total-positivity of the
-coefficient array; the real-rootedness usually comes from a recurrence,
-explicit zero formula, or an interlacing comparison between row polynomials.
+In the examples below, the PF criterion gives total non-negativity of the
+array, while real-rootedness of the rows comes from the Riordan description:
+a row recurrence, explicit zeros, or an interlacing comparison between row
+polynomials.
 
 \begin{example*}[Delannoy and coordination triangles]
 \name{Huyile Liang}, \name{Yanni Pei}, and \name{Yi Wang}
@@ -398,7 +379,7 @@ The zeros of \(d_n(x)\) are explicit, real, and lie in
   \bigl(-3-2\sqrt{2},\,-3+2\sqrt{2}\bigr).
 \]
 
-The cubic-lattice coordination triangle is
+The cubic-lattice coordination triangle \oeis{A113413} is
 \[
   \mathcal R\left(\frac{1+z}{1-z},\frac{z(1+z)}{1-z}\right).
 \]
@@ -431,7 +412,7 @@ interlacing chain \cite[Rem.~29]{LiangPeiWang2023Coordination}.
 
 \begin{example*}[Type \(B\) Narayana rows]
 The same PF/TNN method also explains the total positivity of the type \(B\)
-Narayana triangle
+Narayana triangle \oeis{A008459}
 \[
   N_B(n,k)=\binom{n}{k}^2 .
 \]

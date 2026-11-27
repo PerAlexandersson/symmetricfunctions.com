@@ -66,11 +66,12 @@ where entries $i$ in $T$ contribute with $x_i$, and entries $\overline{j}$
 contribute with $x_j^{-1}$.
 
 \begin{example}
-The following tableau is an element of $SP(\lambda/\mu)$.
+The following tableau is an element of $SP(642)$; its weight is
+$x_2^{-1}x_3^4x_4$.
 \begin{figure}
 \begin{ytableau}
 1 & 1 & \overline{1} & \overline{1} & \overline{2} & 3 \\
-\overline{1} & \overline{2} & 3 & 4 \\
+2 & \overline{2} & 3 & 4 \\
 3 & 3
 \end{ytableau}
 \end{figure}
@@ -121,7 +122,7 @@ thesis; see \cite{SundaramThesis}.
 \[
 \sum_{\lambda} \schurSp_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) \schurS_\lambda(y_1,\dotsc,y_n)
 = \prod_{1\leq i \lt j \leq n} (1-y_i y_j)
-\prod_{1\leq i \lt j \leq n} \frac{1}{(1-y_i x_j)(1-y_i x^{-1}_j)}.
+\prod_{i,j=1}^{n} \frac{1}{(1-y_i x_j)(1-y_i x^{-1}_j)}.
 \]
 
 \name[Ronald C. King]{Ronald C.~King} derives multiplicative generating
@@ -428,7 +429,7 @@ Gelfand--Tsetlin-pattern models, branching rules, and Cauchy-type identities.
 \sum_{\lambda} \schurOr_\lambda(x^{\pm 1}_{1},x^{\pm 1}_{2},\dotsc, x^{\pm 1}_{n}) \schurS_\lambda(y_1,\dotsc,y_n)
 =
 \prod_{1\leq i \leq j \leq n} (1-y_i y_j)
-\prod_{1\leq i \lt j \leq n} \frac{1}{(1-y_i x_j)(1-y_i x^{-1}_j)}.
+\prod_{i,j=1}^{n} \frac{1}{(1-y_i x_j)(1-y_i x^{-1}_j)}.
 \]
 
 \subsection[schurOrthogonalOtherProperties]{Further properties}

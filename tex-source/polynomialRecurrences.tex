@@ -1,17 +1,16 @@
 \metatitle{Polynomial recurrences}
-\metadescription{Spaces of polynomial recurrences, exact finite verification,
-rational generating functions, and the trade-off between recurrence order
-and derivative order.}
+\metadescription{Linear recurrences for polynomial sequences, with and
+without derivatives: recurrence spaces, rational generating functions,
+repeated poles, and the trade-off between recurrence order and derivative
+order.}
 \metakeywords{polynomial recurrence, derivative recurrence, Ore algebra,
-rational generating function, recurrence space, finite verification, annihilating ideal}
+rational generating function, recurrence space, annihilating ideal}
 
 \section[polynomialRecurrences]{Polynomial recurrences}
 
-A polynomial sequence can have several useful recurrences. A relation using
-many consecutive polynomials may be replaced by one using fewer polynomials
-and their derivatives. We study when this is possible, how to describe all
-relations with prescribed coefficient bounds, and how to prove an identity
-found by exact linear algebra.
+A polynomial sequence can satisfy several useful recurrences. A relation
+among many consecutive polynomials can sometimes be replaced by one among
+fewer polynomials and their derivatives.
 
 Unless stated otherwise, $P_n(x)\in\setQ[x]$ and $n\geq0$. We write
 \[
@@ -28,8 +27,9 @@ and derivative order at most $m$ has the form
 The superscript denotes differentiation in $x$. For $m=0$ this is an ordinary
 linear recurrence. An identity determines the next polynomial
 only at indices where $D(n,x)$ is not the zero polynomial in $x$.
-We shall distinguish polynomial coefficients with prescribed degree bounds,
-arbitrary rational coefficients, and the restriction $D=D(n)$.
+Whether a shorter recurrence exists depends on the allowed coefficients:
+polynomials of bounded degree, arbitrary rational functions, or a leading
+coefficient $D=D(n)$ independent of $x$.
 
 The general operator framework is the $\partial$-finite theory of
 \name{Frédéric Chyzak} and \name{Bruno Salvy}
@@ -58,8 +58,8 @@ It satisfies three different recurrences:
  n(n-1)P_{n+1}
   &=n(n-1)P_n+(n-1)x(3x+1)P_n'-2x^2(x+1)P_n''.
 \end{align*}
-Each identity holds for $n\geq0$, as we see by substituting the three
-summands separately.
+Each identity holds for $n\geq0$; it suffices to check it for each of the
+three summands separately.
 
 \begin{tabular}{ccc}
  Recurrence order & Derivative order & Leading coefficient\\
@@ -87,7 +87,7 @@ monomials and consider operators
 All indices in this sum are nonnegative. Coefficients act on the left, so
 $(nS\mathbf{P})_n=nP_{n+1}$. These operators form a finite-dimensional vector space.
 
-\begin{theorem}[Finite verification]
+\begin{theorem}[Identities from initial terms]
 \label{recurrenceFiniteVerification}
 Put $h=1+\max(u+s)$ over the allowed monomials. Then
 \[
@@ -120,10 +120,17 @@ Since $Q(x,0)=1$, its first $hk$ coefficients vanish if and only if that
 numerator is zero.
 \end{proof*}
 
-To compute the matrix, substitute an unknown coefficient for each allowed
-monomial, evaluate these $hk$ residuals, and equate coefficients of $x$.
-For $M$ unknowns and $R$ scalar equations, exact elimination uses
-$\mathcal{O}(RM^2+M^3)$ rational field operations; coefficient sizes affect bit complexity.
+For example, $P_n=1+x^n+(x+1)^n$ from the
+\hyperref[recurrenceTradeoffExample]{example above} satisfies a
+recurrence of order $k=3$. The second identity there uses the monomials
+$nS^2$, $nS$, $nxS$, $n$, $nx$ and $x^v\partial_x$ for $1\leq v\leq3$, all
+with $u+s\leq1$. Hence $h=2$, and the identity holds for all $n$ as soon as
+it holds for $0\leq n<6$.
+
+To obtain the matrix, substitute an unknown coefficient for each allowed
+monomial, evaluate the first $hk$ residuals, and equate coefficients of
+powers of $x$. For $M$ unknowns and $R$ scalar equations, Gaussian elimination
+uses $\mathcal{O}(RM^2+M^3)$ operations in $\setQ$.
 
 A recurrence with $D\ne0$ exists in the prescribed space if and only if
 the kernel has nonzero projection to the $D$ coordinates. Vectors with
@@ -131,7 +138,7 @@ $D=0$ are relations among the earlier polynomials and their derivatives.
 
 \subsection[recurrencePropagation]{A recurrence for the residual}
 
-There is also a finite induction proof. Put
+The theorem can also be proved by induction. Put
 \[
  \chi(z)\coloneqq z^k-\sum_{i=0}^{k-1}c_i(x)z^i,\qquad T\coloneqq\chi(S),
 \]
@@ -149,31 +156,29 @@ satisfies
 \[
  \chi(S)^h(L\mathbf{P})=\mathbf{0}.
 \]
-This is a monic recurrence of order $hk$. Its first $hk$ zero polynomials
-therefore force all subsequent residuals to vanish. The coefficients of
-$\chi(z)^h$ and the initial residuals determine a proof by recurrence induction.
+This is a monic recurrence of order $hk$, so if the first $hk$ residuals
+vanish, then all of them do.
 
 \section[recurrenceComputation]{Computing recurrences}
 
 Fix the allowed coefficient degrees, derivative orders and starting index.
 Substituting unknown coefficients and equating powers of $x$ gives a linear
-system. Its kernel describes the recurrence space; retain relations whose
-leading coefficient $D$ is nonzero.
+system whose kernel is the space of recurrences with these bounds; the
+recurrences proper are the kernel vectors with nonzero leading coefficient
+$D$. When the sequence is defined by a recurrence with constant-in-$n$
+coefficients, the
+\hyperref[recurrenceFiniteVerification]{theorem on initial terms}
+shows that this kernel is exactly the space of identities valid for all
+$n$. If every kernel vector has $D=0$, there is no recurrence with $D\ne0$
+using the allowed monomials.
 
-With a given recurrence and initial polynomials, the
-\hyperref[recurrenceFiniteVerification]{finite verification theorem}
-proves the identities and completeness within the specified bounds.
-With finitely many input polynomials alone, a successful fit is an identity
-on those inputs. If every kernel vector has $D=0$, no recurrence
-with $D\ne0$ and the allowed monomials can hold at every index: it
-would have to satisfy the same finite constraints.
-
-For given recurrences whose coefficients depend polynomially on $n$, the
-rational generating-function argument need not apply. One can instead differentiate
-the given recurrence and form a finite state of shifted polynomials and
-their derivatives. A scalar recurrence for the residual, together with
-checks at singular indices and enough initial zeros, supplies a finite
-verification argument. Its bound depends on that state system.
+If the defining recurrence has coefficients depending polynomially on $n$,
+the generating function need not be rational. One can instead differentiate
+the recurrence and work with a finite vector of shifted polynomials and
+their derivatives. A scalar recurrence for the residual, together with the
+values at singular indices and sufficiently many initial terms, again shows
+that an identity holds for all $n$; the number of terms needed depends on
+this system.
 
 
 \section[recurrenceGeneratingFunctions]{First derivatives and generating functions}
@@ -192,7 +197,8 @@ This is a first-order linear partial differential equation. If the derivative
 coefficient is instead $B_0(x)+nB_1(x)$, the equation contains the additional
 term $-t^2B_1F_{xt}$ and is generally of second order.
 
-There is an exact criterion involving the reduced denominator. Define
+Whether the identity holds can be read off from the reduced fraction
+$F=N/Q$. Define
 \[
  V=t(d_1-tA_1)\partial_t-tB\partial_x,\qquad
  C=d_0-d_1-tA_0,\qquad H=(d_0-d_1)P_0.
@@ -433,7 +439,7 @@ combination of $d_1,d_\ell$. Clearing denominators in $n$ proves existence.
 \end{proof*}
 
 For prescribed coefficient-degree bounds, we can compute these recurrences
-using the matrix in the \hyperref[recurrenceFiniteVerification]{finite verification theorem}.
+from the linear system in the \hyperref[recurrenceFiniteVerification]{theorem on initial terms}.
 
 \section[recurrenceRootApplications]{Real-rootedness and limiting zeros}
 

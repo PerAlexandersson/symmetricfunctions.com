@@ -11,8 +11,7 @@ matrix, weighted renewal recurrence, four-term recurrence}
 \section[interlacingPolynomials]{Interlacing and interleaving roots}
 
 Interlacing is one of the most flexible ways to certify
-\hyperref[polynomialRootIntro]{real-rootedness}.  This page separates four
-recurring viewpoints:
+\hyperref[polynomialRootIntro]{real-rootedness}.  Four viewpoints recur:
 \begin{itemize}
 \item root-level interlacing, Sturm sequences, and derivative recurrences;
 \item matrix criteria using Bézout matrices, Hurwitz matrices,
@@ -82,8 +81,7 @@ The differential recurrence for
 \hyperref[eulerianZeros]{Eulerian polynomials} is a classical example: it
 produces a strict Sturm sequence.  The
 \hyperref[ex:eulerianSturm]{Eulerian root argument} records the sign analysis.
-The next three criteria cover derivative recurrences, two-term recurrences,
-and affine combinations, respectively.  Vector recurrences are treated by the
+Vector recurrences are treated by the
 \hyperref[matrixPreservesInterlacingSequences]{matrix criterion} below.
 
 
@@ -121,7 +119,7 @@ with $u(x),v(x)$ having real coefficients.
 If $f$ is real-rooted and $v(r) \leq 0$ whenever $f(r)=0$,
 then $F$ is real-rooted and $f \interl F$.
 \end{theorem}
-The theorem states more regarding root placements and multiplicities.
+The original theorem also describes root placement and multiplicities.
 The page on \hyperref[polynomialRecurrences]{polynomial recurrences and derivatives}
 explains how to find and certify a derivative recurrence from a longer
 pure-shift recurrence.
@@ -371,8 +369,8 @@ The converse fails even when every coefficient is positive.  For example,
  (t+3)(t^2-2t+10)=t^3+t^2+4t+30
 \]
 has positive coefficients but has the two zeros $1\pm3i$ in the open right
-half-plane.  Thus Hurwitz stability is a sufficient certificate for
-coefficient positivity, but is strictly stronger than coefficient positivity.
+half-plane.  Thus Hurwitz stability is strictly stronger than coefficient
+positivity.
 
 \begin{theorem}[Hermite--Biehler, see \cite{Holtz2003}]
 \label{hermiteBiehlerTheorem}
@@ -415,7 +413,6 @@ We consider real coefficients and the monic recurrence
 Let $H_N$ have diagonal $d_i$, superdiagonal $1$, and first and second
 subdiagonals $s_i$ and $t_i$, respectively. Expansion of the determinant
 gives $Q_N(x)=\det(xI-H_N)$, including the two startup cases.
-Thus the scalar recurrence already supplies a matrix representation.
 
 Bidiagonal factorizations of these tetradiagonal Hessenberg matrices are
 studied by \name{Amílcar Branquinho}, \name{Ana Foulquié-Moreno}, and
@@ -504,7 +501,7 @@ entrywise multiplication gives
  d_0=u_0,\qquad d_n=u_n+\ell_n,\qquad
  s_n=\ell_nu_{n-1}+m_n,\qquad t_n=m_nu_{n-2}.
 \]
-Positive pivots therefore force exactly the first elimination above.
+Positive pivots therefore force the first elimination above.
 The remaining factorization $B_N=L_N(a)L_N(b)$ is equivalent to
 \[
  a_n+b_n=\ell_n,\qquad a_nb_{n-1}=m_n\quad(n\geq2).
@@ -1036,8 +1033,7 @@ describes the accumulation of these zeros as $n\to\infty$.
 
 \section[interlacingTransforms]{Preserving operators and symmetric decompositions}
 
-The previous sections treat interlacing as a certificate.  The next examples
-show how the certificate is produced by structural operations: symmetric
+Interlacing certificates often come from structural operations: symmetric
 decompositions in Ehrhart theory, differential operators, products of
 Ehrhart functions, and basis transformations such as the derangement and
 Narayana transformations.
@@ -1190,7 +1186,7 @@ polynomial and to $g$ gives
 \]
 which is real-rooted or zero for all real $\alpha$ and $\beta$.
 Applying Obreschkoff--Dedieu once more shows that
-$f_1(d/dx)g$ and $f_2(d/dx)g$ interleave.  This proves the claim.
+$f_1(d/dx)g$ and $f_2(d/dx)g$ interleave.
 \end{proof*}
 
 \name[D.G. Wagner]{David Wagner} proves the following result
@@ -1288,7 +1284,10 @@ For $0\leq k\leq n$, define
 \]
 The excedance interpretation is due to \name{Christos A. Athanasiadis}
 \cite[Prop.~4.1(a)]{Athanasiadis2025EulerianTransformation}.  Thus
-$d_{n,0}(x)=A_n(x)$, while $d_{n,n}(x)=d_n(x)$.
+$d_{n,0}(x)=A_n(x)$, while $d_{n,n}(x)=d_n(x)$.  The values $d_{n,k}(1)$,
+the numbers of permutations of $[n]$ with no fixed point in $[n-k+1,n]$,
+form the triangle \oeis{A047920} of successive differences of factorials.
+For example, $d_{3,1}(x)=A_3(x)-A_2(x)=3x+x^2$.
 
 More generally, suppose that fixed points are forbidden on any specified set
 $S\subseteq[n]$ with $|S|=k$.  Fixed-point deletion preserves the excedance

@@ -31,8 +31,14 @@ $\chrom_G(\xvec;q)$ is symmetric, most importantly for
 \hyperref[circularUnitArcDigraph]{circular unit arc digraphs}.
 For general graphs, the default question is the specialization $q=1$.
 
+\begin{example}
+For the path $1-2-3$, with area sequence $(0,1,1)$,
+\[
+\chrom_G(\xvec;q)=(1+q+q^2)\,\elementaryE_3(\xvec)+q\,\elementaryE_{21}(\xvec),
+\]
+so $\chrom_G(\xvec)=3\elementaryE_3+\elementaryE_{21}$ at $q=1$.
+\end{example}
 
-This page collects elementary-positivity results, conjectures, and methods.
 For the definitions and other basis expansions, see
 \hyperref[chromaticQuasisymmetric]{chromatic quasisymmetric functions}.
 The \hyperref[chromaticEExpansionChronology]{chronological guide} records
@@ -177,7 +183,7 @@ edge. The chromatic classwise conjecture remains open.
 
 \subsection[chromaticEExpansionMethods]{Kinds of elementary expansions}
 
-It is useful to distinguish the following kinds of results.
+Proofs and disproofs of elementary positivity come in several kinds.
 
 \begin{itemize}
 \item
@@ -204,14 +210,13 @@ $(\elementaryE)$-positivity of the chromatic symmetric function in
 $\elementaryE$-positivity.
 
 \item
-A \emph{negative} result usually means that one graph in the stated family has
-a negative elementary coefficient. It does not mean that every graph in that
-family is non-positive.
+A \emph{negative} result usually exhibits one graph in the stated family with
+a negative elementary coefficient, not a family of non-positive graphs.
 \end{itemize}
 
 \subsection[chromaticEExpansionChronology]{Chronological guide}
 
-The following list is a compact guide to the main families and methods.
+
 
 \begin{itemize}
 \item
@@ -288,8 +293,8 @@ statement for hook monomial immanants at $q=1$: every such immanant is a
 nonnegative integer combination of Kazhdan--Lusztig immanants
 \cite[Thm.~3]{McNulty2026x}. This establishes the hook case of Haiman's
 $q=1$ conjecture, beyond nonnegativity on totally nonnegative matrices.
-In a separate preprint, McNulty verifies Haiman's full Hecke-algebra
-conjecture for $n\leq10$ by exact computation: the monomial virtual
+In a separate preprint, McNulty proves Haiman's full Hecke-algebra
+conjecture for $n\leq10$: the monomial virtual
 characters on the normalized Kazhdan--Lusztig basis have nonnegative,
 symmetric, unimodal coefficient sequences
 \cite[Thm.~1.3]{McNulty2026Finite}.
@@ -312,10 +317,9 @@ remain separate questions.
 
 \subsection[chromaticEExpansionQRefined]{Unit interval and $q$-refined results}
 
-When the graph is a unit interval graph, one should record whether the result
-proves the full $q$-refined statement or only the specialization $q=1$.
-The following families are among the main cases where the refinement is known
-or where the proof is naturally stated in the chromatic quasisymmetric setting.
+For unit interval graphs, the following families are among the main cases
+where the $q$-refined statement is known or where the proof is naturally
+stated in the chromatic quasisymmetric setting.
 
 \begin{itemize}
 \item
@@ -420,8 +424,7 @@ spiders $S(4m+2,2m,1)$.
 
 \subsection[chromaticEExpansionNegative]{Negative results and obstructions}
 
-Negative results are important: they indicate which graph-theoretic hypotheses
-are doing real work.
+
 
 \begin{itemize}
 \item
@@ -515,9 +518,19 @@ smaller to a larger label. The Shareshian--Wachs sink identity gives
 For every real $q\geq0$, $S^a_{H_h}(t;q)$ has only real nonpositive zeros.
 \end{theorem}
 
-Thus the elementary coefficients grouped by partition length are
-nonnegative and log-concave, with no internal zeros, for each fixed
-$q\geq0$. This is a numerical statement after grouping, not
-coefficientwise log-concavity in $q$ of individual $c_\lambda(q)$.
+Thus, for each fixed $q\geq0$, the sums
+$\sum_{\ell(\lambda)=k}c_\lambda(q)$ form a nonnegative log-concave sequence
+in $k$ with no internal zeros.
 The theorem also has a
 \hyperref[unicellularLLTSinkSpecialization]{unicellular LLT formulation}.
+
+\begin{example}
+For the path $1-2-3$, the four acyclic orientations have
+$(\mathrm{asc},\mathrm{sink})$ equal to $(0,1)$, $(1,1)$, $(1,2)$ and
+$(2,1)$, so
+\[
+S^a_{H_h}(t;q)=(1+q+q^2)\,t+q\,t^2,
+\]
+in agreement with the elementary expansion
+$(1+q+q^2)\elementaryE_3+q\,\elementaryE_{21}$.
+\end{example}

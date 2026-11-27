@@ -7,8 +7,8 @@ polynomials, and related real-rootedness results.}
 
 \section[realRootedMatching]{Matching and independence polynomials}
 
-This page collects real-rooted graph-polynomial examples.  The main methods
-include deletion/interlacing theorems, the
+The main tools for real-rooted graph polynomials are deletion and
+interlacing theorems, the
 \hyperref[compatiblePolynomials]{compatible-polynomial} viewpoint,
 \hyperref[stablePolynomial]{stable polynomials}, and matching-polynomial
 technology.
@@ -73,8 +73,9 @@ If we then define
  F_1(x) \coloneqq 1,\qquad
  F_n(x) \coloneqq F_{n-1}(x) + x\cdot F_{n-2}(x)
 \]
-we see that $[x^k] F_n(x)$ is the number of ways to tile $(n)$ using exactly
-$k$ tiles of shape $(2)$.
+we see that $[x^k] F_n(x)=\binom{n-k}{k}$ is the number of ways to tile
+$(n)$ using exactly $k$ tiles of shape $(2)$; for example,
+$F_6(x)=1+5x+6x^2+x^3$.  These coefficients form \oeis{A011973}.
 
 By the Heilmann--Lieb theorem, we can see that for all $n$, $F_n(x)$ is real-rooted,
 since we can see that $\mu_G(x) = F_n(x)$ for the path graph with $n$ vertices.
@@ -89,8 +90,9 @@ The \hyperref[touchardPolynomial]{Touchard polynomials} may be defined via
 \[
 T_n(x) \coloneqq
 \sum_{P \in SP(n)} x^{\mathrm{blocks}(P)}
-= \sum_{k=1}^n S(n,k) x^k.
+= \sum_{k=1}^n S(n,k) x^k,
 \]
+where the Stirling numbers of the second kind $S(n,k)$ form \oeis{A008277}.
 \emph{The matching approach:} \cite[Lem.~5.1]{Godsil2017} states
 that the Stirling number $S(n,k)$ is equal to the number
 of size $n-k$ matchings in the bipartite graph $G_n$ on vertex set
@@ -360,11 +362,8 @@ polynomials, see
 \cite{BahlsEthridgeSzabo2018}; these are unimodality results rather than
 real-rootedness theorems.
 \name{Rohan Pandey} studies independence polynomials of generalized Petersen
-graphs $\mathrm{GP}(n,k)$ using a transfer-matrix computation
-\cite{Pandey2026x}.  The numerical evidence suggests a parity dichotomy:
-for even $k$ the roots appear to be real and negative, while for odd $k$
-they form complex conjugate patterns.  The resulting conjecture, that
-$I(\mathrm{GP}(n,k),x)$ is real-rooted if and only if $k$ is even, is false:
+graphs $\mathrm{GP}(n,k)$ through transfer matrices, and conjectures that $I(\mathrm{GP}(n,k),x)$ is real-rooted if and only if
+$k$ is even \cite{Pandey2026x}.  This is false:
 $\mathrm{GP}(9,2)$ already gives a polynomial with non-real zeros; see the
 \hyperref[conjPetersenIndependence]{counterexamples}.
 
@@ -539,7 +538,8 @@ For a rigid tile,
 and every $P_{\mu,d,n}(t)$ has only real nonpositive zeros.
 \end{theorem}
 
-For example, $P_{(h,1),2,3}(t)=1+4t+t^2$.  The
+For example, $P_{(h,1),2,3}(t)=1+4t+t^2$; for L-shaped tiles with $d=2$
+the coefficients $\binom{2(n-j)}{j}$ form \oeis{A105260}.  The
 \hyperref[interlacingRenewalTheorem]{weighted renewal theorem}, which
 generalizes the \hyperref[brandenLeiteRenewal]{Brändén--Leite theorem},
 strengthens this to $P_{\mu,d,n}\interl P_{\mu,d,n+s}$ whenever
@@ -585,8 +585,7 @@ chain-polynomial examples have rank $4$, which is minimal because ranks at
 most $3$ are real-rooted.  Their ordinary Chow-polynomial examples have rank
 $7$, also minimal because ranks at most $6$ are real-rooted, and may be chosen
 simple and $3$-connected.  The augmented Chow and $h$-polynomial
-counterexamples instead arise from the paper's direct-sum amplification; no
-minimal-rank claim is made for those two invariants.  Open conjectures on
+counterexamples come from a direct-sum construction.  Open conjectures on
 \hyperref[conjRefinedChow]{refined} and \hyperref[conjDualChow]{dual} Chow
 polynomials are collected on the open problems page.
 
@@ -605,7 +604,9 @@ the refinements by final letter form an interlacing sequence.
 \end{theorem}
 The proof uses the same last-letter recurrence and
 \hyperref[matrixPreservesInterlacingSequences]{matrix interlacing criterion}
-as the word-enumerator argument above.  Since $H_{NC_{n+1}}(t)$ is
+as the \hyperref[parkingFunctionDescentsRealRooted]{parking-function descent
+argument}.  For example, $H_{NC_4}(t)=1+7t+t^2$ and
+$H_{NC_5}(t)=1+31t+31t^2+t^3$.  Since $H_{NC_{n+1}}(t)$ is
 palindromic and gamma-positive, its
 \hyperref[gammaPolynomial]{gamma-polynomial} is real-rooted with
 nonpositive zeros \cite[Cor.~4.4]{Alexandersson2026ParkingSmirnov}.

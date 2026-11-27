@@ -123,9 +123,7 @@ prime power, the Schur coefficient
     \macdonaldP_{\lambda/\mu}(\xvec;q,q^2),\schurS_\nu
   \right\rangle
 \]
-is nonnegative \cite[Thm.~0.1]{He2020}.  This is a numerical positivity
-statement at finite-field values of $q$, not a claim that the coefficients are
-polynomials in $q$ with nonnegative integer coefficients.
+is nonnegative \cite[Thm.~0.1]{He2020}.
 
 For example, the degree-two polynomial is
 \[
@@ -144,10 +142,6 @@ and hence
   \frac{q}{1+q+q^2}\schurS_{(1,1)}(\xvec),
 \]
 which is positive for positive real $q$, in particular for odd prime powers.
-The vector-valued Jack and Macdonald polynomials of
-\cite{ColmenarejoDunklLuque2019x} live in a representation-valued setting;
-here they are recorded as a projection and highest-weight comparison rather
-than as a separate scalar symmetric-function basis.
 
 \subsection[macdonaldPCreationCharacters]{Creation formula and Macdonald characters}
 
@@ -556,6 +550,17 @@ $\setN[q,t]$ \cite{Macdonald1987}.
 follows from \hyperref[macdonaldHSchurPositivity]{the Schur positivity of the
 modified Macdonald polynomials},
 and the corresponding modified $qt$-Kostka polynomials.
+
+\begin{example}
+For $n=2$, one has $\macdonaldJ_{(2)}=\schurS_{2}[\xvec(1-t)]+q\,\schurS_{11}[\xvec(1-t)]$
+and $\macdonaldJ_{(11)}=t\,\schurS_{2}[\xvec(1-t)]+\schurS_{11}[\xvec(1-t)]$, so
+\[
+K_{(2),(2)}=1,\qquad K_{(11),(2)}=q,\qquad
+K_{(2),(11)}=t,\qquad K_{(11),(11)}=1.
+\]
+At $q=0$ these are the \hyperref[kostkaFoulkes]{Kostka--Foulkes polynomials}
+$K_{\lambda\mu}(t)$, and at $q=t=1$ they reduce to $f^\lambda=1$.
+\end{example}
 
 It is still an open problem to find a combinatorial interpretation of
 $K_{\lambda\mu}(q,t)$.

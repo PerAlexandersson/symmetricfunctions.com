@@ -11,8 +11,8 @@ chromatic quasisymmetric functions} in the \hyperref[gessel]{Gessel
 quasisymmetric fundamental basis}, the following expression shows up, where
 $\avec$ is the \hyperref[areaSequence]{area sequence} of a
 \hyperref[chromaticQuasisymmetricUnitIntervalGraph]{unit interval graph}.
-The number of area sequences of length $n$ is given by the $n$th Catalan
-number, and there is a natural correspondence between area sequences and
+The number of area sequences of length $n$ is the $n$th Catalan
+number \oeis{A000108}, and there is a natural correspondence between area sequences and
 \hyperref[qtCatalan]{Dyck paths} in $\DP(n)$.
 
 Let $\avec$ be an area sequence of length $n$ and let
@@ -59,7 +59,7 @@ see \cite{PrasadRam2022x} for a connection with certain sets of subspaces of $F_
 \begin{example*}[Table of $T_n(q)$]
 
 Here is a table of the first few Touchard--Riordan polynomials.
-See \oeis{A067311} for more information.
+At $q=1$ they count all perfect matchings, $T_n(1)=(2n-1)!!$ \oeis{A001147}.
 
 \begin{array}{ll}
 \toprule
@@ -276,7 +276,7 @@ rook in each column with no repeated row. After using the set $S$ of
 ordinary rows, each unused ordinary row gives its own new value and
 there are $|S|+1$ available extra rows. The same choices occur in the
 code, where zero and the $|S|$ old values preserve $S$. Thus marking
-the occupied ordinary rows gives exactly the distinct-value refinement.
+the occupied ordinary rows gives the distinct-value refinement.
 The rectangular-permanent theorem \cite[Thm.~10.2]{ChoeOxleySokalWagner2004}
 gives stability when every occupied row has a variable. Setting the
 extra-row variables to one preserves stability.
@@ -299,9 +299,7 @@ Hall--Littlewood polynomial \cite[Prop.~2.16]{AlexanderssonUhlin2020}.
 It is also the coefficient of the highest power of $t$ in the corresponding
 \hyperref[macdonaldH]{modified Macdonald polynomial}
 $\macdonaldH_\lambda(\xvec;q,t)$
-\cite[Sec.~2.8]{AlexanderssonUhlin2020}.  Thus the coefficient above can be
-viewed as a Touchard--Riordan specialization inside the modified Macdonald
-family.  The cyclic-sieving statement for these specialized
+\cite[Sec.~2.8]{AlexanderssonUhlin2020}.  The cyclic-sieving statement for these specialized
 \hyperref[macdonaldE]{nonsymmetric Macdonald polynomials} also has a fixed-content
 refinement: the coefficient
 $[\monomial_\nu]\macdonaldE_{n\lambda}(\xvec;q,0)$ is itself a
@@ -314,9 +312,7 @@ and content $\nu$ \cite[Thm.~4.3]{AlexanderssonUhlin2020}.
 \name{Paul Terwilliger} uses Catalan words and a $q$-shuffle algebra to give
 closed-form expressions for \name{Ilaria Damiani}'s recursively defined PBW
 basis for the positive part of $U_q(\widehat{\mathfrak{sl}}_2)$
-\cite{Terwilliger2019}.  This is a nearby use of Catalan-indexed words and
-$q$-weights, although the $q$-analogue in that setting is not the same as the
-Touchard--Riordan weight $X_\avec(q)$ used above.
+\cite{Terwilliger2019}.
 
 \section[aoOther]{Other references}
 

@@ -42,10 +42,8 @@ n&A_n(t)\\
 \]
 Their coefficients form the Eulerian triangle \oeis{A008292}; the version
 with a row for $n=0$ and a terminal zero is \oeis{A173018}.  The same numbers
-enumerate permutations by excedances.  Inversion also shows that descents of
-$\sigma^{-1}$ have the same distribution, although
-$\des(\sigma)$ and $\des(\sigma^{-1})$ need not agree for an individual
-permutation.
+enumerate permutations by excedances, and, by inversion, by descents of
+$\sigma^{-1}$.
 
 The classical monograph of Foata and Schützenberger
 \cite{FoataSchutzenberger1970} develops the combinatorial theory of Eulerian
@@ -113,8 +111,6 @@ If $S(n,k)$ denotes a Stirling number of the second kind, then
  A_n(t)=\sum_{k=1}^{n}k!S(n,k)t^{k-1}(1-t)^{n-k}
  \qquad(n\geq1).
 \end{equation}
-The exponent $k-1$ in this formula is another place where the shifted and
-unshifted Eulerian conventions must not be mixed.
 
 
 \subsection[eulerianSymmetry]{Symmetry and special values}
@@ -159,8 +155,7 @@ implies log-concavity and unimodality of every Eulerian row.  By the
 \hyperref[aissenSchoenbergWhitney]{Aissen--Schoenberg--Whitney theorem}, each
 row $(A(n,0),\dotsc,A(n,n-1))$, extended by zeros, is also a
 \hyperref[polyaFrequencySequenceDefinition]{Pólya frequency sequence}.
-Consequently its Toeplitz matrix is totally non-negative; this is a TNN
-statement, not a strict total-positivity statement.
+Consequently its Toeplitz matrix is totally non-negative.
 
 If $D_n$ is the number of descents of a uniformly random permutation in
 $\symS_n$, then, for $n\geq2$,
@@ -218,21 +213,19 @@ $h^*$-polynomial; see \cite{Li2012}.
 
 For a tableau-theoretic analogue, Lascoux's
 \hyperref[lascouxTableauhedron]{tableauhedron} organizes key-polynomial
-Hilbert numerators through a weighted Eulerian incidence matrix.  The
-construction is a tableau/crystal graph rather than an established convex
-polytope.
+Hilbert numerators through a weighted Eulerian incidence matrix on a
+tableau (crystal) graph.
 
 
 \subsection[eulerianGeneralizations]{Generalizations}
 
-Several standard extensions retain part of this structure.  Joint
+Joint
 distributions such as
 \[
  \sum_{\sigma\in\symS_n}q^{\maj(\sigma)}t^{\des(\sigma)}
 \]
 give $q$-Eulerian, or Euler--Mahonian, polynomials and specialize to $A_n(t)$
-at $q=1$; conventions vary, so the statistic and shift should always be
-stated.  See \cite{ShareshianWachs2007} and the
+at $q=1$.  See \cite{ShareshianWachs2007} and the
 \hyperref[eulerianSymmetric]{Eulerian quasisymmetric-function page}.  A
 \hyperref[ex:stableMultivariateEulerianOperator]{multivariate stable
 refinement} gives another route to the real-rootedness theorem.

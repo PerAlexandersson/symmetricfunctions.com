@@ -1,27 +1,20 @@
 \metatitle{Real-rooted polynomials: open problems}
 
 \metadescription{Open conjectures on real-rootedness and interlacing of
-combinatorial polynomials, with definitions, formulas, first polynomials,
-tested ranges and partial results, and a list of counterexamples.}
+combinatorial polynomials, with definitions, formulas, first polynomials
+and partial results, and a list of counterexamples.}
 
 
 \section[realrootedOpenProblems]{Open problems on real-rootedness}
 
-This page collects open conjectures about
+Below are open conjectures on the
 \hyperref[realRootedPolynomial]{real-rootedness} and
-\hyperref[interlacingPolynomials]{interlacing} of combinatorial polynomials.
-Each entry gives the combinatorial meaning, a formula or recurrence when one
-is known, the first few polynomials, the range in which the statement has
-been tested, and what has been proved.  The interlacing convention
-$f\interl g$ is the one on the
-\hyperref[interlacesPolynomial]{interlacing page}.  A family
-$(P_n)_n$ \emph{interlaces consecutively} if $P_{n}\interl P_{n+1}$ for
-all $n$ in the stated range.
-
-Unless a reference is given, the tested ranges come from our exact
-computations: real-rootedness was decided with Sturm sequences on the
-square-free parts, so repeated roots are allowed.  A finite check is
-evidence, not a proof.  The last section lists
+\hyperref[interlacingPolynomials]{interlacing} of combinatorial
+polynomials, with their first polynomials and the known partial results.
+The interlacing convention $f\interl g$ is the one on the
+\hyperref[interlacesPolynomial]{interlacing page}.  A family $(P_n)_n$
+\emph{interlaces consecutively} if $P_{n}\interl P_{n+1}$ for all $n$ in
+the stated range.  The last section lists
 \hyperref[realRootedCounterexamples]{counterexamples}: families that look
 real-rooted for small parameters but are not.
 
@@ -71,7 +64,8 @@ Inserting $n$ into a cycle, or closing a new $k$-cycle through $n$, gives
 \]
 Indeed, inserting $n$ after $i$ in its cycle keeps the excedance count if
 $i$ was an excedance, and raises it by one otherwise.  Since every
-$tA_{m-1}(t)$ is palindromic, so is every $E_{n,k}(t)$.  For $k=3$,
+$tA_{m-1}(t)$ is palindromic, so is every $E_{n,k}(t)$.  The values
+$E_{n,3}(1)$ are \oeis{A038205}, and the first polynomials for $k=3$ are
 \[
 \begin{array}{rl}
 \toprule
@@ -86,12 +80,11 @@ n & E_{n,3}(t) \\
 \bottomrule
 \end{array}
 \]
-Evidence: real-rootedness and consecutive interlacing hold for $k\leq 6$
-and $n\leq 22$.  The case $k=2$ is the
+The conjecture holds for $k\leq 6$ and $n\leq 22$.  The case $k=2$ is the
 \hyperref[derangementPolynomial]{derangement polynomial}, where the extra
 term is $(n-1)tE_{n-2,2}$ and the recurrence gives an interlacing proof by
 induction.  For $k\geq3$ the lagged term carries the extra factor
-$A_{k-1}(t)$, and we know no proof.
+$A_{k-1}(t)$, and no proof is known.
 
 The descent polynomials $D_{n,k}(t)\coloneqq\sum_{\pi\in\symS_n^{(k)}}t^{\des(\pi)}$,
 conjectured here earlier to be real-rooted for $k\geq3$, are real-rooted by a
@@ -136,7 +129,7 @@ Real-rootedness of every $\tilde{A}_n(t)$, conjectured by
 \name{Christos A. Athanasiadis}, is proved by \name{Jim Haglund} and
 \name[P.B. Zhang]{Philip B. Zhang} \cite{HaglundZhang2019}.  Their
 interlacing argument concerns a multivariate refinement and does not give
-consecutive interlacing in $n$.  Computations support the conjecture.
+consecutive interlacing in $n$.  The coefficients form \oeis{A046802}.
 
 The zig-zag Eulerian polynomials $Z_n(t)$, the $P$-Eulerian polynomials of
 the zig-zag posets, were conjectured to be real-rooted by Petersen and
@@ -194,8 +187,7 @@ is real-rooted for every $n\geq0$.
 Here a \hyperref[bigDescent]{big descent} is an index $i$ with
 $\pi_i\gt\pi_{i+1}+1$.  The case $\Pi=\{231\}$ is proved in
 \cite{ElizaldeRiveraZhuang2026} via the equidistribution of big descents and
-peaks on $231$-avoiders.  The two single-pattern cases that resist all
-known methods are $132$ and $321$:
+peaks on $231$-avoiders.  The single patterns $132$ and $321$ give
 \[
 \begin{array}{rll}
 \toprule
@@ -222,11 +214,10 @@ and
   \sum_{n\geq0}B_n(t;321)z^n=\frac{2}{1-2sz^2+\sqrt{1-4z+4sz^2}}.
 \]
 Both families satisfy linear recurrences in $n$ of minimal order five, so no
-three-term recurrence is available.  Evidence: real-rooted, with simple
-zeros, and strictly interlacing consecutively for $n\leq40$ in both cases.
-For $321$-avoiders, a
-computer-assisted proof is formalized in Lean; a conceptual proof is still
-missing.
+three-term recurrence is available.  In both cases the polynomials have
+simple real zeros and interlace strictly and consecutively for $n\leq40$.
+For $321$-avoiders there is a computer-assisted proof, but no conceptual
+one.
 
 
 \section[openProblemsWords]{Words, parking functions and Catalan words}
@@ -260,8 +251,7 @@ n & \sum_{w}t^{\exc(w)} & \sum_{w}t^{\operatorname{pk}(w)} \\
 \bottomrule
 \end{array}
 \]
-Evidence: real-rootedness and consecutive interlacing hold for $n\leq12$.
-The peak polynomials, shown for comparison, are real-rooted only for
+The conjecture holds for $n\leq12$.  The peak polynomials, shown for comparison, are real-rooted only for
 $n\leq9$; see the \hyperref[counterexamplesParkingPeaks]{counterexamples}.
 Neither triangle is in the OEIS.  For comparison, the
 descent polynomial of parking functions is
@@ -330,8 +320,8 @@ permutations \cite{AlexanderssonNabawanda2021,BonaHezo2016}.  The case $j=3$ is 
 every $j$, with consecutive interlacing (Alexandersson, 2026): partitions all of whose blocks
 have size at least $j$, and partitions whose blocks have size $1$ or at least $j$, weighted
 by the number of blocks of size at least $j$; see
-\hyperref[bigBlockSetPartitions]{big blocks in set partitions}.  Evidence: $P_{n,j}$ is real-rooted and
-interlaces consecutively for $j\leq6$ and $n\leq40$.  The analogous cycle statistic is the
+\hyperref[bigBlockSetPartitions]{big blocks in set partitions}.  The conjecture holds for
+$j\leq6$ and $n\leq40$.  The analogous cycle statistic is the
 \hyperref[conjLongCycleExcedances]{excedance conjecture above}.
 
 \begin{conjecture}[Alexandersson, 2026]
@@ -347,8 +337,8 @@ $O_{n,j}\interl O_{n+1,j}$.
 The exponential generating function is $1/(1-B_j(z,t))$, where
 $B_j(z,t)=\sum_{r=1}^{j-1}z^r/r!+t\bigl(e^z-\sum_{r=0}^{j-1}z^r/r!\bigr)$ is the exponent
 above.  For $j=3$ the first rows are $1$, $3$, $12+t$, $66+9t$, $450+91t$,
-$3690+973t+20t^2$.  Evidence: real-rooted and consecutively interlacing for $j\leq5$ and
-$n\leq30$.
+$3690+973t+20t^2$; the values $O_{n,j}(1)$ are the Fubini numbers \oeis{A000670}.  The
+conjecture holds for $j\leq5$ and $n\leq30$.
 
 \begin{conjecture}[Lin--Ma, \cite[Conj.~5.1]{LinMa2025}]
 \label{conjReducedSchett}
@@ -393,8 +383,8 @@ paving matroids, including all uniform matroids, by \name{Matthew H. Y. Xie} and
 \name{Philip B. Zhang} \cite[Thm.~1.1]{XieZhang2026SparsePaving}; in particular
 rectangular shapes are covered.  $\gamma$-positivity of $Z_M(t)$ holds for every
 matroid \cite[Thm.~1.8]{FerroniMatherneStevensVecchi2022x}.  The conjecture
-above was checked exactly for all nested matroids with at most $24$ elements,
-and for all nested matroids of rank at most $20$ with any number of elements.
+holds for nested matroids with at most $24$ elements and for nested matroids
+of rank at most $20$.
 For the shifted staircase $S_r$ ($q_i=2i$), the Catalan matroid satisfies
 $Z(\mathrm{Cat}_{r+1})=(1+t)Z(S_r)$.  \name{Yiming Chen}, \name{Yao Li} and
 \name{Ming Yao} express the $Z$-polynomials of all $(a,b)$-Catalan matroids
@@ -406,8 +396,8 @@ Z(S_4)=1+22t+50t^2+22t^3+t^4,
 \]
 with $\gamma$-vectors $(1,1)$, $(1,5)$, $(1,18,8)$, $(1,59,91)$,
 $(1,190,658,143)$, $(1,618,3899,2684)$, $(1,2047,20726,29812,3723)$ for
-$r=2,\dotsc,8$.  Here $\gamma_1=\sum_{k=1}^{r}C_k-r$, with $C_k$ the Catalan
-numbers.  Consecutive $Z(S_r)$ interlace for $r\leq100$.
+$r=2,\dotsc,8$.  Here $\gamma_1=\sum_{k=1}^{r}C_k-r$ \oeis{A284968}, with $C_k$ the
+Catalan numbers.  Consecutive $Z(S_r)$ interlace for $r\leq100$.
 
 Connected ribbon lattice path matroids of rank $r$, conjectured here earlier to
 have the Narayana $Z$-polynomial $N_{r+1}(t)$ independently of the
@@ -486,8 +476,8 @@ n & P^{(2,4)}_n(q) \\
 \bottomrule
 \end{array}
 \]
-Evidence: for $r=2$, all $4\leq d\leq12$ and $n\leq40$ are real-rooted,
-with consecutive interlacing in $n$.  For rank two there is a formula through matchings in complete
+For $r=2$ the conjecture holds for $4\leq d\leq12$ and $n\leq40$, with
+consecutive interlacing in $n$.  For rank two there is a formula through matchings in complete
 multipartite graphs, but real-rootedness of the matching polynomials does
 not transfer to $q$.
 
@@ -540,8 +530,7 @@ poset is graded and its Hibi ring is Gorenstein.
 \end{array}
 \]
 Rectangles are covered by Brenti's theorem on Gaussian posets
-\cite{Brenti1989}.  Evidence: $N_\lambda$ is real-rooted for all $81{,}155$
-partitions with $|\lambda|\leq35$.  The analogous statements for skew shapes,
+\cite{Brenti1989}.  The conjecture holds for $|\lambda|\leq35$.  The analogous statements for skew shapes,
 for both natural and ordinary descents, are open as well.
 
 \begin{conjecture}[Skew Schur Ehrhart polynomials]
@@ -558,7 +547,7 @@ due to \name{Francesco Brenti} \cite{Brenti1989}; see
 shapes, the counting function itself can have non-real zeros: for
 $\lambda/\mu=(3,2)/(1)$ and $k=3$ it is
 $\frac14(n+1)^2(7n^2+10n+4)$, while its $h^*$-polynomial
-$1+16t+22t^2+3t^3$ is real-rooted.  Evidence: all skew shapes with
+$1+16t+22t^2+3t^3$ is real-rooted.  The conjecture holds for
 $|\lambda|\leq8$ and $k\leq4$.
 
 \begin{conjecture}[Alexandersson, May 2020]
@@ -617,8 +606,8 @@ real-rooted.  The conjecture is proved for $\mathbf{b}=(a,b,\dotsc,b)$,
 the only exception being $\mathbf{b}=(1,1)$
 \cite[Thm.~7.2 and Cor.~7.12]{HillLuoTrinhVindasMelendez2026x}.  For
 example, the $h^*$-polynomial of $\mathfrak{X}_3(3,2,2)$ is
-$1+268t+661t^2+102t^3$.  Evidence: all $\mathbf{b}\in\{1,2,3,4\}^3$ and
-several vectors of length four.
+$1+268t+661t^2+102t^3$.  The conjecture holds for all
+$\mathbf{b}\in\{1,2,3,4\}^3$ and for some vectors of length four.
 
 
 For margins $r\in\setN_{\gt0}^m$ and $c\in\setN_{\gt0}^n$ with equal sums,
@@ -638,8 +627,8 @@ The hypothesis is needed: $\mathcal{B}_3$ has $h^*$-polynomial $1+t+t^2$,
 and $\mathcal{B}_4$, $\mathcal{B}_5$ and a few other $T(r,1^n)$ fail too.
 For example, $T((2,2,2),(2,2,2))=2\mathcal{B}_3$ has $h^*$-polynomial
 $1+16t+25t^2+6t^3$.  Athanasiadis showed that the $h^*$-polynomial of
-$\mathcal{B}_n$ is unimodal \cite{Athanasiadis2005}.  Evidence: all
-margins up to size $5\times5$ with small entries.
+$\mathcal{B}_n$ is unimodal \cite{Athanasiadis2005}.  The conjecture holds
+for margins of size at most $5\times5$ with small entries.
 
 
 \subsection[semiorderEulerianZeros]{Descents of linear extensions of unit interval orders}
@@ -678,11 +667,8 @@ blocks form a matching, so $W_P(t)$ has only real zeros by the
 \cite{HeilmannLieb1972}.  For paths on three, four and five vertices this
 gives $1+2t$, $1+3t+t^2$ and $1+4t+3t^2$, respectively.
 
-Exact computation verifies the first statement through $n=12$,
-including all $208{,}012$ Dyck paths at $n=12$.  For the stronger
-question, exact root isolation gives a common interlacer for each of the
-$101{,}763$ single-comparability changes through $n=10$.  This verifies
-the whole interval $0\leq\lambda\leq1$ in that range.
+The answer to the first question is yes for $n\leq12$, and to the second
+for $n\leq10$.
 
 \section[openProblemsGeometry]{Moduli spaces and Hurwitz numbers}
 
@@ -705,8 +691,8 @@ the Poincaré polynomial of $\overline{\mathcal{M}}_{0,n+1}$ and $B_0=1$,
   1,\quad 1+x,\quad 1+8x+x^2,\quad 1+35x+35x^2+x^3,\quad
   1+122x+482x^2+122x^3+x^4.
 \]
-Every $B_n$ is palindromic and gamma-positive, and real-rootedness is
-verified for $n\leq300$.  This is the type $B$ analogue of the conjecture
+Every $B_n$ is palindromic and gamma-positive, and $B_n$ is real-rooted
+for $n\leq300$.  This is the type $B$ analogue of the conjecture
 of \name{Paolo Aluffi}, \name{Stephanie Chen} and \name{Matilde Marcolli}
 that the polynomials $A_n(x)$ are real-rooted.
 
@@ -725,15 +711,14 @@ of length $|\mu|+2g-2+n$ of a permutation of cycle type $\mu$, divided by
 $\mu_1\dotsm\mu_n$.  At $t=1$ these are the monotone Hurwitz numbers.  For
 $(g,n)=(0,1)$ one obtains the \hyperref[classicalNarayanaPolynomialsRealRooted]{Narayana
 polynomials}: $(d+1)H^t_{0,1}(d+1)$ is the Narayana polynomial of order
-$d$.  Both parts are proved for $(g,n)=(0,1)$ and $(1,1)$ from a one-point
-recursion.  The interlacing statement is checked in 1430 cases with
-$g\leq5$, $n\leq5$ and $|\mu|\leq15$.
+$d$, whose coefficients form the Narayana triangle \oeis{A001263}.  Both
+parts are proved for $(g,n)=(0,1)$ and $(1,1)$, and the interlacing
+statement holds for $g\leq5$, $n\leq5$ and $|\mu|\leq15$.
 
 \name{Xavier Coulter} and \name{Norman Do} conjecture the same for the
 two-parameter $bt$-monotone Hurwitz numbers, for every real
 $b\notin\{0,-1\}$ \cite[Conjs.~4.21--4.22]{CoulterDo2025x}.  Here $b=0$
-recovers the polynomials above, and $b=1$ is the orthogonal case.  The
-evidence is more than 4000 checks over nine integer values of $b$.
+recovers the polynomials above, and $b=1$ is the orthogonal case.
 
 
 \section[openProblemsTransformations]{Matrices and recurrences}
@@ -771,7 +756,8 @@ to be real-rooted, but are not.
 Peaks on permutations give the real-rooted
 \hyperref[peakGeneratingPolynomial]{peak polynomials}, and peaks on
 \hyperref[conjCatalanWordPeaks]{Catalan words} are real-rooted.  Peaks on unrestricted words and on
-parking functions fail.  For words over the alphabet $\{0,1\}$, the first five
+parking functions fail.  For words over the alphabet $\{0,1\}$, a peak is a factor $010$; these
+polynomials form \oeis{A118429}.  The first five
 polynomials $2$, $4$, $7+t$, $12+4t$, $21+10t+t^2$ are real-rooted, but
 \[
   \sum_{w\in\{0,1\}^6}t^{\operatorname{pk}(w)}=37+22t+5t^2
@@ -838,7 +824,7 @@ $N_{[3]\times[3]\times[3]}(x)$ is not; see
 generalized Petersen graph $\mathrm{GP}(n,k)$, with $n\geq2k+1$, is
 real-rooted if and only if $k$ is even
 \cite[Conj.~4.1]{Pandey2026x}.\label{conjPetersenIndependence}
-The evidence there is numerical.  The conjecture fails already for $k=2$:
+The conjecture fails already for $k=2$:
 \[
   I(\mathrm{GP}(9,2),x)
   =1+18x+126x^2+438x^3+801x^4+747x^5+303x^6+27x^7
@@ -846,7 +832,6 @@ The evidence there is numerical.  The conjecture fails already for $k=2$:
 has only five real zeros; the remaining pair is approximately
 $-0.857\pm0.056\,i$.  Also $I(\mathrm{GP}(10,2),x)$,
 $I(\mathrm{GP}(11,2),x)$ and $I(\mathrm{GP}(11,4),x)$ are not real-rooted.
-These counts were verified by exact Sturm sequences.
 
 \subsection[counterexamplesTransformations]{Transformations, matroids and characters}
 

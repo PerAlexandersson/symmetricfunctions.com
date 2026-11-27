@@ -255,12 +255,11 @@ Here, $d$ is the degree of $z_j$ in $p$.
 
 The Borcea--Brändén classification packages a linear operator into a
 polynomial, or into an entire power series, called its
-\defin{symbol}\label{stabilitySymbol}.  This is often the most practical way
-to prove that an operator preserves stability: instead of testing the operator
-on all stable inputs, one tests one universal object.  For real stability one
-must allow both signs.  For instance,
-\(f(z)\mapsto f(-z)\) preserves real-rootedness, but it is detected by the
-minus symbol rather than the plus symbol.
+\defin{symbol}\label{stabilitySymbol}.  Apart from operators of rank at
+most two, whether the operator preserves stability is decided by the
+stability of this single object.  For
+real stability both signs must be allowed: \(f(z)\mapsto f(-z)\) preserves
+real-rootedness, but only its minus symbol is stable.
 
 \subsubsection[algebraicStabilitySymbols]{Algebraic symbols}
 
@@ -324,8 +323,8 @@ minus symbol
 \[
   G_T^{-}(x,w)=(-x-w)^d
 \]
-is stable.  Hence the sign alternative is genuinely needed for real
-stability preservers.
+is stable.  Hence the sign alternative is needed for real stability
+preservers.
 \end{example*}
 
 \subsubsection[transcendentalStabilitySymbols]{Transcendental symbols}
@@ -335,7 +334,6 @@ Let \(\mathcal{LP}_r\) be the
 \defin{Laguerre--Pólya class}\label{laguerrePolyaClass}
 of entire functions in \(r\) variables
 that are limits, uniformly on compact sets, of real stable polynomials.
-This is the multivariate Laguerre--Pólya class.
 
 For a linear operator
 \[
@@ -803,7 +801,7 @@ Specializing \(y_i=1\) and then \(x_i=t\) gives
   t\,\widetilde A_n(t,\dotsc,t;1,\dotsc,1)=A_n(t),
 \]
 so the \hyperref[eulerianZeros]{classical Eulerian polynomial} has only real
-roots.
+roots; its coefficients are the Eulerian numbers \oeis{A008292}.
 
 In fact, \name{Jim Haglund} and \name{Mirko Visontai} also treat Stirling
 permutations, where plateaus occur \cite{HaglundVisontai2012}.  If \(Q_n\) is
@@ -818,7 +816,8 @@ descent-top, ascent-top, and plateau sets, then
  \prod_{i\in P(\sigma)} z_{\sigma_i}
 \]
 is stable.  Specializing \(y_i=z_i=1\) recovers real-rootedness of the
-second-order Eulerian polynomials.
+second-order Eulerian polynomials, whose coefficients form the triangle
+\oeis{A008517}.
 \end{example*}
 
 
@@ -949,7 +948,7 @@ same-phase stable, but not stable \cite{AlexanderssonNabawanda2021}:
  \tilde{A}_n(\xvec) = \sum_{\pi \in \symS_n} \prod_{\pi_i \gt \pi_{i+1}} x_{i}.
 \]
 Note that we now keep track of the descent index, rather than the descent
-bottom value.
+top value.
 Moreover, we showed that
 \[
  \tilde{A}_{n-1}(\lambda_1 t, \dotsc, \lambda_{n-1} t)

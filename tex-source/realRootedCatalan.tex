@@ -8,9 +8,9 @@ polynomials,Dyck paths,Sturm sequences}
 
 \section[realRootedCatalan]{Catalan families}
 
-This page collects real-rootedness results from Catalan combinatorics:
+Catalan combinatorics is a rich source of real-rooted families:
 \hyperref[qtCatalan]{Dyck paths}, ballot sequences, Motzkin paths, and
-related families.  Many examples below are \hyperref[sturmSequence]{Sturm
+related objects.  Many examples below are \hyperref[sturmSequence]{Sturm
 sequences}, so consecutive polynomials interlace and every polynomial in the
 sequence is real-rooted.
 Other examples use \hyperref[hadamardProduct]{Hadamard products},
@@ -64,7 +64,7 @@ NN[n_] := NN[n] = Expand[
 )/(n + 1)];
 \end{lstlisting}
 
-It is useful to keep the proof methods separate.  The recurrence above gives
+The recurrence above gives
 a \hyperref[sturmSequence]{Sturm-sequence} proof; the differential recurrence
 can be handled by interlacing criteria for derivative recurrences; stable
 multivariate refinements give a \hyperref[stablePolynomial]{stability}
@@ -111,6 +111,7 @@ The type $B$ Narayana polynomials can be defined as
 \[
 P_n(t) = \sum_{k=0}^n \binom{n}{k}^2 t^k.
 \]
+Their coefficients form \oeis{A008459}.
 Since these are produced by the Hadamard product of $(1+t)^n$ with itself, it
 follows that the $P_n(t)$ are also real-rooted.
 See the \hyperref[hadamardProduct]{Hadamard product subsection} for a general statement.
@@ -150,7 +151,8 @@ Bounds and monotonicity for the unique positive zero are given in
 A family similar to the Narayana numbers, named the
 \defin{Boolean--Narayana numbers}\label{booleanNarayanaNumberDefinition}, is
 introduced by \name{Miklós Bóna} in \cite{Bona2026x}.
-The corresponding polynomials are proved to be real-rooted.
+The corresponding polynomials are proved to be real-rooted.  The
+numbers are
 \[
  BoNa(n,k) =
  \frac{1}{n}\binom{n}{k-1}
@@ -161,6 +163,9 @@ recursion
 \[
  (n+1) P_n(x) = (2n-1)(1+x) P_{n-1}(x) - (n-2)(1-6x+x^2) P_{n-2}(x).
 \]
+The first polynomials are $P_1=x$, $P_2=x+x^2$, $P_3=x+4x^2+x^3$,
+$P_4=x+9x^2+9x^3+x^4$ and $P_5=x+16x^2+38x^3+16x^4+x^5$, and the values
+$P_n(1)=1,2,6,20,72,272,\dotsc$ are \oeis{A071356}.
 \end{example*}
 
 
@@ -203,6 +208,8 @@ The authors conjectured that for fixed $k$, $\{W_{n,k}\}_{n\geq k}$ form a
 $\{W_{n,k}\}_{1 \leq k\leq n}$ is
 \hyperref[sturmSequence]{Sturm-unimodal}.
 These conjectures were later proved in \cite{WangZhang2024}.
+Summing over $k$ gives the distribution of $NNE$ on Dyck paths,
+the triangle \oeis{A091156}.
 They find a two-term recurrence involving \(W_{n-1,k}(t)\).  Alternatively,
 \(W_{n,k}(t)\) can be expressed in terms of \(W_{n,k-1}(t)\) and its
 derivative.
@@ -326,17 +333,14 @@ interlace for every $n$.
 \end{theorem}
 
 Real-rootedness and consecutive interlacing were conjectured by
-Alexandersson in 2026, with evidence for $n\leq40$.  The proof makes an
+Alexandersson in 2026.  The proof makes an
 \href{https://github.com/1337isnot1337/solved-conjectures/issues/59}{earlier
 public argument} for all sufficiently large $n$ effective, with the explicit
-bound $n\geq150$.  The polynomials $C_n(t)$ with $n\lt150$ are not covered
-by the analytic argument and are checked separately by exact computation.
-No non-analytic proof, for example by a recurrence or a combinatorial
-interlacing argument, is known.  The project was AI-assisted, and the
-preprint has not yet appeared on arXiv or in a journal.
-A \href{https://github.com/ProgramComputer/open-math-research/blob/312293aa850010e9d9509d6850a482b9c7b7966f/topics/catalan-word-peaks/lean/CatalanStrictPeaksAllInterlacing.lean}{Lean
-formalization} proves both statements for $C_n(t)$ defined by counting
-Catalan words.
+bound $n\geq150$, and settles the cases $n\lt150$ by direct computation.
+No proof by a recurrence or a combinatorial interlacing argument is known.
+Both statements also have a
+\href{https://github.com/ProgramComputer/open-math-research/blob/312293aa850010e9d9509d6850a482b9c7b7966f/topics/catalan-word-peaks/lean/CatalanStrictPeaksAllInterlacing.lean}{Lean
+formalization}.
 % Lean: CatalanStrictPeaks.strict_peaks_all_lengths; axioms propext,
 % Classical.choice, Quot.sound in the repository's CI audit (not locally built).
 

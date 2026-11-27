@@ -60,7 +60,7 @@ quasisymmetric polynomials and Postnikov's divided symmetrization operator
 calculus and use the Aval--Bergeron--Bergeron decomposition modulo positive
 degree quasisymmetric polynomials.
 \name{Nantel Bergeron}, \name{Lucas Gagnon}, \name{Philippe Nadeau},
-\name{Hunter Spink}, and \name{Vasu Tewari} introduce equivariant
+\name{Hunter Spink}, and \name{Vasu Tewari} introduce
 \defin{equivariant quasisymmetry}\label{equivariantQuasisymmetry} for
 polynomials in two alphabets
 \cite{BergeronGagnonNadeauSpinkTewari2025x}.  This leads to double
@@ -216,7 +216,11 @@ x_{i_1}^{\alpha_1} x_{i_2}^{\alpha_2} \dotsm x_{i_\ell}^{\alpha_\ell}.
 \]
 The functions $\qmonom_\alpha$ constitute a basis for the space of
 homogeneous quasisymmetric functions of degree $n$ as $\alpha$ ranges over all
-compositions of $n$.
+compositions of $n$.  For example,
+\[
+\qmonom_{12}(x_1,x_2,x_3)=x_1x_2^2+x_1x_3^2+x_2x_3^2,
+\]
+which is not symmetric, while $\qmonom_{12}+\qmonom_{21}=\monomial_{21}$.
 
 The monomial quasisymmetric functions refine the \hyperref[monomial]{monomial symmetric functions},
 \[
@@ -402,6 +406,8 @@ has a ballot-sequence basis and Hilbert series
 \[
   \sum_{k=0}^{\lfloor n/2\rfloor} f^{(n-k,k)} q^k.
 \]
+The coefficients $f^{(n-k,k)}=\binom{n}{k}-\binom{n}{k-1}$ form the ballot
+triangle \oeis{A008315}.
 
 Let $\alpha$ be a composition and let $\lambda$
 be the partition obtained from $\alpha$ by rearranging the parts in decreasing

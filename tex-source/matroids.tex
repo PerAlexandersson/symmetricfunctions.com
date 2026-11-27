@@ -267,7 +267,7 @@ that defines the same matroid.
 \end{figure}
 The sets of linearly independent vectors are
 \begin{equation}
-  \mathcal{I} = \{ abc, abd, abe, ace, ab, ac, ad, ae, bc, bd, be, cd, ce, a, b, c, d, e \}.
+  \mathcal{I} = \{ abc, abd, abe, acd, ace, ab, ac, ad, ae, bc, bd, be, cd, ce, a, b, c, d, e \}.
 \end{equation}
 \end{example}
 
@@ -454,7 +454,7 @@ Then the matching matroid of $G$ has the set of bases
 \]
 since $G$ has the (maximal) matchings
 \[
- \{12,34,56\}, \{12,34,67\}, \{12,35,67\}, \{13,45,67\}, \{23,45,67\}.
+ \{12,34,56\}, \{12,34,67\}, \{12,35,67\}, \{12,45,67\}, \{13,45,67\}, \{23,45,67\}.
 \]
 \end{example}
 
@@ -584,6 +584,15 @@ The Tutte polynomial can then be expressed as
   T_M(x,y) = \sum_{B \in \mathcal{B}} x^{ia(B)} y^{ea(B)}
 \]
 where $ia(B)$ and $ea(B)$ denote the internal and external activity, respectively.
+
+\begin{example}[Activities in $U_{2,3}$]
+The bases of $U_{2,3}$ are $12$, $13$ and $23$.  In the basis $12$, both
+elements are internally active and $3$ is not externally active, since
+$23$ is a basis.  In $13$, only $1$ is active.  In $23$, no element is
+internally active, while $1$ is externally active.  The three bases
+contribute $x^2$, $x$ and $y$, in agreement with
+$T_{U_{2,3}}(x,y)=x^2+x+y$.
+\end{example}
 
 
 \subsection[tutteProperties]{Properties of the Tutte polynomial}
@@ -820,7 +829,8 @@ The first polynomial also has the Catalan permutation interpretation
 \[
   P_n(x)=\sum_{\pi\in\symS_n(321)}x^{\des(\pi)},
 \]
-where $\symS_n(321)$ denotes the set of $321$-avoiding permutations.  The
+where $\symS_n(321)$ denotes the set of $321$-avoiding permutations; the
+coefficients form the triangle \oeis{A091156}.  The
 proof of the polynomial-pencil result uses a transformation to Chebyshev
 polynomials and strict interlacing at their zeros.
 
@@ -1076,8 +1086,6 @@ and results on the spectra of basis-exchange walks.
 
 \subsection[matroidVariantsAdjacentClasses]{Variants and adjacent classes}
 
-There are several useful recent variants and adjacent classes.
-
 \name{James G. Oxley}'s book \cite{Oxley2011} is a standard reference for
 many of these matroid classes.  A rank-$r$ matroid is a
 \defin{paving matroid}\label{pavingMatroid} if every subset of size less than
@@ -1132,12 +1140,10 @@ symplectic form. The graphical symplectic matroid $S(G)$ of
 precisely when each component is a tree or
 has one cycle containing an odd number of starred edges.
 \name{Sayantan Ganguly} proves that, for a $3$-connected simple graph $G$,
-$S(G)$ is representable over a field $\mathbb{F}$ if and only if
+$S(G)$ has a symplectic representation over a field $\mathbb{F}$ if and only if
 $\mathbb{F}$ has characteristic two, $G$ has no two vertex-disjoint cycles,
 and either $|\mathbb{F}|>2$ or $G\cong K_5$
 \cite[Thm.~6.11]{Ganguly2026x}.
-This concerns symplectic representations of $S(G)$, not ordinary
-representations of the graphic matroid.
 
 \name{Ethan Partida} studies shifted and threshold matroids \cite{Partida2026}.
 \name{Sebastian Degen} and \name{Lukas Kühne} show that most $q$-matroids are

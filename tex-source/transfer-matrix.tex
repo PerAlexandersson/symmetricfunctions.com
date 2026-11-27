@@ -34,12 +34,10 @@ The identity follows by summing the geometric series
 \[
   I+zA+z^2A^2+\dotsb=(I-zA)^{-1}.
 \]
-The claim follows.
 \end{proof}
 
 Polynomial sequences with rational generating functions may also satisfy
 \hyperref[polynomialRecurrences]{shorter recurrences involving derivatives}.
-The recurrence-space criterion determines when such a representation exists.
 
 The method also applies with extra variables in the entries of $A$.  In that
 case the matrix records a weighted enumeration, and specializations of the
@@ -88,7 +86,8 @@ Thus $a_n=b_n^{(0)}+b_n^{(1)}$, and one obtains
   =
   \frac{1+z}{1-z-z^2}.
 \]
-Equivalently, $a_n=F_{n+2}$, where $F_n$ is the Fibonacci sequence.
+Equivalently, $a_n=F_{n+2}$, where $F_n$ is the Fibonacci sequence
+\oeis{A000045}.
 
 
 \subsection[transferMatrixGraphColorings]{Proper colorings of paths and cycles}
@@ -397,6 +396,8 @@ n & P_n(t) \\ \hline
 5 & 1+12t+37t^2+34t^3+9t^4 .
 \end{array}
 \]
+These coefficients form the triangle \oeis{A128101}, and the total numbers
+of tilings $P_n(1)=1,1,5,11,35,93,\dotsc$ form \oeis{A054854}.
 
 
 \subsection[berahaKahaneWeiss]{Limiting zero sets}
@@ -414,4 +415,4 @@ Under analytic and nondegeneracy hypotheses, the
 where dominant eigenvalues tie in modulus, or where the amplitude of a
 uniquely dominant eigenvalue vanishes.
 The precise statement and a worked example are on the
-\hyperref[toeplitzBkw]{Toeplitz determinants and minors page}.
+\hyperref[toeplitzBkw]{page on recurrence limit sets}.

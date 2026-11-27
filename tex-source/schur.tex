@@ -259,6 +259,23 @@ also known as the \defin{Nägelsbach--Kostka identity}
 \begin{equation*}
  \schurS_{\lambda'}(\xvec) = \det[ \elementaryE_{\lambda_i + j - i}(\xvec) ]_{1\leq i,j \leq n}
 \end{equation*}
+For example,
+\[
+\schurS_{21}=
+\begin{vmatrix}
+\completeH_2 & \completeH_3\\
+\completeH_0 & \completeH_1
+\end{vmatrix}
+=\completeH_2\completeH_1-\completeH_3,
+\qquad
+\schurS_{21}=
+\begin{vmatrix}
+\elementaryE_2 & \elementaryE_3\\
+\elementaryE_0 & \elementaryE_1
+\end{vmatrix}
+=\elementaryE_2\elementaryE_1-\elementaryE_3,
+\]
+where the second determinant uses $\lambda=(2,1)=\lambda'$.
 \name{Jonah Blasiak}, \name[Omesh Dhar Dwivedi]{Omesh Dhar Dwivedi}, and
 \name{Darij Grinberg} study Jacobi--Trudi determinants over finite fields
 \cite{BlasiakDwivediGrinberg2023}.  They compute vanishing probabilities for
@@ -388,7 +405,7 @@ In \cite{IshikawaTagawa2007}, the following generalization is proved,
 where the sum is over all partitions with at most $m$ parts.
 \begin{equation*}
  \sum_{\lambda} t^{\lambda_m} \schurS_\lambda(\xvec_m) \schurS_{\lambda}(\yvec_m)
- = \prod_{1\leq i,j \leq m} \frac{1}{1-x_i y_j} \frac{1 - \prod_{i=1}^m (x_i y_j) }{ 1 - t \prod_{i=1}^m (x_i y_j) }
+ = \prod_{1\leq i,j \leq m} \frac{1}{1-x_i y_j} \frac{1 - \prod_{i=1}^m (x_i y_i) }{ 1 - t \prod_{i=1}^m (x_i y_i) }
 \end{equation*}
 
 See also \cite{BeteaWheeler2016}, where refined Cauchy and Littlewood
@@ -523,6 +540,13 @@ The coefficients $c^{\nu}_{\lambda\mu}$ are the
 \defin{Littlewood--Richardson coefficients}\label{littlewoodRichardsonCoefficient}.
 
 There are various \hyperref[littlewoodRichardsonModels]{combinatorial models for the Littlewood--Richardson coefficients}.
+For example,
+\[
+\schurS_{21}\schurS_{21}
+=\schurS_{42}+\schurS_{411}+\schurS_{33}+2\schurS_{321}
++\schurS_{3111}+\schurS_{222}+\schurS_{2211},
+\]
+so $c^{321}_{21,21}=2$.
 
 From a representation-theoretical point of view, let $V^\lambda$ and $V^\mu$ be two irreducible representations
 of $\symS_n$ and $\symS_m$ respectively.
@@ -550,6 +574,17 @@ Applying the \hyperref[standardInvolution]{$\omega$-involution} gives the
 \]
 where the sum is now over all partitions $\mu$ obtained by adding $k$ boxes to $\lambda$
 in such a way that two added boxes may not appear in the same row.
+
+\begin{example}
+Adding two boxes to $(2,1)$, no two in the same column, gives
+\[
+\completeH_2\schurS_{21}=\schurS_{41}+\schurS_{32}+\schurS_{311}+\schurS_{221},
+\]
+while adding two boxes, no two in the same row, gives
+\[
+\elementaryE_2\schurS_{21}=\schurS_{32}+\schurS_{311}+\schurS_{221}+\schurS_{2111}.
+\]
+\end{example}
 
 
 Iterating the Pieri rules shows that $\completeH_\lambda(\xvec)$ and
@@ -652,11 +687,11 @@ g_{\rho, \rho, \nu} \gt 0.
 Equivalently, every $S^{\nu}$ appears in the tensor product $S^\rho \otimes S^\rho$.
 \end{conjecture}
 This conjecture was presented by \name{Jan Saxl} at a UCLA talk.
-A proof for every staircase size has been announced in a September 2026
-preprint by OpenAI \cite[Thm.~1.1]{OpenAI2026Saxl}; it has not yet appeared
-on arXiv or in a journal.
-The repository also provides a
-\href{https://github.com/openai/math/blob/main/lean/OAI/RepresentationTheory/Saxl/Main.lean}{Lean formalization}.
+A proof for every staircase size, with a
+\href{https://github.com/openai/math/blob/main/lean/OAI/RepresentationTheory/Saxl/Main.lean}{Lean formalization},
+has been announced in a September 2026 preprint by OpenAI
+\cite[Thm.~1.1]{OpenAI2026Saxl}; it has not yet appeared on arXiv or in a
+journal.
 % Related Lean: openai/math, OAI.Saxl.saxl_conjecture in
 % lean/OAI/RepresentationTheory/Saxl/Main.lean (not locally built).
 
@@ -920,7 +955,7 @@ of a symmetric function, given the fundamental quasi-symmetric expansion.
 See \cite{Macdonald1995} for the following identity:
 \begin{equation*}
 \sum_{\lambda} \schurS_{\lambda/\mu} =
-\prod_{i=1} \frac{1}{1-x_i}  \prod_{1 \leq i \lt j \leq m} \frac{1}{1-x_ix_j}
+\prod_{i=1}^m \frac{1}{1-x_i}  \prod_{1 \leq i \lt j \leq m} \frac{1}{1-x_ix_j}
 \sum_{\nu} \schurS_{\mu/\nu}.
 \end{equation*}
 

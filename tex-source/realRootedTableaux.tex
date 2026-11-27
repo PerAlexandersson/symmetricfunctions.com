@@ -5,9 +5,9 @@
 
 \section[realRootedTableaux]{Tableaux and polytopes}
 
-This page collects real-rootedness results from tableaux and polytope
-combinatorics: descent polynomials of standard Young tableaux, Ehrhart
-polynomials from Schur functions, and related families.  The main tools are
+Descent polynomials of standard Young tableaux, Ehrhart polynomials from
+Schur functions and related families give many real-rooted examples.  The
+main tools are
 \hyperref[interlacingPolynomials]{interlacing},
 \hyperref[brentiEhrhartCriterion]{Brenti's Ehrhart criterion}, and occasionally
 \hyperref[polyaFrequency]{total-positivity} methods.  For the broader context,
@@ -15,18 +15,15 @@ see \hyperref[polynomialRootIntro]{unimodality and real-rootedness}.
 
 \subsection[brentiEhrhartCriterion]{Brenti's Ehrhart criterion}
 
-The examples below use the same bridge between Ehrhart theory and
-real-rootedness.  Suppose \(L(m)\) is a polynomial of degree \(d\), and define
-the numerator \(H(t)\) by
+Suppose \(L(m)\) is a polynomial of degree \(d\), and define the numerator
+\(H(t)\) by
 \[
   \sum_{m\geq 0} L(m)t^m = \frac{H(t)}{(1-t)^{d+1}}.
 \]
-In the factored cases below, the hypotheses in Brenti's
-Worpitzky-transform criterion \cite[Thm.~4.6.1]{Brenti1989} are checked
-directly from the linear-factor product.  The conclusion is that the numerator
-\(H(t)\) has only real roots.  Thus the proof strategy is to identify the
-desired descent or \(h^*\)-polynomial as such a numerator and then prove that
-\(L(m)\) factors with only real roots.
+Brenti's Worpitzky-transform criterion \cite[Thm.~4.6.1]{Brenti1989} gives
+conditions on the zeros of \(L(m)\) under which \(H(t)\) has only real
+roots.  In the examples below, \(L(m)\) is a product of linear factors, and
+the descent or \(h^*\)-polynomial in question is the numerator \(H(t)\).
 
 \subsection[sytDescentRealRooted]{Descent polynomials of standard Young tableaux}
 
@@ -56,14 +53,25 @@ where $c(u)$ is the content and $h(u)$ the hook length of cell $u$.
 Brenti's theorem for column-strict labeled Ferrers posets applies to this
 order polynomial and gives real-rootedness of $W_\lambda(t)$.
 
+For example, the two tableaux of shape $(2,2)$ have descent sets $\{2\}$ and
+$\{1,3\}$, so $W_{(2,2)}(t)=t+t^2$.  The cells have contents $0,1,-1,0$ and
+hook lengths $3,2,2,1$, so
+\[
+  \schurS_{(2,2)}(1^{m+1})=\frac{m(m+1)^2(m+2)}{12},
+  \qquad
+  \sum_{m\geq0}\schurS_{(2,2)}(1^{m+1})z^m=z+6z^2+20z^3+\dotsb
+  =\frac{z+z^2}{(1-z)^5}.
+\]
+
 This argument does not extend to skew shapes: the corresponding order
 polynomial need not be real-rooted, so Brenti's theorem does not apply
 (see the remark below).
 
 \cite{Branden2004operators} shows moreover that $W_\lambda(t)$ \hyperref[interlacingPolynomials]{interlaces}
 $W_{\lambda^+}(t)$ whenever $\lambda^+$ is obtained from $\lambda$ by adding a box.
-In particular, for $\lambda=(n,n)$, $W_\lambda(t)$ is the peak-counting
-\hyperref[realRootedCatalan]{Narayana polynomial} $P_n(t)$.
+For $\lambda=(n,n)$, $W_\lambda(t)$ is the peak-counting
+\hyperref[realRootedCatalan]{Narayana polynomial} $P_n(t)$, whose
+coefficients form the Narayana triangle \oeis{A001263}.
 \end{example*}
 
 
@@ -102,7 +110,7 @@ Brändén \cite{Branden2004operators} showed moreover that $P_\lambda(n)$
 The above map is the Ehrhart polynomial of the \hyperref[gtpatterns]{Gelfand--Tsetlin polytope} associated with $\lambda$ and $k$.
 
 
-We note that the map
+The map
 \[
  n \mapsto |\SSYT(n \lambda/ n\mu, k)|
 \]

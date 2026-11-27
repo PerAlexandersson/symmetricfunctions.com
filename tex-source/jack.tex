@@ -53,8 +53,8 @@ Then the family $\jackP_\lambda(x;a)$ is the unique family that satisfies:
 $\langle \jackP_\lambda, \jackP_\mu \rangle_a = 0$ whenever
 $\lambda \neq \mu$.
 \item Triangularity:
-$\jackP_\lambda = \sum_{\mu \lt_d \lambda } c_{\lambda \mu} \monomial_\mu$.
-\item Normalization: $[\monomial_{1^n}]\jackP_\lambda = 1$.
+$\jackP_\lambda = \sum_{\mu \leq_d \lambda } c_{\lambda \mu} \monomial_\mu$.
+\item Normalization: $[\monomial_\lambda]\jackP_\lambda = 1$.
 \end{itemize}
 
 These symmetric functions have coefficients which are rational functions in $a$.
@@ -191,7 +191,7 @@ are defined as the unique family satisfying the following relations:
 $\langle \jackJ_\lambda, \jackJ_\mu \rangle_a = 0$ whenever
 $\lambda \neq \mu$.
 \item Triangularity:
-$\jackJ_\lambda = \sum_{\mu \lt_d \lambda } c_{\lambda \mu} \monomial_\mu$.
+$\jackJ_\lambda = \sum_{\mu \leq_d \lambda } c_{\lambda \mu} \monomial_\mu$.
 \item Normalization: $[\monomial_{1^n}]\jackJ_\lambda = n!$.
 \end{itemize}
 These symmetric functions have coefficients in $\setN[a]$ in the
@@ -738,6 +738,16 @@ corresponding polynomial vanishes.
 
 Data for partitions of sizes $1,2,\dotsc,9$ is available
 from \filelink{files/jack-rook-hit-data.txt}{jack-rook-hit-data.txt (106 KiB)}.
+
+For $\mu=\lambda=(n)$, Stanley's power-sum expansion
+$\jackJ_{(n)}(\xvec;a)=\sum_{\rho\vdash n}\frac{n!}{z_\rho}a^{n-\length(\rho)}\powerSum_\rho(\xvec)$
+gives
+\[
+\langle a^{n}\jackJ_{(n)}(\xvec;1/a),\schurS_{(n)}\rangle=a(a+1)\dotsm(a+n-1).
+\]
+Hence $H_{(n),(n)}(z)=n!\,z^{n-1}$, and the coefficients of
+$R_{(n),(n)}(z)$ are the Lah numbers \oeis{A105278}, which expand rising
+factorials in falling factorials.
 
 We conjecture that each polynomial above is real-rooted; see also the other
 \hyperref[realrootedOpenProblems]{open problems on real-rootedness}.

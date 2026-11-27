@@ -242,7 +242,8 @@ Then the graded Frobenius characteristic is given by
 \[
  \frobChar_M(\xvec) = \sum_{\lambda \vdash n} \schurS_\lambda(\xvec) \sum_{T \in SYT(\lambda)} q^{\maj(T)}.
 \]
-In particular, $M$ has dimension $n!$; this is a result by \name{Mark Haiman}.
+In particular, $M$ has dimension $n!$; as a graded $\symS_n$-module it is
+isomorphic to the \hyperref[coinvariantAlgebra]{coinvariant algebra}.
 \end{example}
 
 \begin{example}
@@ -322,6 +323,8 @@ Frobenius characteristic} is explicitly
 
 For $n\geq1$ and $0\leq k\leq n$, let $\mathcal M_{n,k}$ be the set
 of $n\times n$ zero--one matrices with every row and column sum equal to $k$.
+Their numbers form the triangle \oeis{A008300}; for $k=2$ they are
+$1,6,90,2040,\dotsc$ for $n=2,3,4,5,\dotsc$, see \oeis{A001499}.
 Independent row and column permutations give the action
 $(\sigma,\tau)A=P_\sigma A P_\tau^{-1}$ of
 $\symS_n\times\symS_n$, where $P_\sigma$ is a permutation matrix.
@@ -477,7 +480,8 @@ For example,
 \]
 Burnside's orbit count is the trivial multiplicity:
 $\langle F_{n,2},\completeH_n(X)\completeH_n(Y)\rangle=p(n)-p(n-1)$
-for $n\geq1$, where $p(n)$ is the partition number.
+for $n\geq1$, where $p(n)$ is the partition number. This is the number of
+partitions of $n$ with no part equal to $1$ \oeis{A002865}.
 \end{example}
 
 \begin{example}[Diagonal restriction versus numerical span]
@@ -490,8 +494,6 @@ If $F_{n,2}=\sum_{\alpha,\beta}m_{\alpha,\beta}
        (\schurS_\alpha*\schurS_\beta),
 \]
 where $*$ is the \hyperref[schurKroneckerCoefficients]{Kronecker product}.
-Setting $X=Y$ instead gives an ordinary product of degree $2n$, not this
-degree-$n$ characteristic.
 
 For $n=3$, every matrix is $J_3-P$ for a permutation matrix $P$.
 Independent row/column relabeling gives

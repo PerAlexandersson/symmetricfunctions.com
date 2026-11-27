@@ -5,14 +5,14 @@
 \section[toeplitzDeterminants]{Recurrence limit sets and Toeplitz minors}
 
 The zeros of a \hyperref[polynomialRecurrences]{polynomial recurrence}
-often accumulate on curves or intervals. We study these limit sets through
-characteristic roots, then specialize to Toeplitz determinants and minors.
-The \hyperref[toeplitzBkwTheorem]{Beraha--Kahane--Weiss theorem}
-gives the general analytic criterion; the
+often accumulate on curves or intervals, which are determined by the
+characteristic roots. The
+\hyperref[toeplitzBkwTheorem]{Beraha--Kahane--Weiss theorem}
+gives the general analytic criterion, and the
 \hyperref[toeplitzSchmidtSpitzer]{Schmidt--Spitzer theorem}
-describes the limiting spectra of banded Toeplitz sections.
-The later finite-size proofs address the separate question of when
-\emph{every} polynomial has only real zeros.
+describes the limiting spectra of banded Toeplitz matrices.
+For pentadiagonal and Hessenberg Toeplitz matrices we also ask when
+\emph{every} characteristic polynomial has only real zeros.
 
 \subsection[recurrenceZeroLimitSets]{Limit sets and characteristic roots}
 
@@ -30,9 +30,9 @@ domain. Partial fractions then give, for all sufficiently large $n$,
  P_n(x)=\sum_i a_i(x)\lambda_i(x)^n,
 \]
 where $\lambda_i(x)$ are reciprocals of the poles.
-The amplitudes $a_i$ depend on the initial conditions.
-One must therefore consider both ties between dominant moduli
-$|\lambda_i|$ and zeros of the corresponding amplitudes.
+The amplitudes $a_i$ depend on the initial conditions, and zeros
+accumulate both where dominant moduli $|\lambda_i|$ tie and where a
+dominant amplitude vanishes.
 For the algebraic construction, including repeated poles, see the
 \hyperref[recurrenceSpectralModel]{spectral expansion of a recurrence}.
 
@@ -100,9 +100,8 @@ require an extension.
 \subsection[recurrenceRenewalLimitSet]{Limiting zeros of the renewal family}
 
 For the \hyperref[interlacingRenewalTheorem]{weighted renewal family},
-BKW gives an explicit limiting interval.
-The interlacing theorem applies to every index; the following statement
-describes the zeros as the index tends to infinity.
+whose zeros are real and interlacing, BKW gives an explicit limiting
+interval.
 
 \begin{theorem}[Renewal zero accumulation]
 Let $d,\ell\geq1$ be integers and let
@@ -116,7 +115,7 @@ There is a unique $u_*$ between the largest zero of $R$ and $0$ such that
  R(u_*)+\ell u_*R'(u_*)=0.
 \]
 Put $x_*=u_*R(u_*)^\ell$. The set of finite accumulation points of zeros
-of $P_n$, as $n\to\infty$, is exactly
+of $P_n$, as $n\to\infty$, is
 \[
  (-\infty,x_*].
 \]
@@ -195,12 +194,15 @@ $(-\infty,-4/27]$.
 Writing $P_n=C_{dn}$, where $\sum_{N\geq0}C_N(x)t^N=1/(1-t-xt^L)$,
 identifies the same endpoint with the sign-reversed interval in
 \cite[Thm.~1]{ForgcsTran2016} for the coefficient sequence $C_N$.
+For $L=2$, the $C_N(x)=\sum_k\binom{N-k}{k}x^k$ are Fibonacci polynomials,
+whose coefficients form the triangle \oeis{A011973}.
 The dominance argument above also handles arbitrary positive row weights.
 
-The \hyperref[interlacingDelayRecurrences]{arbitrary-weight variable-predecessor theorem} need not come from a
-stationary finite-order recurrence. BKW applies to the renewal specialization
-above; more general changing coefficients require additional asymptotic
-hypotheses.
+The polynomials in the
+\hyperref[interlacingDelayRecurrences]{arbitrary-weight variable-predecessor theorem}
+need not satisfy a finite-order recurrence with constant coefficients.
+BKW applies to the renewal specialization above, while more general
+coefficients require additional asymptotic hypotheses.
 
 \section[toeplitzMinors]{Toeplitz determinants and minors}
 
@@ -242,7 +244,6 @@ for banded minors, determinant formulas, and recurrences, see
 \cite{Alexandersson2012Toeplitz}.
 The \hyperref[toeplitzReciprocalRecurrence]{rectangular Schur formula below}
 makes the recurrence explicit for a balanced pentadiagonal matrix.
-
 
 The \hyperref[toeplitzSchmidtSpitzer]{Schmidt--Spitzer theorem} below
 describes limiting zeros of the principal characteristic determinants
@@ -291,10 +292,11 @@ the Jordan-curve condition to a real limiting spectrum, using the real symbol
 \[
  b(z)=\left(z^2+97z+103-\frac{10201}{z}\right)^2.
 \]
-Their example does not settle whether a real limiting spectrum forces every
-finite spectrum to be real. The following proposition settles this implication
-for balanced pentadiagonal symbols with positive product of the outer coefficients.
-The argument was communicated by \name{Per Alexandersson} in 2026.
+Their example leaves open whether a real limiting spectrum forces every
+finite spectrum to be real. The following proposition proves this implication
+for balanced pentadiagonal symbols with positive product of the outer
+coefficients. The argument was communicated by \name{Per Alexandersson} in
+2026.
 
 \subsection[toeplitzPentadiagonal]{Balanced pentadiagonal symbols}
 
@@ -387,7 +389,7 @@ By the \hyperref[schurJacobiTrudi]{dual Jacobi--Trudi identity},
  \det(T_n(b)-t_0I)=\schurS_{(n,n)}(\alpha_1,\dotsc,\alpha_4)>0.
 \]
 Its first upper and lower diagonals are positive. The oscillatory-matrix
-criterion therefore gives positive simple eigenvalues, as in the valid
+criterion therefore gives positive simple eigenvalues, as in the
 total-nonnegativity argument of \cite{ShapiroStampach2023Correction}.
 Adding back $t_0I$ proves reality of every finite spectrum.
 
@@ -494,11 +496,11 @@ conjugate pair, and
 \end{enumerate}
 \end{theorem}
 
-The published proof invokes the
-\hyperref[toeplitzSpectra]{Jordan-curve implication that fails in general}.
-We give direct proofs of these sufficiency statements below.
-The coefficient $24\alpha\gamma-5\beta^2$ is the published condition;
-the earlier preprint has a different inequality.
+The published proof uses the
+\hyperref[toeplitzSpectra]{Jordan-curve implication}, which fails in general.
+Direct proofs of both cases follow. The condition
+$24\alpha\gamma-5\beta^2\geq0$ is the one in the published version; the
+earlier preprint states a different inequality.
 
 \subsection[toeplitzRealCriticalHessenberg]{Four real critical points}
 
@@ -576,7 +578,7 @@ at $R$, strict convexity gives exactly one zero $r(x)$ in $(0,R)$,
 with negative derivative there. This zero varies continuously with $x$.
 
 For $0<\theta<\pi$, take $x=\cos\theta$, $r=r(x)$, and
-$t(\theta)=f(re^{i\theta})$. The equation $H_x(r)=0$ says exactly
+$t(\theta)=f(re^{i\theta})$. The equation $H_x(r)=0$ means
 that $t(\theta)$ is real. The two other roots of
 $1-tz+az^2+dz^3-gz^4$ are the roots of
 \[
@@ -618,9 +620,8 @@ The weights $\eta$ and $-\zeta$ are positive, so
 \]
 Strict monotonicity provides $n$ disjoint real intervals with sign changes.
 Since $P_n$ is monic of degree $n$, all its roots are real and simple.
-The argument includes repeated roots of $G$; only the strict interior
-inequalities $|x|<1$ and $r<R$ were used. 
-
+Repeated roots of $G$ are allowed, since only the strict inequalities
+$|x|<1$ and $r<R$ were used.
 \end{proof*}
 
 \subsection[toeplitzQuarticKernel]{A quartic-kernel sufficient condition}
@@ -636,7 +637,6 @@ Suppose $a,d\in\setR$ and $c>0$, and define the monic polynomials $Q_n$ by
 \]
 If $a\geq2\sqrt c+d^2/(4c)$, then every $Q_n$ is real-rooted.
 If the inequality is strict, all its roots are simple.
-
 \end{proposition}
 
 \begin{proof*}
@@ -766,8 +766,8 @@ For fixed $a$, this is concave in $v$, and its endpoint values are
 \end{align*}
 Both are nonnegative for $a\geq10$. This contradicts the negative
 discriminant of a real quartic with two simple real roots and a nonreal
-conjugate pair. Therefore $4a-d^2\geq8$, which is precisely
-$a\geq2+d^2/4$. The proposition applies.
+conjugate pair. Therefore $4a-d^2\geq8$, that is,
+$a\geq2+d^2/4$, and the proposition applies.
 
 In the original parameters, the sufficient condition used is
 \[
