@@ -1309,4 +1309,18 @@
   \end{scope}
 \end{tikzpicture}
 
+
+\tikzsetnextfilename{card-aiResearch}
+\begin{tikzpicture}[icon]
+  \cardframe
+
+  % A heart with the letters AI: research with AI tools.
+  \filldraw[iconblue, draw=black, thinner]
+    (0,-0.62) .. controls (-0.8,-0.05) and (-0.82,0.55) .. (-0.38,0.62)
+    .. controls (-0.14,0.65) and (0,0.5) .. (0,0.38)
+    .. controls (0,0.5) and (0.14,0.65) .. (0.38,0.62)
+    .. controls (0.82,0.55) and (0.8,-0.05) .. (0,-0.62) -- cycle;
+  \node[white, font=\sffamily\bfseries\Large] at (0,0.06) {AI};
+\end{tikzpicture}
+
 \end{document}
