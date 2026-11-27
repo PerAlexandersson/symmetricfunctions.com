@@ -38,7 +38,6 @@
   \draw[ink,line width=1.3pt] (0,0) -- (3,0) -- (3,-1) -- (5,-1) -- (5,-5);
   \foreach \i in {1,...,5} \node[font=\small,anchor=east] at (-.1,-\i+.5) {$\i$};
   \foreach \c in {1,...,5} \node[font=\small,anchor=south] at (\c-.5,.05) {$\c$};
-  \node at (2.5,-6.1) {peak rows of the area};
 \end{scope}
 
 % ---------- the tableau ----------
@@ -49,7 +48,6 @@
   \draw[ink,line width=.8pt] (0,0) -- (2,0) (1,-1) -- (1,1) (2,0) -- (2,1);
   \foreach \x/\v in {0/1,1/2,2/4} \node at (\x+.5,.5) {$\v$};
   \foreach \x/\v in {0/3,1/5} \node at (\x+.5,-.5) {$\v$};
-  \node at (1.5,-2.3) {$F_D=(3,2)$};
 \end{scope}
 
 % ---------- particle hops ----------
@@ -62,7 +60,6 @@
     \node[p2] at (\b,-\t) {};
     \node[font=\small,anchor=east] at (.4,-\t) {$\t$};
   }
-  \node at (3,-6.1) {particle positions};
 \end{scope}
 \end{tikzpicture}
 \end{document}

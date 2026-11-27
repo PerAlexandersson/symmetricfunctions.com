@@ -26,6 +26,11 @@ Let $D$ be a \hyperref[qtCatalan]{Dyck path} of semilength $n$, with steps
 $U$ and $D$.  Its \hyperref[areaSequence]{area sequence}
 $a=(a_1,\dotsc,a_n)$ records the height of the path just before its $j$th
 up-step, so $a_1=0$ and $a_{j+1}\leq a_j+1$.
+The objects below are shown in the figure for $a=(0,1,2,2,3)$; the
+\hyperref[dyckPathRunningExample]{example} after the list explains it.
+\begin{figure}
+\svgimg[width=0.95\textwidth]{./svg-images/dyck-path-objects.svg}{The board (3,5,5,5,5) with the rooks of the permutation 35421, the unit interval graph with its two maximal cliques, and the skew shape (3,2) with the possible north-step positions in each row.}
+\end{figure}
 
 \begin{itemize}
 \item The \hyperref[unitIntervalGraph]{unit interval graph} $G_D$ on $[n]$
@@ -67,18 +72,57 @@ $j$; these are the shapes whose lattice path matroid has no loops.  Each such
 shape arises from exactly one Dyck path of semilength $r+c$.  Straight shapes
 correspond to $\ell_k=k$ for all $k$.
 
-\begin{example}
-Let $a=(0,1,2,2,3)$, so $D=UUUDUUDDDD$.  The board is
-$\lambda_D=(3,5,5,5,5)$ and $\pi_D=35421$.  The graph $G_D$ has the eight edges
-$12$, $13$, $23$, $24$, $25$, $34$, $35$ and $45$, and its maximal cliques are
-the peak intervals $A_1=[1,3]$ and $A_2=[2,5]$.  The skew shape is $F_D=(3,2)$:
-its bottom row admits the north-step positions $1,2,3$ and its top row the
-positions $2,3,4,5$.  The matroid $M_D$ has rank two, and its bases are all
-pairs from $[5]$ except $\{4,5\}$.
+\begin{example*}[The objects of the area sequence $01223$]\label{dyckPathRunningExample}
+Let $a=(0,1,2,2,3)$, so $D=UUUDUUDDDD$.  The figure at the start of this
+subsection shows, from left to right, the board, the graph and the skew shape
+of $D$.
+
+The board is $\lambda_D=(3,5,5,5,5)$, and its upper right boundary, drawn
+thick, is the path $D$.  The diagonal boxes are grey, and the boxes above the
+diagonal are the eight edges $12$, $13$, $23$, $24$, $25$, $34$, $35$ and $45$
+of $G_D$.  The dots are the rooks of $\pi_D=35421$: row $1$ takes column $3$,
+row $2$ column $5$, row $3$ column $4$, and so on.
+
+The maximal cliques of $G_D$ are the peak intervals $A_1=[1,3]$ and
+$A_2=[2,5]$, drawn below the graph.  The skew shape is $F_D=(3,2)$.  The
+numbers on the vertical lines of its bottom row are the north-step positions
+$1,2,3$, and those of its top row are $2,3,4,5$.  The matroid $M_D$ has rank
+two, and its bases are all pairs from $[5]$ except $\{4,5\}$.
+\end{example*}
+
+\begin{example*}[The fourteen Dyck paths of semilength four]\label{dyckPathSemilengthFour}
+The figure shows the fourteen Dyck paths of semilength four, each labelled by
+its area sequence.
 \begin{figure}
-\svgimg[width=0.95\textwidth]{./svg-images/dyck-path-objects.svg}{The board (3,5,5,5,5) with the rooks of the permutation 35421, the unit interval graph with its two maximal cliques, and the skew shape (3,2) with the possible north-step positions in each row.}
+\svgimg[width=0.95\textwidth]{./svg-images/dyck-paths-four.svg}{The fourteen Dyck paths of semilength four, labelled by their area sequences.}
 \end{figure}
-\end{example}
+
+The table lists the objects attached to them: the board
+$\lambda_D$, the permutation $\pi_D$, the peak intervals and the skew shape
+$F_D$, written as $\lambda/\mu$ with rows from top to bottom.  The same paths
+are used in the tables of the later sections.
+
+\begin{tabular}{lllll}
+\toprule
+$a$ & $\lambda_D$ & $\pi_D$ & $A_1,\dotsc,A_r$ & $F_D$ \\
+\midrule
+$0000$ & $1234$ & $1234$ & $[1],[2],[3],[4]$ & $(0,0,0,0)$ \\
+$0001$ & $1244$ & $1243$ & $[1],[2],[3,4]$ & $(1,0,0)$ \\
+$0010$ & $1334$ & $1324$ & $[1],[2,3],[4]$ & $(1,1,0)/(1,0,0)$ \\
+$0011$ & $1344$ & $1342$ & $[1],[2,3],[3,4]$ & $(1,1,0)$ \\
+$0012$ & $1444$ & $1432$ & $[1],[2,4]$ & $(2,0)$ \\
+$0100$ & $2234$ & $2134$ & $[1,2],[3],[4]$ & $(1,1,1)/(1,1,0)$ \\
+$0101$ & $2244$ & $2143$ & $[1,2],[3,4]$ & $(2,1)/(1,0)$ \\
+$0110$ & $2334$ & $2314$ & $[1,2],[2,3],[4]$ & $(1,1,1)/(1,0,0)$ \\
+$0111$ & $2344$ & $2341$ & $[1,2],[2,3],[3,4]$ & $(1,1,1)$ \\
+$0112$ & $2444$ & $2431$ & $[1,2],[2,4]$ & $(2,1)$ \\
+$0120$ & $3334$ & $3214$ & $[1,3],[4]$ & $(2,2)/(2,0)$ \\
+$0121$ & $3344$ & $3241$ & $[1,3],[3,4]$ & $(2,2)/(1,0)$ \\
+$0122$ & $3444$ & $3421$ & $[1,3],[2,4]$ & $(2,2)$ \\
+$0123$ & $4444$ & $4321$ & $[1,4]$ & $(3)$ \\
+\bottomrule
+\end{tabular}
+\end{example*}
 
 
 \subsection[dyckPathBruhatPolynomials]{Statistics on the Bruhat interval}
@@ -174,6 +218,42 @@ see \hyperref[bruhatIntervalPsiPositive]{lower Bruhat intervals} on the page on
 $P$-partitions.
 
 
+\begin{example*}[Bruhat statistics for semilength four]
+For the fourteen Dyck paths of
+\hyperref[dyckPathSemilengthFour]{semilength four}, the rook-Eulerian and peak
+polynomials are as follows.
+
+\begin{tabular}{lll}
+\toprule
+$a$ & $Q_D$ & $P_D$ \\
+\midrule
+$0000$ & $t^3$ & $1$ \\
+$0001$ & $t^2+t^3$ & $1+t$ \\
+$0010$ & $t^2+t^3$ & $1+t$ \\
+$0011$ & $3t^2+t^3$ & $1+3t$ \\
+$0012$ & $t+4t^2+t^3$ & $1+5t$ \\
+$0100$ & $t^2+t^3$ & $2$ \\
+$0101$ & $t+2t^2+t^3$ & $2+2t$ \\
+$0110$ & $3t^2+t^3$ & $2+2t$ \\
+$0111$ & $t+6t^2+t^3$ & $2+6t$ \\
+$0112$ & $3t+8t^2+t^3$ & $2+10t$ \\
+$0120$ & $t+4t^2+t^3$ & $4+2t$ \\
+$0121$ & $4t+7t^2+t^3$ & $4+8t$ \\
+$0122$ & $7t+10t^2+t^3$ & $4+14t$ \\
+$0123$ & $1+11t+11t^2+t^3$ & $8+16t$ \\
+\bottomrule
+\end{tabular}
+
+The Bruhat interval is not symmetric under reversing the path.  For $0001$ and
+$0100$, the rook-Eulerian polynomials agree but the peak polynomials differ.
+For the \hyperref[dyckPathRunningExample]{running example} $a=01223$, the
+$72$ permutations below $\pi_D=35421$ give
+\[
+  Q_D(t)=7t+41t^2+23t^3+t^4,\qquad P_D(t)=4+54t+14t^2.
+\]
+\end{example*}
+
+
 \subsection[dyckPathGraphPolynomials]{Chromatic quasisymmetric functions}
 
 The graph $G_D$ is the natural unit interval graph $H_h$ with Hessenberg
@@ -222,13 +302,44 @@ where the chromatic polynomial factors since the earlier neighbors of each
 vertex form a clique.  It is real-rooted since $G_D$ is chordal
 \cite[Thms.~4.11 and~4.15]{Brenti1992}.
 
-\begin{example}
+\begin{example*}[Sinks for the area sequence $01223$]
 For $a=(0,1,2,2,3)$, every acyclic orientation has a sink, and the only sets of
 two sinks are $\{1,4\}$ and $\{1,5\}$.  Each leaves a triangle with six acyclic
 orientations, so $S_D(t)=60t+12t^2$, with $X_D(1)=72$ orientations in total.
 The half-sink polynomial at $q=1$ is $t(t+1)(t+2)^2(t+3)$, and
 $w_D(t)=48t^4+72t^5$.
-\end{example}
+\end{example*}
+
+\begin{example*}[Sink and $w$-polynomials for semilength four]
+For the fourteen Dyck paths of
+\hyperref[dyckPathSemilengthFour]{semilength four}:
+
+\begin{tabular}{lll}
+\toprule
+$a$ & $S_D$ & $w_D$ \\
+\midrule
+$0000$ & $t^4$ & $t+11t^2+11t^3+t^4$ \\
+$0001$ & $2t^3$ & $8t^2+14t^3+2t^4$ \\
+$0010$ & $2t^3$ & $8t^2+14t^3+2t^4$ \\
+$0011$ & $3t^2+t^3$ & $4t^2+16t^3+4t^4$ \\
+$0012$ & $6t^2$ & $18t^3+6t^4$ \\
+$0100$ & $2t^3$ & $8t^2+14t^3+2t^4$ \\
+$0101$ & $4t^2$ & $4t^2+16t^3+4t^4$ \\
+$0110$ & $3t^2+t^3$ & $4t^2+16t^3+4t^4$ \\
+$0111$ & $4t+4t^2$ & $2t^2+14t^3+8t^4$ \\
+$0112$ & $8t+4t^2$ & $12t^3+12t^4$ \\
+$0120$ & $6t^2$ & $18t^3+6t^4$ \\
+$0121$ & $8t+4t^2$ & $12t^3+12t^4$ \\
+$0122$ & $16t+2t^2$ & $6t^3+18t^4$ \\
+$0123$ & $24t$ & $24t^4$ \\
+\bottomrule
+\end{tabular}
+
+Reversing the path gives an isomorphic graph, so both polynomials agree for
+$0001$ and $0100$.  For $a=0000$ the graph has no edges, and $w_D$ is $t$
+times the \hyperref[eulerianPolynomial]{Eulerian polynomial}; for $a=0123$ it
+is complete, and $S_D=24t$.
+\end{example*}
 
 
 \subsection[dyckPathSkewPolynomials]{Natural descents and non-nesting rooks}
@@ -275,13 +386,13 @@ If $F_D$ has $m$ cells, then
 \]
 \end{proposition}
 
-\begin{proof}
+\begin{proof*}
 By the theory of $P$-partitions, $N_D(t)/(1-t)^{m+1}=\sum_{k\geq0}c_kt^k$,
 where $c_k$ counts the order-preserving maps from the cell poset to
 $\{0,\dotsc,k\}$.  Such maps with $k=1$ are the order ideals, so
 $c_1=R_D(1)$, and comparing the coefficients of $t$ gives
 $[t]N_D=c_1-(m+1)$.
-\end{proof}
+\end{proof*}
 
 For two-row shapes there is an identity of whole polynomials after changing
 the board.  If the top row has $s$ cells, the bottom row has $b$ cells, and the
@@ -299,6 +410,37 @@ Real-rootedness of natural-descent polynomials of straight shapes is
 \hyperref[conjSYTNaturalDescents]{conjectured}.  The non-nesting rook numbers
 are ultra-log-concave, but $R_D(t)$ need not be real-rooted
 \cite{AlexanderssonJal2024x}.
+
+\begin{example*}[Natural descents and non-nesting rooks for semilength four]
+For the fourteen Dyck paths of
+\hyperref[dyckPathSemilengthFour]{semilength four}:
+
+\begin{tabular}{llll}
+\toprule
+$a$ & $F_D$ & $N_D$ & $R_D$ \\
+\midrule
+$0000$ & $(0,0,0,0)$ & $1$ & $1$ \\
+$0001$ & $(1,0,0)$ & $1$ & $1+t$ \\
+$0010$ & $(1,1,0)/(1,0,0)$ & $1$ & $1+t$ \\
+$0011$ & $(1,1,0)$ & $1$ & $1+2t$ \\
+$0012$ & $(2,0)$ & $1$ & $1+2t$ \\
+$0100$ & $(1,1,1)/(1,1,0)$ & $1$ & $1+t$ \\
+$0101$ & $(2,1)/(1,0)$ & $1+t$ & $1+2t+t^2$ \\
+$0110$ & $(1,1,1)/(1,0,0)$ & $1$ & $1+2t$ \\
+$0111$ & $(1,1,1)$ & $1$ & $1+3t$ \\
+$0112$ & $(2,1)$ & $1+t$ & $1+3t+t^2$ \\
+$0120$ & $(2,2)/(2,0)$ & $1$ & $1+2t$ \\
+$0121$ & $(2,2)/(1,0)$ & $1+t$ & $1+3t+t^2$ \\
+$0122$ & $(2,2)$ & $1+t$ & $1+4t+t^2$ \\
+$0123$ & $(3)$ & $1$ & $1+3t$ \\
+\bottomrule
+\end{tabular}
+
+Reversing the path rotates the skew shape, which does not change the two
+polynomials, as for $0001$ and $0100$.  For the shape $(3,2)$ of the
+\hyperref[dyckPathRunningExample]{running example},
+$N_D=1+3t+t^2$ and $R_D=1+5t+3t^2$, so $[t]N_D=R_D(1)-5-1$.
+\end{example*}
 
 
 \subsubsection[dyckPathParticles]{Tableaux as particle hops}
@@ -322,15 +464,27 @@ $T$ is a time where the particle moved at step $j+1$ lies to the right of the
 particle moved at step $j$.  Hence $N_D(t)$ counts the runs by the ascents of the word
 recording which particle moves, and $R_D(1)$ counts the configurations.
 
-\begin{example}
-For $a=(0,1,2,2,3)$, particle $1$ moves from site $1$ to site $3$ and particle
-$2$ from site $2$ to site $5$.  The tableau with rows $124$ and $35$ moves
-particle $2$, particle $2$, particle $1$, particle $2$ and particle $1$.  Its
-only natural descent is $3$, where the next moving particle lies to the right.
+\begin{example*}[Particle hops for the area sequence $01223$]
+Let $a=(0,1,2,2,3)$.  The figure shows the board, the skew shape with a
+tableau, and the particle positions of the run given by the tableau.
 \begin{figure}
 \svgimg[width=0.9\textwidth]{./svg-images/dyck-path-particles.svg}{The peak rows of the area of the Dyck path with area sequence 0,1,2,2,3, the tableau of shape (3,2) with rows 124 and 35, and the corresponding particle positions after each hop.}
 \end{figure}
-\end{example}
+
+On the left is the board $\lambda_D=(3,5,5,5,5)$.  The peak intervals start in rows $1$ and $2$, and
+the edge boxes in these rows are shaded; the other edge boxes are grey.
+Shifting row $1$ one step and row $2$ two steps to the left, and putting row
+$2$ on top, gives $F_D=(3,2)$, shown in the middle with the tableau with rows
+$124$ and $35$.
+
+Particle $1$, drawn as a circle, moves from site $1$ to site $3$, and particle
+$2$, drawn as a square, from site $2$ to site $5$.  The right part of the
+figure shows their positions at the times $0,1,\dotsc,5$.  The entries $1,2,4$
+lie in the top row, the second row from the bottom, so the tableau moves
+particle $2$, particle $2$, particle $1$, particle $2$ and particle $1$.  Its
+only natural descent is $3$: at time $4$ the moving particle lies to the
+right of the particle that moved at time $3$.
+\end{example*}
 
 For a straight shape $\lambda$, the particles start at $1,\dotsc,r$, and a run
 is a ballot sequence recording the row of each entry.  The natural descents
@@ -377,66 +531,34 @@ again over Dyck paths $E$ of semilength $n+1$.  In terms of the unit interval
 graph $G_E$, the exponent is the number of maximal cliques minus one, and row
 $j$ is available when the vertex $j+1$ lies in two maximal cliques.
 
+\begin{example*}[$Z$-polynomials for semilength four]
+For the fourteen Dyck paths of
+\hyperref[dyckPathSemilengthFour]{semilength four}:
 
-\subsection[dyckPathSemilengthFour]{The fourteen Dyck paths of semilength four}
-
-\begin{figure}
-\svgimg[width=0.95\textwidth]{./svg-images/dyck-paths-four.svg}{The fourteen Dyck paths of semilength four, labelled by their area sequences.}
-\end{figure}
-
-The first table lists the objects attached to each Dyck path: the board
-$\lambda_D$, the permutation $\pi_D$, the peak intervals and the skew shape
-$F_D$, written as $\lambda/\mu$ with rows from top to bottom.
-
-\begin{tabular}{lllll}
+\begin{tabular}{lll}
 \toprule
-$a$ & $\lambda_D$ & $\pi_D$ & $A_1,\dotsc,A_r$ & $F_D$ \\
+$a$ & $F_D$ & $Z_D$ \\
 \midrule
-$0000$ & $1234$ & $1234$ & $[1],[2],[3],[4]$ & $(0,0,0,0)$ \\
-$0001$ & $1244$ & $1243$ & $[1],[2],[3,4]$ & $(1,0,0)$ \\
-$0010$ & $1334$ & $1324$ & $[1],[2,3],[4]$ & $(1,1,0)/(1,0,0)$ \\
-$0011$ & $1344$ & $1342$ & $[1],[2,3],[3,4]$ & $(1,1,0)$ \\
-$0012$ & $1444$ & $1432$ & $[1],[2,4]$ & $(2,0)$ \\
-$0100$ & $2234$ & $2134$ & $[1,2],[3],[4]$ & $(1,1,1)/(1,1,0)$ \\
-$0101$ & $2244$ & $2143$ & $[1,2],[3,4]$ & $(2,1)/(1,0)$ \\
-$0110$ & $2334$ & $2314$ & $[1,2],[2,3],[4]$ & $(1,1,1)/(1,0,0)$ \\
-$0111$ & $2344$ & $2341$ & $[1,2],[2,3],[3,4]$ & $(1,1,1)$ \\
-$0112$ & $2444$ & $2431$ & $[1,2],[2,4]$ & $(2,1)$ \\
-$0120$ & $3334$ & $3214$ & $[1,3],[4]$ & $(2,2)/(2,0)$ \\
-$0121$ & $3344$ & $3241$ & $[1,3],[3,4]$ & $(2,2)/(1,0)$ \\
-$0122$ & $3444$ & $3421$ & $[1,3],[2,4]$ & $(2,2)$ \\
-$0123$ & $4444$ & $4321$ & $[1,4]$ & $(3)$ \\
+$0000$ & $(0,0,0,0)$ & $1+4t+6t^2+4t^3+t^4$ \\
+$0001$ & $(1,0,0)$ & $1+3t+3t^2+t^3$ \\
+$0010$ & $(1,1,0)/(1,0,0)$ & $1+3t+3t^2+t^3$ \\
+$0011$ & $(1,1,0)$ & $1+4t+4t^2+t^3$ \\
+$0012$ & $(2,0)$ & $1+2t+t^2$ \\
+$0100$ & $(1,1,1)/(1,1,0)$ & $1+3t+3t^2+t^3$ \\
+$0101$ & $(2,1)/(1,0)$ & $1+2t+t^2$ \\
+$0110$ & $(1,1,1)/(1,0,0)$ & $1+4t+4t^2+t^3$ \\
+$0111$ & $(1,1,1)$ & $1+6t+6t^2+t^3$ \\
+$0112$ & $(2,1)$ & $1+3t+t^2$ \\
+$0120$ & $(2,2)/(2,0)$ & $1+2t+t^2$ \\
+$0121$ & $(2,2)/(1,0)$ & $1+3t+t^2$ \\
+$0122$ & $(2,2)$ & $1+4t+t^2$ \\
+$0123$ & $(3)$ & $1+t$ \\
 \bottomrule
 \end{tabular}
 
-The second table lists the polynomials.  The product $X_D(q)$ can be read off
-from $a$ directly.
-
-\begin{tabular}{lllllll}
-\toprule
-$a$ & $Q_D$ & $P_D$ & $S_D$ & $N_D$ & $R_D$ & $Z_D$ \\
-\midrule
-$0000$ & $t^3$ & $1$ & $t^4$ & $1$ & $1$ & $1+4t+6t^2+4t^3+t^4$ \\
-$0001$ & $t^2+t^3$ & $1+t$ & $2t^3$ & $1$ & $1+t$ & $1+3t+3t^2+t^3$ \\
-$0010$ & $t^2+t^3$ & $1+t$ & $2t^3$ & $1$ & $1+t$ & $1+3t+3t^2+t^3$ \\
-$0011$ & $3t^2+t^3$ & $1+3t$ & $3t^2+t^3$ & $1$ & $1+2t$ & $1+4t+4t^2+t^3$ \\
-$0012$ & $t+4t^2+t^3$ & $1+5t$ & $6t^2$ & $1$ & $1+2t$ & $1+2t+t^2$ \\
-$0100$ & $t^2+t^3$ & $2$ & $2t^3$ & $1$ & $1+t$ & $1+3t+3t^2+t^3$ \\
-$0101$ & $t+2t^2+t^3$ & $2+2t$ & $4t^2$ & $1+t$ & $1+2t+t^2$ & $1+2t+t^2$ \\
-$0110$ & $3t^2+t^3$ & $2+2t$ & $3t^2+t^3$ & $1$ & $1+2t$ & $1+4t+4t^2+t^3$ \\
-$0111$ & $t+6t^2+t^3$ & $2+6t$ & $4t+4t^2$ & $1$ & $1+3t$ & $1+6t+6t^2+t^3$ \\
-$0112$ & $3t+8t^2+t^3$ & $2+10t$ & $8t+4t^2$ & $1+t$ & $1+3t+t^2$ & $1+3t+t^2$ \\
-$0120$ & $t+4t^2+t^3$ & $4+2t$ & $6t^2$ & $1$ & $1+2t$ & $1+2t+t^2$ \\
-$0121$ & $4t+7t^2+t^3$ & $4+8t$ & $8t+4t^2$ & $1+t$ & $1+3t+t^2$ & $1+3t+t^2$ \\
-$0122$ & $7t+10t^2+t^3$ & $4+14t$ & $16t+2t^2$ & $1+t$ & $1+4t+t^2$ & $1+4t+t^2$ \\
-$0123$ & $1+11t+11t^2+t^3$ & $8+16t$ & $24t$ & $1$ & $1+3t$ & $1+t$ \\
-\bottomrule
-\end{tabular}
-
-Some polynomials coincide.  Reversing the Dyck path, as for $0001$ and
-$0100$, gives isomorphic graphs, rotated skew shapes and isomorphic matroids,
-so $S_D$, $N_D$, $R_D$ and $Z_D$ are unchanged.  The Bruhat interval does not
-have this symmetry: $Q_D$ often agrees but $P_D$ usually differs, as for
-$0001$ and $0100$.  The rows $0101$, $0112$, $0121$ and $0122$, whose shapes
-have two nonempty rows, have $R_D=Z_D$, while the row $0111$ shows that the two
-differ in general.
+Reversing the path gives an isomorphic matroid, as for $0001$ and $0100$.
+The shapes $(2,1)/(1,0)$, $(2,1)$, $(2,2)/(1,0)$ and $(2,2)$, with two
+nonempty rows, have $Z_D=R_D$, the
+\hyperref[dyckPathSkewPolynomials]{non-nesting rook polynomial}, while the
+shape $(1,1,1)$ of $0111$ shows that the two differ in general.
+\end{example*}

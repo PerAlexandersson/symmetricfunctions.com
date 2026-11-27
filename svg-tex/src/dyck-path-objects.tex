@@ -38,7 +38,6 @@
     \fill[ink] (\c-.5,-\i+.5) circle (.17);
   \foreach \i in {1,...,5} \node[font=\small,anchor=east] at (-.1,-\i+.5) {$\i$};
   \foreach \c in {1,...,5} \node[font=\small,anchor=south] at (\c-.5,.05) {$\c$};
-  \node at (2.5,-6.1) {$\lambda_D=(3,5,5,5,5)$, $\pi_D=35421$};
 \end{scope}
 
 % ---------- graph and cliques ----------
@@ -57,7 +56,6 @@
   \draw[second,line width=1.6pt] (2,-1.5) -- (5,-1.5);
   \foreach \x in {2,...,5} \fill[second] (\x,-1.5) circle (.09);
   \node[second,font=\small,anchor=east] at (1.85,-1.5) {$A_2$};
-  \node at (3,-2.75) {$G_D$ and its maximal cliques};
 \end{scope}
 
 % ---------- skew shape ----------
@@ -70,7 +68,6 @@
     \node[font=\small,fill=white,inner sep=.7pt,text=first] at (\x,.5) {\the\numexpr\x+1\relax};
   \foreach \x in {0,1,2,3}
     \node[font=\small,fill=white,inner sep=.7pt,text=second] at (\x,1.5) {\the\numexpr\x+2\relax};
-  \node at (1.5,-1.0) {$F_D=(3,2)$};
 \end{scope}
 \end{tikzpicture}
 \end{document}

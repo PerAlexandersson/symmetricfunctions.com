@@ -93,7 +93,7 @@ correspondences on the page on \hyperref[latticePathMatroids]{lattice path
 matroids}, they are also the bases of the lattice path matroid of $B$ and the
 linear extensions of its width-two poset.
 
-\begin{example}
+\begin{example*}[Placements on the board of $\lambda=(3,3,2,1)$]
 For $\lambda=(3,3,2,1)$ the board has rows of lengths $2,1,0$.  Below, the
 board is shaded, the partition $\eta$ is blue and the rooks are dots.  The
 five placements are the empty one, $(1,1)$, $(1,2)$, $(2,1)$ and
@@ -132,7 +132,7 @@ $\{(1,2),(2,1)\}$.
 \end{figure}
 The corresponding partitions are $\eta=000$, $100$, $200$, $110$ and $210$.
 For instance $W_B(\{1,2\})=1+2x_1+x_2+x_1x_2$, while $W_B(\{2\})=1+x_1$.
-\end{example}
+\end{example*}
 
 
 \subsection[schubertMatroidZMotzkin]{Motzkin paths and rook placements}
@@ -154,6 +154,66 @@ Thus $\gamma_k$ counts pairs of a Motzkin path with $k$ up-steps and a placement
 whose rooks all lie in rows where the path has positive height.  To count
 $[t^i]Z_{M_\lambda}$, additionally mark $i-k(P)$ of the horizontal steps.
 \end{theorem}
+
+When the board is empty, every $W_B(E)$ equals one, and the theorem says that
+$\gamma_k$ is the number of Motzkin paths of length $n$ with $k$ up-steps,
+which is $\binom{n}{2k}\mathrm{Cat}_k$.  This is the gamma expansion of the
+\hyperref[narayanaNumbers]{Narayana polynomial} above.  The board measures how
+far $M_\lambda$ is from the circuit $U_{n,n+1}$: each nonempty placement on
+$B$ adds further terms, but only together with the paths that are positive in
+all of its rows.
+
+\begin{example*}[The uniform matroid $U_{2,4}$ from the definition and from the theorem]
+Let $\lambda=(2,2)$.  Then every pair from $[4]$ is a basis, so $M_\lambda$ is
+the \hyperref[matroidUniform]{uniform matroid} $U_{2,4}$.  Its
+\hyperref[matroidFlat]{flats} are the empty set, the four singletons and the
+whole ground set.  The Kazhdan--Lusztig polynomials of the contractions are
+all equal to one, so the definition gives
+\[
+  Z_{U_{2,4}}(t)=1+4t+t^2=(1+t)^2+2t,
+\]
+and $\Gamma(y)=1+2y$.
+
+On the other side, the board of squares has a single box, in row $1$, of
+weight $x_1$.  There are two Motzkin paths of length two: $HH$, with no
+up-steps and height zero after step $1$, and $UD$, with one up-step and
+height one after step $1$.  Only $UD$ allows the rook, so the theorem gives
+\[
+  \Gamma_{M_\lambda}(y)=W_B(\emptyset)+y\,W_B(\{1\})=1+y(1+x_1),
+\]
+which is $1+2y$ at $x_1=1$.  The two terms of $\gamma_1=2$ are the path $UD$
+alone and the path $UD$ with the rook.
+\end{example*}
+
+\begin{example*}[Motzkin paths for $\lambda=(3,3,2,1)$]\label{schubertMatroidZExample}
+Take $\lambda=(3,3,2,1)$, so that $B$ has rows of lengths $2,1,0$.  Group the
+placements by their set of occupied rows $J$.  The middle column is the
+total weight of the placements with row set $J$, and the last column counts, by
+up-steps, the Motzkin paths of length four that are positive after every step
+in $J$.  For instance, for $J=\{1\}$ the path must start with an up-step.
+The paths $UDHH$, $UHDH$ and $UHHD$ have one up-step and $UDUD$ and $UUDD$
+have two, which gives $3y+2y^2$.
+
+\begin{tabular}{lll}
+\toprule
+$J$ & Rook weight & Motzkin paths \\
+\midrule
+$\emptyset$ & $1$ & $1+6y+2y^2$ \\
+$\{1\}$ & $x_1+x_2$ & $3y+2y^2$ \\
+$\{2\}$ & $x_1$ & $4y+y^2$ \\
+$\{1,2\}$ & $x_1x_2$ & $2y+y^2$ \\
+\bottomrule
+\end{tabular}
+
+At unit weights,
+\[
+  \Gamma_{M_\lambda}(y)=1+18y+8y^2,\qquad
+  Z_{M_\lambda}(t)=1+22t+50t^2+22t^3+t^4.
+\]
+This is also the $Z$-polynomial of the staircase $S_4$ in the
+\hyperref[conjNestedMatroidZ]{nested-matroid conjecture}, as the staircase
+$(4,3,2,1)$ has the same board.
+\end{example*}
 
 In terms of the partitions $\eta\subseteq B$, the coefficient $\gamma_k$
 counts the pairs of a partition $\eta\subseteq B$ and a Motzkin path with $k$
@@ -235,35 +295,6 @@ $[t]Z_G(t)=\binom{n}{2}$.
 \end{theorem}
 
 
-\subsection[schubertMatroidZExample]{An example}
-
-Take $\lambda=(3,3,2,1)$, so that $B$ has rows of lengths $2,1,0$.  Group the
-placements by their set of occupied rows $J$.  The middle column is the
-total weight of the placements with row set $J$, and the last column counts, by
-up-steps, the Motzkin paths of length four that are positive after every step
-in $J$.
-
-\begin{tabular}{lll}
-\toprule
-$J$ & Rook weight & Motzkin paths \\
-\midrule
-$\emptyset$ & $1$ & $1+6y+2y^2$ \\
-$\{1\}$ & $x_1+x_2$ & $3y+2y^2$ \\
-$\{2\}$ & $x_1$ & $4y+y^2$ \\
-$\{1,2\}$ & $x_1x_2$ & $2y+y^2$ \\
-\bottomrule
-\end{tabular}
-
-At unit weights,
-\[
-  \Gamma_{M_\lambda}(y)=1+18y+8y^2,\qquad
-  Z_{M_\lambda}(t)=1+22t+50t^2+22t^3+t^4.
-\]
-This is also the $Z$-polynomial of the staircase $S_4$ in the
-\hyperref[conjNestedMatroidZ]{nested-matroid conjecture}, as the staircase
-$(4,3,2,1)$ has the same board.
-
-
 \subsection[schubertMatroidZWords]{A word formula}
 
 The following formula needs only one family of words: the parity of a letter
@@ -279,7 +310,7 @@ integers with $a_i\leq a_{i-1}+1$ for all $i$, where $a_0=0$.  Then
 \]
 \end{proposition}
 
-\begin{proof}
+\begin{proof*}
 Start from a Motzkin path of length $n$ in the theorem above with some
 horizontal steps marked.  Replace $U$ by $UU$, $D$ by $DD$, an unmarked $H$ by
 $DU$ and a marked $H$ by $UD$, then add $U$ at the start and $D$ at the end.
@@ -297,21 +328,25 @@ up-steps come from the up-steps and the marked horizontal steps of the Motzkin
 path.  Finally, $h_j>0$ means that the Dyck path has height at least three at
 time $2j+1$, so that its $(j+2)$nd up-step is at position at most $2j+1$; this
 says $a_{j+1}\geq2$.
-\end{proof}
+\end{proof*}
 
 For example, for $n=2$ the board is empty, and the words $00,01,10,11,12$ give
 $Z=1+3t+t^2$.
 
-\begin{example}
+\begin{example*}[From a marked Motzkin path to a word]
 For $n=4$, the Motzkin path $UHD\bar{H}$, with its last step marked, doubles to
-the Dyck path $UUUDUDDUDD$.  The heights before its up-steps give the word
-$a=1221$.  Its two odd letters come from the up-step and the marked step, and
-the letters $a_2=a_3=2$ make rows $1$ and $2$ available, the rows where the
-Motzkin path is positive.  The word contributes $t^2\,W_B(\{1,2\})$.
+the Dyck path $UUUDUDDUDD$, shown below it in the figure.
 \begin{figure}
 \svgimg[width=0.55\textwidth]{./svg-images/schubertZ-motzkin-dyck.svg}{The marked Motzkin path UHD with a marked last level step, and the Dyck path obtained by doubling it. Up-steps in even positions are highlighted, and each up-step is labelled by the height before it.}
 \end{figure}
-\end{example}  In terms of the Dyck path, $Z_{M_\lambda}$ is a sum over
+
+The heights before its up-steps give the word
+$a=1221$.  Its two odd letters come from the up-step and the marked step, and
+the letters $a_2=a_3=2$ make rows $1$ and $2$ available, the rows where the
+Motzkin path is positive.  The word contributes $t^2\,W_B(\{1,2\})$.
+\end{example*}
+
+In terms of the Dyck path, $Z_{M_\lambda}$ is a sum over
 \hyperref[standardYoungTableau]{standard Young tableaux} $T$ of shape
 $(n+1,n+1)$, where the first row lists the up-step positions:
 $T$ contributes $t$ to the power of the number of even entries in its first
@@ -361,7 +396,7 @@ gives each $132$-avoiding permutation once, the descents come from the
 vertices with a right child, and after $j$ vertices in preorder the $1+h_j$
 unvisited subtrees are the intervals occupied by $1,\dotsc,n+1-j$.
 
-\begin{example}
+\begin{example*}[$132$-avoiding permutations for $\lambda=(3,3,2)$]
 Let $n=3$ and $\lambda=(3,3,2)$, so that the board has rows of lengths $2$ and
 $1$.  The fourteen permutations in $\symS_4(132)$ correspond to the fourteen
 words in $\mathcal{A}_3$ and to the marked Motzkin paths of length three, where
@@ -394,7 +429,7 @@ them up gives
 \[
   Z_{M_\lambda}(t)=1+13t+13t^2+t^3=(1+t)(1+12t+t^2).
 \]
-\end{example}
+\end{example*}
 
 Summing over signs gives a second formula.  Order signed integers as usual
 and count descents between adjacent entries; then
@@ -437,7 +472,7 @@ fixed sets of arc endpoints, the crossings and nestings are equidistributed in
 the way of \name{Anisse Kasraoui} and \name{Jiang Zeng}
 \cite{KasraouiZeng2006}, while $E(\pi)$ depends only on the endpoints.
 
-\begin{example}
+\begin{example*}[Noncrossing partitions for $\lambda=(3,2)$]
 For $\lambda=(3,2)$ the board is a single cell, in row $1$, and a rook there
 needs the vertex $2$ to lie strictly under an arc.
 
@@ -455,7 +490,7 @@ $123$ & $2$ & $\emptyset$ & $t^2$ \\
 
 The sum is $Z=1+4t+t^2$.  In the partition $123$ the arcs $(1,2)$ and $(2,3)$
 meet at $2$, so neither passes over it.
-\end{example}
+\end{example*}
 
 There is also a formula that starts from an actual basis rather than from the
 board.  Read a basis $A$ of $M_\lambda$ in increasing order, and call
