@@ -489,6 +489,22 @@
     }
   };
 
+  // Info banner below the header; hidden for good once dismissed.
+  function initSiteBanner() {
+    var banner = document.getElementById('site-banner');
+    if (!banner) return;
+    var key = 'symcat-banner-ai-research';
+    if (getStoredPreference(key) === 'dismissed') return;
+    banner.hidden = false;
+    var close = document.getElementById('site-banner-close');
+    if (close) {
+      close.addEventListener('click', function () {
+        banner.hidden = true;
+        setStoredPreference(key, 'dismissed');
+      });
+    }
+  }
+
   // Expose toggle for template inline onclick compatibility
   window.toggleSideBar = toggleSideBar;
 
@@ -503,6 +519,7 @@
     initFamilyIndexTable();
     initDarkMode();
     initTextWidth();
+    initSiteBanner();
 
     var btn = document.getElementById("tocButton");
     if (btn) {

@@ -247,6 +247,30 @@
     z-index: 100;
   }
 
+  .site-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.45rem 1rem;
+    background-color: light-dark(hsl(var(--hue-brand), 90%, 94%), hsl(var(--hue-ink), 9%, 15%));
+    border-bottom: 1px solid var(--c-border);
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  .site-banner[hidden] { display: none; }
+  .site-banner a { color: var(--c-link-dark); font-weight: 600; }
+  .site-banner-close {
+    border: none;
+    background: none;
+    color: var(--c-text-sub);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.25rem;
+  }
+  .site-banner-close:hover { color: var(--c-text-main); }
+
   #doc-footer { 
     border-top: 1px solid var(--c-border); 
     padding: 2.5rem 0; 
