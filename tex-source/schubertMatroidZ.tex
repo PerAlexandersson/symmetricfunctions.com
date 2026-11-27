@@ -43,7 +43,11 @@ Real-rootedness of $Z_M(t)$ was conjectured for all matroids
 \cite{Eberhardt2026x}.  For Schubert matroids the question is open; see the
 \hyperref[conjNestedMatroidZ]{nested-matroid conjecture}.  This page collects
 combinatorial descriptions of $Z_M$ and $\Gamma_M$ for Schubert matroids and,
-more generally, lattice path matroids.  Unless stated otherwise, the results
+more generally, lattice path matroids.  The central one is a
+\hyperref[schubertMatroidZMotzkin]{model} of Motzkin paths together with rook
+placements on a board of $2\times2$ squares, which works for all
+\hyperref[schubertMatroidZSkew]{skew shapes}; the other descriptions are
+reformulations of it.  Unless stated otherwise, the results
 are from unpublished work of \name{Per Alexandersson}
 \cite{Alexandersson2026SchubertMatroidZ}.
 
@@ -135,25 +139,71 @@ For instance $W_B(\{1,2\})=1+2x_1+x_2+x_1x_2$, while $W_B(\{2\})=1+x_1$.
 \end{example*}
 
 
-\subsection[schubertMatroidZMotzkin]{Motzkin paths and rook placements}
+\subsection[schubertMatroidZMotzkin]{The combinatorial model}
 
-A \hyperref[motzkinPolynomialsRealRooted]{Motzkin path} of length $n$ starts
-and ends at height zero, takes steps $U,H,D$ of increments $1,0,-1$ and stays
-weakly above zero.  Let $h_j(P)$ be the height after step $j$ and $k(P)$ the
-number of up-steps.
+The model combines two objects: a placement on the board, which depends on
+$\lambda$, and a Motzkin path, which depends only on the rank $n$.
+
+A \hyperref[motzkinPolynomialsRealRooted]{Motzkin path} $P$ of length $n$
+starts and ends at height zero, takes steps $U$, $H$ and $D$ that change the
+height by $1$, $0$ and $-1$, and never goes below zero.  Let $h_j(P)$ be its
+height after step $j$, and let $k(P)$ be its number of up-steps.  It also has
+$k(P)$ down-steps and $n-2k(P)$ horizontal steps.
+
+Think of the vertex of $P$ after step $j$ as sitting next to row $j$ of the
+board, for $1\leq j\leq n-1$.  The only rule is the following: a rook may be
+placed in row $j$ only if the path is strictly above zero there.  We call a
+placement $R$ \defin{compatible}\label{schubertMatroidZCompatible} with $P$ if
+$h_j(P)>0$ for every row $j$ that contains a rook of $R$.  The figure shows a
+compatible pair for $\lambda=(3,3,2,1)$; it is explained in the first example
+below.
+\begin{figure}
+\svgimg[width=0.45\textwidth]{./svg-images/schubertZ-model.svg}{The Ferrers diagram of (3,3,2,1) with its board of three shaded boxes and two rooks in rows 1 and 2, next to the Motzkin path UHDH drawn downwards, whose vertices after steps 1 and 2 are above zero.}
+\end{figure}
+
+For a fixed path $P$, the compatible placements are exactly the placements
+whose rows lie in the set
+\[
+  E(P)\coloneqq\{j\in[n-1]: h_j(P)>0\},
+\]
+so their total weight is $W_B(E(P))$.
 
 \begin{theorem}[Alexandersson, 2026]\label{schubertMatroidZRookMotzkin}
-For a Motzkin path $P$ of length $n$, put
-$E(P)=\{j\in[n-1]: h_j(P)>0\}$.  Then
+The gamma coefficient $\gamma_k$ of $Z_{M_\lambda}$ is the number of compatible
+pairs $(P,R)$, where $P$ is a Motzkin path of length $n$ with $k$ up-steps and
+$R$ is a placement on the board, each pair weighted by the columns of its
+rooks.  That is,
 \[
   \Gamma_{M_\lambda}(y)=\sum_{P} y^{k(P)}\,W_B(E(P)),
   \qquad
   Z_{M_\lambda}(t)=\sum_{P} t^{k(P)}(1+t)^{n-2k(P)}\,W_B(E(P)).
 \]
-Thus $\gamma_k$ counts pairs of a Motzkin path with $k$ up-steps and a placement
-whose rooks all lie in rows where the path has positive height.  To count
-$[t^i]Z_{M_\lambda}$, additionally mark $i-k(P)$ of the horizontal steps.
 \end{theorem}
+
+The second formula follows from the first by the definition of the gamma
+coefficients.  It can also be read as a count: give each up-step the weight
+$t$, each down-step the weight $1$, and each horizontal step the weight $1$ or
+$t$, and call the horizontal steps with weight $t$ \defin{marked}.  Then
+$[t^i]Z_{M_\lambda}$ counts the compatible pairs $(P,R)$ in which $P$ has
+exactly $i$ up-steps and marked steps together.
+
+\begin{example*}[A compatible pair for $\lambda=(3,3,2,1)$]
+The figure above shows the Ferrers diagram of $\lambda=(3,3,2,1)$.  Its board
+consists of the three shaded boxes $(1,1)$, $(1,2)$ and $(2,1)$, and the two
+dots form the placement $R=\{(1,2),(2,1)\}$ of weight $x_1x_2$.
+
+To the right, the Motzkin path $P=UHDH$ is drawn downwards, so that its vertex
+after step $j$ is level with row $j$.  The heights after steps $1$, $2$ and
+$3$ are $1$, $1$ and $0$.  The vertices next to rows $1$ and $2$, filled, are
+above zero, and the vertex next to row $3$, open, is not.  Hence
+$E(P)=\{1,2\}$, and $R$ is compatible with $P$.  The pair has one up-step and
+contributes $y\,x_1x_2$ to $\Gamma_{M_\lambda}$.
+
+All five placements on this board are compatible with $P$, so $P$ contributes
+$y\,W_B(\{1,2\})=y(1+2x_1+x_2+x_1x_2)$.  The path $UDHH$ is only positive next
+to row $1$, so it is compatible with the empty placement and the placements
+$\{(1,1)\}$ and $\{(1,2)\}$, and contributes $y(1+x_1+x_2)$.
+\end{example*}
 
 When the board is empty, every $W_B(E)$ equals one, and the theorem says that
 $\gamma_k$ is the number of Motzkin paths of length $n$ with $k$ up-steps,
@@ -220,26 +270,77 @@ counts the pairs of a partition $\eta\subseteq B$ and a Motzkin path with $k$
 up-steps, such that the path is positive after step $j$ for every corner
 $(j,\eta_j)$ of $\eta$.
 
-The same formula holds for every connected skew shape $\lambda/\mu$ with $n$
-rows, where the board consists of the boxes $(j,c)$ with
-$\mu_j<c<\lambda_{j+1}$, both for the lattice path matroid and for the
-\hyperref[rookMatroids]{rook matroid} of $\lambda/\mu$.  The two matroids have
-the same valuative invariants \cite{BoninMier2026}.
 
-\begin{proof*}[Sketch]
+\subsection[schubertMatroidZSkew]{Skew shapes}
+
+The model works without change for lattice path matroids of skew shapes.  Let
+$\lambda/\mu$ be a skew shape with $n$ rows, where $\mu_n=0$.  Its
+\hyperref[latticePathMatroids]{lattice path matroid} has as bases the sets of
+positions of the north steps of the lattice paths from the bottom left to the
+top right corner of $\lambda/\mu$, so its rank is $n$; for a Ferrers shape
+this is $M_\lambda$.  We assume that $\lambda/\mu$ is connected, that is,
+$\mu_j<\lambda_{j+1}$ for $1\leq j<n$, so that consecutive rows share a
+column.
+
+The board of squares of $\lambda/\mu$ again consists of the northwest corners
+of the $2\times2$ squares inside $\lambda/\mu$.  These are the boxes $(j,c)$
+with $1\leq j<n$ and $\mu_j<c<\lambda_{j+1}$.  Placements, compatibility and
+$W_B(E)$ are defined as before.
+
+\begin{theorem}[Alexandersson, 2026]\label{schubertMatroidZSkewTheorem}
+For a connected skew shape $\lambda/\mu$ with $n$ rows, the formulas of the
+\hyperref[schubertMatroidZRookMotzkin]{theorem above} hold for the lattice
+path matroid of $\lambda/\mu$, with the board of squares of $\lambda/\mu$.
+\end{theorem}
+
+The same formulas hold for the \hyperref[rookMatroids]{rook matroid} of
+$\lambda/\mu$, since the two matroids have the same valuative invariants
+\cite{BoninMier2026}.  If $\lambda/\mu$ is not connected, its lattice path
+matroid is a direct sum, and $Z$ is the product over the connected pieces,
+with a factor $1+t$ for every coloop.
+
+\begin{example*}[The skew shape $(3,3,2)/(1)$]
+Removing the box $(1,1)$ from $\lambda=(3,3,2)$ destroys the $2\times2$ square
+in the top left corner.  The board of $(3,3,2)/(1)$ is therefore the two
+shaded boxes $(1,2)$ and $(2,1)$, while the board of $(3,3,2)$ also contains
+$(1,1)$.
+\begin{figure}
+\begin{ytableau}
+\none & *(lightgray) & \\
+*(lightgray) & & \\
+ & \\
+\end{ytableau}
+\end{figure}
+There are four placements: the empty one, $\{(1,2)\}$, $\{(2,1)\}$ and
+$\{(1,2),(2,1)\}$.  The four Motzkin paths of length three are $HHH$, $UDH$,
+$HUD$ and $UHD$, with $E(P)=\emptyset$, $\{1\}$, $\{2\}$ and $\{1,2\}$.  Hence
+\[
+  \Gamma(y)=1+y\bigl((1+x_2)+(1+x_1)+(1+x_1)(1+x_2)\bigr),
+\]
+which is $1+8y$ at unit weights, and
+\[
+  Z(t)=(1+t)^3+8t(1+t)=1+11t+11t^2+t^3.
+\]
+For the straight shape $(3,3,2)$ the extra box $(1,1)$ adds one placement for
+$UDH$ and one for $UHD$, and gives $\gamma_1=10$ and
+$Z=1+13t+13t^2+t^3$.
+\end{example*}
+
+\begin{proof*}[Sketch of the proof of both theorems]
 The base polytope of a lattice path matroid has a subdivision, cut out by
 integral prefix sums, whose maximal cells are snake matroid polytopes
 \cite{BenedettiKnauerValencia2023x}, and $Z$ is a valuative invariant
 \cite{FerroniSchroter2024}.  Every interior face of the subdivision is a
 direct sum of connected ribbon matroids, which have Narayana $Z$-polynomials by
-\hyperref[conjRibbonMatroidZ]{the ribbon theorem} below.  For a Ferrers shape,
-the maximal cells correspond to the partitions $\eta\subseteq B$, and hence
-to placements.  The faces of a fixed cell are obtained by fixing the
-prefix sums at a subset of $m$ of its corner rows.  Such a face contributes
-$(-1)^m$ times a product of the Narayana polynomials $Z_{U_{s,s+1}}$ of its
-segments, which in gamma coordinates counts the Motzkin paths returning to zero
-after each fixed row.  Inclusion--exclusion leaves
-exactly the Motzkin paths that are positive at every corner row.
+\hyperref[conjRibbonMatroidZ]{the ribbon theorem} below.  The maximal cells
+correspond to the partitions $\eta$ with $\mu_j\leq\eta_j<\lambda_{j+1}$ and
+$\eta_n=0$, and hence to placements: put a rook at $(j,\eta_j)$ whenever
+$\eta_j>\eta_{j+1}$ and $\eta_j>\mu_j$.  The faces of a fixed cell are
+obtained by fixing the prefix sums at a subset of $m$ of these rook rows.
+Such a face contributes $(-1)^m$ times a product of the Narayana polynomials
+$Z_{U_{s,s+1}}$ of its segments, which in gamma coordinates counts the Motzkin
+paths returning to zero after each fixed row.  Inclusion--exclusion leaves
+exactly the Motzkin paths that are positive in every rook row.
 \end{proof*}
 
 
