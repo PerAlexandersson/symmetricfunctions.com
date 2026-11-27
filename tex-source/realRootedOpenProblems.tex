@@ -610,27 +610,6 @@ $1+268t+661t^2+102t^3$.  The conjecture holds for all
 $\mathbf{b}\in\{1,2,3,4\}^3$ and for some vectors of length four.
 
 
-For margins $r\in\setN_{\gt0}^m$ and $c\in\setN_{\gt0}^n$ with equal sums,
-the \defin{transportation polytope}\label{transportationPolytope}
-$T(r,c)$ consists of all nonnegative real $m\times n$ matrices with row sums
-$r$ and column sums $c$; for example,
-$\mathcal{B}_n=T(1^n,1^n)$ is the
-\hyperref[birkhoffPolytopeDefinition]{Birkhoff polytope}.
-
-\begin{conjecture}[Alexandersson, 2026]
-\label{conjTransportationHStar}
-If both $r$ and $c$ have an entry at least $2$, then the
-\hyperref[hStarPolynomial]{$h^*$-polynomial} of $T(r,c)$ is real-rooted.
-\end{conjecture}
-
-The hypothesis is needed: $\mathcal{B}_3$ has $h^*$-polynomial $1+t+t^2$,
-and $\mathcal{B}_4$, $\mathcal{B}_5$ and a few other $T(r,1^n)$ fail too.
-For example, $T((2,2,2),(2,2,2))=2\mathcal{B}_3$ has $h^*$-polynomial
-$1+16t+25t^2+6t^3$.  Athanasiadis showed that the $h^*$-polynomial of
-$\mathcal{B}_n$ is unimodal \cite{Athanasiadis2005}.  The conjecture holds
-for margins of size at most $5\times5$ with small entries.
-
-
 \subsection[semiorderEulerianZeros]{Descents of linear extensions of unit interval orders}
 
 Let $P$ be a \hyperref[unitIntervalOrder]{unit interval order} (a semiorder).
@@ -816,6 +795,51 @@ The antichain polynomials of the boxes $[2]\times[n]\times[k]$ are
 real-rooted \cite{Jiang2026x}, but
 $N_{[3]\times[3]\times[3]}(x)$ is not; see
 \hyperref[antichainBoxStability]{antichain polynomials}.
+
+\subsection[counterexamplesTransportation]{Transportation polytopes}
+
+For margins $r\in\setN_{\gt0}^m$ and $c\in\setN_{\gt0}^n$ with equal sums,
+the \defin{transportation polytope}\label{transportationPolytope}
+$T(r,c)$ consists of all nonnegative real $m\times n$ matrices with row sums
+$r$ and column sums $c$; for example,
+$\mathcal{B}_n=T(1^n,1^n)$ is the
+\hyperref[birkhoffPolytopeDefinition]{Birkhoff polytope}.  Its
+\hyperref[hStarPolynomial]{$h^*$-polynomial} need not be real-rooted:
+$\mathcal{B}_3$ has $h^*$-polynomial $1+t+t^2$, and $\mathcal{B}_4$,
+$\mathcal{B}_5$ and a few other $T(r,1^n)$ fail too, although
+\name{Christos A. Athanasiadis} showed that the $h^*$-polynomial of
+$\mathcal{B}_n$ is unimodal \cite{Athanasiadis2005}.  Excluding
+margins equal to $1^n$ leads to the following conjecture.
+
+\begin{conjecture}[Alexandersson, 2026]
+\label{conjTransportationHStar}
+If both $r$ and $c$ have an entry at least $2$, then the
+$h^*$-polynomial of $T(r,c)$ is real-rooted.
+\end{conjecture}
+
+It holds for all margins up to size $5\times5$ with small entries; for
+example, $T((2,2,2),(2,2,2))=2\mathcal{B}_3$ has $h^*$-polynomial
+$1+16t+25t^2+6t^3$.  The conjecture is nevertheless false.
+\name{Blake Stone} shows that for $k\geq2$ the polytope
+$T_k=T((k,1,1),(2,1^k))$, of dimension $2k$, has $h^*$-polynomial
+\[
+  H_k(z)=\sum_{j=0}^{k}\binom{k}{j}^2z^j-kz,
+\]
+and that $H_k$ is real-rooted exactly when $2\leq k\leq11$
+\cite{Stone2026Transportation}.  The first counterexample $T_{12}$ has
+dimension $24$, and $H_{12}$ has only ten real zeros.  A short certificate
+is the Laguerre inequality $(H')^2-HH''\geq0$, valid on the real line for
+every real-rooted $H$, which fails for $H_{12}$ at $z=-1/5$.
+
+The supports in $T_k$ are full, so the counterexamples also apply to
+transportation polytopes with interval supports.  They are also
+\hyperref[skewGTPattern]{skew Gelfand--Tsetlin polytopes}: an integer
+matrix in $T(r,c)$ is a \hyperref[contingencyMatrices]{contingency matrix},
+and row $i$ with $a_{ij}$ entries $j$ is a weakly increasing word.  Placing
+these words as rows of lengths $r_1,\dotsc,r_m$ that pairwise share no
+columns gives a skew semistandard tableau of content $c$, with trivial
+flags.  This bijection holds in every dilation, so both polytopes have the
+same Ehrhart series.
 
 \subsection[counterexamplesPetersen]{Generalized Petersen graphs}
 
