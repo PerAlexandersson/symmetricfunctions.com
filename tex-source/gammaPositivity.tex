@@ -162,14 +162,22 @@ We also get gamma-positivity for the
 \hyperref[ex:peakSturm]{peak polynomials} by the same method.
 \end{theorem}
 
+\begin{example*}[The orbit of $1234$]
 For $n=4$, the permutation $1234$ has no peaks, and $2$, $3$ and $4$ are
-double ascents.  Its orbit has $2^3=8$ elements, shown below as mountain
-diagrams sorted by the number of descents.  An edge labelled $\varphi_j$
-moves $j$ from a double ascent to a double descent and adds one descent, so
-the descents over the orbit are counted by $1+3x+3x^2+x^3=(1+x)^3$.
+double ascents.  Its orbit has $2^3=8$ elements, shown in the figure.
 \begin{figure}
 \svgimg[width=0.75\textwidth]{./svg-images/foata-strehl-orbit.svg}{The eight permutations in the valley-hopping orbit of 1234, drawn as mountain diagrams in columns by descent number, with edges labelled by the value that hops.}
 \end{figure}
+
+Each permutation $\sigma$ is drawn as the points $(i,\sigma_i)$, and the
+dashed segments at the ends stand for $\sigma_0=\sigma_5=\infty$.  The valley
+$1$ is dark, the double ascents are teal and the double descents are brown;
+the digits below each diagram have the same colours.  The four columns
+contain the permutations with $0$, $1$, $2$ and $3$ descents, and the
+monomial below each column records them.  An edge labelled $\varphi_j$ moves
+$j$ from a double ascent to a double descent and adds one descent, so the
+descents over the orbit are counted by $1+3x+3x^2+x^3=(1+x)^3$.
+\end{example*}
 
 
 \begin{theorem}[Narayana polynomials, \cite{Branden2006}]

@@ -7,14 +7,14 @@
 % The sixteen standard Young tableaux of shape (3,2,1), English notation,
 % grouped by the number of natural descents.  A cell i is brown when i is a
 % natural descent (i+1 lies in a strictly higher row) and teal when i is an
-% ordinary descent (i+1 lies in a strictly lower row).  Below each tableau is
-% its number of ordinary descents.  Summary:
+% ordinary descent (i+1 lies in a strictly lower row).  The rows contain the
+% tableaux with 0, 1, 2 and 3 natural descents.  No labels or legend: the page
+% text explains the colours.  Summary:
 %   N_{321}(t) = 1+7t+7t^2+t^3 and W_{321}(t) = 8t^2+8t^3.
 
 \begin{document}
 \begin{tikzpicture}[text=ink,line cap=round,line join=round]
   % ndes = 0
-  \node[font=\small,anchor=east] at (-.35,-0.58) {$\operatorname{ndes}=0$};
   \begin{scope}[shift={(6.450,0.00)}]
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
     \node[font=\small,text=ink] at (0.24,-0.24) {$1$};
@@ -28,10 +28,8 @@
     \node[font=\small,text=second] at (0.72,-0.72) {$5$};
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=ink] at (0.24,-1.20) {$6$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=2$};
   \end{scope}
   % ndes = 1
-  \node[font=\small,anchor=east] at (-.35,-3.13) {$\operatorname{ndes}=1$};
   \begin{scope}[shift={(0.000,-2.55)}]
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
     \node[font=\small,text=ink] at (0.24,-0.24) {$1$};
@@ -45,7 +43,6 @@
     \node[font=\small,text=ink] at (0.72,-0.72) {$6$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$5$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=2$};
   \end{scope}
   \begin{scope}[shift={(2.150,-2.55)}]
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -60,7 +57,6 @@
     \node[font=\small,text=second] at (0.72,-0.72) {$5$};
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=ink] at (0.24,-1.20) {$6$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=3$};
   \end{scope}
   \begin{scope}[shift={(4.300,-2.55)}]
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -75,7 +71,6 @@
     \node[font=\small,text=first] at (0.72,-0.72) {$4$};
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=ink] at (0.24,-1.20) {$6$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=2$};
   \end{scope}
   \begin{scope}[shift={(6.450,-2.55)}]
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -90,7 +85,6 @@
     \node[font=\small,text=ink] at (0.72,-0.72) {$6$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$4$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=3$};
   \end{scope}
   \begin{scope}[shift={(8.600,-2.55)}]
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -105,7 +99,6 @@
     \node[font=\small,text=second] at (0.72,-0.72) {$4$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$5$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=2$};
   \end{scope}
   \begin{scope}[shift={(10.750,-2.55)}]
     \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -120,7 +113,6 @@
     \node[font=\small,text=second] at (0.72,-0.72) {$5$};
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=ink] at (0.24,-1.20) {$6$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=3$};
   \end{scope}
   \begin{scope}[shift={(12.900,-2.55)}]
     \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -135,10 +127,8 @@
     \node[font=\small,text=ink] at (0.72,-0.72) {$6$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$3$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=3$};
   \end{scope}
   % ndes = 2
-  \node[font=\small,anchor=east] at (-.35,-5.68) {$\operatorname{ndes}=2$};
   \begin{scope}[shift={(0.000,-5.10)}]
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
     \node[font=\small,text=ink] at (0.24,-0.24) {$1$};
@@ -152,7 +142,6 @@
     \node[font=\small,text=ink] at (0.72,-0.72) {$6$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$5$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=2$};
   \end{scope}
   \begin{scope}[shift={(2.150,-5.10)}]
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -167,7 +156,6 @@
     \node[font=\small,text=first] at (0.72,-0.72) {$5$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$4$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=2$};
   \end{scope}
   \begin{scope}[shift={(4.300,-5.10)}]
     \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -182,7 +170,6 @@
     \node[font=\small,text=ink] at (0.72,-0.72) {$6$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$5$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=2$};
   \end{scope}
   \begin{scope}[shift={(6.450,-5.10)}]
     \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -197,7 +184,6 @@
     \node[font=\small,text=first] at (0.72,-0.72) {$4$};
     \filldraw[fill=white,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=ink] at (0.24,-1.20) {$6$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=3$};
   \end{scope}
   \begin{scope}[shift={(8.600,-5.10)}]
     \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -212,7 +198,6 @@
     \node[font=\small,text=ink] at (0.72,-0.72) {$6$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$4$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=3$};
   \end{scope}
   \begin{scope}[shift={(10.750,-5.10)}]
     \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -227,7 +212,6 @@
     \node[font=\small,text=second] at (0.72,-0.72) {$4$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$5$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=3$};
   \end{scope}
   \begin{scope}[shift={(12.900,-5.10)}]
     \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
@@ -242,10 +226,8 @@
     \node[font=\small,text=first] at (0.72,-0.72) {$5$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$3$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=3$};
   \end{scope}
   % ndes = 3
-  \node[font=\small,anchor=east] at (-.35,-8.23) {$\operatorname{ndes}=3$};
   \begin{scope}[shift={(6.450,-7.65)}]
     \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (0.00,0.00) rectangle (0.48,-0.48);
     \node[font=\small,text=second] at (0.24,-0.24) {$1$};
@@ -259,18 +241,8 @@
     \node[font=\small,text=first] at (0.72,-0.72) {$5$};
     \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0.00,-0.96) rectangle (0.48,-1.44);
     \node[font=\small,text=first] at (0.24,-1.20) {$4$};
-    \node[font=\scriptsize] at (0.72,-1.74) {$\operatorname{des}=2$};
   \end{scope}
 % maxw=7, width=14.34, bottom=-9.39
 
-  % polynomials and legend
-  \node[font=\small] at (7.17,-10.15) {$N_{(3,2,1)}(t)=1+7t+7t^2+t^3,\qquad
-    W_{(3,2,1)}(t)=8t^2+8t^3$};
-  \begin{scope}[shift={(4.3,-10.9)}]
-    \filldraw[fill=first!22,draw=ink!70,line width=.5pt] (0,-.16) rectangle (.32,.16);
-    \node[font=\small,anchor=west] at (.42,0) {natural descent};
-    \filldraw[fill=second!20,draw=ink!70,line width=.5pt] (4.2,-.16) rectangle (4.52,.16);
-    \node[font=\small,anchor=west] at (4.62,0) {ordinary descent};
-  \end{scope}
 \end{tikzpicture}
 \end{document}

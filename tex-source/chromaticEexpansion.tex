@@ -524,17 +524,18 @@ in $k$ with no internal zeros.
 The theorem also has a
 \hyperref[unicellularLLTSinkSpecialization]{unicellular LLT formulation}.
 
-\begin{example}
-For the path $1-2-3$, the four acyclic orientations have
-$(\mathrm{asc},\mathrm{sink})$ equal to $(0,1)$, $(1,1)$, $(1,2)$ and
-$(2,1)$, so
+\begin{example*}[The path $1-2-3$]
+The figure shows the four acyclic orientations of the path $1-2-3$.
+\begin{figure}
+\svgimg[width=0.65\textwidth]{./svg-images/chromatic-sink-path.svg}{The four acyclic orientations of the path 1-2-3, with ascending edges drawn thick, sinks circled, and each orientation labelled by its numbers of ascents and sinks and its weight.}
+\end{figure}
+Ascending edges, directed from the smaller to the larger label, are drawn
+thick, and the sinks are circled.  Below each orientation are
+$(\mathrm{asc},\mathrm{sink})$ and the weight $q^{\mathrm{asc}}t^{\mathrm{sink}}$.
+The pairs are $(0,1)$, $(1,1)$, $(1,2)$ and $(2,1)$, so
 \[
 S^a_{H_h}(t;q)=(1+q+q^2)\,t+q\,t^2,
 \]
 in agreement with the elementary expansion
 $(1+q+q^2)\elementaryE_3+q\,\elementaryE_{21}$.
-In the figure, ascending edges are drawn thick and sinks are circled.
-\begin{figure}
-\svgimg[width=0.65\textwidth]{./svg-images/chromatic-sink-path.svg}{The four acyclic orientations of the path 1-2-3, with ascending edges drawn thick, sinks circled, and each orientation labelled by its numbers of ascents and sinks and its weight.}
-\end{figure}
-\end{example}
+\end{example*}

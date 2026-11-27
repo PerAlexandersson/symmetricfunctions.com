@@ -143,17 +143,20 @@ exhibits the \hyperref[cyclicSieving]{cyclic sieving phenomenon}.
 
 \begin{example*}[Boundary words of order ideals]
 Draw the elements of $[2]\times[3]$ as cells, with the element names of the
-promotion example.  The upper boundary of an order ideal is a lattice path
-from the left corner to the right corner; record an up-right step by $1$ and
-a down-right step by $0$.  This is a bijection to binary words with two ones
-and three zeros.  Toggling the columns from left to right moves the first
-letter of the word to the end: $\{a,b,d\}$, with word $01010$, goes to
-$\{a,b,c,d,e\}$, with word $10100$.  Rowmotion is conjugate to this action
-but does not itself rotate the word: it sends $\emptyset$, with word
-$00011$, to $\{a\}$, with word $00101$.
+promotion example.
 \begin{figure}
 \svgimg[width=0.7\textwidth]{./svg-images/rowmotion-promotion-boundary-word.svg}{Two order ideals of the two-by-three product of chains drawn as shaded cells, with their boundary paths, their binary words 01010 and 10100, and an arrow for toggling the columns from left to right.}
 \end{figure}
+
+In the figure, the order ideals are shaded.  The upper boundary of an order
+ideal is a lattice path from the left corner to the right corner; record an
+up-right step by $1$ and a down-right step by $0$.  This is a bijection to
+binary words with two ones and three zeros.  Toggling the columns from left to
+right, the upper arrow in the figure, sends $\{a,b,d\}$, with word $01010$, to
+$\{a,b,c,d,e\}$, with word $10100$.  On words it moves the first letter, underlined, to the
+end, as the lower arrow indicates.  Rowmotion is conjugate to this action but
+does not itself rotate the word: it sends $\emptyset$, with word $00011$, to
+$\{a\}$, with word $00101$.
 \end{example*}
 
 Other rotation models connect rowmotion on positive root posets with
