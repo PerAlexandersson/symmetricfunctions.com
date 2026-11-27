@@ -49,20 +49,19 @@ The objects below are shown in the figure for $a=(0,1,2,2,3)$; the
   is, the complete rook placements on $\lambda_D$, form the lower
   \hyperref[bruhatOrder]{Bruhat interval} $[\mathrm{id},\pi_D]$
   \cite[Prop.~3]{AlexanderssonJalQuemener2025x}.
-\item The \defin{peak intervals}\label{dyckPathPeakIntervals} are the intervals
-  $[i,\lambda_i]$ for the rows $i$ with $\lambda_i>\lambda_{i-1}$, where
-  $\lambda_0=0$.  They correspond to the peaks of $D$, and they are the maximal
-  cliques of $G_D$: if $i<j$ then $i$ and $j$ are adjacent exactly when
-  $j\leq\lambda_i$, so a clique with smallest element $i$ lies in
-  $[i,\lambda_i]$.
-\item Number the peak intervals $[\ell_1,u_1],\dotsc,[\ell_r,u_r]$ from left to
+\item The maximal cliques\label{dyckPathPeakIntervals} of $G_D$ are the
+  intervals $[i,\lambda_i]$ for the rows $i$ with $\lambda_i>\lambda_{i-1}$,
+  where $\lambda_0=0$, and they correspond to the peaks of $D$.  Indeed, if
+  $i<j$ then $i$ and $j$ are adjacent exactly when $j\leq\lambda_i$, so a
+  clique with smallest element $i$ lies in $[i,\lambda_i]$.
+\item Number the maximal cliques $[\ell_1,u_1],\dotsc,[\ell_r,u_r]$ from left to
   right.  The \hyperref[latticePathMatroids]{lattice path matroid} $M_D$ on
   $[n]$ has as bases the sets $\{b_1<\dotsb<b_r\}$ with
   $\ell_k\leq b_k\leq u_k$.  It is the lattice path matroid of the
   \hyperref[skewShapes]{skew shape} $F_D$ with $r$ rows, whose $k$th row from
   the bottom occupies the columns $\ell_k-k+1,\dotsc,u_k-k$.  The entries of a
-  peak interval are the possible positions of the north step of that row in a
-  lattice path through $F_D$.  A peak interval with a single element gives an
+  maximal clique are the possible positions of the north step of that row in a
+  lattice path through $F_D$.  A maximal clique with a single element gives an
   empty row, and a coloop of $M_D$.
 \end{itemize}
 
@@ -83,8 +82,8 @@ diagonal are the eight edges $12$, $13$, $23$, $24$, $25$, $34$, $35$ and $45$
 of $G_D$.  The dots are the rooks of $\pi_D=35421$: row $1$ takes column $3$,
 row $2$ column $5$, row $3$ column $4$, and so on.
 
-The maximal cliques of $G_D$ are the peak intervals $A_1=[1,3]$ and
-$A_2=[2,5]$, drawn below the graph.  The skew shape is $F_D=(3,2)$.  The
+The maximal cliques of $G_D$ are $A_1=[1,3]$ and $A_2=[2,5]$, drawn below
+the graph.  The skew shape is $F_D=(3,2)$.  The
 numbers on the vertical lines of its bottom row are the north-step positions
 $1,2,3$, and those of its top row are $2,3,4,5$.  The matroid $M_D$ has rank
 two, and its bases are all pairs from $[5]$ except $\{4,5\}$.
@@ -98,7 +97,7 @@ its area sequence.
 \end{figure}
 
 The table lists the objects attached to them: the board
-$\lambda_D$, the permutation $\pi_D$, the peak intervals and the skew shape
+$\lambda_D$, the permutation $\pi_D$, the maximal cliques and the skew shape
 $F_D$, written as $\lambda/\mu$ with rows from top to bottom.  The same paths
 are used in the tables of the later sections.
 
@@ -246,7 +245,7 @@ $0123$ & $1+11t+11t^2+t^3$ & $8+16t$ \\
 
 The Bruhat interval is not symmetric under reversing the path.  For $0001$ and
 $0100$, the rook-Eulerian polynomials agree but the peak polynomials differ.
-For the \hyperref[dyckPathRunningExample]{running example} $a=01223$, the
+For the \hyperref[dyckPathRunningExample]{example} $a=01223$ above, the
 $72$ permutations below $\pi_D=35421$ give
 \[
   Q_D(t)=7t+41t^2+23t^3+t^4,\qquad P_D(t)=4+54t+14t^2.
@@ -282,10 +281,10 @@ sink identity, $S_D(t;q)=\sum_\lambda c_\lambda(q)t^{\ell(\lambda)}$
 \hyperref[chromaticSinkRealRooted]{sink specialization} is real-rooted in $t$
 for every $q\geq0$ \cite[Thm.~5.2]{AlexanderssonLeite2026x}.
 
-A half-sink is a vertex with no outgoing edge to a larger label.  Inserting the
-vertices in decreasing order gives the product
+If instead $s(O)$ counts the vertices with no outgoing edge to a larger
+label, inserting the vertices in decreasing order gives the product
 \[
-  \sum_{O}q^{\operatorname{asc}(O)}t^{\operatorname{hsink}(O)}
+  \sum_{O}q^{\operatorname{asc}(O)}t^{s(O)}
   =\prod_{i=1}^{n}\bigl(t+q+q^2+\dotsb+q^{\lambda_i-i}\bigr),
 \]
 over acyclic orientations, read off from the rows of the board
@@ -306,7 +305,7 @@ vertex form a clique.  It is real-rooted since $G_D$ is chordal
 For $a=(0,1,2,2,3)$, every acyclic orientation has a sink, and the only sets of
 two sinks are $\{1,4\}$ and $\{1,5\}$.  Each leaves a triangle with six acyclic
 orientations, so $S_D(t)=60t+12t^2$, with $X_D(1)=72$ orientations in total.
-The half-sink polynomial at $q=1$ is $t(t+1)(t+2)^2(t+3)$, and
+The product above at $q=1$ is $t(t+1)(t+2)^2(t+3)$, and
 $w_D(t)=48t^4+72t^5$.
 \end{example*}
 
@@ -438,47 +437,51 @@ $0123$ & $(3)$ & $1$ & $1+3t$ \\
 
 Reversing the path rotates the skew shape, which does not change the two
 polynomials, as for $0001$ and $0100$.  For the shape $(3,2)$ of the
-\hyperref[dyckPathRunningExample]{running example},
+\hyperref[dyckPathRunningExample]{example} $a=01223$,
 $N_D=1+3t+t^2$ and $R_D=1+5t+3t^2$, so $[t]N_D=R_D(1)-5-1$.
 \end{example*}
 
 
-\subsubsection[dyckPathParticles]{Tableaux as particle hops}
+\subsubsection[dyckPathParticles]{Tableaux and moving particles}
 
 The skew shape $F_D$ can be found inside the board.  The cells $(i,c)$ of
 $\lambda_D$ with $i<c$ are the edges of $G_D$.  Keep only the rows
-$\ell_1,\dotsc,\ell_r$ where a peak interval starts; row $\ell_k$ contains the
+$\ell_1,\dotsc,\ell_r$ where a maximal clique starts; row $\ell_k$ contains the
 edges $\{\ell_k,p\}$ with $\ell_k<p\leq u_k$.  Shifting the $k$th kept row
 $k$ steps to the left, and stacking the rows from the bottom, gives $F_D$.
 
-This leads to a particle model.  Place $r$ particles on the sites
-$\ell_1<\dotsb<\ell_r$ of $[n]$.  In each step one particle moves one site to
-the right, onto an empty site, and particle $k$ stops at $u_k$, so it never
-leaves the clique $A_k$.  The positions at any moment form a basis of $M_D$,
-and a complete run is a maximal chain of bases in Gale order.  A standard
-Young tableau $T$ of shape $F_D$ gives a run: if $t$ lies in the $k$th row from
-the bottom, the $t$th step moves particle $k$, and the $c$th cell of that row is the hop
-of particle $k$ onto site $\ell_k+c$, that is, the edge $\{\ell_k,\ell_k+c\}$.  The columns of $T$ increase precisely when
-no two particles meet, and every run arises once.  A natural descent $j$ of
-$T$ is a time where the particle moved at step $j+1$ lies to the right of the
-particle moved at step $j$.  Hence $N_D(t)$ counts the runs by the ascents of the word
-recording which particle moves, and $R_D(1)$ counts the configurations.
+This can be phrased with moving particles.  Place $r$ particles at the
+positions $\ell_1<\dotsb<\ell_r$ in $[n]$.  In each step one particle moves one
+position to the right, onto an empty position, until particle $k$ is at $u_k$
+for every $k$; so particle $k$ never leaves the clique $A_k$.  The positions
+at any moment form a basis of $M_D$, and the whole sequence of moves is a
+maximal chain of bases in Gale order.  A standard Young tableau $T$ of shape
+$F_D$ gives such a sequence: if $t$ lies in the $k$th row from the bottom, the
+$t$th step moves particle $k$, and the $c$th cell of that row is the move of
+particle $k$ to position $\ell_k+c$, that is, the edge $\{\ell_k,\ell_k+c\}$.
+The columns of $T$ increase precisely when no two particles meet, and every
+sequence of moves arises once.  A natural descent $j$ of $T$ is a step where
+the particle moved at step $j+1$ lies to the right of the particle moved at
+step $j$.  Hence $N_D(t)$ counts the sequences of moves by the ascents of the
+word recording which particle moves, and $R_D(1)$ counts the possible
+positions of the particles.
 
-\begin{example*}[Particle hops for the area sequence $01223$]
+\begin{example*}[Moving particles for the area sequence $01223$]
 Let $a=(0,1,2,2,3)$.  The figure shows the board, the skew shape with a
-tableau, and the particle positions of the run given by the tableau.
+tableau, and the particle positions after each move given by the tableau.
 \begin{figure}
-\svgimg[width=0.9\textwidth]{./svg-images/dyck-path-particles.svg}{The peak rows of the area of the Dyck path with area sequence 0,1,2,2,3, the tableau of shape (3,2) with rows 124 and 35, and the corresponding particle positions after each hop.}
+\svgimg[width=0.9\textwidth]{./svg-images/dyck-path-particles.svg}{The board of the Dyck path with area sequence 0,1,2,2,3 with the rows where a maximal clique starts shaded, the tableau of shape (3,2) with rows 124 and 35, and the corresponding particle positions after each move.}
 \end{figure}
 
-On the left is the board $\lambda_D=(3,5,5,5,5)$.  The peak intervals start in rows $1$ and $2$, and
-the edge boxes in these rows are shaded; the other edge boxes are grey.
+On the left is the board $\lambda_D=(3,5,5,5,5)$.  The maximal cliques start
+in rows $1$ and $2$, and the boxes above the diagonal in these rows are
+shaded; the other boxes above the diagonal are grey.
 Shifting row $1$ one step and row $2$ two steps to the left, and putting row
 $2$ on top, gives $F_D=(3,2)$, shown in the middle with the tableau with rows
 $124$ and $35$.
 
-Particle $1$, drawn as a circle, moves from site $1$ to site $3$, and particle
-$2$, drawn as a square, from site $2$ to site $5$.  The right part of the
+Particle $1$, drawn as a circle, moves from position $1$ to position $3$, and
+particle $2$, drawn as a square, from position $2$ to position $5$.  The right part of the
 figure shows their positions at the times $0,1,\dotsc,5$.  The entries $1,2,4$
 lie in the top row, the second row from the bottom, so the tableau moves
 particle $2$, particle $2$, particle $1$, particle $2$ and particle $1$.  Its
@@ -486,8 +489,8 @@ only natural descent is $3$: at time $4$ the moving particle lies to the
 right of the particle that moved at time $3$.
 \end{example*}
 
-For a straight shape $\lambda$, the particles start at $1,\dotsc,r$, and a run
-is a ballot sequence recording the row of each entry.  The natural descents
+For a straight shape $\lambda$, the particles start at $1,\dotsc,r$, and the
+word recording which particle moves is a ballot sequence.  The natural descents
 are then the descents of the ballot sequence, with rows numbered from the top.
 For the two-row shape $(m,m)$ these are the valleys of a Dyck path of
 semilength $m$, which have the \hyperref[narayanaNumbers]{Narayana}
@@ -508,13 +511,14 @@ Dyck paths enter a second time, through the
 $a_1\dotsm a_n$ there are exactly the area sequences $(0,a_1,\dotsc,a_n)$ of the
 Dyck paths $E$ of semilength $n+1$.  Since $[k]_q$ vanishes at $q=-1$ precisely
 when $k$ is even, the number of odd letters is the order of vanishing of $X_E$
-at $q=-1$.  For a Schubert matroid of rank $n$ with board of squares $B$,
+at $q=-1$.  For a Schubert matroid of rank $n$ with
+\hyperref[schubertMatroidZBoard]{board} $B$,
 \[
   Z(t)=\sum_{E}t^{\operatorname{ord}_{q=-1}X_E(q)}\,
   W_B\bigl(\{j\in[n-1]: a_{j+1}(E)\geq2\}\bigr),
 \]
 summed over Dyck paths $E$ of semilength $n+1$, where $a_{j+1}(E)$ is the
-height of $E$ before its $(j+2)$nd up-step.  When the board of squares is empty,
+height of $E$ before its $(j+2)$nd up-step.  When the board $B$ is empty,
 for instance for the uniform matroid $U_{n,n+1}$, every $W_B$ equals one, and
 \[
   N_{n+1}(t)=\sum_{E}t^{\operatorname{ord}_{q=-1}X_E(q)}
@@ -522,14 +526,14 @@ for instance for the uniform matroid $U_{n,n+1}$, every $W_B$ equals one, and
 is the \hyperref[narayanaNumbers]{Narayana polynomial}.  For $n=2$, the five
 area sequences $000$, $001$, $010$, $011$ and $012$ give $1+3t+t^2$.
 
-The peak intervals of $E$ give a second formula of this kind:
+The maximal cliques of the unit interval graph $G_E$ give a second formula of
+this kind:
 \[
   Z(t)=\sum_{E}t^{\operatorname{pk}(E)-1}\,
-  W_B\bigl(\{j\in[n-1]: j+1\text{ lies in at least two peak intervals of }E\}\bigr),
+  W_B\bigl(\{j\in[n-1]: j+1\text{ lies in at least two maximal cliques of }G_E\}\bigr),
 \]
-again over Dyck paths $E$ of semilength $n+1$.  In terms of the unit interval
-graph $G_E$, the exponent is the number of maximal cliques minus one, and row
-$j$ is available when the vertex $j+1$ lies in two maximal cliques.
+again over Dyck paths $E$ of semilength $n+1$.  Here $\operatorname{pk}(E)-1$
+is the number of maximal cliques of $G_E$ minus one.
 
 \begin{example*}[$Z$-polynomials for semilength four]
 For the fourteen Dyck paths of

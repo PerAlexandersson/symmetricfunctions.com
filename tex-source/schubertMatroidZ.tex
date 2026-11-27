@@ -45,14 +45,14 @@ Real-rootedness of $Z_M(t)$ was conjectured for all matroids
 combinatorial descriptions of $Z_M$ and $\Gamma_M$ for Schubert matroids and,
 more generally, lattice path matroids.  The central one is a
 \hyperref[schubertMatroidZMotzkin]{model} of Motzkin paths together with rook
-placements on a board of $2\times2$ squares, which works for all
+rook placements on a board of $2\times2$ squares, which works for all
 \hyperref[schubertMatroidZSkew]{skew shapes}; the other descriptions are
 reformulations of it.  Unless stated otherwise, the results
 are from unpublished work of \name{Per Alexandersson}
 \cite{Alexandersson2026SchubertMatroidZ}.
 
 
-\subsection[schubertMatroidZBoard]{Schubert matroids and the board of squares}
+\subsection[schubertMatroidZBoard]{Schubert matroids and rook placements}
 
 Let $\lambda=(\lambda_1\geq\dotsb\geq\lambda_n\geq1)$ be a partition with $n$
 positive parts.  The Schubert matroid $M_\lambda$ on $[n+\lambda_1]$ has as
@@ -65,27 +65,28 @@ coloops, each multiplying $Z$ by $1+t$.  The elements
 $1,\dotsc,1+\lambda_1-\lambda_2$ are parallel, so $Z_{M_\lambda}$ does not
 depend on $\lambda_1$.
 
-The \defin{board of squares}\label{schubertMatroidZBoardOfSquares} $B$ of
-$\lambda$ consists of the boxes of $\lambda$ that are the northwest corner of a
-$2\times2$ square inside $\lambda$.  Its row $j$, for $1\leq j<n$, has
-$w_j=\lambda_{j+1}-1$ boxes.  A \defin{placement} on $B$ is a set of boxes
+Let $B$\label{schubertMatroidZBoardOfSquares} be the set of boxes of
+$\lambda$ that are the top left box of a $2\times2$ square inside $\lambda$.
+It is again a Ferrers board, with $\lambda_{j+1}-1$ boxes in row $j$ for
+$1\leq j<n$.  All rook placements on $B$ on this page are
+\hyperref[nonNestingRookPlacement]{non-nesting}: they are sets of boxes
 $(j_1,c_1),\dotsc,(j_s,c_s)$ of $B$ with $j_1<\dotsb<j_s$ and
-$c_1>\dotsb>c_s$, that is, a
-\hyperref[nonNestingRookPlacement]{non-nesting rook placement} on $B$.  Give a
-rook in column $c$ the weight $x_c$, and for $E\subseteq[n-1]$ let
+$c_1>\dotsb>c_s$.  Give a rook in column $c$ the weight $x_c$, and for
+$E\subseteq[n-1]$ let
 \[
-  W_B(E)\coloneqq\sum_{\text{placements in rows } \subseteq E}\ \prod_{i} x_{c_i},
+  W_B(E)\coloneqq\sum_{\text{rooks in rows of } E}\ \prod_{i} x_{c_i},
 \]
+the sum over the rook placements on $B$ with all rooks in rows of $E$,
 including the empty placement of weight one.  The identities below hold with
 these column weights, and setting all $x_c=1$ gives $Z_{M_\lambda}(t)$ and
 $\Gamma_{M_\lambda}(y)$.
 
-Placements are the same as partitions inside $B$.  Given a placement, let
+Rook placements are the same as partitions inside $B$.  Given a rook placement, let
 $\eta_j$ be the column of the first rook in a row $i\geq j$, or zero if there
 is none, and put $\eta_n=0$.  Then $\eta$ is a partition contained in $B$,
 and the rooks sit exactly at its corners, the boxes $(j,\eta_j)$ with
 $\eta_j>\eta_{j+1}$.  Conversely, every partition $\eta\subseteq B$ arises
-from exactly one placement.  Thus
+from exactly one rook placement.  Thus
 \[
   W_B(E)=\sum_{\substack{\eta\subseteq B\\ \text{corners in rows of } E}}
   \ \prod_{\text{corners } (j,\eta_j)} x_{\eta_j}.
@@ -97,10 +98,10 @@ correspondences on the page on \hyperref[latticePathMatroids]{lattice path
 matroids}, they are also the bases of the lattice path matroid of $B$ and the
 linear extensions of its width-two poset.
 
-\begin{example*}[Placements on the board of $\lambda=(3,3,2,1)$]
+\begin{example*}[Rook placements on the board of $\lambda=(3,3,2,1)$]
 For $\lambda=(3,3,2,1)$ the board has rows of lengths $2,1,0$.  Below, the
 board is shaded, the partition $\eta$ is blue and the rooks are dots.  The
-five placements are the empty one, $(1,1)$, $(1,2)$, $(2,1)$ and
+five rook placements are the empty one, $(1,1)$, $(1,2)$, $(2,1)$ and
 $\{(1,2),(2,1)\}$.
 \begin{figure}
 \begin{ytableau}
@@ -141,7 +142,7 @@ For instance $W_B(\{1,2\})=1+2x_1+x_2+x_1x_2$, while $W_B(\{2\})=1+x_1$.
 
 \subsection[schubertMatroidZMotzkin]{The combinatorial model}
 
-The model combines two objects: a placement on the board, which depends on
+The model combines two objects: a rook placement on the board, which depends on
 $\lambda$, and a Motzkin path, which depends only on the rank $n$.
 
 A \hyperref[motzkinPolynomialsRealRooted]{Motzkin path} $P$ of length $n$
@@ -150,29 +151,27 @@ height by $1$, $0$ and $-1$, and never goes below zero.  Let $h_j(P)$ be its
 height after step $j$, and let $k(P)$ be its number of up-steps.  It also has
 $k(P)$ down-steps and $n-2k(P)$ horizontal steps.
 
-Think of the vertex of $P$ after step $j$ as sitting next to row $j$ of the
-board, for $1\leq j\leq n-1$.  The only rule is the following: a rook may be
-placed in row $j$ only if the path is strictly above zero there.  We call a
-placement $R$ \defin{compatible}\label{schubertMatroidZCompatible} with $P$ if
-$h_j(P)>0$ for every row $j$ that contains a rook of $R$.  The figure shows a
-compatible pair for $\lambda=(3,3,2,1)$; it is explained in the first example
-below.
+Think of the vertex of $P$ after step $j$ as sitting next to row $j$ of
+$B$, for $1\leq j\leq n-1$.  The model consists of the pairs $(P,R)$ of a
+Motzkin path $P$ and a rook placement $R$ on $B$ such that the path is
+strictly above zero next to every row with a rook, that is, $h_j(P)>0$
+whenever row $j$ contains a rook of $R$.  The figure shows such a pair for $\lambda=(3,3,2,1)$;
+it is explained in the first example below.
 \begin{figure}
 \svgimg[width=0.45\textwidth]{./svg-images/schubertZ-model.svg}{The Ferrers diagram of (3,3,2,1) with its board of three shaded boxes and two rooks in rows 1 and 2, next to the Motzkin path UHDH drawn downwards, whose vertices after steps 1 and 2 are above zero.}
 \end{figure}
 
-For a fixed path $P$, the compatible placements are exactly the placements
-whose rows lie in the set
+For a fixed path $P$, the allowed rook placements are those with all rooks
+in rows of the set
 \[
   E(P)\coloneqq\{j\in[n-1]: h_j(P)>0\},
 \]
 so their total weight is $W_B(E(P))$.
 
 \begin{theorem}[Alexandersson, 2026]\label{schubertMatroidZRookMotzkin}
-The gamma coefficient $\gamma_k$ of $Z_{M_\lambda}$ is the number of compatible
-pairs $(P,R)$, where $P$ is a Motzkin path of length $n$ with $k$ up-steps and
-$R$ is a placement on the board, each pair weighted by the columns of its
-rooks.  That is,
+The gamma coefficient $\gamma_k$ of $Z_{M_\lambda}$ is the number of pairs
+$(P,R)$ as above in which $P$ has $k$ up-steps, each pair weighted by the
+columns of its rooks.  That is,
 \[
   \Gamma_{M_\lambda}(y)=\sum_{P} y^{k(P)}\,W_B(E(P)),
   \qquad
@@ -183,35 +182,35 @@ rooks.  That is,
 The second formula follows from the first by the definition of the gamma
 coefficients.  It can also be read as a count: give each up-step the weight
 $t$, each down-step the weight $1$, and each horizontal step the weight $1$ or
-$t$, and call the horizontal steps with weight $t$ \defin{marked}.  Then
-$[t^i]Z_{M_\lambda}$ counts the compatible pairs $(P,R)$ in which $P$ has
-exactly $i$ up-steps and marked steps together.
+$t$.  Then $[t^i]Z_{M_\lambda}$ counts the pairs $(P,R)$ together with a
+choice of $i-k(P)$ horizontal steps of weight $t$.  Below, these are called
+marked steps, and a marked horizontal step is written $\bar{H}$.
 
-\begin{example*}[A compatible pair for $\lambda=(3,3,2,1)$]
+\begin{example*}[A pair in the model for $\lambda=(3,3,2,1)$]
 The figure above shows the Ferrers diagram of $\lambda=(3,3,2,1)$.  Its board
 consists of the three shaded boxes $(1,1)$, $(1,2)$ and $(2,1)$, and the two
-dots form the placement $R=\{(1,2),(2,1)\}$ of weight $x_1x_2$.
+dots form the rook placement $R=\{(1,2),(2,1)\}$ of weight $x_1x_2$.
 
 To the right, the Motzkin path $P=UHDH$ is drawn downwards, so that its vertex
 after step $j$ is level with row $j$.  The heights after steps $1$, $2$ and
 $3$ are $1$, $1$ and $0$.  The vertices next to rows $1$ and $2$, filled, are
 above zero, and the vertex next to row $3$, open, is not.  Hence
-$E(P)=\{1,2\}$, and $R$ is compatible with $P$.  The pair has one up-step and
-contributes $y\,x_1x_2$ to $\Gamma_{M_\lambda}$.
+$E(P)=\{1,2\}$, and the pair $(P,R)$ belongs to the model.  It has one
+up-step and contributes $y\,x_1x_2$ to $\Gamma_{M_\lambda}$.
 
-All five placements on this board are compatible with $P$, so $P$ contributes
-$y\,W_B(\{1,2\})=y(1+2x_1+x_2+x_1x_2)$.  The path $UDHH$ is only positive next
-to row $1$, so it is compatible with the empty placement and the placements
-$\{(1,1)\}$ and $\{(1,2)\}$, and contributes $y(1+x_1+x_2)$.
+All five rook placements on this board can be paired with $P$, so $P$
+contributes $y\,W_B(\{1,2\})=y(1+2x_1+x_2+x_1x_2)$.  The path $UDHH$ is only
+positive next to row $1$, so it can only be paired with the empty placement
+and the rook placements $\{(1,1)\}$ and $\{(1,2)\}$, and contributes
+$y(1+x_1+x_2)$.
 \end{example*}
 
 When the board is empty, every $W_B(E)$ equals one, and the theorem says that
 $\gamma_k$ is the number of Motzkin paths of length $n$ with $k$ up-steps,
 which is $\binom{n}{2k}\mathrm{Cat}_k$.  This is the gamma expansion of the
-\hyperref[narayanaNumbers]{Narayana polynomial} above.  The board measures how
-far $M_\lambda$ is from the circuit $U_{n,n+1}$: each nonempty placement on
-$B$ adds further terms, but only together with the paths that are positive in
-all of its rows.
+\hyperref[narayanaNumbers]{Narayana polynomial} above.  Each nonempty rook
+rook placement on $B$ adds further terms, but only together with the paths that
+are positive in all of its rows.
 
 \begin{example*}[The uniform matroid $U_{2,4}$ from the definition and from the theorem]
 Let $\lambda=(2,2)$.  Then every pair from $[4]$ is a basis, so $M_\lambda$ is
@@ -224,7 +223,7 @@ all equal to one, so the definition gives
 \]
 and $\Gamma(y)=1+2y$.
 
-On the other side, the board of squares has a single box, in row $1$, of
+On the other side, $B$ has a single box, in row $1$, of
 weight $x_1$.  There are two Motzkin paths of length two: $HH$, with no
 up-steps and height zero after step $1$, and $UD$, with one up-step and
 height one after step $1$.  Only $UD$ allows the rook, so the theorem gives
@@ -237,8 +236,9 @@ alone and the path $UD$ with the rook.
 
 \begin{example*}[Motzkin paths for $\lambda=(3,3,2,1)$]\label{schubertMatroidZExample}
 Take $\lambda=(3,3,2,1)$, so that $B$ has rows of lengths $2,1,0$.  Group the
-placements by their set of occupied rows $J$.  The middle column is the
-total weight of the placements with row set $J$, and the last column counts, by
+rook placements by the set $J$ of rows that contain a rook.  The middle column
+is the total weight of the rook placements with this set $J$, and the last column
+counts, by
 up-steps, the Motzkin paths of length four that are positive after every step
 in $J$.  For instance, for $J=\{1\}$ the path must start with an up-step.
 The paths $UDHH$, $UHDH$ and $UHHD$ have one up-step and $UDUD$ and $UUDD$
@@ -282,15 +282,15 @@ this is $M_\lambda$.  We assume that $\lambda/\mu$ is connected, that is,
 $\mu_j<\lambda_{j+1}$ for $1\leq j<n$, so that consecutive rows share a
 column.
 
-The board of squares of $\lambda/\mu$ again consists of the northwest corners
-of the $2\times2$ squares inside $\lambda/\mu$.  These are the boxes $(j,c)$
-with $1\leq j<n$ and $\mu_j<c<\lambda_{j+1}$.  Placements, compatibility and
-$W_B(E)$ are defined as before.
+The board $B$ of $\lambda/\mu$ again consists of the top left boxes of the
+$2\times2$ squares inside $\lambda/\mu$.  These are the boxes $(j,c)$ with
+$1\leq j<n$ and $\mu_j<c<\lambda_{j+1}$.  Rook placements and $W_B(E)$ are
+defined as before.
 
 \begin{theorem}[Alexandersson, 2026]\label{schubertMatroidZSkewTheorem}
 For a connected skew shape $\lambda/\mu$ with $n$ rows, the formulas of the
 \hyperref[schubertMatroidZRookMotzkin]{theorem above} hold for the lattice
-path matroid of $\lambda/\mu$, with the board of squares of $\lambda/\mu$.
+path matroid of $\lambda/\mu$, with the board $B$ of $\lambda/\mu$.
 \end{theorem}
 
 The same formulas hold for the \hyperref[rookMatroids]{rook matroid} of
@@ -311,7 +311,7 @@ $(1,1)$.
  & \\
 \end{ytableau}
 \end{figure}
-There are four placements: the empty one, $\{(1,2)\}$, $\{(2,1)\}$ and
+There are four rook placements: the empty one, $\{(1,2)\}$, $\{(2,1)\}$ and
 $\{(1,2),(2,1)\}$.  The four Motzkin paths of length three are $HHH$, $UDH$,
 $HUD$ and $UHD$, with $E(P)=\emptyset$, $\{1\}$, $\{2\}$ and $\{1,2\}$.  Hence
 \[
@@ -321,7 +321,7 @@ which is $1+8y$ at unit weights, and
 \[
   Z(t)=(1+t)^3+8t(1+t)=1+11t+11t^2+t^3.
 \]
-For the straight shape $(3,3,2)$ the extra box $(1,1)$ adds one placement for
+For the straight shape $(3,3,2)$ the extra box $(1,1)$ adds one rook placement for
 $UDH$ and one for $UHD$, and gives $\gamma_1=10$ and
 $Z=1+13t+13t^2+t^3$.
 \end{example*}
@@ -334,13 +334,14 @@ integral prefix sums, whose maximal cells are snake matroid polytopes
 direct sum of connected ribbon matroids, which have Narayana $Z$-polynomials by
 \hyperref[conjRibbonMatroidZ]{the ribbon theorem} below.  The maximal cells
 correspond to the partitions $\eta$ with $\mu_j\leq\eta_j<\lambda_{j+1}$ and
-$\eta_n=0$, and hence to placements: put a rook at $(j,\eta_j)$ whenever
+$\eta_n=0$, and hence to rook placements: put a rook at $(j,\eta_j)$ whenever
 $\eta_j>\eta_{j+1}$ and $\eta_j>\mu_j$.  The faces of a fixed cell are
-obtained by fixing the prefix sums at a subset of $m$ of these rook rows.
+obtained by fixing the prefix sums at a subset of $m$ of the rows with a
+rook.
 Such a face contributes $(-1)^m$ times a product of the Narayana polynomials
 $Z_{U_{s,s+1}}$ of its segments, which in gamma coordinates counts the Motzkin
 paths returning to zero after each fixed row.  Inclusion--exclusion leaves
-exactly the Motzkin paths that are positive in every rook row.
+exactly the Motzkin paths that are positive in every row with a rook.
 \end{proof*}
 
 
@@ -443,7 +444,7 @@ the Dyck path $UUUDUDDUDD$, shown below it in the figure.
 
 The heights before its up-steps give the word
 $a=1221$.  Its two odd letters come from the up-step and the marked step, and
-the letters $a_2=a_3=2$ make rows $1$ and $2$ available, the rows where the
+the letters $a_2=a_3=2$ allow rooks in rows $1$ and $2$, the rows where the
 Motzkin path is positive.  The word contributes $t^2\,W_B(\{1,2\})$.
 \end{example*}
 
@@ -451,7 +452,7 @@ In terms of the Dyck path, $Z_{M_\lambda}$ is a sum over
 \hyperref[standardYoungTableau]{standard Young tableaux} $T$ of shape
 $(n+1,n+1)$, where the first row lists the up-step positions:
 $T$ contributes $t$ to the power of the number of even entries in its first
-row, and row $j$ of the board is available if $T_{1,j+2}\leq 2j+1$.
+row, and a rook is allowed in row $j$ if $T_{1,j+2}\leq 2j+1$.
 
 The words in $\mathcal{A}_n$ are the area sequences $(0,a_1,\dotsc,a_n)$ of
 Dyck paths of semilength $n+1$, and the number of odd letters is the order of
@@ -463,7 +464,8 @@ The same words also give the gamma polynomial.  Write $a_i=2b_i+\epsilon_i$
 with $\epsilon_i\in\{0,1\}$.  If $b_i\leq b_{i-1}$, both bits are possible, but
 if $b_i>b_{i-1}$ then $b_i=b_{i-1}+1$ and $(\epsilon_{i-1},\epsilon_i)=(1,0)$
 are forced.  Since $a_{j+1}\geq2$ precisely when $b_{j+1}>0$, the bits do not
-affect the available rows, and summing over them gives the following.
+affect which rows may contain rooks, and summing over them gives the
+following.
 
 \begin{corollary}[Alexandersson, 2026]
 Let $\mathcal{B}_n$ be the set of words $b_1\dotsm b_n$ of nonnegative integers
@@ -476,8 +478,8 @@ rises are consecutive.  Then
 \]
 \end{corollary}
 
-For example, $a=1234$ gives $b=0112$.  Its two rises fix all four bits, every
-row is available, and the word contributes $t^2W_B(\{1,2,3\})$ to $Z$ and
+For example, $a=1234$ gives $b=0112$.  Its two rises fix all four bits, rooks
+are allowed in every row, and the word contributes $t^2W_B(\{1,2,3\})$ to $Z$ and
 $y^2W_B(\{1,2,3\})$ to $\Gamma$.
 
 
@@ -501,8 +503,8 @@ unvisited subtrees are the intervals occupied by $1,\dotsc,n+1-j$.
 Let $n=3$ and $\lambda=(3,3,2)$, so that the board has rows of lengths $2$ and
 $1$.  The fourteen permutations in $\symS_4(132)$ correspond to the fourteen
 words in $\mathcal{A}_3$ and to the marked Motzkin paths of length three, where
-$\bar{H}$ is a marked level step.  The last column is the number of
-placements in the available rows.
+$\bar{H}$ is a marked horizontal step.  The last column is the number of
+rook placements with all rooks in rows of $E(\pi)$.
 
 \begin{tabular}{llllll}
 \toprule
@@ -550,7 +552,7 @@ of $132$-avoiding permutations is.
 Matching each up-step of a Motzkin path with its down-step gives a noncrossing
 partial matching on $[n]$, and $h_j>0$ means that $j$ lies under an arc, that
 is, $p\leq j<q$ for some arc $(p,q)$.  Thus $\gamma_k$ counts noncrossing
-partial matchings with $k$ arcs, together with a placement whose rooks lie in
+partial matchings with $k$ arcs, together with a rook placement whose rooks lie in
 rows covered by arcs.
 
 The ordinary polynomial has a similar description by
@@ -564,7 +566,7 @@ strictly over $j+1$, that is, $a<j+1<b$.  Then
 summed over the noncrossing partitions $\pi$ of $[n+1]$, so the exponent is
 the rank of $\pi$ in the lattice of noncrossing partitions.  To see this,
 shorten each arc $(a,b)$ to $(a,b-1)$.  The arcs of length one become marked
-sites, and the longer arcs form a noncrossing partial matching on $[n]$, as in
+points, and the longer arcs form a noncrossing partial matching on $[n]$, as in
 the matching formula above \cite{ChenDengDu2005}.  Moreover, weighting all set
 partitions by $p^{\operatorname{cr}(\pi)}q^{\operatorname{ne}(\pi)}$, the
 numbers of crossing and of nesting pairs of arcs, gives a polynomial that is
@@ -603,7 +605,7 @@ or $D$, but only from positive height.
 
 Further descriptions of $Z_{M_\lambda}(t)$ in the same spirit sum
 $t^{s}\,W_B(E)$ over the following objects, for the stated statistic $s$ and
-row set $E$:
+set $E$:
 \begin{itemize}
 \item lists $u_1<\dotsb<u_k$ and $v_1<\dotsb<v_k$ in $[n]$ with $u_i\leq v_i$,
   with $s=k$, and $j\in E$ if $u_i\leq j<v_i$ for some $i$;
@@ -640,7 +642,7 @@ $(\lambda_1,\dotsc,\lambda_m)$, and let $Z_{m+1}$ be that of $\lambda$.  Let
 $Q_{m+1}(t)$ be $t^{-1}$ times the sum in the word formula for $\lambda$ over
 the words with last letter at least two; such a word contains an odd letter.
 Every word for $(\lambda_1,\dotsc,\lambda_m)$ extends by the letters $0$ and
-$1$ without making the new row available, so
+$1$ without allowing a rook in the new row, so
 \[
   Z_{m+1}(t)=(1+t)Z_m(t)+t\,Q_{m+1}(t).
 \]
